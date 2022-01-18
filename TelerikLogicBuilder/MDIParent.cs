@@ -20,5 +20,15 @@ namespace TelerikLogicBuilder
         {
 
         }
+
+        private void radCommandBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void commandBarButtonEdit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

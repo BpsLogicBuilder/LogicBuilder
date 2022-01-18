@@ -101,21 +101,45 @@
   <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="commandBarStripElement1.DisplayName" xml:space="preserve">
+    <value>commandBarStripElement1</value>
+  </data>
+  <data name="commandBarButtonEdit.DisplayName" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="commandBarButtonEdit.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="commandBarButtonSave.DisplayName" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="commandBarButtonSave.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="commandBarButtonSaveAll.DisplayName" xml:space="preserve">
+    <value>Save All</value>
+  </data>
+  <data name="commandBarButtonSaveAll.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="commandBarButtonValidate.DisplayName" xml:space="preserve">
+    <value>Validate</value>
+  </data>
+  <data name="commandBarButtonValidate.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="commandBarButtonBuild.DisplayName" xml:space="preserve">
+    <value>Build</value>
+  </data>
+  <data name="commandBarButtonBuild.Text" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="radCommandBar1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="radCommandBar1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 25</value>
-  </data>
-  <data name="commandBarStripElement1.DisplayName" xml:space="preserve">
-    <value>commandBarStripElement1</value>
-  </data>
-  <data name="commandBarButtonEdit.DisplayName" xml:space="preserve">
-    <value>commandBarButton1</value>
-  </data>
-  <data name="commandBarButtonEdit.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>996, 31</value>
@@ -215,6 +239,30 @@
     <value>commandBarButtonEdit</value>
   </data>
   <data name="&gt;&gt;commandBarButtonEdit.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonSave.Name" xml:space="preserve">
+    <value>commandBarButtonSave</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonSave.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonSaveAll.Name" xml:space="preserve">
+    <value>commandBarButtonSaveAll</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonSaveAll.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonValidate.Name" xml:space="preserve">
+    <value>commandBarButtonValidate</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonValidate.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonBuild.Name" xml:space="preserve">
+    <value>commandBarButtonBuild</value>
+  </data>
+  <data name="&gt;&gt;commandBarButtonBuild.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

@@ -37,10 +37,14 @@
             this.radMenuItemRules = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemTools = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemHelp = new Telerik.WinControls.UI.RadMenuItem();
-            this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
             this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
             this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
             this.commandBarButtonEdit = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarButtonSave = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarButtonSaveAll = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarButtonValidate = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarButtonBuild = new Telerik.WinControls.UI.CommandBarButton();
+            this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -95,13 +99,6 @@
             this.radMenuItemHelp.Name = "radMenuItemHelp";
             resources.ApplyResources(this.radMenuItemHelp, "radMenuItemHelp");
             // 
-            // radCommandBar1
-            // 
-            resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
-            this.radCommandBar1.Name = "radCommandBar1";
-            this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
-            this.commandBarRowElement1});
-            // 
             // commandBarRowElement1
             // 
             this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
@@ -113,14 +110,54 @@
             // 
             resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
             this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
-            this.commandBarButtonEdit});
+            this.commandBarButtonEdit,
+            this.commandBarButtonSave,
+            this.commandBarButtonSaveAll,
+            this.commandBarButtonValidate,
+            this.commandBarButtonBuild});
             this.commandBarStripElement1.Name = "commandBarStripElement1";
             // 
             // commandBarButtonEdit
             // 
+            this.commandBarButtonEdit.ClipText = false;
             resources.ApplyResources(this.commandBarButtonEdit, "commandBarButtonEdit");
             this.commandBarButtonEdit.Image = global::TelerikLogicBuilder.Properties.Resources.Edit;
             this.commandBarButtonEdit.Name = "commandBarButtonEdit";
+            this.commandBarButtonEdit.Click += new System.EventHandler(this.commandBarButtonEdit_Click);
+            // 
+            // commandBarButtonSave
+            // 
+            this.commandBarButtonSave.AccessibleName = "commandBarButton1";
+            resources.ApplyResources(this.commandBarButtonSave, "commandBarButtonSave");
+            this.commandBarButtonSave.Image = global::TelerikLogicBuilder.Properties.Resources.Save;
+            this.commandBarButtonSave.Name = "commandBarButtonSave";
+            // 
+            // commandBarButtonSaveAll
+            // 
+            this.commandBarButtonSaveAll.AccessibleName = "commandBarButton";
+            resources.ApplyResources(this.commandBarButtonSaveAll, "commandBarButtonSaveAll");
+            this.commandBarButtonSaveAll.Image = global::TelerikLogicBuilder.Properties.Resources.SaveAll;
+            this.commandBarButtonSaveAll.Name = "commandBarButtonSaveAll";
+            // 
+            // commandBarButtonValidate
+            // 
+            resources.ApplyResources(this.commandBarButtonValidate, "commandBarButtonValidate");
+            this.commandBarButtonValidate.Image = global::TelerikLogicBuilder.Properties.Resources.Validate;
+            this.commandBarButtonValidate.Name = "commandBarButtonValidate";
+            // 
+            // commandBarButtonBuild
+            // 
+            resources.ApplyResources(this.commandBarButtonBuild, "commandBarButtonBuild");
+            this.commandBarButtonBuild.Image = global::TelerikLogicBuilder.Properties.Resources.Build;
+            this.commandBarButtonBuild.Name = "commandBarButtonBuild";
+            // 
+            // radCommandBar1
+            // 
+            resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
+            this.radCommandBar1.Name = "radCommandBar1";
+            this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
+            this.commandBarRowElement1});
+            this.radCommandBar1.Click += new System.EventHandler(this.radCommandBar1_Click);
             // 
             // MDIParent
             // 
@@ -156,5 +193,9 @@
         private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement1;
         private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement1;
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonEdit;
+        private Telerik.WinControls.UI.CommandBarButton commandBarButtonSave;
+        private Telerik.WinControls.UI.CommandBarButton commandBarButtonSaveAll;
+        private Telerik.WinControls.UI.CommandBarButton commandBarButtonValidate;
+        private Telerik.WinControls.UI.CommandBarButton commandBarButtonBuild;
     }
 }
