@@ -22,7 +22,7 @@ namespace TelerikLogicBuilder
             commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
         }
 
-        private void commandBarButtonEdit_Click(object sender, EventArgs e)
+        private void CommandBarButtonEdit_Click(object sender, EventArgs e)
         {
 
         }

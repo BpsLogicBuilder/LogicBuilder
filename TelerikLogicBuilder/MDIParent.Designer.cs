@@ -45,8 +45,27 @@
             this.commandBarButtonValidate = new Telerik.WinControls.UI.CommandBarButton();
             this.commandBarButtonBuild = new Telerik.WinControls.UI.CommandBarButton();
             this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
+            this.radSplitContainerBase = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanelLeft = new Telerik.WinControls.UI.SplitPanel();
+            this.splitPanelExplorer = new Telerik.WinControls.UI.SplitPanel();
+            this.radSplitContainerLeft = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanelEdit = new Telerik.WinControls.UI.SplitPanel();
+            this.splitPanelMessages = new Telerik.WinControls.UI.SplitPanel();
+            this.radProgressBarElement1 = new Telerik.WinControls.UI.RadProgressBarElement();
+            this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
+            this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).BeginInit();
+            this.radSplitContainerBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).BeginInit();
+            this.splitPanelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerLeft)).BeginInit();
+            this.radSplitContainerLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelMessages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,7 +142,7 @@
             resources.ApplyResources(this.commandBarButtonEdit, "commandBarButtonEdit");
             this.commandBarButtonEdit.Image = global::TelerikLogicBuilder.Properties.Resources.Edit;
             this.commandBarButtonEdit.Name = "commandBarButtonEdit";
-            this.commandBarButtonEdit.Click += new System.EventHandler(this.commandBarButtonEdit_Click);
+            this.commandBarButtonEdit.Click += new System.EventHandler(this.CommandBarButtonEdit_Click);
             // 
             // commandBarButtonSave
             // 
@@ -158,10 +177,120 @@
             this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
             // 
+            // radSplitContainerBase
+            // 
+            this.radSplitContainerBase.Controls.Add(this.splitPanelLeft);
+            this.radSplitContainerBase.Controls.Add(this.splitPanelExplorer);
+            this.radSplitContainerBase.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            resources.ApplyResources(this.radSplitContainerBase, "radSplitContainerBase");
+            this.radSplitContainerBase.Name = "radSplitContainerBase";
+            // 
+            // 
+            // 
+            this.radSplitContainerBase.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radSplitContainerBase.SplitterWidth = 8;
+            this.radSplitContainerBase.TabStop = false;
+            // 
+            // splitPanelLeft
+            // 
+            this.splitPanelLeft.Controls.Add(this.radSplitContainerLeft);
+            resources.ApplyResources(this.splitPanelLeft, "splitPanelLeft");
+            this.splitPanelLeft.Name = "splitPanelLeft";
+            // 
+            // 
+            // 
+            this.splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3582996F, 0F);
+            this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(354, 0);
+            this.splitPanelLeft.TabStop = false;
+            // 
+            // splitPanelExplorer
+            // 
+            resources.ApplyResources(this.splitPanelExplorer, "splitPanelExplorer");
+            this.splitPanelExplorer.Name = "splitPanelExplorer";
+            // 
+            // 
+            // 
+            this.splitPanelExplorer.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3582996F, 0F);
+            this.splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-354, 0);
+            this.splitPanelExplorer.TabStop = false;
+            // 
+            // radSplitContainerLeft
+            // 
+            this.radSplitContainerLeft.Controls.Add(this.splitPanelEdit);
+            this.radSplitContainerLeft.Controls.Add(this.splitPanelMessages);
+            this.radSplitContainerLeft.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            resources.ApplyResources(this.radSplitContainerLeft, "radSplitContainerLeft");
+            this.radSplitContainerLeft.Name = "radSplitContainerLeft";
+            // 
+            // 
+            // 
+            this.radSplitContainerLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radSplitContainerLeft.SplitterWidth = 8;
+            this.radSplitContainerLeft.TabStop = false;
+            // 
+            // splitPanelEdit
+            // 
+            resources.ApplyResources(this.splitPanelEdit, "splitPanelEdit");
+            this.splitPanelEdit.Name = "splitPanelEdit";
+            // 
+            // 
+            // 
+            this.splitPanelEdit.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelEdit.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.3135313F);
+            this.splitPanelEdit.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 190);
+            this.splitPanelEdit.TabStop = false;
+            // 
+            // splitPanelMessages
+            // 
+            resources.ApplyResources(this.splitPanelMessages, "splitPanelMessages");
+            this.splitPanelMessages.Name = "splitPanelMessages";
+            // 
+            // 
+            // 
+            this.splitPanelMessages.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelMessages.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.3135313F);
+            this.splitPanelMessages.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -190);
+            this.splitPanelMessages.TabStop = false;
+            // 
+            // radProgressBarElement1
+            // 
+            this.radProgressBarElement1.Name = "radProgressBarElement1";
+            this.radProgressBarElement1.SeparatorColor1 = System.Drawing.Color.White;
+            this.radProgressBarElement1.SeparatorColor2 = System.Drawing.Color.White;
+            this.radProgressBarElement1.SeparatorColor3 = System.Drawing.Color.White;
+            this.radProgressBarElement1.SeparatorColor4 = System.Drawing.Color.White;
+            this.radProgressBarElement1.SeparatorGradientAngle = 0;
+            this.radProgressBarElement1.SeparatorGradientPercentage1 = 0.4F;
+            this.radProgressBarElement1.SeparatorGradientPercentage2 = 0.6F;
+            this.radProgressBarElement1.SeparatorNumberOfColors = 2;
+            // 
+            // radStatusStrip1
+            // 
+            this.radStatusStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radProgressBarElement1,
+            this.radLabelElement1});
+            resources.ApplyResources(this.radStatusStrip1, "radStatusStrip1");
+            this.radStatusStrip1.Name = "radStatusStrip1";
+            this.radStatusStrip1.SetSpring(this.radProgressBarElement1, false);
+            this.radProgressBarElement1.StepWidth = 14;
+            this.radProgressBarElement1.SweepAngle = 90;
+            resources.ApplyResources(this.radProgressBarElement1, "radProgressBarElement1");
+            // 
+            // radLabelElement1
+            // 
+            this.radLabelElement1.Name = "radLabelElement1";
+            this.radStatusStrip1.SetSpring(this.radLabelElement1, false);
+            resources.ApplyResources(this.radLabelElement1, "radLabelElement1");
+            this.radLabelElement1.TextWrap = true;
+            // 
             // MDIParent
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radStatusStrip1);
+            this.Controls.Add(this.radSplitContainerBase);
             this.Controls.Add(this.radCommandBar1);
             this.Controls.Add(this.radMenu1);
             this.IsMdiContainer = true;
@@ -173,6 +302,16 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).EndInit();
+            this.radSplitContainerBase.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).EndInit();
+            this.splitPanelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerLeft)).EndInit();
+            this.radSplitContainerLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelMessages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -196,5 +335,14 @@
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonSaveAll;
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonValidate;
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonBuild;
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainerBase;
+        private Telerik.WinControls.UI.SplitPanel splitPanelLeft;
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainerLeft;
+        private Telerik.WinControls.UI.SplitPanel splitPanelEdit;
+        private Telerik.WinControls.UI.SplitPanel splitPanelMessages;
+        private Telerik.WinControls.UI.SplitPanel splitPanelExplorer;
+        private Telerik.WinControls.UI.RadProgressBarElement radProgressBarElement1;
+        private Telerik.WinControls.UI.RadStatusStrip radStatusStrip1;
+        private Telerik.WinControls.UI.RadLabelElement radLabelElement1;
     }
 }
