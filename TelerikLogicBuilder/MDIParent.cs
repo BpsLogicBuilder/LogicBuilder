@@ -22,16 +22,6 @@ namespace TelerikLogicBuilder
             commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
         }
 
-        private void RadMenu1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radCommandBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void commandBarButtonEdit_Click(object sender, EventArgs e)
         {
 

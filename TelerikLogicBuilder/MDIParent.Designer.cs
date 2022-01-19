@@ -62,7 +62,6 @@
             this.radMenuItemHelp});
             resources.ApplyResources(this.radMenu1, "radMenu1");
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Click += new System.EventHandler(this.RadMenu1_Click);
             // 
             // radMenuItemFile
             // 
@@ -158,7 +157,6 @@
             this.radCommandBar1.Name = "radCommandBar1";
             this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-            this.radCommandBar1.Click += new System.EventHandler(this.radCommandBar1_Click);
             // 
             // MDIParent
             // 
