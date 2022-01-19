@@ -101,6 +101,7 @@
             // 
             // commandBarRowElement1
             // 
+            resources.ApplyResources(this.commandBarRowElement1, "commandBarRowElement1");
             this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
             this.commandBarRowElement1.Name = "commandBarRowElement1";
             this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {

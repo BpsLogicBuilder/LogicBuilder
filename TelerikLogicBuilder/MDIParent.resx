@@ -101,8 +101,11 @@
   <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="commandBarRowElement1.DisplayName" xml:space="preserve">
+    <value>Command Bar</value>
+  </data>
   <data name="commandBarStripElement1.DisplayName" xml:space="preserve">
-    <value>commandBarStripElement1</value>
+    <value>Tool Strip</value>
   </data>
   <data name="commandBarButtonEdit.DisplayName" xml:space="preserve">
     <value>Edit</value>
