@@ -47,24 +47,33 @@
             this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
             this.radSplitContainerBase = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanelLeft = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanelExplorer = new Telerik.WinControls.UI.SplitPanel();
             this.radSplitContainerLeft = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanelEdit = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanelMessages = new Telerik.WinControls.UI.SplitPanel();
+            this.splitPanelExplorer = new Telerik.WinControls.UI.SplitPanel();
             this.radProgressBarElement1 = new Telerik.WinControls.UI.RadProgressBarElement();
             this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
             this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
+            this.office2007BlackTheme1 = new Telerik.WinControls.Themes.Office2007BlackTheme();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.office2010BlackTheme1 = new Telerik.WinControls.Themes.Office2010BlackTheme();
+            this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
+            this.office2010SilverTheme1 = new Telerik.WinControls.Themes.Office2010SilverTheme();
+            this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.office2019DarkTheme1 = new Telerik.WinControls.Themes.Office2019DarkTheme();
+            this.office2019GrayTheme1 = new Telerik.WinControls.Themes.Office2019GrayTheme();
+            this.office2019LightTheme1 = new Telerik.WinControls.Themes.Office2019LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).BeginInit();
             this.radSplitContainerBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).BeginInit();
             this.splitPanelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerLeft)).BeginInit();
             this.radSplitContainerLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelMessages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -161,7 +170,7 @@
             // commandBarButtonValidate
             // 
             resources.ApplyResources(this.commandBarButtonValidate, "commandBarButtonValidate");
-            this.commandBarButtonValidate.Image = global::TelerikLogicBuilder.Properties.Resources.Validate;
+            this.commandBarButtonValidate.Image = global::TelerikLogicBuilder.Properties.Resources.Ok;
             this.commandBarButtonValidate.Name = "commandBarButtonValidate";
             // 
             // commandBarButtonBuild
@@ -204,18 +213,6 @@
             this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(354, 0);
             this.splitPanelLeft.TabStop = false;
             // 
-            // splitPanelExplorer
-            // 
-            resources.ApplyResources(this.splitPanelExplorer, "splitPanelExplorer");
-            this.splitPanelExplorer.Name = "splitPanelExplorer";
-            // 
-            // 
-            // 
-            this.splitPanelExplorer.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3582996F, 0F);
-            this.splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-354, 0);
-            this.splitPanelExplorer.TabStop = false;
-            // 
             // radSplitContainerLeft
             // 
             this.radSplitContainerLeft.Controls.Add(this.splitPanelEdit);
@@ -254,6 +251,18 @@
             this.splitPanelMessages.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -190);
             this.splitPanelMessages.TabStop = false;
             // 
+            // splitPanelExplorer
+            // 
+            resources.ApplyResources(this.splitPanelExplorer, "splitPanelExplorer");
+            this.splitPanelExplorer.Name = "splitPanelExplorer";
+            // 
+            // 
+            // 
+            this.splitPanelExplorer.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3582996F, 0F);
+            this.splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-354, 0);
+            this.splitPanelExplorer.TabStop = false;
+            // 
             // radProgressBarElement1
             // 
             this.radProgressBarElement1.Name = "radProgressBarElement1";
@@ -265,6 +274,10 @@
             this.radProgressBarElement1.SeparatorGradientPercentage1 = 0.4F;
             this.radProgressBarElement1.SeparatorGradientPercentage2 = 0.6F;
             this.radProgressBarElement1.SeparatorNumberOfColors = 2;
+            this.radStatusStrip1.SetSpring(this.radProgressBarElement1, false);
+            this.radProgressBarElement1.StepWidth = 14;
+            this.radProgressBarElement1.SweepAngle = 90;
+            resources.ApplyResources(this.radProgressBarElement1, "radProgressBarElement1");
             // 
             // radStatusStrip1
             // 
@@ -273,10 +286,6 @@
             this.radLabelElement1});
             resources.ApplyResources(this.radStatusStrip1, "radStatusStrip1");
             this.radStatusStrip1.Name = "radStatusStrip1";
-            this.radStatusStrip1.SetSpring(this.radProgressBarElement1, false);
-            this.radProgressBarElement1.StepWidth = 14;
-            this.radProgressBarElement1.SweepAngle = 90;
-            resources.ApplyResources(this.radProgressBarElement1, "radProgressBarElement1");
             // 
             // radLabelElement1
             // 
@@ -306,11 +315,11 @@
             this.radSplitContainerBase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).EndInit();
             this.splitPanelLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerLeft)).EndInit();
             this.radSplitContainerLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelMessages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -344,5 +353,14 @@
         private Telerik.WinControls.UI.RadProgressBarElement radProgressBarElement1;
         private Telerik.WinControls.UI.RadStatusStrip radStatusStrip1;
         private Telerik.WinControls.UI.RadLabelElement radLabelElement1;
+        private Telerik.WinControls.Themes.Office2007BlackTheme office2007BlackTheme1;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.Themes.Office2010BlackTheme office2010BlackTheme1;
+        private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
+        private Telerik.WinControls.Themes.Office2010SilverTheme office2010SilverTheme1;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme1;
+        private Telerik.WinControls.Themes.Office2019DarkTheme office2019DarkTheme1;
+        private Telerik.WinControls.Themes.Office2019GrayTheme office2019GrayTheme1;
+        private Telerik.WinControls.Themes.Office2019LightTheme office2019LightTheme1;
     }
 }

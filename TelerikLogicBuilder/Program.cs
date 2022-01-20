@@ -14,7 +14,9 @@ namespace TelerikLogicBuilder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = "Office2019Dark";
             Application.Run(new MDIParent());
+            
         }
     }
 }

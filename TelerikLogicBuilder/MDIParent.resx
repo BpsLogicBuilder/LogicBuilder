@@ -336,6 +336,33 @@
   <data name="radProgressBarElement1.Text" xml:space="preserve">
     <value />
   </data>
+  <metadata name="office2007BlackTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="office2007SilverTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>275, 17</value>
+  </metadata>
+  <metadata name="office2010BlackTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>534, 17</value>
+  </metadata>
+  <metadata name="office2010BlueTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 66</value>
+  </metadata>
+  <metadata name="office2010SilverTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>267, 66</value>
+  </metadata>
+  <metadata name="office2013LightTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>526, 66</value>
+  </metadata>
+  <metadata name="office2019DarkTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 115</value>
+  </metadata>
+  <metadata name="office2019GrayTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>270, 115</value>
+  </metadata>
+  <metadata name="office2019LightTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>523, 115</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -453,6 +480,60 @@
   </data>
   <data name="&gt;&gt;radLabelElement1.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.RadLabelElement, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2007BlackTheme1.Name" xml:space="preserve">
+    <value>office2007BlackTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2007BlackTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2007BlackTheme, Telerik.WinControls.Themes.Office2007Black, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2007SilverTheme1.Name" xml:space="preserve">
+    <value>office2007SilverTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2007SilverTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2007SilverTheme, Telerik.WinControls.Themes.Office2007Silver, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2010BlackTheme1.Name" xml:space="preserve">
+    <value>office2010BlackTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2010BlackTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2010BlackTheme, Telerik.WinControls.Themes.Office2010Black, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2010BlueTheme1.Name" xml:space="preserve">
+    <value>office2010BlueTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2010BlueTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2010BlueTheme, Telerik.WinControls.Themes.Office2010Blue, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2010SilverTheme1.Name" xml:space="preserve">
+    <value>office2010SilverTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2010SilverTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2010SilverTheme, Telerik.WinControls.Themes.Office2010Silver, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2013LightTheme1.Name" xml:space="preserve">
+    <value>office2013LightTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2013LightTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2013LightTheme, Telerik.WinControls.Themes.Office2013Light, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2019DarkTheme1.Name" xml:space="preserve">
+    <value>office2019DarkTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2019DarkTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2019DarkTheme, Telerik.WinControls.Themes.Office2019, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2019GrayTheme1.Name" xml:space="preserve">
+    <value>office2019GrayTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2019GrayTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2019GrayTheme, Telerik.WinControls.Themes.Office2019, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;office2019LightTheme1.Name" xml:space="preserve">
+    <value>office2019LightTheme1</value>
+  </data>
+  <data name="&gt;&gt;office2019LightTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.Office2019LightTheme, Telerik.WinControls.Themes.Office2019, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MDIParent</value>
