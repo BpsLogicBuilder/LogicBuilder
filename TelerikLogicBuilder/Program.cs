@@ -13,8 +13,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = "Office2019Dark";
-            Application.Run(new MDIParent());
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+            //Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.ThemeName;
+            var form = new MDIParent();
+
+            Services.IFormInitializer formInitializer = new Services.FormInitializer();
+            formInitializer.SetCenterScreen(form);
+
+            Application.Run(form);
             
         }
     }

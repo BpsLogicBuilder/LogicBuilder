@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="UI.for.WinForms.AllControls.Net60" Version="2021.3.1123" />
   </ItemGroup>
 
