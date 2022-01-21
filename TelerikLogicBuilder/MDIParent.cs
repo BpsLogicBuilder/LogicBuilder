@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using Telerik.WinControls;
 
-namespace TelerikLogicBuilder
+namespace ABIS.LogicBuilder.FlowBuilder
 {
     public partial class MDIParent : Telerik.WinControls.UI.RadForm
     {

@@ -1,4 +1,4 @@
-﻿namespace TelerikLogicBuilder
+﻿namespace ABIS.LogicBuilder.FlowBuilder
 {
     partial class MDIParent
     {
@@ -149,7 +149,7 @@
             // 
             this.commandBarButtonEdit.ClipText = false;
             resources.ApplyResources(this.commandBarButtonEdit, "commandBarButtonEdit");
-            this.commandBarButtonEdit.Image = global::TelerikLogicBuilder.Properties.Resources.Edit;
+            this.commandBarButtonEdit.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Edit;
             this.commandBarButtonEdit.Name = "commandBarButtonEdit";
             this.commandBarButtonEdit.Click += new System.EventHandler(this.CommandBarButtonEdit_Click);
             // 
@@ -157,26 +157,26 @@
             // 
             this.commandBarButtonSave.AccessibleName = "commandBarButton1";
             resources.ApplyResources(this.commandBarButtonSave, "commandBarButtonSave");
-            this.commandBarButtonSave.Image = global::TelerikLogicBuilder.Properties.Resources.Save;
+            this.commandBarButtonSave.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Save;
             this.commandBarButtonSave.Name = "commandBarButtonSave";
             // 
             // commandBarButtonSaveAll
             // 
             this.commandBarButtonSaveAll.AccessibleName = "commandBarButton";
             resources.ApplyResources(this.commandBarButtonSaveAll, "commandBarButtonSaveAll");
-            this.commandBarButtonSaveAll.Image = global::TelerikLogicBuilder.Properties.Resources.SaveAll;
+            this.commandBarButtonSaveAll.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.SaveAll;
             this.commandBarButtonSaveAll.Name = "commandBarButtonSaveAll";
             // 
             // commandBarButtonValidate
             // 
             resources.ApplyResources(this.commandBarButtonValidate, "commandBarButtonValidate");
-            this.commandBarButtonValidate.Image = global::TelerikLogicBuilder.Properties.Resources.Ok;
+            this.commandBarButtonValidate.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Ok;
             this.commandBarButtonValidate.Name = "commandBarButtonValidate";
             // 
             // commandBarButtonBuild
             // 
             resources.ApplyResources(this.commandBarButtonBuild, "commandBarButtonBuild");
-            this.commandBarButtonBuild.Image = global::TelerikLogicBuilder.Properties.Resources.Build;
+            this.commandBarButtonBuild.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Build;
             this.commandBarButtonBuild.Name = "commandBarButtonBuild";
             // 
             // radCommandBar1

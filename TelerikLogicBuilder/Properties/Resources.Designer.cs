@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TelerikLogicBuilder.Properties {
+namespace ABIS.LogicBuilder.FlowBuilder.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TelerikLogicBuilder.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TelerikLogicBuilder.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ABIS.LogicBuilder.FlowBuilder.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -787,6 +787,16 @@ namespace TelerikLogicBuilder.Properties {
             get {
                 object obj = ResourceManager.GetObject("savePNG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Simple {
+            get {
+                object obj = ResourceManager.GetObject("Simple", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

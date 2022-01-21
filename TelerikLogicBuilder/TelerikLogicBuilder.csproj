@@ -2,11 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<RootNamespace>ABIS.LogicBuilder.FlowBuilder</RootNamespace>
+	<AssemblyName>FlowBuilder</AssemblyName>
+	<ApplicationIcon>Simple.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
 	<CustomResourceTypesSupport>true</CustomResourceTypesSupport>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Simple.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="UI.for.WinForms.AllControls.Net60" Version="2021.3.1123" />

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 
-namespace TelerikLogicBuilder
+namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal static class Program
     {
