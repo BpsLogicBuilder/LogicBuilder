@@ -107,11 +107,37 @@
   <data name="commandBarStripElement1.DisplayName" xml:space="preserve">
     <value>Tool Strip</value>
   </data>
+  <data name="commandBarButtonEdit.Alignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="commandBarButtonEdit.AngleTransform" type="System.Single, mscorlib">
+    <value>0</value>
+  </data>
   <data name="commandBarButtonEdit.DisplayName" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="commandBarButtonEdit.FlipText" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="commandBarButtonEdit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="commandBarButtonEdit.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="commandBarButtonEdit.RightToLeft" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="commandBarButtonEdit.Text" xml:space="preserve">
     <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="commandBarButtonEdit.TextOrientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="commandBarButtonEdit.TextWrap" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="commandBarButtonSave.DisplayName" xml:space="preserve">
     <value>Save</value>
@@ -137,7 +163,6 @@
   <data name="commandBarButtonBuild.Text" xml:space="preserve">
     <value />
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="radCommandBar1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -145,7 +170,7 @@
     <value>0, 25</value>
   </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>996, 31</value>
+    <value>996, 30</value>
   </data>
   <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -166,7 +191,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 493</value>
+    <value>848, 494</value>
   </data>
   <data name="splitPanelEdit.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -187,7 +212,7 @@
     <value>0</value>
   </data>
   <data name="splitPanelMessages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 501</value>
+    <value>0, 502</value>
   </data>
   <data name="splitPanelMessages.Size" type="System.Drawing.Size, System.Drawing">
     <value>848, 113</value>
@@ -220,7 +245,7 @@
     <value>Horizontal</value>
   </data>
   <data name="radSplitContainerLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 614</value>
+    <value>848, 615</value>
   </data>
   <data name="radSplitContainerLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -241,7 +266,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 614</value>
+    <value>848, 615</value>
   </data>
   <data name="splitPanelLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -265,7 +290,7 @@
     <value>856, 0</value>
   </data>
   <data name="splitPanelExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 614</value>
+    <value>140, 615</value>
   </data>
   <data name="splitPanelExplorer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -289,10 +314,10 @@
     <value>Fill</value>
   </data>
   <data name="radSplitContainerBase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 56</value>
+    <value>0, 55</value>
   </data>
   <data name="radSplitContainerBase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>996, 614</value>
+    <value>996, 615</value>
   </data>
   <data name="radSplitContainerBase.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -313,10 +338,10 @@
     <value>radLabelElement</value>
   </data>
   <data name="radStatusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 645</value>
+    <value>0, 644</value>
   </data>
   <data name="radStatusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>996, 25</value>
+    <value>996, 26</value>
   </data>
   <data name="radStatusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -375,7 +400,6 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>996, 670</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>

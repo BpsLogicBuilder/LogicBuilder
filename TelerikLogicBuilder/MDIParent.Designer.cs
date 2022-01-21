@@ -147,10 +147,14 @@
             // 
             // commandBarButtonEdit
             // 
-            this.commandBarButtonEdit.ClipText = false;
             resources.ApplyResources(this.commandBarButtonEdit, "commandBarButtonEdit");
+            this.commandBarButtonEdit.ClipText = false;
+            this.commandBarButtonEdit.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.commandBarButtonEdit.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Edit;
+            this.commandBarButtonEdit.MinSize = new System.Drawing.Size(30, 0);
             this.commandBarButtonEdit.Name = "commandBarButtonEdit";
+            this.commandBarButtonEdit.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.commandBarButtonEdit.UseCompatibleTextRendering = false;
             this.commandBarButtonEdit.Click += new System.EventHandler(this.CommandBarButtonEdit_Click);
             // 
             // commandBarButtonSave
@@ -158,6 +162,7 @@
             this.commandBarButtonSave.AccessibleName = "commandBarButton1";
             resources.ApplyResources(this.commandBarButtonSave, "commandBarButtonSave");
             this.commandBarButtonSave.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Save;
+            this.commandBarButtonSave.MinSize = new System.Drawing.Size(30, 0);
             this.commandBarButtonSave.Name = "commandBarButtonSave";
             // 
             // commandBarButtonSaveAll
@@ -165,18 +170,21 @@
             this.commandBarButtonSaveAll.AccessibleName = "commandBarButton";
             resources.ApplyResources(this.commandBarButtonSaveAll, "commandBarButtonSaveAll");
             this.commandBarButtonSaveAll.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.SaveAll;
+            this.commandBarButtonSaveAll.MinSize = new System.Drawing.Size(30, 0);
             this.commandBarButtonSaveAll.Name = "commandBarButtonSaveAll";
             // 
             // commandBarButtonValidate
             // 
             resources.ApplyResources(this.commandBarButtonValidate, "commandBarButtonValidate");
             this.commandBarButtonValidate.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Ok;
+            this.commandBarButtonValidate.MinSize = new System.Drawing.Size(30, 0);
             this.commandBarButtonValidate.Name = "commandBarButtonValidate";
             // 
             // commandBarButtonBuild
             // 
             resources.ApplyResources(this.commandBarButtonBuild, "commandBarButtonBuild");
             this.commandBarButtonBuild.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Build;
+            this.commandBarButtonBuild.MinSize = new System.Drawing.Size(30, 0);
             this.commandBarButtonBuild.Name = "commandBarButtonBuild";
             // 
             // radCommandBar1
