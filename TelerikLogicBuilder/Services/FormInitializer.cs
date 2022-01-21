@@ -6,6 +6,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class FormInitializer : IFormInitializer
     {
+        public Icon GetLogicBuilderIcon() 
+            => Properties.Resources.Simple;
+
         public void SetCenterScreen(Form form)
         {
             float dpiX, dpiY;

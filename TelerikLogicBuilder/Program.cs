@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             
             BuildServices();
 
-            var form = new MDIParent();
+            var form = ServiceProvider.GetRequiredService<MDIParent>();
 
             ServiceProvider.GetRequiredService<IFormInitializer>().SetCenterScreen(form);
 
@@ -32,7 +32,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
         static void BuildServices()
         {
             var services = new ServiceCollection();
-            ServiceProvider = services.AddSingleton<IFormInitializer, FormInitializer>()
+            ServiceProvider = services.AddSingleton<IExceptionHelper, ExceptionHelper>()
+                .AddSingleton<IFormInitializer, FormInitializer>()
+                .AddSingleton<IPathHelper, PathHelper>()
+                .AddSingleton<MDIParent, MDIParent>()
                 .BuildServiceProvider();  
         }
     }
