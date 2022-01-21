@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Native;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
@@ -8,7 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public void SetCenterScreen(Form form)
         {
             float dpiX, dpiY;
-            System.Drawing.Graphics graphics = form.CreateGraphics();
+            Graphics graphics = form.CreateGraphics();
             dpiX = graphics.DpiX / 100;
             dpiY = graphics.DpiY / 100;
 
@@ -16,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             var centerX = (workingArea.Width / 2) - (form.DesktopBounds.Width * dpiX / 2);
             var centerY = (workingArea.Height / 2) - (form.DesktopBounds.Height * dpiY / 2);
-            form.Location = new System.Drawing.Point((int)centerX, (int)centerY);
+            form.Location = new Point((int)centerX, (int)centerY);
         }
     }
 }

@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="UI.for.WinForms.AllControls.Net60" Version="2021.3.1123" />
   </ItemGroup>
 
