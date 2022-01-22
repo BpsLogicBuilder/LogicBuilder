@@ -1,8 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
+[assembly: InternalsVisibleTo("TelerikLogicBuilder.Tests")]
 namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal static class Program

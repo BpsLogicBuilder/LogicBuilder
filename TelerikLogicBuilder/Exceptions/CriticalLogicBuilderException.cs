@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Exceptions
         }
 
         #region Variables
-        private int id;
+        private readonly int id;
         #endregion Variables
 
         #region Properties
