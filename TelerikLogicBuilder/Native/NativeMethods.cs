@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Native
@@ -39,11 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Native
             }
             else
             {
-                return new System.Drawing.Rectangle
-                {
-                    Height = 0,
-                    Width = 0
-                };
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{D98119B0-D5C3-4255-8327-124889C19E01}"));
             }
         }
 
