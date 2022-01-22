@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.IO;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Structures
+namespace ABIS.LogicBuilder.FlowBuilder.Constants
 {
     internal struct FileConstants
     {

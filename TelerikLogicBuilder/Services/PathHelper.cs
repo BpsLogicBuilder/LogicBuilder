@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using System;
 using System.Globalization;
 using System.IO;
