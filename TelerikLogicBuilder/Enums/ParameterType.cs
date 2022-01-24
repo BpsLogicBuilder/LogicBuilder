@@ -1,0 +1,40 @@
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Enums
+{
+    internal enum ParameterType : short
+    {
+        Decimal,
+        String,
+        Integer,
+        Boolean,
+        DateTime,
+        TimeSpan,
+        Guid,
+        Byte,
+        Short,
+        Long,
+        Float,
+        Double,
+        Char,
+        SByte,
+        UShort,
+        UInteger,
+        ULong,
+        NullableDecimal,
+        NullableInteger,
+        NullableBoolean,
+        NullableDateTime,
+        NullableTimeSpan,
+        NullableGuid,
+        NullableByte,
+        NullableShort,
+        NullableLong,
+        NullableFloat,
+        NullableDouble,
+        NullableChar,
+        NullableSByte,
+        NullableUShort,
+        NullableUInteger,
+        NullableULong,
+        Any
+    }
+}
