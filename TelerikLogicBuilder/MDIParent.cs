@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Services;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.ComponentModel;
 using Telerik.WinControls;

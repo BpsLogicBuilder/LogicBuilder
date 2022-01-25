@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.AttributeReaders;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {

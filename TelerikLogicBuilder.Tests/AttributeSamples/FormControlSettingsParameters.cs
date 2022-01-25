@@ -35,12 +35,7 @@ namespace TelerikLogicBuilder.Tests.AttributeSamples
             object someObject,
 
             [ListEditorControl(ListControlType.ListForm)]
-            List<string> someList,
-
-            [ParameterEditorControl(ParameterControlType.ParameterSourceOnly)]
-            [NameValue(AttributeNames.DEFAULTVALUE, "Contoso.Domain.Entities")]
-            [Comments("Fully qualified class name for the model type.")]
-            string modelType = null
+            List<string> someList
         )
         {
             Field = field;

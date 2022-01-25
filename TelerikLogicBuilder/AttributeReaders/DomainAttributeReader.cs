@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Services;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using LogicBuilder.Attributes;
 using System.Collections.Generic;
 using System.Linq;

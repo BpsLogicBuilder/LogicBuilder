@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Services
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IFormInitializer
     {

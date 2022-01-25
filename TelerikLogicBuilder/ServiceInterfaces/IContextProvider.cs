@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.AttributeReaders;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Services
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IContextProvider
     {

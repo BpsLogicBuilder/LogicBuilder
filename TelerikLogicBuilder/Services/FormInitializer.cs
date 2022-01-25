@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Native;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Drawing;
 using System.Windows.Forms;
 
