@@ -9,7 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         bool IsOptional { get; }
         string Comments { get; }
         ParameterType LiteralType { get; }
-        LiteralInputStyle Control { get; }
+        LiteralParameterInputStyle Control { get; }
         string PropertySource { get; }
         string PropertySourceParameter { get; }
         List<string> Domain { get; }

@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
             bool isOptional,
             string comments,
             ParameterType literalType,
-            LiteralInputStyle control,
+            LiteralParameterInputStyle control,
             bool useForEquality,
             bool useForHashCode,
             bool useForToString,
@@ -44,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 
         #region Properties
         internal ParameterType LiteralType { get; private set; }
-        internal LiteralInputStyle Control { get; private set; }
+        internal LiteralParameterInputStyle Control { get; private set; }
         internal bool UseForEquality { get; private set; }
         internal bool UseForHashCode { get; private set; }
         internal bool UseForToString { get; private set; }
@@ -65,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         #region ILiteralParameter
         ParameterType ILiteralParameter.LiteralType => this.LiteralType;
 
-        LiteralInputStyle ILiteralParameter.Control => this.Control;
+        LiteralParameterInputStyle ILiteralParameter.Control => this.Control;
 
         string ILiteralParameter.PropertySource => this.PropertySource;
 
@@ -100,7 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
             xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALPARAMETERELEMENT);
                 xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, this.Name);
                 xmlTextWriter.WriteElementString(XmlDataConstants.LITERALTYPEELEMENT, Enum.GetName(typeof(ParameterType), this.LiteralType));
-                xmlTextWriter.WriteElementString(XmlDataConstants.CONTROLELEMENT, Enum.GetName(typeof(LiteralInputStyle), this.Control));
+                xmlTextWriter.WriteElementString(XmlDataConstants.CONTROLELEMENT, Enum.GetName(typeof(LiteralParameterInputStyle), this.Control));
                 xmlTextWriter.WriteElementString(XmlDataConstants.OPTIONALELEMENT, this.IsOptional.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
                 xmlTextWriter.WriteElementString(XmlDataConstants.USEFOREQUALITYELEMENT, this.UseForEquality.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
                 xmlTextWriter.WriteElementString(XmlDataConstants.USEFORHASHCODEELEMENT, this.UseForHashCode.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());

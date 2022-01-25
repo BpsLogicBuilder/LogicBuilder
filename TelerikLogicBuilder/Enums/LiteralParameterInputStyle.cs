@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Enums
 {
-    internal enum LiteralInputStyle : short
+    internal enum LiteralParameterInputStyle : short
     {
         SingleLineTextBox,
         MultipleLineTextBox,
