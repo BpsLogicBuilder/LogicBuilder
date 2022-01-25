@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IParameterAttributeReader
     {

@@ -1,11 +1,12 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+﻿using ABIS.LogicBuilder.FlowBuilder.AttributeReaders;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
+namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class MemberAttributeReader : IMemberAttributeReader
     {
