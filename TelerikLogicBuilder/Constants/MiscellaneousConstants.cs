@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.OData.Edm;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -30,8 +31,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
         internal static readonly HashSet<Type> Literals = new()
         {
             typeof(bool),
+            typeof(DateTimeOffset),
             typeof(DateTime),
+            typeof(Date),
             typeof(TimeSpan),
+            typeof(TimeOfDay),
             typeof(Guid),
             typeof(decimal),
             typeof(byte),

@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.AttributeReaders;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Services;
@@ -207,6 +206,8 @@ namespace TelerikLogicBuilder.Tests
                 .AddSingleton<IStringHelper, StringHelperMock>()
                 .AddSingleton<IPathHelper, PathHelper>()
                 .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
+                .AddSingleton<IReflectionHelper, ReflectionHelper>()
+                .AddSingleton<ITypeHelper, TypeHelper>()
                 .AddSingleton<IContextProvider, ContextProvider>()
                 .BuildServiceProvider();
         }

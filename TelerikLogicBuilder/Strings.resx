@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,186 +59,234 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="applicationNameLogicBuilder" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="applicationNameLogicBuilder" xml:space="preserve">
     <value>BPS Logic Builder</value>
+  </data>
+  <data name="constructorToStringFormat" xml:space="preserve">
+    <value>{0} - {1}({2})</value>
+    <comment>0=constructorName 1=Type 2=parametersToString</comment>
   </data>
   <data name="defaultErrorMessage" xml:space="preserve">
     <value>An error has occurred</value>
   </data>
-  <data name="enumDescriptionAny" xml:space="preserve">
+	<data name="enumDescriptionAny" xml:space="preserve">
     <value>Any</value>
   </data>
-  <data name="enumDescriptionBoolean" xml:space="preserve">
+	<data name="enumDescriptionBoolean" xml:space="preserve">
     <value>Boolean</value>
   </data>
-  <data name="enumDescriptionDateTime" xml:space="preserve">
+	<data name="enumDescriptionDateTime" xml:space="preserve">
     <value>DateTime</value>
   </data>
-  <data name="enumDescriptionTimeSpan" xml:space="preserve">
+	<data name="enumDescriptionDateTimeOffset" xml:space="preserve">
+    <value>DateTimeOffset</value>
+  </data>
+	<data name="enumDescriptionDate" xml:space="preserve">
+    <value>DateTime</value>
+  </data>
+	<data name="enumDescriptionTimeSpan" xml:space="preserve">
     <value>TimeSpan</value>
   </data>
-  <data name="enumDescriptionLong" xml:space="preserve">
+	<data name="enumDescriptionTimeOfDay" xml:space="preserve">
+    <value>TimeOfDay</value>
+  </data>
+	<data name="enumDescriptionLong" xml:space="preserve">
     <value>Long</value>
   </data>
-  <data name="enumDescriptionByte" xml:space="preserve">
+	<data name="enumDescriptionByte" xml:space="preserve">
     <value>Byte</value>
   </data>
-  <data name="enumDescriptionChar" xml:space="preserve">
+	<data name="enumDescriptionChar" xml:space="preserve">
     <value>Char</value>
   </data>
-  <data name="enumDescriptionDouble" xml:space="preserve">
+	<data name="enumDescriptionDouble" xml:space="preserve">
     <value>Double</value>
   </data>
-  <data name="enumDescriptionFloat" xml:space="preserve">
+	<data name="enumDescriptionFloat" xml:space="preserve">
     <value>Float</value>
   </data>
-  <data name="enumDescriptionShort" xml:space="preserve">
+	<data name="enumDescriptionShort" xml:space="preserve">
     <value>Short</value>
   </data>
-  <data name="enumDescriptionSByte" xml:space="preserve">
+	<data name="enumDescriptionSByte" xml:space="preserve">
     <value>Signed Byte</value>
   </data>
-  <data name="enumDescriptionString" xml:space="preserve">
+	<data name="enumDescriptionString" xml:space="preserve">
     <value>String</value>
   </data>
-  <data name="enumDescriptionUInteger" xml:space="preserve">
+	<data name="enumDescriptionUInteger" xml:space="preserve">
     <value>Unsigned Integer</value>
   </data>
-  <data name="enumDescriptionULong" xml:space="preserve">
+	<data name="enumDescriptionULong" xml:space="preserve">
     <value>Unsigned Long</value>
   </data>
-  <data name="enumDescriptionUShort" xml:space="preserve">
+	<data name="enumDescriptionUShort" xml:space="preserve">
     <value>Unsigned Short</value>
   </data>
-  <data name="enumDescriptionGuid" xml:space="preserve">
+	<data name="enumDescriptionGuid" xml:space="preserve">
     <value>Guid</value>
   </data>
-  <data name="enumDescriptionDecimal" xml:space="preserve">
+	<data name="enumDescriptionDecimal" xml:space="preserve">
     <value>Decimal</value>
   </data>
-  <data name="enumDescriptionInteger" xml:space="preserve">
+	<data name="enumDescriptionInteger" xml:space="preserve">
     <value>Integer</value>
   </data>
-  <data name="enumDescriptionNullableDecimal" xml:space="preserve">
+	<data name="enumDescriptionNullableDecimal" xml:space="preserve">
     <value>Nullable Decimal</value>
   </data>
-  <data name="enumDescriptionNullableInteger" xml:space="preserve">
+	<data name="enumDescriptionNullableInteger" xml:space="preserve">
     <value>Nullable Integer</value>
   </data>
-  <data name="enumDescriptionNullableBoolean" xml:space="preserve">
+	<data name="enumDescriptionNullableBoolean" xml:space="preserve">
     <value>Nullable Boolean</value>
   </data>
-  <data name="enumDescriptionNullableDateTime" xml:space="preserve">
+	<data name="enumDescriptionNullableDateTime" xml:space="preserve">
     <value>Nullable DateTime</value>
   </data>
-  <data name="enumDescriptionNullableTimeSpan" xml:space="preserve">
+	<data name="enumDescriptionNullableDateTimeOffset" xml:space="preserve">
+    <value>Nullable DateTimeOffset</value>
+  </data>
+	<data name="enumDescriptionNullableDate" xml:space="preserve">
+    <value>Nullable Date</value>
+  </data>
+	<data name="enumDescriptionNullableTimeSpan" xml:space="preserve">
     <value>Nullable TimeSpan</value>
   </data>
-  <data name="enumDescriptionNullableGuid" xml:space="preserve">
+	<data name="enumDescriptionNullableTimeOfDay" xml:space="preserve">
+    <value>Nullable TimeOfDay</value>
+  </data>
+	<data name="enumDescriptionNullableGuid" xml:space="preserve">
     <value>Nullable Guid</value>
   </data>
-  <data name="enumDescriptionNullableByte" xml:space="preserve">
+	<data name="enumDescriptionNullableByte" xml:space="preserve">
     <value>Nullable Byte</value>
   </data>
-  <data name="enumDescriptionNullableShort" xml:space="preserve">
+	<data name="enumDescriptionNullableShort" xml:space="preserve">
     <value>Nullable Short</value>
   </data>
-  <data name="enumDescriptionNullableLong" xml:space="preserve">
+	<data name="enumDescriptionNullableLong" xml:space="preserve">
     <value>Nullable Long</value>
   </data>
-  <data name="enumDescriptionNullableFloat" xml:space="preserve">
+	<data name="enumDescriptionNullableFloat" xml:space="preserve">
     <value>Nullable Float</value>
   </data>
-  <data name="enumDescriptionNullableDouble" xml:space="preserve">
+	<data name="enumDescriptionNullableDouble" xml:space="preserve">
     <value>Nullable Double</value>
   </data>
-  <data name="enumDescriptionNullableChar" xml:space="preserve">
+	<data name="enumDescriptionNullableChar" xml:space="preserve">
     <value>Nullable Char</value>
   </data>
-  <data name="enumDescriptionNullableSByte" xml:space="preserve">
+	<data name="enumDescriptionNullableSByte" xml:space="preserve">
     <value>Nullable SByte</value>
   </data>
-  <data name="enumDescriptionNullableUShort" xml:space="preserve">
+	<data name="enumDescriptionNullableUShort" xml:space="preserve">
     <value>Nullable UShort</value>
   </data>
-  <data name="enumDescriptionNullableUInteger" xml:space="preserve">
+	<data name="enumDescriptionNullableUInteger" xml:space="preserve">
     <value>Nullable UInteger</value>
   </data>
-  <data name="enumDescriptionNullableULong" xml:space="preserve">
+	<data name="enumDescriptionNullableULong" xml:space="preserve">
     <value>Nullable ULong</value>
   </data>
-  <data name="invalidArgumentTextFormat" xml:space="preserve">
+	<data name="enumDescriptionArray" xml:space="preserve">
+    <value>Array</value>
+  </data>
+	<data name="enumDescriptionGenericList" xml:space="preserve">
+    <value>Generic List</value>
+  </data>
+	<data name="enumDescriptionGenericCollection" xml:space="preserve">
+    <value>Generic Collection</value>
+  </data>
+	<data name="enumDescriptionIGenericList" xml:space="preserve">
+    <value>Generic List Interface</value>
+  </data>
+	<data name="enumDescriptionIGenericCollection" xml:space="preserve">
+    <value>Generic Collection Interface</value>
+  </data>
+	<data name="enumDescriptionIGenericEnumerable" xml:space="preserve">
+    <value>Generic Enumerable Interface</value>
+  </data>
+	<data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.</value>
   </data>
-  <data name="notImplementedMessageFormat" xml:space="preserve">
+	<data name="listParameterTypeNameFormat" xml:space="preserve">
+    <value>{0}Of{1}: {2}</value>
+    <comment>0=listType 1=UnderlyingType 2=name</comment>
+  </data>
+	<data name="listDescriptionFormat" xml:space="preserve">
+    <value>{0} Of {1}</value>
+    <comment>0=listType 1=UnderlyingType</comment>
+  </data>
+	<data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.</value>
   </data>
-  <data name="parameterTypeNameFormat2" xml:space="preserve">
+	<data name="parameterTypeNameFormat2" xml:space="preserve">
     <value>{0}: {1}</value>
     <comment>0=type 1=name</comment>
   </data>
-  <data name="spaceString" xml:space="preserve">
+	<data name="spaceString" xml:space="preserve">
     <value>&#32;</value>
   </data>
-  <data name="underscore" xml:space="preserve">
+	<data name="underscore" xml:space="preserve">
     <value>_</value>
   </data>
 </root>

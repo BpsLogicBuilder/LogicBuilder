@@ -70,6 +70,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - {1}({2}).
+        /// </summary>
+        internal static string constructorToStringFormat {
+            get {
+                return ResourceManager.GetString("constructorToStringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error has occurred.
         /// </summary>
         internal static string defaultErrorMessage {
@@ -84,6 +93,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionAny {
             get {
                 return ResourceManager.GetString("enumDescriptionAny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Array.
+        /// </summary>
+        internal static string enumDescriptionArray {
+            get {
+                return ResourceManager.GetString("enumDescriptionArray", resourceCulture);
             }
         }
         
@@ -117,9 +135,27 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         /// <summary>
         ///   Looks up a localized string similar to DateTime.
         /// </summary>
+        internal static string enumDescriptionDate {
+            get {
+                return ResourceManager.GetString("enumDescriptionDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateTime.
+        /// </summary>
         internal static string enumDescriptionDateTime {
             get {
                 return ResourceManager.GetString("enumDescriptionDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateTimeOffset.
+        /// </summary>
+        internal static string enumDescriptionDateTimeOffset {
+            get {
+                return ResourceManager.GetString("enumDescriptionDateTimeOffset", resourceCulture);
             }
         }
         
@@ -151,11 +187,56 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generic Collection.
+        /// </summary>
+        internal static string enumDescriptionGenericCollection {
+            get {
+                return ResourceManager.GetString("enumDescriptionGenericCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic List.
+        /// </summary>
+        internal static string enumDescriptionGenericList {
+            get {
+                return ResourceManager.GetString("enumDescriptionGenericList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guid.
         /// </summary>
         internal static string enumDescriptionGuid {
             get {
                 return ResourceManager.GetString("enumDescriptionGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic Collection Interface.
+        /// </summary>
+        internal static string enumDescriptionIGenericCollection {
+            get {
+                return ResourceManager.GetString("enumDescriptionIGenericCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic Enumerable Interface.
+        /// </summary>
+        internal static string enumDescriptionIGenericEnumerable {
+            get {
+                return ResourceManager.GetString("enumDescriptionIGenericEnumerable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic List Interface.
+        /// </summary>
+        internal static string enumDescriptionIGenericList {
+            get {
+                return ResourceManager.GetString("enumDescriptionIGenericList", resourceCulture);
             }
         }
         
@@ -205,11 +286,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nullable Date.
+        /// </summary>
+        internal static string enumDescriptionNullableDate {
+            get {
+                return ResourceManager.GetString("enumDescriptionNullableDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nullable DateTime.
         /// </summary>
         internal static string enumDescriptionNullableDateTime {
             get {
                 return ResourceManager.GetString("enumDescriptionNullableDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nullable DateTimeOffset.
+        /// </summary>
+        internal static string enumDescriptionNullableDateTimeOffset {
+            get {
+                return ResourceManager.GetString("enumDescriptionNullableDateTimeOffset", resourceCulture);
             }
         }
         
@@ -286,6 +385,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nullable TimeOfDay.
+        /// </summary>
+        internal static string enumDescriptionNullableTimeOfDay {
+            get {
+                return ResourceManager.GetString("enumDescriptionNullableTimeOfDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nullable TimeSpan.
         /// </summary>
         internal static string enumDescriptionNullableTimeSpan {
@@ -349,6 +457,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TimeOfDay.
+        /// </summary>
+        internal static string enumDescriptionTimeOfDay {
+            get {
+                return ResourceManager.GetString("enumDescriptionTimeOfDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TimeSpan.
         /// </summary>
         internal static string enumDescriptionTimeSpan {
@@ -390,6 +507,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidArgumentTextFormat {
             get {
                 return ResourceManager.GetString("invalidArgumentTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Of {1}.
+        /// </summary>
+        internal static string listDescriptionFormat {
+            get {
+                return ResourceManager.GetString("listDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Of{1}: {2}.
+        /// </summary>
+        internal static string listParameterTypeNameFormat {
+            get {
+                return ResourceManager.GetString("listParameterTypeNameFormat", resourceCulture);
             }
         }
         

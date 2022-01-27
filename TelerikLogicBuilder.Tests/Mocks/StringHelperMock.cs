@@ -6,7 +6,7 @@ namespace TelerikLogicBuilder.Tests.Mocks
     internal class StringHelperMock : IStringHelper
     {
         public string EnsureUniqueNameResult { get; set; }
-        public string EnsureUniqueName(string nameString, Dictionary<string, string> names)
+        public string EnsureUniqueName(string nameString, HashSet<string> names)
         {
             return EnsureUniqueNameResult;
         }
@@ -17,10 +17,16 @@ namespace TelerikLogicBuilder.Tests.Mocks
             return SplitWithQuoteQualifierResult;
         }
 
-        public string ToTitleCaseResult { get; set; }
-        public string ToTitleCase(string str)
+        public string ToShortNameResult { get; set; }
+        public string ToShortName(string fullName)
         {
-            return ToTitleCaseResult;
+            return ToShortNameResult;
+        }
+
+        public string ToCamelCaseResult { get; set; }
+        public string ToCamelCase(string s)
+        {
+            return ToCamelCaseResult;
         }
     }
 }

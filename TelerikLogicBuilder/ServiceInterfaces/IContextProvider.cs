@@ -1,12 +1,16 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.AttributeReaders;
-
-namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
+﻿namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IContextProvider
     {
         IEnumHelper EnumHelper { get; }
         IExceptionHelper ExceptionHelper { get; }
+        IReflectionHelper ReflectionHelper { get; }
         IStringHelper StringHelper { get; }
+        ITypeHelper TypeHelper { get; }
         IXmlDocumentHelpers XmlDocumentHelpers { get; }
+        IMemberAttributeReader MemberAttributeReader { get; }
+        IParameterAttributeReader ParameterAttributeReader { get; }
+        IParametersManager ParametersManager { get; }
+        IConstructorManager ConstructorManager { get; }
     }
 }

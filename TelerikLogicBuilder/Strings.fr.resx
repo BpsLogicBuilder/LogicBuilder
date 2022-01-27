@@ -123,6 +123,10 @@
   <data name="applicationNameLogicBuilder" xml:space="preserve">
     <value>BPS Logic BuilderFR</value>
   </data>
+	<data name="constructorToStringFormat" xml:space="preserve">
+    <value>{0} - {1}({2})FR</value>
+    <comment>0=constructorName 1=Type 2=parametersToString</comment>
+  </data>
   <data name="enumDescriptionAny" xml:space="preserve">
     <value>AnyFR</value>
   </data>
@@ -132,8 +136,17 @@
   <data name="enumDescriptionDateTime" xml:space="preserve">
     <value>DateTimeFR</value>
   </data>
+	<data name="enumDescriptionDateTimeOffset" xml:space="preserve">
+    <value>DateTimeOffsetFR</value>
+  </data>
+	<data name="enumDescriptionDate" xml:space="preserve">
+    <value>DateTimeFR</value>
+  </data>
   <data name="enumDescriptionTimeSpan" xml:space="preserve">
     <value>TimeSpanFR</value>
+  </data>
+	<data name="enumDescriptionTimeOfDay" xml:space="preserve">
+    <value>TimeOfDayFR</value>
   </data>
   <data name="enumDescriptionLong" xml:space="preserve">
     <value>LongFR</value>
@@ -189,8 +202,17 @@
   <data name="enumDescriptionNullableDateTime" xml:space="preserve">
     <value>Nullable DateTimeFR</value>
   </data>
+	<data name="enumDescriptionNullableDateTimeOffset" xml:space="preserve">
+    <value>Nullable DateTimeOffsetFR</value>
+  </data>
+	<data name="enumDescriptionNullableDate" xml:space="preserve">
+    <value>Nullable DateFR</value>
+  </data>
   <data name="enumDescriptionNullableTimeSpan" xml:space="preserve">
     <value>Nullable TimeSpanFR</value>
+  </data>
+	<data name="enumDescriptionNullableTimeOfDay" xml:space="preserve">
+    <value>Nullable TimeOfDayFR</value>
   </data>
   <data name="enumDescriptionNullableGuid" xml:space="preserve">
     <value>Nullable GuidFR</value>
@@ -225,8 +247,34 @@
   <data name="enumDescriptionNullableULong" xml:space="preserve">
     <value>Nullable ULongFR</value>
   </data>
+	<data name="enumDescriptionArray" xml:space="preserve">
+    <value>ArrayFR</value>
+  </data>
+	<data name="enumDescriptionGenericList" xml:space="preserve">
+    <value>Generic ListFR</value>
+  </data>
+	<data name="enumDescriptionGenericCollection" xml:space="preserve">
+    <value>Generic CollectionFR</value>
+  </data>
+	<data name="enumDescriptionIGenericList" xml:space="preserve">
+    <value>Generic List InterfaceFR</value>
+  </data>
+	<data name="enumDescriptionIGenericCollection" xml:space="preserve">
+    <value>Generic Collection InterfaceFR</value>
+  </data>
+	<data name="enumDescriptionIGenericEnumerable" xml:space="preserve">
+    <value>Generic Enumerable InterfaceFR</value>
+  </data>
   <data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.FR</value>
+  </data>
+	<data name="listParameterTypeNameFormat" xml:space="preserve">
+    <value>{0}Of{1}: {2}FR</value>
+    <comment>0=listType 1=UnderlyingType 2=name</comment>
+  </data>
+	<data name="listDescriptionFormat" xml:space="preserve">
+    <value>{0} Of {1}FR</value>
+    <comment>0=listType 1=UnderlyingType</comment>
   </data>
   <data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.FR</value>
