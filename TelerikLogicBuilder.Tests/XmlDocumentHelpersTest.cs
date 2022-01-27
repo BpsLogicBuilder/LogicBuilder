@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Text;
+using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests
@@ -19,6 +20,7 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVisibleEnumTextReturnsCorrectStringForDefaultCulture()
         {
             //arrange

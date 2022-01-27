@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TelerikLogicBuilder.Tests.AttributeSamples;
+using TelerikLogicBuilder.Tests.Constants;
 using TelerikLogicBuilder.Tests.Mocks;
 using Xunit;
 
@@ -25,6 +26,7 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetNameValueTableReturnsExpectedItems()
         {
             //arrange
@@ -41,6 +43,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetNameValueTableReturnsEmptyDictionaryForPropertyWithoutnameValueAttribute()
         {
             //arrange
@@ -55,6 +58,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralInputStyleReturnsExpectedParameterControlType()
         {
             //arrange
@@ -69,6 +73,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralInputStyleReturnsDefaultParameterControlTypeWithNoAttributeAttached()
         {
             //arrange
@@ -83,6 +88,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectInputStyleReturnsExpectedParameterControlType()
         {
             //arrange
@@ -97,6 +103,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectInputStyleReturnsDefaultParameterControlTypeWithNoAttributeAttached()
         {
             //arrange
@@ -111,6 +118,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetListInputStyleReturnsExpectedParameterControlType()
         {
             //arrange
@@ -125,6 +133,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetListInputStyleReturnsDefaultParameterControlTypeWithNoAttributeAttached()
         {
             //arrange
@@ -139,6 +148,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetParameterCommentsReturnsExpectedComments()
         {
             //arrange
@@ -153,6 +163,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetParameterCommentsReturnsEmptyStringWithNoAttributeAttached()
         {
             //arrange
@@ -167,6 +178,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetDomainReturnsExpectedList()
         {
             //arrange
@@ -183,6 +195,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetDomainReturnsEmptyListWithNoAttributeAttached()
         {
             //arrange

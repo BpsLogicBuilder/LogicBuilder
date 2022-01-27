@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests
@@ -51,6 +52,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ComplexParameterCountReturnsExpectedValue()
         {
             //arrange

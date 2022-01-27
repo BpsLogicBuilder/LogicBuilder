@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests
@@ -19,6 +20,7 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void EnsureUniqueNameReturmsTheInputValueWhenNotExisting()
         {
             //arrange
@@ -32,6 +34,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void EnsureUniqueNameReturmsNewValueWhenExisting()
         {
             //arrange
@@ -45,6 +48,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void SplitWithQuoteQualifierReturnsExpectedvalueUsingQuotes()
         {
             //arrange
@@ -58,6 +62,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void SplitWithQuoteQualifierReturnsExpectedvalueWithoutQuotes()
         {
             //arrange
@@ -71,6 +76,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ToCamelCaseReturnsExpectedvalue()
         {
             //arrange
@@ -84,6 +90,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ToCamelCaseReturnsExpectedvalueWithQuotes()
         {
             //arrange
@@ -97,6 +104,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ToShortNameReturnsExpectedvalue()
         {
             //arrange

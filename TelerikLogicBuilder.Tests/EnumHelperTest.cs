@@ -7,6 +7,7 @@ using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests
@@ -23,6 +24,7 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVisibleEnumTextReturnsCorrectStringForDefaultCulture()
         {
             //arrange
@@ -36,6 +38,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVisibleEnumTextReturnsCorrectStringForSatelliteCulture()
         {
             //arrange
@@ -56,6 +59,7 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ICollection<string>), ListType.IGenericCollection)]
         [InlineData(typeof(IEnumerable<string>), ListType.IGenericEnumerable)]
         [InlineData(typeof(string[]), ListType.Array)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetListTypeReturnsTheExpectedEnumType(Type type, ListType expectedListType)
         {
             //arrange
@@ -118,6 +122,7 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ushort?), ParameterType.NullableUShort)]
         [InlineData(typeof(uint?), ParameterType.NullableUInteger)]
         [InlineData(typeof(ulong?), ParameterType.NullableULong)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetParameterTypeReturnsTheExpectedEnumType(Type type, ParameterType expectedParameterType)
         {
             //arrange
@@ -137,6 +142,7 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(ListType.IGenericCollection, "String", "Generic Collection Interface Of String")]
         [InlineData(ListType.IGenericEnumerable, "String", "Generic Enumerable Interface Of String")]
         [InlineData(ListType.Array, "String", "Array Of String")]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetTypeDescriptionReturnsTheExpectedString(ListType listType, string elementType, string expectedResult)
         {
             //arrange

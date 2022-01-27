@@ -2,6 +2,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests
@@ -18,6 +19,7 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void TwoPartCombinePathsReturnsExpected()
         {
             //arrange
@@ -31,6 +33,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CombinePathsWorksWithoutSeparators()
         {
             //arrange
@@ -44,6 +47,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ThreePartCombinePathsWorksWithSeparators()
         {
             //arrange
@@ -57,6 +61,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void FourPartsWorksWithoutSeparators()
         {
             //arrange
@@ -70,6 +75,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void FourPartsWorksWithSeparators()
         {
             //arrange
@@ -83,6 +89,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ExtensionReturnsTheExtension()
         {
             //arrange
@@ -97,6 +104,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void FileNameReturnsTheFileName()
         {
             //arrange
@@ -111,6 +119,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void FileNameNoExtentionReturnsTheFileNameNoExtention()
         {
             //arrange
@@ -125,6 +134,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void FolderNameReturnsOnlyTheFolderName()
         {
             //arrange
@@ -139,6 +149,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ModuleNameReturnsTheModuleName()
         {
             //arrange
