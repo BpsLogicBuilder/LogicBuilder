@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<questions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QuestionTree.xsd">
+  <arguments>
+    <argument visibleText="visibleText">
+    </argument>
+  </arguments>
+  <question id="5" visibleText="visibleTextE">
+    <questionText>Is the answer to this question true or false?</questionText>
+    <arguments>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+    </arguments>
+    <answers>
+      <answer visibleText="visibleText">
+        <answerText>Yes</answerText>
+        <decisions>
+          <decision name="ZBU" visibleText="visibleText">
+            <function name="Equals" visibleText="visibleText">
+              <literalParameter name="val1">
+                <variable name="ZBU" visibleText="visibleText" />
+              </literalParameter>
+              <literalParameter name="val2">CS</literalParameter>
+            </function>
+          </decision>
+          <decision name="ZBU" visibleText="visibleText">
+            <function name="Equals" visibleText="visibleText">
+              <literalParameter name="val1">
+                <variable name="ZBU" visibleText="visibleText" />
+              </literalParameter>
+              <literalParameter name="val2">
+                <variable name="a_zbu" visibleText="visibleText" />
+              </literalParameter>
+            </function>
+          </decision>
+        </decisions>
+      </answer>
+      <answer visibleText="visibleText">
+        <answerText>No</answerText>
+        <decisions>
+        </decisions>
+      </answer>
+      <answer visibleText="visibleText">
+        <answerText>Third Choice</answerText>
+        <decisions>
+          <decision name="ZBU" visibleText="visibleText">
+            <function name="Equals" visibleText="visibleText">
+              <literalParameter name="val1">
+                <variable name="ZBU" visibleText="visibleText" />
+              </literalParameter>
+              <literalParameter name="val2">
+                <variable name="a_zbu" visibleText="visibleText" />
+              </literalParameter>
+            </function>
+          </decision>
+        </decisions>
+      </answer>
+    </answers>
+  </question>
+  <folder id="6" visibleText="visibleTextA">
+    <title>Title for this folder</title>
+    <arguments>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+    </arguments>
+    <question id="1" visibleText="visibleTextB">
+      <questionText>Is the answer to this question true or false?</questionText>
+      <arguments>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      </arguments>
+      <answers>
+        <answer visibleText="visibleText">
+          <answerText>Yes</answerText>
+          <decisions>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">CS</literalParameter>
+              </function>
+            </decision>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">
+                  <variable name="a_zbu" visibleText="visibleText" />
+                </literalParameter>
+              </function>
+            </decision>
+          </decisions>
+        </answer>
+        <answer visibleText="visibleText">
+          <answerText>No</answerText>
+          <decisions>
+            <decision name="LMOS TN" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ltn" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">
+                  <function name="substring" visibleText="visibleText">
+                    <literalParameter name="value">
+                      <variable name="ltn1" visibleText="visibleText" />
+                    </literalParameter>
+                    <literalParameter name="start">3</literalParameter>
+                    <literalParameter name="finish">12</literalParameter>
+                  </function>
+                </literalParameter>
+              </function>
+            </decision>
+            <decision name="TR Returned Data" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="TR Returned Data" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">true</literalParameter>
+              </function>
+            </decision>
+          </decisions>
+        </answer>
+      </answers>
+    </question>
+    <question id="2" visibleText="visibleTextC">
+      <questionText>Is the answer to this question true or false?</questionText>
+      <arguments>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      </arguments>
+      <answers>
+        <answer visibleText="visibleText">
+          <answerText>Yes</answerText>
+          <decisions>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">CS</literalParameter>
+              </function>
+            </decision>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">
+                  <variable name="a_zbu" visibleText="visibleText" />
+                </literalParameter>
+              </function>
+            </decision>
+          </decisions>
+        </answer>
+        <answer visibleText="visibleText">
+          <answerText>No</answerText>
+          <decisions>
+          </decisions>
+        </answer>
+      </answers>
+    </question>
+  </folder>
+  <folder id="7" visibleText="visibleTextD">
+    <title>Title for this folder</title>
+    <arguments>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+    </arguments>
+    <question id="3" visibleText="visibleTextE">
+      <questionText>Is the answer to this question true or false?</questionText>
+      <arguments>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      </arguments>
+      <answers>
+        <answer visibleText="visibleText">
+          <answerText>Yes</answerText>
+          <decisions>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">CS</literalParameter>
+              </function>
+            </decision>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">
+                  <variable name="a_zbu" visibleText="visibleText" />
+                </literalParameter>
+              </function>
+            </decision>
+          </decisions>
+        </answer>
+        <answer visibleText="visibleText">
+          <answerText>No</answerText>
+          <decisions>
+            <decision name="LMOS TN" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ltn" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">
+                  <function name="substring" visibleText="visibleText">
+                    <literalParameter name="value">
+                      <variable name="ltn1" visibleText="visibleText" />
+                    </literalParameter>
+                    <literalParameter name="start">3</literalParameter>
+                    <literalParameter name="finish">12</literalParameter>
+                  </function>
+                </literalParameter>
+              </function>
+            </decision>
+            <decision name="TR Returned Data" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="TR Returned Data" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">true</literalParameter>
+              </function>
+            </decision>
+          </decisions>
+        </answer>
+      </answers>
+    </question>
+    <question id="4" visibleText="visibleTextF">
+      <questionText>Is the answer to this question true or false?</questionText>
+      <arguments>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      </arguments>
+      <answers>
+        <answer visibleText="visibleText">
+          <answerText>Yes</answerText>
+          <decisions>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">CS</literalParameter>
+              </function>
+            </decision>
+            <decision name="ZBU" visibleText="visibleText">
+              <function name="Equals" visibleText="visibleText">
+                <literalParameter name="val1">
+                  <variable name="ZBU" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="val2">
+                  <variable name="a_zbu" visibleText="visibleText" />
+                </literalParameter>
+              </function>
+            </decision>
+          </decisions>
+        </answer>
+        <answer visibleText="visibleText">
+          <answerText>No</answerText>
+          <decisions>
+          </decisions>
+        </answer>
+      </answers>
+    </question>
+  </folder>
+</questions>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="folder" type="folderType">
+    <xsd:unique name="fileNameKey">
+      <xsd:selector xpath=".//file" />
+      <xsd:field xpath="@name" />
+    </xsd:unique>
+    <xsd:unique name="folderNameKey">
+      <xsd:selector xpath="./folder" />
+      <xsd:field xpath="@name" />
+    </xsd:unique>
+  </xsd:element>
+  <xsd:complexType name="fileType">
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="savedTimeStamp" type="xsd:dateTime" use="required" />
+    <xsd:attribute name="modified" type="xsd:boolean" use="required" />
+    <xsd:attribute name="newFile" type="xsd:boolean" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="folderType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="file" type="fileType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="folder" type="folderType">
+        <xsd:unique name="subFolderNameKey">
+          <xsd:selector xpath="./folder" />
+          <xsd:field xpath="@name" />
+        </xsd:unique>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+  </xsd:complexType>
+</xsd:schema>

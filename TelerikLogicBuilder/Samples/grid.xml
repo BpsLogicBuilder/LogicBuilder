@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="grid.xsd">
+  <title visibleText="Title for the grid">Title for the grid</title>
+  <modelType>Title for this folder</modelType>
+  <dataType>Title for this folder</dataType>
+  <url>api/ContextName/GetData</url>
+  <serverPaging>true</serverPaging>
+  <serverSorting>true</serverSorting>
+  <serverFiltering>true</serverFiltering>
+  <serverGrouping>true</serverGrouping>
+  <serverAggregates>true</serverAggregates>
+  <groupable>true</groupable>
+  <pageSize>10</pageSize>
+  <isSortable>true</isSortable>
+  <sortable>
+    <mode>single</mode>
+    <allowUnsort>false</allowUnsort>
+    <arguments>
+      <argument visibleText="visibleText"></argument>
+    </arguments>
+  </sortable>
+  <isPageable>true</isPageable>
+  <pageable>
+    <refresh>true</refresh>
+    <buttonCount>5</buttonCount>
+    <pageSizes>
+      <size>all</size>
+      <size>5</size>
+      <size>20</size>
+      <size>30</size>
+      <size>50</size>
+    </pageSizes>
+    <arguments>
+      <argument visibleText="visibleText"></argument>
+    </arguments>
+  </pageable>
+  <isFilterable>true</isFilterable>
+  <gridFilterable>
+    <extra>false</extra>
+    <mode>menu</mode><!--row or menu -->
+    <operators>
+      <operatorsGroup typeName="String" visibleText="visibleText">
+        <operator name="eq" visibleText="visibleText">Equals</operator>
+        <operator name="contains" visibleText="visibleText">Contains</operator>
+      </operatorsGroup>
+      <operatorsGroup typeName="Integer" visibleText="visibleText">
+        <operator name="eq" visibleText="visibleText">Equals</operator>
+        <operator name="gt" visibleText="visibleText">Greater Than</operator>
+        <operator name="lt" visibleText="visibleText">Less Than</operator>
+      </operatorsGroup>
+    </operators>
+    <arguments>
+      <argument visibleText="visibleText"></argument>
+    </arguments>
+  </gridFilterable>
+  <sorts>
+    <sort visibleText="visibleText">
+      <field>id</field>
+      <dir>Desc</dir>
+    </sort>
+    <sort visibleText="visibleText">
+      <field>firstName</field>
+      <dir>Asc</dir>
+    </sort>
+  </sorts>
+  <filterGroup id="4" logic="and" visibleText="visibleTextE">
+    <filter id="1" visibleText="visibleTextE">
+      <field>departmentID</field>
+      <operator>gt</operator>
+      <value></value>
+      <valueSourceMember>id</valueSourceMember>
+      <valueSourceType>id</valueSourceType>
+      <arguments>
+        <argument visibleText="visibleText"></argument>
+      </arguments>
+    </filter>
+    <filterGroup id="5" logic="or" visibleText="visibleTextE">
+      <filter id="2" visibleText="visibleTextE">
+        <field>startDate</field>
+        <operator>gt</operator>
+        <value>2007-02-21T05:00:00.000Z</value>
+        <valueSourceMember></valueSourceMember>
+        <valueSourceType></valueSourceType>
+        <arguments>
+          <argument visibleText="visibleText"></argument>
+        </arguments>
+      </filter>
+      <filter id="3" visibleText="visibleTextE">
+        <field>startDate</field>
+        <operator>lt</operator>
+        <value>2017-02-21T05:00:00.000Z</value>
+        <valueSourceMember></valueSourceMember>
+        <valueSourceType></valueSourceType>
+        <arguments>
+          <argument visibleText="visibleText"></argument>
+        </arguments>
+      </filter>
+      <arguments>
+      </arguments>
+    </filterGroup>
+    <arguments>
+    </arguments>
+  </filterGroup>
+  <includes>
+    <include visibleText="visibleText">Course</include>
+    <include visibleText="visibleText">Enrollments</include>
+  </includes>
+  <aggregates>
+    <aggregate visibleText="visibleText">
+      <field>id</field>
+      <function>min</function>
+    </aggregate>
+    <aggregate visibleText="visibleText">
+      <field>firstName</field>
+      <function>min</function>
+    </aggregate>
+  </aggregates>
+  <arguments>
+    <argument visibleText="visibleText"></argument>
+  </arguments>
+  <column id="2" visibleText="visibleText">
+    <fieldName>firstName</fieldName>
+    <titleText>First Name</titleText>
+    <type>String</type>
+    <template>default</template>
+    <isSortable>true</isSortable>
+    <isFilterable>true</isFilterable>
+    <width>20</width>
+    <aggregates>
+      <aggregate visibleText="visibleText">
+        <field>id</field>
+        <function>min</function>
+      </aggregate>
+      <aggregate visibleText="visibleText">
+        <field>firstName</field>
+        <function>min</function>
+      </aggregate>
+    </aggregates>
+    <arguments>
+      <argument visibleText="visibleText"></argument>
+    </arguments>
+  </column>
+  <column id="3" visibleText="visibleText">
+    <fieldName>firstName1</fieldName>
+    <titleText>First Name</titleText>
+    <type>String</type>
+    <template>default</template>
+    <isSortable>true</isSortable>
+    <isFilterable>true</isFilterable>
+    <width>20</width>
+    <aggregates>
+      <aggregate visibleText="visibleText">
+        <field>id</field>
+        <function>min</function>
+      </aggregate>
+      <aggregate visibleText="visibleText">
+        <field>firstName</field>
+        <function>min</function>
+      </aggregate>
+    </aggregates>
+    <arguments>
+      <argument visibleText="visibleText"></argument>
+    </arguments>
+  </column>
+  <columnGroup  id="4" visibleText="visibleText">
+    <groupName>This Groups</groupName>
+    <column id="5" visibleText="visibleText">
+      <fieldName>firstName2</fieldName>
+      <titleText>First Name</titleText>
+      <type>String</type>
+      <template>default</template>
+      <isSortable>true</isSortable>
+      <isFilterable>true</isFilterable>
+      <columnFilterable>
+        <extra>false</extra>
+        <operators>
+          <operatorsGroup typeName="String" visibleText="visibleText">
+            <operator name="eq" visibleText="visibleText">Equals</operator>
+            <operator name="contains" visibleText="visibleText">Contains</operator>
+          </operatorsGroup>
+          <operatorsGroup typeName="Integer" visibleText="visibleText">
+            <operator name="eq" visibleText="visibleText">Equals</operator>
+            <operator name="gt" visibleText="visibleText">Greter Than</operator>
+            <operator name="lt" visibleText="visibleText">Greter Than</operator>
+          </operatorsGroup>
+        </operators>
+        <dataSource>
+          <maxRows>10</maxRows>
+          <serverPaging>true</serverPaging>
+          <serverSorting>true</serverSorting>
+          <serverFiltering>true</serverFiltering>
+          <relativeUrl>api/Generic/GetFilterData</relativeUrl>
+          <filterSourceField>fullName</filterSourceField>
+          <placeHolder>Enter first letters ...</placeHolder>
+          <autoCompleteFilterOperator>contains</autoCompleteFilterOperator>
+          <elementType>autocomplete</elementType>
+          <modelType>ContosoUniversity.Domain.School.InstructorModel</modelType>
+          <dataType>ContosoUniversity.Data.Enitities.Instructor</dataType>
+          <selects>
+            <select visibleText="visibleText">ID</select>
+            <select visibleText="visibleText">FirstName</select>
+            <select visibleText="visibleText">FullName</select>
+          </selects>
+          <sorts>
+            <sort visibleText="visibleText">
+              <field>id</field>
+              <dir>Desc</dir>
+            </sort>
+            <sort visibleText="visibleText">
+              <field>firstName</field>
+              <dir>Asc</dir>
+            </sort>
+          </sorts>
+          <includes>
+            <include visibleText="visibleText"></include>
+          </includes>
+          <arguments>
+            <argument visibleText="visibleText"></argument>
+          </arguments>
+        </dataSource>
+        <rowFilterMode>
+          <showOperators>false</showOperators>
+          <operator>contains</operator>
+        </rowFilterMode>
+        <filterGroup id="1" logic="and" visibleText="visibleTextE">
+          <filter id="2" visibleText="visibleTextE">
+            <field>departmentID</field>
+            <operator>gt</operator>
+            <value>0</value>
+            <valueSourceMember></valueSourceMember>
+            <valueSourceType></valueSourceType>
+            <arguments>
+              <argument visibleText="visibleText"></argument>
+            </arguments>
+          </filter>
+          <filterGroup id="3" logic="or" visibleText="visibleTextE">
+            <filter id="4" visibleText="visibleTextE">
+              <field>startDate</field>
+              <operator>gt</operator>
+              <value>2007-02-21T05:00:00.000Z</value>
+              <valueSourceMember></valueSourceMember>
+              <valueSourceType></valueSourceType>
+              <arguments>
+                <argument visibleText="visibleText"></argument>
+              </arguments>
+            </filter>
+            <filter id="5" visibleText="visibleTextE">
+              <field>startDate</field>
+              <operator>lt</operator>
+              <value>2017-02-21T05:00:00.000Z</value>
+              <valueSourceMember></valueSourceMember>
+              <valueSourceType></valueSourceType>
+              <arguments>
+                <argument visibleText="visibleText"></argument>
+              </arguments>
+            </filter>
+            <arguments>
+              <argument visibleText="visibleText"></argument>
+            </arguments>
+          </filterGroup>
+          <arguments>
+            <argument visibleText="visibleText"></argument>
+          </arguments>
+        </filterGroup>
+        <arguments>
+          <argument visibleText="visibleText"></argument>
+        </arguments>
+      </columnFilterable>
+      <width>20</width>
+      <aggregates>
+        <aggregate visibleText="visibleText">
+          <field>id</field>
+          <function>min</function>
+        </aggregate>
+        <aggregate visibleText="visibleText">
+          <field>firstName</field>
+          <function>min</function>
+        </aggregate>
+      </aggregates>
+      <arguments>
+        <argument visibleText="visibleText"></argument>
+      </arguments>
+    </column>
+    <column id="6" visibleText="visibleText">
+      <fieldName>firstName3</fieldName>
+      <titleText>First Name</titleText>
+      <type>String</type>
+      <template>default</template>
+      <isSortable>true</isSortable>
+      <isFilterable>true</isFilterable>
+      <width>20</width>
+      <aggregates>
+        <aggregate visibleText="visibleText">
+          <field>id</field>
+          <function>min</function>
+        </aggregate>
+        <aggregate visibleText="visibleText">
+          <field>firstName</field>
+          <function>min</function>
+        </aggregate>
+      </aggregates>
+      <arguments>
+        <argument visibleText="visibleText"></argument>
+      </arguments>
+    </column>
+    <arguments>
+      <argument visibleText="visibleText"></argument>
+    </arguments>
+  </columnGroup>
+</grid>

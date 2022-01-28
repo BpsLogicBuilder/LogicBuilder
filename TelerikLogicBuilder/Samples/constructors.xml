@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="constructors.xsd">
+  <folder name="Grid Classes1">
+  </folder>
+	<folder name="Grid Classes">
+		<constructor name="Grid.Pageable">
+			<typeName>LogicBuilder.Forms.Parameters.Grid.Pageable</typeName>
+			<parameters>
+				<literalParameter name="Refresh">
+					<literalType>Boolean</literalType>
+					<control>SingleLineTextBox</control>
+					<optional>false</optional>
+					<useForEquality>true</useForEquality>
+					<useForHashCode>true</useForHashCode>
+					<useForToString>true</useForToString>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>true</defaultValue>
+					<domain>
+						<item>true</item>
+						<item>false</item>
+					</domain>
+					<comments></comments>
+				</literalParameter>
+				<literalListParameter name="Page Sizes">
+					<literalType>String</literalType>
+					<listType>GenericList</listType>
+					<control>HashSetForm</control>
+					<elementControl>SingleLineTextBox</elementControl>
+					<optional>false</optional>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>
+						<item>hi</item>
+						<item>medium</item>
+					</defaultValue>
+					<domain>
+						<item>hi</item>
+						<item>medium</item>
+						<item>lo</item>
+					</domain>
+					<comments></comments>
+				</literalListParameter>
+				<literalParameter name="Button Count">
+					<literalType>Boolean</literalType>
+					<control>SingleLineTextBox</control>
+					<optional>false</optional>
+					<useForEquality>true</useForEquality>
+					<useForHashCode>false</useForHashCode>
+					<useForToString>true</useForToString>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>5</defaultValue>
+					<domain>
+						<item>true</item>
+						<item>false</item>
+					</domain>
+					<comments></comments>
+				</literalParameter>
+			</parameters>
+			<genericArguments />
+			<summary></summary>
+		</constructor>
+		<constructor name="Sort">
+			<typeName>LogicBuilder.Forms.Parameters.Grid.Sort</typeName>
+			<parameters>
+				<literalParameter name="field">
+					<literalType>String</literalType>
+					<control>SingleLineTextBox</control>
+					<optional>false</optional>
+					<useForEquality>true</useForEquality>
+					<useForHashCode>true</useForHashCode>
+					<useForToString>true</useForToString>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>Id</defaultValue>
+					<domain />
+					<comments></comments>
+				</literalParameter>
+				<literalParameter name="dir">
+					<literalType>String</literalType>
+					<control>SingleLineTextBox</control>
+					<optional>false</optional>
+					<useForEquality>false</useForEquality>
+					<useForHashCode>false</useForHashCode>
+					<useForToString>true</useForToString>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>Asc</defaultValue>
+					<domain>
+						<item>Asc</item>
+						<item>Desc</item>
+					</domain>
+					<comments></comments>
+				</literalParameter>
+			</parameters>
+			<genericArguments />
+			<summary></summary>
+		</constructor>
+		<constructor name="Operator">
+			<typeName>LogicBuilder.Forms.Parameters.Grid.Operator</typeName>
+			<parameters>
+				<literalParameter name="name">
+					<literalType>String</literalType>
+					<control>SingleLineTextBox</control>
+					<optional>false</optional>
+					<useForEquality>true</useForEquality>
+					<useForHashCode>true</useForHashCode>
+					<useForToString>true</useForToString>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>eq</defaultValue>
+					<domain>
+						<item>eq</item>
+						<item>neq</item>
+						<item>lt</item>
+						<item>lte</item>
+						<item>gt</item>
+						<item>gte</item>
+						<item>contains</item>
+						<item>doesnotcontain</item>
+						<item>startswith</item>
+						<item>endswith</item>
+						<item>isnotempty</item>
+						<item>isempty</item>
+						<item>isnotnull</item>
+						<item>isnull</item>
+					</domain>
+					<comments></comments>
+				</literalParameter>
+				<literalParameter name="description">
+					<literalType>String</literalType>
+					<control>SingleLineTextBox</control>
+					<optional>false</optional>
+					<useForEquality>false</useForEquality>
+					<useForHashCode>false</useForHashCode>
+					<useForToString>true</useForToString>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>Equals</defaultValue>
+					<domain>
+						<item>Equals</item>
+						<item>Not Equal To</item>
+						<item>Less Than</item>
+						<item>Less Than or Equal To</item>
+						<item>Greater Than</item>
+						<item>Greater Than or Equal To</item>
+						<item>Contains</item>
+						<item>Does not contain</item>
+						<item>Starts with</item>
+						<item>Ends with</item>
+						<item>Is not empty</item>
+						<item>Is empty</item>
+						<item>Is not null</item>
+						<item>Is null</item>
+					</domain>
+					<comments></comments>
+				</literalParameter>
+			</parameters>
+			<genericArguments />
+			<summary></summary>
+		</constructor>
+		<constructor name="OperatorGroup">
+			<typeName>LogicBuilder.Forms.Parameters.Grid.OperatorGroup</typeName>
+			<parameters>
+				<literalParameter name="typeName">
+					<literalType>String</literalType>
+					<control>SingleLineTextBox</control>
+					<optional>false</optional>
+					<useForEquality>true</useForEquality>
+					<useForHashCode>true</useForHashCode>
+					<useForToString>true</useForToString>
+					<propertySource />
+					<propertySourceParameter />
+					<defaultValue>string</defaultValue>
+					<domain>
+						<item>string</item>
+						<item>number</item>
+					</domain>
+					<comments></comments>
+				</literalParameter>
+				<objectListParameter name="Operators">
+          <objectType>Operator</objectType>
+					<listType>GenericList</listType>
+					<control>HashSetForm</control>
+					<optional>false</optional>
+					<comments></comments>
+				</objectListParameter>
+			</parameters>
+			<genericArguments />
+			<summary></summary>
+		</constructor>
+	</folder>
+</form>

@@ -153,6 +153,36 @@ namespace TelerikLogicBuilder.Tests
             Assert.StartsWith(expectedResult, result);
         }
 
+        [Theory]
+        [InlineData("1", typeof(int?), 1, true)]
+        [InlineData("20.12", typeof(double), 20.12, true)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void TryParseReturnsExpectedResult(string toParse, Type type, object expectedParsedResult, bool expectedSuccess)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.TryParse(toParse, type, out object parsedResult);
+
+            //assert
+            Assert.Equal(expectedSuccess, result);
+            Assert.Equal(expectedParsedResult, parsedResult);
+        }
+
+        [Theory]
+        [InlineData("1", typeof(List<int?>))]
+        [InlineData("20.12", typeof(object))]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void TryParseThrowsExceptionForInvalidType(string toParse, Type type)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => helper.TryParse(toParse, type, out object parsedResult));
+        }
+
         private void Initialize()
         {
             serviceProvider = new ServiceCollection()

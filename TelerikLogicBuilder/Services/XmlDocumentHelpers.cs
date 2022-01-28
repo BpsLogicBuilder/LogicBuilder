@@ -1,6 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -61,6 +64,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         #region Methods
         public XmlWriter CreateUnformattedXmlWriter(StringBuilder stringBuilder) 
             => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), UnformattedSettings);
+
+        public List<XmlElement> GetChildElements(XmlNode xmlNode, 
+            Func<XmlElement, bool> filter = null, 
+            Func<IEnumerable<XmlElement>, IEnumerable<XmlElement>> enumerableFunc = null)
+        {
+            IEnumerable<XmlElement> getChildElements()
+            {
+                return xmlNode.ChildNodes.OfType<XmlElement>().Where(filter ?? (x => true));
+            }
+
+            return enumerableFunc != null
+                ? enumerableFunc(getChildElements()).ToList()
+                : getChildElements().ToList();
+        }
         #endregion Methods
     }
 }

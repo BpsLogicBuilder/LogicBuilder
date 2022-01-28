@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<decisions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="decisionsData.xsd">
+  <not>
+    <decision name="ACIS ZBU" visibleText="ACIS ZBU Contains CB">
+      <not>
+        <function name="Contains" visibleText="Contains">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="val1">
+              <variable name="a_zbu" visibleText="visibleText" />
+            </literalParameter>
+            <literalParameter name="val2">CB</literalParameter>
+          </parameters>
+        </function>
+      </not>
+    </decision>
+  </not>
+</decisions>

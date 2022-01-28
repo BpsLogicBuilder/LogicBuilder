@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProjectProperties.xsd">
+  <!--
+  -->
+  <useSharePoint>false</useSharePoint>
+  <web>http://serverName/webSite</web>
+  <documentLibrary>Projects</documentLibrary>
+  <useDefaultCredentials>true</useDefaultCredentials>
+  <userName>John Smith</userName>
+  <domain>Domain</domain>
+  <applications>
+    <application name="App01" nickname="app01">
+      <activityAssembly>BusinessApp.EXE</activityAssembly>
+      <activityAssemblyPath>C:\Program Files\</activityAssemblyPath>
+      <runtime>NetFramework</runtime>
+      <loadAssemblyPaths>
+        <path>arg1</path>
+        <path>arg2</path>
+      </loadAssemblyPaths>
+      <activityClass>BusinessApp.Activity</activityClass>
+      <applicationExecutable>BusinessApp.EXE</applicationExecutable>
+      <applicationExecutablePath>C:\Program Files\</applicationExecutablePath>
+      <startupArguments>
+        <argument>arg1</argument>
+        <argument>arg2</argument>
+        <argument>arg3</argument>
+      </startupArguments>
+      <resourceFile>strings.res</resourceFile>
+      <resourceFileDeploymentPath>C:\_RulesProject\deployment\</resourceFileDeploymentPath>
+      <rulesFile>expert.rules</rulesFile>
+      <rulesDeploymentPath>C:\_RulesProject\deployment\</rulesDeploymentPath>
+      <excludedModules>
+        <module>moduleA</module>
+        <module>moduleB</module>
+        <module>moduleC</module>
+        <module>moduleD</module>
+      </excludedModules>
+      <remoteDeployment endPointAddress="http://address.test1.test2/service" securityMode="Message" dnsValue="cert">
+        <userName>userName</userName>
+        <password>password</password>
+        <addressHeaders>
+          <header name="header1" namespace="" value="http://test.test1.test2/header1" />
+          <header name="header1" namespace="" value="http://test.test1.test2/header2" />
+        </addressHeaders>
+      </remoteDeployment>
+      <webApiDeployment>
+        <postFileDataUrl>http://test.test1.test2/header1</postFileDataUrl>
+        <postVariablesMetaDataUrl>http://test.test1.test2/header1</postVariablesMetaDataUrl>
+        <deleteRulesUrl>http://test.test1.test2/header1</deleteRulesUrl>
+        <deleteAllRulesUrl>http://test.test1.test2/header1</deleteAllRulesUrl>
+      </webApiDeployment>
+    </application>
+    <application name="App10" nickname="app02">
+      <activityAssembly>BusinessApp.EXE</activityAssembly>
+      <activityAssemblyPath>C:\Program Files\</activityAssemblyPath>
+      <runtime>NetCore</runtime>
+      <loadAssemblyPaths></loadAssemblyPaths>
+      <activityClass>BusinessApp.Activity</activityClass>
+      <applicationExecutable>BusinessApp.EXE</applicationExecutable>
+      <applicationExecutablePath>C:\Program Files\</applicationExecutablePath>
+      <startupArguments>
+        <argument>arg1</argument>
+        <argument>arg2</argument>
+        <argument>arg3</argument>
+      </startupArguments>
+      <resourceFile>strings.res</resourceFile>
+      <resourceFileDeploymentPath>C:\_RulesProject\deployment\</resourceFileDeploymentPath>
+      <rulesFile>expert.rules</rulesFile>
+      <rulesDeploymentPath>C:\_RulesProject\deployment\</rulesDeploymentPath>
+      <excludedModules>
+        <module>moduleA</module>
+        <module>moduleB</module>
+        <module>moduleC</module>
+        <module>moduleD</module>
+      </excludedModules>
+      <remoteDeployment endPointAddress="http://address.test1.test2/service" securityMode="None" dnsValue="cert">
+        <userName>userName</userName>
+        <password>password</password>
+        <addressHeaders>
+          <header name="header1" namespace="" value="http://test.test1.test2/header1" />
+          <header name="header1" namespace="" value="http://test.test1.test2/header2" />
+        </addressHeaders>
+      </remoteDeployment>
+      <webApiDeployment>
+        <postFileDataUrl>http://test.test1.test2/header1</postFileDataUrl>
+        <postVariablesMetaDataUrl>http://test.test1.test2/header1</postVariablesMetaDataUrl>
+        <deleteRulesUrl>http://test.test1.test2/header1</deleteRulesUrl>
+        <deleteAllRulesUrl>http://test.test1.test2/header1</deleteAllRulesUrl>
+      </webApiDeployment>
+    </application>
+  </applications>
+  <questionsHierarchyObjectTypes>
+    <objectTypesGroup name="Form" />
+    <objectTypesGroup name="Row" />
+    <objectTypesGroup name="Column" />
+    <objectTypesGroup name="Question" />
+    <objectTypesGroup name="Answer" />
+  </questionsHierarchyObjectTypes>
+  <inputQuestionsHierarchyObjectTypes>
+    <objectTypesGroup name="Form">
+      <objectType>Operator</objectType>
+      <objectType>OperatorGroup</objectType>
+    </objectTypesGroup>
+    <objectTypesGroup name="Row" />
+    <objectTypesGroup name="Column" />
+    <objectTypesGroup name="Question" />
+  </inputQuestionsHierarchyObjectTypes>
+  <connectorObjectTypes>
+    <objectType>Operator</objectType>
+    <objectType>Grid.Pageable</objectType>
+  </connectorObjectTypes>
+</ProjectProperties>

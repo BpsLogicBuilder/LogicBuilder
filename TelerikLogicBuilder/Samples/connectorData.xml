@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<connector name="1" connectorCategory="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="connectorData.xsd">
+  <text>
+    FFF
+    <function name="get message" visibleText="visibleText">
+      <genericArguments />
+      <parameters>
+        <literalParameter name="value">
+          <function name="table" visibleText="visibleText">
+            <genericArguments />
+            <parameters>
+              <literalParameter name="value">tmq</literalParameter>
+              <literalParameter name="key">
+                <variable name="tmqkey" visibleText="visibleText" />
+              </literalParameter>
+              <literalParameter name="field">MSGID</literalParameter>
+            </parameters>
+          </function>
+        </literalParameter>
+      </parameters>
+    </function>
+  </text>
+  <metaObject objectType="Fully.Qualified.Type.Name">
+    <constructor name="StringQuestionDataParameters" visibleText="StringQuestionDataParameters">
+      <genericArguments />
+      <parameters>
+        <literalParameter name="val1">
+          <variable name="ZBU" visibleText="visibleText" />
+        </literalParameter>
+        <literalParameter name="val2">CS</literalParameter>
+      </parameters>
+    </constructor>
+  </metaObject>
+</connector>

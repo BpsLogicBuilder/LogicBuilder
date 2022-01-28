@@ -1,0 +1,5102 @@
+﻿<folder name="Decisions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="variables.xsd">
+	<folder name="MLT">
+    <objectVariable name="DDD">
+      <memberName>acrg</memberName>
+      <variableCategory>Property</variableCategory>
+      <castVariableAs />
+      <typeName />
+      <referenceName />
+      <referenceDefinition />
+      <castReferenceAs />
+      <referenceCategory>This</referenceCategory>
+      <evaluation>Implemented</evaluation>
+      <comments />
+      <metadata />
+      <objectType>MMM</objectType>
+    </objectVariable>
+		<literalListVariable name="List MLT ACRG">
+			<memberName>acrg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<listType>GenericList</listType>
+			<control>HashSetForm</control>
+			<elementControl>SingleLineTextBox</elementControl>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalListVariable>
+		<literalVariable name="MLT ACRG">
+			<memberName>acrg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT ACTG">
+			<memberName>actg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition>Field.Property.Property</referenceDefinition>
+			<castReferenceAs />
+			<referenceCategory>InstanceReference</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT ACTR">
+			<memberName>actr</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT CAP">
+			<memberName>cap</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT CO">
+			<memberName>co</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT CRVRG">
+			<memberName>crvrg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT CRVTG">
+			<memberName>crvtg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT DB">
+			<memberName>db</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT DCRG">
+			<memberName>dcrg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT DCTG">
+			<memberName>dctg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT DCTR">
+			<memberName>dctr</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT DECISION">
+			<memberName>dec</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT LOOP">
+			<memberName>loop</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT TERM">
+			<memberName>term</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MLT VERC">
+			<memberName>verc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="TR">
+		<literalVariable name="CABDT">
+			<memberName>cafdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="CABFAIL">
+			<memberName>cabfail</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Class Of Service">
+			<memberName>serv</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>CNTX</item>
+				<item>ISDN</item>
+				<item>PBX</item>
+				<item>POTS</item>
+				<item>PP</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="COFAIL">
+			<memberName>cofail</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="COFdt">
+			<memberName>cofdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Last trbl date avail">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Last Trouble Cleared">
+			<memberName>lclrd</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="LMOS servicecode">
+			<memberName>lsc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>CIMAP</item>
+				<item>ISDN</item>
+				<item>UNKN</item>
+				<item>WATS</item>
+				<item>INWATS</item>
+				<item>RES</item>
+				<item>BUS</item>
+				<item>PBX</item>
+				<item>CNTX</item>
+				<item>CPUB</item>
+				<item>CSPT</item>
+				<item>RUR</item>
+				<item>JTSV</item>
+				<item>MOB</item>
+				<item>UNCL</item>
+				<item>SSTG</item>
+				<item>SSTL</item>
+				<item>VDO</item>
+				<item>DATPL</item>
+				<item>DATSW</item>
+				<item>CHG</item>
+				<item>CARR</item>
+				<item>VAL</item>
+				<item>CIH</item>
+				<item>NMATE</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="LMOS TN">
+			<memberName>ltn</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="OEF Action Code">
+			<memberName>cofact</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="OEF Action Present">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="PSTAT">
+			<memberName>pstat</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>O</item>
+				<item>R</item>
+				<item>W</item>
+				<item>I</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="Servicecode Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Subsequent?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR ACNA code">
+			<memberName>acna</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>___</item>
+				<item>AAV</item>
+				<item>AKA</item>
+				<item>AKD</item>
+				<item>AKV</item>
+				<item>AOY</item>
+				<item>AVO</item>
+				<item>AXY</item>
+				<item>BFC</item>
+				<item>BIC</item>
+				<item>BUY</item>
+				<item>COJ</item>
+				<item>CPW</item>
+				<item>CQS</item>
+				<item>CYJ</item>
+				<item>DIM</item>
+				<item>DVS</item>
+				<item>ESI</item>
+				<item>EXF</item>
+				<item>FNO</item>
+				<item>GBQ</item>
+				<item>GEH</item>
+				<item>GEN</item>
+				<item>GOP</item>
+				<item>GOT</item>
+				<item>ICG</item>
+				<item>IOR</item>
+				<item>IRA</item>
+				<item>KMM</item>
+				<item>KTS</item>
+				<item>LDM</item>
+				<item>LGT</item>
+				<item>LJS</item>
+				<item>LLA</item>
+				<item>LMI</item>
+				<item>LNW</item>
+				<item>LOA</item>
+				<item>LUL</item>
+				<item>MAX</item>
+				<item>MFZ</item>
+				<item>MGL</item>
+				<item>MPQ</item>
+				<item>MRB</item>
+				<item>MSN</item>
+				<item>MVD</item>
+				<item>MWT</item>
+				<item>MWU</item>
+				<item>MWY</item>
+				<item>NEV</item>
+				<item>NLO</item>
+				<item>NVG</item>
+				<item>NVS</item>
+				<item>OML</item>
+				<item>OOI</item>
+				<item>OSC</item>
+				<item>OSO</item>
+				<item>PFV</item>
+				<item>PHK</item>
+				<item>PRA</item>
+				<item>PYE</item>
+				<item>SDM</item>
+				<item>SIU</item>
+				<item>SIY</item>
+				<item>SUR</item>
+				<item>TAK</item>
+				<item>TGN</item>
+				<item>TIK</item>
+				<item>TOV</item>
+				<item>TVX</item>
+				<item>TYO</item>
+				<item>TZX</item>
+				<item>UCO</item>
+				<item>UCS</item>
+				<item>UDO</item>
+				<item>UEI</item>
+				<item>UID</item>
+				<item>UNL</item>
+				<item>UXC</item>
+				<item>UXW</item>
+				<item>VEN</item>
+				<item>WSI</item>
+				<item>WSQ</item>
+				<item>WUA</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="TR ACNA code Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Address">
+			<memberName>traddr</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Address Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR ASDT">
+			<memberName>trasdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR ASDT Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR BCDT">
+			<memberName>trbcdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR BCDT Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Cat">
+			<memberName>trcat</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Cat Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Cust Called">
+			<memberName>called</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Cust Called Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Data Requested">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Desp">
+			<memberName>trdesp</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Desp Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR FLAG">
+			<memberName>flag</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR FLAG Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR FLAG_FIVE">
+			<memberName>flag_five</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Handle Code">
+			<memberName>hndl</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Handle Code Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Loc">
+			<memberName>loc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Loc Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR MNEM">
+			<memberName>trmnem</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>TYO</item>
+				<item>ATW</item>
+				<item>LOA</item>
+				<item>AFY</item>
+				<item>AMK</item>
+				<item>BFC</item>
+				<item>LMN</item>
+				<item>TOV</item>
+				<item>TLM</item>
+				<item>LMT</item>
+				<item>FLM</item>
+				<item>SUR</item>
+				<item>GTN</item>
+				<item>ICG</item>
+				<item>ICI</item>
+				<item>LSM</item>
+				<item>KMC</item>
+				<item>MCI</item>
+				<item>MGC</item>
+				<item>MCM</item>
+				<item>TQM</item>
+				<item>NLO</item>
+				<item>NLL</item>
+				<item>OCB</item>
+				<item>MLM</item>
+				<item>NET</item>
+				<item>SPR</item>
+				<item>TMP</item>
+				<item>TCG</item>
+				<item>TCI</item>
+				<item>TDS</item>
+				<item>TNS</item>
+				<item>TGT</item>
+				<item>TWC</item>
+				<item>UXC</item>
+				<item>WCO</item>
+				<item>WSI</item>
+				<item>GTE</item>
+				<item>GAB</item>
+				<item>CHO</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="TR MNEM Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Name">
+			<memberName>trname</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Name Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Narr Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Narrative">
+			<memberName>trnarr</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Old Comm">
+			<memberName>oldcomm</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Old Comm Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR OSDT">
+			<memberName>trosdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR OSDT Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR PDATE">
+			<memberName>trpdate</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR PDATE Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Reach Number">
+			<memberName>trreach</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Reach Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Remarks">
+			<memberName>rem</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Remarks Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Reported By">
+			<memberName>trrptdby</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Reported By Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Returned Data">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Status">
+			<memberName>trwkstat</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Status DT">
+			<memberName>statusdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Status DT Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Status Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Sub Status">
+			<memberName>sstat</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>BDO</item>
+				<item>BPS</item>
+				<item>CAT</item>
+				<item>CCA</item>
+				<item>CLO</item>
+				<item>CNA</item>
+				<item>DDO</item>
+				<item>DFC</item>
+				<item>DFJ</item>
+				<item>DPI</item>
+				<item>DPO</item>
+				<item>ENR</item>
+				<item>GBR</item>
+				<item>HLD</item>
+				<item>IIH</item>
+				<item>IIR</item>
+				<item>ISD</item>
+				<item>ISR</item>
+				<item>MJR</item>
+				<item>NAO</item>
+				<item>NAS</item>
+				<item>OEF</item>
+				<item>PAC</item>
+				<item>PAO</item>
+				<item>PD1</item>
+				<item>PD2</item>
+				<item>PD3</item>
+				<item>PD4</item>
+				<item>PD5</item>
+				<item>PD6</item>
+				<item>PD7</item>
+				<item>PD8</item>
+				<item>PD9</item>
+				<item>PDC</item>
+				<item>PDF</item>
+				<item>PDG</item>
+				<item>PDI</item>
+				<item>PDM</item>
+				<item>PDO</item>
+				<item>PDS</item>
+				<item>PDT</item>
+				<item>PDX</item>
+				<item>PDY</item>
+				<item>PDZ</item>
+				<item>PFA</item>
+				<item>PFJ</item>
+				<item>PLD</item>
+				<item>PRD</item>
+				<item>PRE</item>
+				<item>PS</item>
+				<item>PSA</item>
+				<item>PSC</item>
+				<item>PSH</item>
+				<item>PSM</item>
+				<item>PUT</item>
+				<item>PWF</item>
+				<item>PWS</item>
+				<item>RFC</item>
+				<item>RMR</item>
+				<item>ROK</item>
+				<item>SVO</item>
+				<item>TDA</item>
+				<item>TMK</item>
+				<item>TOK</item>
+				<item>TSA</item>
+				<item>TST</item>
+				<item>VCR</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="TR Sub Status Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Subs Acca">
+			<memberName>subs_acca</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Subs Acca Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Unit">
+			<memberName>unit</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Unit Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR Variables Present">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TR ZBU">
+			<memberName>tr_zbu</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>CB</item>
+				<item>CS</item>
+				<item>EB</item>
+				<item>II</item>
+				<item>PP</item>
+				<item>SB</item>
+			</domain>
+		</literalVariable>
+	</folder>
+	<folder name="ACIS">
+		<literalVariable name="ACIS INL usoc">
+			<memberName>inlusoc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>HWWXB</item>
+				<item>LBRXB</item>
+				<item>LBRXP</item>
+				<item>MMDXB</item>
+				<item>MMDXP</item>
+				<item>MNTPB</item>
+				<item>MNTPP</item>
+				<item>MNTXB</item>
+				<item>MNTXP</item>
+				<item>USP1X</item>
+				<item>USP2X</item>
+				<item>MNSPX</item>
+				<item>MNSQX</item>
+				<item>MNSRX</item>
+				<item>UWM</item>
+				<item>WMR</item>
+				<item>WMRT1</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="ACIS IW usoc">
+			<memberName>iwusoc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>HWWXB</item>
+				<item>LBRXB</item>
+				<item>LBRXP</item>
+				<item>MMDXB</item>
+				<item>MMDXP</item>
+				<item>MNTPB</item>
+				<item>MNTPP</item>
+				<item>MNTXB</item>
+				<item>MNTXP</item>
+				<item>USP1X</item>
+				<item>USP2X</item>
+				<item>MNSPX</item>
+				<item>MNSQX</item>
+				<item>MNSRX</item>
+				<item>UWM</item>
+				<item>WMR</item>
+				<item>WMRT1</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="ACIS LB usoc">
+			<memberName>lbusoc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>HWWXB</item>
+				<item>LBRXB</item>
+				<item>LBRXP</item>
+				<item>MMDXB</item>
+				<item>MMDXP</item>
+				<item>MNTPB</item>
+				<item>MNTPP</item>
+				<item>MNTXB</item>
+				<item>MNTXP</item>
+				<item>USP1X</item>
+				<item>USP2X</item>
+				<item>MNSPX</item>
+				<item>MNSQX</item>
+				<item>MNSRX</item>
+				<item>UWM</item>
+				<item>WMR</item>
+				<item>WMRT1</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="ACIS Multi Dwelling">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ACIS Restriction">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ACIS Restriction USOC">
+			<memberName>arusoc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ACIS Returned Data">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ACIS Shows INL">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ACIS Shows IW">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ACIS Shows LB">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ACIS ZBU">
+			<memberName>a_zbu</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>CB</item>
+				<item>CS</item>
+				<item>EB</item>
+				<item>II</item>
+				<item>PP</item>
+				<item>SB</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="Complex USOC's">
+			<memberName>cu</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>RCF</item>
+				<item>RCA</item>
+				<item>RFH</item>
+				<item>TER</item>
+				<item>CLT</item>
+				<item>RTI</item>
+				<item>NBR</item>
+				<item>ND2</item>
+				<item>ND4</item>
+				<item>ND7</item>
+				<item>ND8</item>
+				<item>NDE</item>
+				<item>NDG</item>
+				<item>NDJ</item>
+				<item>NDN</item>
+				<item>NDT</item>
+				<item>NDV</item>
+				<item>NEF</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="DPA on CSR">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DSL on ACIS CSR">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Hunting?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MULTI RING">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="MULTI RING PN">
+			<memberName>pn</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="N2Q on CSR">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="P2B on CSR">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="Customer Data">
+		<literalVariable name="STATE">
+			<memberName>state</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>NC</item>
+				<item>SC</item>
+				<item>GA</item>
+				<item>TN</item>
+				<item>FL</item>
+				<item>KY</item>
+				<item>VA</item>
+				<item>MD</item>
+				<item>AL</item>
+				<item>MS</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="REGION">
+			<memberName>reg</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>NE</item>
+				<item>SE</item>
+				<item>MW</item>
+				<item>SW</item>
+				<item>NW</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="RISK FACTOR">
+			<memberName>risk</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>HI</item>
+				<item>MD</item>
+				<item>LO</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="Customer Address">
+			<memberName>caddr</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Customer Name">
+			<memberName>cname</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Phone Number">
+			<memberName>phnum</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="DOSOI">
+		<literalVariable name="DOSOI Returned Data">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="RBS Found in DOSOI">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="RBS Removed in DOSOI">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="SOA Removing Restrictions">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="SOA With Restrictions">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="Trouble History">
+		<literalVariable name="30 Day Repeat">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DATH Data Requested">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DATH Disp Code">
+			<memberName>disp</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DATH Disp Code Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="Flow">
+		<literalVariable name="500 Numbers">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="700 Numbers">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="8XX Numbers">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="900/976 Numbers">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="AA Quote Given">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="AAS MSG-ID">
+			<memberName>aamsgid</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>MSG3</item>
+				<item>MSG4</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="AAS NOT-ID">
+			<memberName>aanotid</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>MSG1</item>
+				<item>MSG2</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="AAS Table Key">
+			<memberName>aaskey</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Advanced Mode CP">
+			<memberName>acp</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Arrange Access">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="BR1X">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="BROP">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Can't Break Dial Tone">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Can't Call 911">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Comm Quote Given">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Completed Transaction">
+			<memberName>trxdn</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>customerdata</item>
+				<item>dath</item>
+				<item>dleth</item>
+				<item>sys</item>
+				<item>s14</item>
+				<item>tr</item>
+				<item>dlr</item>
+				<item>dlrl</item>
+				<item>wfado</item>
+				<item>dosoi</item>
+				<item>mlt</item>
+				<item>rst</item>
+				<item>actual</item>
+				<item>ticket</item>
+				<item>worddoc</item>
+				<item>solog</item>
+				<item>shipping</item>
+				<item>service</item>
+				<item>operation</item>
+				<item>cellflow</item>
+				<item>csr</item>
+				<item>so</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="CPE-ISO Some Phones">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="CUSTTYPE">
+			<memberName>custType</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>RES</item>
+				<item>BUS</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="Customer Number">
+			<memberName>custno</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Customer Number Entered?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Description Selected">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DPH Data Requested">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DSL ACCOUNT">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered ADV AMER">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered Disp Action">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered Main Menu">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered Misc Flow">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered MR Flow">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered MTSS Flow">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered Refer Screen">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered SO Info Flow">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entered Test Rules">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entry Mode CP">
+			<memberName>ecp</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited ADV AMER">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited Disp Action">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited Main Menu">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited Misc Flow">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited MTSS Flow">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited Refer Screen">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited SO Info Flow">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Exited Test Rules">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Gets Wrong Number">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Goal Independent">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="History Requires Access">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ICAS OSDT">
+			<memberName>osdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ICAS servicecode">
+			<memberName>isc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>CIMAP</item>
+				<item>ISDN</item>
+				<item>UNKN</item>
+				<item>WATS</item>
+				<item>INWATS</item>
+				<item>RES</item>
+				<item>BUS</item>
+				<item>PBX</item>
+				<item>CNTX</item>
+				<item>CPUB</item>
+				<item>CSPT</item>
+				<item>RUR</item>
+				<item>JTSV</item>
+				<item>MOB</item>
+				<item>UNCL</item>
+				<item>SSTG</item>
+				<item>SSTL</item>
+				<item>VDO</item>
+				<item>DATPL</item>
+				<item>DATSW</item>
+				<item>CHG</item>
+				<item>CARR</item>
+				<item>VAL</item>
+				<item>CIH</item>
+				<item>NMATE</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="LMOS TN1">
+			<memberName>ltn1</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="LMOS TN2">
+			<memberName>ltn2</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="LNP Account">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="LOOP SELECTED">
+			<memberName>lpsel</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>1</item>
+				<item>2</item>
+				<item>3</item>
+				<item>4</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="MAINT">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Negotiate Access">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="No Dial Tone">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Referral Selected">
+			<memberName>ref</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Related to CAF or COF">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Result Determined">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="RSL ACCOUNT">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Sequence Condition">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TCR?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Test Only?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Third party">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Timed Out Transaction">
+			<memberName>trxto</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>customerdata</item>
+				<item>dath</item>
+				<item>dleth</item>
+				<item>sys</item>
+				<item>s14</item>
+				<item>tr</item>
+				<item>dlr</item>
+				<item>dlrl</item>
+				<item>wfado</item>
+				<item>dosoi</item>
+				<item>mlt</item>
+				<item>rst</item>
+				<item>actual</item>
+				<item>ticket</item>
+				<item>worddoc</item>
+				<item>solog</item>
+				<item>shipping</item>
+				<item>service</item>
+				<item>operation</item>
+				<item>cellflow</item>
+				<item>csr</item>
+				<item>so</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="TMQ MSG ID">
+			<memberName>tmqid</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>MSG1</item>
+				<item>MSG2</item>
+				<item>MSG3</item>
+				<item>MSG4</item>
+				<item>MSG5</item>
+				<item>MSG6</item>
+				<item>MSG7</item>
+				<item>MSG8</item>
+				<item>MSG9</item>
+				<item>MSG10</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="TMQ Refused">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TMQ Table Key">
+			<memberName>tmqkey</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TN">
+			<memberName>tn</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="TN Entered?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Transmission">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="ZBU">
+			<memberName>zbu</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>CB</item>
+				<item>CS</item>
+				<item>EB</item>
+				<item>II</item>
+				<item>PP</item>
+				<item>SB</item>
+			</domain>
+		</literalVariable>
+	</folder>
+	<folder name="Client">
+		<literalVariable name="AA Field Updated">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Advanced Mode">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Appointment Day">
+			<memberName>apptday</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Available Appointments">
+			<memberName>availappts</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Client Triggers MR">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Client Triggers MTSS">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="commit">
+			<memberName>commit</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>AS</item>
+				<item>OS</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="commit1">
+			<memberName>commit1</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>A</item>
+				<item>O</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="Derived AS DATE">
+			<memberName>dasdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Derived BC DATE">
+			<memberName>dbcdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Derived OS DATE">
+			<memberName>dosdt</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Entry Mode">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Now time">
+			<memberName>nowtime</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="NPANXX Search Result">
+			<memberName>npanxxres</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>FOUND</item>
+				<item>ERROR</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="RTE Address">
+			<memberName>rteaddr</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="User Interface">
+		<literalVariable name="Access After Field">
+			<memberName>accessa</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Action Code">
+			<memberName>act</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>911DBASE</item>
+				<item>ACEDUCAS</item>
+				<item>ACEDUCOS</item>
+				<item>AMCPE</item>
+				<item>BOINFO</item>
+				<item>BURYDROP</item>
+				<item>CARRIERA</item>
+				<item>CARRIERO</item>
+				<item>COOVRLD</item>
+				<item>CUSTAS</item>
+				<item>CUSTOS</item>
+				<item>DBACAS</item>
+				<item>DBACOS</item>
+				<item>DISC</item>
+				<item>FEATURE</item>
+				<item>IXCXFERA</item>
+				<item>IXCXFERO</item>
+				<item>JACKORD</item>
+				<item>ORDERAS</item>
+				<item>ORDEROS</item>
+				<item>OTHRINFO</item>
+				<item>REFBOAS</item>
+				<item>REFBOOS</item>
+				<item>REFBORQZ</item>
+				<item>RFDACB</item>
+				<item>RFDRSALE</item>
+				<item>ROSSALE</item>
+				<item>TAGNOAS</item>
+				<item>TESTAS</item>
+				<item>TESTOS</item>
+				<item>TOKAS</item>
+				<item>TOKOS</item>
+				<item>SETDELAS</item>
+				<item>SETDELOS</item>
+				<item>VENDORAS</item>
+				<item>VENDOROS</item>
+				<item>CABAS</item>
+				<item>CABOS</item>
+				<item>CABCUT</item>
+				<item>CABFAILA</item>
+				<item>CABFAILO</item>
+				<item>CONAS</item>
+				<item>CONOS</item>
+				<item>DROPAS</item>
+				<item>DROPOS</item>
+				<item>DPROS</item>
+				<item>HAZARDAS</item>
+				<item>DSOOS</item>
+				<item>HAZARDOS</item>
+				<item>SMLAS</item>
+				<item>SMLOS</item>
+				<item>NCSAS</item>
+				<item>NCSOS</item>
+				<item>NONREG</item>
+				<item>NETCK</item>
+				<item>SLCAS</item>
+				<item>SLCOS</item>
+				<item>COCUTAS</item>
+				<item>COCUTOS</item>
+				<item>FDCAS</item>
+				<item>FDCOS</item>
+				<item>INAC</item>
+				<item>MDFATAS</item>
+				<item>MDFATOS</item>
+				<item>OEF</item>
+				<item>RCMACAS</item>
+				<item>RCMACOS</item>
+				<item>RFCCAB</item>
+				<item>SSMTEST</item>
+				<item>CLBK</item>
+				<item>CIDBAS</item>
+				<item>CIDRAS</item>
+				<item>CUTOVERA</item>
+				<item>CUTOVERO</item>
+				<item>GBISDNAS</item>
+				<item>GBISDNOS</item>
+				<item>ICATSAS</item>
+				<item>ICATSOS</item>
+				<item>IIHOLD</item>
+				<item>IHOLDAS</item>
+				<item>IHOLDOS</item>
+				<item>ISDNAS</item>
+				<item>ISDNOS</item>
+				<item>MICHADJ</item>
+				<item>OHCELLA</item>
+				<item>OHCELLO</item>
+				<item>INDCELLA</item>
+				<item>INDCELLO</item>
+				<item>ILCELLA</item>
+				<item>ILCELLO</item>
+				<item>OHIOOS</item>
+				<item>GBVFY</item>
+				<item>VFY</item>
+				<item>CAPT</item>
+				<item>PICVFY</item>
+				<item>RESALE</item>
+				<item>MJR</item>
+				<item>SPA</item>
+				<item>VMXBAS</item>
+				<item>VMXRAS</item>
+				<item>VNDRMT</item>
+				<item>TRNKFLAS</item>
+				<item>TRNKFLOS</item>
+				<item>GBNOTVFY</item>
+				<item>TXCLOSE</item>
+				<item>CDSUB</item>
+				<item>CXSUB</item>
+				<item>MR</item>
+				<item>NOTVFY</item>
+				<item>SCREENAS</item>
+				<item>GBSCRAS</item>
+				<item>311DELAY</item>
+				<item>SCREENOS</item>
+				<item>GBSCROS</item>
+				<item>WIADJ</item>
+				<item>RFENGAS</item>
+				<item>OSPLANTO</item>
+				<item>NONHAZAS</item>
+				<item>FEATVEND</item>
+				<item>TRIMREFA</item>
+				<item>TRIMREFO</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="Action Group">
+			<memberName>act_grp</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>CLOSE</item>
+				<item>HOLD</item>
+				<item>DISPATCH IN</item>
+				<item>DISPATCH OUT</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="AS Button Checked">
+			<memberName>aschecked</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>true</item>
+				<item>false</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="BC Button Checked">
+			<memberName>bcchecked</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>true</item>
+				<item>false</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="commitment time">
+			<memberName>commitment</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="description">
+			<memberName>desc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>NDT</item>
+				<item>NDT CRA</item>
+				<item>NDTM</item>
+				<item>NDTM CRA</item>
+				<item>NDT CLRY</item>
+				<item>NDT CLRN</item>
+				<item>NDTM CLRY</item>
+				<item>NDTM CLRN</item>
+				<item>CCO</item>
+				<item>CCO CRA</item>
+				<item>CCO CLRY</item>
+				<item>CCO CLRN</item>
+				<item>CCOM CLRY</item>
+				<item>CCOM CLRN</item>
+				<item>CCOM</item>
+				<item>CCOM CRA</item>
+				<item>311</item>
+				<item>711</item>
+				<item>TRAN</item>
+				<item>TRAN CRA</item>
+				<item>TRAN M</item>
+				<item>TRAN MCRA</item>
+				<item>CBC</item>
+				<item>CBC CRA</item>
+				<item>CBCM</item>
+				<item>CBCM CRA</item>
+				<item>CBC CLRY</item>
+				<item>CBC CLRN</item>
+				<item>CBCM CLRY</item>
+				<item>CBCM CLRN</item>
+				<item>MEM</item>
+				<item>MEM CRA</item>
+				<item>APM</item>
+				<item>911</item>
+				<item>PPU</item>
+				<item>8HUN CRA</item>
+				<item>CAID CRA</item>
+				<item>MULT RING</item>
+				<item>CALL TRAC</item>
+				<item>HTG</item>
+				<item>HTG CRA</item>
+				<item>CCLD</item>
+				<item>CCLD CRA</item>
+				<item>CCLD M</item>
+				<item>CCLDM</item>
+				<item>COD</item>
+				<item>3RD VMS</item>
+				<item>VMS CRA</item>
+				<item>CALL IDWN</item>
+				<item>AIN MISC</item>
+				<item>AVN</item>
+				<item>ACC</item>
+				<item>ST</item>
+				<item>AWN</item>
+				<item>AR</item>
+				<item>8HUN</item>
+				<item>SAS</item>
+				<item>CALL WAIT</item>
+				<item>CALL SCR</item>
+				<item>CALL FWD</item>
+				<item>OOS CFWD</item>
+				<item>AUTO CB</item>
+				<item>SPEE DIAL</item>
+				<item>3WAY CALL</item>
+				<item>REP DIAL</item>
+				<item>DIST RING</item>
+				<item>VMS</item>
+				<item>OOS VMS</item>
+				<item>CALL ID</item>
+				<item>ENSE MBLE</item>
+				<item>DATA</item>
+				<item>DATA CRA</item>
+				<item>DATA BOND</item>
+				<item>DATA ISP</item>
+				<item>DATA VIDE</item>
+				<item>DATA PACK</item>
+				<item>DSL</item>
+				<item>DSL CRA</item>
+				<item>DOLE</item>
+				<item>DOLE CRA</item>
+				<item>PHYI CRA</item>
+				<item>PHYI</item>
+				<item>TAG DROP</item>
+				<item>VDMT</item>
+				<item>CPE</item>
+				<item>PHYO CRA</item>
+				<item>PHYO</item>
+				<item>MISC</item>
+				<item>BILL DISP</item>
+				<item>MISC CRA</item>
+				<item>WIRE TAP</item>
+				<item>CRDY</item>
+				<item>CRDN</item>
+				<item>AREA CODE</item>
+				<item>COMB DROP</item>
+				<item>BUR DROP</item>
+				<item>CAR</item>
+				<item>ISOL</item>
+				<item>DSO</item>
+				<item>DAVR</item>
+				<item>ELEC</item>
+				<item>DROP</item>
+				<item>JPRU</item>
+				<item>DFPR</item>
+				<item>LOC</item>
+				<item>NID</item>
+				<item>PRED</item>
+				<item>ACE</item>
+				<item>PMAP</item>
+				<item>AIR</item>
+				<item>SLCA</item>
+				<item>SLCR</item>
+				<item>MINR</item>
+				<item>FAST</item>
+				<item>PWR</item>
+				<item>DPRO</item>
+				<item>TERM DROP</item>
+				<item>MJR FAIL</item>
+				<item>TAM</item>
+				<item>2PD</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="Icas Button Checked">
+			<memberName>icaschecked</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>true</item>
+				<item>false</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="OS Button Checked">
+			<memberName>oschecked</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>true</item>
+				<item>false</item>
+			</domain>
+		</literalVariable>
+	</folder>
+	<folder name="ASON">
+		<literalVariable name="DD 1">
+			<memberName>dd1</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DD 2">
+			<memberName>dd2</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DD 3">
+			<memberName>dd3</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Order 1 Stat">
+			<memberName>stat1</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Order 2 Stat">
+			<memberName>stat2</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Order 3 Stat">
+			<memberName>stat3</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Order Num 1">
+			<memberName>on1</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Order Num 2">
+			<memberName>on2</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Order Num 3">
+			<memberName>on3</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Order Number">
+			<memberName>on</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Pending Service Order?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Restrictions?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Service Order 1">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Service Order 2">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Service Order 3">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="Service Order Activity?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="DLRL">
+		<literalVariable name="DLRL Returned Data">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DLRL SWC">
+			<memberName>swc</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DLRL SWC Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DLRL Transaction Start time">
+			<memberName>dlrlStart</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="DPH">
+		<literalVariable name="DPH PDATE">
+			<memberName>dphpdate</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DPH PDATE Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="DPH MNEM">
+			<memberName>dphmnem</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>8702</item>
+				<item>6010</item>
+				<item>7421</item>
+				<item>8378</item>
+				<item>9300</item>
+				<item>7227</item>
+				<item>7219</item>
+				<item>7608</item>
+				<item>9348</item>
+				<item>8331</item>
+				<item>7058</item>
+				<item>7343</item>
+				<item>8658</item>
+				<item>7150</item>
+				<item>7149</item>
+				<item>8307</item>
+				<item>8981</item>
+				<item>7229</item>
+				<item>7050</item>
+				<item>7393</item>
+				<item>3876</item>
+				<item>7298</item>
+				<item>7056</item>
+				<item>7520</item>
+				<item>7908</item>
+				<item>7701</item>
+				<item>9147</item>
+				<item>661</item>
+				<item>341</item>
+				<item>7125</item>
+				<item>7606</item>
+				<item>7804</item>
+				<item>8527</item>
+				<item>8387</item>
+				<item>7178</item>
+				<item>7979</item>
+				<item>7228</item>
+				<item>7542</item>
+				<item>772</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="DPH MNEM Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+	<folder name="LFACS">
+		<literalVariable name="ISLC LOOP NUMBER">
+			<memberName>islclp</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain>
+				<item>1</item>
+				<item>2</item>
+				<item>3</item>
+				<item>4</item>
+			</domain>
+		</literalVariable>
+		<literalVariable name="LFACS Address">
+			<memberName>lfaddr</memberName>
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Implemented</evaluation>
+			<comments />
+			<metadata />
+			<literalType>Decimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="LFACS Address Present?">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="LFACS Data Requested">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+		<literalVariable name="LFACS Returned Data">
+			<memberName />
+			<variableCategory>Property</variableCategory>
+			<castVariableAs />
+			<typeName />
+			<referenceName />
+			<referenceDefinition />
+			<castReferenceAs />
+			<referenceCategory>This</referenceCategory>
+			<evaluation>Automatic</evaluation>
+			<comments />
+			<metadata />
+			<literalType>NullableDecimal</literalType>
+			<control>SingleLineTextBox</control>
+			<propertySource />
+			<defaultValue />
+			<domain />
+		</literalVariable>
+	</folder>
+</folder>

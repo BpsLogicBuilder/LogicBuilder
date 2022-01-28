@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="folder" type="folderType">
+    <xsd:unique name="decisionNameKey">
+      <xsd:selector xpath=".//decision" />
+      <xsd:field xpath="@name" />
+    </xsd:unique>
+    <xsd:unique name="folderNameKey">
+      <xsd:selector xpath="./folder" />
+      <xsd:field xpath="@name" />
+    </xsd:unique>
+  </xsd:element>
+  <xsd:complexType name="decisionType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="variableName" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="variableCategory" type="VariableCategory" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="typeName" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="referenceName" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="referenceDefinition" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="castReferenceAs" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="referenceCategory" type="ReferenceCategory" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="evaluation" type="DecisionsEvaluation" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="domain" type="domainType">
+        <xsd:unique name="itemValue">
+          <xsd:selector xpath="./item" />
+          <xsd:field xpath="." />
+        </xsd:unique>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="variableType" type="DecisionsVariable" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="control" type="VariablesInputStyle" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="comments" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="metadata" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="folderType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="decision" type="decisionType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="folder" type="folderType">
+        <xsd:unique name="subFolderNameKey">
+          <xsd:selector xpath="./folder" />
+          <xsd:field xpath="@name" />
+        </xsd:unique>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="domainType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="VariableCategory">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Property" />
+      <xsd:enumeration value="Field" />
+      <xsd:enumeration value="ArrayIndexer" />
+      <xsd:enumeration value="StringKeyIndexer" />
+      <xsd:enumeration value="IntegerKeyIndexer" />
+      <xsd:enumeration value="BooleanKeyIndexer" />
+      <xsd:enumeration value="DateTimeKeyIndexer" />
+      <xsd:enumeration value="TimeSpanKeyIndexer" />
+      <xsd:enumeration value="GuidKeyIndexer" />
+      <xsd:enumeration value="ByteKeyIndexer" />
+      <xsd:enumeration value="ShortKeyIndexer" />
+      <xsd:enumeration value="LongKeyIndexer" />
+      <xsd:enumeration value="FloatKeyIndexer" />
+      <xsd:enumeration value="DoubleKeyIndexer" />
+      <xsd:enumeration value="DecimalKeyIndexer" />
+      <xsd:enumeration value="CharKeyIndexer" />
+      <xsd:enumeration value="SByteKeyIndexer" />
+      <xsd:enumeration value="UShortKeyIndexer" />
+      <xsd:enumeration value="UIntegerKeyIndexer" />
+      <xsd:enumeration value="ULongKeyIndexer" />
+      <xsd:enumeration value="VariableKeyIndexer" />
+      <xsd:enumeration value="VariableArrayIndexer" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ReferenceCategory">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="InstanceReference" />
+      <xsd:enumeration value="StaticReference" />
+      <xsd:enumeration value="Type" />
+      <xsd:enumeration value="This" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DecisionsEvaluation">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Implemented" />
+      <xsd:enumeration value="Automatic" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DecisionsVariable">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Decimal" />
+      <xsd:enumeration value="String" />
+      <xsd:enumeration value="Integer" />
+      <xsd:enumeration value="Boolean" />
+      <xsd:enumeration value="DateTime" />
+      <xsd:enumeration value="TimeSpan" />
+      <xsd:enumeration value="Guid" />
+      <xsd:enumeration value="Byte" />
+      <xsd:enumeration value="Short" />
+      <xsd:enumeration value="Long" />
+      <xsd:enumeration value="Float" />
+      <xsd:enumeration value="Double" />
+      <xsd:enumeration value="Char" />
+      <xsd:enumeration value="SByte" />
+      <xsd:enumeration value="UShort" />
+      <xsd:enumeration value="UInteger" />
+      <xsd:enumeration value="ULong" />
+      <xsd:enumeration value="NullableDecimal" />
+      <xsd:enumeration value="NullableInteger" />
+      <xsd:enumeration value="NullableBoolean" />
+      <xsd:enumeration value="NullableDateTime" />
+      <xsd:enumeration value="NullableTimeSpan" />
+      <xsd:enumeration value="NullableGuid" />
+      <xsd:enumeration value="NullableByte" />
+      <xsd:enumeration value="NullableShort" />
+      <xsd:enumeration value="NullableLong" />
+      <xsd:enumeration value="NullableFloat" />
+      <xsd:enumeration value="NullableDouble" />
+      <xsd:enumeration value="NullableChar" />
+      <xsd:enumeration value="NullableSByte" />
+      <xsd:enumeration value="NullableUShort" />
+      <xsd:enumeration value="NullableUInteger" />
+      <xsd:enumeration value="NullableULong" />
+      <xsd:enumeration value="ListOfDecimal" />
+      <xsd:enumeration value="ListOfString" />
+      <xsd:enumeration value="ListOfInteger" />
+      <xsd:enumeration value="ListOfBoolean" />
+      <xsd:enumeration value="ListOfDateTime" />
+      <xsd:enumeration value="ListOfTimeSpan" />
+      <xsd:enumeration value="ListOfGuid" />
+      <xsd:enumeration value="ListOfByte" />
+      <xsd:enumeration value="ListOfShort" />
+      <xsd:enumeration value="ListOfLong" />
+      <xsd:enumeration value="ListOfFloat" />
+      <xsd:enumeration value="ListOfDouble" />
+      <xsd:enumeration value="ListOfChar" />
+      <xsd:enumeration value="ListOfSByte" />
+      <xsd:enumeration value="ListOfUShort" />
+      <xsd:enumeration value="ListOfUInteger" />
+      <xsd:enumeration value="ListOfULong" />
+      <xsd:enumeration value="ListOfNullableDecimal" />
+      <xsd:enumeration value="ListOfNullableInteger" />
+      <xsd:enumeration value="ListOfNullableBoolean" />
+      <xsd:enumeration value="ListOfNullableDateTime" />
+      <xsd:enumeration value="ListOfNullableTimeSpan" />
+      <xsd:enumeration value="ListOfNullableGuid" />
+      <xsd:enumeration value="ListOfNullableByte" />
+      <xsd:enumeration value="ListOfNullableShort" />
+      <xsd:enumeration value="ListOfNullableLong" />
+      <xsd:enumeration value="ListOfNullableFloat" />
+      <xsd:enumeration value="ListOfNullableDouble" />
+      <xsd:enumeration value="ListOfNullableChar" />
+      <xsd:enumeration value="ListOfNullableSByte" />
+      <xsd:enumeration value="ListOfNullableUShort" />
+      <xsd:enumeration value="ListOfNullableUInteger" />
+      <xsd:enumeration value="ListOfNullableULong" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="VariablesInputStyle">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SingleLineTextBox" />
+      <xsd:enumeration value="DropDown" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

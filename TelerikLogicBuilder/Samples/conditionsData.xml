@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<conditions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="conditionsData.xsd">
+  <or>
+    <not>
+      <function name="equals" visibleText="visibleText">
+        <genericArguments />
+        <parameters>
+          <literalParameter name="val1">
+            <variable name="desc" visibleText="visibleText" />
+          </literalParameter>
+          <literalParameter name="val2">PHYI</literalParameter>
+        </parameters>
+      </function>
+    </not>
+    <function name="contains" visibleText="visibleText">
+      <genericArguments />
+      <parameters>
+        <literalParameter name="val1">
+          <function name="table" visibleText="visibleText">
+            <genericArguments />
+            <parameters>
+              <literalParameter name="value">regulatory</literalParameter>
+              <literalParameter name="key">DRTMQ</literalParameter>
+              <literalParameter name="field">STATES</literalParameter>
+            </parameters>
+          </function>
+        </literalParameter>
+        <literalParameter name="val2">
+          <variable name="state" visibleText="visibleText" />
+        </literalParameter>
+      </parameters>
+    </function>
+  </or>
+</conditions>

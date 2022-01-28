@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<function name="message" visibleText="visibleText" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametersData.xsd">
+  <genericArguments />
+  <parameters>
+    <literalParameter name="value">
+      <function name="get message" visibleText="visibleText">
+        <genericArguments />
+        <parameters>
+          <literalParameter name="value">
+            <function name="table" visibleText="visibleText">
+              <genericArguments />
+              <parameters>
+                <literalParameter name="value">tmq</literalParameter>
+                <literalParameter name="key">
+                  <variable name="tmqkey" visibleText="visibleText" />
+                </literalParameter>
+                <literalParameter name="field">MSGID</literalParameter>
+              </parameters>
+            </function>
+          </literalParameter>
+        </parameters>
+      </function>
+    </literalParameter>
+    <literalParameter name="checkbox">true</literalParameter>
+    <objectParameter name="Ins">
+      <constructor name="ddd" visibleText="fff">
+        <genericArguments />
+        <parameters>
+          <literalParameter name="Id">1</literalParameter>
+          <objectParameter name="dept">
+            <constructor name="dd" visibleText="dd">
+              <genericArguments />
+              <parameters>
+                <literalParameter name="Name">Mechanical Engineering</literalParameter>
+                <literalListParameter name="courses">
+                  <literalList literalType="String" listType="GenericList" visibleText="fff">
+                    <literal>Maths</literal>
+                    <literal>Physics</literal>
+                  </literalList>
+                </literalListParameter>
+                <objectListParameter name="myParamName">
+                  <objectList objectType="ff" listType="GenericList" visibleText="eee">
+                    <object>
+                      <constructor name="ff" visibleText="rr">
+                        <genericArguments />
+                        <parameters>
+                          <literalParameter name="ff">XX</literalParameter>
+                        </parameters>
+                      </constructor>
+                    </object>
+                    <object>
+                      <constructor name="ff" visibleText="rr">
+                        <genericArguments />
+                        <parameters>
+                          <literalParameter name="ff">XX</literalParameter>
+                        </parameters>
+                      </constructor>
+                    </object>
+                  </objectList>
+                </objectListParameter>
+              </parameters>
+            </constructor>
+          </objectParameter>
+        </parameters>
+      </constructor>
+    </objectParameter>
+  </parameters>
+</function>

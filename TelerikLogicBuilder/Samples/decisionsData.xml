@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<decisions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="decisionsData.xsd">
+  <and>
+    <decision name="ACIS ZBU" visibleText="visibleText">
+      <or>
+        <function name="Contains" visibleText="visibleText">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="val1">
+              <variable name="a_zbu" visibleText="visibleText" />
+            </literalParameter>
+            <literalParameter name="val2">CB</literalParameter>
+          </parameters>
+        </function>
+        <function name="Equals" visibleText="visibleText">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="val1">
+              <variable name="a_zbu" visibleText="visibleText" />
+            </literalParameter>
+            <literalParameter name="val2">CS</literalParameter>
+          </parameters>
+        </function>
+        <function name="Equals" visibleText="visibleText">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="val1">
+              <variable name="a_zbu" visibleText="visibleText" />
+            </literalParameter>
+            <literalParameter name="val2">EB</literalParameter>
+          </parameters>
+        </function>
+        <function name="Equals" visibleText="visibleText">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="val1">
+              <variable name="a_zbu" visibleText="visibleText" />
+            </literalParameter>
+            <literalParameter name="val2">II</literalParameter>
+          </parameters>
+        </function>
+        <function name="Gt" visibleText="visibleText">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="val1">
+              <variable name="a_zbu" visibleText="visibleText" />
+            </literalParameter>
+            <literalParameter name="val2">
+              <function name="table" visibleText="visibleText">
+                <genericArguments />
+                <parameters>
+                  <literalParameter name="value">tmq</literalParameter>
+                  <literalParameter name="key">
+                    <variable name="tmqkey" visibleText="visibleText" />
+                  </literalParameter>
+                  <literalParameter name="field">MSGID</literalParameter>
+                </parameters>
+              </function>
+            </literalParameter>
+          </parameters>
+        </function>
+      </or>
+    </decision>
+    <decision name="MLT ACRG" visibleText="MLT ACRG GT 4 and LT 8">
+      <and>
+        <function name="Greater ThanUS" visibleText="MLT ACRG GT 4">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="value1US">
+              <variable name="MLT ACRG" visibleText="MLT ACRG" />
+            </literalParameter>
+            <literalParameter name="value2US">4</literalParameter>
+          </parameters>
+        </function>
+        <function name="Less ThanUS" visibleText="MLT ACRG LT 8">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="value1US">
+              <variable name="MLT ACRG" visibleText="MLT ACRG" />
+            </literalParameter>
+            <literalParameter name="value2US">8</literalParameter>
+          </parameters>
+        </function>
+      </and>
+    </decision>
+  </and>
+</decisions>
+<!--ACIS ZBU <contains one of ["CB","CS","EB","II","PP","SB"]>
+TR Variables Present
+-->

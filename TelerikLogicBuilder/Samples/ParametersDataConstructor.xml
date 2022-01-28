@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<constructor name="StringQuestionDataParameters" visibleText="StringQuestionDataParameters" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametersData.xsd">
+  <genericArguments />
+  <parameters>
+    <literalParameter name="Text">Is the answer to this question true or false?</literalParameter>
+    <literalParameter name="Pattern">^[A-Za-z_]{1}$</literalParameter>
+    <literalParameter name="ClassAttribute" />
+    <literalParameter name="ErrorMessage">Enter number as follows: #####</literalParameter>
+    <literalParameter name="Optional">false</literalParameter>
+    <literalParameter name="Control" />
+    <literalParameter name="ToolTipText">The Tool Tip Text</literalParameter>
+    <literalParameter name="MaxLength" />
+    <literalParameter name="MinLength" />
+    <literalParameter name="MaxLengthErrorMessage" />
+    <literalParameter name="MinLengthErrorMessage" />
+    <literalParameter name="RangeErrorMessage" />
+    <literalParameter name="RegExErrorMessage" />
+    <literalParameter name="RequiredErrorMessage" />
+    <literalParameter name="CompareErrorMessage" />
+    <objectListParameter name=" MiscAttributes">
+      <objectList objectType="KeyValuePair`2[String,String]" listType="GenericList" visibleText="vvv">
+        <object>
+          <constructor name="KeyValuePair`2[String,String]" visibleText="KeyValuePair`2[String,String]">
+            <genericArguments />
+            <parameters>
+              <literalParameter name="key">type</literalParameter>
+              <literalParameter name="value">number</literalParameter>
+            </parameters>
+          </constructor>
+        </object>
+        <object>
+          <constructor name="ddd" visibleText="vvv">
+            <genericArguments />
+            <parameters>
+              <literalParameter name="key">disbabled</literalParameter>
+              <literalParameter name="value">disabled</literalParameter>
+            </parameters>
+          </constructor>
+        </object>
+      </objectList>
+    </objectListParameter>
+    <literalListParameter name="Domain">
+      <literalList literalType="String" listType="GenericList" visibleText="www">
+        <literal>CNTX</literal>
+        <literal>ISDN</literal>
+        <literal>PBX</literal>
+        <literal>POTS</literal>
+        <literal>PP</literal>
+      </literalList>
+    </literalListParameter>
+    <literalParameter name="MaxValue" />
+    <literalParameter name="MinValue" />
+  </parameters>
+</constructor>

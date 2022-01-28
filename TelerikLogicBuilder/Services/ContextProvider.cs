@@ -17,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             ParameterAttributeReader = new ParameterAttributeReader(this);
             ParametersManager = new ParametersManager(this);
             ConstructorManager = new ConstructorManager(this);
+            ParametersXmlManager = new ParametersXmlManager(this);
         }
 
         public IEnumHelper EnumHelper { get; }
@@ -38,5 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public IParametersManager ParametersManager { get; }
 
         public IConstructorManager ConstructorManager { get; }
+
+        public IParametersXmlManager ParametersXmlManager { get; }
     }
 }

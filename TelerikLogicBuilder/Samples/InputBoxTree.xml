@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<questions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="InputBoxTree.xsd">
+  <title>Title</title>
+  <arguments>
+    <argument visibleText="visibleText">
+    </argument>
+  </arguments>
+  <row id="8" visibleText="visibleText">
+    <title>Title</title>
+    <showTitle>true</showTitle>
+    <arguments />
+    <folder id="9" visibleText="visibleText">
+      <title>Title</title>
+      <showTitle>true</showTitle>
+      <columnShare>col-md-12</columnShare>
+      <arguments />
+      <question id="5" visibleText="visibleTextE">
+        <questionText>Is the answer to this question true or false?</questionText>
+        <arguments>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        </arguments>
+        <answer visibleText="visibleText">
+          <variable name="Country" visibleText="Country" />
+          <pattern>^[A-Za-z_]{1}$</pattern>
+          <errorMessage>Enter number as follows: #####</errorMessage>
+          <optional>false</optional>
+          <domain>
+            <item>CNTX</item>
+            <item>ISDN</item>
+            <item>PBX</item>
+            <item>POTS</item>
+            <item>PP</item>
+          </domain>
+          <domainRequest>
+            <dataSource>
+              <maxRows>100</maxRows>
+              <relativeUrl>api/Generic/GetFilterData</relativeUrl>
+              <placeHolder>Enter first letters ...</placeHolder>
+              <valueField>fullName</valueField>
+              <textField>fullName</textField>
+              <autoCompleteFilterOperator>contains</autoCompleteFilterOperator>
+              <elementType>autocomplete</elementType>
+              <distinct>true</distinct>
+              <modelType>ContosoUniversity.Domain.School.InstructorModel</modelType>
+              <dataType>ContosoUniversity.Data.Enitities.Instructor</dataType>
+              <selects>
+                <select visibleText="visibleText">ID</select>
+                <select visibleText="visibleText">FirstName</select>
+                <select visibleText="visibleText">FullName</select>
+              </selects>
+              <sorts>
+                <sort visibleText="visibleText">
+                  <field>id</field>
+                  <dir>Desc</dir>
+                </sort>
+                <sort visibleText="visibleText">
+                  <field>firstName</field>
+                  <dir>Asc</dir>
+                </sort>
+              </sorts>
+              <includes>
+                <include visibleText="visibleText">
+                </include>
+              </includes>
+              <arguments>
+              </arguments>
+            </dataSource>
+            <filterGroup id="1" logic="and" visibleText="visibleTextE">
+              <filter id="2" visibleText="visibleTextE">
+                <field>departmentID</field>
+                <operator>gt</operator>
+                <value>0</value>
+                <valueSourceMember>
+                </valueSourceMember>
+                <valueSourceType>
+                </valueSourceType>
+                <arguments>
+                </arguments>
+              </filter>
+              <filterGroup id="3" logic="or" visibleText="visibleTextE">
+                <filter id="4" visibleText="visibleTextE">
+                  <field>startDate</field>
+                  <operator>gt</operator>
+                  <value>2007-02-21T05:00:00.000Z</value>
+                  <valueSourceMember>
+                  </valueSourceMember>
+                  <valueSourceType>
+                  </valueSourceType>
+                  <arguments>
+                  </arguments>
+                </filter>
+                <filter id="5" visibleText="visibleTextE">
+                  <field>startDate</field>
+                  <operator>lt</operator>
+                  <value>2017-02-21T05:00:00.000Z</value>
+                  <valueSourceMember>
+                  </valueSourceMember>
+                  <valueSourceType>
+                  </valueSourceType>
+                  <arguments>
+                  </arguments>
+                </filter>
+                <arguments>
+                </arguments>
+              </filterGroup>
+              <arguments>
+              </arguments>
+            </filterGroup>
+            <arguments>
+              <argument visibleText="visibleText">
+              </argument>
+            </arguments>
+          </domainRequest>
+          <minValue>
+          </minValue>
+          <maxValue>
+          </maxValue>
+          <control>
+          </control>
+          <directives>
+            <directive name="show">
+              <conditionGroup id="1" logic="and" visibleText="visibleTextE">
+                <condition id="2" leftVariable="Country" rightVariable="State" visibleText="visibleTextE">
+                  <operator>gt</operator>
+                  <value>0</value>
+                  <arguments>
+                  </arguments>
+                </condition>
+                <conditionGroup id="3" logic="or" visibleText="visibleTextE">
+                  <condition id="4" leftVariable="Country" rightVariable="State" visibleText="visibleTextE">
+                    <operator>gt</operator>
+                    <value>0</value>
+                    <arguments>
+                    </arguments>
+                  </condition>
+                  <condition id="5" leftVariable="startDate" rightVariable="State" visibleText="visibleTextE">
+                    <operator>lt</operator>
+                    <value>2017-02-21T05:00:00.000Z</value>
+                    <arguments>
+                    </arguments>
+                  </condition>
+                  <arguments>
+                  </arguments>
+                </conditionGroup>
+                <arguments>
+                </arguments>
+              </conditionGroup>
+            </directive>
+            <directive name="disabled">
+              <conditionGroup id="6" logic="and" visibleText="visibleTextE">
+                <condition id="7" leftVariable="Country" rightVariable="State" visibleText="visibleTextE">
+                  <operator>gt</operator>
+                  <value>0</value>
+                  <arguments>
+                  </arguments>
+                </condition>
+                <arguments>
+                </arguments>
+              </conditionGroup>
+            </directive>
+          </directives>
+        </answer>
+      </question>
+    </folder>
+</row>
+  <row id="10" visibleText="visibleText">
+    <title>Title</title>
+    <showTitle>true</showTitle>
+    <arguments />
+    <folder id="6" visibleText="visibleTextA">
+      <title>
+        Title for this folder <variable name="City" visibleText="City" />
+      </title>
+      <showTitle>true</showTitle>
+      <columnShare>col-md-12</columnShare>
+      <arguments>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      </arguments>
+      <question id="1" visibleText="visibleTextB">
+        <questionText>Is the answer to this question true or false?</questionText>
+        <arguments>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        </arguments>
+        <answer visibleText="visibleText">
+          <variable name="City" visibleText="City" />
+          <pattern>^\d{3}$</pattern>
+          <errorMessage>Enter number as follows: #####</errorMessage>
+          <optional>false</optional>
+          <domain />
+          <minValue>
+            <function name="Equals" visibleText="visibleText">
+              <literalParameter name="val1">
+                <variable name="ZBU" visibleText="visibleText" />
+              </literalParameter>
+              <literalParameter name="val2">CS</literalParameter>
+            </function>
+          </minValue>
+          <maxValue>
+          </maxValue>
+          <control>
+          </control>
+          <directives />
+        </answer>
+      </question>
+      <question id="2" visibleText="visibleTextC">
+        <questionText>Is the answer to this question true or false?</questionText>
+        <arguments>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        </arguments>
+        <answer visibleText="visibleText">
+          <variable name="State" visibleText="State" />
+          <pattern>^\d{3}$</pattern>
+          <errorMessage>Enter number as follows: #####</errorMessage>
+          <optional>false</optional>
+          <domain />
+          <minValue>
+          </minValue>
+          <maxValue>
+          </maxValue>
+          <control>
+          </control>
+          <directives />
+        </answer>
+      </question>
+    </folder>
+  </row>
+  <row id="11" visibleText="visibleText">
+    <title>Title</title>
+    <showTitle>true</showTitle>
+    <arguments />
+    <folder id="7" visibleText="visibleTextD">
+      <title>Title for this folder</title>
+      <showTitle>true</showTitle>
+      <columnShare>col-md-12</columnShare>
+      <arguments>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+      </arguments>
+      <question id="3" visibleText="visibleTextE">
+        <questionText>Is the answer to this question true or false?</questionText>
+        <arguments>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        </arguments>
+        <answer visibleText="visibleText">
+          <variable name="Count" visibleText="Count" />
+          <pattern>^\d{3}$</pattern>
+          <errorMessage>Enter number as follows: #####</errorMessage>
+          <optional>false</optional>
+          <domain />
+          <minValue>1</minValue>
+          <maxValue>10</maxValue>
+          <control>TextBox</control>
+          <directives />
+        </answer>
+      </question>
+      <question id="4" visibleText="visibleTextF">
+        <questionText>Is the answer to this question true or false?</questionText>
+        <arguments>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+          <argument visibleText="visibleText">Is the answer to this question true or false?</argument>
+        </arguments>
+        <answer visibleText="visibleText">
+          <variable name="FirstName" visibleText="FirstName" />
+          <pattern>^\d{3}$</pattern>
+          <errorMessage>Enter number as follows: #####</errorMessage>
+          <optional>false</optional>
+          <domain />
+          <minValue>
+          </minValue>
+          <maxValue>
+          </maxValue>
+          <control>
+          </control>
+          <directives />
+        </answer>
+      </question>
+    </folder>
+  </row>
+</questions>

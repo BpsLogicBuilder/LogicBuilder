@@ -1,0 +1,4802 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="functions.xsd">
+  <form name="FUNCTIONS">
+    <folder name="Functions">
+      <folder name="User Interface">
+        <function name="Access after">
+          <memberName>agent broadcast commit.acca</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field.Property.Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the access the access after field.</summary>
+        </function>
+        <function name="Action">
+          <memberName>agent broadcast commit.action</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="updatecommit">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the action code.</summary>
+        </function>
+        <function name="Add Action Code">
+          <memberName>agent broadcast add.action</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Dynamically adds an action code to the dropdown list.</summary>
+        </function>
+        <function name="Commitment">
+          <memberName>agent broadcast commit.dt</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the commitment field.</summary>
+        </function>
+        <function name="Commitment AS">
+          <memberName>agent broadcast commit.as</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the commitment field with the LMOS specified AS Commitment.</summary>
+        </function>
+        <function name="Commitment BC">
+          <memberName>agent broadcast commit.bc</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the commitment field with the LMOS specified Bulk Commitment.</summary>
+        </function>
+        <function name="Commitment OS">
+          <memberName>agent broadcast commit.os</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the commitment field with the LMOS specified OS Commitment.</summary>
+        </function>
+        <function name="Descr">
+          <memberName>agent broadcast commit.desp</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the Description Field.</summary>
+        </function>
+        <function name="Hyperlink">
+          <memberName>agent broadcast hyperlink</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="link">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Creates a link to a help file.</summary>
+        </function>
+        <function name="Instruction">
+          <memberName>agent broadcast instruction</memberName>
+          <functionCategory>MultipleChoice</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="checkbox">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Adds a link to a message in the specified section - (Advanced Mode).</summary>
+        </function>
+        <function name="Narr1">
+          <memberName>agent broadcast NARR</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="original">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Appends text to the narrative.</summary>
+        </function>
+        <function name="Name Field">
+          <memberName>set-field name</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the name field.</summary>
+        </function>
+        <function name="Address Field">
+          <memberName>set-field address</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the address field.</summary>
+        </function>
+        <function name="Category Field">
+          <memberName>set-field category</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the category field.</summary>
+        </function>
+        <function name="Route Field">
+          <memberName>set-field route</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the route field.</summary>
+        </function>
+        <function name="Summary Field">
+          <memberName>set-field summary</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the summary field.</summary>
+        </function>
+        <function name="Append Name Field">
+          <memberName>append name</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Appends to the name field.</summary>
+        </function>
+        <function name="Append Address Field">
+          <memberName>append address</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Appends the address field.</summary>
+        </function>
+        <function name="Append Category Field">
+          <memberName>append category</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Appends the category field.</summary>
+        </function>
+        <function name="Append Route Field">
+          <memberName>append route</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Appends the route field.</summary>
+        </function>
+        <function name="Append Summary Field">
+          <memberName>append summary</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Appends the summary field.</summary>
+        </function>
+        <function name="Narr2">
+          <memberName>agent broadcast NARR1</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the 2nd narrative field.</summary>
+        </function>
+        <function name="Pending Access after">
+          <memberName>agent broadcast commit.pend_acca</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the access the access after field and informs the ICAS client that the data source is the initial ticket.</summary>
+        </function>
+        <function name="Prefix Narr1">
+          <memberName>agent broadcast prepend-narr</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Prefixs narrative with text.</summary>
+        </function>
+        <function name="Reach">
+          <memberName>agent broadcast commit.reach</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the Reach Number Field.</summary>
+        </function>
+        <function name="Remark">
+          <memberName>agent broadcast commit.remark</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="overwrite">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the Remark Field.</summary>
+        </function>
+        <function name="Remove from Narr1">
+          <memberName>agent remove narr</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Removes the specified string from Narrative1.</summary>
+        </function>
+        <function name="Reported By">
+          <memberName>agent broadcast commit.report</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the Reported By Field.</summary>
+        </function>
+        <function name="Set Checkbox">
+          <memberName>agent broadcast status</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the Trouble Information Section with predefined message flags.</summary>
+        </function>
+        <function name="Set Old Commitment">
+          <memberName>agent broadcast commit.old</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the access the commitment field and informs the ICAS client that the data source is the initial ticket.</summary>
+        </function>
+        <function name="Tree">
+          <memberName>agent explain</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="section">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="color">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Adds a line to a Tree Section.</summary>
+        </function>
+        <function name="Trouble">
+          <memberName>agent broadcast commit.etl</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the ETL field.</summary>
+        </function>
+      </folder>
+      <folder name="Booleans">
+        <function name="After">
+          <memberName>date is</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="val1">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="after">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="val2">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Boolean</literalType>
+            </literal>
+          </returnType>
+          <summary>NA</summary>
+        </function>
+        <function name="Before">
+          <memberName>date is</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="val1">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="before">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="val2">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Boolean</literalType>
+            </literal>
+          </returnType>
+          <summary>NA</summary>
+        </function>
+        <function name="Contains">
+          <memberName>regexp</memberName>
+          <functionCategory>DialogForm</functionCategory>
+          <typeName>referenceNameHere</typeName>
+          <referenceName></referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>Type</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="val1">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="val2">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Boolean</literalType>
+            </literal>
+          </returnType>
+          <summary>NA</summary>
+        </function>
+      </folder>
+      <folder name="Transactions">
+        <function name="Do Transaction">
+          <memberName>request</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="server">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="transaction">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Executes transactions.</summary>
+        </function>
+        <function name="Transaction Wait">
+          <memberName>agent wait</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="transaction">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets wait time for transactions.</summary>
+        </function>
+      </folder>
+      <folder name="Dialogs">
+        <function name="Ask">
+          <memberName>ask</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Defines the prompt for YES/NO popup boxes.</summary>
+        </function>
+        <function name="Checked Instruction">
+          <memberName>agent broadcast checked_instruction</memberName>
+          <functionCategory>MultipleChoice</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="checkbox">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Adds a link to a message in the specified section - (Advanced Mode). The user must view the message before a ticket can be submitted.</summary>
+        </function>
+        <function name="Choose">
+          <memberName>choose</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="columns">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Defines the prompt for choose boxes.</summary>
+        </function>
+        <function name="Commitment Message">
+          <memberName>agent broadcast commitment_message</memberName>
+          <functionCategory>MultipleChoice</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="checkbox">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="commitment">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays a message box whose date and time can be modified.</summary>
+        </function>
+        <function name="DescChoice">
+          <memberName>agent display descriptions</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="columns">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Defines the prompt for description choices.</summary>
+        </function>
+        <function name="Descinput">
+          <memberName>agent broadcast desc input</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Deprecated function ???.</summary>
+        </function>
+        <function name="Display Address List">
+          <memberName>agent broadcast select address</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays the list of possible addresses.</summary>
+        </function>
+        <function name="FormQuestion">
+          <memberName>agent display question</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="columns">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Deprecated function ???</summary>
+        </function>
+        <function name="Hide question">
+          <memberName>agent hide question</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Hides a question - (Advanced Mode).</summary>
+        </function>
+        <function name="Html jobaid message">
+          <memberName>agent jobaid</memberName>
+          <functionCategory>MultipleChoice</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="checkbox">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays an html message box whose path is defined.</summary>
+        </function>
+        <function name="Html jobaid">
+          <memberName>agent jobaid</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="columns">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays an html selection box whose path is defined.</summary>
+        </function>
+        <function name="Html window">
+          <memberName>agent html window</memberName>
+          <functionCategory>MultipleChoice</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="caption">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="option">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays an html window whose path is defined.</summary>
+        </function>
+        <function name="Input">
+          <memberName>agent masked input</memberName>
+          <functionCategory>MultipleChoice</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="format">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="length">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="prefix">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="suffix">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="option">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="overwrite">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="precede">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Brings up an input box to update a specified field (default is the narrative).</summary>
+        </function>
+        <function name="Message">
+          <memberName>message</memberName>
+          <functionCategory>MultipleChoice</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Field</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays a message box.</summary>
+        </function>
+        <function name="NarrChoice">
+          <memberName>agent show question</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="columns">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Defines the prompt for narrative choices.</summary>
+        </function>
+        <function name="Narrinput">
+          <memberName>agent broadcast user input</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Deprecated function ???.</summary>
+        </function>
+        <function name="Show menu">
+          <memberName>agent show menu</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays a hidden menu - (Advanced Mode).</summary>
+        </function>
+        <function name="Show question">
+          <memberName>agent show question</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays a hidden question - (Advanced Mode).</summary>
+        </function>
+        <function name="Tree view">
+          <memberName>agent treeview</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Displays a tree from a definition file.</summary>
+        </function>
+        <function name="Treelist">
+          <memberName>agent treelist</memberName>
+          <functionCategory>Assert</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition>Property</referenceDefinition>
+          <castReferenceAs />
+          <referenceCategory>InstanceReference</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="title">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="columns">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="description">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="advanced">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="entry">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="essential">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="location">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Defines the prompt for treelist choices.</summary>
+        </function>
+      </folder>
+      <folder name="Client">
+        <function name="Address">
+          <memberName>agent broadcast commit.address</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets the address variable for RTE update.</summary>
+        </function>
+        <function name="Assign">
+          <memberName>bind</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="variable">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Assigns a value to a variable.</summary>
+        </function>
+        <function name="Cat">
+          <memberName>agent broadcast commit.cat</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Updates the category.</summary>
+        </function>
+        <function name="IF">
+          <memberName>if</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="then">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="else">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>If then logic.</summary>
+        </function>
+        <function name="Mode Checkpoint">
+          <memberName>icas checkpoint</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets a backup point (Mixed Mode).</summary>
+        </function>
+        <function name="Remove Action Overide">
+          <memberName>agent broadcast commit.final no</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Unsets the override action code.</summary>
+        </function>
+        <function name="Remove Build Rte">
+          <memberName>agent broadcast commit.buildrte no</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client not to build a route when a ticket is submitted.</summary>
+        </function>
+        <function name="Remove Cancel Report">
+          <memberName>agent broadcast CancelReport no</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client that the user did not select "Cancel Report" (Used in edit checks).</summary>
+        </function>
+        <function name="Remove EditCheck Access">
+          <memberName>agent editcheck access false</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client that access was not arranged (Used in edit checks).</summary>
+        </function>
+        <function name="Remove Prefix Address">
+          <memberName>agent broadcast commit.prefixaddress no</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client not to prefix the LMOS ticket with the address variable.</summary>
+        </function>
+        <function name="Restart">
+          <memberName>agent restart</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Restarts the application using the specified phone#.</summary>
+        </function>
+        <function name="Set Action Overide">
+          <memberName>agent broadcast commit.final yes</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="action_group">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets the current action code as override.</summary>
+        </function>
+        <function name="Set Build Rte">
+          <memberName>agent broadcast commit.buildrte yes</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client to build a route when a ticket is submitted.</summary>
+        </function>
+        <function name="Set Cancel Report">
+          <memberName>agent broadcast CancelReport yes</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client that the user selected "Cancel Report" (Used in edit checks).</summary>
+        </function>
+        <function name="Set EditCheck Access">
+          <memberName>agent editcheck access true</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client that access was arranged (Used in edit checks).</summary>
+        </function>
+        <function name="Set Prefix Address">
+          <memberName>agent broadcast commit.prefixaddress yes</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters />
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Tells the client to prefix the LMOS ticket with the address variable.</summary>
+        </function>
+        <function name="Set RTE Loop Number">
+          <memberName>agent broadcast commit.loop</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets the loop number used for building the route.</summary>
+        </function>
+        <function name="Set Vercode">
+          <memberName>agent broadcast commit.ver</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>Void</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets the vercode value for the LMOS ticket.</summary>
+        </function>
+      </folder>
+      <folder name="Return Functions">
+        <function name="24 hr commit. if weekend - next bus day at 0-23">
+          <memberName>date next bus_day weekend</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets the commitment to 24 hrs from the cuurent time. If the current day is a weekend the commitment is on the next business day at the hour specified.</summary>
+        </function>
+        <function name="Commitment in seconds">
+          <memberName>date commit after</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Calculates the commitment based on the current time and the number of seconds specified.</summary>
+        </function>
+        <function name="Concat desp">
+          <memberName>concat-desp</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="desparg">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Concatenates two parts of the trouble description field.</summary>
+        </function>
+        <function name="Date in x days time in days">
+          <memberName>date after</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns the future date based on the current date and the number of days specified.</summary>
+        </function>
+        <function name="Date x days back in days">
+          <memberName>date before</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns a date in the past based on the current date and the number of days specified.</summary>
+        </function>
+        <function name="Get date">
+          <memberName>date getdate</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns the date e.g. 6/21/2000 from the input dd-mm-yy XXXXp</summary>
+        </function>
+        <function name="Get day">
+          <memberName>date getday</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns the date e.g. Monday from the input dd-mm-yy XXXXp</summary>
+        </function>
+        <function name="Get message">
+          <memberName>agent message</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="filename">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Retrieves a message from a resource file when the filename and message ID are provided</summary>
+        </function>
+        <function name="Get subs description">
+          <memberName>subs description</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Removes specified substrings and returns a trouble description value</summary>
+        </function>
+        <function name="Get subs narrative">
+          <memberName>subs_narr</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Removes specified substrings and returns a narrative value</summary>
+        </function>
+        <function name="Given time minus now in hrs">
+          <memberName>date diff</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="npanxx">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns the time in hours between now and a future time.</summary>
+        </function>
+        <function name="Key in string">
+          <memberName>db contains_key</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="key">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns true or false. True if the string contains a key in the specified table and false otherwise.</summary>
+        </function>
+        <function name="Next bus day at 0-23">
+          <memberName>date next bus_day at</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Sets the commitment to next business day at the hour specified.</summary>
+        </function>
+        <function name="Now minus given time in s">
+          <memberName>time diff</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns the time in seconds between now and a time specified time in the past.</summary>
+        </function>
+        <function name="Number to string">
+          <memberName>num-str</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Converts a numeric parameter to a string</summary>
+        </function>
+        <function name="Paying for feature">
+          <memberName>paying</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns true or false. True if the string is a feature on the consumers account and false otherwise.</summary>
+        </function>
+        <function name="String is key">
+          <memberName>db is_key</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="key">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns true or false. True if the string is a key in the specified table and false otherwise.</summary>
+        </function>
+        <function name="String to number">
+          <memberName>str-num</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Converts a string parameter to a number</summary>
+        </function>
+        <function name="Substring">
+          <memberName>sub-string</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="start">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="finish">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns a substring defined by the start and finish parameters provided.</summary>
+        </function>
+        <function name="Subtraction">
+          <memberName>-</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="minus">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns a result after subtracting one number from the other.</summary>
+        </function>
+        <function name="Table">
+          <memberName>table</memberName>
+          <functionCategory>Standard</functionCategory>
+          <typeName />
+          <referenceName>referenceNameHere</referenceName>
+          <referenceDefinition />
+          <castReferenceAs />
+          <referenceCategory>This</referenceCategory>
+          <parametersLayout>Sequential</parametersLayout>
+          <parameters>
+            <literalParameter name="value">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>false</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="key">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+            <literalParameter name="field">
+              <literalType>String</literalType>
+              <control>SingleLineTextBox</control>
+              <optional>true</optional>
+              <useForEquality>true</useForEquality>
+              <useForHashCode>false</useForHashCode>
+              <useForToString>true</useForToString>
+              <propertySource />
+              <propertySourceParameter />
+              <defaultValue />
+              <domain />
+              <comments />
+            </literalParameter>
+          </parameters>
+          <genericArguments />
+          <returnType>
+            <literal>
+              <literalType>String</literalType>
+            </literal>
+          </returnType>
+          <summary>Returns a value from a table based on the table, key and field parameters.</summary>
+        </function>
+      </folder>
+    </folder>
+  </form>
+  <form name="BUILT IN FUNCTIONS">
+    <folder name="Built In Functions">
+      <function name="And">
+        <memberName>and</memberName>
+        <functionCategory>Assert</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition>Property</referenceDefinition>
+        <castReferenceAs />
+        <referenceCategory>InstanceReference</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters />
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Equals">
+        <memberName>eq</memberName>
+        <functionCategory>Standard</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition />
+        <castReferenceAs />
+        <referenceCategory>This</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="val1">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+          <literalParameter name="val2">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Gt">
+        <memberName>&gt;</memberName>
+        <functionCategory>Standard</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition />
+        <castReferenceAs />
+        <referenceCategory>This</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="val1">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+          <literalParameter name="val2">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Gt or eq">
+        <memberName>&gt;=</memberName>
+        <functionCategory>Standard</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition />
+        <castReferenceAs />
+        <referenceCategory>This</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="val1">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+          <literalParameter name="val2">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Lt">
+        <memberName>&lt;</memberName>
+        <functionCategory>Standard</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition />
+        <castReferenceAs />
+        <referenceCategory>This</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="val1">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+          <literalParameter name="val2">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Lt or eq">
+        <memberName>&lt;=</memberName>
+        <functionCategory>Standard</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition />
+        <castReferenceAs />
+        <referenceCategory>This</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="val1">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+          <literalParameter name="val2">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>true</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Not">
+        <memberName>not</memberName>
+        <functionCategory>Standard</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition />
+        <castReferenceAs />
+        <referenceCategory>This</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="value">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>false</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Or">
+        <memberName>or</memberName>
+        <functionCategory>Assert</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition>Property</referenceDefinition>
+        <castReferenceAs />
+        <referenceCategory>InstanceReference</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters />
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>String</literalType>
+          </literal>
+        </returnType>
+        <summary>NA</summary>
+      </function>
+      <function name="Remove Condition">
+        <memberName>retract</memberName>
+        <functionCategory>BinaryOperator</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition />
+        <castReferenceAs />
+        <referenceCategory>None</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="value">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>false</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>Void</literalType>
+          </literal>
+        </returnType>
+        <summary>Removes a condition from the inference engine.</summary>
+      </function>
+      <function name="Set Condition">
+        <memberName>assert</memberName>
+        <functionCategory>Assert</functionCategory>
+        <typeName />
+        <referenceName>referenceNameHere</referenceName>
+        <referenceDefinition>Property</referenceDefinition>
+        <castReferenceAs />
+        <referenceCategory>InstanceReference</referenceCategory>
+        <parametersLayout>Sequential</parametersLayout>
+        <parameters>
+          <literalParameter name="value">
+            <literalType>String</literalType>
+            <control>SingleLineTextBox</control>
+            <optional>false</optional>
+            <useForEquality>true</useForEquality>
+            <useForHashCode>false</useForHashCode>
+            <useForToString>true</useForToString>
+            <propertySource />
+            <propertySourceParameter />
+            <defaultValue />
+            <domain />
+            <comments />
+          </literalParameter>
+        </parameters>
+        <genericArguments />
+        <returnType>
+          <literal>
+            <literalType>Void</literalType>
+          </literal>
+        </returnType>
+        <summary>Sets a condition in the inference engine.</summary>
+      </function>
+    </folder>
+  </form>
+</forms>

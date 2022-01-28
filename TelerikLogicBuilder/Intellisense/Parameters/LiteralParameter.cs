@@ -12,6 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
     internal class LiteralParameter : ParameterBase, ILiteralParameter, IComparableParameter
     {
         private readonly IEnumHelper _enumHelper;
+        private readonly ITypeHelper _typeHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         internal LiteralParameter(string name,
@@ -39,6 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
             this.DefaultValue = defaultValue;
             this.Domain = domain;
             this._enumHelper = contextProvider.EnumHelper;
+            this._typeHelper = contextProvider.TypeHelper;
             this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
         }
 
@@ -52,6 +54,35 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         internal string PropertySourceParameter { get; private set; }
         internal string DefaultValue { get; private set; }
         internal List<string> Domain { get; private set; }
+
+        internal object GetDefaultValue()
+        {
+            return GetDefault(_enumHelper.GetSystemType(this.LiteralType));
+            object GetDefault(Type type)
+            {
+                if (!string.IsNullOrEmpty(this.DefaultValue) && this._typeHelper.TryParse(this.DefaultValue, type, out object result))
+                    return result;
+
+                return type == typeof(string) || this._typeHelper.IsNullable(type)
+                           ? null
+                           : Activator.CreateInstance(type);
+            }
+        }
+
+        internal string GetDefaultString()
+        {
+            return GetDefault(_enumHelper.GetSystemType(this.LiteralType));
+            string GetDefault(Type type)
+            {
+                if (type == typeof(string) || this._typeHelper.IsNullable(type))
+                    return string.Empty;
+
+                if (type == typeof(bool))
+                    return false.ToString(CultureInfo.CurrentUICulture).ToLowerInvariant();
+
+                return Activator.CreateInstance(type).ToString();
+            }
+        }
 
         internal override ParameterCategory ParameterCategory => ParameterCategory.Literal;
 

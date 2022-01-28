@@ -47,6 +47,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public LiteralVariableType GetLiteralVariableType(Type variableType)
             => GetLiteralEnumType<LiteralVariableType>(variableType);
 
+        public ParameterCategory GetParameterCategory(string elementName)
+        {
+            return elementName switch
+            {
+                XmlDataConstants.LITERALPARAMETERELEMENT => ParameterCategory.Literal,
+                XmlDataConstants.OBJECTPARAMETERELEMENT => ParameterCategory.Object,
+                XmlDataConstants.GENERICPARAMETERELEMENT => ParameterCategory.Generic,
+                XmlDataConstants.LITERALLISTPARAMETERELEMENT => ParameterCategory.LiteralList,
+                XmlDataConstants.OBJECTLISTPARAMETERELEMENT => ParameterCategory.ObjectList,
+                XmlDataConstants.GENERICLISTPARAMETERELEMENT => ParameterCategory.GenericList,
+                _ => throw _exceptionHelper.CriticalException("{3CC2927F-BFA1-4E9D-9D16-1DCD0603EE60}"),
+            };
+        }
+
         public Type GetSystemType(LiteralFunctionReturnType functionReturnType) 
             => GetSystemTypeFromEnum(functionReturnType);
 

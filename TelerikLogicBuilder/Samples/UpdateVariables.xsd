@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="variables" type="variablesType">
+    <xsd:unique name="nameId">
+      <xsd:selector xpath="./variable" />
+      <xsd:field xpath="@name" />
+    </xsd:unique>
+  </xsd:element>
+  <xsd:complexType name="variablesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="variable" type="variableType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="variableType">
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="visibleText" type="xsd:string" use="required" />
+  </xsd:complexType>
+</xsd:schema>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
@@ -84,6 +85,51 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 => type.IsGenericType && !type.IsGenericTypeDefinition
                            ? type.AssemblyQualifiedName
                            : type.FullName;
+        }
+
+        public bool TryParse(string toParse, Type type, out object result)
+        {
+            if (!IsLiteralType(type))
+                _exceptionHelper.CriticalException("{A1026252-A00D-41A2-B501-D0B313E5383F}");
+
+            if (type == null)
+            {
+                result = null;
+                return false;
+            }
+
+            if (type == typeof(string))
+            {
+                result = toParse;
+                return true;
+            }
+
+            if (IsNullable(type))
+                type = Nullable.GetUnderlyingType(type);
+
+            MethodInfo method = type.GetMethods().SingleOrDefault(IsTryParseMethod);
+
+            if (method == null)
+            {
+                result = null;
+                return false;
+            }
+
+            object[] args = new object[] { toParse, null };
+            bool success = (bool)method.Invoke(null, args);
+            result = success ? args[1] : null;
+
+            return success;
+
+            bool IsTryParseMethod(MethodInfo method)
+            {
+                if (method.Name != "TryParse") return false;
+                ParameterInfo[] parameters = method.GetParameters();
+                return parameters.Length == 2
+                    && parameters[0].ParameterType == typeof(string)
+                    && parameters[1].IsOut
+                    && parameters[1].ParameterType.GetElementType() == type;
+            }
         }
     }
 }

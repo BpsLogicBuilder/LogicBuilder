@@ -1,0 +1,7 @@
+﻿<?xml version="1.0"?>
+<folder name="ProjectName" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="SharePointProject.xsd">
+  <file name="MLT ACRG" savedTimeStamp="2007-07-01T22:11:01" modified="" newFile="true" />
+  <folder name="MLT">
+    <file name="fileName" savedTimeStamp="2007-07-01T22:11:01" modified="true" newFile="false" />
+  </folder>
+</folder>

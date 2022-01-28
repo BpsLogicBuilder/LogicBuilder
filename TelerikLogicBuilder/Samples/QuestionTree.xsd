@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="questions" type="questionsType">
+    <xsd:unique name="id">
+      <xsd:selector xpath="./folder|.//question" />
+      <xsd:field xpath="@id" />
+    </xsd:unique>
+  </xsd:element>
+  <xsd:complexType name="questionsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="arguments" type="argumentsType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="question" type="questionType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="folder" type="folderType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="folderType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="title" type="textType" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="arguments" type="argumentsType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="question" type="questionType" />
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:short" use="required" />
+    <xsd:attribute name="visibleText" type="notEmptyString" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="textType" mixed="true">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="variable" type="variableType" />
+      <xsd:element name="function" type="functionType" />
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="questionType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="questionText" type="textType" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="arguments" type="argumentsType" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="answers" type="answersType" />
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:short" use="required" />
+    <xsd:attribute name="visibleText" type="notEmptyString" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="argumentsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="10" name="argument" type="argumentType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="answersType">
+    <xsd:sequence>
+      <xsd:element minOccurs="2" maxOccurs="100" name="answer" type="answerType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="answerType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="answerText" type="textType" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="decisions" type="decisionsType" />
+    </xsd:sequence>
+    <xsd:attribute name="visibleText" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="argumentType" mixed="true">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="variable" type="variableType" />
+      <xsd:element name="function" type="functionType" />
+    </xsd:choice>
+    <xsd:attribute name="visibleText" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="decisionsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="decision" type="assertDecisionType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="equalsNameType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Equals" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="notEmptyString">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="^.{1,}$" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="equalsFunctionType">
+    <xsd:sequence>
+      <xsd:element minOccurs="2" maxOccurs="2" name="literalParameter" type="literalParameterType" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="equalsNameType" use="required" />
+    <xsd:attribute name="visibleText" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="assertDecisionType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="function" type="equalsFunctionType" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="visibleText" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="functionType">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="literalParameter" type="literalParameterType" />
+      <xsd:element name="constructorParameter" type="constructorParameterType" />
+      <xsd:element name="literalListParameter" type="literalListParameterType" />
+      <xsd:element name="constructorListParameter" type="constructorListParameterType" />
+    </xsd:choice>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="visibleText" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="variableType">
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="visibleText" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="literalListItemType" mixed="true">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="variable" type="variableType" />
+      <xsd:element name="function" type="functionType" />
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="constructorListItemType">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="literalParameter" type="literalParameterType" />
+      <xsd:element name="constructorParameter" type="constructorParameterType" />
+      <xsd:element name="literalListParameter" type="literalListParameterType" />
+      <xsd:element name="constructorListParameter" type="constructorListParameterType" />
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="literalParameterType" mixed="true">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="variable" type="variableType" />
+      <xsd:element name="function" type="functionType" />
+    </xsd:choice>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="constructorParameterType">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="literalParameter" type="literalParameterType" />
+      <xsd:element name="constructorParameter" type="constructorParameterType" />
+      <xsd:element name="literalListParameter" type="literalListParameterType" />
+      <xsd:element name="constructorListParameter" type="constructorListParameterType" />
+    </xsd:choice>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="constructorName" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="literalListParameterType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="literalParameter" type="literalListItemType" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="constructorListParameterType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="constructorParameter" type="constructorListItemType" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="constructorName" type="xsd:string" use="required" />
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objectList objectType="Enrollment.Flow.Parameters.SortsParameters" listType="GenericList" visibleText="vvv" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametersData.xsd">
+  <object>
+    <constructor name="SortsParameters" visibleText="SortsParameters">
+      <genericArguments />
+      <parameters>
+        <literalParameter name="Field">Birthday</literalParameter>
+        <literalParameter name="Direction">Desc</literalParameter>
+      </parameters>
+    </constructor>
+  </object>
+  <object>
+    <constructor name="SortsParameters" visibleText="SortsParameters">
+      <genericArguments />
+      <parameters>
+        <literalParameter name="Field">Birthday</literalParameter>
+        <literalParameter name="Direction">Desc</literalParameter>
+      </parameters>
+    </constructor>
+  </object>
+  <object>
+    <literalList literalType="String" listType="GenericList" visibleText="listWhichCanBeAssignedToObject">
+      <literal>Field1</literal>
+      <literal>Field2</literal>
+    </literalList>
+  </object>
+</objectList>

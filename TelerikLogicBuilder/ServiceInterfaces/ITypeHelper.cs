@@ -10,5 +10,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool IsNullable(Type type);
         bool IsValidList(Type type);
         string ToId(Type type);
+        bool TryParse(string toParse, Type type, out object result);
     }
 }

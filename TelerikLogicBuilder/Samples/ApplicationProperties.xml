@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ApplicationProperties.xsd">
+  <data name="templateFile">
+    <value>Logic Builder.vst</value>
+  </data>
+  <data name="applicationsStencil">
+    <value>Applications.vss</value>
+  </data>
+  <data name="flowDiagramStencil">
+    <value>Logic Builder.vss</value>
+  </data>
+</ApplicationProperties>

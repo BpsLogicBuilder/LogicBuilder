@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<decisions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="decisionsData.xsd">
+  <or>
+    <decision name="ACIS ZBU" visibleText="ACIS ZBU Contains CB">
+      <function name="Contains" visibleText="Contains">
+        <genericArguments />
+        <parameters>
+          <literalParameter name="val1">
+            <variable name="a_zbu" visibleText="visibleText" />
+          </literalParameter>
+          <literalParameter name="val2">CB</literalParameter>
+        </parameters>
+      </function>
+    </decision>
+    <decision name="MLT ACRG" visibleText="MLT ACRG GT 4 and LT 8">
+      <and>
+        <function name="Greater ThanUS" visibleText="MLT ACRG GT 4">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="value1US">
+              <variable name="MLT ACRG" visibleText="MLT ACRG" />
+            </literalParameter>
+            <literalParameter name="value2US">4</literalParameter>
+          </parameters>
+        </function>
+        <function name="Less ThanUS" visibleText="MLT ACRG LT 8">
+          <genericArguments />
+          <parameters>
+            <literalParameter name="value1US">
+              <variable name="MLT ACRG" visibleText="MLT ACRG" />
+            </literalParameter>
+            <literalParameter name="value2US">8</literalParameter>
+          </parameters>
+        </function>
+      </and>
+    </decision>
+  </or>
+</decisions>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<constructor name="DomainRequestParameters" visibleText="DomainRequestParameters" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametersData.xsd">
+  <genericArguments />
+  <parameters>
+    <objectParameter name="DataSource">
+      <constructor name="DataSourceParameters" visibleText="DataSource">
+        <genericArguments />
+        <parameters>
+          <literalParameter name="MaxRows">10</literalParameter>
+          <literalParameter name="RelativeUrl">XXX</literalParameter>
+          <literalParameter name="PlaceHolder">CCC</literalParameter>
+          <literalParameter name="ValueField">MMM</literalParameter>
+          <literalParameter name="TextField">MMM</literalParameter>
+          <literalParameter name="AutoCompleteFilterOperator"></literalParameter>
+          <literalParameter name="ElementType">SomeType</literalParameter>
+          <literalParameter name="Distinct">true</literalParameter>
+          <literalParameter name="ModelType">Model.Type</literalParameter>
+          <literalParameter name="DataType">Data.Type</literalParameter>
+          <literalListParameter name="Selects">
+            <variable name="ResidencySection.StatesLivedIn" visibleText="ResidencySection.StatesLivedIn" />
+          </literalListParameter>
+          <objectListParameter name="Sorts">
+            <objectList objectType="Enrollment.Flow.Parameters.SortsParameters" listType="GenericList" visibleText="vvv">
+              <object>
+                <constructor name="SortsParameters" visibleText="SortsParameters">
+                  <genericArguments />
+                  <parameters>
+                    <literalParameter name="Field">Birthday</literalParameter>
+                    <literalParameter name="Direction">Desc</literalParameter>
+                  </parameters>
+                </constructor>
+              </object>
+              <object>
+                <constructor name="SortsParameters" visibleText="SortsParameters">
+                  <genericArguments />
+                  <parameters>
+                    <literalParameter name="Field">Birthday</literalParameter>
+                    <literalParameter name="Direction">Desc</literalParameter>
+                  </parameters>
+                </constructor>
+              </object>
+              <object>
+                <literalList literalType="String" listType="GenericList" visibleText="listWhichCanBeAssignedToObject">
+                  <literal>Field1</literal>
+                  <literal>Field2</literal>
+                </literalList>
+              </object>
+            </objectList>
+          </objectListParameter>
+          <literalListParameter name="Includes">
+            <literalList literalType="String" listType="GenericList" visibleText="www">
+              <literal>Field1</literal>
+              <literal>Field2</literal>
+            </literalList>
+          </literalListParameter>
+        </parameters>
+      </constructor>
+    </objectParameter>
+    <objectParameter name="FilterGroup">
+      <constructor name="FilterGroupParameters" visibleText="ddd">
+        <genericArguments />
+        <parameters>
+          <literalParameter name="Logic">and</literalParameter>
+          <objectListParameter name="Filters">
+            <objectList objectType="Enrollment.Flow.Parameters.FilterParameters" listType="GenericList" visibleText="Filters">
+              <object>
+                <constructor name="FilterParameters" visibleText="dd">
+                  <genericArguments />
+                  <parameters>
+                    <literalParameter name="Field">Count</literalParameter>
+                    <literalParameter name="Oper">gt</literalParameter>
+                    <literalParameter name="Value">10</literalParameter>
+                  </parameters>
+                </constructor>
+              </object>
+              <object>
+                <constructor name="FilterParameters" visibleText="rr">
+                  <genericArguments />
+                  <parameters>
+                    <literalParameter name="Field">State</literalParameter>
+                    <literalParameter name="Oper">eq</literalParameter>
+                    <literalParameter name="Value">NC</literalParameter>
+                  </parameters>
+                </constructor>
+              </object>
+            </objectList>
+          </objectListParameter>
+        </parameters>
+      </constructor>
+    </objectParameter>
+    <objectListParameter name="FilterGroups">
+      <objectList objectType="Enrollment.Flow.Parameters.FilterGroupParameters" listType="GenericList" visibleText="list"></objectList>
+    </objectListParameter>
+    <objectParameter name="thirdParam">
+      <objectList objectType="vvv" listType="GenericList" visibleText="ListOfvvv"></objectList>
+    </objectParameter>
+  </parameters>
+</constructor>

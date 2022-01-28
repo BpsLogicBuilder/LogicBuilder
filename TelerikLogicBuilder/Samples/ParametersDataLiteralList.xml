@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<literalList literalType="String" listType="GenericList" visibleText="www" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametersData.xsd">
+  <literal>CNTX</literal>
+  <literal>ISDN</literal>
+  <literal>PBX</literal>
+  <literal>POTS</literal>
+  <literal>PP</literal>
+</literalList>
