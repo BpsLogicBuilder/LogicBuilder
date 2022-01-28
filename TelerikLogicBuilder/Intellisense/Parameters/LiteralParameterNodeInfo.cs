@@ -23,13 +23,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         /// <summary>
         /// Parameter type
         /// </summary>
-        internal ParameterType Type
+        internal LiteralParameterType Type
         {
             get
             {
                 //return MembersInfo.GetParameterType(PInfo.ParameterType.GetUndelyingLiteralType());
                 //For a literal parameter this should already be a literal type, its nullable counterpart or a string
-                return this._enumHelper.GetParameterType(PInfo.ParameterType);
+                return this._enumHelper.GetLiteralParameterType(PInfo.ParameterType);
             }
         }
 
@@ -105,7 +105,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                 string fromOptionalParameter = PInfo.IsOptional && PInfo.DefaultValue != null ? PInfo.DefaultValue.ToString() : string.Empty;
                 string defaultValue = string.IsNullOrEmpty(fromAttribute) ? fromOptionalParameter : fromAttribute;
 
-                if (this.Type == ParameterType.Boolean || this.Type == ParameterType.NullableBoolean)
+                if (this.Type == LiteralParameterType.Boolean || this.Type == LiteralParameterType.NullableBoolean)
                     defaultValue = defaultValue.ToLowerInvariant();
 
                 return defaultValue;

@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         internal ListOfLiteralsParameter(string name,
             bool isOptional,
             string comments,
-            ParameterType literalType,
+            LiteralParameterType literalType,
             ListType listType,
             ListParameterInputStyle control,
             LiteralParameterInputStyle elementControl,
@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         }
 
         #region Properties
-        internal ParameterType LiteralType { get; private set; }
+        internal LiteralParameterType LiteralType { get; private set; }
         internal ListType ListType { get; private set; }
         internal ListParameterInputStyle Control { get; private set; }
         internal LiteralParameterInputStyle ElementControl { get; private set; }
@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         (
             Strings.listParameterTypeNameFormat,
             Enum.GetName(typeof(ListType), this.ListType), 
-            Enum.GetName(typeof(ParameterType), this.LiteralType), 
+            Enum.GetName(typeof(LiteralParameterType), this.LiteralType), 
             this.Name
         );
 
@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         #endregion Properties
 
         #region ILiteralParameter
-        ParameterType ILiteralParameter.LiteralType => this.LiteralType;
+        LiteralParameterType ILiteralParameter.LiteralType => this.LiteralType;
 
         LiteralParameterInputStyle ILiteralParameter.Control => this.ElementControl;
 
@@ -97,7 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
             XmlWriter xmlTextWriter = this._xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder);
             xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALLISTPARAMETERELEMENT);
                 xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, this.Name);
-                xmlTextWriter.WriteElementString(XmlDataConstants.LITERALTYPEELEMENT, Enum.GetName(typeof(ParameterType), this.LiteralType));
+                xmlTextWriter.WriteElementString(XmlDataConstants.LITERALTYPEELEMENT, Enum.GetName(typeof(LiteralParameterType), this.LiteralType));
                 xmlTextWriter.WriteElementString(XmlDataConstants.LISTTYPEELEMENT, Enum.GetName(typeof(ListType), this.ListType));
                 xmlTextWriter.WriteElementString(XmlDataConstants.CONTROLELEMENT, Enum.GetName(typeof(ListParameterInputStyle), this.Control));
                 xmlTextWriter.WriteElementString(XmlDataConstants.ELEMENTCONTROLELEMENT, Enum.GetName(typeof(LiteralParameterInputStyle), this.ElementControl));

@@ -35,56 +35,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             throw _exceptionHelper.CriticalException("{D0C6A67C-18F4-468B-AD4F-C4EB0A707A2B}");
         }
 
-        public ParameterType GetParameterType(Type parameterType)
-        {
-            Dictionary<Type, ParameterType> table = new()
-            {
-                [typeof(bool)] = ParameterType.Boolean,
-                [typeof(DateTimeOffset)] = ParameterType.DateTimeOffset,
-                [typeof(DateTime)] = ParameterType.DateTime,
-                [typeof(Date)] = ParameterType.Date,
-                [typeof(TimeSpan)] = ParameterType.TimeSpan,
-                [typeof(TimeOfDay)] = ParameterType.TimeOfDay,
-                [typeof(Guid)] = ParameterType.Guid,
-                [typeof(decimal)] = ParameterType.Decimal,
-                [typeof(byte)] = ParameterType.Byte,
-                [typeof(short)] = ParameterType.Short,
-                [typeof(int)] = ParameterType.Integer,
-                [typeof(long)] = ParameterType.Long,
-                [typeof(float)] = ParameterType.Float,
-                [typeof(double)] = ParameterType.Double,
-                [typeof(char)] = ParameterType.Char,
-                [typeof(sbyte)] = ParameterType.SByte,
-                [typeof(ushort)] = ParameterType.UShort,
-                [typeof(uint)] = ParameterType.UInteger,
-                [typeof(ulong)] = ParameterType.ULong,
-                [typeof(string)] = ParameterType.String,
-                [typeof(bool?)] = ParameterType.NullableBoolean,
-                [typeof(DateTimeOffset?)] = ParameterType.NullableDateTimeOffset,
-                [typeof(DateTime?)] = ParameterType.NullableDateTime,
-                [typeof(Date?)] = ParameterType.NullableDate,
-                [typeof(TimeSpan?)] = ParameterType.NullableTimeSpan,
-                [typeof(TimeOfDay?)] = ParameterType.NullableTimeOfDay,
-                [typeof(Guid?)] = ParameterType.NullableGuid,
-                [typeof(decimal?)] = ParameterType.NullableDecimal,
-                [typeof(byte?)] = ParameterType.NullableByte,
-                [typeof(short?)] = ParameterType.NullableShort,
-                [typeof(int?)] = ParameterType.NullableInteger,
-                [typeof(long?)] = ParameterType.NullableLong,
-                [typeof(float?)] = ParameterType.NullableFloat,
-                [typeof(double?)] = ParameterType.NullableDouble,
-                [typeof(char?)] = ParameterType.NullableChar,
-                [typeof(sbyte?)] = ParameterType.NullableSByte,
-                [typeof(ushort?)] = ParameterType.NullableUShort,
-                [typeof(uint?)] = ParameterType.NullableUInteger,
-                [typeof(ulong?)] = ParameterType.NullableULong,
-            };
+        public LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType)
+            => GetLiteralEnumType<LiteralFunctionReturnType>(functionReturnType);
 
-            if (table.TryGetValue(parameterType, out var value))
-                return value;
-            else
-                throw _exceptionHelper.CriticalException("{D732140E-3A93-4706-8925-CEB6AF0753C1}");
+        public LiteralParameterType GetLiteralParameterType(Type parameterType) 
+            => GetLiteralEnumType<LiteralParameterType>(parameterType);
+
+        public LiteralType GetLiteralType(Type literalType)
+            => GetLiteralEnumType<LiteralType>(literalType);
+
+        public LiteralVariableType GetLiteralVariableType(Type variableType)
+            => GetLiteralEnumType<LiteralVariableType>(variableType);
+
+        public Type GetSystemType(LiteralFunctionReturnType functionReturnType) 
+            => GetSystemTypeFromEnum(functionReturnType);
+
+        public Type GetSystemType(LiteralParameterType parameterType)
+        {
+            if (parameterType == LiteralParameterType.Any)
+                return typeof(string);
+
+            return GetSystemTypeFromEnum(parameterType);
         }
+
+        public Type GetSystemType(LiteralType literalType) 
+            => GetSystemTypeFromEnum(literalType);
+
+        public Type GetSystemType(LiteralVariableType variableType) 
+            => GetSystemTypeFromEnum(variableType);
 
         public string GetTypeDescription(ListType listType, string elementType) 
             => string.Format
@@ -100,6 +78,164 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 throw _exceptionHelper.CriticalException("{6BE2E8CC-C074-42AF-87C4-26AD076A8805}");
 
             return Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, Enum.GetName(typeof(T), enumType)));
+        }
+
+        public T ParseEnumText<T>(string text)
+        {
+            if (!typeof(System.Enum).IsAssignableFrom(typeof(T)))
+                throw _exceptionHelper.CriticalException("{D72B72F4-BA76-4CDE-943A-3F91202D6166}");
+
+            return (T)Enum.Parse(typeof(T), text);
+        }
+
+        private Type GetSystemTypeFromEnum<T>(T enumType)
+        {
+            if (!typeof(System.Enum).IsAssignableFrom(typeof(T)))
+                throw _exceptionHelper.CriticalException("{F7FA803F-43AD-429F-8C9C-50E92A38274F}");
+
+            return GetSystemType
+            (
+                Enum.GetName
+                (
+                    typeof(T),
+                    enumType
+                )
+            );
+
+            Type GetSystemType(string literalTypeString)
+            {
+                if (!Enum.IsDefined(typeof(LiteralType), literalTypeString))
+                    throw _exceptionHelper.CriticalException("{3AF42B3B-1C9E-465B-A729-2C3FDEE5C033}");
+
+                return LookupSystemType(ParseEnumText<LiteralType>(literalTypeString));
+            }
+        }
+
+        private T GetLiteralEnumType<T>(Type enumType)
+        {
+            if (!typeof(System.Enum).IsAssignableFrom(typeof(T)))
+                throw _exceptionHelper.CriticalException("{FD140CDA-D9C9-4E51-9AC6-22943D854030}");
+
+            return GetLiteralTypeEnum
+            (
+                Enum.GetName
+                (
+                    typeof(LiteralType),
+                    LookupLiteralType(enumType)
+                )
+            );
+
+            T GetLiteralTypeEnum(string literalTypeString)
+            {
+                if (!Enum.IsDefined(typeof(T), literalTypeString))
+                    throw _exceptionHelper.CriticalException("{E17E3989-9339-43DD-B109-D3F7087D2C60}");
+
+                return ParseEnumText<T>(literalTypeString);
+            }
+        }
+
+        private LiteralType LookupLiteralType(Type literalType)
+        {
+            Dictionary<Type, LiteralType> table = new()
+            {
+                [typeof(void)] = LiteralType.Void,
+                [typeof(bool)] = LiteralType.Boolean,
+                [typeof(DateTimeOffset)] = LiteralType.DateTimeOffset,
+                [typeof(DateTime)] = LiteralType.DateTime,
+                [typeof(Date)] = LiteralType.Date,
+                [typeof(TimeSpan)] = LiteralType.TimeSpan,
+                [typeof(TimeOfDay)] = LiteralType.TimeOfDay,
+                [typeof(Guid)] = LiteralType.Guid,
+                [typeof(decimal)] = LiteralType.Decimal,
+                [typeof(byte)] = LiteralType.Byte,
+                [typeof(short)] = LiteralType.Short,
+                [typeof(int)] = LiteralType.Integer,
+                [typeof(long)] = LiteralType.Long,
+                [typeof(float)] = LiteralType.Float,
+                [typeof(double)] = LiteralType.Double,
+                [typeof(char)] = LiteralType.Char,
+                [typeof(sbyte)] = LiteralType.SByte,
+                [typeof(ushort)] = LiteralType.UShort,
+                [typeof(uint)] = LiteralType.UInteger,
+                [typeof(ulong)] = LiteralType.ULong,
+                [typeof(string)] = LiteralType.String,
+                [typeof(bool?)] = LiteralType.NullableBoolean,
+                [typeof(DateTimeOffset?)] = LiteralType.NullableDateTimeOffset,
+                [typeof(DateTime?)] = LiteralType.NullableDateTime,
+                [typeof(Date?)] = LiteralType.NullableDate,
+                [typeof(TimeSpan?)] = LiteralType.NullableTimeSpan,
+                [typeof(TimeOfDay?)] = LiteralType.NullableTimeOfDay,
+                [typeof(Guid?)] = LiteralType.NullableGuid,
+                [typeof(decimal?)] = LiteralType.NullableDecimal,
+                [typeof(byte?)] = LiteralType.NullableByte,
+                [typeof(short?)] = LiteralType.NullableShort,
+                [typeof(int?)] = LiteralType.NullableInteger,
+                [typeof(long?)] = LiteralType.NullableLong,
+                [typeof(float?)] = LiteralType.NullableFloat,
+                [typeof(double?)] = LiteralType.NullableDouble,
+                [typeof(char?)] = LiteralType.NullableChar,
+                [typeof(sbyte?)] = LiteralType.NullableSByte,
+                [typeof(ushort?)] = LiteralType.NullableUShort,
+                [typeof(uint?)] = LiteralType.NullableUInteger,
+                [typeof(ulong?)] = LiteralType.NullableULong
+            };
+
+            if (table.TryGetValue(literalType, out var value))
+                return value;
+            else
+                throw _exceptionHelper.CriticalException("{66DB8C24-091C-4475-914D-E9CA735526CC}");
+        }
+
+        private Type LookupSystemType(LiteralType literalType)
+        {
+            Dictionary<LiteralType, Type> table = new()
+            {
+                [LiteralType.Void] = typeof(void),
+                [LiteralType.Boolean] = typeof(bool),
+                [LiteralType.DateTimeOffset] = typeof(DateTimeOffset),
+                [LiteralType.DateTime] = typeof(DateTime),
+                [LiteralType.Date] = typeof(Date),
+                [LiteralType.TimeSpan] = typeof(TimeSpan),
+                [LiteralType.TimeOfDay] = typeof(TimeOfDay),
+                [LiteralType.Guid] = typeof(Guid),
+                [LiteralType.Decimal] = typeof(decimal),
+                [LiteralType.Byte] = typeof(byte),
+                [LiteralType.Short] = typeof(short),
+                [LiteralType.Integer] = typeof(int),
+                [LiteralType.Long] = typeof(long),
+                [LiteralType.Float] = typeof(float),
+                [LiteralType.Double] = typeof(double),
+                [LiteralType.Char] = typeof(char),
+                [LiteralType.SByte] = typeof(sbyte),
+                [LiteralType.UShort] = typeof(ushort),
+                [LiteralType.UInteger] = typeof(uint),
+                [LiteralType.ULong] = typeof(ulong),
+                [LiteralType.String] = typeof(string),
+                [LiteralType.NullableBoolean] = typeof(bool?),
+                [LiteralType.NullableDateTimeOffset] = typeof(DateTimeOffset?),
+                [LiteralType.NullableDateTime] = typeof(DateTime?),
+                [LiteralType.NullableDate] = typeof(Date?),
+                [LiteralType.NullableTimeSpan] = typeof(TimeSpan?),
+                [LiteralType.NullableTimeOfDay] = typeof(TimeOfDay?),
+                [LiteralType.NullableGuid] = typeof(Guid?),
+                [LiteralType.NullableDecimal] = typeof(decimal?),
+                [LiteralType.NullableByte] = typeof(byte?),
+                [LiteralType.NullableShort] = typeof(short?),
+                [LiteralType.NullableInteger] = typeof(int?),
+                [LiteralType.NullableLong] = typeof(long?),
+                [LiteralType.NullableFloat] = typeof(float?),
+                [LiteralType.NullableDouble] = typeof(double?),
+                [LiteralType.NullableChar] = typeof(char?),
+                [LiteralType.NullableSByte] = typeof(sbyte?),
+                [LiteralType.NullableUShort] = typeof(ushort?),
+                [LiteralType.NullableUInteger] = typeof(uint?),
+                [LiteralType.NullableULong] = typeof(ulong?)
+            };
+
+            if (table.TryGetValue(literalType, out var value))
+                return value;
+            else
+                throw _exceptionHelper.CriticalException("{C0115382-3B85-4FCD-AF3A-15F9991D65E3}");
         }
     }
 }

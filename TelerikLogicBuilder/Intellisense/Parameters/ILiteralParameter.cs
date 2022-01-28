@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         string Name { get; }
         bool IsOptional { get; }
         string Comments { get; }
-        ParameterType LiteralType { get; }
+        LiteralParameterType LiteralType { get; }
         LiteralParameterInputStyle Control { get; }
         string PropertySource { get; }
         string PropertySourceParameter { get; }

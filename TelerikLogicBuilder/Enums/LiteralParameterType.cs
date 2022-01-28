@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Enums
 {
-    internal enum ParameterType : short
+    internal enum LiteralParameterType : short
     {
         Decimal,
         String,

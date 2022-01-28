@@ -28,10 +28,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         /// <summary>
         /// Parameter type
         /// </summary>
-        internal ParameterType Type =>
+        internal LiteralParameterType Type =>
                 //return MembersInfo.GetParameterType(PInfo.ParameterType.GetUndelyingLiteralType());
                 //For a list of literals we need just the immediate underlying type
-                this._enumHelper.GetParameterType
+                this._enumHelper.GetLiteralParameterType
                 (
                     this._typeHelper.GetUndelyingTypeForValidList(PInfo.ParameterType)
                 );
