@@ -56,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return FunctionCategories.Unknown;
         }
 
-        public string GetFunctionSummary(MemberInfo member)
+        public string GetSummary(MemberInfo member)
         {
             foreach (object attr in member.GetCustomAttributes(true))
             {

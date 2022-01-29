@@ -90,7 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public bool TryParse(string toParse, Type type, out object result)
         {
             if (!IsLiteralType(type))
-                _exceptionHelper.CriticalException("{A1026252-A00D-41A2-B501-D0B313E5383F}");
+                throw _exceptionHelper.CriticalException("{A1026252-A00D-41A2-B501-D0B313E5383F}");
 
             if (type == null)
             {

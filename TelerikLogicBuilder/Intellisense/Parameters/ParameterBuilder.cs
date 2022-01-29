@@ -25,8 +25,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         }
 
         #region Fields
-        private XmlElement xmlElement;
-        private ParameterCategory parameterCategory;
+        private readonly XmlElement xmlElement;
+        private readonly ParameterCategory parameterCategory;
         #endregion Fields
 
         #region Properties

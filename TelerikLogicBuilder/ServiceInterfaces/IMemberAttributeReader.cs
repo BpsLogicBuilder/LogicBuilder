@@ -10,7 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         LiteralVariableInputStyle GetLiteralInputStyle(MemberInfo member);
         ObjectVariableInputStyle GetObjectInputStyle(MemberInfo member);
         ListVariableInputStyle GetListInputStyle(MemberInfo member);
-        string GetFunctionSummary(MemberInfo member);
+        string GetSummary(MemberInfo member);
         string GetVariableComments(MemberInfo member);
         string GetAlsoKnownAs(MemberInfo member);
         FunctionCategories GetFunctionCategory(MemberInfo member);

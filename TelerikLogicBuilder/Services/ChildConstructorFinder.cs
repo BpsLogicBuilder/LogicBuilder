@@ -8,31 +8,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ChildConstructorFinder : IChildConstructorFinder
     {
-        private readonly IConstructorManager _constructorManager;
-        private readonly IParametersManager _parametersManager;
-        private readonly IReflectionHelper _reflectionHelper;
-        private readonly ITypeHelper _typeHelper;
-        private readonly IStringHelper _stringHelper;
+        private readonly IContextProvider _contextProvider;
 
         public ChildConstructorFinder(IContextProvider contextProvider)
         {
-            _constructorManager = contextProvider.ConstructorManager;
-            _parametersManager = contextProvider.ParametersManager;
-            _reflectionHelper = contextProvider.ReflectionHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _stringHelper = contextProvider.StringHelper;
+            _contextProvider = contextProvider;
         }
 
         public void AddChildConstructors(Dictionary<string, Constructor> existingConstructors, ParameterInfo[] parameters)
         {
             new ChildConstructorFinderUtil
             (
-                existingConstructors, 
-                _constructorManager,
-                _parametersManager, 
-                _reflectionHelper, 
-                _typeHelper, 
-                _stringHelper
+                existingConstructors,
+                _contextProvider
             ).AddChildConstructors(parameters);
         }
     }

@@ -6,6 +6,8 @@ namespace TelerikLogicBuilder.Tests.AttributeSamples
 {
     public class FormControlSettingsParameters
     {
+        [AlsoKnownAs("FormControlSettingsParameters")]
+        [Summary("Form Control Settings Parameters")]
         public FormControlSettingsParameters
         (
             [Comments("Update modelType first. Source property name from the target object.")]

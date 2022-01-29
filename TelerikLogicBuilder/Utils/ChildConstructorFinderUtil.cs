@@ -15,16 +15,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Utils
         private readonly IReflectionHelper _reflectionHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly IStringHelper _stringHelper;
+        private readonly IMemberAttributeReader _memberAttributeReader;
         private readonly Dictionary<Type, string> constructorNameMaps;
         private readonly Dictionary<string, Constructor> existingConstructors;
 
-        public ChildConstructorFinderUtil(Dictionary<string, Constructor> existingConstructors, IConstructorManager constructorManager, IParametersManager parametersManager, IReflectionHelper reflectionHelper, ITypeHelper typeHelper, IStringHelper stringHelper)
+        public ChildConstructorFinderUtil(Dictionary<string, Constructor> existingConstructors, IContextProvider contextProvider)
         {
-            _constructorManager = constructorManager;
-            _parametersManager = parametersManager;
-            _reflectionHelper = reflectionHelper;
-            _typeHelper = typeHelper;
-            _stringHelper = stringHelper;
+            _constructorManager = contextProvider.ConstructorManager;
+            _parametersManager = contextProvider.ParametersManager;
+            _reflectionHelper = contextProvider.ReflectionHelper;
+            _typeHelper = contextProvider.TypeHelper;
+            _stringHelper = contextProvider.StringHelper;
+            _memberAttributeReader = contextProvider.MemberAttributeReader;
             this.constructorNameMaps = new Dictionary<Type, string>();
             this.existingConstructors = existingConstructors;
         }
@@ -76,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Utils
         {
             string name = _stringHelper.EnsureUniqueName
             (
-                _typeHelper.GetTypeDescription(cInfo.DeclaringType),
+                GetName(_memberAttributeReader.GetAlsoKnownAs(cInfo)),
                 new HashSet<string>(existingConstructors.Keys)
             );
 
@@ -88,6 +90,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Utils
             Constructor constructor = this._constructorManager.CreateConstructor(name, cInfo);
             if (constructor != null)
                 this.existingConstructors.Add(constructor.Name, constructor);
+
+            string GetName(string alsoKnownAs)
+                => string.IsNullOrEmpty(alsoKnownAs) ? _typeHelper.GetTypeDescription(cInfo.DeclaringType) : alsoKnownAs;
         }
     }
 }

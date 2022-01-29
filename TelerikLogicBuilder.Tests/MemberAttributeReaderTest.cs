@@ -140,13 +140,13 @@ namespace TelerikLogicBuilder.Tests
 
         [Fact]
         [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
-        public void GetFunctionSummaryReturnsExpectedSummary()
+        public void GetSummaryReturnsExpectedSummaryForFunction()
         {
             //arrange
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string summary = attributeReader.GetFunctionSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething)));
+            string summary = attributeReader.GetSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething)));
 
             //assert
             Assert.Equal("DoSomething", summary);
@@ -154,13 +154,41 @@ namespace TelerikLogicBuilder.Tests
 
         [Fact]
         [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
-        public void GetFunctionSummaryReturnsEmptyStringWithNoAttributeAttached()
+        public void GetSummaryReturnsEmptyStringWithNoAttributeAttachedForFunction()
         {
             //arrange
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string summary = attributeReader.GetFunctionSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse)));
+            string summary = attributeReader.GetSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse)));
+
+            //assert
+            Assert.Equal(string.Empty, summary);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetSummaryReturnsExpectedSummaryForConstructor()
+        {
+            //arrange
+            IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
+
+            //act
+            string summary = attributeReader.GetSummary(typeof(FormControlSettingsParameters).GetConstructors().Single());
+
+            //assert
+            Assert.Equal("Form Control Settings Parameters", summary);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetSummaryReturnsEmptyStringWithNoAttributeAttachedForConstructor()
+        {
+            //arrange
+            IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
+
+            //act
+            string summary = attributeReader.GetSummary(typeof(InstructorModel).GetConstructors().Single());
 
             //assert
             Assert.Equal(string.Empty, summary);
@@ -245,6 +273,34 @@ namespace TelerikLogicBuilder.Tests
 
             //act
             string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse)));
+
+            //assert
+            Assert.Equal(string.Empty, text);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetAlsoKnownAsReturnsExpectedTextForConstructor()
+        {
+            //arrange
+            IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
+
+            //act
+            string text = attributeReader.GetAlsoKnownAs(typeof(FormControlSettingsParameters).GetConstructors().Single());
+
+            //assert
+            Assert.Equal("FormControlSettingsParameters", text);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetAlsoKnownAsReturnsEmptyStringWithNoAttributeAttachedForConstructor()
+        {
+            //arrange
+            IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
+
+            //act
+            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetConstructors().Single());
 
             //assert
             Assert.Equal(string.Empty, text);

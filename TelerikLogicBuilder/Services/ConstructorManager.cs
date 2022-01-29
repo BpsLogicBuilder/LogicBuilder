@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         .Where(a => a.IsGenericParameter)
                         .Select(a => a.Name)
                 ),
-                this._memberAttributeReader.GetFunctionSummary(cInfo)
+                this._memberAttributeReader.GetSummary(cInfo)
             );
     }
 }
