@@ -1,10 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Services
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
 {
     internal class ParametersManager : IParametersManager
     {

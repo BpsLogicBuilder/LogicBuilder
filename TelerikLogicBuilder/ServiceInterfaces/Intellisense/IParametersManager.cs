@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense
 {
     internal interface IParametersManager
     {

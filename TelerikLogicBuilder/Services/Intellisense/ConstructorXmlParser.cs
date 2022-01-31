@@ -1,8 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using System.Xml;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Services
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
 {
     internal class ConstructorXmlParser : IConstructorXmlParser
     {

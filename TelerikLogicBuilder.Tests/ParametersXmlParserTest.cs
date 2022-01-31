@@ -1,7 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using ABIS.LogicBuilder.FlowBuilder.Services;
+using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Xml;

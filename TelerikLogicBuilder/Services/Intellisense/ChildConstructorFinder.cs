@@ -1,10 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using ABIS.LogicBuilder.FlowBuilder.Utils;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Services
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
 {
     internal class ChildConstructorFinder : IChildConstructorFinder
     {

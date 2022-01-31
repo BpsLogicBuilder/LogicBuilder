@@ -1,4 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
+
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IContextProvider
     {

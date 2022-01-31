@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using ABIS.LogicBuilder.FlowBuilder.Services;
+using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense;
 using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
