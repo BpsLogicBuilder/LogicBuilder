@@ -35,6 +35,7 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.NotNull(result);
+            Assert.Equal(10, result.Parameters.Count);
         }
 
         private void Initialize()

@@ -4,16 +4,16 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
-    internal class ParametersXmlManager : IParametersXmlManager
+    internal class ParametersXmlParser : IParametersXmlParser
     {
         private readonly IContextProvider _contextProvider;
 
-        public ParametersXmlManager(IContextProvider contextProvider)
+        public ParametersXmlParser(IContextProvider contextProvider)
         {
             _contextProvider = contextProvider;
         }
 
-        public ParameterBase BuildParameter(XmlElement xmlElement) 
-            => new ParameterBuilder(xmlElement, _contextProvider).Parameter;
+        public ParameterBase Parse(XmlElement xmlElement) 
+            => new ParameterParser(xmlElement, _contextProvider).Parameter;
     }
 }

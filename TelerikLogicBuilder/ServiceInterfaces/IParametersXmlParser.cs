@@ -3,8 +3,8 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
-    internal interface IParametersXmlManager
+    internal interface IParametersXmlParser
     {
-        ParameterBase BuildParameter(XmlElement xmlElement);
+        ParameterBase Parse(XmlElement xmlElement);
     }
 }

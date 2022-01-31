@@ -11,7 +11,7 @@
         IMemberAttributeReader MemberAttributeReader { get; }
         IParameterAttributeReader ParameterAttributeReader { get; }
         IParametersManager ParametersManager { get; }
-        IParametersXmlManager ParametersXmlManager { get; }
+        IParametersXmlParser ParametersXmlManager { get; }
         IConstructorManager ConstructorManager { get; }
     }
 }

@@ -10,9 +10,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests
 {
-    public class ParametersXmlManagerTest
+    public class ParametersXmlParserTest
     {
-        public ParametersXmlManagerTest()
+        public ParametersXmlParserTest()
         {
             Initialize();
         }
@@ -45,7 +45,7 @@ namespace TelerikLogicBuilder.Tests
 				</literalParameter>");
 
             //act
-            LiteralParameter result = (LiteralParameter)contextProvider.ParametersXmlManager.BuildParameter(xmlElement);
+            LiteralParameter result = (LiteralParameter)contextProvider.ParametersXmlManager.Parse(xmlElement);
 
             //assert
             Assert.Equal("Refresh", result.Name);
@@ -68,7 +68,7 @@ namespace TelerikLogicBuilder.Tests
 				</objectParameter>");
 
             //act
-            ObjectParameter result = (ObjectParameter)contextProvider.ParametersXmlManager.BuildParameter(xmlElement);
+            ObjectParameter result = (ObjectParameter)contextProvider.ParametersXmlManager.Parse(xmlElement);
 
             //assert
             Assert.Equal("Refresh", result.Name);
@@ -90,7 +90,7 @@ namespace TelerikLogicBuilder.Tests
 				</genericParameter>");
 
             //act
-            GenericParameter result = (GenericParameter)contextProvider.ParametersXmlManager.BuildParameter(xmlElement);
+            GenericParameter result = (GenericParameter)contextProvider.ParametersXmlManager.Parse(xmlElement);
 
             //assert
             Assert.Equal("Refresh", result.Name);
@@ -126,7 +126,7 @@ namespace TelerikLogicBuilder.Tests
 				</literalListParameter>");
 
             //act
-            ListOfLiteralsParameter result = (ListOfLiteralsParameter)contextProvider.ParametersXmlManager.BuildParameter(xmlElement);
+            ListOfLiteralsParameter result = (ListOfLiteralsParameter)contextProvider.ParametersXmlManager.Parse(xmlElement);
 
             //assert
             Assert.Equal("Page Sizes", result.Name);
@@ -150,7 +150,7 @@ namespace TelerikLogicBuilder.Tests
 				</objectListParameter>");
 
             //act
-            ListOfObjectsParameter result = (ListOfObjectsParameter)contextProvider.ParametersXmlManager.BuildParameter(xmlElement);
+            ListOfObjectsParameter result = (ListOfObjectsParameter)contextProvider.ParametersXmlManager.Parse(xmlElement);
 
             //assert
             Assert.Equal("Page Sizes", result.Name);
@@ -174,7 +174,7 @@ namespace TelerikLogicBuilder.Tests
 				</genericListParameter>");
 
             //act
-            ListOfGenericsParameter result = (ListOfGenericsParameter)contextProvider.ParametersXmlManager.BuildParameter(xmlElement);
+            ListOfGenericsParameter result = (ListOfGenericsParameter)contextProvider.ParametersXmlManager.Parse(xmlElement);
 
             //assert
             Assert.Equal("Page Sizes", result.Name);

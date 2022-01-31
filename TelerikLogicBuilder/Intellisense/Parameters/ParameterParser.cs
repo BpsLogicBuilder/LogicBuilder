@@ -8,13 +8,13 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 {
-    internal class ParameterBuilder
+    internal class ParameterParser
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IContextProvider _contextProvider;
-        internal ParameterBuilder(XmlElement xmlElement, IContextProvider contextProvider)
+        internal ParameterParser(XmlElement xmlElement, IContextProvider contextProvider)
         {
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _exceptionHelper = contextProvider.ExceptionHelper;
@@ -33,18 +33,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         internal ParameterBase Parameter 
             => this.parameterCategory switch
             {
-                ParameterCategory.Literal => BuildLiteralParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.Object => BuildObjectParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.Generic => BuildGenericParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.LiteralList => BuildLiteralListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.ObjectList => BuildObjectListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.GenericList => BuildGenericListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.Literal => GetLiteralParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.Object => GetObjectParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.Generic => GetGenericParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.LiteralList => GetLiteralListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.ObjectList => GetObjectListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.GenericList => GetGenericListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
                 _ => throw _exceptionHelper.CriticalException("{A5B2C8CE-DAED-4D27-A7BA-0B90AFF23F25}"),
             };
         #endregion Properties
 
         #region Methods
-        private ParameterBase BuildLiteralParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
+        private ParameterBase GetLiteralParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
             => new LiteralParameter
             (
                 nameAttribute,
@@ -62,7 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                 _contextProvider
             );
 
-        private ParameterBase BuildObjectParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
+        private ParameterBase GetObjectParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
             => new ObjectParameter
             (
                 nameAttribute,
@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                 _contextProvider
             );
 
-        private ParameterBase BuildGenericParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
+        private ParameterBase GetGenericParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
             => new GenericParameter
             (
                 nameAttribute,
@@ -85,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                 _contextProvider
             );
 
-        private ParameterBase BuildLiteralListParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
+        private ParameterBase GetLiteralListParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
             => new ListOfLiteralsParameter
             (
                 nameAttribute,
@@ -103,7 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                 _contextProvider
             );
 
-        private ParameterBase BuildObjectListParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
+        private ParameterBase GetObjectListParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
             => new ListOfObjectsParameter
             (
                 nameAttribute,
@@ -115,7 +115,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                 _contextProvider
             );
 
-        private ParameterBase BuildGenericListParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
+        private ParameterBase GetGenericListParameter(string nameAttribute, Dictionary<string, XmlElement> elements) 
             => new ListOfGenericsParameter
             (
                 nameAttribute,

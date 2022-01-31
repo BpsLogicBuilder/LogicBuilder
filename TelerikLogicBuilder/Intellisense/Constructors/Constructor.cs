@@ -1,20 +1,26 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
 {
     internal class Constructor
     {
-        public Constructor(string Name, string TypeName, List<ParameterBase> Parameters, List<string> genericArguments, string Summary)
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+
+        public Constructor(string Name, string TypeName, List<ParameterBase> Parameters, List<string> genericArguments, string Summary, IContextProvider contextProvider)
         {
             this.Name = Name;
             this.TypeName = TypeName;
             this.Parameters = Parameters;
             this.GenericArguments = genericArguments;
             this.Summary = Summary;
+            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
         }
 
         #region Properties
@@ -48,13 +54,51 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
         /// </summary>
         internal string Summary { get; private set; }
 
+        internal string ToXml => this.BuildXml();
+        #endregion Properties
+
+        #region Methods
         public override string ToString()
         {
-            return string.Format(CultureInfo.CurrentCulture, Strings.constructorToStringFormat,
+            return string.Format
+            (
+                CultureInfo.CurrentCulture, Strings.constructorToStringFormat,
                 this.Name,
                 this.TypeName,
-                string.Join(string.Concat(MiscellaneousConstants.COMMASTRING, " "), this.Parameters.Select(p => p.ToString())));
+                string.Join
+                (
+                    string.Concat(MiscellaneousConstants.COMMASTRING, " "),
+                    this.Parameters.Select(p => p.ToString())
+                )
+            );
         }
-        #endregion Properties
+
+        private string BuildXml()
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = this._xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.CONSTRUCTORELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, this.Name);
+                    xmlTextWriter.WriteElementString(XmlDataConstants.TYPENAMEELEMENT, this.TypeName);
+                    xmlTextWriter.WriteStartElement(XmlDataConstants.PARAMETERSELEMENT);
+                    foreach (ParameterBase parameter in this.Parameters)
+                        xmlTextWriter.WriteRaw(parameter.ToXml);
+                    xmlTextWriter.WriteEndElement();
+                    xmlTextWriter.WriteStartElement(XmlDataConstants.GENERICARGUMENTSELEMENT);
+                    foreach (string item in this.GenericArguments)
+                    {
+                        xmlTextWriter.WriteStartElement(XmlDataConstants.ITEMELEMENT);
+                        xmlTextWriter.WriteString(item);
+                        xmlTextWriter.WriteEndElement();
+                    }
+                    xmlTextWriter.WriteEndElement();
+                    xmlTextWriter.WriteElementString(XmlDataConstants.SUMMARYELEMENT, this.Summary);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+        #endregion Methods
     }
 }

@@ -11,12 +11,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private readonly IParametersManager _parametersManager;
         private readonly IMemberAttributeReader _memberAttributeReader;
         private readonly ITypeHelper _typeHelper;
+        private readonly IContextProvider _contextProvider;
 
         public ConstructorManager(IContextProvider contextProvider)
         {
             _parametersManager = contextProvider.ParametersManager;
             _memberAttributeReader = contextProvider.MemberAttributeReader;
             _typeHelper = contextProvider.TypeHelper;
+            _contextProvider = contextProvider;
         }
 
         public Constructor CreateConstructor(string name, ConstructorInfo cInfo) 
@@ -34,7 +36,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         .Where(a => a.IsGenericParameter)
                         .Select(a => a.Name)
                 ),
-                this._memberAttributeReader.GetSummary(cInfo)
+                this._memberAttributeReader.GetSummary(cInfo),
+                _contextProvider
             );
     }
 }
