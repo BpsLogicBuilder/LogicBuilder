@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using System;
@@ -7,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Utils
+namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
 {
-    internal class ChildConstructorFinderUtil
+    internal class ChildConstructorFinderUtility
     {
         private readonly IConstructorManager _constructorManager;
         private readonly IParametersManager _parametersManager;
@@ -20,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Utils
         private readonly Dictionary<Type, string> constructorNameMaps;
         private readonly Dictionary<string, Constructor> existingConstructors;
 
-        public ChildConstructorFinderUtil(Dictionary<string, Constructor> existingConstructors, IContextProvider contextProvider)
+        public ChildConstructorFinderUtility(Dictionary<string, Constructor> existingConstructors, IContextProvider contextProvider)
         {
             _constructorManager = contextProvider.ConstructorManager;
             _parametersManager = contextProvider.ParametersManager;

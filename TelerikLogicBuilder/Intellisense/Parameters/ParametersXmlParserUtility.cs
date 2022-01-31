@@ -8,13 +8,13 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 {
-    internal class ParameterParser
+    internal class ParametersXmlParserUtility
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IContextProvider _contextProvider;
-        internal ParameterParser(XmlElement xmlElement, IContextProvider contextProvider)
+        internal ParametersXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider)
         {
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _exceptionHelper = contextProvider.ExceptionHelper;

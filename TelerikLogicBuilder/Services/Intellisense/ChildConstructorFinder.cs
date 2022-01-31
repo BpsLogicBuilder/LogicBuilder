@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
-using ABIS.LogicBuilder.FlowBuilder.Utils;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -18,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
 
         public void AddChildConstructors(Dictionary<string, Constructor> existingConstructors, ParameterInfo[] parameters)
         {
-            new ChildConstructorFinderUtil
+            new ChildConstructorFinderUtility
             (
                 existingConstructors,
                 _contextProvider

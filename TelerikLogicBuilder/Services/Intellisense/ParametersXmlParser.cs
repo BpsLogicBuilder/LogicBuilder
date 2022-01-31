@@ -15,6 +15,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
         }
 
         public ParameterBase Parse(XmlElement xmlElement) 
-            => new ParameterParser(xmlElement, _contextProvider).Parameter;
+            => new ParametersXmlParserUtility(xmlElement, _contextProvider).Parameter;
     }
 }

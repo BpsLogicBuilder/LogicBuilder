@@ -7,13 +7,13 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
 {
-    internal class ConstructorParser
+    internal class ConstructorXmlParserUtility
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParametersXmlParser _parametersXmlParser;
         private readonly IContextProvider _contextProvider;
 
-        internal ConstructorParser(XmlElement xmlElement, IContextProvider contextProvider)
+        internal ConstructorXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider)
         {
             this.xmlElement = xmlElement;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;

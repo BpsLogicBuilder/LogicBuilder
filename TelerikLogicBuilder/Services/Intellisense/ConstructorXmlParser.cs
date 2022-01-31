@@ -15,6 +15,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
         }
 
         public Constructor Parse(XmlElement xmlElement) 
-            => new ConstructorParser(xmlElement, _contextProvider).Constructor;
+            => new ConstructorXmlParserUtility(xmlElement, _contextProvider).Constructor;
     }
 }
