@@ -12,30 +12,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     internal class XmlDocumentHelpers : IXmlDocumentHelpers
     {
         #region Properties
-        //private static XmlWriterSettings FormattedSettings
-        //{
-        //    get
-        //    {
-        //        return new XmlWriterSettings
-        //        {
-        //            Indent = true,
-        //            IndentChars = "\t",
-        //            OmitXmlDeclaration = true
-        //        };
-        //    }
-        //}
+        private static XmlWriterSettings FormattedSettings
+        {
+            get
+            {
+                return new XmlWriterSettings
+                {
+                    Indent = true,
+                    IndentChars = "\t",
+                    OmitXmlDeclaration = true
+                };
+            }
+        }
 
-        //private static XmlWriterSettings FormattedSettingsWithDeclaration
-        //{
-        //    get
-        //    {
-        //        return new XmlWriterSettings
-        //        {
-        //            Indent = true,
-        //            IndentChars = "\t"
-        //        };
-        //    }
-        //}
+        private static XmlWriterSettings FormattedSettingsWithDeclaration
+        {
+            get
+            {
+                return new XmlWriterSettings
+                {
+                    Indent = true,
+                    IndentChars = "\t"
+                };
+            }
+        }
 
         private static XmlWriterSettings UnformattedSettings
         {
@@ -62,6 +62,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         #endregion Properties
 
         #region Methods
+        public XmlWriter CreateFormattedXmlWriter(StringBuilder stringBuilder) 
+            => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), FormattedSettings);
+
+        public XmlWriter CreateFormattedXmlWriterWithDeclaration(StringBuilder stringBuilder) 
+            => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), FormattedSettingsWithDeclaration);
+
         public XmlWriter CreateUnformattedXmlWriter(StringBuilder stringBuilder) 
             => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), UnformattedSettings);
 
@@ -77,6 +83,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return enumerableFunc != null
                 ? enumerableFunc(getChildElements()).ToList()
                 : getChildElements().ToList();
+        }
+
+        public XmlDocument ToXmlDocument(string xmlString, bool preserveWhiteSpace = true)
+        {
+            return LoadXml(new XmlDocument { PreserveWhitespace = preserveWhiteSpace });
+            XmlDocument LoadXml(XmlDocument xmlDocument)
+            {
+                xmlDocument.LoadXml(xmlString);
+                return xmlDocument;
+            }
         }
         #endregion Methods
     }

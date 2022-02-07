@@ -61,11 +61,47 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App{0}.
+        /// </summary>
+        internal static string applicationNameFormat {
+            get {
+                return ResourceManager.GetString("applicationNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BPS Logic Builder.
         /// </summary>
         internal static string applicationNameLogicBuilder {
             get {
                 return ResourceManager.GetString("applicationNameLogicBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The assembly &quot;{0}&quot;, one of its dependencies or the class &quot;{1}&quot; could not be loaded..
+        /// </summary>
+        internal static string assemblyUnavailableMessageFormat {
+            get {
+                return ResourceManager.GetString("assemblyUnavailableMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assembly &quot;{0}&quot; could not be loaded..
+        /// </summary>
+        internal static string cannotLoadAssemblyFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadAssemblyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class &quot;{0}&quot; could not be loaded..
+        /// </summary>
+        internal static string cannotLoadClassFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadClassFormat", resourceCulture);
             }
         }
         
@@ -79,11 +115,119 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a new Project File?.
+        /// </summary>
+        internal static string createNewProjectFileQuestion {
+            get {
+                return ResourceManager.GetString("createNewProjectFileQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ActivityAssembly.
+        /// </summary>
+        internal static string defaultActivityAssemblyFolder {
+            get {
+                return ResourceManager.GetString("defaultActivityAssemblyFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ActivityNamespace.ActivityClass.
+        /// </summary>
+        internal static string defaultActivityClass {
+            get {
+                return ResourceManager.GetString("defaultActivityClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://localhost:3677/api/transfer/DeleteAllRules.
+        /// </summary>
+        internal static string defaultDeleteAllRulesUrl {
+            get {
+                return ResourceManager.GetString("defaultDeleteAllRulesUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://localhost:3677/api/transfer/DeleteRules.
+        /// </summary>
+        internal static string defaultDeleteRulesUrl {
+            get {
+                return ResourceManager.GetString("defaultDeleteRulesUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error has occurred.
         /// </summary>
         internal static string defaultErrorMessage {
             get {
                 return ResourceManager.GetString("defaultErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://localhost:3677/api/transfer/PostFileData.
+        /// </summary>
+        internal static string defaultPostFileDataUrl {
+            get {
+                return ResourceManager.GetString("defaultPostFileDataUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://localhost:3677/api/transfer/PostVariableMetaData.
+        /// </summary>
+        internal static string defaultPostVariableMetaDataUrl {
+            get {
+                return ResourceManager.GetString("defaultPostVariableMetaDataUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to strings.resources.
+        /// </summary>
+        internal static string defaultResourcesFile {
+            get {
+                return ResourceManager.GetString("defaultResourcesFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        internal static string defaultResourcesFolder {
+            get {
+                return ResourceManager.GetString("defaultResourcesFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to expert.rules.
+        /// </summary>
+        internal static string defaultRulesFile {
+            get {
+                return ResourceManager.GetString("defaultRulesFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rules.
+        /// </summary>
+        internal static string defaultRulesFolder {
+            get {
+                return ResourceManager.GetString("defaultRulesFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .exe.
+        /// </summary>
+        internal static string dotExe {
+            get {
+                return ResourceManager.GetString("dotExe", resourceCulture);
             }
         }
         
@@ -511,6 +655,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} has invalid data..
+        /// </summary>
+        internal static string invalidConfigurationDocumentFormat {
+            get {
+                return ResourceManager.GetString("invalidConfigurationDocumentFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} Of {1}.
         /// </summary>
         internal static string listDescriptionFormat {
@@ -556,11 +709,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} ....
+        /// </summary>
+        internal static string truncatedMessageTextFormat {
+            get {
+                return ResourceManager.GetString("truncatedMessageTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _.
         /// </summary>
         internal static string underscore {
             get {
                 return ResourceManager.GetString("underscore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The event logger has generated an unhandled exception of type: &quot;{0}&quot;. Message: &quot;{1}&quot;..
+        /// </summary>
+        internal static string unhandledEventLoggerExceptionFormat {
+            get {
+                return ResourceManager.GetString("unhandledEventLoggerExceptionFormat", resourceCulture);
             }
         }
     }

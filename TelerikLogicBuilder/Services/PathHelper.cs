@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             );
         }
 
-        internal static string TrimPathSeparators(string path)
+        internal string TrimPathSeparators(string path)
         {
             path = RemoveTrailingPathSeparator(path);
             return RemoveLeadingPathSeparator(path);
@@ -80,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        private static string RemoveTrailingPathSeparator(string path)
+        public string RemoveTrailingPathSeparator(string path)
         {
             return RemoveTrailingSeparator(path, FileConstants.DIRECTORYSEPARATOR);
         }

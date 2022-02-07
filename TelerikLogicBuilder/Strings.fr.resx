@@ -117,15 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="defaultErrorMessage" xml:space="preserve">
-    <value>An error has occurred.</value>
-  </data>
   <data name="applicationNameLogicBuilder" xml:space="preserve">
     <value>BPS Logic BuilderFR</value>
+  </data>
+	<data name="applicationNameFormat" xml:space="preserve">
+    <value>App{0}FR</value>
+    <comment>0=Count</comment>
+  </data>
+	<data name="assemblyUnavailableMessageFormat" xml:space="preserve">
+    <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.FR</value>
+    <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
+  </data>
+	<data name="cannotLoadAssemblyFormat" xml:space="preserve">
+    <value>Assembly "{0}" could not be loaded.FR</value>
+    <comment>0=Assembly</comment>
+  </data>
+	<data name="cannotLoadClassFormat" xml:space="preserve">
+    <value>Class "{0}" could not be loaded.</value>
+    <comment>0=ActivityClass</comment>
   </data>
 	<data name="constructorToStringFormat" xml:space="preserve">
     <value>{0} - {1}({2})FR</value>
     <comment>0=constructorName 1=Type 2=parametersToString</comment>
+  </data>
+	<data name="createNewProjectFileQuestion" xml:space="preserve">
+    <value>Create a new Project File?FR</value>
+  </data>
+	<data name="defaultActivityAssemblyFolder" xml:space="preserve">
+    <value>ActivityAssemblyFR</value>
+  </data>
+	<data name="defaultActivityClass" xml:space="preserve">
+    <value>ActivityNamespace.ActivityClassFR</value>
+  </data>
+	<data name="defaultDeleteRulesUrl" xml:space="preserve">
+    <value>http://localhost:3677/api/transfer/DeleteRules</value>
+  </data>
+	<data name="defaultDeleteAllRulesUrl" xml:space="preserve">
+    <value>http://localhost:3677/api/transfer/DeleteAllRules</value>
+  </data>
+	<data name="defaultErrorMessage" xml:space="preserve">
+    <value>An error has occurred.FR</value>
+  </data>
+	<data name="defaultPostFileDataUrl" xml:space="preserve">
+    <value>http://localhost:3677/api/transfer/PostFileData</value>
+  </data>
+	<data name="defaultPostVariableMetaDataUrl" xml:space="preserve">
+    <value>http://localhost:3677/api/transfer/PostVariableMetaData</value>
+  </data>
+	<data name="defaultResourcesFile" xml:space="preserve">
+    <value>strings.resourcesFR</value>
+  </data>
+	<data name="defaultResourcesFolder" xml:space="preserve">
+    <value>ResourcesFR</value>
+  </data>
+	<data name="defaultRulesFile" xml:space="preserve">
+    <value>expert.rulesFR</value>
+  </data>
+	<data name="defaultRulesFolder" xml:space="preserve">
+    <value>RulesFR</value>
+  </data>
+	<data name="dotExe" xml:space="preserve">
+    <value>.exe</value>
   </data>
   <data name="enumDescriptionAny" xml:space="preserve">
     <value>AnyFR</value>
@@ -268,6 +320,10 @@
   <data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.FR</value>
   </data>
+	<data name="invalidConfigurationDocumentFormat" xml:space="preserve">
+    <value>{0} has invalid data.FR</value>
+    <comment>{0}=fileFullName</comment>
+  </data>
 	<data name="listParameterTypeNameFormat" xml:space="preserve">
     <value>{0}Of{1}: {2}FR</value>
     <comment>0=listType 1=UnderlyingType 2=name</comment>
@@ -286,7 +342,14 @@
   <data name="spaceString" xml:space="preserve">
     <value>&#32;</value>
   </data>
+	<data name="truncatedMessageTextFormat" xml:space="preserve">
+    <value>{0} ...FR</value>
+    <comment>0=truncated message</comment>
+  </data>
   <data name="underscore" xml:space="preserve">
     <value>_</value>
+  </data>
+	<data name="unhandledEventLoggerExceptionFormat" xml:space="preserve">
+    <value>The event logger has generated an unhandled exception of type: "{0}". Message: "{1}".FR</value>
   </data>
 </root>

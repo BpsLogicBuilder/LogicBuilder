@@ -11,5 +11,6 @@
         string GetFilePath(string fileName);
         string GetFolderName(string folderPath);
         string GetModuleName(string fileName);
+        string RemoveTrailingPathSeparator(string path);
     }
 }

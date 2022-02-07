@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using TelerikLogicBuilder.Tests.AttributeSamples;
 using TelerikLogicBuilder.Tests.Constants;
 using TelerikLogicBuilder.Tests.Mocks;
 using Xunit;
+using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
 namespace TelerikLogicBuilder.Tests
 {
@@ -211,18 +211,18 @@ namespace TelerikLogicBuilder.Tests
 
         private void Initialize()
         {
-            serviceProvider = new ServiceCollection()
-                .AddSingleton<IEnumHelper, EnumHelper>()
-                .AddSingleton<IExceptionHelper, ExceptionHelper>()
-                .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
-                .AddSingleton<IParameterAttributeReader, ParameterAttributeReader>()
-                .AddSingleton<IStringHelper, StringHelperMock>()
-                .AddSingleton<IPathHelper, PathHelper>()
-                .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
-                .AddSingleton<IReflectionHelper, ReflectionHelper>()
-                .AddSingleton<ITypeHelper, TypeHelper>()
-                .AddSingleton<IContextProvider, ContextProvider>()
-                .BuildServiceProvider();
+            IServiceCollection serviceCollection = FlowBuilder.Program.ServiceCollection.Aggregate
+            (
+                new ServiceCollection().AddSingleton<IStringHelper, StringHelperMock>(),
+                (list, next) =>
+                {
+                    if (next.ServiceType != typeof(IStringHelper))
+                        list.Add(next);
+                    return list;
+                }
+            );
+
+            serviceProvider = serviceCollection.BuildServiceProvider();
         }
     }
 }

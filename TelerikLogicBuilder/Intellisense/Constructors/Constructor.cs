@@ -96,6 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
                     xmlTextWriter.WriteElementString(XmlDataConstants.SUMMARYELEMENT, this.Summary);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();
+                xmlTextWriter.Close();
             }
             return stringBuilder.ToString();
         }

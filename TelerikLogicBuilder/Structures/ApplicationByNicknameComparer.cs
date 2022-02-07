@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using System;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Structures

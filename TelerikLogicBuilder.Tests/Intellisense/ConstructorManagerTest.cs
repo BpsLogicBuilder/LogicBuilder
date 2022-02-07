@@ -1,8 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
-using ABIS.LogicBuilder.FlowBuilder.Services;
-using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense;
 using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,7 +8,7 @@ using System.Reflection;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
-namespace TelerikLogicBuilder.Tests
+namespace TelerikLogicBuilder.Tests.Intellisense
 {
     public class ConstructorManagerTest
     {
@@ -42,19 +39,7 @@ namespace TelerikLogicBuilder.Tests
 
         private void Initialize()
         {
-            serviceProvider = new ServiceCollection()
-                .AddSingleton<IEnumHelper, EnumHelper>()
-                .AddSingleton<IExceptionHelper, ExceptionHelper>()
-                .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
-                .AddSingleton<IParameterAttributeReader, ParameterAttributeReader>()
-                .AddSingleton<IStringHelper, StringHelper>()
-                .AddSingleton<IPathHelper, PathHelper>()
-                .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
-                .AddSingleton<IReflectionHelper, ReflectionHelper>()
-                .AddSingleton<ITypeHelper, TypeHelper>()
-                .AddSingleton<IContextProvider, ContextProvider>()
-                .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
-                .BuildServiceProvider();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

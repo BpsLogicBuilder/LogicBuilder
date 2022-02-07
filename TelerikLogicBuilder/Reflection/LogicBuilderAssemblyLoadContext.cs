@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Runtime.Loader;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Structures
+namespace ABIS.LogicBuilder.FlowBuilder.Reflection
 {
     internal class LogicBuilderAssemblyLoadContext : AssemblyLoadContext
     {

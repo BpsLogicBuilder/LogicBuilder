@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OData.Edm;
 using System;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
+using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
 namespace TelerikLogicBuilder.Tests
 {
@@ -73,6 +73,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetListTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -136,6 +137,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetParameterTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -199,6 +201,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVariableTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -263,6 +266,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetFunctionReturnTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -542,6 +546,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -572,6 +577,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ParseEnumTextThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -599,11 +605,7 @@ namespace TelerikLogicBuilder.Tests
 
         private void Initialize()
         {
-            serviceProvider = new ServiceCollection()
-                .AddSingleton<IExceptionHelper, ExceptionHelper>()
-                .AddSingleton<IEnumHelper, ABIS.LogicBuilder.FlowBuilder.Services.EnumHelper>()
-                .AddSingleton<IStringHelper, StringHelper>()
-                .BuildServiceProvider();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
+using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
 namespace TelerikLogicBuilder.Tests
 {
@@ -67,11 +67,7 @@ namespace TelerikLogicBuilder.Tests
 
         private void Initialize()
         {
-            serviceProvider = new ServiceCollection()
-                .AddSingleton<IExceptionHelper, ExceptionHelper>()
-                .AddSingleton<ITypeHelper, TypeHelper>()
-                .AddSingleton<IReflectionHelper, ReflectionHelper>()
-                .BuildServiceProvider();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParametersXmlParser _parametersXmlParser;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IContextProvider _contextProvider;
 
         internal ConstructorXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider)
@@ -18,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
             this.xmlElement = xmlElement;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _parametersXmlParser = contextProvider.ParametersXmlParser;
+            _exceptionHelper = contextProvider.ExceptionHelper;
             _contextProvider = contextProvider;
         }
 
@@ -30,6 +32,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
         {
             get
             {
+                if (xmlElement.Name != XmlDataConstants.CONSTRUCTORELEMENT)
+                    throw _exceptionHelper.CriticalException("{09D4676D-0042-46FF-AF14-BF4555B8AE41}");
+
                 return GetConstructor
                 (
                     _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)

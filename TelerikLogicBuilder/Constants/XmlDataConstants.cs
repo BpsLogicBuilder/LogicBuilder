@@ -95,18 +95,6 @@
         internal const string CONSTRUCTORNAMEATTRIBUTE = "constructorName";
         internal const string LISTTYPEELEMENT = "listType";
 
-
-        #region Obsolete
-        internal const string QUESTIONCONSTRUCTORSELEMENT = "questionConstructors";
-        internal const string INPUTQUESTIONCONSTRUCTORSELEMENT = "inputQuestionConstructors";
-        internal const string CONSTRUCTORSGROUPELEMENT = "constructorsGroup";
-        internal const string CONNECTORCONSTRUCTORSELEMENT = "connectorConstructors";
-        internal const string HIERARCHYCONSTRUCTORSELEMENT = "hierarchyConstructors";
-        internal const string INPUTQUESTIONSHIERARCHYCONSTRUCTORSELEMENT = "inputQuestionsHierarchyConstructors";
-        internal const string QUESTIONSHIERARCHYCONSTRUCTORSELEMENT = "questionsHierarchyConstructors";
-        internal const string INPUTQUESTIONOBJECTTYPESELEMENT = "inputQuestionObjectTypes";
-        #endregion Obsolete
-
         //Project Properties question and connector object types
         internal const string LITERALINPUTQUESTIONOBJECTTYPESELEMENT = "literalInputQuestionObjectTypes";
         internal const string OBJECTINPUTQUESTIONOBJECTTYPESELEMENT = "objectInputQuestionObjectTypes";
@@ -149,6 +137,7 @@
         internal const string GENERICARGUMENTNAMEATTRIBUTE = "genericArgumentName";
 
         //ProjectProperties
+        internal const string PROJECTPROPERTIESELEMENT = "ProjectProperties";
         internal const string APPLICATIONSELEMENT = "applications";
         internal const string APPLICATIONELEMENT = "application";
 
@@ -162,6 +151,7 @@
         internal const string APPLICATIONEXECUTABLEELEMENT = "applicationExecutable";
         internal const string APPLICATIONEXECUTABLEPATHELEMENT = "applicationExecutablePath";
         internal const string STARTUPARGUMENTSELEMENT = "startupArguments";
+        internal const string ARGUMENTELEMENT = "argument";
         internal const string RESOURCEFILEELEMENT = "resourceFile";
         internal const string RESOURCEFILEDEPLOYMENTPATHELEMENT = "resourceFileDeploymentPath";
         internal const string RULESFILEELEMENT = "rulesFile";
