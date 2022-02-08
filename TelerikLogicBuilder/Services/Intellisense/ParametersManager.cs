@@ -10,13 +10,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
     internal class ParametersManager : IParametersManager
     {
         private readonly IContextProvider _contextProvider;
+        private readonly IParameterAttributeReader _parameterAttributeReader;
 
-        public ParametersManager(IContextProvider contextProvider)
+        public ParametersManager(IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
         {
             _contextProvider = contextProvider;
+            _parameterAttributeReader = parameterAttributeReader;
         }
 
         public ICollection<ParameterNodeInfoBase> GetParameterNodeInfos(IEnumerable<ParameterInfo> parameters) 
-            => parameters.Select(p => ParameterNodeInfoBase.Create(p, this._contextProvider)).ToList();
+            => parameters.Select(p => ParameterNodeInfoBase.Create(p, this._contextProvider, _parameterAttributeReader)).ToList();
     }
 }

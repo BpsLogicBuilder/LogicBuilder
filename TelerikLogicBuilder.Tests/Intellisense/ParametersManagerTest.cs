@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -27,11 +27,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetParameterNodeInfos()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParametersManager parametersManager = serviceProvider.GetRequiredService<IParametersManager>();
             ParameterInfo[] parameters = typeof(DataFormSettingsParameters).GetConstructors().First().GetParameters();
 
             //act
-            ICollection<ParameterNodeInfoBase> result = contextProvider.ParametersManager.GetParameterNodeInfos(parameters);
+            ICollection<ParameterNodeInfoBase> result = parametersManager.GetParameterNodeInfos(parameters);
 
             //assert
             Assert.NotEmpty(result);

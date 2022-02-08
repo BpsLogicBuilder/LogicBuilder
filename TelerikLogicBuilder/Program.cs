@@ -20,36 +20,49 @@ namespace ABIS.LogicBuilder.FlowBuilder
     {
         public static IServiceProvider ServiceProvider { get; set; }
         public static IServiceCollection ServiceCollection => new ServiceCollection()
+            .AddTransient<MDIParent, MDIParent>()
+
+            //Services
+            .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
+            .AddSingleton<IContextProvider, ContextProvider>()
+            .AddSingleton<IEncryption, Encryption>()
             .AddSingleton<IEnumHelper, EnumHelper>()
             .AddSingleton<IExceptionHelper, ExceptionHelper>()
-            .AddSingleton<IFormInitializer, FormInitializer>()
-            .AddSingleton<IExceptionHelper, ExceptionHelper>()
-            .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
-            .AddSingleton<IParameterAttributeReader, ParameterAttributeReader>()
-            .AddSingleton<IStringHelper, StringHelper>()
-            .AddSingleton<IPathHelper, PathHelper>()
-            .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
-            .AddSingleton<IReflectionHelper, ReflectionHelper>()
-            .AddSingleton<ITypeHelper, TypeHelper>()
-            .AddSingleton<IEncryption, Encryption>()
             .AddSingleton<IFileIOHelper, FileIOHelper>()
+            .AddSingleton<IFormInitializer, FormInitializer>()
+            .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
             .AddSingleton<IMessageBoxOptionsHelper, MessageBoxOptionsHelper>()
-            .AddSingleton<IXmlValidator, XmlValidator>()
-            .AddSingleton<IContextProvider, ContextProvider>()
-            .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
-            .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
-            .AddSingleton<IApplicationTypeInfoManager, ApplicationTypeInfoManager>()
+            .AddSingleton<IParameterAttributeReader, ParameterAttributeReader>()
+            .AddSingleton<IPathHelper, PathHelper>()
+            .AddSingleton<IReflectionHelper, ReflectionHelper>()
+            .AddSingleton<IStringHelper, StringHelper>()
+            .AddSingleton<ITypeHelper, TypeHelper>()
+            .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
+
+            //Configuration
+            .AddSingleton<IApplicationXmlParser, ApplicationXmlParser>()
             .AddSingleton<IConfigurationService, ConfigurationService>()
-            .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
-            .AddSingleton<IUpdateProjectProperties, UpdateProjectProperties>()
             .AddSingleton<ICreateProjectProperties, CreateProjectProperties>()
             .AddSingleton<ILoadProjectProperties, LoadProjectProperties>()
             .AddSingleton<IProjectPropertiesXmlParser, ProjectPropertiesXmlParser>()
-            .AddSingleton<IApplicationXmlParser, ApplicationXmlParser>()
-            .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
-            .AddSingleton<IAssemblyLoader, AssemblyLoader>()
+            .AddSingleton<IUpdateProjectProperties, UpdateProjectProperties>()
+            .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
+
+            //Intellisense
+            .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
+            .AddSingleton<IConstructorManager, ConstructorManager>()
+            .AddSingleton<IConstructorXmlParser, ConstructorXmlParser>()
+            .AddSingleton<IParametersManager, ParametersManager>()
+            .AddSingleton<IParametersXmlParser, ParametersXmlParser>()
+            
+            //Reflection
+            .AddSingleton<IApplicationTypeInfoManager, ApplicationTypeInfoManager>()
             .AddSingleton<IAssemblyHelper, AssemblyHelper>()
-            .AddTransient<MDIParent, MDIParent>();
+            .AddSingleton<IAssemblyLoader, AssemblyLoader>()
+            .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
+
+            //XmlValidation
+            .AddSingleton<IXmlValidator, XmlValidator>();
 
         /// <summary>
         /// The main entry point for the application.

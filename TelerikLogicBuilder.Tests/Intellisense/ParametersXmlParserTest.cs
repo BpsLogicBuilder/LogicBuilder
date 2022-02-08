@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Xml;
@@ -25,7 +25,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetLiteralParameterFromXml()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParametersXmlParser parametersXmlParser = serviceProvider.GetRequiredService<IParametersXmlParser>();
             XmlElement xmlElement = GetXmlElement(@"<literalParameter name=""Refresh"">
 					<literalType>Boolean</literalType>
 					<control>SingleLineTextBox</control>
@@ -44,7 +44,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 				</literalParameter>");
 
             //act
-            LiteralParameter result = (LiteralParameter)contextProvider.ParametersXmlParser.Parse(xmlElement);
+            LiteralParameter result = (LiteralParameter)parametersXmlParser.Parse(xmlElement);
 
             //assert
             Assert.Equal("Refresh", result.Name);
@@ -56,7 +56,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetObjectParameterFromXml()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParametersXmlParser parametersXmlParser = serviceProvider.GetRequiredService<IParametersXmlParser>();
             XmlElement xmlElement = GetXmlElement(@"<objectParameter name=""Refresh"">
 					<objectType>System.Object</objectType>
 					<optional>false</optional>
@@ -67,7 +67,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 				</objectParameter>");
 
             //act
-            ObjectParameter result = (ObjectParameter)contextProvider.ParametersXmlParser.Parse(xmlElement);
+            ObjectParameter result = (ObjectParameter)parametersXmlParser.Parse(xmlElement);
 
             //assert
             Assert.Equal("Refresh", result.Name);
@@ -81,7 +81,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetGenericParameterFromXml()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParametersXmlParser parametersXmlParser = serviceProvider.GetRequiredService<IParametersXmlParser>();
             XmlElement xmlElement = GetXmlElement(@"<genericParameter name=""Refresh"">
 					<genericArgumentName>T</genericArgumentName>
 					<optional>true</optional>
@@ -89,7 +89,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 				</genericParameter>");
 
             //act
-            GenericParameter result = (GenericParameter)contextProvider.ParametersXmlParser.Parse(xmlElement);
+            GenericParameter result = (GenericParameter)parametersXmlParser.Parse(xmlElement);
 
             //assert
             Assert.Equal("Refresh", result.Name);
@@ -103,7 +103,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetLiteralListParameterFromXml()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParametersXmlParser parametersXmlParser = serviceProvider.GetRequiredService<IParametersXmlParser>();
             XmlElement xmlElement = GetXmlElement(@"<literalListParameter name=""Page Sizes"">
 					<literalType>String</literalType>
 					<listType>GenericList</listType>
@@ -125,7 +125,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 				</literalListParameter>");
 
             //act
-            ListOfLiteralsParameter result = (ListOfLiteralsParameter)contextProvider.ParametersXmlParser.Parse(xmlElement);
+            ListOfLiteralsParameter result = (ListOfLiteralsParameter)parametersXmlParser.Parse(xmlElement);
 
             //assert
             Assert.Equal("Page Sizes", result.Name);
@@ -139,7 +139,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetObjectListParameterFromXml()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParametersXmlParser parametersXmlParser = serviceProvider.GetRequiredService<IParametersXmlParser>();
             XmlElement xmlElement = GetXmlElement(@"<objectListParameter name=""Page Sizes"">
 					<objectType>System.Object</objectType>
 					<listType>GenericList</listType>
@@ -149,7 +149,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 				</objectListParameter>");
 
             //act
-            ListOfObjectsParameter result = (ListOfObjectsParameter)contextProvider.ParametersXmlParser.Parse(xmlElement);
+            ListOfObjectsParameter result = (ListOfObjectsParameter)parametersXmlParser.Parse(xmlElement);
 
             //assert
             Assert.Equal("Page Sizes", result.Name);
@@ -163,7 +163,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetGenericListParameterFromXml()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParametersXmlParser parametersXmlParser = serviceProvider.GetRequiredService<IParametersXmlParser>();
             XmlElement xmlElement = GetXmlElement(@"<genericListParameter name=""Page Sizes"">
 					<genericArgumentName>T</genericArgumentName>
 					<listType>GenericList</listType>
@@ -173,7 +173,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 				</genericListParameter>");
 
             //act
-            ListOfGenericsParameter result = (ListOfGenericsParameter)contextProvider.ParametersXmlParser.Parse(xmlElement);
+            ListOfGenericsParameter result = (ListOfGenericsParameter)parametersXmlParser.Parse(xmlElement);
 
             //assert
             Assert.Equal("Page Sizes", result.Name);

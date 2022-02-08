@@ -20,16 +20,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlValidator _xmlValidator;
+        private readonly IApplicationXmlParser _applicationXmlParser;
         private readonly IContextProvider _contextProvider;
 
-        public LoadProjectProperties(IContextProvider contextProvider)
+        public LoadProjectProperties(IContextProvider contextProvider, ICreateProjectProperties createProjectProperties, IApplicationXmlParser applicationXmlParser)
         {
             _encryption = contextProvider.Encryption;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _createProjectProperties = contextProvider.CreateProjectProperties;
+            _createProjectProperties = createProjectProperties;
             _messageBoxOptionsHelper = contextProvider.MessageBoxOptionsHelper;
             _pathHelper = contextProvider.PathHelper;
             _xmlValidator = contextProvider.XmlValidator;
+            _applicationXmlParser = applicationXmlParser;
             _contextProvider = contextProvider;
         }
 
@@ -43,7 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 return new ProjectPropertiesXmlParserUtility
                 (
                     xmlDocument.DocumentElement,
-                    _contextProvider
+                    _contextProvider,
+                    _applicationXmlParser
                 ).GetProjectProperties
                 (
                     _pathHelper.GetFileNameNoExtention(fullPath),

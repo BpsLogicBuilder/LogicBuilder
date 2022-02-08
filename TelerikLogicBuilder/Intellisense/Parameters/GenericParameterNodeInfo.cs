@@ -7,8 +7,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
     {
         private readonly IContextProvider _contextProvider;
 
-        internal GenericParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider)
-            : base(pInfo, contextProvider.ParameterAttributeReader)
+        internal GenericParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+            : base(pInfo, parameterAttributeReader)
         {
             _contextProvider = contextProvider;
         }

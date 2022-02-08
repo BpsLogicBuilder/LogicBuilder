@@ -10,15 +10,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         private readonly IContextProvider _contextProvider;
         private readonly ITypeHelper _typeHelper;
         private readonly IEnumHelper _enumHelper;
-        private readonly IParameterAttributeReader _parameterAttributeReader;
 
-        internal ListOfGenericsParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider)
-            : base(pInfo, contextProvider.ParameterAttributeReader)
+        internal ListOfGenericsParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+            : base(pInfo, parameterAttributeReader)
         {
             _contextProvider = contextProvider;
             _typeHelper = contextProvider.TypeHelper;
             _enumHelper = contextProvider.EnumHelper;
-            _parameterAttributeReader = contextProvider.ParameterAttributeReader;
         }
 
         private ListParameterInputStyle ListControl => _parameterAttributeReader.GetListInputStyle(PInfo);

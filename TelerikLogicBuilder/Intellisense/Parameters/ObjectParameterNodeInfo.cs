@@ -8,14 +8,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
     {
         private readonly IContextProvider _contextProvider;
         private readonly ITypeHelper _typeHelper;
-        private readonly IParameterAttributeReader _parameterAttributeReader;
 
-        public ObjectParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider)
-            : base(pInfo, contextProvider.ParameterAttributeReader)
+        public ObjectParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+            : base(pInfo, parameterAttributeReader)
         {
             this._contextProvider = contextProvider;
             this._typeHelper = contextProvider.TypeHelper;
-            this._parameterAttributeReader = contextProvider.ParameterAttributeReader;
         }
 
         /// <summary>

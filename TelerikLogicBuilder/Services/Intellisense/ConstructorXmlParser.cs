@@ -8,13 +8,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
     internal class ConstructorXmlParser : IConstructorXmlParser
     {
         private readonly IContextProvider _contextProvider;
+        private readonly IParametersXmlParser _parametersXmlParser;
 
-        public ConstructorXmlParser(IContextProvider contextProvider)
+        public ConstructorXmlParser(IContextProvider contextProvider, IParametersXmlParser parametersXmlParser)
         {
             _contextProvider = contextProvider;
+            _parametersXmlParser = parametersXmlParser;
         }
 
         public Constructor Parse(XmlElement xmlElement) 
-            => new ConstructorXmlParserUtility(xmlElement, _contextProvider).Constructor;
+            => new ConstructorXmlParserUtility(xmlElement, _contextProvider, _parametersXmlParser).Constructor;
     }
 }

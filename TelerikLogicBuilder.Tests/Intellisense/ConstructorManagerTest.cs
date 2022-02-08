@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -26,11 +26,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void CreateConstructor()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IConstructorManager constructorManager = serviceProvider.GetRequiredService<IConstructorManager>();
             ConstructorInfo constructorInfo = typeof(DataFormSettingsParameters).GetConstructors().First();
 
             //act
-            Constructor result = contextProvider.ConstructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
+            Constructor result = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
 
             //assert
             Assert.NotNull(result);

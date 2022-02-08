@@ -15,13 +15,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
         private readonly IApplicationXmlParser _applicationXmlParser;
         private readonly XmlElement xmlElement;
 
-        public ProjectPropertiesXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider)
+        public ProjectPropertiesXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider, IApplicationXmlParser applicationXmlParser)
         {
             this.xmlElement = xmlElement;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _exceptionHelper = contextProvider.ExceptionHelper;
-            _applicationXmlParser = contextProvider.ApplicationXmlParser;
             _contextProvider = contextProvider;
+            _applicationXmlParser = applicationXmlParser;
         }
 
         internal ProjectProperties GetProjectProperties(string projectName, string projectPath)

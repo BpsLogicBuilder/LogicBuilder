@@ -14,12 +14,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense
         private readonly ITypeHelper _typeHelper;
         private readonly IContextProvider _contextProvider;
 
-        public ConstructorManager(IContextProvider contextProvider)
+        public ConstructorManager(IContextProvider contextProvider, IParametersManager parametersManager, IMemberAttributeReader memberAttributeReader)
         {
-            _parametersManager = contextProvider.ParametersManager;
-            _memberAttributeReader = contextProvider.MemberAttributeReader;
             _typeHelper = contextProvider.TypeHelper;
             _contextProvider = contextProvider;
+            _parametersManager = parametersManager;
+            _memberAttributeReader = memberAttributeReader;
         }
 
         public Constructor CreateConstructor(string name, ConstructorInfo cInfo) 

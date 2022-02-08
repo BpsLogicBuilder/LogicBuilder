@@ -17,14 +17,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
         private readonly IContextProvider _contextProvider;
         private readonly XmlElement xmlElement;
 
-        public ApplicationXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider)
+        public ApplicationXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider, IWebApiDeploymentXmlParser webApiDeploymentXmlParser)
         {
             this.xmlElement = xmlElement;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _enumHelper = contextProvider.EnumHelper;
-            _webApiDeploymentXmlParser = contextProvider.WebApiDeploymentXmlParser;
             _exceptionHelper = contextProvider.ExceptionHelper;
             _contextProvider = contextProvider;
+            _webApiDeploymentXmlParser = webApiDeploymentXmlParser;
         }
 
         internal Application Application

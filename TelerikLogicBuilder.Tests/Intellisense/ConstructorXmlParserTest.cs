@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Xml;
@@ -25,7 +25,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
         public void GetConstructorFromXml()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IConstructorXmlParser constructorXmlParser = serviceProvider.GetRequiredService<IConstructorXmlParser>();
             XmlElement xmlElement = GetXmlElement(@"<constructor name=""OperatorGroup"">
 			<typeName>LogicBuilder.Forms.Parameters.Grid.OperatorGroup</typeName>
 			<parameters>
@@ -58,7 +58,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 		</constructor>");
 
             //act
-            Constructor result = contextProvider.ConstructorXmlParser.Parse(xmlElement);
+            Constructor result = constructorXmlParser.Parse(xmlElement);
 
             //assert
             Assert.Equal("OperatorGroup", result.Name);

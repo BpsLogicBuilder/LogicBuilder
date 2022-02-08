@@ -10,14 +10,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
     {
         private readonly IContextProvider _contextProvider;
         private readonly IEnumHelper _enumHelper;
-        private readonly IParameterAttributeReader _parameterAttributeReader;
 
-        internal LiteralParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider)
-            : base(pInfo, contextProvider.ParameterAttributeReader)
+        internal LiteralParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+            : base(pInfo, parameterAttributeReader)
         {
             this._contextProvider = contextProvider;
             this._enumHelper = contextProvider.EnumHelper;
-            this._parameterAttributeReader = contextProvider.ParameterAttributeReader;
         }
 
         /// <summary>

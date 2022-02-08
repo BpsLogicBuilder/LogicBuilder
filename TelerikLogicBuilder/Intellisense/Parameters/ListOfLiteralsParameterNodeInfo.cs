@@ -13,15 +13,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         private readonly ITypeHelper _typeHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IStringHelper _stringHelper;
-        private readonly IParameterAttributeReader _parameterAttributeReader;
-        internal ListOfLiteralsParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider)
-            : base(pInfo, contextProvider.ParameterAttributeReader)
+
+        internal ListOfLiteralsParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+            : base(pInfo, parameterAttributeReader)
         {
             _contextProvider = contextProvider;
             _typeHelper = contextProvider.TypeHelper;
             _enumHelper = contextProvider.EnumHelper;
             _stringHelper = contextProvider.StringHelper;
-            _parameterAttributeReader = contextProvider.ParameterAttributeReader;
         }
 
         #region Properties

@@ -19,14 +19,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
         private readonly Dictionary<Type, string> constructorNameMaps;
         private readonly Dictionary<string, Constructor> existingConstructors;
 
-        public ChildConstructorFinderUtility(Dictionary<string, Constructor> existingConstructors, IContextProvider contextProvider)
+        public ChildConstructorFinderUtility(Dictionary<string, Constructor> existingConstructors, 
+            IContextProvider contextProvider,
+            IConstructorManager constructorManager,
+            IParametersManager parametersManager,
+            IMemberAttributeReader memberAttributeReader)
         {
-            _constructorManager = contextProvider.ConstructorManager;
-            _parametersManager = contextProvider.ParametersManager;
             _reflectionHelper = contextProvider.ReflectionHelper;
             _typeHelper = contextProvider.TypeHelper;
             _stringHelper = contextProvider.StringHelper;
-            _memberAttributeReader = contextProvider.MemberAttributeReader;
+            _constructorManager = constructorManager;
+            _parametersManager = parametersManager;
+            _memberAttributeReader = memberAttributeReader;
             this.constructorNameMaps = new Dictionary<Type, string>();
             this.existingConstructors = existingConstructors;
         }

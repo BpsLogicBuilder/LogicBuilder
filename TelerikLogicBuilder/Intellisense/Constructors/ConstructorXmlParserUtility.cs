@@ -14,13 +14,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IContextProvider _contextProvider;
 
-        internal ConstructorXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider)
+        internal ConstructorXmlParserUtility(XmlElement xmlElement, IContextProvider contextProvider, IParametersXmlParser parametersXmlParser)
         {
             this.xmlElement = xmlElement;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _parametersXmlParser = contextProvider.ParametersXmlParser;
             _exceptionHelper = contextProvider.ExceptionHelper;
             _contextProvider = contextProvider;
+            _parametersXmlParser = parametersXmlParser;
         }
 
         #region Fields
