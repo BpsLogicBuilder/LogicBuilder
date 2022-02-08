@@ -50,11 +50,15 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IUpdateProjectProperties, UpdateProjectProperties>()
             .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
 
-            //Intellisense
+            //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
             .AddSingleton<IConstructorManager, ConstructorManager>()
             .AddSingleton<IConstructorXmlParser, ConstructorXmlParser>()
+            .AddSingleton<IExistingConstructorFinder, ExistingConstructorFinder>()
+
+            //Intellisense.Parameters
             .AddSingleton<IParametersManager, ParametersManager>()
+            .AddSingleton<IParametersMatcher, ParametersMatcher>()
             .AddSingleton<IParametersXmlParser, ParametersXmlParser>()
             
             //Reflection

@@ -1,5 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
+﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -9,11 +9,11 @@ using System.Reflection;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
-namespace TelerikLogicBuilder.Tests.Intellisense
+namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
 {
-    public class ParametersManagerTest
+    public class ChildConstructorFinderTest
     {
-        public ParametersManagerTest()
+        public ChildConstructorFinderTest()
         {
             Initialize();
         }
@@ -24,17 +24,18 @@ namespace TelerikLogicBuilder.Tests.Intellisense
 
         [Fact]
         [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
-        public void GetParameterNodeInfos()
+        public void AddChildConstructorsAddsExpectedConstructors()
         {
             //arrange
-            IParametersManager parametersManager = serviceProvider.GetRequiredService<IParametersManager>();
+            IChildConstructorFinder finder = serviceProvider.GetRequiredService<IChildConstructorFinder>();
+            Dictionary<string, Constructor> existingConstructors = new();
             ParameterInfo[] parameters = typeof(DataFormSettingsParameters).GetConstructors().First().GetParameters();
 
             //act
-            ICollection<ParameterNodeInfoBase> result = parametersManager.GetParameterNodeInfos(parameters);
+            finder.AddChildConstructors(existingConstructors, parameters);
 
             //assert
-            Assert.NotEmpty(result);
+            Assert.NotEmpty(existingConstructors);
         }
 
         private void Initialize()

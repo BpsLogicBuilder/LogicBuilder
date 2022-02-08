@@ -42,8 +42,10 @@ namespace Contoso.Forms.Parameters.DataForm
 
 			[ParameterEditorControl(ParameterControlType.ParameterSourceOnly)]
 			[Comments("Fully qualified class name for the model type.")]
+#pragma warning disable IDE0060 // Remove unused parameter
 			string fieldTypeSource = "Contoso.Domain.Entities"
-		)
+#pragma warning restore IDE0060 // Remove unused parameter
+        )
 		{
 			Field = field;
 			Title = title;

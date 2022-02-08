@@ -7,7 +7,7 @@ using System.Xml;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
-namespace TelerikLogicBuilder.Tests.Intellisense
+namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
 {
     public class ParametersXmlParserTest
     {
