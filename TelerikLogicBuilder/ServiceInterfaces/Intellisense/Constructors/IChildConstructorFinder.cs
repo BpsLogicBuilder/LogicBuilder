@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors
 {
     internal interface IChildConstructorFinder
     {

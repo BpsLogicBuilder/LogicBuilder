@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Xml;

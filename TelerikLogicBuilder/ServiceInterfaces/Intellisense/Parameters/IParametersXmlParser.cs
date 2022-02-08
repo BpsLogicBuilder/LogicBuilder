@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System.Xml;
 
-namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters
 {
     internal interface IParametersXmlParser
     {

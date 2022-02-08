@@ -1,8 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using System.Linq;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Services
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 {
     internal class ReflectionHelper : IReflectionHelper
     {

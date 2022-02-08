@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection
 {
     internal interface IReflectionHelper
     {

@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors
 {
     internal interface IConstructorManager
     {

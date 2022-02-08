@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
