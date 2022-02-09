@@ -2,12 +2,14 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,7 +62,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IParametersManager, ParametersManager>()
             .AddSingleton<IParametersMatcher, ParametersMatcher>()
             .AddSingleton<IParametersXmlParser, ParametersXmlParser>()
-            
+
+            //Intellisense.Variables
+            .AddSingleton<IVariablesManager, VariablesManager>()
+            .AddSingleton<IVariablesXmlParser, VariablesXmlParser>()
+
             //Reflection
             .AddSingleton<IApplicationTypeInfoManager, ApplicationTypeInfoManager>()
             .AddSingleton<IAssemblyHelper, AssemblyHelper>()

@@ -31,7 +31,7 @@ namespace Contoso.Parameters.Expansions
             List<SelectExpandItemParameters> expandedItems = null,
 
             [ParameterEditorControl(ParameterControlType.ParameterSourceOnly)]
-            [Comments("Fully qualified class name for the model type.")]
+            [Comments("Fully qualified class name for the model type.")] 
             string fieldTypeSource = "Enrollment.Domain.Entities",
 
             [ParameterEditorControl(ParameterControlType.ParameterSourceOnly)]

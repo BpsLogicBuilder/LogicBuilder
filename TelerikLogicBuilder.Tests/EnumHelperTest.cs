@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
@@ -601,6 +603,93 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(XmlDataConstants.LITERALVARIABLEELEMENT, VariableTypeCategory.Literal)]
+        [InlineData(XmlDataConstants.OBJECTVARIABLEELEMENT, VariableTypeCategory.Object)]
+        [InlineData(XmlDataConstants.LITERALLISTVARIABLEELEMENT, VariableTypeCategory.LiteralList)]
+        [InlineData(XmlDataConstants.OBJECTLISTVARIABLEELEMENT, VariableTypeCategory.ObjectList)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        internal void GetVariableTypeCategoryReturnsTheExpectedCategory(string elementName, VariableTypeCategory expectedCategory)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var category = enumHelper.GetVariableTypeCategory(elementName);
+
+            //assert
+            Assert.Equal(expectedCategory, category);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetVariableTypeCategoryThrowsCriticalExceptionForElementName()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetVariableTypeCategory("xyz"));
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void ToValidIndirectReferenceDictionaryReturnsCorrectDictionaryForDefaultCulture()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            IDictionary<string, ValidIndirectReference> dictionary = enumHelper.ToValidIndirectReferenceDictionary();
+
+            //assert
+            Assert.Equal("field", dictionary.Keys.First());
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void ToValidIndirectReferenceDictionaryReturnsCorrectDictionaryForSatelliteCulture()
+        {
+            //arrange
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            IDictionary<string, ValidIndirectReference> dictionary = enumHelper.ToValidIndirectReferenceDictionary();
+
+            //assert
+            Assert.Equal("fieldfr", dictionary.Keys.First());
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void BuildValidReferenceDefinitionReturnsCorrectStringForDefaultCulture()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            string result = enumHelper.BuildValidReferenceDefinition("Field.Property.IntKeyValue");
+
+            //assert
+            Assert.Equal("Field.Property.IntegerKeyIndexer", result);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void BuildValidReferenceDefinitionReturnsCorrectStringForSatelliteCulture()
+        {
+            //arrange
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            string result = enumHelper.BuildValidReferenceDefinition("FieldFR.PropertyFR.IntKeyValueFR");
+
+            //assert
+            Assert.Equal("Field.Property.IntegerKeyIndexer", result);
         }
 
         private void Initialize()

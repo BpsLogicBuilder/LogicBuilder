@@ -317,6 +317,78 @@
 	<data name="enumDescriptionIGenericEnumerable" xml:space="preserve">
     <value>Generic Enumerable Interface</value>
   </data>
+	<data name="enumDescriptionField" xml:space="preserve">
+    <value>Field</value>
+  </data>
+	<data name="enumDescriptionProperty" xml:space="preserve">
+    <value>Property</value>
+  </data>
+	<data name="enumDescriptionThis" xml:space="preserve">
+    <value>This</value>
+  </data>
+	<data name="enumDescriptionType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+	<data name="enumDescriptionArrayIndexer" xml:space="preserve">
+    <value>ArrayItem</value>
+  </data>
+	<data name="enumDescriptionIntegerKeyIndexer" xml:space="preserve">
+    <value>IntKeyValue</value>
+  </data>
+	<data name="enumDescriptionStringKeyIndexer" xml:space="preserve">
+    <value>StringKeyValue</value>
+  </data>
+	<data name="enumDescriptionBooleanKeyIndexer" xml:space="preserve">
+    <value>BoolKeyValue</value>
+  </data>
+	<data name="enumDescriptionByteKeyIndexer" xml:space="preserve">
+    <value>ByteKeyValue</value>
+  </data>
+	<data name="enumDescriptionCharKeyIndexer" xml:space="preserve">
+    <value>CharKeyValue</value>
+  </data>
+	<data name="enumDescriptionDateTimeKeyIndexer" xml:space="preserve">
+    <value>DateTimeKeyValue</value>
+  </data>
+	<data name="enumDescriptionTimeSpanKeyIndexer" xml:space="preserve">
+    <value>TimeSpanKeyValue</value>
+  </data>
+	<data name="enumDescriptionGuidKeyIndexer" xml:space="preserve">
+    <value>GuidKeyValue</value>
+  </data>
+	<data name="enumDescriptionDecimalKeyIndexer" xml:space="preserve">
+    <value>DecimalKeyValue</value>
+  </data>
+	<data name="enumDescriptionDoubleKeyIndexer" xml:space="preserve">
+    <value>DoubleKeyValue</value>
+  </data>
+	<data name="enumDescriptionFloatKeyIndexer" xml:space="preserve">
+    <value>FloatKeyValue</value>
+  </data>
+	<data name="enumDescriptionLongKeyIndexer" xml:space="preserve">
+    <value>LongKeyValue</value>
+  </data>
+	<data name="enumDescriptionSByteKeyIndexer" xml:space="preserve">
+    <value>SByteKeyValue</value>
+  </data>
+	<data name="enumDescriptionShortKeyIndexer" xml:space="preserve">
+    <value>ShortKeyValue</value>
+  </data>
+	<data name="enumDescriptionUIntegerKeyIndexer" xml:space="preserve">
+    <value>UIntKeyValue</value>
+  </data>
+	<data name="enumDescriptionULongKeyIndexer" xml:space="preserve">
+    <value>ULongKeyValue</value>
+  </data>
+	<data name="enumDescriptionUShortKeyIndexer" xml:space="preserve">
+    <value>UShortKeyValue</value>
+  </data>
+	<data name="enumDescriptionVariableKeyIndexer" xml:space="preserve">
+    <value>VariableKeyValue</value>
+  </data>
+	<data name="enumDescriptionVariableArrayIndexer" xml:space="preserve">
+    <value>VariableKeyArrayItem</value>
+  </data>
 	<data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.</value>
   </data>
@@ -330,6 +402,10 @@
   </data>
 	<data name="listDescriptionFormat" xml:space="preserve">
     <value>{0} Of {1}</value>
+    <comment>0=listType 1=UnderlyingType</comment>
+  </data>
+	<data name="listVariableTypeFormat" xml:space="preserve">
+    <value>{0}Of{1}</value>
     <comment>0=listType 1=UnderlyingType</comment>
   </data>
 	<data name="notImplementedMessageFormat" xml:space="preserve">

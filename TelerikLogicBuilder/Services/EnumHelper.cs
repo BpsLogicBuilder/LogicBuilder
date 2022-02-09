@@ -5,16 +5,33 @@ using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class EnumHelper : IEnumHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IStringHelper _stringHelper;
 
-        public EnumHelper(IExceptionHelper exceptionHelper)
+        public EnumHelper(IExceptionHelper exceptionHelper, IStringHelper stringHelper)
         {
             _exceptionHelper = exceptionHelper;
+            _stringHelper = stringHelper;
+        }
+
+        public string BuildValidReferenceDefinition(string referenceDefinition)
+        {
+            if (string.IsNullOrEmpty(referenceDefinition)) return string.Empty;
+
+            IDictionary<string, ValidIndirectReference> definitionsDictionary = ToValidIndirectReferenceDictionary();
+            return string.Join
+            (
+                MiscellaneousConstants.PERIODSTRING,
+                _stringHelper.SplitWithQuoteQualifier(referenceDefinition.Trim(), MiscellaneousConstants.PERIODSTRING)
+                    .Select(e => Enum.GetName(typeof(ValidIndirectReference), definitionsDictionary[e.ToLowerInvariant()]))
+                    .ToArray()
+            );
         }
 
         public ListType GetListType(Type memberType)
@@ -85,6 +102,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 GetVisibleEnumText(listType), 
                 elementType
             );
+
+        public VariableTypeCategory GetVariableTypeCategory(string elementName)
+        {
+            return elementName switch
+            {
+                XmlDataConstants.LITERALVARIABLEELEMENT => VariableTypeCategory.Literal,
+                XmlDataConstants.OBJECTVARIABLEELEMENT => VariableTypeCategory.Object,
+                XmlDataConstants.LITERALLISTVARIABLEELEMENT => VariableTypeCategory.LiteralList,
+                XmlDataConstants.OBJECTLISTVARIABLEELEMENT => VariableTypeCategory.ObjectList,
+                _ => throw _exceptionHelper.CriticalException("{1727C7D3-FCAA-4A6F-BBD1-B4031824E2C6}"),
+            };
+        }
 
         public string GetVisibleEnumText<T>(T enumType)
         {
@@ -251,5 +280,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             else
                 throw _exceptionHelper.CriticalException("{C0115382-3B85-4FCD-AF3A-15F9991D65E3}");
         }
+
+        public IDictionary<string, ValidIndirectReference> ToValidIndirectReferenceDictionary()
+            => Enum.GetNames(typeof(ValidIndirectReference))
+                .ToDictionary
+                (
+                    name => Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, name)).ToLowerInvariant(),
+                    name => (ValidIndirectReference)Enum.Parse(typeof(ValidIndirectReference), name)
+                );
     }
 }
