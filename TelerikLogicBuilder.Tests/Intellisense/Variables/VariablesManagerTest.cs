@@ -22,20 +22,19 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         #endregion Fields
 
         [Theory]
-        [InlineData("MemberName", typeof(LiteralVariableNodeInfo), typeof(LiteralVariable))]
-        [InlineData("Filter", typeof(ObjectVariableNodeInfo), typeof(ObjectVariable))]
-        [InlineData("Selects", typeof(ListOfLiteralsVariableNodeInfo), typeof(ListOfLiteralsVariable))]
-        [InlineData("ExpandedItems", typeof(ListOfObjectsVariableNodeInfo), typeof(ListOfObjectsVariable))]
+        [InlineData("MemberName", typeof(LiteralVariable))]
+        [InlineData("Filter", typeof(ObjectVariable))]
+        [InlineData("Selects", typeof(ListOfLiteralsVariable))]
+        [InlineData("ExpandedItems", typeof(ListOfObjectsVariable))]
         [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
-        public void GetVariableWorks(string memberName, Type nodeInfoType, Type variableType)
+        public void GetVariableWorks(string memberName, Type variableType)
         {
             //arrange
             IVariablesManager variablesManager = serviceProvider.GetRequiredService<IVariablesManager>();
             PropertyInfo propertyInfo = typeof(SelectExpandItemParameters).GetProperty(memberName);
 
             //act
-            var result = variablesManager.GetVariableNodeInfo(propertyInfo, propertyInfo.PropertyType);
-            var variable = result.GetVariable
+            var variable = variablesManager.GetVariable
             (
                 propertyInfo.Name, 
                 propertyInfo.Name, 
@@ -45,11 +44,12 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 string.Empty, 
                 string.Empty, 
                 string.Empty, 
-                ReferenceCategories.This
+                ReferenceCategories.This,
+                propertyInfo, 
+                propertyInfo.PropertyType
             );
 
             //assert
-            Assert.Equal(nodeInfoType, result.GetType());
             Assert.Equal(variableType, variable.GetType());
         }
 

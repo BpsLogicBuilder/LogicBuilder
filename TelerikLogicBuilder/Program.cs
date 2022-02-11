@@ -76,6 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //Intellisense.Variables
             .AddSingleton<IVariablesManager, VariablesManager>()
+            .AddSingleton<IVariablesNodeInfoManager, VariablesNodeInfoManager>()
             .AddSingleton<IVariablesXmlParser, VariablesXmlParser>()
 
             //Reflection
