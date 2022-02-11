@@ -63,6 +63,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public bool IsNullable(Type type) 
             => type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>));
 
+        public bool IsValidConnectorList(Type type)
+            => IsValidList(type) 
+                && ToId(GetUndelyingTypeForValidList(type)) == ConnectorWrapperClasses.CONNECTORCLASS;
+
         public bool IsValidList(Type type) 
             => (type.IsGenericType && (type.GetGenericTypeDefinition().Equals(typeof(List<>))
                 || type.GetGenericTypeDefinition().Equals(typeof(IList<>))
@@ -70,6 +74,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || type.GetGenericTypeDefinition().Equals(typeof(ICollection<>))
                 || type.GetGenericTypeDefinition().Equals(typeof(IEnumerable<>))))
                 || (type.IsArray && type.GetArrayRank() == 1);
+
+        public bool IsValidLiteralReturnType(Type type)
+        {
+            if (type == typeof(void))
+                return true;
+
+            return IsLiteralType(type);
+        }
 
         public string ToId(Type type)
         {

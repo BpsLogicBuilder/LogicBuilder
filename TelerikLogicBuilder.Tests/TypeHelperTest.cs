@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using LogicBuilder.Forms.Parameters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -84,6 +85,24 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Theory]
+        [InlineData(typeof(string), true)]
+        [InlineData(typeof(int?), true)]
+        [InlineData(typeof(void), true)]
+        [InlineData(typeof(List<int?>), false)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void IsValidLiteralReturnTypeReturnsTheExpectedBoolean(Type type, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.IsValidLiteralReturnType(type);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
         [InlineData(typeof(string), false)]
         [InlineData(typeof(int?), true)]
         [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
@@ -115,6 +134,27 @@ namespace TelerikLogicBuilder.Tests
 
             //act
             var result = helper.IsValidList(type);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(string), false)]
+        [InlineData(typeof(List<ConnectorParameters>), true)]
+        [InlineData(typeof(IList<ConnectorParameters>), true)]
+        [InlineData(typeof(Collection<ConnectorParameters>), true)]
+        [InlineData(typeof(ICollection<ConnectorParameters>), true)]
+        [InlineData(typeof(IEnumerable<ConnectorParameters>), true)]
+        [InlineData(typeof(ConnectorParameters[]), true)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void IsValidConnectorListReturnsTheExpectedBoolean(Type type, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.IsValidConnectorList(type);
 
             //assert
             Assert.Equal(expectedResult, result);

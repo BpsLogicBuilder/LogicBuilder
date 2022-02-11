@@ -78,6 +78,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             };
         }
 
+        public ReturnTypeCategory GetReturnTypeCategory(string elementName) 
+            => elementName switch
+            {
+                XmlDataConstants.LITERALELEMENT => ReturnTypeCategory.Literal,
+                XmlDataConstants.OBJECTELEMENT => ReturnTypeCategory.Object,
+                XmlDataConstants.GENERICELEMENT => ReturnTypeCategory.Generic,
+                XmlDataConstants.LITERALLISTELEMENT => ReturnTypeCategory.LiteralList,
+                XmlDataConstants.OBJECTLISTELEMENT => ReturnTypeCategory.ObjectList,
+                XmlDataConstants.GENERICLISTELEMENT => ReturnTypeCategory.GenericList,
+                _ => throw _exceptionHelper.CriticalException("{3A66A34C-D19F-4B76-9E26-3F95FFA09B36}"),
+            };
+
         public Type GetSystemType(LiteralFunctionReturnType functionReturnType) 
             => GetSystemTypeFromEnum(functionReturnType);
 

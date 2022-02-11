@@ -85,6 +85,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 : getChildElements().ToList();
         }
 
+        public XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool> filter = null) 
+            => filter != null
+                ? xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault(filter)
+                : xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault();
+
         public XmlDocument ToXmlDocument(string xmlString, bool preserveWhiteSpace = true)
         {
             return LoadXml(new XmlDocument { PreserveWhitespace = preserveWhiteSpace });

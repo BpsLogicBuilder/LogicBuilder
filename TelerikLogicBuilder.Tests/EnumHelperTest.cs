@@ -606,6 +606,68 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Theory]
+        [InlineData(XmlDataConstants.LITERALPARAMETERELEMENT, ParameterCategory.Literal)]
+        [InlineData(XmlDataConstants.OBJECTPARAMETERELEMENT, ParameterCategory.Object)]
+        [InlineData(XmlDataConstants.GENERICPARAMETERELEMENT, ParameterCategory.Generic)]
+        [InlineData(XmlDataConstants.LITERALLISTPARAMETERELEMENT, ParameterCategory.LiteralList)]
+        [InlineData(XmlDataConstants.OBJECTLISTPARAMETERELEMENT, ParameterCategory.ObjectList)]
+        [InlineData(XmlDataConstants.GENERICLISTPARAMETERELEMENT, ParameterCategory.GenericList)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        internal void GetParameterCategoryReturnsTheExpectedCategory(string elementName, ParameterCategory expectedCategory)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var category = enumHelper.GetParameterCategory(elementName);
+
+            //assert
+            Assert.Equal(expectedCategory, category);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetParameterCategoryThrowsCriticalExceptionForInvalidElementName()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetParameterCategory("xyz"));
+        }
+
+        [Theory]
+        [InlineData(XmlDataConstants.LITERALELEMENT, ReturnTypeCategory.Literal)]
+        [InlineData(XmlDataConstants.OBJECTELEMENT, ReturnTypeCategory.Object)]
+        [InlineData(XmlDataConstants.GENERICELEMENT, ReturnTypeCategory.Generic)]
+        [InlineData(XmlDataConstants.LITERALLISTELEMENT, ReturnTypeCategory.LiteralList)]
+        [InlineData(XmlDataConstants.OBJECTLISTELEMENT, ReturnTypeCategory.ObjectList)]
+        [InlineData(XmlDataConstants.GENERICLISTELEMENT, ReturnTypeCategory.GenericList)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        internal void GetReturnTypeCategoryReturnsTheExpectedCategory(string elementName, ReturnTypeCategory expectedCategory)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var category = enumHelper.GetReturnTypeCategory(elementName);
+
+            //assert
+            Assert.Equal(expectedCategory, category);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetReturnTypeCategoryThrowsCriticalExceptionForInvalidElementName()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetReturnTypeCategory("xyz"));
+        }
+
+        [Theory]
         [InlineData(XmlDataConstants.LITERALVARIABLEELEMENT, VariableTypeCategory.Literal)]
         [InlineData(XmlDataConstants.OBJECTVARIABLEELEMENT, VariableTypeCategory.Object)]
         [InlineData(XmlDataConstants.LITERALLISTVARIABLEELEMENT, VariableTypeCategory.LiteralList)]
@@ -625,7 +687,7 @@ namespace TelerikLogicBuilder.Tests
 
         [Fact]
         [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
-        public void GetVariableTypeCategoryThrowsCriticalExceptionForElementName()
+        public void GetVariableTypeCategoryThrowsCriticalExceptionForInvalidElementName()
         {
             //arrange
             IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();

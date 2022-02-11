@@ -11,6 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         XmlWriter CreateFormattedXmlWriterWithDeclaration(StringBuilder stringBuilder);
         XmlWriter CreateUnformattedXmlWriter(StringBuilder stringBuilder);
         List<XmlElement> GetChildElements(XmlNode xmlNode, Func<XmlElement, bool> filter = null, Func<IEnumerable<XmlElement>, IEnumerable<XmlElement>> enumerableFunc = null);
+        XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool> filter = null);
         XmlDocument ToXmlDocument(string xmlString, bool preserveWhiteSpace = true);
     }
 }

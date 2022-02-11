@@ -862,6 +862,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - {1}({2}).
+        /// </summary>
+        internal static string functionToStringFormat {
+            get {
+                return ResourceManager.GetString("functionToStringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic methods are not supported. Method name: &quot;{0}&quot;..
+        /// </summary>
+        internal static string genericMethodsNotSupportedFormat {
+            get {
+                return ResourceManager.GetString("genericMethodsNotSupportedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Argument {0}..
         /// </summary>
         internal static string invalidArgumentTextFormat {
@@ -903,6 +921,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string listVariableTypeFormat {
             get {
                 return ResourceManager.GetString("listVariableTypeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error configuring method {0}. The connectors multiple choice parameter must be the last parameter..
+        /// </summary>
+        internal static string multipleChoiceParamNotLastFormat {
+            get {
+                return ResourceManager.GetString("multipleChoiceParamNotLastFormat", resourceCulture);
             }
         }
         

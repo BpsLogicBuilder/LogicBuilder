@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -8,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
@@ -58,7 +60,16 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IConstructorXmlParser, ConstructorXmlParser>()
             .AddSingleton<IExistingConstructorFinder, ExistingConstructorFinder>()
 
+            //Intellisense.Functions
+            .AddSingleton<IFunctionManager, FunctionManager>()
+            .AddSingleton<IFunctionNodeInfoManager, FunctionNodeInfoManager>()
+            .AddSingleton<IFunctionXmlParser, FunctionXmlParser>()
+            .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
+            .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
+            .AddSingleton<IReturnTypeXmlParser, ReturnTypeXmlParser>()
+
             //Intellisense.Parameters
+            .AddSingleton<IMultipleChoiceParameterValidator, MultipleChoiceParameterValidator>()
             .AddSingleton<IParametersManager, ParametersManager>()
             .AddSingleton<IParametersMatcher, ParametersMatcher>()
             .AddSingleton<IParametersXmlParser, ParametersXmlParser>()

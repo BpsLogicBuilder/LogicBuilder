@@ -389,6 +389,14 @@
 	<data name="enumDescriptionVariableArrayIndexer" xml:space="preserve">
     <value>VariableKeyArrayItem</value>
   </data>
+	<data name="functionToStringFormat" xml:space="preserve">
+    <value>{0} - {1}({2})</value>
+    <comment>0=functionName 1=Type 2=parametersToString</comment>
+  </data>
+	<data name="genericMethodsNotSupportedFormat" xml:space="preserve">
+    <value>Generic methods are not supported. Method name: "{0}".</value>
+    <comment>0=methodName</comment>
+  </data>
 	<data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.</value>
   </data>
@@ -407,6 +415,10 @@
 	<data name="listVariableTypeFormat" xml:space="preserve">
     <value>{0}Of{1}</value>
     <comment>0=listType 1=UnderlyingType</comment>
+  </data>
+	<data name="multipleChoiceParamNotLastFormat" xml:space="preserve">
+    <value>Error configuring method {0}. The connectors multiple choice parameter must be the last parameter.</value>
+    <comment>0=functionName</comment>
   </data>
 	<data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.</value>
