@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
@@ -14,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         IReflectionHelper ReflectionHelper { get; }
         IStringHelper StringHelper { get; }
         ITypeHelper TypeHelper { get; }
+        IVariableHelper VariableHelper { get; }
         IXmlDocumentHelpers XmlDocumentHelpers { get; }
-        IXmlValidator XmlValidator { get; }
     }
 }

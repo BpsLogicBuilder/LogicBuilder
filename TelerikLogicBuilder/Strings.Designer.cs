@@ -79,11 +79,65 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0}, must be an integer greater than or equal to zero..
+        /// </summary>
+        internal static string arrayKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("arrayKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, each index in Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be an integer greater than or equal to zero..
+        /// </summary>
+        internal static string arrayKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("arrayKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The assembly &quot;{0}&quot;, one of its dependencies or the class &quot;{1}&quot; could not be loaded..
         /// </summary>
         internal static string assemblyUnavailableMessageFormat {
             get {
                 return ResourceManager.GetString("assemblyUnavailableMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be a boolean..
+        /// </summary>
+        internal static string booleanKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("booleanKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be a boolean..
+        /// </summary>
+        internal static string booleanKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("booleanKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type byte..
+        /// </summary>
+        internal static string byteKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("byteKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type byte..
+        /// </summary>
+        internal static string byteKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("byteKeyReferenceIsInvalidFormat2", resourceCulture);
             }
         }
         
@@ -106,6 +160,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cast Reference As field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
+        /// </summary>
+        internal static string castReferenceAsMustBeEmptyFormat {
+            get {
+                return ResourceManager.GetString("castReferenceAsMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type char..
+        /// </summary>
+        internal static string charKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("charKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type char..
+        /// </summary>
+        internal static string charKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("charKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} - {1}({2}).
         /// </summary>
         internal static string constructorToStringFormat {
@@ -120,6 +201,78 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string createNewProjectFileQuestion {
             get {
                 return ResourceManager.GetString("createNewProjectFileQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type Date..
+        /// </summary>
+        internal static string dateKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("dateKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type Date..
+        /// </summary>
+        internal static string dateKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("dateKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type DateTime..
+        /// </summary>
+        internal static string dateTimeKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("dateTimeKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type DateTime..
+        /// </summary>
+        internal static string dateTimeKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("dateTimeKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type DateTimeOffset..
+        /// </summary>
+        internal static string dateTimeOffsetKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("dateTimeOffsetKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type DateTimeOffset..
+        /// </summary>
+        internal static string dateTimeOffsetKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("dateTimeOffsetKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type decimal..
+        /// </summary>
+        internal static string decimalKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("decimalKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type decimal..
+        /// </summary>
+        internal static string decimalKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("decimalKeyReferenceIsInvalidFormat2", resourceCulture);
             }
         }
         
@@ -232,6 +385,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type double..
+        /// </summary>
+        internal static string doubleKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("doubleKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type double..
+        /// </summary>
+        internal static string doubleKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("doubleKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Any.
         /// </summary>
         internal static string enumDescriptionAny {
@@ -322,6 +493,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DateKeyValue.
+        /// </summary>
+        internal static string enumDescriptionDateKeyIndexer {
+            get {
+                return ResourceManager.GetString("enumDescriptionDateKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DateTime.
         /// </summary>
         internal static string enumDescriptionDateTime {
@@ -345,6 +525,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionDateTimeOffset {
             get {
                 return ResourceManager.GetString("enumDescriptionDateTimeOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateTimeOffseteKeyValue.
+        /// </summary>
+        internal static string enumDescriptionDateTimeOffsetKeyIndexer {
+            get {
+                return ResourceManager.GetString("enumDescriptionDateTimeOffsetKeyIndexer", resourceCulture);
             }
         }
         
@@ -475,6 +664,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instance Reference.
+        /// </summary>
+        internal static string enumDescriptionInstanceReference {
+            get {
+                return ResourceManager.GetString("enumDescriptionInstanceReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Integer.
         /// </summary>
         internal static string enumDescriptionInteger {
@@ -507,6 +705,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionLongKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionLongKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string enumDescriptionNone {
+            get {
+                return ResourceManager.GetString("enumDescriptionNone", resourceCulture);
             }
         }
         
@@ -727,6 +934,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Static Reference.
+        /// </summary>
+        internal static string enumDescriptionStaticReference {
+            get {
+                return ResourceManager.GetString("enumDescriptionStaticReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to String.
         /// </summary>
         internal static string enumDescriptionString {
@@ -759,6 +975,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionTimeOfDay {
             get {
                 return ResourceManager.GetString("enumDescriptionTimeOfDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TimeOfDayKeyValue.
+        /// </summary>
+        internal static string enumDescriptionTimeOfDayKeyIndexer {
+            get {
+                return ResourceManager.GetString("enumDescriptionTimeOfDayKeyIndexer", resourceCulture);
             }
         }
         
@@ -862,6 +1087,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string fieldPropertyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("fieldPropertyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type float..
+        /// </summary>
+        internal static string floatKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("floatKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type float..
+        /// </summary>
+        internal static string floatKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("floatKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} - {1}({2}).
         /// </summary>
         internal static string functionToStringFormat {
@@ -876,6 +1128,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string genericMethodsNotSupportedFormat {
             get {
                 return ResourceManager.GetString("genericMethodsNotSupportedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type Guid..
+        /// </summary>
+        internal static string guidKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("guidKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type Guid..
+        /// </summary>
+        internal static string guidKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("guidKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be an integer..
+        /// </summary>
+        internal static string integerKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("integerKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be an integer..
+        /// </summary>
+        internal static string integerKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("integerKeyReferenceIsInvalidFormat2", resourceCulture);
             }
         }
         
@@ -925,6 +1213,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type long..
+        /// </summary>
+        internal static string longKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("longKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type long..
+        /// </summary>
+        internal static string longKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("longKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error configuring method {0}. The connectors multiple choice parameter must be the last parameter..
         /// </summary>
         internal static string multipleChoiceParamNotLastFormat {
@@ -952,6 +1258,60 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The variable index cannot be the same as the variable it references. Reference Name: &quot;{0}&quot;, variable: &quot;{1}&quot;..
+        /// </summary>
+        internal static string referenceCannotEqualVariable {
+            get {
+                return ResourceManager.GetString("referenceCannotEqualVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable &quot;{0}&quot;. When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~.&quot;MyNameSpace.MyClass&quot; (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period)..
+        /// </summary>
+        internal static string referenceNameAndCastReferenceAFormat {
+            get {
+                return ResourceManager.GetString("referenceNameAndCastReferenceAFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type sbyte..
+        /// </summary>
+        internal static string sbyteKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("sbyteKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type sbyte..
+        /// </summary>
+        internal static string sbyteKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("sbyteKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type short..
+        /// </summary>
+        internal static string shortKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("shortKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type short..
+        /// </summary>
+        internal static string shortKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("shortKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  .
         /// </summary>
         internal static string spaceString {
@@ -961,11 +1321,92 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type TimeOfDay..
+        /// </summary>
+        internal static string timeOfDayKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("timeOfDayKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type TimeOfDay..
+        /// </summary>
+        internal static string timeOfDayKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("timeOfDayKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type TimeSpan..
+        /// </summary>
+        internal static string timeSpanKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("timeSpanKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type TimeSpan..
+        /// </summary>
+        internal static string timeSpanKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("timeSpanKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} ....
         /// </summary>
         internal static string truncatedMessageTextFormat {
             get {
                 return ResourceManager.GetString("truncatedMessageTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fully Qualified Type Name field for variable {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores..
+        /// </summary>
+        internal static string typeReferenceNameIsInvalidFormatVariable {
+            get {
+                return ResourceManager.GetString("typeReferenceNameIsInvalidFormatVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be an unsigned integer..
+        /// </summary>
+        internal static string uIntegerKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("uIntegerKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be an unsigned integer..
+        /// </summary>
+        internal static string uIntegerKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("uIntegerKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be an unsigned long integer..
+        /// </summary>
+        internal static string uLongKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("uLongKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be an unsigned long integer..
+        /// </summary>
+        internal static string uLongKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("uLongKeyReferenceIsInvalidFormat2", resourceCulture);
             }
         }
         
@@ -984,6 +1425,150 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string unhandledEventLoggerExceptionFormat {
             get {
                 return ResourceManager.GetString("unhandledEventLoggerExceptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be an unsigned short integer..
+        /// </summary>
+        internal static string uShortKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("uShortKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be an unsigned short integer..
+        /// </summary>
+        internal static string uShortKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("uShortKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0} must be a configured integer variable or positive integer..
+        /// </summary>
+        internal static string variableArrayIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("variableArrayIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, each index in Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be a configured integer variable or positive integer..
+        /// </summary>
+        internal static string variableArrayKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("variableArrayKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Category for variable &quot;{0}&quot; cannot be empty..
+        /// </summary>
+        internal static string variableBlankCategoryFormat {
+            get {
+                return ResourceManager.GetString("variableBlankCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The variable index in the Variable Name field, cannot be used to reference itself. Variable: &quot;{0}&quot;..
+        /// </summary>
+        internal static string variableIndexCannotBeSelfFormat {
+            get {
+                return ResourceManager.GetString("variableIndexCannotBeSelfFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable &quot;{0}&quot; has invalid Reference Category &quot;{1}&quot;. Valid categories are:{2}{3}..
+        /// </summary>
+        internal static string variableInvalidCategoryFormat {
+            get {
+                return ResourceManager.GetString("variableInvalidCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable &quot;{0}&quot; has invalid section &quot;{1}&quot; in its Reference Definition Field. Valid sections for indirect references include:{2}{3}..
+        /// </summary>
+        internal static string variableInvalidIndirectDefinitionFormat {
+            get {
+                return ResourceManager.GetString("variableInvalidIndirectDefinitionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be a configured variable..
+        /// </summary>
+        internal static string variableKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("variableKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be a configured variable..
+        /// </summary>
+        internal static string variableKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("variableKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable &quot;{0}&quot;. Reference Name and Reference Definition must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Category = Field.Property.IntKeyValue.Field..
+        /// </summary>
+        internal static string variableNameAndDefinitionFormat {
+            get {
+                return ResourceManager.GetString("variableNameAndDefinitionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable Name Field for variable &quot;{0}&quot; is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string variableNameIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("variableNameIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Definition field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot; or the evaluation is &quot;Automatic&quot;..
+        /// </summary>
+        internal static string variableReferenceDefinitionMustBeEmptyFormat {
+            get {
+                return ResourceManager.GetString("variableReferenceDefinitionMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Name and Reference Definition field for variable {0} must be populated when the reference category is &quot;Instance Reference&quot; or reference category is &quot;Static Reference&quot;..
+        /// </summary>
+        internal static string variableReferenceInfoMustBePopulatedFormat {
+            get {
+                return ResourceManager.GetString("variableReferenceInfoMustBePopulatedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Name field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot; or the evaluation is &quot;Automatic&quot;..
+        /// </summary>
+        internal static string variableReferenceMustBeEmptyFormat {
+            get {
+                return ResourceManager.GetString("variableReferenceMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Name field for  variable {0} must be empty when the reference category is not &quot;Type&quot;or &quot;Static Reference&quot;..
+        /// </summary>
+        internal static string variableTypeNameMustBeEmptyFormat {
+            get {
+                return ResourceManager.GetString("variableTypeNameMustBeEmptyFormat", resourceCulture);
             }
         }
     }

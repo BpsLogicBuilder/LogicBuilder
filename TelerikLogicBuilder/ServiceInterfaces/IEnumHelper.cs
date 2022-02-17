@@ -7,6 +7,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     internal interface IEnumHelper
     {
         string BuildValidReferenceDefinition(string referenceDefinition);
+        bool CanBeInteger(LiteralVariableType variableType);
+        IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);
         LiteralParameterType GetLiteralParameterType(Type parameterType);
@@ -23,5 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         string GetVisibleEnumText<T>(T enumType);
         T ParseEnumText<T>(string text);
         IDictionary<string, ValidIndirectReference> ToValidIndirectReferenceDictionary();
+        string GetValidIndirectReferencesList();
+        string GetValidCategoriesList();
     }
 }

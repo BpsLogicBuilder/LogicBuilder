@@ -547,6 +547,96 @@ namespace TelerikLogicBuilder.Tests
             Assert.Equal(expectedType, result);
         }
 
+        [Theory]
+        [InlineData(LiteralVariableType.Boolean, false)]
+        [InlineData(LiteralVariableType.DateTimeOffset, false)]
+        [InlineData(LiteralVariableType.DateTime, false)]
+        [InlineData(LiteralVariableType.Date, false)]
+        [InlineData(LiteralVariableType.TimeSpan, false)]
+        [InlineData(LiteralVariableType.TimeOfDay, false)]
+        [InlineData(LiteralVariableType.Guid, false)]
+        [InlineData(LiteralVariableType.Decimal, false)]
+        [InlineData(LiteralVariableType.Byte, true)]
+        [InlineData(LiteralVariableType.Short, true)]
+        [InlineData(LiteralVariableType.Integer, true)]
+        [InlineData(LiteralVariableType.Long, false)]
+        [InlineData(LiteralVariableType.Float, false)]
+        [InlineData(LiteralVariableType.Double, false)]
+        [InlineData(LiteralVariableType.Char, true)]
+        [InlineData(LiteralVariableType.SByte, true)]
+        [InlineData(LiteralVariableType.UShort, true)]
+        [InlineData(LiteralVariableType.UInteger, false)]
+        [InlineData(LiteralVariableType.ULong, false)]
+        [InlineData(LiteralVariableType.String, false)]
+        [InlineData(LiteralVariableType.NullableBoolean, false)]
+        [InlineData(LiteralVariableType.NullableDateTimeOffset, false)]
+        [InlineData(LiteralVariableType.NullableDateTime, false)]
+        [InlineData(LiteralVariableType.NullableDate, false)]
+        [InlineData(LiteralVariableType.NullableTimeSpan, false)]
+        [InlineData(LiteralVariableType.NullableTimeOfDay, false)]
+        [InlineData(LiteralVariableType.NullableGuid, false)]
+        [InlineData(LiteralVariableType.NullableDecimal, false)]
+        [InlineData(LiteralVariableType.NullableByte, false)]
+        [InlineData(LiteralVariableType.NullableShort, false)]
+        [InlineData(LiteralVariableType.NullableInteger, false)]
+        [InlineData(LiteralVariableType.NullableLong, false)]
+        [InlineData(LiteralVariableType.NullableFloat, false)]
+        [InlineData(LiteralVariableType.NullableDouble, false)]
+        [InlineData(LiteralVariableType.NullableChar, false)]
+        [InlineData(LiteralVariableType.NullableSByte, false)]
+        [InlineData(LiteralVariableType.NullableUShort, false)]
+        [InlineData(LiteralVariableType.NullableUInteger, false)]
+        [InlineData(LiteralVariableType.NullableULong, false)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        internal void CanBeIntegerReturnsTheExpectedBoolean(LiteralVariableType literalType, bool expectedResult)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.CanBeInteger(literalType);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void ConvertToEnumListWorksWithDefinedValues()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+            List<string> enumNames = new() { "Decimal", "Integer", "String" };
+
+            //act
+            var enumList = enumHelper.ConvertToEnumList<LiteralType>(enumNames);
+
+            //assert
+            Assert.True(enumList.SequenceEqual(new List<LiteralType> { LiteralType.Decimal, LiteralType.Integer, LiteralType.String }));
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void ConvertToEnumListThrowsCriticalExceptionForInvalidGenericType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.ConvertToEnumList<object>(new List<string>()));
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void ConvertToEnumListThrowsArgumentExceptionForUndefinedEnumValues()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+            List<string> enumNames = new() { "XYZ" };
+
+            //act
+            Assert.Throws<ArgumentException>(() => enumHelper.ConvertToEnumList<LiteralType>(enumNames));
+        }
+
         [Fact]
         [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralTypeThrowsCriticalExceptionForInvalidType()
@@ -723,6 +813,110 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal("fieldfr", dictionary.Keys.First());
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetValidIndirectReferencesListReturnsExpectedStringForDefaultCulture()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            string inderectReferences = enumHelper.GetValidIndirectReferencesList();
+            HashSet<string> inderectReferencesList = new
+            (
+                inderectReferences.Split
+                (
+                    Environment.NewLine.ToCharArray(), 
+                    StringSplitOptions.RemoveEmptyEntries
+                )
+            );
+
+            //assert
+            Assert.Contains("StringKeyValue", inderectReferencesList);
+            Assert.Contains("IntKeyValue", inderectReferencesList);
+            Assert.Contains("Field", inderectReferencesList);
+            Assert.Contains("Property", inderectReferencesList);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetValidIndirectReferencesListReturnsExpectedStringForSatelliteCulture()
+        {
+            //arrange
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            string inderectReferences = enumHelper.GetValidIndirectReferencesList();
+            HashSet<string> inderectReferencesList = new
+            (
+                inderectReferences.Split
+                (
+                    Environment.NewLine.ToCharArray(),
+                    StringSplitOptions.RemoveEmptyEntries
+                )
+            );
+
+            //assert
+            Assert.Contains("StringKeyValueFR", inderectReferencesList);
+            Assert.Contains("IntKeyValueFR", inderectReferencesList);
+            Assert.Contains("FieldFR", inderectReferencesList);
+            Assert.Contains("PropertyFR", inderectReferencesList);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetValidCategoriesListReturnsExpectedStringForDefaultCulture()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            string referenceCategories = enumHelper.GetValidCategoriesList();
+            HashSet<string> referenceCategorieList = new
+            (
+                referenceCategories.Split
+                (
+                    Environment.NewLine.ToCharArray(),
+                    StringSplitOptions.RemoveEmptyEntries
+                )
+            );
+
+            //assert
+            Assert.Contains("Instance Reference", referenceCategorieList);
+            Assert.Contains("Static Reference", referenceCategorieList);
+            Assert.Contains("Type", referenceCategorieList);
+            Assert.Contains("This", referenceCategorieList);
+            Assert.Contains("None", referenceCategorieList);
+        }
+
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetValidCategoriesListReturnsExpectedStringForSatelliteCulture()
+        {
+            //arrange
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            string referenceCategories = enumHelper.GetValidCategoriesList();
+            HashSet<string> referenceCategorieList = new
+            (
+                referenceCategories.Split
+                (
+                    Environment.NewLine.ToCharArray(),
+                    StringSplitOptions.RemoveEmptyEntries
+                )
+            );
+
+            //assert
+            Assert.Contains("Instance ReferenceFR", referenceCategorieList);
+            Assert.Contains("Static ReferenceFR", referenceCategorieList);
+            Assert.Contains("TypeFR", referenceCategorieList);
+            Assert.Contains("ThisFR", referenceCategorieList);
+            Assert.Contains("NoneFR", referenceCategorieList);
         }
 
         [Fact]

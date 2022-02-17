@@ -1,0 +1,9 @@
+﻿using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
+
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration
+{
+    internal interface IFunctionsXmlValidator
+    {
+        XmlValidationResponse Validate(string xmlString);
+    }
+}

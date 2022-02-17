@@ -133,8 +133,12 @@
     <comment>0=Assembly</comment>
   </data>
 	<data name="cannotLoadClassFormat" xml:space="preserve">
-    <value>Class "{0}" could not be loaded.</value>
+    <value>Class "{0}" could not be loaded.FR</value>
     <comment>0=ActivityClass</comment>
+  </data>
+	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
+    <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".FR</value>
+    <comment>0=VariableName</comment>
   </data>
 	<data name="constructorToStringFormat" xml:space="preserve">
     <value>{0} - {1}({2})FR</value>
@@ -323,6 +327,15 @@
 	<data name="enumDescriptionProperty" xml:space="preserve">
     <value>PropertyFR</value>
   </data>
+	<data name="enumDescriptionInstanceReference" xml:space="preserve">
+    <value>Instance ReferenceFR</value>
+  </data>
+	<data name="enumDescriptionStaticReference" xml:space="preserve">
+    <value>Static ReferenceFR</value>
+  </data>
+	<data name="enumDescriptionNone" xml:space="preserve">
+    <value>NoneFR</value>
+  </data>
 	<data name="enumDescriptionThis" xml:space="preserve">
     <value>ThisFR</value>
   </data>
@@ -350,8 +363,17 @@
 	<data name="enumDescriptionDateTimeKeyIndexer" xml:space="preserve">
     <value>DateTimeKeyValueFR</value>
   </data>
+	<data name="enumDescriptionDateTimeOffsetKeyIndexer" xml:space="preserve">
+    <value>DateTimeOffseteKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionDateKeyIndexer" xml:space="preserve">
+    <value>DateKeyValueFR</value>
+  </data>
 	<data name="enumDescriptionTimeSpanKeyIndexer" xml:space="preserve">
     <value>TimeSpanKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionTimeOfDayKeyIndexer" xml:space="preserve">
+    <value>TimeOfDayKeyValueFR</value>
   </data>
 	<data name="enumDescriptionGuidKeyIndexer" xml:space="preserve">
     <value>GuidKeyValueFR</value>
@@ -427,6 +449,14 @@
     <value>{0}: {1}FR</value>
     <comment>0=type 1=name</comment>
   </data>
+	<data name="referenceCannotEqualVariable" xml:space="preserve">
+    <value>The variable index cannot be the same as the variable it references. Reference Name: "{0}", variable: "{1}".FR</value>
+    <comment>0=referenceName; 1=variableName</comment>
+  </data>
+	<data name="referenceNameAndCastReferenceAFormat" xml:space="preserve">
+    <value>Variable "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).FR</value>
+    <comment>0=VariableName</comment>
+  </data>
   <data name="spaceString" xml:space="preserve">
     <value>&#32;</value>
   </data>
@@ -434,10 +464,233 @@
     <value>{0} ...FR</value>
     <comment>0=truncated message</comment>
   </data>
+	<data name="typeReferenceNameIsInvalidFormatVariable" xml:space="preserve">
+    <value>Fully Qualified Type Name field for variable {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.FR</value>
+    <comment>0=variableName</comment>
+  </data>
   <data name="underscore" xml:space="preserve">
     <value>_</value>
   </data>
 	<data name="unhandledEventLoggerExceptionFormat" xml:space="preserve">
     <value>The event logger has generated an unhandled exception of type: "{0}". Message: "{1}".FR</value>
+  </data>
+	<data name="variableBlankCategoryFormat" xml:space="preserve">
+    <value>Reference Category for variable "{0}" cannot be empty.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="variableIndexCannotBeSelfFormat" xml:space="preserve">
+    <value>The variable index in the Variable Name field, cannot be used to reference itself. Variable: "{0}".FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="variableInvalidCategoryFormat" xml:space="preserve">
+    <value>Variable "{0}" has invalid Reference Category "{1}". Valid categories are:{2}{3}.FR</value>
+    <comment>0=variableName; 1=Referencecategory; 2=Environment.Newline; 3=ValidCategoryList</comment>
+  </data>
+	<data name="variableInvalidIndirectDefinitionFormat" xml:space="preserve">
+    <value>Variable "{0}" has invalid section "{1}" in its Reference Definition Field. Valid sections for indirect references include:{2}{3}.FR</value>
+    <comment>0=variableName; 1=ReferenceDefinition; 2=Environment.Newline; 3=ValidDefinitionList</comment>
+  </data>
+	<data name="variableNameAndDefinitionFormat" xml:space="preserve">
+    <value>Variable "{0}". Reference Name and Reference Definition must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Category = Field.Property.IntKeyValue.Field.FR</value>
+    <comment>0=VariableName</comment>
+  </data>
+	<data name="variableReferenceDefinitionMustBeEmptyFormat" xml:space="preserve">
+    <value>Reference Definition field for variable {0} must be empty when the reference category is "This" or reference category is "Type" or the evaluation is "Automatic".FR</value>
+    <comment>0=VariableName</comment>
+  </data>
+	<data name="variableReferenceInfoMustBePopulatedFormat" xml:space="preserve">
+    <value>Reference Name and Reference Definition field for variable {0} must be populated when the reference category is "Instance Reference" or reference category is "Static Reference".FR</value>
+    <comment>0=VariableName</comment>
+  </data>
+	<data name="variableReferenceMustBeEmptyFormat" xml:space="preserve">
+    <value>Reference Name field for variable {0} must be empty when the reference category is "This" or reference category is "Type" or the evaluation is "Automatic".FR</value>
+    <comment>0=VariableName</comment>
+  </data>
+	<data name="variableTypeNameMustBeEmptyFormat" xml:space="preserve">
+    <value>Type Name field for  variable {0} must be empty when the reference category is not "Type"or "Static Reference".FR</value>
+  </data>
+	<data name="fieldPropertyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="arrayKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", each index in Reference Name "{1}" for variable "{2}" must be an integer greater than or equal to zero.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="booleanKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be a boolean.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="byteKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type byte.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="charKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type char.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="dateTimeKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type DateTime.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="dateTimeOffsetKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type DateTimeOffset.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="dateKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type Date.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="timeSpanKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type TimeSpan.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="timeOfDayKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type TimeOfDay.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="guidKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type Guid.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="decimalKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type decimal.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="doubleKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type double.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="floatKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type float.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="integerKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be an integer.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="longKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type long.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="sbyteKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type sbyte.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="shortKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type short.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="uIntegerKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be an unsigned integer.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="uLongKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be an unsigned long integer.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="uShortKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be an unsigned short integer.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="variableKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be a configured variable.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="variableArrayKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", each index in Reference Name "{1}" for variable "{2}" must be a configured integer variable or positive integer.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="variableNameIsInvalidFormat" xml:space="preserve">
+    <value>Variable Name Field for variable "{0}" is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="arrayKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, each index in Member Name for variable {0}, must be an integer greater than or equal to zero.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="booleanKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be a boolean.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="byteKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type byte.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="charKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type char.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="dateTimeKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type DateTime.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="dateTimeOffsetKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type DateTimeOffset.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="dateKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type Date.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="timeSpanKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type TimeSpan.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="timeOfDayKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type TimeOfDay.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="guidKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type Guid.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="decimalKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type decimal.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="doubleKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type double.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="floatKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type float.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="integerKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be an integer.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="longKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type long.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="sbyteKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type sbyte.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="shortKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type short.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="uIntegerKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be an unsigned integer.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="uLongKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be an unsigned long integer.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="uShortKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be an unsigned short integer.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="variableKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be a configured variable.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="variableArrayIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, each index in Member Name for variable {0} must be a configured integer variable or positive integer.FR</value>
+    <comment>0=variableName</comment>
   </data>
 </root>

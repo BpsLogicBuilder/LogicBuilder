@@ -13,11 +13,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IStringHelper _stringHelper;
+        private readonly ITypeHelper _typeHelper;
 
-        public EnumHelper(IExceptionHelper exceptionHelper, IStringHelper stringHelper)
+        public EnumHelper(IExceptionHelper exceptionHelper, IStringHelper stringHelper, ITypeHelper typeHelper)
         {
             _exceptionHelper = exceptionHelper;
             _stringHelper = stringHelper;
+            _typeHelper = typeHelper;
         }
 
         public string BuildValidReferenceDefinition(string referenceDefinition)
@@ -33,6 +35,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     .ToArray()
             );
         }
+
+        public IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames)
+        {
+            if (!typeof(Enum).IsAssignableFrom(typeof(T)))
+                throw _exceptionHelper.CriticalException("{2D89326E-DD55-4FC8-A2DD-35A200573038}");
+
+            return enumNames.Select(item => (T)Enum.Parse(typeof(T), item)).ToList();
+        }
+
+        public bool CanBeInteger(LiteralVariableType variableType) 
+            => _typeHelper.AssignableFrom(typeof(int), GetSystemType(variableType));
 
         public ListType GetListType(Type memberType)
         {
@@ -300,5 +313,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     name => Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, name)).ToLowerInvariant(),
                     name => (ValidIndirectReference)Enum.Parse(typeof(ValidIndirectReference), name)
                 );
+
+        public string GetValidIndirectReferencesList() 
+            => string.Join
+            (
+                Environment.NewLine,
+                Enum.GetValues(typeof(ValidIndirectReference))
+                    .OfType<ValidIndirectReference>()
+                    .Select
+                    (
+                        e => GetVisibleEnumText(e)
+                    )
+            );
+
+        public string GetValidCategoriesList()
+            => string.Join
+            (
+                Environment.NewLine,
+                Enum.GetValues(typeof(ReferenceCategories))
+                    .OfType<ReferenceCategories>()
+                    .Select
+                    (
+                        e => GetVisibleEnumText(e)
+                    )
+            );
     }
 }

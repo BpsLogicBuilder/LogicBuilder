@@ -1,9 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.XPath;
@@ -48,33 +47,35 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         #region Methods
         internal static XmlValidatorUtility GetXmlValidator(SchemaName xmlSchema, string xmlString)
         {
-            return xmlSchema switch
+            Dictionary<SchemaName, XmlSchema> schemas = new()
             {
-                //SchemaName.VariablesSchema => new VariablesXmlValidator(Schemas.VariablesSchema, xmlString),
-                //SchemaName.FunctionsSchema => new FunctionsXmlValidatorNew(Schemas.FunctionsSchema, xmlString),
-                //SchemaName.ConstructorSchema => new ConstructorsXmlValidator(Schemas.ConstructorSchema, xmlString),
-                SchemaName.ProjectPropertiesSchema => new XmlValidatorUtility(Schemas.ProjectPropertiesSchema, xmlString),
-                SchemaName.ShapeDataSchema => new XmlValidatorUtility(Schemas.ShapeDataSchema, xmlString),
-                SchemaName.ConnectorDataSchema => new XmlValidatorUtility(Schemas.ConnectorDataSchema, xmlString),
-                SchemaName.DecisionsDataSchema => new XmlValidatorUtility(Schemas.DecisionsDataSchema, xmlString),
-                SchemaName.ConditionsDataSchema => new XmlValidatorUtility(Schemas.ConditionsDataSchema, xmlString),
-                SchemaName.FunctionsDataSchema => new XmlValidatorUtility(Schemas.FunctionsDataSchema, xmlString),
-                SchemaName.TableSchema => new XmlValidatorUtility(Schemas.TableSchema, xmlString),
-                SchemaName.ParametersDataSchema => new XmlValidatorUtility(Schemas.ParametersDataSchema, xmlString),
-                SchemaName.FragmentsSchema => new XmlValidatorUtility(Schemas.FragmentsSchema, xmlString),
-                _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{1B68AB17-53C8-4B5B-9D9D-99482235437D}")),
+                [SchemaName.ProjectPropertiesSchema] = Schemas.ProjectPropertiesSchema,
+                [SchemaName.ShapeDataSchema] = Schemas.ShapeDataSchema,
+                [SchemaName.ConnectorDataSchema] = Schemas.ConnectorDataSchema,
+                [SchemaName.DecisionsDataSchema] = Schemas.DecisionsDataSchema,
+                [SchemaName.ConditionsDataSchema] = Schemas.ConditionsDataSchema,
+                [SchemaName.FunctionsDataSchema] = Schemas.FunctionsDataSchema,
+                [SchemaName.TableSchema] = Schemas.TableSchema,
+                [SchemaName.ParametersDataSchema] = Schemas.ParametersDataSchema,
+                [SchemaName.FragmentsSchema] = Schemas.FragmentsSchema
             };
+
+            if (!schemas.TryGetValue(xmlSchema, out XmlSchema schema))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{1B68AB17-53C8-4B5B-9D9D-99482235437D}"));
+
+            return new XmlValidatorUtility(schema, xmlString);
         }
 
-        protected internal virtual void ValidateXmlDocument()
+        protected internal virtual XmlValidationResponse ValidateXmlDocument()
         {
             DoXmlSchemaValidation();
-            string validationErrors = LoadXmlDocumentValidationErrors();
+            IList<string> validationErrors = LoadXmlDocumentValidationErrors();
 
-            if (validationErrors.Length != 0)
+            return new XmlValidationResponse
             {
-                throw new XmlValidationException(validationErrors);
-            }
+                Success = validationErrors.Count == 0,
+                Errors = validationErrors.ToList()
+            };
         }
 
         protected void DoXmlSchemaValidation()
@@ -86,16 +87,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             xmlDocument.Validate(ValidateXmlDocumentEventHandler);
         }
 
-        protected string LoadXmlDocumentValidationErrors()
+        protected IList<string> LoadXmlDocumentValidationErrors()
         {
-            StringBuilder stringBuilder = new();
-            foreach (string error in xmlDocumentErrors)
-            {
-                stringBuilder.Append(error);
-                stringBuilder.Append(Environment.NewLine);
-            }
+            List<string> errorMessages = new(xmlDocumentErrors);
             xmlDocumentErrors.Clear();
-            return stringBuilder.ToString();
+            return errorMessages;
         }
         #endregion Methods
 

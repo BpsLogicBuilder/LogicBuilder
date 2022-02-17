@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -20,6 +21,70 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             _exceptionHelper = exceptionHelper;
             _assemblyLoadContextService = assemblyLoadContextService;
+        }
+
+        public bool AreCompatibleForOperation(Type t1, Type t2, CodeBinaryOperatorType op)
+        {
+            t1 = IsNullable(t1) ? Nullable.GetUnderlyingType(t1) : t1;
+            t2 = IsNullable(t2) ? Nullable.GetUnderlyingType(t2) : t2;
+
+            if (t1.IsValueType
+                && t2.IsValueType
+                && op == CodeBinaryOperatorType.ValueEquality
+                && (AssignableFrom(t1, t2) || AssignableFrom(t2, t1)))
+                return true;
+
+            if (op == CodeBinaryOperatorType.IdentityEquality || op == CodeBinaryOperatorType.IdentityInequality)
+                return AssignableFrom(t1, t2) || AssignableFrom(t2, t1);
+
+            if (op == CodeBinaryOperatorType.BooleanAnd || op == CodeBinaryOperatorType.BooleanOr)
+                return t1 == typeof(bool) && t2 == typeof(bool);
+
+            if (op == CodeBinaryOperatorType.BitwiseAnd || op == CodeBinaryOperatorType.BitwiseOr)
+            {
+                return (t1 == typeof(bool) && t2 == typeof(bool))
+                    || (AssigneableToLong(t1) && AssigneableToLong(t2))
+                    || (AssigneableToULong(t1) && AssigneableToULong(t2));
+
+                bool AssigneableToLong(Type t) =>
+                t == typeof(long)
+                || NumbersDictionary[typeof(long)].Contains(t)
+                || ImplicitConversionExistsFrom(typeof(long), t);
+
+                bool AssigneableToULong(Type t) =>
+                    t == typeof(ulong)
+                    || NumbersDictionary[typeof(ulong)].Contains(t)
+                    || ImplicitConversionExistsFrom(typeof(ulong), t);
+            }
+
+            return AreCompatibleForOperation(t1, t2, OperatorsesDictionary[op]);
+        }
+
+        public bool AssignableFrom(Type to, Type from)
+        {
+            if (from == null)
+                return false;
+
+            if (to.IsAssignableFrom(from))
+                return true;
+
+            if (!(!IsNullable(to) && IsNullable(from)))
+            {//Anything but To is NOT nullable and From IS nullable
+                to = IsNullable(to) ? Nullable.GetUnderlyingType(to) : to;
+                from = IsNullable(from) ? Nullable.GetUnderlyingType(from) : from;
+
+                if (NumbersDictionary.ContainsKey(to) && NumbersDictionary[to].Contains(from))
+                    return true;
+            }
+
+            bool ReturnTypeValid(Type returnType) => returnType == to || (NumbersDictionary.ContainsKey(to) && NumbersDictionary[to].Contains(returnType));
+            bool ParameterValid(Type parameterType) => (parameterType == from) || (NumbersDictionary.ContainsKey(parameterType) && NumbersDictionary[parameterType].Contains(from));
+            bool MatchImplicitOperator(MethodInfo m) => m.Name == "op_Implicit"
+                                                        && ReturnTypeValid(m.ReturnType)
+                                                        && ParameterValid(m.GetParameters().Single().ParameterType);
+
+            return from.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchImplicitOperator)
+                    || to.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchImplicitOperator);
         }
 
         public string GetTypeDescription(Type type)
@@ -198,5 +263,90 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     && parameters[1].ParameterType.GetElementType() == type;
             }
         }
+
+        private bool AreCompatibleForOperation(Type t1, Type t2, string op)
+        {
+            t1 = IsNullable(t1) ? Nullable.GetUnderlyingType(t1) : t1;
+            t2 = IsNullable(t2) ? Nullable.GetUnderlyingType(t2) : t2;
+
+            if (NumbersDictionary.ContainsKey(t1) && t1 == t2)
+                return true;//return true for standard conversions
+
+            if ((NumbersDictionary.ContainsKey(t1) && NumbersDictionary[t1].Contains(t2))
+                || (NumbersDictionary.ContainsKey(t2) && NumbersDictionary[t2].Contains(t1)))
+                return true;//return true for standard conversions
+
+            return t2.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchOperator)//operator overload must exist
+                    || t1.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchOperator);//on either t1 or t2
+
+            bool ParameterMatch(Type p, Type type) => (p == type)//type is t1 or t2. p is the current parmeter a or b (public static bool operator <(IntDigit a, IntDigit b))
+                        || (NumbersDictionary.ContainsKey(p) && NumbersDictionary[p].Contains(type))//standard conversions
+                        || (NumbersDictionary.ContainsKey(type) && NumbersDictionary[type].Contains(p))//standard conversions
+                        || ImplicitConversionExistsFrom(p, type);//implicit operator exists
+
+            bool OverLoadExists(MethodInfo m, Type type)//e.g. op == op_GreaterThan
+                => ParameterMatch(m.GetParameters()[0].ParameterType, type)//Do poth parameters 
+                && ParameterMatch(m.GetParameters()[1].ParameterType, type);//match the op method (op_GreaterThan) 
+                                                                            //on type (type=t1 or type=t2).
+
+            bool MatchOperator(MethodInfo m) => m.Name == op//e.g. op == op_GreaterThan
+                    && (OverLoadExists(m, t2) && OverLoadExists(m, t1));//check both t1 and t2 match the operator overload
+        }
+
+        private bool ImplicitConversionExistsFrom(Type to, Type from)
+        {
+            bool ReturnTypeValid(Type returnType) => //op_Implicit return type
+                (returnType == to)
+                || (NumbersDictionary.ContainsKey(to) && NumbersDictionary[to].Contains(returnType))
+                || (NumbersDictionary.ContainsKey(returnType) && NumbersDictionary[returnType].Contains(to));
+
+            bool ParameterValid(Type parameterType) => //op_Implicit argument
+                (parameterType == from)
+                || (NumbersDictionary.ContainsKey(parameterType) && NumbersDictionary[parameterType].Contains(from))
+                || (NumbersDictionary.ContainsKey(from) && NumbersDictionary[from].Contains(parameterType));
+
+            bool MatchImplicitOperator(MethodInfo m) => m.Name == "op_Implicit"
+                                    && ReturnTypeValid(m.ReturnType)
+                                    && ParameterValid(m.GetParameters().Single().ParameterType);
+
+            return from.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchImplicitOperator)
+                    || to.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchImplicitOperator);
+        }
+
+        private static readonly Dictionary<Type, HashSet<Type>> NumbersDictionary = new()
+        {
+            { typeof(decimal), new HashSet<Type> { typeof(byte), typeof(sbyte), typeof(char), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(long), typeof(ulong) } },
+            { typeof(double), new HashSet<Type> { typeof(byte), typeof(sbyte), typeof(char), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(float) } },
+            { typeof(float), new HashSet<Type> { typeof(byte), typeof(sbyte), typeof(char), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(long), typeof(ulong) } },
+            { typeof(ulong), new HashSet<Type> { typeof(byte), typeof(char), typeof(ushort), typeof(uint) } },
+            { typeof(long), new HashSet<Type> { typeof(byte), typeof(sbyte), typeof(char), typeof(short), typeof(ushort), typeof(int), typeof(uint) } },
+            { typeof(uint), new HashSet<Type> { typeof(byte), typeof(char), typeof(ushort) } },
+            { typeof(int), new HashSet<Type> { typeof(byte), typeof(sbyte), typeof(char), typeof(short), typeof(ushort) } },
+            { typeof(ushort), new HashSet<Type> { typeof(byte), typeof(char) } },
+            { typeof(short), new HashSet<Type> { typeof(byte), typeof(sbyte) } },
+            { typeof(byte), new HashSet<Type> { } },//Needed for standard conversions to work
+            { typeof(sbyte), new HashSet<Type> { } }//Needed for standard conversions to work
+        };
+
+        private static readonly Dictionary<CodeBinaryOperatorType, string> OperatorsesDictionary = new()
+        {
+            { CodeBinaryOperatorType.Add, "op_Addition" },
+            { CodeBinaryOperatorType.Subtract, "op_Subtraction" },
+            { CodeBinaryOperatorType.Multiply, "op_Multiply" },
+            { CodeBinaryOperatorType.Divide, "op_Division" },
+            { CodeBinaryOperatorType.Modulus, "op_Modulus" },
+            { CodeBinaryOperatorType.Assign, "op_Assign" },
+            { CodeBinaryOperatorType.IdentityInequality, "op_Inequality" },
+            { CodeBinaryOperatorType.IdentityEquality, "op_Equality" },
+            { CodeBinaryOperatorType.ValueEquality, "op_Equality" },
+            { CodeBinaryOperatorType.BitwiseOr, "op_BitwiseOr" },
+            { CodeBinaryOperatorType.BitwiseAnd, "op_BitwiseAnd" },
+            { CodeBinaryOperatorType.BooleanOr, "op_LogicalOr" },
+            { CodeBinaryOperatorType.BooleanAnd, "op_LogicalAnd" },
+            { CodeBinaryOperatorType.LessThan, "op_LessThan" },
+            { CodeBinaryOperatorType.LessThanOrEqual, "op_LessThanOrEqual" },
+            { CodeBinaryOperatorType.GreaterThan, "op_GreaterThan" },
+            { CodeBinaryOperatorType.GreaterThanOrEqual, "op_GreaterThanOrEqual" }
+        };
     }
 }

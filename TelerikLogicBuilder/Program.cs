@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors;
@@ -14,6 +15,7 @@ using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Runtime.CompilerServices;
@@ -75,9 +77,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IParametersXmlParser, ParametersXmlParser>()
 
             //Intellisense.Variables
+            .AddSingleton<IVariableHelper, VariableHelper>()
             .AddSingleton<IVariablesManager, VariablesManager>()
             .AddSingleton<IVariablesNodeInfoManager, VariablesNodeInfoManager>()
             .AddSingleton<IVariablesXmlParser, VariablesXmlParser>()
+            .AddSingleton<IVariableValidationHelper, VariableValidationHelper>()
 
             //Reflection
             .AddSingleton<IApplicationTypeInfoManager, ApplicationTypeInfoManager>()
@@ -86,7 +90,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
 
             //XmlValidation
-            .AddSingleton<IXmlValidator, XmlValidator>();
+            .AddSingleton<IXmlValidator, XmlValidator>()
+
+            //XmlValidation.Configuration
+            .AddSingleton<IConstructorsXmlValidator, ConstructorsXmlValidator>()
+            .AddSingleton<IFunctionsXmlValidator, FunctionsXmlValidator>()
+            .AddSingleton<IVariablesXmlValidator, VariablesXmlValidator>();
 
         /// <summary>
         /// The main entry point for the application.

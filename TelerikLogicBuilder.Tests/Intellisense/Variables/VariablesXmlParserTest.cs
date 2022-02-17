@@ -162,16 +162,114 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             Assert.Equal("A Comment", result.Comments);
         }
 
+        [Fact]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void GetVariableDictionaryWorks()
+        {
+            //arrange
+            IVariablesXmlParser variablesXmlParser = serviceProvider.GetRequiredService<IVariablesXmlParser>();
+            XmlDocument xmlDocument = GetXmlDocument(@"<folder name=""Folder1"">
+                                                        <literalVariable name=""Listeral"">
+			                                                <memberName>acrg</memberName>
+			                                                <variableCategory>Property</variableCategory>
+			                                                <castVariableAs />
+			                                                <typeName />
+			                                                <referenceName />
+			                                                <referenceDefinition />
+			                                                <castReferenceAs />
+			                                                <referenceCategory>This</referenceCategory>
+			                                                <evaluation>Implemented</evaluation>
+			                                                <comments />
+			                                                <metadata />
+			                                                <literalType>Decimal</literalType>
+			                                                <control>SingleLineTextBox</control>
+			                                                <propertySource />
+			                                                <defaultValue />
+			                                                <domain>
+						                                        <item>true</item>
+						                                        <item>false</item>
+					                                        </domain>
+		                                                </literalVariable>
+                                                        <objectVariable name=""Object"">
+                                                          <memberName>acrg</memberName>
+                                                          <variableCategory>Property</variableCategory>
+                                                          <castVariableAs />
+                                                          <typeName />
+                                                          <referenceName />
+                                                          <referenceDefinition />
+                                                          <castReferenceAs />
+                                                          <referenceCategory>This</referenceCategory>
+                                                          <evaluation>Implemented</evaluation>
+                                                          <comments>Comment</comments>
+                                                          <metadata />
+                                                          <objectType>System.Object</objectType>
+                                                        </objectVariable>
+                                                        <folder name=""Subfolder"">
+                                                            <literalListVariable name=""literalList"">
+			                                                    <memberName>acrg</memberName>
+			                                                    <variableCategory>Property</variableCategory>
+			                                                    <castVariableAs />
+			                                                    <typeName />
+			                                                    <referenceName />
+			                                                    <referenceDefinition />
+			                                                    <castReferenceAs />
+			                                                    <referenceCategory>This</referenceCategory>
+			                                                    <evaluation>Implemented</evaluation>
+			                                                    <comments />
+			                                                    <metadata />
+			                                                    <literalType>Decimal</literalType>
+                                                                <listType>GenericList</listType>
+			                                                    <control>HashSetForm</control>
+			                                                    <elementControl>SingleLineTextBox</elementControl>
+			                                                    <propertySource />
+			                                                    <defaultValue>
+						                                            <item>hi</item>
+						                                            <item>medium</item>
+					                                            </defaultValue>
+			                                                    <domain>
+						                                            <item>true</item>
+						                                            <item>false</item>
+					                                            </domain>
+		                                                    </literalListVariable>
+                                                            <objectListVariable name=""objectList"">
+			                                                    <memberName>acrg</memberName>
+			                                                    <variableCategory>Property</variableCategory>
+			                                                    <castVariableAs />
+			                                                    <typeName />
+			                                                    <referenceName />
+			                                                    <referenceDefinition />
+			                                                    <castReferenceAs />
+			                                                    <referenceCategory>This</referenceCategory>
+			                                                    <evaluation>Implemented</evaluation>
+			                                                    <comments>A Comment</comments>
+			                                                    <metadata />
+			                                                    <objectType>System.Object</objectType>
+                                                                <listType>GenericList</listType>
+			                                                    <control>HashSetForm</control>
+		                                                    </objectListVariable>
+		                                                </folder>
+		                                            </folder>");
+
+            //act
+            var result = variablesXmlParser.GetVariablesDictionary(xmlDocument);
+
+            //assert
+            Assert.Equal(4, result.Count);
+        }
+
         private void Initialize()
         {
             serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
-        private static XmlElement GetXmlElement(string xmlString)
+        private static XmlElement GetXmlElement(string xmlString) 
+            => GetXmlDocument(xmlString).DocumentElement;
+
+        private static XmlDocument GetXmlDocument(string xmlString)
         {
             XmlDocument xmlDocument = new();
             xmlDocument.LoadXml(xmlString);
-            return xmlDocument.DocumentElement;
+            return xmlDocument;
         }
     }
 }

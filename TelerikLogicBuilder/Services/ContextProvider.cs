@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 
@@ -6,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ContextProvider : IContextProvider
     {
-        public ContextProvider(IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IStringHelper stringHelper, IXmlDocumentHelpers xmlDocumentHelpers, IReflectionHelper reflectionHelper, ITypeHelper typeHelper, IEncryption encryption, IXmlValidator xmlValidator, IPathHelper pathHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper)
+        public ContextProvider(IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IStringHelper stringHelper, IXmlDocumentHelpers xmlDocumentHelpers, IReflectionHelper reflectionHelper, ITypeHelper typeHelper, IEncryption encryption, IPathHelper pathHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper, IVariableHelper variableHelper)
         {
             EnumHelper = enumHelper;
             ExceptionHelper = exceptionHelper;
@@ -15,10 +16,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             ReflectionHelper = reflectionHelper;
             TypeHelper = typeHelper;
             Encryption = encryption;
-            XmlValidator = xmlValidator;
             PathHelper = pathHelper;
             FileIOHelper = fileIOHelper;
             MessageBoxOptionsHelper = messageBoxOptionsHelper;
+            VariableHelper = variableHelper;
         }
 
         public IEncryption Encryption { get; }
@@ -30,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public IReflectionHelper ReflectionHelper { get; }
         public IStringHelper StringHelper { get; }
         public ITypeHelper TypeHelper { get; }
+        public IVariableHelper VariableHelper { get; }
         public IXmlDocumentHelpers XmlDocumentHelpers { get; }
-        public IXmlValidator XmlValidator { get; }
     }
 }

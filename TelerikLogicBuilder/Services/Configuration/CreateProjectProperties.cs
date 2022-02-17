@@ -20,13 +20,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IContextProvider _contextProvider;
 
-        public CreateProjectProperties(IContextProvider contextProvider)
+        public CreateProjectProperties(IContextProvider contextProvider, IXmlValidator xmlValidator)
         {
             _encryption = contextProvider.Encryption;
             _pathHelper = contextProvider.PathHelper;
-            _xmlValidator = contextProvider.XmlValidator;
             _fileIOHelper = contextProvider.FileIOHelper;
             _contextProvider = contextProvider;
+            _xmlValidator = xmlValidator;
         }
 
         public ProjectProperties Create(string path, string projectName)
@@ -108,7 +108,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             try
             {
                 string xmlString = projectProperties.ToXml;
-                _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlString);
+                var validationResponse = _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlString);
+                if (validationResponse.Success == false)
+                    throw new CriticalLogicBuilderException(string.Join(Environment.NewLine, validationResponse.Errors));
 
                 if (!Directory.Exists(projectProperties.ProjectPath))
                     _fileIOHelper.CreateDirectory(projectProperties.ProjectPath);
@@ -116,10 +118,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 _encryption.EncryptToFile(projectProperties.ProjectFileFullName, xmlString);
             }
             catch (XmlException ex)
-            {
-                throw new CriticalLogicBuilderException(ex.Message, ex);
-            }
-            catch (XmlValidationException ex)
             {
                 throw new CriticalLogicBuilderException(ex.Message, ex);
             }

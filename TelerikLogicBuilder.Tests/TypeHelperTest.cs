@@ -3,10 +3,12 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using LogicBuilder.Forms.Parameters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using TelerikLogicBuilder.Tests.AttributeSamples;
 using TelerikLogicBuilder.Tests.Constants;
+using TelerikLogicBuilder.Tests.Structures;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -221,6 +223,246 @@ namespace TelerikLogicBuilder.Tests
 
             //act
             Assert.Throws<CriticalLogicBuilderException>(() => helper.TryParse(toParse, type, out object parsedResult));
+        }
+
+        [Theory]
+        [InlineData(typeof(object), typeof(int), true)]
+        [InlineData(typeof(int), typeof(byte), true)]
+        [InlineData(typeof(int), typeof(sbyte), true)]
+        [InlineData(typeof(int), typeof(char), true)]
+        [InlineData(typeof(int), typeof(ushort), true)]
+        [InlineData(typeof(int), typeof(short), true)]
+        [InlineData(typeof(int), typeof(int), true)]
+        [InlineData(typeof(int), typeof(DateTime), false)]
+        [InlineData(typeof(int), typeof(long), false)]
+        [InlineData(typeof(int), typeof(int?), false)]
+        [InlineData(typeof(int), typeof(decimal), false)]
+        [InlineData(typeof(int), typeof(float), false)]
+        [InlineData(typeof(int), typeof(short?), false)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void AssignableTestsWorkAsExpected(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AssignableFrom(to, from);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(int?), typeof(int), true)]
+        [InlineData(typeof(int), typeof(int?), true)]
+        [InlineData(typeof(int), typeof(short?), true)]
+        [InlineData(typeof(short), typeof(sbyte), true)]
+        [InlineData(typeof(sbyte), typeof(short), true)]
+        [InlineData(typeof(int), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int), true)]
+        [InlineData(typeof(int?), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int?), true)]
+        [InlineData(typeof(int?), typeof(short?), true)]
+        [InlineData(typeof(short?), typeof(int?), true)]
+        [InlineData(typeof(CustString), typeof(string), false)]
+        [InlineData(typeof(string), typeof(CustString), false)]
+        [InlineData(typeof(DoubleDigit), typeof(double), false)]
+        [InlineData(typeof(double), typeof(DoubleDigit), false)]
+        [InlineData(typeof(IList<string>), typeof(List<string>), false)]
+        [InlineData(typeof(List<string>), typeof(IList<string>), false)]
+        [InlineData(typeof(CustString?), typeof(CustString), false)]
+        [InlineData(typeof(IntDigit?), typeof(short), true)]
+        [InlineData(typeof(IntDigit?), typeof(long), true)]
+        [InlineData(typeof(IntDigit?), typeof(long?), true)]
+        [InlineData(typeof(int), typeof(string), false)]
+        [InlineData(typeof(object), typeof(string), false)]
+        [InlineData(typeof(DateTime), typeof(DateTime?), false)]
+        [InlineData(typeof(bool), typeof(bool), true)]
+        public void CompatibleForBitwiseAndOp(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.BitwiseAnd);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(int?), typeof(int), false)]
+        [InlineData(typeof(int), typeof(int?), false)]
+        [InlineData(typeof(int), typeof(short?), false)]
+        [InlineData(typeof(short), typeof(sbyte), false)]
+        [InlineData(typeof(sbyte), typeof(short), false)]
+        [InlineData(typeof(int), typeof(short), false)]
+        [InlineData(typeof(short), typeof(int), false)]
+        [InlineData(typeof(int?), typeof(short), false)]
+        [InlineData(typeof(short), typeof(int?), false)]
+        [InlineData(typeof(int?), typeof(short?), false)]
+        [InlineData(typeof(short?), typeof(int?), false)]
+        [InlineData(typeof(CustString), typeof(string), false)]
+        [InlineData(typeof(string), typeof(CustString), false)]
+        [InlineData(typeof(DoubleDigit), typeof(double), false)]
+        [InlineData(typeof(double), typeof(DoubleDigit), false)]
+        [InlineData(typeof(IList<string>), typeof(List<string>), false)]
+        [InlineData(typeof(List<string>), typeof(IList<string>), false)]
+        [InlineData(typeof(CustString?), typeof(CustString), false)]
+        [InlineData(typeof(IntDigit?), typeof(short), false)]
+        [InlineData(typeof(IntDigit?), typeof(long), false)]
+        [InlineData(typeof(IntDigit?), typeof(long?), false)]
+        [InlineData(typeof(int), typeof(string), false)]
+        [InlineData(typeof(object), typeof(string), false)]
+        [InlineData(typeof(DateTime), typeof(DateTime?), false)]
+        [InlineData(typeof(bool), typeof(bool), true)]
+        public void CompatibleForBooleanAndOp(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.BooleanAnd);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(object), typeof(int), true)]
+        [InlineData(typeof(int), typeof(byte), true)]
+        [InlineData(typeof(int), typeof(sbyte), true)]
+        [InlineData(typeof(int), typeof(char), true)]
+        [InlineData(typeof(int), typeof(ushort), true)]
+        [InlineData(typeof(int), typeof(short), true)]
+        [InlineData(typeof(int), typeof(int), true)]
+        [InlineData(typeof(int), typeof(DateTime), false)]
+        [InlineData(typeof(int), typeof(long), true)]
+        [InlineData(typeof(int), typeof(int?), true)]
+        [InlineData(typeof(int), typeof(decimal), true)]
+        [InlineData(typeof(int), typeof(float), true)]
+        [InlineData(typeof(int), typeof(short?), true)]
+        [InlineData(typeof(IList<string>), typeof(List<string>), true)]
+        [InlineData(typeof(List<string>), typeof(IList<string>), true)]
+        [InlineData(typeof(object), typeof(string), true)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void CompatibleForIdentityEqualityOp(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.IdentityEquality);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(object), typeof(int), true)]
+        [InlineData(typeof(int), typeof(byte), true)]
+        [InlineData(typeof(int), typeof(sbyte), true)]
+        [InlineData(typeof(int), typeof(char), true)]
+        [InlineData(typeof(int), typeof(ushort), true)]
+        [InlineData(typeof(int), typeof(short), true)]
+        [InlineData(typeof(int), typeof(int), true)]
+        [InlineData(typeof(int), typeof(DateTime), false)]
+        [InlineData(typeof(int), typeof(long), true)]
+        [InlineData(typeof(int), typeof(int?), true)]
+        [InlineData(typeof(int), typeof(decimal), true)]
+        [InlineData(typeof(int), typeof(float), true)]
+        [InlineData(typeof(int), typeof(short?), true)]
+        [InlineData(typeof(IList<string>), typeof(List<string>), true)]
+        [InlineData(typeof(List<string>), typeof(IList<string>), true)]
+        [InlineData(typeof(object), typeof(string), true)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void CompatibleForIdentityInequalityOp(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.IdentityInequality);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(byte), typeof(byte), true)]
+        [InlineData(typeof(string), typeof(string), false)]
+        [InlineData(typeof(int?), typeof(int), true)]
+        [InlineData(typeof(int), typeof(int?), true)]
+        [InlineData(typeof(int), typeof(short?), true)]
+        [InlineData(typeof(short), typeof(sbyte), true)]
+        [InlineData(typeof(sbyte), typeof(short), true)]
+        [InlineData(typeof(int), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int), true)]
+        [InlineData(typeof(int?), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int?), true)]
+        [InlineData(typeof(int?), typeof(short?), true)]
+        [InlineData(typeof(short?), typeof(int?), true)]
+        [InlineData(typeof(CustString), typeof(string), true)]
+        [InlineData(typeof(string), typeof(CustString), true)]
+        [InlineData(typeof(DoubleDigit), typeof(double), true)]
+        [InlineData(typeof(double), typeof(DoubleDigit), true)]
+        [InlineData(typeof(IList<string>), typeof(List<string>), false)]
+        [InlineData(typeof(List<string>), typeof(IList<string>), false)]
+        [InlineData(typeof(CustString?), typeof(CustString), true)]
+        [InlineData(typeof(IntDigit?), typeof(short), true)]
+        [InlineData(typeof(IntDigit), typeof(long), true)]
+        [InlineData(typeof(IntDigit), typeof(long?), true)]
+        [InlineData(typeof(int), typeof(string), false)]
+        [InlineData(typeof(object), typeof(string), false)]
+        [InlineData(typeof(DateTime), typeof(DateTime?), true)]
+        [InlineData(typeof(bool), typeof(bool), false)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void CompatibleForLessThanOp(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.LessThan);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(int?), typeof(int), true)]
+        [InlineData(typeof(int), typeof(int?), true)]
+        [InlineData(typeof(int), typeof(short?), true)]
+        [InlineData(typeof(short), typeof(sbyte), true)]
+        [InlineData(typeof(sbyte), typeof(short), true)]
+        [InlineData(typeof(int), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int), true)]
+        [InlineData(typeof(int?), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int?), true)]
+        [InlineData(typeof(int?), typeof(short?), true)]
+        [InlineData(typeof(short?), typeof(int?), true)]
+        [InlineData(typeof(CustString), typeof(string), true)]
+        [InlineData(typeof(string), typeof(CustString), true)]
+        [InlineData(typeof(DoubleDigit), typeof(double), true)]
+        [InlineData(typeof(double), typeof(DoubleDigit), true)]
+        [InlineData(typeof(CustString?), typeof(CustString), true)]
+        [InlineData(typeof(IntDigit?), typeof(short), true)]
+        [InlineData(typeof(IntDigit), typeof(long), true)]
+        [InlineData(typeof(IntDigit), typeof(long?), true)]
+        [InlineData(typeof(int), typeof(string), false)]
+        [InlineData(typeof(DateTime), typeof(DateTime?), true)]
+        [InlineData(typeof(bool), typeof(bool), true)]
+        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+        public void CompatibleForValueEqualityOp(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.ValueEquality);
+
+            //assert
+            Assert.Equal(expectedResult, result);
         }
 
         private void Initialize()

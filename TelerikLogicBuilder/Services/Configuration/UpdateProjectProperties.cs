@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -18,13 +19,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IContextProvider _contextProvider;
 
-        public UpdateProjectProperties(IContextProvider contextProvider)
+        public UpdateProjectProperties(IContextProvider contextProvider, IXmlValidator xmlValidator)
         {
             _encryption = contextProvider.Encryption;
             _pathHelper = contextProvider.PathHelper;
-            _xmlValidator = contextProvider.XmlValidator;
             _fileIOHelper = contextProvider.FileIOHelper;
             _contextProvider = contextProvider;
+            _xmlValidator = xmlValidator;
         }
 
         public ProjectProperties Update(string fullPath, Dictionary<string, Application> applicationList, HashSet<string> connectorObjectTypes)
@@ -52,6 +53,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             {
                 string xmlString = projectProperties.ToXml;
                 _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlString);
+                var validationResponse = _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlString);
+                if (validationResponse.Success == false)
+                    throw new CriticalLogicBuilderException(string.Join(Environment.NewLine, validationResponse.Errors));
 
                 if (!Directory.Exists(projectProperties.ProjectPath))
                     _fileIOHelper.CreateDirectory(projectProperties.ProjectPath);
@@ -59,10 +63,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 _encryption.EncryptToFile(projectProperties.ProjectFileFullName, xmlString);
             }
             catch (XmlException ex)
-            {
-                throw new CriticalLogicBuilderException(ex.Message, ex);
-            }
-            catch (XmlValidationException ex)
             {
                 throw new CriticalLogicBuilderException(ex.Message, ex);
             }

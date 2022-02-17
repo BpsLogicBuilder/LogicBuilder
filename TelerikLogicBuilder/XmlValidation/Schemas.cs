@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -192,10 +191,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 dataType
             });
 
-            //using (StreamWriter sr = new StreamWriter(@"C:\Test\shapeData.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(ShapeDataSchema));
-            //}
+            //WriteSchema(@"C:\Test\shapeData.xsd", ShapeDataSchema);
         }
         #region Common Reusable Elements
         private static XmlSchemaAttribute AttributeName => CreateRequiredAttribute("name", "string", true);
@@ -510,7 +506,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Integer",
                 "Boolean",
                 "DateTime",
+                "DateTimeOffset",
+                "Date",
                 "TimeSpan",
+                "TimeOfDay",
                 "Guid",
                 "Byte",
                 "Short",
@@ -526,7 +525,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableInteger",
                 "NullableBoolean",
                 "NullableDateTime",
+                "NullableDateTimeOffset",
+                "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
                 "NullableShort",
@@ -635,10 +637,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 ListType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\connectorData.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(ConnectorDataSchema));
-            //}
+            //WriteSchema("C:\\Test\\connectorData.xsd", ConnectorDataSchema);
         }
 
         private static void CreateParametersDataSchema()
@@ -688,10 +687,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 ListType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\parametersData.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(ParametersDataSchema));
-            //}
+            //WriteSchema("C:\\Test\\parametersData.xsd", ParametersDataSchema);
         }
 
         private static void CreateFragmentsSchema()
@@ -768,10 +764,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 ListType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\fragments.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(FragmentsSchema));
-            //}
+            //WriteSchema("C:\\Test\\fragments.xsd", FragmentsSchema);
         }
 
         private static void CreateConditionsDataSchema()
@@ -850,10 +843,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 ListType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\conditionsData.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(ConditionsDataSchema));
-            //}
+            //WriteSchema("C:\\Test\\conditionsData.xsd", ConditionsDataSchema);
         }
 
         private static void CreateDecisionsDataSchema()
@@ -973,10 +963,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 ListType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\decisionsData.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(DecisionsDataSchema));
-            //}
+            //WriteSchema("C:\\Test\\decisionsData.xsd", DecisionsDataSchema);
         }
 
         private static void CreateFunctionsDataSchema()
@@ -1040,10 +1027,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 ListType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\functionsData.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(FunctionsDataSchema));
-            //}
+            //WriteSchema("C:\\Test\\functionsData.xsd", FunctionsDataSchema);
         }
 
         private static void CreateTableSchema()
@@ -1100,10 +1084,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 ruleChainingBehavior
             });
 
-            //using (StreamWriter sr = new StreamWriter(@"C:\Test\sourceTable.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(TableSchema)); 
-            //}
+            //WriteSchema(@"C:\Test\sourceTable.xsd", TableSchema);
         }
 
         private static XmlSchemaAttribute CreateRequiredAttribute(string attributeName, string schemaTypeName, bool schemaUriRequired = false)
@@ -1676,7 +1657,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Integer",
                 "Boolean",
                 "DateTime",
+                "DateTimeOffset",
+                "Date",
                 "TimeSpan",
+                "TimeOfDay",
                 "Guid",
                 "Byte",
                 "Short",
@@ -1692,7 +1676,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableInteger",
                 "NullableBoolean",
                 "NullableDateTime",
+                "NullableDateTimeOffset",
+                "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
                 "NullableShort",
@@ -1715,7 +1702,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Integer",
                 "Boolean",
                 "DateTime",
+                "DateTimeOffset",
+                "Date",
                 "TimeSpan",
+                "TimeOfDay",
                 "Guid",
                 "Byte",
                 "Short",
@@ -1731,7 +1721,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableInteger",
                 "NullableBoolean",
                 "NullableDateTime",
+                "NullableDateTimeOffset",
+                "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
                 "NullableShort",
@@ -1814,10 +1807,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 listType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\functions.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(FunctionsSchema));
-            //}
+            //WriteSchema("C:\\Test\\functions.xsd", FunctionsSchema);
         }
 
         private static void CreateConstructorSchema()
@@ -1906,7 +1896,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Integer",
                 "Boolean",
                 "DateTime",
+                "DateTimeOffset",
+                "Date",
                 "TimeSpan",
+                "TimeOfDay",
                 "Guid",
                 "Byte",
                 "Short",
@@ -1922,7 +1915,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableInteger",
                 "NullableBoolean",
                 "NullableDateTime",
+                "NullableDateTimeOffset",
+                "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
                 "NullableShort",
@@ -1998,10 +1994,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 listType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\constructors.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(ConstructorSchema));
-            //}
+            //WriteSchema("C:\\Test\\constructors.xsd", ConstructorSchema);
         }
 
         private static XmlSchema CreateCompiledXmlSchemaSet(XmlSchemaObject[] schemaObjects)
@@ -2293,10 +2286,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 runtimeType
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\ProjectProperties.xsd", false, Encoding.UTF8))
-            //{
-            //    sr.Write(GetSchema(ProjectPropertiesSchema));
-            //}
+            //WriteSchema("C:\\Test\\ProjectProperties.xsd", ProjectPropertiesSchema);
         }
 
         private static void CreateVariablesSchema()
@@ -2428,7 +2418,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "IntegerKeyIndexer",
                 "BooleanKeyIndexer",
                 "DateTimeKeyIndexer",
+                "DateTimeOffsetKeyIndexer",
+                "DateKeyIndexer",
                 "TimeSpanKeyIndexer",
+                "TimeOfDayKeyIndexer",
                 "GuidKeyIndexer",
                 "ByteKeyIndexer",
                 "ShortKeyIndexer",
@@ -2469,7 +2462,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Integer",
                 "Boolean",
                 "DateTime",
+                "DateTimeOffset",
+                "Date",
                 "TimeSpan",
+                "TimeOfDay",
                 "Guid",
                 "Byte",
                 "Short",
@@ -2485,7 +2481,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableInteger",
                 "NullableBoolean",
                 "NullableDateTime",
+                "NullableDateTimeOffset",
+                "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
                 "NullableShort",
@@ -2551,10 +2550,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 listInputStyle
             });
 
-            //using (StreamWriter sr = new StreamWriter("C:\\Test\\variables.xsd", false, Encoding.Unicode))
-            //{
-            //    sr.Write(GetSchema(VariablesSchema));
-            //}
+            //WriteSchema("C:\\Test\\variables.xsd", VariablesSchema);
         }
 
         private static void AddEnumeration(XmlSchemaObjectCollection restrictionFacets, string enumerationName)
@@ -2566,19 +2562,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             restrictionFacets.Add(enumeration);
         }
 
-        internal static string GetSchema(XmlSchema schema)
-        {
-            XmlNamespaceManager nsmgr = new(new NameTable());
-            nsmgr.AddNamespace(SchemaConstants.NAMESPACEPREFIX, SchemaConstants.NAMESPACEURI);
-            ServiceInterfaces.IXmlDocumentHelpers xmlDocumentHelpers = Program.ServiceProvider.GetRequiredService<ServiceInterfaces.IXmlDocumentHelpers>();
+        //private static string GetSchema(XmlSchema schema)
+        //{
+        //    XmlNamespaceManager nsmgr = new(new NameTable());
+        //    nsmgr.AddNamespace(SchemaConstants.NAMESPACEPREFIX, SchemaConstants.NAMESPACEURI);
+        //    ServiceInterfaces.IXmlDocumentHelpers xmlDocumentHelpers = Program.ServiceProvider.GetRequiredService<ServiceInterfaces.IXmlDocumentHelpers>();
 
-            StringBuilder stringBuilder = new();
-            using (XmlWriter xmlTextWriter = xmlDocumentHelpers.CreateFormattedXmlWriterWithDeclaration(stringBuilder))
-            {
-                schema.Write(xmlTextWriter, nsmgr);
-            }
-            return stringBuilder.ToString();
-        }
+        //    StringBuilder stringBuilder = new();
+        //    using (XmlWriter xmlTextWriter = xmlDocumentHelpers.CreateFormattedXmlWriterWithDeclaration(stringBuilder))
+        //    {
+        //        schema.Write(xmlTextWriter, nsmgr);
+        //    }
+        //    return stringBuilder.ToString();
+        //}
+
+        //private static void WriteSchema(string fullPath, XmlSchema xmlSchema)
+        //{
+        //    using System.IO.StreamWriter sr = new(fullPath, false, Encoding.Unicode);
+        //    sr.Write(GetSchema(xmlSchema));
+        //}
         #endregion Methods
 
         #region EventHandlers

@@ -23,16 +23,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IApplicationXmlParser _applicationXmlParser;
         private readonly IContextProvider _contextProvider;
 
-        public LoadProjectProperties(IContextProvider contextProvider, ICreateProjectProperties createProjectProperties, IApplicationXmlParser applicationXmlParser)
+        public LoadProjectProperties(IContextProvider contextProvider, ICreateProjectProperties createProjectProperties, IApplicationXmlParser applicationXmlParser, IXmlValidator xmlValidator)
         {
             _encryption = contextProvider.Encryption;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _createProjectProperties = createProjectProperties;
             _messageBoxOptionsHelper = contextProvider.MessageBoxOptionsHelper;
             _pathHelper = contextProvider.PathHelper;
-            _xmlValidator = contextProvider.XmlValidator;
             _applicationXmlParser = applicationXmlParser;
             _contextProvider = contextProvider;
+            _xmlValidator = xmlValidator;
         }
 
         public ProjectProperties Load(string fullPath)
@@ -40,7 +40,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             try
             {
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
-                _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlDocument.DocumentElement.OuterXml);
+                var validationResponse = _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlDocument.DocumentElement.OuterXml);
+                if (validationResponse.Success == false)
+                    throw new XmlValidationException(string.Join(Environment.NewLine, validationResponse.Errors));
 
                 return new ProjectPropertiesXmlParserUtility
                 (
