@@ -49,25 +49,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
                     xmlTextWriter.WriteEndElement();
 
                     xmlTextWriter.WriteStartElement(XmlDataConstants.QUESTIONSHIERARCHYOBJECTTYPESELEMENT);
-                        //foreach (QuestionsHierarchy qh in this.QuestionsHierarchyObjectTypes.Keys)
-                        //{
-                        //    xmlTextWriter.WriteStartElement(XmlDataConstants.OBJECTTYPESGROUPELEMENT);
-                        //    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, Enum.GetName(typeof(QuestionsHierarchy), qh));
-                        //    foreach (string cons in this.QuestionsHierarchyObjectTypes[qh])
-                        //        xmlTextWriter.WriteElementString(XmlDataConstants.OBJECTTYPEELEMENT, cons);
-                        //    xmlTextWriter.WriteEndElement();
-                        //}
+                        foreach (var qh in new string[] { "Form", "Row", "Column", "Question", "Answer" })
+                        {
+                            xmlTextWriter.WriteStartElement(XmlDataConstants.OBJECTTYPESGROUPELEMENT);
+                            xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, qh);
+                            //foreach (string cons in this.QuestionsHierarchyObjectTypes[qh])
+                                //xmlTextWriter.WriteElementString(XmlDataConstants.OBJECTTYPEELEMENT, cons);
+                            xmlTextWriter.WriteEndElement();
+                        }
                     xmlTextWriter.WriteEndElement();
 
                     xmlTextWriter.WriteStartElement(XmlDataConstants.INPUTQUESTIONSHIERARCHYOBJECTTYPESELEMENT);
-                        //foreach (InputQuestionsHierarchy qh in this.InputQuestionsHierarchyObjectTypes.Keys)
-                        //{
-                        //    xmlTextWriter.WriteStartElement(XmlDataConstants.OBJECTTYPESGROUPELEMENT);
-                        //    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, Enum.GetName(typeof(InputQuestionsHierarchy), qh));
-                        //    foreach (string cons in this.InputQuestionsHierarchyObjectTypes[qh])
-                        //        xmlTextWriter.WriteElementString(XmlDataConstants.OBJECTTYPEELEMENT, cons);
-                        //    xmlTextWriter.WriteEndElement();
-                        //}
+                        foreach (var qh in new string[] { "Form", "Row", "Column", "Question" })
+                        {
+                            xmlTextWriter.WriteStartElement(XmlDataConstants.OBJECTTYPESGROUPELEMENT);
+                            xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, qh);
+                            //foreach (string cons in this.InputQuestionsHierarchyObjectTypes[qh])
+                                //xmlTextWriter.WriteElementString(XmlDataConstants.OBJECTTYPEELEMENT, cons);
+                            xmlTextWriter.WriteEndElement();
+                        }
                     xmlTextWriter.WriteEndElement();
 
                     xmlTextWriter.WriteStartElement(XmlDataConstants.CONNECTOROBJECTTYPESELEMENT);
@@ -78,6 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
                 xmlTextWriter.Flush();
                 xmlTextWriter.Close();
             }
+
             return stringBuilder.ToString();
         }
     }

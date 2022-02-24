@@ -29,9 +29,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _xmlValidator = xmlValidator;
         }
 
-        public ProjectProperties Create(string path, string projectName)
+        public ProjectProperties Create(string pathToProjectFolder, string projectName)
         {
-            string projectPath = _pathHelper.CombinePaths(path.Trim(), projectName);
+            string projectPath = _pathHelper.CombinePaths(pathToProjectFolder.Trim(), projectName);
 
             ProjectProperties projectProperties = new
             (

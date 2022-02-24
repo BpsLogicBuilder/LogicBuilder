@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 projectName,
                 projectPath,
                 applicationList,
-                new HashSet<string>(),
+                connectorObjectTypes,
                 _contextProvider
             );
 
@@ -52,7 +52,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             try
             {
                 string xmlString = projectProperties.ToXml;
-                _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlString);
                 var validationResponse = _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlString);
                 if (validationResponse.Success == false)
                     throw new CriticalLogicBuilderException(string.Join(Environment.NewLine, validationResponse.Errors));

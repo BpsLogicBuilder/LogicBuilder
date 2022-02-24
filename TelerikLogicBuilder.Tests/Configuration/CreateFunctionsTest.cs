@@ -1,16 +1,19 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
+using System.Xml;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Configuration
 {
-    public class CreateProjectPropertiesTest
+    public class CreateFunctionsTest
     {
-        public CreateProjectPropertiesTest()
+        public CreateFunctionsTest()
         {
             Initialize();
         }
@@ -20,22 +23,25 @@ namespace TelerikLogicBuilder.Tests.Configuration
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
-        public void CanCreateCreateProjectProperties()
+        public void CanCreateFunctionsFile()
         {
             //arrange
             ICreateProjectProperties createProjectProperties = serviceProvider.GetRequiredService<ICreateProjectProperties>();
+            IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
-
-            //act
-            ProjectProperties projectProperties = createProjectProperties.Create
+            ICreateFunctions createFunctions = serviceProvider.GetRequiredService<ICreateFunctions>();
+            configurationService.ProjectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
-                nameof(CanCreateCreateProjectProperties)
+                nameof(CanCreateFunctionsFile)
             );
 
+            //act
+            var result = createFunctions.Create();
+
             //assert
-            Assert.NotNull(projectProperties);
+            Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement.Name);
+            Assert.Equal(2, result.DocumentElement.ChildNodes.OfType<XmlElement>().Count());
         }
 
         private void Initialize()

@@ -7,7 +7,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
     {
         public XmlValidationResponse Validate(string xmlString)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+            return new XmlValidationResponse { Success = true };
         }
     }
 }

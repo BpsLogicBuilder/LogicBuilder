@@ -1,0 +1,98 @@
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Prompts;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using System;
+using System.Globalization;
+using System.Windows.Forms;
+using System.Xml;
+
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
+{
+    internal class LoadFunctions : ILoadFunctions
+    {
+        private readonly IConfigurationService _configurationService;
+        private readonly IPathHelper _pathHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IEncryption _encryption;
+        private readonly IXmlValidator _xmlValidator;
+        private readonly ICreateFunctions _createFunctions;
+        private readonly IBuiltInFunctionsLoader _builtInFunctionsLoader;
+        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+
+        public LoadFunctions(IConfigurationService configurationService, IXmlValidator xmlValidator, IBuiltInFunctionsLoader builtInFunctionsLoader, ICreateFunctions createFunctions, IMessageBoxOptionsHelper messageBoxOptionsHelper, IContextProvider contextProvider)
+        {
+            _configurationService = configurationService;
+            _pathHelper = contextProvider.PathHelper;
+            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _encryption = contextProvider.Encryption;
+            _xmlValidator = xmlValidator;
+            _builtInFunctionsLoader = builtInFunctionsLoader;
+            _createFunctions = createFunctions;
+            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+        }
+
+        public XmlDocument Load()
+        {
+            string fullPath = _pathHelper.CombinePaths
+            (
+                _configurationService.ProjectProperties.ProjectPath, 
+                ConfigurationFiles.Functions
+            );
+
+            try
+            {
+                XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
+                AppendBuildtInFunctions(xmlDocument);
+                ValidateXml(xmlDocument.DocumentElement.OuterXml);
+
+                return xmlDocument;
+
+                void AppendBuildtInFunctions(XmlDocument xmlDocument)
+                    => xmlDocument.DocumentElement.AppendChild
+                    (
+                        _xmlDocumentHelpers.MakeFragment
+                        (
+                            xmlDocument,
+                            _builtInFunctionsLoader.Load().DocumentElement.OuterXml
+                        )
+                    );
+
+                void ValidateXml(string xmlString)
+                {
+                    var validationResponse = _xmlValidator.Validate(SchemaName.FunctionsSchema, xmlString);
+                    if (validationResponse.Success == false)
+                        throw new XmlValidationException(string.Join(Environment.NewLine, validationResponse.Errors));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is XmlException || ex is XmlValidationException || ex is LogicBuilderException)
+                {
+                    DialogResult dialogResult = DisplayMessage.ShowQuestion
+                    (
+                        $"{GetDialogMessage()}{Environment.NewLine}{Environment.NewLine}{Strings.createNewFunctionsFileQuestion}",
+                        _messageBoxOptionsHelper.MessageBoxOptions
+                    );
+
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        return _createFunctions.Create();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+
+                    string GetDialogMessage()
+                        => string.Format(CultureInfo.CurrentCulture, Strings.invalidConfigurationDocumentFormat, fullPath);
+                }
+
+                throw new CriticalLogicBuilderException(ex.Message);
+            }
+        }
+    }
+}

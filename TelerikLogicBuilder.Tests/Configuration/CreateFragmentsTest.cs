@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,9 +8,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Configuration
 {
-    public class CreateProjectPropertiesTest
+    public class CreateFragmentsTest
     {
-        public CreateProjectPropertiesTest()
+        public CreateFragmentsTest()
         {
             Initialize();
         }
@@ -20,22 +20,24 @@ namespace TelerikLogicBuilder.Tests.Configuration
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
-        public void CanCreateCreateProjectProperties()
+        public void CanCreateFragmentsFile()
         {
             //arrange
             ICreateProjectProperties createProjectProperties = serviceProvider.GetRequiredService<ICreateProjectProperties>();
+            IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
-
-            //act
-            ProjectProperties projectProperties = createProjectProperties.Create
+            ICreateFragments createFragments = serviceProvider.GetRequiredService<ICreateFragments>();
+            configurationService.ProjectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
-                nameof(CanCreateCreateProjectProperties)
+                nameof(CanCreateFragmentsFile)
             );
 
+            //act
+            var result = createFragments.Create();
+
             //assert
-            Assert.NotNull(projectProperties);
+            Assert.Equal(XmlDataConstants.FOLDERELEMENT, result.DocumentElement.Name);
         }
 
         private void Initialize()

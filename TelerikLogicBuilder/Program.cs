@@ -49,11 +49,24 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //Configuration
             .AddSingleton<IApplicationXmlParser, ApplicationXmlParser>()
+            .AddSingleton<IBuiltInFunctionsLoader, BuiltInFunctionsLoader>()
             .AddSingleton<IConfigurationService, ConfigurationService>()
+            .AddSingleton<ICreateConstructors, CreateConstructors>()
+            .AddSingleton<ICreateFragments, CreateFragments>()
+            .AddSingleton<ICreateFunctions, CreateFunctions>()
             .AddSingleton<ICreateProjectProperties, CreateProjectProperties>()
+            .AddSingleton<ICreateVariables, CreateVariables>()
+            .AddSingleton<ILoadConstructors, LoadConstructors>()
+            .AddSingleton<ILoadFragments, LoadFragments>()
+            .AddSingleton<ILoadFunctions, LoadFunctions>()
             .AddSingleton<ILoadProjectProperties, LoadProjectProperties>()
+            .AddSingleton<ILoadVariables, LoadVariables>()
             .AddSingleton<IProjectPropertiesXmlParser, ProjectPropertiesXmlParser>()
+            .AddSingleton<IUpdateConstructors, UpdateConstructors>()
+            .AddSingleton<IUpdateFragments, UpdateFragments>()
+            .AddSingleton<IUpdateFunctions, UpdateFunctions>()
             .AddSingleton<IUpdateProjectProperties, UpdateProjectProperties>()
+            .AddSingleton<IUpdateVariables, UpdateVariables>()
             .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
 
             //Intellisense.Constructors

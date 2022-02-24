@@ -128,6 +128,51 @@
     <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.</value>
     <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
   </data>
+	<data name="builtInFunctionNameAnd" xml:space="preserve">
+    <value>And</value>
+  </data>
+	<data name="builtInFunctionNameChainingUpdate" xml:space="preserve">
+    <value>ChainingUpdate</value>
+  </data>
+	<data name="builtInFunctionNameEquals" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+	<data name="builtInFunctionNameGreaterThan" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+	<data name="builtInFunctionNameGreaterThanOrEquals" xml:space="preserve">
+    <value>Greater Than or Equals</value>
+  </data>
+	<data name="builtInFunctionNameLessThan" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+	<data name="builtInFunctionNameLessThanOrEquals" xml:space="preserve">
+    <value>Less Than or Equals</value>
+  </data>
+	<data name="builtInFunctionNameNot" xml:space="preserve">
+    <value>Not</value>
+  </data>
+	<data name="builtInFunctionNameRemoveDecision" xml:space="preserve">
+    <value>Set To Null</value>
+  </data>
+	<data name="builtInFunctionNameSetDecision" xml:space="preserve">
+    <value>Set Variable</value>
+  </data>
+	<data name="builtInFunctionNameOr" xml:space="preserve">
+    <value>Or</value>
+  </data>
+	<data name="builtInParameterNameValue" xml:space="preserve">
+    <value>value</value>
+  </data>
+	<data name="builtInParameterNameValue1" xml:space="preserve">
+    <value>value1</value>
+  </data>
+	<data name="builtInParameterNameValue2" xml:space="preserve">
+    <value>value2</value>
+  </data>
+	<data name="builtInParameterNameVariable" xml:space="preserve">
+    <value>Variable</value>
+  </data>
 	<data name="cannotLoadAssemblyFormat" xml:space="preserve">
     <value>Assembly "{0}" could not be loaded.</value>
     <comment>0=Assembly</comment>
@@ -144,8 +189,20 @@
     <value>{0} - {1}({2})</value>
     <comment>0=constructorName 1=Type 2=parametersToString</comment>
   </data>
+	<data name="createNewConstructorsFileQuestion" xml:space="preserve">
+    <value>Create a new Constructors File?</value>
+  </data>
+	<data name="createNewFragmentsFileQuestion" xml:space="preserve">
+    <value>Create a new Fragments File?</value>
+  </data>
+	<data name="createNewFunctionsFileQuestion" xml:space="preserve">
+    <value>Create a new Functions File?</value>
+  </data>
 	<data name="createNewProjectFileQuestion" xml:space="preserve">
     <value>Create a new Project File?</value>
+  </data>
+	<data name="createNewVariablesFileQuestion" xml:space="preserve">
+    <value>Create a new Variables File?</value>
   </data>
 	<data name="defaultActivityAssemblyFolder" xml:space="preserve">
     <value>ActivityAssembly</value>
@@ -411,9 +468,36 @@
 	<data name="enumDescriptionVariableArrayIndexer" xml:space="preserve">
     <value>VariableKeyArrayItem</value>
   </data>
+	<data name="enumDescriptionParameterSourcedPropertyInput" xml:space="preserve">
+    <value>Parameter Sourced Property Input</value>
+  </data>
+	<data name="funcCannotLoadPropertySourceParameterFormat" xml:space="preserve">
+    <value>Cannot find the required property sourced parameter "{0}" for the parameter "{1}" in function "{2}". The property sourced parameter must be one of the sibling parameters {3} when the control is {4}.</value>
+    <comment>0=sourceParameter; 1=parameter; 2=function;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
+  </data>
+	<data name="funcGenericArgNameInvalidFormat" xml:space="preserve">
+    <value>The generic argument name "{0}" for generic parameter "{1}" in function "{2}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
+    <comment>0=genericArgumentName;1=parameterName;2=functionName</comment>
+  </data>
+	<data name="funcGenericArgNotValidForAllReferenceCatFormat" xml:space="preserve">
+    <value>Generic arguments are only valid when the reference category is "Type". Function name: "{0}".</value>
+    <comment>0=functionName</comment>
+  </data>
+	<data name="funcGenericParameterArgNameNotFoundFormat" xml:space="preserve">
+    <value>The generic argument name "{0}" for generic parameter "{1}" in function "{2}" is not one of the function's generic arguments: "{3}".</value>
+    <comment>0=genericArgumentName;1=parameterName;2=functionName;3=listOfGenericArguments</comment>
+  </data>
+	<data name="funcGenericReturnTypeArgNameNotFoundFormat" xml:space="preserve">
+    <value>The generic argument name "{0}" for the return type in function "{1}" is not one of the function's generic arguments: "{2}".</value>
+    <comment>0=genericArgumentName;1=functionName;2=listOfGenericArguments</comment>
+  </data>
 	<data name="functionToStringFormat" xml:space="preserve">
     <value>{0} - {1}({2})</value>
     <comment>0=functionName 1=Type 2=parametersToString</comment>
+  </data>
+	<data name="functionTypeNameMustBeEmptyFormat" xml:space="preserve">
+    <value>Type Name field for function {0} must be empty when the reference category is not "Type"or "Static Reference".</value>
+    <comment>0=functionName</comment>
   </data>
 	<data name="genericMethodsNotSupportedFormat" xml:space="preserve">
     <value>Generic methods are not supported. Method name: "{0}".</value>
@@ -445,6 +529,13 @@
 	<data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.</value>
   </data>
+	<data name="parameterCountMustBeTwoFormat" xml:space="preserve">
+    <value>Because Parameters Layout is Binary, function {0} must have exactly 2 parameters.</value>
+  </data>
+	<data name="parametersLayoutMustBeBinaryFormat" xml:space="preserve">
+    <value>Parameters Layout for function {0} must be "Binary" when the function category is "Binary Operator".</value>
+    <comment>0=functionName</comment>
+  </data>
 	<data name="parameterTypeNameFormat2" xml:space="preserve">
     <value>{0}: {1}</value>
     <comment>0=type 1=name</comment>
@@ -452,6 +543,12 @@
 	<data name="referenceCannotEqualVariable" xml:space="preserve">
     <value>The variable index cannot be the same as the variable it references. Reference Name: "{0}", variable: "{1}".</value>
     <comment>0=referenceName; 1=variableName</comment>
+  </data>
+	<data name="referenceCategoryCannotBeNoneFormat" xml:space="preserve">
+    <value>Reference Category for function {0} cannot be "None" given the function category.</value>
+  </data>
+	<data name="referenceCategoryMustBeNoneFormat" xml:space="preserve">
+    <value>Reference Category for function {0} must be "None" when the function category is "Binary Operator".</value>
   </data>
 	<data name="referenceNameAndCastReferenceAFormat" xml:space="preserve">
     <value>Variable "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).</value>
@@ -463,6 +560,10 @@
 	<data name="truncatedMessageTextFormat" xml:space="preserve">
     <value>{0} ...</value>
     <comment>0=truncated message</comment>
+  </data>
+	<data name="typeReferenceNameIsInvalidFormat" xml:space="preserve">
+    <value>Fully Qualified Type Reference Name field for function {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.</value>
+    <comment>0=functionName</comment>
   </data>
 	<data name="typeReferenceNameIsInvalidFormatVariable" xml:space="preserve">
     <value>Fully Qualified Type Name field for variable {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.</value>

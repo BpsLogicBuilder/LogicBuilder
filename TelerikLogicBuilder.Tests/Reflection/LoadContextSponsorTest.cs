@@ -66,14 +66,16 @@ namespace TelerikLogicBuilder.Tests.Reflection
             );
 
             //act
-            
             await loadContextSponsor.LoadAssembiesOnOpenProject();
             LogicBuilderAssemblyLoadContext logicBuilderAssemblyLoadContext = assemblyLoadContextService.GetAssemblyLoadContext();
-            Assert.NotEmpty(logicBuilderAssemblyLoadContext.Assemblies);
-            loadContextSponsor.UnloadAssembliesOnCloseProject();
-            Assert.Empty(assemblyLoadContextService.GetAssemblyLoadContext().Assemblies);
-
             //assert
+            Assert.NotEmpty(logicBuilderAssemblyLoadContext.Assemblies);
+
+
+            //act
+            loadContextSponsor.UnloadAssembliesOnCloseProject();
+            //assert
+            Assert.Empty(assemblyLoadContextService.GetAssemblyLoadContext().Assemblies);
         }
 
 

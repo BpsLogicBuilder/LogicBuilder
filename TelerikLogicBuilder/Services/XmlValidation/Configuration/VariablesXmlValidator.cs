@@ -30,11 +30,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
         public XmlValidationResponse Validate(string xmlString) 
             => new VariablesXmlValidatorUtility
             (
-                xmlString, 
-                _variablesXmlParser, 
-                _variableValidationHelper, 
-                _enumHelper, 
-                _stringHelper, 
+                xmlString,
+                _variablesXmlParser,
+                _variableValidationHelper,
+                _enumHelper,
+                _stringHelper,
                 _xmlDocumentHelpers
             ).ValidateXmlDocument();
     }

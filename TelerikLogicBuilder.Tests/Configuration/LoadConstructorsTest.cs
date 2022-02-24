@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,9 +8,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Configuration
 {
-    public class CreateProjectPropertiesTest
+    public class LoadConstructorsTest
     {
-        public CreateProjectPropertiesTest()
+        public LoadConstructorsTest()
         {
             Initialize();
         }
@@ -20,22 +20,26 @@ namespace TelerikLogicBuilder.Tests.Configuration
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
-        public void CanCreateCreateProjectProperties()
+        public void CanLoadConstructors()
         {
             //arrange
             ICreateProjectProperties createProjectProperties = serviceProvider.GetRequiredService<ICreateProjectProperties>();
+            IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
-
-            //act
-            ProjectProperties projectProperties = createProjectProperties.Create
+            ICreateConstructors createConstructors = serviceProvider.GetRequiredService<ICreateConstructors>();
+            ILoadConstructors loadConstructors = serviceProvider.GetRequiredService<ILoadConstructors>();
+            configurationService.ProjectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
-                nameof(CanCreateCreateProjectProperties)
+                nameof(CanLoadConstructors)
             );
+            createConstructors.Create();
+
+            //act
+            var result = loadConstructors.Load();
 
             //assert
-            Assert.NotNull(projectProperties);
+            Assert.Equal(XmlDataConstants.FORMELEMENT, result.DocumentElement.Name);
         }
 
         private void Initialize()

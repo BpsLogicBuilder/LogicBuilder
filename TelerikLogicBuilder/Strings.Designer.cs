@@ -124,6 +124,141 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to And.
+        /// </summary>
+        internal static string builtInFunctionNameAnd {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameAnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ChainingUpdate.
+        /// </summary>
+        internal static string builtInFunctionNameChainingUpdate {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameChainingUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Equals.
+        /// </summary>
+        internal static string builtInFunctionNameEquals {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameEquals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greater Than.
+        /// </summary>
+        internal static string builtInFunctionNameGreaterThan {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameGreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greater Than or Equals.
+        /// </summary>
+        internal static string builtInFunctionNameGreaterThanOrEquals {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameGreaterThanOrEquals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Less Than.
+        /// </summary>
+        internal static string builtInFunctionNameLessThan {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameLessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Less Than or Equals.
+        /// </summary>
+        internal static string builtInFunctionNameLessThanOrEquals {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameLessThanOrEquals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not.
+        /// </summary>
+        internal static string builtInFunctionNameNot {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Or.
+        /// </summary>
+        internal static string builtInFunctionNameOr {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameOr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set To Null.
+        /// </summary>
+        internal static string builtInFunctionNameRemoveDecision {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameRemoveDecision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Variable.
+        /// </summary>
+        internal static string builtInFunctionNameSetDecision {
+            get {
+                return ResourceManager.GetString("builtInFunctionNameSetDecision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to value.
+        /// </summary>
+        internal static string builtInParameterNameValue {
+            get {
+                return ResourceManager.GetString("builtInParameterNameValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to value1.
+        /// </summary>
+        internal static string builtInParameterNameValue1 {
+            get {
+                return ResourceManager.GetString("builtInParameterNameValue1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to value2.
+        /// </summary>
+        internal static string builtInParameterNameValue2 {
+            get {
+                return ResourceManager.GetString("builtInParameterNameValue2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable.
+        /// </summary>
+        internal static string builtInParameterNameVariable {
+            get {
+                return ResourceManager.GetString("builtInParameterNameVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type byte..
         /// </summary>
         internal static string byteKeyIndexIsInvalidFormat {
@@ -196,11 +331,47 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a new Constructors File?.
+        /// </summary>
+        internal static string createNewConstructorsFileQuestion {
+            get {
+                return ResourceManager.GetString("createNewConstructorsFileQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new Fragments File?.
+        /// </summary>
+        internal static string createNewFragmentsFileQuestion {
+            get {
+                return ResourceManager.GetString("createNewFragmentsFileQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new Functions File?.
+        /// </summary>
+        internal static string createNewFunctionsFileQuestion {
+            get {
+                return ResourceManager.GetString("createNewFunctionsFileQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new Project File?.
         /// </summary>
         internal static string createNewProjectFileQuestion {
             get {
                 return ResourceManager.GetString("createNewProjectFileQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new Variables File?.
+        /// </summary>
+        internal static string createNewVariablesFileQuestion {
+            get {
+                return ResourceManager.GetString("createNewVariablesFileQuestion", resourceCulture);
             }
         }
         
@@ -889,6 +1060,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameter Sourced Property Input.
+        /// </summary>
+        internal static string enumDescriptionParameterSourcedPropertyInput {
+            get {
+                return ResourceManager.GetString("enumDescriptionParameterSourcedPropertyInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Property.
         /// </summary>
         internal static string enumDescriptionProperty {
@@ -1114,11 +1294,65 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find the required property sourced parameter &quot;{0}&quot; for the parameter &quot;{1}&quot; in function &quot;{2}&quot;. The property sourced parameter must be one of the sibling parameters {3} when the control is {4}..
+        /// </summary>
+        internal static string funcCannotLoadPropertySourceParameterFormat {
+            get {
+                return ResourceManager.GetString("funcCannotLoadPropertySourceParameterFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for generic parameter &quot;{1}&quot; in function &quot;{2}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string funcGenericArgNameInvalidFormat {
+            get {
+                return ResourceManager.GetString("funcGenericArgNameInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic arguments are only valid when the reference category is &quot;Type&quot;. Function name: &quot;{0}&quot;..
+        /// </summary>
+        internal static string funcGenericArgNotValidForAllReferenceCatFormat {
+            get {
+                return ResourceManager.GetString("funcGenericArgNotValidForAllReferenceCatFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for generic parameter &quot;{1}&quot; in function &quot;{2}&quot; is not one of the function&apos;s generic arguments: &quot;{3}&quot;..
+        /// </summary>
+        internal static string funcGenericParameterArgNameNotFoundFormat {
+            get {
+                return ResourceManager.GetString("funcGenericParameterArgNameNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for the return type in function &quot;{1}&quot; is not one of the function&apos;s generic arguments: &quot;{2}&quot;..
+        /// </summary>
+        internal static string funcGenericReturnTypeArgNameNotFoundFormat {
+            get {
+                return ResourceManager.GetString("funcGenericReturnTypeArgNameNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} - {1}({2}).
         /// </summary>
         internal static string functionToStringFormat {
             get {
                 return ResourceManager.GetString("functionToStringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Name field for function {0} must be empty when the reference category is not &quot;Type&quot;or &quot;Static Reference&quot;..
+        /// </summary>
+        internal static string functionTypeNameMustBeEmptyFormat {
+            get {
+                return ResourceManager.GetString("functionTypeNameMustBeEmptyFormat", resourceCulture);
             }
         }
         
@@ -1249,6 +1483,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Because Parameters Layout is Binary, function {0} must have exactly 2 parameters..
+        /// </summary>
+        internal static string parameterCountMustBeTwoFormat {
+            get {
+                return ResourceManager.GetString("parameterCountMustBeTwoFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameters Layout for function {0} must be &quot;Binary&quot; when the function category is &quot;Binary Operator&quot;..
+        /// </summary>
+        internal static string parametersLayoutMustBeBinaryFormat {
+            get {
+                return ResourceManager.GetString("parametersLayoutMustBeBinaryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}: {1}.
         /// </summary>
         internal static string parameterTypeNameFormat2 {
@@ -1263,6 +1515,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string referenceCannotEqualVariable {
             get {
                 return ResourceManager.GetString("referenceCannotEqualVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Category for function {0} cannot be &quot;None&quot; given the function category..
+        /// </summary>
+        internal static string referenceCategoryCannotBeNoneFormat {
+            get {
+                return ResourceManager.GetString("referenceCategoryCannotBeNoneFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Category for function {0} must be &quot;None&quot; when the function category is &quot;Binary Operator&quot;..
+        /// </summary>
+        internal static string referenceCategoryMustBeNoneFormat {
+            get {
+                return ResourceManager.GetString("referenceCategoryMustBeNoneFormat", resourceCulture);
             }
         }
         
@@ -1362,6 +1632,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string truncatedMessageTextFormat {
             get {
                 return ResourceManager.GetString("truncatedMessageTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fully Qualified Type Reference Name field for function {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores..
+        /// </summary>
+        internal static string typeReferenceNameIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("typeReferenceNameIsInvalidFormat", resourceCulture);
             }
         }
         

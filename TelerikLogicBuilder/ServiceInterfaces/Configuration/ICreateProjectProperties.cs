@@ -4,7 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration
 {
     internal interface ICreateProjectProperties
     {
-        ProjectProperties Create(string path, string projectName);
+        ProjectProperties Create(string pathToProjectFolder, string projectName);
         ProjectProperties Create(string fullPath);
     }
 }

@@ -24,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         private readonly XmlDocument xmlDocument = new();
         private XmlSchema xmlSchema;
         private readonly List<string> xmlDocumentErrors = new();
+        private static readonly object lockValidation = new();
         #endregion Variables
 
         #region Properties
@@ -83,8 +84,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             if (xmlSchema == null)
                 throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{F384E2F2-E91C-41FC-B4CA-2EFDBBCD167F}"));
 
-            xmlDocument.Schemas.Add(xmlSchema);
-            xmlDocument.Validate(ValidateXmlDocumentEventHandler);
+            lock (lockValidation)
+            {
+                xmlDocument.Schemas.Add(xmlSchema);
+                xmlDocument.Validate(ValidateXmlDocumentEventHandler);
+            }
         }
 
         protected IList<string> LoadXmlDocumentValidationErrors()

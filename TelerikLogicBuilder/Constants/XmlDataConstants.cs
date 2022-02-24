@@ -4,6 +4,7 @@
     {
         internal const string XMLATTRIBUTEPREFIX = "xml";
         internal const string SPACEATTRIBUTE = "space";
+        internal const string PRESERVE = "preserve";
         internal const string IDATTRIBUTE = "id";
         internal const string NAMEATTRIBUTE = "name";
         internal const string CONNECTORCATEGORYATTRIBUTE = "connectorCategory";
@@ -50,6 +51,7 @@
         internal const string DATAELEMENT = "data";
         internal const string DATATYPEATTRIBUTE = "dataType";
         internal const string METADATAELEMENT = "metadata";
+        internal const string FORMSELEMENT = "forms";
 
         //Input form domain request
         internal const string DOMAINREQUESTELEMENT = "domainRequest";
@@ -106,6 +108,7 @@
         internal const string QUESTIONSHIERARCHYOBJECTTYPESELEMENT = "questionsHierarchyObjectTypes";
 
         //VariableType Configuration Elements
+        internal const string VARIABLESROOTFOLDERNAMEATTRIBUTE = "Variables";
         internal const string LITERALVARIABLEELEMENT = "literalVariable";
         internal const string OBJECTVARIABLEELEMENT = "objectVariable";
         internal const string LITERALLISTVARIABLEELEMENT = "literalListVariable";
@@ -123,7 +126,11 @@
         internal const string DEFINITIONELEMENT = "definition";
         internal const string VARIABLETYPEELEMENT = "variableType";
 
-        //Function return type configuration
+        //Function configuration
+        internal const string BUILTINFUNCTIONSFORMROOTNODENAME = "BUILT IN FUNCTIONS";
+        internal const string BUILTINFUNCTIONSROOTFOLDERNAMEATTRIBUTE = "Built In Functions";
+        internal const string FUNCTIONSFORMROOTNODENAME = "FUNCTIONS";
+        internal const string FUNCTIONSROOTFOLDERNAMEATTRIBUTE = "Functions";
         internal const string GENERICARGUMENTSELEMENT = "genericArguments";
         internal const string LITERALELEMENT = "literal";
         internal const string LITERALLISTELEMENT = "literalList";
@@ -191,6 +198,7 @@
         internal const string ASSERTFUNCTIONSELEMENT = "assertFunctions";
 
         //Fragment for quickly updating objects during editing.
+        internal const string FRAGMENTSROOTFOLDERNAMEATTRIBUTE = "Fragments";
         internal const string FRAGMENTELEMENT = "fragment";
     }
 }
