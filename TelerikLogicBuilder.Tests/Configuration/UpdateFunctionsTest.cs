@@ -44,7 +44,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement.Name);
             Assert.Equal(2, result.SelectNodes($"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/function").OfType<XmlElement>().Count());
 
-            XmlDocument GetDocumentToSave()
+            static XmlDocument GetDocumentToSave()
             {
                 XmlDocument xmlDocument = new();
                 xmlDocument.LoadXml(@"<forms>

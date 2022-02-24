@@ -8,7 +8,6 @@ using System.Linq;
 using System.Reflection;
 using TelerikLogicBuilder.Tests.AttributeSamples;
 using TelerikLogicBuilder.Tests.Constants;
-using TelerikLogicBuilder.Tests.Mocks;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -185,13 +184,12 @@ namespace TelerikLogicBuilder.Tests
             IParameterAttributeReader attributeReader = serviceProvider.GetRequiredService<IParameterAttributeReader>();
             ConstructorInfo constructorInfo = typeof(FormControlSettingsParameters).GetConstructors().Single();
             IStringHelper stringHelper = serviceProvider.GetRequiredService<IStringHelper>();
-            ((StringHelperMock)stringHelper).SplitWithQuoteQualifierResult = new string[] { "A", "B", "C" };
 
             //act
             List<string> domain = attributeReader.GetDomain(constructorInfo.GetParameters().Single(p => p.Name == "type"));
 
             //assert
-            Assert.True(domain.SequenceEqual(new List<string> { "A", "B", "C" }));
+            Assert.True(domain.SequenceEqual(new List<string> { "text", "numeric", "boolean", "date", "email" }));
         }
 
         [Fact]
@@ -211,18 +209,7 @@ namespace TelerikLogicBuilder.Tests
 
         private void Initialize()
         {
-            IServiceCollection serviceCollection = FlowBuilder.Program.ServiceCollection.Aggregate
-            (
-                new ServiceCollection().AddSingleton<IStringHelper, StringHelperMock>(),
-                (list, next) =>
-                {
-                    if (next.ServiceType != typeof(IStringHelper))
-                        list.Add(next);
-                    return list;
-                }
-            );
-
-            serviceProvider = serviceCollection.BuildServiceProvider();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

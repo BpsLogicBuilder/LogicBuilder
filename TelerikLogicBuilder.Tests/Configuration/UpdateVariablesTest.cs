@@ -53,7 +53,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                 .Count()
             );
 
-            XmlDocument GetDocumentToSave()
+            static XmlDocument GetDocumentToSave()
             {
                 XmlDocument xmlDocument = new();
                 xmlDocument.LoadXml(@"<folder name=""Decisions"">

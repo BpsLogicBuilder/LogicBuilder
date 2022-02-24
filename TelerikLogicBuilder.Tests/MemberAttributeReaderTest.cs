@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TelerikLogicBuilder.Tests.AttributeSamples;
 using TelerikLogicBuilder.Tests.Constants;
-using TelerikLogicBuilder.Tests.Mocks;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -340,8 +339,6 @@ namespace TelerikLogicBuilder.Tests
         {
             //arrange
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
-            IStringHelper stringHelper = serviceProvider.GetRequiredService<IStringHelper>();
-            ((StringHelperMock)stringHelper).SplitWithQuoteQualifierResult = new string[] { "A", "B", "C" };
 
             //act
             List<string> domain = attributeReader.GetDomain(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FirstName)));
@@ -422,18 +419,7 @@ namespace TelerikLogicBuilder.Tests
 
         private void Initialize()
         {
-            IServiceCollection serviceCollection = FlowBuilder.Program.ServiceCollection.Aggregate
-            (
-                new ServiceCollection().AddSingleton<IStringHelper, StringHelperMock>(), 
-                (list, next) =>
-                {
-                    if (next.ServiceType != typeof(IStringHelper))
-                        list.Add(next);
-                    return list;
-                }
-            );
-
-            serviceProvider = serviceCollection.BuildServiceProvider();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

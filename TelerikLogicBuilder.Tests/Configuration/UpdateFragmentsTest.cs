@@ -51,7 +51,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                 .OfType<XmlElement>()
             );
 
-            XmlDocument GetDocumentToSave()
+            static XmlDocument GetDocumentToSave()
             {
                 XmlDocument xmlDocument = new();
                 xmlDocument.LoadXml(@"<folder name=""Fragments"">
