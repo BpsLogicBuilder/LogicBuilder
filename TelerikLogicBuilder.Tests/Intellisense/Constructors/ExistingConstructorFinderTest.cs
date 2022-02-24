@@ -24,7 +24,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void ReturnsExistingConstructor()
         {
             //arrange
@@ -54,7 +53,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void ReturnsNullWhenConstructorNotFound()
         {
             //arrange

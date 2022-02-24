@@ -21,7 +21,6 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CanCreateAssemblyLoadContextManager()
         {
             //arrange
@@ -32,7 +31,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CanCreateLoadContexts()
         {
             //arrange

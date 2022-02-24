@@ -15,7 +15,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CanEncryptAndDecrypt()
         {
             const string toEnCrypt = "Today is a good day.";

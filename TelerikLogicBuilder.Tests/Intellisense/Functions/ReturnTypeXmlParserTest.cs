@@ -21,7 +21,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetLiteralReturnTypeFromXml()
         {
             //arrange
@@ -39,7 +38,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetObjectReturnTypeFromXml()
         {
             //arrange
@@ -57,7 +55,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetGenericReturnTypeFromXml()
         {
             //arrange
@@ -75,7 +72,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetLiteralListReturnTypeFromXml()
         {
             //arrange
@@ -95,7 +91,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetObjectListReturnTypeFromXml()
         {
             //arrange
@@ -115,7 +110,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetGenericListReturnTypeFromXml()
         {
             //arrange

@@ -21,7 +21,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralVariableFromXml()
         {
             //arrange
@@ -57,7 +56,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectVariableFromXml()
         {
             //arrange
@@ -87,7 +85,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralListVariableFromXml()
         {
             //arrange
@@ -130,7 +127,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectListVariableFromXml()
         {
             //arrange
@@ -163,7 +159,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVariableDictionaryWorks()
         {
             //arrange

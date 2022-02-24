@@ -23,7 +23,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void ReturnsTrueForValidParameterMatch()
         {
             //arrange
@@ -40,7 +39,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void ReturnsFalseForInalidParameterMatch()
         {
             //arrange

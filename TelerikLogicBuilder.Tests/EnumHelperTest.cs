@@ -26,7 +26,6 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVisibleEnumTextReturnsCorrectStringForDefaultCulture()
         {
             //arrange
@@ -40,7 +39,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVisibleEnumTextReturnsCorrectStringForSatelliteCulture()
         {
             //arrange
@@ -61,7 +59,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ICollection<string>), ListType.IGenericCollection)]
         [InlineData(typeof(IEnumerable<string>), ListType.IGenericEnumerable)]
         [InlineData(typeof(string[]), ListType.Array)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetListTypeReturnsTheExpectedEnumType(Type type, ListType expectedListType)
         {
             //arrange
@@ -75,7 +72,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetListTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -125,7 +121,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ushort?), LiteralParameterType.NullableUShort)]
         [InlineData(typeof(uint?), LiteralParameterType.NullableUInteger)]
         [InlineData(typeof(ulong?), LiteralParameterType.NullableULong)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetParameterTypeReturnsTheExpectedEnumType(Type type, LiteralParameterType expectedParameterType)
         {
             //arrange
@@ -139,7 +134,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetParameterTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -189,7 +183,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ushort?), LiteralVariableType.NullableUShort)]
         [InlineData(typeof(uint?), LiteralVariableType.NullableUInteger)]
         [InlineData(typeof(ulong?), LiteralVariableType.NullableULong)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetVariableTypeReturnsTheExpectedEnumType(Type type, LiteralVariableType expectedVariableType)
         {
             //arrange
@@ -203,7 +196,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVariableTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -254,7 +246,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ushort?), LiteralFunctionReturnType.NullableUShort)]
         [InlineData(typeof(uint?), LiteralFunctionReturnType.NullableUInteger)]
         [InlineData(typeof(ulong?), LiteralFunctionReturnType.NullableULong)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetFunctionReturnTypeReturnsTheExpectedEnumType(Type type, LiteralFunctionReturnType expectedFunctionReturnType)
         {
             //arrange
@@ -268,7 +259,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetFunctionReturnTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -319,7 +309,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ushort?), LiteralType.NullableUShort)]
         [InlineData(typeof(uint?), LiteralType.NullableUInteger)]
         [InlineData(typeof(ulong?), LiteralType.NullableULong)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetLiteralTypeReturnsTheExpectedEnumType(Type type, LiteralType expectedLiteralType)
         {
             //arrange
@@ -373,7 +362,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(LiteralFunctionReturnType.NullableUShort, typeof(ushort?))]
         [InlineData(LiteralFunctionReturnType.NullableUInteger, typeof(uint?))]
         [InlineData(LiteralFunctionReturnType.NullableULong, typeof(ulong?))]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetSystemTypeFromLiteralFunctionReturnTypeReturnsTheExpectedType(LiteralFunctionReturnType literalType, Type expectedType)
         {
             //arrange
@@ -427,7 +415,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(LiteralParameterType.NullableUShort, typeof(ushort?))]
         [InlineData(LiteralParameterType.NullableUInteger, typeof(uint?))]
         [InlineData(LiteralParameterType.NullableULong, typeof(ulong?))]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetSystemTypeFromLiteralParameterTypeReturnsTheExpectedType(LiteralParameterType literalType, Type expectedType)
         {
             //arrange
@@ -481,7 +468,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(LiteralType.NullableUShort, typeof(ushort?))]
         [InlineData(LiteralType.NullableUInteger, typeof(uint?))]
         [InlineData(LiteralType.NullableULong, typeof(ulong?))]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetSystemTypeFromLiteralTypeReturnsTheExpectedType(LiteralType literalType, Type expectedType)
         {
             //arrange
@@ -534,7 +520,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(LiteralVariableType.NullableUShort, typeof(ushort?))]
         [InlineData(LiteralVariableType.NullableUInteger, typeof(uint?))]
         [InlineData(LiteralVariableType.NullableULong, typeof(ulong?))]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetSystemTypeFromLiteralVariableTypeReturnsTheExpectedType(LiteralVariableType literalType, Type expectedType)
         {
             //arrange
@@ -587,7 +572,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(LiteralVariableType.NullableUShort, false)]
         [InlineData(LiteralVariableType.NullableUInteger, false)]
         [InlineData(LiteralVariableType.NullableULong, false)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void CanBeIntegerReturnsTheExpectedBoolean(LiteralVariableType literalType, bool expectedResult)
         {
             //arrange
@@ -615,7 +599,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ConvertToEnumListThrowsCriticalExceptionForInvalidGenericType()
         {
             //arrange
@@ -626,7 +609,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ConvertToEnumListThrowsArgumentExceptionForUndefinedEnumValues()
         {
             //arrange
@@ -638,7 +620,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -655,7 +636,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(ListType.IGenericCollection, "String", "Generic Collection Interface Of String")]
         [InlineData(ListType.IGenericEnumerable, "String", "Generic Enumerable Interface Of String")]
         [InlineData(ListType.Array, "String", "Array Of String")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetTypeDescriptionReturnsTheExpectedString(ListType listType, string elementType, string expectedResult)
         {
             //arrange
@@ -669,7 +649,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ParseEnumTextThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -682,7 +661,6 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData("IGenericEnumerable", ListType.IGenericEnumerable)]
         [InlineData("Array", ListType.Array)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void ParseEnumTextReturnsTheExpectedEnumType(string listType, ListType expectedResult)
         {
             //arrange
@@ -702,7 +680,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(XmlDataConstants.LITERALLISTPARAMETERELEMENT, ParameterCategory.LiteralList)]
         [InlineData(XmlDataConstants.OBJECTLISTPARAMETERELEMENT, ParameterCategory.ObjectList)]
         [InlineData(XmlDataConstants.GENERICLISTPARAMETERELEMENT, ParameterCategory.GenericList)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetParameterCategoryReturnsTheExpectedCategory(string elementName, ParameterCategory expectedCategory)
         {
             //arrange
@@ -716,7 +693,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetParameterCategoryThrowsCriticalExceptionForInvalidElementName()
         {
             //arrange
@@ -733,7 +709,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(XmlDataConstants.LITERALLISTELEMENT, ReturnTypeCategory.LiteralList)]
         [InlineData(XmlDataConstants.OBJECTLISTELEMENT, ReturnTypeCategory.ObjectList)]
         [InlineData(XmlDataConstants.GENERICLISTELEMENT, ReturnTypeCategory.GenericList)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetReturnTypeCategoryReturnsTheExpectedCategory(string elementName, ReturnTypeCategory expectedCategory)
         {
             //arrange
@@ -747,7 +722,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetReturnTypeCategoryThrowsCriticalExceptionForInvalidElementName()
         {
             //arrange
@@ -762,7 +736,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(XmlDataConstants.OBJECTVARIABLEELEMENT, VariableTypeCategory.Object)]
         [InlineData(XmlDataConstants.LITERALLISTVARIABLEELEMENT, VariableTypeCategory.LiteralList)]
         [InlineData(XmlDataConstants.OBJECTLISTVARIABLEELEMENT, VariableTypeCategory.ObjectList)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetVariableTypeCategoryReturnsTheExpectedCategory(string elementName, VariableTypeCategory expectedCategory)
         {
             //arrange
@@ -776,7 +749,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVariableTypeCategoryThrowsCriticalExceptionForInvalidElementName()
         {
             //arrange
@@ -787,7 +759,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ToValidIndirectReferenceDictionaryReturnsCorrectDictionaryForDefaultCulture()
         {
             //arrange
@@ -801,7 +772,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ToValidIndirectReferenceDictionaryReturnsCorrectDictionaryForSatelliteCulture()
         {
             //arrange
@@ -816,7 +786,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetValidIndirectReferencesListReturnsExpectedStringForDefaultCulture()
         {
             //arrange
@@ -841,7 +810,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetValidIndirectReferencesListReturnsExpectedStringForSatelliteCulture()
         {
             //arrange
@@ -867,7 +835,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetValidCategoriesListReturnsExpectedStringForDefaultCulture()
         {
             //arrange
@@ -893,7 +860,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetValidCategoriesListReturnsExpectedStringForSatelliteCulture()
         {
             //arrange
@@ -920,7 +886,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void BuildValidReferenceDefinitionReturnsCorrectStringForDefaultCulture()
         {
             //arrange
@@ -934,7 +899,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void BuildValidReferenceDefinitionReturnsCorrectStringForSatelliteCulture()
         {
             //arrange

@@ -22,7 +22,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void CreateConstructor()
         {
             //arrange

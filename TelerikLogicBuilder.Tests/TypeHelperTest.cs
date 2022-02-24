@@ -30,7 +30,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(int?), "Nullable`1[Int32]")]
         [InlineData(typeof(List<string>), "List`1[String]")]
         [InlineData(typeof(List<int?>), "List`1[Nullable`1[Int32]]")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetTypeDescriptionReturnsTheExpectedDescription(Type type, string expectedDescription)
         {
             //arrange
@@ -46,7 +45,6 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData(typeof(string[]), typeof(string))]
         [InlineData(typeof(List<int?>), typeof(int?))]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetUndelyingTypeForValidListReturnsTheExpectedDescription(Type type, Type expectedType)
         {
             //arrange
@@ -60,7 +58,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetUndelyingTypeForValidListThrowaCriticalExceptionorInvalidType()
         {
             //arrange
@@ -73,7 +70,6 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData(typeof(string), true)]
         [InlineData(typeof(List<int?>), false)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsLiteralTypeReturnsTheExpectedBoolean(Type type, bool expectedResult)
         {
             //arrange
@@ -91,7 +87,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(int?), true)]
         [InlineData(typeof(void), true)]
         [InlineData(typeof(List<int?>), false)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsValidLiteralReturnTypeReturnsTheExpectedBoolean(Type type, bool expectedResult)
         {
             //arrange
@@ -107,7 +102,6 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData(typeof(string), false)]
         [InlineData(typeof(int?), true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsNullableReturnsTheExpectedBoolean(Type type, bool expectedResult)
         {
             //arrange
@@ -128,7 +122,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ICollection<int?>), true)]
         [InlineData(typeof(IEnumerable<int?>), true)]
         [InlineData(typeof(string[]), true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsValidListReturnsTheExpectedBoolean(Type type, bool expectedResult)
         {
             //arrange
@@ -149,7 +142,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ICollection<ConnectorParameters>), true)]
         [InlineData(typeof(IEnumerable<ConnectorParameters>), true)]
         [InlineData(typeof(ConnectorParameters[]), true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsValidConnectorListReturnsTheExpectedBoolean(Type type, bool expectedResult)
         {
             //arrange
@@ -165,7 +157,6 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData(typeof(string), "System.String")]
         [InlineData(typeof(InstructorModel), "TelerikLogicBuilder.Tests.AttributeSamples.InstructorModel")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ToIdReturnsTheExpectedDescriptionForNonGenerics(Type type, string expectedResult)
         {
             //arrange
@@ -182,7 +173,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(int?), "System.Nullable`1[[System.Int32")]
         [InlineData(typeof(List<string>), "System.Collections.Generic.List`1[[System.String")]
         [InlineData(typeof(List<int?>), "System.Collections.Generic.List`1[[System.Nullable`1[[System.Int32")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ToIdReturnsTheExpectedDescriptionGenerics(Type type, string expectedResult)
         {
             //arrange
@@ -198,7 +188,6 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData("1", typeof(int?), 1, true)]
         [InlineData("20.12", typeof(double), 20.12, true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void TryParseReturnsExpectedResult(string toParse, Type type, object expectedParsedResult, bool expectedSuccess)
         {
             //arrange
@@ -215,7 +204,6 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData("1", typeof(List<int?>))]
         [InlineData("20.12", typeof(object))]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void TryParseThrowsExceptionForInvalidType(string toParse, Type type)
         {
             //arrange
@@ -239,7 +227,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(int), typeof(decimal), false)]
         [InlineData(typeof(int), typeof(float), false)]
         [InlineData(typeof(int), typeof(short?), false)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void AssignableTestsWorkAsExpected(Type to, Type from, bool expectedResult)
         {
             //arrange
@@ -345,7 +332,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(IList<string>), typeof(List<string>), true)]
         [InlineData(typeof(List<string>), typeof(IList<string>), true)]
         [InlineData(typeof(object), typeof(string), true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CompatibleForIdentityEqualityOp(Type to, Type from, bool expectedResult)
         {
             //arrange
@@ -375,7 +361,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(IList<string>), typeof(List<string>), true)]
         [InlineData(typeof(List<string>), typeof(IList<string>), true)]
         [InlineData(typeof(object), typeof(string), true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CompatibleForIdentityInequalityOp(Type to, Type from, bool expectedResult)
         {
             //arrange
@@ -416,7 +401,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(object), typeof(string), false)]
         [InlineData(typeof(DateTime), typeof(DateTime?), true)]
         [InlineData(typeof(bool), typeof(bool), false)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CompatibleForLessThanOp(Type to, Type from, bool expectedResult)
         {
             //arrange
@@ -452,7 +436,6 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(int), typeof(string), false)]
         [InlineData(typeof(DateTime), typeof(DateTime?), true)]
         [InlineData(typeof(bool), typeof(bool), true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CompatibleForValueEqualityOp(Type to, Type from, bool expectedResult)
         {
             //arrange

@@ -25,7 +25,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         [InlineData("ValidMethod2", true)]
         [InlineData("ValidMethod3", true)]
         [InlineData("InvalidMethod", false)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ValidateMultipleChoiceParameterReturnsExpectedResult(string methodName, bool expectedResult)
         {
             //arrange

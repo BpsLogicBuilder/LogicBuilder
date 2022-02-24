@@ -47,7 +47,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         [InlineData(ValidIndirectReference.UShortKeyIndexer, "12")]
         [InlineData(ValidIndirectReference.Field, "FieldName")]
         [InlineData(ValidIndirectReference.Property, "PropertyName")]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         internal void ValidNonVariableIndirectReferenceIndexersWork(ValidIndirectReference validIndirectReference, string referenceName)
         {
             //arrange
@@ -84,7 +83,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         [InlineData(ValidIndirectReference.UShortKeyIndexer, "false")]
         [InlineData(ValidIndirectReference.Field, "3")]
         [InlineData(ValidIndirectReference.Property, "4")]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         internal void InvalidNonVariableIndirectReferenceIndexersFail(ValidIndirectReference validIndirectReference, string referenceName)
         {
             //arrange
@@ -508,7 +506,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         [InlineData(VariableCategory.UShortKeyIndexer, "12")]
         [InlineData(VariableCategory.Field, "FieldName")]
         [InlineData(VariableCategory.Property, "PropertyName")]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         internal void ValidNonVariableVariableCategoryIndexersWork(VariableCategory variableCategory, string memberName)
         {
             //arrange
@@ -545,7 +542,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         [InlineData(VariableCategory.UShortKeyIndexer, "false")]
         [InlineData(VariableCategory.Field, "3")]
         [InlineData(VariableCategory.Property, "4")]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         internal void InvalidNonVariableVariableCategoryIndexersFail(VariableCategory variableCategory, string memberName)
         {
             //arrange

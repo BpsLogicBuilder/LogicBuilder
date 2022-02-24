@@ -24,7 +24,6 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetNameValueTableReturnsExpectedItems()
         {
             //arrange
@@ -40,7 +39,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetNameValueTableReturnsEmptyDictionaryForPropertyWithoutnameValueAttribute()
         {
             //arrange
@@ -54,7 +52,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralInputStyleReturnsExpectedVariableControlType()
         {
             //arrange
@@ -68,7 +65,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
+
         public void GetLiteralInputStyleReturnsDefaultVariableControlTypeWithNoAttributeAttached()
         {
             //arrange
@@ -82,7 +79,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectInputStyleReturnsExpectedVariableControlType()
         {
             //arrange
@@ -96,7 +92,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectInputStyleReturnsDefaultVariableControlTypeWithNoAttributeAttached()
         {
             //arrange
@@ -110,7 +105,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetListInputStyleReturnsExpectedVariableControlType()
         {
             //arrange
@@ -124,7 +118,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetListInputStyleReturnsDefaultVariableControlTypeWithNoAttributeAttached()
         {
             //arrange
@@ -138,7 +131,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetSummaryReturnsExpectedSummaryForFunction()
         {
             //arrange
@@ -152,7 +144,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetSummaryReturnsEmptyStringWithNoAttributeAttachedForFunction()
         {
             //arrange
@@ -166,7 +157,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetSummaryReturnsExpectedSummaryForConstructor()
         {
             //arrange
@@ -180,7 +170,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetSummaryReturnsEmptyStringWithNoAttributeAttachedForConstructor()
         {
             //arrange
@@ -194,7 +183,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVariableCommentsReturnsExpectedComments()
         {
             //arrange
@@ -208,7 +196,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetVariableCommentsReturnsEmptyStringWithNoAttributeAttached()
         {
             //arrange
@@ -222,7 +209,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetAlsoKnownAsReturnsExpectedTextForProperty()
         {
             //arrange
@@ -236,7 +222,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetAlsoKnownAsReturnsEmptyStringWithNoAttributeAttachedForProperty()
         {
             //arrange
@@ -250,7 +235,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetAlsoKnownAsReturnsExpectedTextForMethod()
         {
             //arrange
@@ -264,7 +248,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetAlsoKnownAsReturnsEmptyStringWithNoAttributeAttachedForMethod()
         {
             //arrange
@@ -278,7 +261,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetAlsoKnownAsReturnsExpectedTextForConstructor()
         {
             //arrange
@@ -292,7 +274,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetAlsoKnownAsReturnsEmptyStringWithNoAttributeAttachedForConstructor()
         {
             //arrange
@@ -306,7 +287,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetFunctionCategoryReturnsExpectedCategory()
         {
             //arrange
@@ -320,7 +300,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetFunctionCategoryReturnsUnknownCategoryithNoAttributeAttached()
         {
             //arrange
@@ -334,7 +313,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetDomainReturnsExpectedList()
         {
             //arrange
@@ -348,7 +326,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetDomainReturnsEmptyListWithNoAttributeAttached()
         {
             //arrange
@@ -362,7 +339,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsVariableConfigurableFromClassHelperReturnsTrueWithLogicBuilderAttributesAttached()
         {
             //arrange
@@ -376,7 +352,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsVariableConfigurableFromClassHelperReturnsFalseWithoutLogicBuilderAttributesAttached()
         {
             //arrange
@@ -390,7 +365,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsFunctionConfigurableFromClassHelperReturnsTrueWithLogicBuilderAttributesAttached()
         {
             //arrange
@@ -404,7 +378,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void IsFunctionConfigurableFromClassHelperReturnsFalseWithoutLogicBuilderAttributesAttached()
         {
             //arrange

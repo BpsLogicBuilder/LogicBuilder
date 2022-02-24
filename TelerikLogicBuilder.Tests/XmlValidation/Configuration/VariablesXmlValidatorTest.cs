@@ -28,7 +28,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CanCreateVariablesXmlValidator()
         {
             //arrange
@@ -39,7 +38,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ValidateValidXmlWorks()
         {
             //arrange
@@ -53,7 +51,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ValidateThrowsXmlExceptionForInvalidXml()
         {
             //arrange
@@ -65,7 +62,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ValidateReturnsFailureResponseForInvalidStructure()
         {
             //arrange
@@ -80,7 +76,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void InvalidReferenceDefinitionReturnsFailureResponse()
         {
             //arrange
@@ -114,7 +109,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void InvalidmemberNameReturnsFailureResponse()
         {
             //arrange
@@ -139,7 +133,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         [Theory]
         [InlineData("This")]
         [InlineData("Type")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ReferenceNamePopulatedAndMustBeEmptyReturnsFailureResponse(string referenceCategory)
         {
             //arrange
@@ -165,7 +158,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         [Theory]
         [InlineData("This")]
         [InlineData("Type")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void ReferenceDefinitionPopulatedAndMustBeEmptyReturnsFailureResponse(string referenceCategory)
         {
             //arrange
@@ -191,7 +183,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         [Theory]
         [InlineData("This")]
         [InlineData("Type")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CastReferenceAsPopulatedAndMustBeEmptyReturnsFailureResponse(string referenceCategory)
         {
             //arrange
@@ -219,7 +210,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         [InlineData(ReferenceCategories.StaticReference, "", "Property")]
         [InlineData(ReferenceCategories.InstanceReference, "Foo", "")]
         [InlineData(ReferenceCategories.StaticReference, "Foo", "")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void ReferenceNameOrDefinitionEmptyMustBePopulatedReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition)
         {
             //arrange
@@ -246,7 +236,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         [Theory]
         [InlineData(ReferenceCategories.InstanceReference, "Foo.Bar", "Property")]
         [InlineData(ReferenceCategories.StaticReference, "Foo.Bar", "Property")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void ReferenceDefinitionLengthsDoesNotMatchReferenceNameLengthReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition)
         {
             //arrange
@@ -271,7 +260,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void CastReferenceAsLengthsDoesNotMatchReferenceNameLengthReturnsFailureResponse()
         {
             //arrange
@@ -293,7 +281,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         [Theory]
         [InlineData(ReferenceCategories.Type, "", "", "2Pac")]
         [InlineData(ReferenceCategories.StaticReference, "Foo", "Property", "2Pac")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void InvalidTypeNameReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition, string typeName)
         {
             //arrange
@@ -321,7 +308,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         [Theory]
         [InlineData(ReferenceCategories.This, "", "", "Pac")]
         [InlineData(ReferenceCategories.InstanceReference, "Foo", "Property", "Pac")]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void TypeNameNotEmptyReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition, string typeName)
         {
             //arrange

@@ -21,7 +21,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralParameterFromXml()
         {
             //arrange
@@ -52,7 +51,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectParameterFromXml()
         {
             //arrange
@@ -77,7 +75,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetGenericParameterFromXml()
         {
             //arrange
@@ -99,7 +96,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetLiteralListParameterFromXml()
         {
             //arrange
@@ -135,7 +131,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetObjectListParameterFromXml()
         {
             //arrange
@@ -159,7 +154,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetGenericListParameterFromXml()
         {
             //arrange

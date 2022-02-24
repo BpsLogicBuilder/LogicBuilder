@@ -18,7 +18,6 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CanCreateContextProvider()
         {
             //arrange

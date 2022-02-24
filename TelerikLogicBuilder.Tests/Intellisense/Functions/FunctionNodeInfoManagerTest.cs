@@ -26,7 +26,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         [InlineData("LiteralListMMethod")]
         [InlineData("ObjectListMMethod")]
         [InlineData("GenericListMMethod")]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         internal void CreateFunction(string methodName)
         {
             //arrange

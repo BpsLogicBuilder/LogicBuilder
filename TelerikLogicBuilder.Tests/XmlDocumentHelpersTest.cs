@@ -23,7 +23,6 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CreateFormattedXmlWriterReturnsExpectedSettings()
         {
             //arrange
@@ -39,7 +38,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CreateFormattedXmlWriterWithDeclarationReturnsExpectedSettings()
         {
             //arrange
@@ -55,7 +53,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CreateUnformattedXmlWriterReturnsExpectedSettings()
         {
             //arrange
@@ -70,7 +67,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetChildElementsWorks()
         {
             //arrange
@@ -89,7 +85,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetSingleChildElementsWorks()
         {
             //arrange
@@ -106,7 +101,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetSiblingParameterElementsWorks()
         {
             //arrange
@@ -188,7 +182,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void MakeAttributeWorks()
         {
             //arrange
@@ -205,7 +198,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void MakeElementWorks()
         {
             //arrange
@@ -222,7 +214,6 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void MakeFragmentWorks()
         {
             //arrange

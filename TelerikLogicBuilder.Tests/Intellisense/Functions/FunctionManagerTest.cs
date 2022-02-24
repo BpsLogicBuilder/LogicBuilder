@@ -28,7 +28,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         [InlineData("LiteralListMethod", 2, ReturnTypeCategory.LiteralList)]
         [InlineData("ObjectListMethod", 2, ReturnTypeCategory.ObjectList)]
         [InlineData("GenericListMethod", 2, ReturnTypeCategory.GenericList)]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         internal void CreateFunction(string methodName, int expectedParameterCount, ReturnTypeCategory expectedReturnTypeCategory)
         {
             //arrange

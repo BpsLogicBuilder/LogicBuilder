@@ -27,7 +27,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         [InlineData("LiteralListMethod", ReturnTypeCategory.LiteralList)]
         [InlineData("ObjectListMethod", ReturnTypeCategory.ObjectList)]
         [InlineData("GenericListMethod", ReturnTypeCategory.GenericList)]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         internal void GetReturnTypeInfoReturnsExpectedResult(string methodName, ReturnTypeCategory expectedResult)
         {
             //arrange

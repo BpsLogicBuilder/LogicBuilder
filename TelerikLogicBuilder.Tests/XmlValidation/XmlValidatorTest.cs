@@ -18,7 +18,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CanCreateXmlValidator()
         {
             //arrange

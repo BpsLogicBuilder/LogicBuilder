@@ -18,7 +18,6 @@ namespace TelerikLogicBuilder.Tests.Configuration
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void CanCreateWebApiDeploymentXmlParser()
         {
             //arrange

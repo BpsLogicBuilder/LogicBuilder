@@ -25,7 +25,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         [InlineData("Filter", typeof(ObjectVariableNodeInfo))]
         [InlineData("Selects", typeof(ListOfLiteralsVariableNodeInfo))]
         [InlineData("ExpandedItems", typeof(ListOfObjectsVariableNodeInfo))]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetVariableWorks(string memberName, Type nodeInfoType)
         {
             //arrange

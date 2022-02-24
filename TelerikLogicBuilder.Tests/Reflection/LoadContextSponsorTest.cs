@@ -25,7 +25,6 @@ namespace TelerikLogicBuilder.Tests.Reflection
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public async Task CanLoadAndUnloadAssemblies()
         {
             //arrange

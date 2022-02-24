@@ -21,7 +21,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.UnitTest)]
         public void GetConstructorFromXml()
         {
             //arrange

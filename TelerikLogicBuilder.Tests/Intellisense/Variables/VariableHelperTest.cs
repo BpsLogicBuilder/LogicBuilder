@@ -25,7 +25,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         [InlineData("MyNullableInt", false)]
         [InlineData("MyShort", true)]
         [InlineData("MyByte", true)]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void CanBeIntegerWorks(string memberName, bool expectedResult)
         {
             //arrange

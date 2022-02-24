@@ -23,7 +23,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         #endregion Fields
 
         [Fact]
-        [Trait(TraitTypes.TestCategory, TestCategories.IntegrationTest)]
         public void GetParameterNodeInfos()
         {
             //arrange
