@@ -161,6 +161,9 @@
 	<data name="builtInFunctionNameOr" xml:space="preserve">
     <value>Or</value>
   </data>
+	<data name="builtInFunctionsRootFolderText" xml:space="preserve">
+    <value>Built In Functions</value>
+  </data>
 	<data name="builtInParameterNameValue" xml:space="preserve">
     <value>value</value>
   </data>
@@ -184,6 +187,9 @@
 	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="constructorsRootFolderText" xml:space="preserve">
+    <value>Constructors</value>
   </data>
   <data name="constructorToStringFormat" xml:space="preserve">
     <value>{0} - {1}({2})</value>
@@ -471,6 +477,9 @@
 	<data name="enumDescriptionParameterSourcedPropertyInput" xml:space="preserve">
     <value>Parameter Sourced Property Input</value>
   </data>
+	<data name="fragmentsRootNodeText" xml:space="preserve">
+    <value>Fragments</value>
+  </data>
 	<data name="funcCannotLoadPropertySourceParameterFormat" xml:space="preserve">
     <value>Cannot find the required property sourced parameter "{0}" for the parameter "{1}" in function "{2}". The property sourced parameter must be one of the sibling parameters {3} when the control is {4}.</value>
     <comment>0=sourceParameter; 1=parameter; 2=function;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
@@ -490,6 +499,9 @@
 	<data name="funcGenericReturnTypeArgNameNotFoundFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for the return type in function "{1}" is not one of the function's generic arguments: "{2}".</value>
     <comment>0=genericArgumentName;1=functionName;2=listOfGenericArguments</comment>
+  </data>
+	<data name="functionsRootFolderText" xml:space="preserve">
+    <value>Functions</value>
   </data>
 	<data name="functionToStringFormat" xml:space="preserve">
     <value>{0} - {1}({2})</value>
@@ -606,6 +618,9 @@
 	<data name="variableReferenceMustBeEmptyFormat" xml:space="preserve">
     <value>Reference Name field for variable {0} must be empty when the reference category is "This" or reference category is "Type" or the evaluation is "Automatic".</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="variablesRootNodeText" xml:space="preserve">
+    <value>Variables</value>
   </data>
 	<data name="variableTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for  variable {0} must be empty when the reference category is not "Type"or "Static Reference".</value>

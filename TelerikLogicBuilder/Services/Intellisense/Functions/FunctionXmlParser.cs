@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
     {
         private readonly IContextProvider _contextProvider;
         private readonly IEnumHelper _enumHelper;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParametersXmlParser _parametersXmlParser;
         private readonly IReturnTypeXmlParser _returnTypeXmlParser;
@@ -21,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
         public FunctionXmlParser(IContextProvider contextProvider, IParametersXmlParser parametersXmlParser, IReturnTypeXmlParser returnTypeXmlParser)
         {
             _enumHelper = contextProvider.EnumHelper;
+            _exceptionHelper = contextProvider.ExceptionHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _contextProvider = contextProvider;
             _parametersXmlParser = parametersXmlParser;
@@ -29,6 +31,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
 
         public Function Parse(XmlElement xmlElement)
         {
+            if (xmlElement.Name != XmlDataConstants.FUNCTIONELEMENT)
+                throw _exceptionHelper.CriticalException("{4EDEE8F0-D5DA-4AE6-A655-EAFBE6DD0708}");
+
             return GetFunction(_xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name));
 
             Function GetFunction(IDictionary<string, XmlElement> elements)

@@ -229,6 +229,39 @@ namespace TelerikLogicBuilder.Tests
             Assert.Same(xmlDocument, result.OwnerDocument);
         }
 
+        [Fact]
+        public void GetUnformattedStringWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlDocument xmlDocument = GetXmlDocument(@"<genericParameter name=""Refresh"">
+					<genericArgumentName>T</genericArgumentName>
+				</genericParameter>");
+
+            //act
+            var result = helper.GetUnformattedXmlString(xmlDocument);
+
+            //assert
+            Assert.Single(result.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+        }
+
+
+        [Fact]
+        public void GetXmlStringWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlDocument xmlDocument = GetXmlDocument(@"<genericParameter name=""Refresh"">
+					<genericArgumentName>T</genericArgumentName>
+				</genericParameter>");
+
+            //act
+            var result = helper.GetXmlString(xmlDocument);
+
+            //assert
+            Assert.Equal(3, result.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Length);
+        }
+
         private void Initialize()
         {
             serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();

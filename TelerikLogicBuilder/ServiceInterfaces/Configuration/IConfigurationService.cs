@@ -6,6 +6,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration
     {
         Application GetSelectedApplication();
         string GetSelectedApplicationKey();
+        ConstructorList ConstructorList { get; set; }
         ProjectProperties ProjectProperties { get; set; }
+        FragmentList FragmentList { get; set; }
+        FunctionList FunctionList { get; set; }
+        VariableList VariableList { get; set; }
     }
 }

@@ -42,92 +42,96 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement.Name);
-            Assert.Equal(2, result.SelectNodes($"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/function").OfType<XmlElement>().Count());
+            Assert.Equal(2, result.SelectNodes($"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']/function").OfType<XmlElement>().Count());
 
             static XmlDocument GetDocumentToSave()
             {
                 XmlDocument xmlDocument = new();
                 xmlDocument.LoadXml(@"<forms>
                                           <form name=""FUNCTIONS"">
-                                            <function name=""Access after"" >
-                                              <memberName>agent broadcast commit.acca</memberName>
-                                              <functionCategory>Standard</functionCategory>
-                                              <typeName />
-                                              <referenceName>referenceNameHere</referenceName>
-                                              <referenceDefinition>Field.Property.Property</referenceDefinition>
-                                              <castReferenceAs />
-                                              <referenceCategory>InstanceReference</referenceCategory>
-                                              <parametersLayout>Sequential</parametersLayout>
-                                              <parameters>
-                                                <literalParameter name=""value"" >
-                                                  <literalType>String</literalType>
-                                                  <control>SingleLineTextBox</control>
-                                                  <optional>false</optional>
-                                                  <useForEquality>true</useForEquality>
-                                                  <useForHashCode>false</useForHashCode>
-                                                  <useForToString>true</useForToString>
-                                                  <propertySource />
-                                                  <propertySourceParameter />
-                                                  <defaultValue />
-                                                  <domain />
-                                                  <comments />
-                                                </literalParameter>
-                                              </parameters>
-                                              <genericArguments />
-                                              <returnType>
-                                                <literal>
-                                                  <literalType>Void</literalType>
-                                                </literal>
-                                              </returnType>
-                                              <summary>Updates the access the access after field.</summary>
-                                            </function>
-                                            <function name=""Action"" >
-                                              <memberName>agent broadcast commit.action</memberName>
-                                              <functionCategory>Standard</functionCategory>
-                                              <typeName />
-                                              <referenceName>referenceNameHere</referenceName>
-                                              <referenceDefinition />
-                                              <castReferenceAs />
-                                              <referenceCategory>This</referenceCategory>
-                                              <parametersLayout>Sequential</parametersLayout>
-                                              <parameters>
-                                                <literalParameter name=""value"" >
-                                                  <literalType>String</literalType>
-                                                  <control>SingleLineTextBox</control>
-                                                  <optional>false</optional>
-                                                  <useForEquality>true</useForEquality>
-                                                  <useForHashCode>false</useForHashCode>
-                                                  <useForToString>true</useForToString>
-                                                  <propertySource />
-                                                  <propertySourceParameter />
-                                                  <defaultValue />
-                                                  <domain />
-                                                  <comments />
-                                                </literalParameter>
-                                                <literalParameter name=""updatecommit"" >
-                                                  <literalType>String</literalType>
-                                                  <control>SingleLineTextBox</control>
-                                                  <optional>true</optional>
-                                                  <useForEquality>true</useForEquality>
-                                                  <useForHashCode>false</useForHashCode>
-                                                  <useForToString>true</useForToString>
-                                                  <propertySource />
-                                                  <propertySourceParameter />
-                                                  <defaultValue />
-                                                  <domain />
-                                                  <comments />
-                                                </literalParameter>
-                                              </parameters>
-                                              <genericArguments />
-                                              <returnType>
-                                                <literal>
-                                                  <literalType>Void</literalType>
-                                                </literal>
-                                              </returnType>
-                                              <summary>Updates the action code.</summary>
-                                            </function>
+                                            <folder name=""Functions"">
+                                              <function name=""Access after"" >
+                                                <memberName>agent broadcast commit.acca</memberName>
+                                                <functionCategory>Standard</functionCategory>
+                                                <typeName />
+                                                <referenceName>referenceNameHere</referenceName>
+                                                <referenceDefinition>Field.Property.Property</referenceDefinition>
+                                                <castReferenceAs />
+                                                <referenceCategory>InstanceReference</referenceCategory>
+                                                <parametersLayout>Sequential</parametersLayout>
+                                                <parameters>
+                                                  <literalParameter name=""value"" >
+                                                    <literalType>String</literalType>
+                                                    <control>SingleLineTextBox</control>
+                                                    <optional>false</optional>
+                                                    <useForEquality>true</useForEquality>
+                                                    <useForHashCode>false</useForHashCode>
+                                                    <useForToString>true</useForToString>
+                                                    <propertySource />
+                                                    <propertySourceParameter />
+                                                    <defaultValue />
+                                                    <domain />
+                                                    <comments />
+                                                  </literalParameter>
+                                                </parameters>
+                                                <genericArguments />
+                                                <returnType>
+                                                  <literal>
+                                                    <literalType>Void</literalType>
+                                                  </literal>
+                                                </returnType>
+                                                <summary>Updates the access the access after field.</summary>
+                                              </function>
+                                              <function name=""Action"" >
+                                                <memberName>agent broadcast commit.action</memberName>
+                                                <functionCategory>Standard</functionCategory>
+                                                <typeName />
+                                                <referenceName>referenceNameHere</referenceName>
+                                                <referenceDefinition />
+                                                <castReferenceAs />
+                                                <referenceCategory>This</referenceCategory>
+                                                <parametersLayout>Sequential</parametersLayout>
+                                                <parameters>
+                                                  <literalParameter name=""value"" >
+                                                    <literalType>String</literalType>
+                                                    <control>SingleLineTextBox</control>
+                                                    <optional>false</optional>
+                                                    <useForEquality>true</useForEquality>
+                                                    <useForHashCode>false</useForHashCode>
+                                                    <useForToString>true</useForToString>
+                                                    <propertySource />
+                                                    <propertySourceParameter />
+                                                    <defaultValue />
+                                                    <domain />
+                                                    <comments />
+                                                  </literalParameter>
+                                                  <literalParameter name=""updatecommit"" >
+                                                    <literalType>String</literalType>
+                                                    <control>SingleLineTextBox</control>
+                                                    <optional>true</optional>
+                                                    <useForEquality>true</useForEquality>
+                                                    <useForHashCode>false</useForHashCode>
+                                                    <useForToString>true</useForToString>
+                                                    <propertySource />
+                                                    <propertySourceParameter />
+                                                    <defaultValue />
+                                                    <domain />
+                                                    <comments />
+                                                  </literalParameter>
+                                                </parameters>
+                                                <genericArguments />
+                                                <returnType>
+                                                  <literal>
+                                                    <literalType>Void</literalType>
+                                                  </literal>
+                                                </returnType>
+                                                <summary>Updates the action code.</summary>
+                                              </function>
+                                            </folder>
                                           </form>
                                           <form name=""BUILT IN FUNCTIONS"">
+                                            <folder name=""Built In Functions"">
+                                            </folder>
                                           </form>
                                         </forms>");
 

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
@@ -9,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters;
@@ -56,6 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ICreateFunctions, CreateFunctions>()
             .AddSingleton<ICreateProjectProperties, CreateProjectProperties>()
             .AddSingleton<ICreateVariables, CreateVariables>()
+            .AddSingleton<IFragmentXmlParser, FragmentXmlParser>()
             .AddSingleton<ILoadConstructors, LoadConstructors>()
             .AddSingleton<ILoadFragments, LoadFragments>()
             .AddSingleton<ILoadFunctions, LoadFunctions>()
@@ -68,6 +71,20 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IUpdateProjectProperties, UpdateProjectProperties>()
             .AddSingleton<IUpdateVariables, UpdateVariables>()
             .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
+
+            //Configuration.Initialization
+            .AddSingleton<IConstructorDictionaryBuilder, ConstructorDictionaryBuilder>()
+            .AddSingleton<IConstructorListInitializer, ConstructorListInitializer>()
+            .AddSingleton<IConstructorTreeFolderBuilder, ConstructorTreeFolderBuilder>()
+            .AddSingleton<IFragmentDictionaryBuilder, FragmentDictionaryBuilder>()
+            .AddSingleton<IFragmentListInitializer, FragmentListInitializer>()
+            .AddSingleton<IFragmentTreeFolderBuilder, FragmentTreeFolderBuilder>()
+            .AddSingleton<IFunctionDictionaryBuilder, FunctionDictionaryBuilder>()
+            .AddSingleton<IFunctionListInitializer, FunctionListInitializer>()
+            .AddSingleton<IFunctionTreeFolderBuilder, FunctionTreeFolderBuilder>()
+            .AddSingleton<IVariableDictionaryBuilder, VariableDictionaryBuilder>()
+            .AddSingleton<IVariableListInitializer, VariableListInitializer>()
+            .AddSingleton<IVariableTreeFolderBuilder, VariableTreeFolderBuilder>()
 
             //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()

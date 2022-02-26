@@ -28,6 +28,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             set => _projectProperties = value;
         }
 
+        public ConstructorList ConstructorList { get; set; }
+        public FragmentList FragmentList { get; set; }
+        public FunctionList FunctionList { get; set; }
+        public VariableList VariableList { get; set; }
+
         public Application GetSelectedApplication()
             => ProjectProperties.ApplicationList.First().Value;
 

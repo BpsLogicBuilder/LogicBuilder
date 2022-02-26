@@ -128,6 +128,56 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 ? xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault(filter)
                 : xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault();
 
+        public string GetUnformattedXmlString(XmlDocument xmlDocument)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlDataWriter = CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlDocument.Save(xmlDataWriter);
+                xmlDataWriter.Flush();
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public string GetXmlString(XmlDocument xmlDocument)
+        {
+            StringBuilder stringBuilder = new();
+            PreserveWhitespace();
+
+            using (XmlWriter xmlDataWriter = CreateFormattedXmlWriter(stringBuilder))
+            {
+                xmlDocument.Save(xmlDataWriter);
+                xmlDataWriter.Flush();
+            }
+
+            return stringBuilder.ToString();
+
+            void PreserveWhitespace()
+            {//The formatted writer inserts newline and tabs in from of the first
+                //child element for mixed XML whne the first child is an elemnt.
+                //The empty string significant whitespace is a workaround to avoid the new lines.
+                foreach (XmlNode element in xmlDocument.SelectNodes("//literalParameter|//literal|//literalVariable|//text"))
+                {
+                    if (
+                            element.ChildNodes.Count > 1
+                            && element.ChildNodes.OfType<XmlNode>().Any
+                            (
+                                n => n.NodeType == XmlNodeType.Text
+                                    || n.NodeType == XmlNodeType.Whitespace
+                            )
+                       )
+                    {
+                        element.InsertBefore
+                        (
+                            element.OwnerDocument.CreateSignificantWhitespace(""),
+                            element.FirstChild
+                        );
+                    }
+                }
+            }
+        }
+
         public XmlAttribute MakeAttribute(XmlDocument xmlDocument, string name, string attributeValue)
         {
             XmlAttribute attribute = xmlDocument.CreateAttribute(name);
@@ -159,6 +209,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             return xmlDocumentFragment;
         }
+
+        public XmlDocument ToXmlDocument(XmlNode xmlNode, bool preserveWhiteSpace = true) 
+            => ToXmlDocument(xmlNode.OuterXml, preserveWhiteSpace);
 
         public XmlDocument ToXmlDocument(string xmlString, bool preserveWhiteSpace = true)
         {

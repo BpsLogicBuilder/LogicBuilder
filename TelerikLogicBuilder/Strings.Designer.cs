@@ -223,6 +223,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Built In Functions.
+        /// </summary>
+        internal static string builtInFunctionsRootFolderText {
+            get {
+                return ResourceManager.GetString("builtInFunctionsRootFolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to value.
         /// </summary>
         internal static string builtInParameterNameValue {
@@ -318,6 +327,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string charKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("charKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Constructors.
+        /// </summary>
+        internal static string constructorsRootFolderText {
+            get {
+                return ResourceManager.GetString("constructorsRootFolderText", resourceCulture);
             }
         }
         
@@ -1294,6 +1312,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fragments.
+        /// </summary>
+        internal static string fragmentsRootNodeText {
+            get {
+                return ResourceManager.GetString("fragmentsRootNodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot find the required property sourced parameter &quot;{0}&quot; for the parameter &quot;{1}&quot; in function &quot;{2}&quot;. The property sourced parameter must be one of the sibling parameters {3} when the control is {4}..
         /// </summary>
         internal static string funcCannotLoadPropertySourceParameterFormat {
@@ -1335,6 +1362,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string funcGenericReturnTypeArgNameNotFoundFormat {
             get {
                 return ResourceManager.GetString("funcGenericReturnTypeArgNameNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functions.
+        /// </summary>
+        internal static string functionsRootFolderText {
+            get {
+                return ResourceManager.GetString("functionsRootFolderText", resourceCulture);
             }
         }
         
@@ -1839,6 +1875,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableReferenceMustBeEmptyFormat {
             get {
                 return ResourceManager.GetString("variableReferenceMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        internal static string variablesRootNodeText {
+            get {
+                return ResourceManager.GetString("variablesRootNodeText", resourceCulture);
             }
         }
         
