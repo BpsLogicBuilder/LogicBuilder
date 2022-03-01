@@ -23,15 +23,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
         internal VariablesXmlValidatorUtility(string xmlString, 
             IVariablesXmlParser variablesXmlParser, 
             IVariableValidationHelper variableValidationHelper,
-            IEnumHelper enumHelper,
-            IStringHelper stringHelper,
-            IXmlDocumentHelpers xmlDocumentHelpers) : base(Schemas.VariablesSchema, xmlString)
+            IContextProvider contextProvider) : base(Schemas.VariablesSchema, xmlString)
         {
             _variablesXmlParser = variablesXmlParser;
             _variableValidationHelper = variableValidationHelper;
-            _enumHelper = enumHelper;
-            _stringHelper = stringHelper;
-            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _enumHelper = contextProvider.EnumHelper;
+            _stringHelper = contextProvider.StringHelper;
+            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
         }
 
         #region Variables

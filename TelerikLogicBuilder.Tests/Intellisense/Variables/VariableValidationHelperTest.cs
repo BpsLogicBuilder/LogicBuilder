@@ -25,6 +25,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         #endregion Fields
 
         [Theory]
+        [InlineData(ValidIndirectReference.ArrayIndexer, "100")]
         [InlineData(ValidIndirectReference.BooleanKeyIndexer, "false")]
         [InlineData(ValidIndirectReference.ByteKeyIndexer, "1")]
         [InlineData(ValidIndirectReference.CharKeyIndexer, "f")]
@@ -62,6 +63,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         }
 
         [Theory]
+        [InlineData(ValidIndirectReference.ArrayIndexer, "false")]
         [InlineData(ValidIndirectReference.BooleanKeyIndexer, "NotFalse")]
         [InlineData(ValidIndirectReference.ByteKeyIndexer, "false")]
         [InlineData(ValidIndirectReference.CharKeyIndexer, "false")]

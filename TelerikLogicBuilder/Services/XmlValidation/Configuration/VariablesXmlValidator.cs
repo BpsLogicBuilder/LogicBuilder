@@ -10,21 +10,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
     {
         private readonly IVariablesXmlParser _variablesXmlParser;
         private readonly IVariableValidationHelper _variableValidationHelper;
-        private readonly IEnumHelper _enumHelper;
-        private readonly IStringHelper _stringHelper;
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IContextProvider _contextProvider;
 
         public VariablesXmlValidator(IVariablesXmlParser variablesXmlParser,
             IVariableValidationHelper variableValidationHelper,
-            IEnumHelper enumHelper,
-            IStringHelper stringHelper,
-            IXmlDocumentHelpers xmlDocumentHelpers)
+            IContextProvider contextProvider)
         {
             _variablesXmlParser = variablesXmlParser;
             _variableValidationHelper = variableValidationHelper;
-            _enumHelper = enumHelper;
-            _stringHelper = stringHelper;
-            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _contextProvider = contextProvider;
         }
 
         public XmlValidationResponse Validate(string xmlString) 
@@ -33,9 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                 xmlString,
                 _variablesXmlParser,
                 _variableValidationHelper,
-                _enumHelper,
-                _stringHelper,
-                _xmlDocumentHelpers
+                _contextProvider
             ).ValidateXmlDocument();
     }
 }

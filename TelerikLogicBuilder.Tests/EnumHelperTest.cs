@@ -585,6 +585,35 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        public void ConvertEnumListToStringListWorksWithDefinedValues()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+            List<LiteralType> enumList = new() {  LiteralType.Decimal, LiteralType.Integer, LiteralType.String };
+
+            //act
+            var enumNames = enumHelper.ConvertEnumListToStringList(enumList);
+
+            //assert
+            Assert.False(enumNames.Contains("Decimal"));
+            Assert.False(enumNames.Contains("Integer"));
+            Assert.False(enumNames.Contains("String"));
+            Assert.True(enumNames.Contains("Boolean"));
+            Assert.True(enumNames.Contains("DateTime"));
+            Assert.True(enumNames.Contains("DateTimeOffset"));
+        }
+
+        [Fact]
+        public void ConvertEnumListToStringListThrowsCriticalExceptionForInvalidGenericType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.ConvertEnumListToStringList<object>(new List<object>()));
+        }
+
+        [Fact]
         public void ConvertToEnumListWorksWithDefinedValues()
         {
             //arrange
@@ -646,6 +675,37 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(expectedResult, description);
+        }
+
+        [Theory]
+        [InlineData("Add", true)]
+        [InlineData("Subtract", true)]
+        [InlineData("Multiply", true)]
+        [InlineData("Divide", true)]
+        [InlineData("Modulus", true)]
+        [InlineData("IdentityInequality", true)]
+        [InlineData("IdentityEquality", true)]
+        [InlineData("ValueEquality", true)]
+        [InlineData("BitwiseOr", true)]
+        [InlineData("BitwiseAnd", true)]
+        [InlineData("BooleanOr", true)]
+        [InlineData("BooleanAnd", true)]
+        [InlineData("LessThan", true)]
+        [InlineData("LessThanOrEqual", true)]
+        [InlineData("GreaterThan", true)]
+        [InlineData("GreaterThanOrEqual", true)]
+        [InlineData("Assign", false)]
+        [InlineData("UndefinedEnumString", false)]
+        internal void IsValidCodeBinaryOperatorReturnsTheExpectedResult(string stringToParse, bool expectedResult)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.IsValidCodeBinaryOperator(stringToParse);
+
+            //assert
+            Assert.Equal(expectedResult, result);
         }
 
         [Fact]

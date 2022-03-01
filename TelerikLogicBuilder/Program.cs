@@ -95,6 +95,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //Intellisense.Functions
             .AddSingleton<IFunctionManager, FunctionManager>()
             .AddSingleton<IFunctionNodeInfoManager, FunctionNodeInfoManager>()
+            .AddSingleton<IFunctionValidationHelper, FunctionValidationHelper>()
             .AddSingleton<IFunctionXmlParser, FunctionXmlParser>()
             .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
             .AddSingleton<IReturnTypeManager, ReturnTypeManager>()

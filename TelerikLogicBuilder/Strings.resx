@@ -128,6 +128,10 @@
     <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.</value>
     <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
   </data>
+	<data name="binaryOperatorCodeNameInvalidFormat" xml:space="preserve">
+    <value>Invalid Member Name "{0}" for Binary Operator "{1}". Valid code names are: {2}.</value>
+    <comment>0=Member Name; 1=Function; 2=List of valid names</comment>
+  </data>
 	<data name="builtInFunctionNameAnd" xml:space="preserve">
     <value>And</value>
   </data>
@@ -485,7 +489,7 @@
     <comment>0=sourceParameter; 1=parameter; 2=function;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
   </data>
 	<data name="funcGenericArgNameInvalidFormat" xml:space="preserve">
-    <value>The generic argument name "{0}" for generic parameter "{1}" in function "{2}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
+    <value>The generic argument name "{0}" in function "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=genericArgumentName;1=parameterName;2=functionName</comment>
   </data>
 	<data name="funcGenericArgNotValidForAllReferenceCatFormat" xml:space="preserve">
@@ -499,6 +503,33 @@
 	<data name="funcGenericReturnTypeArgNameNotFoundFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for the return type in function "{1}" is not one of the function's generic arguments: "{2}".</value>
     <comment>0=genericArgumentName;1=functionName;2=listOfGenericArguments</comment>
+  </data>
+	<data name="functionBlankCategoryFormat" xml:space="preserve">
+    <value>Reference Category for function "{0}" cannot be empty.</value>
+    <comment>0=functionName</comment>
+  </data>
+	<data name="functionInvalidCategoryFormat" xml:space="preserve">
+    <value>Function "{0}" has invalid Reference Category "{1}". Valid categories are:{2}{3}</value>
+    <comment>0=functionName; 1=Referencecategory; 2=Environment.Newline; 3=ValidCategories</comment>
+  </data>
+	<data name="functionInvalidIndirectDefinitionFormat" xml:space="preserve">
+    <value>Function "{0}" has invalid section "{1}" in its Reference Definition Field. Valid sections for indirect references include:{2}{3}</value>
+    <comment>0=functionName; 1=ReferenceDefinition; 2=Environment.Newline; 3=ValidDefinitionList</comment>
+  </data>
+	<data name="functionNameAndCastAsFormat" xml:space="preserve">
+    <value>Function "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).</value>
+    <comment>0=functionName</comment>
+  </data>
+	<data name="functionNameAndDefinitionFormat" xml:space="preserve">
+    <value>Function "{0}". Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Reference Definition = Field.Property.IntKeyValue.Field.</value>
+    <comment>0=functionName</comment>
+  </data>
+	<data name="functionReferenceInfoMustBePopulatedFormat" xml:space="preserve">
+    <value>Reference Name and Reference Definition field for function {0} must be populated when the reference category is "Instance Reference" or reference category is "Static Reference".</value>
+    <comment>0=functionName</comment>
+  </data>
+	<data name="functionReferenceMustBeEmptyFormat" xml:space="preserve">
+    <value>Reference Name field for function {0} must be empty when the reference category is "This", "Type" or "None".</value>
   </data>
 	<data name="functionsRootFolderText" xml:space="preserve">
     <value>Functions</value>
@@ -522,6 +553,13 @@
     <value>{0} has invalid data.</value>
     <comment>{0}=fileFullName</comment>
   </data>
+	<data name="invalidParameterOrder" xml:space="preserve">
+    <value>The parameter order for function "{0}" is invalid. Move optional parameters to the end of the parameters list.</value>
+    <comment>0=FunctionName</comment>
+  </data>
+	<data name="itemsCommaSeparator" xml:space="preserve">
+    <value>, </value>
+  </data>
 	<data name="listParameterTypeNameFormat" xml:space="preserve">
     <value>{0}Of{1}: {2}</value>
     <comment>0=listType 1=UnderlyingType 2=name</comment>
@@ -533,6 +571,10 @@
 	<data name="listVariableTypeFormat" xml:space="preserve">
     <value>{0}Of{1}</value>
     <comment>0=listType 1=UnderlyingType</comment>
+  </data>
+	<data name="memberNameIsInvalidFormat" xml:space="preserve">
+    <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
+    <comment>0=functionName</comment>
   </data>
 	<data name="multipleChoiceParamNotLastFormat" xml:space="preserve">
     <value>Error configuring method {0}. The connectors multiple choice parameter must be the last parameter.</value>
@@ -716,6 +758,98 @@
 	<data name="variableArrayKeyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", each index in Reference Name "{1}" for variable "{2}" must be a configured integer variable or positive integer.</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="fieldPropertyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="arrayKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", each index in Reference Name "{1}" for function "{2}" must be an integer greater than or equal to zero.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="booleanKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be a boolean.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="byteKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type byte.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="charKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type char.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="dateTimeKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type DateTime.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="dateTimeOffsetKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type DateTimeOffset.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="dateKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type Date.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="timeSpanKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type TimeSpan.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="timeOfDayKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type TimeOfDay.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="guidKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type Guid.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="decimalKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type decimal.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="doubleKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type double.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="floatKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type float.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="integerKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be an integer.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="longKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type long.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="sbyteKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type sbyte.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="shortKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type short.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="uIntegerKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be an unsigned integer.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="uLongKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be an unsigned long integer.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="uShortKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be an unsigned short integer.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="variableKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be a configured variable.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="variableArrayKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", each index in Reference Name "{1}" for function "{2}" must be a configured integer variable or positive integer.</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
   </data>
 	<data name="variableNameIsInvalidFormat" xml:space="preserve">
     <value>Variable Name Field for variable "{0}" is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>

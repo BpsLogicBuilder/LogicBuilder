@@ -97,11 +97,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, each index in Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be an integer greater than or equal to zero..
+        /// </summary>
+        internal static string arrayKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("arrayKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The assembly &quot;{0}&quot;, one of its dependencies or the class &quot;{1}&quot; could not be loaded..
         /// </summary>
         internal static string assemblyUnavailableMessageFormat {
             get {
                 return ResourceManager.GetString("assemblyUnavailableMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Member Name &quot;{0}&quot; for Binary Operator &quot;{1}&quot;. Valid code names are: {2}..
+        /// </summary>
+        internal static string binaryOperatorCodeNameInvalidFormat {
+            get {
+                return ResourceManager.GetString("binaryOperatorCodeNameInvalidFormat", resourceCulture);
             }
         }
         
@@ -120,6 +138,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string booleanKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("booleanKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be a boolean..
+        /// </summary>
+        internal static string booleanKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("booleanKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -286,6 +313,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type byte..
+        /// </summary>
+        internal static string byteKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("byteKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assembly &quot;{0}&quot; could not be loaded..
         /// </summary>
         internal static string cannotLoadAssemblyFormat {
@@ -327,6 +363,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string charKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("charKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type char..
+        /// </summary>
+        internal static string charKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("charKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -412,6 +457,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type Date..
+        /// </summary>
+        internal static string dateKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("dateKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type DateTime..
         /// </summary>
         internal static string dateTimeKeyIndexIsInvalidFormat {
@@ -426,6 +480,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string dateTimeKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("dateTimeKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type DateTime..
+        /// </summary>
+        internal static string dateTimeKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("dateTimeKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -448,6 +511,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type DateTimeOffset..
+        /// </summary>
+        internal static string dateTimeOffsetKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("dateTimeOffsetKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type decimal..
         /// </summary>
         internal static string decimalKeyIndexIsInvalidFormat {
@@ -462,6 +534,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string decimalKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("decimalKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type decimal..
+        /// </summary>
+        internal static string decimalKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("decimalKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -588,6 +669,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string doubleKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("doubleKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type double..
+        /// </summary>
+        internal static string doubleKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("doubleKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -1294,6 +1384,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string fieldPropertyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("fieldPropertyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type float..
         /// </summary>
         internal static string floatKeyIndexIsInvalidFormat {
@@ -1308,6 +1407,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string floatKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("floatKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type float..
+        /// </summary>
+        internal static string floatKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("floatKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -1330,7 +1438,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for generic parameter &quot;{1}&quot; in function &quot;{2}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; in function &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string funcGenericArgNameInvalidFormat {
             get {
@@ -1362,6 +1470,69 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string funcGenericReturnTypeArgNameNotFoundFormat {
             get {
                 return ResourceManager.GetString("funcGenericReturnTypeArgNameNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Category for function &quot;{0}&quot; cannot be empty..
+        /// </summary>
+        internal static string functionBlankCategoryFormat {
+            get {
+                return ResourceManager.GetString("functionBlankCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function &quot;{0}&quot; has invalid Reference Category &quot;{1}&quot;. Valid categories are:{2}{3}.
+        /// </summary>
+        internal static string functionInvalidCategoryFormat {
+            get {
+                return ResourceManager.GetString("functionInvalidCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function &quot;{0}&quot; has invalid section &quot;{1}&quot; in its Reference Definition Field. Valid sections for indirect references include:{2}{3}.
+        /// </summary>
+        internal static string functionInvalidIndirectDefinitionFormat {
+            get {
+                return ResourceManager.GetString("functionInvalidIndirectDefinitionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function &quot;{0}&quot;. When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Cast Reference As = ~.~.~.&quot;MyNameSpace.MyClass&quot; (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period)..
+        /// </summary>
+        internal static string functionNameAndCastAsFormat {
+            get {
+                return ResourceManager.GetString("functionNameAndCastAsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function &quot;{0}&quot;. Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Reference Definition = Field.Property.IntKeyValue.Field..
+        /// </summary>
+        internal static string functionNameAndDefinitionFormat {
+            get {
+                return ResourceManager.GetString("functionNameAndDefinitionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Name and Reference Definition field for function {0} must be populated when the reference category is &quot;Instance Reference&quot; or reference category is &quot;Static Reference&quot;..
+        /// </summary>
+        internal static string functionReferenceInfoMustBePopulatedFormat {
+            get {
+                return ResourceManager.GetString("functionReferenceInfoMustBePopulatedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Name field for function {0} must be empty when the reference category is &quot;This&quot;, &quot;Type&quot; or &quot;None&quot;..
+        /// </summary>
+        internal static string functionReferenceMustBeEmptyFormat {
+            get {
+                return ResourceManager.GetString("functionReferenceMustBeEmptyFormat", resourceCulture);
             }
         }
         
@@ -1420,6 +1591,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type Guid..
+        /// </summary>
+        internal static string guidKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("guidKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be an integer..
         /// </summary>
         internal static string integerKeyIndexIsInvalidFormat {
@@ -1438,6 +1618,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be an integer..
+        /// </summary>
+        internal static string integerKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("integerKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Argument {0}..
         /// </summary>
         internal static string invalidArgumentTextFormat {
@@ -1452,6 +1641,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidConfigurationDocumentFormat {
             get {
                 return ResourceManager.GetString("invalidConfigurationDocumentFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The parameter order for function &quot;{0}&quot; is invalid. Move optional parameters to the end of the parameters list..
+        /// </summary>
+        internal static string invalidParameterOrder {
+            get {
+                return ResourceManager.GetString("invalidParameterOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        internal static string itemsCommaSeparator {
+            get {
+                return ResourceManager.GetString("itemsCommaSeparator", resourceCulture);
             }
         }
         
@@ -1497,6 +1704,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string longKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("longKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type long..
+        /// </summary>
+        internal static string longKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("longKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string memberNameIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("memberNameIsInvalidFormat", resourceCulture);
             }
         }
         
@@ -1600,6 +1825,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type sbyte..
+        /// </summary>
+        internal static string sbyteKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("sbyteKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type short..
         /// </summary>
         internal static string shortKeyIndexIsInvalidFormat {
@@ -1614,6 +1848,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string shortKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("shortKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type short..
+        /// </summary>
+        internal static string shortKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("shortKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -1645,6 +1888,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type TimeOfDay..
+        /// </summary>
+        internal static string timeOfDayKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("timeOfDayKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type TimeSpan..
         /// </summary>
         internal static string timeSpanKeyIndexIsInvalidFormat {
@@ -1659,6 +1911,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string timeSpanKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("timeSpanKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type TimeSpan..
+        /// </summary>
+        internal static string timeSpanKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("timeSpanKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -1708,6 +1969,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be an unsigned integer..
+        /// </summary>
+        internal static string uIntegerKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("uIntegerKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be an unsigned long integer..
         /// </summary>
         internal static string uLongKeyIndexIsInvalidFormat {
@@ -1722,6 +1992,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string uLongKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("uLongKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be an unsigned long integer..
+        /// </summary>
+        internal static string uLongKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("uLongKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -1762,6 +2041,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be an unsigned short integer..
+        /// </summary>
+        internal static string uShortKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("uShortKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0} must be a configured integer variable or positive integer..
         /// </summary>
         internal static string variableArrayIndexIsInvalidFormat {
@@ -1776,6 +2064,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableArrayKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("variableArrayKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, each index in Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be a configured integer variable or positive integer..
+        /// </summary>
+        internal static string variableArrayKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("variableArrayKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
@@ -1830,6 +2127,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableKeyReferenceIsInvalidFormat2 {
             get {
                 return ResourceManager.GetString("variableKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be a configured variable..
+        /// </summary>
+        internal static string variableKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("variableKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         

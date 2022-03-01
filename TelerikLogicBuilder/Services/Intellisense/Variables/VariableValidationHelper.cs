@@ -17,11 +17,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public VariableValidationHelper(IVariableHelper variableHelper, IEnumHelper enumHelper, IExceptionHelper exceptionHelper)
+        public VariableValidationHelper(IContextProvider contextProvider)
         {
-            _variableHelper = variableHelper;
-            _enumHelper = enumHelper;
-            _exceptionHelper = exceptionHelper;
+            _variableHelper = contextProvider.VariableHelper;
+            _enumHelper = contextProvider.EnumHelper;
+            _exceptionHelper = contextProvider.ExceptionHelper;
         }
 
         public void ValidateMemberName(VariableCategory variableCategory, string memberName, string variableName, ICollection<string> errors, IDictionary<string, VariableBase> variables)

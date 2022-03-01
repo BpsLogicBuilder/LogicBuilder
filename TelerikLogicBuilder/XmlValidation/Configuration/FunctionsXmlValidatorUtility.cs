@@ -1,7 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,9 +15,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
     internal class FunctionsXmlValidatorUtility : XmlValidatorUtility
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        internal FunctionsXmlValidatorUtility(string xmlString, IXmlDocumentHelpers xmlDocumentHelpers) : base(Schemas.FragmentsSchema, xmlString)
+        private readonly IEnumHelper _enumHelper;
+        private readonly IStringHelper _stringHelper;
+        private readonly IFunctionValidationHelper _functionValidationHelper;
+        internal FunctionsXmlValidatorUtility(string xmlString, IFunctionValidationHelper functionValidationHelper, IContextProvider contextProvider) : base(Schemas.FunctionsSchema, xmlString)
         {
-            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _enumHelper = contextProvider.EnumHelper;
+            _stringHelper = contextProvider.StringHelper;
+            _functionValidationHelper = functionValidationHelper;
         }
 
         protected internal override XmlValidationResponse ValidateXmlDocument()
@@ -47,15 +55,238 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
         private void NonSchemaValidation(XmlDocument xDoc)
         {
-            throw new NotImplementedException();
+            xDoc.SelectNodes($"//{XmlDataConstants.FUNCTIONELEMENT}")
+                .OfType<XmlElement>()
+                .ToList()
+                .ForEach(functionNode =>
+                {
+                    Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(functionNode)
+                        .ToDictionary(e => e.Name);
+
+                    ValidateElement
+                    (
+                        functionNode,
+                        elements,
+                        functionNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
+                        (FunctionCategories)Enum.Parse(typeof(FunctionCategories), elements[XmlDataConstants.FUNCTIONCATEGORYELEMENT].InnerText.Trim()),
+                        (ParametersLayout)Enum.Parse(typeof(ParametersLayout), elements[XmlDataConstants.PARAMETERSLAYOUTELEMENT].InnerText.Trim()),
+                        (ReferenceCategories)Enum.Parse(typeof(ReferenceCategories), elements[XmlDataConstants.REFERENCECATEGORYELEMENT].InnerText.Trim()),
+                        _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.REFERENCEDEFINITIONELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING),
+                        _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.REFERENCENAMEELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING),
+                        _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.CASTREFERENCEASELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING)
+                    );
+                });
+        }
+
+        private void ValidateElement(XmlElement functionNode, Dictionary<string, XmlElement> elements, string functionName, FunctionCategories functionCategory, ParametersLayout parametersLayout, ReferenceCategories referenceCategory, string[] referenceDefinitionArray, string[] referenceNameArray, string[] castReferenceAsArray)
+        {
+            if (!ValidateReferenceDefinitionList(referenceDefinitionArray, functionName))
+                return;
+
+            ValidateParameterOrder(functionName, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
+
+            ValidateMemberName(elements[XmlDataConstants.MEMBERNAMEELEMENT].InnerText, functionName);
+
+            ValidateBinaryOperator(elements[XmlDataConstants.MEMBERNAMEELEMENT].InnerText, functionName, functionCategory);
+
+            if (!ValidateReferenceNameMustBeEmpty(functionName, referenceCategory, elements[XmlDataConstants.REFERENCENAMEELEMENT].InnerText.Trim()))
+                return;
+
+            if (!ValidateReferenceMustBePopulated(functionName, referenceCategory, elements[XmlDataConstants.REFERENCEDEFINITIONELEMENT].InnerText.Trim(), elements[XmlDataConstants.REFERENCENAMEELEMENT].InnerText.Trim()))
+                return;
+
+            if (!ValidateReferenceDefinitionLengthMatchesReferenceNameLength(functionName, referenceDefinitionArray, referenceNameArray))
+                return;
+
+            if (!ValidateReferenceNameAndCastReferenceAsLengthsMatch(functionName, referenceNameArray, castReferenceAsArray))
+                return;
+
+            if (!ValidateTypeName(functionName, referenceCategory, elements[XmlDataConstants.TYPENAMEELEMENT].InnerText.Trim()))
+                return;
+
+            if (!ValidateTypeNameMustBeEmpty(functionName, referenceCategory, elements[XmlDataConstants.TYPENAMEELEMENT].InnerText.Trim()))
+                return;
+
+            ValidateIndirectReferenceName
+            (
+                _enumHelper.ConvertToEnumList<ValidIndirectReference>(referenceDefinitionArray),
+                referenceNameArray,
+                functionName
+            );
+
+            ValidateParametersLayoutMustBeBinaryForBinaryOperator(functionName, functionCategory, parametersLayout);
+
+            ValidateReferenceCategoryMustBeNoneForBinaryOperator(functionName, functionCategory, referenceCategory);
+
+            ValidateParameterCountMustBeTwoForBinaryParamerLayout(functionName, parametersLayout, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
+
+            ValidateReferenceCategoryCannotBeNone(functionName, functionCategory, referenceCategory);
+
+            ValidateLiteralParameterSourcedProperty(functionNode, functionName, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
+
+            ValidateLiteralListParameterSourcedProperty(functionNode, functionName, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
+
+            ValidateGenericArguments
+            (
+                functionName, 
+                referenceCategory, 
+                elements[XmlDataConstants.RETURNTYPEELEMENT],  
+                _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]), 
+                _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.GENERICARGUMENTSELEMENT])
+                    .Select(e => e.InnerText)
+                    .ToList()
+            );
+        }
+
+        private bool ValidateReferenceDefinitionList(string[] referenceDefinitionArray, string functionName) 
+            => referenceDefinitionArray.Aggregate
+            (
+                true,
+                (valid, definition) =>
+                {
+                    if (!Enum.IsDefined(typeof(ValidIndirectReference), definition))
+                    {
+                        valid = false;
+                        XmlDocumentErrors.Add
+                        (
+                            string.Format
+                            (
+                                CultureInfo.CurrentCulture,
+                                Strings.functionInvalidIndirectDefinitionFormat,
+                                functionName,
+                                definition,
+                                Environment.NewLine,
+                                _enumHelper.GetValidIndirectReferencesList()
+                            )
+                        );
+                    }
+
+                    return valid;
+                }
+            );
+
+        private void ValidateParameterOrder(string functionName, List<XmlElement> parameterNodeList)
+        {
+            bool optionalExists = false;
+            parameterNodeList.ForEach(parameterNode =>
+            {
+                bool optional = bool.Parse(_xmlDocumentHelpers.GetSingleChildElement(parameterNode, e => e.Name == XmlDataConstants.OPTIONALELEMENT).InnerText.Trim());
+                if (optional)
+                    optionalExists = true;
+
+                if (!optional && optionalExists)//optional is true for a previous parameter
+                    XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.invalidParameterOrder, functionName));
+
+            });
+        }
+
+        private void ValidateMemberName(string memberName, string functionName)
+        {
+            if (!Regex.IsMatch(memberName, RegularExpressions.VARIABLEORFUNCTIONNAME))
+                XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.memberNameIsInvalidFormat, functionName));
+        }
+
+        private void ValidateBinaryOperator(string memberName, string functionName, FunctionCategories functionCategory)
+        {
+            if (functionCategory == FunctionCategories.BinaryOperator && !_enumHelper.IsValidCodeBinaryOperator(memberName))
+            {
+                XmlDocumentErrors.Add
+                (
+                    string.Format
+                    (
+                        CultureInfo.CurrentCulture,
+                        Strings.binaryOperatorCodeNameInvalidFormat,
+                        memberName,
+                        functionName,
+                        string.Join
+                        (
+                            Strings.itemsCommaSeparator, 
+                            _enumHelper.ConvertEnumListToStringList
+                            (
+                                new CodeBinaryOperatorType[] { CodeBinaryOperatorType.Assign }
+                            )
+                        )
+                    )
+                );
+            }
+        }
+
+        private bool ValidateReferenceNameMustBeEmpty(string functionName,
+            ReferenceCategories referenceCategory,
+            string referenceName)
+        {
+            if ((referenceCategory == ReferenceCategories.This || referenceCategory == ReferenceCategories.None || referenceCategory == ReferenceCategories.Type) && referenceName.Length != 0)
+            {
+                XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionReferenceMustBeEmptyFormat, functionName));
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateReferenceMustBePopulated(string functionName,
+            ReferenceCategories referenceCategory,
+            string referenceDefinition,
+            string referenceName)
+        {
+            if ((referenceCategory == ReferenceCategories.InstanceReference || referenceCategory == ReferenceCategories.StaticReference)
+                    && (referenceDefinition.Length == 0 || referenceName.Length == 0))
+            {
+                XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionReferenceInfoMustBePopulatedFormat, functionName));
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateReferenceDefinitionLengthMatchesReferenceNameLength(string functionName,
+            string[] referenceDefinitionArray,
+            string[] referenceNameArray)
+        {
+            if (referenceDefinitionArray.Length != referenceNameArray.Length)
+            {
+                XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionNameAndDefinitionFormat, functionName));
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateReferenceNameAndCastReferenceAsLengthsMatch(string functionName,
+            string[] referenceNameArray,
+            string[] castReferenceAsArray)
+        {
+            if (castReferenceAsArray.Length != 0 && castReferenceAsArray.Length != referenceNameArray.Length)
+            {
+                XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionNameAndCastAsFormat, functionName));
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ValidateIndirectReferenceName(IList<ValidIndirectReference> referenceDefinition,
+            IList<string> referenceNameArray,
+            string functionName)
+        {
+            for (int i = 0; i < referenceDefinition.Count; i++)
+            {
+                _functionValidationHelper.ValidateFunctionIndirectReferenceName
+                (
+                    referenceDefinition[i], 
+                    referenceNameArray[i], 
+                    functionName, 
+                    XmlDocumentErrors
+                );
+            }
         }
 
         private bool ValidateTypeName(string functionName,
             ReferenceCategories referenceCategory,
-            XmlNode typeNameNode)
+            string typeName)
         {
             if ((referenceCategory == ReferenceCategories.Type || referenceCategory == ReferenceCategories.StaticReference)
-                    && !Regex.IsMatch(typeNameNode.InnerText, RegularExpressions.FULLYQUALIFIEDCLASSNAME))
+                    && !Regex.IsMatch(typeName, RegularExpressions.FULLYQUALIFIEDCLASSNAME))
             {
                 XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.typeReferenceNameIsInvalidFormat, functionName));
                 return false;
@@ -66,10 +297,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
         private bool ValidateTypeNameMustBeEmpty(string functionName,
             ReferenceCategories referenceCategory,
-            XmlNode typeNameNode)
+            string typeName)
         {
             if ((referenceCategory != ReferenceCategories.Type && referenceCategory != ReferenceCategories.StaticReference)
-                && typeNameNode.InnerText.Trim().Length != 0)
+                && typeName.Length != 0)
             {
                 XmlDocumentErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionTypeNameMustBeEmptyFormat, functionName));
                 return false;
@@ -205,9 +436,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
             }
         }
 
-        private void ValidateGenericArguments(string functionName, ReferenceCategories referenceCategory, XmlElement returnTypeElement, List<XmlElement> parameterNodeList, List<XmlElement> genericArgumentsList)
+        private void ValidateGenericArguments(string functionName, ReferenceCategories referenceCategory, XmlElement returnTypeElement, List<XmlElement> parameterNodeList, List<string> genericArguments)
         {
-            if (referenceCategory != ReferenceCategories.Type && genericArgumentsList.Count > 0)
+            if (referenceCategory != ReferenceCategories.Type && genericArguments.Count > 0)
             {
                 XmlDocumentErrors.Add
                 (
@@ -222,10 +453,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                 return;
             }
 
+            if(!ValidateGenericArgumentNames())
+                return;
+
             ValidateReturnType
             (
-                _xmlDocumentHelpers.GetSingleChildElement(returnTypeElement),
-                genericArgumentsList.Select(e => e.InnerText).ToList()
+                _xmlDocumentHelpers.GetSingleChildElement(returnTypeElement)
             );
 
             parameterNodeList.ForEach(parameterNode =>
@@ -236,7 +469,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
                 ValidateGenericArguments
                 (
-                    genericArgumentsList.Select(e => e.InnerText).ToList(),
                     parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
                     _xmlDocumentHelpers.GetSingleChildElement
                     (
@@ -246,7 +478,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                 );
             });
 
-            void ValidateGenericArguments(List<string> genericArguments, string parameterName, string genericArgName)
+            #region Local Methods
+            bool ValidateGenericArgumentNames()
+            {
+                return genericArguments.Aggregate(true, (allValid, next) =>
+                {
+                    bool valid = Regex.IsMatch(next, RegularExpressions.GENERICARGUMENTNAME);
+
+                    if(!valid)
+                    {
+                        XmlDocumentErrors.Add
+                        (
+                            string.Format
+                            (
+                                CultureInfo.CurrentCulture,
+                                Strings.funcGenericArgNameInvalidFormat,
+                                next,
+                                functionName
+                            )
+                        );
+                    }
+
+                    return allValid && valid;
+                });
+            }
+
+            void ValidateGenericArguments(string parameterName, string genericArgName)
             {
                 if (!new HashSet<string>(genericArguments).Contains(genericArgName))
                 {
@@ -254,7 +511,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                     (
                         string.Format
                         (
-                            CultureInfo.CurrentCulture, 
+                            CultureInfo.CurrentCulture,
                             Strings.funcGenericParameterArgNameNotFoundFormat,
                             genericArgName,
                             parameterName,
@@ -263,33 +520,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                         )
                     );
                 }
-
-                if (!Regex.IsMatch(genericArgName, RegularExpressions.GENERICARGUMENTNAME))
-                {
-                    XmlDocumentErrors.Add
-                    (
-                        string.Format
-                        (
-                            CultureInfo.CurrentCulture, 
-                            Strings.funcGenericArgNameInvalidFormat, 
-                            genericArgName, 
-                            parameterName, 
-                            functionName
-                        )
-                    );
-                }
             }
 
-            void ValidateReturnType(XmlElement returnTypeChildElement, List<string> genericArguments)
+            void ValidateReturnType(XmlElement returnTypeChildElement)
             {
                 if (!new HashSet<string>(new string[] { XmlDataConstants.GENERICELEMENT, XmlDataConstants.GENERICLISTELEMENT }).Contains(returnTypeChildElement.Name))
                     return;
-                
+
                 DoValidateReturnType
                 (
                     _xmlDocumentHelpers.GetSingleChildElement
                     (
-                        returnTypeChildElement, 
+                        returnTypeChildElement,
                         e => e.Name == XmlDataConstants.GENERICARGUMENTNAMEELEMENT
                     ).InnerText
                 );
@@ -302,7 +544,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                         (
                             string.Format
                             (
-                                CultureInfo.CurrentCulture, 
+                                CultureInfo.CurrentCulture,
                                 Strings.funcGenericReturnTypeArgNameNotFoundFormat,
                                 genericArgumentName,
                                 functionName,
@@ -311,8 +553,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                         );
                     }
                 }
-
             }
+            #endregion Local Methods
         }
     }
 }

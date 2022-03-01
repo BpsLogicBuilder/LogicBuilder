@@ -8,6 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     {
         string BuildValidReferenceDefinition(string referenceDefinition);
         bool CanBeInteger(LiteralVariableType variableType);
+        IList<string> ConvertEnumListToStringList<T>(IList<T> excludedItems = null);
         IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);
@@ -23,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         string GetTypeDescription(ListType listType, string elementType);
         VariableTypeCategory GetVariableTypeCategory(string elementName);
         string GetVisibleEnumText<T>(T enumType);
+        bool IsValidCodeBinaryOperator(string item);
         T ParseEnumText<T>(string text);
         IDictionary<string, ValidIndirectReference> ToValidIndirectReferenceDictionary();
         string GetValidIndirectReferencesList();

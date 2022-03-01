@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.OData.Edm;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -36,6 +37,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             );
         }
 
+        public bool CanBeInteger(LiteralVariableType variableType)
+            => _typeHelper.AssignableFrom(typeof(int), GetSystemType(variableType));
+
+        public IList<string> ConvertEnumListToStringList<T>(IList<T> excludedItems = null)
+        {
+            if (!typeof(Enum).IsAssignableFrom(typeof(T)))
+                throw _exceptionHelper.CriticalException("{4445DF20-47AB-434F-B43A-51D9BCC5FC1A}");
+
+            HashSet<T> excludedItemsSet = excludedItems != null
+                ? new HashSet<T>(excludedItems)
+                : new HashSet<T>();
+
+            return Enum.GetNames(typeof(T)).Aggregate
+            (
+                new List<string>(), 
+                (list, next) =>
+                {
+                    if (!excludedItemsSet.Contains((T)Enum.Parse(typeof(T), next)))
+                        list.Add(next);
+
+                    return list;
+                }
+            ).ToList();
+        }
+
         public IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames)
         {
             if (!typeof(Enum).IsAssignableFrom(typeof(T)))
@@ -43,9 +69,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             return enumNames.Select(item => (T)Enum.Parse(typeof(T), item)).ToList();
         }
-
-        public bool CanBeInteger(LiteralVariableType variableType) 
-            => _typeHelper.AssignableFrom(typeof(int), GetSystemType(variableType));
 
         public ListType GetListType(Type memberType)
         {
@@ -146,6 +169,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 throw _exceptionHelper.CriticalException("{6BE2E8CC-C074-42AF-87C4-26AD076A8805}");
 
             return Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, Enum.GetName(typeof(T), enumType)));
+        }
+
+        public bool IsValidCodeBinaryOperator(string item)
+        {
+            if (!Enum.IsDefined(typeof(CodeBinaryOperatorType), item))
+                return false;
+
+            return (CodeBinaryOperatorType)Enum.Parse(typeof(CodeBinaryOperatorType), item) != CodeBinaryOperatorType.Assign;
         }
 
         public T ParseEnumText<T>(string text)

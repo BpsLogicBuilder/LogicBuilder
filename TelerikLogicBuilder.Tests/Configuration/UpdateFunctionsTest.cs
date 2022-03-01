@@ -51,10 +51,10 @@ namespace TelerikLogicBuilder.Tests.Configuration
                                           <form name=""FUNCTIONS"">
                                             <folder name=""Functions"">
                                               <function name=""Access after"" >
-                                                <memberName>agent broadcast commit.acca</memberName>
+                                                <memberName>AccessAfter</memberName>
                                                 <functionCategory>Standard</functionCategory>
                                                 <typeName />
-                                                <referenceName>referenceNameHere</referenceName>
+                                                <referenceName>foo.Bar.Boz</referenceName>
                                                 <referenceDefinition>Field.Property.Property</referenceDefinition>
                                                 <castReferenceAs />
                                                 <referenceCategory>InstanceReference</referenceCategory>
@@ -83,10 +83,10 @@ namespace TelerikLogicBuilder.Tests.Configuration
                                                 <summary>Updates the access the access after field.</summary>
                                               </function>
                                               <function name=""Action"" >
-                                                <memberName>agent broadcast commit.action</memberName>
+                                                <memberName>Action</memberName>
                                                 <functionCategory>Standard</functionCategory>
                                                 <typeName />
-                                                <referenceName>referenceNameHere</referenceName>
+                                                <referenceName></referenceName>
                                                 <referenceDefinition />
                                                 <castReferenceAs />
                                                 <referenceCategory>This</referenceCategory>

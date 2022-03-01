@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
-using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Xml;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
@@ -260,14 +258,15 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         }
 
         [Fact]
-        internal void CastReferenceAsLengthsDoesNotMatchReferenceNameLengthReturnsFailureResponse()
+        public void CastReferenceAsLengthsDoesNotMatchReferenceNameLengthReturnsFailureResponse()
         {
             //arrange
             IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
             Dictionary<string, string> fieldsToSet = new()
             {
-                [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "FFF",
+                [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "Property",
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "Foo",
+                [XmlDataConstants.CASTREFERENCEASELEMENT] = "A.V",
                 [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.InstanceReference)
             };
 
@@ -276,6 +275,11 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
 
             //assert
             Assert.False(result.Success);
+            Assert.Equal
+            (
+                string.Format(CultureInfo.CurrentCulture, Strings.referenceNameAndCastReferenceAFormat, VARIABLENAME),
+                result.Errors.First()
+            );
         }
 
         [Theory]
@@ -330,6 +334,25 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                 string.Format(CultureInfo.CurrentCulture, Strings.variableTypeNameMustBeEmptyFormat, VARIABLENAME),
                 result.Errors.First()
             );
+        }
+
+        [Fact]
+        public void InvalidIndirectReferenceNameReturnsFailureResponse()
+        {
+            //arrange
+            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            Dictionary<string, string> fieldsToSet = new()
+            {
+                [XmlDataConstants.REFERENCENAMEELEMENT] = "foo",
+                [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "IntegerKeyIndexer",
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = "InstanceReference"
+            };
+
+            //act
+            var result = xmlValidator.Validate(GetXmlString(fieldsToSet));
+
+            //assert
+            Assert.False(result.Success);
         }
 
         private void Initialize()
