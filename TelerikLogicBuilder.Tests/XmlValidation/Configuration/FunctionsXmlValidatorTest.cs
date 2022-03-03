@@ -18,11 +18,11 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
     {
         public FunctionsXmlValidatorTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         private const string FUNCTIONNAME = "functionName";
         #endregion Fields
 
@@ -123,7 +123,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<literalParameter name=""value1"" >
                                             <literalType>String</literalType>
                                             <control>SingleLineTextBox</control>
@@ -152,7 +152,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                                         </literalParameter>";
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.False(result.Success);
@@ -351,7 +351,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
                 [XmlDataConstants.REFERENCENAMEELEMENT] = referenceName,
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)!
             };
 
             //act
@@ -376,7 +376,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "Property",
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "Foo",
                 [XmlDataConstants.CASTREFERENCEASELEMENT] = "A.V",
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.InstanceReference)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.InstanceReference)!
             };
 
             //act
@@ -403,7 +403,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
                 [XmlDataConstants.REFERENCENAMEELEMENT] = referenceName,
                 [XmlDataConstants.TYPENAMEELEMENT] = typeName,
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)!
             };
 
             //act
@@ -431,7 +431,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
                 [XmlDataConstants.REFERENCENAMEELEMENT] = referenceName,
                 [XmlDataConstants.TYPENAMEELEMENT] = typeName,
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)!
             };
 
             //act
@@ -455,10 +455,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "",
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "",
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.None),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.None)!,
                 [XmlDataConstants.MEMBERNAMEELEMENT] = "Add",
                 [XmlDataConstants.FUNCTIONCATEGORYELEMENT] = "BinaryOperator",
-                [XmlDataConstants.PARAMETERSLAYOUTELEMENT] = Enum.GetName(typeof(ParametersLayout), ParametersLayout.Sequential)
+                [XmlDataConstants.PARAMETERSLAYOUTELEMENT] = Enum.GetName(typeof(ParametersLayout), ParametersLayout.Sequential)!
             };
 
             //act
@@ -482,10 +482,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "",
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "",
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.This),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.This)!,
                 [XmlDataConstants.MEMBERNAMEELEMENT] = "Add",
                 [XmlDataConstants.FUNCTIONCATEGORYELEMENT] = "BinaryOperator",
-                [XmlDataConstants.PARAMETERSLAYOUTELEMENT] = Enum.GetName(typeof(ParametersLayout), ParametersLayout.Sequential)
+                [XmlDataConstants.PARAMETERSLAYOUTELEMENT] = Enum.GetName(typeof(ParametersLayout), ParametersLayout.Sequential)!
             };
 
             //act
@@ -513,10 +513,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "",
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "",
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.None),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.None)!,
                 [XmlDataConstants.MEMBERNAMEELEMENT] = "Add",
-                [XmlDataConstants.FUNCTIONCATEGORYELEMENT] = Enum.GetName(typeof(FunctionCategories), functionCategory),
-                [XmlDataConstants.PARAMETERSLAYOUTELEMENT] = Enum.GetName(typeof(ParametersLayout), ParametersLayout.Sequential)
+                [XmlDataConstants.FUNCTIONCATEGORYELEMENT] = Enum.GetName(typeof(FunctionCategories), functionCategory)!,
+                [XmlDataConstants.PARAMETERSLAYOUTELEMENT] = Enum.GetName(typeof(ParametersLayout), ParametersLayout.Sequential)!
             };
 
             //act
@@ -540,7 +540,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<literalParameter name=""value1"" >
                                             <literalType>String</literalType>
                                             <control>ParameterSourcedPropertyInput</control>
@@ -570,7 +570,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             var siblingNames = new List<string> { "value2" };
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.False(result.Success);
@@ -599,7 +599,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<literalParameter name=""value1"" >
                                             <literalType>String</literalType>
                                             <control>ParameterSourcedPropertyInput</control>
@@ -628,7 +628,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                                         </literalParameter>";
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.True(result.Success);
@@ -641,7 +641,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<literalListParameter name=""value1"">
 					                        <literalType>String</literalType>
 					                        <listType>GenericList</listType>
@@ -677,7 +677,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             var siblingNames = new List<string> { "value2" };
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.False(result.Success);
@@ -706,7 +706,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<literalListParameter name=""value1"">
 					                        <literalType>String</literalType>
 					                        <listType>GenericList</listType>
@@ -741,7 +741,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                                         </literalParameter>";
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.True(result.Success);
@@ -754,12 +754,12 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             Dictionary<string, string> fieldsToSet = new()
             {
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
                 [XmlDataConstants.TYPENAMEELEMENT] = "SomeType"
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<genericParameter name=""value1"" >
                                             <genericArgumentName>A</genericArgumentName>
                                             <optional>false</optional>
@@ -778,15 +778,15 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                                             <domain />
                                             <comments />
                                         </literalParameter>";
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
+            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}");
+            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}")!;
             returnTypeNode.InnerXml = @"<generic>
 						                    <genericArgumentName>A</genericArgumentName>
 					                    </generic>";
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.True(result.Success);
@@ -799,12 +799,12 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             Dictionary<string, string> fieldsToSet = new()
             {
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
                 [XmlDataConstants.TYPENAMEELEMENT] = "SomeType"
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<genericListParameter name=""value1"" >
                                             <genericArgumentName>A</genericArgumentName>
                                             <listType>GenericList</listType>
@@ -825,15 +825,15 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                                             <domain />
                                             <comments />
                                         </literalParameter>";
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
+            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}");
+            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}")!;
             returnTypeNode.InnerXml = @"<generic>
 						                    <genericArgumentName>A</genericArgumentName>
 					                    </generic>";
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.True(result.Success);
@@ -846,16 +846,16 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             Dictionary<string, string> fieldsToSet = new()
             {
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
                 [XmlDataConstants.TYPENAMEELEMENT] = "SomeType"
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
+            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
             genericArgumentsNode.InnerXml = @"<item>?A</item>";
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.False(result.Success);
@@ -881,16 +881,16 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             Dictionary<string, string> fieldsToSet = new()
             {
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.This)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.This)!
             };
 
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
+            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
             genericArgumentsNode.InnerXml = @"<item>A</item><item>B</item>";
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.False(result.Success);
@@ -915,21 +915,21 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             Dictionary<string, string> fieldsToSet = new()
             {
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
                 [XmlDataConstants.TYPENAMEELEMENT] = "SomeType"
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
+            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}");
+            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}")!;
             returnTypeNode.InnerXml = @"<generic>
 						                    <genericArgumentName>B</genericArgumentName>
 					                    </generic>";
             var genericArguments = new List<string> { "A" };
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.False(result.Success);
@@ -954,14 +954,14 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
             Dictionary<string, string> fieldsToSet = new()
             {
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type),
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
                 [XmlDataConstants.TYPENAMEELEMENT] = "SomeType"
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
+            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}");
+            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
             parametersNode.InnerXml = @"<genericParameter name=""value1"" >
                                             <genericArgumentName>B</genericArgumentName>
                                             <optional>false</optional>
@@ -983,7 +983,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             var genericArguments = new List<string> { "A" };
 
             //act
-            var result = xmlValidator.Validate(document.DocumentElement.OuterXml);
+            var result = xmlValidator.Validate(document.DocumentElement!.OuterXml);
 
             //assert
             Assert.False(result.Success);
@@ -1002,12 +1002,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             );
         }
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
-        private static string GetXmlString(IDictionary<string, string> valuesToSet = null)
+        private static string GetXmlString(IDictionary<string, string>? valuesToSet = null)
         {
             string xmlString = $@"<forms>
                                     <form name=""FUNCTIONS"">
@@ -1060,11 +1055,11 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
 
             foreach (KeyValuePair<string, string> kvp in valuesToSet)
             {
-                XmlNode xmlNode = xmlDocument.SelectSingleNode($"//{kvp.Key}");
+                XmlNode xmlNode = xmlDocument.SelectSingleNode($"//{kvp.Key}")!;
                 xmlNode.InnerText = kvp.Value;
             };
 
-            return xmlDocument.DocumentElement.OuterXml;
+            return xmlDocument.DocumentElement!.OuterXml;
         }
     }
 }

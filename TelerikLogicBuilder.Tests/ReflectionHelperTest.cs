@@ -13,11 +13,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public ReflectionHelperTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         private class ReflectionHelperTestClass
@@ -62,11 +62,6 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(2, result);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

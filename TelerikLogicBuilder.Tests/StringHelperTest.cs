@@ -12,11 +12,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public StringHelperTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -108,11 +108,6 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.StartsWith("InstructorModel", result);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

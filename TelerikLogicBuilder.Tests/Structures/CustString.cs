@@ -32,7 +32,7 @@
             return this.val.GetHashCode();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is CustString custString)
                 return this == custString;

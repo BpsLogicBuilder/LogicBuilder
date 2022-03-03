@@ -58,7 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters
                         break;
                     case ParameterCategory.ObjectList:
                         ListOfObjectsParameter loc = (ListOfObjectsParameter)configuredParameters[i];
-                        Type underlyingType = _typeHelper.IsValidList(parameterInfos[i].PInfo.ParameterType)
+                        Type? underlyingType = _typeHelper.IsValidList(parameterInfos[i].PInfo.ParameterType)
                                             ? _typeHelper.GetUndelyingTypeForValidList(parameterInfos[i].PInfo.ParameterType)
                                             : null;
 
@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters
                         break;
                     case ParameterCategory.GenericList:
                         ListOfGenericsParameter log = (ListOfGenericsParameter)configuredParameters[i];
-                        Type underlyingGenericType = _typeHelper.IsValidList(parameterInfos[i].PInfo.ParameterType)
+                        Type? underlyingGenericType = _typeHelper.IsValidList(parameterInfos[i].PInfo.ParameterType)
                                             ? _typeHelper.GetUndelyingTypeForValidList(parameterInfos[i].PInfo.ParameterType)
                                             : null;
 

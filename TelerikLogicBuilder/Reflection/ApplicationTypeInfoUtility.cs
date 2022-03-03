@@ -35,9 +35,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
         internal ApplicationTypeInfo CreateApplicationTypeInfo()
         {
             Application application = _configurationService.GetSelectedApplication();
-            Assembly activityAssembly = null;
+            Assembly? activityAssembly;
             HashSet<Assembly> allAssemblies = new();
-            Type activityType = null;
+            Type? activityType;
             SortedDictionary<string, Type> allTypes = new();
 
             if (string.IsNullOrEmpty(application.ActivityAssemblyPath) || string.IsNullOrEmpty(application.ActivityAssembly))

@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         {
             get
             {
-                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.DEFAULTVALUEDELIMITER, out string delimiters);
+                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.DEFAULTVALUEDELIMITER, out string? delimiters);
                 return delimiters?.Length > 0 ? delimiters.ToArray() : new char[] { ',', ';' };
             }
         }
@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         {
             get
             {
-                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string defaultValues);
+                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string? defaultValues);
                 if (string.IsNullOrEmpty(defaultValues))
                     return new List<string>();
 
@@ -81,7 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         {
             get
             {
-                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string value);
+                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string? value);
                 return value ?? string.Empty;
             }
         }

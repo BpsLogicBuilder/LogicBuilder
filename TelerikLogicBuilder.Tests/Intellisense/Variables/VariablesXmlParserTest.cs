@@ -4,7 +4,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Xml;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Variables
@@ -13,11 +12,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
     {
         public VariablesXmlParserTest()
         {
-            Initialize();
-        }
+			serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+		}
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -252,13 +251,8 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             Assert.Equal(4, result.Count);
         }
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
         private static XmlElement GetXmlElement(string xmlString) 
-            => GetXmlDocument(xmlString).DocumentElement;
+            => GetXmlDocument(xmlString).DocumentElement!;
 
         private static XmlDocument GetXmlDocument(string xmlString)
         {

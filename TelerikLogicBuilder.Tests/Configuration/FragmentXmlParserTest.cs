@@ -12,7 +12,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
     {
         public FragmentXmlParserTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         [Fact]
@@ -35,20 +35,15 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.Equal("ParameterOperatorParameters", result.Name);
-            Assert.Equal("constructor", xmlDocumentHelpers.ToXmlDocument(result.Xml).DocumentElement.Name);
+            Assert.Equal("constructor", xmlDocumentHelpers.ToXmlDocument(result.Xml).DocumentElement!.Name);
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
         private static XmlElement GetXmlElement(string xmlString)
-            => GetXmlDocument(xmlString).DocumentElement;
+            => GetXmlDocument(xmlString).DocumentElement!;
 
         private static XmlDocument GetXmlDocument(string xmlString)
         {

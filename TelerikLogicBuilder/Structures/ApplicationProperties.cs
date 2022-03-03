@@ -12,7 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
         #endregion Constants
 
         #region Variables
-        private static string _applicationPath;
+        private static string _applicationPath = string.Empty;
         #endregion Variables
 
         #region Properties
@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
             get
             {
                 if (_applicationPath == null)
-                    _applicationPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    _applicationPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
 
                 return _applicationPath;
             }

@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TelerikLogicBuilder.Tests.AttributeSamples;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -16,11 +15,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public MemberAttributeReaderTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -30,7 +29,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            var dictionary = attributeReader.GetNameValueTable(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FirstName)));
+            var dictionary = attributeReader.GetNameValueTable(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FirstName))!);
 
             //assert
             Assert.Equal(2, dictionary.Count);
@@ -45,7 +44,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            var dictionary = attributeReader.GetNameValueTable(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            var dictionary = attributeReader.GetNameValueTable(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.Empty(dictionary);
@@ -58,7 +57,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            LiteralVariableInputStyle literalInputStyle = attributeReader.GetLiteralInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.LastName)));
+            LiteralVariableInputStyle literalInputStyle = attributeReader.GetLiteralInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.LastName))!);
 
             //assert
             Assert.Equal(LiteralVariableInputStyle.DomainAutoComplete, literalInputStyle);
@@ -72,7 +71,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            LiteralVariableInputStyle literalInputStyle = attributeReader.GetLiteralInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            LiteralVariableInputStyle literalInputStyle = attributeReader.GetLiteralInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.Equal(LiteralVariableInputStyle.SingleLineTextBox, literalInputStyle);
@@ -85,7 +84,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            ObjectVariableInputStyle objectVariableInputStyle = attributeReader.GetObjectInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.OfficeAssignment)));
+            ObjectVariableInputStyle objectVariableInputStyle = attributeReader.GetObjectInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.OfficeAssignment))!);
 
             //assert
             Assert.Equal(ObjectVariableInputStyle.Form, objectVariableInputStyle);
@@ -98,7 +97,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            ObjectVariableInputStyle objectVariableInputStyle = attributeReader.GetObjectInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            ObjectVariableInputStyle objectVariableInputStyle = attributeReader.GetObjectInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.Equal(ObjectVariableInputStyle.Form, objectVariableInputStyle);
@@ -111,7 +110,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            ListVariableInputStyle listInputStyle = attributeReader.GetListInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.Courses)));
+            ListVariableInputStyle listInputStyle = attributeReader.GetListInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.Courses))!);
 
             //assert
             Assert.Equal(ListVariableInputStyle.ListForm, listInputStyle);
@@ -124,7 +123,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            ListVariableInputStyle listInputStyle = attributeReader.GetListInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            ListVariableInputStyle listInputStyle = attributeReader.GetListInputStyle(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.Equal(ListVariableInputStyle.HashSetForm, listInputStyle);
@@ -137,7 +136,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string summary = attributeReader.GetSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething)));
+            string summary = attributeReader.GetSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething))!);
 
             //assert
             Assert.Equal("DoSomething", summary);
@@ -150,7 +149,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string summary = attributeReader.GetSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse)));
+            string summary = attributeReader.GetSummary(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse))!);
 
             //assert
             Assert.Equal(string.Empty, summary);
@@ -189,7 +188,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string comments = attributeReader.GetVariableComments(typeof(InstructorModel).GetProperty(nameof(InstructorModel.LastName)));
+            string comments = attributeReader.GetVariableComments(typeof(InstructorModel).GetProperty(nameof(InstructorModel.LastName))!);
 
             //assert
             Assert.Equal("Last Name", comments);
@@ -202,7 +201,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string comments = attributeReader.GetVariableComments(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            string comments = attributeReader.GetVariableComments(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.Equal(string.Empty, comments);
@@ -215,7 +214,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetProperty(nameof(InstructorModel.LastName)));
+            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetProperty(nameof(InstructorModel.LastName))!);
 
             //assert
             Assert.Equal("Instructor_LastName", text);
@@ -228,7 +227,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.Equal(string.Empty, text);
@@ -241,7 +240,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething)));
+            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething))!);
 
             //assert
             Assert.Equal("Do Something", text);
@@ -254,7 +253,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse)));
+            string text = attributeReader.GetAlsoKnownAs(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse))!);
 
             //assert
             Assert.Equal(string.Empty, text);
@@ -293,7 +292,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            FunctionCategories category = attributeReader.GetFunctionCategory(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething)));
+            FunctionCategories category = attributeReader.GetFunctionCategory(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething))!);
 
             //assert
             Assert.Equal(FunctionCategories.DialogForm, category);
@@ -306,7 +305,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            FunctionCategories category = attributeReader.GetFunctionCategory(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse)));
+            FunctionCategories category = attributeReader.GetFunctionCategory(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse))!);
 
             //assert
             Assert.Equal(FunctionCategories.Unknown, category);
@@ -319,7 +318,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            List<string> domain = attributeReader.GetDomain(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FirstName)));
+            List<string> domain = attributeReader.GetDomain(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FirstName))!);
 
             //assert
             Assert.True(domain.SequenceEqual(new List<string> { "A", "B", "C" }));
@@ -332,7 +331,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            List<string> domain = attributeReader.GetDomain(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            List<string> domain = attributeReader.GetDomain(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.Empty(domain);
@@ -345,7 +344,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            bool isConfigurable = attributeReader.IsVariableConfigurableFromClassHelper(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FirstName)));
+            bool isConfigurable = attributeReader.IsVariableConfigurableFromClassHelper(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FirstName))!);
 
             //assert
             Assert.True(isConfigurable);
@@ -358,7 +357,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            bool isConfigurable = attributeReader.IsVariableConfigurableFromClassHelper(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName)));
+            bool isConfigurable = attributeReader.IsVariableConfigurableFromClassHelper(typeof(InstructorModel).GetProperty(nameof(InstructorModel.FullName))!);
 
             //assert
             Assert.False(isConfigurable);
@@ -371,7 +370,7 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            bool isConfigurable = attributeReader.IsFunctionConfigurableFromClassHelper(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething)));
+            bool isConfigurable = attributeReader.IsFunctionConfigurableFromClassHelper(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomething))!);
 
             //assert
             Assert.True(isConfigurable);
@@ -384,15 +383,10 @@ namespace TelerikLogicBuilder.Tests
             IMemberAttributeReader attributeReader = serviceProvider.GetRequiredService<IMemberAttributeReader>();
 
             //act
-            bool isConfigurable = attributeReader.IsFunctionConfigurableFromClassHelper(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse)));
+            bool isConfigurable = attributeReader.IsFunctionConfigurableFromClassHelper(typeof(InstructorModel).GetMethod(nameof(InstructorModel.DoSomethingElse))!);
 
             //assert
             Assert.False(isConfigurable);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

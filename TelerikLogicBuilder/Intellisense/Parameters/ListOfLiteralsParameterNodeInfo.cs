@@ -59,7 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.DEFAULTVALUEDELIMITER, out string delimiters);
+                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.DEFAULTVALUEDELIMITER, out string? delimiters);
                 return delimiters?.Length > 0 ? delimiters.ToArray() : new char[] { ',', ';' };
             }
         }
@@ -71,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string defaultValues);
+                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string? defaultValues);
                 if (string.IsNullOrEmpty(defaultValues))
                     return new List<string>();
 
@@ -86,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string value);
+                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string? value);
                 return value ?? string.Empty;
             }
         }
@@ -98,7 +98,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCEPARAMETER, out string value);
+                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCEPARAMETER, out string? value);
                 return value ?? string.Empty;
             }
         }

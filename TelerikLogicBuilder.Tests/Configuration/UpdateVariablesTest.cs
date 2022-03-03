@@ -14,11 +14,11 @@ namespace TelerikLogicBuilder.Tests.Configuration
     {
         public UpdateVariablesTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -41,14 +41,14 @@ namespace TelerikLogicBuilder.Tests.Configuration
             var result = loadVariables.Load();
 
             //assert
-            Assert.Equal(XmlDataConstants.FOLDERELEMENT, result.DocumentElement.Name);
+            Assert.Equal(XmlDataConstants.FOLDERELEMENT, result.DocumentElement!.Name);
             Assert.Equal
             (
                 2, 
                 result.SelectNodes
                 (
                     $"//{XmlDataConstants.LITERALVARIABLEELEMENT}|//{XmlDataConstants.OBJECTVARIABLEELEMENT}|//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT}"
-                )
+                )!
                 .OfType<XmlElement>()
                 .Count()
             );
@@ -95,11 +95,6 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
                 return xmlDocument;
             }
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

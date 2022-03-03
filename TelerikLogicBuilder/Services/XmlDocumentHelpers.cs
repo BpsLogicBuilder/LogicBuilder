@@ -80,8 +80,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), UnformattedSettings);
 
         public List<XmlElement> GetChildElements(XmlNode xmlNode, 
-            Func<XmlElement, bool> filter = null, 
-            Func<IEnumerable<XmlElement>, IEnumerable<XmlElement>> enumerableFunc = null)
+            Func<XmlElement, bool>? filter = null, 
+            Func<IEnumerable<XmlElement>, IEnumerable<XmlElement>>? enumerableFunc = null)
         {
             IEnumerable<XmlElement> getChildElements()
             {
@@ -108,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 && constructorOrFunctionNode.Name != XmlDataConstants.FUNCTIONELEMENT)
                 throw _exceptionHelper.CriticalException("{D3537A44-DA97-4393-A4F5-6683C0BA9981}");
 
-            return GetElements(parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value);
+            return GetElements(parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);/*Attribute is required by schema definition.*/
 
             List<XmlElement> GetElements(string parameterName) 
                 => GetChildElements
@@ -123,10 +123,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 .ToList();
         }
 
-        public XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool> filter = null) 
+        public XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool>? filter = null) 
             => filter != null
-                ? xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault(filter)
-                : xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault();
+                ? xmlNode.ChildNodes.OfType<XmlElement>().Single(filter)
+                : xmlNode.ChildNodes.OfType<XmlElement>().Single();
 
         public string GetUnformattedXmlString(XmlDocument xmlDocument)
         {
@@ -157,7 +157,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {//The formatted writer inserts newline and tabs in from of the first
                 //child element for mixed XML whne the first child is an elemnt.
                 //The empty string significant whitespace is a workaround to avoid the new lines.
-                foreach (XmlNode element in xmlDocument.SelectNodes("//literalParameter|//literal|//literalVariable|//text"))
+                foreach (XmlNode element in xmlDocument.SelectNodes("//literalParameter|//literal|//literalVariable|//text")!)/*Never null when SelectNodes is called on an XmlDocument.*/
                 {
                     if (
                             element.ChildNodes.Count > 1
@@ -170,7 +170,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     {
                         element.InsertBefore
                         (
-                            element.OwnerDocument.CreateSignificantWhitespace(""),
+                            //element.OwnerDocument!.CreateSignificantWhitespace(""),
+                            xmlDocument.CreateSignificantWhitespace(""),
                             element.FirstChild
                         );
                     }
@@ -186,7 +187,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return attribute;
         }
 
-        public XmlElement MakeElement(XmlDocument xmlDocument, string name, string innerXml = null, IDictionary<string, string> attributes = null)
+        public XmlElement MakeElement(XmlDocument xmlDocument, string name, string? innerXml = null, IDictionary<string, string>? attributes = null)
         {
             XmlElement element = xmlDocument.CreateElement(name);
             if (innerXml != null)
@@ -201,7 +202,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return element;
         }
 
-        public XmlDocumentFragment MakeFragment(XmlDocument xmlDocument, string innerXml = null)
+        public XmlDocumentFragment MakeFragment(XmlDocument xmlDocument, string? innerXml = null)
         {
             XmlDocumentFragment xmlDocumentFragment = xmlDocument.CreateDocumentFragment();
             if (innerXml != null)

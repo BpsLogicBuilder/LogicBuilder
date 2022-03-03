@@ -135,7 +135,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                             continue;
                         }
                         //Since arrays can be multidimensional, allow the variableArrayIndex to combine variables and integer literals as indexes
-                        if (variables.TryGetValue(index, out VariableBase variable) && _variableHelper.CanBeInteger(variable))
+                        if (variables.TryGetValue(index, out VariableBase? variable) && _variableHelper.CanBeInteger(variable))
                         {
                         }
                         else if (int.TryParse(index, out int arrayIndex) && arrayIndex > -1)
@@ -263,7 +263,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                             continue;
                         }
                         //Since arrays can be multidimensional, allow the variableArrayIndex to combine variables and integer literals as indexes
-                        if (variables.TryGetValue(index, out VariableBase variable) && _variableHelper.CanBeInteger(variable))
+                        if (variables.TryGetValue(index, out VariableBase? variable) && _variableHelper.CanBeInteger(variable))
                         {
                         }
                         else if (int.TryParse(index, out int arrayIndex) && arrayIndex > -1)//-1 must be a check to make sure the parsed integer is positive

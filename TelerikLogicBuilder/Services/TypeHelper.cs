@@ -25,8 +25,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public bool AreCompatibleForOperation(Type t1, Type t2, CodeBinaryOperatorType op)
         {
-            t1 = IsNullable(t1) ? Nullable.GetUnderlyingType(t1) : t1;
-            t2 = IsNullable(t2) ? Nullable.GetUnderlyingType(t2) : t2;
+            t1 = IsNullable(t1) ? Nullable.GetUnderlyingType(t1)!/*Not null for nullables*/ : t1;
+            t2 = IsNullable(t2) ? Nullable.GetUnderlyingType(t2)!/*Not null for nullables*/ : t2;
 
             if (t1.IsValueType
                 && t2.IsValueType
@@ -70,8 +70,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             if (!(!IsNullable(to) && IsNullable(from)))
             {//Anything but To is NOT nullable and From IS nullable
-                to = IsNullable(to) ? Nullable.GetUnderlyingType(to) : to;
-                from = IsNullable(from) ? Nullable.GetUnderlyingType(from) : from;
+                to = IsNullable(to) ? Nullable.GetUnderlyingType(to)!/*Not null for nullables*/ : to;
+                from = IsNullable(from) ? Nullable.GetUnderlyingType(from)!/*Not null for nullables*/ : from;
 
                 if (NumbersDictionary.ContainsKey(to) && NumbersDictionary[to].Contains(from))
                     return true;
@@ -96,7 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || type.GetGenericTypeDefinition().Equals(typeof(IEnumerable<>))))
                 return string.Format(CultureInfo.InvariantCulture, MiscellaneousConstants.GENERICTYPEFORMAT, type.Name, GetTypeDescription(type.GetGenericArguments()[0]));
             else if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
-                return string.Format(CultureInfo.InvariantCulture, MiscellaneousConstants.GENERICTYPEFORMAT, type.Name, GetTypeDescription(Nullable.GetUnderlyingType(type)));
+                return string.Format(CultureInfo.InvariantCulture, MiscellaneousConstants.GENERICTYPEFORMAT, type.Name, GetTypeDescription(Nullable.GetUnderlyingType(type)!/*Not null for nullables*/));
             else if (type.IsGenericType)
                 return string.Format(CultureInfo.InvariantCulture, MiscellaneousConstants.GENERICTYPEFORMAT, type.Name, string.Join(MiscellaneousConstants.COMMA.ToString(), type.GetGenericArguments().Select(a => GetTypeDescription(a))));
             else
@@ -112,7 +112,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || type.GetGenericTypeDefinition().Equals(typeof(IEnumerable<>))))
                 return type.GetGenericArguments()[0];
             else if (type.IsArray)
-                return type.GetElementType();
+                return type.GetElementType() ?? throw _exceptionHelper.CriticalException("{28046255-8B32-484D-A2B1-AC40603CBCF0}");
             else
                 throw _exceptionHelper.CriticalException("{5ED4C326-21DA-4EB7-937A-2ED05DB47A0E}");
         }
@@ -120,7 +120,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public bool IsLiteralType(Type type)
         {
             if (IsNullable(type))
-                type = Nullable.GetUnderlyingType(type);
+                type = Nullable.GetUnderlyingType(type)!;/*Not null for nullables.*/
 
             return MiscellaneousConstants.Literals.Contains(type);
         }
@@ -150,29 +150,36 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public string ToId(Type type)
         {
-            string typeName = ToId();
+            string? typeName = ToId();
 
             if (typeName != null)
                 return typeName;
 
-            type = type.Assembly.GetTypes().FirstOrDefault(t => t?.Name == type.Name);//Search the assembly when type is not null
-                                                                                      //but AssemblyQualifiedName and FullName are null
-            if (type == null)
-                return null;
+            Type? fromAssemblySearch = type.Assembly
+                .GetTypes()
+                .FirstOrDefault(t => t?.Name == type.Name);//Search the assembly when type is not null
+                                                           //but AssemblyQualifiedName and FullName are null
+                                                           //(AssemblyQualifiedName and FullName may be null if loaded from a different context)
 
-            return ToId();
+            if (fromAssemblySearch == null 
+                || fromAssemblySearch.AssemblyQualifiedName == null
+                || fromAssemblySearch.FullName == null)
+                throw _exceptionHelper.CriticalException("{62307BC9-5D79-4257-B7B7-C063D47A0091}");
 
-            string ToId()
+            type = fromAssemblySearch;
+
+            return ToId()!;
+
+            string? ToId()
                 => type.IsGenericType && !type.IsGenericTypeDefinition
                            ? type.AssemblyQualifiedName
                            : type.FullName;
         }
 
-        public Type TryGetType(string typeName, ApplicationTypeInfo application)
+        public Type? TryGetType(string typeName, ApplicationTypeInfo application)
         {
-            if (application != null
-                    && application.AssemblyAvailable
-                    && application.AllTypes.TryGetValue(typeName, out Type type))
+            if (application.AssemblyAvailable
+                    && application.AllTypes.TryGetValue(typeName, out Type? type))
                 return type;
 
             try
@@ -187,9 +194,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             return null;
 
-            Assembly ResolveAssembly(AssemblyName assemblyName)
+            Assembly? ResolveAssembly(AssemblyName assemblyName)
             {
-                if (application.AllAssembliesDictionary.TryGetValue(assemblyName.FullName, out Assembly assembly))
+                if (application.AllAssembliesDictionary.TryGetValue(assemblyName.FullName, out Assembly? assembly))
                     return assembly;
 
                 if (typeof(string).Assembly.GetName().Name == assemblyName.Name)
@@ -198,7 +205,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 return LoadAssembly(assemblyName);
             }
 
-            static Type ResolveType(Assembly assembly, string typeName, bool ignoreCase)
+            static Type? ResolveType(Assembly? assembly, string typeName, bool ignoreCase)
             {
                 if (assembly != null)
                     return assembly.GetType(typeName);
@@ -206,7 +213,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 return Type.GetType(typeName, false, ignoreCase);
             }
 
-            Assembly LoadAssembly(AssemblyName assemblyName)
+            Assembly? LoadAssembly(AssemblyName assemblyName)
             {
                 try
                 {
@@ -219,7 +226,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        public bool TryParse(string toParse, Type type, out object result)
+        public bool TryParse(string toParse, Type type, out object? result)
         {
             if (!IsLiteralType(type))
                 throw _exceptionHelper.CriticalException("{A1026252-A00D-41A2-B501-D0B313E5383F}");
@@ -237,9 +244,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
 
             if (IsNullable(type))
-                type = Nullable.GetUnderlyingType(type);
+                type = Nullable.GetUnderlyingType(type)!;/*Not null for nullables.*/
 
-            MethodInfo method = type.GetMethods().SingleOrDefault(IsTryParseMethod);
+            MethodInfo? method = type.GetMethods().SingleOrDefault(IsTryParseMethod);
 
             if (method == null)
             {
@@ -247,8 +254,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 return false;
             }
 
-            object[] args = new object[] { toParse, null };
-            bool success = (bool)method.Invoke(null, args);
+            object?[] args = new object?[] { toParse, null };
+            bool success = (bool)method.Invoke(null, args)!;//SomeLiteralType.TryParse does not return null
             result = success ? args[1] : null;
 
             return success;
@@ -266,8 +273,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         private bool AreCompatibleForOperation(Type t1, Type t2, string op)
         {
-            t1 = IsNullable(t1) ? Nullable.GetUnderlyingType(t1) : t1;
-            t2 = IsNullable(t2) ? Nullable.GetUnderlyingType(t2) : t2;
+            t1 = IsNullable(t1) ? Nullable.GetUnderlyingType(t1)!/*Not null for nullables*/ : t1;
+            t2 = IsNullable(t2) ? Nullable.GetUnderlyingType(t2)!/*Not null for nullables*/ : t2;
 
             if (NumbersDictionary.ContainsKey(t1) && t1 == t2)
                 return true;//return true for standard conversions

@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -15,11 +14,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public XmlDocumentHelpersTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -32,7 +31,7 @@ namespace TelerikLogicBuilder.Tests
             var writer = helper.CreateFormattedXmlWriter(new StringBuilder());
 
             //assert
-            Assert.True(writer.Settings.Indent);
+            Assert.True(writer.Settings!.Indent);
             Assert.Equal("\t", writer.Settings.IndentChars);
             Assert.True(writer.Settings.OmitXmlDeclaration);
         }
@@ -47,7 +46,7 @@ namespace TelerikLogicBuilder.Tests
             var writer = helper.CreateFormattedXmlWriterWithDeclaration(new StringBuilder());
 
             //assert
-            Assert.True(writer.Settings.Indent);
+            Assert.True(writer.Settings!.Indent);
             Assert.Equal("\t", writer.Settings.IndentChars);
             Assert.False(writer.Settings.OmitXmlDeclaration);
         }
@@ -62,7 +61,7 @@ namespace TelerikLogicBuilder.Tests
             var writer = helper.CreateUnformattedXmlWriter(new StringBuilder());
 
             //assert
-            Assert.False(writer.Settings.Indent);
+            Assert.False(writer.Settings!.Indent);
             Assert.True(writer.Settings.OmitXmlDeclaration);
         }
 
@@ -169,7 +168,7 @@ namespace TelerikLogicBuilder.Tests
             (
                 parametersElement, 
                 e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT 
-                    && e.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value == "Refresh"
+                    && e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value == "Refresh"
             );
 
             //act
@@ -177,8 +176,8 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(2, result.Count);
-            Assert.Equal("Page Sizes", result.First().Attributes[XmlDataConstants.NAMEATTRIBUTE].Value);
-            Assert.Equal("Button Count", result.Last().Attributes[XmlDataConstants.NAMEATTRIBUTE].Value);
+            Assert.Equal("Page Sizes", result.First().Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
+            Assert.Equal("Button Count", result.Last().Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
         }
 
         [Fact]
@@ -262,13 +261,8 @@ namespace TelerikLogicBuilder.Tests
             Assert.Equal(3, result.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Length);
         }
 
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
         private static XmlElement GetXmlElement(string xmlString)
-            => GetXmlDocument(xmlString).DocumentElement;
+            => GetXmlDocument(xmlString).DocumentElement!;
 
         private static XmlDocument GetXmlDocument(string xmlString)
         {

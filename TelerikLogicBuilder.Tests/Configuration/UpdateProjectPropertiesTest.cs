@@ -15,11 +15,11 @@ namespace TelerikLogicBuilder.Tests.Configuration
     {
         public UpdateProjectPropertiesTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -78,11 +78,6 @@ namespace TelerikLogicBuilder.Tests.Configuration
             //assert
             Assert.Equal("App01", loadedProperties.ApplicationList.First().Value.Name);
             Assert.True(loadedProperties.ConnectorObjectTypes.SetEquals(new List<string> { "Flow1.ConnectorData", "Flow2.ConnectorData" }));
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

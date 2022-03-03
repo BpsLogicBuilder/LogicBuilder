@@ -17,11 +17,11 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
     {
         public VariablesXmlValidatorTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         private const string VARIABLENAME = "VariableName";
         #endregion Fields
 
@@ -216,7 +216,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
                 [XmlDataConstants.REFERENCENAMEELEMENT] = referenceName,
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)!
             };
 
             //act
@@ -242,7 +242,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
                 [XmlDataConstants.REFERENCENAMEELEMENT] = referenceName,
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)!
             };
 
             //act
@@ -267,7 +267,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "Property",
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "Foo",
                 [XmlDataConstants.CASTREFERENCEASELEMENT] = "A.V",
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.InstanceReference)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.InstanceReference)!
             };
 
             //act
@@ -294,7 +294,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
                 [XmlDataConstants.REFERENCENAMEELEMENT] = referenceName,
                 [XmlDataConstants.TYPENAMEELEMENT] = typeName,
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)!
             };
 
             //act
@@ -321,7 +321,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
                 [XmlDataConstants.REFERENCENAMEELEMENT] = referenceName,
                 [XmlDataConstants.TYPENAMEELEMENT] = typeName,
-                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)
+                [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), referenceCategory)!
             };
 
             //act
@@ -355,12 +355,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             Assert.False(result.Success);
         }
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
-        private static string GetXmlString(IDictionary<string, string> valuesToSet = null)
+        private static string GetXmlString(IDictionary<string, string>? valuesToSet = null)
         {
             string xmlString = $@"<folder name=""variables"">
                                     <objectVariable name=""{VARIABLENAME}"">
@@ -387,11 +382,11 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
 
             foreach (KeyValuePair<string, string> kvp in valuesToSet)
             {
-                XmlNode xmlNode = xmlDocument.SelectSingleNode($"//{kvp.Key}"); 
+                XmlNode xmlNode = xmlDocument.SelectSingleNode($"//{kvp.Key}")!; 
                 xmlNode.InnerText = kvp.Value;
             };
 
-            return xmlDocument.DocumentElement.OuterXml;
+            return xmlDocument.DocumentElement!.OuterXml;
         }
     }
 }

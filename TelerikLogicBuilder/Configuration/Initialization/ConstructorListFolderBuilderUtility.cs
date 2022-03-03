@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             if (xmlDocument == null)
                 throw _exceptionHelpers.CriticalException("{F6EA4AD2-DE48-4698-8689-193D1CD472A2}");
 
-            XmlNode xnodRoot = xmlDocument.SelectSingleNode($"/{XmlDataConstants.FORMELEMENT}");
+            XmlNode? xnodRoot = xmlDocument.SelectSingleNode($"/{XmlDataConstants.FORMELEMENT}");
 
             if (xnodRoot != null)
             {
@@ -43,24 +43,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             (
                 xmlNode,
                 e => e.Name == XmlDataConstants.CONSTRUCTORELEMENT,
-                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             )
             .ForEach
             (
-                fileNode => treeFolder.FileNames.Add(fileNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                fileNode => treeFolder.FileNames.Add(fileNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             );
 
             _xmlDocumentHelpers.GetChildElements
             (
                 xmlNode,
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             )
             .ForEach
             (
                 folderNode =>
                 {
-                    TreeFolder childFolder = new(folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, new List<string>(), new List<TreeFolder>());
+                    TreeFolder childFolder = new
+                    (
+                        folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
+                        new List<string>(), 
+                        new List<TreeFolder>()
+                    );
                     treeFolder.FolderNames.Add(childFolder);
                     GetFolderChildren(folderNode, childFolder);
                 }

@@ -13,11 +13,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
     {
         public MultipleChoiceParameterValidatorTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -29,18 +29,13 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         {
             //arrange
             IMultipleChoiceParameterValidator validator = serviceProvider.GetRequiredService<IMultipleChoiceParameterValidator>();
-            MethodInfo methodInfo = typeof(TestParameterClass).GetMethod(methodName);
+            MethodInfo methodInfo = typeof(TestParameterClass).GetMethod(methodName)!;
 
             //act
             var result = validator.ValidateMultipleChoiceParameter(methodInfo);
 
             //assert
             Assert.Equal(expectedResult, result);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         class TestParameterClass

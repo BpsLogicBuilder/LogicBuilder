@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public bool CanBeInteger(LiteralVariableType variableType)
             => _typeHelper.AssignableFrom(typeof(int), GetSystemType(variableType));
 
-        public IList<string> ConvertEnumListToStringList<T>(IList<T> excludedItems = null)
+        public IList<string> ConvertEnumListToStringList<T>(IList<T>? excludedItems = null)
         {
             if (!typeof(Enum).IsAssignableFrom(typeof(T)))
                 throw _exceptionHelper.CriticalException("{4445DF20-47AB-434F-B43A-51D9BCC5FC1A}");
@@ -168,7 +168,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             if (!typeof(Enum).IsAssignableFrom(typeof(T)))
                 throw _exceptionHelper.CriticalException("{6BE2E8CC-C074-42AF-87C4-26AD076A8805}");
 
-            return Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, Enum.GetName(typeof(T), enumType)));
+            if (enumType == null)
+                throw _exceptionHelper.CriticalException("{D0C2AAEC-7605-427B-8EFD-EC717C551A09}");
+
+            return GetEnumResourceString(Enum.GetName(typeof(T), enumType));
         }
 
         public bool IsValidCodeBinaryOperator(string item)
@@ -189,8 +192,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         private Type GetSystemTypeFromEnum<T>(T enumType)
         {
-            if (!typeof(System.Enum).IsAssignableFrom(typeof(T)))
+            if (!typeof(Enum).IsAssignableFrom(typeof(T)))
                 throw _exceptionHelper.CriticalException("{F7FA803F-43AD-429F-8C9C-50E92A38274F}");
+
+            if (enumType == null)
+                throw _exceptionHelper.CriticalException("{14B192D2-7E33-4E2F-A0DA-617CFB667797}");
+
+            if (!Enum.IsDefined(typeof(T), enumType))
+                throw _exceptionHelper.CriticalException("{6A3959B6-7D6F-44A7-AD46-FE18A8F470B5}");
 
             return GetSystemType
             (
@@ -198,7 +207,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 (
                     typeof(T),
                     enumType
-                )
+                )!/*Not null if Enum.IsDefined().*/
             );
 
             Type GetSystemType(string literalTypeString)
@@ -221,7 +230,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 (
                     typeof(LiteralType),
                     LookupLiteralType(enumType)
-                )
+                )!/*LookupLiteralType() throws for an invalid enumType.*/
             );
 
             T GetLiteralTypeEnum(string literalTypeString)
@@ -341,7 +350,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             => Enum.GetNames(typeof(ValidIndirectReference))
                 .ToDictionary
                 (
-                    name => Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, name)).ToLowerInvariant(),
+                    name => GetEnumResourceString(name).ToLowerInvariant(),
                     name => (ValidIndirectReference)Enum.Parse(typeof(ValidIndirectReference), name)
                 );
 
@@ -368,5 +377,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         e => GetVisibleEnumText(e)
                     )
             );
+
+        private string GetEnumResourceString(string? enumName)
+        {
+            if (string.IsNullOrEmpty(enumName))
+                throw _exceptionHelper.CriticalException("{87C725C2-BEB3-4BDC-AFDD-E750642957D9}");
+
+            string? resourceValue = Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, enumName));
+
+            if (resourceValue == null)
+                throw _exceptionHelper.CriticalException("{5E5F427C-CA44-4D7F-99F1-18DE4680D629}");
+
+            return resourceValue;
+        }
     }
 }

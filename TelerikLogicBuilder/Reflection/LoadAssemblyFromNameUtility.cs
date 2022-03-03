@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
         private const string DOTDLL = ".DLL";
         private const string COMMA = ",";
 
-        public LoadAssemblyFromNameUtility(LogicBuilderAssemblyLoadContext assemblyLoadContext, IPathHelper pathHelper, string activityAssemblyFullName = null, string[] paths = null)
+        public LoadAssemblyFromNameUtility(LogicBuilderAssemblyLoadContext assemblyLoadContext, IPathHelper pathHelper, string activityAssemblyFullName, string[] paths)
         {
             this.activityAssemblyFullName = activityAssemblyFullName;
             this.paths = paths;
@@ -27,18 +27,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
             _pathHelper = pathHelper;
         }
 
-        internal Assembly LoadAssembly(AssemblyName assemblyName)
+        internal Assembly? LoadAssembly(AssemblyName assemblyName)
         {
             if (assemblyName == null)
                 return null;
-
 
             Assembly assembly;
             LinkedList<string> path = new(this.GetPaths());
             try
             {
                 string name = assemblyName.FullName.Contains(COMMA) ? assemblyName.FullName[..assemblyName.FullName.IndexOf(COMMA, StringComparison.Ordinal)] : assemblyName.FullName;
-                assembly = LoadAssembly(path.First, string.Concat(name, DOTDLL)) ?? this.assemblyLoadContext.LoadFromAssemblyName(assemblyName);
+                assembly = LoadAssembly
+                (
+                    path.First!,/*path.First is never null.  GetPaths() adds this.activityAssemblyFullName if the path arrays is empty.*/
+                    string.Concat(name, DOTDLL)
+                ) ?? this.assemblyLoadContext.LoadFromAssemblyName(assemblyName);
             }
             catch (IOException ex)
             {
@@ -83,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
             return pathsDictionary.Values.ToList();
         }
 
-        private Assembly LoadAssembly(LinkedListNode<string> path, string file)
+        private Assembly? LoadAssembly(LinkedListNode<string> path, string file)
         {
             string fullName = Path.Combine(path.Value, file);
             if (File.Exists(fullName))

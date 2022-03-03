@@ -4,7 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
 {
     internal class TreeFolder
     {
-        internal TreeFolder(string name, List<string> fileNames = null, List<TreeFolder> folderNames = null)
+        internal TreeFolder(string name, List<string> fileNames, List<TreeFolder> folderNames)
         {
             this.Name = name;
             this.FileNames = fileNames;

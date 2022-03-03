@@ -32,8 +32,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         #endregion Properties
 
         #region Methods
-        internal Function GetFunction(string name, string memberName, FunctionCategories functionCategory, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout) 
-            => new            
+        internal Function? GetFunction(string name, string memberName, FunctionCategories functionCategory, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout)
+        {
+            if (MInfo.DeclaringType == null)
+                return null;
+
+            return new
             (
                 name,
                 memberName,
@@ -58,6 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
                 this.Sumnmary,
                 _contextProvider
             );
+        }
         #endregion Methods
     }
 }

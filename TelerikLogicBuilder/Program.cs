@@ -28,6 +28,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal static class Program
     {
+        static Program()
+        {
+            ServiceProvider = ServiceCollection
+                .BuildServiceProvider();
+        }
+
         public static IServiceProvider ServiceProvider { get; set; }
         public static IServiceCollection ServiceCollection => new ServiceCollection()
             .AddTransient<MDIParent, MDIParent>()
@@ -139,19 +145,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             //Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.ThemeName;
 
-            BuildServices();
-
             var form = ServiceProvider.GetRequiredService<MDIParent>();
 
             ServiceProvider.GetRequiredService<IFormInitializer>().SetCenterScreen(form);
 
             Application.Run(form);
-        }
-
-        internal static void BuildServices()
-        {
-            ServiceProvider = ServiceCollection
-                .BuildServiceProvider();  
         }
     }
 }

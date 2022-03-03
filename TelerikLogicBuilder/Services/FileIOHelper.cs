@@ -117,7 +117,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             try
             {
                 FileInfo fileInfo = new(fullName);
-                byte[] byteArray = null;
+                byte[] byteArray;
                 using (FileStream fileStream = new(fileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     byteArray = new byte[fileInfo.Length];

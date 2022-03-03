@@ -19,11 +19,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
 
         public IDictionary<string, Function> GetDictionary(XmlDocument xmlDocument)
             => xmlDocument
-                .SelectNodes($"//{XmlDataConstants.FUNCTIONELEMENT}")
+                .SelectNodes($"//{XmlDataConstants.FUNCTIONELEMENT}")!/*Never null when SelectNodes is called on an XmlDocument*/
                 .OfType<XmlElement>()
                 .ToDictionary
                 (
-                    e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
+                    e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
                     e => _functionXmlParser.Parse(e)
                 );
     }

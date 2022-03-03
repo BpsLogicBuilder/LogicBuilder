@@ -5,7 +5,16 @@ namespace TelerikLogicBuilder.Tests.AttributeSamples
 {
     public class CourseAssignmentModel
     {
-		[VariableEditorControl(VariableControlType.SingleLineTextBox)]
+        public CourseAssignmentModel(int instructorID, int courseID, string courseTitle, string courseNumberAndTitle, string department)
+        {
+            InstructorID = instructorID;
+            CourseID = courseID;
+            CourseTitle = courseTitle;
+            CourseNumberAndTitle = courseNumberAndTitle;
+            Department = department;
+        }
+
+        [VariableEditorControl(VariableControlType.SingleLineTextBox)]
 		[AlsoKnownAs("CourseAssignment_InstructorID")]
 		public int InstructorID { get; set; }
 

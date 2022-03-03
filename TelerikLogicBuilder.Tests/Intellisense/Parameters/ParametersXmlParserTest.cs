@@ -13,11 +13,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
     {
         public ParametersXmlParserTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -176,16 +176,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
             Assert.Equal("A Comment", result.Comments);
         }
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
         private static XmlElement GetXmlElement(string xmlString)
         {
             XmlDocument xmlDocument = new();
             xmlDocument.LoadXml(xmlString);
-            return xmlDocument.DocumentElement;
+            return xmlDocument.DocumentElement!;
         }
     }
 }

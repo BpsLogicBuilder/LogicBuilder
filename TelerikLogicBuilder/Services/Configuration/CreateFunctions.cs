@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 string xmlString = CreateXml();
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlString);
                 AppendBuildtInFunctions(xmlDocument);
-                ValidateXml(xmlDocument.DocumentElement.OuterXml);
+                ValidateXml(xmlDocument.DocumentElement!.OuterXml);/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
 
                 SaveXml(xmlDocument);
 
@@ -65,12 +65,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 }
 
                 void AppendBuildtInFunctions(XmlDocument xmlDocument) 
-                    => xmlDocument.DocumentElement.AppendChild
+                    => xmlDocument.DocumentElement!.AppendChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
                     (
                         _xmlDocumentHelpers.MakeFragment
                         (
                             xmlDocument,
-                            _builtInFunctionsLoader.Load().DocumentElement.OuterXml
+                            _builtInFunctionsLoader.Load().DocumentElement!.OuterXml/*BuiltInFunctionsLoader.Load() is dynamically generated XML with a document element.*/
                         )
                     );
 
@@ -92,13 +92,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     if (!Directory.Exists(_pathHelper.GetFilePath(fullPath)))
                         _fileIOHelper.CreateDirectory(_pathHelper.GetFilePath(fullPath));
 
-                    XmlDocument saveDocument = _xmlDocumentHelpers.ToXmlDocument(xmlDocument.DocumentElement.OuterXml);
-                    saveDocument.DocumentElement.RemoveChild
+                    XmlDocument saveDocument = _xmlDocumentHelpers.ToXmlDocument(xmlDocument.DocumentElement!.OuterXml);
+                    saveDocument.DocumentElement!.RemoveChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
                     (
                         saveDocument.SelectSingleNode
                         (
                             $"/forms/form[@name='{XmlDataConstants.BUILTINFUNCTIONSFORMROOTNODENAME}']"
-                        )
+                        )!/*This node is always present in the created document.  See the caal to AppendBuildtInFunctions() above.*/
                     );
 
                     ValidateXml(saveDocument.DocumentElement.OuterXml);

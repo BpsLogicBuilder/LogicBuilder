@@ -17,12 +17,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
             this.assemblyLoadContext = assemblyLoadContext;
         }
 
-        internal Assembly LoadAssembly()
+        internal Assembly? LoadAssembly()
         {
             if (String.IsNullOrEmpty(this.activityAssemblyFullName))
                 return null;
 
-            Assembly assembly = null;
+            Assembly? assembly = null;
             try
             {
                 if (File.Exists(this.activityAssemblyFullName))

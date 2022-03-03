@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
@@ -16,11 +15,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
     {
         public ExistingConstructorFinderTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -31,12 +30,12 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             IExistingConstructorFinder existingConstructorFinder = serviceProvider.GetRequiredService<IExistingConstructorFinder>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
             ConstructorInfo constructorInfo = typeof(DataFormSettingsParameters).GetConstructors().First();
-            Constructor constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
+            Constructor? constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
             Dictionary<string, Constructor> existingConstructors = new()
             {
                 [constructorInfo.Name] = new Constructor
                 (
-                    constructor.Name,
+                    constructor!.Name,
                     constructor.TypeName,
                     constructor.Parameters,
                     constructor.GenericArguments,
@@ -46,7 +45,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             };
 
             //act
-            Constructor foundConstructor = existingConstructorFinder.FindExisting(constructorInfo, existingConstructors);
+            Constructor? foundConstructor = existingConstructorFinder.FindExisting(constructorInfo, existingConstructors);
 
             //assert
             Assert.NotNull(foundConstructor);
@@ -60,12 +59,12 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             IExistingConstructorFinder existingConstructorFinder = serviceProvider.GetRequiredService<IExistingConstructorFinder>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
             ConstructorInfo constructorInfo = typeof(DataFormSettingsParameters).GetConstructors().First();
-            Constructor constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
+            Constructor? constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
             Dictionary<string, Constructor> existingConstructors = new()
             {
                 [constructorInfo.Name] = new Constructor
                 (
-                    constructor.Name,
+                    constructor!.Name,
                     constructor.TypeName,
                     constructor.Parameters,
                     constructor.GenericArguments,
@@ -75,15 +74,10 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             };
 
             //act
-            Constructor foundConstructor = existingConstructorFinder.FindExisting(constructorInfo, existingConstructors);
+            Constructor? foundConstructor = existingConstructorFinder.FindExisting(constructorInfo, existingConstructors);
 
             //assert
             Assert.NotNull(foundConstructor);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

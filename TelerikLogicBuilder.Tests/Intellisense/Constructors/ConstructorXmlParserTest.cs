@@ -13,11 +13,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
     {
         public ConstructorXmlParserTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -66,16 +66,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             Assert.True(result.Parameters[1] is ListOfObjectsParameter);
         }
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
         private static XmlElement GetXmlElement(string xmlString)
         {
             XmlDocument xmlDocument = new();
             xmlDocument.LoadXml(xmlString);
-            return xmlDocument.DocumentElement;
+            return xmlDocument.DocumentElement!;
         }
     }
 }

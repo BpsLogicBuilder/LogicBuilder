@@ -10,6 +10,8 @@
 	<ApplicationIcon>Simple.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
 	<CustomResourceTypesSupport>true</CustomResourceTypesSupport>
+	<Nullable>enable</Nullable>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>

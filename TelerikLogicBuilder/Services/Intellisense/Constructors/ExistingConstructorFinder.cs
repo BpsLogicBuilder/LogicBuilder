@@ -21,18 +21,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
             _typeHelper = typeHelper;
         }
 
-        public Constructor FindExisting(ConstructorInfo cInfo, IDictionary<string, Constructor> existingConstructors) 
-            => existingConstructors
-                .Where(e => e.Value.TypeName == _typeHelper.ToId(cInfo.DeclaringType))
-                .ToDictionary(e => e.Key, e => e.Value)
-                .Values
-                .FirstOrDefault
-                (
-                    constructor => _parametersMatcher.MatchParameters
+        public Constructor? FindExisting(ConstructorInfo cInfo, IDictionary<string, Constructor> existingConstructors)
+        {
+            if (cInfo.DeclaringType == null)
+                return null;
+
+            return existingConstructors
+                    .Where(e => e.Value.TypeName == _typeHelper.ToId(cInfo.DeclaringType))
+                    .ToDictionary(e => e.Key, e => e.Value)
+                    .Values
+                    .FirstOrDefault
                     (
-                        this._parametersManager.GetParameterNodeInfos(cInfo.GetParameters()).ToList(),
-                        constructor.Parameters
-                    )
-                );
+                        constructor => _parametersMatcher.MatchParameters
+                        (
+                            this._parametersManager.GetParameterNodeInfos(cInfo.GetParameters()).ToList(),
+                            constructor.Parameters
+                        )
+                    );
+        }
     }
 }

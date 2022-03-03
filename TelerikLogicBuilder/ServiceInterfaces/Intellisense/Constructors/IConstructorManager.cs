@@ -5,6 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Construct
 {
     internal interface IConstructorManager
     {
-        Constructor CreateConstructor(string name, ConstructorInfo cInfo);
+        Constructor? CreateConstructor(string name, ConstructorInfo cInfo);
     }
 }

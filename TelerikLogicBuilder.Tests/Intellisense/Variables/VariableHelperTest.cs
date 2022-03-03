@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Reflection;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Variables
@@ -12,11 +11,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
     {
         public VariableHelperTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -30,7 +29,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             //arrange
             IVariableHelper helper = serviceProvider.GetRequiredService<IVariableHelper>();
             IVariablesManager variablesManager = serviceProvider.GetRequiredService<IVariablesManager>();
-            PropertyInfo propertyInfo = typeof(TestVariableClass).GetProperty(memberName);
+            PropertyInfo propertyInfo = typeof(TestVariableClass).GetProperty(memberName)!;
 
             //act
             var variable = variablesManager.GetVariable
@@ -53,13 +52,13 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             Assert.Equal(expectedResult, result);
         }
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
         class TestVariableClass
         {
+            public TestVariableClass(string name)
+            {
+                Name = name;
+            }
+
             public string Name { get; set; }
             public int MyInt { get; set; }
             public int? MyNullableInt { get; set; }

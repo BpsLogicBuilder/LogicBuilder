@@ -12,11 +12,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
     {
         public FunctionNodeInfoManagerTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -30,18 +30,13 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         {
             //arrange
             IFunctionNodeInfoManager functionManager = serviceProvider.GetRequiredService<IFunctionNodeInfoManager>();
-            MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName);
+            MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName)!;
 
             //act
             var result = functionManager.GetFunctionNodeInfo(methodInfo);
 
             //assert
             Assert.NotNull(result);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         class TestParameterClass<T>

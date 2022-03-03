@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -18,11 +17,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public EnumHelperTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -970,11 +969,6 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal("Field.Property.IntegerKeyIndexer", result);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

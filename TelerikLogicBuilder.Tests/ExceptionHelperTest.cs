@@ -11,7 +11,7 @@ namespace TelerikLogicBuilder.Tests
     {
         public ExceptionHelperTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         [Fact]
@@ -25,12 +25,8 @@ namespace TelerikLogicBuilder.Tests
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
     }
 }

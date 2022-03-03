@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 [SchemaName.FragmentsSchema] = Schemas.FragmentsSchema
             };
 
-            if (!schemas.TryGetValue(xmlSchema, out XmlSchema schema))
+            if (!schemas.TryGetValue(xmlSchema, out XmlSchema? schema))
                 throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{1B68AB17-53C8-4B5B-9D9D-99482235437D}"));
 
             return new XmlValidatorUtility(schema, xmlString);
@@ -100,7 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         #endregion Methods
 
         #region EventHandlers
-        private void ValidateXmlDocumentEventHandler(object sender, ValidationEventArgs e)
+        private void ValidateXmlDocumentEventHandler(object? sender, ValidationEventArgs e)
         {
             if (e.Severity == XmlSeverityType.Error)
             {

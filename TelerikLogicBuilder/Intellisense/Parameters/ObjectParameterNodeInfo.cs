@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFOREQUALITY, out string value))
+                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFOREQUALITY, out string? value))
                     return true;
 
                 return !bool.TryParse(value, out bool boolVal) || boolVal;
@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORHASHCODE, out string value))
+                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORHASHCODE, out string? value))
                     return false;
 
                 return bool.TryParse(value, out bool boolVal) && boolVal;
@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORTOSTRING, out string value))
+                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORTOSTRING, out string? value))
                     return true;
 
                 return !bool.TryParse(value, out bool boolVal) || boolVal;

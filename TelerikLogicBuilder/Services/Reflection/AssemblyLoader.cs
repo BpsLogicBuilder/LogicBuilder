@@ -16,14 +16,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
             _pathHelper = pathHelper;
         }
 
-        public Assembly LoadAssembly(string activityAssemblyFullName) 
+        public Assembly? LoadAssembly(string activityAssemblyFullName) 
             => new LoadAssemblyFromPathUtility
             (
                 activityAssemblyFullName,
                 _assemblyLoadContextService.GetAssemblyLoadContext()
             ).LoadAssembly();
 
-        public Assembly LoadAssembly(AssemblyName assemblyName, string activityAssemblyFullName, string[] paths)
+        public Assembly? LoadAssembly(AssemblyName assemblyName, string activityAssemblyFullName, string[] paths)
         {
             return new LoadAssemblyFromNameUtility
             (

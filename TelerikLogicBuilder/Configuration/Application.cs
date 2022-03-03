@@ -117,21 +117,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
         #endregion Properties
 
         #region IEquatable<Application> Members
-        public bool Equals(Application other)
+        public bool Equals(Application? other)
         {
-            return Name.Equals(other.Name);
+            return Name.Equals(other?.Name);
         }
         #endregion
 
         #region IComparable<Application> Members
-        public int CompareTo(Application other)
+        public int CompareTo(Application? other)
         {
-            return Name.CompareTo(other.Name);
+            return Name.CompareTo(other?.Name);
         }
         #endregion
 
         #region Methods
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null)
                 return false;

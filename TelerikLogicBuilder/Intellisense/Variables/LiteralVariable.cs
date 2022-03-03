@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
 
         internal override VariableTypeCategory VariableTypeCategory => VariableTypeCategory.Literal;
         internal override string ToXml => this.BuildXml();
-        internal override string ObjectTypeString => Enum.GetName(typeof(LiteralVariableType), this.LiteralType);
+        internal override string ObjectTypeString => Enum.GetName(typeof(LiteralVariableType), this.LiteralType)!;/*Can't be null if this.LiteralType is defined*/
         #endregion Properties
 
         #region Methods

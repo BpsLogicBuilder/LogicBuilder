@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Reflection;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
@@ -14,11 +13,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
     {
         public ConstructorManagerTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -29,16 +28,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             ConstructorInfo constructorInfo = typeof(DataFormSettingsParameters).GetConstructors().First();
 
             //act
-            Constructor result = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
+            Constructor? result = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(10, result.Parameters.Count);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            Assert.Equal(10, result!.Parameters.Count);
         }
     }
 }

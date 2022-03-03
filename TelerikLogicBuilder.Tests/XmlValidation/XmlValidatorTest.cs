@@ -10,11 +10,11 @@ namespace TelerikLogicBuilder.Tests.XmlValidation
     {
         public XmlValidatorTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -25,11 +25,6 @@ namespace TelerikLogicBuilder.Tests.XmlValidation
 
             //assert
             Assert.NotNull(xmlValidator);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

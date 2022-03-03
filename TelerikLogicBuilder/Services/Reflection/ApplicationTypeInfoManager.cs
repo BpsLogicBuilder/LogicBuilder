@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         private readonly IAssemblyHelper _assemblyHelper;
         private readonly ITypeHelper _typeHelper;
 
-        private IDictionary<string, ApplicationTypeInfo> _applicationInfos = new Dictionary<string, ApplicationTypeInfo>();
+        private IDictionary<string, ApplicationTypeInfo>? _applicationInfos = new Dictionary<string, ApplicationTypeInfo>();
 
         public ApplicationTypeInfoManager(IConfigurationService configurationService, IPathHelper pathHelper, IAssemblyLoader assemblyLoader, IAssemblyHelper assemblyHelper, ITypeHelper typeHelper)
         {
@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
             if (_applicationInfos == null)
                 _applicationInfos = new Dictionary<string, ApplicationTypeInfo>();
 
-            if (_applicationInfos.TryGetValue(applicationName, out ApplicationTypeInfo applicationTypeInfo))
+            if (_applicationInfos.TryGetValue(applicationName, out ApplicationTypeInfo? applicationTypeInfo))
             {
                 if (applicationTypeInfo.AssemblyAvailable)
                     return applicationTypeInfo;

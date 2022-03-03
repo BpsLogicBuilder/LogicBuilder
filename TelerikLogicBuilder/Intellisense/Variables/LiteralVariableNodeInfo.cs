@@ -41,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         {
             get
             {
-                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string fromAttribute);
+                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string? fromAttribute);
                 return fromAttribute ?? string.Empty;
             }
         }
@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         {
             get
             {
-                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string fromAttribute);
+                _memberAttributeReader.GetNameValueTable(MInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string? fromAttribute);
                 return fromAttribute ?? string.Empty;
             }
         }

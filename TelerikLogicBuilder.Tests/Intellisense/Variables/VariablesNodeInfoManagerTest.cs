@@ -13,11 +13,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
     {
         public VariablesNodeInfoManagerTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -29,18 +29,13 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         {
             //arrange
             IVariablesNodeInfoManager variablesManager = serviceProvider.GetRequiredService<IVariablesNodeInfoManager>();
-            PropertyInfo propertyInfo = typeof(SelectExpandItemParameters).GetProperty(memberName);
+            PropertyInfo propertyInfo = typeof(SelectExpandItemParameters).GetProperty(memberName)!;
 
             //act
             var result = variablesManager.GetVariableNodeInfo(propertyInfo, propertyInfo.PropertyType);
 
             //assert
             Assert.Equal(nodeInfoType, result.GetType());
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

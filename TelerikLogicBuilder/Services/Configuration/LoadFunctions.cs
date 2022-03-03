@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -45,19 +46,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             try
             {
+                if (!File.Exists(fullPath))
+                    return _createFunctions.Create();
+
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
                 AppendBuildtInFunctions(xmlDocument);
-                ValidateXml(xmlDocument.DocumentElement.OuterXml);
+                ValidateXml(xmlDocument.DocumentElement!.OuterXml);/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
 
                 return xmlDocument;
 
                 void AppendBuildtInFunctions(XmlDocument xmlDocument)
-                    => xmlDocument.DocumentElement.AppendChild
+                    => xmlDocument.DocumentElement!.AppendChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
                     (
                         _xmlDocumentHelpers.MakeFragment
                         (
                             xmlDocument,
-                            _builtInFunctionsLoader.Load().DocumentElement.OuterXml
+                            _builtInFunctionsLoader.Load().DocumentElement!.OuterXml/*Not null dynamically geneerated XML.*/
                         )
                     );
 

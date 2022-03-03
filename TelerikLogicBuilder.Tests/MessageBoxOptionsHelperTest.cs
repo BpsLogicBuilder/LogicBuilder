@@ -12,11 +12,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public MessageBoxOptionsHelperTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -30,11 +30,6 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(helper.MessageBoxOptions, MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

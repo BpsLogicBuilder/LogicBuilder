@@ -55,12 +55,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         internal string DefaultValue { get; private set; }
         internal List<string> Domain { get; private set; }
 
-        internal object GetDefaultValue()
+        internal object? GetDefaultValue()
         {
             return GetDefault(_enumHelper.GetSystemType(this.LiteralType));
-            object GetDefault(Type type)
+            object? GetDefault(Type type)
             {
-                if (!string.IsNullOrEmpty(this.DefaultValue) && this._typeHelper.TryParse(this.DefaultValue, type, out object result))
+                if (!string.IsNullOrEmpty(this.DefaultValue) && this._typeHelper.TryParse(this.DefaultValue, type, out object? result))
                     return result;
 
                 return type == typeof(string) || this._typeHelper.IsNullable(type)
@@ -80,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                 if (type == typeof(bool))
                     return false.ToString(CultureInfo.CurrentUICulture).ToLowerInvariant();
 
-                return Activator.CreateInstance(type).ToString();
+                return Activator.CreateInstance(type)!.ToString()!;//Limited to LiteralParameterType
             }
         }
 

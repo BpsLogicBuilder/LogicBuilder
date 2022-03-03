@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters
             if (parameters.Length == 0)
                 return true;
 
-            ParameterInfo multipleChoiceParam = parameters.FirstOrDefault(p => _typeHelper.IsValidConnectorList(p.ParameterType));
+            ParameterInfo? multipleChoiceParam = parameters.FirstOrDefault(p => _typeHelper.IsValidConnectorList(p.ParameterType));
 
             return multipleChoiceParam == null || object.ReferenceEquals(multipleChoiceParam, parameters[^1]);
             //return !(multipleChoiceParam != null && !multipleChoiceParam.Equals(parameters[^1]));

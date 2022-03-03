@@ -13,11 +13,11 @@ namespace TelerikLogicBuilder.Tests.Configuration.Initialization
     {
         public ConstructorListInitializerTest()
 		{
-			Initialize();
+			serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
 		}
 
 		#region Fields
-		private IServiceProvider serviceProvider;
+		private readonly IServiceProvider serviceProvider;
 		#endregion Fields
 
 		[Fact]
@@ -148,11 +148,6 @@ namespace TelerikLogicBuilder.Tests.Configuration.Initialization
 
 				return xmlDocument;
 			}
-		}
-
-		private void Initialize()
-		{
-			serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
 		}
 	}
 }

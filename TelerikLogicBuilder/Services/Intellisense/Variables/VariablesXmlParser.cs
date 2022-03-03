@@ -30,11 +30,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                     XmlDataConstants.LITERALLISTVARIABLEELEMENT, 
                     XmlDataConstants.OBJECTLISTVARIABLEELEMENT
                 )
-            )
+            )!/*Never null when SelectNodes is called on an XmlDocument*/
             .OfType<XmlElement>()
             .ToDictionary
             (
-                e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
+                e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
                 e => Parse(e)
             );
 

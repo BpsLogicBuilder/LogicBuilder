@@ -14,11 +14,11 @@ namespace TelerikLogicBuilder.Tests.Configuration
     {
         public UpdateFunctionsTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -41,8 +41,8 @@ namespace TelerikLogicBuilder.Tests.Configuration
             var result = loadFunctions.Load();
 
             //assert
-            Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement.Name);
-            Assert.Equal(2, result.SelectNodes($"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']/function").OfType<XmlElement>().Count());
+            Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement!.Name);
+            Assert.Equal(2, result.SelectNodes($"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']/function")!.OfType<XmlElement>().Count());
 
             static XmlDocument GetDocumentToSave()
             {
@@ -137,11 +137,6 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
                 return xmlDocument;
             }
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

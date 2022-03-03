@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Configuration
@@ -10,11 +9,11 @@ namespace TelerikLogicBuilder.Tests.Configuration
     {
         public WebApiDeploymentXmlParserTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -25,11 +24,6 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.NotNull(webApiDeploymentXmlParser);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

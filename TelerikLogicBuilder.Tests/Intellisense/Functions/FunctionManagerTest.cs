@@ -14,11 +14,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
     {
         public FunctionManagerTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -32,19 +32,14 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         {
             //arrange
             IFunctionManager functionManager = serviceProvider.GetRequiredService<IFunctionManager>();
-            MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName);
+            MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName)!;
 
             //act
-            Function result = functionManager.GetFunction(methodInfo.Name, methodInfo.Name, FunctionCategories.Standard, string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
+            Function? result = functionManager.GetFunction(methodInfo.Name, methodInfo.Name, FunctionCategories.Standard, string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
 
             //assert
-            Assert.Equal(expectedParameterCount, result.Parameters.Count);
+            Assert.Equal(expectedParameterCount, result!.Parameters.Count);
             Assert.Equal(expectedReturnTypeCategory, result.ReturnType.ReturnTypeCategory);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         class TestParameterClass<T>

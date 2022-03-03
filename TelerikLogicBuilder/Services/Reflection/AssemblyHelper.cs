@@ -18,16 +18,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         private readonly IAssemblyLoader _assemblyLoader;
         private readonly IConfigurationService _configurationService;
         private readonly IPathHelper _pathHelper;
+        private readonly IExceptionHelper _exceptionHelper;
 
-        public AssemblyHelper(IAssemblyLoader assemblyLoader, IConfigurationService configurationService, IPathHelper pathHelper)
+        public AssemblyHelper(IAssemblyLoader assemblyLoader, IConfigurationService configurationService, IPathHelper pathHelper, IExceptionHelper exceptionHelper)
         {
             _assemblyLoader = assemblyLoader;
             _configurationService = configurationService;
             _pathHelper = pathHelper;
+            _exceptionHelper = exceptionHelper;
         }
 
         public List<Assembly> GetReferencedAssembliesRecursively(Assembly assembly)
         {
+            if (assembly.FullName == null)
+                throw _exceptionHelper.CriticalException("{4E3CC43C-3B6F-4177-9D2A-1E6118D891F7}");
+
             Dictionary<string, Assembly> assemblies = new()
             {
                 { assembly.FullName, assembly }
@@ -45,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
                 (
                     assemblyName =>
                     {
-                        Assembly referencedAssembly = null;
+                        Assembly? referencedAssembly = null;
                         try
                         {
                             referencedAssembly = _assemblyLoader.LoadAssembly
@@ -68,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
                         {
                         }
 
-                        if (referencedAssembly == null)
+                        if (referencedAssembly == null || referencedAssembly.FullName == null)
                             return;
 
                         if (!assemblies.ContainsKey(referencedAssembly.FullName))
@@ -79,7 +84,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
                     }
                 );
 
-        public Type GetType(Assembly assembly, string className, bool throwOnError)
+        public Type? GetType(Assembly assembly, string className, bool throwOnError)
         {
             try
             {
@@ -113,7 +118,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
         public Type[] GetTypes(Assembly assembly, Dictionary<string, Exception> failedTypes)
         {
-            List<Type> types = new();
+            List<Type?> types = new();
             try
             {
                 types.AddRange(typeof(string).Assembly.GetTypes());
@@ -123,7 +128,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
             {
                 failedTypes = e.LoaderExceptions.Aggregate(failedTypes, (dictionary, next) =>
                 {
-                    if (!dictionary.ContainsKey(next.Message))
+                    if (next != null && !dictionary.ContainsKey(next.Message))
                         dictionary.Add(next.Message, next);
                     return dictionary;
                 });
@@ -151,7 +156,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
                 throw new LogicBuilderException(ex.Message, ex);
             }
 
-            return types.ToArray();
+            return types
+                .Where(t => t != null)
+                .Cast<Type>()
+                .ToArray();
         }
     }
 }

@@ -147,11 +147,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public bool IsFunctionConfigurableFromClassHelper(MemberInfo member)
             => member.GetCustomAttributes(true)
                     .Select(attr => attr.GetType().FullName)
-                    .Any(fullName => fullName.StartsWith(AttributeConstants.LOGICBUILDERATTRPREFIX));
+                    .Any(fullName => fullName != null && fullName.StartsWith(AttributeConstants.LOGICBUILDERATTRPREFIX));
 
         public bool IsVariableConfigurableFromClassHelper(MemberInfo member)
             => member.GetCustomAttributes(true)
                     .Select(attr => attr.GetType().FullName)
-                    .Any(fullName => fullName.StartsWith(AttributeConstants.LOGICBUILDERATTRPREFIX));
+                    .Any(fullName => fullName != null && fullName.StartsWith(AttributeConstants.LOGICBUILDERATTRPREFIX));
     }
 }

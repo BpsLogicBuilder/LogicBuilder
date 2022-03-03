@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Functions
@@ -13,11 +12,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
     {
         public ReturnTypeManagerTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider(); ;
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -31,18 +30,13 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         {
             //arrange
             IReturnTypeManager returnTypeManager = serviceProvider.GetRequiredService<IReturnTypeManager>();
-            MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName);
+            MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName)!;
 
             //act
             var result = returnTypeManager.GetReturnTypeInfo(methodInfo).GetReturnType();
 
             //assert
             Assert.Equal(expectedResult, result.ReturnTypeCategory);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         class TestParameterClass<T>

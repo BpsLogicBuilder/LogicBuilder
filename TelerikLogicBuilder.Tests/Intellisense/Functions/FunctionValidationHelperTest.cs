@@ -18,11 +18,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
     {
         public FunctionValidationHelperTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -448,11 +448,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
 
                 return xmlDocument;
             }
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

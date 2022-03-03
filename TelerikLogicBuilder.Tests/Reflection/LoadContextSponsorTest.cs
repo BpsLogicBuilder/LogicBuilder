@@ -17,11 +17,11 @@ namespace TelerikLogicBuilder.Tests.Reflection
     {
         public LoadContextSponsorTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -75,12 +75,6 @@ namespace TelerikLogicBuilder.Tests.Reflection
             loadContextSponsor.UnloadAssembliesOnCloseProject();
             //assert
             Assert.Empty(assemblyLoadContextService.GetAssemblyLoadContext().Assemblies);
-        }
-
-
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

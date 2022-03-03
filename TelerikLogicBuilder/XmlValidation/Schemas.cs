@@ -1,9 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using Microsoft.Extensions.DependencyInjection;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -11,154 +11,51 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
 {
     internal static class Schemas
     {
+        static Schemas()
+        {
+            shapeDataSchema = CreateShapeDataSchema();
+            connectorDataSchema = CreateConnectorDataSchema();
+            variablesSchema = CreateVariablesSchema();
+            decisionsDataSchema = CreateDecisionsDataSchema();
+            conditionsDataSchema = CreateConditionsDataSchema();
+            functionsSchema = CreateFunctionsSchema();
+            functionsDataSchema = CreateFunctionsDataSchema();
+            projectPropertiesSchema = CreateProjectPropertiesSchema();
+            tableSchema = CreateTableSchema();
+            constructorSchema = CreateConstructorSchema();
+            parametersDataSchema = CreateParametersDataSchema();
+            fragmentsSchema = CreateFragmentsSchema();
+        }
+
         #region Variables
-        private static XmlSchema shapeDataSchema;
-        private static XmlSchema connectorDataSchema;
-        private static XmlSchema variablesSchema;
-        private static XmlSchema decisionsDataSchema;
-        private static XmlSchema conditionsDataSchema;
-        private static XmlSchema functionsSchema;
-        private static XmlSchema functionsDataSchema;
-        private static XmlSchema projectPropertiesSchema;
-        private static XmlSchema tableSchema;
-        private static XmlSchema constructorSchema;
-        private static XmlSchema parametersDataSchema;
-        private static XmlSchema fragmentsSchema;
+        private static readonly XmlSchema shapeDataSchema;
+        private static readonly XmlSchema connectorDataSchema;
+        private static readonly XmlSchema variablesSchema;
+        private static readonly XmlSchema decisionsDataSchema;
+        private static readonly XmlSchema conditionsDataSchema;
+        private static readonly XmlSchema functionsSchema;
+        private static readonly XmlSchema functionsDataSchema;
+        private static readonly XmlSchema projectPropertiesSchema;
+        private static readonly XmlSchema tableSchema;
+        private static readonly XmlSchema constructorSchema;
+        private static readonly XmlSchema parametersDataSchema;
+        private static readonly XmlSchema fragmentsSchema;
         private static readonly List<string> xmlSchemaErrors = new();
         #endregion Variables
 
         #region Properties
-        internal static XmlSchema ShapeDataSchema
-        {
-            get
-            {
-                if (shapeDataSchema == null)
-                    CreateShapeDataSchema();
-
-                return shapeDataSchema;
-            }
-        }
-
-        internal static XmlSchema ConnectorDataSchema
-        {
-            get
-            {
-                if (connectorDataSchema == null)
-                    CreateConnectorDataSchema();
-
-                return connectorDataSchema;
-            }
-        }
-
-        internal static XmlSchema VariablesSchema
-        {
-            get
-            {
-                if (variablesSchema == null)
-                    CreateVariablesSchema();
-
-                return variablesSchema;
-            }
-        }
-
-        internal static XmlSchema DecisionsDataSchema
-        {
-            get
-            {
-                if (decisionsDataSchema == null)
-                    CreateDecisionsDataSchema();
-
-                return decisionsDataSchema;
-            }
-        }
-
-        internal static XmlSchema ConditionsDataSchema
-        {
-            get
-            {
-                if (conditionsDataSchema == null)
-                    CreateConditionsDataSchema();
-
-                return conditionsDataSchema;
-            }
-        }
-
-        internal static XmlSchema FunctionsSchema
-        {
-            get
-            {
-                if (functionsSchema == null)
-                    CreateFunctionsSchema();
-
-                return functionsSchema;
-            }
-        }
-
-        internal static XmlSchema FunctionsDataSchema
-        {
-            get
-            {
-                if (functionsDataSchema == null)
-                    CreateFunctionsDataSchema();
-
-                return functionsDataSchema;
-            }
-        }
-
-        internal static XmlSchema ProjectPropertiesSchema
-        {
-            get
-            {
-                if (projectPropertiesSchema == null)
-                    CreateProjectPropertiesSchema();
-
-                return projectPropertiesSchema;
-            }
-        }
-
-        internal static XmlSchema TableSchema
-        {
-            get
-            {
-                if (tableSchema == null)
-                    CreateTableSchema();
-
-                return tableSchema;
-            }
-        }
-
-        internal static XmlSchema ConstructorSchema
-        {
-            get
-            {
-                if (constructorSchema == null)
-                    CreateConstructorSchema();
-
-                return constructorSchema;
-            }
-        }
-
-        internal static XmlSchema ParametersDataSchema
-        {
-            get
-            {
-                if (parametersDataSchema == null)
-                    CreateParametersDataSchema();
-
-                return parametersDataSchema;
-            }
-        }
-
-        internal static XmlSchema FragmentsSchema
-        {
-            get
-            {
-                if (fragmentsSchema == null)
-                    CreateFragmentsSchema();
-
-                return fragmentsSchema;
-            }
-        }
+        internal static XmlSchema ShapeDataSchema => shapeDataSchema;
+        internal static XmlSchema ConnectorDataSchema => connectorDataSchema;
+        internal static XmlSchema VariablesSchema => variablesSchema;
+        internal static XmlSchema DecisionsDataSchema => decisionsDataSchema;
+        internal static XmlSchema ConditionsDataSchema => conditionsDataSchema;
+        internal static XmlSchema FunctionsSchema => functionsSchema;
+        internal static XmlSchema FunctionsDataSchema => functionsDataSchema;
+        internal static XmlSchema ProjectPropertiesSchema => projectPropertiesSchema;
+        internal static XmlSchema TableSchema => tableSchema;
+        internal static XmlSchema ConstructorSchema => constructorSchema;
+        internal static XmlSchema ParametersDataSchema => parametersDataSchema;
+        internal static XmlSchema FragmentsSchema => fragmentsSchema;
         #endregion Properties
 
         #region Methods
@@ -169,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return errors;
         }
 
-        private static void CreateShapeDataSchema()
+        private static XmlSchema CreateShapeDataSchema()
         {
             //shapeData Element
             XmlSchemaElement elementShapeData = CreateSchemaElement("shapeData", "dataType");
@@ -185,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                     AttributeName
                 });
 
-            shapeDataSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementShapeData,
                 dataType
@@ -586,7 +483,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         });
         #endregion Data Reusable Elements
 
-        private static void CreateConnectorDataSchema()
+        private static XmlSchema CreateConnectorDataSchema()
         {
             //connector Element
             XmlSchemaElement elementConnnector = CreateSchemaElement("connector", "connectorType");
@@ -604,7 +501,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                     CreateRequiredAttribute("connectorCategory", "short", true)
                 });
 
-            connectorDataSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementConnnector,
                 connectorType,
@@ -640,7 +537,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\connectorData.xsd", ConnectorDataSchema);
         }
 
-        private static void CreateParametersDataSchema()
+        private static XmlSchema CreateParametersDataSchema()
         {
             //function Element
             XmlSchemaElement elementFunction = CreateSchemaElement("function", "functionType");
@@ -654,7 +551,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //objectList Element
             XmlSchemaElement elementObjectList = CreateSchemaElement("objectList", "objectListType");
 
-            parametersDataSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementFunction,
                 elementConstructor,
@@ -690,7 +587,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\parametersData.xsd", ParametersDataSchema);
         }
 
-        private static void CreateFragmentsSchema()
+        private static XmlSchema CreateFragmentsSchema()
         {
             //folder Element
             XmlSchemaElement elementFolder = CreateSchemaElement("folder", "folderType", false, new XmlSchemaObject[]
@@ -732,7 +629,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 new XmlSchemaAttribute[] { AttributeName }, 1, 1);
 
 
-            fragmentsSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementFolder,
                 folderType,
@@ -767,7 +664,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\fragments.xsd", FragmentsSchema);
         }
 
-        private static void CreateConditionsDataSchema()
+        private static XmlSchema CreateConditionsDataSchema()
         {
             //conditions Element
             XmlSchemaElement elementConditions = CreateSchemaElement("conditions", "conditionsType");
@@ -809,7 +706,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 },
                 null, 2, null, true);
 
-            conditionsDataSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementConditions,
                 conditionsType,
@@ -846,7 +743,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\conditionsData.xsd", ConditionsDataSchema);
         }
 
-        private static void CreateDecisionsDataSchema()
+        private static XmlSchema CreateDecisionsDataSchema()
         {
             //decisions Element
             XmlSchemaElement elementDecisions = CreateSchemaElement("decisions", "decisionsType");
@@ -925,7 +822,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 },
                 new XmlSchemaAttribute[] { AttributeName, AttributeVisibleText }, 1, 1);
 
-            decisionsDataSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementDecisions,
                 decisionsType,
@@ -966,7 +863,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\decisionsData.xsd", DecisionsDataSchema);
         }
 
-        private static void CreateFunctionsDataSchema()
+        private static XmlSchema CreateFunctionsDataSchema()
         {
             //functions Element
             XmlSchemaElement elementFunctions = CreateSchemaElement("functions", "functionsType");
@@ -989,7 +886,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 },
                 new XmlSchemaAttribute[] { AttributeName, AttributeVisibleText });
 
-            functionsDataSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementFunctions,
                 functionsType,
@@ -1030,7 +927,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\functionsData.xsd", FunctionsDataSchema);
         }
 
-        private static void CreateTableSchema()
+        private static XmlSchema CreateTableSchema()
         {
             //tables Element
             XmlSchemaElement elementTables = new()
@@ -1076,7 +973,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                     "UpdateOnly"
             });
 
-            tableSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementTables,
                 rulesTableType,
@@ -1117,7 +1014,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return uniqueConstraint;
         }
 
-        private static XmlSchemaElement CreateSchemaElement(string elementName, string schemaTypeName, int minOccurs, int? maxOccurs, bool unbounded = false, bool schenaUriRequired = false, XmlSchemaObject[] constraints = null)
+        private static XmlSchemaElement CreateSchemaElement(string elementName, string schemaTypeName, int minOccurs, int? maxOccurs, bool unbounded = false, bool schenaUriRequired = false, XmlSchemaObject[]? constraints = null)
         {
             XmlSchemaElement element = new()
             {
@@ -1130,7 +1027,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             element.MinOccurs = minOccurs;
 
             if (!unbounded)
+            {
+                if (!maxOccurs.HasValue)
+                    throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{696486FE-74C3-4D36-B04F-79A4ED428690}"));
+
                 element.MaxOccurs = maxOccurs.Value;
+            }
             else
                 element.MaxOccursString = "unbounded";
 
@@ -1145,7 +1047,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return element;
         }
 
-        private static XmlSchemaElement CreateSchemaElement(string elementName, string schemaTypeName, bool schemaUriRequired = false, XmlSchemaObject[] constraints = null)
+        private static XmlSchemaElement CreateSchemaElement(string elementName, string schemaTypeName, bool schemaUriRequired = false, XmlSchemaObject[]? constraints = null)
         {
             XmlSchemaElement element = new()
             {
@@ -1184,7 +1086,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return complexType;
         }
 
-        private static XmlSchemaComplexType CreateComplexType(string elementName, XmlSchemaElement[] sequenceElements, XmlSchemaAttribute[] attributes)
+        private static XmlSchemaComplexType CreateComplexType(string? elementName, XmlSchemaElement[]? sequenceElements, XmlSchemaAttribute[]? attributes)
         {
             XmlSchemaComplexType complexType = new()
             {
@@ -1201,9 +1103,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return complexType;
         }
 
-        private static XmlSchemaComplexType ExtendComplexType(string elementName, string baseElementName, XmlSchemaElement[] sequenceElements, XmlSchemaAttribute[] attributes)
+        private static XmlSchemaComplexType ExtendComplexType(string elementName, string baseElementName, XmlSchemaElement[] sequenceElements, XmlSchemaAttribute[]? attributes)
         {
-            XmlSchemaComplexContentExtension getExtension(XmlSchemaElement[] seqElents, XmlSchemaAttribute[] attrs)
+            XmlSchemaComplexContentExtension getExtension(XmlSchemaElement[] seqElents, XmlSchemaAttribute[]? attrs)
             {
                 XmlSchemaComplexContentExtension baseExtension = new()
                 {
@@ -1231,7 +1133,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return complexType;
         }
 
-        private static XmlSchemaComplexType CreateComplexChoiceType(string elementName, XmlSchemaElement[] choiceElements, XmlSchemaAttribute[] attributes, int minOccurs, int? maxOccurs, bool unbounded = false, bool isMixed = false)
+        private static XmlSchemaComplexType CreateComplexChoiceType(string? elementName, XmlSchemaElement[] choiceElements, XmlSchemaAttribute[]? attributes, int minOccurs, int? maxOccurs, bool unbounded = false, bool isMixed = false)
         {
             XmlSchemaComplexType complexType = new()
             {
@@ -1249,7 +1151,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
 
                 choice.MinOccurs = minOccurs;
                 if (!unbounded)
+                {
+                    if (!maxOccurs.HasValue)
+                        throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{C694E883-AEB8-4A07-AF60-480832C5F2E8}"));
+
                     choice.MaxOccurs = maxOccurs.Value;
+                }
                 else
                     choice.MaxOccursString = "unbounded";
 
@@ -1265,7 +1172,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return complexType;
         }
 
-        private static XmlSchemaComplexType CreateComplexChoiceType(string elementName, XmlSchemaObject[] choiceElements, XmlSchemaAttribute[] attributes, int minOccurs, int? maxOccurs, bool unbounded = false, bool isMixed = false)
+        private static XmlSchemaComplexType CreateComplexChoiceType(string elementName, XmlSchemaObject[] choiceElements, XmlSchemaAttribute[]? attributes, int minOccurs, int? maxOccurs, bool unbounded = false, bool isMixed = false)
         {
             XmlSchemaComplexType complexType = new()
             {
@@ -1283,7 +1190,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
 
                 choice.MinOccurs = minOccurs;
                 if (!unbounded)
+                {
+                    if (!maxOccurs.HasValue)
+                        throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{4491B342-9E2E-4E83-9A0E-FBDFF0535B7C}"));
+
                     choice.MaxOccurs = maxOccurs.Value;
+                }
                 else
                     choice.MaxOccursString = "unbounded";
 
@@ -1309,7 +1221,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
 
             choice.MinOccurs = minOccurs;
             if (!unbounded)
+            {
+                if (!maxOccurs.HasValue)
+                    throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{FEB8E682-95C3-4A79-9DFB-ACB39A0CF435}"));
+
                 choice.MaxOccurs = maxOccurs.Value;
+            }
             else
                 choice.MaxOccursString = "unbounded";
 
@@ -1460,7 +1377,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 null);
         #endregion Config Reusables
 
-        private static void CreateFunctionsSchema()
+        private static XmlSchema CreateFunctionsSchema()
         {
             //forms Element
             XmlSchemaElement elementForms = CreateSchemaElement("forms", "formsType", false, new XmlSchemaObject[] { CreateUniqueConstraint("functionNameKey", ".//function", "@name") });
@@ -1773,7 +1690,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "IGenericEnumerable"
             });
 
-            functionsSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementForms,
                 functionType,
@@ -1810,7 +1727,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\functions.xsd", FunctionsSchema);
         }
 
-        private static void CreateConstructorSchema()
+        private static XmlSchema CreateConstructorSchema()
         {
             //form Element
             XmlSchemaElement elementForm = CreateSchemaElement("form", "formType", false,
@@ -1970,7 +1887,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "IGenericEnumerable"
             });
 
-            constructorSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementForm,
                 formType,
@@ -2011,7 +1928,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
 
             if (schemaValidationErrors.Length != 0)
             {
-                throw new Exceptions.CriticalLogicBuilderException(schemaValidationErrors);
+                throw new CriticalLogicBuilderException(schemaValidationErrors);
             }
 
             schemaSet.Compile();
@@ -2019,7 +1936,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             return schemaSet.Schemas().OfType<XmlSchema>().Single();
         }
 
-        private static void CreateProjectPropertiesSchema()
+        private static XmlSchema CreateProjectPropertiesSchema()
         {
             //ProjectProperties Element
             XmlSchemaElement elementProjectProperties = new()
@@ -2260,7 +2177,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NetNative"
             });
 
-            projectPropertiesSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementProjectProperties,
                 applicationsType,
@@ -2289,7 +2206,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\ProjectProperties.xsd", ProjectPropertiesSchema);
         }
 
-        private static void CreateVariablesSchema()
+        private static XmlSchema CreateVariablesSchema()
         {
             //questions Element
             XmlSchemaElement elementFolder = CreateSchemaElement("folder", "folderType", false, new XmlSchemaObject[]
@@ -2530,7 +2447,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "IGenericEnumerable"
             });
 
-            variablesSchema = CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementFolder,
                 variableBaseType,
@@ -2584,7 +2501,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         #endregion Methods
 
         #region EventHandlers
-        private static void ValidateSchema(object sender, ValidationEventArgs e)
+        private static void ValidateSchema(object? sender, ValidationEventArgs e)
         {
             if (e.Severity == XmlSeverityType.Error)
             {

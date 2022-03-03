@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Variables
@@ -17,11 +16,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
     {
         public VariableValidationHelperTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -55,7 +54,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             List<string> errors = new();
 
             //act
-            helper.ValidateVariableIndirectReferenceName(validIndirectReference, referenceName, String.Empty, errors, null);
+            helper.ValidateVariableIndirectReferenceName(validIndirectReference, referenceName, String.Empty, errors, new Dictionary<string, VariableBase>());
             var result = errors.Count == 0;
 
             //assert
@@ -92,7 +91,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             List<string> errors = new();
 
             //act
-            helper.ValidateVariableIndirectReferenceName(validIndirectReference, referenceName, String.Empty, errors, null);
+            helper.ValidateVariableIndirectReferenceName(validIndirectReference, referenceName, String.Empty, errors, new Dictionary<string, VariableBase>());
             var result = errors.Count == 0;
 
             //assert
@@ -108,10 +107,10 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string indexKeyVariableName = "Name";
             string variableName = "VariableKeyIndexerVariable";
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName);
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary");
-            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item");
-            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty");
+            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName)!;
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary")!;
+            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item")!;
+            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -172,9 +171,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
             Dictionary<string, VariableBase> variables = new();
 
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary");
-            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item");
-            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary")!;
+            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item")!;
+            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -220,9 +219,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
             Dictionary<string, VariableBase> variables = new();
 
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary");
-            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item");
-            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary")!;
+            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item")!;
+            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -267,10 +266,10 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string indexKeyVariableName = "MyInt";
             string variableName = "VariableKeyIndexerVariable";
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName);
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName)!;
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -331,9 +330,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
             Dictionary<string, VariableBase> variables = new();
 
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -379,9 +378,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
             Dictionary<string, VariableBase> variables = new();
 
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -427,10 +426,10 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string indexKeyVariableName = "Name";
             string variableName = "VariableKeyIndexerVariable";
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName);
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName)!;
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -515,7 +514,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             List<string> errors = new();
 
             //act
-            helper.ValidateMemberName(variableCategory, memberName, String.Empty, errors, null);
+            helper.ValidateMemberName(variableCategory, memberName, String.Empty, errors, new Dictionary<string, VariableBase>());
             var result = errors.Count == 0;
 
             //assert
@@ -551,7 +550,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             List<string> errors = new();
 
             //act
-            helper.ValidateMemberName(variableCategory, memberName, String.Empty, errors, null);
+            helper.ValidateMemberName(variableCategory, memberName, String.Empty, errors, new Dictionary<string, VariableBase>());
             var result = errors.Count == 0;
 
             //assert
@@ -568,10 +567,10 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
 
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName);
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary");
-            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item");
-            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty");
+            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName)!;
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary")!;
+            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item")!;
+            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -632,9 +631,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
 
             Dictionary<string, VariableBase> variables = new();
 
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary");
-            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item");
-            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary")!;
+            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item")!;
+            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -681,9 +680,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
 
             Dictionary<string, VariableBase> variables = new();
 
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary");
-            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item");
-            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyDictionary")!;
+            PropertyInfo indexPropertyInfo = dictionaryPropertyInfo.PropertyType.GetProperty("Item")!;
+            PropertyInfo variablePropertyInfo = indexPropertyInfo.PropertyType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -729,10 +728,10 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
 
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName);
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo indexKeyVariablePropertyInfo = typeof(TestVariableClass).GetProperty(indexKeyVariableName)!;
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -792,9 +791,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
 
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -840,9 +839,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
 
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -889,9 +888,9 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             string variableName = "VariableKeyIndexerVariable";
 
             Dictionary<string, VariableBase> variables = new();
-            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray");
-            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get");
-            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty");
+            PropertyInfo dictionaryPropertyInfo = typeof(TestVariableClass).GetProperty("MyValueClassArray")!;
+            MethodInfo getMethodInfo = dictionaryPropertyInfo.PropertyType.GetMethod("Get")!;
+            PropertyInfo variablePropertyInfo = getMethodInfo.ReturnType.GetProperty("MyProperty")!;
 
             variables.Add
             (
@@ -927,13 +926,19 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             );
         }
 
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-        }
-
         class TestVariableClass
         {
+            public TestVariableClass(string name, int myInt, int? myNullableInt, short myShort, byte myByte, Dictionary<string, MyValueClass> myDictionary, MyValueClass[] myValueClassArray)
+            {
+                Name = name;
+                MyInt = myInt;
+                MyNullableInt = myNullableInt;
+                MyShort = myShort;
+                MyByte = myByte;
+                MyDictionary = myDictionary;
+                MyValueClassArray = myValueClassArray;
+            }
+
             public string Name { get; set; }
             public int MyInt { get; set; }
             public int? MyNullableInt { get; set; }
@@ -945,6 +950,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
 
         class MyValueClass
         {
+            public MyValueClass(string myProperty)
+            {
+                MyProperty = myProperty;
+            }
+
             public string MyProperty { get; set; }
         }
     }

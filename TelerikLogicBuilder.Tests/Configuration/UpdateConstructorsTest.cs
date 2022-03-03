@@ -13,11 +13,11 @@ namespace TelerikLogicBuilder.Tests.Configuration
     {
         public UpdateConstructorsTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -40,8 +40,8 @@ namespace TelerikLogicBuilder.Tests.Configuration
             var result = loadConstructors.Load();
 
             //assert
-            Assert.Equal(XmlDataConstants.FORMELEMENT, result.DocumentElement.Name);
-            Assert.Equal("OperatorGroup", result.SelectSingleNode("//constructor").Attributes[XmlDataConstants.NAMEATTRIBUTE].Value);
+            Assert.Equal(XmlDataConstants.FORMELEMENT, result.DocumentElement!.Name);
+            Assert.Equal("OperatorGroup", result.SelectSingleNode("//constructor")!.Attributes![XmlDataConstants.NAMEATTRIBUTE]!.Value);
 
             static XmlDocument GetDocumentToSave()
             {
@@ -83,11 +83,6 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
                 return xmlDocument;
             }
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

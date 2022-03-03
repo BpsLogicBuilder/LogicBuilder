@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -39,9 +40,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             try
             {
+                if (!File.Exists(fullPath))
+                    return _createFragments.Create();
+
                 XmlDocument xmlDocument = new();
                 xmlDocument.Load(fullPath);
-                ValidateXml(xmlDocument.DocumentElement.OuterXml);
+                ValidateXml(xmlDocument.DocumentElement!.OuterXml);/*Not null at this point - file has been created if missing.*/
 
                 return xmlDocument;
 

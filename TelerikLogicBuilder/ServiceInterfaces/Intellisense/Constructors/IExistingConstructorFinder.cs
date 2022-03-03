@@ -6,6 +6,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Construct
 {
     internal interface IExistingConstructorFinder
     {
-        Constructor FindExisting(ConstructorInfo cInfo, IDictionary<string, Constructor> existingConstructors);
+        Constructor? FindExisting(ConstructorInfo cInfo, IDictionary<string, Constructor> existingConstructors);
     }
 }

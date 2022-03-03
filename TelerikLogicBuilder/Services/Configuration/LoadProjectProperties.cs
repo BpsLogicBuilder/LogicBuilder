@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -39,8 +40,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             try
             {
+                if (!File.Exists(fullPath))
+                    return _createProjectProperties.Create(fullPath);
+
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
-                var validationResponse = _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlDocument.DocumentElement.OuterXml);
+                var validationResponse = _xmlValidator.Validate
+                (
+                    SchemaName.ProjectPropertiesSchema, 
+                    xmlDocument.DocumentElement!.OuterXml/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                );
                 if (validationResponse.Success == false)
                     throw new XmlValidationException(string.Join(Environment.NewLine, validationResponse.Errors));
 

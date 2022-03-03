@@ -132,7 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
                     foreach (string index in indexes)
                     {
                         //Since arrays can be multidimensional, allow the variableArrayIndex to combine variables and integer literals as indexes
-                        if (_configurationService.VariableList.Variables.TryGetValue(index, out VariableBase variable) && _variableHelper.CanBeInteger(variable))
+                        if (_configurationService.VariableList.Variables.TryGetValue(index, out VariableBase? variable) && _variableHelper.CanBeInteger(variable))
                         {
                         }
                         else if (int.TryParse(index, out int arrayIndex) && arrayIndex > -1)

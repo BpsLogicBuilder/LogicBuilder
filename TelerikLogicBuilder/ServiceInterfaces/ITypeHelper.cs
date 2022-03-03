@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool IsValidList(Type type);
         bool IsValidLiteralReturnType(Type type);
         string ToId(Type type);
-        Type TryGetType(string typeName, ApplicationTypeInfo application);
-        bool TryParse(string toParse, Type type, out object result);
+        Type? TryGetType(string typeName, ApplicationTypeInfo application);
+        bool TryParse(string toParse, Type type, out object? result);
     }
 }

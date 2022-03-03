@@ -4,7 +4,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests
@@ -13,11 +12,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public AssemblyLoadContextManagerTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -75,11 +74,6 @@ namespace TelerikLogicBuilder.Tests
             //assert
             Assert.NotNull(assemblyLoadContextManager);
             Assert.NotEmpty(assemblyLoadContextManager.GetAssemblyLoadContextDictionary());
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

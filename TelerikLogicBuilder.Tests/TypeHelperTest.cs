@@ -7,7 +7,6 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using TelerikLogicBuilder.Tests.AttributeSamples;
-using TelerikLogicBuilder.Tests.Constants;
 using TelerikLogicBuilder.Tests.Structures;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
@@ -18,11 +17,11 @@ namespace TelerikLogicBuilder.Tests
     {
         public TypeHelperTest()
         {
-            Initialize();
+            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Theory]
@@ -194,7 +193,7 @@ namespace TelerikLogicBuilder.Tests
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.TryParse(toParse, type, out object parsedResult);
+            var result = helper.TryParse(toParse, type, out object? parsedResult);
 
             //assert
             Assert.Equal(expectedSuccess, result);
@@ -210,7 +209,7 @@ namespace TelerikLogicBuilder.Tests
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            Assert.Throws<CriticalLogicBuilderException>(() => helper.TryParse(toParse, type, out object parsedResult));
+            Assert.Throws<CriticalLogicBuilderException>(() => helper.TryParse(toParse, type, out object? parsedResult));
         }
 
         [Theory]
@@ -446,11 +445,6 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(expectedResult, result);
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

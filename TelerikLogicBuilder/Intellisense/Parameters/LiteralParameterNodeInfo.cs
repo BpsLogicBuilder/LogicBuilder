@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFOREQUALITY, out string value))
+                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFOREQUALITY, out string? value))
                     return true;
 
                 return !bool.TryParse(value, out bool boolVal) || boolVal;
@@ -71,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORHASHCODE, out string value))
+                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORHASHCODE, out string? value))
                     return false;
 
                 return bool.TryParse(value, out bool boolVal) && boolVal;
@@ -85,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORTOSTRING, out string value))
+                if (!this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.USEFORTOSTRING, out string? value))
                     return true;
 
                 return !bool.TryParse(value, out bool boolVal) || boolVal;
@@ -99,8 +99,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string fromAttribute);
-                string fromOptionalParameter = PInfo.IsOptional && PInfo.DefaultValue != null ? PInfo.DefaultValue.ToString() : string.Empty;
+                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.DEFAULTVALUE, out string? fromAttribute);
+                string fromOptionalParameter = PInfo.IsOptional && PInfo.DefaultValue != null 
+                                                        ? PInfo.DefaultValue.ToString()!/*PInfo.DefaultValue is not null*/
+                                                        : string.Empty;
                 string defaultValue = string.IsNullOrEmpty(fromAttribute) ? fromOptionalParameter : fromAttribute;
 
                 if (this.Type == LiteralParameterType.Boolean || this.Type == LiteralParameterType.NullableBoolean)
@@ -117,7 +119,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string value);
+                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCE, out string? value);
                 return value ?? string.Empty;
             }
         }
@@ -129,7 +131,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCEPARAMETER, out string value);
+                this._parameterAttributeReader.GetNameValueTable(PInfo).TryGetValue(AttributeNames.PROPERTYSOURCEPARAMETER, out string? value);
                 return value ?? string.Empty;
             }
         }

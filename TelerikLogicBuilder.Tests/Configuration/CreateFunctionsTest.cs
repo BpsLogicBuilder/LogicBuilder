@@ -15,11 +15,11 @@ namespace TelerikLogicBuilder.Tests.Configuration
     {
         public CreateFunctionsTest()
         {
-            Initialize();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
         [Fact]
@@ -40,13 +40,8 @@ namespace TelerikLogicBuilder.Tests.Configuration
             var result = createFunctions.Create();
 
             //assert
-            Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement.Name);
+            Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement!.Name);
             Assert.Equal(2, result.DocumentElement.ChildNodes.OfType<XmlElement>().Count());
-        }
-
-        private void Initialize()
-        {
-            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using LogicBuilder.Attributes;
+using System;
 using System.Collections.Generic;
 
 
@@ -7,7 +8,18 @@ namespace TelerikLogicBuilder.Tests.AttributeSamples
 {
     public class InstructorModel
     {
-		[VariableEditorControl(VariableControlType.SingleLineTextBox)]
+        public InstructorModel(int iD, string lastName, string firstName, string fullName, DateTime hireDate, ICollection<CourseAssignmentModel> courses, OfficeAssignmentModel officeAssignment)
+        {
+            ID = iD;
+            LastName = lastName;
+            FirstName = firstName;
+            FullName = fullName;
+            HireDate = hireDate;
+            Courses = courses;
+            OfficeAssignment = officeAssignment;
+        }
+
+        [VariableEditorControl(VariableControlType.SingleLineTextBox)]
 		[AlsoKnownAs("Instructor_ID")]
 		public int ID { get; set; }
 
@@ -41,12 +53,12 @@ namespace TelerikLogicBuilder.Tests.AttributeSamples
 		[FunctionGroup(FunctionGroup.DialogForm)]
 		public static string DoSomething()
         {
-			return null;
+			return string.Empty;
         }
 
 		public static string DoSomethingElse()
 		{
-			return null;
+			return string.Empty;
 		}
 	}
 }

@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             if (xmlDocument == null)
                 throw _exceptionHelpers.CriticalException("{451DB316-8A0D-405E-9E75-B1FE6C8B4EA8}");
 
-            XmlNode xnodRoot = xmlDocument.SelectSingleNode($"/{XmlDataConstants.FOLDERELEMENT}");
+            XmlNode? xnodRoot = xmlDocument.SelectSingleNode($"/{XmlDataConstants.FOLDERELEMENT}");
 
             if (xnodRoot != null)
             {
@@ -43,22 +43,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             (
                 xmlNode, 
                 e => new HashSet<string> { XmlDataConstants.LITERALVARIABLEELEMENT, XmlDataConstants.OBJECTVARIABLEELEMENT, XmlDataConstants.LITERALLISTVARIABLEELEMENT, XmlDataConstants.OBJECTLISTVARIABLEELEMENT }.Contains(e.Name),
-                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             )
             .ForEach
             (
-                variableNode => treeFolder.FileNames.Add(variableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                variableNode => treeFolder.FileNames.Add(variableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             );
 
             _xmlDocumentHelpers.GetChildElements
             (
                 xmlNode, 
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Name attribute is required by shema definition*/
             )
             .ForEach(folderNode =>
             {
-                TreeFolder childFolder = new(folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, new List<string>(), new List<TreeFolder>());
+                TreeFolder childFolder = new(folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value/*Name attribute is required by shema definition*/, new List<string>(), new List<TreeFolder>());
                 treeFolder.FolderNames.Add(childFolder);
                 GetFolderChildren(folderNode, childFolder);
             });

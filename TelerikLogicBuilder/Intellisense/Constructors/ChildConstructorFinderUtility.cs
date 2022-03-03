@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
             }
             else
             {
-                ConstructorInfo cInfo = type.GetConstructors().OrderByDescending
+                ConstructorInfo? cInfo = type.GetConstructors().OrderByDescending
                 (
                     c => c.GetParameters().Length
                 )
@@ -88,17 +88,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
                 new HashSet<string>(existingConstructors.Keys)
             );
 
+            if (cInfo.DeclaringType == null)
+                return;
+
             if (!this.constructorNameMaps.ContainsKey(cInfo.DeclaringType))
                 this.constructorNameMaps.Add(cInfo.DeclaringType, name);
 
             AddChildConstructors(cInfo.GetParameters());
 
-            Constructor constructor = this._constructorManager.CreateConstructor(name, cInfo);
+            Constructor? constructor = this._constructorManager.CreateConstructor(name, cInfo);
             if (constructor != null)
                 this.existingConstructors.Add(constructor.Name, constructor);
 
             string GetName(string alsoKnownAs)
-                => string.IsNullOrEmpty(alsoKnownAs) ? _typeHelper.GetTypeDescription(cInfo.DeclaringType) : alsoKnownAs;
+                => string.IsNullOrEmpty(alsoKnownAs) 
+                    ? _typeHelper.GetTypeDescription(cInfo.DeclaringType!)//returns on line 92 if cInfo.DeclaringType == null
+                    : alsoKnownAs;
         }
     }
 }

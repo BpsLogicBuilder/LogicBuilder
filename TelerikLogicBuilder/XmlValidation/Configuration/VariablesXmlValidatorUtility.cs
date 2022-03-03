@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
         }
 
         #region Variables
-        private IDictionary<string, VariableBase> variables;
+        private IDictionary<string, VariableBase>? variables;
         #endregion Variables
 
         #region Methods
@@ -68,26 +68,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
         private void NonSchemaValidation(XmlDocument xDoc)
         {
-            xDoc.SelectNodes(string.Format(CultureInfo.InvariantCulture, "//{0}|//{1}|//{2}|//{3}", XmlDataConstants.LITERALVARIABLEELEMENT, XmlDataConstants.OBJECTVARIABLEELEMENT, XmlDataConstants.LITERALLISTVARIABLEELEMENT, XmlDataConstants.OBJECTLISTVARIABLEELEMENT))
-                .OfType<XmlElement>()
-                .ToList()
-                .ForEach(variableNode =>
-                {
-                    Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(variableNode)
-                        .ToDictionary(e => e.Name);
+            xDoc.SelectNodes
+            (
+                string.Format
+                (
+                    CultureInfo.InvariantCulture, 
+                    "//{0}|//{1}|//{2}|//{3}", 
+                    XmlDataConstants.LITERALVARIABLEELEMENT, 
+                    XmlDataConstants.OBJECTVARIABLEELEMENT, 
+                    XmlDataConstants.LITERALLISTVARIABLEELEMENT, 
+                    XmlDataConstants.OBJECTLISTVARIABLEELEMENT
+                )
+            )!/*Never null when SelectNodes is called on an XmlDocument*/
+            .OfType<XmlElement>()
+            .ToList()
+            .ForEach(variableNode =>
+            {
+                Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(variableNode)
+                    .ToDictionary(e => e.Name);
 
-                    ValidateElement
-                    (
-                        elements,
-                        variableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
-                        (VariableCategory)Enum.Parse(typeof(VariableCategory), elements[XmlDataConstants.VARIABLECATEGORYELEMENT].InnerText.Trim()),
-                        (ReferenceCategories)Enum.Parse(typeof(ReferenceCategories), elements[XmlDataConstants.REFERENCECATEGORYELEMENT].InnerText.Trim()),
-                        _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.REFERENCEDEFINITIONELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING),
-                        _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.REFERENCENAMEELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING),
-                        _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.CASTREFERENCEASELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING)
-                    );
+                ValidateElement
+                (
+                    elements,
+                    variableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Name attribute is required by schema definition*/
+                    (VariableCategory)Enum.Parse(typeof(VariableCategory), elements[XmlDataConstants.VARIABLECATEGORYELEMENT].InnerText.Trim()),
+                    (ReferenceCategories)Enum.Parse(typeof(ReferenceCategories), elements[XmlDataConstants.REFERENCECATEGORYELEMENT].InnerText.Trim()),
+                    _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.REFERENCEDEFINITIONELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING),
+                    _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.REFERENCENAMEELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING),
+                    _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.CASTREFERENCEASELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING)
+                );
 
-                });
+            });
         }
 
         private void ValidateElement(Dictionary<string, XmlElement> elements, string variableName, VariableCategory variableCategory, ReferenceCategories referenceCategory, string[] referenceDefinitionArray, string[] referenceNameArray, string[] castReferenceAsArray)
@@ -159,7 +170,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
             string memberName,
             string variableName)
         {
-            _variableValidationHelper.ValidateMemberName(variableCategory, memberName, variableName, XmlDocumentErrors, variables);
+            _variableValidationHelper.ValidateMemberName(variableCategory, memberName, variableName, XmlDocumentErrors, variables!);//NonSchemaValidation called after setting variables
         }
 
         private bool ValidateReferenceNameMustBeEmpty(string variableName,
@@ -250,7 +261,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
             string variableName)
         {
             for (int i = 0; i < referenceDefinition.Count; i++)
-                _variableValidationHelper.ValidateVariableIndirectReferenceName(referenceDefinition[i], referenceNameArray[i], variableName, XmlDocumentErrors, variables);
+                _variableValidationHelper.ValidateVariableIndirectReferenceName(referenceDefinition[i], referenceNameArray[i], variableName, XmlDocumentErrors, variables!);//NonSchemaValidation called after setting variables
         }
 
         private void ValidateTypeName(string variableName,

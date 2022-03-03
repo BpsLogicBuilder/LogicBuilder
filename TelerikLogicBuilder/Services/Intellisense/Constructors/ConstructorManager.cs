@@ -22,8 +22,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
             _memberAttributeReader = memberAttributeReader;
         }
 
-        public Constructor CreateConstructor(string name, ConstructorInfo cInfo) 
-            => new 
+        public Constructor? CreateConstructor(string name, ConstructorInfo cInfo)
+        {
+            if (cInfo.DeclaringType == null)
+                return null;
+
+            return new
             (
                 name,
                 _typeHelper.ToId(cInfo.DeclaringType),
@@ -38,5 +42,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
                 _memberAttributeReader.GetSummary(cInfo),
                 _contextProvider
             );
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     {
         string BuildValidReferenceDefinition(string referenceDefinition);
         bool CanBeInteger(LiteralVariableType variableType);
-        IList<string> ConvertEnumListToStringList<T>(IList<T> excludedItems = null);
+        IList<string> ConvertEnumListToStringList<T>(IList<T>? excludedItems = null);
         IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);

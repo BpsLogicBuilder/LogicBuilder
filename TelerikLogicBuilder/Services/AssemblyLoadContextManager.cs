@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     {
         private readonly IConfigurationService _configurationService;
         private readonly IPathHelper _pathHelper;
-        private Dictionary<string, LogicBuilderAssemblyLoadContext> _loadContexts;
+        private Dictionary<string, LogicBuilderAssemblyLoadContext>? _loadContexts;
 
         public AssemblyLoadContextManager(IConfigurationService configurationService, IPathHelper pathHelper)
         {
@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return _loadContexts[_configurationService.GetSelectedApplicationKey().ToLowerInvariant()];
         }
 
-        public Dictionary<string, LogicBuilderAssemblyLoadContext> GetAssemblyLoadContextDictionary() => _loadContexts;
+        public Dictionary<string, LogicBuilderAssemblyLoadContext>? GetAssemblyLoadContextDictionary() => _loadContexts;
 
         public void UnloadLoadContexts()
         {

@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             using StringReader sr = new(argument);
             using TextFieldParser parser = new(sr) { HasFieldsEnclosedInQuotes = true, Delimiters = delimiters };
-            return parser.ReadFields();
+            return parser.ReadFields()!;/*Not null if argument is not null*/
         }
 
         public string ToCamelCase(string s)

@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             if (xmlDocument == null)
                 throw _exceptionHelpers.CriticalException("{0DAB5714-3982-4BE3-979E-3CED2DDEB4A4}");
 
-            XmlNode xnodRoot = xmlDocument.SelectSingleNode(this.rootFolderXPath);
+            XmlNode? xnodRoot = xmlDocument.SelectSingleNode(this.rootFolderXPath);
 
             if (xnodRoot != null)
             {
@@ -50,24 +50,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             (
                 xmleNode, 
                 e => functionsFilter(e),
-                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             )
             .ForEach
             (
-                functionNode => treeFolder.FileNames.Add(functionNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                functionNode => treeFolder.FileNames.Add(functionNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             );
 
             _xmlDocumentHelpers.GetChildElements
             (
                 xmleNode, 
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value)
+                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
             )
             .ForEach
             (
                 folderNode =>
                 {
-                    TreeFolder childFolder = new(folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value, new List<string>(), new List<TreeFolder>());
+                    TreeFolder childFolder = new
+                    (
+                        folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
+                        new List<string>(), 
+                        new List<TreeFolder>()
+                    );
                     treeFolder.FolderNames.Add(childFolder);
                     GetFolderChildren(folderNode, childFolder);
                 }

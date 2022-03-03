@@ -18,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IEncryption _encryption;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
+        private readonly IExceptionHelper _exceptionHelper;
 
         public UpdateFunctions(IConfigurationService configurationService, IXmlValidator xmlValidator, IContextProvider contextProvider)
         {
@@ -26,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _fileIOHelper = contextProvider.FileIOHelper;
             _encryption = contextProvider.Encryption;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _exceptionHelper = contextProvider.ExceptionHelper;
             _xmlValidator = xmlValidator;
         }
 
@@ -33,6 +35,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             try
             {
+                if (xmlDocument.DocumentElement == null)
+                    throw _exceptionHelper.CriticalException("{6BD83CD7-1313-4F59-AAFE-EA674876EEBB}");
+
                 ValidateXml(xmlDocument.DocumentElement.OuterXml);
                 SaveXml(xmlDocument);
 
@@ -54,13 +59,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     if (!Directory.Exists(_pathHelper.GetFilePath(fullPath)))
                         _fileIOHelper.CreateDirectory(_pathHelper.GetFilePath(fullPath));
 
+                    if (xmlDocument.DocumentElement == null)
+                        throw _exceptionHelper.CriticalException("{8DAF378E-9690-4AE5-A789-D8110404535E}");
+
                     XmlDocument saveDocument = _xmlDocumentHelpers.ToXmlDocument(xmlDocument.DocumentElement.OuterXml);
-                    saveDocument.DocumentElement.RemoveChild
+                    saveDocument.DocumentElement!.RemoveChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
                     (
                         saveDocument.SelectSingleNode
                         (
                             $"/forms/form[@name='{XmlDataConstants.BUILTINFUNCTIONSFORMROOTNODENAME}']"
-                        )
+                        )!/*This node should always be present in the calling code.*/
                     );
 
                     ValidateXml(saveDocument.DocumentElement.OuterXml);

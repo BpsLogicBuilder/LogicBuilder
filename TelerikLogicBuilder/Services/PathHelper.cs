@@ -61,7 +61,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public string GetFileNameNoExtention(string fileName) => Path.GetFileNameWithoutExtension(fileName);
 
-        public string GetFilePath(string fileName) => Path.GetDirectoryName(fileName);
+        public string GetFilePath(string fileName)
+        {
+            if (!File.Exists(fileName))
+                throw _exceptionHelper.CriticalException("{0A5AE88C-572A-43E1-A0BC-CF140DE1BE79}");
+
+            return Path.GetDirectoryName(fileName)!;
+        }
 
         public string GetFolderName(string folderPath)
         {
@@ -90,24 +96,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return RemoveLeadingSeparator(path, FileConstants.DIRECTORYSEPARATOR);
         }
 
-        private static string RemoveTrailingSeparator(string path, string separator)
-        {
-            if (path == null)
-                return null;
-
-            return path.Trim().EndsWith(separator, StringComparison.InvariantCulture)
+        private static string RemoveTrailingSeparator(string path, string separator) 
+            => path.Trim().EndsWith(separator, StringComparison.InvariantCulture)
                 ? path.Trim()[..path.Trim().LastIndexOf(separator)]
                 : path.Trim();
-        }
 
-        private static string RemoveLeadingSeparator(string path, string separator)
-        {
-            if (path == null)
-                return null;
-
-            return path.Trim().StartsWith(separator, StringComparison.InvariantCulture)
+        private static string RemoveLeadingSeparator(string path, string separator) 
+            => path.Trim().StartsWith(separator, StringComparison.InvariantCulture)
                 ? path.Trim()[1..]
                 : path.Trim();
-        }
     }
 }

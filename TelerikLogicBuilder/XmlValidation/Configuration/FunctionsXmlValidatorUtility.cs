@@ -55,7 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
         private void NonSchemaValidation(XmlDocument xDoc)
         {
-            xDoc.SelectNodes($"//{XmlDataConstants.FUNCTIONELEMENT}")
+            xDoc.SelectNodes($"//{XmlDataConstants.FUNCTIONELEMENT}")!/*Never null when SelectNodes is called on an XmlDocument.*/
                 .OfType<XmlElement>()
                 .ToList()
                 .ForEach(functionNode =>
@@ -67,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                     (
                         functionNode,
                         elements,
-                        functionNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
+                        functionNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition.*/
                         (FunctionCategories)Enum.Parse(typeof(FunctionCategories), elements[XmlDataConstants.FUNCTIONCATEGORYELEMENT].InnerText.Trim()),
                         (ParametersLayout)Enum.Parse(typeof(ParametersLayout), elements[XmlDataConstants.PARAMETERSLAYOUTELEMENT].InnerText.Trim()),
                         (ReferenceCategories)Enum.Parse(typeof(ReferenceCategories), elements[XmlDataConstants.REFERENCECATEGORYELEMENT].InnerText.Trim()),
@@ -351,7 +351,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                 ValidateParameterSourcedProperty
                 (
                     functionName,
-                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
+                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition.*/
                     (LiteralParameterInputStyle)Enum.Parse
                     (
                         typeof(LiteralParameterInputStyle),
@@ -387,7 +387,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                 ValidateParameterSourcedProperty
                 (
                     functionName,
-                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
+                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition.*/
                     (LiteralParameterInputStyle)Enum.Parse
                     (
                         typeof(LiteralParameterInputStyle), 
@@ -469,7 +469,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
                 ValidateGenericArguments
                 (
-                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE].Value,
+                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition.*/
                     _xmlDocumentHelpers.GetSingleChildElement
                     (
                         parameterNode, 

@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         #region Properties
         internal ParameterInfo PInfo { get; }
 
-        internal string Name => this.PInfo.Name;
+        internal string Name => this.PInfo.Name!;/*Not obtained by using the MethodInfo.ReturnParameter*/
 
         /// <summary>
         /// Is the parameter optional

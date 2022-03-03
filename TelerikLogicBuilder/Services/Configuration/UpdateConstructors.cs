@@ -16,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IPathHelper _pathHelper;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IEncryption _encryption;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlValidator _xmlValidator;
 
         public UpdateConstructors(IConfigurationService configurationService, IXmlValidator xmlValidator, IContextProvider contextProvider)
@@ -24,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _pathHelper = contextProvider.PathHelper;
             _fileIOHelper = contextProvider.FileIOHelper;
             _encryption = contextProvider.Encryption;
+            _exceptionHelper = contextProvider.ExceptionHelper;
             _xmlValidator = xmlValidator;
         }
 
@@ -31,6 +33,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             try
             {
+                if (xmlDocument.DocumentElement == null)
+                    throw _exceptionHelper.CriticalException("{E0EED35F-5E93-408E-8011-C568DF925D30}");
+
                 string xmlString = xmlDocument.DocumentElement.OuterXml;
                 ValidateXml(xmlString);
                 SaveXml(xmlString);

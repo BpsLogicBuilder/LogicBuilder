@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +17,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
         {
             _pathHelper = pathHelper;
             Application = application;
+            AllTypes = new();
+            AllAssemblies = new();
             AssemblyAvailable = assemblyAvailable;
         }
 
@@ -30,13 +33,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
         }
 
         internal Application Application { get; }
-        internal Type ActivityType { get; }
+        
+        internal Type? ActivityType { get; }
         internal SortedDictionary<string, Type> AllTypes { get; }
         internal List<string> AllTypesList => AllTypes.Keys.ToList();
         internal List<Assembly> AllAssemblies { get; }
+        [MemberNotNullWhen(true, nameof(ActivityType))]
         internal bool AssemblyAvailable { get; }
 
-        internal Dictionary<string, Assembly> AllAssembliesDictionary => AllAssemblies.ToDictionary(assembly => assembly.FullName);
+        internal Dictionary<string, Assembly> AllAssembliesDictionary => AllAssemblies.ToDictionary(assembly => assembly.FullName!);
         internal string UnavailableMessage
             => string.Format
             (

@@ -16,12 +16,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IPathHelper _pathHelper;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IXmlValidator _xmlValidator;
+        private readonly IExceptionHelper _exceptionHelper;
 
         public UpdateFragments(IConfigurationService configurationService, IXmlValidator xmlValidator, IContextProvider contextProvider)
         {
             _configurationService = configurationService;
             _pathHelper = contextProvider.PathHelper;
             _fileIOHelper = contextProvider.FileIOHelper;
+            _exceptionHelper = contextProvider.ExceptionHelper;
             _xmlValidator = xmlValidator;
         }
 
@@ -29,6 +31,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             try
             {
+                if (xmlDocument.DocumentElement == null)
+                    throw _exceptionHelper.CriticalException("{F6C68251-7F9D-447E-90DF-88A5DBEF0437}");
+
                 string xmlString = xmlDocument.DocumentElement.OuterXml;
                 ValidateXml(xmlString);
                 SaveXml(xmlString);
