@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     return _createVariables.Create();
 
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
-                ValidateXml(xmlDocument.DocumentElement!.OuterXml);/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                ValidateXml(_xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml);
 
                 return xmlDocument;
 

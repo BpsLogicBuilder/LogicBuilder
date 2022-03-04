@@ -46,15 +46,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
                 var validationResponse = _xmlValidator.Validate
                 (
-                    SchemaName.ProjectPropertiesSchema, 
-                    xmlDocument.DocumentElement!.OuterXml/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                    SchemaName.ProjectPropertiesSchema,
+                    _xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml
                 );
                 if (validationResponse.Success == false)
                     throw new XmlValidationException(string.Join(Environment.NewLine, validationResponse.Errors));
 
                 return new ProjectPropertiesXmlParserUtility
                 (
-                    xmlDocument.DocumentElement,
+                    _xmlDocumentHelpers.GetDocumentElement(xmlDocument),
                     _contextProvider,
                     _applicationXmlParser
                 ).GetProjectProperties

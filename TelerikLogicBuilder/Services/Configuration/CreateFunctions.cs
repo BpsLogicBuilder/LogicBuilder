@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 string xmlString = CreateXml();
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlString);
                 AppendBuildtInFunctions(xmlDocument);
-                ValidateXml(xmlDocument.DocumentElement!.OuterXml);/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                ValidateXml(_xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml);
 
                 SaveXml(xmlDocument);
 
@@ -65,14 +65,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 }
 
                 void AppendBuildtInFunctions(XmlDocument xmlDocument) 
-                    => xmlDocument.DocumentElement!.AppendChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                    => _xmlDocumentHelpers.GetDocumentElement(xmlDocument).AppendChild
                     (
                         _xmlDocumentHelpers.MakeFragment
                         (
                             xmlDocument,
-                            _builtInFunctionsLoader.Load().DocumentElement!.OuterXml/*BuiltInFunctionsLoader.Load() is dynamically generated XML with a document element.*/
+                            _xmlDocumentHelpers.GetDocumentElement(_builtInFunctionsLoader.Load()).OuterXml
                         )
                     );
+
+                void RemoveBuildtInFunctions(XmlDocument saveDocument)
+                {
+                    _xmlDocumentHelpers.GetDocumentElement(saveDocument).RemoveChild
+                    (
+                        _xmlDocumentHelpers.SelectSingleElement
+                        (
+                            saveDocument,
+                            $"/forms/form[@name='{XmlDataConstants.BUILTINFUNCTIONSFORMROOTNODENAME}']"
+                        )
+                    );
+                }
 
                 void ValidateXml(string xmlString)
                 {
@@ -92,19 +104,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     if (!Directory.Exists(_pathHelper.GetFilePath(fullPath)))
                         _fileIOHelper.CreateDirectory(_pathHelper.GetFilePath(fullPath));
 
-                    XmlDocument saveDocument = _xmlDocumentHelpers.ToXmlDocument(xmlDocument.DocumentElement!.OuterXml);
-                    saveDocument.DocumentElement!.RemoveChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
-                    (
-                        _xmlDocumentHelpers.SelectSingleElement
-                        (
-                            saveDocument,
-                            $"/forms/form[@name='{XmlDataConstants.BUILTINFUNCTIONSFORMROOTNODENAME}']"
-                        )
-                    );
+                    XmlDocument saveDocument = _xmlDocumentHelpers.ToXmlDocument(_xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml);
+                    RemoveBuildtInFunctions(saveDocument);
 
-                    ValidateXml(saveDocument.DocumentElement.OuterXml);
-
-                    _encryption.EncryptToFile(fullPath, saveDocument.DocumentElement.OuterXml);
+                    string xmlToSave = _xmlDocumentHelpers.GetDocumentElement(saveDocument).OuterXml;
+                    ValidateXml(xmlToSave);
+                    _encryption.EncryptToFile(fullPath, xmlToSave);
                 }
             }
             catch (XmlException ex)

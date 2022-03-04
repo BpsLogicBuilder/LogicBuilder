@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
         private readonly IXmlValidator _xmlValidator;
         private readonly ICreateFragments _createFragments;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public LoadFragments(IConfigurationService configurationService, IXmlValidator xmlValidator, ICreateFragments createFragments, IContextProvider contextProvider)
         {
@@ -27,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _pathHelper = contextProvider.PathHelper;
             _messageBoxOptionsHelper = contextProvider.MessageBoxOptionsHelper;
             _createFragments = createFragments;
+            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _xmlValidator = xmlValidator;
         }
 
@@ -45,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
                 XmlDocument xmlDocument = new();
                 xmlDocument.Load(fullPath);
-                ValidateXml(xmlDocument.DocumentElement!.OuterXml);/*Not null at this point - file has been created if missing.*/
+                ValidateXml(_xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml);
 
                 return xmlDocument;
 

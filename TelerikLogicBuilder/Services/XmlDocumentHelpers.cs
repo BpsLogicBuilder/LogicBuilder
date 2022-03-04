@@ -220,8 +220,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         }
 
         public List<XmlElement> SelectElements(XmlDocument xmlDocument, string xPath) 
-            => xmlDocument.SelectNodes(xPath)!/*SelectNodes is never null when XmlNode is XmlDocument*/
-                .OfType<XmlElement>().ToList();
+            => xmlDocument
+                .SelectNodes(xPath)!/*SelectNodes is never null when XmlNode is XmlDocument*/
+                .OfType<XmlElement>()
+                .ToList();
 
         public XmlElement SelectSingleElement(XmlDocument xmlDocument, string xPath)
         {

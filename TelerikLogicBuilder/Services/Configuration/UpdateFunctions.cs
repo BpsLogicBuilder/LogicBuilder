@@ -63,7 +63,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                         throw _exceptionHelper.CriticalException("{8DAF378E-9690-4AE5-A789-D8110404535E}");
 
                     XmlDocument saveDocument = _xmlDocumentHelpers.ToXmlDocument(xmlDocument.DocumentElement.OuterXml);
-                    saveDocument.DocumentElement!.RemoveChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                    //xmlDocument is not being used after the save but we still create a new document to save to prevent
+                    //side effects on the original document.
+                    XmlElement saveDocumentElement = _xmlDocumentHelpers.GetDocumentElement(saveDocument);
+                    saveDocumentElement.RemoveChild
                     (
                         _xmlDocumentHelpers.SelectSingleElement
                         (
@@ -72,9 +75,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                         )
                     );
 
-                    ValidateXml(saveDocument.DocumentElement.OuterXml);
-
-                    _encryption.EncryptToFile(fullPath, saveDocument.DocumentElement.OuterXml);
+                    string xmlToSave = saveDocumentElement.OuterXml;
+                    ValidateXml(xmlToSave);
+                    _encryption.EncryptToFile(fullPath, xmlToSave);
                 }
             }
             catch (XmlException ex)

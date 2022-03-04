@@ -51,17 +51,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
                 AppendBuildtInFunctions(xmlDocument);
-                ValidateXml(xmlDocument.DocumentElement!.OuterXml);/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                ValidateXml(_xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml);
 
                 return xmlDocument;
 
                 void AppendBuildtInFunctions(XmlDocument xmlDocument)
-                    => xmlDocument.DocumentElement!.AppendChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
+                    => _xmlDocumentHelpers.GetDocumentElement(xmlDocument).AppendChild
                     (
                         _xmlDocumentHelpers.MakeFragment
                         (
                             xmlDocument,
-                            _builtInFunctionsLoader.Load().DocumentElement!.OuterXml/*Not null dynamically geneerated XML.*/
+                            _xmlDocumentHelpers.GetDocumentElement(_builtInFunctionsLoader.Load()).OuterXml
                         )
                     );
 
