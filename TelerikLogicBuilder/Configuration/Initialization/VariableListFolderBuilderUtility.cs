@@ -22,19 +22,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             if (xmlDocument == null)
                 throw _exceptionHelpers.CriticalException("{451DB316-8A0D-405E-9E75-B1FE6C8B4EA8}");
 
-            XmlNode? xnodRoot = xmlDocument.SelectSingleNode($"/{XmlDataConstants.FOLDERELEMENT}");
+            XmlElement xnodRoot = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, $"/{XmlDataConstants.FOLDERELEMENT}");
 
-            if (xnodRoot != null)
-            {
-                TreeFolder treeFolder = new(Strings.variablesRootNodeText, new List<string>(), new List<TreeFolder>());
-                GetFolderChildren(xnodRoot, treeFolder);
-                RemoveEmptyFolders(treeFolder);
-                return treeFolder;
-            }
-            else
-            {
-                throw _exceptionHelpers.CriticalException("{582FF9B1-D5CE-4B03-9009-A6FD8D225062}");
-            }
+            TreeFolder treeFolder = new(Strings.variablesRootNodeText, new List<string>(), new List<TreeFolder>());
+            GetFolderChildren(xnodRoot, treeFolder);
+            RemoveEmptyFolders(treeFolder);
+            return treeFolder;
         }
 
         private void GetFolderChildren(XmlNode xmlNode, TreeFolder treeFolder)

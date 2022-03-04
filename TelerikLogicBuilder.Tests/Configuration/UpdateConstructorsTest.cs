@@ -29,6 +29,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
             ILoadConstructors loadConstructors = serviceProvider.GetRequiredService<ILoadConstructors>();
             IUpdateConstructors updateConstructors = serviceProvider.GetRequiredService<IUpdateConstructors>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             configurationService.ProjectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
@@ -41,7 +42,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.Equal(XmlDataConstants.FORMELEMENT, result.DocumentElement!.Name);
-            Assert.Equal("OperatorGroup", ((XmlElement)result.SelectSingleNode("//constructor")!).GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            Assert.Equal("OperatorGroup", xmlDocumentHelpers.SelectSingleElement(result, "//constructor").GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
 
             static XmlDocument GetDocumentToSave()
             {

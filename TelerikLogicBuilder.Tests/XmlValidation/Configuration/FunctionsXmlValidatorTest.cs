@@ -121,9 +121,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<literalParameter name=""value1"" >
                                             <literalType>String</literalType>
                                             <control>SingleLineTextBox</control>
@@ -538,9 +539,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<literalParameter name=""value1"" >
                                             <literalType>String</literalType>
                                             <control>ParameterSourcedPropertyInput</control>
@@ -597,9 +599,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<literalParameter name=""value1"" >
                                             <literalType>String</literalType>
                                             <control>ParameterSourcedPropertyInput</control>
@@ -639,9 +642,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<literalListParameter name=""value1"">
 					                        <literalType>String</literalType>
 					                        <listType>GenericList</listType>
@@ -704,9 +708,10 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<literalListParameter name=""value1"">
 					                        <literalType>String</literalType>
 					                        <listType>GenericList</listType>
@@ -752,6 +757,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
@@ -759,7 +765,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<genericParameter name=""value1"" >
                                             <genericArgumentName>A</genericArgumentName>
                                             <optional>false</optional>
@@ -778,9 +784,9 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                                             <domain />
                                             <comments />
                                         </literalParameter>";
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
+            XmlNode genericArgumentsNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}")!;
+            XmlNode returnTypeNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.RETURNTYPEELEMENT}");
             returnTypeNode.InnerXml = @"<generic>
 						                    <genericArgumentName>A</genericArgumentName>
 					                    </generic>";
@@ -797,6 +803,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
@@ -804,7 +811,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<genericListParameter name=""value1"" >
                                             <genericArgumentName>A</genericArgumentName>
                                             <listType>GenericList</listType>
@@ -825,9 +832,9 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
                                             <domain />
                                             <comments />
                                         </literalParameter>";
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
+            XmlNode genericArgumentsNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}")!;
+            XmlNode returnTypeNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.RETURNTYPEELEMENT}");
             returnTypeNode.InnerXml = @"<generic>
 						                    <genericArgumentName>A</genericArgumentName>
 					                    </generic>";
@@ -844,6 +851,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
@@ -851,7 +859,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
+            XmlNode genericArgumentsNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
             genericArgumentsNode.InnerXml = @"<item>?A</item>";
 
             //act
@@ -879,6 +887,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.This)!
@@ -886,7 +895,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
 
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
+            XmlNode genericArgumentsNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
             genericArgumentsNode.InnerXml = @"<item>A</item><item>B</item>";
 
             //act
@@ -913,6 +922,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
@@ -920,9 +930,9 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
+            XmlNode genericArgumentsNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode returnTypeNode = document.SelectSingleNode($"//{XmlDataConstants.RETURNTYPEELEMENT}")!;
+            XmlNode returnTypeNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.RETURNTYPEELEMENT}");
             returnTypeNode.InnerXml = @"<generic>
 						                    <genericArgumentName>B</genericArgumentName>
 					                    </generic>";
@@ -952,6 +962,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         {
             //arrange
             IFunctionsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IFunctionsXmlValidator>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCECATEGORYELEMENT] = Enum.GetName(typeof(ReferenceCategories), ReferenceCategories.Type)!,
@@ -959,9 +970,9 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
             };
             XmlDocument document = new();
             document.LoadXml(GetXmlString(fieldsToSet));
-            XmlNode genericArgumentsNode = document.SelectSingleNode($"//{XmlDataConstants.GENERICARGUMENTSELEMENT}")!;
+            XmlNode genericArgumentsNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.GENERICARGUMENTSELEMENT}");
             genericArgumentsNode.InnerXml = @"<item>A</item>";
-            XmlNode parametersNode = document.SelectSingleNode($"//{XmlDataConstants.PARAMETERSELEMENT}")!;
+            XmlNode parametersNode = xmlDocumentHelpers.SelectSingleElement(document, $"//{XmlDataConstants.PARAMETERSELEMENT}");
             parametersNode.InnerXml = @"<genericParameter name=""value1"" >
                                             <genericArgumentName>B</genericArgumentName>
                                             <optional>false</optional>

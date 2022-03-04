@@ -95,10 +95,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     XmlDocument saveDocument = _xmlDocumentHelpers.ToXmlDocument(xmlDocument.DocumentElement!.OuterXml);
                     saveDocument.DocumentElement!.RemoveChild/*Not null if loaded using XmlDocumentHelpers.ToXmlDocument.*/
                     (
-                        saveDocument.SelectSingleNode
+                        _xmlDocumentHelpers.SelectSingleElement
                         (
+                            saveDocument,
                             $"/forms/form[@name='{XmlDataConstants.BUILTINFUNCTIONSFORMROOTNODENAME}']"
-                        )!/*This node is always present in the created document.  See the caal to AppendBuildtInFunctions() above.*/
+                        )
                     );
 
                     ValidateXml(saveDocument.DocumentElement.OuterXml);
