@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using System.Collections.Generic;
@@ -11,20 +12,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
     internal class FunctionDictionaryBuilder : IFunctionDictionaryBuilder
     {
         private readonly IFunctionXmlParser _functionXmlParser;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public FunctionDictionaryBuilder(IFunctionXmlParser functionXmlParser)
+        public FunctionDictionaryBuilder(IFunctionXmlParser functionXmlParser, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _functionXmlParser = functionXmlParser;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public IDictionary<string, Function> GetDictionary(XmlDocument xmlDocument)
-            => xmlDocument
-                .SelectNodes($"//{XmlDataConstants.FUNCTIONELEMENT}")!/*Never null when SelectNodes is called on an XmlDocument*/
-                .OfType<XmlElement>()
-                .ToDictionary
-                (
-                    e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                    e => _functionXmlParser.Parse(e)
-                );
+            => _xmlDocumentHelpers.SelectElements
+            (
+                xmlDocument, 
+                $"//{XmlDataConstants.FUNCTIONELEMENT}"
+            )
+            .ToDictionary
+            (
+                e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                e => _functionXmlParser.Parse(e)
+            );
     }
 }

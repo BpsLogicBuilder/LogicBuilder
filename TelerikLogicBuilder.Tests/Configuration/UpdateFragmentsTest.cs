@@ -30,6 +30,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
             ILoadFragments loadFragments = serviceProvider.GetRequiredService<ILoadFragments>();
             IUpdateFragments updateFragments = serviceProvider.GetRequiredService<IUpdateFragments>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             configurationService.ProjectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
@@ -44,11 +45,11 @@ namespace TelerikLogicBuilder.Tests.Configuration
             Assert.Equal(XmlDataConstants.FOLDERELEMENT, result.DocumentElement!.Name);
             Assert.Single
             (
-                result.SelectNodes
+                xmlDocumentHelpers.SelectElements
                 (
+                    result,
                     $"//{XmlDataConstants.FRAGMENTELEMENT}"
-                )!
-                .OfType<XmlElement>()
+                )
             );
 
             static XmlDocument GetDocumentToSave()

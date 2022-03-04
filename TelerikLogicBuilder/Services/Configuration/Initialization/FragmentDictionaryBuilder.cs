@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using System.Collections.Generic;
@@ -11,20 +12,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
     internal class FragmentDictionaryBuilder : IFragmentDictionaryBuilder
     {
         private readonly IFragmentXmlParser _fragmentXmlParser;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public FragmentDictionaryBuilder(IFragmentXmlParser fragmentXmlParser)
+        public FragmentDictionaryBuilder(IFragmentXmlParser fragmentXmlParser, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _fragmentXmlParser = fragmentXmlParser;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public IDictionary<string, Fragment> GetDictionary(XmlDocument xmlDocument)
-            => xmlDocument
-                .SelectNodes($"//{XmlDataConstants.FRAGMENTELEMENT}")!/*Never null when SelectNodes is called on an XmlDocument*/
-                .OfType<XmlElement>()
-                .ToDictionary
-                (
-                    e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                    e => _fragmentXmlParser.Parse(e)
-                );
+            => _xmlDocumentHelpers.SelectElements
+            (
+                xmlDocument, 
+                $"//{XmlDataConstants.FRAGMENTELEMENT}"
+            )
+            .ToDictionary
+            (
+                e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                e => _fragmentXmlParser.Parse(e)
+            );
     }
 }

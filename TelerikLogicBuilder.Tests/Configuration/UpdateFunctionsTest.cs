@@ -30,6 +30,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
             ILoadFunctions loadFunctions = serviceProvider.GetRequiredService<ILoadFunctions>();
             IUpdateFunctions updateFunctions = serviceProvider.GetRequiredService<IUpdateFunctions>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             configurationService.ProjectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
@@ -42,7 +43,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement!.Name);
-            Assert.Equal(2, result.SelectNodes($"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']/function")!.OfType<XmlElement>().Count());
+            Assert.Equal(2, xmlDocumentHelpers.SelectElements(result, $"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']/function").Count());
 
             static XmlDocument GetDocumentToSave()
             {

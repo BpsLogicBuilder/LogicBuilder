@@ -165,7 +165,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {//The formatted writer inserts newline and tabs in from of the first
                 //child element for mixed XML whne the first child is an elemnt.
                 //The empty string significant whitespace is a workaround to avoid the new lines.
-                foreach (XmlNode element in xmlDocument.SelectNodes("//literalParameter|//literal|//literalVariable|//text")!)/*Never null when SelectNodes is called on an XmlDocument.*/
+                foreach (XmlElement element in SelectElements(xmlDocument, "//literalParameter|//literal|//literalVariable|//text"))
                 {
                     if (
                             element.ChildNodes.Count > 1
@@ -217,6 +217,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 xmlDocumentFragment.InnerXml = innerXml;
 
             return xmlDocumentFragment;
+        }
+
+        public List<XmlElement> SelectElements(XmlDocument xmlDocument, string xPath) 
+            => xmlDocument.SelectNodes(xPath)!/*SelectNodes is never null when XmlNode is XmlDocument*/
+                .OfType<XmlElement>().ToList();
+
+        public XmlElement SelectSingleElement(XmlDocument xmlDocument, string xPath)
+        {
+            if (xmlDocument.SelectSingleNode(xPath) is not XmlElement xmlElement)
+                throw _exceptionHelper.CriticalException("{AD1845E9-CF50-45B5-B7BC-183B644F05C5}");
+
+            return xmlElement;
         }
 
         public XmlDocument ToXmlDocument(XmlNode xmlNode, bool preserveWhiteSpace = true) 

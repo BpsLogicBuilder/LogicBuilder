@@ -30,6 +30,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
             ILoadVariables loadVariables = serviceProvider.GetRequiredService<ILoadVariables>();
             IUpdateVariables updateVariables = serviceProvider.GetRequiredService<IUpdateVariables>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             configurationService.ProjectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
@@ -44,12 +45,12 @@ namespace TelerikLogicBuilder.Tests.Configuration
             Assert.Equal(XmlDataConstants.FOLDERELEMENT, result.DocumentElement!.Name);
             Assert.Equal
             (
-                2, 
-                result.SelectNodes
+                2,
+                xmlDocumentHelpers.SelectElements
                 (
+                    result,
                     $"//{XmlDataConstants.LITERALVARIABLEELEMENT}|//{XmlDataConstants.OBJECTVARIABLEELEMENT}|//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT}"
-                )!
-                .OfType<XmlElement>()
+                )
                 .Count()
             );
 

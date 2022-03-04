@@ -19,6 +19,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         XmlAttribute MakeAttribute(XmlDocument xmlDocument, string name, string attributeValue);
         XmlElement MakeElement(XmlDocument xmlDocument, string name, string? innerXml = null, IDictionary<string, string>? attributes = null);
         XmlDocumentFragment MakeFragment(XmlDocument xmlDocument, string? innerXml = null);
+        List<XmlElement> SelectElements(XmlDocument xmlDocument, string xPath);
+        XmlElement SelectSingleElement(XmlDocument xmlDocument, string xPath);
         XmlDocument ToXmlDocument(XmlNode xmlNode, bool preserveWhiteSpace = true);
         XmlDocument ToXmlDocument(string xmlString, bool preserveWhiteSpace = true);
     }

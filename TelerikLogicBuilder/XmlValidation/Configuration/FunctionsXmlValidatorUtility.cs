@@ -55,9 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
         private void NonSchemaValidation(XmlDocument xDoc)
         {
-            xDoc.SelectNodes($"//{XmlDataConstants.FUNCTIONELEMENT}")!/*Never null when SelectNodes is called on an XmlDocument.*/
-                .OfType<XmlElement>()
-                .ToList()
+            _xmlDocumentHelpers.SelectElements(xDoc, $"//{XmlDataConstants.FUNCTIONELEMENT}")
                 .ForEach(functionNode =>
                 {
                     Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(functionNode)

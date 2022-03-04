@@ -68,8 +68,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
 
         private void NonSchemaValidation(XmlDocument xDoc)
         {
-            xDoc.SelectNodes
+            _xmlDocumentHelpers.SelectElements
             (
+                xDoc,
                 string.Format
                 (
                     CultureInfo.InvariantCulture, 
@@ -79,9 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                     XmlDataConstants.LITERALLISTVARIABLEELEMENT, 
                     XmlDataConstants.OBJECTLISTVARIABLEELEMENT
                 )
-            )!/*Never null when SelectNodes is called on an XmlDocument*/
-            .OfType<XmlElement>()
-            .ToList()
+            )
             .ForEach(variableNode =>
             {
                 Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(variableNode)

@@ -12,15 +12,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
     internal class VariablesXmlParser : IVariablesXmlParser
     {
         private readonly IContextProvider _contextProvider;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public VariablesXmlParser(IContextProvider contextProvider)
         {
+            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _contextProvider = contextProvider;
         }
 
         public IDictionary<string, VariableBase> GetVariablesDictionary(XmlDocument xmlDocument)
-            => xmlDocument.SelectNodes
+            => _xmlDocumentHelpers.SelectElements
             (
+                xmlDocument,
                 string.Format
                 (
                     CultureInfo.InvariantCulture, 
@@ -30,8 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                     XmlDataConstants.LITERALLISTVARIABLEELEMENT, 
                     XmlDataConstants.OBJECTLISTVARIABLEELEMENT
                 )
-            )!/*Never null when SelectNodes is called on an XmlDocument*/
-            .OfType<XmlElement>()
+            )
             .ToDictionary
             (
                 e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
