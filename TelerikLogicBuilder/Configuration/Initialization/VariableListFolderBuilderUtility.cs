@@ -43,22 +43,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             (
                 xmlNode, 
                 e => new HashSet<string> { XmlDataConstants.LITERALVARIABLEELEMENT, XmlDataConstants.OBJECTVARIABLEELEMENT, XmlDataConstants.LITERALLISTVARIABLEELEMENT, XmlDataConstants.OBJECTLISTVARIABLEELEMENT }.Contains(e.Name),
-                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
+                e => e.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
             )
             .ForEach
             (
-                variableNode => treeFolder.FileNames.Add(variableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Attribute is required by schema definition*/
+                variableNode => treeFolder.FileNames.Add(variableNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
             );
 
             _xmlDocumentHelpers.GetChildElements
             (
                 xmlNode, 
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)/*Name attribute is required by shema definition*/
+                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
             )
             .ForEach(folderNode =>
             {
-                TreeFolder childFolder = new(folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value/*Name attribute is required by shema definition*/, new List<string>(), new List<TreeFolder>());
+                TreeFolder childFolder = new(folderNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), new List<string>(), new List<TreeFolder>());
                 treeFolder.FolderNames.Add(childFolder);
                 GetFolderChildren(folderNode, childFolder);
             });

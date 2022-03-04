@@ -26,7 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             return new Fragment
             (
-                xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
+                xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                 _xmlDocumentHelpers.GetXmlString
                 (
                     _xmlDocumentHelpers.ToXmlDocument(xmlElement.FirstChild!)/*Fragment element always has a first child by schema definition*/

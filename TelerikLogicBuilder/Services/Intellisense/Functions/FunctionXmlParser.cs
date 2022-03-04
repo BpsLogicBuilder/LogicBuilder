@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
             {
                 return new Function
                 (
-                    xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
+                    xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                     elements[XmlDataConstants.MEMBERNAMEELEMENT].InnerText,
                     _enumHelper.ParseEnumText<FunctionCategories>(elements[XmlDataConstants.FUNCTIONCATEGORYELEMENT].InnerText),
                     elements[XmlDataConstants.TYPENAMEELEMENT].InnerText,

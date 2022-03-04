@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -100,6 +101,33 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        public void GetDocumentElementsWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlDocument xmlDocument = GetXmlDocument(@"<genericParameter name=""Refresh"">
+					<genericArgumentName>T</genericArgumentName>
+				</genericParameter>");
+
+            //act
+            var result = helper.GetDocumentElement(xmlDocument);
+
+            //assert
+            Assert.Equal("genericParameter", result.Name);
+        }
+
+        [Fact]
+        public void GetDocumentElementsThrowsCriticalExceptionIfDocumentElementIsNull()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlDocument xmlDocument = new();
+
+            //assert
+            Assert.Throws<CriticalLogicBuilderException>(() => helper.GetDocumentElement(xmlDocument));
+        }
+
+        [Fact]
         public void GetSiblingParameterElementsWorks()
         {
             //arrange
@@ -168,7 +196,7 @@ namespace TelerikLogicBuilder.Tests
             (
                 parametersElement, 
                 e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT 
-                    && e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value == "Refresh"
+                    && e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE) == "Refresh"
             );
 
             //act
@@ -176,8 +204,8 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(2, result.Count);
-            Assert.Equal("Page Sizes", result.First().Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
-            Assert.Equal("Button Count", result.Last().Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
+            Assert.Equal("Page Sizes", result.First().GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            Assert.Equal("Button Count", result.Last().GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
         }
 
         [Fact]

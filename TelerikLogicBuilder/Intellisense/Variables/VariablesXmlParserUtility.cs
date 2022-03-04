@@ -32,10 +32,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         internal VariableBase Variable 
             => this.variableTypeCategory switch
             {
-                VariableTypeCategory.Literal => BuildLiteralVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value/*Attribute is required by schema definition*/, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
-                VariableTypeCategory.Object => BuildObjectVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value/*Attribute is required by schema definition*/, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
-                VariableTypeCategory.LiteralList => BuildLiteralListVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value/*Attribute is required by schema definition*/, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
-                VariableTypeCategory.ObjectList => BuildObjectListVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value/*Attribute is required by schema definition*/, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.Literal => BuildLiteralVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.Object => BuildObjectVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.LiteralList => BuildLiteralListVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.ObjectList => BuildObjectListVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
                 _ => throw _exceptionHelper.CriticalException("{1F294C7F-AC82-4020-8C3A-5007DD24E0E9}"),
             };
         #endregion Properties

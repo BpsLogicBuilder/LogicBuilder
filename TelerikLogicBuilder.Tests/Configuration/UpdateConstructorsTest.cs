@@ -41,7 +41,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.Equal(XmlDataConstants.FORMELEMENT, result.DocumentElement!.Name);
-            Assert.Equal("OperatorGroup", result.SelectSingleNode("//constructor")!.Attributes![XmlDataConstants.NAMEATTRIBUTE]!.Value);
+            Assert.Equal("OperatorGroup", ((XmlElement)result.SelectSingleNode("//constructor")!).GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
 
             static XmlDocument GetDocumentToSave()
             {

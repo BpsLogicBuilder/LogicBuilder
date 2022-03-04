@@ -42,8 +42,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
                 Application GetApplication(Dictionary<string, XmlElement> elements)
                     => new
                     (
-                        xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
-                        xmlElement.Attributes[XmlDataConstants.NICKNAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
+                        xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        xmlElement.GetAttribute(XmlDataConstants.NICKNAMEATTRIBUTE),
                         elements[XmlDataConstants.ACTIVITYASSEMBLYELEMENT].InnerText.Trim(),
                         elements[XmlDataConstants.ACTIVITYASSEMBLYPATHELEMENT].InnerText.Trim(),
                         _enumHelper.ParseEnumText<RuntimeType>(elements[XmlDataConstants.RUNTIMEELEMENT].InnerText.Trim()),

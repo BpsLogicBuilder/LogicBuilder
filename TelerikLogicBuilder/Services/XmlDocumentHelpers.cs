@@ -93,6 +93,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 : getChildElements().ToList();
         }
 
+        public XmlElement GetDocumentElement(XmlDocument xmlDocument)
+        {
+            if (xmlDocument.DocumentElement == null)
+                throw _exceptionHelper.CriticalException("{1FF53CC7-2D56-4E59-8AC4-AAC49D7BF296}");
+
+            return xmlDocument.DocumentElement;
+        }
+
         public List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode)
         {
             switch (parameterElement.Name)
@@ -108,7 +116,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 && constructorOrFunctionNode.Name != XmlDataConstants.FUNCTIONELEMENT)
                 throw _exceptionHelper.CriticalException("{D3537A44-DA97-4393-A4F5-6683C0BA9981}");
 
-            return GetElements(parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);/*Attribute is required by schema definition.*/
+            return GetElements(parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
 
             List<XmlElement> GetElements(string parameterName) 
                 => GetChildElements

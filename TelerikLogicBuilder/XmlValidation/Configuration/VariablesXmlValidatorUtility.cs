@@ -90,7 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration
                 ValidateElement
                 (
                     elements,
-                    variableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Name attribute is required by schema definition*/
+                    variableNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                     (VariableCategory)Enum.Parse(typeof(VariableCategory), elements[XmlDataConstants.VARIABLECATEGORYELEMENT].InnerText.Trim()),
                     (ReferenceCategories)Enum.Parse(typeof(ReferenceCategories), elements[XmlDataConstants.REFERENCECATEGORYELEMENT].InnerText.Trim()),
                     _stringHelper.SplitWithQuoteQualifier(elements[XmlDataConstants.REFERENCEDEFINITIONELEMENT].InnerText.Trim(), MiscellaneousConstants.PERIODSTRING),

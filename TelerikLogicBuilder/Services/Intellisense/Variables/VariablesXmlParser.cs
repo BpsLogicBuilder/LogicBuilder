@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
             .OfType<XmlElement>()
             .ToDictionary
             (
-                e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,/*Attribute is required by schema definition*/
+                e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                 e => Parse(e)
             );
 
