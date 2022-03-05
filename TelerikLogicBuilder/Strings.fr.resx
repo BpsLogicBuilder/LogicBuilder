@@ -188,9 +188,17 @@
     <value>Class "{0}" could not be loaded.FR</value>
     <comment>0=ActivityClass</comment>
   </data>
+	<data name="cannotLoadPropertySourceParameterFormat" xml:space="preserve">
+    <value>Cannot find the required property sourced parameter "{0}" for the parameter "{1}" in constructor "{2}". The property sourced parameter must be one of the sibling parameters {3} when the control is {4}.FR</value>
+    <comment>0=sourceParameter; 1=parameter; 2=constructor;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
+  </data>
 	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".FR</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="constrGenericArgNameInvalidFormat" xml:space="preserve">
+    <value>The generic argument name "{0}" for generic parameter "{1}" in contructor "{2}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
+    <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
   </data>
 	<data name="constructorsRootFolderText" xml:space="preserve">
     <value>ConstructorsFR</value>
@@ -546,12 +554,20 @@
     <value>Generic methods are not supported. Method name: "{0}".FR</value>
     <comment>0=methodName</comment>
   </data>
+	<data name="genericParameterArgNameNotFoundFormat" xml:space="preserve">
+    <value>The generic argument name "{0}" for generic parameter "{1}" in contructor "{2}" is not one of the constructor's generic arguments: "{3}".FR</value>
+    <comment>0=genericArgumentName;1=parameterName;2=constructorName;3=listOfGenericArguments</comment>
+  </data>
   <data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.FR</value>
   </data>
 	<data name="invalidConfigurationDocumentFormat" xml:space="preserve">
     <value>{0} has invalid data.FR</value>
     <comment>{0}=fileFullName</comment>
+  </data>
+	<data name="invalidConsParameterOrder" xml:space="preserve">
+    <value>The parameter order for constructor "{0}" is invalid. Move optional parameters to the end of the parameters list.FR</value>
+    <comment>0=FunctionName</comment>
   </data>
 	<data name="invalidParameterOrder" xml:space="preserve">
     <value>The parameter order for function "{0}" is invalid. Move optional parameters to the end of the parameters list.FR</value>
@@ -617,6 +633,10 @@
   </data>
 	<data name="typeReferenceNameIsInvalidFormat" xml:space="preserve">
     <value>Fully Qualified Type Reference Name field for function {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.FR</value>
+    <comment>0=functionName</comment>
+  </data>
+	<data name="typeReferenceNameIsInvalidConstructorFormat" xml:space="preserve">
+    <value>Fully Qualified Type Reference Name field for constructor {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.FR</value>
     <comment>0=functionName</comment>
   </data>
 	<data name="typeReferenceNameIsInvalidFormatVariable" xml:space="preserve">

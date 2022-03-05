@@ -340,6 +340,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find the required property sourced parameter &quot;{0}&quot; for the parameter &quot;{1}&quot; in constructor &quot;{2}&quot;. The property sourced parameter must be one of the sibling parameters {3} when the control is {4}..
+        /// </summary>
+        internal static string cannotLoadPropertySourceParameterFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadPropertySourceParameterFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cast Reference As field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string castReferenceAsMustBeEmptyFormat {
@@ -372,6 +381,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string charKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("charKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for contructor &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string constrGenericArgNameInvalidFormat {
+            get {
+                return ResourceManager.GetString("constrGenericArgNameInvalidFormat", resourceCulture);
             }
         }
         
@@ -1573,6 +1591,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for generic parameter &quot;{1}&quot; in contructor &quot;{2}&quot; is not one of the constructor&apos;s generic arguments: &quot;{3}&quot;..
+        /// </summary>
+        internal static string genericParameterArgNameNotFoundFormat {
+            get {
+                return ResourceManager.GetString("genericParameterArgNameNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type Guid..
         /// </summary>
         internal static string guidKeyIndexIsInvalidFormat {
@@ -1641,6 +1668,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidConfigurationDocumentFormat {
             get {
                 return ResourceManager.GetString("invalidConfigurationDocumentFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The parameter order for constructor &quot;{0}&quot; is invalid. Move optional parameters to the end of the parameters list..
+        /// </summary>
+        internal static string invalidConsParameterOrder {
+            get {
+                return ResourceManager.GetString("invalidConsParameterOrder", resourceCulture);
             }
         }
         
@@ -1929,6 +1965,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string truncatedMessageTextFormat {
             get {
                 return ResourceManager.GetString("truncatedMessageTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fully Qualified Type Reference Name field for constructor {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores..
+        /// </summary>
+        internal static string typeReferenceNameIsInvalidConstructorFormat {
+            get {
+                return ResourceManager.GetString("typeReferenceNameIsInvalidConstructorFormat", resourceCulture);
             }
         }
         

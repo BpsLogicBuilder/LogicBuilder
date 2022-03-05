@@ -442,7 +442,7 @@ namespace TelerikLogicBuilder.Tests
             var result = helper.SelectSingleElement(xmlDocument, "//literalParameter");
 
             //assert
-            Assert.True(result is XmlElement);
+            Assert.True(result is not null);
         }
 
         [Fact]

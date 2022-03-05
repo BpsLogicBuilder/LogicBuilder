@@ -43,7 +43,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.Equal(XmlDataConstants.FORMSELEMENT, result.DocumentElement!.Name);
-            Assert.Equal(2, xmlDocumentHelpers.SelectElements(result, $"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']/function").Count());
+            Assert.Equal(2, xmlDocumentHelpers.SelectElements(result, $"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']/function").Count);
 
             static XmlDocument GetDocumentToSave()
             {

@@ -1,15 +1,20 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
-using System;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Configuration;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
 {
     internal class ConstructorsXmlValidator : IConstructorsXmlValidator
     {
-        public XmlValidationResponse Validate(string xmlString)
+        private readonly IContextProvider _contextProvider;
+
+        public ConstructorsXmlValidator(IContextProvider contextProvider)
         {
-            //throw new NotImplementedException();
-            return new XmlValidationResponse { Success = true };
+            _contextProvider = contextProvider;
         }
+
+        public XmlValidationResponse Validate(string xmlString) 
+            => new ConstructorsXmlValidatorUtility(xmlString, _contextProvider).ValidateXmlDocument();
     }
 }

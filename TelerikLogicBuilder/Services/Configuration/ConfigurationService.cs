@@ -8,15 +8,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class ConfigurationService : IConfigurationService
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private ProjectProperties _projectProperties;
-        private ConstructorList _constructorList;
-        private FragmentList _fragmentList;
-        private FunctionList _functionList;
-        private VariableList _variableList;
+        private ProjectProperties? _projectProperties;
+        private ConstructorList? _constructorList;
+        private FragmentList? _fragmentList;
+        private FunctionList? _functionList;
+        private VariableList? _variableList;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public ConfigurationService(IExceptionHelper exceptionHelper)
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             _exceptionHelper = exceptionHelper;
         }

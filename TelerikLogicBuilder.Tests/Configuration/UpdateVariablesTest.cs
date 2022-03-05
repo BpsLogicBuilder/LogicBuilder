@@ -51,7 +51,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                     result,
                     $"//{XmlDataConstants.LITERALVARIABLEELEMENT}|//{XmlDataConstants.OBJECTVARIABLEELEMENT}|//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT}"
                 )
-                .Count()
+                .Count
             );
 
             static XmlDocument GetDocumentToSave()
