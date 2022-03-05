@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly ICreateFragments _createFragments;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public LoadFragments(IConfigurationService configurationService, IXmlValidator xmlValidator, ICreateFragments createFragments, IContextProvider contextProvider)
+        public LoadFragments(IContextProvider contextProvider, IConfigurationService configurationService, IXmlValidator xmlValidator, ICreateFragments createFragments)
         {
             _configurationService = configurationService;
             _pathHelper = contextProvider.PathHelper;

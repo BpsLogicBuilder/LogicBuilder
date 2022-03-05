@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IEncryption _encryption;
         private readonly IXmlValidator _xmlValidator;
 
-        public CreateConstructors(IConfigurationService configurationService, IXmlValidator xmlValidator, IContextProvider contextProvider)
+        public CreateConstructors(IContextProvider contextProvider, IConfigurationService configurationService, IXmlValidator xmlValidator)
         {
             _configurationService = configurationService;
             _pathHelper = contextProvider.PathHelper;

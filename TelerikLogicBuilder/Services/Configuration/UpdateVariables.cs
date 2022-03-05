@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlValidator _xmlValidator;
 
-        public UpdateVariables(IConfigurationService configurationService, IXmlValidator xmlValidator, IContextProvider contextProvider)
+        public UpdateVariables(IContextProvider contextProvider, IConfigurationService configurationService, IXmlValidator xmlValidator)
         {
             _configurationService = configurationService;
             _pathHelper = contextProvider.PathHelper;
