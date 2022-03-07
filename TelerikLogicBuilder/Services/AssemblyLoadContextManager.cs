@@ -16,10 +16,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private readonly IPathHelper _pathHelper;
         private Dictionary<string, LogicBuilderAssemblyLoadContext>? _loadContexts;
 
-        public AssemblyLoadContextManager(IConfigurationService configurationService, IPathHelper pathHelper)
+        public AssemblyLoadContextManager(IContextProvider contextProvider)
         {
-            _configurationService = configurationService;
-            _pathHelper = pathHelper;
+            _configurationService = contextProvider.ConfigurationService;
+            _pathHelper = contextProvider.PathHelper;
         }
 
         public void CreateLoadContexts()

@@ -1,27 +1,29 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ContextProvider : IContextProvider
     {
-        public ContextProvider(IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IStringHelper stringHelper, IXmlDocumentHelpers xmlDocumentHelpers, IReflectionHelper reflectionHelper, ITypeHelper typeHelper, IEncryption encryption, IPathHelper pathHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper, IVariableHelper variableHelper)
+        public ContextProvider(IConfigurationService configurationService, IEncryption encryption, IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper, IPathHelper pathHelper, IReflectionHelper reflectionHelper, IStringHelper stringHelper, ITypeHelper typeHelper, IVariableHelper variableHelper, IXmlDocumentHelpers xmlDocumentHelpers)
         {
+            ConfigurationService = configurationService;
+            Encryption = encryption;
             EnumHelper = enumHelper;
             ExceptionHelper = exceptionHelper;
-            StringHelper = stringHelper;
-            XmlDocumentHelpers = xmlDocumentHelpers;
-            ReflectionHelper = reflectionHelper;
-            TypeHelper = typeHelper;
-            Encryption = encryption;
-            PathHelper = pathHelper;
             FileIOHelper = fileIOHelper;
             MessageBoxOptionsHelper = messageBoxOptionsHelper;
+            PathHelper = pathHelper;
+            ReflectionHelper = reflectionHelper;
+            StringHelper = stringHelper;
+            TypeHelper = typeHelper;
             VariableHelper = variableHelper;
+            XmlDocumentHelpers = xmlDocumentHelpers;
         }
 
+        public IConfigurationService ConfigurationService { get; }
         public IEncryption Encryption { get; }
         public IEnumHelper EnumHelper { get; }
         public IExceptionHelper ExceptionHelper { get; }

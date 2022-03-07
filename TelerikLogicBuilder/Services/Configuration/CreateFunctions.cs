@@ -22,9 +22,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IXmlValidator _xmlValidator;
         private readonly IBuiltInFunctionsLoader _builtInFunctionsLoader;
 
-        public CreateFunctions(IContextProvider contextProvider, IConfigurationService configurationService, IXmlValidator xmlValidator, IBuiltInFunctionsLoader builtInFunctionsLoader)
+        public CreateFunctions(IContextProvider contextProvider, IXmlValidator xmlValidator, IBuiltInFunctionsLoader builtInFunctionsLoader)
         {
-            _configurationService = configurationService;
+            _configurationService = contextProvider.ConfigurationService;
             _pathHelper = contextProvider.PathHelper;
             _fileIOHelper = contextProvider.FileIOHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;

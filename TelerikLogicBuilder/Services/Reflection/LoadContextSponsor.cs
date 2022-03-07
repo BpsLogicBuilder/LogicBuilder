@@ -20,11 +20,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         private readonly IAssemblyLoadContextManager _assemblyLoadContextService;
         private readonly IApplicationTypeInfoManager _applicationTypeInfoService;
 
-        public LoadContextSponsor(IPathHelper pathHelper, IConfigurationService configurationService, IFileIOHelper fileIOHelper, IAssemblyLoadContextManager assemblyLoadContextService, IApplicationTypeInfoManager applicationTypeInfoService)
+        public LoadContextSponsor(IContextProvider contextProvider, IAssemblyLoadContextManager assemblyLoadContextService, IApplicationTypeInfoManager applicationTypeInfoService)
         {
-            _pathHelper = pathHelper;
-            _configurationService = configurationService;
-            _fileIOHelper = fileIOHelper;
+            _pathHelper = contextProvider.PathHelper;
+            _configurationService = contextProvider.ConfigurationService;
+            _fileIOHelper = contextProvider.FileIOHelper;
             _assemblyLoadContextService = assemblyLoadContextService;
             _applicationTypeInfoService = applicationTypeInfoService;
         }

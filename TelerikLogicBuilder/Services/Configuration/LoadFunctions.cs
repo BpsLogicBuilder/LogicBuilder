@@ -24,9 +24,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IBuiltInFunctionsLoader _builtInFunctionsLoader;
         private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
 
-        public LoadFunctions(IContextProvider contextProvider, IConfigurationService configurationService, IXmlValidator xmlValidator, IBuiltInFunctionsLoader builtInFunctionsLoader, ICreateFunctions createFunctions, IMessageBoxOptionsHelper messageBoxOptionsHelper)
+        public LoadFunctions(IContextProvider contextProvider, IXmlValidator xmlValidator, IBuiltInFunctionsLoader builtInFunctionsLoader, ICreateFunctions createFunctions, IMessageBoxOptionsHelper messageBoxOptionsHelper)
         {
-            _configurationService = configurationService;
+            _configurationService = contextProvider.ConfigurationService;
             _pathHelper = contextProvider.PathHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _encryption = contextProvider.Encryption;

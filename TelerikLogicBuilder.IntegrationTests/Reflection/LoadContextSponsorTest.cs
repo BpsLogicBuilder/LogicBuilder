@@ -7,17 +7,15 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
-using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
-namespace TelerikLogicBuilder.Tests.Reflection
+namespace TelerikLogicBuilder.IntegrationTests.Reflection
 {
     public class LoadContextSponsorTest
     {
         public LoadContextSponsorTest()
         {
-            serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
         #region Fields
@@ -32,7 +30,7 @@ namespace TelerikLogicBuilder.Tests.Reflection
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
             IAssemblyLoadContextManager assemblyLoadContextService = serviceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             ILoadContextSponsor loadContextSponsor = serviceProvider.GetRequiredService<ILoadContextSponsor>();
-            
+
             configurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso",
@@ -56,7 +54,7 @@ namespace TelerikLogicBuilder.Tests.Reflection
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("","","","", contextProvider),
+                        new WebApiDeployment("", "", "", "", contextProvider),
                         contextProvider
                     )
                 },

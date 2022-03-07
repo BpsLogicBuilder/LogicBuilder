@@ -20,12 +20,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         private readonly IPathHelper _pathHelper;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public AssemblyHelper(IAssemblyLoader assemblyLoader, IConfigurationService configurationService, IPathHelper pathHelper, IExceptionHelper exceptionHelper)
+        public AssemblyHelper(IContextProvider contextProvider, IAssemblyLoader assemblyLoader)
         {
+            _configurationService = contextProvider.ConfigurationService;
+            _pathHelper = contextProvider.PathHelper;
+            _exceptionHelper = contextProvider.ExceptionHelper;
             _assemblyLoader = assemblyLoader;
-            _configurationService = configurationService;
-            _pathHelper = pathHelper;
-            _exceptionHelper = exceptionHelper;
         }
 
         public List<Assembly> GetReferencedAssembliesRecursively(Assembly assembly)

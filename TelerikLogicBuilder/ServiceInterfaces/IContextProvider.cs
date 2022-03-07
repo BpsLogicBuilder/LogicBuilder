@@ -1,10 +1,12 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IContextProvider
     {
+        IConfigurationService ConfigurationService { get; }
         IEncryption Encryption { get; }
         IEnumHelper EnumHelper { get; }
         IExceptionHelper ExceptionHelper { get; }

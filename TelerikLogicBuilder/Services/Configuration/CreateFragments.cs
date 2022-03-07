@@ -20,9 +20,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
 
-        public CreateFragments(IContextProvider contextProvider, IConfigurationService configurationService, IXmlValidator xmlValidator)
+        public CreateFragments(IContextProvider contextProvider, IXmlValidator xmlValidator)
         {
-            _configurationService = configurationService;
+            _configurationService = contextProvider.ConfigurationService;
             _pathHelper = contextProvider.PathHelper;
             _fileIOHelper = contextProvider.FileIOHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;

@@ -23,13 +23,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
         private readonly IAssemblyHelper _assemblyHelper;
         private readonly ITypeHelper _typeHelper;
 
-        public ApplicationTypeInfoUtility(IConfigurationService configurationService, IPathHelper pathHelper, IAssemblyLoader assemblyLoader, IAssemblyHelper assemblyHelper, ITypeHelper typeHelper)
+        public ApplicationTypeInfoUtility(IContextProvider contextProvider, IAssemblyLoader assemblyLoader, IAssemblyHelper assemblyHelper)
         {
-            _configurationService = configurationService;
-            _pathHelper = pathHelper;
+            _configurationService = contextProvider.ConfigurationService;
+            _pathHelper = contextProvider.PathHelper;
+            _typeHelper = contextProvider.TypeHelper;
             _assemblyLoader = assemblyLoader;
             _assemblyHelper = assemblyHelper;
-            _typeHelper = typeHelper;
         }
 
         internal ApplicationTypeInfo CreateApplicationTypeInfo()

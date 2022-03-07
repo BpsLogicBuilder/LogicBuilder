@@ -19,9 +19,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public FunctionValidationHelper(IContextProvider contextProvider, IConfigurationService configurationService)
+        public FunctionValidationHelper(IContextProvider contextProvider)
         {
-            _configurationService = configurationService;
+            _configurationService = contextProvider.ConfigurationService;
             _variableHelper = contextProvider.VariableHelper;
             _enumHelper = contextProvider.EnumHelper;
             _exceptionHelper = contextProvider.ExceptionHelper;

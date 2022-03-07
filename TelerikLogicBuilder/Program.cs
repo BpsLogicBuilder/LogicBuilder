@@ -24,6 +24,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.Tests")]
+[assembly: InternalsVisibleTo("TelerikLogicBuilder.IntegrationTests")]
 namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal static class Program
@@ -53,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IReflectionHelper, ReflectionHelper>()
             .AddSingleton<IStringHelper, StringHelper>()
             .AddSingleton<ITypeHelper, TypeHelper>()
+            .AddSingleton<ITypeLoadHelper, TypeLoadHelper>()
             .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
 
             //Configuration

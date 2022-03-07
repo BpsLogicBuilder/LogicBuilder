@@ -1,12 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -15,12 +13,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     internal class TypeHelper : ITypeHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IAssemblyLoadContextManager _assemblyLoadContextService;
 
-        public TypeHelper(IExceptionHelper exceptionHelper, IAssemblyLoadContextManager assemblyLoadContextService)
+        public TypeHelper(IExceptionHelper exceptionHelper)
         {
             _exceptionHelper = exceptionHelper;
-            _assemblyLoadContextService = assemblyLoadContextService;
         }
 
         public bool AreCompatibleForOperation(Type t1, Type t2, CodeBinaryOperatorType op)
@@ -174,56 +170,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 => type.IsGenericType && !type.IsGenericTypeDefinition
                            ? type.AssemblyQualifiedName
                            : type.FullName;
-        }
-
-        public Type? TryGetType(string typeName, ApplicationTypeInfo application)
-        {
-            if (application.AssemblyAvailable
-                    && application.AllTypes.TryGetValue(typeName, out Type? type))
-                return type;
-
-            try
-            {
-                if ((type = Type.GetType(typeName, ResolveAssembly, ResolveType)) != null)
-                    return type;
-            }
-            catch (FileLoadException)
-            {
-                return null;
-            }
-
-            return null;
-
-            Assembly? ResolveAssembly(AssemblyName assemblyName)
-            {
-                if (application.AllAssembliesDictionary.TryGetValue(assemblyName.FullName, out Assembly? assembly))
-                    return assembly;
-
-                if (typeof(string).Assembly.GetName().Name == assemblyName.Name)
-                    return typeof(string).Assembly;
-
-                return LoadAssembly(assemblyName);
-            }
-
-            static Type? ResolveType(Assembly? assembly, string typeName, bool ignoreCase)
-            {
-                if (assembly != null)
-                    return assembly.GetType(typeName);
-
-                return Type.GetType(typeName, false, ignoreCase);
-            }
-
-            Assembly? LoadAssembly(AssemblyName assemblyName)
-            {
-                try
-                {
-                    return _assemblyLoadContextService.GetAssemblyLoadContext().LoadFromAssemblyName(assemblyName);
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
         }
 
         public bool TryParse(string toParse, Type type, out object? result)
