@@ -103,6 +103,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IConditionsDataParser, ConditionsDataParser>()
             .AddSingleton<IConnectorDataParser, ConnectorDataParser>()
             .AddSingleton<IConstructorDataParser, ConstructorDataParser>()
+            .AddSingleton<IDecisionDataParser, DecisionDataParser>()
+            .AddSingleton<IDecisionsDataParser, DecisionsDataParser>()
+            .AddSingleton<IFunctionDataParser, FunctionDataParser>()
 
             //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()

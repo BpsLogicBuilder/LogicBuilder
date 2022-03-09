@@ -16,11 +16,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         }
 
         #region Properties
-        internal string Name { get; private set; }
-        internal string VisibleText { get; private set; }
-        internal List<GenericConfigBase> GenericArguments { get; private set; }
-        internal List<XmlElement> ParameterElementsList { get; private set; }
-        internal XmlElement ConstructorElement { get; private set; }
+        internal string Name { get;}
+        internal string VisibleText { get; }
+        internal List<GenericConfigBase> GenericArguments { get; }
+        internal List<XmlElement> ParameterElementsList { get; }
+        internal XmlElement ConstructorElement { get; }
         #endregion Properties
     }
 }
