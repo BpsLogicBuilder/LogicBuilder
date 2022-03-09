@@ -196,6 +196,10 @@
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".</value>
     <comment>0=VariableName</comment>
   </data>
+	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
+    <value>The connector category {0} is undefined.</value>
+    <comment>0=connector category</comment>
+  </data>
 	<data name="constrGenericArgNameInvalidFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for contructor "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
@@ -591,6 +595,10 @@
 	<data name="memberNameIsInvalidFormat" xml:space="preserve">
     <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=functionName</comment>
+  </data>
+	<data name="metaObjectRequiredForDialogConnectorsFormat" xml:space="preserve">
+    <value>The {0} element is required for dialog connectors.</value>
+    <comment>0=connector category</comment>
   </data>
 	<data name="multipleChoiceParamNotLastFormat" xml:space="preserve">
     <value>Error configuring method {0}. The connectors multiple choice parameter must be the last parameter.</value>

@@ -385,6 +385,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The connector category {0} is undefined..
+        /// </summary>
+        internal static string connectorCategoryUndefinedFormat {
+            get {
+                return ResourceManager.GetString("connectorCategoryUndefinedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for contructor &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string constrGenericArgNameInvalidFormat {
@@ -1758,6 +1767,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string memberNameIsInvalidFormat {
             get {
                 return ResourceManager.GetString("memberNameIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} element is required for dialog connectors..
+        /// </summary>
+        internal static string metaObjectRequiredForDialogConnectorsFormat {
+            get {
+                return ResourceManager.GetString("metaObjectRequiredForDialogConnectorsFormat", resourceCulture);
             }
         }
         

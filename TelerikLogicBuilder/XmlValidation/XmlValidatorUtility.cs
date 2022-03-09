@@ -52,7 +52,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             {
                 [SchemaName.ProjectPropertiesSchema] = Schemas.ProjectPropertiesSchema,
                 [SchemaName.ShapeDataSchema] = Schemas.ShapeDataSchema,
-                [SchemaName.ConnectorDataSchema] = Schemas.ConnectorDataSchema,
                 [SchemaName.DecisionsDataSchema] = Schemas.DecisionsDataSchema,
                 [SchemaName.ConditionsDataSchema] = Schemas.ConditionsDataSchema,
                 [SchemaName.FunctionsDataSchema] = Schemas.FunctionsDataSchema,

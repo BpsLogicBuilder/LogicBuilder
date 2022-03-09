@@ -1,8 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -11,8 +13,10 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuratio
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization;
+using ABIS.LogicBuilder.FlowBuilder.Services.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
@@ -94,6 +98,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IVariableListInitializer, VariableListInitializer>()
             .AddSingleton<IVariableTreeFolderBuilder, VariableTreeFolderBuilder>()
 
+            //DataParsers
+            .AddSingleton<IAssertFunctionDataParser, AssertFunctionDataParser>()
+            .AddSingleton<IConditionsDataParser, ConditionsDataParser>()
+            .AddSingleton<IConnectorDataParser, ConnectorDataParser>()
+            .AddSingleton<IConstructorDataParser, ConstructorDataParser>()
+
             //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
             .AddSingleton<IConstructorManager, ConstructorManager>()
@@ -108,6 +118,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
             .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
             .AddSingleton<IReturnTypeXmlParser, ReturnTypeXmlParser>()
+
+            //Intellisense.GenericArguments
+            .AddSingleton<IGenericConfigXmlParser, GenericConfigXmlParser>()
 
             //Intellisense.Parameters
             .AddSingleton<IMultipleChoiceParameterValidator, MultipleChoiceParameterValidator>()
@@ -132,6 +145,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IXmlValidator, XmlValidator>()
 
             //XmlValidation.Configuration
+            .AddSingleton<IConnectorDataXmlValidator, ConnectorDataXmlValidator>()
             .AddSingleton<IConstructorsXmlValidator, ConstructorsXmlValidator>()
             .AddSingleton<IFunctionsXmlValidator, FunctionsXmlValidator>()
             .AddSingleton<IVariablesXmlValidator, VariablesXmlValidator>();

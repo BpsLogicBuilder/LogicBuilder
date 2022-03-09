@@ -70,6 +70,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return enumNames.Select(item => (T)Enum.Parse(typeof(T), item)).ToList();
         }
 
+        public GenericConfigCategory GetGenericConfigCategory(string elementName)
+        {
+            return elementName switch
+            {
+                XmlDataConstants.LITERALPARAMETERELEMENT => GenericConfigCategory.Literal,
+                XmlDataConstants.OBJECTPARAMETERELEMENT => GenericConfigCategory.Object,
+                XmlDataConstants.LITERALLISTPARAMETERELEMENT => GenericConfigCategory.LiteralList,
+                XmlDataConstants.OBJECTLISTPARAMETERELEMENT => GenericConfigCategory.ObjectList,
+                _ => throw _exceptionHelper.CriticalException("{2547A733-855E-423D-BAEA-B2D29F3E5A7D}"),
+            };
+        }
+
         public ListType GetListType(Type memberType)
         {
             if (memberType.IsGenericType && memberType.GetGenericTypeDefinition().Equals(typeof(List<>)))

@@ -970,5 +970,32 @@ namespace TelerikLogicBuilder.Tests
             //assert
             Assert.Equal("Field.Property.IntegerKeyIndexer", result);
         }
+
+        [Theory]
+        [InlineData(XmlDataConstants.LITERALPARAMETERELEMENT, GenericConfigCategory.Literal)]
+        [InlineData(XmlDataConstants.OBJECTPARAMETERELEMENT, GenericConfigCategory.Object)]
+        [InlineData(XmlDataConstants.LITERALLISTPARAMETERELEMENT, GenericConfigCategory.LiteralList)]
+        [InlineData(XmlDataConstants.OBJECTLISTPARAMETERELEMENT, GenericConfigCategory.ObjectList)]
+        internal void GetGenericConfigCategoryReturnsTheExpectedCategory(string elementName, GenericConfigCategory expectedCategory)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var category = enumHelper.GetGenericConfigCategory(elementName);
+
+            //assert
+            Assert.Equal(expectedCategory, category);
+        }
+
+        [Fact]
+        public void GetGenericConfigCategoryThrowsCriticalExceptionForInvalidElementName()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetGenericConfigCategory("xyz"));
+        }
     }
 }

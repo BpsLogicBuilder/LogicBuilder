@@ -7,12 +7,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation
 {
     internal class XmlValidator : IXmlValidator
     {
+        private readonly IConnectorDataXmlValidator _connectorDataXmlValidator;
         private readonly IConstructorsXmlValidator _constructorsXmlValidator;
         private readonly IFunctionsXmlValidator _functionsXmlValidator;
         private readonly IVariablesXmlValidator _variablesXmlValidator;
 
-        public XmlValidator(IConstructorsXmlValidator constructorsXmlValidator, IFunctionsXmlValidator functionsXmlValidator, IVariablesXmlValidator variablesXmlValidator)
+        public XmlValidator(IConnectorDataXmlValidator connectorDataXmlValidator, IConstructorsXmlValidator constructorsXmlValidator, IFunctionsXmlValidator functionsXmlValidator, IVariablesXmlValidator variablesXmlValidator)
         {
+            _connectorDataXmlValidator = connectorDataXmlValidator;
             _constructorsXmlValidator = constructorsXmlValidator;
             _functionsXmlValidator = functionsXmlValidator;
             _variablesXmlValidator = variablesXmlValidator;
@@ -21,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation
         public XmlValidationResponse Validate(SchemaName schemaName, string xmlString) 
             => schemaName switch
             {
+                SchemaName.ConnectorDataSchema => _connectorDataXmlValidator.Validate(xmlString),
                 SchemaName.ConstructorSchema => _constructorsXmlValidator.Validate(xmlString),
                 SchemaName.FunctionsSchema => _functionsXmlValidator.Validate(xmlString),
                 SchemaName.VariablesSchema => _variablesXmlValidator.Validate(xmlString),

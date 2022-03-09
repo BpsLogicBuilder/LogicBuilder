@@ -493,7 +493,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 new XmlSchemaObject[]
                 {
                     CreateSchemaElement("text", "textType", 1, 1),
-                    CreateSchemaElement("metaObject", "metaObjectType", 1, 1)
+                    CreateSchemaElement("metaObject", "metaObjectType", 0, 1)
                 },
                 new XmlSchemaAttribute[]
                 {
