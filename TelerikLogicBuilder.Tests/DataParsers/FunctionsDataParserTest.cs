@@ -8,9 +8,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.DataParsers
 {
-    public class FunctionDataParserTest
+    public class FunctionsDataParserTest
     {
-        public FunctionDataParserTest()
+        public FunctionsDataParserTest()
         {
             serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
@@ -20,11 +20,11 @@ namespace TelerikLogicBuilder.Tests.DataParsers
         #endregion Fields
 
         [Fact]
-        public void FunctionDataParserWorks()
+        public void FunctionsDataParserWorks()
         {
             //arrange
-            IFunctionDataParser helper = serviceProvider.GetRequiredService<IFunctionDataParser>();
-            XmlElement xml = GetXmlElement(@"<not>
+            IFunctionsDataParser helper = serviceProvider.GetRequiredService<IFunctionsDataParser>();
+            XmlElement xml = GetXmlElement(@"<functions>
                                               <function name=""equals"" visibleText=""visibleText"">
                                                 <genericArguments>
                                                     <objectParameter genericArgumentName=""To"">
@@ -41,26 +41,51 @@ namespace TelerikLogicBuilder.Tests.DataParsers
                                                   <literalParameter name=""val2"">PHYI</literalParameter>
                                                 </parameters>
                                               </function>
-                                            </not>");
+                                              <assertFunction name=""set condition"" visibleText=""visibleText"">
+                                                <variable name=""My Object List Var"" visibleText=""My Object List Var"" />
+                                                <variableValue>
+                                                  <objectListVariable>
+                                                    <objectList objectType=""String"" listType=""GenericList"" visibleText=""visibleText"">
+                                                    </objectList>
+                                                  </objectListVariable>
+                                                </variableValue>
+                                              </assertFunction>
+                                              <retractFunction name=""remove condition"" visibleText=""visibleText"">
+                                                <variable name=""ltn1"" visibleText=""visibleText"" />
+                                              </retractFunction>
+                                            </functions>");
 
             //act
             var result = helper.Parse(xml);
 
             //assert
-            Assert.Equal("equals", result.Name);
-            Assert.Equal("visibleText", result.VisibleText);
-            Assert.Single(result.GenericArguments);
-            Assert.Equal(2, result.ParameterElementsList.Count);
-            Assert.Equal(XmlDataConstants.NOTELEMENT, result.FunctionElement.Name);
+            Assert.Equal(3, result.FunctionElements.Count);
+            Assert.Equal(XmlDataConstants.FUNCTIONSELEMENT, result.FunctionsElement.Name);
         }
 
         [Fact]
-        public void FunctionDataParserThrowsForInvalidElement()
+        public void FunctionsDataParserThrowsForInvalidElement()
         {
             //arrange
-            IFunctionDataParser helper = serviceProvider.GetRequiredService<IFunctionDataParser>();
+            IFunctionsDataParser helper = serviceProvider.GetRequiredService<IFunctionsDataParser>();
             XmlElement xml = GetXmlElement(@"<assert name=""Set Variable"" visibleText=""visibleText"">
                                               </assert>");
+
+
+            //assert
+            Assert.Throws<CriticalLogicBuilderException>(() => helper.Parse(xml));
+        }
+
+        [Fact]
+        public void FunctionsDataParserThrowsForInvalidFunctionElementName()
+        {
+            //arrange
+            IFunctionsDataParser helper = serviceProvider.GetRequiredService<IFunctionsDataParser>();
+            XmlElement xml = GetXmlElement(@"<functions>
+                                              <setFunction name=""remove condition"" visibleText=""visibleText"">
+                                                <variable name=""ltn1"" visibleText=""visibleText"" />
+                                              </setFunction>
+                                            </functions>");
 
 
             //assert
