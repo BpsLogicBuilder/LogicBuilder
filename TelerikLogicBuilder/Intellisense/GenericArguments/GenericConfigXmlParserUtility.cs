@@ -25,8 +25,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
         }
 
         #region Fields
-        private XmlElement xmlElement;
-        private GenericConfigCategory genericConfigCategory;
+        private readonly XmlElement xmlElement;
+        private readonly GenericConfigCategory genericConfigCategory;
         #endregion Fields
 
         #region Properties
