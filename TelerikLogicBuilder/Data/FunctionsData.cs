@@ -11,7 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             FunctionsElement = functionsElement;
         }
 
-        internal List<XmlElement> FunctionElements { get; private set; }
+        internal List<XmlElement> FunctionElements { get; }
         internal XmlElement FunctionsElement { get; }
     }
 }

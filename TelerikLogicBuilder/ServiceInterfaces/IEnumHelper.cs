@@ -13,12 +13,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         GenericConfigCategory GetGenericConfigCategory(string elementName);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);
+        LiteralListElementType GetLiteralListElementType(Type literalType);
         LiteralParameterType GetLiteralParameterType(Type parameterType);
         LiteralType GetLiteralType(Type literalType);
         LiteralVariableType GetLiteralVariableType(Type variableType);
         ParameterCategory GetParameterCategory(string elementName);
         ReturnTypeCategory GetReturnTypeCategory(string elementName);
         Type GetSystemType(LiteralFunctionReturnType functionReturnType);
+        Type GetSystemType(LiteralListElementType literalType);
         Type GetSystemType(LiteralParameterType parameterType);
         Type GetSystemType(LiteralType literalType);
         Type GetSystemType(LiteralVariableType variableType);

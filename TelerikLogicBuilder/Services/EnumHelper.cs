@@ -103,6 +103,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType)
             => GetLiteralEnumType<LiteralFunctionReturnType>(functionReturnType);
 
+        public LiteralListElementType GetLiteralListElementType(Type literalType)
+            => GetLiteralEnumType<LiteralListElementType>(literalType);
+
         public LiteralParameterType GetLiteralParameterType(Type parameterType) 
             => GetLiteralEnumType<LiteralParameterType>(parameterType);
 
@@ -140,6 +143,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public Type GetSystemType(LiteralFunctionReturnType functionReturnType) 
             => GetSystemTypeFromEnum(functionReturnType);
+
+
+
+        public Type GetSystemType(LiteralListElementType literalType)
+        {
+            if (literalType == LiteralListElementType.Any)
+                return typeof(string);
+
+            return GetSystemTypeFromEnum(literalType);
+        }
 
         public Type GetSystemType(LiteralParameterType parameterType)
         {
