@@ -115,6 +115,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public LiteralVariableType GetLiteralVariableType(Type variableType)
             => GetLiteralEnumType<LiteralVariableType>(variableType);
 
+        public ObjectCategory GetObjectCategory(string elementName) 
+            => elementName switch
+            {
+                XmlDataConstants.CONSTRUCTORELEMENT => ObjectCategory.Constructor,
+                XmlDataConstants.FUNCTIONELEMENT => ObjectCategory.Function,
+                XmlDataConstants.VARIABLEELEMENT => ObjectCategory.Variable,
+                XmlDataConstants.LITERALLISTELEMENT => ObjectCategory.LiteralList,
+                XmlDataConstants.OBJECTLISTELEMENT => ObjectCategory.ObjectList,
+                _ => throw _exceptionHelper.CriticalException("{9DA384FE-1023-4C5A-89AA-3EB1DBC323DC}"),
+            };
+
         public ParameterCategory GetParameterCategory(string elementName)
         {
             return elementName switch
@@ -143,8 +154,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public Type GetSystemType(LiteralFunctionReturnType functionReturnType) 
             => GetSystemTypeFromEnum(functionReturnType);
-
-
 
         public Type GetSystemType(LiteralListElementType literalType)
         {

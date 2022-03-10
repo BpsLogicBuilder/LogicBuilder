@@ -17,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         LiteralParameterType GetLiteralParameterType(Type parameterType);
         LiteralType GetLiteralType(Type literalType);
         LiteralVariableType GetLiteralVariableType(Type variableType);
+        ObjectCategory GetObjectCategory(string elementName);
         ParameterCategory GetParameterCategory(string elementName);
         ReturnTypeCategory GetReturnTypeCategory(string elementName);
         Type GetSystemType(LiteralFunctionReturnType functionReturnType);

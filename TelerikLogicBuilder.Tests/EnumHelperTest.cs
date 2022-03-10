@@ -897,6 +897,34 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Theory]
+        [InlineData(XmlDataConstants.CONSTRUCTORELEMENT, ObjectCategory.Constructor)]
+        [InlineData(XmlDataConstants.FUNCTIONELEMENT, ObjectCategory.Function)]
+        [InlineData(XmlDataConstants.VARIABLEELEMENT, ObjectCategory.Variable)]
+        [InlineData(XmlDataConstants.LITERALLISTELEMENT, ObjectCategory.LiteralList)]
+        [InlineData(XmlDataConstants.OBJECTLISTELEMENT, ObjectCategory.ObjectList)]
+        internal void GetObjectCategoryReturnsTheExpectedCategory(string elementName, ObjectCategory expectedCategory)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var category = enumHelper.GetObjectCategory(elementName);
+
+            //assert
+            Assert.Equal(expectedCategory, category);
+        }
+
+        [Fact]
+        public void GetObjectCategoryThrowsCriticalExceptionForInvalidElementName()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetObjectCategory("xyz"));
+        }
+
+        [Theory]
         [InlineData(XmlDataConstants.LITERALELEMENT, ReturnTypeCategory.Literal)]
         [InlineData(XmlDataConstants.OBJECTELEMENT, ReturnTypeCategory.Object)]
         [InlineData(XmlDataConstants.GENERICELEMENT, ReturnTypeCategory.Generic)]

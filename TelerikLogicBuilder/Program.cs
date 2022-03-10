@@ -108,6 +108,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IFunctionDataParser, FunctionDataParser>()
             .AddSingleton<IFunctionsDataParser, FunctionsDataParser>()
             .AddSingleton<ILiteralListDataParser, LiteralListDataParser>()
+            .AddSingleton<ILiteralListParameterDataParser, LiteralListParameterDataParser>()
+            .AddSingleton<ILiteralListVariableDataParser, LiteralListVariableDataParser>()
 
             //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
