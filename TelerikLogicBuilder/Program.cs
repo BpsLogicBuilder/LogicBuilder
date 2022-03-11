@@ -116,6 +116,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IObjectListParameterDataParser, ObjectListParameterDataParser>()
             .AddSingleton<IObjectListVariableDataParser, ObjectListVariableDataParser>()
             .AddSingleton<IObjectParameterDataParser, ObjectParameterDataParser>()
+            .AddSingleton<IObjectVariableDataParser, ObjectVariableDataParser>()
 
             //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
