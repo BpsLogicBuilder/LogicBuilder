@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         }
 
         /// <summary>
-        /// Child element of <objectListParameter></objectListParameter> (variable, function, constructor, literalList, objectList)
+        /// Child element of <objectListVariable></objectListVariable> (variable, function, constructor, literalList, objectList)
         /// (Usually objectList)
         /// </summary>
         internal XmlElement ChildElement { get; }
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         internal ObjectCategory ChildElementCategory { get; }
 
         /// <summary>
-        /// <objectListParameter></objectListParameter> element
+        /// <objectListVariable></objectListVariable> element
         /// </summary>
         internal XmlElement ObjectListVariableElement { get; }
     }
