@@ -11,7 +11,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             FunctionsElement = functionsElement;
         }
 
+        /// <summary>
+        /// List of <function></function> elements
+        /// </summary>
         internal List<XmlElement> FunctionElements { get; }
+
+        /// <summary>
+        /// <functions></functions> element
+        /// </summary>
         internal XmlElement FunctionsElement { get; }
     }
 }

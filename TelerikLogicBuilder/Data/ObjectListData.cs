@@ -15,10 +15,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             ObjectListElement = objectListElement;
         }
 
+        /// <summary>
+        /// Fully qualified type name for the element object
+        /// </summary>
         internal string ObjectType { get; }
+
+        /// <summary>
+        /// Enum representing the list type (listType attribute)
+        /// </summary>
         internal ListType ListType { get; }
+
+        /// <summary>
+        /// VisibleText attribute of <objectList></objectList> element
+        /// </summary>
         internal string VisibleText { get; }
+
+        /// <summary>
+        /// Collection of child <object></object> elements.
+        /// </summary>
         internal List<XmlElement> ChildElements { get; }
+
+        /// <summary>
+        /// The <objectList></objectList> element
+        /// </summary>
         internal XmlElement ObjectListElement { get; }
     }
 }

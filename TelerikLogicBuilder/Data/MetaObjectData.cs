@@ -14,9 +14,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             MetaObjectElement = metaObjectElement;
         }
 
+        /// <summary>
+        /// Fully qualified type name for the object
+        /// </summary>
         internal string ObjectType { get; }
+
+        /// <summary>
+        /// Child element of <metaObject></metaObject> (variable, function, constructor, literalList, objectList)
+        /// (Usually constructor)
+        /// </summary>
         internal XmlElement ChildElement { get; }
+
+        /// <summary>
+        /// ChildElementCategory depends on the child element (variable, function, constructor, literalList, or objectList)
+        /// </summary>
         internal ObjectCategory ChildElementCategory { get; }
+
+        /// <summary>
+        /// <metaObject></metaObject> element
+        /// </summary>
         internal XmlElement MetaObjectElement { get; }
     }
 }

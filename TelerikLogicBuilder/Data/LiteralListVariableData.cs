@@ -13,8 +13,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             LiteralListVariableElement = literalListVariableElement;
         }
 
+        /// <summary>
+        /// Child element of <literalListVariable></literalListVariable> (variable, function, constructor, literalList, objectList)
+        /// (Usually literalList.)
+        /// </summary>
         internal XmlElement ChildElement { get; }
+
+        /// <summary>
+        /// ChildElementCategory depends on the child element (variable, function, constructor, literalList, or objectList)
+        /// </summary>
         internal ObjectCategory ChildElementCategory { get; }
+
+        /// <summary>
+        /// <literalListVariable></literalListVariable> element.
+        /// </summary>
         internal XmlElement LiteralListVariableElement { get; }
     }
 }

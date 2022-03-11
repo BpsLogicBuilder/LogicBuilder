@@ -18,8 +18,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
 
 
         #region Properties
+
+        /// <summary>
+        /// Element Name of first child to <decisions></decisions> element (and, or, decision, not)
+        /// </summary>
         internal string FirstChildElementName { get; }
+
+        /// <summary>
+        /// Decision Elements (decision, not)
+        /// </summary>
         internal List<XmlElement> DecisionElements { get; }
+
+        /// <summary>
+        /// <decisions></decisions> element
+        /// </summary>
         internal XmlElement DecisionsElement { get; }
         #endregion Properties
     }

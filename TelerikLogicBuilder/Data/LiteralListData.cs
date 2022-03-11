@@ -15,10 +15,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             LiteralListElement = literalListElement;
         }
 
+        /// <summary>
+        /// Enum representing the literal type (literalType attribute)
+        /// </summary>
         internal LiteralListElementType LiteralType { get; }
+
+        /// <summary>
+        /// Enum representing the list type (listType attribute)
+        /// </summary>
         internal ListType ListType { get; }
+
+        /// <summary>
+        /// VisibleText attribute of <literalList></literalList> element
+        /// </summary>
         internal string VisibleText { get; }
+
+        /// <summary>
+        /// Collection of child <literal></literal> elements.
+        /// </summary>
         internal List<XmlElement> ChildElements { get; }
+
+        /// <summary>
+        /// <literalList></literalList> element
+        /// </summary>
         internal XmlElement LiteralListElement { get; }
     }
 }

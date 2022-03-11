@@ -14,10 +14,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         }
 
         #region Properties
+        /// <summary>
+        /// Name attribute of <assertFunction></assertFunction> element
+        /// </summary>
         internal string Name { get; }
+
+        /// <summary>
+        /// VisibleText attribute of <assertFunction></assertFunction> element
+        /// </summary>
         internal string VisibleText { get; }
+
+        /// <summary>
+        /// <variable></variable> element
+        /// </summary>
         internal XmlElement VariableElement { get; }
+
+        /// <summary>
+        /// <variableValue></variableValue> element
+        /// </summary>
         internal XmlElement VariableValueElement { get; }
+
+        /// <summary>
+        /// <assertFunction></assertFunction> element
+        /// </summary>
         internal XmlElement AssertFunctionElement { get; }
         #endregion Properties
     }

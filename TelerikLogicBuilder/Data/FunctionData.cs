@@ -17,11 +17,36 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         }
 
         #region Properties
+
+        /// <summary>
+        /// True if the function element is wrapped in a "not" element. (<not><function></function></not>)
+        /// </summary>
         internal bool IsNotFunction { get; }
+
+        /// <summary>
+        /// Name attribute of <function></function> element
+        /// </summary>
         internal string Name { get; }
+
+        /// <summary>
+        /// VisibleText attribute of <function></function> element
+        /// </summary>
         internal string VisibleText { get; }
+
+        /// <summary>
+        /// Configured Generic Arguments
+        /// </summary>
         internal List<GenericConfigBase> GenericArguments { get; }
+
+        /// <summary>
+        /// Collection of parameter elements (literalParameter, objectParameter, literalListParameter, objectListParameter)
+        /// (Child elements of the <parameters></parameters> element)
+        /// </summary>
         internal List<XmlElement> ParameterElementsList { get; }
+
+        /// <summary>
+        /// <function></function> element
+        /// </summary>
         internal XmlElement FunctionElement { get; }
         #endregion Properties
     }

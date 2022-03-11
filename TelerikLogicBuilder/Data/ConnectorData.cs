@@ -14,10 +14,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             ConnectorElement = connectorElement;
         }
         #region Properties
+
+        /// <summary>
+        /// name attribute of the <connector></connector> element
+        /// </summary>
         internal string Index { get; }
+
+        /// <summary>
+        /// The <text></text> element
+        /// </summary>
         internal XmlElement TextXmlNode { get; }
+
+        /// <summary>
+        /// The <metaObject></metaObject> element (should be null for decision connectors)
+        /// </summary>
         internal XmlElement? MetaObjectDataXmlNode { get; }
+
+        /// <summary>
+        /// connectorCategory attribute of the <connector></connector> element
+        /// </summary>
         internal ConnectorCategory ConnectorCategory { get;}
+
+        /// <summary>
+        /// <connector></connector> element
+        /// </summary>
         internal XmlElement ConnectorElement { get; }
         #endregion Properties
     }
