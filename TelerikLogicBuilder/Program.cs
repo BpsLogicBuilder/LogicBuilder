@@ -110,6 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ILiteralListDataParser, LiteralListDataParser>()
             .AddSingleton<ILiteralListParameterDataParser, LiteralListParameterDataParser>()
             .AddSingleton<ILiteralListVariableDataParser, LiteralListVariableDataParser>()
+            .AddSingleton<IMetaObjectDataParser, MetaObjectDataParser>()
 
             //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
