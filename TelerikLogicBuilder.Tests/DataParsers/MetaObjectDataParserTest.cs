@@ -21,7 +21,7 @@ namespace TelerikLogicBuilder.Tests.DataParsers
         #endregion Fields
 
         [Fact]
-        public void LiteralListDataParserWorks()
+        public void MetaObjectDataParserWorks()
         {
             //arrange
             IMetaObjectDataParser helper = serviceProvider.GetRequiredService<IMetaObjectDataParser>();
@@ -47,7 +47,7 @@ namespace TelerikLogicBuilder.Tests.DataParsers
         }
 
         [Fact]
-        public void FunctionsDataParserThrowsForInvalidElement()
+        public void MetaObjectDataParserThrowsForInvalidElement()
         {
             //arrange
             IMetaObjectDataParser helper = serviceProvider.GetRequiredService<IMetaObjectDataParser>();

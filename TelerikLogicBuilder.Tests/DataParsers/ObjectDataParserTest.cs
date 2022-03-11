@@ -9,9 +9,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.DataParsers
 {
-    public class LiteralListDataParserTest
+    public class ObjectDataParserTest
     {
-        public LiteralListDataParserTest()
+        public ObjectDataParserTest()
         {
             serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
@@ -21,34 +21,30 @@ namespace TelerikLogicBuilder.Tests.DataParsers
         #endregion Fields
 
         [Fact]
-        public void LiteralListDataParserWorks()
+        public void ObjectDataParserWorks()
         {
             //arrange
-            ILiteralListDataParser helper = serviceProvider.GetRequiredService<ILiteralListDataParser>();
-            XmlElement xml = GetXmlElement(@"<literalList literalType=""String"" listType=""GenericList"" visibleText=""www"">
-                                                <literal>Ay</literal>
-                                                <literal>Bee</literal>
-                                                <literal>See</literal>
-                                                <literal>Dee</literal>
-                                                <literal>E</literal>
-                                              </literalList>");
+            IObjectDataParser helper = serviceProvider.GetRequiredService<IObjectDataParser>();
+            XmlElement xml = GetXmlElement(@"<object>
+                                                <literalList literalType=""String"" listType=""GenericList"" visibleText=""listWhichCanBeAssignedToObject"">
+                                                  <literal>Field1</literal>
+                                                  <literal>Field2</literal>
+                                                </literalList>
+                                              </object>");
 
             //act
             var result = helper.Parse(xml);
 
             //assert
-            Assert.Equal(LiteralListElementType.String, result.LiteralType);
-            Assert.Equal(ListType.GenericList, result.ListType);
-            Assert.Equal("www", result.VisibleText);
-            Assert.Equal(5, result.ChildElements.Count);
-            Assert.Equal(XmlDataConstants.LITERALLISTELEMENT, result.LiteralListElement.Name);
+            Assert.Equal(ObjectCategory.LiteralList, result.ChildElementCategory);
+            Assert.Equal(XmlDataConstants.OBJECTELEMENT, result.ObjectElement.Name);
         }
 
         [Fact]
-        public void LiteralListDataParserThrowsForInvalidElement()
+        public void ObjectDataParserThrowsForInvalidElement()
         {
             //arrange
-            ILiteralListDataParser helper = serviceProvider.GetRequiredService<ILiteralListDataParser>();
+            IObjectDataParser helper = serviceProvider.GetRequiredService<IObjectDataParser>();
             XmlElement xml = GetXmlElement(@"<assert name=""Set Variable"" visibleText=""visibleText"">
                                               </assert>");
 
