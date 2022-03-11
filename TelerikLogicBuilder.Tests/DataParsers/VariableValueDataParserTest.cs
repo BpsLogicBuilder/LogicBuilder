@@ -9,9 +9,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.DataParsers
 {
-    public class ObjectVariableDataParserTest
+    public class VariableValueDataParserTest
     {
-        public ObjectVariableDataParserTest()
+        public VariableValueDataParserTest()
         {
             serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
@@ -21,30 +21,32 @@ namespace TelerikLogicBuilder.Tests.DataParsers
         #endregion Fields
 
         [Fact]
-        public void ObjectVariableDataParserWorks()
+        public void VariableValueDataParserWorks()
         {
             //arrange
-            IObjectVariableDataParser helper = serviceProvider.GetRequiredService<IObjectVariableDataParser>();
-            XmlElement xml = GetXmlElement(@"<objectVariable>
+            IVariableValueDataParser helper = serviceProvider.GetRequiredService<IVariableValueDataParser>();
+            XmlElement xml = GetXmlElement(@"<variableValue>
+                                              <objectVariable>
                                                 <constructor name=""CC"" visibleText=""CC"">
                                                   <genericArguments></genericArguments>
                                                   <parameters />
                                                 </constructor>
-                                              </objectVariable>");
+                                              </objectVariable>
+                                            </variableValue>");
 
             //act
             var result = helper.Parse(xml);
 
             //assert
-            Assert.Equal(ObjectCategory.Constructor, result.ChildElementCategory);
-            Assert.Equal(XmlDataConstants.OBJECTVARIABLEELEMENT, result.ObjectVariableElement.Name);
+            Assert.Equal(VariableTypeCategory.Object, result.ChildElementCategory);
+            Assert.Equal(XmlDataConstants.VARIABLEVALUEELEMENT, result.VariableValueElement.Name);
         }
 
         [Fact]
-        public void ObjectVariableDataParserThrowsForInvalidElement()
+        public void VariableValueDataParserThrowsForInvalidElement()
         {
             //arrange
-            IObjectVariableDataParser helper = serviceProvider.GetRequiredService<IObjectVariableDataParser>();
+            IVariableValueDataParser helper = serviceProvider.GetRequiredService<IVariableValueDataParser>();
             XmlElement xml = GetXmlElement(@"<assert name=""Set Variable"" visibleText=""visibleText"">
                                               </assert>");
 

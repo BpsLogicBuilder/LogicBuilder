@@ -119,6 +119,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IObjectVariableDataParser, ObjectVariableDataParser>()
             .AddSingleton<IRetractFunctionDataParser, RetractFunctionDataParser>()
             .AddSingleton<IVariableDataParser, VariableDataParser>()
+            .AddSingleton<IVariableValueDataParser, VariableValueDataParser>()
 
             //Intellisense.Constructors
             .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
