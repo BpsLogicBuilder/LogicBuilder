@@ -1,6 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
+﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -15,23 +20,39 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             _assemblyLoadContextService = assemblyLoadContextService;
         }
 
-        public Type? TryGetType(string typeName, ApplicationTypeInfo application)
+        public bool TryGetSystemType(GenericConfigBase config, ApplicationTypeInfo application, out Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetSystemType(ParameterBase paramter, ApplicationTypeInfo application, out Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetSystemType(ReturnTypeBase returnType, IList<GenericConfigBase> GenericArguments, ApplicationTypeInfo application, out Type? type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetSystemType(string typeName, ApplicationTypeInfo application, out Type? type)
         {
             if (application.AssemblyAvailable
-                    && application.AllTypes.TryGetValue(typeName, out Type? type))
-                return type;
+                    && application.AllTypes.TryGetValue(typeName, out type))
+                return true;
 
             try
             {
                 if ((type = Type.GetType(typeName, ResolveAssembly, ResolveType)) != null)
-                    return type;
+                    return true;
             }
             catch (FileLoadException)
             {
-                return null;
+                type = null;
+                return false;
             }
 
-            return null;
+            return false;
 
             Assembly? ResolveAssembly(AssemblyName assemblyName)
             {
@@ -63,6 +84,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     return null;
                 }
             }
+        }
+
+        public bool TryGetSystemType(VariableBase variable, ApplicationTypeInfo application, out Type? variableType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetSystemTypeForNonGeneric(ReturnTypeBase returnType, ApplicationTypeInfo application, out Type? type)
+        {
+            throw new NotImplementedException();
         }
     }
 }

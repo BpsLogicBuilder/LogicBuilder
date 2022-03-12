@@ -68,13 +68,15 @@ namespace TelerikLogicBuilder.IntegrationTests
             //act
             await loadContextSponsor.LoadAssembiesOnOpenProject();
             //LogicBuilderAssemblyLoadContext logicBuilderAssemblyLoadContext = assemblyLoadContextService.GetAssemblyLoadContext();
-            Type? type = typeLoadHelper.TryGetType
+            bool result = typeLoadHelper.TryGetSystemType
             (
                 "Contoso.Web.Flow.FlowActivity",
-                applicationTypeInfoManager.GetApplicationTypeInfo(configurationService.GetSelectedApplication().Name)
+                applicationTypeInfoManager.GetApplicationTypeInfo(configurationService.GetSelectedApplication().Name),
+                out Type? type
             );
             //assert
 
+            Assert.True(result);
             Assert.NotNull(type);
 
 
@@ -129,13 +131,15 @@ namespace TelerikLogicBuilder.IntegrationTests
             //act
             await loadContextSponsor.LoadAssembiesOnOpenProject();
             //LogicBuilderAssemblyLoadContext logicBuilderAssemblyLoadContext = assemblyLoadContextService.GetAssemblyLoadContext();
-            Type? type = typeLoadHelper.TryGetType
+            bool result = typeLoadHelper.TryGetSystemType
             (
                 "System.Collections.Generic.List`1[[Contoso.Web.Flow.FlowActivity, Contoso.Web.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
-                applicationTypeInfoManager.GetApplicationTypeInfo(configurationService.GetSelectedApplication().Name)
+                applicationTypeInfoManager.GetApplicationTypeInfo(configurationService.GetSelectedApplication().Name),
+                out Type? type
             );
             //assert
 
+            Assert.True(result);
             Assert.NotNull(type);
 
 

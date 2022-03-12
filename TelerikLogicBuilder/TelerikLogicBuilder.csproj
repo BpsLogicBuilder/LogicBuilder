@@ -23,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LogicBuilder.Attributes" Version="2.0.3-alpha.0.1" />
+    <PackageReference Include="LogicBuilder.Attributes" Version="2.0.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.OData.Edm" Version="7.9.4" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="7.10.0" />
     <PackageReference Include="UI.for.WinForms.AllControls.Net60" Version="2021.3.1123" />
   </ItemGroup>
 
