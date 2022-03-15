@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         ObjectCategory GetObjectCategory(string elementName);
         ParameterCategory GetParameterCategory(string elementName);
         ReturnTypeCategory GetReturnTypeCategory(string elementName);
+        Type GetSystemType(ListType listType, Type elementType);
         Type GetSystemType(LiteralFunctionReturnType functionReturnType);
         Type GetSystemType(LiteralListElementType literalType);
         Type GetSystemType(LiteralParameterType parameterType);

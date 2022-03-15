@@ -152,6 +152,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 _ => throw _exceptionHelper.CriticalException("{3A66A34C-D19F-4B76-9E26-3F95FFA09B36}"),
             };
 
+        public Type GetSystemType(ListType listType, Type elementType) 
+            => listType switch
+            {
+                ListType.Array => elementType.MakeArrayType(),
+                ListType.GenericCollection => typeof(Collection<>).MakeGenericType(elementType),
+                ListType.GenericList => typeof(List<>).MakeGenericType(elementType),
+                ListType.IGenericCollection => typeof(ICollection<>).MakeGenericType(elementType),
+                ListType.IGenericEnumerable => typeof(IEnumerable<>).MakeGenericType(elementType),
+                ListType.IGenericList => typeof(IList<>).MakeGenericType(elementType),
+                _ => throw _exceptionHelper.CriticalException("{32CE536A-47D0-412C-8558-78321BD89384}"),
+            };
+
         public Type GetSystemType(LiteralFunctionReturnType functionReturnType) 
             => GetSystemTypeFromEnum(functionReturnType);
 
@@ -185,9 +197,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 elementType
             );
 
-        public VariableTypeCategory GetVariableTypeCategory(string elementName)
-        {
-            return elementName switch
+        public VariableTypeCategory GetVariableTypeCategory(string elementName) 
+            => elementName switch
             {
                 XmlDataConstants.LITERALVARIABLEELEMENT => VariableTypeCategory.Literal,
                 XmlDataConstants.OBJECTVARIABLEELEMENT => VariableTypeCategory.Object,
@@ -195,7 +206,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 XmlDataConstants.OBJECTLISTVARIABLEELEMENT => VariableTypeCategory.ObjectList,
                 _ => throw _exceptionHelper.CriticalException("{1727C7D3-FCAA-4A6F-BBD1-B4031824E2C6}"),
             };
-        }
 
         public string GetVisibleEnumText<T>(T enumType)
         {

@@ -383,6 +383,35 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Theory]
+        [InlineData(ListType.Array, typeof(string), typeof(string[]))]
+        [InlineData(ListType.GenericCollection, typeof(string), typeof(Collection<string>))]
+        [InlineData(ListType.GenericList, typeof(string), typeof(List<string>))]
+        [InlineData(ListType.IGenericCollection, typeof(string), typeof(ICollection<string>))]
+        [InlineData(ListType.IGenericEnumerable, typeof(string), typeof(IEnumerable<string>))]
+        [InlineData(ListType.IGenericList, typeof(string), typeof(IList<string>))]
+        internal void GetSystemTypeGivenListAndElementTypeWorks(ListType listType, Type elementType, Type expectedResult)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetSystemType(listType, elementType);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        internal void GetSystemTypeGivenListAndElementTypeThrowsForUndefinedEnum()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //assert
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetSystemType((ListType)(-1), typeof(string)));
+        }
+
+        [Theory]
         [InlineData(LiteralFunctionReturnType.Void, typeof(void))]
         [InlineData(LiteralFunctionReturnType.Boolean, typeof(bool))]
         [InlineData(LiteralFunctionReturnType.DateTimeOffset, typeof(DateTimeOffset))]

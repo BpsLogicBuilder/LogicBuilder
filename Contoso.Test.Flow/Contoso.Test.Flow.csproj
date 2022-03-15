@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Rulesets\savecourse.module" />
+    <None Remove="Rulesets\savecourse.resources" />
+    <None Remove="Rulesets\savedepartment.module" />
+    <None Remove="Rulesets\savedepartment.resources" />
+    <None Remove="Rulesets\saveinstructor.module" />
+    <None Remove="Rulesets\saveinstructor.resources" />
+    <None Remove="Rulesets\savestudent.module" />
+    <None Remove="Rulesets\savestudent.resources" />
+    <None Remove="Rulesets\setvaluesasync.module" />
+    <None Remove="Rulesets\setvaluesasync.resources" />
+    <None Remove="Rulesets\validatecourse.module" />
+    <None Remove="Rulesets\validatecourse.resources" />
+    <None Remove="Rulesets\validatedepartment.module" />
+    <None Remove="Rulesets\validatedepartment.resources" />
+    <None Remove="Rulesets\validateinstructor.module" />
+    <None Remove="Rulesets\validateinstructor.resources" />
+    <None Remove="Rulesets\validatestudent.module" />
+    <None Remove="Rulesets\validatestudent.resources" />
+    <None Remove="Rulesets\VariablesMetadata.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Rulesets\savecourse.module" />
+    <EmbeddedResource Include="Rulesets\savecourse.resources" />
+    <EmbeddedResource Include="Rulesets\savedepartment.module" />
+    <EmbeddedResource Include="Rulesets\savedepartment.resources" />
+    <EmbeddedResource Include="Rulesets\saveinstructor.module" />
+    <EmbeddedResource Include="Rulesets\saveinstructor.resources" />
+    <EmbeddedResource Include="Rulesets\savestudent.module" />
+    <EmbeddedResource Include="Rulesets\savestudent.resources" />
+    <EmbeddedResource Include="Rulesets\setvaluesasync.module" />
+    <EmbeddedResource Include="Rulesets\setvaluesasync.resources" />
+    <EmbeddedResource Include="Rulesets\validatecourse.module" />
+    <EmbeddedResource Include="Rulesets\validatecourse.resources" />
+    <EmbeddedResource Include="Rulesets\validatedepartment.module" />
+    <EmbeddedResource Include="Rulesets\validatedepartment.resources" />
+    <EmbeddedResource Include="Rulesets\validateinstructor.module" />
+    <EmbeddedResource Include="Rulesets\validateinstructor.resources" />
+    <EmbeddedResource Include="Rulesets\validatestudent.module" />
+    <EmbeddedResource Include="Rulesets\validatestudent.resources" />
+    <EmbeddedResource Include="Rulesets\VariablesMetadata.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LogicBuilder.RulesDirector" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contoso.Test.Business\Contoso.Test.Business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
