@@ -23,37 +23,39 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public IDictionary<string, Constructor> GetConstructors(Type constructorType, ApplicationTypeInfo application)
         {
-            Dictionary<string, Constructor> objectDictionary = _configurationService.ConstructorList.Constructors.Aggregate
-            (
-                new Dictionary<string, Constructor>(), 
-                (dic, next) =>
-                {
-                    if (!dic.ContainsKey(next.Value.TypeName))
-                        dic.Add(next.Value.TypeName, next.Value);
-
-                    return dic;
-                }
-            );
+            Dictionary<string, Constructor> returnValue = new();
 
             if (constructorType.IsGenericType //if constructorType is a generic type with updated arguments (closed generic type)
-                && !constructorType.IsGenericTypeDefinition) //return the constructor for the generic type definition if it exists
+                && !constructorType.IsGenericTypeDefinition) //add the constructor for the generic type definition if it exists
             {
+                Dictionary<string, Constructor> objectDictionary = _configurationService.ConstructorList.Constructors.Aggregate
+                (
+                    new Dictionary<string, Constructor>(),
+                    (dic, next) =>
+                    {
+                        if (!dic.ContainsKey(next.Value.TypeName))
+                            dic.Add(next.Value.TypeName, next.Value);
+
+                        return dic;
+                    }
+                );
+
                 if (objectDictionary.TryGetValue(_typeHelper.ToId(constructorType.GetGenericTypeDefinition()), out Constructor? constructor))
-                    return new Dictionary<string, Constructor> { [constructor.Name]=constructor };
-                else
-                    return new Dictionary<string, Constructor>();
+                    returnValue.Add(constructor.Name, constructor);
             }
 
-            return _configurationService.ConstructorList.Constructors.Where
+            return _configurationService.ConstructorList.Constructors.Aggregate
             (
-                constructor =>
+                returnValue, 
+                (dictionary, next) =>
                 {
-                    if (!_typeLoadHelper.TryGetSystemType(constructor.Value.TypeName, application, out Type? cType))
-                        return false;
+                    if (_typeLoadHelper.TryGetSystemType(next.Value.TypeName, application, out Type? cType)
+                        && _typeHelper.AssignableFrom(constructorType, cType))
+                        dictionary.Add(next.Key, next.Value);
 
-                    return _typeHelper.AssignableFrom(constructorType, cType);
+                    return dictionary;
                 }
-            ).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            );
         }
 
         public IDictionary<string, Constructor> GetConstructors(string objectType, ApplicationTypeInfo application)

@@ -42,8 +42,8 @@ namespace TelerikLogicBuilder.IntegrationTests
             //arrange
             var applicationTypeInfo = _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name);
             _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.TestResponseA", applicationTypeInfo, out Type? type);
-            //act
 
+            //act
             var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructors
             (
                 type!,
@@ -76,8 +76,8 @@ namespace TelerikLogicBuilder.IntegrationTests
             //arrange
             var applicationTypeInfo = _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name);
             _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.BaseResponse", applicationTypeInfo, out Type? type);
-            //act
 
+            //act
             var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructors
             (
                 type!,
@@ -87,6 +87,40 @@ namespace TelerikLogicBuilder.IntegrationTests
             //assert
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);
+        }
+
+        [Fact]
+        public void ReturnsConfiguredOpenGenericTypeGivenClosedGenericTypeName()
+        {
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructors
+            (
+                "Contoso.Test.Business.Responses.GenericResponse`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name)
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void ReturnsConfiguredOpenGenericTypeGivenClosedGenericType()
+        {
+            //arrange
+            var applicationTypeInfo = _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name);
+            _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.GenericResponse`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", applicationTypeInfo, out Type? type);
+
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructors
+            (
+                type!,
+                applicationTypeInfo
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Single(result);
         }
     }
 
@@ -201,6 +235,25 @@ namespace TelerikLogicBuilder.IntegrationTests
                                 "",
                                 "",
                                 new List<string>(),
+                                ContextProvider
+                            )
+                        },
+                        new List<string>(),
+                        "",
+                        ContextProvider
+                    ),
+                    ["GenericResponse"] = new Constructor
+                    (
+                        "GenericResponse",
+                        "Contoso.Test.Business.Responses.GenericResponse`1",
+                        new List<ParameterBase>
+                        {
+                            new GenericParameter
+                            (
+                                "stringProperty",
+                                false,
+                                "",
+                                "T",
                                 ContextProvider
                             )
                         },
