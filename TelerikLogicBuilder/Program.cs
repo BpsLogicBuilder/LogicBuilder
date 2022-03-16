@@ -45,6 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //Services
             .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
+            .AddSingleton<IConstructorTypeHelper, ConstructorTypeHelper>()
             .AddSingleton<IContextProvider, ContextProvider>()
             .AddSingleton<IEncryption, Encryption>()
             .AddSingleton<IEnumHelper, EnumHelper>()

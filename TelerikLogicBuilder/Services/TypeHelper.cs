@@ -58,9 +58,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public bool AssignableFrom(Type to, Type from)
         {
-            if (from == null)
-                return false;
-
             if (to.IsAssignableFrom(from))
                 return true;
 

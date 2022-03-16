@@ -5,15 +5,16 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface ITypeLoadHelper
     {
-        bool TryGetSystemType(GenericConfigBase config, ApplicationTypeInfo application, out Type? type);
-        bool TryGetSystemType(ParameterBase parameter, ApplicationTypeInfo application, out Type? type);
-        bool TryGetSystemType(ReturnTypeBase returnType, IList<GenericConfigBase> GenericArguments, ApplicationTypeInfo application, out Type? type);
-        bool TryGetSystemType(string typeName, ApplicationTypeInfo application, out Type? type);
-        bool TryGetSystemType(VariableBase variable, ApplicationTypeInfo application, out Type? variableType);
+        bool TryGetSystemType(GenericConfigBase config, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type);
+        bool TryGetSystemType(ParameterBase parameter, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type);
+        bool TryGetSystemType(ReturnTypeBase returnType, IList<GenericConfigBase> GenericArguments, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type);
+        bool TryGetSystemType(string typeName, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type);
+        bool TryGetSystemType(VariableBase variable, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? variableType);
     }
 }

@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -26,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             _exceptionHelper = contextProvider.ExceptionHelper;
         }
 
-        public bool TryGetSystemType(GenericConfigBase config, ApplicationTypeInfo application, out Type? type)
+        public bool TryGetSystemType(GenericConfigBase config, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type)
         {
             return (type = GetType()) != null;
 
@@ -67,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        public bool TryGetSystemType(ParameterBase parameter, ApplicationTypeInfo application, out Type? type)
+        public bool TryGetSystemType(ParameterBase parameter, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type)
         {
             return (type = GetType()) != null;
 
@@ -108,7 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        public bool TryGetSystemType(ReturnTypeBase returnType, IList<GenericConfigBase> genericArguments, ApplicationTypeInfo application, out Type? type)
+        public bool TryGetSystemType(ReturnTypeBase returnType, IList<GenericConfigBase> genericArguments, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type)
         {
             IDictionary<string, GenericConfigBase> funcDataGenericArguments = genericArguments.ToDictionary(g => g.GenericArgumentName);
 
@@ -170,7 +171,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        public bool TryGetSystemType(string typeName, ApplicationTypeInfo application, out Type? type)
+        public bool TryGetSystemType(string typeName, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type)
         {
             if (application.AssemblyAvailable
                     && application.AllTypes.TryGetValue(typeName, out type))
@@ -221,7 +222,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        public bool TryGetSystemType(VariableBase variable, ApplicationTypeInfo application, out Type? variableType)
+        public bool TryGetSystemType(VariableBase variable, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? variableType)
         {
             return (variableType = GetType()) != null;
 
