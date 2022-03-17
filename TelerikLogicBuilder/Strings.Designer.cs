@@ -349,6 +349,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type &quot;{0}&quot; could not be loaded for the constructor &quot;{1}&quot;..
+        /// </summary>
+        internal static string cannotLoadTypeForConstructorFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadTypeForConstructorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot load the type for the generic argument &quot;{0}&quot;. Constructor name: {1}..
+        /// </summary>
+        internal static string cannotLoadTypeForGenericArgumentForConstructorFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadTypeForGenericArgumentForConstructorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cast Reference As field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string castReferenceAsMustBeEmptyFormat {
@@ -399,6 +417,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string constrGenericArgNameInvalidFormat {
             get {
                 return ResourceManager.GetString("constrGenericArgNameInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configured constructor&apos;s generic arguments &quot;{0}&quot; must match the data&apos;s generic arguments &quot;{1}&quot;..
+        /// </summary>
+        internal static string constructorGenericArgsMisMatchFormat {
+            get {
+                return ResourceManager.GetString("constructorGenericArgsMisMatchFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configured constructor&apos;s type name  &quot;{0}&quot; must be a generic type definition matching the generic arguments &quot;{1}&quot;..
+        /// </summary>
+        internal static string constructorGenericArgsMisMatchFormat2 {
+            get {
+                return ResourceManager.GetString("constructorGenericArgsMisMatchFormat2", resourceCulture);
             }
         }
         

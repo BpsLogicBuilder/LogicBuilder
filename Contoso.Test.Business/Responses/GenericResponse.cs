@@ -1,12 +1,14 @@
 ﻿namespace Contoso.Test.Business.Responses
 {
-    public class GenericResponse<T>
+    public class GenericResponse<A, B> : BaseResponse
     {
-        public GenericResponse(T tProperty)
+        public GenericResponse(A aProperty, B bPropert)
         {
-            TProperty = tProperty;
+            AProperty = aProperty;
+            BProperty = bPropert;
         }
 
-        public T TProperty { get; set; }
+        public A AProperty { get; set; }
+        public B BProperty { get; set; }
     }
 }

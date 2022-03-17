@@ -67,7 +67,7 @@ namespace TelerikLogicBuilder.IntegrationTests
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(2, result.Count);
+            Assert.Equal(3, result.Count);
         }
 
         [Fact]
@@ -86,7 +86,7 @@ namespace TelerikLogicBuilder.IntegrationTests
 
             //assert
             Assert.NotNull(result);
-            Assert.Equal(2, result.Count);
+            Assert.Equal(3, result.Count);
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace TelerikLogicBuilder.IntegrationTests
             //act
             var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructors
             (
-                "Contoso.Test.Business.Responses.GenericResponse`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "Contoso.Test.Business.Responses.GenericResponse`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
                 _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name)
             );
 
@@ -109,7 +109,7 @@ namespace TelerikLogicBuilder.IntegrationTests
         {
             //arrange
             var applicationTypeInfo = _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name);
-            _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.GenericResponse`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", applicationTypeInfo, out Type? type);
+            _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.GenericResponse`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", applicationTypeInfo, out Type? type);
 
             //act
             var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructors
@@ -245,19 +245,27 @@ namespace TelerikLogicBuilder.IntegrationTests
                     ["GenericResponse"] = new Constructor
                     (
                         "GenericResponse",
-                        "Contoso.Test.Business.Responses.GenericResponse`1",
+                        "Contoso.Test.Business.Responses.GenericResponse`2",
                         new List<ParameterBase>
                         {
                             new GenericParameter
                             (
-                                "stringProperty",
+                                "aProperty",
                                 false,
                                 "",
-                                "T",
+                                "A",
+                                ContextProvider
+                            ),
+                            new GenericParameter
+                            (
+                                "bProperty",
+                                false,
+                                "",
+                                "B",
                                 ContextProvider
                             )
                         },
-                        new List<string>(),
+                        new List<string> { "A", "B" },
                         "",
                         ContextProvider
                     )

@@ -192,6 +192,14 @@
     <value>Cannot find the required property sourced parameter "{0}" for the parameter "{1}" in constructor "{2}". The property sourced parameter must be one of the sibling parameters {3} when the control is {4}.</value>
     <comment>0=sourceParameter; 1=parameter; 2=constructor;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
   </data>
+	<data name="cannotLoadTypeForConstructorFormat" xml:space="preserve">
+    <value>Type "{0}" could not be loaded for the constructor "{1}".</value>
+    <comment>0=typeName;1=constructorName</comment>
+  </data>
+	<data name="cannotLoadTypeForGenericArgumentForConstructorFormat" xml:space="preserve">
+    <value>Cannot load the type for the generic argument "{0}". Constructor name: {1}.</value>
+    <comment>0=generic argument name;1=constructor name</comment>
+  </data>
 	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".</value>
     <comment>0=VariableName</comment>
@@ -203,6 +211,14 @@
 	<data name="constrGenericArgNameInvalidFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for contructor "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
+  </data>
+	<data name="constructorGenericArgsMisMatchFormat" xml:space="preserve">
+    <value>The configured constructor's generic arguments "{0}" must match the data's generic arguments "{1}".</value>
+    <comment>0=constructor's generic arguments;1= data's generic arguments</comment>
+  </data>
+	<data name="constructorGenericArgsMisMatchFormat2" xml:space="preserve">
+    <value>The configured constructor's type name  "{0}" must be a generic type definition matching the generic arguments "{1}".</value>
+    <comment>0=constructor's type name;1= data's generic arguments</comment>
   </data>
 	<data name="constructorsRootFolderText" xml:space="preserve">
     <value>Constructors</value>

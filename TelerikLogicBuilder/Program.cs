@@ -10,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization;
@@ -22,6 +23,7 @@ using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Runtime.CompilerServices;
@@ -166,7 +168,39 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IConnectorDataXmlValidator, ConnectorDataXmlValidator>()
             .AddSingleton<IConstructorsXmlValidator, ConstructorsXmlValidator>()
             .AddSingleton<IFunctionsXmlValidator, FunctionsXmlValidator>()
-            .AddSingleton<IVariablesXmlValidator, VariablesXmlValidator>();
+            .AddSingleton<IVariablesXmlValidator, VariablesXmlValidator>()
+
+            //XmlValidation.DataValidation
+            .AddSingleton<IAssertFunctionElementValidator, AssertFunctionElementValidator>()
+            .AddSingleton<IConditionsElementValidator, ConditionsElementValidator>()
+            .AddSingleton<IConnectorElementValidator, ConnectorElementValidator>()
+            .AddSingleton<IConstructorElementValidator, ConstructorElementValidator>()
+            .AddSingleton<IConstructorGenericsConfigrationValidator, ConstructorGenericsConfigrationValidator>()
+            .AddSingleton<IConstructorParametersDataValidator, ConstructorParametersDataValidator>()
+            .AddSingleton<IDecisionElementValidator, DecisionElementValidator>()
+            .AddSingleton<IDecisionsElementValidator, DecisionsElementValidator>()
+            .AddSingleton<IFunctionElementValidator, FunctionElementValidator>()
+            .AddSingleton<IFunctionGenericsConfigrationValidator, FunctionGenericsConfigrationValidator>()
+            .AddSingleton<IFunctionParametersDataValidator, FunctionParametersDataValidator>()
+            .AddSingleton<IFunctionsElementValidator, FunctionsElementValidator>()
+            .AddSingleton<IGenericsConfigrationValidator, GenericsConfigrationValidator>()
+            .AddSingleton<ILiteralElementValidator, LiteralElementValidator>()
+            .AddSingleton<ILiteralListElementValidator, LiteralListElementValidator>()
+            .AddSingleton<ILiteralListParameterElementValidator, LiteralListParameterElementValidator>()
+            .AddSingleton<ILiteralListVariableElementValidator, LiteralListVariableElementValidator>()
+            .AddSingleton<ILiteralParameterElementValidator, LiteralParameterElementValidator>()
+            .AddSingleton<ILiteralVariableElementValidator, LiteralVariableElementValidator>()
+            .AddSingleton<IMetaObjectElementValidator, MetaObjectElementValidator>()
+            .AddSingleton<IObjectElementValidator, ObjectElementValidator>()
+            .AddSingleton<IObjectListElementValidator, ObjectListElementValidator>()
+            .AddSingleton<IObjectListParameterElementValidator, ObjectListParameterElementValidator>()
+            .AddSingleton<IObjectListVariableElementValidator, ObjectListVariableElementValidator>()
+            .AddSingleton<IObjectParameterElementValidator, ObjectParameterElementValidator>()
+            .AddSingleton<IObjectVariableElementValidator, ObjectVariableElementValidator>()
+            .AddSingleton<IParameterElementValidator, ParameterElementValidator>()
+            .AddSingleton<IRetractFunctionElementValidator, RetractFunctionElementValidator>()
+            .AddSingleton<IVariableElementValidator, VariableElementValidator>()
+            .AddSingleton<IXmlElementValidator, XmlElementValidator>();
 
         /// <summary>
         /// The main entry point for the application.
