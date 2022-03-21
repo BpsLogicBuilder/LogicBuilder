@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _literalElementValidator = xmlElementValidator.LiteralElementValidator;
         }
 
-        public void Validate(LiteralParameter parameter, XmlElement parameterElement, ApplicationTypeInfo application, List<string> validationErrors)
+        public void Validate(XmlElement parameterElement, LiteralParameter parameter, ApplicationTypeInfo application, List<string> validationErrors)
         {
             if (parameterElement.Name != XmlDataConstants.LITERALPARAMETERELEMENT)
                 throw _exceptionHelper.CriticalException("{E3BC3B76-B0BF-4936-B4AF-6C8F99B0F157}");

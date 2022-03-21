@@ -24,21 +24,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _objectListParameterElementValidator = xmlElementValidator.ObjectListParameterElementValidator;
         }
 
-        public void Validate(ParameterBase parameter, XmlElement parameterElement, ApplicationTypeInfo application, List<string> validationErrors)
+        public void Validate(XmlElement parameterElement, ParameterBase parameter, ApplicationTypeInfo application, List<string> validationErrors)
         {
             switch (parameter)
             {
                 case LiteralParameter literalParameter:
-                    _literalParameterElementValidator.Validate(literalParameter, parameterElement, application, validationErrors);
+                    _literalParameterElementValidator.Validate(parameterElement, literalParameter, application, validationErrors);
                     break;
                 case ObjectParameter objectParameter:
-                    _objectParameterElementValidator.Validate(objectParameter, parameterElement, application, validationErrors);
+                    _objectParameterElementValidator.Validate(parameterElement, objectParameter, application, validationErrors);
                     break;
                 case ListOfLiteralsParameter listOfLiteralsParameter:
-                    _literalListParameterElementValidator.Validate(listOfLiteralsParameter, parameterElement, application, validationErrors);
+                    _literalListParameterElementValidator.Validate(parameterElement, listOfLiteralsParameter, application, validationErrors);
                     break;
                 case ListOfObjectsParameter listOfObjectsParameter:
-                    _objectListParameterElementValidator.Validate(listOfObjectsParameter, parameterElement, application, validationErrors);
+                    _objectListParameterElementValidator.Validate(parameterElement, listOfObjectsParameter, application, validationErrors);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{343B547B-7A8D-41F0-836A-DB4AFF897856}");

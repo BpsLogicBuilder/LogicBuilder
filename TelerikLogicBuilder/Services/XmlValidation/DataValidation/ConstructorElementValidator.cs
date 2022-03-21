@@ -162,7 +162,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                     return;
                 }
 
-                _parameterElementValidator.Validate(par, pElement, application, validationErrors);
+                _parameterElementValidator.Validate(pElement, par, application, validationErrors);
             });
         }
     }

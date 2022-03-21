@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _xmlElementValidator = xmlElementValidator;
         }
 
-        public void Validate(ListOfLiteralsParameter parameter, XmlElement parameterElement, ApplicationTypeInfo application, List<string> validationErrors)
+        public void Validate(XmlElement parameterElement, ListOfLiteralsParameter parameter, ApplicationTypeInfo application, List<string> validationErrors)
         {
             //throw new System.NotImplementedException();
         }

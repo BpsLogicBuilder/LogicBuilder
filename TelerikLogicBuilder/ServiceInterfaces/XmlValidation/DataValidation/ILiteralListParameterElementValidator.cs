@@ -7,6 +7,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
 {
     internal interface ILiteralListParameterElementValidator
     {
-        void Validate(ListOfLiteralsParameter parameter, XmlElement parameterElement, ApplicationTypeInfo application, List<string> validationErrors);
+        void Validate(XmlElement parameterElement, ListOfLiteralsParameter parameter, ApplicationTypeInfo application, List<string> validationErrors);
     }
 }

@@ -62,7 +62,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             );
 
             //act
-            xmlValidator.Validate(parameter, xmlElement, applicationTypeInfo, errors);
+            xmlValidator.Validate(xmlElement, parameter, applicationTypeInfo, errors);
 
             //assert
             Assert.False(errors.Any());
@@ -96,7 +96,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             );
 
             //act
-            xmlValidator.Validate(parameter, xmlElement, applicationTypeInfo, errors);
+            xmlValidator.Validate(xmlElement, parameter, applicationTypeInfo, errors);
 
             //assert
             Assert.False(errors.Any());
@@ -133,7 +133,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             );
 
             //act
-            xmlValidator.Validate(parameter, xmlElement, applicationTypeInfo, errors);
+            xmlValidator.Validate(xmlElement, parameter, applicationTypeInfo, errors);
 
             //assert
             Assert.False(errors.Any());
@@ -178,7 +178,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             );
 
             //act
-            xmlValidator.Validate(parameter, xmlElement, applicationTypeInfo, errors);
+            xmlValidator.Validate(xmlElement, parameter, applicationTypeInfo, errors);
 
             //assert
             Assert.False(errors.Any());
@@ -208,7 +208,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             InvalidParameterType parameter = new();
 
             //act
-            Assert.Throws<CriticalLogicBuilderException>(() => xmlValidator.Validate(parameter, xmlElement, applicationTypeInfo, errors));
+            Assert.Throws<CriticalLogicBuilderException>(() => xmlValidator.Validate(xmlElement, parameter, applicationTypeInfo, errors));
         }
 
         private static XmlElement GetXmlElement(string xmlString)
