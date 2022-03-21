@@ -563,9 +563,6 @@
 	<data name="enumDescriptionObjectList" xml:space="preserve">
     <value>Object ListFR</value>
   </data>
-	<data name="enumDescriptionGenericList" xml:space="preserve">
-    <value>Generic ListFR</value>
-  </data>
 	<data name="enumDescriptionListForm" xml:space="preserve">
     <value>List FormFR</value>
   </data>
