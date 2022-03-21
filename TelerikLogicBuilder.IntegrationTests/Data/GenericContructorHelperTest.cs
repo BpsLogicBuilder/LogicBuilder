@@ -1,191 +1,49 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using TelerikLogicBuilder.IntegrationTests.Constants;
 using Xunit;
 
-namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
+namespace TelerikLogicBuilder.IntegrationTests.Data
 {
-    public class ConstructorGenericsConfigrationValidatorTest : IClassFixture<ConstructorGenericsConfigrationValidatorFixture>
+    public class GenericContructorHelperTest : IClassFixture<GenericContructorHelperFixture>
     {
-        private readonly ConstructorGenericsConfigrationValidatorFixture _fixture;
+        private readonly GenericContructorHelperFixture _fixture;
 
-        public ConstructorGenericsConfigrationValidatorTest(ConstructorGenericsConfigrationValidatorFixture constructorGenericsConfigrationValidatorFixture)
+        public GenericContructorHelperTest(GenericContructorHelperFixture fixture)
         {
-            _fixture = constructorGenericsConfigrationValidatorFixture;
+            _fixture = fixture;
         }
 
-        #region Fields
-        #endregion Fields
-
         [Fact]
-        public void CanCreateConstructorGenericsConfigrationValidator()
+        public void CanCreateGenericContructorHelper()
         {
             //arrange
-            IConstructorGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
 
             //assert
-            Assert.NotNull(validator);
+            Assert.NotNull(helper);
         }
 
         [Fact]
-        public void ValidateReturnsFalseIfConstructorTypeNotFound()
+        public void MakeGenericTypeWorksForValidContructorAndValidGenericArguments()
         {
             //arrange
-            IConstructorGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["TypeNotFoundConstructor"];
-
-            //act
-            var result = validator.Validate(constructor, new List<GenericConfigBase>(), applicationTypeInfo, errors);
-
-            //assert
-            Assert.False(result);
-            Assert.Equal
-            (
-                string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeForConstructorFormat, constructor.TypeName, constructor.Name),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfConfiguredConstructorGenericArgumentNamesDoNotMatchTheConstructorDataGenericArguments()
-        {
-            //arrange
-            IConstructorGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"];
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
-            {
-                new LiteralGenericConfig
-                (
-                    "A",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                ),
-                new LiteralGenericConfig
-                (
-                    "C",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                )
-            };
-
-            //act
-            var result = validator.Validate(constructor, dataConfiguredGenericArguments, applicationTypeInfo, errors);
-
-            //assert
-            Assert.False(result);
-            Assert.Equal
-            (
-                string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.constructorGenericArgsMisMatchFormat,
-                    string.Join(Strings.itemsCommaSeparator, new List<string> { "A, B" }),
-                    string.Join(Strings.itemsCommaSeparator, new List<string> { "A, C" })
-                ),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfLoadedTypesGenericArgumentCountDoesNotMatchTheConfiguredGenericArgumentCount()
-        {
-            //arrange
-            IConstructorGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["OneGenericArgument"];
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
-            {
-                new LiteralGenericConfig
-                (
-                    "A",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                ),
-                new LiteralGenericConfig
-                (
-                    "B",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                )
-            };
-
-            //act
-            var result = validator.Validate(constructor, dataConfiguredGenericArguments, applicationTypeInfo, errors);
-
-            //assert
-            Assert.False(result);
-            Assert.Equal
-            (
-                string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.constructorGenericArgsMisMatchFormat2,
-                    constructor.TypeName,
-                    string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)
-                ),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfDataGenericTypeForGenericArgumentCannotBeLoaded()
-        {
-            //arrange
-            IConstructorGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"];
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
                 (
@@ -204,7 +62,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 new ObjectGenericConfig
                 (
                     "B",
-                    "SomeTypeNotFound",
+                    "Contoso.Domain.Entities.DepartmentModel",
                     true,
                     false,
                     false,
@@ -213,32 +71,96 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             };
 
             //act
-            var result = validator.Validate(constructor, dataConfiguredGenericArguments, applicationTypeInfo, errors);
+            Type closedType = helper.MakeGenericType
+            (
+                _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"],
+                genericConfigs,
+                _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+            );
 
             //assert
-            Assert.False(result);
+            Assert.NotNull(closedType);
+            Assert.False(closedType.IsGenericTypeDefinition);
+        }
+
+        [Fact]
+        public void MakeGenericTypeThrowsIfConfiguredGenricArgumentCountDoesNNotMatchTheDataCount()
+        {
+            //arrange
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+                new LiteralGenericConfig
+                (
+                    "A",
+                    LiteralParameterType.String,
+                    LiteralParameterInputStyle.SingleLineTextBox,
+                    true,
+                    false,
+                    false,
+                    "",
+                    "",
+                    "",
+                    new List<string>(),
+                    _fixture.ContextProvider
+                )
+            };
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.MakeGenericType
+                (
+                    _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
+            
+            //assert
             Assert.Equal
             (
-                string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.cannotLoadTypeForGenericArgumentForConstructorFormat,
-                    "B",
-                    constructor.Name
-                ),
-                errors.First()
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{4E9A10C7-3728-40C6-8658-3CD7FECA94CF}"), 
+                exception.Message
             );
         }
 
         [Fact]
-        public void ValidateReturnsTrueForValidConfiguration()
+        public void MakeGenericTypeThrowsIfConstructorTypeCannotBeLoaded()
         {
             //arrange
-            IConstructorGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"];
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+            };
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.MakeGenericType
+                (
+                    _fixture.ConfigurationService.ConstructorList.Constructors["TypeNotFoundConstructor"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{00C8F426-63F1-4C75-9861-160617E2CE1C}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void MakeGenericTypeThrowsIfConfiguredGenericArgumentNameDoesNotMatchTheConfiguredDataName()
+        {
+            //arrange
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
                 (
@@ -254,10 +176,41 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     new List<string>(),
                     _fixture.ContextProvider
                 ),
+                new ObjectGenericConfig
+                (
+                    "C",
+                    "Contoso.Domain.Entities.DepartmentModel",
+                    true,
+                    false,
+                    false,
+                    _fixture.ContextProvider
+                )
+            };
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.MakeGenericType
+                (
+                    _fixture.ConfigurationService.ConstructorList.Constructors["TypeNotFoundConstructor"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
+        }
+
+        [Fact]
+        public void MakeGenericTypeThrowsIfConstructorTypeIsNotGenericTypeDefinition()
+        {
+            //arrange
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
                 new LiteralGenericConfig
                 (
-                    "B",
-                    LiteralParameterType.Integer,
+                    "A",
+                    LiteralParameterType.String,
                     LiteralParameterInputStyle.SingleLineTextBox,
                     true,
                     false,
@@ -268,23 +221,135 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     new List<string>(),
                     _fixture.ContextProvider
                 ),
+                new ObjectGenericConfig
+                (
+                    "B",
+                    "Contoso.Domain.Entities.DepartmentModel",
+                    true,
+                    false,
+                    false,
+                    _fixture.ContextProvider
+                )
             };
 
             //act
-            var result = validator.Validate(constructor, dataConfiguredGenericArguments, applicationTypeInfo, errors);
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.MakeGenericType
+                (
+                    _fixture.ConfigurationService.ConstructorList.Constructors["TestResponseB"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
 
             //assert
-            Assert.True(result);
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{4E9A10C7-3728-40C6-8658-3CD7FECA94CF}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void ConvertGenericTypesWorksForValidContructorAndValidGenericArguments()
+        {
+            //arrange
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+                new LiteralGenericConfig
+                (
+                    "A",
+                    LiteralParameterType.String,
+                    LiteralParameterInputStyle.SingleLineTextBox,
+                    true,
+                    false,
+                    false,
+                    "",
+                    "",
+                    "",
+                    new List<string>(),
+                    _fixture.ContextProvider
+                ),
+                new ObjectGenericConfig
+                (
+                    "B",
+                    "Contoso.Domain.Entities.DepartmentModel",
+                    true,
+                    false,
+                    false,
+                    _fixture.ContextProvider
+                )
+            };
+            ApplicationTypeInfo application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+
+            //act
+            Constructor constructor = helper.ConvertGenericTypes
+            (
+                _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"],
+                genericConfigs,
+                application
+            );
+            _fixture.TypeLoadHelper.TryGetSystemType(constructor.TypeName, application, out Type? closedType);
+
+            //assert
+            Assert.NotNull(closedType);
+            Assert.False(closedType!.IsGenericTypeDefinition);
+        }
+
+        [Fact]
+        public void ConvertGenericTypesThrowsIfConfiguredGenricArgumentCountDoesNNotMatchTheDataCount()
+        {
+            //arrange
+            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+                new LiteralGenericConfig
+                (
+                    "A",
+                    LiteralParameterType.String,
+                    LiteralParameterInputStyle.SingleLineTextBox,
+                    true,
+                    false,
+                    false,
+                    "",
+                    "",
+                    "",
+                    new List<string>(),
+                    _fixture.ContextProvider
+                )
+            };
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.ConvertGenericTypes
+                (
+                    _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{FE6A7D95-BDE6-43D6-93BE-1018DF6F6C82}"),
+                exception.Message
+            );
         }
     }
 
-    public class ConstructorGenericsConfigrationValidatorFixture : IDisposable
+    public class GenericContructorHelperFixture : IDisposable
     {
-        public ConstructorGenericsConfigrationValidatorFixture()
+        public GenericContructorHelperFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            ConstructorGenericsConfigrationValidator = ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
+            GenericParametersHelper = ServiceProvider.GetRequiredService<IGenericParametersHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -419,7 +484,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 ContextProvider
                             )
                         },
-                        new List<string> { "A", "B"},
+                        new List<string> { "A", "B" },
                         "",
                         ContextProvider
                     ),
@@ -449,34 +514,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<string>(),
                         "",
                         ContextProvider
-                    ),
-                    ["OneGenericArgument"] = new Constructor
-                    (
-                        "OneGenericArgument",
-                        "Contoso.Test.Business.OneGenericArgument`1",
-                        new List<ParameterBase>
-                        {
-                            new GenericParameter
-                            (
-                                "aProperty",
-                                false,
-                                "",
-                                "A",
-                                ContextProvider
-                            ),
-                            new GenericParameter
-                            (
-                                "bProperty",
-                                false,
-                                "",
-                                "B",
-                                ContextProvider
-                            )
-                        },
-                        new List<string> { "A", "B" },
-                        "",
-                        ContextProvider
-                    ),
+                    )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
             );
@@ -493,7 +531,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
 
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
-        internal IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator;
+        internal IGenericParametersHelper GenericParametersHelper;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

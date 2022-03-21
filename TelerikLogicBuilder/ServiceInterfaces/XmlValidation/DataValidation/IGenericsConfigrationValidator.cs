@@ -6,7 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
 {
     internal interface IGenericsConfigrationValidator
     {
-        bool GenericArgumentNameMismatch(List<string> configured, List<GenericConfigBase> data);
-        bool GenericArgumentCountMatchesType(Type objectType, List<GenericConfigBase> GenericArguments);
+        bool GenericArgumentNameMismatch(IList<string> configured, IList<GenericConfigBase> data);
+        bool GenericArgumentCountMatchesType(Type objectType, IList<GenericConfigBase> GenericArguments);
     }
 }

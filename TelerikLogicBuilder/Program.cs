@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
@@ -14,6 +15,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidati
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization;
+using ABIS.LogicBuilder.FlowBuilder.Services.Data;
 using ABIS.LogicBuilder.FlowBuilder.Services.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions;
@@ -100,6 +102,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IVariableDictionaryBuilder, VariableDictionaryBuilder>()
             .AddSingleton<IVariableListInitializer, VariableListInitializer>()
             .AddSingleton<IVariableTreeFolderBuilder, VariableTreeFolderBuilder>()
+
+            //Data
+            .AddSingleton<IGenericContructorHelper, GenericContructorHelper>()
+            .AddSingleton<IGenericFunctionHelper, GenericFunctionHelper>()
+            .AddSingleton<IGenericParametersHelper, GenericParametersHelper>()
 
             //DataParsers
             .AddSingleton<IAssertFunctionDataParser, AssertFunctionDataParser>()

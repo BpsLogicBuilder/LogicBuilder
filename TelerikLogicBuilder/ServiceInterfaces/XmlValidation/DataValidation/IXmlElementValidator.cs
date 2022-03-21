@@ -1,35 +1,42 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation
 {
     internal interface IXmlElementValidator
     {
-        public IAssertFunctionElementValidator AssertFunctionElementValidator { get; }
-        public IConditionsElementValidator ConditionsElementValidator { get; }
-        public IConnectorElementValidator ConnectorElementValidator { get; }
-        public IConstructorElementValidator ConstructorElementValidator { get; }
-        public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
-        public IConstructorParametersDataValidator ConstructorParametersDataValidator { get; }
-        public IDecisionElementValidator DecisionElementValidator { get; }
-        public IDecisionsElementValidator DecisionsElementValidator { get; }
-        public IFunctionElementValidator FunctionElementValidator { get; }
-        public IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
-        public IFunctionParametersDataValidator FunctionParametersDataValidator { get; }
-        public IFunctionsElementValidator FunctionsElementValidator { get; }
-        public IGenericsConfigrationValidator GenericsConfigrationValidator { get; }
-        public ILiteralElementValidator LiteralElementValidator { get; }
-        public ILiteralListElementValidator LiteralListElementValidator { get; }
-        public ILiteralListParameterElementValidator LiteralListParameterElementValidator { get; }
-        public ILiteralListVariableElementValidator LiteralListVariableElementValidator { get; }
-        public ILiteralParameterElementValidator LiteralParameterElementValidator { get; }
-        public ILiteralVariableElementValidator LiteralVariableElementValidator { get; }
-        public IMetaObjectElementValidator MetaObjectElementValidator { get; }
-        public IObjectElementValidator ObjectElementValidator { get; }
-        public IObjectListElementValidator ObjectListElementValidator { get; }
-        public IObjectListParameterElementValidator ObjectListParameterElementValidator { get; }
-        public IObjectListVariableElementValidator ObjectListVariableElementValidator { get; }
-        public IObjectParameterElementValidator ObjectParameterElementValidator { get; }
-        public IObjectVariableElementValidator ObjectVariableElementValidator { get; }
-        public IParameterElementValidator ParameterElementValidator { get; }
-        public IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
-        public IVariableElementValidator VariableElementValidator { get; }
+        IAssertFunctionElementValidator AssertFunctionElementValidator { get; }
+        IConditionsElementValidator ConditionsElementValidator { get; }
+        IConnectorElementValidator ConnectorElementValidator { get; }
+        IConstructorDataParser ConstructorDataParser { get; }
+        IConstructorElementValidator ConstructorElementValidator { get; }
+        IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
+        IConstructorParametersDataValidator ConstructorParametersDataValidator { get; }
+        IConstructorTypeHelper ConstructorTypeHelper { get; }
+        IContextProvider ContextProvider { get; }
+        IDecisionElementValidator DecisionElementValidator { get; }
+        IDecisionsElementValidator DecisionsElementValidator { get; }
+        IFunctionElementValidator FunctionElementValidator { get; }
+        IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
+        IFunctionParametersDataValidator FunctionParametersDataValidator { get; }
+        IFunctionsElementValidator FunctionsElementValidator { get; }
+        IGenericContructorHelper GenericContructorHelper { get; }
+        ILiteralElementValidator LiteralElementValidator { get; }
+        ILiteralListElementValidator LiteralListElementValidator { get; }
+        ILiteralListParameterElementValidator LiteralListParameterElementValidator { get; }
+        ILiteralListVariableElementValidator LiteralListVariableElementValidator { get; }
+        ILiteralParameterElementValidator LiteralParameterElementValidator { get; }
+        ILiteralVariableElementValidator LiteralVariableElementValidator { get; }
+        IMetaObjectElementValidator MetaObjectElementValidator { get; }
+        IObjectElementValidator ObjectElementValidator { get; }
+        IObjectListElementValidator ObjectListElementValidator { get; }
+        IObjectListParameterElementValidator ObjectListParameterElementValidator { get; }
+        IObjectListVariableElementValidator ObjectListVariableElementValidator { get; }
+        IObjectParameterElementValidator ObjectParameterElementValidator { get; }
+        IObjectVariableElementValidator ObjectVariableElementValidator { get; }
+        IParameterElementValidator ParameterElementValidator { get; }
+        IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
+        ITypeLoadHelper TypeLoadHelper { get; }
+        IVariableElementValidator VariableElementValidator { get; }
     }
 }

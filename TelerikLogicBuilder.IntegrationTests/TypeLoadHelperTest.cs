@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using TelerikLogicBuilder.IntegrationTests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.IntegrationTests
@@ -634,7 +635,7 @@ namespace TelerikLogicBuilder.IntegrationTests
                         "App01",
                         "App01",
                         "Contoso.Test.Flow.dll",
-                        @"C:\TelerikLogicBuilder\Contoso.Test.Flow\bin\Debug\netstandard2.0",
+                        $@"{TestFolders.TestAssembliesFolder}\Contoso.Test.Flow\bin\Debug\netstandard2.0",
                         ABIS.LogicBuilder.FlowBuilder.Enums.RuntimeType.NetCore,
                         new List<string>(),
                         "Contoso.Test.Flow.FlowActivity",

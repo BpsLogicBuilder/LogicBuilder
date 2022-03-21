@@ -421,6 +421,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameter &quot;{0}&quot; is not optional for constructor &quot;{1}&quot;..
+        /// </summary>
+        internal static string constrParameterNotOptionalFormat {
+            get {
+                return ResourceManager.GetString("constrParameterNotOptionalFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The configured constructor&apos;s generic arguments &quot;{0}&quot; must match the data&apos;s generic arguments &quot;{1}&quot;..
         /// </summary>
         internal static string constructorGenericArgsMisMatchFormat {
@@ -435,6 +444,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string constructorGenericArgsMisMatchFormat2 {
             get {
                 return ResourceManager.GetString("constructorGenericArgsMisMatchFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The constructor &quot;{0}&quot; must be assignable to &quot;{1}&quot;..
+        /// </summary>
+        internal static string constructorNotAssignableFormat {
+            get {
+                return ResourceManager.GetString("constructorNotAssignableFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no constructor configured for the object type &quot;{0}&quot;..
+        /// </summary>
+        internal static string constructorNotConfiguredForObjectTypeFormat {
+            get {
+                return ResourceManager.GetString("constructorNotConfiguredForObjectTypeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The constructor &quot;{0}&quot; cannot be assigned to the object type &quot;{1}&quot;..
+        /// </summary>
+        internal static string constructorNotConfiguredForObjectTypeFormat2 {
+            get {
+                return ResourceManager.GetString("constructorNotConfiguredForObjectTypeFormat2", resourceCulture);
             }
         }
         
@@ -826,6 +862,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connectors.
+        /// </summary>
+        internal static string enumDescriptionConnectors {
+            get {
+                return ResourceManager.GetString("enumDescriptionConnectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DateTime.
         /// </summary>
         internal static string enumDescriptionDate {
@@ -898,6 +943,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domain Auto Complete.
+        /// </summary>
+        internal static string enumDescriptionDomainAutoComplete {
+            get {
+                return ResourceManager.GetString("enumDescriptionDomainAutoComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double.
         /// </summary>
         internal static string enumDescriptionDouble {
@@ -912,6 +966,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionDoubleKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionDoubleKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DropDown.
+        /// </summary>
+        internal static string enumDescriptionDropDown {
+            get {
+                return ResourceManager.GetString("enumDescriptionDropDown", resourceCulture);
             }
         }
         
@@ -939,6 +1002,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionFloatKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionFloatKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic.
+        /// </summary>
+        internal static string enumDescriptionGeneric {
+            get {
+                return ResourceManager.GetString("enumDescriptionGeneric", resourceCulture);
             }
         }
         
@@ -975,6 +1047,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionGuidKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionGuidKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hash Set Form.
+        /// </summary>
+        internal static string enumDescriptionHashSetForm {
+            get {
+                return ResourceManager.GetString("enumDescriptionHashSetForm", resourceCulture);
             }
         }
         
@@ -1033,6 +1114,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List Form.
+        /// </summary>
+        internal static string enumDescriptionListForm {
+            get {
+                return ResourceManager.GetString("enumDescriptionListForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal.
+        /// </summary>
+        internal static string enumDescriptionLiteral {
+            get {
+                return ResourceManager.GetString("enumDescriptionLiteral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal List.
+        /// </summary>
+        internal static string enumDescriptionLiteralList {
+            get {
+                return ResourceManager.GetString("enumDescriptionLiteralList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Long.
         /// </summary>
         internal static string enumDescriptionLong {
@@ -1047,6 +1155,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionLongKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionLongKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple Line Text box.
+        /// </summary>
+        internal static string enumDescriptionMultipleLineTextBox {
+            get {
+                return ResourceManager.GetString("enumDescriptionMultipleLineTextBox", resourceCulture);
             }
         }
         
@@ -1231,6 +1348,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Object.
+        /// </summary>
+        internal static string enumDescriptionObject {
+            get {
+                return ResourceManager.GetString("enumDescriptionObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object List.
+        /// </summary>
+        internal static string enumDescriptionObjectList {
+            get {
+                return ResourceManager.GetString("enumDescriptionObjectList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parameter Sourced Property Input.
         /// </summary>
         internal static string enumDescriptionParameterSourcedPropertyInput {
@@ -1240,11 +1375,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameter Source Only.
+        /// </summary>
+        internal static string enumDescriptionParameterSourceOnly {
+            get {
+                return ResourceManager.GetString("enumDescriptionParameterSourceOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Property.
         /// </summary>
         internal static string enumDescriptionProperty {
             get {
                 return ResourceManager.GetString("enumDescriptionProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Input.
+        /// </summary>
+        internal static string enumDescriptionPropertyInput {
+            get {
+                return ResourceManager.GetString("enumDescriptionPropertyInput", resourceCulture);
             }
         }
         
@@ -1281,6 +1434,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionShortKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionShortKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Line Text box.
+        /// </summary>
+        internal static string enumDescriptionSingleLineTextBox {
+            get {
+                return ResourceManager.GetString("enumDescriptionSingleLineTextBox", resourceCulture);
             }
         }
         
@@ -1366,6 +1528,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type Auto Complete.
+        /// </summary>
+        internal static string enumDescriptionTypeAutoComplete {
+            get {
+                return ResourceManager.GetString("enumDescriptionTypeAutoComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unsigned Integer.
         /// </summary>
         internal static string enumDescriptionUInteger {
@@ -1434,6 +1605,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionVariableKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionVariableKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Void.
+        /// </summary>
+        internal static string enumDescriptionVoid {
+            get {
+                return ResourceManager.GetString("enumDescriptionVoid", resourceCulture);
             }
         }
         
@@ -1722,6 +1902,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidConsParameterOrder {
             get {
                 return ResourceManager.GetString("invalidConsParameterOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The parameter &quot;{0}&quot; has an invalid element for the category &quot;{1}&quot;..
+        /// </summary>
+        internal static string invalidParameterElementFormat {
+            get {
+                return ResourceManager.GetString("invalidParameterElementFormat", resourceCulture);
             }
         }
         

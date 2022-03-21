@@ -35,7 +35,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
-            List<GenericConfigBase> configuredData = new List<GenericConfigBase>
+            List<GenericConfigBase> configuredData = new()
             {
                 new LiteralGenericConfig
                 (
@@ -80,7 +80,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
-            List<GenericConfigBase> configuredData = new List<GenericConfigBase>
+            List<GenericConfigBase> configuredData = new()
             {
                 new LiteralGenericConfig
                 (
@@ -111,8 +111,8 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
-            List<string> configuredArgumentNames = new List<string> { "A", "B" };
-            List<GenericConfigBase> configuredData = new List<GenericConfigBase>
+            List<string> configuredArgumentNames = new() { "A", "B" };
+            List<GenericConfigBase> configuredData = new()
             {
                 new LiteralGenericConfig
                 (
@@ -157,8 +157,8 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
-            List<string> configuredArgumentNames = new List<string> { "A", "C" };
-            List<GenericConfigBase> configuredData = new List<GenericConfigBase>
+            List<string> configuredArgumentNames = new() { "A", "C" };
+            List<GenericConfigBase> configuredData = new()
             {
                 new LiteralGenericConfig
                 (

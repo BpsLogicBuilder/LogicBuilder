@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -23,6 +24,36 @@ namespace TelerikLogicBuilder.Tests
         #region Fields
         private readonly IServiceProvider serviceProvider;
         #endregion Fields
+
+        [Theory]
+        [InlineData(typeof(ParameterCategory))]
+        [InlineData(typeof(GenericConfigCategory))]
+        [InlineData(typeof(ListParameterInputStyle))]
+        [InlineData(typeof(ListType))]
+        [InlineData(typeof(ListVariableInputStyle))]
+        [InlineData(typeof(LiteralFunctionReturnType))]
+        [InlineData(typeof(LiteralListElementType))]
+        [InlineData(typeof(LiteralParameterInputStyle))]
+        [InlineData(typeof(LiteralParameterType))]
+        [InlineData(typeof(LiteralType))]
+        [InlineData(typeof(LiteralVariableInputStyle))]
+        public void GetVisibleEnumText(Type enumType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+            MethodInfo mInfo = typeof(IEnumHelper)
+                .GetMethod(nameof(IEnumHelper.GetVisibleEnumText))!
+                .MakeGenericMethod(new Type[] { enumType })!;
+
+            //act assert
+            foreach (var enumValue in Enum.GetValues(enumType))
+            {
+                object? result = mInfo.Invoke(enumHelper, new object[] { enumValue });
+                Assert.NotNull(result);
+                Assert.True(result is string);
+                Assert.False(string.IsNullOrEmpty((string)result!));
+            }
+        }
 
         [Fact]
         public void GetVisibleEnumTextReturnsCorrectStringForDefaultCulture()

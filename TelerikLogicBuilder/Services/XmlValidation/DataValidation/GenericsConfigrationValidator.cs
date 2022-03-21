@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class GenericsConfigrationValidator : IGenericsConfigrationValidator
     {
-        public bool GenericArgumentNameMismatch(List<string> configured, List<GenericConfigBase> data)
+        public bool GenericArgumentNameMismatch(IList<string> configured, IList<GenericConfigBase> data)
         {
             IEnumerable<string> missingFromConfig = data.Select(a => a.GenericArgumentName).Except(configured);
             IEnumerable<string> missingFromData = configured.Except(data.Select(a => a.GenericArgumentName));
@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             return missingFromConfig.Any() || missingFromData.Any();
         }
 
-        public bool GenericArgumentCountMatchesType(Type objectType, List<GenericConfigBase> GenericArguments) 
+        public bool GenericArgumentCountMatchesType(Type objectType, IList<GenericConfigBase> GenericArguments) 
             => objectType.IsGenericTypeDefinition
                 && (objectType.GetGenericArguments().Length == GenericArguments.Count);
     }

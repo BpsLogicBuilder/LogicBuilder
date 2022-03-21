@@ -95,7 +95,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             return true;
         }
 
-        private bool ValidateGenericArgumentsMatch(List<string> configured, List<GenericConfigBase> data, List<string> validationErrors)
+        private static bool ValidateGenericArgumentsMatch(List<string> configured, List<GenericConfigBase> data, List<string> validationErrors)
         {
             List<string> dataGenericArgumentNames = data.Select(a => a.GenericArgumentName).ToList();
 

@@ -212,6 +212,9 @@
     <value>The generic argument name "{0}" for contructor "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
   </data>
+	<data name="constrParameterNotOptionalFormat" xml:space="preserve">
+    <value>Parameter "{0}" is not optional for constructor "{1}".</value>
+  </data>
 	<data name="constructorGenericArgsMisMatchFormat" xml:space="preserve">
     <value>The configured constructor's generic arguments "{0}" must match the data's generic arguments "{1}".</value>
     <comment>0=constructor's generic arguments;1= data's generic arguments</comment>
@@ -219,6 +222,18 @@
 	<data name="constructorGenericArgsMisMatchFormat2" xml:space="preserve">
     <value>The configured constructor's type name  "{0}" must be a generic type definition matching the generic arguments "{1}".</value>
     <comment>0=constructor's type name;1= data's generic arguments</comment>
+  </data>
+	<data name="constructorNotAssignableFormat" xml:space="preserve">
+    <value>The constructor "{0}" must be assignable to "{1}".</value>
+    <comment>0=constructorName;1=objectType</comment>
+  </data>
+	<data name="constructorNotConfiguredForObjectTypeFormat" xml:space="preserve">
+    <value>There is no constructor configured for the object type "{0}".</value>
+    <comment>0=typeName</comment>
+  </data>
+	<data name="constructorNotConfiguredForObjectTypeFormat2" xml:space="preserve">
+    <value>The constructor "{0}" cannot be assigned to the object type "{1}".</value>
+    <comment>0=constructorName;1=typeName</comment>
   </data>
 	<data name="constructorsRootFolderText" xml:space="preserve">
     <value>Constructors</value>
@@ -398,6 +413,9 @@
 	<data name="enumDescriptionNullableULong" xml:space="preserve">
     <value>Nullable ULong</value>
   </data>
+	<data name="enumDescriptionVoid" xml:space="preserve">
+    <value>Void</value>
+  </data>
 	<data name="enumDescriptionArray" xml:space="preserve">
     <value>Array</value>
   </data>
@@ -506,8 +524,56 @@
 	<data name="enumDescriptionVariableArrayIndexer" xml:space="preserve">
     <value>VariableKeyArrayItem</value>
   </data>
+	<data name="enumDescriptionDropDown" xml:space="preserve">
+    <value>DropDown</value>
+  </data>
+	<data name="enumDescriptionMultipleLineTextBox" xml:space="preserve">
+    <value>Multiple Line Text box</value>
+  </data>
+	<data name="enumDescriptionSingleLineTextBox" xml:space="preserve">
+    <value>Single Line Text box</value>
+  </data>
+	<data name="enumDescriptionTypeAutoComplete" xml:space="preserve">
+    <value>Type Auto Complete</value>
+  </data>
+	<data name="enumDescriptionDomainAutoComplete" xml:space="preserve">
+    <value>Domain Auto Complete</value>
+  </data>
+	<data name="enumDescriptionPropertyInput" xml:space="preserve">
+    <value>Property Input</value>
+  </data>
 	<data name="enumDescriptionParameterSourcedPropertyInput" xml:space="preserve">
     <value>Parameter Sourced Property Input</value>
+  </data>
+	<data name="enumDescriptionParameterSourceOnly" xml:space="preserve">
+    <value>Parameter Source Only</value>
+  </data>
+	<data name="enumDescriptionLiteral" xml:space="preserve">
+    <value>Literal</value>
+  </data>
+	<data name="enumDescriptionObject" xml:space="preserve">
+    <value>Object</value>
+  </data>
+	<data name="enumDescriptionGeneric" xml:space="preserve">
+    <value>Generic</value>
+  </data>
+	<data name="enumDescriptionLiteralList" xml:space="preserve">
+    <value>Literal List</value>
+  </data>
+	<data name="enumDescriptionObjectList" xml:space="preserve">
+    <value>Object List</value>
+  </data>
+	<data name="enumDescriptionGenericList" xml:space="preserve">
+    <value>Generic List</value>
+  </data>
+	<data name="enumDescriptionListForm" xml:space="preserve">
+    <value>List Form</value>
+  </data>
+	<data name="enumDescriptionHashSetForm" xml:space="preserve">
+    <value>Hash Set Form</value>
+  </data>
+	<data name="enumDescriptionConnectors" xml:space="preserve">
+    <value>Connectors</value>
   </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>Fragments</value>
@@ -588,6 +654,10 @@
 	<data name="invalidConsParameterOrder" xml:space="preserve">
     <value>The parameter order for constructor "{0}" is invalid. Move optional parameters to the end of the parameters list.</value>
     <comment>0=FunctionName</comment>
+  </data>
+	<data name="invalidParameterElementFormat" xml:space="preserve">
+    <value>The parameter "{0}" has an invalid element for the category "{1}".</value>
+    <comment>0=parameterName;1=parameterCategory;</comment>
   </data>
 	<data name="invalidParameterOrder" xml:space="preserve">
     <value>The parameter order for function "{0}" is invalid. Move optional parameters to the end of the parameters list.</value>
