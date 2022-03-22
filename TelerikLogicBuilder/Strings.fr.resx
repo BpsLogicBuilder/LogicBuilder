@@ -180,9 +180,17 @@
 	<data name="builtInParameterNameVariable" xml:space="preserve">
     <value>VariableFR</value>
   </data>
+	<data name="cannotEvaluateVariableFormat" xml:space="preserve">
+    <value>Type cannot be evaluated. Variable "{0}" is not configured.FR</value>
+    <comment>0=VariableName</comment>
+  </data>
 	<data name="cannotLoadAssemblyFormat" xml:space="preserve">
     <value>Assembly "{0}" could not be loaded.FR</value>
     <comment>0=Assembly</comment>
+  </data>
+	<data name="cannotLoadCastAsVariableTypeFormat" xml:space="preserve">
+    <value>Cannot load "Cast Variable As" type "{0}" for the variable "{1}".FR</value>
+    <comment>0=castAsTypeName; 1=variableName;</comment>
   </data>
 	<data name="cannotLoadClassFormat" xml:space="preserve">
     <value>Class "{0}" could not be loaded.FR</value>
@@ -767,6 +775,10 @@
 	<data name="variableNameAndDefinitionFormat" xml:space="preserve">
     <value>Variable "{0}". Reference Name and Reference Definition must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Category = Field.Property.IntKeyValue.Field.FR</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="variableNotAssignableFormat" xml:space="preserve">
+    <value>The variable "{0}" must be assignable to "{1}".FR</value>
+    <comment>0=variableName;1=objectType</comment>
   </data>
 	<data name="variableReferenceDefinitionMustBeEmptyFormat" xml:space="preserve">
     <value>Reference Definition field for variable {0} must be empty when the reference category is "This" or reference category is "Type" or the evaluation is "Automatic".FR</value>

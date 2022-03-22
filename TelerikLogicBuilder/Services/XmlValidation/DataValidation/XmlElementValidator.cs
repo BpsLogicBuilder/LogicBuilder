@@ -13,26 +13,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IConstructorTypeHelper constructorTypeHelper,
                                    IGenericContructorHelper genericContructorHelper,
                                    IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
-                                   ITypeLoadHelper typeLoadHelper)
+                                   ITypeLoadHelper typeLoadHelper,
+                                   IVariableDataParser variableDataParser)
         {
             ContextProvider = contextProvider;//Must be assigned first because it is required in some of the following validator constructors.
             ConstructorDataParser = constructorDataParser;
             ConstructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
             ConstructorTypeHelper = constructorTypeHelper;
             FunctionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
+            GenericContructorHelper = genericContructorHelper;
             TypeLoadHelper = typeLoadHelper;
+            VariableDataParser = variableDataParser;
 
             AssertFunctionElementValidator = new AssertFunctionElementValidator(this);
             ConditionsElementValidator = new ConditionsElementValidator(this);
             ConnectorElementValidator = new ConnectorElementValidator(this);
             ConstructorElementValidator = new ConstructorElementValidator(this);
-            ConstructorParametersDataValidator = new ConstructorParametersDataValidator(this);
             DecisionElementValidator = new DecisionElementValidator(this);
             DecisionsElementValidator = new DecisionsElementValidator(this);
             FunctionElementValidator = new FunctionElementValidator(this);
-            FunctionParametersDataValidator = new FunctionParametersDataValidator(this);
             FunctionsElementValidator = new FunctionsElementValidator(this);
-            GenericContructorHelper = genericContructorHelper;
             LiteralElementValidator = new LiteralElementValidator(this);
             LiteralListElementValidator = new LiteralListElementValidator(this);
             LiteralListParameterElementValidator = new LiteralListParameterElementValidator(this);
@@ -51,23 +51,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             VariableElementValidator = new VariableElementValidator(this);
         }
 
+        public IConstructorDataParser ConstructorDataParser { get; }
+        public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
+        public IConstructorTypeHelper ConstructorTypeHelper { get; }
+        public IContextProvider ContextProvider { get; }
+        public IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
+        public IGenericContructorHelper GenericContructorHelper { get; }
+        public ITypeLoadHelper TypeLoadHelper { get; }
+        public IVariableDataParser VariableDataParser { get; }
+
         public IAssertFunctionElementValidator AssertFunctionElementValidator { get; }
 
         public IConditionsElementValidator ConditionsElementValidator { get; }
 
         public IConnectorElementValidator ConnectorElementValidator { get; }
 
-        public IConstructorDataParser ConstructorDataParser { get; }
-
         public IConstructorElementValidator ConstructorElementValidator { get; }
-
-        public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
-
-        public IConstructorParametersDataValidator ConstructorParametersDataValidator { get; }
-
-        public IConstructorTypeHelper ConstructorTypeHelper { get; }
-
-        public IContextProvider ContextProvider { get; }
 
         public IDecisionElementValidator DecisionElementValidator { get; }
 
@@ -75,13 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         public IFunctionElementValidator FunctionElementValidator { get; }
 
-        public IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
-
-        public IFunctionParametersDataValidator FunctionParametersDataValidator { get; }
-
         public IFunctionsElementValidator FunctionsElementValidator { get; }
-
-        public IGenericContructorHelper GenericContructorHelper { get; }
 
         public ILiteralElementValidator LiteralElementValidator { get; }
 
@@ -112,8 +105,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IParameterElementValidator ParameterElementValidator { get; }
 
         public IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
-
-        public ITypeLoadHelper TypeLoadHelper { get; }
 
         public IVariableElementValidator VariableElementValidator { get; }
     }

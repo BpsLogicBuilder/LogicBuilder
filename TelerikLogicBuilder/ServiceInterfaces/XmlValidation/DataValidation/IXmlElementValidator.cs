@@ -11,14 +11,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IConstructorDataParser ConstructorDataParser { get; }
         IConstructorElementValidator ConstructorElementValidator { get; }
         IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
-        IConstructorParametersDataValidator ConstructorParametersDataValidator { get; }
         IConstructorTypeHelper ConstructorTypeHelper { get; }
         IContextProvider ContextProvider { get; }
         IDecisionElementValidator DecisionElementValidator { get; }
         IDecisionsElementValidator DecisionsElementValidator { get; }
         IFunctionElementValidator FunctionElementValidator { get; }
         IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
-        IFunctionParametersDataValidator FunctionParametersDataValidator { get; }
         IFunctionsElementValidator FunctionsElementValidator { get; }
         IGenericContructorHelper GenericContructorHelper { get; }
         ILiteralElementValidator LiteralElementValidator { get; }
@@ -37,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IParameterElementValidator ParameterElementValidator { get; }
         IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
         ITypeLoadHelper TypeLoadHelper { get; }
+        IVariableDataParser VariableDataParser { get; }
         IVariableElementValidator VariableElementValidator { get; }
     }
 }

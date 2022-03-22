@@ -322,11 +322,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type cannot be evaluated. Variable &quot;{0}&quot; is not configured..
+        /// </summary>
+        internal static string cannotEvaluateVariableFormat {
+            get {
+                return ResourceManager.GetString("cannotEvaluateVariableFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assembly &quot;{0}&quot; could not be loaded..
         /// </summary>
         internal static string cannotLoadAssemblyFormat {
             get {
                 return ResourceManager.GetString("cannotLoadAssemblyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot load &quot;Cast Variable As&quot; type &quot;{0}&quot; for the variable &quot;{1}&quot;..
+        /// </summary>
+        internal static string cannotLoadCastAsVariableTypeFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadCastAsVariableTypeFormat", resourceCulture);
             }
         }
         
@@ -2460,6 +2478,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableNameIsInvalidFormat {
             get {
                 return ResourceManager.GetString("variableNameIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The variable &quot;{0}&quot; must be assignable to &quot;{1}&quot;..
+        /// </summary>
+        internal static string variableNotAssignableFormat {
+            get {
+                return ResourceManager.GetString("variableNotAssignableFormat", resourceCulture);
             }
         }
         
