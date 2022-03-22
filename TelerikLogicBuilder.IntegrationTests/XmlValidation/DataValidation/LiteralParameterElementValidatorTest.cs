@@ -27,7 +27,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         [Fact]
-        public void CanLiteralParameterElementValidator()
+        public void CanCreateLiteralParameterElementValidator()
         {
             //arrange
             ILiteralParameterElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<ILiteralParameterElementValidator>();
