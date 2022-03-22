@@ -18,26 +18,38 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class ConstructorElementValidator : IConstructorElementValidator
     {
+        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IConstructorDataParser _constructorDataParser;
         private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
         private readonly IConstructorTypeHelper _constructorTypeHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IGenericContructorHelper _genericContructorHelper;
-        private readonly IParameterElementValidator _parameterElementValidator;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
+        //private readonly fields were injected into XmlElementValidator
 
         public ConstructorElementValidator(IXmlElementValidator xmlElementValidator)
         {
+            _xmlElementValidator = xmlElementValidator;
             _constructorDataParser = xmlElementValidator.ConstructorDataParser;
             _constructorGenericsConfigrationValidator = xmlElementValidator.ConstructorGenericsConfigrationValidator;
             _constructorTypeHelper = xmlElementValidator.ConstructorTypeHelper;
             _genericContructorHelper = xmlElementValidator.GenericContructorHelper;
-            _parameterElementValidator = xmlElementValidator.ParameterElementValidator;
+            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
             _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
             _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
-            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
         }
+
+        //ElementValidator properties are created in the XmlElementValidator constructor.
+        //e.g. if new ConstructorElementValidator((XmlElementValidator)this) is called in the
+        //XmlElementValidator constructor and _parameterElementValidator is assigned in this constructor,
+        //then _parameterElementValidator could be null.
+        //using properties e.g.
+        // private IParameterElementValidator? _parameterElementValidator;
+        // public IParameterElementValidator ParameterElementValidator
+        //     => _parameterElementValidator ??= new ParameterElementValidator(this);
+        // resulted in multiple .dll access errors in the tests.
+        private IParameterElementValidator ParameterElementValidator => _xmlElementValidator.ParameterElementValidator;
 
         public void Validate(XmlElement constructorElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
         {
@@ -162,7 +174,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                     return;
                 }
 
-                _parameterElementValidator.Validate(pElement, par, application, validationErrors);
+                ParameterElementValidator.Validate(pElement, par, application, validationErrors);
             });
         }
     }

@@ -16,19 +16,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    ITypeLoadHelper typeLoadHelper)
         {
             ContextProvider = contextProvider;//Must be assigned first because it is required in some of the following validator constructors.
+            ConstructorDataParser = constructorDataParser;
+            ConstructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
+            ConstructorTypeHelper = constructorTypeHelper;
+            FunctionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
+            TypeLoadHelper = typeLoadHelper;
 
             AssertFunctionElementValidator = new AssertFunctionElementValidator(this);
             ConditionsElementValidator = new ConditionsElementValidator(this);
             ConnectorElementValidator = new ConnectorElementValidator(this);
-            ConstructorDataParser = constructorDataParser;
             ConstructorElementValidator = new ConstructorElementValidator(this);
-            ConstructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
             ConstructorParametersDataValidator = new ConstructorParametersDataValidator(this);
-            ConstructorTypeHelper = constructorTypeHelper;
             DecisionElementValidator = new DecisionElementValidator(this);
             DecisionsElementValidator = new DecisionsElementValidator(this);
             FunctionElementValidator = new FunctionElementValidator(this);
-            FunctionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
             FunctionParametersDataValidator = new FunctionParametersDataValidator(this);
             FunctionsElementValidator = new FunctionsElementValidator(this);
             GenericContructorHelper = genericContructorHelper;
@@ -47,7 +48,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             ObjectVariableElementValidator = new ObjectVariableElementValidator(this);
             ParameterElementValidator = new ParameterElementValidator(this);
             RetractFunctionElementValidator = new RetractFunctionElementValidator(this);
-            TypeLoadHelper = typeLoadHelper;
             VariableElementValidator = new VariableElementValidator(this);
         }
 
@@ -58,7 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IConnectorElementValidator ConnectorElementValidator { get; }
 
         public IConstructorDataParser ConstructorDataParser { get; }
-        
+
         public IConstructorElementValidator ConstructorElementValidator { get; }
 
         public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }

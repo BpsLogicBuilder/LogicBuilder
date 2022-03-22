@@ -19,5 +19,10 @@ namespace Contoso.Test.Flow
 
         public Task SetValueAync(string key, object value)
             => Task.Run(() => this.flowDataCache.Items[key] = value);
+
+        public string GetString()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

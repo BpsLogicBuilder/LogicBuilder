@@ -1906,6 +1906,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input &quot;{0}&quot; is invalid for the literal type &quot;{1}&quot;..
+        /// </summary>
+        internal static string invalidLiteralInputFormat {
+            get {
+                return ResourceManager.GetString("invalidLiteralInputFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input is invalid for the literal type &quot;{0}&quot;..
+        /// </summary>
+        internal static string invalidLiteralInputFormat2 {
+            get {
+                return ResourceManager.GetString("invalidLiteralInputFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The parameter &quot;{0}&quot; has an invalid element for the category &quot;{1}&quot;..
         /// </summary>
         internal static string invalidParameterElementFormat {

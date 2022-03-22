@@ -652,6 +652,14 @@
     <value>The parameter order for constructor "{0}" is invalid. Move optional parameters to the end of the parameters list.</value>
     <comment>0=FunctionName</comment>
   </data>
+	<data name="invalidLiteralInputFormat" xml:space="preserve">
+    <value>Input "{0}" is invalid for the literal type "{1}".</value>
+    <comment>0=input, 1=Type</comment>
+  </data>
+	<data name="invalidLiteralInputFormat2" xml:space="preserve">
+    <value>Input is invalid for the literal type "{0}".</value>
+    <comment>0=Type</comment>
+  </data>
 	<data name="invalidParameterElementFormat" xml:space="preserve">
     <value>The parameter "{0}" has an invalid element for the category "{1}".</value>
     <comment>0=parameterName;1=parameterCategory;</comment>

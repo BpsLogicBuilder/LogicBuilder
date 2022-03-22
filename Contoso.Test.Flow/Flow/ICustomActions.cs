@@ -10,5 +10,7 @@ namespace Contoso.Test.Flow
 
         [AlsoKnownAs("SetValueAync")]
         Task SetValueAync(string key, object value);
+
+        string GetString();
     }
 }
