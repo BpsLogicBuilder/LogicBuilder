@@ -305,285 +305,6 @@
 	<data name="dotExe" xml:space="preserve">
     <value>.exe</value>
   </data>
-  <data name="enumDescriptionAny" xml:space="preserve">
-    <value>AnyFR</value>
-  </data>
-  <data name="enumDescriptionBoolean" xml:space="preserve">
-    <value>BooleanFR</value>
-  </data>
-  <data name="enumDescriptionDateTime" xml:space="preserve">
-    <value>DateTimeFR</value>
-  </data>
-	<data name="enumDescriptionDateTimeOffset" xml:space="preserve">
-    <value>DateTimeOffsetFR</value>
-  </data>
-	<data name="enumDescriptionDate" xml:space="preserve">
-    <value>DateTimeFR</value>
-  </data>
-  <data name="enumDescriptionTimeSpan" xml:space="preserve">
-    <value>TimeSpanFR</value>
-  </data>
-	<data name="enumDescriptionTimeOfDay" xml:space="preserve">
-    <value>TimeOfDayFR</value>
-  </data>
-  <data name="enumDescriptionLong" xml:space="preserve">
-    <value>LongFR</value>
-  </data>
-  <data name="enumDescriptionByte" xml:space="preserve">
-    <value>ByteFR</value>
-  </data>
-  <data name="enumDescriptionChar" xml:space="preserve">
-    <value>CharFR</value>
-  </data>
-  <data name="enumDescriptionDouble" xml:space="preserve">
-    <value>DoubleFR</value>
-  </data>
-  <data name="enumDescriptionFloat" xml:space="preserve">
-    <value>FloatFR</value>
-  </data>
-  <data name="enumDescriptionShort" xml:space="preserve">
-    <value>ShortFR</value>
-  </data>
-  <data name="enumDescriptionSByte" xml:space="preserve">
-    <value>Signed ByteFR</value>
-  </data>
-  <data name="enumDescriptionString" xml:space="preserve">
-    <value>StringFR</value>
-  </data>
-  <data name="enumDescriptionUInteger" xml:space="preserve">
-    <value>Unsigned IntegerFR</value>
-  </data>
-  <data name="enumDescriptionULong" xml:space="preserve">
-    <value>Unsigned LongFR</value>
-  </data>
-  <data name="enumDescriptionUShort" xml:space="preserve">
-    <value>Unsigned ShortFR</value>
-  </data>
-  <data name="enumDescriptionGuid" xml:space="preserve">
-    <value>GuidFR</value>
-  </data>
-  <data name="enumDescriptionDecimal" xml:space="preserve">
-    <value>DecimalFR</value>
-  </data>
-  <data name="enumDescriptionInteger" xml:space="preserve">
-    <value>IntegerFR</value>
-  </data>
-  <data name="enumDescriptionNullableDecimal" xml:space="preserve">
-    <value>Nullable DecimalFR</value>
-  </data>
-  <data name="enumDescriptionNullableInteger" xml:space="preserve">
-    <value>Nullable IntegerFR</value>
-  </data>
-  <data name="enumDescriptionNullableBoolean" xml:space="preserve">
-    <value>Nullable BooleanFR</value>
-  </data>
-  <data name="enumDescriptionNullableDateTime" xml:space="preserve">
-    <value>Nullable DateTimeFR</value>
-  </data>
-	<data name="enumDescriptionNullableDateTimeOffset" xml:space="preserve">
-    <value>Nullable DateTimeOffsetFR</value>
-  </data>
-	<data name="enumDescriptionNullableDate" xml:space="preserve">
-    <value>Nullable DateFR</value>
-  </data>
-  <data name="enumDescriptionNullableTimeSpan" xml:space="preserve">
-    <value>Nullable TimeSpanFR</value>
-  </data>
-	<data name="enumDescriptionNullableTimeOfDay" xml:space="preserve">
-    <value>Nullable TimeOfDayFR</value>
-  </data>
-  <data name="enumDescriptionNullableGuid" xml:space="preserve">
-    <value>Nullable GuidFR</value>
-  </data>
-  <data name="enumDescriptionNullableByte" xml:space="preserve">
-    <value>Nullable ByteFR</value>
-  </data>
-  <data name="enumDescriptionNullableShort" xml:space="preserve">
-    <value>Nullable ShortFR</value>
-  </data>
-  <data name="enumDescriptionNullableLong" xml:space="preserve">
-    <value>Nullable LongFR</value>
-  </data>
-  <data name="enumDescriptionNullableFloat" xml:space="preserve">
-    <value>Nullable FloatFR</value>
-  </data>
-  <data name="enumDescriptionNullableDouble" xml:space="preserve">
-    <value>Nullable DoubleFR</value>
-  </data>
-  <data name="enumDescriptionNullableChar" xml:space="preserve">
-    <value>Nullable CharFR</value>
-  </data>
-  <data name="enumDescriptionNullableSByte" xml:space="preserve">
-    <value>Nullable SByteFR</value>
-  </data>
-  <data name="enumDescriptionNullableUShort" xml:space="preserve">
-    <value>Nullable UShortFR</value>
-  </data>
-  <data name="enumDescriptionNullableUInteger" xml:space="preserve">
-    <value>Nullable UIntegerFR</value>
-  </data>
-  <data name="enumDescriptionNullableULong" xml:space="preserve">
-    <value>Nullable ULongFR</value>
-  </data>
-	<data name="enumDescriptionVoid" xml:space="preserve">
-    <value>VoidFR</value>
-  </data>
-	<data name="enumDescriptionArray" xml:space="preserve">
-    <value>ArrayFR</value>
-  </data>
-	<data name="enumDescriptionGenericList" xml:space="preserve">
-    <value>Generic ListFR</value>
-  </data>
-	<data name="enumDescriptionGenericCollection" xml:space="preserve">
-    <value>Generic CollectionFR</value>
-  </data>
-	<data name="enumDescriptionIGenericList" xml:space="preserve">
-    <value>Generic List InterfaceFR</value>
-  </data>
-	<data name="enumDescriptionIGenericCollection" xml:space="preserve">
-    <value>Generic Collection InterfaceFR</value>
-  </data>
-	<data name="enumDescriptionIGenericEnumerable" xml:space="preserve">
-    <value>Generic Enumerable InterfaceFR</value>
-  </data>
-	<data name="enumDescriptionField" xml:space="preserve">
-    <value>FieldFR</value>
-  </data>
-	<data name="enumDescriptionProperty" xml:space="preserve">
-    <value>PropertyFR</value>
-  </data>
-	<data name="enumDescriptionInstanceReference" xml:space="preserve">
-    <value>Instance ReferenceFR</value>
-  </data>
-	<data name="enumDescriptionStaticReference" xml:space="preserve">
-    <value>Static ReferenceFR</value>
-  </data>
-	<data name="enumDescriptionNone" xml:space="preserve">
-    <value>NoneFR</value>
-  </data>
-	<data name="enumDescriptionThis" xml:space="preserve">
-    <value>ThisFR</value>
-  </data>
-	<data name="enumDescriptionType" xml:space="preserve">
-    <value>TypeFR</value>
-  </data>
-	<data name="enumDescriptionArrayIndexer" xml:space="preserve">
-    <value>ArrayItemFR</value>
-  </data>
-	<data name="enumDescriptionIntegerKeyIndexer" xml:space="preserve">
-    <value>IntKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionStringKeyIndexer" xml:space="preserve">
-    <value>StringKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionBooleanKeyIndexer" xml:space="preserve">
-    <value>BoolKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionByteKeyIndexer" xml:space="preserve">
-    <value>ByteKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionCharKeyIndexer" xml:space="preserve">
-    <value>CharKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionDateTimeKeyIndexer" xml:space="preserve">
-    <value>DateTimeKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionDateTimeOffsetKeyIndexer" xml:space="preserve">
-    <value>DateTimeOffseteKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionDateKeyIndexer" xml:space="preserve">
-    <value>DateKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionTimeSpanKeyIndexer" xml:space="preserve">
-    <value>TimeSpanKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionTimeOfDayKeyIndexer" xml:space="preserve">
-    <value>TimeOfDayKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionGuidKeyIndexer" xml:space="preserve">
-    <value>GuidKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionDecimalKeyIndexer" xml:space="preserve">
-    <value>DecimalKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionDoubleKeyIndexer" xml:space="preserve">
-    <value>DoubleKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionFloatKeyIndexer" xml:space="preserve">
-    <value>FloatKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionLongKeyIndexer" xml:space="preserve">
-    <value>LongKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionSByteKeyIndexer" xml:space="preserve">
-    <value>SByteKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionShortKeyIndexer" xml:space="preserve">
-    <value>ShortKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionUIntegerKeyIndexer" xml:space="preserve">
-    <value>UIntKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionULongKeyIndexer" xml:space="preserve">
-    <value>ULongKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionUShortKeyIndexer" xml:space="preserve">
-    <value>UShortKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionVariableKeyIndexer" xml:space="preserve">
-    <value>VariableKeyValueFR</value>
-  </data>
-	<data name="enumDescriptionVariableArrayIndexer" xml:space="preserve">
-    <value>VariableKeyArrayItemFR</value>
-  </data>
-	<data name="enumDescriptionDropDown" xml:space="preserve">
-    <value>DropDownFR</value>
-  </data>
-	<data name="enumDescriptionMultipleLineTextBox" xml:space="preserve">
-    <value>Multiple Line Text boxFR</value>
-  </data>
-	<data name="enumDescriptionSingleLineTextBox" xml:space="preserve">
-    <value>Single Line Text boxFR</value>
-  </data>
-	<data name="enumDescriptionTypeAutoComplete" xml:space="preserve">
-    <value>Type Auto CompleteFR</value>
-  </data>
-	<data name="enumDescriptionDomainAutoComplete" xml:space="preserve">
-    <value>Domain Auto CompleteFR</value>
-  </data>
-	<data name="enumDescriptionPropertyInput" xml:space="preserve">
-    <value>Property InputFR</value>
-  </data>
-	<data name="enumDescriptionParameterSourcedPropertyInput" xml:space="preserve">
-    <value>Parameter Sourced Property InputFR</value>
-  </data>
-	<data name="enumDescriptionParameterSourceOnly" xml:space="preserve">
-    <value>Parameter Source OnlyFR</value>
-  </data>
-	<data name="enumDescriptionLiteral" xml:space="preserve">
-    <value>LiteralFR</value>
-  </data>
-	<data name="enumDescriptionObject" xml:space="preserve">
-    <value>ObjectFR</value>
-  </data>
-	<data name="enumDescriptionGeneric" xml:space="preserve">
-    <value>GenericFR</value>
-  </data>
-	<data name="enumDescriptionLiteralList" xml:space="preserve">
-    <value>Literal ListFR</value>
-  </data>
-	<data name="enumDescriptionObjectList" xml:space="preserve">
-    <value>Object ListFR</value>
-  </data>
-	<data name="enumDescriptionListForm" xml:space="preserve">
-    <value>List FormFR</value>
-  </data>
-	<data name="enumDescriptionHashSetForm" xml:space="preserve">
-    <value>Hash Set FormFR</value>
-  </data>
-	<data name="enumDescriptionConnectors" xml:space="preserve">
-    <value>ConnectorsFR</value>
-  </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>FragmentsFR</value>
   </data>
@@ -809,6 +530,285 @@
   </data>
 	<data name="variableTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for  variable {0} must be empty when the reference category is not "Type"or "Static Reference".FR</value>
+  </data>
+	<data name="enumDescriptionAny" xml:space="preserve">
+    <value>AnyFR</value>
+  </data>
+	<data name="enumDescriptionBoolean" xml:space="preserve">
+    <value>BooleanFR</value>
+  </data>
+	<data name="enumDescriptionDateTime" xml:space="preserve">
+    <value>DateTimeFR</value>
+  </data>
+	<data name="enumDescriptionDateTimeOffset" xml:space="preserve">
+    <value>DateTimeOffsetFR</value>
+  </data>
+	<data name="enumDescriptionDate" xml:space="preserve">
+    <value>DateTimeFR</value>
+  </data>
+	<data name="enumDescriptionTimeSpan" xml:space="preserve">
+    <value>TimeSpanFR</value>
+  </data>
+	<data name="enumDescriptionTimeOfDay" xml:space="preserve">
+    <value>TimeOfDayFR</value>
+  </data>
+	<data name="enumDescriptionLong" xml:space="preserve">
+    <value>LongFR</value>
+  </data>
+	<data name="enumDescriptionByte" xml:space="preserve">
+    <value>ByteFR</value>
+  </data>
+	<data name="enumDescriptionChar" xml:space="preserve">
+    <value>CharFR</value>
+  </data>
+	<data name="enumDescriptionDouble" xml:space="preserve">
+    <value>DoubleFR</value>
+  </data>
+	<data name="enumDescriptionFloat" xml:space="preserve">
+    <value>FloatFR</value>
+  </data>
+	<data name="enumDescriptionShort" xml:space="preserve">
+    <value>ShortFR</value>
+  </data>
+	<data name="enumDescriptionSByte" xml:space="preserve">
+    <value>Signed ByteFR</value>
+  </data>
+	<data name="enumDescriptionString" xml:space="preserve">
+    <value>StringFR</value>
+  </data>
+	<data name="enumDescriptionUInteger" xml:space="preserve">
+    <value>Unsigned IntegerFR</value>
+  </data>
+	<data name="enumDescriptionULong" xml:space="preserve">
+    <value>Unsigned LongFR</value>
+  </data>
+	<data name="enumDescriptionUShort" xml:space="preserve">
+    <value>Unsigned ShortFR</value>
+  </data>
+	<data name="enumDescriptionGuid" xml:space="preserve">
+    <value>GuidFR</value>
+  </data>
+	<data name="enumDescriptionDecimal" xml:space="preserve">
+    <value>DecimalFR</value>
+  </data>
+	<data name="enumDescriptionInteger" xml:space="preserve">
+    <value>IntegerFR</value>
+  </data>
+	<data name="enumDescriptionNullableDecimal" xml:space="preserve">
+    <value>Nullable DecimalFR</value>
+  </data>
+	<data name="enumDescriptionNullableInteger" xml:space="preserve">
+    <value>Nullable IntegerFR</value>
+  </data>
+	<data name="enumDescriptionNullableBoolean" xml:space="preserve">
+    <value>Nullable BooleanFR</value>
+  </data>
+	<data name="enumDescriptionNullableDateTime" xml:space="preserve">
+    <value>Nullable DateTimeFR</value>
+  </data>
+	<data name="enumDescriptionNullableDateTimeOffset" xml:space="preserve">
+    <value>Nullable DateTimeOffsetFR</value>
+  </data>
+	<data name="enumDescriptionNullableDate" xml:space="preserve">
+    <value>Nullable DateFR</value>
+  </data>
+	<data name="enumDescriptionNullableTimeSpan" xml:space="preserve">
+    <value>Nullable TimeSpanFR</value>
+  </data>
+	<data name="enumDescriptionNullableTimeOfDay" xml:space="preserve">
+    <value>Nullable TimeOfDayFR</value>
+  </data>
+	<data name="enumDescriptionNullableGuid" xml:space="preserve">
+    <value>Nullable GuidFR</value>
+  </data>
+	<data name="enumDescriptionNullableByte" xml:space="preserve">
+    <value>Nullable ByteFR</value>
+  </data>
+	<data name="enumDescriptionNullableShort" xml:space="preserve">
+    <value>Nullable ShortFR</value>
+  </data>
+	<data name="enumDescriptionNullableLong" xml:space="preserve">
+    <value>Nullable LongFR</value>
+  </data>
+	<data name="enumDescriptionNullableFloat" xml:space="preserve">
+    <value>Nullable FloatFR</value>
+  </data>
+	<data name="enumDescriptionNullableDouble" xml:space="preserve">
+    <value>Nullable DoubleFR</value>
+  </data>
+	<data name="enumDescriptionNullableChar" xml:space="preserve">
+    <value>Nullable CharFR</value>
+  </data>
+	<data name="enumDescriptionNullableSByte" xml:space="preserve">
+    <value>Nullable SByteFR</value>
+  </data>
+	<data name="enumDescriptionNullableUShort" xml:space="preserve">
+    <value>Nullable UShortFR</value>
+  </data>
+	<data name="enumDescriptionNullableUInteger" xml:space="preserve">
+    <value>Nullable UIntegerFR</value>
+  </data>
+	<data name="enumDescriptionNullableULong" xml:space="preserve">
+    <value>Nullable ULongFR</value>
+  </data>
+	<data name="enumDescriptionVoid" xml:space="preserve">
+    <value>VoidFR</value>
+  </data>
+	<data name="enumDescriptionArray" xml:space="preserve">
+    <value>ArrayFR</value>
+  </data>
+	<data name="enumDescriptionGenericList" xml:space="preserve">
+    <value>Generic ListFR</value>
+  </data>
+	<data name="enumDescriptionGenericCollection" xml:space="preserve">
+    <value>Generic CollectionFR</value>
+  </data>
+	<data name="enumDescriptionIGenericList" xml:space="preserve">
+    <value>Generic List InterfaceFR</value>
+  </data>
+	<data name="enumDescriptionIGenericCollection" xml:space="preserve">
+    <value>Generic Collection InterfaceFR</value>
+  </data>
+	<data name="enumDescriptionIGenericEnumerable" xml:space="preserve">
+    <value>Generic Enumerable InterfaceFR</value>
+  </data>
+	<data name="enumDescriptionField" xml:space="preserve">
+    <value>FieldFR</value>
+  </data>
+	<data name="enumDescriptionProperty" xml:space="preserve">
+    <value>PropertyFR</value>
+  </data>
+	<data name="enumDescriptionInstanceReference" xml:space="preserve">
+    <value>Instance ReferenceFR</value>
+  </data>
+	<data name="enumDescriptionStaticReference" xml:space="preserve">
+    <value>Static ReferenceFR</value>
+  </data>
+	<data name="enumDescriptionNone" xml:space="preserve">
+    <value>NoneFR</value>
+  </data>
+	<data name="enumDescriptionThis" xml:space="preserve">
+    <value>ThisFR</value>
+  </data>
+	<data name="enumDescriptionType" xml:space="preserve">
+    <value>TypeFR</value>
+  </data>
+	<data name="enumDescriptionArrayIndexer" xml:space="preserve">
+    <value>ArrayItemFR</value>
+  </data>
+	<data name="enumDescriptionIntegerKeyIndexer" xml:space="preserve">
+    <value>IntKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionStringKeyIndexer" xml:space="preserve">
+    <value>StringKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionBooleanKeyIndexer" xml:space="preserve">
+    <value>BoolKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionByteKeyIndexer" xml:space="preserve">
+    <value>ByteKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionCharKeyIndexer" xml:space="preserve">
+    <value>CharKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionDateTimeKeyIndexer" xml:space="preserve">
+    <value>DateTimeKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionDateTimeOffsetKeyIndexer" xml:space="preserve">
+    <value>DateTimeOffseteKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionDateKeyIndexer" xml:space="preserve">
+    <value>DateKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionTimeSpanKeyIndexer" xml:space="preserve">
+    <value>TimeSpanKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionTimeOfDayKeyIndexer" xml:space="preserve">
+    <value>TimeOfDayKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionGuidKeyIndexer" xml:space="preserve">
+    <value>GuidKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionDecimalKeyIndexer" xml:space="preserve">
+    <value>DecimalKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionDoubleKeyIndexer" xml:space="preserve">
+    <value>DoubleKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionFloatKeyIndexer" xml:space="preserve">
+    <value>FloatKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionLongKeyIndexer" xml:space="preserve">
+    <value>LongKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionSByteKeyIndexer" xml:space="preserve">
+    <value>SByteKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionShortKeyIndexer" xml:space="preserve">
+    <value>ShortKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionUIntegerKeyIndexer" xml:space="preserve">
+    <value>UIntKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionULongKeyIndexer" xml:space="preserve">
+    <value>ULongKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionUShortKeyIndexer" xml:space="preserve">
+    <value>UShortKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionVariableKeyIndexer" xml:space="preserve">
+    <value>VariableKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionVariableArrayIndexer" xml:space="preserve">
+    <value>VariableKeyArrayItemFR</value>
+  </data>
+	<data name="enumDescriptionDropDown" xml:space="preserve">
+    <value>DropDownFR</value>
+  </data>
+	<data name="enumDescriptionMultipleLineTextBox" xml:space="preserve">
+    <value>Multiple Line Text boxFR</value>
+  </data>
+	<data name="enumDescriptionSingleLineTextBox" xml:space="preserve">
+    <value>Single Line Text boxFR</value>
+  </data>
+	<data name="enumDescriptionTypeAutoComplete" xml:space="preserve">
+    <value>Type Auto CompleteFR</value>
+  </data>
+	<data name="enumDescriptionDomainAutoComplete" xml:space="preserve">
+    <value>Domain Auto CompleteFR</value>
+  </data>
+	<data name="enumDescriptionPropertyInput" xml:space="preserve">
+    <value>Property InputFR</value>
+  </data>
+	<data name="enumDescriptionParameterSourcedPropertyInput" xml:space="preserve">
+    <value>Parameter Sourced Property InputFR</value>
+  </data>
+	<data name="enumDescriptionParameterSourceOnly" xml:space="preserve">
+    <value>Parameter Source OnlyFR</value>
+  </data>
+	<data name="enumDescriptionLiteral" xml:space="preserve">
+    <value>LiteralFR</value>
+  </data>
+	<data name="enumDescriptionObject" xml:space="preserve">
+    <value>ObjectFR</value>
+  </data>
+	<data name="enumDescriptionGeneric" xml:space="preserve">
+    <value>GenericFR</value>
+  </data>
+	<data name="enumDescriptionLiteralList" xml:space="preserve">
+    <value>Literal ListFR</value>
+  </data>
+	<data name="enumDescriptionObjectList" xml:space="preserve">
+    <value>Object ListFR</value>
+  </data>
+	<data name="enumDescriptionListForm" xml:space="preserve">
+    <value>List FormFR</value>
+  </data>
+	<data name="enumDescriptionHashSetForm" xml:space="preserve">
+    <value>Hash Set FormFR</value>
+  </data>
+	<data name="enumDescriptionConnectors" xml:space="preserve">
+    <value>ConnectorsFR</value>
   </data>
 	<data name="fieldPropertyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
