@@ -19,5 +19,13 @@
                 return false;
             return true;
         }
+
+        public static B StaticMethodGenericReturn(A aParameter, B bParameter)
+        {
+            if (aParameter == null)
+                return bParameter;
+
+            return bParameter;
+        }
     }
 }

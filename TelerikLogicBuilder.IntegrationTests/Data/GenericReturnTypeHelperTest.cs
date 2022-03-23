@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -17,17 +18,17 @@ using Xunit;
 
 namespace TelerikLogicBuilder.IntegrationTests.Data
 {
-    public class GenericParametersHelperTest : IClassFixture<GenericParametersHelperFixture>
+    public class GenericReturnTypeHelperTest : IClassFixture<GenericReturnTypeHelperFixture>
     {
-        private readonly GenericParametersHelperFixture _fixture;
+        private readonly GenericReturnTypeHelperFixture _fixture;
         private static readonly IServiceProvider serviceProvider;
 
-        static GenericParametersHelperTest()
+        static GenericReturnTypeHelperTest()
         {
             serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
 
-        public GenericParametersHelperTest(GenericParametersHelperFixture fixture)
+        public GenericReturnTypeHelperTest(GenericReturnTypeHelperFixture fixture)
         {
             _fixture = fixture;
         }
@@ -36,7 +37,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         public void CanCreateGenericParametersHelper()
         {
             //arrange
-            IGenericParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericParametersHelper>();
+            IGenericReturnTypeHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericReturnTypeHelper>();
 
             //assert
             Assert.NotNull(helper);
@@ -66,8 +67,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             new List<string>(),
                             contextProvider
                         ),
-                        typeof(LiteralParameter),
-                        typeof(ListOfLiteralsParameter)
+                        typeof(LiteralReturnType),
+                        typeof(ListOfLiteralsReturnType)
                     },
                     new object[]
                     {
@@ -80,8 +81,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             false,
                             contextProvider
                         ),
-                        typeof(ObjectParameter),
-                        typeof(ListOfObjectsParameter)
+                        typeof(ObjectReturnType),
+                        typeof(ListOfObjectsReturnType)
                     },
                     new object[]
                     {
@@ -98,8 +99,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             new List<string>(),
                             contextProvider
                         ),
-                        typeof(ListOfLiteralsParameter),
-                        typeof(ListOfObjectsParameter)
+                        typeof(ListOfLiteralsReturnType),
+                        typeof(ListOfObjectsReturnType)
                     },
                     new object[]
                     {
@@ -111,8 +112,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             ListParameterInputStyle.HashSetForm,
                             contextProvider
                         ),
-                        typeof(ListOfObjectsParameter),
-                        typeof(ListOfObjectsParameter)
+                        typeof(ListOfObjectsReturnType),
+                        typeof(ListOfObjectsReturnType)
                     },
                 };
             }
@@ -131,43 +132,30 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
 
         [Theory]
         [MemberData(nameof(GenericTypeConfigurations_Data))]
-        internal void CanConvertGenericParameterFromAllGenericConfigBaseTypes(GenericConfigBase config, Type expectedGenericParameterType, Type expectedListOfGenericsParameterType)
+        internal void CanConvertGenericReturnTypeFromAllGenericConfigBaseTypes(GenericConfigBase config, Type expectedGenericReturnType, Type expectedListOfGenericsReturnType)
         {
             //act
-            List<ParameterBase> genericParameterResult = _fixture.GenericParametersHelper.GetConvertedParameters
+            ReturnTypeBase genericReturnTypeResult = _fixture.GenericReturnTypeHelper.GetConvertedReturnType
             (
-                new List<ParameterBase>
-                {
-                    new GenericParameter
-                    (
-                        "aProperty",
-                        false,
-                        "",
-                        "A",
-                        _fixture.ContextProvider
-                    )
-                },
+                new GenericReturnType
+                (
+                    "A",
+                    _fixture.ContextProvider
+                ),
                 new List<GenericConfigBase>
                 {
                     config
                 },
                 _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
             );
-            List<ParameterBase> listOfGenericsParameterResult = _fixture.GenericParametersHelper.GetConvertedParameters
+            ReturnTypeBase listOfGenericsReturnTypeResult = _fixture.GenericReturnTypeHelper.GetConvertedReturnType
             (
-                new List<ParameterBase>
-                {
-                    new ListOfGenericsParameter
-                    (
-                        "aProperty",
-                        false,
-                        "",
-                        "A",
-                        ListType.GenericList,
-                        ListParameterInputStyle.ListForm,
-                        _fixture.ContextProvider
-                    )
-                },
+                new ListOfGenericsReturnType
+                (
+                    "A",
+                    ListType.GenericList,
+                    _fixture.ContextProvider
+                ),
                 new List<GenericConfigBase>
                 {
                     config
@@ -176,8 +164,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             );
 
             //assert
-            Assert.Equal(expectedGenericParameterType, genericParameterResult.First().GetType());
-            Assert.Equal(expectedListOfGenericsParameterType, listOfGenericsParameterResult.First().GetType());
+            Assert.Equal(expectedGenericReturnType, genericReturnTypeResult.GetType());
+            Assert.Equal(expectedListOfGenericsReturnType, listOfGenericsReturnTypeResult.GetType());
         }
 
         [Fact]
@@ -188,19 +176,13 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             Assert.Throws<CriticalLogicBuilderException>
             (
                 () =>
-                _fixture.GenericParametersHelper.GetConvertedParameters
+                _fixture.GenericReturnTypeHelper.GetConvertedReturnType
                 (
-                    new List<ParameterBase>
-                    {
-                        new GenericParameter
-                        (
-                            "aProperty",
-                            false,
-                            "",
-                            "A",
-                            _fixture.ContextProvider
-                        )
-                    },
+                    new GenericReturnType
+                    (
+                        "A",
+                        _fixture.ContextProvider
+                    ),
                     new List<GenericConfigBase>
                     {
                         config
@@ -212,21 +194,14 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             Assert.Throws<CriticalLogicBuilderException>
             (
                 () =>
-                _fixture.GenericParametersHelper.GetConvertedParameters
+                _fixture.GenericReturnTypeHelper.GetConvertedReturnType
                 (
-                    new List<ParameterBase>
-                    {
-                        new ListOfGenericsParameter
-                        (
-                            "aProperty",
-                            false,
-                            "",
-                            "A",
-                            ListType.GenericList,
-                            ListParameterInputStyle.ListForm,
-                            _fixture.ContextProvider
-                        )
-                    },
+                    new ListOfGenericsReturnType
+                    (
+                        "A",
+                        ListType.GenericList,
+                        _fixture.ContextProvider
+                    ),
                     new List<GenericConfigBase>
                     {
                         config
@@ -237,13 +212,13 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
     }
 
-    public class GenericParametersHelperFixture : IDisposable
+    public class GenericReturnTypeHelperFixture : IDisposable
     {
-        public GenericParametersHelperFixture()
+        public GenericReturnTypeHelperFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            GenericParametersHelper = ServiceProvider.GetRequiredService<IGenericParametersHelper>();
+            GenericReturnTypeHelper = ServiceProvider.GetRequiredService<IGenericReturnTypeHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -398,7 +373,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
 
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
-        internal IGenericParametersHelper GenericParametersHelper;
+        internal IGenericReturnTypeHelper GenericReturnTypeHelper;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

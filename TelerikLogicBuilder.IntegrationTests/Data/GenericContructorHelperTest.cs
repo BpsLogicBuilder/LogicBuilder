@@ -193,7 +193,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 () =>
                 helper.MakeGenericType
                 (
-                    _fixture.ConfigurationService.ConstructorList.Constructors["TypeNotFoundConstructor"],
+                    _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"],
                     genericConfigs,
                     _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
                 )
@@ -297,6 +297,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             //assert
             Assert.NotNull(closedType);
             Assert.False(closedType!.IsGenericTypeDefinition);
+            Assert.True(constructor.Parameters[0] is LiteralParameter);
+            Assert.True(constructor.Parameters[1] is ObjectParameter);
         }
 
         [Fact]

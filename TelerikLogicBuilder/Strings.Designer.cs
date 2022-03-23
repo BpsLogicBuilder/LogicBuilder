@@ -1807,6 +1807,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Function &quot;{0}&quot; is not configured..
+        /// </summary>
+        internal static string functionNotConfiguredFormat {
+            get {
+                return ResourceManager.GetString("functionNotConfiguredFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference Name and Reference Definition field for function {0} must be populated when the reference category is &quot;Instance Reference&quot; or reference category is &quot;Static Reference&quot;..
         /// </summary>
         internal static string functionReferenceInfoMustBePopulatedFormat {

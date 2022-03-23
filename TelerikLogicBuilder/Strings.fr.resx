@@ -356,6 +356,10 @@
     <value>Function "{0}". Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Reference Definition = Field.Property.IntKeyValue.Field.FR</value>
     <comment>0=functionName</comment>
   </data>
+	<data name="functionNotConfiguredFormat" xml:space="preserve">
+    <value>Function "{0}" is not configured.FR</value>
+    <comment>0=FunctionName</comment>
+  </data>
 	<data name="functionReferenceInfoMustBePopulatedFormat" xml:space="preserve">
     <value>Reference Name and Reference Definition field for function {0} must be populated when the reference category is "Instance Reference" or reference category is "Static Reference".FR</value>
     <comment>0=functionName</comment>

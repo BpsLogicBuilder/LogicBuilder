@@ -18,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IFunctionElementValidator FunctionElementValidator { get; }
         IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
         IFunctionsElementValidator FunctionsElementValidator { get; }
+        IFunctionDataParser FunctionDataParser { get; }
         IGenericContructorHelper GenericContructorHelper { get; }
         ILiteralElementValidator LiteralElementValidator { get; }
         ILiteralListElementValidator LiteralListElementValidator { get; }

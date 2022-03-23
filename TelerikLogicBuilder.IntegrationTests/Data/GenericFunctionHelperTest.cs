@@ -1,233 +1,50 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using TelerikLogicBuilder.IntegrationTests.Constants;
 using Xunit;
 
-namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
+namespace TelerikLogicBuilder.IntegrationTests.Data
 {
-    public class FunctionGenericsConfigrationValidatorTest : IClassFixture<FunctionGenericsConfigrationValidatorFixture>
+    public class GenericFunctionHelperTest : IClassFixture<GenericFunctionHelperFixture>
     {
-        private readonly FunctionGenericsConfigrationValidatorFixture _fixture;
+        private readonly GenericFunctionHelperFixture _fixture;
 
-        public FunctionGenericsConfigrationValidatorTest(FunctionGenericsConfigrationValidatorFixture fixture)
+        public GenericFunctionHelperTest(GenericFunctionHelperFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Fact]
-        public void CanFunctionGenericsConfigrationValidator()
+        public void CanCreateGenericFunctionHelper()
         {
             //arrange
-            IFunctionGenericsConfigrationValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>();
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
 
             //assert
-            Assert.NotNull(xmlValidator);
+            Assert.NotNull(helper);
         }
 
         [Fact]
-        public void ValidateReturnsFalseIfConfiguredFunctionGenericArgumentNamesDoNotMatchTheFunctionDataGenericArguments()
+        public void MakeGenericTypeWorksForValidFunctionrAndValidGenericArguments()
         {
             //arrange
-            IFunctionGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Function function = _fixture.ConfigurationService.FunctionList.Functions["StaticMethod"];
-
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
-            {
-                new LiteralGenericConfig
-                (
-                    "A",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                ),
-                new LiteralGenericConfig
-                (
-                    "C",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                )
-            };
-
-            //act
-            var result = validator.Validate(function, dataConfiguredGenericArguments, applicationTypeInfo, errors);
-
-            //assert
-            Assert.False(result);
-            Assert.Equal
-            (
-                string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.functionGenericArgsMisMatchFormat,
-                    string.Join(Strings.itemsCommaSeparator, new List<string> { "A, B" }),
-                    string.Join(Strings.itemsCommaSeparator, new List<string> { "A, C" })
-                ),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfLoadedTypesGenericArgumentCountDoesNotMatchTheConfiguredGenericArgumentCount()
-        {
-            //arrange
-            IFunctionGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Function function = _fixture.ConfigurationService.FunctionList.Functions["StaticMethodOneArgument"];
-
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
-            {
-                new LiteralGenericConfig
-                (
-                    "A",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                ),
-                new LiteralGenericConfig
-                (
-                    "B",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                )
-            };
-
-            //act
-            var result = validator.Validate(function, dataConfiguredGenericArguments, applicationTypeInfo, errors);
-
-            //assert
-            Assert.False(result);
-            Assert.Equal
-            (
-                string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.functionGenericArgsMisMatchFormat2,
-                    _fixture.ContextProvider.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
-                    function.TypeName,
-                    string.Join(Strings.itemsCommaSeparator, function.GenericArguments)
-                ),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfConfiguredFunctionHasGenericTypesAndReferenceCategoryIsNotEqualToType()
-        {
-            //arrange
-            IFunctionGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Function function = _fixture.ConfigurationService.FunctionList.Functions["StaticMethodWrongCategory"];
-
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
-            {
-                new LiteralGenericConfig
-                (
-                    "A",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                ),
-                new LiteralGenericConfig
-                (
-                    "B",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
-                    true,
-                    false,
-                    false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
-                    _fixture.ContextProvider
-                )
-            };
-
-            //act
-            var result = validator.Validate(function, dataConfiguredGenericArguments, applicationTypeInfo, errors);
-
-            //assert
-            Assert.False(result);
-            Assert.Equal
-            (
-                string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.functionGenericArgsMisMatchFormat2,
-                    _fixture.ContextProvider.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
-                    function.TypeName,
-                    string.Join(Strings.itemsCommaSeparator, function.GenericArguments)
-                ),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ValidateReturnsFalseIfDataGenericTypeForGenericArgumentCannotBeLoaded()
-        {
-            //arrange
-            IFunctionGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Function function = _fixture.ConfigurationService.FunctionList.Functions["StaticMethod"];
-
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
+            List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
                 (
@@ -246,7 +63,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 new ObjectGenericConfig
                 (
                     "B",
-                    "SomeTypeNotFound",
+                    "Contoso.Domain.Entities.DepartmentModel",
                     true,
                     false,
                     false,
@@ -255,33 +72,96 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             };
 
             //act
-            var result = validator.Validate(function, dataConfiguredGenericArguments, applicationTypeInfo, errors);
+            Type closedType = helper.MakeGenericType
+            (
+                _fixture.ConfigurationService.FunctionList.Functions["StaticMethodGenericReturn"],
+                genericConfigs,
+                _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+            );
 
             //assert
-            Assert.False(result);
+            Assert.NotNull(closedType);
+            Assert.False(closedType.IsGenericTypeDefinition);
+        }
+
+        [Fact]
+        public void MakeGenericTypeThrowsIfConfiguredGenricArgumentCountDoesNNotMatchTheDataCount()
+        {
+            //arrange
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+                new LiteralGenericConfig
+                (
+                    "A",
+                    LiteralParameterType.String,
+                    LiteralParameterInputStyle.SingleLineTextBox,
+                    true,
+                    false,
+                    false,
+                    "",
+                    "",
+                    "",
+                    new List<string>(),
+                    _fixture.ContextProvider
+                )
+            };
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.MakeGenericType
+                (
+                    _fixture.ConfigurationService.FunctionList.Functions["StaticMethodGenericReturn"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
+
+            //assert
             Assert.Equal
             (
-                string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.cannotLoadTypeForGenericArgumentForFunctionFormat,
-                    "B",
-                    function.Name
-                ),
-                errors.First()
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{3B5DB5EC-DD17-41F8-8DFD-FD6ABD039599}"),
+                exception.Message
             );
         }
 
         [Fact]
-        public void ValidateReturnsFalseIfTypeIsNotGenericTypeDefinitionWithGenricParameters()
+        public void MakeGenericTypeThrowsIfFunctionTypeCannotBeLoaded()
         {
             //arrange
-            IFunctionGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Function function = _fixture.ConfigurationService.FunctionList.Functions["StaticNonGenericMethod"];
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+            };
 
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.MakeGenericType
+                (
+                    _fixture.ConfigurationService.FunctionList.Functions["StaticMethodTypeNotFound"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{EC4695BB-D8E0-40FE-9F74-BCCDC28C1B75}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void MakeGenericTypeThrowsIfConfiguredGenericArgumentNameDoesNotMatchTheConfiguredDataName()
+        {
+            //arrange
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
+            List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
                 (
@@ -297,51 +177,36 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     new List<string>(),
                     _fixture.ContextProvider
                 ),
-                new LiteralGenericConfig
+                new ObjectGenericConfig
                 (
-                    "B",
-                    LiteralParameterType.String,
-                    LiteralParameterInputStyle.SingleLineTextBox,
+                    "C",
+                    "Contoso.Domain.Entities.DepartmentModel",
                     true,
                     false,
                     false,
-                    "",
-                    "",
-                    "",
-                    new List<string>(),
                     _fixture.ContextProvider
                 )
             };
 
             //act
-            var result = validator.Validate(function, dataConfiguredGenericArguments, applicationTypeInfo, errors);
-
-            //assert
-            Assert.False(result);
-            Assert.Equal
+            Assert.Throws<CriticalLogicBuilderException>
             (
-                string.Format
+                () =>
+                helper.MakeGenericType
                 (
-                    CultureInfo.CurrentCulture,
-                    Strings.functionGenericArgsMisMatchFormat2,
-                    _fixture.ContextProvider.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
-                    function.TypeName,
-                    string.Join(Strings.itemsCommaSeparator, function.GenericArguments)
-                ),
-                errors.First()
+                    _fixture.ConfigurationService.FunctionList.Functions["StaticMethod"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
             );
         }
 
         [Fact]
-        public void ValidateReturnsTrueForValidConfiguration()
+        public void MakeGenericTypeThrowsIfFunctionTypeIsNotGenericTypeDefinition()
         {
             //arrange
-            IFunctionGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>();
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            Function function = _fixture.ConfigurationService.FunctionList.Functions["StaticMethod"];
-
-            List<GenericConfigBase> dataConfiguredGenericArguments = new()
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
+            List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
                 (
@@ -357,9 +222,97 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     new List<string>(),
                     _fixture.ContextProvider
                 ),
-                new LiteralGenericConfig
+                new ObjectGenericConfig
                 (
                     "B",
+                    "Contoso.Domain.Entities.DepartmentModel",
+                    true,
+                    false,
+                    false,
+                    _fixture.ContextProvider
+                )
+            };
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.MakeGenericType
+                (
+                    _fixture.ConfigurationService.FunctionList.Functions["StaticNonGenericMethod"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{3B5DB5EC-DD17-41F8-8DFD-FD6ABD039599}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void ConvertGenericTypesWorksForValidContructorAndValidGenericArguments()
+        {
+            //arrange
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+                new LiteralGenericConfig
+                (
+                    "A",
+                    LiteralParameterType.String,
+                    LiteralParameterInputStyle.SingleLineTextBox,
+                    true,
+                    false,
+                    false,
+                    "",
+                    "",
+                    "",
+                    new List<string>(),
+                    _fixture.ContextProvider
+                ),
+                new ObjectGenericConfig
+                (
+                    "B",
+                    "Contoso.Domain.Entities.DepartmentModel",
+                    true,
+                    false,
+                    false,
+                    _fixture.ContextProvider
+                )
+            };
+            ApplicationTypeInfo application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+
+            //act
+            Function function = helper.ConvertGenericTypes
+            (
+                _fixture.ConfigurationService.FunctionList.Functions["StaticMethodGenericReturn"],
+                genericConfigs,
+                application
+            );
+            _fixture.TypeLoadHelper.TryGetSystemType(function.TypeName, application, out Type? closedType);
+
+            //assert
+            Assert.NotNull(closedType);
+            Assert.False(closedType!.IsGenericTypeDefinition);
+            Assert.True(function.Parameters[0] is LiteralParameter);
+            Assert.True(function.Parameters[1] is ObjectParameter);
+            Assert.True(function.ReturnType is ObjectReturnType);
+        }
+
+        [Fact]
+        public void ConvertGenericTypesThrowsIfConfiguredGenricArgumentCountDoesNNotMatchTheDataCount()
+        {
+            //arrange
+            IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
+            List<GenericConfigBase> genericConfigs = new()
+            {
+                new LiteralGenericConfig
+                (
+                    "A",
                     LiteralParameterType.String,
                     LiteralParameterInputStyle.SingleLineTextBox,
                     true,
@@ -374,20 +327,33 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             };
 
             //act
-            var result = validator.Validate(function, dataConfiguredGenericArguments, applicationTypeInfo, errors);
+            var exception = Assert.Throws<CriticalLogicBuilderException>
+            (
+                () =>
+                helper.ConvertGenericTypes
+                (
+                    _fixture.ConfigurationService.FunctionList.Functions["StaticMethodGenericReturn"],
+                    genericConfigs,
+                    _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                )
+            );
 
             //assert
-            Assert.True(result);
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{B9480848-F58F-4D09-B6C8-4989FBE19D00}"),
+                exception.Message
+            );
         }
     }
 
-    public class FunctionGenericsConfigrationValidatorFixture : IDisposable
+    public class GenericFunctionHelperFixture : IDisposable
     {
-        public FunctionGenericsConfigrationValidatorFixture()
+        public GenericFunctionHelperFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            XmlElementValidator = ServiceProvider.GetRequiredService<IXmlElementValidator>();
+            GenericParametersHelper = ServiceProvider.GetRequiredService<IGenericParametersHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -499,28 +465,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         ContextProvider
                     ),
-                    ["TestResponseC"] = new Constructor
-                    (
-                        "TestResponseC",
-                        "Contoso.Test.Business.Responses.TestResponseC",
-                        new List<ParameterBase>
-                        {
-                            new ObjectParameter
-                            (
-                                "objectProperty",
-                                false,
-                                "",
-                                "System.Object",
-                                true,
-                                false,
-                                true,
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
                     ["GenericResponse"] = new Constructor
                     (
                         "GenericResponse",
@@ -574,33 +518,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<string>(),
                         "",
                         ContextProvider
-                    ),
-                    ["String"] = new Constructor
-                    (
-                        "String",
-                        "System.String",
-                        new List<ParameterBase>
-                        {
-                            new ListOfLiteralsParameter
-                            (
-                                "charArray",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                ListType.Array,
-                                ListParameterInputStyle.HashSetForm,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                "",
-                                "",
-                                new List<string>(),
-                                new char[] { ',' },
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -641,6 +558,58 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        "",
+                        ContextProvider
+                    ),
+                    ["StaticMethodTypeNotFound"] = new Function
+                    (
+                        "StaticMethodTypeNotFound",
+                        "StaticMethodTypeNotFound",
+                        FunctionCategories.Standard,
+                        "Contoso.Test.Business.StaticMethodTypeNotFound`2",
+                        "",
+                        "",
+                        "",
+                        ReferenceCategories.Type,
+                        ParametersLayout.Sequential,
+                        new List<ParameterBase>(),
+                        new List<string> { "A", "B" },
+                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        "",
+                        ContextProvider
+                    ),
+                    ["StaticMethodGenericReturn"] = new Function
+                    (
+                        "StaticMethodGenericReturn",
+                        "StaticMethodGenericReturn",
+                        FunctionCategories.Standard,
+                        "Contoso.Test.Business.StaticGenericClass`2",
+                        "",
+                        "",
+                        "",
+                        ReferenceCategories.Type,
+                        ParametersLayout.Sequential,
+                        new List<ParameterBase>
+                        {
+                            new GenericParameter
+                            (
+                                "aProperty",
+                                false,
+                                "",
+                                "A",
+                                ContextProvider
+                            ),
+                            new GenericParameter
+                            (
+                                "bProperty",
+                                false,
+                                "",
+                                "B",
+                                ContextProvider
+                            )
+                        },
+                        new List<string> { "A", "B" },
+                        new GenericReturnType("B", ContextProvider),
                         "",
                         ContextProvider
                     ),
@@ -708,71 +677,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
             );
 
-            ConfigurationService.VariableList = new VariableList
-            (
-                new Dictionary<string, VariableBase>
-                {
-                    ["StringItem"] = new LiteralVariable
-                    (
-                        "StringItem",
-                        "StringItem",
-                        VariableCategory.StringKeyIndexer,
-                        "",
-                        "",
-                        "flowManager.FlowDataCache.Items",
-                        "Field.Property.Property",
-                        "",
-                        ReferenceCategories.InstanceReference,
-                        "",
-                        LiteralVariableType.String,
-                        LiteralVariableInputStyle.SingleLineTextBox,
-                        "",
-                        "",
-                        new List<string>(),
-                        ContextProvider
-                    ),
-                    ["IntItem"] = new LiteralVariable
-                    (
-                        "IntItem",
-                        "IntItem",
-                        VariableCategory.StringKeyIndexer,
-                        "",
-                        "",
-                        "flowManager.FlowDataCache.Items",
-                        "Field.Property.Property",
-                        "",
-                        ReferenceCategories.InstanceReference,
-                        "",
-                        LiteralVariableType.Integer,
-                        LiteralVariableInputStyle.SingleLineTextBox,
-                        "",
-                        "",
-                        new List<string>(),
-                        ContextProvider
-                    ),
-                    ["NullableIntItem"] = new LiteralVariable
-                    (
-                        "NullableIntItem",
-                        "NullableIntItem",
-                        VariableCategory.StringKeyIndexer,
-                        "",
-                        "",
-                        "flowManager.FlowDataCache.Items",
-                        "Field.Property.Property",
-                        "",
-                        ReferenceCategories.InstanceReference,
-                        "",
-                        LiteralVariableType.NullableInteger,
-                        LiteralVariableInputStyle.SingleLineTextBox,
-                        "",
-                        "",
-                        new List<string>(),
-                        ContextProvider
-                    )
-                },
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>())
-            );
-
             LoadContextSponsor.LoadAssembiesIfNeeded();
         }
 
@@ -785,7 +689,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
 
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
-        internal IXmlElementValidator XmlElementValidator;
+        internal IGenericParametersHelper GenericParametersHelper;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
