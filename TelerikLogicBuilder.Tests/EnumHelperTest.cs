@@ -37,6 +37,7 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(LiteralParameterType))]
         [InlineData(typeof(LiteralType))]
         [InlineData(typeof(LiteralVariableInputStyle))]
+        [InlineData(typeof(ReferenceCategories))]
         public void GetVisibleEnumText(Type enumType)
         {
             //arrange

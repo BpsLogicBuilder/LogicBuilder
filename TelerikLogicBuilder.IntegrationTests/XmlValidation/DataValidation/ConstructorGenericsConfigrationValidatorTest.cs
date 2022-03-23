@@ -231,6 +231,65 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         [Fact]
+        public void ValidateReturnsFalseIfTypeIsNotGenericTypeDefinitionWithGenricParameters()
+        {
+            //arrange
+            IConstructorGenericsConfigrationValidator validator = _fixture.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
+            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+            List<string> errors = new();
+            Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["TypeWithNoGenericArguments"];
+
+            List<GenericConfigBase> dataConfiguredGenericArguments = new()
+            {
+                new LiteralGenericConfig
+                (
+                    "A",
+                    LiteralParameterType.String,
+                    LiteralParameterInputStyle.SingleLineTextBox,
+                    true,
+                    false,
+                    false,
+                    "",
+                    "",
+                    "",
+                    new List<string>(),
+                    _fixture.ContextProvider
+                ),
+                new LiteralGenericConfig
+                (
+                    "B",
+                    LiteralParameterType.String,
+                    LiteralParameterInputStyle.SingleLineTextBox,
+                    true,
+                    false,
+                    false,
+                    "",
+                    "",
+                    "",
+                    new List<string>(),
+                    _fixture.ContextProvider
+                )
+            };
+
+            //act
+            var result = validator.Validate(constructor, dataConfiguredGenericArguments, applicationTypeInfo, errors);
+
+            //assert
+            Assert.False(result);
+            Assert.Equal
+            (
+                string.Format
+                (
+                    CultureInfo.CurrentCulture,
+                    Strings.constructorGenericArgsMisMatchFormat2,
+                    constructor.TypeName,
+                    string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)
+                ),
+                errors.First()
+            );
+        }
+
+        [Fact]
         public void ValidateReturnsTrueForValidConfiguration()
         {
             //arrange
@@ -477,6 +536,33 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         ContextProvider
                     ),
+                    ["TypeWithNoGenericArguments"] = new Constructor
+                    (
+                        "TypeWithNoGenericArguments",
+                        "Contoso.Test.Business.Responses.TestResponseA",
+                        new List<ParameterBase>
+                        {
+                            new GenericParameter
+                            (
+                                "aProperty",
+                                false,
+                                "",
+                                "A",
+                                ContextProvider
+                            ),
+                            new GenericParameter
+                            (
+                                "bProperty",
+                                false,
+                                "",
+                                "B",
+                                ContextProvider
+                            )
+                        },
+                        new List<string> { "A", "B" },
+                        "",
+                        ContextProvider
+                    )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
             );

@@ -208,6 +208,10 @@
     <value>Cannot load the type for the generic argument "{0}". Constructor name: {1}.FR</value>
     <comment>0=generic argument name;1=constructor name</comment>
   </data>
+	<data name="cannotLoadTypeForGenericArgumentForFunctionFormat" xml:space="preserve">
+    <value>Cannot load the type for the generic argument "{0}". Function name: {1}.FR</value>
+    <comment>0=generic argument name;1=function name</comment>
+  </data>
 	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".FR</value>
     <comment>0=VariableName</comment>
@@ -606,6 +610,14 @@
 	<data name="functionBlankCategoryFormat" xml:space="preserve">
     <value>Reference Category for function "{0}" cannot be empty.FR</value>
     <comment>0=functionName</comment>
+  </data>
+	<data name="functionGenericArgsMisMatchFormat" xml:space="preserve">
+    <value>The configured function's generic arguments "{0}" must match the data's generic arguments "{1}".FR</value>
+    <comment>0=function's generic arguments;1= data's generic arguments</comment>
+  </data>
+	<data name="functionGenericArgsMisMatchFormat2" xml:space="preserve">
+    <value>The configured function's reference category must be "{0}", and the type name "{1}" must be a generic type definition matching the generic arguments "{2}".FR</value>
+    <comment>0reference category;1=function's type name;1= data's generic arguments</comment>
   </data>
 	<data name="functionInvalidCategoryFormat" xml:space="preserve">
     <value>Function "{0}" has invalid Reference Category "{1}". Valid categories are:{2}{3}FR</value>

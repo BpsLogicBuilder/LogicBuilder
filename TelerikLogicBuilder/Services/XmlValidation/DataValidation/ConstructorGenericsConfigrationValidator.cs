@@ -48,6 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             }
 
             //also ensure that the constructor type is a generic type definition if the data has generic arguments
+            //and the generic argment count matches constructor type.
             if (genericArguments.Count > 0 && !_genericsConfigrationValidator.GenericArgumentCountMatchesType(constructorType, genericArguments))
             {
                 validationErrors.Add

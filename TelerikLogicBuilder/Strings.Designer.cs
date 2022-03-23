@@ -385,6 +385,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot load the type for the generic argument &quot;{0}&quot;. Function name: {1}..
+        /// </summary>
+        internal static string cannotLoadTypeForGenericArgumentForFunctionFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadTypeForGenericArgumentForFunctionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cast Reference As field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string castReferenceAsMustBeEmptyFormat {
@@ -1740,6 +1749,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string functionBlankCategoryFormat {
             get {
                 return ResourceManager.GetString("functionBlankCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configured function&apos;s generic arguments &quot;{0}&quot; must match the data&apos;s generic arguments &quot;{1}&quot;..
+        /// </summary>
+        internal static string functionGenericArgsMisMatchFormat {
+            get {
+                return ResourceManager.GetString("functionGenericArgsMisMatchFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configured function&apos;s reference category must be &quot;{0}&quot;, and the type name &quot;{1}&quot; must be a generic type definition matching the generic arguments &quot;{2}&quot;..
+        /// </summary>
+        internal static string functionGenericArgsMisMatchFormat2 {
+            get {
+                return ResourceManager.GetString("functionGenericArgsMisMatchFormat2", resourceCulture);
             }
         }
         
