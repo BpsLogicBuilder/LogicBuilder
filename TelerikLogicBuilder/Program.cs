@@ -104,7 +104,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IVariableTreeFolderBuilder, VariableTreeFolderBuilder>()
 
             //Data
-            .AddSingleton<IGenericContructorHelper, GenericContructorHelper>()
+            .AddSingleton<IGenericConstructorHelper, GenericConstructorHelper>()
             .AddSingleton<IGenericFunctionHelper, GenericFunctionHelper>()
             .AddSingleton<IGenericParametersHelper, GenericParametersHelper>()
             .AddSingleton<IGenericReturnTypeHelper, GenericReturnTypeHelper>()

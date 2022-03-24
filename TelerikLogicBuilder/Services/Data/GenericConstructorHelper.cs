@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 {
-    internal class GenericContructorHelper : IGenericContructorHelper
+    internal class GenericConstructorHelper : IGenericConstructorHelper
     {
         private readonly IContextProvider _contextProvider;
         private readonly IExceptionHelper _exceptionHelper;
@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        public GenericContructorHelper(IContextProvider contextProvider, IGenericParametersHelper genericParametersHelper, IGenericsConfigrationValidator genericsConfigrationValidator, ITypeLoadHelper typeLoadHelper)
+        public GenericConstructorHelper(IContextProvider contextProvider, IGenericParametersHelper genericParametersHelper, IGenericsConfigrationValidator genericsConfigrationValidator, ITypeLoadHelper typeLoadHelper)
         {
             _exceptionHelper = contextProvider.ExceptionHelper;
             _typeHelper = contextProvider.TypeHelper;

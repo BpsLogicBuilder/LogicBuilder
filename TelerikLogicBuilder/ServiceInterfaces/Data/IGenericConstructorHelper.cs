@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data
 {
-    internal interface IGenericContructorHelper
+    internal interface IGenericConstructorHelper
     {
         Constructor ConvertGenericTypes(Constructor constructor, IList<GenericConfigBase> genericParameters, ApplicationTypeInfo application);
         Type MakeGenericType(Constructor constructor, IList<GenericConfigBase> consDataGenericArguments, ApplicationTypeInfo application);

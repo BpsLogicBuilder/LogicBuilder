@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
         private readonly IConstructorTypeHelper _constructorTypeHelper;
         private readonly IEnumHelper _enumHelper;
-        private readonly IGenericContructorHelper _genericContructorHelper;
+        private readonly IGenericConstructorHelper _genericConstructorHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         //private readonly fields were injected into XmlElementValidator
@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _constructorDataParser = xmlElementValidator.ConstructorDataParser;
             _constructorGenericsConfigrationValidator = xmlElementValidator.ConstructorGenericsConfigrationValidator;
             _constructorTypeHelper = xmlElementValidator.ConstructorTypeHelper;
-            _genericContructorHelper = xmlElementValidator.GenericContructorHelper;
+            _genericConstructorHelper = xmlElementValidator.GenericConstructorHelper;
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
             _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
             _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
@@ -111,7 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                     };
                 }
 
-                constructor = _genericContructorHelper.ConvertGenericTypes(constructor, constructorData.GenericArguments, application);
+                constructor = _genericConstructorHelper.ConvertGenericTypes(constructor, constructorData.GenericArguments, application);
             }
 
             //get the new constructor type is a generic constructor

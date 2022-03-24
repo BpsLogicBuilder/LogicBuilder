@@ -254,7 +254,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
 
         [Fact]
-        public void ConvertGenericTypesWorksForValidContructorAndValidGenericArguments()
+        public void ConvertGenericTypesWorksForValidFunctionAndValidGenericArguments()
         {
             //arrange
             IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();

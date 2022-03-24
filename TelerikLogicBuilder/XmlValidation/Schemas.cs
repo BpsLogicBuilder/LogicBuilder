@@ -1850,8 +1850,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Any"
             });
 
-            //ContructorNameType
-            XmlSchemaSimpleType contructorNameType = CreatePatternRestriction("ConstructorNameType", RegularExpressions.XMLATTRIBUTE);
+            //ConstructorNameType
+            XmlSchemaSimpleType constructorNameType = CreatePatternRestriction("ConstructorNameType", RegularExpressions.XMLATTRIBUTE);
 
             //AsemblyQualifiedNameType
             XmlSchemaSimpleType asemblyQualifiedNameType = CreatePatternRestriction("AsemblyQualifiedNameType", RegularExpressions.FULLYQUALIFIEDCLASSNAME);
@@ -1904,7 +1904,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 GenericArgumentsType_Config,
                 parametersLayout,
                 parameterArgumentType,
-                contructorNameType,
+                constructorNameType,
                 asemblyQualifiedNameType,
                 literalInputStyle,
                 listInputStyle,

@@ -221,7 +221,7 @@
     <comment>0=connector category</comment>
   </data>
 	<data name="constrGenericArgNameInvalidFormat" xml:space="preserve">
-    <value>The generic argument name "{0}" for generic parameter "{1}" in contructor "{2}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
+    <value>The generic argument name "{0}" for generic parameter "{1}" in constructor "{2}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
   </data>
 	<data name="constrParameterNotOptionalFormat" xml:space="preserve">
@@ -383,7 +383,7 @@
     <comment>0=methodName</comment>
   </data>
 	<data name="genericParameterArgNameNotFoundFormat" xml:space="preserve">
-    <value>The generic argument name "{0}" for generic parameter "{1}" in contructor "{2}" is not one of the constructor's generic arguments: "{3}".FR</value>
+    <value>The generic argument name "{0}" for generic parameter "{1}" in constructor "{2}" is not one of the constructor's generic arguments: "{3}".FR</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName;3=listOfGenericArguments</comment>
   </data>
   <data name="invalidArgumentTextFormat" xml:space="preserve">

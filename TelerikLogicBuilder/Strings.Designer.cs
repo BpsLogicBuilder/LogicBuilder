@@ -439,7 +439,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for contructor &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for constructor &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string constrGenericArgNameInvalidFormat {
             get {
@@ -1870,7 +1870,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for generic parameter &quot;{1}&quot; in contructor &quot;{2}&quot; is not one of the constructor&apos;s generic arguments: &quot;{3}&quot;..
+        ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; for generic parameter &quot;{1}&quot; in constructor &quot;{2}&quot; is not one of the constructor&apos;s generic arguments: &quot;{3}&quot;..
         /// </summary>
         internal static string genericParameterArgNameNotFoundFormat {
             get {

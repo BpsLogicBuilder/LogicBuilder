@@ -19,30 +19,30 @@ using Xunit;
 
 namespace TelerikLogicBuilder.IntegrationTests.Data
 {
-    public class GenericContructorHelperTest : IClassFixture<GenericContructorHelperFixture>
+    public class GenericConstructorHelperTest : IClassFixture<GenericConstructorHelperFixture>
     {
-        private readonly GenericContructorHelperFixture _fixture;
+        private readonly GenericConstructorHelperFixture _fixture;
 
-        public GenericContructorHelperTest(GenericContructorHelperFixture fixture)
+        public GenericConstructorHelperTest(GenericConstructorHelperFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Fact]
-        public void CanCreateGenericContructorHelper()
+        public void CanCreateGenericConstructorHelper()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
 
             //assert
             Assert.NotNull(helper);
         }
 
         [Fact]
-        public void MakeGenericTypeWorksForValidContructorAndValidGenericArguments()
+        public void MakeGenericTypeWorksForValidConstructorAndValidGenericArguments()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
@@ -87,7 +87,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         public void MakeGenericTypeThrowsIfConfiguredGenricArgumentCountDoesNNotMatchTheDataCount()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
@@ -130,7 +130,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         public void MakeGenericTypeThrowsIfConstructorTypeCannotBeLoaded()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
             };
@@ -159,7 +159,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         public void MakeGenericTypeThrowsIfConfiguredGenericArgumentNameDoesNotMatchTheConfiguredDataName()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
@@ -204,7 +204,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         public void MakeGenericTypeThrowsIfConstructorTypeIsNotGenericTypeDefinition()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
@@ -253,10 +253,10 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
 
         [Fact]
-        public void ConvertGenericTypesWorksForValidContructorAndValidGenericArguments()
+        public void ConvertGenericTypesWorksForValidConstructorAndValidGenericArguments()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
@@ -305,7 +305,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         public void ConvertGenericTypesThrowsIfConfiguredGenricArgumentCountDoesNNotMatchTheDataCount()
         {
             //arrange
-            IGenericContructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericContructorHelper>();
+            IGenericConstructorHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericConstructorHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
                 new LiteralGenericConfig
@@ -345,9 +345,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
     }
 
-    public class GenericContructorHelperFixture : IDisposable
+    public class GenericConstructorHelperFixture : IDisposable
     {
-        public GenericContructorHelperFixture()
+        public GenericConstructorHelperFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
