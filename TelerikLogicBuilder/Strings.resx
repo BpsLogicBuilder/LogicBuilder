@@ -204,6 +204,10 @@
     <value>Type "{0}" could not be loaded for the constructor "{1}".</value>
     <comment>0=typeName;1=constructorName</comment>
   </data>
+	<data name="cannotLoadTypeForFunctionFormat" xml:space="preserve">
+    <value>The return type "{0}" could not be loaded for the function "{1}".</value>
+    <comment>0=typeName;1=functionName</comment>
+  </data>
 	<data name="cannotLoadTypeForGenericArgumentForConstructorFormat" xml:space="preserve">
     <value>Cannot load the type for the generic argument "{0}". Constructor name: {1}.</value>
     <comment>0=generic argument name;1=constructor name</comment>
@@ -356,6 +360,10 @@
     <value>Function "{0}". Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Reference Definition = Field.Property.IntKeyValue.Field.</value>
     <comment>0=functionName</comment>
   </data>
+	<data name="functionNotAssignableFormat" xml:space="preserve">
+    <value>The function "{0}" must be assignable to "{1}".</value>
+    <comment>0=functionName;1=objectType</comment>
+  </data>
 	<data name="functionNotConfiguredFormat" xml:space="preserve">
     <value>Function "{0}" is not configured.</value>
     <comment>0=FunctionName</comment>
@@ -445,6 +453,9 @@
   </data>
 	<data name="parameterCountMustBeTwoFormat" xml:space="preserve">
     <value>Because Parameters Layout is Binary, function {0} must have exactly 2 parameters.</value>
+  </data>
+	<data name="parameterNotOptionalFormat" xml:space="preserve">
+    <value>Parameter "{0}" is not optional for function "{1}".</value>
   </data>
 	<data name="parametersLayoutMustBeBinaryFormat" xml:space="preserve">
     <value>Parameters Layout for function {0} must be "Binary" when the function category is "Binary Operator".</value>

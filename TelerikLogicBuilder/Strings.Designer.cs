@@ -376,6 +376,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The return type &quot;{0}&quot; could not be loaded for the function &quot;{1}&quot;..
+        /// </summary>
+        internal static string cannotLoadTypeForFunctionFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadTypeForFunctionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot load the type for the generic argument &quot;{0}&quot;. Constructor name: {1}..
         /// </summary>
         internal static string cannotLoadTypeForGenericArgumentForConstructorFormat {
@@ -1807,6 +1816,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The function &quot;{0}&quot; must be assignable to &quot;{1}&quot;..
+        /// </summary>
+        internal static string functionNotAssignableFormat {
+            get {
+                return ResourceManager.GetString("functionNotAssignableFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function &quot;{0}&quot; is not configured..
         /// </summary>
         internal static string functionNotConfiguredFormat {
@@ -2100,6 +2118,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string parameterCountMustBeTwoFormat {
             get {
                 return ResourceManager.GetString("parameterCountMustBeTwoFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter &quot;{0}&quot; is not optional for function &quot;{1}&quot;..
+        /// </summary>
+        internal static string parameterNotOptionalFormat {
+            get {
+                return ResourceManager.GetString("parameterNotOptionalFormat", resourceCulture);
             }
         }
         

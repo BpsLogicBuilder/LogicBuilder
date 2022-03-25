@@ -1,4 +1,6 @@
-﻿namespace Contoso.Test.Business
+﻿using System;
+
+namespace Contoso.Test.Business
 {
     internal class StaticGenericClassOneArgument<A>
     {
@@ -8,6 +10,11 @@
                 return false;
 
             return true;
+        }
+
+        public static A StaticMethodReturnsGenericType()
+        {
+            throw new NotImplementedException();
         }
     }
 }
