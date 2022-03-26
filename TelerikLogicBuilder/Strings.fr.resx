@@ -558,11 +558,17 @@
 	<data name="enumDescriptionDateTimeOffset" xml:space="preserve">
     <value>DateTimeOffsetFR</value>
   </data>
+	<data name="enumDescriptionDateOnly" xml:space="preserve">
+    <value>DateOnlyFR</value>
+  </data>
 	<data name="enumDescriptionDate" xml:space="preserve">
     <value>DateTimeFR</value>
   </data>
 	<data name="enumDescriptionTimeSpan" xml:space="preserve">
     <value>TimeSpanFR</value>
+  </data>
+	<data name="enumDescriptionTimeOnly" xml:space="preserve">
+    <value>TimeOnlyFR</value>
   </data>
 	<data name="enumDescriptionTimeOfDay" xml:space="preserve">
     <value>TimeOfDayFR</value>
@@ -624,11 +630,17 @@
 	<data name="enumDescriptionNullableDateTimeOffset" xml:space="preserve">
     <value>Nullable DateTimeOffsetFR</value>
   </data>
+	<data name="enumDescriptionNullableDateOnly" xml:space="preserve">
+    <value>Nullable DateOnlyFR</value>
+  </data>
 	<data name="enumDescriptionNullableDate" xml:space="preserve">
     <value>Nullable DateFR</value>
   </data>
 	<data name="enumDescriptionNullableTimeSpan" xml:space="preserve">
     <value>Nullable TimeSpanFR</value>
+  </data>
+	<data name="enumDescriptionNullableTimeOnly" xml:space="preserve">
+    <value>Nullable TimeOnlyFR</value>
   </data>
 	<data name="enumDescriptionNullableTimeOfDay" xml:space="preserve">
     <value>Nullable TimeOfDayFR</value>
@@ -730,13 +742,19 @@
     <value>DateTimeKeyValueFR</value>
   </data>
 	<data name="enumDescriptionDateTimeOffsetKeyIndexer" xml:space="preserve">
-    <value>DateTimeOffseteKeyValueFR</value>
+    <value>DateTimeOffsetKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionDateOnlyKeyIndexer" xml:space="preserve">
+    <value>DateOnlyKeyValueFR</value>
   </data>
 	<data name="enumDescriptionDateKeyIndexer" xml:space="preserve">
     <value>DateKeyValueFR</value>
   </data>
 	<data name="enumDescriptionTimeSpanKeyIndexer" xml:space="preserve">
     <value>TimeSpanKeyValueFR</value>
+  </data>
+	<data name="enumDescriptionTimeOnlyKeyIndexer" xml:space="preserve">
+    <value>TimeOnlyKeyValueFR</value>
   </data>
 	<data name="enumDescriptionTimeOfDayKeyIndexer" xml:space="preserve">
     <value>TimeOfDayKeyValueFR</value>
@@ -853,12 +871,20 @@
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type DateTimeOffset.FR</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
   </data>
+	<data name="dateOnlyKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type DateOnly.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
 	<data name="dateKeyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type Date.FR</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
   </data>
 	<data name="timeSpanKeyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type TimeSpan.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="timeOnlyKeyReferenceIsInvalidFormat2" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must be of type TimeOnly.FR</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
   </data>
 	<data name="timeOfDayKeyReferenceIsInvalidFormat2" xml:space="preserve">
@@ -945,12 +971,20 @@
     <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type DateTimeOffset.FR</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
   </data>
+	<data name="dateOnlyKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type DateOnly.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
 	<data name="dateKeyReferenceIsInvalidFormat3" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type Date.FR</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
   </data>
 	<data name="timeSpanKeyReferenceIsInvalidFormat3" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type TimeSpan.FR</value>
+    <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
+  </data>
+	<data name="timeOnlyKeyReferenceIsInvalidFormat3" xml:space="preserve">
+    <value>Given the reference definition "{0}", Reference Name "{1}" for function "{2}" must be of type TimeOnly.FR</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=functionName</comment>
   </data>
 	<data name="timeOfDayKeyReferenceIsInvalidFormat3" xml:space="preserve">
@@ -1037,12 +1071,20 @@
     <value>Given the variable category, Member Name for variable {0} must be of type DateTimeOffset.FR</value>
     <comment>0=variableName</comment>
   </data>
+	<data name="dateOnlyKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type DateOnly.FR</value>
+    <comment>0=variableName</comment>
+  </data>
 	<data name="dateKeyIndexIsInvalidFormat" xml:space="preserve">
     <value>Given the variable category, Member Name for variable {0} must be of type Date.FR</value>
     <comment>0=variableName</comment>
   </data>
 	<data name="timeSpanKeyIndexIsInvalidFormat" xml:space="preserve">
     <value>Given the variable category, Member Name for variable {0} must be of type TimeSpan.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="timeOnlyKeyIndexIsInvalidFormat" xml:space="preserve">
+    <value>Given the variable category, Member Name for variable {0} must be of type TimeOnly.FR</value>
     <comment>0=variableName</comment>
   </data>
 	<data name="timeOfDayKeyIndexIsInvalidFormat" xml:space="preserve">

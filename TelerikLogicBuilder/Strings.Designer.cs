@@ -601,6 +601,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type DateOnly..
+        /// </summary>
+        internal static string dateOnlyKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("dateOnlyKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type DateOnly..
+        /// </summary>
+        internal static string dateOnlyKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("dateOnlyKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type DateOnly..
+        /// </summary>
+        internal static string dateOnlyKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("dateOnlyKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type DateTime..
         /// </summary>
         internal static string dateTimeKeyIndexIsInvalidFormat {
@@ -925,6 +952,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DateOnly.
+        /// </summary>
+        internal static string enumDescriptionDateOnly {
+            get {
+                return ResourceManager.GetString("enumDescriptionDateOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateOnlyKeyValue.
+        /// </summary>
+        internal static string enumDescriptionDateOnlyKeyIndexer {
+            get {
+                return ResourceManager.GetString("enumDescriptionDateOnlyKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DateTime.
         /// </summary>
         internal static string enumDescriptionDateTime {
@@ -952,7 +997,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DateTimeOffseteKeyValue.
+        ///   Looks up a localized string similar to DateTimeOffsetKeyValue.
         /// </summary>
         internal static string enumDescriptionDateTimeOffsetKeyIndexer {
             get {
@@ -1249,6 +1294,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nullable DateOnly.
+        /// </summary>
+        internal static string enumDescriptionNullableDateOnly {
+            get {
+                return ResourceManager.GetString("enumDescriptionNullableDateOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nullable DateTime.
         /// </summary>
         internal static string enumDescriptionNullableDateTime {
@@ -1344,6 +1398,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionNullableTimeOfDay {
             get {
                 return ResourceManager.GetString("enumDescriptionNullableTimeOfDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nullable TimeOnly.
+        /// </summary>
+        internal static string enumDescriptionNullableTimeOnly {
+            get {
+                return ResourceManager.GetString("enumDescriptionNullableTimeOnly", resourceCulture);
             }
         }
         
@@ -1533,6 +1596,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionTimeOfDayKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionTimeOfDayKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TimeOnly.
+        /// </summary>
+        internal static string enumDescriptionTimeOnly {
+            get {
+                return ResourceManager.GetString("enumDescriptionTimeOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TimeOnlyKeyValue.
+        /// </summary>
+        internal static string enumDescriptionTimeOnlyKeyIndexer {
+            get {
+                return ResourceManager.GetString("enumDescriptionTimeOnlyKeyIndexer", resourceCulture);
             }
         }
         
@@ -2271,6 +2352,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string timeOfDayKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("timeOfDayKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type TimeOnly..
+        /// </summary>
+        internal static string timeOnlyKeyIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("timeOnlyKeyIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must be of type TimeOnly..
+        /// </summary>
+        internal static string timeOnlyKeyReferenceIsInvalidFormat2 {
+            get {
+                return ResourceManager.GetString("timeOnlyKeyReferenceIsInvalidFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for function &quot;{2}&quot; must be of type TimeOnly..
+        /// </summary>
+        internal static string timeOnlyKeyReferenceIsInvalidFormat3 {
+            get {
+                return ResourceManager.GetString("timeOnlyKeyReferenceIsInvalidFormat3", resourceCulture);
             }
         }
         
