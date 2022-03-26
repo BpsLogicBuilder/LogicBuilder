@@ -25,6 +25,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             constructorSchema = CreateConstructorSchema();
             parametersDataSchema = CreateParametersDataSchema();
             fragmentsSchema = CreateFragmentsSchema();
+
+            //WriteSchema(@"C:\Test\shapeData.xsd", ShapeDataSchema);
+            //WriteSchema("C:\\Test\\connectorData.xsd", ConnectorDataSchema);
+            //WriteSchema("C:\\Test\\parametersData.xsd", ParametersDataSchema);
+            //WriteSchema("C:\\Test\\fragments.xsd", FragmentsSchema);
+            //WriteSchema("C:\\Test\\conditionsData.xsd", ConditionsDataSchema);
+            //WriteSchema("C:\\Test\\decisionsData.xsd", DecisionsDataSchema);
+            //WriteSchema("C:\\Test\\functionsData.xsd", FunctionsDataSchema);
+            //WriteSchema(@"C:\Test\sourceTable.xsd", TableSchema);
+            //WriteSchema("C:\\Test\\functions.xsd", FunctionsSchema);
+            //WriteSchema("C:\\Test\\constructors.xsd", ConstructorSchema);
+            //WriteSchema("C:\\Test\\ProjectProperties.xsd", ProjectPropertiesSchema);
+            //WriteSchema("C:\\Test\\variables.xsd", VariablesSchema);
         }
 
         #region Variables
@@ -404,8 +417,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Boolean",
                 "DateTime",
                 "DateTimeOffset",
+                "DateOnly",
                 "Date",
                 "TimeSpan",
+                "TimeOnly",
                 "TimeOfDay",
                 "Guid",
                 "Byte",
@@ -423,8 +438,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableBoolean",
                 "NullableDateTime",
                 "NullableDateTimeOffset",
+                "NullableDateOnly",
                 "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOnly",
                 "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
@@ -1575,8 +1592,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Boolean",
                 "DateTime",
                 "DateTimeOffset",
+                "DateOnly",
                 "Date",
                 "TimeSpan",
+                "TimeOnly",
                 "TimeOfDay",
                 "Guid",
                 "Byte",
@@ -1594,8 +1613,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableBoolean",
                 "NullableDateTime",
                 "NullableDateTimeOffset",
+                "NullableDateOnly",
                 "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOnly",
                 "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
@@ -1620,8 +1641,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Boolean",
                 "DateTime",
                 "DateTimeOffset",
+                "DateOnly",
                 "Date",
                 "TimeSpan",
+                "TimeOnly",
                 "TimeOfDay",
                 "Guid",
                 "Byte",
@@ -1639,8 +1662,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableBoolean",
                 "NullableDateTime",
                 "NullableDateTimeOffset",
+                "NullableDateOnly",
                 "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOnly",
                 "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
@@ -1814,8 +1839,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Boolean",
                 "DateTime",
                 "DateTimeOffset",
+                "DateOnly",
                 "Date",
                 "TimeSpan",
+                "TimeOnly",
                 "TimeOfDay",
                 "Guid",
                 "Byte",
@@ -1833,8 +1860,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableBoolean",
                 "NullableDateTime",
                 "NullableDateTimeOffset",
+                "NullableDateOnly",
                 "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOnly",
                 "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
@@ -2380,8 +2409,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "Boolean",
                 "DateTime",
                 "DateTimeOffset",
+                "DateOnly",
                 "Date",
                 "TimeSpan",
+                "TimeOnly",
                 "TimeOfDay",
                 "Guid",
                 "Byte",
@@ -2399,8 +2430,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 "NullableBoolean",
                 "NullableDateTime",
                 "NullableDateTimeOffset",
+                "NullableDateOnly",
                 "NullableDate",
                 "NullableTimeSpan",
+                "NullableTimeOnly",
                 "NullableTimeOfDay",
                 "NullableGuid",
                 "NullableByte",
@@ -2483,9 +2516,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         //{
         //    XmlNamespaceManager nsmgr = new(new NameTable());
         //    nsmgr.AddNamespace(SchemaConstants.NAMESPACEPREFIX, SchemaConstants.NAMESPACEURI);
-        //    ServiceInterfaces.IXmlDocumentHelpers xmlDocumentHelpers = Program.ServiceProvider.GetRequiredService<ServiceInterfaces.IXmlDocumentHelpers>();
+        //    ServiceInterfaces.IXmlDocumentHelpers xmlDocumentHelpers = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ServiceInterfaces.IXmlDocumentHelpers>(Program.ServiceProvider);
 
-        //    StringBuilder stringBuilder = new();
+        //    System.Text.StringBuilder stringBuilder = new();
         //    using (XmlWriter xmlTextWriter = xmlDocumentHelpers.CreateFormattedXmlWriterWithDeclaration(stringBuilder))
         //    {
         //        schema.Write(xmlTextWriter, nsmgr);
@@ -2495,7 +2528,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
 
         //private static void WriteSchema(string fullPath, XmlSchema xmlSchema)
         //{
-        //    using System.IO.StreamWriter sr = new(fullPath, false, Encoding.Unicode);
+        //    using System.IO.StreamWriter sr = new(fullPath, false, System.Text.Encoding.Unicode);
         //    sr.Write(GetSchema(xmlSchema));
         //}
         #endregion Methods
