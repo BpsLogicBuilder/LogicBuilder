@@ -74,6 +74,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
                 Dictionary<string, Exception> failedTypes = new();
                 allTypes = new SortedDictionary<string, Type>();
 
+                AppendTypes(_assemblyHelper.GetTypes(typeof(string).Assembly, failedTypes));
+                AppendTypes(_assemblyHelper.GetTypes(typeof(Microsoft.OData.Edm.TimeOfDay).Assembly, failedTypes));
                 AppendTypes(_assemblyHelper.GetTypes(activityAssembly, failedTypes));
 
                 _assemblyHelper.GetReferencedAssembliesRecursively(activityAssembly).ForEach(assembly =>

@@ -32,9 +32,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
         {
             typeof(bool),
             typeof(DateTimeOffset),
+            typeof(DateOnly),
             typeof(DateTime),
             typeof(Date),
             typeof(TimeSpan),
+            typeof(TimeOnly),
             typeof(TimeOfDay),
             typeof(Guid),
             typeof(decimal),

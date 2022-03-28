@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
+using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -68,19 +69,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateTimeKeyReferenceIsInvalidFormat3, referenceDefinitionVisibleText, referenceName, functionName));
                     break;
                 case ValidIndirectReference.DateTimeOffsetKeyIndexer:
-                    if (!DateTime.TryParse(referenceName, out _))
+                    if (!DateTimeOffset.TryParse(referenceName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateTimeOffsetKeyReferenceIsInvalidFormat3, referenceDefinitionVisibleText, referenceName, functionName));
                     break;
+                case ValidIndirectReference.DateOnlyKeyIndexer:
+                    if (!DateOnly.TryParse(referenceName, out _))
+                        errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateOnlyKeyReferenceIsInvalidFormat3, referenceDefinitionVisibleText, referenceName, functionName));
+                    break;
                 case ValidIndirectReference.DateKeyIndexer:
-                    if (!DateTime.TryParse(referenceName, out _))
+                    if (!Date.TryParse(referenceName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateKeyReferenceIsInvalidFormat3, referenceDefinitionVisibleText, referenceName, functionName));
                     break;
                 case ValidIndirectReference.TimeSpanKeyIndexer:
                     if (!TimeSpan.TryParse(referenceName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.timeSpanKeyReferenceIsInvalidFormat3, referenceDefinitionVisibleText, referenceName, functionName));
                     break;
+                case ValidIndirectReference.TimeOnlyKeyIndexer:
+                    if (!TimeOnly.TryParse(referenceName, out _))
+                        errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.timeOnlyKeyReferenceIsInvalidFormat3, referenceDefinitionVisibleText, referenceName, functionName));
+                    break;
                 case ValidIndirectReference.TimeOfDayKeyIndexer:
-                    if (!TimeSpan.TryParse(referenceName, out _))
+                    if (!TimeOfDay.TryParse(referenceName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.timeOfDayKeyReferenceIsInvalidFormat3, referenceDefinitionVisibleText, referenceName, functionName));
                     break;
                 case ValidIndirectReference.GuidKeyIndexer:

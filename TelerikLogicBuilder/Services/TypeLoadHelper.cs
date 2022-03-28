@@ -198,6 +198,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 if (typeof(string).Assembly.GetName().Name == assemblyName.Name)
                     return typeof(string).Assembly;
 
+                if (typeof(Microsoft.OData.Edm.TimeOfDay).Assembly.GetName().Name == assemblyName.Name)
+                    return typeof(Microsoft.OData.Edm.TimeOfDay).Assembly;
+
                 return LoadAssembly(assemblyName);
             }
 
@@ -214,6 +217,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 try
                 {
                     return _assemblyLoadContextService.GetAssemblyLoadContext().LoadFromAssemblyName(assemblyName);
+                    //calls LogicBuilderAssemblyLoadContext.Load(AssemblyName assemblyName)
                 }
                 catch (Exception)
                 {

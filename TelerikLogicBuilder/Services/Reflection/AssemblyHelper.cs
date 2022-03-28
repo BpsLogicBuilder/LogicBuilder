@@ -121,7 +121,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
             List<Type?> types = new();
             try
             {
-                types.AddRange(typeof(string).Assembly.GetTypes());
                 types.AddRange(assembly.GetTypes());
             }
             catch (ReflectionTypeLoadException e)

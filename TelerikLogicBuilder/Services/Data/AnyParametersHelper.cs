@@ -43,9 +43,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                     typeof(float),
                     typeof(decimal),
                     typeof(TimeSpan),
+                    typeof(TimeOnly),
                     typeof(TimeOfDay),
                     typeof(DateTime),
                     typeof(DateTimeOffset),
+                    typeof(DateOnly),
                     typeof(Date),
                     typeof(Guid)
                 };

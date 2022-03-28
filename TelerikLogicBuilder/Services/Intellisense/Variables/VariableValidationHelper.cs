@@ -67,6 +67,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                     if (!DateTimeOffset.TryParse(memberName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateTimeOffsetKeyIndexIsInvalidFormat, variableName));
                     break;
+                case VariableCategory.DateOnlyKeyIndexer:
+                    if (!DateOnly.TryParse(memberName, out _))
+                        errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateOnlyKeyIndexIsInvalidFormat, variableName));
+                    break;
                 case VariableCategory.DateKeyIndexer:
                     if (!Date.TryParse(memberName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateKeyIndexIsInvalidFormat, variableName));
@@ -74,6 +78,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                 case VariableCategory.TimeSpanKeyIndexer:
                     if (!TimeSpan.TryParse(memberName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.timeSpanKeyIndexIsInvalidFormat, variableName));
+                    break;
+                case VariableCategory.TimeOnlyKeyIndexer:
+                    if (!TimeOnly.TryParse(memberName, out _))
+                        errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.timeOnlyKeyIndexIsInvalidFormat, variableName));
                     break;
                 case VariableCategory.TimeOfDayKeyIndexer:
                     if (!TimeOfDay.TryParse(memberName, out _))
@@ -195,6 +203,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                     if (!DateTimeOffset.TryParse(referenceName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateTimeOffsetKeyReferenceIsInvalidFormat2, referenceDefinitionVisibleText, referenceName, variableName));
                     break;
+                case ValidIndirectReference.DateOnlyKeyIndexer:
+                    if (!DateOnly.TryParse(referenceName, out _))
+                        errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateOnlyKeyReferenceIsInvalidFormat2, referenceDefinitionVisibleText, referenceName, variableName));
+                    break;
                 case ValidIndirectReference.DateKeyIndexer:
                     if (!Date.TryParse(referenceName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.dateKeyReferenceIsInvalidFormat2, referenceDefinitionVisibleText, referenceName, variableName));
@@ -202,6 +214,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
                 case ValidIndirectReference.TimeSpanKeyIndexer:
                     if (!TimeSpan.TryParse(referenceName, out _))
                         errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.timeSpanKeyReferenceIsInvalidFormat2, referenceDefinitionVisibleText, referenceName, variableName));
+                    break;
+                case ValidIndirectReference.TimeOnlyKeyIndexer:
+                    if (!TimeOnly.TryParse(referenceName, out _))
+                        errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.timeOnlyKeyReferenceIsInvalidFormat2, referenceDefinitionVisibleText, referenceName, variableName));
                     break;
                 case ValidIndirectReference.TimeOfDayKeyIndexer:
                     if (!TimeOfDay.TryParse(referenceName, out _))
