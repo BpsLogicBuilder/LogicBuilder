@@ -143,13 +143,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                         switch (xmlNode.Name)
                         {
                             case XmlDataConstants.CONSTRUCTORELEMENT:
-                                ConstructorElementValidator.Validate((XmlElement)xmlNode, assignedTo, application, validationErrors);
+                                ConstructorElementValidator.Validate((XmlElement)xmlNode, type, application, validationErrors);
                                 break;
                             case XmlDataConstants.FUNCTIONELEMENT:
-                                FunctionElementValidator.Validate((XmlElement)xmlNode, assignedTo, application, validationErrors);
+                                FunctionElementValidator.Validate((XmlElement)xmlNode, type, application, validationErrors);
                                 break;
                             case XmlDataConstants.VARIABLEELEMENT:
-                                VariableElementValidator.Validate((XmlElement)xmlNode, assignedTo, application, validationErrors);
+                                VariableElementValidator.Validate((XmlElement)xmlNode, type, application, validationErrors);
                                 break;
                             default:
                                 throw _exceptionHelper.CriticalException("{DB7E438B-2F4A-4787-951E-F519483378AF}");

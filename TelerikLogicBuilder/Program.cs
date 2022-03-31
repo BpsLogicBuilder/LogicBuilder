@@ -153,6 +153,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //Intellisense.Parameters
             .AddSingleton<IMultipleChoiceParameterValidator, MultipleChoiceParameterValidator>()
+            .AddSingleton<IParameterHelper, ParameterHelper>()
             .AddSingleton<IParametersManager, ParametersManager>()
             .AddSingleton<IParametersMatcher, ParametersMatcher>()
             .AddSingleton<IParametersXmlParser, ParametersXmlParser>()
@@ -181,6 +182,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //XmlValidation.DataValidation
             .AddSingleton<IAssertFunctionElementValidator, AssertFunctionElementValidator>()
+            .AddSingleton<IBinaryOperatorFunctionElementValidator, BinaryOperatorFunctionElementValidator>()
             .AddSingleton<IConditionsElementValidator, ConditionsElementValidator>()
             .AddSingleton<IConnectorElementValidator, ConnectorElementValidator>()
             .AddSingleton<IConstructorElementValidator, ConstructorElementValidator>()
@@ -205,7 +207,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IObjectParameterElementValidator, ObjectParameterElementValidator>()
             .AddSingleton<IObjectVariableElementValidator, ObjectVariableElementValidator>()
             .AddSingleton<IParameterElementValidator, ParameterElementValidator>()
+            .AddSingleton<IParametersElementValidator, ParametersElementValidator>()
             .AddSingleton<IRetractFunctionElementValidator, RetractFunctionElementValidator>()
+            .AddSingleton<IRuleChainingUpdateFunctionElementValidator, RuleChainingUpdateFunctionElementValidator>()
             .AddSingleton<IVariableElementValidator, VariableElementValidator>()
             .AddSingleton<IXmlElementValidator, XmlElementValidator>();
 

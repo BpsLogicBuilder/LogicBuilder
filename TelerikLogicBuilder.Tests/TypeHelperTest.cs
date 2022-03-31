@@ -352,6 +352,10 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(int), typeof(short), true)]
         [InlineData(typeof(int), typeof(int), true)]
         [InlineData(typeof(int), typeof(DateTime), false)]
+        [InlineData(typeof(DoubleDigit), typeof(double), true)]
+        [InlineData(typeof(double), typeof(DoubleDigit), true)]
+        [InlineData(typeof(DoubleDigit), typeof(short?), true)]
+        [InlineData(typeof(short?), typeof(DoubleDigit), true)]
         [InlineData(typeof(int), typeof(long), true)]
         [InlineData(typeof(int), typeof(int?), true)]
         [InlineData(typeof(int), typeof(decimal), true)]
@@ -360,6 +364,10 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(IList<string>), typeof(List<string>), true)]
         [InlineData(typeof(List<string>), typeof(IList<string>), true)]
         [InlineData(typeof(object), typeof(string), true)]
+        [InlineData(typeof(CustString), typeof(string), true)]
+        [InlineData(typeof(string), typeof(CustString), true)]
+        [InlineData(typeof(CustString), typeof(short), false)]
+        [InlineData(typeof(short), typeof(CustString), false)]
         public void CompatibleForIdentityInequalityOp(Type to, Type from, bool expectedResult)
         {
             //arrange
@@ -390,6 +398,8 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(string), typeof(CustString), true)]
         [InlineData(typeof(DoubleDigit), typeof(double), true)]
         [InlineData(typeof(double), typeof(DoubleDigit), true)]
+        [InlineData(typeof(DoubleDigit), typeof(short?), true)]
+        [InlineData(typeof(short?), typeof(DoubleDigit), true)]
         [InlineData(typeof(IList<string>), typeof(List<string>), false)]
         [InlineData(typeof(List<string>), typeof(IList<string>), false)]
         [InlineData(typeof(CustString?), typeof(CustString), true)]
@@ -407,6 +417,48 @@ namespace TelerikLogicBuilder.Tests
 
             //act
             var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.LessThan);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(byte), typeof(byte), true)]
+        [InlineData(typeof(string), typeof(string), true)]
+        [InlineData(typeof(int?), typeof(int), true)]
+        [InlineData(typeof(int), typeof(int?), true)]
+        [InlineData(typeof(int), typeof(short?), true)]
+        [InlineData(typeof(short), typeof(sbyte), true)]
+        [InlineData(typeof(sbyte), typeof(short), true)]
+        [InlineData(typeof(int), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int), true)]
+        [InlineData(typeof(int?), typeof(short), true)]
+        [InlineData(typeof(short), typeof(int?), true)]
+        [InlineData(typeof(int?), typeof(short?), true)]
+        [InlineData(typeof(short?), typeof(int?), true)]
+        [InlineData(typeof(CustString), typeof(string), true)]
+        [InlineData(typeof(string), typeof(CustString), true)]
+        [InlineData(typeof(DoubleDigit), typeof(double), true)]
+        [InlineData(typeof(double), typeof(DoubleDigit), true)]
+        [InlineData(typeof(DoubleDigit), typeof(short?), true)]
+        [InlineData(typeof(short?), typeof(DoubleDigit), true)]
+        [InlineData(typeof(IList<string>), typeof(List<string>), false)]
+        [InlineData(typeof(List<string>), typeof(IList<string>), false)]
+        [InlineData(typeof(CustString?), typeof(CustString), true)]
+        [InlineData(typeof(IntDigit?), typeof(short), true)]
+        [InlineData(typeof(IntDigit), typeof(long), true)]
+        [InlineData(typeof(IntDigit), typeof(long?), true)]
+        [InlineData(typeof(int), typeof(string), false)]
+        [InlineData(typeof(object), typeof(string), false)]
+        [InlineData(typeof(DateTime), typeof(DateTime?), false)]
+        [InlineData(typeof(bool), typeof(bool), false)]
+        public void CompatibleForAddOp(Type to, Type from, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.Add);
 
             //assert
             Assert.Equal(expectedResult, result);

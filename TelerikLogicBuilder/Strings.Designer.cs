@@ -412,6 +412,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The field or property to be updated must be represented by a string and cannot include functions or variables..
+        /// </summary>
+        internal static string chainingUpdateValidationError {
+            get {
+                return ResourceManager.GetString("chainingUpdateValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type char..
         /// </summary>
         internal static string charKeyIndexIsInvalidFormat {
@@ -453,15 +462,6 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string constrGenericArgNameInvalidFormat {
             get {
                 return ResourceManager.GetString("constrGenericArgNameInvalidFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Parameter &quot;{0}&quot; is not optional for constructor &quot;{1}&quot;..
-        /// </summary>
-        internal static string constrParameterNotOptionalFormat {
-            get {
-                return ResourceManager.GetString("constrParameterNotOptionalFormat", resourceCulture);
             }
         }
         
@@ -2032,6 +2032,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For the binary operator &quot;{0}&quot;, both parameters can be of literal type &quot;Any&quot; or neither can be of literal type &quot;Any&quot;. First parameter: &quot;{1}&quot;, second parameter: &quot;{2}&quot;..
+        /// </summary>
+        internal static string invalidAnyParameterConfigurationForBinaryOperatorFormat {
+            get {
+                return ResourceManager.GetString("invalidAnyParameterConfigurationForBinaryOperatorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Argument {0}..
         /// </summary>
         internal static string invalidArgumentTextFormat {
@@ -2185,6 +2194,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Neither operand can be empty if 1) the function is a binary operation, 2) parameter type for the operands is Any, and 3) the other operand is not nullable..
+        /// </summary>
+        internal static string neitherOperandCanBeEmptyBinaryOperationAny {
+            get {
+                return ResourceManager.GetString("neitherOperandCanBeEmptyBinaryOperationAny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Method not implemented in {0}..
         /// </summary>
         internal static string notImplementedMessageFormat {
@@ -2203,7 +2221,16 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parameter &quot;{0}&quot; is not optional for function &quot;{1}&quot;..
+        ///   Looks up a localized string similar to The parameter &quot;{0}&quot; of type &quot;{1}&quot; is not a valid literal..
+        /// </summary>
+        internal static string parameterNotLiteralFormat {
+            get {
+                return ResourceManager.GetString("parameterNotLiteralFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter &quot;{0}&quot; is not optional..
         /// </summary>
         internal static string parameterNotOptionalFormat {
             get {
@@ -2217,6 +2244,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string parametersLayoutMustBeBinaryFormat {
             get {
                 return ResourceManager.GetString("parametersLayoutMustBeBinaryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The parameter types &quot;{0}&quot; and &quot;{1}&quot; cannot be applied as operands in the binary operation &quot;{2}&quot;..
+        /// </summary>
+        internal static string parametersNotCompatibleForBinaryOperation {
+            get {
+                return ResourceManager.GetString("parametersNotCompatibleForBinaryOperation", resourceCulture);
             }
         }
         

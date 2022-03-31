@@ -8,6 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
     internal class XmlElementValidator : IXmlElementValidator
     {
         public XmlElementValidator(IContextProvider contextProvider,
+                                   IAnyParametersHelper anyParametersHelper,
                                    IConstructorDataParser constructorDataParser,
                                    IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
                                    IConstructorTypeHelper constructorTypeHelper,
@@ -18,7 +19,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    ITypeLoadHelper typeLoadHelper,
                                    IVariableDataParser variableDataParser)
         {
-            ContextProvider = contextProvider;//Must be assigned first because it is required in some of the following validator constructors.
+            #region Injected 
+            //Must be assigned first because they may be required in some of the manually initialized constructors.
+            ContextProvider = contextProvider;
+            AnyParametersHelper = anyParametersHelper;
             ConstructorDataParser = constructorDataParser;
             ConstructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
             ConstructorTypeHelper = constructorTypeHelper;
@@ -27,9 +31,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             GenericConstructorHelper = genericConstructorHelper;
             GenericFunctionHelper = genericFunctionHelper;
             TypeLoadHelper = typeLoadHelper;
-            VariableDataParser = variableDataParser;
+            VariableDataParser = variableDataParser; 
+            #endregion Injected
 
             AssertFunctionElementValidator = new AssertFunctionElementValidator(this);
+            BinaryOperatorFunctionElementValidator = new BinaryOperatorFunctionElementValidator(this);
             ConditionsElementValidator = new ConditionsElementValidator(this);
             ConnectorElementValidator = new ConnectorElementValidator(this);
             ConstructorElementValidator = new ConstructorElementValidator(this);
@@ -51,10 +57,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             ObjectParameterElementValidator = new ObjectParameterElementValidator(this);
             ObjectVariableElementValidator = new ObjectVariableElementValidator(this);
             ParameterElementValidator = new ParameterElementValidator(this);
+            ParametersElementValidator = new ParametersElementValidator(this);
             RetractFunctionElementValidator = new RetractFunctionElementValidator(this);
+            RuleChainingUpdateFunctionElementValidator = new RuleChainingUpdateFunctionElementValidator(this);
             VariableElementValidator = new VariableElementValidator(this);
         }
 
+        public IAnyParametersHelper AnyParametersHelper { get; }
         public IConstructorDataParser ConstructorDataParser { get; }
         public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
         public IConstructorTypeHelper ConstructorTypeHelper { get; }
@@ -67,6 +76,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IVariableDataParser VariableDataParser { get; }
 
         public IAssertFunctionElementValidator AssertFunctionElementValidator { get; }
+
+        public IBinaryOperatorFunctionElementValidator BinaryOperatorFunctionElementValidator { get; }
 
         public IConditionsElementValidator ConditionsElementValidator { get; }
 
@@ -110,7 +121,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         public IParameterElementValidator ParameterElementValidator { get; }
 
+        public IParametersElementValidator ParametersElementValidator { get; }
+
         public IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
+
+        public IRuleChainingUpdateFunctionElementValidator RuleChainingUpdateFunctionElementValidator { get; }
 
         public IVariableElementValidator VariableElementValidator { get; }
     }

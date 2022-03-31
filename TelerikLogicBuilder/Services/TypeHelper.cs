@@ -53,6 +53,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     || ImplicitConversionExistsFrom(typeof(ulong), t);
             }
 
+            if (op == CodeBinaryOperatorType.Add//compiler converts to string.Concat()
+                && (t1 == typeof(string) || ImplicitConversionExistsFrom(typeof(string), t1))
+                && (t2 == typeof(string) || ImplicitConversionExistsFrom(typeof(string), t2)))
+            {
+                return true;
+            }
+
             return AreCompatibleForOperation(t1, t2, OperatorsesDictionary[op]);
         }
 
@@ -225,6 +232,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             if ((NumbersDictionary.ContainsKey(t1) && NumbersDictionary[t1].Contains(t2))
                 || (NumbersDictionary.ContainsKey(t2) && NumbersDictionary[t2].Contains(t1)))
                 return true;//return true for standard conversions
+
+            foreach (Type key in NumbersDictionary.Keys)
+            {
+                if ((key == t2 && ImplicitConversionExistsFrom(t2, t1))
+                    || (key == t1 && ImplicitConversionExistsFrom(t1, t2)))
+                    return true;
+
+                if ((NumbersDictionary[key].Contains(t2) && ImplicitConversionExistsFrom(key, t1))
+                    || (NumbersDictionary[key].Contains(t1) && ImplicitConversionExistsFrom(key, t2)))
+                    return true;
+            }
 
             return t2.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchOperator)//operator overload must exist
                     || t1.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchOperator);//on either t1 or t2

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 
@@ -7,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ContextProvider : IContextProvider
     {
-        public ContextProvider(IConfigurationService configurationService, IEncryption encryption, IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper, IPathHelper pathHelper, IReflectionHelper reflectionHelper, IStringHelper stringHelper, ITypeHelper typeHelper, IVariableHelper variableHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public ContextProvider(IConfigurationService configurationService, IEncryption encryption, IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper, IParameterHelper parameterHelper, IPathHelper pathHelper, IReflectionHelper reflectionHelper, IStringHelper stringHelper, ITypeHelper typeHelper, IVariableHelper variableHelper, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             ConfigurationService = configurationService;
             Encryption = encryption;
@@ -15,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             ExceptionHelper = exceptionHelper;
             FileIOHelper = fileIOHelper;
             MessageBoxOptionsHelper = messageBoxOptionsHelper;
+            ParameterHelper = parameterHelper;
             PathHelper = pathHelper;
             ReflectionHelper = reflectionHelper;
             StringHelper = stringHelper;
@@ -29,6 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public IExceptionHelper ExceptionHelper { get; }
         public IFileIOHelper FileIOHelper { get; }
         public IMessageBoxOptionsHelper MessageBoxOptionsHelper { get; }
+        public IParameterHelper ParameterHelper { get; }
         public IPathHelper PathHelper { get; }
         public IReflectionHelper ReflectionHelper { get; }
         public IStringHelper StringHelper { get; }

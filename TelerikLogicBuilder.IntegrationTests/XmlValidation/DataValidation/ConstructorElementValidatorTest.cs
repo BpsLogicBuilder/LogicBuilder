@@ -159,7 +159,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 errors.First()
             );
         }
-        //Contoso.Test.Business.Responses.TypeNotFoundConstructor
 
         [Fact]
         public void ConstructorElementValidatorFailsIfConstructorTypeCannotBeLoaded()
@@ -173,7 +172,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                         </parameters>
                                                     </constructor>");
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            //var constructor = _fixture.ConfigurationService.ConstructorList.Constructors["TypeNotFoundConstructor"];
             List<string> errors = new();
 
             //act
@@ -325,101 +323,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "GenericResponse",
                     assignedToType!.ToString()
                 ),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ConstructorElementValidatorFailsIfParameterIsMissingWhenMandatory()
-        {
-            //arrange
-            IConstructorElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IConstructorElementValidator>();
-            XmlElement xmlElement = GetXmlElement(@"<constructor name=""TestResponseA"" visibleText=""TestResponseA"" >
-                                                        <genericArguments />
-                                                        <parameters>
-                                                        </parameters>
-                                                    </constructor>");
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-
-            //act
-            xmlValidator.Validate
-            (
-                xmlElement,
-                typeof(object),
-                applicationTypeInfo,
-                errors
-            );
-
-            //assert
-            Assert.True(errors.Any());
-            Assert.Equal
-            (
-                string.Format(CultureInfo.CurrentCulture, Strings.constrParameterNotOptionalFormat, "stringProperty", "TestResponseA"),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ConstructorElementValidatorFailsIfParameterHasNoChildElements()
-        {
-            //arrange
-            IConstructorElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IConstructorElementValidator>();
-            XmlElement xmlElement = GetXmlElement(@"<constructor name=""TestResponseC"" visibleText=""TestResponseC"" >
-                                                        <genericArguments />
-                                                        <parameters>
-                                                            <objectParameter name=""objectProperty""></objectParameter>
-                                                        </parameters>
-                                                    </constructor>");
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-
-            //act
-            xmlValidator.Validate
-            (
-                xmlElement,
-                typeof(object),
-                applicationTypeInfo,
-                errors
-            );
-
-            //assert
-            Assert.True(errors.Any());
-            Assert.Equal
-            (
-                string.Format(CultureInfo.CurrentCulture, Strings.invalidParameterElementFormat, "objectProperty", "Object"),
-                errors.First()
-            );
-        }
-
-        [Fact]
-        public void ConstructorElementValidatorFailsIfParameterElementIsNotAMatchForTheConfiguredParameter()
-        {
-            //arrange
-            IConstructorElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IConstructorElementValidator>();
-            XmlElement xmlElement = GetXmlElement(@"<constructor name=""TestResponseC"" visibleText=""TestResponseC"" >
-                                                        <genericArguments />
-                                                        <parameters>
-                                                            <literalParameter name=""objectProperty"">AAA</literalParameter>
-                                                        </parameters>
-                                                    </constructor>");
-            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-
-            //act
-            xmlValidator.Validate
-            (
-                xmlElement,
-                typeof(object),
-                applicationTypeInfo,
-                errors
-            );
-
-            //assert
-            Assert.True(errors.Any());
-            Assert.Equal
-            (
-                string.Format(CultureInfo.CurrentCulture, Strings.invalidParameterElementFormat, "objectProperty", "Object"),
                 errors.First()
             );
         }

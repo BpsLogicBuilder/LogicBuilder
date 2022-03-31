@@ -220,6 +220,9 @@
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".FR</value>
     <comment>0=VariableName</comment>
   </data>
+	<data name="chainingUpdateValidationError" xml:space="preserve">
+    <value>The field or property to be updated must be represented by a string and cannot include functions or variables.FR</value>
+  </data>
 	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
     <value>The connector category {0} is undefined.FR</value>
     <comment>0=connector category</comment>
@@ -227,9 +230,6 @@
 	<data name="constrGenericArgNameInvalidFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for generic parameter "{1}" in constructor "{2}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
-  </data>
-	<data name="constrParameterNotOptionalFormat" xml:space="preserve">
-    <value>Parameter "{0}" is not optional for constructor "{1}".FR</value>
   </data>
 	<data name="constructorGenericArgsMisMatchFormat" xml:space="preserve">
     <value>The configured constructor's generic arguments "{0}" must match the data's generic arguments "{1}".FR</value>
@@ -394,6 +394,9 @@
     <value>The generic argument name "{0}" for generic parameter "{1}" in constructor "{2}" is not one of the constructor's generic arguments: "{3}".FR</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName;3=listOfGenericArguments</comment>
   </data>
+	<data name="invalidAnyParameterConfigurationForBinaryOperatorFormat" xml:space="preserve">
+		<value>For the binary operator "{0}", both parameters can be of literal type "Any" or neither can be of literal type "Any". First parameter: "{1}", second parameter: "{2}".FR</value>
+	</data>
   <data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.FR</value>
   </data>
@@ -448,18 +451,27 @@
     <value>Error configuring method {0}. The connectors multiple choice parameter must be the last parameter.FR</value>
     <comment>0=functionName</comment>
   </data>
+	<data name="neitherOperandCanBeEmptyBinaryOperationAny" xml:space="preserve">
+    <value>Neither operand can be empty if 1) the function is a binary operation, 2) parameter type for the operands is Any, and 3) the other operand is not nullable.FR</value>
+  </data>
   <data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.FR</value>
   </data>
 	<data name="parameterCountMustBeTwoFormat" xml:space="preserve">
     <value>Because Parameters Layout is Binary, function {0} must have exactly 2 parameters.FR</value>
   </data>
+	<data name="parameterNotLiteralFormat" xml:space="preserve">
+    <value>The parameter "{0}" of type "{1}" is not a valid literal.FR</value>
+  </data>
 	<data name="parameterNotOptionalFormat" xml:space="preserve">
-    <value>Parameter "{0}" is not optional for function "{1}".FR</value>
+    <value>Parameter "{0}" is not optional.FR</value>
   </data>
 	<data name="parametersLayoutMustBeBinaryFormat" xml:space="preserve">
     <value>Parameters Layout for function {0} must be "Binary" when the function category is "Binary Operator".FR</value>
     <comment>0=functionName</comment>
+  </data>
+	<data name="parametersNotCompatibleForBinaryOperation" xml:space="preserve">
+    <value>The parameter types "{0}" and "{1}" cannot be applied as operands in the binary operation "{2}".FR</value>
   </data>
   <data name="parameterTypeNameFormat2" xml:space="preserve">
     <value>{0}: {1}FR</value>

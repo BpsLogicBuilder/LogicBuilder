@@ -1,18 +1,18 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Data;
+﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
@@ -27,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
+        private readonly IVariableHelper _variableHelper;
         //private readonly fields were injected into XmlElementValidator
 
         public FunctionElementValidator(IXmlElementValidator xmlElementValidator)
@@ -39,12 +40,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
             _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
             _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
+            _variableHelper = xmlElementValidator.ContextProvider.VariableHelper;
         }
 
         //ElementValidator properties are created in the XmlElementValidator constructor.
         //These fields may be null in the constructor i.e. when new FunctionElementValidator((XmlElementValidator)this)
         //therefore they must be properties.
-        private IParameterElementValidator ParameterElementValidator => _xmlElementValidator.ParameterElementValidator;
+        private IBinaryOperatorFunctionElementValidator BinaryOperatorFunctionElementValidator => _xmlElementValidator.BinaryOperatorFunctionElementValidator;
+        private IRuleChainingUpdateFunctionElementValidator RuleChainingUpdateFunctionElementValidator => _xmlElementValidator.RuleChainingUpdateFunctionElementValidator;
+        private IParametersElementValidator ParametersElementValidator => _xmlElementValidator.ParametersElementValidator;
 
         public void Validate(XmlElement functionElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
         {
@@ -116,62 +120,66 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
                 return;
             }
+
+            //validate the parameters.
+            switch (function.FunctionCategory)
+            {
+                case FunctionCategories.BinaryOperator:
+                    BinaryOperatorFunctionElementValidator.Validate(function, functionData.ParameterElementsList, application, validationErrors);
+                    break;
+                case FunctionCategories.RuleChainingUpdate:
+                    RuleChainingUpdateFunctionElementValidator.Validate(function, functionData.ParameterElementsList, validationErrors);
+                    break;
+                default:
+                    ParametersElementValidator.Validate(function.Parameters, functionData.ParameterElementsList, application, validationErrors);
+                    //In case the configured variable has been modified or removed (reference definitions are not applicable for BinaryOperator or RuleChainingUpdate:)
+                    ValidateVariableReferenceDefinitions(function, validationErrors);
+                    break;
+            }
         }
 
-        private void ValidateParameters(Function function, List<XmlElement> parameterElementsList, ApplicationTypeInfo application, List<string> validationErrors)
+        void ValidateVariableReferenceDefinitions(Function function, List<string> validationErrors)
         {
-            Dictionary<string, XmlElement> elements = parameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
-
-            function.Parameters.ForEach(par =>
+            for (int i = 0; i < function.ReferenceDefinition.Count; i++)
             {
-                if (!elements.TryGetValue(par.Name, out XmlElement? pElement))
-                {
-                    if (!par.IsOptional)
-                        validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.parameterNotOptionalFormat, par.Name, function.Name));
-                    return;
-                }
-
-                switch (par.ParameterCategory)
-                {
-                    case ParameterCategory.Object:
-                    case ParameterCategory.LiteralList:
-                    case ParameterCategory.ObjectList:
-                        if (!pElement.HasChildNodes)//this should never happen.  The UI will always add a child node.  If editing XML then the schema validator should fail.
-                        {
-                            validationErrors.Add
-                            (
-                                string.Format
-                                (
-                                    CultureInfo.CurrentCulture, 
-                                    Strings.invalidParameterElementFormat, 
-                                    par.Name, 
-                                    _enumHelper.GetVisibleEnumText(par.ParameterCategory)
-                                )
-                            );
-                            return;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                if (_enumHelper.GetParameterCategory(pElement.Name) != par.ParameterCategory)
+                if (function.ReferenceDefinition[i] == ValidIndirectReference.VariableKeyIndexer && !_configurationService.VariableList.Variables.ContainsKey(function.ReferenceName[i]))
                 {
                     validationErrors.Add
                     (
                         string.Format
                         (
-                            CultureInfo.CurrentCulture, 
-                            Strings.invalidParameterElementFormat, 
-                            par.Name, 
-                            _enumHelper.GetVisibleEnumText(par.ParameterCategory)
+                            Strings.variableKeyReferenceIsInvalidFormat3,
+                            _enumHelper.GetVisibleEnumText(function.ReferenceDefinition[i]), 
+                            function.ReferenceName[i], 
+                            function.Name
                         )
                     );
-                    return;
                 }
 
-                ParameterElementValidator.Validate(pElement, par, application, validationErrors);
-            });
+                if (function.ReferenceDefinition[i] == ValidIndirectReference.VariableArrayIndexer)
+                {
+                    //Since arrays can be multidimensional, allow the variableArrayIndex to combine variables and integer literals as indexes
+                    if (_configurationService.VariableList.Variables.TryGetValue(function.ReferenceName[i], out VariableBase? variable) && _variableHelper.CanBeInteger(variable))
+                    {
+                    }
+                    else if (int.TryParse(function.ReferenceName[i], out int arrayIndex) && arrayIndex > -1)//parsed integer must be positive
+                    {
+                    }
+                    else
+                    {
+                        validationErrors.Add
+                        (
+                            string.Format
+                            (
+                                Strings.variableArrayKeyReferenceIsInvalidFormat3,
+                                _enumHelper.GetVisibleEnumText(function.ReferenceDefinition[i]), 
+                                function.ReferenceName[i], 
+                                function.Name
+                            )
+                        );
+                    }
+                }
+            }
         }
     }
 }

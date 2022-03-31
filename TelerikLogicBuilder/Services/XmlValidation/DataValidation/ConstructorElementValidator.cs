@@ -1,6 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -11,7 +9,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidati
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
@@ -22,7 +19,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly IConstructorDataParser _constructorDataParser;
         private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
         private readonly IConstructorTypeHelper _constructorTypeHelper;
-        private readonly IEnumHelper _enumHelper;
         private readonly IGenericConstructorHelper _genericConstructorHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
@@ -36,7 +32,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _constructorTypeHelper = xmlElementValidator.ConstructorTypeHelper;
             _genericConstructorHelper = xmlElementValidator.GenericConstructorHelper;
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
             _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
         }
 
@@ -49,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         // public IParameterElementValidator ParameterElementValidator
         //     => _parameterElementValidator ??= new ParameterElementValidator(this);
         // resulted in multiple .dll access errors in the tests.
-        private IParameterElementValidator ParameterElementValidator => _xmlElementValidator.ParameterElementValidator;
+        private IParametersElementValidator ParametersElementValidator => _xmlElementValidator.ParametersElementValidator;
 
         public void Validate(XmlElement constructorElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
         {
@@ -114,7 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                 constructor = _genericConstructorHelper.ConvertGenericTypes(constructor, constructorData.GenericArguments, application);
             }
 
-            //get the new constructor type is a generic constructor
+            //get the new constructor type if it is a generic constructor
             if (constructor.HasGenericArguments)
             {
                 if (!_typeLoadHelper.TryGetSystemType(constructor.TypeName, application, out constructorType))
@@ -137,45 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                 return;
             }
 
-            ValidateParameters(constructor, constructorData, application, validationErrors);
-        }
-
-        private void ValidateParameters(Constructor constructor, ConstructorData constructorData, ApplicationTypeInfo application, List<string> validationErrors)
-        {
-            Dictionary<string, XmlElement> elements = constructorData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
-
-            constructor.Parameters.ForEach(par =>
-            {
-                if (!elements.TryGetValue(par.Name, out XmlElement? pElement))
-                {
-                    if (!par.IsOptional)
-                        validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.constrParameterNotOptionalFormat, par.Name, constructor.Name));
-                    return;
-                }
-
-                switch (par.ParameterCategory)
-                {
-                    case ParameterCategory.Object:
-                    case ParameterCategory.LiteralList:
-                    case ParameterCategory.ObjectList:
-                        if (!pElement.HasChildNodes)//this should never happen.  The UI will always add a child node.  If editing XML then the schema validator should fail.
-                        {
-                            validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.invalidParameterElementFormat, par.Name, _enumHelper.GetVisibleEnumText(par.ParameterCategory)));
-                            return;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                if (_enumHelper.GetParameterCategory(pElement.Name) != par.ParameterCategory)
-                {
-                    validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.invalidParameterElementFormat, par.Name, _enumHelper.GetVisibleEnumText(par.ParameterCategory)));
-                    return;
-                }
-
-                ParameterElementValidator.Validate(pElement, par, application, validationErrors);
-            });
+            ParametersElementValidator.Validate(constructor.Parameters, constructorData.ParameterElementsList, application, validationErrors);
         }
     }
 }

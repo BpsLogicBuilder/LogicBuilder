@@ -5,7 +5,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
 {
     internal interface IXmlElementValidator
     {
+        IAnyParametersHelper AnyParametersHelper { get; }
         IAssertFunctionElementValidator AssertFunctionElementValidator { get; }
+        IBinaryOperatorFunctionElementValidator BinaryOperatorFunctionElementValidator { get; }
         IConditionsElementValidator ConditionsElementValidator { get; }
         IConnectorElementValidator ConnectorElementValidator { get; }
         IConstructorDataParser ConstructorDataParser { get; }
@@ -35,7 +37,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IObjectParameterElementValidator ObjectParameterElementValidator { get; }
         IObjectVariableElementValidator ObjectVariableElementValidator { get; }
         IParameterElementValidator ParameterElementValidator { get; }
+        IParametersElementValidator ParametersElementValidator { get; }
         IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
+        IRuleChainingUpdateFunctionElementValidator RuleChainingUpdateFunctionElementValidator { get; }
         ITypeLoadHelper TypeLoadHelper { get; }
         IVariableDataParser VariableDataParser { get; }
         IVariableElementValidator VariableElementValidator { get; }

@@ -692,6 +692,22 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             Assert.Equal(typeof(string), pair.ParameterTwoType);
         }
 
+        [Fact]
+        public void MayReturnANullTypeWhenUnexcpectedNonLiteralArgumentsAreSupplied()
+        {
+            //arrange
+            IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
+            XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1""><variable name=""System_Object"" visibleText=""visibleText"" /></literalParameter>");
+            XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""></literalParameter>");
+
+            //act
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+
+            //assert
+            Assert.Equal(typeof(object), pair.ParameterOneType);
+            Assert.Null(pair.ParameterTwoType);
+        }
+
         private static XmlElement GetXmlElement(string xmlString)
             => GetXmlDocument(xmlString).DocumentElement!;
 
@@ -1043,6 +1059,21 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "ObjectVariableNotFound",
                         VariableCategory.StringKeyIndexer,
                         "Contoso.Test.Business.Responses.TypeNotFound",
+                        "",
+                        "flowManager.FlowDataCache.Items",
+                        "Field.Property.Property",
+                        "",
+                        ReferenceCategories.InstanceReference,
+                        "",
+                        "System.Object",
+                        ContextProvider
+                    ),
+                    ["System_Object"] = new ObjectVariable
+                    (
+                        "System_Object",
+                        "System_Object",
+                        VariableCategory.StringKeyIndexer,
+                        "System.Object",
                         "",
                         "flowManager.FlowDataCache.Items",
                         "Field.Property.Property",
