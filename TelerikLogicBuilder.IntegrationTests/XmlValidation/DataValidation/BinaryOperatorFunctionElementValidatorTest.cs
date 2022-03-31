@@ -422,7 +422,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             );
         }
 
-        //string elementOneVariableName = $"{Enum.GetName(typeof(LiteralVariableType), elementOneVariableType)}Item";
         private static XmlElement GetXmlElement(string xmlString)
             => GetXmlDocument(xmlString).DocumentElement!;
 

@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using Microsoft.OData.Edm;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -27,30 +28,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
-        private readonly Type[] literalTypes = new Type[]
-                {
-                    typeof(bool),
-                    typeof(sbyte),
-                    typeof(byte),
-                    typeof(char),
-                    typeof(short),
-                    typeof(ushort),
-                    typeof(int),
-                    typeof(uint),
-                    typeof(long),
-                    typeof(ulong),
-                    typeof(double),
-                    typeof(float),
-                    typeof(decimal),
-                    typeof(TimeSpan),
-                    typeof(TimeOnly),
-                    typeof(TimeOfDay),
-                    typeof(DateTime),
-                    typeof(DateTimeOffset),
-                    typeof(DateOnly),
-                    typeof(Date),
-                    typeof(Guid)
-                };
 
         private static readonly Dictionary<Type, List<Type>> ImplicitNumberConversions = new()
         {//float.TryParse and double.TryParse will succeed and round for higher precision numbers
@@ -84,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             _variableDataParser = variableDataParser;
         }
 
-        public AnyParameterPair GetTypes(XmlElement firstXmlParameter, XmlElement secondXmlParameter, ApplicationTypeInfo application)
+        public AnyParameterPair GetTypes(XmlElement firstXmlParameter, XmlElement secondXmlParameter, CodeBinaryOperatorType codeBinaryOperatorType, ApplicationTypeInfo application)
         {
             return GetTypePair
             (
@@ -174,15 +151,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                     XmlText textNode2 = (XmlText)secondXmlParameter.ChildNodes[0]!;
                     AnyParameterPair? pair;
 
-                    foreach (Type type in literalTypes)
+                    foreach (Type type in GetLiteralTypes(codeBinaryOperatorType))
                     {
                         if ((pair = MatchNodes(type, textNode1, textNode2)) != null)
                             return pair;
                     }
                 }
-
-                if (BothNodeTypesAreTextOrNoChildNodes())
-                {
+                else if (BothNodeTypesAreTextOrNoChildNodes())
+                {//if BothNodeTypesAreText() then nullables don't help hence the "else if"
                     if (firstXmlParameter.ChildNodes.Count > 1 || secondXmlParameter.ChildNodes.Count > 1)
                         return new AnyParameterPair(typeof(string), typeof(string));
 
@@ -190,16 +166,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                     XmlText? textNode2 = secondXmlParameter.HasChildNodes ? (XmlText)secondXmlParameter.ChildNodes[0]! : null;
                     AnyParameterPair? pair;
 
-                    foreach (Type type in literalTypes)
+                    foreach (Type type in GetLiteralTypes(codeBinaryOperatorType))
                     {
+                        if (type == typeof(string))
+                            return new AnyParameterPair(typeof(string), typeof(string));
+
                         if ((pair = MatchNullableNodes(typeof(Nullable<>).MakeGenericType(type), textNode1, textNode2, p1NodeType, p2NodeType)) != null)
                             return pair;
                     }
-
-                    //Nullable in this context just means that the XmlNode is of type XmlText
-                    //Or that no node is present
-                    //Given that the LiteralParamer's parameter type is Any then that includes System.String
-                    return new AnyParameterPair(typeof(string), typeof(string));
                 }
 
                 return new AnyParameterPair(p1, p2);
@@ -334,6 +308,164 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                         throw _exceptionHelper.CriticalException("{F0EF9FF7-F998-4C2D-9803-D957731C8654}");
                 }
             }
+        }
+
+        private Type[] GetLiteralTypes(CodeBinaryOperatorType operatorType)
+        {
+#pragma warning disable IDE0066 // Convert switch statement to expression
+            switch (operatorType)
+            {
+                case CodeBinaryOperatorType.Add:
+                    return new Type[]
+                    {
+                        typeof(sbyte),
+                        typeof(byte),
+                        typeof(char),
+                        typeof(short),
+                        typeof(ushort),
+                        typeof(int),
+                        typeof(uint),
+                        typeof(long),
+                        typeof(ulong),
+                        typeof(double),
+                        typeof(float),
+                        typeof(decimal),
+                        typeof(TimeSpan),
+                        typeof(string)
+                    };
+                case CodeBinaryOperatorType.Subtract:
+                    return new Type[]
+                    {
+                        typeof(sbyte),
+                        typeof(byte),
+                        typeof(char),
+                        typeof(short),
+                        typeof(ushort),
+                        typeof(int),
+                        typeof(uint),
+                        typeof(long),
+                        typeof(ulong),
+                        typeof(double),
+                        typeof(float),
+                        typeof(decimal),
+                        typeof(TimeSpan),
+                        typeof(TimeOnly),
+                        typeof(DateTime),
+                        typeof(DateTimeOffset)
+                    };
+                case CodeBinaryOperatorType.Multiply:
+                case CodeBinaryOperatorType.Modulus:
+                    return new Type[]
+                    {
+                        typeof(sbyte),
+                        typeof(byte),
+                        typeof(char),
+                        typeof(short),
+                        typeof(ushort),
+                        typeof(int),
+                        typeof(uint),
+                        typeof(long),
+                        typeof(ulong),
+                        typeof(double),
+                        typeof(float),
+                        typeof(decimal)
+                    };
+                case CodeBinaryOperatorType.Divide:
+                    return new Type[]
+                    {
+                        typeof(sbyte),
+                        typeof(byte),
+                        typeof(char),
+                        typeof(short),
+                        typeof(ushort),
+                        typeof(int),
+                        typeof(uint),
+                        typeof(long),
+                        typeof(ulong),
+                        typeof(double),
+                        typeof(float),
+                        typeof(decimal),
+                        typeof(TimeSpan)
+                    };
+                case CodeBinaryOperatorType.IdentityInequality:
+                case CodeBinaryOperatorType.IdentityEquality:
+                case CodeBinaryOperatorType.ValueEquality:
+                    return new Type[]
+                    {
+                        typeof(bool),
+                        typeof(sbyte),
+                        typeof(byte),
+                        typeof(char),
+                        typeof(short),
+                        typeof(ushort),
+                        typeof(int),
+                        typeof(uint),
+                        typeof(long),
+                        typeof(ulong),
+                        typeof(double),
+                        typeof(float),
+                        typeof(decimal),
+                        typeof(TimeSpan),
+                        typeof(TimeOnly),
+                        typeof(TimeOfDay),
+                        typeof(DateTime),
+                        typeof(DateTimeOffset),
+                        typeof(DateOnly),
+                        typeof(Date),
+                        typeof(Guid),
+                        typeof(string)
+                    };
+                case CodeBinaryOperatorType.BitwiseOr:
+                case CodeBinaryOperatorType.BitwiseAnd:
+                    return new Type[]
+                    {
+                        typeof(bool),
+                        typeof(sbyte),
+                        typeof(byte),
+                        typeof(char),
+                        typeof(short),
+                        typeof(ushort),
+                        typeof(int),
+                        typeof(uint),
+                        typeof(long),
+                        typeof(ulong)
+                    };
+                case CodeBinaryOperatorType.BooleanOr:
+                case CodeBinaryOperatorType.BooleanAnd:
+                    return new Type[]
+                    {
+                        typeof(bool)
+                    };
+                case CodeBinaryOperatorType.LessThan:
+                case CodeBinaryOperatorType.LessThanOrEqual:
+                case CodeBinaryOperatorType.GreaterThan:
+                case CodeBinaryOperatorType.GreaterThanOrEqual:
+                    return new Type[]
+                    {
+                        typeof(sbyte),
+                        typeof(byte),
+                        typeof(char),
+                        typeof(short),
+                        typeof(ushort),
+                        typeof(int),
+                        typeof(uint),
+                        typeof(long),
+                        typeof(ulong),
+                        typeof(double),
+                        typeof(float),
+                        typeof(decimal),
+                        typeof(TimeSpan),
+                        typeof(TimeOnly),
+                        typeof(TimeOfDay),
+                        typeof(DateTime),
+                        typeof(DateTimeOffset),
+                        typeof(DateOnly),
+                        typeof(Date)
+                    };
+                default:
+                    throw _exceptionHelper.CriticalException("{CCF59054-4A26-4ED0-A6E9-FFFD45247EC4}");
+            }
+#pragma warning restore IDE0066 // Convert switch statement to expression
         }
     }
 }

@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         {
             if(function.FunctionCategory != FunctionCategories.BinaryOperator)
                 throw _exceptionHelper.CriticalException("{C97A6D3B-C877-439A-AE7C-3520EDF071E0}");
-
+            
             if (!IsValidCodeBinaryOperator(function.MemberName))
             {
                 validationErrors.Add
@@ -126,7 +126,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
                 ValidateParameterTypeAny
                 (
-                    _anyParametersHelper.GetTypes(firstXmlParameter, secondXmlParameter, application)
+                    _anyParametersHelper.GetTypes
+                    (
+                        firstXmlParameter, 
+                        secondXmlParameter, 
+                        _enumHelper.ParseEnumText<CodeBinaryOperatorType>(function.MemberName), 
+                        application
+                    )
                 );
             }
 

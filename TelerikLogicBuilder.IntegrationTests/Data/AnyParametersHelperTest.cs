@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OData.Edm;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Xml;
 using TelerikLogicBuilder.IntegrationTests.Constants;
@@ -105,7 +106,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                         </function></literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedLiteralType, pair.ParameterOneType);
@@ -259,7 +260,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2"">{elementTwoText}</literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedElementOneType, pair.ParameterOneType);
@@ -413,7 +414,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""><variable name=""{elementTwoVariableName}"" visibleText=""visibleText"" /></literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedElementOneType, pair.ParameterOneType);
@@ -473,7 +474,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""></literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedElementOneType, pair.ParameterOneType);
@@ -533,7 +534,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""><variable name=""{elementTwoVariableName}"" visibleText=""visibleText"" /></literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedElementOneType, pair.ParameterOneType);
@@ -570,7 +571,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                         </function></literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedItemOneType, pair.ParameterOneType);
@@ -601,11 +602,267 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2"">{elementTwoText}</literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedLiteralType, pair.ParameterOneType);
             Assert.Equal(expectedLiteralType, pair.ParameterTwoType);
+        }
+
+        [Theory]
+        [InlineData("true", "false", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.Subtract, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.Modulus, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.Multiply, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.Divide, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.IdentityInequality, typeof(bool), typeof(bool))]
+        [InlineData("true", "false", CodeBinaryOperatorType.IdentityEquality, typeof(bool), typeof(bool))]
+        [InlineData("true", "false", CodeBinaryOperatorType.ValueEquality, typeof(bool), typeof(bool))]
+        [InlineData("true", "false", CodeBinaryOperatorType.BitwiseOr, typeof(bool), typeof(bool))]
+        [InlineData("true", "false", CodeBinaryOperatorType.BitwiseAnd, typeof(bool), typeof(bool))]
+        [InlineData("true", "false", CodeBinaryOperatorType.BooleanOr, typeof(bool), typeof(bool))]
+        [InlineData("true", "false", CodeBinaryOperatorType.BooleanAnd, typeof(bool), typeof(bool))]
+        [InlineData("true", "false", CodeBinaryOperatorType.LessThan, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.LessThanOrEqual, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.GreaterThan, typeof(string), typeof(string))]
+        [InlineData("true", "false", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(string), typeof(string))]
+        [InlineData("1", "255", CodeBinaryOperatorType.Add, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.Subtract, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.Modulus, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.Multiply, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.Divide, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.IdentityInequality, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.IdentityEquality, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.ValueEquality, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.BitwiseOr, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.BitwiseAnd, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("1", "255", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("1", "255", CodeBinaryOperatorType.LessThan, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.LessThanOrEqual, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.GreaterThan, typeof(byte), typeof(byte))]
+        [InlineData("1", "255", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(byte), typeof(byte))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.Add, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.Subtract, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.Modulus, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.Multiply, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.Divide, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.IdentityInequality, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.IdentityEquality, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.ValueEquality, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.BitwiseOr, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.BitwiseAnd, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.LessThan, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.LessThanOrEqual, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.GreaterThan, typeof(char), typeof(char))]
+        [InlineData("\u2713", "\u2714", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(char), typeof(char))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Subtract, typeof(DateTime), typeof(DateTime))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Modulus, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Multiply, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Divide, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.IdentityInequality, typeof(DateTime), typeof(DateTime))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.IdentityEquality, typeof(DateTime), typeof(DateTime))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.ValueEquality, typeof(DateTime), typeof(DateTime))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BitwiseOr, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BitwiseAnd, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.LessThan, typeof(DateTime), typeof(DateTime))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.LessThanOrEqual, typeof(DateTime), typeof(DateTime))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.GreaterThan, typeof(DateTime), typeof(DateTime))]
+        [InlineData("2012-11-11T12:00:00.00Z", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(DateTime), typeof(DateTime))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.Add, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.Subtract, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.Modulus, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.Multiply, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.Divide, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.IdentityInequality, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.IdentityEquality, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.ValueEquality, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.BitwiseOr, typeof(string), typeof(string))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.BitwiseAnd, typeof(string), typeof(string))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.LessThan, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.LessThanOrEqual, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.GreaterThan, typeof(double), typeof(double))]
+        [InlineData("1.7976931348623157E+308", "1.7976931348623157E+308", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(double), typeof(double))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Subtract, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Modulus, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Multiply, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Divide, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.IdentityInequality, typeof(Guid), typeof(Guid))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.IdentityEquality, typeof(Guid), typeof(Guid))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.ValueEquality, typeof(Guid), typeof(Guid))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BitwiseOr, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BitwiseAnd, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.LessThan, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.LessThanOrEqual, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.GreaterThan, typeof(string), typeof(string))]
+        [InlineData("{2D64191A-C055-4E41-BF86-3781D775FA97}", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(string), typeof(string))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.Add, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.Subtract, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.Modulus, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.Multiply, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.Divide, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.IdentityInequality, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.IdentityEquality, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.ValueEquality, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.BitwiseOr, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.BitwiseAnd, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.LessThan, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.LessThanOrEqual, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.GreaterThan, typeof(int), typeof(int))]
+        [InlineData("2147483647", "2147483647", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(int), typeof(int))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.Add, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.Subtract, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.Modulus, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.Multiply, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.Divide, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.IdentityInequality, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.IdentityEquality, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.ValueEquality, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.BitwiseOr, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.BitwiseAnd, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.LessThan, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.LessThanOrEqual, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.GreaterThan, typeof(long), typeof(long))]
+        [InlineData("9223372036854775807", "9223372036854775807", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(long), typeof(long))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.Add, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.Subtract, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.Modulus, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.Multiply, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.Divide, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.IdentityInequality, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.IdentityEquality, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.ValueEquality, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.BitwiseOr, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.BitwiseAnd, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.LessThan, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.LessThanOrEqual, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.GreaterThan, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-127", "127", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(sbyte), typeof(sbyte))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.Add, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.Subtract, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.Modulus, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.Multiply, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.Divide, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.IdentityInequality, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.IdentityEquality, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.ValueEquality, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.BitwiseOr, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.BitwiseAnd, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.LessThan, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.LessThanOrEqual, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.GreaterThan, typeof(short), typeof(short))]
+        [InlineData("-32768", "32767", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(short), typeof(short))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.Add, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.Subtract, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.Modulus, typeof(string), typeof(string))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.Multiply, typeof(string), typeof(string))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.Divide, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.IdentityInequality, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.IdentityEquality, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.ValueEquality, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.BitwiseOr, typeof(string), typeof(string))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.BitwiseAnd, typeof(string), typeof(string))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.LessThan, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.LessThanOrEqual, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.GreaterThan, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("13:13:13", "13:13:13", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(TimeSpan), typeof(TimeSpan))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.Add, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.Subtract, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.Modulus, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.Multiply, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.Divide, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.IdentityInequality, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.IdentityEquality, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.ValueEquality, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.BitwiseOr, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.BitwiseAnd, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.LessThan, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.LessThanOrEqual, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.GreaterThan, typeof(uint), typeof(uint))]
+        [InlineData("1", "4294967295", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(uint), typeof(uint))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.Add, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.Subtract, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.Modulus, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.Multiply, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.Divide, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.IdentityInequality, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.IdentityEquality, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.ValueEquality, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.BitwiseOr, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.BitwiseAnd, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.LessThan, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.LessThanOrEqual, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.GreaterThan, typeof(ulong), typeof(ulong))]
+        [InlineData("1", "18446744073709551615", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(ulong), typeof(ulong))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.Add, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.Subtract, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.Modulus, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.Multiply, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.Divide, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.IdentityInequality, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.IdentityEquality, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.ValueEquality, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.BitwiseOr, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.BitwiseAnd, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.LessThan, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.LessThanOrEqual, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.GreaterThan, typeof(ushort), typeof(ushort))]
+        [InlineData("65535", "65535", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(ushort), typeof(ushort))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.Subtract, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.Modulus, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.Multiply, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.Divide, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.IdentityInequality, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.IdentityEquality, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.ValueEquality, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.BitwiseOr, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.BitwiseAnd, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.BooleanOr, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.BooleanAnd, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.LessThan, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.LessThanOrEqual, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.GreaterThan, typeof(string), typeof(string))]
+        [InlineData("-32768", "garbage", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(string), typeof(string))]
+        public void ReturnsTheExpectedTypeGivenTheOperatorTypeWithBothItemsText(string elementOneText, string elementTwoText, CodeBinaryOperatorType codeBinaryOperatorType, Type expectedElementOneType, Type expectedElementTwoType)
+        {
+            //arrange
+            IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
+            XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1"">{elementOneText}</literalParameter>");
+            XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2"">{elementTwoText}</literalParameter>");
+
+            //act
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, codeBinaryOperatorType, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+
+            //assert
+            Assert.Equal(expectedElementOneType, pair.ParameterOneType);
+            Assert.Equal(expectedElementTwoType, pair.ParameterTwoType);
         }
 
         [Theory]
@@ -647,11 +904,283 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2"">{elementTwoText}</literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(expectedLiteralType, pair.ParameterOneType);
             Assert.Equal(expectedLiteralType, pair.ParameterTwoType);
+        }
+
+        [Theory]
+        [InlineData("", "", CodeBinaryOperatorType.Add, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.Divide, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.Subtract, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.Multiply, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.Modulus, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.IdentityInequality, typeof(bool?), typeof(bool?))]
+        [InlineData("", "", CodeBinaryOperatorType.IdentityEquality, typeof(bool?), typeof(bool?))]
+        [InlineData("", "", CodeBinaryOperatorType.ValueEquality, typeof(bool?), typeof(bool?))]
+        [InlineData("", "", CodeBinaryOperatorType.BitwiseOr, typeof(bool?), typeof(bool?))]
+        [InlineData("", "", CodeBinaryOperatorType.BitwiseAnd, typeof(bool?), typeof(bool?))]
+        [InlineData("", "", CodeBinaryOperatorType.BooleanOr, typeof(bool?), typeof(bool?))]
+        [InlineData("", "", CodeBinaryOperatorType.BooleanAnd, typeof(bool?), typeof(bool?))]
+        [InlineData("", "", CodeBinaryOperatorType.LessThan, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.LessThanOrEqual, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.GreaterThan, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "false", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.Divide, null, typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.Subtract, null, typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.Multiply, null, typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.Modulus, null, typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.IdentityInequality, typeof(bool?), typeof(bool?))]
+        [InlineData("", "false", CodeBinaryOperatorType.IdentityEquality, typeof(bool?), typeof(bool?))]
+        [InlineData("", "false", CodeBinaryOperatorType.ValueEquality, typeof(bool?), typeof(bool?))]
+        [InlineData("", "false", CodeBinaryOperatorType.BitwiseOr, typeof(bool?), typeof(bool?))]
+        [InlineData("", "false", CodeBinaryOperatorType.BitwiseAnd, typeof(bool?), typeof(bool?))]
+        [InlineData("", "false", CodeBinaryOperatorType.BooleanOr, typeof(bool?), typeof(bool?))]
+        [InlineData("", "false", CodeBinaryOperatorType.BooleanAnd, typeof(bool?), typeof(bool?))]
+        [InlineData("", "false", CodeBinaryOperatorType.LessThan, null, typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.LessThanOrEqual, null, typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.GreaterThan, null, typeof(string))]
+        [InlineData("", "false", CodeBinaryOperatorType.GreaterThanOrEqual, null, typeof(string))]
+        [InlineData("", "255", CodeBinaryOperatorType.Add, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.Divide, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.Subtract, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.Multiply, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.Modulus, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.IdentityInequality, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.IdentityEquality, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.ValueEquality, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.BitwiseOr, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.BitwiseAnd, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "255", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "255", CodeBinaryOperatorType.LessThan, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.LessThanOrEqual, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.GreaterThan, typeof(byte?), typeof(byte?))]
+        [InlineData("", "255", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(byte?), typeof(byte?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.Add, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.Divide, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.Subtract, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.Multiply, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.Modulus, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.IdentityInequality, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.IdentityEquality, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.ValueEquality, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.BitwiseOr, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.BitwiseAnd, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.LessThan, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.LessThanOrEqual, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.GreaterThan, typeof(char?), typeof(char?))]
+        [InlineData("", "\u2714", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(char?), typeof(char?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Divide, null, typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Subtract, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Multiply, null, typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.Modulus, null, typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.IdentityInequality, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.IdentityEquality, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.ValueEquality, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BitwiseOr, null, typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BitwiseAnd, null, typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.LessThan, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.LessThanOrEqual, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.GreaterThan, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "2012-11-11T12:00:00.00Z", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(DateTime?), typeof(DateTime?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.Add, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.Divide, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.Subtract, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.Multiply, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.Modulus, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.IdentityInequality, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.IdentityEquality, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.ValueEquality, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.BitwiseOr, null, typeof(string))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.BitwiseAnd, null, typeof(string))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.LessThan, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.LessThanOrEqual, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.GreaterThan, typeof(double?), typeof(double?))]
+        [InlineData("", "1.7976931348623157E+308", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(double?), typeof(double?))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Divide, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Subtract, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Multiply, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.Modulus, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.IdentityInequality, typeof(Guid?), typeof(Guid?))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.IdentityEquality, typeof(Guid?), typeof(Guid?))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.ValueEquality, typeof(Guid?), typeof(Guid?))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BitwiseOr, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BitwiseAnd, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.LessThan, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.LessThanOrEqual, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.GreaterThan, null, typeof(string))]
+        [InlineData("", "{2D64191A-C055-4E41-BF86-3781D775FA97}", CodeBinaryOperatorType.GreaterThanOrEqual, null, typeof(string))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.Add, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.Divide, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.Subtract, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.Multiply, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.Modulus, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.IdentityInequality, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.IdentityEquality, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.ValueEquality, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.BitwiseOr, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.BitwiseAnd, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.LessThan, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.LessThanOrEqual, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.GreaterThan, typeof(int?), typeof(int?))]
+        [InlineData("", "2147483647", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(int?), typeof(int?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.Add, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.Divide, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.Subtract, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.Multiply, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.Modulus, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.IdentityInequality, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.IdentityEquality, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.ValueEquality, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.BitwiseOr, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.BitwiseAnd, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.LessThan, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.LessThanOrEqual, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.GreaterThan, typeof(long?), typeof(long?))]
+        [InlineData("", "9223372036854775807", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(long?), typeof(long?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.Add, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.Divide, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.Subtract, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.Multiply, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.Modulus, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.IdentityInequality, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.IdentityEquality, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.ValueEquality, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.BitwiseOr, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.BitwiseAnd, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "-127", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "-127", CodeBinaryOperatorType.LessThan, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.LessThanOrEqual, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.GreaterThan, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "-127", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(sbyte?), typeof(sbyte?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.Add, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.Divide, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.Subtract, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.Multiply, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.Modulus, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.IdentityInequality, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.IdentityEquality, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.ValueEquality, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.BitwiseOr, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.BitwiseAnd, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "32767", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "32767", CodeBinaryOperatorType.LessThan, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.LessThanOrEqual, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.GreaterThan, typeof(short?), typeof(short?))]
+        [InlineData("", "32767", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(short?), typeof(short?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.Add, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.Divide, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.Subtract, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.Multiply, null, typeof(string))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.Modulus, null, typeof(string))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.IdentityInequality, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.IdentityEquality, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.ValueEquality, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.BitwiseOr, null, typeof(string))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.BitwiseAnd, null, typeof(string))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.LessThan, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.LessThanOrEqual, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.GreaterThan, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "13:13:13", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(TimeSpan?), typeof(TimeSpan?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.Add, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.Divide, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.Subtract, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.Multiply, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.Modulus, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.IdentityInequality, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.IdentityEquality, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.ValueEquality, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.BitwiseOr, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.BitwiseAnd, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.LessThan, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.LessThanOrEqual, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.GreaterThan, typeof(uint?), typeof(uint?))]
+        [InlineData("", "4294967295", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(uint?), typeof(uint?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.Add, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.Divide, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.Subtract, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.Multiply, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.Modulus, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.IdentityInequality, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.IdentityEquality, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.ValueEquality, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.BitwiseOr, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.BitwiseAnd, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.LessThan, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.LessThanOrEqual, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.GreaterThan, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "18446744073709551615", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(ulong?), typeof(ulong?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.Add, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.Divide, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.Subtract, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.Multiply, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.Modulus, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.IdentityInequality, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.IdentityEquality, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.ValueEquality, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.BitwiseOr, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.BitwiseAnd, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "65535", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "65535", CodeBinaryOperatorType.LessThan, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.LessThanOrEqual, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.GreaterThan, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "65535", CodeBinaryOperatorType.GreaterThanOrEqual, typeof(ushort?), typeof(ushort?))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.Add, typeof(string), typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.Divide, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.Subtract, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.Multiply, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.Modulus, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.IdentityInequality, typeof(string), typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.IdentityEquality, typeof(string), typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.ValueEquality, typeof(string), typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.BitwiseOr, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.BitwiseAnd, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.BooleanOr, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.BooleanAnd, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.LessThan, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.LessThanOrEqual, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.GreaterThan, null, typeof(string))]
+        [InlineData("", "garbage", CodeBinaryOperatorType.GreaterThanOrEqual, null, typeof(string))]
+        public void ReturnsTheExpectedTypeGivenTheOperatorTypeWithBothItemsTextOrNoChildNodes(string elementOneText, string elementTwoText, CodeBinaryOperatorType codeBinaryOperatorType, Type expectedElementOneType, Type expectedElementTwoType)
+        {
+            //arrange
+            IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
+            XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1"">{elementOneText}</literalParameter>");
+            XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2"">{elementTwoText}</literalParameter>");
+
+            //act
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, codeBinaryOperatorType, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+
+            //assert
+            Assert.Equal(expectedElementOneType, pair.ParameterOneType);
+            Assert.Equal(expectedElementTwoType, pair.ParameterTwoType);
         }
 
         [Fact]
@@ -666,7 +1195,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""></literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(typeof(string), pair.ParameterOneType);
@@ -685,7 +1214,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                         </literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(typeof(string), pair.ParameterOneType);
@@ -701,7 +1230,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""></literalParameter>");
 
             //act
-            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
+            AnyParameterPair pair = helper.GetTypes(xmlElementOne, xmlElementTwo, CodeBinaryOperatorType.ValueEquality, _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name));
 
             //assert
             Assert.Equal(typeof(object), pair.ParameterOneType);
