@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         internal ListOfLiteralsVariable(string name,
-                    string variableName,
+                    string memberName,
                     VariableCategory variableCategory,
                     string castVariableAs,
                     string typeName,
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                     List<string> domain,
                     IContextProvider contextProvider)
             : base(name,
-                    variableName,
+                    memberName,
                     variableCategory,
                     castVariableAs,
                     typeName,

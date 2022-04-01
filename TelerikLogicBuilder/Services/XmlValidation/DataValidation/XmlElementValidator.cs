@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
     {
         public XmlElementValidator(IContextProvider contextProvider,
                                    IAnyParametersHelper anyParametersHelper,
+                                   IAssertFunctionDataParser assertFunctionDataParser,
                                    IConstructorDataParser constructorDataParser,
                                    IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
                                    IConstructorTypeHelper constructorTypeHelper,
@@ -17,11 +18,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IFunctionDataParser functionDataParser,
                                    IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
                                    ITypeLoadHelper typeLoadHelper,
-                                   IVariableDataParser variableDataParser)
+                                   IVariableDataParser variableDataParser,
+                                   IVariableValueDataParser variableValueDataParser)
         {
             #region Injected 
             //Must be assigned first because they may be required in some of the manually initialized constructors.
             ContextProvider = contextProvider;
+            AssertFunctionDataParser = assertFunctionDataParser;
             AnyParametersHelper = anyParametersHelper;
             ConstructorDataParser = constructorDataParser;
             ConstructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
@@ -32,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             GenericFunctionHelper = genericFunctionHelper;
             TypeLoadHelper = typeLoadHelper;
             VariableDataParser = variableDataParser; 
+            VariableValueDataParser = variableValueDataParser;
             #endregion Injected
 
             AssertFunctionElementValidator = new AssertFunctionElementValidator(this);
@@ -64,6 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         }
 
         public IAnyParametersHelper AnyParametersHelper { get; }
+        public IAssertFunctionDataParser AssertFunctionDataParser { get; }
         public IConstructorDataParser ConstructorDataParser { get; }
         public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
         public IConstructorTypeHelper ConstructorTypeHelper { get; }
@@ -128,5 +133,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IRuleChainingUpdateFunctionElementValidator RuleChainingUpdateFunctionElementValidator { get; }
 
         public IVariableElementValidator VariableElementValidator { get; }
+
+        public IVariableValueDataParser VariableValueDataParser { get; }
     }
 }

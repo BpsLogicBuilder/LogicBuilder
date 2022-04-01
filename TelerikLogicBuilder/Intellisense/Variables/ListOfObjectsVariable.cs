@@ -13,7 +13,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         internal ListOfObjectsVariable(string name,
-                    string variableName,
+                    string memberName,
                     VariableCategory variableCategory,
                     string castVariableAs,
                     string typeName,
@@ -27,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                     ListVariableInputStyle control,
                     IContextProvider contextProvider)
             : base(name,
-                    variableName,
+                    memberName,
                     variableCategory,
                     castVariableAs,
                     typeName,

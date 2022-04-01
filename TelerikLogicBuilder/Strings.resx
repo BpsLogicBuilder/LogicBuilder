@@ -216,6 +216,10 @@
     <value>Cannot load the type for the generic argument "{0}". Function name: {1}.</value>
     <comment>0=generic argument name;1=function name</comment>
   </data>
+	<data name="cannotLoadTypeForVariableFormat" xml:space="preserve">
+    <value>The variable type "{0}" could not be loaded for the variable "{1}".</value>
+    <comment>0=typeName;1=variableName</comment>
+  </data>
 	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".</value>
     <comment>0=VariableName</comment>
@@ -407,6 +411,10 @@
 	<data name="invalidConsParameterOrder" xml:space="preserve">
     <value>The parameter order for constructor "{0}" is invalid. Move optional parameters to the end of the parameters list.</value>
     <comment>0=FunctionName</comment>
+  </data>
+	<data name="invalidFunctionCategoryFormat" xml:space="preserve">
+    <value>Function "{0}" has invalid function category "{1}" given the element type "{2}".</value>
+    <comment>0=functionName;1=functionCategory;2=elementName</comment>
   </data>
 	<data name="invalidLiteralInputFormat" xml:space="preserve">
     <value>Input "{0}" is invalid for the literal type "{1}".</value>

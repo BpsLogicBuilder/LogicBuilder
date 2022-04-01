@@ -403,6 +403,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The variable type &quot;{0}&quot; could not be loaded for the variable &quot;{1}&quot;..
+        /// </summary>
+        internal static string cannotLoadTypeForVariableFormat {
+            get {
+                return ResourceManager.GetString("cannotLoadTypeForVariableFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cast Reference As field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string castReferenceAsMustBeEmptyFormat {
@@ -2064,6 +2073,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidConsParameterOrder {
             get {
                 return ResourceManager.GetString("invalidConsParameterOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function &quot;{0}&quot; has invalid function category &quot;{1}&quot; given the element type &quot;{2}&quot;..
+        /// </summary>
+        internal static string invalidFunctionCategoryFormat {
+            get {
+                return ResourceManager.GetString("invalidFunctionCategoryFormat", resourceCulture);
             }
         }
         
