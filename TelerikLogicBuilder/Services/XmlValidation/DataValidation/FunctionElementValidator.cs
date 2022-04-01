@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
@@ -158,25 +159,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
                 if (function.ReferenceDefinition[i] == ValidIndirectReference.VariableArrayIndexer)
                 {
+                    string[] indexes = function.ReferenceName[i].Trim().Split(new char[] { MiscellaneousConstants.COMMA }, StringSplitOptions.RemoveEmptyEntries);
                     //Since arrays can be multidimensional, allow the variableArrayIndex to combine variables and integer literals as indexes
-                    if (_configurationService.VariableList.Variables.TryGetValue(function.ReferenceName[i], out VariableBase? variable) && _variableHelper.CanBeInteger(variable))
+                    foreach (string index in indexes)
                     {
-                    }
-                    else if (int.TryParse(function.ReferenceName[i], out int arrayIndex) && arrayIndex > -1)//parsed integer must be positive
-                    {
-                    }
-                    else
-                    {
-                        validationErrors.Add
-                        (
-                            string.Format
+                        if (_configurationService.VariableList.Variables.TryGetValue(index, out VariableBase? variable) && _variableHelper.CanBeInteger(variable))
+                        {
+                        }
+                        else if (int.TryParse(index, out int arrayIndex) && arrayIndex > -1)//parsed integer must be positive
+                        {
+                        }
+                        else
+                        {
+                            validationErrors.Add
                             (
-                                Strings.variableArrayKeyReferenceIsInvalidFormat3,
-                                _enumHelper.GetVisibleEnumText(function.ReferenceDefinition[i]), 
-                                function.ReferenceName[i], 
-                                function.Name
-                            )
-                        );
+                                string.Format
+                                (
+                                    Strings.variableArrayKeyReferenceIsInvalidFormat3,
+                                    _enumHelper.GetVisibleEnumText(function.ReferenceDefinition[i]),
+                                    function.ReferenceName[i],
+                                    function.Name
+                                )
+                            );
+                        }
                     }
                 }
             }

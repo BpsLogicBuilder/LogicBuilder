@@ -264,13 +264,13 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(object), typeof(string), false)]
         [InlineData(typeof(DateTime), typeof(DateTime?), false)]
         [InlineData(typeof(bool), typeof(bool), true)]
-        public void CompatibleForBitwiseAndOp(Type to, Type from, bool expectedResult)
+        public void CompatibleForBitwiseAndOp(Type t1, Type t2, bool expectedResult)
         {
             //arrange
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.BitwiseAnd);
+            var result = helper.AreCompatibleForOperation(t1, t2, CodeBinaryOperatorType.BitwiseAnd);
 
             //assert
             Assert.Equal(expectedResult, result);
@@ -302,13 +302,13 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(object), typeof(string), false)]
         [InlineData(typeof(DateTime), typeof(DateTime?), false)]
         [InlineData(typeof(bool), typeof(bool), true)]
-        public void CompatibleForBooleanAndOp(Type to, Type from, bool expectedResult)
+        public void CompatibleForBooleanAndOp(Type t1, Type t2, bool expectedResult)
         {
             //arrange
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.BooleanAnd);
+            var result = helper.AreCompatibleForOperation(t1, t2, CodeBinaryOperatorType.BooleanAnd);
 
             //assert
             Assert.Equal(expectedResult, result);
@@ -331,13 +331,13 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(IList<string>), typeof(List<string>), true)]
         [InlineData(typeof(List<string>), typeof(IList<string>), true)]
         [InlineData(typeof(object), typeof(string), true)]
-        public void CompatibleForIdentityEqualityOp(Type to, Type from, bool expectedResult)
+        public void CompatibleForIdentityEqualityOp(Type t1, Type t2, bool expectedResult)
         {
             //arrange
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.IdentityEquality);
+            var result = helper.AreCompatibleForOperation(t1, t2, CodeBinaryOperatorType.IdentityEquality);
 
             //assert
             Assert.Equal(expectedResult, result);
@@ -368,13 +368,13 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(string), typeof(CustString), true)]
         [InlineData(typeof(CustString), typeof(short), false)]
         [InlineData(typeof(short), typeof(CustString), false)]
-        public void CompatibleForIdentityInequalityOp(Type to, Type from, bool expectedResult)
+        public void CompatibleForIdentityInequalityOp(Type t1, Type t2, bool expectedResult)
         {
             //arrange
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.IdentityInequality);
+            var result = helper.AreCompatibleForOperation(t1, t2, CodeBinaryOperatorType.IdentityInequality);
 
             //assert
             Assert.Equal(expectedResult, result);
@@ -410,13 +410,13 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(object), typeof(string), false)]
         [InlineData(typeof(DateTime), typeof(DateTime?), true)]
         [InlineData(typeof(bool), typeof(bool), false)]
-        public void CompatibleForLessThanOp(Type to, Type from, bool expectedResult)
+        public void CompatibleForLessThanOp(Type t1, Type t2, bool expectedResult)
         {
             //arrange
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.LessThan);
+            var result = helper.AreCompatibleForOperation(t1, t2, CodeBinaryOperatorType.LessThan);
 
             //assert
             Assert.Equal(expectedResult, result);
@@ -452,13 +452,13 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(object), typeof(string), false)]
         [InlineData(typeof(DateTime), typeof(DateTime?), false)]
         [InlineData(typeof(bool), typeof(bool), false)]
-        public void CompatibleForAddOp(Type to, Type from, bool expectedResult)
+        public void CompatibleForAddOp(Type t1, Type t2, bool expectedResult)
         {
             //arrange
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.Add);
+            var result = helper.AreCompatibleForOperation(t1, t2, CodeBinaryOperatorType.Add);
 
             //assert
             Assert.Equal(expectedResult, result);
@@ -487,13 +487,13 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(int), typeof(string), false)]
         [InlineData(typeof(DateTime), typeof(DateTime?), true)]
         [InlineData(typeof(bool), typeof(bool), true)]
-        public void CompatibleForValueEqualityOp(Type to, Type from, bool expectedResult)
+        public void CompatibleForValueEqualityOp(Type t1, Type t2, bool expectedResult)
         {
             //arrange
             ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
 
             //act
-            var result = helper.AreCompatibleForOperation(to, from, CodeBinaryOperatorType.ValueEquality);
+            var result = helper.AreCompatibleForOperation(t1, t2, CodeBinaryOperatorType.ValueEquality);
 
             //assert
             Assert.Equal(expectedResult, result);

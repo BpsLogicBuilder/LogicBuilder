@@ -1200,8 +1200,8 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     ),
                     ["ArrayIndexerVariable"] = new LiteralVariable
                     (
-                        "StringIndexerVariable",
-                        "StringIndexerVariable",
+                        "ArrayIndexerVariable",
+                        "ArrayIndexerVariable",
                         VariableCategory.StringKeyIndexer,
                         ContextProvider.TypeHelper.ToId(ContextProvider.EnumHelper.GetSystemType(LiteralVariableType.Integer)),
                         "",
