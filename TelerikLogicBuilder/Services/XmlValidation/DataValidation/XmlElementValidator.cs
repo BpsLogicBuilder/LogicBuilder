@@ -10,6 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public XmlElementValidator(IContextProvider contextProvider,
                                    IAnyParametersHelper anyParametersHelper,
                                    IAssertFunctionDataParser assertFunctionDataParser,
+                                   IConditionsDataParser conditionsDataParser,
                                    IConstructorDataParser constructorDataParser,
                                    IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
                                    IConstructorTypeHelper constructorTypeHelper,
@@ -26,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             ContextProvider = contextProvider;
             AssertFunctionDataParser = assertFunctionDataParser;
             AnyParametersHelper = anyParametersHelper;
+            ConditionsDataParser = conditionsDataParser;
             ConstructorDataParser = constructorDataParser;
             ConstructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
             ConstructorTypeHelper = constructorTypeHelper;
@@ -69,6 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         public IAnyParametersHelper AnyParametersHelper { get; }
         public IAssertFunctionDataParser AssertFunctionDataParser { get; }
+        public IConditionsDataParser ConditionsDataParser { get; }
         public IConstructorDataParser ConstructorDataParser { get; }
         public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
         public IConstructorTypeHelper ConstructorTypeHelper { get; }

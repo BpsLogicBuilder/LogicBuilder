@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IAssertFunctionDataParser AssertFunctionDataParser { get; }
         IAssertFunctionElementValidator AssertFunctionElementValidator { get; }
         IBinaryOperatorFunctionElementValidator BinaryOperatorFunctionElementValidator { get; }
+        IConditionsDataParser ConditionsDataParser { get; }
         IConditionsElementValidator ConditionsElementValidator { get; }
         IConnectorElementValidator ConnectorElementValidator { get; }
         IConstructorDataParser ConstructorDataParser { get; }

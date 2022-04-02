@@ -25,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly IFunctionGenericsConfigrationValidator _functionGenericsConfigrationValidator;
         private readonly IConfigurationService _configurationService;
         private readonly IEnumHelper _enumHelper;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
@@ -40,6 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
             _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
             _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
+            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
             _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
             _variableHelper = xmlElementValidator.ContextProvider.VariableHelper;
         }
@@ -53,6 +55,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         public void Validate(XmlElement functionElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
         {
+            if (functionElement.Name != XmlDataConstants.NOTELEMENT && functionElement.Name != XmlDataConstants.FUNCTIONELEMENT)
+                throw _exceptionHelper.CriticalException("{CBDCCFFF-F0B2-43F7-901E-CA6BD4AEB0C6}");
+
             Validate
             (
                 _functionDataParser.Parse(functionElement),

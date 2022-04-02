@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -39,6 +40,31 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
 
             //assert
             Assert.NotNull(xmlValidator);
+        }
+
+        [Fact]
+        public void FunctionElementValidatorThrowsForInvalidFunctionElement()
+        {
+            //arrange
+            IFunctionElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IFunctionElementValidator>();
+            var application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+            List<string> errors = new();
+            XmlElement functionElement = GetXmlElement(@$"<assertFunction name=""Set Variable"" visibleText=""visibleText"">
+                                                            <variable name=""{Enum.GetName(typeof(LiteralVariableType), LiteralVariableType.String)}Item"" visibleText=""visibleText"" />
+                                                            <variableValue>
+                                                              <literalVariable>CB</literalVariable>
+                                                            </variableValue>
+                                                          </assertFunction>");
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => xmlValidator.Validate(functionElement, typeof(object), application, errors));
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{CBDCCFFF-F0B2-43F7-901E-CA6BD4AEB0C6}"),
+                exception.Message
+            );
         }
 
         [Fact]
