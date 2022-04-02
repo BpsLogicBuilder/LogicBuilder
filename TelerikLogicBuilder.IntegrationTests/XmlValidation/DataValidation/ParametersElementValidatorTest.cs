@@ -204,49 +204,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         ContextProvider
                     ),
-                    ["TestResponseB"] = new Constructor
-                    (
-                        "TestResponseB",
-                        "Contoso.Test.Business.Responses.TestResponseB",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            ),
-                            new LiteralParameter
-                            (
-                                "intProperty",
-                                false,
-                                "",
-                                LiteralParameterType.Integer,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
                     ["TestResponseC"] = new Constructor
                     (
                         "TestResponseC",
@@ -262,60 +219,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 true,
                                 false,
                                 true,
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
-                    ["GenericResponse"] = new Constructor
-                    (
-                        "GenericResponse",
-                        "Contoso.Test.Business.Responses.GenericResponse`2",
-                        new List<ParameterBase>
-                        {
-                            new GenericParameter
-                            (
-                                "aProperty",
-                                false,
-                                "",
-                                "A",
-                                ContextProvider
-                            ),
-                            new GenericParameter
-                            (
-                                "bProperty",
-                                false,
-                                "",
-                                "B",
-                                ContextProvider
-                            )
-                        },
-                        new List<string> { "A", "B" },
-                        "",
-                        ContextProvider
-                    ),
-                    ["TypeNotFoundConstructor"] = new Constructor
-                    (
-                        "TypeNotFoundConstructor",
-                        "Contoso.Test.Business.Responses.TypeNotFoundConstructor",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
                                 ContextProvider
                             )
                         },
