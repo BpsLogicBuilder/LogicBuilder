@@ -393,33 +393,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Constructor>
                 {
-                    ["TestResponseA"] = new Constructor
-                    (
-                        "TestResponseA",
-                        "Contoso.Test.Business.Responses.TestResponseA",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
                     ["TestResponseB"] = new Constructor
                     (
                         "TestResponseB",

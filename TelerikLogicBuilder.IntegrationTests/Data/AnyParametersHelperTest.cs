@@ -1184,7 +1184,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
 
         [Fact]
-        public void ItemOneHasMultipleChildNodes()
+        public void ReturnsAPairOfStringTypesItemOneHasMultipleChildNodes()
         {
             //arrange
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
@@ -1203,7 +1203,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
 
         [Fact]
-        public void ItemTwoHasMultipleChildNodes()
+        public void ReturnsAPairOfStringTypesItemTwoHasMultipleChildNodes()
         {
             //arrange
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
@@ -1296,130 +1296,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Constructor>
                 {
-                    ["TestResponseA"] = new Constructor
-                    (
-                        "TestResponseA",
-                        "Contoso.Test.Business.Responses.TestResponseA",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
-                    ["TestResponseB"] = new Constructor
-                    (
-                        "TestResponseB",
-                        "Contoso.Test.Business.Responses.TestResponseB",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            ),
-                            new LiteralParameter
-                            (
-                                "intProperty",
-                                false,
-                                "",
-                                LiteralParameterType.Integer,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
-                    ["GenericResponse"] = new Constructor
-                    (
-                        "GenericResponse",
-                        "Contoso.Test.Business.Responses.GenericResponse`2",
-                        new List<ParameterBase>
-                        {
-                            new GenericParameter
-                            (
-                                "aProperty",
-                                false,
-                                "",
-                                "A",
-                                ContextProvider
-                            ),
-                            new GenericParameter
-                            (
-                                "bProperty",
-                                false,
-                                "",
-                                "B",
-                                ContextProvider
-                            )
-                        },
-                        new List<string> { "A", "B" },
-                        "",
-                        ContextProvider
-                    ),
-                    ["TypeNotFoundConstructor"] = new Constructor
-                    (
-                        "TypeNotFoundConstructor",
-                        "Contoso.Test.Business.Responses.TypeNotFoundConstructor",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
             );
@@ -1428,92 +1304,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Function>
                 {
-                    ["GetString"] = new Function
-                    (
-                        "GetString",
-                        "GetString",
-                        FunctionCategories.Standard,
-                        "",
-                        "flowManager.CustomActions",
-                        "Field.Property",
-                        "",
-                        ReferenceCategories.InstanceReference,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.String, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["StaticMethod"] = new Function
-                    (
-                        "StaticMethod",
-                        "StaticMethod",
-                        FunctionCategories.Standard,
-                        "Contoso.Test.Business.StaticGenericClass`2",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.Type,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["StaticMethodTypeNotFound"] = new Function
-                    (
-                        "StaticMethodTypeNotFound",
-                        "StaticMethodTypeNotFound",
-                        FunctionCategories.Standard,
-                        "Contoso.Test.Business.StaticMethodTypeNotFound`2",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.Type,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["StaticMethodGenericReturn"] = new Function
-                    (
-                        "StaticMethodGenericReturn",
-                        "StaticMethodGenericReturn",
-                        FunctionCategories.Standard,
-                        "Contoso.Test.Business.StaticGenericClass`2",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.Type,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>
-                        {
-                            new GenericParameter
-                            (
-                                "aProperty",
-                                false,
-                                "",
-                                "A",
-                                ContextProvider
-                            ),
-                            new GenericParameter
-                            (
-                                "bProperty",
-                                false,
-                                "",
-                                "B",
-                                ContextProvider
-                            )
-                        },
-                        new List<string> { "A", "B" },
-                        new GenericReturnType("B", ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
                     ["StaticMethodReturnsGenericType"] = new Function
                     (
                         "StaticMethodReturnsGenericType",
@@ -1528,40 +1318,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         new List<ParameterBase>(),
                         new List<string> { "A" },
                         new GenericReturnType("A", ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["StaticMethodWrongCategory"] = new Function
-                    (
-                        "StaticMethodWrongCategory",
-                        "StaticMethodWrongCategory",
-                        FunctionCategories.Standard,
-                        "Contoso.Test.Business.StaticGenericClass`2",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.This,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["StaticNonGenericMethod"] = new Function
-                    (
-                        "StaticNonGenericMethod",
-                        "StaticNonGenericMethod",
-                        FunctionCategories.Standard,
-                        "Contoso.Test.Business.StaticNonGenericClass",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.Type,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
                         "",
                         ContextProvider
                     )
@@ -1582,21 +1338,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, VariableBase>
                 {
-                    ["ObjectVariableNotFound"] = new ObjectVariable
-                    (
-                        "ObjectVariableNotFound",
-                        "ObjectVariableNotFound",
-                        VariableCategory.StringKeyIndexer,
-                        "Contoso.Test.Business.Responses.TypeNotFound",
-                        "",
-                        "flowManager.FlowDataCache.Items",
-                        "Field.Property.Property",
-                        "",
-                        ReferenceCategories.InstanceReference,
-                        "",
-                        "System.Object",
-                        ContextProvider
-                    ),
                     ["System_Object"] = new ObjectVariable
                     (
                         "System_Object",

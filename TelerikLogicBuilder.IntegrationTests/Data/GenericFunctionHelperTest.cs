@@ -395,130 +395,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Constructor>
                 {
-                    ["TestResponseA"] = new Constructor
-                    (
-                        "TestResponseA",
-                        "Contoso.Test.Business.Responses.TestResponseA",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
-                    ["TestResponseB"] = new Constructor
-                    (
-                        "TestResponseB",
-                        "Contoso.Test.Business.Responses.TestResponseB",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            ),
-                            new LiteralParameter
-                            (
-                                "intProperty",
-                                false,
-                                "",
-                                LiteralParameterType.Integer,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    ),
-                    ["GenericResponse"] = new Constructor
-                    (
-                        "GenericResponse",
-                        "Contoso.Test.Business.Responses.GenericResponse`2",
-                        new List<ParameterBase>
-                        {
-                            new GenericParameter
-                            (
-                                "aProperty",
-                                false,
-                                "",
-                                "A",
-                                ContextProvider
-                            ),
-                            new GenericParameter
-                            (
-                                "bProperty",
-                                false,
-                                "",
-                                "B",
-                                ContextProvider
-                            )
-                        },
-                        new List<string> { "A", "B" },
-                        "",
-                        ContextProvider
-                    ),
-                    ["TypeNotFoundConstructor"] = new Constructor
-                    (
-                        "TypeNotFoundConstructor",
-                        "Contoso.Test.Business.Responses.TypeNotFoundConstructor",
-                        new List<ParameterBase>
-                        {
-                            new LiteralParameter
-                            (
-                                "stringProperty",
-                                false,
-                                "",
-                                LiteralParameterType.String,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                true,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        "",
-                        ContextProvider
-                    )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
             );
@@ -527,23 +403,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Function>
                 {
-                    ["GetString"] = new Function
-                    (
-                        "GetString",
-                        "GetString",
-                        FunctionCategories.Standard,
-                        "",
-                        "flowManager.CustomActions",
-                        "Field.Property",
-                        "",
-                        ReferenceCategories.InstanceReference,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.String, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
                     ["StaticMethod"] = new Function
                     (
                         "StaticMethod",
@@ -610,40 +469,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         },
                         new List<string> { "A", "B" },
                         new GenericReturnType("B", ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["StaticMethodOneArgument"] = new Function
-                    (
-                        "StaticMethodOneArgument",
-                        "StaticMethodOneArgument",
-                        FunctionCategories.Standard,
-                        "Contoso.Test.Business.StaticGenericClassOneArgument`1",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.Type,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["StaticMethodWrongCategory"] = new Function
-                    (
-                        "StaticMethodWrongCategory",
-                        "StaticMethodWrongCategory",
-                        FunctionCategories.Standard,
-                        "Contoso.Test.Business.StaticGenericClass`2",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.This,
-                        ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
                         "",
                         ContextProvider
                     ),
