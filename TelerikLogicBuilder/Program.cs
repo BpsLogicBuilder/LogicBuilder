@@ -183,6 +183,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //XmlValidation.DataValidation
             .AddSingleton<IAssertFunctionElementValidator, AssertFunctionElementValidator>()
             .AddSingleton<IBinaryOperatorFunctionElementValidator, BinaryOperatorFunctionElementValidator>()
+            .AddSingleton<ICallElementValidator, CallElementValidator>()
             .AddSingleton<IConditionsElementValidator, ConditionsElementValidator>()
             .AddSingleton<IConnectorElementValidator, ConnectorElementValidator>()
             .AddSingleton<IConstructorElementValidator, ConstructorElementValidator>()

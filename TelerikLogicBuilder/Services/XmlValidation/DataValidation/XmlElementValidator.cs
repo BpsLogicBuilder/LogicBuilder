@@ -42,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
             AssertFunctionElementValidator = new AssertFunctionElementValidator(this);
             BinaryOperatorFunctionElementValidator = new BinaryOperatorFunctionElementValidator(this);
+            CallElementValidator = new CallElementValidator(this);
             ConditionsElementValidator = new ConditionsElementValidator(this);
             ConnectorElementValidator = new ConnectorElementValidator(this);
             ConstructorElementValidator = new ConstructorElementValidator(this);
@@ -86,6 +87,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IAssertFunctionElementValidator AssertFunctionElementValidator { get; }
 
         public IBinaryOperatorFunctionElementValidator BinaryOperatorFunctionElementValidator { get; }
+
+        public ICallElementValidator CallElementValidator { get; }
 
         public IConditionsElementValidator ConditionsElementValidator { get; }
 

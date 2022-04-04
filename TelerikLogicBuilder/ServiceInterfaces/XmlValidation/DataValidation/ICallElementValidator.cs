@@ -5,8 +5,8 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation
 {
-    internal interface ILiteralListElementValidator
+    internal interface ICallElementValidator
     {
-        void Validate(XmlElement literalListElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors);
+        void Validate(XmlElement callElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors);
     }
 }
