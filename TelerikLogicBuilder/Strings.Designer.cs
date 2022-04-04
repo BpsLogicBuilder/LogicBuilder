@@ -403,6 +403,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot load the type &quot;{0}&quot;..
+        /// </summary>
+        internal static string cannotLoadTypeFormat2 {
+            get {
+                return ResourceManager.GetString("cannotLoadTypeFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The variable type &quot;{0}&quot; could not be loaded for the variable &quot;{1}&quot;..
         /// </summary>
         internal static string cannotLoadTypeForVariableFormat {

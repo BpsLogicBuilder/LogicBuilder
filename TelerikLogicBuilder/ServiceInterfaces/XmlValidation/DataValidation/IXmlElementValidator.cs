@@ -33,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         ILiteralParameterElementValidator LiteralParameterElementValidator { get; }
         ILiteralVariableElementValidator LiteralVariableElementValidator { get; }
         IMetaObjectElementValidator MetaObjectElementValidator { get; }
+        IMetaObjectDataParser MetaObjectDataParser { get; }
         IObjectElementValidator ObjectElementValidator { get; }
         IObjectListElementValidator ObjectListElementValidator { get; }
         IObjectListParameterElementValidator ObjectListParameterElementValidator { get; }

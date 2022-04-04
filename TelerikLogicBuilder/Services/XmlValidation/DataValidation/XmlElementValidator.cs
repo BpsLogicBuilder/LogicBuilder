@@ -14,10 +14,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IConstructorDataParser constructorDataParser,
                                    IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
                                    IConstructorTypeHelper constructorTypeHelper,
-                                   IGenericConstructorHelper genericConstructorHelper,
-                                   IGenericFunctionHelper genericFunctionHelper,
                                    IFunctionDataParser functionDataParser,
                                    IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
+                                   IGenericConstructorHelper genericConstructorHelper,
+                                   IGenericFunctionHelper genericFunctionHelper,
+                                   IMetaObjectDataParser metaObjectDataParser,
                                    ITypeLoadHelper typeLoadHelper,
                                    IVariableDataParser variableDataParser,
                                    IVariableValueDataParser variableValueDataParser)
@@ -35,6 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             FunctionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
             GenericConstructorHelper = genericConstructorHelper;
             GenericFunctionHelper = genericFunctionHelper;
+            MetaObjectDataParser = metaObjectDataParser;
             TypeLoadHelper = typeLoadHelper;
             VariableDataParser = variableDataParser; 
             VariableValueDataParser = variableValueDataParser;
@@ -117,6 +119,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public ILiteralVariableElementValidator LiteralVariableElementValidator { get; }
 
         public IMetaObjectElementValidator MetaObjectElementValidator { get; }
+
+        public IMetaObjectDataParser MetaObjectDataParser { get; }
 
         public IObjectElementValidator ObjectElementValidator { get; }
 

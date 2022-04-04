@@ -216,6 +216,10 @@
     <value>Cannot load the type for the generic argument "{0}". Function name: {1}.</value>
     <comment>0=generic argument name;1=function name</comment>
   </data>
+	<data name="cannotLoadTypeFormat2" xml:space="preserve">
+    <value>Cannot load the type "{0}".</value>
+    <comment>0=typeName;</comment>
+  </data>
 	<data name="cannotLoadTypeForVariableFormat" xml:space="preserve">
     <value>The variable type "{0}" could not be loaded for the variable "{1}".</value>
     <comment>0=typeName;1=variableName</comment>
