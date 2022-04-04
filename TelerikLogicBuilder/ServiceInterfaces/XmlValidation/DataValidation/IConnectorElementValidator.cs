@@ -7,5 +7,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
 {
     internal interface IConnectorElementValidator
     {
+        void Validate(XmlElement connectorElement, ApplicationTypeInfo application, List<string> validationErrors);
     }
 }

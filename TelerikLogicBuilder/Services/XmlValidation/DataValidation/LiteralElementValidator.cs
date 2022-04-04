@@ -34,7 +34,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         {
             if (literalElement.Name != XmlDataConstants.LITERALELEMENT
                 && literalElement.Name != XmlDataConstants.LITERALPARAMETERELEMENT
-                && literalElement.Name != XmlDataConstants.LITERALVARIABLEELEMENT)
+                && literalElement.Name != XmlDataConstants.LITERALVARIABLEELEMENT
+                && literalElement.Name != XmlDataConstants.TEXTELEMENT)
                 throw _exceptionHelper.CriticalException("{BDEDB78F-98F9-4C7C-AE73-415D69FCF488}");
 
             if (assignedTo == typeof(string))

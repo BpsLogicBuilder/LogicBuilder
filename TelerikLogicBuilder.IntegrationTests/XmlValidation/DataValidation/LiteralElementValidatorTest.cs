@@ -45,7 +45,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //arrange
             ILiteralElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<ILiteralElementValidator>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            XmlElement xmlElement = GetXmlElement(@"<text name=""stringProperty"">AAA</text>");
+            XmlElement xmlElement = GetXmlElement(@"<someElement name=""stringProperty"">AAA</someElement>");
             List<string> errors = new();
 
             //act

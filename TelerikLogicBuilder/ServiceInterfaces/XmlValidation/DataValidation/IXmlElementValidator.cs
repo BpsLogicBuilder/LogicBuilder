@@ -12,6 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         ICallElementValidator CallElementValidator { get; }
         IConditionsDataParser ConditionsDataParser { get; }
         IConditionsElementValidator ConditionsElementValidator { get; }
+        IConnectorDataParser ConnectorDataParser { get; }
         IConnectorElementValidator ConnectorElementValidator { get; }
         IConstructorDataParser ConstructorDataParser { get; }
         IConstructorElementValidator ConstructorElementValidator { get; }
