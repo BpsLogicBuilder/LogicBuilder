@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         }
 
         //ElementValidator properties are created in the XmlElementValidator constructor.
-        //These fields may be null in the constructor i.e. when new AssertFunctionElementValidator((XmlElementValidator)this) runs
+        //These fields may be null in the constructor i.e. when new FunctionElementValidator((XmlElementValidator)this) runs
         //therefore they must be properties.
         private IFunctionElementValidator FunctionElementValidator => _xmlElementValidator.FunctionElementValidator;
 
