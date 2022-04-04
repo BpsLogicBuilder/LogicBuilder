@@ -43,7 +43,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         [Fact]
-        public void CanConditionsElementValidatorWorksForValidFunctions()
+        public void ConditionsElementValidatorWorksForValidFunctions()
         {
             //arrange
             IConditionsElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IConditionsElementValidator>();

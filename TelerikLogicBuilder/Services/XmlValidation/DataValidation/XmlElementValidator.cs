@@ -15,6 +15,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IConstructorDataParser constructorDataParser,
                                    IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
                                    IConstructorTypeHelper constructorTypeHelper,
+                                   IDecisionDataParser decisionDataParser,
+                                   IDecisionsDataParser decisionsDataParser,
                                    IFunctionDataParser functionDataParser,
                                    IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
                                    IGenericConstructorHelper genericConstructorHelper,
@@ -34,6 +36,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             ConstructorDataParser = constructorDataParser;
             ConstructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
             ConstructorTypeHelper = constructorTypeHelper;
+            DecisionDataParser = decisionDataParser;
+            DecisionsDataParser = decisionsDataParser;
             FunctionDataParser = functionDataParser;
             FunctionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
             GenericConstructorHelper = genericConstructorHelper;
@@ -102,7 +106,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         public IConstructorElementValidator ConstructorElementValidator { get; }
 
+        public IDecisionDataParser DecisionDataParser { get; }
+
         public IDecisionElementValidator DecisionElementValidator { get; }
+
+        public IDecisionsDataParser DecisionsDataParser { get; }
 
         public IDecisionsElementValidator DecisionsElementValidator { get; }
 
