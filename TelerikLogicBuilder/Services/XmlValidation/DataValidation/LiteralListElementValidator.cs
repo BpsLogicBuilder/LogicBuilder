@@ -48,7 +48,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                 literalListElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE)
             );
 
-
             Type listSystemType = _enumHelper.GetSystemType(listType, elementType);
             if (!_typeHelper.AssignableFrom(assignedTo, listSystemType))
             {

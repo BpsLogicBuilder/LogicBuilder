@@ -164,8 +164,8 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                         <constructor name=""String"" visibleText=""String"" >
                                                             <genericArguments />
                                                             <parameters>
-                                                                <literalListParameter name=""charArray"">
-                                                                    <literalList literalType=""Char"" listType=""Array"" visibleText=""visibleText"">
+                                                                <literalListParameter name=""stringArray"">
+                                                                    <literalList literalType=""String"" listType=""Array"" visibleText=""visibleText"">
                                                                       <literal>A</literal>
                                                                       <literal>B</literal>
                                                                     </literalList>
@@ -321,7 +321,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         {
                             new ListOfLiteralsParameter
                             (
-                                "charArray",
+                                "stringArray",
                                 false,
                                 "",
                                 LiteralParameterType.String,

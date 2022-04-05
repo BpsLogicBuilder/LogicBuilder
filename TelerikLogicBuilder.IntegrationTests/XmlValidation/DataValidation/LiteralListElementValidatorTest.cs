@@ -4,7 +4,6 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -12,7 +11,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -189,159 +187,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Function>
                 {
-                    ["Equals"] = new Function
-                    (
-                        "Equals",
-                        Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.ValueEquality)!,
-                        FunctionCategories.BinaryOperator,
-                        "",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.None,
-                        ParametersLayout.Binary,
-                        new List<ParameterBase>()
-                        {
-                            new LiteralParameter
-                            (
-                                "value1",
-                                false,
-                                "",
-                                LiteralParameterType.Any,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                false,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            ),
-                            new LiteralParameter
-                            (
-                                "value2",
-                                false,
-                                "",
-                                LiteralParameterType.Any,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                false,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["Greater Than"] = new Function
-                    (
-                        "Greater Than",
-                        Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.GreaterThan)!,
-                        FunctionCategories.BinaryOperator,
-                        "",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.None,
-                        ParametersLayout.Binary,
-                        new List<ParameterBase>()
-                        {
-                            new LiteralParameter
-                            (
-                                "value1",
-                                false,
-                                "",
-                                LiteralParameterType.Any,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                false,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            ),
-                            new LiteralParameter
-                            (
-                                "value2",
-                                false,
-                                "",
-                                LiteralParameterType.Any,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                false,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
-                        "",
-                        ContextProvider
-                    ),
-                    ["Less Than"] = new Function
-                    (
-                        "Less Than",
-                        Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.LessThan)!,
-                        FunctionCategories.BinaryOperator,
-                        "",
-                        "",
-                        "",
-                        "",
-                        ReferenceCategories.None,
-                        ParametersLayout.Binary,
-                        new List<ParameterBase>()
-                        {
-                            new LiteralParameter
-                            (
-                                "value1",
-                                false,
-                                "",
-                                LiteralParameterType.Any,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                false,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            ),
-                            new LiteralParameter
-                            (
-                                "value2",
-                                false,
-                                "",
-                                LiteralParameterType.Any,
-                                LiteralParameterInputStyle.SingleLineTextBox,
-                                true,
-                                false,
-                                false,
-                                "",
-                                "",
-                                "",
-                                new List<string>(),
-                                ContextProvider
-                            )
-                        },
-                        new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
-                        "",
-                        ContextProvider
-                    )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
