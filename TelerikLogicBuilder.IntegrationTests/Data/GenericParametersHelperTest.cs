@@ -133,8 +133,11 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         [MemberData(nameof(GenericTypeConfigurations_Data))]
         internal void CanConvertGenericParameterFromAllGenericConfigBaseTypes(GenericConfigBase config, Type expectedGenericParameterType, Type expectedListOfGenericsParameterType)
         {
+            //arrange
+            IGenericParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericParametersHelper>();
+
             //act
-            List<ParameterBase> genericParameterResult = _fixture.GenericParametersHelper.GetConvertedParameters
+            List<ParameterBase> genericParameterResult = helper.GetConvertedParameters
             (
                 new List<ParameterBase>
                 {
@@ -153,7 +156,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 },
                 _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
             );
-            List<ParameterBase> listOfGenericsParameterResult = _fixture.GenericParametersHelper.GetConvertedParameters
+            List<ParameterBase> listOfGenericsParameterResult = helper.GetConvertedParameters
             (
                 new List<ParameterBase>
                 {
@@ -183,12 +186,15 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         [Fact]
         internal void ConvertGenericsAndListOfGenerisThrowForInvalidConfigurationType()
         {
+            //arrange
+            IGenericParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericParametersHelper>();
+
             InvalidGenericConfig config = new();
             //act
             Assert.Throws<CriticalLogicBuilderException>
             (
                 () =>
-                _fixture.GenericParametersHelper.GetConvertedParameters
+                helper.GetConvertedParameters
                 (
                     new List<ParameterBase>
                     {
@@ -212,7 +218,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             Assert.Throws<CriticalLogicBuilderException>
             (
                 () =>
-                _fixture.GenericParametersHelper.GetConvertedParameters
+                helper.GetConvertedParameters
                 (
                     new List<ParameterBase>
                     {
@@ -243,7 +249,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            GenericParametersHelper = ServiceProvider.GetRequiredService<IGenericParametersHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -301,7 +306,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
 
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
-        internal IGenericParametersHelper GenericParametersHelper;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

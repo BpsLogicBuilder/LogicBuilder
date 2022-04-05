@@ -1,6 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
@@ -15,14 +14,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IConfigurationService _configurationService;
         private readonly IDecisionDataParser _decisionDataParser;
-        private readonly IExceptionHelper _exceptionHelper;
 
         public DecisionElementValidator(IXmlElementValidator xmlElementValidator)
         {
             _xmlElementValidator = xmlElementValidator;
             _decisionDataParser = xmlElementValidator.DecisionDataParser;
             _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
         }
 
         //ElementValidator properties are created in the XmlElementValidator constructor.

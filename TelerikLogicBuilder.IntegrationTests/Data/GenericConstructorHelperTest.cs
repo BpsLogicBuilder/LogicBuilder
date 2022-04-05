@@ -351,7 +351,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            GenericParametersHelper = ServiceProvider.GetRequiredService<IGenericParametersHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -506,7 +505,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
 
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
-        internal IGenericParametersHelper GenericParametersHelper;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
