@@ -58,7 +58,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                             throw _exceptionHelper.CriticalException("{CE439CE9-F152-440E-AA09-A78F4BE63443}");
                     }
                     
-                });
+                }
+            );
         }
     }
 }

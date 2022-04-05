@@ -510,6 +510,10 @@
     <value>{0} ...</value>
     <comment>0=truncated message</comment>
   </data>
+	<data name="typeNotAssignableFormat" xml:space="preserve">
+    <value>The type "{0}" is not assignable to "{1}".</value>
+    <comment>0=typeWeAreValidating;1=assignedToType</comment>
+  </data>
 	<data name="typeReferenceNameIsInvalidFormat" xml:space="preserve">
     <value>Fully Qualified Type Reference Name field for function {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.</value>
     <comment>0=functionName</comment>

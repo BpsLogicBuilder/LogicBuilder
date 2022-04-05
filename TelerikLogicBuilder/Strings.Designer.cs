@@ -2482,6 +2482,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The type &quot;{0}&quot; is not assignable to &quot;{1}&quot;..
+        /// </summary>
+        internal static string typeNotAssignableFormat {
+            get {
+                return ResourceManager.GetString("typeNotAssignableFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fully Qualified Type Reference Name field for constructor {0} is invalid. Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores..
         /// </summary>
         internal static string typeReferenceNameIsInvalidConstructorFormat {
