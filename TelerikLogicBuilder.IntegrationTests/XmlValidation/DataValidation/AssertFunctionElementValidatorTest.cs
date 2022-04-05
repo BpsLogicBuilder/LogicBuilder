@@ -459,7 +459,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         ReferenceCategories.InstanceReference,
                         "",
-                        LiteralVariableType.Integer,
+                        LiteralVariableType.String,
                         ListType.GenericList,
                         ListVariableInputStyle.ListForm,
                         LiteralVariableInputStyle.SingleLineTextBox,
