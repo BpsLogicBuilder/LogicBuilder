@@ -22,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         }
 
         //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
+        //so can't be sset as readonly fields in the constructor
         private IDecisionElementValidator DecisionElementValidator => _xmlElementValidator.DecisionElementValidator;
 
         public void Validate(XmlElement decisionsElement, ApplicationTypeInfo application, List<string> validationErrors)

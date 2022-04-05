@@ -23,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IDecisionElementValidator DecisionElementValidator { get; }
         IDecisionsDataParser DecisionsDataParser { get; }
         IDecisionsElementValidator DecisionsElementValidator { get; }
+        IFunctionsDataParser FunctionsDataParser { get; }
         IFunctionElementValidator FunctionElementValidator { get; }
         IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
         IFunctionsElementValidator FunctionsElementValidator { get; }

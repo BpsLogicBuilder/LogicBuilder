@@ -30,7 +30,7 @@ namespace Contoso.Test.Flow
         public Progress Progress { get; }
         public ICustomActions CustomActions { get; }
 
-        private ILogger<FlowManager> logger;
+        private readonly ILogger<FlowManager> logger;
 
         public DirectorBase Director { get; }
 

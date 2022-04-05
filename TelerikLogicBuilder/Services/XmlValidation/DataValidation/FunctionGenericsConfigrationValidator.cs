@@ -124,7 +124,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                 return false;
             }
 
-            if (!_genericsConfigrationValidator.GenericArgumentCountMatchesType(functionDeclaringType, genericArguments))
+            //configured and data count match at this point
+            if (genericArguments.Count > 0 && !_genericsConfigrationValidator.GenericArgumentCountMatchesType(functionDeclaringType, genericArguments))
             {
                 validationErrors.Add(GetValidationMessage());
                 return false;

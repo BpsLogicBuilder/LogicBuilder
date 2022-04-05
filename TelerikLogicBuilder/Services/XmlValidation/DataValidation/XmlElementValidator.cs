@@ -19,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IDecisionsDataParser decisionsDataParser,
                                    IFunctionDataParser functionDataParser,
                                    IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
+                                   IFunctionsDataParser functionsDataParser,
                                    IGenericConstructorHelper genericConstructorHelper,
                                    IGenericFunctionHelper genericFunctionHelper,
                                    IMetaObjectDataParser metaObjectDataParser,
@@ -40,6 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             DecisionsDataParser = decisionsDataParser;
             FunctionDataParser = functionDataParser;
             FunctionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
+            FunctionsDataParser = functionsDataParser;
             GenericConstructorHelper = genericConstructorHelper;
             GenericFunctionHelper = genericFunctionHelper;
             MetaObjectDataParser = metaObjectDataParser;
@@ -85,8 +87,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
         public IConstructorTypeHelper ConstructorTypeHelper { get; }
         public IContextProvider ContextProvider { get; }
-        public IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
         public IFunctionDataParser FunctionDataParser { get; }
+        public IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
+        public IFunctionsDataParser FunctionsDataParser { get; }
         public IGenericConstructorHelper GenericConstructorHelper { get; }
         public IGenericFunctionHelper GenericFunctionHelper { get; }
         public ITypeLoadHelper TypeLoadHelper { get; }

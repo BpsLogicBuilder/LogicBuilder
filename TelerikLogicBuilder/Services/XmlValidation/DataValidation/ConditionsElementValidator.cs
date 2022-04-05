@@ -21,9 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor.
-        //These fields may be null in the constructor i.e. when new FunctionElementValidator((XmlElementValidator)this) runs
-        //therefore they must be properties.
+        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
+        //so can't be set as readonly fields in the constructor
         private IFunctionElementValidator FunctionElementValidator => _xmlElementValidator.FunctionElementValidator;
 
         public void Validate(XmlElement condtionsElement, ApplicationTypeInfo application, List<string> validationErrors)
