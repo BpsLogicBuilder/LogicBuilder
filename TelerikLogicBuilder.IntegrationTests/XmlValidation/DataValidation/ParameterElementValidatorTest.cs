@@ -88,7 +88,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 "objectProperty",
                 false,
                 "",
-                "Contoso.Domain.Entities.DepartmentModel",
+                "Contoso.Test.Business.Responses.TestResponseA",
                 true,
                 false,
                 false,
