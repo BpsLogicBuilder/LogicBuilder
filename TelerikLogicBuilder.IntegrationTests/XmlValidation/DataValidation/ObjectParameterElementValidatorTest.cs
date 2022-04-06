@@ -79,7 +79,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         [Fact]
-        public void ValidateThrowsForInvalidElementType()
+        public void ObjectParameterElementValidatorThrowsForInvalidElementType()
         {
             //arrange
             IObjectParameterElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IObjectParameterElementValidator>();
