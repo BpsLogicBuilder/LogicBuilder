@@ -436,6 +436,10 @@
     <value>The parameter order for function "{0}" is invalid. Move optional parameters to the end of the parameters list.</value>
     <comment>0=FunctionName</comment>
   </data>
+	<data name="invalidVariableElementFormat" xml:space="preserve">
+    <value>The variable "{0}" has an invalid value element for the category "{1}".</value>
+    <comment>0=parameterName;1=parameterCategory;</comment>
+  </data>
 	<data name="itemsCommaSeparator" xml:space="preserve">
     <value>, </value>
   </data>

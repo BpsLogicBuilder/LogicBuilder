@@ -2131,6 +2131,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The variable &quot;{0}&quot; has an invalid value element for the category &quot;{1}&quot;..
+        /// </summary>
+        internal static string invalidVariableElementFormat {
+            get {
+                return ResourceManager.GetString("invalidVariableElementFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , .
         /// </summary>
         internal static string itemsCommaSeparator {

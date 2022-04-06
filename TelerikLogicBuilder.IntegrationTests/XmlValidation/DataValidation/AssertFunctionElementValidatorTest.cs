@@ -167,7 +167,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         [Fact]
-        public void AssertFunctionElementValidatorFailsForFunctionNotConfigures()
+        public void AssertFunctionElementValidatorFailsForFunctionNotConfigured()
         {
             //arrange
             IAssertFunctionElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IAssertFunctionElementValidator>();
@@ -268,6 +268,33 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             Assert.Equal
             (
                 string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeForVariableFormat, variable.ObjectTypeString, variable.Name),
+                errors.First()
+            );
+        }
+
+        [Fact]
+        public void AssertFunctionElementValidatorFailsIfConfiguredVariableTypeDoesnOtMatchTheElementType()
+        {
+            //arrange
+            IAssertFunctionElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IAssertFunctionElementValidator>();
+            var application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+            List<string> errors = new();
+            XmlElement functionElement = GetXmlElement(@$"<assertFunction name=""Set Variable"" visibleText=""visibleText"">
+                                                            <variable name=""System_Object"" visibleText=""visibleText"" />
+                                                            <variableValue>
+                                                              <literalVariable>CB</literalVariable>
+                                                            </variableValue>
+                                                          </assertFunction>");
+            IEnumHelper enumHelper = _fixture.ServiceProvider.GetRequiredService<IEnumHelper>();
+            VariableBase variable = _fixture.ConfigurationService.VariableList.Variables["System_Object"];
+
+            //act
+            xmlValidator.Validate(functionElement, application, errors);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.CurrentCulture, Strings.invalidVariableElementFormat, variable.Name, enumHelper.GetVisibleEnumText(variable.VariableTypeCategory)),
                 errors.First()
             );
         }

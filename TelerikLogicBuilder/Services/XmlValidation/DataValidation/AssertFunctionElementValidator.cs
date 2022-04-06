@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IAssertFunctionDataParser _assertFunctionDataParser;
         private readonly IConfigurationService _configurationService;
+        private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
@@ -29,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         {
             _xmlElementValidator = xmlElementValidator;
             _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
+            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
             _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
             _assertFunctionDataParser = xmlElementValidator.AssertFunctionDataParser;
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
@@ -85,7 +87,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                 return;
             }
 
-            switch(variable)
+            if (_enumHelper.GetVariableTypeCategory(variableValueData.ChildElement.Name) != variable.VariableTypeCategory)
+            {
+                validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.invalidVariableElementFormat, variable.Name, _enumHelper.GetVisibleEnumText(variable.VariableTypeCategory)));
+                return;
+            }
+
+            switch (variable)
             {
                 case LiteralVariable literalVariable:
                     LiteralVariableElementValidator.Validate(variableValueData.ChildElement, literalVariable, application, validationErrors);
