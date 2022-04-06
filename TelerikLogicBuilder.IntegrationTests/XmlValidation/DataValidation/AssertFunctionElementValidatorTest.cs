@@ -162,7 +162,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         public void AssertFunctionElementValidatorThrowsForInvalidVariableType()
         {
             //arrange
-            //throws in call to _typeLoadHelper.TryGetSystemType(VariableBase, app, oyt Type);
+            //throws in call to _typeLoadHelper.TryGetSystemType(VariableBase, app, out Type);
             //Does not reach our check at {C7F29579-F6BF-46E2-A2D4-95D141A03A66}
         }
 
@@ -173,7 +173,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             IAssertFunctionElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IAssertFunctionElementValidator>();
             var application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             List<string> errors = new();
-            XmlElement functionElement = GetXmlElement(@$"<assertFunction name=""Set Variable Function Not Congihured"" visibleText=""visibleText"">
+            XmlElement functionElement = GetXmlElement(@$"<assertFunction name=""Set Variable Function Not Configured"" visibleText=""visibleText"">
                                                             <variable name=""{Enum.GetName(typeof(LiteralVariableType), LiteralVariableType.String)}Item"" visibleText=""visibleText"" />
                                                             <variableValue>
                                                               <literalVariable>CB</literalVariable>
@@ -186,9 +186,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //assert
             Assert.Equal
             (
-                string.Format(CultureInfo.InvariantCulture, Strings.functionNotConfiguredFormat, "Set Variable Function Not Congihured"),
+                string.Format(CultureInfo.InvariantCulture, Strings.functionNotConfiguredFormat, "Set Variable Function Not Configured"),
                 errors.First()
-            ); ;
+            );
         }
 
         [Fact]

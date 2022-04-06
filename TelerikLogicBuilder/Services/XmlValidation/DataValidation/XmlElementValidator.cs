@@ -23,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IGenericConstructorHelper genericConstructorHelper,
                                    IGenericFunctionHelper genericFunctionHelper,
                                    IMetaObjectDataParser metaObjectDataParser,
+                                   IRetractFunctionDataParser retractFunctionDataParser,
                                    ITypeLoadHelper typeLoadHelper,
                                    IVariableDataParser variableDataParser,
                                    IVariableValueDataParser variableValueDataParser)
@@ -45,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             GenericConstructorHelper = genericConstructorHelper;
             GenericFunctionHelper = genericFunctionHelper;
             MetaObjectDataParser = metaObjectDataParser;
+            RetractFunctionDataParser = retractFunctionDataParser;
             TypeLoadHelper = typeLoadHelper;
             VariableDataParser = variableDataParser; 
             VariableValueDataParser = variableValueDataParser;
@@ -92,6 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IFunctionsDataParser FunctionsDataParser { get; }
         public IGenericConstructorHelper GenericConstructorHelper { get; }
         public IGenericFunctionHelper GenericFunctionHelper { get; }
+        public IRetractFunctionDataParser RetractFunctionDataParser { get; }
         public ITypeLoadHelper TypeLoadHelper { get; }
         public IVariableDataParser VariableDataParser { get; }
 

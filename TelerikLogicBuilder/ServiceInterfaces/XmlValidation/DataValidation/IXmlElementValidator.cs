@@ -46,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IObjectVariableElementValidator ObjectVariableElementValidator { get; }
         IParameterElementValidator ParameterElementValidator { get; }
         IParametersElementValidator ParametersElementValidator { get; }
+        IRetractFunctionDataParser RetractFunctionDataParser { get; }
         IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
         IRuleChainingUpdateFunctionElementValidator RuleChainingUpdateFunctionElementValidator { get; }
         ITypeLoadHelper TypeLoadHelper { get; }

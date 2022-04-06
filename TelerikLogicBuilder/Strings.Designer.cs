@@ -421,6 +421,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The variable &quot;{0}&quot; is a non-nullable value type and cannot be set to null..
+        /// </summary>
+        internal static string cannotSetValueTypedVariableToNullFormat {
+            get {
+                return ResourceManager.GetString("cannotSetValueTypedVariableToNullFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cast Reference As field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string castReferenceAsMustBeEmptyFormat {

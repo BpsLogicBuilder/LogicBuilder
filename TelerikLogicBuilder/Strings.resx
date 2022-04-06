@@ -224,6 +224,10 @@
     <value>The variable type "{0}" could not be loaded for the variable "{1}".</value>
     <comment>0=typeName;1=variableName</comment>
   </data>
+	<data name="cannotSetValueTypedVariableToNullFormat" xml:space="preserve">
+    <value>The variable "{0}" is a non-nullable value type and cannot be set to null.</value>
+    <comment>0=VariableName</comment>
+  </data>
 	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".</value>
     <comment>0=VariableName</comment>
