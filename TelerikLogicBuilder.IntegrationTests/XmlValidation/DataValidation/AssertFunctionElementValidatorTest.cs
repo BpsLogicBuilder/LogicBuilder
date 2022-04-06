@@ -91,7 +91,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                             <variable name=""ObjectListVariable"" visibleText=""ObjectListVariable"" />
                                             <variableValue>
                                                 <objectListVariable>
-                                                    <objectList literalType=""String"" listType=""GenericList"" visibleText=""visibleText"">
+                                                    <objectList objectType=""Contoso.Test.Business.Responses.TestResponseA"" listType=""GenericList"" visibleText=""visibleText"">
                                                         <object>
                                                             <constructor name=""TestResponseA"" visibleText=""TestResponseA"" >
                                                                 <genericArguments />

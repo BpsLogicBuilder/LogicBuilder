@@ -1,5 +1,7 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
@@ -10,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidati
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 using TelerikLogicBuilder.IntegrationTests.Constants;
 using Xunit;
@@ -33,6 +36,25 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
 
             //assert
             Assert.NotNull(xmlValidator);
+        }
+
+        [Fact]
+        public void ValidateThrowsForInvalidElementType()
+        {
+            //arrange
+            ILiteralListVariableElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<ILiteralListVariableElementValidator>();
+            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+            XmlElement xmlElement = GetXmlElement(@"<variable>CB</variable>");
+            List<string> errors = new();
+            ListOfLiteralsVariable variable = (ListOfLiteralsVariable)_fixture.ConfigurationService.VariableList.Variables["LiteralListVariable"];
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => xmlValidator.Validate(xmlElement, variable, applicationTypeInfo, errors));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{6688FD56-7D82-4CE0-B7A9-72288BED0B72}"),
+                exception.Message
+            );
         }
 
         [Fact]
