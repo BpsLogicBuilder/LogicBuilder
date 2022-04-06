@@ -146,25 +146,25 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             IParameterElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IParameterElementValidator>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             XmlElement xmlElement = GetXmlElement(@"<objectListParameter name=""myParamName"">
-                                                <objectList objectType=""constructorType"" listType=""GenericList"" visibleText=""visibleText"">
-                                                  <object>
-                                                    <constructor name=""TestResponseA"" visibleText=""TestResponseA"" >
-                                                        <genericArguments />
-                                                        <parameters>
-                                                            <literalParameter name=""stringProperty"">XX</literalParameter>
-                                                        </parameters>
-                                                    </constructor>
-                                                  </object>
-                                                  <object>
-                                                    <constructor name=""TestResponseA"" visibleText=""TestResponseA"" >
-                                                        <genericArguments />
-                                                        <parameters>
-                                                            <literalParameter name=""stringProperty"">YY</literalParameter>
-                                                        </parameters>
-                                                    </constructor>
-                                                  </object>
-                                                </objectList>
-                                              </objectListParameter>");
+                                                        <objectList objectType=""Contoso.Test.Business.Responses.TestResponseA"" listType=""GenericList"" visibleText=""visibleText"">
+                                                          <object>
+                                                            <constructor name=""TestResponseA"" visibleText=""TestResponseA"" >
+                                                                <genericArguments />
+                                                                <parameters>
+                                                                    <literalParameter name=""stringProperty"">XX</literalParameter>
+                                                                </parameters>
+                                                            </constructor>
+                                                          </object>
+                                                          <object>
+                                                            <constructor name=""TestResponseA"" visibleText=""TestResponseA"" >
+                                                                <genericArguments />
+                                                                <parameters>
+                                                                    <literalParameter name=""stringProperty"">YY</literalParameter>
+                                                                </parameters>
+                                                            </constructor>
+                                                          </object>
+                                                        </objectList>
+                                                    </objectListParameter>");
             List<string> errors = new();
             ListOfObjectsParameter parameter = new
             (
