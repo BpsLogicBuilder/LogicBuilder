@@ -51,7 +51,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                                         </literalList>
                                                                     </literalListParameter>");
 
-            ListOfLiteralsParameter parameter = new ListOfLiteralsParameter
+            ListOfLiteralsParameter parameter = new            
             (
                 "Selects",
                 false,

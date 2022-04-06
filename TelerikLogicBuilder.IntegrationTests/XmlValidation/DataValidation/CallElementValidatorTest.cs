@@ -74,7 +74,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     },
                     new object[]
                     {
-                        GetXmlElement(@$"<objectList literalType=""String"" listType=""GenericList"" visibleText=""visibleText"">
+                        GetXmlElement(@$"<objectList objectType=""Contoso.Test.Business.Responses.TestResponseA"" listType=""GenericList"" visibleText=""visibleText"">
                                             <object>
                                                 <constructor name=""TestResponseA"" visibleText=""TestResponseA"" >
                                                     <genericArguments />
