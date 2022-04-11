@@ -601,6 +601,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Property {0} does not exist..
+        /// </summary>
+        internal static string customPropertyNotFoundFormat {
+            get {
+                return ResourceManager.GetString("customPropertyNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type Date..
         /// </summary>
         internal static string dateKeyIndexIsInvalidFormat {

@@ -285,6 +285,10 @@
 	<data name="createNewVariablesFileQuestion" xml:space="preserve">
     <value>Create a new Variables File?</value>
   </data>
+	<data name="customPropertyNotFoundFormat" xml:space="preserve">
+    <value>Property {0} does not exist.</value>
+		<comment>0=propertyName (prefix cellname)</comment>
+  </data>
 	<data name="defaultActivityAssemblyFolder" xml:space="preserve">
     <value>ActivityAssembly</value>
   </data>

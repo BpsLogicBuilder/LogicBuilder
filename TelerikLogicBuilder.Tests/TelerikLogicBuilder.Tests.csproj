@@ -22,9 +22,26 @@
     </PackageReference>
   </ItemGroup>
 
+	<ItemGroup>
+		<Reference Include="Microsoft.Office.Interop.Visio">
+			<SpecificVersion>False</SpecificVersion>
+			<EmbedInteropTypes>False</EmbedInteropTypes>
+			<HintPath>bin\2010\Microsoft.Office.Interop.Visio.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Contoso.Forms.Parameters\Contoso.Forms.Parameters.csproj" />
     <ProjectReference Include="..\TelerikLogicBuilder\TelerikLogicBuilder.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Diagrams\ShapeDataCellManagerTest.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeDataCellManagerTest.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

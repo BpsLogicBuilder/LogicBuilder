@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArgume
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
@@ -23,6 +24,7 @@ using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation;
@@ -61,6 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IParameterAttributeReader, ParameterAttributeReader>()
             .AddSingleton<IPathHelper, PathHelper>()
             .AddSingleton<IReflectionHelper, ReflectionHelper>()
+            .AddSingleton<IShapeDataCellManager, ShapeDataCellManager>()
             .AddSingleton<IStringHelper, StringHelper>()
             .AddSingleton<ITypeHelper, TypeHelper>()
             .AddSingleton<ITypeLoadHelper, TypeLoadHelper>()
@@ -170,6 +173,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IAssemblyHelper, AssemblyHelper>()
             .AddSingleton<IAssemblyLoader, AssemblyLoader>()
             .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
+
+            //RulesGenerator
+            .AddSingleton<IShapeHelper, ShapeHelper>()
 
             //XmlValidation
             .AddSingleton<IXmlValidator, XmlValidator>()
