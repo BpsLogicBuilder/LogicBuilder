@@ -64,6 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IPathHelper, PathHelper>()
             .AddSingleton<IReflectionHelper, ReflectionHelper>()
             .AddSingleton<IShapeDataCellManager, ShapeDataCellManager>()
+            .AddSingleton<IShapeXmlHelper, ShapeXmlHelper>()
             .AddSingleton<IStringHelper, StringHelper>()
             .AddSingleton<ITypeHelper, TypeHelper>()
             .AddSingleton<ITypeLoadHelper, TypeLoadHelper>()

@@ -8,7 +8,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool CellExists(Shape shape, string cellName);
         string GetPropertyString(Shape shape, string cellName);
         string GetRulesDataString(Shape shape);
+        void LockUpdate(Shape shape);
         void SetPropertyString(Shape shape, string cellName, string stringValue);
         void SetRulesDataString(Shape shape, string stringValue);
+        void UnlockUpdate(Shape shape);
     }
 }

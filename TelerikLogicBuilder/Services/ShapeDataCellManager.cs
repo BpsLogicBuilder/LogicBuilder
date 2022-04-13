@@ -9,6 +9,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     internal class ShapeDataCellManager : IShapeDataCellManager
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private const string PROPERTYLOCK = "1";
+        private const string PROPERTYUNLOCK = "0";
 
         public ShapeDataCellManager(IExceptionHelper exceptionHelper)
         {
@@ -45,6 +47,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public string GetRulesDataString(Shape shape) 
             => GetPropertyString(shape, CustomPropertyConstants.RULESDATAU);
 
+        public void LockUpdate(Shape shape)
+        {
+            Cell lockTextEditCell = shape.get_CellsSRC((short)VisSectionIndices.visSectionObject, (short)VisRowIndices.visRowLock, (short)VisCellIndices.visLockTextEdit);
+            Cell lockCustPropCell = shape.get_CellsSRC((short)VisSectionIndices.visSectionObject, (short)VisRowIndices.visRowLock, (short)VisCellIndices.visLockCustProp);
+            lockTextEditCell.FormulaU = PROPERTYLOCK;
+            lockCustPropCell.FormulaU = PROPERTYLOCK;
+        }
+
         public void SetPropertyString(Shape shape, string cellName, string stringValue)
         {
             if (!CellExists(shape, cellName))
@@ -62,6 +72,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             AddPropertyCell(shape, CustomPropertyConstants.RULESDATAU, CustomPropertyConstants.RULESDATALABEL);
             SetPropertyString(shape, CustomPropertyConstants.RULESDATAU, stringValue);
+        }
+
+        public void UnlockUpdate(Shape shape)
+        {
+            Cell lockTextEditCell = shape.get_CellsSRC((short)VisSectionIndices.visSectionObject, (short)VisRowIndices.visRowLock, (short)VisCellIndices.visLockTextEdit);
+            Cell lockCustPropCell = shape.get_CellsSRC((short)VisSectionIndices.visSectionObject, (short)VisRowIndices.visRowLock, (short)VisCellIndices.visLockCustProp);
+            lockTextEditCell.FormulaU = PROPERTYUNLOCK;
+            lockCustPropCell.FormulaU = PROPERTYUNLOCK;
         }
 
         private void AddPropertyCell(Shape shape, string cellName, string labelName, VisCellVals propType, string format, string prompt, bool askOnDrop, bool hidden, string sortKey)

@@ -116,6 +116,30 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        public void CanLockAndUnlockTextChange()
+        {
+            //arrange
+            IShapeDataCellManager manager = _fixture.ServiceProvider.GetRequiredService<IShapeDataCellManager>();
+            Shape shape = GetOnlyShape();
+            string originalText = shape.Text;
+            const string newText = "someText";
+
+            //act
+            manager.LockUpdate(shape);
+            Assert.Throws<System.Runtime.InteropServices.COMException>(() => shape.Text = newText);
+
+            //assert
+            Assert.Equal(originalText, shape.Text);
+
+            //act
+            manager.UnlockUpdate(shape);
+            shape.Text = newText;
+
+            //assert
+            Assert.Equal(newText, shape.Text);
+        }
+
+        [Fact]
         public void CanSetRulesDataString()
         {
             //arrange
