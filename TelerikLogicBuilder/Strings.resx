@@ -289,6 +289,12 @@
     <value>Property {0} does not exist.</value>
 		<comment>0=propertyName (prefix cellname)</comment>
   </data>
+	<data name="decisionConnectorNoText" xml:space="preserve">
+    <value>NO</value>
+  </data>
+	<data name="decisionConnectorYesText" xml:space="preserve">
+    <value>YES</value>
+  </data>
 	<data name="defaultActivityAssemblyFolder" xml:space="preserve">
     <value>ActivityAssembly</value>
   </data>

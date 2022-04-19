@@ -239,10 +239,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 case UniversalMasterName.APP10CONNECTOBJECT:
                     return new string[] { GetApplicationName(connector) };
                 case UniversalMasterName.OTHERSCONNECTOBJECT:
-                    if (fromShapeBag.Shape.Master.NameU == UniversalMasterName.MERGEOBJECT)
-                        return GetOtherApplications(connector);
-                    else
-                        return fromShapeBag.OtherConnectorApplications ?? throw _exceptionHelper.CriticalException("{7A61589E-4F94-4513-BBC7-11C8B7994445}");
+                    return GetOtherApplicationsList(connector, fromShapeBag);
                 default:
                     throw _exceptionHelper.CriticalException("{CF08C37C-1FC0-43AA-8C44-8687DD8257C7}");
             }

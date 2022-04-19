@@ -745,6 +745,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NO.
+        /// </summary>
+        internal static string decisionConnectorNoText {
+            get {
+                return ResourceManager.GetString("decisionConnectorNoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YES.
+        /// </summary>
+        internal static string decisionConnectorYesText {
+            get {
+                return ResourceManager.GetString("decisionConnectorYesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ActivityAssembly.
         /// </summary>
         internal static string defaultActivityAssemblyFolder {

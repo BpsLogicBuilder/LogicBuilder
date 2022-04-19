@@ -736,31 +736,6 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         }
 
         [Fact]
-        public void GetApplicationListThrowsIfShapeBagsOtherConnectorApplicationsIsNull()
-        {
-            //arrange
-            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
-            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
-            (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetApplicationList)}\ReturnsApplicationsUsingOtherFromShapeBag.vsdx"),
-                (short)VisOpenSaveArgs.visOpenCopy
-            );
-            Shape connector = GetOnlyShape(UniversalMasterName.OTHERSCONNECTOBJECT, visioDocument);
-            Shape fromShape = GetOnlyShape(UniversalMasterName.ACTION, visioDocument);
-
-            //act
-            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetApplicationList(connector, new ShapeBag(fromShape)));
-            CloseVisioDocument(visioDocument);
-
-            //assert
-            Assert.Equal
-            (
-                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{7A61589E-4F94-4513-BBC7-11C8B7994445}"),
-                exception.Message
-            );
-        }
-
-        [Fact]
         public void GetApplicationListReturnsExpectedApplicationSpecificConnector()
         {
             //arrange
@@ -915,6 +890,581 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                 UniversalMasterName.ACTION,
                 resultMasterName
             );
+        }
+
+        [Fact]
+        public void GetMultipleChoiceConnectorDataThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetMultipleChoiceConnectorData)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.BEGINFLOW, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetMultipleChoiceConnectorData(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{10D222F7-DB67-41B9-B377-7E5986345BEF}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetMultipleChoiceConnectorDataThrowsForINoDialogFunctions()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetMultipleChoiceConnectorData)}\ThrowsForINoDialogFunctions.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetMultipleChoiceConnectorData(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{7A753DBD-E4E4-4ED2-8C8B-C2B5C0B9FDEB}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetMultipleChoiceConnectorDataReturnsListOfConnectorDataForValidShapes()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetMultipleChoiceConnectorData)}\ReturnsListOfConnectorDataForValidShapes.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var result = helper.GetMultipleChoiceConnectorData(shape);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                2,
+                result.Count
+            );
+        }
+
+        [Fact]
+        public void GetOtherApplicationsThrowsIfNotConnectedToMergeObject()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOtherApplications)}\ThrowsIfNotConnectedToMergeObject.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.APP03CONNECTOBJECT, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetOtherApplications(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{07850355-EFFF-4469-85A3-D923DF1B5F63}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetOtherApplicationsReturnsOtherApplicationsUsingFromMerge()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOtherApplications)}\ReturnsOtherApplicationsUsingFromMerge.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.OTHERSCONNECTOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetOtherApplications(shape);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            //assert
+            Assert.True
+            (
+                result.SequenceEqual(new string[] { "App01", "App02", "App03", "App04", "App05", })
+            );
+        }
+
+        [Fact]
+        public void GetOtherApplicationsReturnsOtherApplicationsUsingToMerge()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOtherApplications)}\ReturnsOtherApplicationsUsingToMerge.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.OTHERSCONNECTOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetOtherApplications(shape);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            //assert
+            Assert.True
+            (
+                result.SequenceEqual(new string[] { "App01", "App02", "App03", "App04", "App05", })
+            );
+        }
+
+        [Fact]
+        public void GetOtherApplicationsListThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOtherApplicationsList)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.CONNECTOBJECT, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetOtherApplicationsList(shape, null!));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{FFFA3C7A-1B02-4BD0-AD46-B7BED83D1477}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetOtherApplicationsListReturnsApplicationsUsingOtherFromMerge()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOtherApplicationsList)}\ReturnsApplicationsUsingOtherFromMerge.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape connector = GetOnlyShape(UniversalMasterName.OTHERSCONNECTOBJECT, visioDocument);
+            Shape fromShape = GetOnlyShape(UniversalMasterName.MERGEOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetOtherApplicationsList(connector, new ShapeBag(fromShape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.True
+            (
+                result.SequenceEqual(new string[] { "App01", "App02", "App03", "App04", "App05", })
+            );
+        }
+
+        [Fact]
+        public void GetOtherApplicationsListReturnsApplicationsUsingOtherFromShapeBag()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOtherApplicationsList)}\ReturnsApplicationsUsingOtherFromShapeBag.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape connector = GetOnlyShape(UniversalMasterName.OTHERSCONNECTOBJECT, visioDocument);
+            Shape fromShape = GetOnlyShape(UniversalMasterName.ACTION, visioDocument);
+
+            //act
+            var result = helper.GetOtherApplicationsList(connector, new ShapeBag(fromShape, new string[] { "App06", "App07", "App08", "App09", "App10" }));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.True
+            (
+                result.SequenceEqual(new string[] { "App06", "App07", "App08", "App09", "App10" })
+            );
+        }
+
+        [Fact]
+        public void GetOutgoingBlankConnectorThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingBlankConnector)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.CONNECTOBJECT, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetOutgoingBlankConnector(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{05313042-7AE9-40D2-B7DD-EEC98D06E74C}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetOutgoingBlankConnectorThrowsForNoBlankConnectors()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingBlankConnector)}\ThrowsForNoBlankConnectors.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetOutgoingBlankConnector(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{B11075A7-465F-418E-96BA-E5A1F833E922}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetOutgoingBlankConnectorReturnsTheBlankConnector()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingBlankConnector)}\ReturnsTheBlankConnector.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var connector = helper.GetOutgoingBlankConnector(shape);
+            var connectorFromShapeMaster = helper.GetFromShape(connector).Master.NameU;
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                UniversalMasterName.DIALOG,
+                connectorFromShapeMaster
+            );
+        }
+
+        [Fact]
+        public void GetOutgoingNoConnectorThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingNoConnector)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.BEGINFLOW, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetOutgoingNoConnector(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{7613E57D-D39E-46FF-BDDB-9B2A83ED391D}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetOutgoingNoConnectorReturnsNullForMissingNoConnector()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingNoConnector)}\ReturnsNullForMissingNoConnector.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.CONDITIONOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetOutgoingNoConnector(shape);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetOutgoingNoConnectorReturnsTheNoConnector()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingNoConnector)}\ReturnsTheNoConnector.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.CONDITIONOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetOutgoingNoConnector(shape);
+            string connectorText = result!.Text;
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal(Strings.decisionConnectorNoText, connectorText);
+        }
+
+        [Fact]
+        public void GetOutgoingYesConnectorThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingYesConnector)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.BEGINFLOW, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetOutgoingYesConnector(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{5BAB7A7D-4EB9-40AA-84A4-1468E1D6F52C}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetOutgoingYesConnectorReturnsNullForMissingYesConnector()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingYesConnector)}\ReturnsNullForMissingYesConnector.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.CONDITIONOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetOutgoingYesConnector(shape);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetOutgoingYesConnectorReturnsTheYesConnector()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingYesConnector)}\ReturnsTheYesConnector.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.CONDITIONOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetOutgoingYesConnector(shape);
+            string connectorText = result!.Text;
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal(Strings.decisionConnectorYesText, connectorText);
+        }
+
+        [Fact]
+        public void GetUnusedApplicationsThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetUnusedApplications)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.BEGINFLOW, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetUnusedApplications(shape, true));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{88AB85BA-5397-4745-92E2-68723F95A04B}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetUnusedApplicationsReturnsEmptyArrayForOtherConnectorUsingFromMerge()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetUnusedApplications)}\ReturnsEmptyArrayForOtherConnectorUsingFromMerge.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.MERGEOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetUnusedApplications(shape, true);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GetUnusedApplicationsReturnsEmptyArrayForOtherConnectorUsingToMerge()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetUnusedApplications)}\ReturnsEmptyArrayForOtherConnectorUsingToMerge.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.MERGEOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetUnusedApplications(shape, false);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GetUnusedApplicationsReturnsUnusedApplicationsUsingFromMerge()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetUnusedApplications)}\ReturnsUnusedApplicationsUsingFromMerge.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.MERGEOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetUnusedApplications(shape, true);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.True
+            (
+                result.SequenceEqual(new string[] { "App01", "App02" })
+            );
+        }
+
+        [Fact]
+        public void GetUnusedApplicationsReturnsUnusedApplicationsUsingToMerge()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetUnusedApplications)}\ReturnsUnusedApplicationsUsingToMerge.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.MERGEOBJECT, visioDocument);
+
+            //act
+            var result = helper.GetUnusedApplications(shape, false);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.True
+            (
+                result.SequenceEqual(new string[] { "App01", "App02" })
+            );
+        }
+
+        [Theory]
+        [InlineData(UniversalMasterName.ACTION, false)]
+        [InlineData(UniversalMasterName.MERGEOBJECT, false)]
+        [InlineData(UniversalMasterName.MODULE, true)]
+        public void HasAllApplicationConnectorsReturnsExpectedResult(string masterName, bool allConnectorsApplication)
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.HasAllApplicationConnectors)}\Diagram.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(masterName, visioDocument);
+
+            //act
+            var result = helper.HasAllApplicationConnectors(shape);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal(allConnectorsApplication, result);
+        }
+
+        [Theory]
+        [InlineData(UniversalMasterName.ACTION, true)]
+        [InlineData(UniversalMasterName.MERGEOBJECT, false)]
+        [InlineData(UniversalMasterName.MODULE, false)]
+        public void HasAllNonApplicationConnectorsReturnsExpectedResult(string masterName, bool allConnectorsNonApplication)
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.HasAllNonApplicationConnectors)}\Diagram.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(masterName, visioDocument);
+
+            //act
+            var result = helper.HasAllNonApplicationConnectors(shape);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal(allConnectorsNonApplication, result);
         }
 
         private void CloseVisioDocument(Document visioDocument)

@@ -144,6 +144,81 @@
     <None Update="Diagrams\ShapeHelperTest\GetFromShape\ThrowsIfNoFromShapeIsConnected.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\ShapeHelperTest\GetMultipleChoiceConnectorData\ReturnsListOfConnectorDataForValidShapes.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetMultipleChoiceConnectorData\ThrowsForINoDialogFunctions.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetMultipleChoiceConnectorData\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOtherApplicationsList\ReturnsApplicationsUsingOtherFromMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOtherApplicationsList\ReturnsApplicationsUsingOtherFromShapeBag.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOtherApplicationsList\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOtherApplications\ReturnsOtherApplicationsUsingToMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOtherApplications\ReturnsOtherApplicationsUsingFromMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOtherApplications\ThrowsIfNotConnectedToMergeObject.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnector\ReturnsTheBlankConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnector\ThrowsForNoBlankConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnector\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingNoConnector\ReturnsTheNoConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingNoConnector\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingNoConnector\ReturnsNullForMissingNoConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingYesConnector\ReturnsNullForMissingYesConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingYesConnector\ReturnsTheYesConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingYesConnector\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetUnusedApplications\ReturnsEmptyArrayForOtherConnectorUsingFromMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetUnusedApplications\ReturnsEmptyArrayForOtherConnectorUsingToMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetUnusedApplications\ReturnsUnusedApplicationsUsingFromMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetUnusedApplications\ReturnsUnusedApplicationsUsingToMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetUnusedApplications\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\HasAllApplicationConnectors\Diagram.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\HasAllNonApplicationConnectors\Diagram.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ShapeXmlHelperTest.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
