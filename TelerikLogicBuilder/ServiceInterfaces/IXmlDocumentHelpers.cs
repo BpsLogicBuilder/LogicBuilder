@@ -23,5 +23,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         XmlElement SelectSingleElement(XmlDocument xmlDocument, string xPath);
         XmlDocument ToXmlDocument(XmlNode xmlNode, bool preserveWhiteSpace = true);
         XmlDocument ToXmlDocument(string xmlString, bool preserveWhiteSpace = true);
+        XmlElement ToXmlElement(string xmlString, bool preserveWhiteSpace = true);
     }
 }

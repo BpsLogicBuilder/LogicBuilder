@@ -245,6 +245,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 return xmlDocument;
             }
         }
+
+        public XmlElement ToXmlElement(string xmlString, bool preserveWhiteSpace = true) 
+            => ToXmlDocument(xmlString, preserveWhiteSpace).DocumentElement!;
         #endregion Methods
     }
 }

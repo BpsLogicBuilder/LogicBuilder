@@ -5,7 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
     internal class ConnectorData
     {
-        public ConnectorData(string index, XmlElement textXmlNode, XmlElement? metaObjectDataXmlNode, ConnectorCategory connectorCategory, XmlElement connectorElement)
+        public ConnectorData(short index, XmlElement textXmlNode, XmlElement? metaObjectDataXmlNode, ConnectorCategory connectorCategory, XmlElement connectorElement)
         {
             Index = index;
             TextXmlNode = textXmlNode;
@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         /// <summary>
         /// name attribute of the <connector></connector> element
         /// </summary>
-        internal string Index { get; }
+        internal short Index { get; }
 
         /// <summary>
         /// The <text></text> element

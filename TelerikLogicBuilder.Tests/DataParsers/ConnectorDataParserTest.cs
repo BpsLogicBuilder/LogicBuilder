@@ -63,7 +63,7 @@ namespace TelerikLogicBuilder.Tests.DataParsers
             var result = helper.Parse(xml);
 
             //assert
-            Assert.Equal("1", result.Index);
+            Assert.Equal(1, result.Index);
             Assert.Equal(ConnectorCategory.Decision, result.ConnectorCategory);
             Assert.Equal(XmlDataConstants.TEXTELEMENT, result.TextXmlNode.Name);
             Assert.Equal(XmlDataConstants.METAOBJECTELEMENT, result.MetaObjectDataXmlNode!.Name);

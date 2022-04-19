@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using System.Globalization;
 using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
@@ -82,6 +83,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             set => _variableList = value;
         }
+
+        public Application? GetApplication(string applicationName) 
+            => ProjectProperties.ApplicationList.TryGetValue(applicationName.ToLower(CultureInfo.InvariantCulture), out Application? application) 
+            ? application 
+            : null;
 
         public Application GetSelectedApplication()
             => ProjectProperties.ApplicationList.First().Value;

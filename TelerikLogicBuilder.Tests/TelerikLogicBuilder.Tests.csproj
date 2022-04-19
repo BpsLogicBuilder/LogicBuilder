@@ -42,6 +42,108 @@
     <None Update="Diagrams\ShapeDataCellManagerTest.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\ShapeHelperTest\CheckForDuplicateMultipleChoices\ReturnsZeroForNoDuplicateChoices.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CheckForDuplicateMultipleChoices\ReturnsDuplicateConnectorIndexForDuplicateConnectorText.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CheckForDuplicateMultipleChoices\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountDialogFunctions\ReturnsOneForOneDialogFunction.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountDialogFunctions\ReturnsZeroForShapeWithNoContent.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountDialogFunctions\ReturnsZeroForNoDialogFunction.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountDialogFunctions\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountFunctions\ReturnsOneForOneDialogFunction.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountFunctions\ReturnsTwoForTwoFunctions.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountFunctions\ReturnsZeroForShapeWithNoContent.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountFunctions\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountIncomingConnectors\ReturnsThreeWithThreeIncommingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountIncomingConnectors\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountInvalidMultipleChoiceConnectors\ReturnsOneForOneInvalidConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountInvalidMultipleChoiceConnectors\ReturnsZeroForAllConnectorsValid.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountInvalidMultipleChoiceConnectors\ReturnsZeroForShapeWithNoContent.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountInvalidMultipleChoiceConnectors\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingBlankConnectors\ReturnsOneForOneBlankConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingBlankConnectors\ReturnsZeroForNoBlankConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingBlankConnectors\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingConnectors\ReturnsThreeForThreeOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingConnectors\ReturnsZeroForNoOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingConnectors\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingNonApplicationConnectors\ReturnsThreeForThreeOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingNonApplicationConnectors\ReturnsZeroForNoOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\CountOutgoingNonApplicationConnectors\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetApplicationList\ReturnsExpectedApplicationSpecificConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetApplicationList\ReturnsApplicationsUsingOtherFromMerge.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetApplicationList\ReturnsApplicationsUsingOtherFromShapeBag.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetApplicationList\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetApplicationName\ReturnsApplicationNameFromApplicationSpecificConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetFromShape\ReturnsExpectedFromShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetFromShape\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetFromShape\ThrowsIfNoFromShapeIsConnected.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ShapeXmlHelperTest.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

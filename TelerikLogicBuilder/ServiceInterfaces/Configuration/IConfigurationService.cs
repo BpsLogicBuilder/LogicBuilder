@@ -4,6 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration
 {
     internal interface IConfigurationService
     {
+        Application? GetApplication(string applicationName);
         Application GetSelectedApplication();
         string GetSelectedApplicationKey();
         ConstructorList ConstructorList { get; set; }

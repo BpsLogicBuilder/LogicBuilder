@@ -487,6 +487,21 @@ namespace TelerikLogicBuilder.Tests
             Assert.Equal("genericParameter", result.DocumentElement!.Name);
         }
 
+        [Fact]
+        public void ToXmlElementFromStringWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+
+            //act
+            var result = helper.ToXmlElement(@"<genericParameter name=""Refresh"">
+					<genericArgumentName>T</genericArgumentName>
+				</genericParameter>");
+
+            //assert
+            Assert.Equal("genericParameter", result.Name);
+        }
+
         private static XmlElement GetXmlElement(string xmlString)
             => GetXmlDocument(xmlString).DocumentElement!;
 
