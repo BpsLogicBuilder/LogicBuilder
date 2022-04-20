@@ -25,7 +25,7 @@ namespace TelerikLogicBuilder.Tests.DataParsers
         {
             //arrange
             IDiagramErrorSourceDataParser helper = serviceProvider.GetRequiredService<IDiagramErrorSourceDataParser>();
-            XmlElement xml = GetXmlElement(@"<diagramErrorSource filefullName=""C:\folder\file.vsd"" pageIndex=""1"" shapeIndex=""25"" pageId=""0"" shapeId=""14""/>");
+            XmlElement xml = GetXmlElement(@"<diagramErrorSource fileFullName=""C:\folder\file.vsd"" pageIndex=""1"" shapeIndex=""25"" pageId=""0"" shapeId=""14""/>");
 
             //act
             var result = helper.Parse(xml);

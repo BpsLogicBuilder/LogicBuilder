@@ -25,7 +25,7 @@ namespace TelerikLogicBuilder.Tests.DataParsers
         {
             //arrange
             ITableErrorSourceDataParser helper = serviceProvider.GetRequiredService<ITableErrorSourceDataParser>();
-            XmlElement xml = GetXmlElement(@"<tableErrorSource filefullName=""C:\folder\file.vsd"" rowIndex=""1"" columnIndex=""3"" />");
+            XmlElement xml = GetXmlElement(@"<tableErrorSource fileFullName=""C:\folder\file.vsd"" rowIndex=""1"" columnIndex=""3"" />");
 
             //act
             var result = helper.Parse(xml);

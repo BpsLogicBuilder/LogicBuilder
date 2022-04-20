@@ -40,7 +40,7 @@
         internal const string ITEMELEMENT = "item";
         internal const string DIAGRAMERRORSOURCE = "diagramErrorSource";
         internal const string TABLEERRORSOURCE = "tableErrorSource";
-        internal const string FILEFULLNAMEATTRIBUTE = "filefullName";
+        internal const string FILEFULLNAMEATTRIBUTE = "fileFullName";
         internal const string PAGEINDEXATTRIBUTE = "pageIndex";
         internal const string SHAPEINDEXATTRIBUTE = "shapeIndex";
         internal const string PAGEIDATTRIBUTE = "pageId";
