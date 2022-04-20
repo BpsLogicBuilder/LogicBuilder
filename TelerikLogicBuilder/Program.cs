@@ -121,6 +121,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IConstructorDataParser, ConstructorDataParser>()
             .AddSingleton<IDecisionDataParser, DecisionDataParser>()
             .AddSingleton<IDecisionsDataParser, DecisionsDataParser>()
+            .AddSingleton<IDiagramErrorSourceDataParser, DiagramErrorSourceDataParser>()
             .AddSingleton<IFunctionDataParser, FunctionDataParser>()
             .AddSingleton<IFunctionsDataParser, FunctionsDataParser>()
             .AddSingleton<ILiteralListDataParser, LiteralListDataParser>()
@@ -134,6 +135,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IObjectParameterDataParser, ObjectParameterDataParser>()
             .AddSingleton<IObjectVariableDataParser, ObjectVariableDataParser>()
             .AddSingleton<IRetractFunctionDataParser, RetractFunctionDataParser>()
+            .AddSingleton<ITableErrorSourceDataParser, TableErrorSourceDataParser>()
             .AddSingleton<IVariableDataParser, VariableDataParser>()
             .AddSingleton<IVariableValueDataParser, VariableValueDataParser>()
 
