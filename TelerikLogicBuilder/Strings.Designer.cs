@@ -862,6 +862,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}..
+        /// </summary>
+        internal static string diagramVisibleLinkFormat {
+            get {
+                return ResourceManager.GetString("diagramVisibleLinkFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .exe.
         /// </summary>
         internal static string dotExe {
@@ -2433,6 +2442,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string spaceString {
             get {
                 return ResourceManager.GetString("spaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document: {0}, Row: {1}, Column: {2}..
+        /// </summary>
+        internal static string tableVisibleLinkFormat {
+            get {
+                return ResourceManager.GetString("tableVisibleLinkFormat", resourceCulture);
             }
         }
         
