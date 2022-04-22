@@ -225,24 +225,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             if (!ShapeCollections.ApplicationConnectors.ToHashSet().Contains(connector.Master.NameU))
                 throw _exceptionHelper.CriticalException("{FC8A71A1-81E0-43EF-811E-D143D0943F1D}");
 
-            switch (connector.Master.NameU)
+            return connector.Master.NameU switch
             {
-                case UniversalMasterName.APP01CONNECTOBJECT:
-                case UniversalMasterName.APP02CONNECTOBJECT:
-                case UniversalMasterName.APP03CONNECTOBJECT:
-                case UniversalMasterName.APP04CONNECTOBJECT:
-                case UniversalMasterName.APP05CONNECTOBJECT:
-                case UniversalMasterName.APP06CONNECTOBJECT:
-                case UniversalMasterName.APP07CONNECTOBJECT:
-                case UniversalMasterName.APP08CONNECTOBJECT:
-                case UniversalMasterName.APP09CONNECTOBJECT:
-                case UniversalMasterName.APP10CONNECTOBJECT:
-                    return new string[] { GetApplicationName(connector) };
-                case UniversalMasterName.OTHERSCONNECTOBJECT:
-                    return GetOtherApplicationsList(connector, fromShapeBag);
-                default:
-                    throw _exceptionHelper.CriticalException("{CF08C37C-1FC0-43AA-8C44-8687DD8257C7}");
-            }
+                UniversalMasterName.APP01CONNECTOBJECT 
+                or UniversalMasterName.APP02CONNECTOBJECT 
+                or UniversalMasterName.APP03CONNECTOBJECT 
+                or UniversalMasterName.APP04CONNECTOBJECT 
+                or UniversalMasterName.APP05CONNECTOBJECT 
+                or UniversalMasterName.APP06CONNECTOBJECT 
+                or UniversalMasterName.APP07CONNECTOBJECT 
+                or UniversalMasterName.APP08CONNECTOBJECT 
+                or UniversalMasterName.APP09CONNECTOBJECT 
+                or UniversalMasterName.APP10CONNECTOBJECT
+                    => new string[] { GetApplicationName(connector) },
+                UniversalMasterName.OTHERSCONNECTOBJECT 
+                    => GetOtherApplicationsList(connector, fromShapeBag),
+                _ => throw _exceptionHelper.CriticalException("{CF08C37C-1FC0-43AA-8C44-8687DD8257C7}"),
+            };
         }
         
         public string GetApplicationName(Shape connector)

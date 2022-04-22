@@ -6,6 +6,7 @@ namespace Contoso.Test.Flow
     public interface IFlowManager
     {
         ICustomActions CustomActions { get; }
+        ICustomDialogs CustomDialogs { get; }
         DirectorBase Director { get; }
         IFlowActivity FlowActivity { get; }
         FlowDataCache FlowDataCache { get; }

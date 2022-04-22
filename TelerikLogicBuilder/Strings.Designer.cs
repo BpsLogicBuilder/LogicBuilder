@@ -61,6 +61,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action Shape requires at least one incoming connector..
+        /// </summary>
+        internal static string actionIncomingConnectorCount {
+            get {
+                return ResourceManager.GetString("actionIncomingConnectorCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action Shape requires data..
+        /// </summary>
+        internal static string actionShapeDataRequired {
+            get {
+                return ResourceManager.GetString("actionShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action Shape requires exactly one outgoing  blank connector..
+        /// </summary>
+        internal static string actionShapeOneBlankConnector {
+            get {
+                return ResourceManager.GetString("actionShapeOneBlankConnector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All connectors attached to an Action Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific..
+        /// </summary>
+        internal static string allActionConnectorsSameStencil {
+            get {
+                return ResourceManager.GetString("allActionConnectorsSameStencil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For each incoming connector a corresponding outgoing connector is required and vice versa..
         /// </summary>
         internal static string applicationConnectorMismatch {
@@ -876,6 +912,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string diagramVisibleLinkFormat {
             get {
                 return ResourceManager.GetString("diagramVisibleLinkFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dialog Functions are invalid for Action Shape..
+        /// </summary>
+        internal static string dialogFunctionsInvalid {
+            get {
+                return ResourceManager.GetString("dialogFunctionsInvalid", resourceCulture);
             }
         }
         

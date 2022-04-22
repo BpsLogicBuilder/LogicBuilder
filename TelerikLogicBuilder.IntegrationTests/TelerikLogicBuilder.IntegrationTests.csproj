@@ -34,6 +34,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationBecauseActionShapeHasNoData.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForFailingOneBlankOutgoingConnectorPolicy.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForNoIncommingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForDialogFunction.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForConnectorsFromMultipleStencils.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ActionShapeValidatorTest\ActionShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\ApplicationSpecificFlowShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

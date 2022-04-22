@@ -30,7 +30,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         }
 
         [Fact]
-        public void CanCreateExceptionHelper()
+        public void CanCreateShapeHelper()
         {
             //arrange
             IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();

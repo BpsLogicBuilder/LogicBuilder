@@ -117,6 +117,18 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+	<data name="actionIncomingConnectorCount" xml:space="preserve">
+    <value>Action Shape requires at least one incoming connector.</value>
+  </data>
+	<data name="actionShapeOneBlankConnector" xml:space="preserve">
+    <value>Action Shape requires exactly one outgoing  blank connector.</value>
+  </data>
+	<data name="actionShapeDataRequired" xml:space="preserve">
+    <value>Action Shape requires data.</value>
+  </data>
+	<data name="allActionConnectorsSameStencil" xml:space="preserve">
+    <value>All connectors attached to an Action Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific.</value>
+  </data>
 	<data name="applicationConnectorMismatch" xml:space="preserve">
     <value>For each incoming connector a corresponding outgoing connector is required and vice versa.</value>
   </data>
@@ -334,6 +346,9 @@
 	<data name="diagramVisibleLinkFormat" xml:space="preserve">
     <value>Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}.</value>
     <comment>0=fileName; 1=PageNumber; 2=Master; 3=ShapeIndex</comment>
+  </data>
+	<data name="dialogFunctionsInvalid" xml:space="preserve">
+    <value>Dialog Functions are invalid for Action Shape.</value>
   </data>
 	<data name="dotExe" xml:space="preserve">
     <value>.exe</value>

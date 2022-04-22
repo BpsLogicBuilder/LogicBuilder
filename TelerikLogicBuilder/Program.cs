@@ -184,6 +184,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IShapeHelper, ShapeHelper>()
 
             //RulesGenerator.ShapeValidators
+            .AddSingleton<IActionShapeValidator, ActionShapeValidator>()
             .AddSingleton<IApplicationSpecificFlowShapeValidator, ApplicationSpecificFlowShapeValidator>()
             .AddSingleton<IShapeValidator, ShapeValidator>()
 
