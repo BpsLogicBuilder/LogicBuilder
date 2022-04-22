@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ContextProvider : IContextProvider
     {
-        public ContextProvider(IConfigurationService configurationService, IEncryption encryption, IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper, IParameterHelper parameterHelper, IPathHelper pathHelper, IReflectionHelper reflectionHelper, IStringHelper stringHelper, ITypeHelper typeHelper, IVariableHelper variableHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public ContextProvider(IConfigurationService configurationService, IEncryption encryption, IEnumHelper enumHelper, IExceptionHelper exceptionHelper, IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper, IParameterHelper parameterHelper, IPathHelper pathHelper, IReflectionHelper reflectionHelper, IResultMessageBuilder resultMessageBuilder, IStringHelper stringHelper, ITypeHelper typeHelper, IVariableHelper variableHelper, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             ConfigurationService = configurationService;
             Encryption = encryption;
@@ -19,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             ParameterHelper = parameterHelper;
             PathHelper = pathHelper;
             ReflectionHelper = reflectionHelper;
+            ResultMessageBuilder = resultMessageBuilder;
             StringHelper = stringHelper;
             TypeHelper = typeHelper;
             VariableHelper = variableHelper;
@@ -34,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public IParameterHelper ParameterHelper { get; }
         public IPathHelper PathHelper { get; }
         public IReflectionHelper ReflectionHelper { get; }
+        public IResultMessageBuilder ResultMessageBuilder { get; }
         public IStringHelper StringHelper { get; }
         public ITypeHelper TypeHelper { get; }
         public IVariableHelper VariableHelper { get; }

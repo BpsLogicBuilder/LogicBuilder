@@ -61,6 +61,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For each incoming connector a corresponding outgoing connector is required and vice versa..
+        /// </summary>
+        internal static string applicationConnectorMismatch {
+            get {
+                return ResourceManager.GetString("applicationConnectorMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to App{0}.
         /// </summary>
         internal static string applicationNameFormat {
@@ -903,6 +912,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string doubleKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("doubleKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one incoming connector per application is valid..
+        /// </summary>
+        internal static string duplicateIncomingConnector {
+            get {
+                return ResourceManager.GetString("duplicateIncomingConnector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one outgoing connector per application is valid..
+        /// </summary>
+        internal static string duplicateOutgoingConnector {
+            get {
+                return ResourceManager.GetString("duplicateOutgoingConnector", resourceCulture);
             }
         }
         

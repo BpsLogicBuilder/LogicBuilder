@@ -10,14 +10,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public DiagramErrorSourceData(string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId, IContextProvider contextProvider)
+        public DiagramErrorSourceData(string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             FileFullName = fileFullName;
             PageIndex = pageIndex;
             ShapeIndex = shapeIndex;
             PageId = pageId;
             ShapeId = shapeId;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

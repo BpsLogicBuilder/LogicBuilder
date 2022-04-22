@@ -1467,7 +1467,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             Assert.Equal(allConnectorsNonApplication, result);
         }
 
-        private void CloseVisioDocument(Document visioDocument)
+        private static void CloseVisioDocument(Document visioDocument)
         {
             visioDocument.Saved = true;
             visioDocument.Close();

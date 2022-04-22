@@ -10,12 +10,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public TableErrorSourceData(string fileFullName, int rowIndex, int columnIndex, IContextProvider contextProvider)
+        public TableErrorSourceData(string fileFullName, int rowIndex, int columnIndex, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             FileFullName = fileFullName;
             RowIndex = rowIndex;
             ColumnIndex = columnIndex;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

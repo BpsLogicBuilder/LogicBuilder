@@ -16,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         IParameterHelper ParameterHelper { get; }
         IPathHelper PathHelper { get; }
         IReflectionHelper ReflectionHelper { get; }
+        IResultMessageBuilder ResultMessageBuilder { get; }
         IStringHelper StringHelper { get; }
         ITypeHelper TypeHelper { get; }
         IVariableHelper VariableHelper { get; }

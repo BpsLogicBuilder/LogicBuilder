@@ -30,7 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                 int.Parse(xmlElement.GetAttribute(XmlDataConstants.SHAPEINDEXATTRIBUTE), CultureInfo.InvariantCulture),
                 int.Parse(xmlElement.GetAttribute(XmlDataConstants.PAGEIDATTRIBUTE), CultureInfo.InvariantCulture),
                 int.Parse(xmlElement.GetAttribute(XmlDataConstants.SHAPEIDATTRIBUTE), CultureInfo.InvariantCulture),
-                _contextProvider
+                _contextProvider.XmlDocumentHelpers
             );
         }
     }

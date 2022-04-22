@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                 xmlElement.GetAttribute(XmlDataConstants.FILEFULLNAMEATTRIBUTE),
                 int.Parse(xmlElement.GetAttribute(XmlDataConstants.ROWINDEXATTRIBUTE), CultureInfo.InvariantCulture),
                 int.Parse(xmlElement.GetAttribute(XmlDataConstants.COLUMNINDEXATTRIBUTE), CultureInfo.InvariantCulture),
-                _contextProvider
+                _contextProvider.XmlDocumentHelpers
             );
         }
     }

@@ -7,11 +7,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ResultMessageBuilder : IResultMessageBuilder
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ResultMessageBuilder(IContextProvider contextProvider)
+        public ResultMessageBuilder(IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _contextProvider = contextProvider;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public ResultMessage BuilderMessage(VisioFileSource source, string message) 
@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     source.ShapeIndex,
                     source.PageId,
                     source.ShapeId,
-                    _contextProvider
+                    _xmlDocumentHelpers
                 ).ToXml,
                 string.Format
                 (
@@ -46,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     source.SourceFileFullname,
                     source.Row,
                     source.Column,
-                    _contextProvider
+                    _xmlDocumentHelpers
                 ).ToXml,
                 string.Format
                 (

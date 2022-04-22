@@ -21,8 +21,34 @@
     </PackageReference>
   </ItemGroup>
 
+	<ItemGroup>
+		<Reference Include="Microsoft.Office.Interop.Visio">
+			<SpecificVersion>False</SpecificVersion>
+			<EmbedInteropTypes>False</EmbedInteropTypes>
+			<HintPath>bin\2010\Microsoft.Office.Interop.Visio.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\TelerikLogicBuilder\TelerikLogicBuilder.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\ApplicationSpecificFlowShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForMasterMismatchBetweenIncomingAndOutgoing.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForIncomingCountNotEqualToOutgoingCount.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForDuplicateIncommingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForDuplicateOutgoingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
