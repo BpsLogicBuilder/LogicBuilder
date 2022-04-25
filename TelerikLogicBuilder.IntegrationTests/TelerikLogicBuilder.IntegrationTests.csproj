@@ -52,6 +52,42 @@
     <None Update="Diagrams\ActionShapeValidatorTest\ActionShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfFromModuleShapeHasNoData.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfFromExternalModuleIsExcluded.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfToExternalModuleIsExcluded.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfToModuleShapeHasNoData.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfTheCurrentModuleIsExcludedForTheApplication.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfTheCorrespondingApplicationIsNotConfigued.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfFromShapeIsNotPermitted.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfToShapeIsNotPermitted.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfBothEndsAreConnectedToTheSameShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfLessThanTwoApplicationsConfigured.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\FailsValidationIfConnectedToLessThanTwoShapes.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ApplicationConnectorValidatorTest\ApplicationConnectorValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\ApplicationSpecificFlowShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

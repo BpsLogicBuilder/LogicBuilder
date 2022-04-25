@@ -99,7 +99,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
         private void InitializeLoadContexts()
         {
-            if (_assemblyLoadContextService.GetAssemblyLoadContextDictionary()?.Any() != true)
+            var loadContextDictionary = _assemblyLoadContextService.GetAssemblyLoadContextDictionary();
+            if (loadContextDictionary?.Any() != true 
+                || loadContextDictionary?.Count != _configurationService.ProjectProperties.ApplicationList.Count)
                 _assemblyLoadContextService.CreateLoadContexts();
         }
 

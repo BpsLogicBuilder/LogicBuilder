@@ -124,6 +124,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To use an application connector, the corresponding application must be configured. Select Project/Project Properties and the Applications tab to add applications..
+        /// </summary>
+        internal static string applicationNotConfigured {
+            get {
+                return ResourceManager.GetString("applicationNotConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0}, must be an integer greater than or equal to zero..
         /// </summary>
         internal static string arrayKeyIndexIsInvalidFormat {
@@ -525,6 +534,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string connectorCategoryUndefinedFormat {
             get {
                 return ResourceManager.GetString("connectorCategoryUndefinedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connector must be connected to 2 shapes..
+        /// </summary>
+        internal static string connectorRequires2Shapes {
+            get {
+                return ResourceManager.GetString("connectorRequires2Shapes", resourceCulture);
             }
         }
         
@@ -2230,6 +2248,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Module name {0} is invalid..
+        /// </summary>
+        internal static string invalidModuleName {
+            get {
+                return ResourceManager.GetString("invalidModuleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The parameter &quot;{0}&quot; has an invalid element for the category &quot;{1}&quot;..
         /// </summary>
         internal static string invalidParameterElementFormat {
@@ -2334,6 +2361,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string metaObjectRequiredForDialogConnectorsFormat {
             get {
                 return ResourceManager.GetString("metaObjectRequiredForDialogConnectorsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module {0} is excluded for application {1}. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box..
+        /// </summary>
+        internal static string moduleIsExcludedFormat {
+            get {
+                return ResourceManager.GetString("moduleIsExcludedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module Shape requires data..
+        /// </summary>
+        internal static string moduleShapeDataRequired {
+            get {
+                return ResourceManager.GetString("moduleShapeDataRequired", resourceCulture);
             }
         }
         
@@ -2482,6 +2527,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The same Action Shape or Jump Object may not be connected to both ends of a connector..
+        /// </summary>
+        internal static string shapeConnectedToBothEnds {
+            get {
+                return ResourceManager.GetString("shapeConnectedToBothEnds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type short..
         /// </summary>
         internal static string shortKeyIndexIsInvalidFormat {
@@ -2617,6 +2671,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To use application connectors a minimum of two applications must be configured. Select Project/Project Properties and the Applications tab to add applications..
+        /// </summary>
+        internal static string twoApplicationsMinimum {
+            get {
+                return ResourceManager.GetString("twoApplicationsMinimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The type &quot;{0}&quot; is not assignable to &quot;{1}&quot;..
         /// </summary>
         internal static string typeNotAssignableFormat {
@@ -2748,6 +2811,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string uShortKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("uShortKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shapes that can be connected to an Application Specific Connector are as follows: &quot;Action&quot;, &quot;Merge&quot;, &quot;Module&quot;, &quot;Wait Condition&quot;, &quot;Wait Decision&quot;..
+        /// </summary>
+        internal static string validApplicationSpecificShapes {
+            get {
+                return ResourceManager.GetString("validApplicationSpecificShapes", resourceCulture);
             }
         }
         

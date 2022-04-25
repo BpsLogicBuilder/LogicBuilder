@@ -139,6 +139,9 @@
     <value>App{0}FR</value>
     <comment>0=Count</comment>
   </data>
+	<data name="applicationNotConfigured" xml:space="preserve">
+    <value>To use an application connector, the corresponding application must be configured. Select Project/Project Properties and the Applications tab to add applications.FR</value>
+  </data>
 	<data name="assemblyUnavailableMessageFormat" xml:space="preserve">
     <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.FR</value>
     <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
@@ -253,6 +256,9 @@
 	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
     <value>The connector category {0} is undefined.FR</value>
     <comment>0=connector category</comment>
+  </data>
+	<data name="connectorRequires2Shapes" xml:space="preserve">
+    <value>Connector must be connected to 2 shapes.FR</value>
   </data>
 	<data name="constrGenericArgNameInvalidFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for generic parameter "{1}" in constructor "{2}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
@@ -470,6 +476,10 @@
     <value>Input is invalid for the literal type "{0}".FR</value>
     <comment>0=Type</comment>
   </data>
+	<data name="invalidModuleName" xml:space="preserve">
+    <value>Module name {0} is invalid.FR</value>
+    <comment>0=ModuleName</comment>
+  </data>
 	<data name="invalidParameterElementFormat" xml:space="preserve">
     <value>The parameter "{0}" has an invalid element for the category "{1}".FR</value>
     <comment>0=parameterName;1=parameterCategory;</comment>
@@ -504,6 +514,13 @@
 	<data name="metaObjectRequiredForDialogConnectorsFormat" xml:space="preserve">
     <value>The {0} element is required for dialog connectors.FR</value>
     <comment>0=connector category</comment>
+  </data>
+	<data name="moduleIsExcludedFormat" xml:space="preserve">
+    <value>Module {0} is excluded for application {1}. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box.FR</value>
+    <comment>0=ModuleName; 1=ApplicationName</comment>
+  </data>
+	<data name="moduleShapeDataRequired" xml:space="preserve">
+    <value>Module Shape requires data.FR</value>
   </data>
 	<data name="multipleChoiceParamNotLastFormat" xml:space="preserve">
     <value>Error configuring method {0}. The connectors multiple choice parameter must be the last parameter.FR</value>
@@ -549,6 +566,9 @@
     <value>Variable "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).FR</value>
     <comment>0=VariableName</comment>
   </data>
+	<data name="shapeConnectedToBothEnds" xml:space="preserve">
+    <value>The same Action Shape or Jump Object may not be connected to both ends of a connector.FR</value>
+  </data>
   <data name="spaceString" xml:space="preserve">
     <value>&#32;</value>
   </data>
@@ -559,6 +579,9 @@
 	<data name="truncatedMessageTextFormat" xml:space="preserve">
     <value>{0} ...FR</value>
     <comment>0=truncated message</comment>
+  </data>
+	<data name="twoApplicationsMinimum" xml:space="preserve">
+    <value>To use application connectors a minimum of two applications must be configured. Select Project/Project Properties and the Applications tab to add applications.FR</value>
   </data>
 	<data name="typeNotAssignableFormat" xml:space="preserve">
     <value>The type "{0}" is not assignable to "{1}".FR</value>
@@ -581,6 +604,9 @@
   </data>
 	<data name="unhandledEventLoggerExceptionFormat" xml:space="preserve">
     <value>The event logger has generated an unhandled exception of type: "{0}". Message: "{1}".FR</value>
+  </data>
+	<data name="validApplicationSpecificShapes" xml:space="preserve">
+    <value>Shapes that can be connected to an Application Specific Connector are as follows: "Action", "Merge", "Module", "Wait Condition", "Wait Decision".FR</value>
   </data>
 	<data name="variableBlankCategoryFormat" xml:space="preserve">
     <value>Reference Category for variable "{0}" cannot be empty.FR</value>
