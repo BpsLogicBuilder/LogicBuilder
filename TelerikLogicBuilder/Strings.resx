@@ -146,6 +146,12 @@
     <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.</value>
     <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
   </data>
+	<data name="beginShapeIncoming" xml:space="preserve">
+    <value>Incoming Connectors cannot be joined to Begin Flow or Module Begin Shapes.</value>
+  </data>
+	<data name="beginShapeOutgoingRequired" xml:space="preserve">
+    <value>Begin Flow and Module Begin Shapes require only one blank outgoing connector.</value>
+  </data>
 	<data name="binaryOperatorCodeNameInvalidFormat" xml:space="preserve">
     <value>Invalid Member Name "{0}" for Binary Operator "{1}". Valid code names are: {2}.</value>
     <comment>0=Member Name; 1=Function; 2=List of valid names</comment>

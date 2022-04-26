@@ -103,6 +103,15 @@
     <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForDuplicateOutgoingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\BeginShapeValidatorTest\FailsValidationForIncommingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\BeginShapeValidatorTest\FailsValidationForMultipleOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\BeginShapeValidatorTest\BeginShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -169,6 +169,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incoming Connectors cannot be joined to Begin Flow or Module Begin Shapes..
+        /// </summary>
+        internal static string beginShapeIncoming {
+            get {
+                return ResourceManager.GetString("beginShapeIncoming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begin Flow and Module Begin Shapes require only one blank outgoing connector..
+        /// </summary>
+        internal static string beginShapeOutgoingRequired {
+            get {
+                return ResourceManager.GetString("beginShapeOutgoingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Member Name &quot;{0}&quot; for Binary Operator &quot;{1}&quot;. Valid code names are: {2}..
         /// </summary>
         internal static string binaryOperatorCodeNameInvalidFormat {
