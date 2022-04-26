@@ -263,6 +263,9 @@
     <value>The connector category {0} is undefined.</value>
     <comment>0=connector category</comment>
   </data>
+	<data name="commentShapeCannotHaveConnectors" xml:space="preserve">
+    <value>Comment shapes may not be attached to connectors.</value>
+  </data>
 	<data name="connectorRequires2Shapes" xml:space="preserve">
     <value>Connector must be connected to 2 shapes.</value>
   </data>

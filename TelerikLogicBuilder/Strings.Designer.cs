@@ -547,6 +547,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment shapes may not be attached to connectors..
+        /// </summary>
+        internal static string commentShapeCannotHaveConnectors {
+            get {
+                return ResourceManager.GetString("commentShapeCannotHaveConnectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The connector category {0} is undefined..
         /// </summary>
         internal static string connectorCategoryUndefinedFormat {

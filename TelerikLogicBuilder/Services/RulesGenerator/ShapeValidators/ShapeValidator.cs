@@ -13,13 +13,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IActionShapeValidator _actionShapeValidator;
         private readonly IApplicationConnectorValidator _applicationConnectorValidator;
         private readonly IBeginShapeValidator _beginShapeValidator;
+        private readonly ICommentShapeValidator _commentShapeValidator;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public ShapeValidator(IActionShapeValidator actionShapeValidator, IApplicationConnectorValidator applicationConnectorValidator, IBeginShapeValidator beginShapeValidator, IExceptionHelper exceptionHelper)
+        public ShapeValidator(IActionShapeValidator actionShapeValidator, IApplicationConnectorValidator applicationConnectorValidator, IBeginShapeValidator beginShapeValidator, ICommentShapeValidator commentShapeValidator, IExceptionHelper exceptionHelper)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
             _beginShapeValidator = beginShapeValidator;
+            _commentShapeValidator = commentShapeValidator;
             _exceptionHelper = exceptionHelper;
         }
 
@@ -46,6 +48,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 case UniversalMasterName.BEGINFLOW:
                 case UniversalMasterName.MODULEBEGIN:
                     _beginShapeValidator.Validate(sourceFile, page, shape, validationErrors);
+                    break;
+                case UniversalMasterName.COMMENT:
+                    _commentShapeValidator.Validate(sourceFile, page, shape, validationErrors);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");
