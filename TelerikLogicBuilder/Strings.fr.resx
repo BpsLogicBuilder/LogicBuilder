@@ -262,6 +262,15 @@
 	<data name="commentShapeCannotHaveConnectors" xml:space="preserve">
     <value>Comment shapes may not be attached to connectors.FR</value>
   </data>
+	<data name="conditionBoxIncomingRequired" xml:space="preserve">
+    <value>Condition Shape requires at least one incoming connector.FR</value>
+  </data>
+	<data name="conditionBoxOutgoingRequired" xml:space="preserve">
+    <value>Condition Shape requires one "YES" outgoing connector and one outgoing "NO" connector.FR</value>
+  </data>
+	<data name="conditionShapeDataRequired" xml:space="preserve">
+    <value>Conditions Shape requires data.FR</value>
+  </data>
 	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
     <value>The connector category {0} is undefined.FR</value>
     <comment>0=connector category</comment>

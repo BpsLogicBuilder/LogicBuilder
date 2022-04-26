@@ -259,6 +259,15 @@
 	<data name="chainingUpdateValidationError" xml:space="preserve">
     <value>The field or property to be updated must be represented by a string and cannot include functions or variables.</value>
   </data>
+	<data name="conditionBoxIncomingRequired" xml:space="preserve">
+    <value>Condition Shape requires at least one incoming connector.</value>
+  </data>
+	<data name="conditionBoxOutgoingRequired" xml:space="preserve">
+    <value>Condition Shape requires one "YES" outgoing connector and one outgoing "NO" connector.</value>
+  </data>
+	<data name="conditionShapeDataRequired" xml:space="preserve">
+    <value>Conditions Shape requires data.</value>
+  </data>
 	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
     <value>The connector category {0} is undefined.</value>
     <comment>0=connector category</comment>

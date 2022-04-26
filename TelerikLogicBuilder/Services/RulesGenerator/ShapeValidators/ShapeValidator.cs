@@ -14,14 +14,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IApplicationConnectorValidator _applicationConnectorValidator;
         private readonly IBeginShapeValidator _beginShapeValidator;
         private readonly ICommentShapeValidator _commentShapeValidator;
+        private readonly IConditionShapeValidator _conditionShapeValidator;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public ShapeValidator(IActionShapeValidator actionShapeValidator, IApplicationConnectorValidator applicationConnectorValidator, IBeginShapeValidator beginShapeValidator, ICommentShapeValidator commentShapeValidator, IExceptionHelper exceptionHelper)
+        public ShapeValidator(
+            IActionShapeValidator actionShapeValidator,
+            IApplicationConnectorValidator applicationConnectorValidator,
+            IBeginShapeValidator beginShapeValidator,
+            ICommentShapeValidator commentShapeValidator,
+            IConditionShapeValidator conditionShapeValidator,
+            IExceptionHelper exceptionHelper)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
             _beginShapeValidator = beginShapeValidator;
             _commentShapeValidator = commentShapeValidator;
+            _conditionShapeValidator = conditionShapeValidator;
             _exceptionHelper = exceptionHelper;
         }
 
@@ -51,6 +59,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.COMMENT:
                     _commentShapeValidator.Validate(sourceFile, page, shape, validationErrors);
+                    break;
+                case UniversalMasterName.CONDITIONOBJECT:
+                    _conditionShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

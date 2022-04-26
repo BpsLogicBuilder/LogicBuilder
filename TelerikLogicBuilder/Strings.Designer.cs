@@ -556,6 +556,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Condition Shape requires at least one incoming connector..
+        /// </summary>
+        internal static string conditionBoxIncomingRequired {
+            get {
+                return ResourceManager.GetString("conditionBoxIncomingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Condition Shape requires one &quot;YES&quot; outgoing connector and one outgoing &quot;NO&quot; connector..
+        /// </summary>
+        internal static string conditionBoxOutgoingRequired {
+            get {
+                return ResourceManager.GetString("conditionBoxOutgoingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conditions Shape requires data..
+        /// </summary>
+        internal static string conditionShapeDataRequired {
+            get {
+                return ResourceManager.GetString("conditionShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The connector category {0} is undefined..
         /// </summary>
         internal static string connectorCategoryUndefinedFormat {
