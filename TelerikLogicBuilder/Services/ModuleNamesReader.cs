@@ -43,8 +43,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             DirectoryInfo directoryInfo = new(directory);
             foreach (FileInfo fileInfo in directoryInfo.GetFiles())
             {
-                if (fileInfo.Name.ToLower(CultureInfo.CurrentCulture).EndsWith(FileExtensions.VISIOFILEEXTENSION)
-                    || fileInfo.Name.ToLower(CultureInfo.CurrentCulture).EndsWith(FileExtensions.TABLEFILEEXTENSION))
+                if (fileInfo.Name.ToLowerInvariant().EndsWith(FileExtensions.VISIOFILEEXTENSION)
+                    || fileInfo.Name.ToLowerInvariant().EndsWith(FileExtensions.VSDXFILEEXTENSION)
+                    || fileInfo.Name.ToLowerInvariant().EndsWith(FileExtensions.TABLEFILEEXTENSION))
                 {
                     string moduleName = _pathHelper.GetModuleName(fileInfo.FullName);
                     string moduleNameKey = moduleName.ToLower(CultureInfo.CurrentCulture).Trim();
