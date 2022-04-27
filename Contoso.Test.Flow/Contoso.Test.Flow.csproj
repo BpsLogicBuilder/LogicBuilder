@@ -55,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contoso.Forms.Parameters\Contoso.Forms.Parameters.csproj" />
     <ProjectReference Include="..\Contoso.Test.Business\Contoso.Test.Business.csproj" />
   </ItemGroup>
 

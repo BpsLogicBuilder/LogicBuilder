@@ -16,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly ICommentShapeValidator _commentShapeValidator;
         private readonly IConditionShapeValidator _conditionShapeValidator;
         private readonly IDecisionShapeValidator _decisionShapeValidator;
+        private readonly IDialogShapeValidator _dialogShapeValidator;
         private readonly IExceptionHelper _exceptionHelper;
 
         public ShapeValidator(
@@ -25,6 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             ICommentShapeValidator commentShapeValidator,
             IConditionShapeValidator conditionShapeValidator,
             IDecisionShapeValidator decisionShapeValidator,
+            IDialogShapeValidator dialogShapeValidator,
             IExceptionHelper exceptionHelper)
         {
             _actionShapeValidator = actionShapeValidator;
@@ -33,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _commentShapeValidator = commentShapeValidator;
             _conditionShapeValidator = conditionShapeValidator;
             _decisionShapeValidator = decisionShapeValidator;
+            _dialogShapeValidator = dialogShapeValidator;
             _exceptionHelper = exceptionHelper;
         }
 
@@ -68,6 +71,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.DECISIONOBJECT:
                     _decisionShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);
+                    break;
+                case UniversalMasterName.DIALOG:
+                    _dialogShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

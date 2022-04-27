@@ -156,6 +156,9 @@
     <value>Invalid Member Name "{0}" for Binary Operator "{1}". Valid code names are: {2}.</value>
     <comment>0=Member Name; 1=Function; 2=List of valid names</comment>
   </data>
+	<data name="blankConnectorExitingDialogMustEndFlow" xml:space="preserve">
+    <value>A blank connector leaving a Dialog Shape must point to an End Flow Shape.</value>
+  </data>
 	<data name="builtInFunctionNameAnd" xml:space="preserve">
     <value>And</value>
   </data>
@@ -380,8 +383,31 @@
     <value>Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}.</value>
     <comment>0=fileName; 1=PageNumber; 2=Master; 3=ShapeIndex</comment>
   </data>
+	<data name="dialogDuplicateChoiceFormat" xml:space="preserve">
+    <value>Shape has two connectors with identical choices.  Connector number {0} is a duplicate.</value>
+    <comment>0=Duplicate Connector Number</comment>
+  </data>
 	<data name="dialogFunctionsInvalid" xml:space="preserve">
     <value>Dialog Functions are invalid for Action Shape.</value>
+  </data>
+	<data name="dialogInvalidConnectorsFormat" xml:space="preserve">
+    <value>Shape with multiple connectors has {0} invalid connector(s).</value>
+    <comment>0=#OfInvalidConnectors</comment>
+  </data>
+	<data name="dialogOrQuestionsOutgoingCount" xml:space="preserve">
+    <value>Either one connector which is blank, one connector which is not blank or multiple connectors all of which are not blank can exit a Dialog shape.</value>
+  </data>
+	<data name="dialogShapeDataRequired" xml:space="preserve">
+    <value>Dialog Shape Requires data.</value>
+  </data>
+	<data name="dialogShapeOnlyOneFunction" xml:space="preserve">
+    <value>Only one function allowed per Dialog Shape.</value>
+  </data>
+	<data name="dialogShapeRequiresIncomming" xml:space="preserve">
+    <value>Dialog Shape requires at least one incoming connector.</value>
+  </data>
+	<data name="dialogShapesOneDialogFunction" xml:space="preserve">
+    <value>Dialog Shape requires exactly one dialog function.</value>
   </data>
 	<data name="dotExe" xml:space="preserve">
     <value>.exe</value>

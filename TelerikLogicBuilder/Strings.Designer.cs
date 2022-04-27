@@ -196,6 +196,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A blank connector leaving a Dialog Shape must point to an End Flow Shape..
+        /// </summary>
+        internal static string blankConnectorExitingDialogMustEndFlow {
+            get {
+                return ResourceManager.GetString("blankConnectorExitingDialogMustEndFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be a boolean..
         /// </summary>
         internal static string booleanKeyIndexIsInvalidFormat {
@@ -1015,11 +1024,74 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shape has two connectors with identical choices.  Connector number {0} is a duplicate..
+        /// </summary>
+        internal static string dialogDuplicateChoiceFormat {
+            get {
+                return ResourceManager.GetString("dialogDuplicateChoiceFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dialog Functions are invalid for Action Shape..
         /// </summary>
         internal static string dialogFunctionsInvalid {
             get {
                 return ResourceManager.GetString("dialogFunctionsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shape with multiple connectors has {0} invalid connector(s)..
+        /// </summary>
+        internal static string dialogInvalidConnectorsFormat {
+            get {
+                return ResourceManager.GetString("dialogInvalidConnectorsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Either one connector which is blank, one connector which is not blank or multiple connectors all of which are not blank can exit a Dialog shape..
+        /// </summary>
+        internal static string dialogOrQuestionsOutgoingCount {
+            get {
+                return ResourceManager.GetString("dialogOrQuestionsOutgoingCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dialog Shape Requires data..
+        /// </summary>
+        internal static string dialogShapeDataRequired {
+            get {
+                return ResourceManager.GetString("dialogShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one function allowed per Dialog Shape..
+        /// </summary>
+        internal static string dialogShapeOnlyOneFunction {
+            get {
+                return ResourceManager.GetString("dialogShapeOnlyOneFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dialog Shape requires at least one incoming connector..
+        /// </summary>
+        internal static string dialogShapeRequiresIncomming {
+            get {
+                return ResourceManager.GetString("dialogShapeRequiresIncomming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dialog Shape requires exactly one dialog function..
+        /// </summary>
+        internal static string dialogShapesOneDialogFunction {
+            get {
+                return ResourceManager.GetString("dialogShapesOneDialogFunction", resourceCulture);
             }
         }
         
