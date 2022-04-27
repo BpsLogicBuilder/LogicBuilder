@@ -41,10 +41,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             ICommentShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<ICommentShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(CommentShapeValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\CommentShapeValidatorTest\{nameof(CommentShapeValidationSucceeds)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -60,7 +61,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\CommentShapeValidatorTest\{nameof(CommentShapeValidationSucceeds)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -77,10 +78,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             ICommentShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<ICommentShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForAttachedConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\CommentShapeValidatorTest\{nameof(FailsValidationForAttachedConnector)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -96,7 +98,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\CommentShapeValidatorTest\{nameof(FailsValidationForAttachedConnector)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -107,6 +109,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //assert
             Assert.Equal(Strings.commentShapeCannotHaveConnectors, errors.First().Message);
         }
+
+        private static string GetFullSourceFilePath(string fileNameNoExtension)
+            => System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\{nameof(CommentShapeValidatorTest)}\{fileNameNoExtension}.vsdx");
 
         private static void CloseVisioDocument(Document visioDocument)
         {

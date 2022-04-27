@@ -41,10 +41,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IBeginShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IBeginShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(BeginShapeValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\BeginShapeValidatorTest\{nameof(BeginShapeValidationSucceeds)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -60,7 +61,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\BeginShapeValidatorTest\{nameof(BeginShapeValidationSucceeds)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -77,10 +78,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IBeginShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IBeginShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMultipleOutgoingConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\BeginShapeValidatorTest\{nameof(FailsValidationForMultipleOutgoingConnectors)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -96,7 +98,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\BeginShapeValidatorTest\{nameof(FailsValidationForMultipleOutgoingConnectors)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -113,10 +115,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IBeginShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IBeginShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForIncommingConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\BeginShapeValidatorTest\{nameof(FailsValidationForIncommingConnector)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -132,7 +135,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\BeginShapeValidatorTest\{nameof(FailsValidationForIncommingConnector)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -143,6 +146,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //assert
             Assert.Equal(Strings.beginShapeIncoming, errors.First().Message);
         }
+
+        private static string GetFullSourceFilePath(string fileNameNoExtension)
+            => System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\{nameof(BeginShapeValidatorTest)}\{fileNameNoExtension}.vsdx");
 
         private static void CloseVisioDocument(Document visioDocument)
         {

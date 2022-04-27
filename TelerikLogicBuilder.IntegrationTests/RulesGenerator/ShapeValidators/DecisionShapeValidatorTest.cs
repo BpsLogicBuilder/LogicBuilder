@@ -46,9 +46,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IDecisionShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IDecisionShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(DecisionShapeValidationSucceeds));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\DecisionShapeValidatorTest\{nameof(DecisionShapeValidationSucceeds)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -65,7 +66,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\DecisionShapeValidatorTest\{nameof(DecisionShapeValidationSucceeds)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
@@ -83,9 +84,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IDecisionShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IDecisionShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForTooManyOutgoingConnectors));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForTooManyOutgoingConnectors)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -102,7 +104,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForTooManyOutgoingConnectors)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
@@ -120,9 +122,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IDecisionShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IDecisionShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingOutgoingConnector));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForMissingOutgoingConnector)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -139,7 +142,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForMissingOutgoingConnector)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
@@ -157,9 +160,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IDecisionShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IDecisionShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingIncommingConnector));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForMissingIncommingConnector)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -176,7 +180,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForMissingIncommingConnector)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
@@ -194,9 +198,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IDecisionShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IDecisionShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingShapeData));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForMissingShapeData)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape
@@ -213,7 +218,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\DecisionShapeValidatorTest\{nameof(FailsValidationForMissingShapeData)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
@@ -225,6 +230,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //assert
             Assert.Equal(Strings.decisionShapeDataRequired, errors.First().Message);
         }
+
+        private static string GetFullSourceFilePath(string fileNameNoExtension)
+            => System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\{nameof(DecisionShapeValidatorTest)}\{fileNameNoExtension}.vsdx");
 
         private static void CloseVisioDocument(Document visioDocument)
         {

@@ -40,9 +40,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IApplicationSpecificFlowShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IApplicationSpecificFlowShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(ApplicationSpecificFlowShapeValidationSucceeds));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(ApplicationSpecificFlowShapeValidationSucceeds)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape(UniversalMasterName.ACTION, visioDocument);
@@ -51,7 +52,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(ApplicationSpecificFlowShapeValidationSucceeds)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -68,9 +69,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IApplicationSpecificFlowShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IApplicationSpecificFlowShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateOutgoingConnector));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForDuplicateOutgoingConnector)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape(UniversalMasterName.ACTION, visioDocument);
@@ -79,7 +81,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForDuplicateOutgoingConnector)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -96,9 +98,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IApplicationSpecificFlowShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IApplicationSpecificFlowShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateIncommingConnector));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForDuplicateIncommingConnector)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape(UniversalMasterName.ACTION, visioDocument);
@@ -107,7 +110,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForDuplicateIncommingConnector)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -124,9 +127,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IApplicationSpecificFlowShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IApplicationSpecificFlowShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForIncomingCountNotEqualToOutgoingCount));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForIncomingCountNotEqualToOutgoingCount)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape(UniversalMasterName.ACTION, visioDocument);
@@ -135,7 +139,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForIncomingCountNotEqualToOutgoingCount)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -152,9 +156,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             //arrange
             IApplicationSpecificFlowShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IApplicationSpecificFlowShapeValidator>();
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMasterMismatchBetweenIncomingAndOutgoing));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForMasterMismatchBetweenIncomingAndOutgoing)}.vsdx"),
+                sourceFile,
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape(UniversalMasterName.ACTION, visioDocument);
@@ -163,7 +168,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             validator.Validate
             (
-                @$"C:\TelerikLogicBuilder\TelerikLogicBuilder.IntegrationTests\Diagrams\ApplicationSpecificFlowShapeValidatorTest\{nameof(FailsValidationForMasterMismatchBetweenIncomingAndOutgoing)}.vsdx",
+                sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors
@@ -174,6 +179,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //assert
             Assert.Equal(Strings.applicationConnectorMismatch, errors.First().Message);
         }
+
+        private static string GetFullSourceFilePath(string fileNameNoExtension)
+            => System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\{nameof(ApplicationSpecificFlowShapeValidatorTest)}\{fileNameNoExtension}.vsdx");
 
         private static void CloseVisioDocument(Document visioDocument)
         {
