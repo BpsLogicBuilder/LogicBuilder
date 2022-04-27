@@ -1150,6 +1150,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Flow, Module End and Terminate Shapes require at least one incoming connector..
+        /// </summary>
+        internal static string endShapeIncoming {
+            get {
+                return ResourceManager.GetString("endShapeIncoming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outgoing Connectors cannot be joined to End Flow, Module End or Terminate Shapes..
+        /// </summary>
+        internal static string endShapeOutgoing {
+            get {
+                return ResourceManager.GetString("endShapeOutgoing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Any.
         /// </summary>
         internal static string enumDescriptionAny {

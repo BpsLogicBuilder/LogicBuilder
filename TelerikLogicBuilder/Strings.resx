@@ -418,6 +418,12 @@
 	<data name="duplicateOutgoingConnector" xml:space="preserve">
     <value>Only one outgoing connector per application is valid.</value>
   </data>
+	<data name="endShapeIncoming" xml:space="preserve">
+    <value>End Flow, Module End and Terminate Shapes require at least one incoming connector.</value>
+  </data>
+	<data name="endShapeOutgoing" xml:space="preserve">
+    <value>Outgoing Connectors cannot be joined to End Flow, Module End or Terminate Shapes.</value>
+  </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>Fragments</value>
   </data>

@@ -17,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IConditionShapeValidator _conditionShapeValidator;
         private readonly IDecisionShapeValidator _decisionShapeValidator;
         private readonly IDialogShapeValidator _dialogShapeValidator;
+        private readonly IEndShapeValidator _endShapeValidator;
         private readonly IExceptionHelper _exceptionHelper;
 
         public ShapeValidator(
@@ -27,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IConditionShapeValidator conditionShapeValidator,
             IDecisionShapeValidator decisionShapeValidator,
             IDialogShapeValidator dialogShapeValidator,
+            IEndShapeValidator endShapeValidator,
             IExceptionHelper exceptionHelper)
         {
             _actionShapeValidator = actionShapeValidator;
@@ -36,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _conditionShapeValidator = conditionShapeValidator;
             _decisionShapeValidator = decisionShapeValidator;
             _dialogShapeValidator = dialogShapeValidator;
+            _endShapeValidator = endShapeValidator;
             _exceptionHelper = exceptionHelper;
         }
 
@@ -74,6 +77,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.DIALOG:
                     _dialogShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);
+                    break;
+                case UniversalMasterName.ENDFLOW:
+                case UniversalMasterName.MODULEEND:
+                case UniversalMasterName.TERMINATE:
+                    _endShapeValidator.Validate(sourceFile, page, shape, validationErrors);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

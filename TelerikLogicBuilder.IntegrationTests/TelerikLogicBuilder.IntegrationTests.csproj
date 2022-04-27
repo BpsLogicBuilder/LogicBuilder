@@ -178,6 +178,15 @@
     <None Update="Diagrams\DialogShapeValidatorTest\DialogShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\EndShapeValidatorTest\FailsValidationForNoIncommingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\EndShapeValidatorTest\FailsValidationForOutgoingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\EndShapeValidatorTest\EndShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ShapeValidatorTest\ShapeValidatorThrowsForInvalidShape.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
