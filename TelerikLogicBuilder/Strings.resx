@@ -328,11 +328,20 @@
     <value>Property {0} does not exist.</value>
 		<comment>0=propertyName (prefix cellname)</comment>
   </data>
+	<data name="decisionBoxIncomingRequired" xml:space="preserve">
+    <value>Decision Shape requires at least one incoming connector.</value>
+  </data>
+	<data name="decisionBoxOutgoingRequired" xml:space="preserve">
+    <value>Decision Shape requires one outgoing "YES" connector and one outgoing "NO" connector.</value>
+  </data>
 	<data name="decisionConnectorNoText" xml:space="preserve">
     <value>NO</value>
   </data>
 	<data name="decisionConnectorYesText" xml:space="preserve">
     <value>YES</value>
+  </data>
+	<data name="decisionShapeDataRequired" xml:space="preserve">
+    <value>Decision Shape requires data.</value>
   </data>
 	<data name="defaultActivityAssemblyFolder" xml:space="preserve">
     <value>ActivityAssembly</value>

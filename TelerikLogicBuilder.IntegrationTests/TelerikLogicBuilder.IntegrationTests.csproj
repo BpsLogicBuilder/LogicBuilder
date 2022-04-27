@@ -133,6 +133,21 @@
     <None Update="Diagrams\ConditionShapeValidatorTest\ConditionShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForMissingShapeData.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForMissingIncommingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForMissingOutgoingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForTooManyOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DecisionShapeValidatorTest\DecisionShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

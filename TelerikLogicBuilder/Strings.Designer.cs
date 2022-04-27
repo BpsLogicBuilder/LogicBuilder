@@ -862,6 +862,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decision Shape requires at least one incoming connector..
+        /// </summary>
+        internal static string decisionBoxIncomingRequired {
+            get {
+                return ResourceManager.GetString("decisionBoxIncomingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decision Shape requires one outgoing &quot;YES&quot; connector and one outgoing &quot;NO&quot; connector..
+        /// </summary>
+        internal static string decisionBoxOutgoingRequired {
+            get {
+                return ResourceManager.GetString("decisionBoxOutgoingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NO.
         /// </summary>
         internal static string decisionConnectorNoText {
@@ -876,6 +894,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string decisionConnectorYesText {
             get {
                 return ResourceManager.GetString("decisionConnectorYesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decision Shape requires data..
+        /// </summary>
+        internal static string decisionShapeDataRequired {
+            get {
+                return ResourceManager.GetString("decisionShapeDataRequired", resourceCulture);
             }
         }
         
