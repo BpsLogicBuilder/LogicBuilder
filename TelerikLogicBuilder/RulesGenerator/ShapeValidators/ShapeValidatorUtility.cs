@@ -12,7 +12,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
         protected ShapeValidatorUtility(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, IContextProvider contextProvider)
         {
             SourceFile = sourceFile;
-            FileName = contextProvider.PathHelper.GetFileName(sourceFile);
             ModuleName = contextProvider.PathHelper.GetModuleName(sourceFile);
             Page = page;
             Shape = shape;
@@ -41,7 +40,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
         #endregion Methods
 
         #region Properties
-        protected string FileName { get; }
         protected string ModuleName { get; }
         protected string SourceFile { get; }
         protected Page Page { get;  }

@@ -146,6 +146,14 @@
     <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.</value>
     <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
   </data>
+	<data name="beginFlowShapeRequired" xml:space="preserve">
+    <value>Document: {0} - "Begin Flow Shape" or "Module Begin Shape" is required.</value>
+    <comment>0=FileName</comment>
+  </data>
+	<data name="beginShapeCount" xml:space="preserve">
+    <value>Document: {0} - Only one Begin Shape is allowed per module.</value>
+    <comment>0=FileName</comment>
+  </data>
 	<data name="beginShapeIncoming" xml:space="preserve">
     <value>Incoming Connectors cannot be joined to Begin Flow or Module Begin Shapes.</value>
   </data>
@@ -535,6 +543,9 @@
     <value>Input is invalid for the literal type "{0}".</value>
     <comment>0=Type</comment>
   </data>
+	<data name="invalidMaster" xml:space="preserve">
+    <value>Shape must belong to the Logic Builder or Applications Stencil.</value>
+  </data>
 	<data name="invalidModuleName" xml:space="preserve">
     <value>Module name {0} is invalid.</value>
     <comment>0=ModuleName</comment>
@@ -553,6 +564,24 @@
   </data>
 	<data name="itemsCommaSeparator" xml:space="preserve">
     <value>, </value>
+  </data>
+	<data name="jumpConnectorsBothDirections" xml:space="preserve">
+    <value>For a Jump Shape, the connectors must be all incoming or all outgoing.</value>
+  </data>
+	<data name="jumpShape1OutGoing" xml:space="preserve">
+    <value>Only one outgoing connector allowed per Jump Shape.</value>
+  </data>
+	<data name="jumpShapeDataRequired" xml:space="preserve">
+    <value>Jump Shape requires data.</value>
+  </data>
+	<data name="jumpShapeNoMatchingFromShape" xml:space="preserve">
+    <value>"To" Jump Shape has no matching "From" Jump Shape.</value>
+  </data>
+	<data name="jumpShapeNoMatchingToShape" xml:space="preserve">
+    <value>"From" Jump Shape has no matching "To" Jump Shape.</value>
+  </data>
+	<data name="jumpShapeUniqueTextForToShape" xml:space="preserve">
+    <value>Duplicate Jump Shape. Text in a "To" Jump Shapes must be unique.</value>
   </data>
 	<data name="listParameterTypeNameFormat" xml:space="preserve">
     <value>{0}Of{1}: {2}</value>
@@ -574,6 +603,9 @@
     <value>The {0} element is required for dialog connectors.</value>
     <comment>0=connector category</comment>
   </data>
+	<data name="moduleEndIsInvalidForBeginFlow" xml:space="preserve">
+    <value>Module End shape is invalid when the initial shape is Begin Flow.</value>
+  </data>
 	<data name="moduleIsExcludedFormat" xml:space="preserve">
     <value>Module {0} is excluded for application {1}. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box.</value>
     <comment>0=ModuleName; 1=ApplicationName</comment>
@@ -587,6 +619,9 @@
   </data>
 	<data name="neitherOperandCanBeEmptyBinaryOperationAny" xml:space="preserve">
     <value>Neither operand can be empty if 1) the function is a binary operation, 2) parameter type for the operands is Any, and 3) the other operand is not nullable.</value>
+  </data>
+	<data name="noConnectorsOnJumpFormat" xml:space="preserve">
+    <value>Jump shape has no connectors.</value>
   </data>
 	<data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.</value>
@@ -610,6 +645,10 @@
 	<data name="parameterTypeNameFormat2" xml:space="preserve">
     <value>{0}: {1}</value>
     <comment>0=type 1=name</comment>
+  </data>
+	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
+    <value>Initializing Page {0}</value>
+    <comment>0=PageIndex</comment>
   </data>
 	<data name="referenceCannotEqualVariable" xml:space="preserve">
     <value>The variable index cannot be the same as the variable it references. Reference Name: "{0}", variable: "{1}".</value>

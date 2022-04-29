@@ -148,6 +148,30 @@
     <None Update="Diagrams\DecisionShapeValidatorTest\DecisionShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\DiagramValidatorTest\FailsValidationForModuleEndInBeginFlowDocument.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramValidatorTest\FailsValidationForMultipleBeginShapes.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramValidatorTest\FailsValidationForMissingBeginShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramValidatorTest\FailsValidationForConnectorNotConnectingTwoShapes.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramValidatorTest\FailsValidationForMissingFromJumpShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramValidatorTest\FailsValidationForMissingToJumpShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramValidatorTest\FailsValidationForDuplicateToJumpShapes.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramValidatorTest\DiagramValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\DialogShapeValidatorTest\FailsvalidationBecauseDialogShapeHasNoData.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -185,6 +209,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\EndShapeValidatorTest\EndShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasNoData.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasNoConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasBothIncommingAndOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasMoreThanOneOutgoingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\JumpShapeValidatorTest\JumpShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ShapeValidatorTest\ShapeValidatorThrowsForInvalidShape.vsdx">

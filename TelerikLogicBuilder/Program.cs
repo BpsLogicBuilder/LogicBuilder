@@ -185,6 +185,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
 
             //RulesGenerator
+            .AddSingleton<IDiagramValidator, DiagramValidator>()
             .AddSingleton<IShapeHelper, ShapeHelper>()
 
             //RulesGenerator.ShapeValidators
@@ -197,6 +198,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IDecisionShapeValidator, DecisionShapeValidator>()
             .AddSingleton<IDialogShapeValidator, DialogShapeValidator>()
             .AddSingleton<IEndShapeValidator, EndShapeValidator>()
+            .AddSingleton<IJumpShapeValidator, JumpShapeValidator>()
             .AddSingleton<IShapeValidator, ShapeValidator>()
 
             //XmlValidation

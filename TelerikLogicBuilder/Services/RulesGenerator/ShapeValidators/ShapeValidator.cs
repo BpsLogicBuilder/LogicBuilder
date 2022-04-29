@@ -19,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IDialogShapeValidator _dialogShapeValidator;
         private readonly IEndShapeValidator _endShapeValidator;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IJumpShapeValidator _jumpShapeValidator;
 
         public ShapeValidator(
             IActionShapeValidator actionShapeValidator,
@@ -29,7 +30,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IDecisionShapeValidator decisionShapeValidator,
             IDialogShapeValidator dialogShapeValidator,
             IEndShapeValidator endShapeValidator,
-            IExceptionHelper exceptionHelper)
+            IExceptionHelper exceptionHelper,
+            IJumpShapeValidator jumpShapeValidator)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
@@ -40,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _dialogShapeValidator = dialogShapeValidator;
             _endShapeValidator = endShapeValidator;
             _exceptionHelper = exceptionHelper;
+            _jumpShapeValidator = jumpShapeValidator;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
@@ -82,6 +85,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 case UniversalMasterName.MODULEEND:
                 case UniversalMasterName.TERMINATE:
                     _endShapeValidator.Validate(sourceFile, page, shape, validationErrors);
+                    break;
+                case UniversalMasterName.JUMPOBJECT:
+                    _jumpShapeValidator.Validate(sourceFile, page, shape, validationErrors);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

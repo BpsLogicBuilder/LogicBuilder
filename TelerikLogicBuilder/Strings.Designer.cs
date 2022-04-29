@@ -169,6 +169,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document: {0} - &quot;Begin Flow Shape&quot; or &quot;Module Begin Shape&quot; is required..
+        /// </summary>
+        internal static string beginFlowShapeRequired {
+            get {
+                return ResourceManager.GetString("beginFlowShapeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document: {0} - Only one Begin Shape is allowed per module..
+        /// </summary>
+        internal static string beginShapeCount {
+            get {
+                return ResourceManager.GetString("beginShapeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incoming Connectors cannot be joined to Begin Flow or Module Begin Shapes..
         /// </summary>
         internal static string beginShapeIncoming {
@@ -2419,6 +2437,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shape must belong to the Logic Builder or Applications Stencil..
+        /// </summary>
+        internal static string invalidMaster {
+            get {
+                return ResourceManager.GetString("invalidMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module name {0} is invalid..
         /// </summary>
         internal static string invalidModuleName {
@@ -2460,6 +2487,60 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string itemsCommaSeparator {
             get {
                 return ResourceManager.GetString("itemsCommaSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For a Jump Shape, the connectors must be all incoming or all outgoing..
+        /// </summary>
+        internal static string jumpConnectorsBothDirections {
+            get {
+                return ResourceManager.GetString("jumpConnectorsBothDirections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one outgoing connector allowed per Jump Shape..
+        /// </summary>
+        internal static string jumpShape1OutGoing {
+            get {
+                return ResourceManager.GetString("jumpShape1OutGoing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump Shape requires data..
+        /// </summary>
+        internal static string jumpShapeDataRequired {
+            get {
+                return ResourceManager.GetString("jumpShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;To&quot; Jump Shape has no matching &quot;From&quot; Jump Shape..
+        /// </summary>
+        internal static string jumpShapeNoMatchingFromShape {
+            get {
+                return ResourceManager.GetString("jumpShapeNoMatchingFromShape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;From&quot; Jump Shape has no matching &quot;To&quot; Jump Shape..
+        /// </summary>
+        internal static string jumpShapeNoMatchingToShape {
+            get {
+                return ResourceManager.GetString("jumpShapeNoMatchingToShape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Jump Shape. Text in a &quot;To&quot; Jump Shapes must be unique..
+        /// </summary>
+        internal static string jumpShapeUniqueTextForToShape {
+            get {
+                return ResourceManager.GetString("jumpShapeUniqueTextForToShape", resourceCulture);
             }
         }
         
@@ -2536,6 +2617,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Module End shape is invalid when the initial shape is Begin Flow..
+        /// </summary>
+        internal static string moduleEndIsInvalidForBeginFlow {
+            get {
+                return ResourceManager.GetString("moduleEndIsInvalidForBeginFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module {0} is excluded for application {1}. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box..
         /// </summary>
         internal static string moduleIsExcludedFormat {
@@ -2568,6 +2658,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string neitherOperandCanBeEmptyBinaryOperationAny {
             get {
                 return ResourceManager.GetString("neitherOperandCanBeEmptyBinaryOperationAny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump shape has no connectors..
+        /// </summary>
+        internal static string noConnectorsOnJumpFormat {
+            get {
+                return ResourceManager.GetString("noConnectorsOnJumpFormat", resourceCulture);
             }
         }
         
@@ -2631,6 +2730,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string parameterTypeNameFormat2 {
             get {
                 return ResourceManager.GetString("parameterTypeNameFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initializing Page {0}.
+        /// </summary>
+        internal static string progressFormTaskInitializingPageFormat {
+            get {
+                return ResourceManager.GetString("progressFormTaskInitializingPageFormat", resourceCulture);
             }
         }
         
