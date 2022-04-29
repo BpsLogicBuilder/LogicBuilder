@@ -149,7 +149,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator
 		Shape GetToShape(Shape connector);
 
 		/// <summary>
-		/// Gets a list of configured applications unaccounted by a merge object (missing application connectors).
+		/// Gets a list of configured applications unaccounted for by a merge object (missing application connectors).
 		/// </summary>
 		/// <param name="shape"></param>
 		/// <param name="isSplitting"></param>

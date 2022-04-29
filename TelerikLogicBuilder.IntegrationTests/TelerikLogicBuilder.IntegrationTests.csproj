@@ -226,6 +226,48 @@
     <None Update="Diagrams\JumpShapeValidatorTest\JumpShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForOutGoingRegularAndApplicationConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForMergingWithApplicationUnaccountedFor.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForUnecessaryOthersConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForIncomingAndOutGoingApplicationConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForIncomingAndOutGoingRegularConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForIncomningRegularAndApplicationConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForDuplicateIncommingApplication.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForDuplicateOutgoingApplication.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForNotMergingOrSplitting.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForMergingWithoutOutgoingRegularConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForSplittingWithoutIncomingRegularConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForMergingWithMultipleOutgoingRegularConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForSplittingWithApplicationUnaccountedFor.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\MergeShapeValidatorTest\MergeShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ShapeValidatorTest\ShapeValidatorThrowsForInvalidShape.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

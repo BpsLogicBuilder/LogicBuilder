@@ -142,6 +142,10 @@
 	<data name="applicationNotConfigured" xml:space="preserve">
     <value>To use an application connector, the corresponding application must be configured. Select Project/Project Properties and the Applications tab to add applications.FR</value>
   </data>
+	<data name="applicationUnaccountedForFormat" xml:space="preserve">
+    <value>Application {0} has not been excluded for module {1} and is not accounted for. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box.FR</value>
+    <comment>0=ApplicationName 1=ModuleName</comment>
+  </data>
 	<data name="assemblyUnavailableMessageFormat" xml:space="preserve">
     <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.FR</value>
     <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
@@ -599,6 +603,27 @@
     <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
     <comment>0=functionName</comment>
   </data>
+	<data name="mergeAppConnectorComments" xml:space="preserve">
+    <value>Merge Object requires a minimum of two attached application connectors all pointing in the same direction (all incoming or all outgoing).FR</value>
+  </data>
+	<data name="mergeBranchingComments" xml:space="preserve">
+    <value>When branching the process, Merge Object requires at least one incoming non-application connector.FR</value>
+  </data>
+	<data name="mergeHasAppAndNonAppInConnectors" xml:space="preserve">
+    <value>Merge Object may not be attached to both application and regular incoming connectors.FR</value>
+  </data>
+	<data name="mergeHasAppAndNonAppOutConnectors" xml:space="preserve">
+    <value>Merge Object may not be attached to both application and regular outgoing connectors.FR</value>
+  </data>
+	<data name="mergeHasInAndOutAppConnectors" xml:space="preserve">
+    <value>Merge Object may not be attached to both outgoing and incoming application connectors.FR</value>
+  </data>
+	<data name="mergeHasInAndOutNonAppConnectors" xml:space="preserve">
+    <value>Merge Object may not be attached to both outgoing and incoming non-application connectors.FR</value>
+  </data>
+	<data name="mergeMergingComments" xml:space="preserve">
+    <value>When merging processes, Merge Object requires exactly one outgoing non-application connector.FR</value>
+  </data>
 	<data name="metaObjectRequiredForDialogConnectorsFormat" xml:space="preserve">
     <value>The {0} element is required for dialog connectors.FR</value>
     <comment>0=connector category</comment>
@@ -625,6 +650,9 @@
   </data>
   <data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.FR</value>
+  </data>
+	<data name="othersConnectorInvalid" xml:space="preserve">
+    <value>Others Connect Object is invalid when all applications are accounted for.FR</value>
   </data>
 	<data name="parameterCountMustBeTwoFormat" xml:space="preserve">
     <value>Because Parameters Layout is Binary, function {0} must have exactly 2 parameters.FR</value>

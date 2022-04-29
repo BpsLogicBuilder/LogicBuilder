@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IEndShapeValidator _endShapeValidator;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IJumpShapeValidator _jumpShapeValidator;
+        private readonly IMergeShapeValidator _mergeShapeValidator;
 
         public ShapeValidator(
             IActionShapeValidator actionShapeValidator,
@@ -31,7 +32,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IDialogShapeValidator dialogShapeValidator,
             IEndShapeValidator endShapeValidator,
             IExceptionHelper exceptionHelper,
-            IJumpShapeValidator jumpShapeValidator)
+            IJumpShapeValidator jumpShapeValidator,
+            IMergeShapeValidator mergeShapeValidator)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
@@ -43,6 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _endShapeValidator = endShapeValidator;
             _exceptionHelper = exceptionHelper;
             _jumpShapeValidator = jumpShapeValidator;
+            _mergeShapeValidator = mergeShapeValidator;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
@@ -88,6 +91,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.JUMPOBJECT:
                     _jumpShapeValidator.Validate(sourceFile, page, shape, validationErrors);
+                    break;
+                case UniversalMasterName.MERGEOBJECT:
+                    _mergeShapeValidator.Validate(sourceFile, page, shape, validationErrors);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

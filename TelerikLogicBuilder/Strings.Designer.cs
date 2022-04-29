@@ -133,6 +133,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application {0} has not been excluded for module {1} and is not accounted for. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box..
+        /// </summary>
+        internal static string applicationUnaccountedForFormat {
+            get {
+                return ResourceManager.GetString("applicationUnaccountedForFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0}, must be an integer greater than or equal to zero..
         /// </summary>
         internal static string arrayKeyIndexIsInvalidFormat {
@@ -2608,6 +2617,69 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merge Object requires a minimum of two attached application connectors all pointing in the same direction (all incoming or all outgoing)..
+        /// </summary>
+        internal static string mergeAppConnectorComments {
+            get {
+                return ResourceManager.GetString("mergeAppConnectorComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When branching the process, Merge Object requires at least one incoming non-application connector..
+        /// </summary>
+        internal static string mergeBranchingComments {
+            get {
+                return ResourceManager.GetString("mergeBranchingComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge Object may not be attached to both application and regular incoming connectors..
+        /// </summary>
+        internal static string mergeHasAppAndNonAppInConnectors {
+            get {
+                return ResourceManager.GetString("mergeHasAppAndNonAppInConnectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge Object may not be attached to both application and regular outgoing connectors..
+        /// </summary>
+        internal static string mergeHasAppAndNonAppOutConnectors {
+            get {
+                return ResourceManager.GetString("mergeHasAppAndNonAppOutConnectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge Object may not be attached to both outgoing and incoming application connectors..
+        /// </summary>
+        internal static string mergeHasInAndOutAppConnectors {
+            get {
+                return ResourceManager.GetString("mergeHasInAndOutAppConnectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge Object may not be attached to both outgoing and incoming non-application connectors..
+        /// </summary>
+        internal static string mergeHasInAndOutNonAppConnectors {
+            get {
+                return ResourceManager.GetString("mergeHasInAndOutNonAppConnectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When merging processes, Merge Object requires exactly one outgoing non-application connector..
+        /// </summary>
+        internal static string mergeMergingComments {
+            get {
+                return ResourceManager.GetString("mergeMergingComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The {0} element is required for dialog connectors..
         /// </summary>
         internal static string metaObjectRequiredForDialogConnectorsFormat {
@@ -2676,6 +2748,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string notImplementedMessageFormat {
             get {
                 return ResourceManager.GetString("notImplementedMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others Connect Object is invalid when all applications are accounted for..
+        /// </summary>
+        internal static string othersConnectorInvalid {
+            get {
+                return ResourceManager.GetString("othersConnectorInvalid", resourceCulture);
             }
         }
         
