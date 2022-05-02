@@ -115,6 +115,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All connectors attached to a Wait Decisions Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific..
+        /// </summary>
+        internal static string allWaitDecisionsConnectorsSameStencil {
+            get {
+                return ResourceManager.GetString("allWaitDecisionsConnectorsSameStencil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For each incoming connector a corresponding outgoing connector is required and vice versa..
         /// </summary>
         internal static string applicationConnectorMismatch {
@@ -3414,6 +3423,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string waitConditionShapeOutgoingRequired {
             get {
                 return ResourceManager.GetString("waitConditionShapeOutgoingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait Decision Shape requires data..
+        /// </summary>
+        internal static string waitDecisionShapeDataRequired {
+            get {
+                return ResourceManager.GetString("waitDecisionShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait Decision Shape requires at least one incoming connector..
+        /// </summary>
+        internal static string waitDecisionShapeIncomingRequired {
+            get {
+                return ResourceManager.GetString("waitDecisionShapeIncomingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait Decision Shape requires exactly one outgoing  blank connector..
+        /// </summary>
+        internal static string waitDecisionShapeOutgoingRequired {
+            get {
+                return ResourceManager.GetString("waitDecisionShapeOutgoingRequired", resourceCulture);
             }
         }
     }

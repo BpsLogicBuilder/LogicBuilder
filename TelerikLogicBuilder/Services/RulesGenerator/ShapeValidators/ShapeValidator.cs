@@ -24,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IModuleShapeValidator _moduleShapeValidator;
         private readonly IRegularConnectorValidator _regularConnectorValidator;
         private readonly IWaitConditionShapeValidator _waitConditionShapeValidator;
+        private readonly IWaitDecisionShapeValidator _waitDecisionShapeValidator;
 
         public ShapeValidator(
             IActionShapeValidator actionShapeValidator,
@@ -39,7 +40,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IMergeShapeValidator mergeShapeValidator,
             IModuleShapeValidator moduleShapeValidator,
             IRegularConnectorValidator regularConnectorValidator,
-            IWaitConditionShapeValidator waitConditionShapeValidator)
+            IWaitConditionShapeValidator waitConditionShapeValidator,
+            IWaitDecisionShapeValidator waitDecisionShapeValidator)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
@@ -55,6 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _moduleShapeValidator = moduleShapeValidator;
             _regularConnectorValidator = regularConnectorValidator;
             _waitConditionShapeValidator = waitConditionShapeValidator;
+            _waitDecisionShapeValidator = waitDecisionShapeValidator;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
@@ -112,6 +115,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.WAITCONDITIONOBJECT:
                     _waitConditionShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);
+                    break;
+                case UniversalMasterName.WAITDECISIONOBJECT:
+                    _waitDecisionShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

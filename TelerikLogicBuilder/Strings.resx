@@ -135,6 +135,9 @@
 	<data name="allWaitConditionsConnectorsSameStencil" xml:space="preserve">
     <value>All connectors attached to a Wait Conditions Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific.</value>
   </data>
+	<data name="allWaitDecisionsConnectorsSameStencil" xml:space="preserve">
+    <value>All connectors attached to a Wait Decisions Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific.</value>
+  </data>
 	<data name="applicationConnectorMismatch" xml:space="preserve">
     <value>For each incoming connector a corresponding outgoing connector is required and vice versa.</value>
   </data>
@@ -799,6 +802,15 @@
   </data>
 	<data name="waitConditionShapeOutgoingRequired" xml:space="preserve">
     <value>Wait Condition Shape requires exactly one outgoing  blank connector.</value>
+  </data>
+	<data name="waitDecisionShapeDataRequired" xml:space="preserve">
+    <value>Wait Decision Shape requires data.</value>
+  </data>
+	<data name="waitDecisionShapeIncomingRequired" xml:space="preserve">
+    <value>Wait Decision Shape requires at least one incoming connector.</value>
+  </data>
+	<data name="waitDecisionShapeOutgoingRequired" xml:space="preserve">
+    <value>Wait Decision Shape requires exactly one outgoing  blank connector.</value>
   </data>
 	<data name="enumDescriptionAny" xml:space="preserve">
     <value>Any</value>

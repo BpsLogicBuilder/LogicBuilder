@@ -325,6 +325,24 @@
     <None Update="Diagrams\WaitConditionShapeValidatorTest\WaitConditionShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\WaitDecisionShapeValidatorTest\FailsValidationForNoIncomingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\WaitDecisionShapeValidatorTest\FailsValidationForConnectorsFromMultipleStencils.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\WaitDecisionShapeValidatorTest\FailsValidationForNoOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\WaitDecisionShapeValidatorTest\FailsValidationForMultipleOutgoingConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\WaitDecisionShapeValidatorTest\FailsValidationForBecauseShapeHasNoData.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\WaitDecisionShapeValidatorTest\WaitDecisionShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
