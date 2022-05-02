@@ -97,6 +97,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All connectors attached to a Module Shape must belong the same stencil. i.e. they must all be regular connectors or they must all be application specific..
+        /// </summary>
+        internal static string allConnectorsSameStencil {
+            get {
+                return ResourceManager.GetString("allConnectorsSameStencil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For each incoming connector a corresponding outgoing connector is required and vice versa..
         /// </summary>
         internal static string applicationConnectorMismatch {
@@ -2712,6 +2721,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string moduleShapeDataRequired {
             get {
                 return ResourceManager.GetString("moduleShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module Shape requires at least one incoming connector..
+        /// </summary>
+        internal static string moduleShapeIncoming {
+            get {
+                return ResourceManager.GetString("moduleShapeIncoming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module Shape requires a single blank outgoing connector..
+        /// </summary>
+        internal static string moduleShapeOutgoing {
+            get {
+                return ResourceManager.GetString("moduleShapeOutgoing", resourceCulture);
             }
         }
         

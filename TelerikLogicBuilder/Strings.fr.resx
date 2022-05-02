@@ -129,6 +129,9 @@
 	<data name="allActionConnectorsSameStencil" xml:space="preserve">
     <value>All connectors attached to an Action Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific.FR</value>
   </data>
+	<data name="allConnectorsSameStencil" xml:space="preserve">
+    <value>All connectors attached to a Module Shape must belong the same stencil. i.e. they must all be regular connectors or they must all be application specific.FR</value>
+  </data>
 	<data name="applicationConnectorMismatch" xml:space="preserve">
     <value>For each incoming connector a corresponding outgoing connector is required and vice versa.</value>
   </data>
@@ -637,6 +640,12 @@
   </data>
 	<data name="moduleShapeDataRequired" xml:space="preserve">
     <value>Module Shape requires data.FR</value>
+  </data>
+	<data name="moduleShapeIncoming" xml:space="preserve">
+    <value>Module Shape requires at least one incoming connector.FR</value>
+  </data>
+	<data name="moduleShapeOutgoing" xml:space="preserve">
+    <value>Module Shape requires a single blank outgoing connector.FR</value>
   </data>
 	<data name="multipleChoiceParamNotLastFormat" xml:space="preserve">
     <value>Error configuring method {0}. The connectors multiple choice parameter must be the last parameter.FR</value>

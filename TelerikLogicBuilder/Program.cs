@@ -200,6 +200,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IEndShapeValidator, EndShapeValidator>()
             .AddSingleton<IJumpShapeValidator, JumpShapeValidator>()
             .AddSingleton<IMergeShapeValidator, MergeShapeValidator>()
+            .AddSingleton<IModuleShapeValidator, ModuleShapeValidator>()
             .AddSingleton<IShapeValidator, ShapeValidator>()
 
             //XmlValidation

@@ -21,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IJumpShapeValidator _jumpShapeValidator;
         private readonly IMergeShapeValidator _mergeShapeValidator;
+        private readonly IModuleShapeValidator _moduleShapeValidator;
 
         public ShapeValidator(
             IActionShapeValidator actionShapeValidator,
@@ -33,7 +34,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IEndShapeValidator endShapeValidator,
             IExceptionHelper exceptionHelper,
             IJumpShapeValidator jumpShapeValidator,
-            IMergeShapeValidator mergeShapeValidator)
+            IMergeShapeValidator mergeShapeValidator,
+            IModuleShapeValidator moduleShapeValidator)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
@@ -46,6 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _exceptionHelper = exceptionHelper;
             _jumpShapeValidator = jumpShapeValidator;
             _mergeShapeValidator = mergeShapeValidator;
+            _moduleShapeValidator = moduleShapeValidator;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
@@ -94,6 +97,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.MERGEOBJECT:
                     _mergeShapeValidator.Validate(sourceFile, page, shape, validationErrors);
+                    break;
+                case UniversalMasterName.MODULE:
+                    _moduleShapeValidator.Validate(sourceFile, page, shape, validationErrors);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

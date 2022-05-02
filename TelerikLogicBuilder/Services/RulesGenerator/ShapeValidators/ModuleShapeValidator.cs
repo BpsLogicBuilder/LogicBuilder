@@ -1,44 +1,47 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators;
+﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
-    internal class ActionShapeValidator : IActionShapeValidator
+    internal class ModuleShapeValidator : IModuleShapeValidator
     {
         private readonly IApplicationSpecificFlowShapeValidator _applicationSpecificFlowShapeValidator;
         private readonly IContextProvider _contextProvider;
-        private readonly IFunctionsElementValidator _functionsElementValidator;
+        private readonly IModuleDataParser _moduleDataParser;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
 
-        public ActionShapeValidator(IApplicationSpecificFlowShapeValidator applicationSpecificFlowShapeValidator, IContextProvider contextProvider, IFunctionsElementValidator functionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public ModuleShapeValidator(
+            IApplicationSpecificFlowShapeValidator applicationSpecificFlowShapeValidator,
+            IContextProvider contextProvider,
+            IModuleDataParser moduleDataParser,
+            IShapeHelper shapeHelper,
+            IShapeXmlHelper shapeXmlHelper)
         {
             _applicationSpecificFlowShapeValidator = applicationSpecificFlowShapeValidator;
             _contextProvider = contextProvider;
-            _functionsElementValidator = functionsElementValidator;
+            _moduleDataParser = moduleDataParser;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
         }
 
-        public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
+        public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors)
         {
-            new ActionShapeValidatorUtility
+            new ModuleShapeValidatorUtility
             (
                 sourceFile,
                 page,
                 shape,
                 validationErrors,
-                application,
                 _contextProvider,
                 _applicationSpecificFlowShapeValidator,
-                _functionsElementValidator,
+                _moduleDataParser,
                 _shapeHelper,
                 _shapeXmlHelper
             ).Validate();

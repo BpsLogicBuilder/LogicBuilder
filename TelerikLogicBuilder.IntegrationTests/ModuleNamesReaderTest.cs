@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using TelerikLogicBuilder.IntegrationTests.Constants;
 using Xunit;
 using Application = ABIS.LogicBuilder.FlowBuilder.Configuration.Application;
 
@@ -53,7 +54,7 @@ namespace TelerikLogicBuilder.IntegrationTests
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso.Test",
-                @"C:\TelerikLogicBuilder\FlowProjects\Contoso.Test",
+                @$"{TestFolders.TestAssembliesFolder}\FlowProjects\Contoso.Test",
                 new Dictionary<string, Application>
                 {
                     ["app01"] = new Application

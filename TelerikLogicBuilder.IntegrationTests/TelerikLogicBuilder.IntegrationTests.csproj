@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 	  <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -266,6 +266,27 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\MergeShapeValidatorTest\MergeShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ModuleShapeValidatorTest\FailsValidationForMoreThanOneOutgoingRegularConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ModuleShapeValidatorTest\FailsValidationForShapeHasNoData.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ModuleShapeValidatorTest\FailsValidationForNoIncomingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ModuleShapeValidatorTest\FailsValidationForInvalidModuleName.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ModuleShapeValidatorTest\FailsValidationForHavingBothRegularAndApplicationSpecificConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ModuleShapeValidatorTest\FailsValidationForNoOutgoingRegularConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ModuleShapeValidatorTest\ModuleShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ShapeValidatorTest\ShapeValidatorThrowsForInvalidShape.vsdx">

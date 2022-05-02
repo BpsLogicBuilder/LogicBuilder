@@ -122,25 +122,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
                 foreach (string applicationName in unusedApplications)
                 {
                     Configuration.Application? application = _configurationService.GetApplication(applicationName);
-                    if (application == null)
-                    {
+                    if (application == null)//unused applications do not inculde unconfigured applications.
                         throw _exceptionHelper.CriticalException("{1C7F083A-9A69-423F-B673-4A7B6173951C}");
-                    }
-                    else
+
+                    if (!application.ExcludedModules.Contains(this.ModuleName))
                     {
-                        if (!application.ExcludedModules.Contains(this.ModuleName))
-                        {
-                            AddValidationMessage
+                        AddValidationMessage
+                        (
+                            string.Format
                             (
-                                string.Format
-                                (
-                                    CultureInfo.CurrentCulture, 
-                                    Strings.applicationUnaccountedForFormat, 
-                                    applicationName, 
-                                    this.ModuleName
-                                )
-                            );
-                        }
+                                CultureInfo.CurrentCulture,
+                                Strings.applicationUnaccountedForFormat,
+                                applicationName,
+                                this.ModuleName
+                            )
+                        );
                     }
                 }
             }
