@@ -132,6 +132,9 @@
 	<data name="allConnectorsSameStencil" xml:space="preserve">
     <value>All connectors attached to a Module Shape must belong the same stencil. i.e. they must all be regular connectors or they must all be application specific.FR</value>
   </data>
+	<data name="allWaitConditionsConnectorsSameStencil" xml:space="preserve">
+    <value>All connectors attached to a Wait Conditions Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific.FR</value>
+  </data>
 	<data name="applicationConnectorMismatch" xml:space="preserve">
     <value>For each incoming connector a corresponding outgoing connector is required and vice versa.</value>
   </data>
@@ -787,6 +790,15 @@
   </data>
 	<data name="variableTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for  variable {0} must be empty when the reference category is not "Type"or "Static Reference".FR</value>
+  </data>
+	<data name="waitConditionShapeDataRequired" xml:space="preserve">
+    <value>Wait Condition Shape requires data.FR</value>
+  </data>
+	<data name="waitConditionShapeIncomingRequired" xml:space="preserve">
+    <value>Wait Condition Shape requires at least one incoming connector.FR</value>
+  </data>
+	<data name="waitConditionShapeOutgoingRequired" xml:space="preserve">
+    <value>Wait Condition Shape requires exactly one outgoing  blank connector.FR</value>
   </data>
 	<data name="enumDescriptionAny" xml:space="preserve">
     <value>AnyFR</value>

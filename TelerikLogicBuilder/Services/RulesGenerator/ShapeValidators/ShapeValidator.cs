@@ -23,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IMergeShapeValidator _mergeShapeValidator;
         private readonly IModuleShapeValidator _moduleShapeValidator;
         private readonly IRegularConnectorValidator _regularConnectorValidator;
+        private readonly IWaitConditionShapeValidator _waitConditionShapeValidator;
 
         public ShapeValidator(
             IActionShapeValidator actionShapeValidator,
@@ -37,7 +38,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IJumpShapeValidator jumpShapeValidator,
             IMergeShapeValidator mergeShapeValidator,
             IModuleShapeValidator moduleShapeValidator,
-            IRegularConnectorValidator regularConnectorValidator)
+            IRegularConnectorValidator regularConnectorValidator,
+            IWaitConditionShapeValidator waitConditionShapeValidator)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
@@ -52,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _mergeShapeValidator = mergeShapeValidator;
             _moduleShapeValidator = moduleShapeValidator;
             _regularConnectorValidator = regularConnectorValidator;
+            _waitConditionShapeValidator = waitConditionShapeValidator;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
@@ -106,6 +109,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.MODULE:
                     _moduleShapeValidator.Validate(sourceFile, page, shape, validationErrors);
+                    break;
+                case UniversalMasterName.WAITCONDITIONOBJECT:
+                    _waitConditionShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{1847D564-79A4-49C0-8B82-DD7A91B3EA44}");

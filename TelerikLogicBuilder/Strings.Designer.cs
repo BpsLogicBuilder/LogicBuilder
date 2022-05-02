@@ -106,6 +106,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All connectors attached to a Wait Conditions Shape must belong to the same stencil. i.e. they must all be regular connectors or they must all be application specific..
+        /// </summary>
+        internal static string allWaitConditionsConnectorsSameStencil {
+            get {
+                return ResourceManager.GetString("allWaitConditionsConnectorsSameStencil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For each incoming connector a corresponding outgoing connector is required and vice versa..
         /// </summary>
         internal static string applicationConnectorMismatch {
@@ -3378,6 +3387,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableTypeNameMustBeEmptyFormat {
             get {
                 return ResourceManager.GetString("variableTypeNameMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait Condition Shape requires data..
+        /// </summary>
+        internal static string waitConditionShapeDataRequired {
+            get {
+                return ResourceManager.GetString("waitConditionShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait Condition Shape requires at least one incoming connector..
+        /// </summary>
+        internal static string waitConditionShapeIncomingRequired {
+            get {
+                return ResourceManager.GetString("waitConditionShapeIncomingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait Condition Shape requires exactly one outgoing  blank connector..
+        /// </summary>
+        internal static string waitConditionShapeOutgoingRequired {
+            get {
+                return ResourceManager.GetString("waitConditionShapeOutgoingRequired", resourceCulture);
             }
         }
     }
