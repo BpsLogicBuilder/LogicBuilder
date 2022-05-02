@@ -1078,6 +1078,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dialog Functions are invalid for Connectors..
+        /// </summary>
+        internal static string dialogFunctionsInvalidConnector {
+            get {
+                return ResourceManager.GetString("dialogFunctionsInvalidConnector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shape with multiple connectors has {0} invalid connector(s)..
         /// </summary>
         internal static string dialogInvalidConnectorsFormat {

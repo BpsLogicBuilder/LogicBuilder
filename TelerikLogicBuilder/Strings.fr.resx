@@ -405,6 +405,9 @@
 	<data name="dialogFunctionsInvalid" xml:space="preserve">
     <value>Dialog Functions are invalid for Action Shape.FR</value>
   </data>
+	<data name="dialogFunctionsInvalidConnector" xml:space="preserve">
+    <value>Dialog Functions are invalid for Connectors.FR</value>
+  </data>
 	<data name="dialogInvalidConnectorsFormat" xml:space="preserve">
     <value>Shape with multiple connectors has {0} invalid connector(s).FR</value>
     <comment>0=#OfInvalidConnectors</comment>

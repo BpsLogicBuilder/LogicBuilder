@@ -22,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IJumpShapeValidator _jumpShapeValidator;
         private readonly IMergeShapeValidator _mergeShapeValidator;
         private readonly IModuleShapeValidator _moduleShapeValidator;
+        private readonly IRegularConnectorValidator _regularConnectorValidator;
 
         public ShapeValidator(
             IActionShapeValidator actionShapeValidator,
@@ -35,7 +36,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IExceptionHelper exceptionHelper,
             IJumpShapeValidator jumpShapeValidator,
             IMergeShapeValidator mergeShapeValidator,
-            IModuleShapeValidator moduleShapeValidator)
+            IModuleShapeValidator moduleShapeValidator,
+            IRegularConnectorValidator regularConnectorValidator)
         {
             _actionShapeValidator = actionShapeValidator;
             _applicationConnectorValidator = applicationConnectorValidator;
@@ -49,6 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _jumpShapeValidator = jumpShapeValidator;
             _mergeShapeValidator = mergeShapeValidator;
             _moduleShapeValidator = moduleShapeValidator;
+            _regularConnectorValidator = regularConnectorValidator;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
@@ -77,6 +80,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                     break;
                 case UniversalMasterName.COMMENT:
                     _commentShapeValidator.Validate(sourceFile, page, shape, validationErrors);
+                    break;
+                case UniversalMasterName.CONNECTOBJECT:
+                    _regularConnectorValidator.Validate(sourceFile, page, shape, validationErrors, application);
                     break;
                 case UniversalMasterName.CONDITIONOBJECT:
                     _conditionShapeValidator.Validate(sourceFile, page, shape, validationErrors, application);

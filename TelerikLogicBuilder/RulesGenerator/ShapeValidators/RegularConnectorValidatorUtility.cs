@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
@@ -8,25 +9,25 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
 {
-    internal class ConditionShapeValidatorUtility : ShapeValidatorUtility
+    internal class RegularConnectorValidatorUtility : ShapeValidatorUtility
     {
-        private readonly IConditionsElementValidator _conditionsElementValidator;
+        private readonly IConnectorElementValidator _connectorElementValidator;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ConditionShapeValidatorUtility(
+        public RegularConnectorValidatorUtility(
             string sourceFile,
             Page page,
             Shape shape,
             List<ResultMessage> validationErrors,
             ApplicationTypeInfo application,
             IContextProvider contextProvider,
-            IConditionsElementValidator conditionsElementValidator,
+            IConnectorElementValidator connectorElementValidator,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper) : base(sourceFile, page, shape, validationErrors, contextProvider)
         {
-            _conditionsElementValidator = conditionsElementValidator;
+            _connectorElementValidator = connectorElementValidator;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
@@ -37,29 +38,35 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
 
         internal override void Validate()
         {
-            if (_shapeHelper.CountOutgoingConnectors(this.Shape) != 2
-                || _shapeHelper.GetOutgoingYesConnector(this.Shape) == null
-                || _shapeHelper.GetOutgoingNoConnector(this.Shape) == null)
-                AddValidationMessage(Strings.conditionBoxOutgoingRequired);
-
-            if (_shapeHelper.CountIncomingConnectors(this.Shape) == 0)
-                AddValidationMessage(Strings.conditionBoxIncomingRequired);
-
-            string conditionsXml = _shapeXmlHelper.GetXmlString(this.Shape);
-            if (conditionsXml.Length == 0)
+            if (this.Shape.Connects.Count != 2)
             {
-                AddValidationMessage(Strings.conditionShapeDataRequired);
+                AddValidationMessage(Strings.connectorRequires2Shapes);
                 return;
             }
 
+            Shape fromShape = _shapeHelper.GetFromShape(this.Shape);
+            Shape toShape = _shapeHelper.GetToShape(this.Shape);
+
+            if ((fromShape.Master.NameU == UniversalMasterName.ACTION || fromShape.Master.NameU == UniversalMasterName.JUMPOBJECT) && fromShape == toShape)
+                AddValidationMessage(Strings.shapeConnectedToBothEnds);
+
+            string connectorXml = _shapeXmlHelper.GetXmlString(this.Shape);
+            if (connectorXml.Length == 0)
+                return;
+
             List<string> errors = new();
-            _conditionsElementValidator.Validate
+            _connectorElementValidator.Validate
             (
-                _xmlDocumentHelpers.ToXmlElement(conditionsXml),
+                _xmlDocumentHelpers.ToXmlElement(connectorXml),
                 Application,
                 errors
             );
-            errors.ForEach(error => AddValidationMessage(error));
+            if (errors.Count > 0)
+                return;
+
+            int dialogFunctions = _shapeHelper.CountDialogFunctions(this.Shape);
+            if (dialogFunctions > 0)
+                AddValidationMessage(Strings.dialogFunctionsInvalidConnector);
         }
     }
 }

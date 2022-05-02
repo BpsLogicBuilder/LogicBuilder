@@ -16,15 +16,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IConditionsElementValidator _conditionsElementValidator;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ConditionShapeValidator(IContextProvider contextProvider, IConditionsElementValidator conditionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public ConditionShapeValidator(IContextProvider contextProvider, IConditionsElementValidator conditionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper)
         {
             _contextProvider = contextProvider;
             _conditionsElementValidator = conditionsElementValidator;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
-            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
@@ -39,8 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 _contextProvider,
                 _conditionsElementValidator,
                 _shapeHelper,
-                _shapeXmlHelper,
-                _xmlDocumentHelpers
+                _shapeXmlHelper
             ).Validate();
         }
     }

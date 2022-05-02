@@ -10,24 +10,24 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
-    internal class DecisionShapeValidator : IDecisionShapeValidator
+    internal class RegularConnectorValidator : IRegularConnectorValidator
     {
         private readonly IContextProvider _contextProvider;
-        private readonly IDecisionsElementValidator _decisionsElementValidator;
+        private readonly IConnectorElementValidator _connectorElementValidator;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
 
-        public DecisionShapeValidator(IContextProvider contextProvider, IDecisionsElementValidator decisionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper)
+        public RegularConnectorValidator(IContextProvider contextProvider, IConnectorElementValidator connectorElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper)
         {
             _contextProvider = contextProvider;
-            _decisionsElementValidator = decisionsElementValidator;
+            _connectorElementValidator = connectorElementValidator;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
         {
-            new DecisionShapeValidatorUtility
+            new RegularConnectorValidatorUtility
             (
                 sourceFile,
                 page,
@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 validationErrors,
                 application,
                 _contextProvider,
-                _decisionsElementValidator,
+                _connectorElementValidator,
                 _shapeHelper,
                 _shapeXmlHelper
             ).Validate();
