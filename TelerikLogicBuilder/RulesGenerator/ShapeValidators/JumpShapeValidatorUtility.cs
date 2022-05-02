@@ -19,12 +19,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
             List<ResultMessage> validationErrors,
             IContextProvider contextProvider,
             IJumpDataParser jumpDataParser,
-            IShapeXmlHelper shapeXmlHelper,
-            IXmlDocumentHelpers xmlDocumentHelpers) : base(sourceFile, page, shape, validationErrors, contextProvider)
+            IShapeXmlHelper shapeXmlHelper) : base(sourceFile, page, shape, validationErrors, contextProvider)
         {
             _jumpDataParser = jumpDataParser;
             _shapeXmlHelper = shapeXmlHelper;
-            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
         }
 
         internal override void Validate()

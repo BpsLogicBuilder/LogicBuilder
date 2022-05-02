@@ -13,14 +13,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IContextProvider _contextProvider;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IShapeXmlHelper _shapeXmlHelper;
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public JumpShapeValidator(IContextProvider contextProvider, IJumpDataParser jumpDataParser, IShapeXmlHelper shapeXmlHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public JumpShapeValidator(IContextProvider contextProvider, IJumpDataParser jumpDataParser, IShapeXmlHelper shapeXmlHelper)
         {
             _contextProvider = contextProvider;
             _jumpDataParser = jumpDataParser;
             _shapeXmlHelper = shapeXmlHelper;
-            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors)
@@ -33,8 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 validationErrors,
                 _contextProvider,
                 _jumpDataParser,
-                _shapeXmlHelper,
-                _xmlDocumentHelpers
+                _shapeXmlHelper
             ).Validate();
         }
     }

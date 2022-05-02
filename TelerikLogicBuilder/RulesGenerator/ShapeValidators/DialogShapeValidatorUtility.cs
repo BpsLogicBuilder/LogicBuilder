@@ -26,13 +26,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
             IContextProvider contextProvider,
             IFunctionsElementValidator functionsElementValidator,
             IShapeHelper shapeHelper,
-            IShapeXmlHelper shapeXmlHelper,
-            IXmlDocumentHelpers xmlDocumentHelpers) : base(sourceFile, page, shape, validationErrors, contextProvider)
+            IShapeXmlHelper shapeXmlHelper) : base(sourceFile, page, shape, validationErrors, contextProvider)
         {
             _functionsElementValidator = functionsElementValidator;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
-            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             Application = application;
         }
 
