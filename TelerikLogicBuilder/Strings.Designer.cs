@@ -1143,9 +1143,9 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         /// <summary>
         ///   Looks up a localized string similar to Dialog Shape requires at least one incoming connector..
         /// </summary>
-        internal static string dialogShapeRequiresIncomming {
+        internal static string dialogShapeRequiresIncoming {
             get {
-                return ResourceManager.GetString("dialogShapeRequiresIncomming", resourceCulture);
+                return ResourceManager.GetString("dialogShapeRequiresIncoming", resourceCulture);
             }
         }
         

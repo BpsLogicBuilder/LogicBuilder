@@ -190,7 +190,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             CloseVisioDocument(visioDocument);
 
             //assert
-            Assert.Equal(Strings.dialogShapeRequiresIncomming, errors.First().Message);
+            Assert.Equal(Strings.dialogShapeRequiresIncoming, errors.First().Message);
         }
 
         [Fact]

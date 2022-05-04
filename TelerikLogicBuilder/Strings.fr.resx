@@ -427,7 +427,7 @@
 	<data name="dialogShapeOnlyOneFunction" xml:space="preserve">
     <value>Only one function allowed per Dialog Shape.FR</value>
   </data>
-	<data name="dialogShapeRequiresIncomming" xml:space="preserve">
+	<data name="dialogShapeRequiresIncoming" xml:space="preserve">
     <value>Dialog Shape requires at least one incoming connector.FR</value>
   </data>
 	<data name="dialogShapesOneDialogFunction" xml:space="preserve">

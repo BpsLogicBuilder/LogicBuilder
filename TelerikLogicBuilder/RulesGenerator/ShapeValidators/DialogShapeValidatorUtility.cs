@@ -46,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
                 AddValidationMessage(Strings.dialogShapesOneDialogFunction);
 
             if (_shapeHelper.CountIncomingConnectors(this.Shape) < 1)
-                AddValidationMessage(Strings.dialogShapeRequiresIncomming);
+                AddValidationMessage(Strings.dialogShapeRequiresIncoming);
 
             if (this.Shape.FromConnects.Count < 1)
                 return;
