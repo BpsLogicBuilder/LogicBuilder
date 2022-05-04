@@ -153,11 +153,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
 
         [Fact]
-        public void FailsValidationBecauseJumpShapeHasBothIncommingAndOutgoingConnectors()
+        public void FailsValidationBecauseJumpShapeHasBothIncomingAndOutgoingConnectors()
         {
             //arrange
             IJumpShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IJumpShapeValidator>();
-            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationBecauseJumpShapeHasBothIncommingAndOutgoingConnectors));
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationBecauseJumpShapeHasBothIncomingAndOutgoingConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (

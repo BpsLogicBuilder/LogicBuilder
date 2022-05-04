@@ -40,7 +40,7 @@
     <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForFailingOneBlankOutgoingConnectorPolicy.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForNoIncommingConnector.vsdx">
+    <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForNoIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ActionShapeValidatorTest\FailsValidationForDialogFunction.vsdx">
@@ -97,13 +97,13 @@
     <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForIncomingCountNotEqualToOutgoingCount.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForDuplicateIncommingConnector.vsdx">
+    <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForDuplicateIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ApplicationSpecificFlowShapeValidatorTest\FailsValidationForDuplicateOutgoingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\BeginShapeValidatorTest\FailsValidationForIncommingConnector.vsdx">
+    <None Update="Diagrams\BeginShapeValidatorTest\FailsValidationForIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\BeginShapeValidatorTest\FailsValidationForMultipleOutgoingConnectors.vsdx">
@@ -121,7 +121,7 @@
     <None Update="Diagrams\ConditionShapeValidatorTest\FailsValidationForMissingShapeData.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\ConditionShapeValidatorTest\FailsValidationForMissingIncommingConnector.vsdx">
+    <None Update="Diagrams\ConditionShapeValidatorTest\FailsValidationForMissingIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ConditionShapeValidatorTest\FailsValidationForMissingOutgoingConnector.vsdx">
@@ -136,7 +136,7 @@
     <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForMissingShapeData.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForMissingIncommingConnector.vsdx">
+    <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForMissingIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\DecisionShapeValidatorTest\FailsValidationForMissingOutgoingConnector.vsdx">
@@ -190,7 +190,7 @@
     <None Update="Diagrams\DialogShapeValidatorTest\FailsvalidationForMissingOutgoingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\DialogShapeValidatorTest\FailsvalidationForMissingIncommingConnector.vsdx">
+    <None Update="Diagrams\DialogShapeValidatorTest\FailsvalidationForMissingIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\DialogShapeValidatorTest\FailsvalidationForNumberOfDialogFunctions.vsdx">
@@ -202,7 +202,7 @@
     <None Update="Diagrams\DialogShapeValidatorTest\DialogShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\EndShapeValidatorTest\FailsValidationForNoIncommingConnector.vsdx">
+    <None Update="Diagrams\EndShapeValidatorTest\FailsValidationForNoIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\EndShapeValidatorTest\FailsValidationForOutgoingConnector.vsdx">
@@ -217,7 +217,7 @@
     <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasNoConnectors.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasBothIncommingAndOutgoingConnectors.vsdx">
+    <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasBothIncomingAndOutgoingConnectors.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\JumpShapeValidatorTest\FailsValidationBecauseJumpShapeHasMoreThanOneOutgoingConnector.vsdx">
@@ -244,7 +244,7 @@
     <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForIncomningRegularAndApplicationConnectors.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForDuplicateIncommingApplication.vsdx">
+    <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForDuplicateIncomingApplication.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\MergeShapeValidatorTest\FailsValidationForDuplicateOutgoingApplication.vsdx">

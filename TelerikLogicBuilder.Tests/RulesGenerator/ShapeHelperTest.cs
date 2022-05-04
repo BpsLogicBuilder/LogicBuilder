@@ -328,13 +328,13 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         }
 
         [Fact]
-        public void CountIncomingConnectorsReturnsThreeWithThreeIncommingConnectors()
+        public void CountIncomingConnectorsReturnsThreeWithThreeIncomingConnectors()
         {
             //arrange
             IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
-                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.CountIncomingConnectors)}\ReturnsThreeWithThreeIncommingConnectors.vsdx"),
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.CountIncomingConnectors)}\ReturnsThreeWithThreeIncomingConnectors.vsdx"),
                 (short)VisOpenSaveArgs.visOpenCopy
             );
             Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);

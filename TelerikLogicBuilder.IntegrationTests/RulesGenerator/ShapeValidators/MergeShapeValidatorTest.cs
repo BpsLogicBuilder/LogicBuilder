@@ -57,8 +57,8 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                     if (s.Master.NameU != UniversalMasterName.MERGEOBJECT)
                         return false;
 
-                    return GetIncommingRegularConnector() != null;
-                    Shape? GetIncommingRegularConnector()
+                    return GetIncomingRegularConnector() != null;
+                    Shape? GetIncomingRegularConnector()
                     {
                         foreach(Connect fromConnect in s.FromConnects)
                         {
@@ -107,8 +107,8 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                     if (s.Master.NameU != UniversalMasterName.MERGEOBJECT)
                         return false;
 
-                    return GetIncommingRegularConnector() != null;
-                    Shape? GetIncommingRegularConnector()
+                    return GetIncomingRegularConnector() != null;
+                    Shape? GetIncomingRegularConnector()
                     {
                         foreach (Connect fromConnect in s.FromConnects)
                         {
@@ -342,11 +342,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
 
         [Fact]
-        public void FailsValidationForDuplicateIncommingApplication()
+        public void FailsValidationForDuplicateIncomingApplication()
         {
             //arrange
             IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
-            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateIncommingApplication));
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateIncomingApplication));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
@@ -648,8 +648,8 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                     if (s.Master.NameU != UniversalMasterName.MERGEOBJECT)
                         return false;
 
-                    return GetIncommingRegularConnector() != null;
-                    Shape? GetIncommingRegularConnector()
+                    return GetIncomingRegularConnector() != null;
+                    Shape? GetIncomingRegularConnector()
                     {
                         foreach (Connect fromConnect in s.FromConnects)
                         {

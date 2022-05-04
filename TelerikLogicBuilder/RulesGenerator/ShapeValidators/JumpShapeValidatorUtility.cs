@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
                 return;
             }
 
-            if (ShapeHasIncommingAndOutGoung())
+            if (ShapeHasIncomingAndOutGoung())
             {
                 AddValidationMessage(Strings.jumpConnectorsBothDirections);
                 return;
@@ -56,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
             if (Shape.FromConnects.Count > 1 && ShapeIsToJumpShape())
                 AddValidationMessage(Strings.jumpShape1OutGoing);
 
-            bool ShapeHasIncommingAndOutGoung()
+            bool ShapeHasIncomingAndOutGoung()
             {
                 foreach (Connect fromConnect in this.Shape.FromConnects)
                 {

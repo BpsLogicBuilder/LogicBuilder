@@ -94,11 +94,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
 
         [Fact]
-        public void FailsValidationForDuplicateIncommingConnector()
+        public void FailsValidationForDuplicateIncomingConnector()
         {
             //arrange
             IApplicationSpecificFlowShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IApplicationSpecificFlowShapeValidator>();
-            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateIncommingConnector));
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateIncomingConnector));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
                 sourceFile,

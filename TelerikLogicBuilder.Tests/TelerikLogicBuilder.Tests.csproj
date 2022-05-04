@@ -75,7 +75,7 @@
     <None Update="Diagrams\ShapeHelperTest\CountFunctions\ThrowsForInvalidShape.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Diagrams\ShapeHelperTest\CountIncomingConnectors\ReturnsThreeWithThreeIncommingConnectors.vsdx">
+    <None Update="Diagrams\ShapeHelperTest\CountIncomingConnectors\ReturnsThreeWithThreeIncomingConnectors.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ShapeHelperTest\CountIncomingConnectors\ThrowsForInvalidShape.vsdx">

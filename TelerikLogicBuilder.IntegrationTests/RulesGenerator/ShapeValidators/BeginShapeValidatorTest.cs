@@ -111,11 +111,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
 
         [Fact]
-        public void FailsValidationForIncommingConnector()
+        public void FailsValidationForIncomingConnector()
         {
             //arrange
             IBeginShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IBeginShapeValidator>();
-            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForIncommingConnector));
+            string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForIncomingConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (

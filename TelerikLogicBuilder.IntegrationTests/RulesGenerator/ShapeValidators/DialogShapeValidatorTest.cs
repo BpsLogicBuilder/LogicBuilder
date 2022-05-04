@@ -156,11 +156,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
 
         [Fact]
-        public void FailsvalidationForMissingIncommingConnector()
+        public void FailsvalidationForMissingIncomingConnector()
         {
             //arrange
             IDialogShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IDialogShapeValidator>();
-            string sourceFile = GetFullSourceFilePath(nameof(FailsvalidationForMissingIncommingConnector));
+            string sourceFile = GetFullSourceFilePath(nameof(FailsvalidationForMissingIncomingConnector));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
             (
                 sourceFile,
