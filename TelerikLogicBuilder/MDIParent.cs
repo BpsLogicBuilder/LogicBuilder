@@ -5,7 +5,7 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder
 {
-    internal partial class MDIParent : Telerik.WinControls.UI.RadForm
+    internal partial class MDIParent : Telerik.WinControls.UI.RadForm, IMDIParent
     {
         private readonly IFormInitializer formInitializer;
         public MDIParent(IFormInitializer formInitializer)
