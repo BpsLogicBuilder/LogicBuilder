@@ -258,7 +258,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
-            //Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.ThemeName;
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.themeName;
 
             var form = ServiceProvider.GetRequiredService<IMDIParent>();
 

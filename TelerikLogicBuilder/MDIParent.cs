@@ -29,5 +29,19 @@ namespace ABIS.LogicBuilder.FlowBuilder
         {
 
         }
+
+        private void RadThemeMenuItem_Click(object sender, EventArgs e)
+        {
+            Telerik.WinControls.UI.RadMenuItem clickedItem = (Telerik.WinControls.UI.RadMenuItem)sender;
+            foreach (Telerik.WinControls.UI.RadMenuItem menuItem in this.radMenuItemTheme.Items)
+            {
+                if (menuItem != clickedItem)
+                    menuItem.IsChecked = false;
+            }
+
+            ThemeResolutionService.ApplicationThemeName = (string)clickedItem.Tag;
+            Properties.Settings.Default.themeName = ThemeResolutionService.ApplicationThemeName;
+            Properties.Settings.Default.Save();
+        }
     }
 }
