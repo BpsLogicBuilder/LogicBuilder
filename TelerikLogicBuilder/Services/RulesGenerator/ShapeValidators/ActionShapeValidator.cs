@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
 
-        public ActionShapeValidator(IApplicationSpecificFlowShapeValidator applicationSpecificFlowShapeValidator, IContextProvider contextProvider, IFunctionsElementValidator functionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public ActionShapeValidator(IApplicationSpecificFlowShapeValidator applicationSpecificFlowShapeValidator, IContextProvider contextProvider, IFunctionsElementValidator functionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper)
         {
             _applicationSpecificFlowShapeValidator = applicationSpecificFlowShapeValidator;
             _contextProvider = contextProvider;

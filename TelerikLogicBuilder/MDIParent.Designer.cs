@@ -149,7 +149,6 @@
             // 
             // radMenuItemOffice2007Black
             // 
-            this.radMenuItemOffice2007Black.CheckOnClick = true;
             this.radMenuItemOffice2007Black.Name = "radMenuItemOffice2007Black";
             this.radMenuItemOffice2007Black.Tag = "Office2007Black";
             resources.ApplyResources(this.radMenuItemOffice2007Black, "radMenuItemOffice2007Black");
@@ -157,7 +156,6 @@
             // 
             // radMenuItemOffice2007Silver
             // 
-            this.radMenuItemOffice2007Silver.CheckOnClick = true;
             this.radMenuItemOffice2007Silver.Name = "radMenuItemOffice2007Silver";
             this.radMenuItemOffice2007Silver.Tag = "Office2007Silver";
             resources.ApplyResources(this.radMenuItemOffice2007Silver, "radMenuItemOffice2007Silver");
@@ -165,7 +163,6 @@
             // 
             // radMenuItemOffice2010Black
             // 
-            this.radMenuItemOffice2010Black.CheckOnClick = true;
             this.radMenuItemOffice2010Black.Name = "radMenuItemOffice2010Black";
             this.radMenuItemOffice2010Black.Tag = "Office2010Black";
             resources.ApplyResources(this.radMenuItemOffice2010Black, "radMenuItemOffice2010Black");
@@ -173,7 +170,6 @@
             // 
             // radMenuItemOffice2010Blue
             // 
-            this.radMenuItemOffice2010Blue.CheckOnClick = true;
             this.radMenuItemOffice2010Blue.Name = "radMenuItemOffice2010Blue";
             this.radMenuItemOffice2010Blue.Tag = "Office2010Blue";
             resources.ApplyResources(this.radMenuItemOffice2010Blue, "radMenuItemOffice2010Blue");
@@ -181,7 +177,6 @@
             // 
             // radMenuItemOffice2010Silver
             // 
-            this.radMenuItemOffice2010Silver.CheckOnClick = true;
             this.radMenuItemOffice2010Silver.Name = "radMenuItemOffice2010Silver";
             this.radMenuItemOffice2010Silver.Tag = "Office2010Silver";
             resources.ApplyResources(this.radMenuItemOffice2010Silver, "radMenuItemOffice2010Silver");
@@ -189,7 +184,6 @@
             // 
             // radMenuItemOffice2013Light
             // 
-            this.radMenuItemOffice2013Light.CheckOnClick = true;
             this.radMenuItemOffice2013Light.Name = "radMenuItemOffice2013Light";
             this.radMenuItemOffice2013Light.Tag = "Office2013Light";
             resources.ApplyResources(this.radMenuItemOffice2013Light, "radMenuItemOffice2013Light");
@@ -197,7 +191,6 @@
             // 
             // radMenuItemOffice2019Dark
             // 
-            this.radMenuItemOffice2019Dark.CheckOnClick = true;
             this.radMenuItemOffice2019Dark.Name = "radMenuItemOffice2019Dark";
             this.radMenuItemOffice2019Dark.Tag = "Office2019Dark";
             resources.ApplyResources(this.radMenuItemOffice2019Dark, "radMenuItemOffice2019Dark");
@@ -205,7 +198,6 @@
             // 
             // radMenuItemOffice2019Gray
             // 
-            this.radMenuItemOffice2019Gray.CheckOnClick = true;
             this.radMenuItemOffice2019Gray.Name = "radMenuItemOffice2019Gray";
             this.radMenuItemOffice2019Gray.Tag = "Office2019Gray";
             resources.ApplyResources(this.radMenuItemOffice2019Gray, "radMenuItemOffice2019Gray");
@@ -213,7 +205,6 @@
             // 
             // radMenuItemOffice2019Light
             // 
-            this.radMenuItemOffice2019Light.CheckOnClick = true;
             this.radMenuItemOffice2019Light.Name = "radMenuItemOffice2019Light";
             this.radMenuItemOffice2019Light.Tag = "Office2019Light";
             resources.ApplyResources(this.radMenuItemOffice2019Light, "radMenuItemOffice2019Light");
