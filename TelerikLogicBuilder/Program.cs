@@ -74,6 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ITypeHelper, TypeHelper>()
             .AddSingleton<ITypeLoadHelper, TypeLoadHelper>()
             .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
+            .AddTransient(typeof(IScopedDisposableManager<>), typeof(ScopedDisposableManager<>))
 
             //Configuration
             .AddSingleton<IApplicationXmlParser, ApplicationXmlParser>()
