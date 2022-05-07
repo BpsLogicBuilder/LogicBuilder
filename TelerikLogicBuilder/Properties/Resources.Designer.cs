@@ -661,6 +661,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Project {
+            get {
+                object obj = ResourceManager.GetObject("Project", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Property {
@@ -827,6 +837,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
             get {
                 object obj = ResourceManager.GetObject("TABLE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon TABLE1 {
+            get {
+                object obj = ResourceManager.GetObject("TABLE1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

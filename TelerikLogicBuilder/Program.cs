@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         public static IServiceProvider ServiceProvider { get; set; }
         public static IServiceCollection ServiceCollection => new ServiceCollection()
-            .AddTransient<IMDIParent, MDIParent>()
+            .AddTransient<MDIParent, MDIParent>()
 
             //Services
             .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
@@ -262,11 +262,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.themeName;
 
-            var form = ServiceProvider.GetRequiredService<IMDIParent>();
+            var form = ServiceProvider.GetRequiredService<MDIParent>();
 
-            ServiceProvider.GetRequiredService<IFormInitializer>().SetCenterScreen((Form)form);
+            ServiceProvider.GetRequiredService<IFormInitializer>().SetCenterScreen(form);
 
-            Application.Run((Form)form);
+            Application.Run(form);
         }
     }
 }
