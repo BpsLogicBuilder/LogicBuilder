@@ -71,6 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IShapeXmlHelper, ShapeXmlHelper>()
             .AddSingleton<IStringHelper, StringHelper>()
             .AddSingleton<IThemeManager, ThemeManager>()
+            .AddSingleton<ITreeViewService, TreeViewService>()
             .AddSingleton<ITypeHelper, TypeHelper>()
             .AddSingleton<ITypeLoadHelper, TypeLoadHelper>()
             .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()

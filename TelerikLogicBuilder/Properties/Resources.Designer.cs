@@ -183,6 +183,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CLSDFOLD {
+            get {
+                object obj = ResourceManager.GetObject("CLSDFOLD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CLSDFOLDCUT {
+            get {
+                object obj = ResourceManager.GetObject("CLSDFOLDCUT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Column {
             get {
                 object obj = ResourceManager.GetObject("Column", resourceCulture);
@@ -936,6 +956,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap variableButtonImage {
             get {
                 object obj = ResourceManager.GetObject("variableButtonImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visio_16 {
+            get {
+                object obj = ResourceManager.GetObject("Visio_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visio_Application_16xLG {
+            get {
+                object obj = ResourceManager.GetObject("Visio_Application_16xLG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
