@@ -1,4 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Constants
+﻿using System.Collections.Generic;
+
+namespace ABIS.LogicBuilder.FlowBuilder.Constants
 {
     internal struct FileExtensions
     {
@@ -10,5 +12,15 @@
         internal const string RULESFILEEXTENSION = ".module";
         internal const string RESOURCEFILEEXTENSION = ".resources";
         internal const string RESOURCETEXTFILEEXTENSION = ".txt";
+
+        internal static readonly HashSet<string> DocumentExtensions = new
+        (
+            new string[] 
+            { 
+                VISIOFILEEXTENSION, 
+                VSDXFILEEXTENSION, 
+                TABLEFILEEXTENSION 
+            }
+        );
     }
 }

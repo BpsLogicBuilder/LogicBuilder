@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
@@ -27,6 +28,7 @@ using ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators;
+using ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation;
@@ -208,6 +210,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IWaitConditionShapeValidator, WaitConditionShapeValidator>()
             .AddSingleton<IWaitDecisionShapeValidator, WaitDecisionShapeValidator>()
             .AddSingleton<IShapeValidator, ShapeValidator>()
+
+            //TreeViewBuiilders
+            .AddSingleton<IEmptyFolderRemover, EmptyFolderRemover>()
+            .AddSingleton<ISelectDocunentsTreeViewBuilder, SelectDocunentsTreeViewBuilder>()
 
             //XmlValidation
             .AddSingleton<IXmlValidator, XmlValidator>()
