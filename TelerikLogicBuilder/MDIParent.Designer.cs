@@ -42,6 +42,7 @@
             this.radMenuItemOffice2010Black = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2010Blue = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2010Silver = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemOffice2013Dark = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2013Light = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2019Dark = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2019Gray = new Telerik.WinControls.UI.RadMenuItem();
@@ -73,6 +74,7 @@
             this.office2019DarkTheme1 = new Telerik.WinControls.Themes.Office2019DarkTheme();
             this.office2019GrayTheme1 = new Telerik.WinControls.Themes.Office2019GrayTheme();
             this.office2019LightTheme1 = new Telerik.WinControls.Themes.Office2019LightTheme();
+            this.office2013DarkTheme1 = new Telerik.WinControls.Themes.Office2013DarkTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).BeginInit();
@@ -140,6 +142,7 @@
             this.radMenuItemOffice2010Black,
             this.radMenuItemOffice2010Blue,
             this.radMenuItemOffice2010Silver,
+            this.radMenuItemOffice2013Dark,
             this.radMenuItemOffice2013Light,
             this.radMenuItemOffice2019Dark,
             this.radMenuItemOffice2019Gray,
@@ -181,6 +184,13 @@
             this.radMenuItemOffice2010Silver.Tag = "Office2010Silver";
             resources.ApplyResources(this.radMenuItemOffice2010Silver, "radMenuItemOffice2010Silver");
             this.radMenuItemOffice2010Silver.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
+            // 
+            // radMenuItemOffice2013Dark
+            // 
+            this.radMenuItemOffice2013Dark.Name = "radMenuItemOffice2013Dark";
+            this.radMenuItemOffice2013Dark.Tag = "Office2013Dark";
+            resources.ApplyResources(this.radMenuItemOffice2013Dark, "radMenuItemOffice2013Dark");
+            this.radMenuItemOffice2013Dark.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2013Light
             // 
@@ -287,7 +297,6 @@
             // 
             this.radSplitContainerBase.Controls.Add(this.splitPanelLeft);
             this.radSplitContainerBase.Controls.Add(this.splitPanelExplorer);
-            this.radSplitContainerBase.Cursor = System.Windows.Forms.Cursors.SizeWE;
             resources.ApplyResources(this.radSplitContainerBase, "radSplitContainerBase");
             this.radSplitContainerBase.Name = "radSplitContainerBase";
             // 
@@ -314,7 +323,6 @@
             // 
             this.radSplitContainerLeft.Controls.Add(this.splitPanelEdit);
             this.radSplitContainerLeft.Controls.Add(this.splitPanelMessages);
-            this.radSplitContainerLeft.Cursor = System.Windows.Forms.Cursors.SizeNS;
             resources.ApplyResources(this.radSplitContainerLeft, "radSplitContainerLeft");
             this.radSplitContainerLeft.Name = "radSplitContainerLeft";
             // 
@@ -469,5 +477,7 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemOffice2019Dark;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemOffice2019Gray;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemOffice2019Light;
+        private Telerik.WinControls.Themes.Office2013DarkTheme office2013DarkTheme1;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemOffice2013Dark;
     }
 }

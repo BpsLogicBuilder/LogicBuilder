@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 		public const string Office2010Black = "Office2010Black";
 		public const string Office2010Blue = "Office2010Blue";
 		public const string Office2010Silver = "Office2010Silver";
+		public const string Office2013Dark = "Office2013Dark";
 		public const string Office2013Light = "Office2013Light";
 		public const string Office2019Dark = "Office2019Dark";
 		public const string Office2019Gray = "Office2019Gray";
@@ -23,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 				Office2010Black,
 				Office2010Blue,
 				Office2010Silver,
+				Office2013Dark,
 				Office2013Light,
 				Office2019Dark,
 				Office2019Gray,
