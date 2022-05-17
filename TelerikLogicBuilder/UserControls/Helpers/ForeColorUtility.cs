@@ -7,9 +7,9 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 {
-    internal class ForeColorUtility
+    internal static class ForeColorUtility
     {
-        private Dictionary<string, string> ErrorRepositoryTable => new()
+        private static Dictionary<string, string> ErrorRepositoryTable => new()
         {
             [ThemeCollections.Office2007Black] = "BlackForeColor",
             [ThemeCollections.Office2007Silver] = "BlackForeColor",
@@ -23,13 +23,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             [ThemeCollections.Office2019Light] = "MainForeColor",
         };
 
-        private Dictionary<string, string> OkRepositoryTable => new()
+        private static Dictionary<string, string> OkRepositoryTable => new()
         {
             [ThemeCollections.Office2007Black] = "ForeColor(0;50;208)",
             [ThemeCollections.Office2007Silver] = "ForeColor(0;50;208)",
             [ThemeCollections.Office2010Black] = "ForeColorWhite",
-            [ThemeCollections.Office2010Blue] = "ForeColorOrange",
-            [ThemeCollections.Office2010Silver] = "ForeColor(214;121;3)",
+            [ThemeCollections.Office2010Blue] = "ForeColorOrange",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
+            [ThemeCollections.Office2010Silver] = "ForeColor(214;121;3)",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
             [ThemeCollections.Office2013Dark] = "ForeColor(0;114;198)",
             [ThemeCollections.Office2013Light] = "ForeColor(0;114;198)",
             [ThemeCollections.Office2019Dark] = "AccentMouseOverBorderForeColor",
@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             [ThemeCollections.Office2019Light] = "AccentForeColor"
         };
 
-        public Color GetErrorForeColor(string themeName)
+        public static Color GetErrorForeColor(string themeName)
         {
             if (!ThemeCollections.OfficeThemes.Contains(themeName))
                 throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{E49A3619-879C-4DCF-9575-E77F97F31E0E}"));
@@ -45,7 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             return GetForeColorFromRepository(themeName, ErrorRepositoryTable);
         }
 
-        public Color GetOkForeColor(string themeName)
+        public static Color GetOkForeColor(string themeName)
         {
             if (!ThemeCollections.OfficeThemes.Contains(themeName))
                 throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{53746E6D-A654-4818-A81D-303295E6346C}"));
@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             return GetForeColorFromRepository(themeName, OkRepositoryTable);
         }
 
-        private Color GetForeColorFromRepository(string themeName, IDictionary<string, string> colorRepositoryTable)
+        private static Color GetForeColorFromRepository(string themeName, IDictionary<string, string> colorRepositoryTable)
         {
             var theme = ThemeResolutionService.GetTheme(themeName);
             StyleRepository repositoryFromTheme = theme.FindRepository(colorRepositoryTable[themeName]);

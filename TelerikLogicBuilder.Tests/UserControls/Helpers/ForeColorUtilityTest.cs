@@ -80,11 +80,8 @@ namespace TelerikLogicBuilder.Tests.UserControls.Helpers
         [MemberData(nameof(ErrorForeColors_Data))]
         public void GetErrorForeColorReturnsExpectedColors(string themeName, Color expectedColor)
         {
-            //arrange
-            ForeColorUtility foreColorHelper = new();
-
             //act
-            Color result = foreColorHelper.GetErrorForeColor(themeName);
+            Color result = ForeColorUtility.GetErrorForeColor(themeName);
 
             //assert
             Assert.Equal(expectedColor.A, result.A);
@@ -96,11 +93,8 @@ namespace TelerikLogicBuilder.Tests.UserControls.Helpers
         [Fact]
         public void GetErrorForeColorThrowsForInvalidThemeName()
         {
-            //arrange
-            ForeColorUtility foreColorHelper = new();
-
             //act
-            var exception = Assert.Throws<CriticalLogicBuilderException>(() => foreColorHelper.GetErrorForeColor("xyz"));
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => ForeColorUtility.GetErrorForeColor("xyz"));
 
             //assert
             Assert.Equal
@@ -114,11 +108,7 @@ namespace TelerikLogicBuilder.Tests.UserControls.Helpers
         [MemberData(nameof(OkForeColors_Data))]
         public void GetOkForeColorReturnsExpectedColors(string themeName, Color expectedColor)
         {
-            //arrange
-            ForeColorUtility foreColorHelper = new();
-
-            //act
-            Color result = foreColorHelper.GetOkForeColor(themeName);
+            Color result = ForeColorUtility.GetOkForeColor(themeName);
 
             //assert
             Assert.Equal(expectedColor.A, result.A);
@@ -130,11 +120,8 @@ namespace TelerikLogicBuilder.Tests.UserControls.Helpers
         [Fact]
         public void GetOkForeColorThrowsForInvalidThemeName()
         {
-            //arrange
-            ForeColorUtility foreColorHelper = new();
-
             //act
-            var exception = Assert.Throws<CriticalLogicBuilderException>(() => foreColorHelper.GetOkForeColor("xyz"));
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => ForeColorUtility.GetOkForeColor("xyz"));
 
             //assert
             Assert.Equal

@@ -408,6 +408,12 @@
     <value>Shape has two connectors with identical choices.  Connector number {0} is a duplicate.</value>
     <comment>0=Duplicate Connector Number</comment>
   </data>
+	<data name="dialogFormMessageControlErrorsGroupBoxHeader" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+	<data name="dialogFormMessageControlMessagesGroupBoxHeader" xml:space="preserve">
+    <value>Messages</value>
+  </data>
 	<data name="dialogFunctionsInvalid" xml:space="preserve">
     <value>Dialog Functions are invalid for Action Shape.</value>
   </data>

@@ -1087,6 +1087,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Errors.
+        /// </summary>
+        internal static string dialogFormMessageControlErrorsGroupBoxHeader {
+            get {
+                return ResourceManager.GetString("dialogFormMessageControlErrorsGroupBoxHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Messages.
+        /// </summary>
+        internal static string dialogFormMessageControlMessagesGroupBoxHeader {
+            get {
+                return ResourceManager.GetString("dialogFormMessageControlMessagesGroupBoxHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dialog Functions are invalid for Action Shape..
         /// </summary>
         internal static string dialogFunctionsInvalid {
