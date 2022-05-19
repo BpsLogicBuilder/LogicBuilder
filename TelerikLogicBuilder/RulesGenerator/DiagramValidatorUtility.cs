@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
@@ -19,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
         private readonly IContextProvider _contextProvider;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IPathHelper _pathHelper;
+        private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IShapeValidator _shapeValidator;
         private readonly IResultMessageBuilder _resultMessageBuilder;
@@ -32,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             CancellationTokenSource cancellationTokenSource,
             IContextProvider contextProvider,
             IJumpDataParser jumpDataParser,
+            IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
             IShapeValidator shapeValidator)
         {
@@ -46,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _contextProvider = contextProvider;
             _jumpDataParser = jumpDataParser;
+            _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
             _shapeValidator = shapeValidator;
         }
@@ -172,7 +176,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             {
                 foreach (Shape shape in page.Shapes)
                 {
-
+                    ValidateOutgoingBlankConnectors(shape, page);
                     _shapeValidator.Validate(SourceFile, page, shape, ValidationErrors, Application);
 
                     Progress.Report
@@ -305,6 +309,47 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             {
                 if (shapeIdInfo.ShapeMasterNameU == UniversalMasterName.MODULEEND)
                     AddValidationMessage(Strings.moduleEndIsInvalidForBeginFlow, GetVisioFileSource(shapeIdInfo));
+            }
+        }
+
+        /// <summary>
+        /// Ensures that only one blank connector exits a shape except when application logic diverges
+        /// </summary>
+        /// <param name="shape"></param>
+        /// <param name="page"></param>
+        private void ValidateOutgoingBlankConnectors(Shape shape, Page page)
+        {
+            switch (shape.Master.NameU)
+            {
+                case UniversalMasterName.APP01CONNECTOBJECT:
+                case UniversalMasterName.APP02CONNECTOBJECT:
+                case UniversalMasterName.APP03CONNECTOBJECT:
+                case UniversalMasterName.APP04CONNECTOBJECT:
+                case UniversalMasterName.APP05CONNECTOBJECT:
+                case UniversalMasterName.APP06CONNECTOBJECT:
+                case UniversalMasterName.APP07CONNECTOBJECT:
+                case UniversalMasterName.APP08CONNECTOBJECT:
+                case UniversalMasterName.APP09CONNECTOBJECT:
+                case UniversalMasterName.APP10CONNECTOBJECT:
+                case UniversalMasterName.OTHERSCONNECTOBJECT:
+                case UniversalMasterName.CONNECTOBJECT:
+                    break;
+                case UniversalMasterName.DIALOG:
+                    if (_shapeHelper.CountOutgoingNonApplicationConnectors(shape) > 1 && _shapeHelper.CountDialogFunctions(shape) == 0)
+                        AddValidationMessage(Strings.dialogBoxOutgoingCount, GetVisioFileSource(page, shape));
+                    break;
+                case UniversalMasterName.ACTION:
+                case UniversalMasterName.MERGEOBJECT:
+                case UniversalMasterName.MODULE:
+                case UniversalMasterName.WAITCONDITIONOBJECT:
+                case UniversalMasterName.WAITDECISIONOBJECT:
+                    if (_shapeHelper.CountOutgoingNonApplicationConnectors(shape) > 1)
+                        AddValidationMessage(Strings.shapeBoxOutgoingBlanks, GetVisioFileSource(page, shape));
+                    break;
+                default:
+                    if (_shapeHelper.CountOutgoingBlankConnectors(shape) > 1)
+                        AddValidationMessage(Strings.shapeBoxOutgoingBlanks, GetVisioFileSource(page, shape));
+                    break;
             }
         }
     }

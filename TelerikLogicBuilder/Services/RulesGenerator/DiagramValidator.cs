@@ -17,13 +17,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     {
         private readonly IContextProvider _contextProvider;
         private readonly IJumpDataParser _jumpDataParser;
+        private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IShapeValidator _shapeValidator;
 
-        public DiagramValidator(IContextProvider contextProvider, IJumpDataParser jumpDataParser, IShapeXmlHelper shapeXmlHelper, IShapeValidator shapeValidator)
+        public DiagramValidator(IContextProvider contextProvider, IJumpDataParser jumpDataParser, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper, IShapeValidator shapeValidator)
         {
             _contextProvider = contextProvider;
             _jumpDataParser = jumpDataParser;
+            _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
             _shapeValidator = shapeValidator;
         }
@@ -39,6 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 cancellationTokenSource,
                 _contextProvider,
                 _jumpDataParser,
+                _shapeHelper,
                 _shapeXmlHelper,
                 _shapeValidator
             ).Validate();

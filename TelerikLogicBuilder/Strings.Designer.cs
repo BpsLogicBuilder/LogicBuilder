@@ -1078,6 +1078,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Without a multiple choice dialog function or diverging application logic, only one connector can exit a Dialog Shape..
+        /// </summary>
+        internal static string dialogBoxOutgoingCount {
+            get {
+                return ResourceManager.GetString("dialogBoxOutgoingCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shape has two connectors with identical choices.  Connector number {0} is a duplicate..
         /// </summary>
         internal static string dialogDuplicateChoiceFormat {
@@ -3000,6 +3009,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string sbyteKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("sbyteKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the exception of diverging application logic, only one blank connector can exit this shape..
+        /// </summary>
+        internal static string shapeBoxOutgoingBlanks {
+            get {
+                return ResourceManager.GetString("shapeBoxOutgoingBlanks", resourceCulture);
             }
         }
         

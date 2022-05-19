@@ -404,6 +404,9 @@
     <value>Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}.FR</value>
     <comment>0=fileName; 1=PageNumber; 2=Master; 3=ShapeIndex</comment>
   </data>
+	<data name="dialogBoxOutgoingCount" xml:space="preserve">
+    <value>Without a multiple choice dialog function or diverging application logic, only one connector can exit a Dialog Shape.FR</value>
+  </data>
 	<data name="dialogDuplicateChoiceFormat" xml:space="preserve">
     <value>Shape has two connectors with identical choices.  Connector number {0} is a duplicate.FR</value>
     <comment>0=Duplicate Connector Number</comment>
@@ -732,6 +735,9 @@
 	<data name="referenceNameAndCastReferenceAFormat" xml:space="preserve">
     <value>Variable "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).FR</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="shapeBoxOutgoingBlanks" xml:space="preserve">
+    <value>With the exception of diverging application logic, only one blank connector can exit this shape.FR</value>
   </data>
 	<data name="shapeConnectedToBothEnds" xml:space="preserve">
     <value>The same Action Shape or Jump Object may not be connected to both ends of a connector.FR</value>
