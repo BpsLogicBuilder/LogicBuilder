@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using Telerik.WinControls;
@@ -79,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             var progress = new Progress<ProgressMessage>(percent =>
             {
                 radProgressBarElement1.Value1 = percent.Progress;
-                radLabelElement1.Text = percent.Message;
+                radLabelElement1.Text = string.Format(CultureInfo.CurrentCulture, Strings.progressFormStatusMessageFormat2, percent.Message, percent.Progress);
             });
 
             await _loadContextSponsor.RunAsync

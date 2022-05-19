@@ -2914,6 +2914,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}: {1}% complete..
+        /// </summary>
+        internal static string progressFormStatusMessageFormat2 {
+            get {
+                return ResourceManager.GetString("progressFormStatusMessageFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initializing Page {0}.
         /// </summary>
         internal static string progressFormTaskInitializingPageFormat {

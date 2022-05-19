@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
+using System.Globalization;
 using System.Threading;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Forms
@@ -32,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
 
         private void Progress_ProgressChanged(object? sender, ProgressMessage e)
         {
-            radPanelLabel.Text = e.Message;
+            radPanelLabel.Text = string.Format(CultureInfo.CurrentCulture, Strings.progressFormStatusMessageFormat2, e.Message, e.Progress);
             radProgressBar.Value1 = e.Progress;
         }
 

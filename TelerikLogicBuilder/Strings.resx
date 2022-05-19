@@ -707,6 +707,10 @@
 	<data name="progressFormOperationComplete" xml:space="preserve">
     <value>Complete</value>
   </data>
+	<data name="progressFormStatusMessageFormat2" xml:space="preserve">
+    <value>{0}: {1}% complete.</value>
+    <comment>0=messsage; 1=percent complete</comment>
+  </data>
 	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
     <value>Initializing Page {0}</value>
     <comment>0=PageIndex</comment>

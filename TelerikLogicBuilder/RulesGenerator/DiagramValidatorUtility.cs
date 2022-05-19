@@ -62,7 +62,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
 
         internal async Task<IList<ResultMessage>> Validate()
         {
-            await Task.Delay(20, CancellationTokenSource.Token);
             await Task.Run(PreValidate, CancellationTokenSource.Token);
             if (ValidationErrors.Count > 0)
                 return ValidationErrors;
