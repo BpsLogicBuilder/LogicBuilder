@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -391,6 +393,77 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                 },
                 new HashSet<string>(),
                 ContextProvider
+            );
+
+            ConfigurationService.FunctionList = new FunctionList
+            (
+                new Dictionary<string, Function>
+                {
+                    ["ClearErrorMessages"] = new Function
+                    (
+                        "ClearErrorMessages",
+                        "Clear",
+                        FunctionCategories.Standard,
+                        "",
+                        "flowManager.FlowDataCache.Response.ErrorMessages",
+                        "Field.Property.Property.Property",
+                        "",
+                        ReferenceCategories.InstanceReference,
+                        ParametersLayout.Sequential,
+                        new List<ParameterBase>()
+                        {
+                        },
+                        new List<string> { },
+                        new LiteralReturnType(LiteralFunctionReturnType.Void, ContextProvider),
+                        "",
+                        ContextProvider
+                    ),
+                    ["WriteToLog"] = new Function
+                    (
+                        "WriteToLog",
+                        "WriteToLog",
+                        FunctionCategories.Standard,
+                        "",
+                        "flowManager.CustomActions",
+                        "Field.Property",
+                        "",
+                        ReferenceCategories.InstanceReference,
+                        ParametersLayout.Sequential,
+                        new List<ParameterBase>()
+                        {
+                            new LiteralParameter
+                            (
+                                "message",
+                                false,
+                                "",
+                                LiteralParameterType.String,
+                                LiteralParameterInputStyle.SingleLineTextBox,
+                                true,
+                                false,
+                                true,
+                                "",
+                                "",
+                                "",
+                                new List<string>(),
+                                ContextProvider
+                             )
+                        },
+                        new List<string> { },
+                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        "",
+                        ContextProvider
+                    )
+                },
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>())
             );
 
             VisioApplication = new InvisibleApp();

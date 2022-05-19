@@ -2635,6 +2635,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reloading assemblies. Please wait..
+        /// </summary>
+        internal static string loadingAssemblies {
+            get {
+                return ResourceManager.GetString("loadingAssemblies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type long..
         /// </summary>
         internal static string longKeyIndexIsInvalidFormat {
@@ -2887,11 +2896,38 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation Cancelled.
+        /// </summary>
+        internal static string progressFormOperationCancelled {
+            get {
+                return ResourceManager.GetString("progressFormOperationCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        internal static string progressFormOperationComplete {
+            get {
+                return ResourceManager.GetString("progressFormOperationComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initializing Page {0}.
         /// </summary>
         internal static string progressFormTaskInitializingPageFormat {
             get {
                 return ResourceManager.GetString("progressFormTaskInitializingPageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validating {0} page {1}.
+        /// </summary>
+        internal static string progressFormTaskValidatingPageFormat {
+            get {
+                return ResourceManager.GetString("progressFormTaskValidatingPageFormat", resourceCulture);
             }
         }
         
@@ -3000,6 +3036,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string spaceString {
             get {
                 return ResourceManager.GetString("spaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        internal static string statusBarReadyMessage {
+            get {
+                return ResourceManager.GetString("statusBarReadyMessage", resourceCulture);
             }
         }
         
@@ -3252,6 +3297,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string validApplicationSpecificShapes {
             get {
                 return ResourceManager.GetString("validApplicationSpecificShapes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation Successful!.
+        /// </summary>
+        internal static string validationSuccessful {
+            get {
+                return ResourceManager.GetString("validationSuccessful", resourceCulture);
             }
         }
         

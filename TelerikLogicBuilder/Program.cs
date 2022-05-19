@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
@@ -192,6 +193,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //RulesGenerator
             .AddSingleton<IDiagramValidator, DiagramValidator>()
             .AddSingleton<IShapeHelper, ShapeHelper>()
+            .AddSingleton<IValidateSelectedDocuments, ValidateSelectedDocuments>()
+
+            //RulesGenerator.Forms
+            .AddTransient<SelectDocumentsForm, SelectDocumentsForm>()
 
             //RulesGenerator.ShapeValidators
             .AddSingleton<IActionShapeValidator, ActionShapeValidator>()
@@ -213,6 +218,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //TreeViewBuiilders
             .AddSingleton<IEmptyFolderRemover, EmptyFolderRemover>()
+            .AddSingleton<IGetAllCheckedNodeNames, GetAllCheckedNodeNames>()
             .AddSingleton<ISelectDocunentsTreeViewBuilder, SelectDocunentsTreeViewBuilder>()
 
             //XmlValidation

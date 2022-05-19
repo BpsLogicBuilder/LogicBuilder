@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Native;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -22,6 +23,48 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             var centerX = (workingArea.Width / 2) - (form.DesktopBounds.Width * dpiX / 2);
             var centerY = (workingArea.Height / 2) - (form.DesktopBounds.Height * dpiY / 2);
             form.Location = new Point((int)centerX, (int)centerY);
+        }
+
+        public void SetFormDefaults(Form form, int minHeight)
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return;
+
+            Rectangle area = NativeMethods.GetScreenArea();
+
+            int maxHeight = area.Height - 100;
+            int maxWidth = area.Width - 150;
+            int minWidth = 0;
+
+            form.Icon = GetLogicBuilderIcon();
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.FormBorderStyle = FormBorderStyle.Sizable;
+            form.MaximumSize = new Size(maxWidth, maxHeight);
+            form.MinimumSize = new Size(GetMinWidth(), GetMinHeight());
+            form.MaximizeBox = false;
+            form.MinimizeBox = false;
+
+            int GetMinHeight() => minHeight < maxHeight ? minHeight : maxHeight;
+            int GetMinWidth() => minWidth < maxWidth ? minWidth : maxWidth;
+        }
+
+        public void SetProgressFormDefaults(Form form, int minHeight)
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return;
+
+            int maxHeight = 2000;
+            int maxWidth = 2000;
+            int minWidth = 0;
+
+            form.Icon = GetLogicBuilderIcon();
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.FormBorderStyle = FormBorderStyle.Sizable;
+            form.MaximumSize = new Size(maxWidth, maxHeight);
+            form.MinimumSize = new Size(minWidth, minHeight);
+            form.MaximizeBox = false;
+            form.MinimizeBox = false;
+            form.ControlBox = false;
         }
     }
 }

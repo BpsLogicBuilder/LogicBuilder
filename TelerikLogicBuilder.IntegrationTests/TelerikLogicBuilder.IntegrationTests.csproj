@@ -307,6 +307,9 @@
     <None Update="Diagrams\ShapeValidatorTest\ShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\ValidateSelectedDocumentsTest\ValidateSelectedDocumentsSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\WaitConditionShapeValidatorTest\FailsValidationForNoIncomingConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

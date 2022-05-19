@@ -1,15 +1,16 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
+using System;
 using System.Threading.Tasks;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection
 {
     internal interface ILoadContextSponsor
     {
-        void LoadAssembiesIfNeeded();
-        Task LoadAssembiesIfNeededAsync();
+        void LoadAssembiesIfNeeded(IProgress<ProgressMessage>? progress = null);
+        Task LoadAssembiesIfNeededAsync(IProgress<ProgressMessage>? progress = null);
         Task LoadAssembiesOnOpenProject();
-        void Run(Action action);
-        Task RunAsync(Action action);
+        void Run(Action action, IProgress<ProgressMessage> progress);
+        Task RunAsync(Func<Task> func, IProgress<ProgressMessage> progress);
         void UnloadAssembliesOnCloseProject();
     }
 }

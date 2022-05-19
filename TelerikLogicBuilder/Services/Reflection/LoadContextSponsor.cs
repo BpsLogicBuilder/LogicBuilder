@@ -32,26 +32,35 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         private bool AssemblyLoadNeeded
             => !_applicationTypeInfoService.HasApplications || _assemblyLoadContextService.GetAssemblyLoadContextDictionary()?.Any() != true;
 
-        public void LoadAssembiesIfNeeded()
+        public void LoadAssembiesIfNeeded(IProgress<ProgressMessage>? progress = null)
         {
             EnsureAssembliesAreCurrent();
             if (AssemblyLoadNeeded)
             {
-                //Send UI Notification "Loading"
+                if (progress != null)
+                {
+                    progress.Report(new ProgressMessage(50, Strings.loadingAssemblies));
+                }
             }
 
             InitializeLoadContexts();
             InitializeApplicationInfos();
 
-            //Send UI Notification "Ready"
+            if (progress != null)
+            {
+                progress.Report(new ProgressMessage(0, Strings.statusBarReadyMessage));
+            }
         }
 
-        public async Task LoadAssembiesIfNeededAsync()
+        public async Task LoadAssembiesIfNeededAsync(IProgress<ProgressMessage>? progress = null)
         {
             EnsureAssembliesAreCurrent();
             if (AssemblyLoadNeeded)
             {
-                //Send UI Notification "Loading"
+                if (progress != null)
+                {
+                    progress.Report(new ProgressMessage(50, Strings.loadingAssemblies));
+                }
             }
 
             await Task.Run
@@ -63,7 +72,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
                 }
             );
 
-            //Send UI Notification "Ready"
+            if (progress != null)
+            {
+                progress.Report(new ProgressMessage(0, Strings.statusBarReadyMessage));
+            }
         }
 
         public Task LoadAssembiesOnOpenProject()
@@ -79,16 +91,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
             );
         }
 
-        public void Run(Action action)
+        public void Run(Action action, IProgress<ProgressMessage> progress)
         {
-            LoadAssembiesIfNeeded();
+            LoadAssembiesIfNeeded(progress);
             action();
         }
 
-        public async Task RunAsync(Action action)
+        public async Task RunAsync(Func<Task> func, IProgress<ProgressMessage> progress)
         {
-            await LoadAssembiesIfNeededAsync();
-            action();
+            await LoadAssembiesIfNeededAsync(progress);
+            await func();
         }
 
         public void UnloadAssembliesOnCloseProject()

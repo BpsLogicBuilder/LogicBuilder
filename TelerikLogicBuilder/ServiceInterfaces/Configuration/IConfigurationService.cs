@@ -7,6 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration
         Application? GetApplication(string applicationName);
         Application GetSelectedApplication();
         string GetSelectedApplicationKey();
+        void SetSelectedApplication(string applicationName);
         ConstructorList ConstructorList { get; set; }
         ProjectProperties ProjectProperties { get; set; }
         FragmentList FragmentList { get; set; }

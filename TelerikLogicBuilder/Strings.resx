@@ -617,6 +617,9 @@
     <value>{0}Of{1}</value>
     <comment>0=listType 1=UnderlyingType</comment>
   </data>
+	<data name="loadingAssemblies" xml:space="preserve">
+    <value>Reloading assemblies. Please wait.</value>
+  </data>
 	<data name="memberNameIsInvalidFormat" xml:space="preserve">
     <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=functionName</comment>
@@ -698,9 +701,19 @@
     <value>{0}: {1}</value>
     <comment>0=type 1=name</comment>
   </data>
+	<data name="progressFormOperationCancelled" xml:space="preserve">
+    <value>Operation Cancelled</value>
+  </data>
+	<data name="progressFormOperationComplete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
 	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
     <value>Initializing Page {0}</value>
     <comment>0=PageIndex</comment>
+  </data>
+	<data name="progressFormTaskValidatingPageFormat" xml:space="preserve">
+    <value>Validating {0} page {1}</value>
+    <comment>0=FileName; 1=PageIndex</comment>
   </data>
 	<data name="referenceCannotEqualVariable" xml:space="preserve">
     <value>The variable index cannot be the same as the variable it references. Reference Name: "{0}", variable: "{1}".</value>
@@ -721,6 +734,9 @@
   </data>
 	<data name="spaceString" xml:space="preserve">
     <value>&#32;</value>
+  </data>
+	<data name="statusBarReadyMessage" xml:space="preserve">
+    <value>Ready</value>
   </data>
 	<data name="tableVisibleLinkFormat" xml:space="preserve">
     <value>Document: {0}, Row: {1}, Column: {2}.</value>
@@ -757,6 +773,9 @@
   </data>
 	<data name="validApplicationSpecificShapes" xml:space="preserve">
     <value>Shapes that can be connected to an Application Specific Connector are as follows: "Action", "Merge", "Module", "Wait Condition", "Wait Decision".</value>
+  </data>
+	<data name="validationSuccessful" xml:space="preserve">
+    <value>Validation Successful!</value>
   </data>
 	<data name="variableBlankCategoryFormat" xml:space="preserve">
     <value>Reference Category for variable "{0}" cannot be empty.</value>

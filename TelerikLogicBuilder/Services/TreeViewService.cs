@@ -18,8 +18,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             Images =
             {
-                Properties.Resources.OPENFOLD,
-                Properties.Resources.CLSDFOLD,
+                Properties.Resources.OpenedFolder,
+                Properties.Resources.closedFolder,
                 Properties.Resources.Visio_Application_16xLG,
                 Properties.Resources.Visio_16,
                 Properties.Resources.TABLE,

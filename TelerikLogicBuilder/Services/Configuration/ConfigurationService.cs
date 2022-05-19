@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private FragmentList? _fragmentList;
         private FunctionList? _functionList;
         private VariableList? _variableList;
+        private string? _selectedApplication;
 
         public ConfigurationService(IExceptionHelper exceptionHelper)
         {
@@ -90,9 +91,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             : null;
 
         public Application GetSelectedApplication()
-            => ProjectProperties.ApplicationList.First().Value;
+        {
+            if (_selectedApplication == null)
+                return ProjectProperties.ApplicationList.First().Value;
+
+            return ProjectProperties.ApplicationList[_selectedApplication.ToLowerInvariant()];
+        }
 
         public string GetSelectedApplicationKey()
             => ProjectProperties.ApplicationList.Keys.First();
+
+        public void SetSelectedApplication(string applicationName)
+        {
+            _selectedApplication = applicationName;
+        }
     }
 }

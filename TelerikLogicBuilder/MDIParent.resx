@@ -368,7 +368,7 @@
     <value>1</value>
   </data>
   <data name="radLabelElement1.Text" xml:space="preserve">
-    <value>radLabelElement</value>
+    <value />
   </data>
   <data name="radStatusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 644</value>

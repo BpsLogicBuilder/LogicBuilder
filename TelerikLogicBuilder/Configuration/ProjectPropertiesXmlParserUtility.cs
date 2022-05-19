@@ -44,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
                         .GetChildElements(elements[XmlDataConstants.APPLICATIONSELEMENT])
                         .Select(applicationElement => _applicationXmlParser.Parse(applicationElement))
                         .OrderBy(a => a.Nickname)
-                        .ToDictionary(a => a.Nickname.ToLowerInvariant()),
+                        .ToDictionary(a => a.Name.ToLowerInvariant()),
                     new HashSet<string>
                     (
                         _xmlDocumentHelpers

@@ -7,5 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     {
         Icon GetLogicBuilderIcon();
         void SetCenterScreen(Form form);
+        void SetFormDefaults(Form form, int minHeight);
+        void SetProgressFormDefaults(Form form, int minHeight);
     }
 }
