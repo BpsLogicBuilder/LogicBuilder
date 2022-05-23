@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="LogicBuilder.Attributes" Version="2.0.3" />
+    <PackageReference Include="LogicBuilder.Workflow.Activities.Rules" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.OData.Edm" Version="7.11.0" />
     <PackageReference Include="UI.for.WinForms.AllControls.Net60" Version="2022.2.510" />

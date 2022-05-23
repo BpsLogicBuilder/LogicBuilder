@@ -86,14 +86,14 @@ namespace TelerikLogicBuilder.Tests
         public void ExtensionReturnsTheExtension()
         {
             //arrange
-            var fullPath = @"C:\MyPath\ConsoleApp1\ConsoleApp1.sln";
+            var fullPath = @"C:\MyPath\ConsoleApp1\ConsoleApp1.SLN";
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
 
             //act
-            var folderName = pathHelper.GetExtension(fullPath);
+            var extension = pathHelper.GetExtension(fullPath);
 
             //assert
-            Assert.Equal(".sln", folderName);
+            Assert.Equal(".sln", extension);
         }
 
         [Fact]

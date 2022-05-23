@@ -331,8 +331,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (File.Exists(fullName))
                 {
-                    FileInfo fileInfo = new(fullName);
-                    fileInfo.IsReadOnly = !writable;
+                    FileInfo fileInfo = new(fullName)
+                    {
+                        IsReadOnly = !writable
+                    };
                 }
             }
             catch (ArgumentException ex)

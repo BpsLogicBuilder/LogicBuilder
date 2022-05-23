@@ -457,6 +457,9 @@
 	<data name="endShapeOutgoing" xml:space="preserve">
     <value>Outgoing Connectors cannot be joined to End Flow, Module End or Terminate Shapes.</value>
   </data>
+	<data name="equalSign" xml:space="preserve">
+    <value>=</value>
+  </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>Fragments</value>
   </data>
@@ -582,6 +585,10 @@
 	<data name="invalidParameterOrder" xml:space="preserve">
     <value>The parameter order for function "{0}" is invalid. Move optional parameters to the end of the parameters list.</value>
     <comment>0=FunctionName</comment>
+  </data>
+	<data name="invalidRuleSetFormat" xml:space="preserve">
+    <value>The rule set file "{0}" is invalid.</value>
+    <comment>0=RuleSetName</comment>
   </data>
 	<data name="invalidVariableElementFormat" xml:space="preserve">
     <value>The variable "{0}" has an invalid value element for the category "{1}".</value>
@@ -713,6 +720,14 @@
 	<data name="progressFormStatusMessageFormat2" xml:space="preserve">
     <value>{0}: {1}% complete.</value>
     <comment>0=messsage; 1=percent complete</comment>
+  </data>
+	<data name="progressFormTaskAssemblingResourcesFormat" xml:space="preserve">
+    <value>Assembling {0} Resources</value>
+    <comment>0=applicationNickname</comment>
+  </data>
+	<data name="progressFormTaskAssemblingRulesFormat" xml:space="preserve">
+    <value>Assembling {0} Rules</value>
+    <comment>0=applicationNickname</comment>
   </data>
 	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
     <value>Initializing Page {0}</value>

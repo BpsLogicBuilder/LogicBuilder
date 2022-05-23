@@ -2149,6 +2149,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to =.
+        /// </summary>
+        internal static string equalSign {
+            get {
+                return ResourceManager.GetString("equalSign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the reference definition &quot;{0}&quot;, Reference Name &quot;{1}&quot; for variable &quot;{2}&quot; must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string fieldPropertyReferenceIsInvalidFormat2 {
@@ -2545,6 +2554,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The rule set file &quot;{0}&quot; is invalid..
+        /// </summary>
+        internal static string invalidRuleSetFormat {
+            get {
+                return ResourceManager.GetString("invalidRuleSetFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The variable &quot;{0}&quot; has an invalid value element for the category &quot;{1}&quot;..
         /// </summary>
         internal static string invalidVariableElementFormat {
@@ -2928,6 +2946,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string progressFormStatusMessageFormat2 {
             get {
                 return ResourceManager.GetString("progressFormStatusMessageFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assembling {0} Resources.
+        /// </summary>
+        internal static string progressFormTaskAssemblingResourcesFormat {
+            get {
+                return ResourceManager.GetString("progressFormTaskAssemblingResourcesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assembling {0} Rules.
+        /// </summary>
+        internal static string progressFormTaskAssemblingRulesFormat {
+            get {
+                return ResourceManager.GetString("progressFormTaskAssemblingRulesFormat", resourceCulture);
             }
         }
         

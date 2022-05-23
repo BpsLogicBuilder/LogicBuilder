@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -99,6 +100,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
                         radProgressBarElement1.Value1 = 0;
                         radLabelElement1.Text = Strings.statusBarReadyMessage;
                     }
+                    catch (LogicBuilderException ex)
+                    {
+                        radProgressBarElement1.Value1 = 0;
+                        radLabelElement1.Text = ex.Message;
+                        RadMessageBox.Show(ex.Message);
+                    }
                     catch (OperationCanceledException)
                     {
                         radProgressBarElement1.Value1 = 0;
@@ -106,7 +113,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     }
                     finally
                     {
-                        progressForm.Close();
+                        if (!progressForm.IsDisposed)
+                        {
+                            progressForm.Close();
+                        }
+
                         cancellationTokenSource.Dispose();
                     }
                 },
