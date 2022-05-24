@@ -125,6 +125,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IGenericFunctionHelper, GenericFunctionHelper>()
             .AddSingleton<IGenericParametersHelper, GenericParametersHelper>()
             .AddSingleton<IGenericReturnTypeHelper, GenericReturnTypeHelper>()
+            .AddSingleton<IGetValidConfigurationFromData, GetValidConfigurationFromData>()
 
             //DataParsers
             .AddSingleton<IAssertFunctionDataParser, AssertFunctionDataParser>()

@@ -463,14 +463,14 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "VariableTypeNotFound",
                         "VariableTypeNotFound",
                         VariableCategory.StringKeyIndexer,
-                        "VariableTypeNotFound",
+                        "",
                         "",
                         "flowManager.FlowDataCache.Items",
                         "Field.Property.Property",
                         "",
                         ReferenceCategories.InstanceReference,
                         "",
-                        "System.Object",
+                        "VariableTypeNotFound",
                         ContextProvider
                     ),
                     ["LiteralListVariable"] = new ListOfLiteralsVariable
