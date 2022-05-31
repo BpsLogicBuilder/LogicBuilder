@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+	<data name="actionCellDialogFunctionsInvalid" xml:space="preserve">
+    <value>Dialog Functions are invalid for Action Cell.FR</value>
+  </data>
 	<data name="actionIncomingConnectorCount" xml:space="preserve">
     <value>Action Shape requires at least one incoming connector.FR</value>
   </data>
@@ -279,6 +282,9 @@
 	<data name="castReferenceAsMustBeEmptyFormat" xml:space="preserve">
     <value>Cast Reference As field for variable {0} must be empty when the reference category is "This" or reference category is "Type".FR</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="cellDataRequired" xml:space="preserve">
+    <value>Cell requires data.FR</value>
   </data>
 	<data name="chainingUpdateValidationError" xml:space="preserve">
     <value>The field or property to be updated must be represented by a string and cannot include functions or variables.FR</value>
@@ -559,6 +565,9 @@
     <value>The parameter order for constructor "{0}" is invalid. Move optional parameters to the end of the parameters list.FR</value>
     <comment>0=FunctionName</comment>
   </data>
+	<data name="invalidCellData" xml:space="preserve">
+    <value>Invalid Data.FR</value>
+  </data>
 	<data name="invalidFunctionCategoryFormat" xml:space="preserve">
     <value>Function "{0}" has invalid function category "{1}" given the element type "{2}".FR</value>
     <comment>0=functionName;1=functionCategory;2=elementName</comment>
@@ -585,6 +594,9 @@
 	<data name="invalidParameterOrder" xml:space="preserve">
     <value>The parameter order for function "{0}" is invalid. Move optional parameters to the end of the parameters list.FR</value>
     <comment>0=FunctionName</comment>
+  </data>
+	<data name="invalidPriorityCellData" xml:space="preserve">
+    <value>Priority must be an integer greater than zero.FR</value>
   </data>
 	<data name="invalidRuleSetFormat" xml:space="preserve">
     <value>The rule set file "{0}" is invalid.FR</value>
@@ -732,6 +744,10 @@
 	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
     <value>Initializing Page {0}FR</value>
     <comment>0=PageIndex</comment>
+  </data>
+	<data name="progressFormTaskValidatingFormat" xml:space="preserve">
+    <value>Validating {0}FR</value>
+    <comment>0=filename</comment>
   </data>
 	<data name="progressFormTaskValidatingPageFormat" xml:space="preserve">
     <value>Validating {0} page {1}FR</value>

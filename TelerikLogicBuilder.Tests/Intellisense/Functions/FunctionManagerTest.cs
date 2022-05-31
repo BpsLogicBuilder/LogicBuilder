@@ -35,7 +35,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
             MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName)!;
 
             //act
-            Function? result = functionManager.GetFunction(methodInfo.Name, methodInfo.Name, FunctionCategories.Standard, string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
+            Function? result = functionManager.GetFunction(methodInfo.Name, methodInfo.Name, string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
 
             //assert
             Assert.Equal(expectedParameterCount, result!.Parameters.Count);

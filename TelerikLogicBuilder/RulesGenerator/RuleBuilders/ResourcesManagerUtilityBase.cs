@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             }
             else
             {
-                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder stringBuilder = new();
                 for (int i = 0; i < words.Length && i < 6; i++)
                     stringBuilder.Append(words[i][0]);
 

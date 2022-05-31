@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
             {
                 (short)FunctionGroup.Standard => FunctionCategories.Standard,
                 (short)FunctionGroup.DialogForm => FunctionCategories.DialogForm,
-                _ => FunctionCategories.Unknown,
+                _ => FunctionCategories.Standard,
             };
     }
 }

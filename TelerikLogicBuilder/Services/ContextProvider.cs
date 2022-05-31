@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -14,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
+            IFunctionHelper functionHelper,
             IMessageBoxOptionsHelper messageBoxOptionsHelper,
             IModuleNamesReader moduleNamesReader,
             IParameterHelper parameterHelper,
@@ -30,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             EnumHelper = enumHelper;
             ExceptionHelper = exceptionHelper;
             FileIOHelper = fileIOHelper;
+            FunctionHelper = functionHelper;
             MessageBoxOptionsHelper = messageBoxOptionsHelper;
             ModuleNamesReader = moduleNamesReader;
             ParameterHelper = parameterHelper;
@@ -47,6 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public IEnumHelper EnumHelper { get; }
         public IExceptionHelper ExceptionHelper { get; }
         public IFileIOHelper FileIOHelper { get; }
+        public IFunctionHelper FunctionHelper { get; }
         public IMessageBoxOptionsHelper MessageBoxOptionsHelper { get; }
         public IModuleNamesReader ModuleNamesReader { get; }
         public IParameterHelper ParameterHelper { get; }

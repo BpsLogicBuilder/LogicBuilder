@@ -36,6 +36,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Tables\CellHelperTest\CountDialogFunctions\CountDialogFunctionsReturnsTheExpectedDialogCount.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Tables\CellXmlHelperTest\GetXmlStringGivenColumnIndexSucceeds.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Tables\CellXmlHelperTest\GetXmlStringGivenSchemaNameSucceeds.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ShapeDataCellManagerTest.vsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

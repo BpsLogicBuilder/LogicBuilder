@@ -19,7 +19,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
     {
         private readonly IContextProvider _contextProvider;
         private readonly IJumpDataParser _jumpDataParser;
-        private readonly IPathHelper _pathHelper;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IShapeValidator _shapeValidator;
@@ -44,7 +43,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             Application = application;
             Progress = progress;
             CancellationTokenSource = cancellationTokenSource;
-            _pathHelper = contextProvider.PathHelper;
             _resultMessageBuilder = contextProvider.ResultMessageBuilder;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _contextProvider = contextProvider;
@@ -184,7 +182,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
                         new ProgressMessage
                         (
                             (int)(((float)shape.Index / (float)page.Shapes.Count) * 100),
-                            string.Format(CultureInfo.CurrentCulture, Strings.progressFormTaskValidatingPageFormat, _pathHelper.GetFileName(SourceFile), page.Index)
+                            string.Format(CultureInfo.CurrentCulture, Strings.progressFormTaskValidatingPageFormat, FileName, page.Index)
                         )
                     );
                 }

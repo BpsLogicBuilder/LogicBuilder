@@ -61,6 +61,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dialog Functions are invalid for Action Cell..
+        /// </summary>
+        internal static string actionCellDialogFunctionsInvalid {
+            get {
+                return ResourceManager.GetString("actionCellDialogFunctionsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action Shape requires at least one incoming connector..
         /// </summary>
         internal static string actionIncomingConnectorCount {
@@ -570,6 +579,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string castReferenceAsMustBeEmptyFormat {
             get {
                 return ResourceManager.GetString("castReferenceAsMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell requires data..
+        /// </summary>
+        internal static string cellDataRequired {
+            get {
+                return ResourceManager.GetString("cellDataRequired", resourceCulture);
             }
         }
         
@@ -2473,6 +2491,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Data..
+        /// </summary>
+        internal static string invalidCellData {
+            get {
+                return ResourceManager.GetString("invalidCellData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} has invalid data..
         /// </summary>
         internal static string invalidConfigurationDocumentFormat {
@@ -2550,6 +2577,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidParameterOrder {
             get {
                 return ResourceManager.GetString("invalidParameterOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Priority must be an integer greater than zero..
+        /// </summary>
+        internal static string invalidPriorityCellData {
+            get {
+                return ResourceManager.GetString("invalidPriorityCellData", resourceCulture);
             }
         }
         
@@ -2973,6 +3009,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string progressFormTaskInitializingPageFormat {
             get {
                 return ResourceManager.GetString("progressFormTaskInitializingPageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validating {0}.
+        /// </summary>
+        internal static string progressFormTaskValidatingFormat {
+            get {
+                return ResourceManager.GetString("progressFormTaskValidatingFormat", resourceCulture);
             }
         }
         

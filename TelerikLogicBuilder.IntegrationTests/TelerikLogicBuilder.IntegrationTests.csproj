@@ -346,6 +346,18 @@
     <None Update="Diagrams\WaitDecisionShapeValidatorTest\WaitDecisionShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Tables\TableValidatorTest\FailsValidationForDialogFunctionInActionCell.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Tables\TableValidatorTest\FailsValidationForNoDataInActionCell.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Tables\TableValidatorTest\FailsValidationForNoDataInPriorityCell.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Tables\TableValidatorTest\TableValidationSucceeds.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

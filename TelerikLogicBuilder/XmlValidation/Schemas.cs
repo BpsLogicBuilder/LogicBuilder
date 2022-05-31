@@ -2514,19 +2514,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             restrictionFacets.Add(enumeration);
         }
 
-        //private static string GetSchema(XmlSchema schema)
-        //{
-        //    XmlNamespaceManager nsmgr = new(new NameTable());
-        //    nsmgr.AddNamespace(SchemaConstants.NAMESPACEPREFIX, SchemaConstants.NAMESPACEURI);
-        //    ServiceInterfaces.IXmlDocumentHelpers xmlDocumentHelpers = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ServiceInterfaces.IXmlDocumentHelpers>(Program.ServiceProvider);
+        internal static string GetSchema(XmlSchema schema)
+        {
+            XmlNamespaceManager nsmgr = new(new NameTable());
+            nsmgr.AddNamespace(SchemaConstants.NAMESPACEPREFIX, SchemaConstants.NAMESPACEURI);
+            ServiceInterfaces.IXmlDocumentHelpers xmlDocumentHelpers = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ServiceInterfaces.IXmlDocumentHelpers>(Program.ServiceProvider);
 
-        //    System.Text.StringBuilder stringBuilder = new();
-        //    using (XmlWriter xmlTextWriter = xmlDocumentHelpers.CreateFormattedXmlWriterWithDeclaration(stringBuilder))
-        //    {
-        //        schema.Write(xmlTextWriter, nsmgr);
-        //    }
-        //    return stringBuilder.ToString();
-        //}
+            System.Text.StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = xmlDocumentHelpers.CreateFormattedXmlWriterWithDeclaration(stringBuilder))
+            {
+                schema.Write(xmlTextWriter, nsmgr);
+            }
+            return stringBuilder.ToString();
+        }
 
         //private static void WriteSchema(string fullPath, XmlSchema xmlSchema)
         //{

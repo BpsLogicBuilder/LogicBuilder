@@ -31,6 +31,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     _shapeDataCellManager.GetRulesDataString(shape)
                 );
 
+                if (string.IsNullOrEmpty(xml))
+                    return string.Empty;
+
                 var validationResponse = _xmlValidator.Validate
                 (
                     GetSchemaName(shape.Master.NameU),

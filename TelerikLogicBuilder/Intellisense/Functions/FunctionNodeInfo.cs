@@ -16,7 +16,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         private readonly IParametersManager _parametersManager;
         private readonly IReturnTypeManager _returnTypeManager;
 
-        public FunctionNodeInfo(MethodInfo mInfo, IContextProvider contextProvider, IMemberAttributeReader memberAttributeReader, IParametersManager parametersManager, IReturnTypeManager returnTypeManager)
+        public FunctionNodeInfo(
+            MethodInfo mInfo,
+            IContextProvider contextProvider,
+            IMemberAttributeReader memberAttributeReader,
+            IParametersManager parametersManager,
+            IReturnTypeManager returnTypeManager)
         {
             MInfo = mInfo;
             _typeHelper = contextProvider.TypeHelper;
@@ -29,10 +34,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         #region Properties
         internal MethodInfo MInfo { get; }
         internal string Sumnmary => _memberAttributeReader.GetSummary(MInfo);
+        internal FunctionCategories FunctionCategory
+            => HasValidMultipleChoiceParameter
+                    ? FunctionCategories.DialogForm
+                    : _memberAttributeReader.GetFunctionCategory(MInfo);
+
+        private bool HasValidMultipleChoiceParameter
+        {
+            get
+            {
+                var parameters = this.MInfo.GetParameters();
+                if (parameters.Length == 0)
+                    return false;
+
+                return _typeHelper.IsValidConnectorList(parameters[^1].ParameterType);
+            }
+        }
         #endregion Properties
 
         #region Methods
-        internal Function? GetFunction(string name, string memberName, FunctionCategories functionCategory, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout)
+        internal Function? GetFunction(string name, string memberName, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout)
         {
             if (MInfo.DeclaringType == null)
                 return null;
@@ -41,7 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
             (
                 name,
                 memberName,
-                functionCategory,
+                FunctionCategory,
                 typeName,
                 referenceName,
                 referenceDefinition,

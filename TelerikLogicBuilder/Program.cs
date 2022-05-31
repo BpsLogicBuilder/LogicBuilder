@@ -58,6 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //Services
             .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
+            .AddSingleton<ICellXmlHelper, CellXmlHelper>()
             .AddSingleton<IConstructorTypeHelper, ConstructorTypeHelper>()
             .AddSingleton<IContextProvider, ContextProvider>()
             .AddSingleton<IEncryption, Encryption>()
@@ -162,6 +163,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IExistingConstructorFinder, ExistingConstructorFinder>()
 
             //Intellisense.Functions
+            .AddSingleton<IFunctionHelper, FunctionHelper>()
             .AddSingleton<IFunctionManager, FunctionManager>()
             .AddSingleton<IFunctionNodeInfoManager, FunctionNodeInfoManager>()
             .AddSingleton<IFunctionValidationHelper, FunctionValidationHelper>()
@@ -194,8 +196,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
 
             //RulesGenerator
+            .AddSingleton<ICellHelper, CellHelper>()
             .AddSingleton<IDiagramValidator, DiagramValidator>()
             .AddSingleton<IShapeHelper, ShapeHelper>()
+            .AddSingleton<ITableValidator, TableValidator>()
             .AddSingleton<IValidateSelectedDocuments, ValidateSelectedDocuments>()
 
             //RulesGenerator.Forms
@@ -220,6 +224,18 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IShapeValidator, ShapeValidator>()
 
             //RulesGenerator.RuleBuilders
+            .AddSingleton<IBeginFlowRuleBuilder, BeginFlowRuleBuilder>()
+            .AddSingleton<IConditionsRuleBuilder, ConditionsRuleBuilder>()
+            .AddSingleton<IDecisionsRuleBuilder, DecisionsRuleBuilder>()
+            .AddSingleton<IDialogWithExitsRuleBuilder, DialogWithExitsRuleBuilder>()
+            .AddSingleton<IDialogWithoutExitsRuleBuilder, DialogWithoutExitsRuleBuilder>()
+            .AddSingleton<IMergeRuleBuilder, MergeRuleBuilder>()
+            .AddSingleton<IModuleBeginRuleBuilder, ModuleBeginRuleBuilder>()
+            .AddSingleton<IModuleRuleBuilder, ModuleRuleBuilder>()
+            .AddSingleton<IShapeSetRuleBuilder, ShapeSetRuleBuilder>()
+            .AddSingleton<ITableRowRuleBuilder, TableRowRuleBuilder>()
+            .AddSingleton<IWaitConditionsRuleBuilder, WaitConditionsRuleBuilder>()
+            .AddSingleton<IWaitDecisionsRuleBuilder, WaitDecisionsRuleBuilder>()
             .AddSingleton<IDiagramResourcesManager, DiagramResourcesManager>()
             .AddSingleton<ILongStringManager, LongStringManager>()
             .AddSingleton<IRulesAssembler, RulesAssembler>()

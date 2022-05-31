@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 {
@@ -30,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             _typeLoadHelper = typeLoadHelper;
         }
 
-        public bool TryGetConstructor(ConstructorData constructorData, ApplicationTypeInfo application, out Constructor? constructor)
+        public bool TryGetConstructor(ConstructorData constructorData, ApplicationTypeInfo application, [NotNullWhen(true)] out Constructor? constructor)
         {
             if (!_configurationService.ConstructorList.Constructors.TryGetValue(constructorData.Name, out constructor))
                 return false;
@@ -46,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return _typeLoadHelper.TryGetSystemType(constructor.TypeName, application, out _);
         }
 
-        public bool TryGetFunction(FunctionData functionData, ApplicationTypeInfo application, out Function? function)
+        public bool TryGetFunction(FunctionData functionData, ApplicationTypeInfo application, [NotNullWhen(true)] out Function? function)
         {
             if (!_configurationService.FunctionList.Functions.TryGetValue(functionData.Name, out function))
                 return false;
@@ -62,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return _typeLoadHelper.TryGetSystemType(function.ReturnType, functionData.GenericArguments, application, out _);
         }
 
-        public bool TryGetVariable(VariableData variableData, ApplicationTypeInfo application, out VariableBase? variable)
+        public bool TryGetVariable(VariableData variableData, ApplicationTypeInfo application, [NotNullWhen(true)] out VariableBase? variable)
         {
             if (!_configurationService.VariableList.Variables.TryGetValue(variableData.Name, out variable))
                 return false;
@@ -70,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return _typeLoadHelper.TryGetSystemType(variable, application, out _);
         }
 
-        public bool TryGetVariable(DecisionData decisionData, ApplicationTypeInfo application, out VariableBase? variable)
+        public bool TryGetVariable(DecisionData decisionData, ApplicationTypeInfo application, [NotNullWhen(true)] out VariableBase? variable)
         {
             if (!_configurationService.VariableList.Variables.TryGetValue(decisionData.Name, out variable))
                 return false;
