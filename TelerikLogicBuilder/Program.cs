@@ -254,6 +254,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IEmptyFolderRemover, EmptyFolderRemover>()
             .AddSingleton<IGetAllCheckedNodeNames, GetAllCheckedNodeNames>()
             .AddSingleton<ISelectDocunentsTreeViewBuilder, SelectDocunentsTreeViewBuilder>()
+            .AddSingleton<ISelectRulesTreeViewBuilder, SelectRulesTreeViewBuilder>()
 
             //XmlValidation
             .AddSingleton<IXmlValidator, XmlValidator>()

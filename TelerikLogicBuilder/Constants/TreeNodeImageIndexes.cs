@@ -10,5 +10,6 @@
         internal const byte PROJECTFOLDERIMAGEINDEX = 5;
         internal const byte CUTOPENEDFOLDERIMAGEINDEX = 6;
         internal const byte CUTCLOSEDFOLDERIMAGEINDEX = 7;
+        internal const byte FILEIMAGEINDEX = 8;
     }
 }

@@ -25,7 +25,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 Properties.Resources.TABLE,
                 Properties.Resources.Project,
                 Properties.Resources.OPENFOLDCUT,
-                Properties.Resources.CLSDFOLDCUT
+                Properties.Resources.CLSDFOLDCUT,
+                Properties.Resources.File
             }
         };
 
