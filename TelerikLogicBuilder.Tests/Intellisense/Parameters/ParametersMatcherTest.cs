@@ -1,12 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
-using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
@@ -28,7 +26,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
             //arrange
             IParametersManager parametersManager = serviceProvider.GetRequiredService<IParametersManager>();
             IParametersMatcher parametersMatcher = serviceProvider.GetRequiredService<IParametersMatcher>();
-            ParameterInfo[] parameters = typeof(DataFormSettingsParameters).GetConstructors().First().GetParameters();
+            ParameterInfo[] parameters = typeof(TestClassWithChildContructor).GetConstructors().First().GetParameters();
             ICollection<ParameterNodeInfoBase> parameterNodeInfos = parametersManager.GetParameterNodeInfos(parameters);
 
             //act
@@ -44,8 +42,8 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
             //arrange
             IParametersManager parametersManager = serviceProvider.GetRequiredService<IParametersManager>();
             IParametersMatcher parametersMatcher = serviceProvider.GetRequiredService<IParametersMatcher>();
-            ParameterInfo[] dataFormParameters = typeof(DataFormSettingsParameters).GetConstructors().First().GetParameters();
-            ParameterInfo[] formControlParameters = typeof(FormControlSettingsParameters).GetConstructors().First().GetParameters();
+            ParameterInfo[] dataFormParameters = typeof(TestClassWithChildContructor).GetConstructors().First().GetParameters();
+            ParameterInfo[] formControlParameters = typeof(ChildContructor).GetConstructors().First().GetParameters();
             ICollection<ParameterNodeInfoBase> dataFormParameterNodeInfos = parametersManager.GetParameterNodeInfos(dataFormParameters);
             ICollection<ParameterNodeInfoBase> formControlParameterNodeInfos = parametersManager.GetParameterNodeInfos(formControlParameters);
 
@@ -54,6 +52,28 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
 
             //assert
             Assert.False(match);
+        }
+
+        private class TestClassWithChildContructor
+        {
+            public TestClassWithChildContructor(string stringProperty, ChildContructor childContructor)
+            {
+                StringProperty = stringProperty;
+                ChildContructor = childContructor;
+            }
+
+            public string StringProperty { get; set; }
+            public ChildContructor ChildContructor { get; set; }
+        }
+
+        private class ChildContructor
+        {
+            public ChildContructor(string stringProperty)
+            {
+                StringProperty = stringProperty;
+            }
+
+            public string StringProperty { get; set; }
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
-using Contoso.Parameters.Expansions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Intellisense.Variables
@@ -22,15 +21,15 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
         #endregion Fields
 
         [Theory]
-        [InlineData("MemberName", typeof(LiteralVariable))]
-        [InlineData("Filter", typeof(ObjectVariable))]
-        [InlineData("Selects", typeof(ListOfLiteralsVariable))]
-        [InlineData("ExpandedItems", typeof(ListOfObjectsVariable))]
+        [InlineData("StringProperty", typeof(LiteralVariable))]
+        [InlineData("ChildContructor", typeof(ObjectVariable))]
+        [InlineData("LiteralList", typeof(ListOfLiteralsVariable))]
+        [InlineData("ObjectList", typeof(ListOfObjectsVariable))]
         public void GetVariableWorks(string memberName, Type variableType)
         {
             //arrange
             IVariablesManager variablesManager = serviceProvider.GetRequiredService<IVariablesManager>();
-            PropertyInfo propertyInfo = typeof(SelectExpandItemParameters).GetProperty(memberName)!;
+            PropertyInfo propertyInfo = typeof(TestClassWithChildContructor).GetProperty(memberName)!;
 
             //act
             var variable = variablesManager.GetVariable
@@ -50,6 +49,32 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
 
             //assert
             Assert.Equal(variableType, variable.GetType());
+        }
+
+        private class TestClassWithChildContructor
+        {
+            public TestClassWithChildContructor(string stringProperty, ChildContructor childContructor, List<string> literalList, List<ChildContructor> objectList)
+            {
+                StringProperty = stringProperty;
+                ChildContructor = childContructor;
+                LiteralList = literalList;
+                ObjectList = objectList;
+            }
+
+            public string StringProperty { get; set; }
+            public ChildContructor ChildContructor { get; set; }
+            public List<string> LiteralList { get; set; }
+            public List<ChildContructor> ObjectList { get; set; }
+        }
+
+        private class ChildContructor
+        {
+            public ChildContructor(string stringProperty)
+            {
+                StringProperty = stringProperty;
+            }
+
+            public string StringProperty { get; set; }
         }
     }
 }

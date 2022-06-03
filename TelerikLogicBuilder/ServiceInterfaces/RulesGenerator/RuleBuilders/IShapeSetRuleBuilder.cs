@@ -8,6 +8,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBui
 {
     internal interface IShapeSetRuleBuilder
     {
-        IList<RuleBag> GenerateRules(string masterNameU, IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors, string moduleName, int ruleCount, IDictionary<string, string> resourceStrings, ApplicationTypeInfo application);
+        IList<RuleBag> GenerateRules(string masterNameU, IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors, string moduleName, int ruleCount, ApplicationTypeInfo application, IDictionary<string, string> resourceStrings);
     }
 }

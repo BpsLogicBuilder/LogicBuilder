@@ -21,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal partial class MDIParent : Telerik.WinControls.UI.RadForm
     {
+        private readonly IBuildSaveAssembleRulesForSelectedDocuments _buildSaveConsolidateSelectedDocumentRules;
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorListInitializer _constructorListInitializer;
         private readonly IFormInitializer _formInitializer;
@@ -33,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IVariableListInitializer _variableListInitializer;
 
         public MDIParent(
+            IBuildSaveAssembleRulesForSelectedDocuments buildSaveConsolidateSelectedDocumentRules,
             IConfigurationService configurationService,
             IConstructorListInitializer constructorListInitializer,
             IFormInitializer formInitializer,
@@ -44,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IValidateSelectedDocuments validateSelectedDocuments,
             IVariableListInitializer variableListInitializer)
         {
+            _buildSaveConsolidateSelectedDocumentRules = buildSaveConsolidateSelectedDocumentRules;
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
             _formInitializer = formInitializer;
@@ -139,10 +142,19 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //Check Visio Version Installed
 
-            await RunLoadContextAsync(ValidateSelectedDocuments);
+            await RunLoadContextAsync(BuildSelectedDocumentRules);
 
-            Task ValidateSelectedDocuments(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource) 
-                => _validateSelectedDocuments.Validate
+            //Task ValidateSelectedDocuments(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource) 
+            //    => _validateSelectedDocuments.Validate
+            //    (
+            //        selectDocunentsForm.SourceFiles,
+            //        _configurationService.GetSelectedApplication(),
+            //        progress,
+            //        cancellationTokenSource
+            //    );
+
+            Task BuildSelectedDocumentRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
+                => _buildSaveConsolidateSelectedDocumentRules.BuildRules
                 (
                     selectDocunentsForm.SourceFiles,
                     _configurationService.GetSelectedApplication(),

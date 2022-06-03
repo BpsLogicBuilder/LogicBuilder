@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             _waitDecisionsRuleBuilder = waitDecisionsRuleBuilder;
         }
 
-        public IList<RuleBag> GenerateRules(string masterNameU, IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors, string moduleName, int ruleCount, IDictionary<string, string> resourceStrings, ApplicationTypeInfo application) 
+        public IList<RuleBag> GenerateRules(string masterNameU, IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors, string moduleName, int ruleCount, ApplicationTypeInfo application, IDictionary<string, string> resourceStrings) 
             => masterNameU switch
             {
                 UniversalMasterName.BEGINFLOW => _beginFlowRuleBuilder.GenerateRules(ruleShapes, ruleConnectors, moduleName, ruleCount, application, resourceStrings),

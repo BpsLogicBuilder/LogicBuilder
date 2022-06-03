@@ -93,14 +93,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
         public void Run(Action action, IProgress<ProgressMessage> progress)
         {
-            LoadAssembiesIfNeeded(progress);
-            action();
+            throw new Exception("Probably want to get rid of this.");
+            //LoadAssembiesIfNeeded(progress);
+            //action();
         }
 
         public async Task RunAsync(Func<Task> func, IProgress<ProgressMessage> progress)
         {
             await LoadAssembiesIfNeededAsync(progress);
             await func();
+        }
+
+        public async Task<T> RunAsync<T>(Func<Task<T>> func, IProgress<ProgressMessage> progress)
+        {
+            await LoadAssembiesIfNeededAsync(progress);
+            return await func();
         }
 
         public void UnloadAssembliesOnCloseProject()

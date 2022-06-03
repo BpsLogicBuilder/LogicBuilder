@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
-using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             IConstructorManager constructorManager = serviceProvider.GetRequiredService<IConstructorManager>();
             IExistingConstructorFinder existingConstructorFinder = serviceProvider.GetRequiredService<IExistingConstructorFinder>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
-            ConstructorInfo constructorInfo = typeof(DataFormSettingsParameters).GetConstructors().First();
+            ConstructorInfo constructorInfo = typeof(TestClassWithContructor).GetConstructors().First();
             Constructor? constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
             Dictionary<string, Constructor> existingConstructors = new()
             {
@@ -58,7 +57,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             IConstructorManager constructorManager = serviceProvider.GetRequiredService<IConstructorManager>();
             IExistingConstructorFinder existingConstructorFinder = serviceProvider.GetRequiredService<IExistingConstructorFinder>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
-            ConstructorInfo constructorInfo = typeof(DataFormSettingsParameters).GetConstructors().First();
+            ConstructorInfo constructorInfo = typeof(TestClassWithContructor).GetConstructors().First();
             Constructor? constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
             Dictionary<string, Constructor> existingConstructors = new()
             {
@@ -78,6 +77,16 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
 
             //assert
             Assert.NotNull(foundConstructor);
+        }
+
+        private class TestClassWithContructor
+        {
+            public TestClassWithContructor(string stringProperty)
+            {
+                StringProperty = stringProperty;
+            }
+
+            public string StringProperty { get; set; }
         }
     }
 }

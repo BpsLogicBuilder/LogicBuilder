@@ -1,13 +1,13 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Xunit;
 
-namespace TelerikLogicBuilder.Tests.RulesGenerator.RuleBuilders
+namespace TelerikLogicBuilder.Tests.RulesGenerator
 {
-    public class RulesAssemblerTest
+    public class SaveDiagramResourcesTest
     {
-        public RulesAssemblerTest()
+        public SaveDiagramResourcesTest()
         {
             serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
@@ -17,10 +17,10 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.RuleBuilders
         #endregion Fields
 
         [Fact]
-        public void CanCreateRulesAssembler()
+        public void CanCreateSaveDiagramResources()
         {
             //arrange
-            IRulesAssembler helper = serviceProvider.GetRequiredService<IRulesAssembler>();
+            ISaveDiagramResources helper = serviceProvider.GetRequiredService<ISaveDiagramResources>();
 
             //assert
             Assert.NotNull(helper);

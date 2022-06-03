@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Rulesets\applicationconnectorswork.module" />
+    <None Remove="Rulesets\applicationconnectorswork.resources" />
+    <None Remove="Rulesets\beginflowruleworks.module" />
+    <None Remove="Rulesets\beginflowruleworks.resources" />
+    <None Remove="Rulesets\multiplejumpshapesresultinonerule.module" />
+    <None Remove="Rulesets\multiplejumpshapesresultinonerule.resources" />
     <None Remove="Rulesets\savecourse.module" />
     <None Remove="Rulesets\savecourse.resources" />
     <None Remove="Rulesets\savedepartment.module" />
@@ -28,6 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Rulesets\applicationconnectorswork.module" />
+    <EmbeddedResource Include="Rulesets\applicationconnectorswork.resources" />
+    <EmbeddedResource Include="Rulesets\beginflowruleworks.module" />
+    <EmbeddedResource Include="Rulesets\beginflowruleworks.resources" />
+    <EmbeddedResource Include="Rulesets\multiplejumpshapesresultinonerule.module" />
+    <EmbeddedResource Include="Rulesets\multiplejumpshapesresultinonerule.resources" />
     <EmbeddedResource Include="Rulesets\savecourse.module" />
     <EmbeddedResource Include="Rulesets\savecourse.resources" />
     <EmbeddedResource Include="Rulesets\savedepartment.module" />

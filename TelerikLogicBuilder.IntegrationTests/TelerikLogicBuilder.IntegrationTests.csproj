@@ -112,6 +112,9 @@
     <None Update="Diagrams\BeginShapeValidatorTest\BeginShapeValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\BuildSaveAssembleRulesForSelectedDocumentsTest\BuildSaveAssembleRulesSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\CommentShapeValidatorTest\FailsValidationForAttachedConnector.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -146,6 +149,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\DecisionShapeValidatorTest\DecisionShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramRulesBuilderTest\DiagramRulesBuilderSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\DiagramValidatorTest\FailsValidationForModuleEndInBeginFlowDocument.vsdx">
@@ -344,6 +350,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\WaitDecisionShapeValidatorTest\WaitDecisionShapeValidationSucceeds.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Tables\TableRulesBuilderTest\TableRulesBuilderSucceeds.tbl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Tables\TableValidatorTest\FailsValidationForDialogFunctionInActionCell.tbl">

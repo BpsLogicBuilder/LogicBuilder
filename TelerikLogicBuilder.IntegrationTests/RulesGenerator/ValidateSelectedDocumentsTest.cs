@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +30,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         }
 
         [Fact]
-        public void CanValidateSelectedDocuments()
+        public void CanCreateValidateSelectedDocuments()
         {
             //arrange
             IValidateSelectedDocuments validator = _fixture.ServiceProvider.GetRequiredService<IValidateSelectedDocuments>();
@@ -41,7 +40,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         }
 
         [Fact]
-        public void ValidateSelectedDocumentsSucceeds()
+        public async Task ValidateSelectedDocumentsSucceeds()
         {
             //arrange
             ILoadContextSponsor loadContextSponsor = _fixture.LoadContextSponsor;
@@ -60,15 +59,15 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
 
             //act
             IList<ResultMessage>? results = null;
-            _fixture.LoadContextSponsor.Run
+            await _fixture.LoadContextSponsor.RunAsync
             (
-                () => results = validator.Validate
+                async () => results = await validator.Validate
                 (
                     new List<string> { sourceFile },
                     application,
                     progress,
                     cancellationToken
-                ).Result,
+                ),
                 progress
             );
 
@@ -79,7 +78,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             (
                 Strings.validationSuccessful,
                 results!.First().Message
-            ); ;
+            );
         }
 
         private static string GetFullSourceFilePath(string fileNameNoExtension)

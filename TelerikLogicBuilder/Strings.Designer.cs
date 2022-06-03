@@ -295,6 +295,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Build Successful!.
+        /// </summary>
+        internal static string buildSuccessful {
+            get {
+                return ResourceManager.GetString("buildSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to And.
         /// </summary>
         internal static string builtInFunctionNameAnd {
@@ -3000,6 +3009,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string progressFormTaskAssemblingRulesFormat {
             get {
                 return ResourceManager.GetString("progressFormTaskAssemblingRulesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building {0}.
+        /// </summary>
+        internal static string progressFormTaskBuildingFormat {
+            get {
+                return ResourceManager.GetString("progressFormTaskBuildingFormat", resourceCulture);
             }
         }
         

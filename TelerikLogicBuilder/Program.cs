@@ -196,9 +196,19 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
 
             //RulesGenerator
+            .AddSingleton<IBuildSaveAssembleRulesForSelectedDocuments, BuildSaveAssembleRulesForSelectedDocuments>()
             .AddSingleton<ICellHelper, CellHelper>()
+            .AddSingleton<IDiagramRulesBuilder, DiagramRulesBuilder>()
             .AddSingleton<IDiagramValidator, DiagramValidator>()
+            .AddSingleton<IRulesAssembler, RulesAssembler>()
+            .AddSingleton<ISaveDiagramResources, SaveDiagramResources>()
+            .AddSingleton<ISaveDiagramRules, SaveDiagramRules>()
+            .AddSingleton<ISaveResources, SaveResources>()
+            .AddSingleton<ISaveRules, SaveRules>()
+            .AddSingleton<ISaveTableResources, SaveTableResources>()
+            .AddSingleton<ISaveTableRules, SaveTableRules>()
             .AddSingleton<IShapeHelper, ShapeHelper>()
+            .AddSingleton<ITableRulesBuilder, TableRulesBuilder>()
             .AddSingleton<ITableValidator, TableValidator>()
             .AddSingleton<IValidateSelectedDocuments, ValidateSelectedDocuments>()
 
@@ -238,7 +248,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IWaitDecisionsRuleBuilder, WaitDecisionsRuleBuilder>()
             .AddSingleton<IDiagramResourcesManager, DiagramResourcesManager>()
             .AddSingleton<ILongStringManager, LongStringManager>()
-            .AddSingleton<IRulesAssembler, RulesAssembler>()
             .AddSingleton<ITableResourcesManager, TableResourcesManager>()
 
             //TreeViewBuiilders

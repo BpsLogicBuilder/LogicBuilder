@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contoso.Test.Business", "Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contoso.Test.Flow", "Contoso.Test.Flow\Contoso.Test.Flow.csproj", "{B737C208-9FBA-4DCE-8F65-1CBBD9DBC405}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Test.Flow.Test", "Contoso.Test.Flow.Test\Contoso.Test.Flow.Test.csproj", "{A4807E63-2832-4057-937F-9A56B3B4937E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{B737C208-9FBA-4DCE-8F65-1CBBD9DBC405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B737C208-9FBA-4DCE-8F65-1CBBD9DBC405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B737C208-9FBA-4DCE-8F65-1CBBD9DBC405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4807E63-2832-4057-937F-9A56B3B4937E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4807E63-2832-4057-937F-9A56B3B4937E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4807E63-2832-4057-937F-9A56B3B4937E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4807E63-2832-4057-937F-9A56B3B4937E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{A13DA751-D22A-4318-8A31-C496E209F845} = {F2D83747-4FB1-430B-B6B8-3420DF251FF4}
 		{AD452A53-8944-4646-B730-1BE2359E8AED} = {F2D83747-4FB1-430B-B6B8-3420DF251FF4}
 		{B737C208-9FBA-4DCE-8F65-1CBBD9DBC405} = {F2D83747-4FB1-430B-B6B8-3420DF251FF4}
+		{A4807E63-2832-4057-937F-9A56B3B4937E} = {B90BCED0-2BAD-49E8-8731-4B97FE92BA92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B6C12F5A-3A2B-4262-843C-277E72E02EFC}

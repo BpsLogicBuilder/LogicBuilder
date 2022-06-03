@@ -11,6 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection
         Task LoadAssembiesOnOpenProject();
         void Run(Action action, IProgress<ProgressMessage> progress);
         Task RunAsync(Func<Task> func, IProgress<ProgressMessage> progress);
+        Task<T> RunAsync<T>(Func<Task<T>> func, IProgress<ProgressMessage> progress);
         void UnloadAssembliesOnCloseProject();
     }
 }

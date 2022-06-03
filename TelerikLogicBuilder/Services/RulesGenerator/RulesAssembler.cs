@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using LogicBuilder.Workflow.Activities.Rules;
@@ -20,7 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
+namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 {
     internal class RulesAssembler : IRulesAssembler
     {
@@ -41,14 +42,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             _longStringManager = longStringManager;
         }
 
-        public Task AssembleResources(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource, IList<string> sourceFiles) 
+        public Task AssembleResources(IList<string> sourceFiles, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
             => Task.Run
             (
                 () => AssembleResources(progress, sourceFiles),
                 cancellationTokenSource.Token
             );
 
-        public Task AssembleRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource, IList<string> sourceFiles) 
+        public Task AssembleRules(IList<string> sourceFiles, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
             => Task.Run
             (
                 () => AssembleRules(progress, sourceFiles),
@@ -79,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
                 serializer.Serialize(writer, rules);
                 writer.Flush();
             }
-            
+
             return _longStringManager.UpdateStrongNameByPlatForm(ruleDefinition.ToString(), platForm);
         }
 
@@ -170,7 +171,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
                         (
                             new ProgressMessage
                             (
-                                (int)((float)++assembledFiles / (float)totalFiles * 100),
+                                (int)(++assembledFiles / (float)totalFiles * 100),
                                 string.Format(CultureInfo.CurrentCulture, Strings.progressFormTaskAssemblingResourcesFormat, application.Nickname)
                             )
                         );
@@ -337,7 +338,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
                         (
                             new ProgressMessage
                             (
-                                (int)((float)++assembledFiles / (float)totalFiles * 100),
+                                (int)(++assembledFiles / (float)totalFiles * 100),
                                 string.Format(CultureInfo.CurrentCulture, Strings.progressFormTaskAssemblingRulesFormat, application.Nickname)
                             )
                         );

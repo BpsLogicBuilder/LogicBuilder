@@ -31,7 +31,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Contoso.Forms.Parameters\Contoso.Forms.Parameters.csproj" />
     <ProjectReference Include="..\TelerikLogicBuilder\TelerikLogicBuilder.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
-using Contoso.Forms.Parameters.DataForm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -27,13 +26,35 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             //arrange
             IChildConstructorFinder finder = serviceProvider.GetRequiredService<IChildConstructorFinder>();
             Dictionary<string, Constructor> existingConstructors = new();
-            ParameterInfo[] parameters = typeof(DataFormSettingsParameters).GetConstructors().First().GetParameters();
+            ParameterInfo[] parameters = typeof(TestClassWithChildContructor).GetConstructors().First().GetParameters();
 
             //act
             finder.AddChildConstructors(existingConstructors, parameters);
 
             //assert
             Assert.NotEmpty(existingConstructors);
+        }
+
+        private class TestClassWithChildContructor
+        {
+            public TestClassWithChildContructor(string stringProperty, ChildContructor childContructor)
+            {
+                StringProperty = stringProperty;
+                ChildContructor = childContructor;
+            }
+
+            public string StringProperty { get; set; }
+            public ChildContructor ChildContructor { get; set; }
+        }
+
+        private class ChildContructor
+        {
+            public ChildContructor(string stringProperty)
+            {
+                StringProperty = stringProperty;
+            }
+
+            public string StringProperty { get; set; }
         }
     }
 }

@@ -183,6 +183,9 @@
 	<data name="blankConnectorExitingDialogMustEndFlow" xml:space="preserve">
     <value>A blank connector leaving a Dialog Shape must point to an End Flow Shape.</value>
   </data>
+	<data name="buildSuccessful" xml:space="preserve">
+    <value>Build Successful!</value>
+  </data>
 	<data name="builtInFunctionNameAnd" xml:space="preserve">
     <value>And</value>
   </data>
@@ -740,6 +743,10 @@
 	<data name="progressFormTaskAssemblingRulesFormat" xml:space="preserve">
     <value>Assembling {0} Rules</value>
     <comment>0=applicationNickname</comment>
+  </data>
+	<data name="progressFormTaskBuildingFormat" xml:space="preserve">
+    <value>Building {0}</value>
+    <comment>0=filename</comment>
   </data>
 	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
     <value>Initializing Page {0}</value>
