@@ -130,8 +130,16 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private async void CommandBarButtonEdit_Click(object sender, EventArgs e)
         {
-            using IScopedDisposableManager<SelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectDocumentsForm>>();
+            /*using IScopedDisposableManager<SelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectDocumentsForm>>();
             SelectDocumentsForm selectDocunentsForm = disposableManager.ScopedService;
+            selectDocunentsForm.ShowDialog();
+
+            if (selectDocunentsForm.DialogResult != System.Windows.Forms.DialogResult.OK
+                || selectDocunentsForm.SourceFiles.Count == 0)
+                return;*/
+            _configurationService.SetSelectedApplication("App01");
+            using IScopedDisposableManager<SelectRulesForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesForm>>();
+            SelectRulesForm selectDocunentsForm = disposableManager.ScopedService;
             selectDocunentsForm.ShowDialog();
 
             if (selectDocunentsForm.DialogResult != System.Windows.Forms.DialogResult.OK

@@ -214,6 +214,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //RulesGenerator.Forms
             .AddTransient<SelectDocumentsForm, SelectDocumentsForm>()
+            .AddTransient<SelectRulesForm, SelectRulesForm>()
 
             //RulesGenerator.ShapeValidators
             .AddSingleton<IActionShapeValidator, ActionShapeValidator>()
