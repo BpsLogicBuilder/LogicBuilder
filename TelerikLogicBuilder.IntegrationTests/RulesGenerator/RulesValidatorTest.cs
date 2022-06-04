@@ -3,12 +3,12 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using LogicBuilder.Workflow.Activities.Rules;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
 using System;
@@ -21,74 +21,61 @@ using Application = ABIS.LogicBuilder.FlowBuilder.Configuration.Application;
 
 namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
 {
-    public class DiagramRulesBuilderTest : IClassFixture<DiagramRulesBuilderFixture>
+    public class RulesValidatorTest : IClassFixture<RulesValidatorFixture>
     {
-        private readonly DiagramRulesBuilderFixture _fixture;
+        private readonly RulesValidatorFixture _fixture;
 
-        public DiagramRulesBuilderTest(DiagramRulesBuilderFixture fixture)
+        public RulesValidatorTest(RulesValidatorFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Fact]
-        public void CanCreateDiagramRulesBuilder()
+        public void CanCreateRulesValidator()
         {
             //arrange
-            IDiagramRulesBuilder builder = _fixture.ServiceProvider.GetRequiredService<IDiagramRulesBuilder>();
+            IRulesValidator validator = _fixture.ServiceProvider.GetRequiredService<IRulesValidator>();
 
             //assert
-            Assert.NotNull(builder);
+            Assert.NotNull(validator);
         }
 
         [Fact]
-        public async Task DiagramRulesBuilderSucceeds()
+        public async Task RulesValidatorSucceeds()
         {
             //arrange
-            IDiagramRulesBuilder builder = _fixture.ServiceProvider.GetRequiredService<IDiagramRulesBuilder>();
-            string sourceFile = GetFullSourceFilePath(nameof(DiagramRulesBuilderSucceeds));
+            IRulesValidator validator = _fixture.ServiceProvider.GetRequiredService<IRulesValidator>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
-            (
-                sourceFile,
-                (short)VisOpenSaveArgs.visOpenCopy
-            );
+            IRuleSetLoader ruleSetLoader = _fixture.ServiceProvider.GetRequiredService<IRuleSetLoader>();
+            RuleSet ruleSet = ruleSetLoader.LoadRuleSet(GetFullSourceFilePath("savecourse"));
+            var cancellationToken = new CancellationTokenSource();
             var progress = new Progress<ProgressMessage>(percent =>
             {
             });
-            var cancellationToken = new CancellationTokenSource();
 
             //act
-            BuildRulesResult result = await _fixture.LoadContextSponsor.RunAsync<BuildRulesResult>
+            IList<ResultMessage> results = await _fixture.LoadContextSponsor.RunAsync
             (
-                () => builder.BuildRules
+                () => validator.Validate
                 (
-                    sourceFile,
-                    visioDocument,
+                    ruleSet,
                     applicationTypeInfo,
-                    progress,
                     cancellationToken
                 ),
                 progress
             );
 
             //assert
-            Assert.NotEmpty(result.Rules);
-            Assert.Empty(result.ResultMessages);
+            Assert.Empty(results);
         }
 
         private static string GetFullSourceFilePath(string fileNameNoExtension)
-           => System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\{nameof(DiagramRulesBuilderTest)}\{fileNameNoExtension}.vsdx");
-
-        private static void CloseVisioDocument(Document visioDocument)
-        {
-            visioDocument.Saved = true;
-            visioDocument.Close();
-        }
+           => System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"RuleSets\{nameof(RulesValidatorTest)}\{fileNameNoExtension}.module");
     }
 
-    public class DiagramRulesBuilderFixture : IDisposable
+    public class RulesValidatorFixture : IDisposable
     {
-        public DiagramRulesBuilderFixture()
+        public RulesValidatorFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();

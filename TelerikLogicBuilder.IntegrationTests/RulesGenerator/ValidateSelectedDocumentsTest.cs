@@ -58,10 +58,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage>? results = null;
-            await _fixture.LoadContextSponsor.RunAsync
+            IList<ResultMessage> results = await _fixture.LoadContextSponsor.RunAsync
             (
-                async () => results = await validator.Validate
+                () => validator.Validate
                 (
                     new List<string> { sourceFile },
                     application,

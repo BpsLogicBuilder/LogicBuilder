@@ -201,6 +201,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IDiagramRulesBuilder, DiagramRulesBuilder>()
             .AddSingleton<IDiagramValidator, DiagramValidator>()
             .AddSingleton<IRulesAssembler, RulesAssembler>()
+            .AddSingleton<IRuleSetLoader, RuleSetLoader>()
+            .AddSingleton<IRulesValidator, RulesValidator>()
             .AddSingleton<ISaveDiagramResources, SaveDiagramResources>()
             .AddSingleton<ISaveDiagramRules, SaveDiagramRules>()
             .AddSingleton<ISaveResources, SaveResources>()
@@ -211,6 +213,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ITableRulesBuilder, TableRulesBuilder>()
             .AddSingleton<ITableValidator, TableValidator>()
             .AddSingleton<IValidateSelectedDocuments, ValidateSelectedDocuments>()
+            .AddSingleton<IValidateSelectedRules, ValidateSelectedRules>()
 
             //RulesGenerator.Forms
             .AddTransient<SelectDocumentsForm, SelectDocumentsForm>()

@@ -31,6 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly ILoadProjectProperties _loadProjectProperties;
         private readonly IThemeManager _themeManager;
         private readonly IValidateSelectedDocuments _validateSelectedDocuments;
+        private readonly IValidateSelectedRules _validateSelectedRules;
         private readonly IVariableListInitializer _variableListInitializer;
 
         public MDIParent(
@@ -44,6 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ILoadProjectProperties loadProjectProperties,
             IThemeManager themeManager,
             IValidateSelectedDocuments validateSelectedDocuments,
+            IValidateSelectedRules validateSelectedRules,
             IVariableListInitializer variableListInitializer)
         {
             _buildSaveConsolidateSelectedDocumentRules = buildSaveConsolidateSelectedDocumentRules;
@@ -56,6 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _loadProjectProperties = loadProjectProperties;
             _themeManager = themeManager;
             _validateSelectedDocuments = validateSelectedDocuments;
+            _validateSelectedRules = validateSelectedRules;
             _variableListInitializer = variableListInitializer;
 
             InitializeComponent();
@@ -100,6 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     try
                     {
                         await task(progress, cancellationTokenSource);
+                        await Task.Delay(40);
                         radProgressBarElement1.Value1 = 0;
                         radLabelElement1.Text = Strings.statusBarReadyMessage;
                     }
@@ -139,18 +143,27 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 return;*/
             _configurationService.SetSelectedApplication("App01");
             using IScopedDisposableManager<SelectRulesForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesForm>>();
-            SelectRulesForm selectDocunentsForm = disposableManager.ScopedService;
-            selectDocunentsForm.ShowDialog();
+            SelectRulesForm selectRulesForm = disposableManager.ScopedService;
+            selectRulesForm.ShowDialog();
 
-            if (selectDocunentsForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectDocunentsForm.SourceFiles.Count == 0)
+            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
+                || selectRulesForm.SourceFiles.Count == 0)
                 return;
 
             //Save the Current file in Edit Control
 
             //Check Visio Version Installed
 
-            await RunLoadContextAsync(BuildSelectedDocumentRules);
+            await RunLoadContextAsync(ValidateSelectedRules);
+
+            Task ValidateSelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
+                => _validateSelectedRules.Validate
+                (
+                    selectRulesForm.SourceFiles,
+                    _configurationService.GetSelectedApplication(),
+                    progress,
+                    cancellationTokenSource
+                );
 
             //Task ValidateSelectedDocuments(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource) 
             //    => _validateSelectedDocuments.Validate
@@ -161,14 +174,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //        cancellationTokenSource
             //    );
 
-            Task BuildSelectedDocumentRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
-                => _buildSaveConsolidateSelectedDocumentRules.BuildRules
-                (
-                    selectDocunentsForm.SourceFiles,
-                    _configurationService.GetSelectedApplication(),
-                    progress,
-                    cancellationTokenSource
-                );
+            //Task BuildSelectedDocumentRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
+            //    => _buildSaveConsolidateSelectedDocumentRules.BuildRules
+            //    (
+            //        selectDocunentsForm.SourceFiles,
+            //        _configurationService.GetSelectedApplication(),
+            //        progress,
+            //        cancellationTokenSource
+            //    );
         }
 
         private void RadThemeMenuItem_Click(object sender, EventArgs e)

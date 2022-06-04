@@ -583,6 +583,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RuleSet &quot;{0}&quot; could not be validated..
+        /// </summary>
+        internal static string cannotValidateRuleSetFormat {
+            get {
+                return ResourceManager.GetString("cannotValidateRuleSetFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cast Reference As field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string castReferenceAsMustBeEmptyFormat {
@@ -3081,6 +3090,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string referenceNameAndCastReferenceAFormat {
             get {
                 return ResourceManager.GetString("referenceNameAndCastReferenceAFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module &quot;{0}&quot; is valid..
+        /// </summary>
+        internal static string ruleSetIsValidFormat {
+            get {
+                return ResourceManager.GetString("ruleSetIsValidFormat", resourceCulture);
             }
         }
         
