@@ -141,7 +141,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                         if (application.ExcludedModules.Contains(module))
                             continue;
 
-                        string moduleResourceFileName = $"{module}{FileExtensions.RESOURCEFILEEXTENSION}";
+                        string fileNameNoExtension = _pathHelper.GetFileNameNoExtention(fileName);
+
+                        string moduleResourceFileName = $"{fileNameNoExtension}{FileExtensions.RESOURCEFILEEXTENSION}";
                         string diagramResourceFileFullPath = _pathHelper.CombinePaths(diagramRulesDirectory, moduleResourceFileName);
                         string tableResourceFileFullPath = _pathHelper.CombinePaths(tableRulesDirectory, moduleResourceFileName);
 
@@ -308,7 +310,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                         if (application.ExcludedModules.Contains(module))
                             continue;
 
-                        string moduleRulesFileName = string.Concat(module, FileExtensions.RULESFILEEXTENSION);
+                        string fileNameNoExtension = _pathHelper.GetFileNameNoExtention(fileName);
+
+                        string moduleRulesFileName = string.Concat(fileNameNoExtension, FileExtensions.RULESFILEEXTENSION);
                         string diagramRulesFileFullPath = _pathHelper.CombinePaths(diagramRulesDirectory, moduleRulesFileName);
                         string tableRulesFileFullPath = _pathHelper.CombinePaths(tableRulesDirectory, moduleRulesFileName);
 

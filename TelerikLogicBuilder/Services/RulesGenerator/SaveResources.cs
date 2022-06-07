@@ -50,7 +50,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             if (!Directory.Exists(saveFolderPath))
                 _fileIOHelper.CreateDirectory(saveFolderPath);
 
-            string fullSavePath = $"{_pathHelper.CombinePaths(saveFolderPath, module)}{FileExtensions.RESOURCEFILEEXTENSION}";
+            string fileNameNoExtension = _pathHelper.GetFileNameNoExtention(sourceFile);
+            string fullSavePath = $"{_pathHelper.CombinePaths(saveFolderPath, fileNameNoExtension)}{FileExtensions.RESOURCEFILEEXTENSION}";
 
             try
             {

@@ -1,6 +1,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -122,6 +123,20 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal("ConsoleApp1", folderName);
+        }
+
+        [Fact]
+        public void GetFilePathReturnsTheExpectedResult()
+        {
+            //arrange
+            var fullPath = $@"{TestFolders.TestAssembliesFolder}\FlowProjects\Contoso.Test\Contoso.Test.lbproj";
+            IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
+
+            //act
+            var folderPath = pathHelper.GetFilePath(fullPath);
+
+            //assert
+            Assert.Equal($@"{TestFolders.TestAssembliesFolder}\FlowProjects\Contoso.Test", folderPath, true);
         }
 
         [Fact]

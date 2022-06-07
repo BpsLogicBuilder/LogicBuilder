@@ -1105,6 +1105,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deleting {0} Rules.
+        /// </summary>
+        internal static string deletingRulesFormat {
+            get {
+                return ResourceManager.GetString("deletingRulesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deploying {0} Rules.
+        /// </summary>
+        internal static string deployingRulesFormat {
+            get {
+                return ResourceManager.GetString("deployingRulesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}..
         /// </summary>
         internal static string diagramVisibleLinkFormat {

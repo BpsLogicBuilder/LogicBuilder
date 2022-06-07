@@ -412,6 +412,14 @@
 	<data name="defaultRulesFolder" xml:space="preserve">
     <value>Rules</value>
   </data>
+	<data name="deletingRulesFormat" xml:space="preserve">
+    <value>Deleting {0} Rules</value>
+    <comment>0=Application Nickname</comment>
+  </data>
+	<data name="deployingRulesFormat" xml:space="preserve">
+    <value>Deploying {0} Rules</value>
+    <comment>0=Application Nickname</comment>
+  </data>
 	<data name="diagramVisibleLinkFormat" xml:space="preserve">
     <value>Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}.</value>
     <comment>0=fileName; 1=PageNumber; 2=Master; 3=ShapeIndex</comment>

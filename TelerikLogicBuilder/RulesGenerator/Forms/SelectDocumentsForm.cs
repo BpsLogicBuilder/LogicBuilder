@@ -9,10 +9,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
     internal partial class SelectDocumentsForm : Telerik.WinControls.UI.RadForm
     {
         private readonly IFormInitializer _formInitializer;
-        private readonly IGetAllCheckedNodeNames _getAllCheckedNodeNames;
+        private readonly IGetAllCheckedNodes _getAllCheckedNodeNames;
         private readonly ISelectDocunentsTreeViewBuilder _selectDocunentsTreeViewBuilder;
 
-        public SelectDocumentsForm(IFormInitializer formInitializer, IGetAllCheckedNodeNames getAllCheckedNodeNames, ISelectDocunentsTreeViewBuilder selectDocunentsTreeViewBuilder)
+        public SelectDocumentsForm(IFormInitializer formInitializer, IGetAllCheckedNodes getAllCheckedNodeNames, ISelectDocunentsTreeViewBuilder selectDocunentsTreeViewBuilder)
         {
             _formInitializer = formInitializer;
             _getAllCheckedNodeNames = getAllCheckedNodeNames;

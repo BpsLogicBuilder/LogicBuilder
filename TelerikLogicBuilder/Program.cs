@@ -196,10 +196,18 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
 
             //RulesGenerator
+            .AddSingleton<IApiFileListDeleter, ApiFileListDeleter>()
+            .AddSingleton<IApiFileListDeployer, ApiFileListDeployer>()
             .AddSingleton<IBuildSaveAssembleRulesForSelectedDocuments, BuildSaveAssembleRulesForSelectedDocuments>()
             .AddSingleton<ICellHelper, CellHelper>()
+            .AddSingleton<IDeleteSelectedFilesFromApi, DeleteSelectedFilesFromApi>()
+            .AddSingleton<IDeleteSelectedFilesFromFileSystem, DeleteSelectedFilesFromFileSystem>()
+            .AddSingleton<IDeploySelectedFilesToApi, DeploySelectedFilesToApi>()
+            .AddSingleton<IDeploySelectedFilesToFileSystem, DeploySelectedFilesToFileSystem>()
             .AddSingleton<IDiagramRulesBuilder, DiagramRulesBuilder>()
             .AddSingleton<IDiagramValidator, DiagramValidator>()
+            .AddSingleton<IFileSystemFileDeleter, FileSystemFileDeleter>()
+            .AddSingleton<IFileSystemFileDeployer, FileSystemFileDeployer>()
             .AddSingleton<IRulesAssembler, RulesAssembler>()
             .AddSingleton<IRuleSetLoader, RuleSetLoader>()
             .AddSingleton<IRulesValidator, RulesValidator>()
@@ -218,6 +226,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //RulesGenerator.Forms
             .AddTransient<SelectDocumentsForm, SelectDocumentsForm>()
             .AddTransient<SelectRulesForm, SelectRulesForm>()
+            .AddTransient<SelectRulesResourcesPairForm, SelectRulesResourcesPairForm>()
 
             //RulesGenerator.ShapeValidators
             .AddSingleton<IActionShapeValidator, ActionShapeValidator>()
@@ -256,8 +265,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //TreeViewBuiilders
             .AddSingleton<IEmptyFolderRemover, EmptyFolderRemover>()
-            .AddSingleton<IGetAllCheckedNodeNames, GetAllCheckedNodeNames>()
+            .AddSingleton<IGetAllCheckedNodes, GetAllCheckedNodes>()
             .AddSingleton<ISelectDocunentsTreeViewBuilder, SelectDocunentsTreeViewBuilder>()
+            .AddSingleton<ISelectModulesForDeploymentTreeViewBuilder, SelectModulesForDeploymentTreeViewBuilder>()
             .AddSingleton<ISelectRulesTreeViewBuilder, SelectRulesTreeViewBuilder>()
 
             //XmlValidation
