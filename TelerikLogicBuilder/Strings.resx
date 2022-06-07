@@ -462,6 +462,10 @@
 	<data name="dialogShapesOneDialogFunction" xml:space="preserve">
     <value>Dialog Shape requires exactly one dialog function.</value>
   </data>
+	<data name="displayMemuItemWithEllipsisFormat" xml:space="preserve">
+    <value>{0}...</value>
+    <comment>0=MenuItem Text</comment>
+  </data>
 	<data name="dotExe" xml:space="preserve">
     <value>.exe</value>
   </data>
@@ -656,6 +660,9 @@
 	<data name="loadingAssemblies" xml:space="preserve">
     <value>Reloading assemblies. Please wait.</value>
   </data>
+	<data name="loadingAssemblies2" xml:space="preserve">
+    <value>Loading assemblies. Please wait.</value>
+  </data>
 	<data name="memberNameIsInvalidFormat" xml:space="preserve">
     <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=functionName</comment>
@@ -788,6 +795,15 @@
 	<data name="ruleSetIsValidFormat" xml:space="preserve">
     <value>Module "{0}" is valid.</value>
     <comment>0=ModuleName</comment>
+  </data>
+	<data name="selectRulesToDelete" xml:space="preserve">
+    <value>Select Rules to Delete</value>
+  </data>
+	<data name="selectRulesToDeploy" xml:space="preserve">
+    <value>Select Rules to Deploy</value>
+  </data>
+	<data name="selectRulesToValidate" xml:space="preserve">
+    <value>Select Rules to Validate</value>
   </data>
 	<data name="shapeBoxOutgoingBlanks" xml:space="preserve">
     <value>With the exception of diverging application logic, only one blank connector can exit this shape.</value>

@@ -1240,6 +1240,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}....
+        /// </summary>
+        internal static string displayMemuItemWithEllipsisFormat {
+            get {
+                return ResourceManager.GetString("displayMemuItemWithEllipsisFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .exe.
         /// </summary>
         internal static string dotExe {
@@ -2743,6 +2752,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading assemblies. Please wait..
+        /// </summary>
+        internal static string loadingAssemblies2 {
+            get {
+                return ResourceManager.GetString("loadingAssemblies2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type long..
         /// </summary>
         internal static string longKeyIndexIsInvalidFormat {
@@ -3144,6 +3162,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string sbyteKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("sbyteKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Rules to Delete.
+        /// </summary>
+        internal static string selectRulesToDelete {
+            get {
+                return ResourceManager.GetString("selectRulesToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Rules to Deploy.
+        /// </summary>
+        internal static string selectRulesToDeploy {
+            get {
+                return ResourceManager.GetString("selectRulesToDeploy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Rules to Validate.
+        /// </summary>
+        internal static string selectRulesToValidate {
+            get {
+                return ResourceManager.GetString("selectRulesToValidate", resourceCulture);
             }
         }
         

@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 {
                     ImageIndex = TreeNodeImageIndexes.FILEIMAGEINDEX,
                     Name = fileInfo.FullName,
-                    Text = fileInfo.Name,
+                    Text = _pathHelper.GetModuleName(fileInfo.Name),
                     Tag = new RulesResourcesPair
                     (
                         fileInfo.FullName,

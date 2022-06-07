@@ -72,6 +72,67 @@
   <data name="radMenuItemRules.Text" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="radMenuItemBuildActiveDrawing.Text" xml:space="preserve">
+    <value>Active Drawing</value>
+  </data>
+  <data name="radMenuItemBuildActiveTable.Text" xml:space="preserve">
+    <value>Active Table</value>
+  </data>
+  <data name="radMenuItemBuildSelectedModules.Text" xml:space="preserve">
+    <value>Select Modules...</value>
+  </data>
+  <data name="radMenuItemBuildRules.Text" xml:space="preserve">
+    <value>Build Rules...</value>
+  </data>
+  <data name="radMenuItemValidateActiveDrawing.Text" xml:space="preserve">
+    <value>Active Drawing</value>
+  </data>
+  <data name="radMenuItemValidateActiveTable.Text" xml:space="preserve">
+    <value>Active Table</value>
+  </data>
+  <data name="radMenuItemValidateSelectedModules.Text" xml:space="preserve">
+    <value>Select Modules...</value>
+  </data>
+  <data name="radMenuItemValidateDocuments.Text" xml:space="preserve">
+    <value>Validate Documents...</value>
+  </data>
+  <data name="radMenuItemValidateRules.Text" xml:space="preserve">
+    <value>Validate Rules...</value>
+  </data>
+  <data name="radMenuSeparatorItem1.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem1</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radMenuSeparatorItem1.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemFileSystemDeploy.Text" xml:space="preserve">
+    <value>Deploy...</value>
+  </data>
+  <data name="radMenuItemFileSystemDelete.Text" xml:space="preserve">
+    <value>Delete...</value>
+  </data>
+  <data name="radMenuItemFileSystemDeployment.Text" xml:space="preserve">
+    <value>File System Deployment...</value>
+  </data>
+  <data name="radMenuItemWebApiDeploy.Text" xml:space="preserve">
+    <value>Deploy...</value>
+  </data>
+  <data name="radMenuItemWebApiDelete.Text" xml:space="preserve">
+    <value>Delete...</value>
+  </data>
+  <data name="radMenuItemWebApiDeployment.Text" xml:space="preserve">
+    <value>Web-API Deployment...</value>
+  </data>
+  <data name="radMenuSeparatorItem2.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem2</value>
+  </data>
+  <data name="radMenuSeparatorItem2.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemSelectApplication.Text" xml:space="preserve">
+    <value>Select Application...</value>
+  </data>
   <data name="radMenuItemTools.Text" xml:space="preserve">
     <value>&amp;Tools</value>
   </data>
@@ -111,7 +172,6 @@
   <data name="radMenuItemHelp.Text" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="radMenu1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -482,6 +542,114 @@
     <value>radMenuItemTools</value>
   </data>
   <data name="&gt;&gt;radMenuItemTools.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildRules.Name" xml:space="preserve">
+    <value>radMenuItemBuildRules</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildRules.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildActiveDrawing.Name" xml:space="preserve">
+    <value>radMenuItemBuildActiveDrawing</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildActiveDrawing.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildActiveTable.Name" xml:space="preserve">
+    <value>radMenuItemBuildActiveTable</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildActiveTable.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildSelectedModules.Name" xml:space="preserve">
+    <value>radMenuItemBuildSelectedModules</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemBuildSelectedModules.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateDocuments.Name" xml:space="preserve">
+    <value>radMenuItemValidateDocuments</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateDocuments.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateActiveDrawing.Name" xml:space="preserve">
+    <value>radMenuItemValidateActiveDrawing</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateActiveDrawing.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateActiveTable.Name" xml:space="preserve">
+    <value>radMenuItemValidateActiveTable</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateActiveTable.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateSelectedModules.Name" xml:space="preserve">
+    <value>radMenuItemValidateSelectedModules</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateSelectedModules.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateRules.Name" xml:space="preserve">
+    <value>radMenuItemValidateRules</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemValidateRules.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem1.Name" xml:space="preserve">
+    <value>radMenuSeparatorItem1</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFileSystemDeployment.Name" xml:space="preserve">
+    <value>radMenuItemFileSystemDeployment</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFileSystemDeployment.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFileSystemDeploy.Name" xml:space="preserve">
+    <value>radMenuItemFileSystemDeploy</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFileSystemDeploy.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFileSystemDelete.Name" xml:space="preserve">
+    <value>radMenuItemFileSystemDelete</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFileSystemDelete.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemWebApiDeployment.Name" xml:space="preserve">
+    <value>radMenuItemWebApiDeployment</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemWebApiDeployment.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemWebApiDeploy.Name" xml:space="preserve">
+    <value>radMenuItemWebApiDeploy</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemWebApiDeploy.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemWebApiDelete.Name" xml:space="preserve">
+    <value>radMenuItemWebApiDelete</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemWebApiDelete.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem2.Name" xml:space="preserve">
+    <value>radMenuSeparatorItem2</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemSelectApplication.Name" xml:space="preserve">
+    <value>radMenuItemSelectApplication</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemSelectApplication.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radMenuItemTheme.Name" xml:space="preserve">

@@ -36,6 +36,24 @@
             this.radMenuItemProject = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemRules = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemTools = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemBuildRules = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemBuildActiveDrawing = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemBuildActiveTable = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemBuildSelectedModules = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemValidateDocuments = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemValidateActiveDrawing = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemValidateActiveTable = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemValidateSelectedModules = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemValidateRules = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuSeparatorItem1 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            this.radMenuItemFileSystemDeployment = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemFileSystemDeploy = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemFileSystemDelete = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemWebApiDeployment = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemWebApiDeploy = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemWebApiDelete = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            this.radMenuItemSelectApplication = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemTheme = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2007Black = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2007Silver = new Telerik.WinControls.UI.RadMenuItem();
@@ -131,8 +149,123 @@
             // 
             // radMenuItemTools
             // 
+            this.radMenuItemTools.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemBuildRules,
+            this.radMenuItemValidateDocuments,
+            this.radMenuItemValidateRules,
+            this.radMenuSeparatorItem1,
+            this.radMenuItemFileSystemDeployment,
+            this.radMenuItemWebApiDeployment,
+            this.radMenuSeparatorItem2,
+            this.radMenuItemSelectApplication});
             this.radMenuItemTools.Name = "radMenuItemTools";
             resources.ApplyResources(this.radMenuItemTools, "radMenuItemTools");
+            // 
+            // radMenuItemBuildRules
+            // 
+            this.radMenuItemBuildRules.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemBuildActiveDrawing,
+            this.radMenuItemBuildActiveTable,
+            this.radMenuItemBuildSelectedModules});
+            this.radMenuItemBuildRules.Name = "radMenuItemBuildRules";
+            resources.ApplyResources(this.radMenuItemBuildRules, "radMenuItemBuildRules");
+            // 
+            // radMenuItemBuildActiveDrawing
+            // 
+            this.radMenuItemBuildActiveDrawing.Name = "radMenuItemBuildActiveDrawing";
+            resources.ApplyResources(this.radMenuItemBuildActiveDrawing, "radMenuItemBuildActiveDrawing");
+            // 
+            // radMenuItemBuildActiveTable
+            // 
+            this.radMenuItemBuildActiveTable.Name = "radMenuItemBuildActiveTable";
+            resources.ApplyResources(this.radMenuItemBuildActiveTable, "radMenuItemBuildActiveTable");
+            // 
+            // radMenuItemBuildSelectedModules
+            // 
+            this.radMenuItemBuildSelectedModules.Name = "radMenuItemBuildSelectedModules";
+            resources.ApplyResources(this.radMenuItemBuildSelectedModules, "radMenuItemBuildSelectedModules");
+            this.radMenuItemBuildSelectedModules.Click += new System.EventHandler(this.RadMenuItemBuildSelectedModules_Click);
+            // 
+            // radMenuItemValidateDocuments
+            // 
+            this.radMenuItemValidateDocuments.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemValidateActiveDrawing,
+            this.radMenuItemValidateActiveTable,
+            this.radMenuItemValidateSelectedModules});
+            this.radMenuItemValidateDocuments.Name = "radMenuItemValidateDocuments";
+            resources.ApplyResources(this.radMenuItemValidateDocuments, "radMenuItemValidateDocuments");
+            // 
+            // radMenuItemValidateActiveDrawing
+            // 
+            this.radMenuItemValidateActiveDrawing.Name = "radMenuItemValidateActiveDrawing";
+            resources.ApplyResources(this.radMenuItemValidateActiveDrawing, "radMenuItemValidateActiveDrawing");
+            // 
+            // radMenuItemValidateActiveTable
+            // 
+            this.radMenuItemValidateActiveTable.Name = "radMenuItemValidateActiveTable";
+            resources.ApplyResources(this.radMenuItemValidateActiveTable, "radMenuItemValidateActiveTable");
+            // 
+            // radMenuItemValidateSelectedModules
+            // 
+            this.radMenuItemValidateSelectedModules.Name = "radMenuItemValidateSelectedModules";
+            resources.ApplyResources(this.radMenuItemValidateSelectedModules, "radMenuItemValidateSelectedModules");
+            this.radMenuItemValidateSelectedModules.Click += new System.EventHandler(this.RadMenuItemValidateSelectedModules_Click);
+            // 
+            // radMenuItemValidateRules
+            // 
+            this.radMenuItemValidateRules.Name = "radMenuItemValidateRules";
+            resources.ApplyResources(this.radMenuItemValidateRules, "radMenuItemValidateRules");
+            // 
+            // radMenuSeparatorItem1
+            // 
+            this.radMenuSeparatorItem1.Name = "radMenuSeparatorItem1";
+            resources.ApplyResources(this.radMenuSeparatorItem1, "radMenuSeparatorItem1");
+            // 
+            // radMenuItemFileSystemDeployment
+            // 
+            this.radMenuItemFileSystemDeployment.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemFileSystemDeploy,
+            this.radMenuItemFileSystemDelete});
+            this.radMenuItemFileSystemDeployment.Name = "radMenuItemFileSystemDeployment";
+            resources.ApplyResources(this.radMenuItemFileSystemDeployment, "radMenuItemFileSystemDeployment");
+            // 
+            // radMenuItemFileSystemDeploy
+            // 
+            this.radMenuItemFileSystemDeploy.Name = "radMenuItemFileSystemDeploy";
+            resources.ApplyResources(this.radMenuItemFileSystemDeploy, "radMenuItemFileSystemDeploy");
+            // 
+            // radMenuItemFileSystemDelete
+            // 
+            this.radMenuItemFileSystemDelete.Name = "radMenuItemFileSystemDelete";
+            resources.ApplyResources(this.radMenuItemFileSystemDelete, "radMenuItemFileSystemDelete");
+            // 
+            // radMenuItemWebApiDeployment
+            // 
+            this.radMenuItemWebApiDeployment.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemWebApiDeploy,
+            this.radMenuItemWebApiDelete});
+            this.radMenuItemWebApiDeployment.Name = "radMenuItemWebApiDeployment";
+            resources.ApplyResources(this.radMenuItemWebApiDeployment, "radMenuItemWebApiDeployment");
+            // 
+            // radMenuItemWebApiDeploy
+            // 
+            this.radMenuItemWebApiDeploy.Name = "radMenuItemWebApiDeploy";
+            resources.ApplyResources(this.radMenuItemWebApiDeploy, "radMenuItemWebApiDeploy");
+            // 
+            // radMenuItemWebApiDelete
+            // 
+            this.radMenuItemWebApiDelete.Name = "radMenuItemWebApiDelete";
+            resources.ApplyResources(this.radMenuItemWebApiDelete, "radMenuItemWebApiDelete");
+            // 
+            // radMenuSeparatorItem2
+            // 
+            this.radMenuSeparatorItem2.Name = "radMenuSeparatorItem2";
+            resources.ApplyResources(this.radMenuSeparatorItem2, "radMenuSeparatorItem2");
+            // 
+            // radMenuItemSelectApplication
+            // 
+            this.radMenuItemSelectApplication.Name = "radMenuItemSelectApplication";
+            resources.ApplyResources(this.radMenuItemSelectApplication, "radMenuItemSelectApplication");
             // 
             // radMenuItemTheme
             // 
@@ -479,5 +612,23 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemOffice2019Light;
         private Telerik.WinControls.Themes.Office2013DarkTheme office2013DarkTheme1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemOffice2013Dark;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemBuildRules;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemBuildActiveDrawing;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemBuildActiveTable;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemBuildSelectedModules;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemValidateDocuments;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemValidateActiveDrawing;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemValidateActiveTable;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemValidateSelectedModules;
+        private Telerik.WinControls.UI.RadMenuSeparatorItem radMenuSeparatorItem1;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemValidateRules;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemFileSystemDeployment;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemFileSystemDeploy;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemFileSystemDelete;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemWebApiDeployment;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemWebApiDeploy;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemWebApiDelete;
+        private Telerik.WinControls.UI.RadMenuSeparatorItem radMenuSeparatorItem2;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemSelectApplication;
     }
 }
