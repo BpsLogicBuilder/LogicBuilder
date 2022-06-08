@@ -24,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
     internal partial class MDIParent : RadForm
     {
         private readonly IBuildSaveAssembleRulesForSelectedDocuments _buildSaveConsolidateSelectedDocumentRules;
+        private readonly ICheckSelectedApplication _checkSelectedApplication;
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorListInitializer _constructorListInitializer;
         private readonly IDeleteSelectedFilesFromApi _deleteSelectedFilesFromApi;
@@ -42,6 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         public MDIParent(
             IBuildSaveAssembleRulesForSelectedDocuments buildSaveConsolidateSelectedDocumentRules,
+            ICheckSelectedApplication checkSelectedApplication,
             IConfigurationService configurationService,
             IConstructorListInitializer constructorListInitializer,
             IDeleteSelectedFilesFromApi deleteSelectedFilesFromApi,
@@ -59,6 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IVariableListInitializer variableListInitializer)
         {
             _buildSaveConsolidateSelectedDocumentRules = buildSaveConsolidateSelectedDocumentRules;
+            _checkSelectedApplication = checkSelectedApplication;
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
             _deleteSelectedFilesFromApi = deleteSelectedFilesFromApi;
@@ -83,8 +86,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IDictionary<string, RadMenuItem> deleteFileSystemApplicationMenuItemList = new Dictionary<string, RadMenuItem>();
         private readonly IDictionary<string, RadMenuItem> deployWebApiApplicationMenuItemList = new Dictionary<string, RadMenuItem>();
         private readonly IDictionary<string, RadMenuItem> deleteWebApiApplicationMenuItemList = new Dictionary<string, RadMenuItem>();
+        private readonly IDictionary<string, RadMenuItem> selectedApplicationRulesMenuItemList = new Dictionary<string, RadMenuItem>();
         private readonly IDictionary<string, RadMenuItem> validateApplicationRulesMenuItemList = new Dictionary<string, RadMenuItem>();
 
+        #region Methods
         private async void Initialize()
         {
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
@@ -104,6 +109,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             UpdateApplicationMenuItems();
 
+            SetSelectedApplication
+            (
+                /*Gets the first one if none have been selected*/
+                _configurationService.GetSelectedApplication().Name
+            );
+
             await LoadAssembliesOnProjectOpen();
         }
 
@@ -116,40 +127,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             radProgressBarElement1.Value1 = 0;
             radLabelElement1.Text = Strings.statusBarReadyMessage;
-        }
-
-        private void UpdateApplicationMenuItems()
-        {
-            List<Application> applicationList = new(_configurationService.ProjectProperties.ApplicationList.Values.OrderBy(a => a.Nickname));
-
-            UpdateApplicationMenuItems(applicationList, radMenuItemFileSystemDeploy, deployFileSystemApplicationMenuItemList, DeployFileSystemRadMenuItem_Click);
-            UpdateApplicationMenuItems(applicationList, radMenuItemFileSystemDelete, deleteFileSystemApplicationMenuItemList, DeleteFileSystemRadMenuItem_Click);
-            UpdateApplicationMenuItems(applicationList, radMenuItemWebApiDeploy, deployWebApiApplicationMenuItemList, DeployWebApiRadMenuItem_Click);
-            UpdateApplicationMenuItems(applicationList, radMenuItemWebApiDelete, deleteWebApiApplicationMenuItemList, DeleteWebApiRadMenuItem_Click);
-            UpdateApplicationMenuItems(applicationList, radMenuItemValidateRules, validateApplicationRulesMenuItemList, ValidateRulesRadMenuItem_Click);
-        }
-
-        private static void UpdateApplicationMenuItems(IList<Application> applicationList, RadMenuItem parentMenuItem, IDictionary<string, RadMenuItem> itemDictionary, EventHandler handler)
-        {
-            itemDictionary.Clear();
-            parentMenuItem.Items.Clear();
-            foreach (Application application in applicationList)
-            {
-                RadMenuItem radMenuItem = new
-                (
-                    string.Format
-                    (
-                        CultureInfo.CurrentCulture,
-                        Strings.displayMemuItemWithEllipsisFormat,
-                        application.Nickname
-                    ),
-                    application.Name
-                );
-
-                radMenuItem.Click += handler;
-                itemDictionary.Add(application.Name, radMenuItem);
-                parentMenuItem.Items.Add(radMenuItem);
-            }
         }
 
         private async Task RunAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
@@ -242,6 +219,50 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 progress
             );
         }
+
+        private void SetSelectedApplication(string applicationName)
+        {
+            _configurationService.SetSelectedApplication(applicationName);
+            _checkSelectedApplication.CheckSelectedItem(radMenuItemSelectApplication.Items);
+        }
+
+        private void UpdateApplicationMenuItems()
+        {
+            List<Application> applicationList = new(_configurationService.ProjectProperties.ApplicationList.Values.OrderBy(a => a.Nickname));
+
+            UpdateApplicationMenuItems(applicationList, radMenuItemFileSystemDeploy, deployFileSystemApplicationMenuItemList, DeployFileSystemRadMenuItem_Click);
+            UpdateApplicationMenuItems(applicationList, radMenuItemFileSystemDelete, deleteFileSystemApplicationMenuItemList, DeleteFileSystemRadMenuItem_Click);
+            UpdateApplicationMenuItems(applicationList, radMenuItemWebApiDeploy, deployWebApiApplicationMenuItemList, DeployWebApiRadMenuItem_Click);
+            UpdateApplicationMenuItems(applicationList, radMenuItemWebApiDelete, deleteWebApiApplicationMenuItemList, DeleteWebApiRadMenuItem_Click);
+            UpdateApplicationMenuItems(applicationList, radMenuItemValidateRules, validateApplicationRulesMenuItemList, ValidateRulesRadMenuItem_Click);
+            UpdateApplicationMenuItems(applicationList, radMenuItemSelectApplication, selectedApplicationRulesMenuItemList, SelectedApplicationItem_Click, false);
+        }
+
+        private static void UpdateApplicationMenuItems(IList<Application> applicationList, RadMenuItem parentMenuItem, IDictionary<string, RadMenuItem> itemDictionary, EventHandler handler, bool addEllipsis = true)
+        {
+            itemDictionary.Clear();
+            parentMenuItem.Items.Clear();
+            foreach (Application application in applicationList)
+            {
+                RadMenuItem radMenuItem = new
+                (
+                    addEllipsis
+                    ? string.Format
+                        (
+                            CultureInfo.CurrentCulture,
+                            Strings.displayMemuItemWithEllipsisFormat,
+                            application.Nickname
+                        )
+                    : application.Nickname,
+                    application.Name
+                );
+
+                radMenuItem.Click += handler;
+                itemDictionary.Add(application.Name, radMenuItem);
+                parentMenuItem.Items.Add(radMenuItem);
+            }
+        }
+        #endregion Methods
 
         #region Event Handlers
         private async void DeleteFileSystemRadMenuItem_Click(object? sender, EventArgs e)
@@ -421,6 +442,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     progress,
                     cancellationTokenSource
                 );
+        }
+
+        private void SelectedApplicationItem_Click(object? sender, EventArgs e)
+        {
+            SetSelectedApplication((string)((RadMenuItem)sender!).Tag);
         }
         #endregion Event Handlers
     }
