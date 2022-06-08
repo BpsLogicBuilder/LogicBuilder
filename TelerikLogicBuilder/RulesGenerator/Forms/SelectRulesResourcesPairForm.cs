@@ -36,6 +36,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
                                                                 .Select(n => (RulesResourcesPair)n.Tag)
                                                                 .ToArray();
 
+        internal void BuildTreeView(string selectedApplicationName)
+        {
+            _selectModulesForDeploymentTreeViewBuilder.Build(radTreeView, selectedApplicationName);
+        }
+
         internal void SetTitle(string title)
         {
             this.Text = title;
@@ -45,7 +50,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private void Initialize()
         {
             _formInitializer.SetFormDefaults(this, 648);
-            _selectModulesForDeploymentTreeViewBuilder.Build(radTreeView, _configurationService.GetSelectedApplication().Name);
 
             radButtonOk.DialogResult = DialogResult.OK;
             radButtonCancel.DialogResult = DialogResult.Cancel;

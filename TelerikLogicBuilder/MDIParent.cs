@@ -226,6 +226,61 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _checkSelectedApplication.CheckSelectedItem(radMenuItemSelectApplication.Items);
         }
 
+        private static bool TryGetSelectedDocuments(out IList<string> selectedDocuments)
+        {
+            using IScopedDisposableManager<SelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectDocumentsForm>>();
+            SelectDocumentsForm selectDocunentsForm = disposableManager.ScopedService;
+            selectDocunentsForm.ShowDialog();
+
+            if (selectDocunentsForm.DialogResult != System.Windows.Forms.DialogResult.OK
+                || selectDocunentsForm.SourceFiles.Count == 0)
+            {
+                selectedDocuments = Array.Empty<string>();
+                return false;
+            }
+
+            selectedDocuments = selectDocunentsForm.SourceFiles;
+            return true;
+        }
+
+        private static bool TryGetSelectedRules(string selctedApplication, string title, out IList<string> selectedRules)
+        {
+            using IScopedDisposableManager<SelectRulesForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesForm>>();
+            SelectRulesForm selectRulesForm = disposableManager.ScopedService;
+            selectRulesForm.SetTitle(title);
+            selectRulesForm.BuildTreeView(selctedApplication);
+            selectRulesForm.ShowDialog();
+
+            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
+                || selectRulesForm.SourceFiles.Count == 0)
+            {
+                selectedRules = Array.Empty<string>();
+                return false;
+            }
+
+            selectedRules = selectRulesForm.SourceFiles;
+            return true;
+        }
+
+        private static bool TryGetSelectedRulesResourcesPairs(string selctedApplication, string title, out IList<RulesResourcesPair> sourceFiles)
+        {
+            using IScopedDisposableManager<SelectRulesResourcesPairForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesResourcesPairForm>>();
+            SelectRulesResourcesPairForm selectRulesForm = disposableManager.ScopedService;
+            selectRulesForm.SetTitle(title);
+            selectRulesForm.BuildTreeView(selctedApplication);
+            selectRulesForm.ShowDialog();
+
+            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
+                || selectRulesForm.SourceFiles.Count == 0)
+            {
+                sourceFiles = Array.Empty<RulesResourcesPair>();
+                return false;
+            }
+
+            sourceFiles = selectRulesForm.SourceFiles;
+            return true;
+        }
+
         private void UpdateApplicationMenuItems()
         {
             List<Application> applicationList = new(_configurationService.ProjectProperties.ApplicationList.Values.OrderBy(a => a.Nickname));
@@ -268,22 +323,24 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private async void DeleteFileSystemRadMenuItem_Click(object? sender, EventArgs e)
         {
             string applicationName = (string)((RadMenuItem)sender!).Tag;
-
-            using IScopedDisposableManager<SelectRulesResourcesPairForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesResourcesPairForm>>();
-            SelectRulesResourcesPairForm selectRulesForm = disposableManager.ScopedService;
-            selectRulesForm.SetTitle(Strings.selectRulesToDelete);
-            selectRulesForm.ShowDialog();
-
-            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectRulesForm.SourceFiles.Count == 0)
+            if (
+                    !TryGetSelectedRulesResourcesPairs
+                    (
+                        applicationName,
+                        Strings.selectRulesToDelete,
+                        out IList<RulesResourcesPair> sourceFiles
+                    )
+               )
+            {
                 return;
+            }
 
             await RunAsync(DeleteSelectedRules);
 
             Task DeleteSelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _deleteSelectedFilesFromFileSystem.Delete
                 (
-                    selectRulesForm.SourceFiles,
+                    sourceFiles,
                     _configurationService.GetApplication(applicationName)!,
                     progress,
                     cancellationTokenSource
@@ -293,22 +350,24 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private async void DeployFileSystemRadMenuItem_Click(object? sender, EventArgs e)
         {
             string applicationName = (string)((RadMenuItem)sender!).Tag;
-
-            using IScopedDisposableManager<SelectRulesResourcesPairForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesResourcesPairForm>>();
-            SelectRulesResourcesPairForm selectRulesForm = disposableManager.ScopedService;
-            selectRulesForm.SetTitle(Strings.selectRulesToDeploy);
-            selectRulesForm.ShowDialog();
-
-            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectRulesForm.SourceFiles.Count == 0)
+            if (
+                    !TryGetSelectedRulesResourcesPairs
+                    (
+                        applicationName,
+                        Strings.selectRulesToDeploy,
+                        out IList<RulesResourcesPair> sourceFiles
+                    )
+               )
+            {
                 return;
+            }
 
             await RunAsync(DeploySelectedRules);
 
             Task DeploySelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _deploySelectedFilesToFileSystem.Deploy
                 (
-                    selectRulesForm.SourceFiles,
+                    sourceFiles,
                     _configurationService.GetApplication(applicationName)!,
                     progress,
                     cancellationTokenSource
@@ -318,22 +377,24 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private async void DeleteWebApiRadMenuItem_Click(object? sender, EventArgs e)
         {
             string applicationName = (string)((RadMenuItem)sender!).Tag;
-
-            using IScopedDisposableManager<SelectRulesResourcesPairForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesResourcesPairForm>>();
-            SelectRulesResourcesPairForm selectRulesForm = disposableManager.ScopedService;
-            selectRulesForm.SetTitle(Strings.selectRulesToDelete);
-            selectRulesForm.ShowDialog();
-
-            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectRulesForm.SourceFiles.Count == 0)
+            if (
+                    !TryGetSelectedRulesResourcesPairs
+                    (
+                        applicationName,
+                        Strings.selectRulesToDelete,
+                        out IList<RulesResourcesPair> sourceFiles
+                    )
+               )
+            {
                 return;
+            }
 
             await RunAsync(DeleteSelectedRules);
 
             Task DeleteSelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _deleteSelectedFilesFromApi.Delete
                 (
-                    selectRulesForm.SourceFiles,
+                    sourceFiles,
                     _configurationService.GetApplication(applicationName)!,
                     progress,
                     cancellationTokenSource
@@ -343,22 +404,24 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private async void DeployWebApiRadMenuItem_Click(object? sender, EventArgs e)
         {
             string applicationName = (string)((RadMenuItem)sender!).Tag;
-            
-            using IScopedDisposableManager<SelectRulesResourcesPairForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesResourcesPairForm>>();
-            SelectRulesResourcesPairForm selectRulesForm = disposableManager.ScopedService;
-            selectRulesForm.SetTitle(Strings.selectRulesToDeploy);
-            selectRulesForm.ShowDialog();
-
-            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectRulesForm.SourceFiles.Count == 0)
+            if (
+                    !TryGetSelectedRulesResourcesPairs
+                    (
+                        applicationName,
+                        Strings.selectRulesToDeploy,
+                        out IList<RulesResourcesPair> sourceFiles
+                    )
+               )
+            {
                 return;
+            }
 
             await RunAsync(DeploySelectedRules);
 
             Task DeploySelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _deploySelectedFilesToApi.Deploy
                 (
-                    selectRulesForm.SourceFiles,
+                    sourceFiles,
                     _configurationService.GetApplication(applicationName)!,
                     progress,
                     cancellationTokenSource
@@ -368,21 +431,24 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private async void ValidateRulesRadMenuItem_Click(object? sender, EventArgs e)
         {
             string applicationName = (string)((RadMenuItem)sender!).Tag;
-            using IScopedDisposableManager<SelectRulesForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesForm>>();
-            SelectRulesForm selectRulesForm = disposableManager.ScopedService;
-            selectRulesForm.SetTitle(Strings.selectRulesToValidate);
-            selectRulesForm.ShowDialog();
-
-            if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectRulesForm.SourceFiles.Count == 0)
+            if (
+                    !TryGetSelectedRules
+                    (
+                        applicationName, 
+                        Strings.selectRulesToValidate, 
+                        out IList<string> sourceFiles
+                    )
+               )
+            {
                 return;
+            }
 
             await RunLoadContextAsync(ValidateSelectedRules);
 
             Task ValidateSelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _validateSelectedRules.Validate
                 (
-                    selectRulesForm.SourceFiles,
+                    sourceFiles,
                     _configurationService.GetApplication(applicationName)!,
                     progress,
                     cancellationTokenSource
@@ -402,12 +468,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private async void RadMenuItemBuildSelectedModules_Click(object sender, EventArgs e)
         {
-            using IScopedDisposableManager<SelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectDocumentsForm>>();
-            SelectDocumentsForm selectDocunentsForm = disposableManager.ScopedService;
-            selectDocunentsForm.ShowDialog();
-
-            if (selectDocunentsForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectDocunentsForm.SourceFiles.Count == 0)
+            if (!TryGetSelectedDocuments(out IList<string> sourceFiles))
                 return;
 
             await RunLoadContextAsync(BuildSelectedDocumentRules);
@@ -415,7 +476,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Task BuildSelectedDocumentRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _buildSaveConsolidateSelectedDocumentRules.BuildRules
                 (
-                    selectDocunentsForm.SourceFiles,
+                    sourceFiles,
                     _configurationService.GetSelectedApplication(),
                     progress,
                     cancellationTokenSource
@@ -424,12 +485,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private async void RadMenuItemValidateSelectedModules_Click(object sender, EventArgs e)
         {
-            using IScopedDisposableManager<SelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectDocumentsForm>>();
-            SelectDocumentsForm selectDocunentsForm = disposableManager.ScopedService;
-            selectDocunentsForm.ShowDialog();
-
-            if (selectDocunentsForm.DialogResult != System.Windows.Forms.DialogResult.OK
-                || selectDocunentsForm.SourceFiles.Count == 0)
+            if (!TryGetSelectedDocuments(out IList<string> sourceFiles))
                 return;
 
             await RunLoadContextAsync(ValidateSelectedDocuments);
@@ -437,7 +493,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Task ValidateSelectedDocuments(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _validateSelectedDocuments.Validate
                 (
-                    selectDocunentsForm.SourceFiles,
+                    sourceFiles,
                     _configurationService.GetSelectedApplication(),
                     progress,
                     cancellationTokenSource

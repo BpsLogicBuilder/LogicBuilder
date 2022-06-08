@@ -26,6 +26,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         internal IList<string> SourceFiles => _getAllCheckedNodeNames.GetNames(radTreeView.Nodes[0]);
 
+        internal void BuildTreeView(string selectedApplicationName)
+        {
+            _selectRulesTreeViewBuilder.Build(radTreeView, selectedApplicationName);
+        }
+
         internal void SetTitle(string title)
         {
             this.Text = title;
@@ -35,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private void Initialize()
         {
             _formInitializer.SetFormDefaults(this, 648);
-            _selectRulesTreeViewBuilder.Build(radTreeView, _configurationService.GetSelectedApplication().Name);
+            
 
             radButtonOk.DialogResult = DialogResult.OK;
             radButtonCancel.DialogResult = DialogResult.Cancel;
