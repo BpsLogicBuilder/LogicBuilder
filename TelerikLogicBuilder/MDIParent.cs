@@ -245,10 +245,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private static bool TryGetSelectedRules(string selctedApplication, string title, out IList<string> selectedRules)
         {
-            using IScopedDisposableManager<SelectRulesForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesForm>>();
-            SelectRulesForm selectRulesForm = disposableManager.ScopedService;
+            using ISelectRulesFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<ISelectRulesFormFactory>();
+            SelectRulesForm selectRulesForm = disposableManager.GetScopedService(selctedApplication);
             selectRulesForm.SetTitle(title);
-            selectRulesForm.BuildTreeView(selctedApplication);
             selectRulesForm.ShowDialog();
 
             if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK
@@ -264,10 +263,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private static bool TryGetSelectedRulesResourcesPairs(string selctedApplication, string title, out IList<RulesResourcesPair> sourceFiles)
         {
-            using IScopedDisposableManager<SelectRulesResourcesPairForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectRulesResourcesPairForm>>();
-            SelectRulesResourcesPairForm selectRulesForm = disposableManager.ScopedService;
+            using ISelectRulesResourcesPairFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<ISelectRulesResourcesPairFormFactory>();
+            SelectRulesResourcesPairForm selectRulesForm = disposableManager.GetScopedService(selctedApplication);
             selectRulesForm.SetTitle(title);
-            selectRulesForm.BuildTreeView(selctedApplication);
             selectRulesForm.ShowDialog();
 
             if (selectRulesForm.DialogResult != System.Windows.Forms.DialogResult.OK

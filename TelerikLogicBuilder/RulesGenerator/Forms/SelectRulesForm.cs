@@ -9,27 +9,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 {
     internal partial class SelectRulesForm : Telerik.WinControls.UI.RadForm
     {
-        private readonly IConfigurationService _configurationService;
+        private readonly string _applicationName;
         private readonly IFormInitializer _formInitializer;
         private readonly IGetAllCheckedNodes _getAllCheckedNodeNames;
         private readonly ISelectRulesTreeViewBuilder _selectRulesTreeViewBuilder;
 
-        public SelectRulesForm(IConfigurationService configurationService, IFormInitializer formInitializer, IGetAllCheckedNodes getAllCheckedNodeNames, ISelectRulesTreeViewBuilder selectRulesTreeViewBuilder)
+        public SelectRulesForm(IFormInitializer formInitializer, IGetAllCheckedNodes getAllCheckedNodeNames, ISelectRulesTreeViewBuilder selectRulesTreeViewBuilder, string applicationName)
         {
-            _configurationService = configurationService;
             _formInitializer = formInitializer;
             _getAllCheckedNodeNames = getAllCheckedNodeNames;
             _selectRulesTreeViewBuilder = selectRulesTreeViewBuilder;
+            _applicationName = applicationName;
             InitializeComponent();
             Initialize();
         }
 
         internal IList<string> SourceFiles => _getAllCheckedNodeNames.GetNames(radTreeView.Nodes[0]);
-
-        internal void BuildTreeView(string selectedApplicationName)
-        {
-            _selectRulesTreeViewBuilder.Build(radTreeView, selectedApplicationName);
-        }
 
         internal void SetTitle(string title)
         {
@@ -40,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private void Initialize()
         {
             _formInitializer.SetFormDefaults(this, 648);
-            
+            _selectRulesTreeViewBuilder.Build(radTreeView, _applicationName);
 
             radButtonOk.DialogResult = DialogResult.OK;
             radButtonCancel.DialogResult = DialogResult.Cancel;

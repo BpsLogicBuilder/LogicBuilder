@@ -225,7 +225,33 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IValidateSelectedRules, ValidateSelectedRules>()
 
             //RulesGenerator.Forms
+            .AddTransient<ISelectRulesResourcesPairFormFactory, SelectRulesResourcesPairFormFactory>()
+            .AddTransient<ISelectRulesFormFactory, SelectRulesFormFactory>()
             .AddTransient<SelectDocumentsForm, SelectDocumentsForm>()
+            .AddTransient<Func<string, SelectRulesForm>>
+            (
+                provider =>
+                applicationName => ActivatorUtilities.CreateInstance<SelectRulesForm>
+                (
+                    provider,
+                    provider.GetRequiredService<IFormInitializer>(),
+                    provider.GetRequiredService<IGetAllCheckedNodes>(),
+                    provider.GetRequiredService<ISelectRulesTreeViewBuilder>(),
+                    applicationName
+                )
+            )
+            .AddTransient<Func<string, SelectRulesResourcesPairForm>>
+            (
+                provider =>
+                applicationName => ActivatorUtilities.CreateInstance<SelectRulesResourcesPairForm>
+                (
+                    provider,
+                    provider.GetRequiredService<IFormInitializer>(),
+                    provider.GetRequiredService<IGetAllCheckedNodes>(),
+                    provider.GetRequiredService<ISelectModulesForDeploymentTreeViewBuilder>(),
+                    applicationName
+                )
+             )
             .AddTransient<SelectRulesForm, SelectRulesForm>()
             .AddTransient<SelectRulesResourcesPairForm, SelectRulesResourcesPairForm>()
 
