@@ -128,6 +128,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator
 		Shape GetOutgoingBlankConnector(Shape fromShape);
 
 		/// <summary>
+		/// Returns all the blank connectors leaving the shape - applicable to ShapeCollections.AllowedApplicationFlowShapes.
+		/// </summary>
+		/// <param name="fromShape"></param>
+		/// <returns></returns>
+		IList<Shape> GetOutgoingBlankConnectors(Shape fromShape);
+
+		/// <summary>
 		/// Returns the "NO" connector pointing away from a decision or condition shape.
 		/// </summary>
 		/// <param name="fromShape"></param>

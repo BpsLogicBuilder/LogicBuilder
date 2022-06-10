@@ -1182,6 +1182,65 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         }
 
         [Fact]
+        public void GetOutgoingBlankConnectorsThrowsForInvalidFromShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingBlankConnectors)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetOutgoingBlankConnectors(shape));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{D2E0F01D-5D0A-4107-A10F-E5BEBF64EDA9}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
+        public void GetOutgoingBlankConnectorReturnsTheListOfBlankConnectors()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetOutgoingBlankConnectors)}\ReturnsTheListOfBlankConnectors.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.MERGEOBJECT, visioDocument);
+
+            //act
+            var connectors = helper.GetOutgoingBlankConnectors(shape).Select(s => s.Master.NameU).ToArray();
+
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.True
+            (
+                connectors.ToHashSet().SetEquals
+                (
+                    new string[] 
+                    { 
+                        UniversalMasterName.APP06CONNECTOBJECT,
+                        UniversalMasterName.APP07CONNECTOBJECT,
+                        UniversalMasterName.APP08CONNECTOBJECT,
+                        UniversalMasterName.APP09CONNECTOBJECT,
+                        UniversalMasterName.APP10CONNECTOBJECT,
+                        UniversalMasterName.OTHERSCONNECTOBJECT
+                    }
+                )
+            );
+        }
+
+        [Fact]
         public void GetOutgoingNoConnectorThrowsForInvalidShape()
         {
             //arrange

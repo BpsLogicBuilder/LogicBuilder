@@ -369,6 +369,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             throw _exceptionHelper.CriticalException("{B11075A7-465F-418E-96BA-E5A1F833E922}");
         }
 
+        public IList<Shape> GetOutgoingBlankConnectors(Shape fromShape)
+        {
+            if (
+                    !ShapeCollections.AllowedApplicationFlowShapes
+                        .ToHashSet()
+                        .Contains(fromShape.Master.NameU)
+               )
+            {
+                throw _exceptionHelper.CriticalException("{D2E0F01D-5D0A-4107-A10F-E5BEBF64EDA9}");
+            }
+
+            return fromShape.FromConnects.Cast<Connect>()
+                .Where
+                (
+                    fc => fc.FromPart == (short)VisFromParts.visBegin
+                            && _shapeXmlHelper.GetXmlString(fc.FromSheet).Length == 0
+                )
+                .Select(fc => fc.FromSheet)
+                .OrderBy(shape => shape.Master.NameU)
+                .ToArray();
+        }
+
         public Shape? GetOutgoingNoConnector(Shape fromShape)
         {
             if (!ShapeCollections.DecisionShapes.ToHashSet().Contains(fromShape.Master.NameU))

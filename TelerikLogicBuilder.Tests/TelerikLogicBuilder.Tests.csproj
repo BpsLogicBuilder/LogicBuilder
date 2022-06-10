@@ -35,6 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnectors\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnectors\ReturnsTheListOfBlankConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Tables\CellHelperTest\CountDialogFunctions\CountDialogFunctionsReturnsTheExpectedDialogCount.tbl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
