@@ -18,6 +18,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
     internal class DiagramValidatorUtility
     {
         private readonly IContextProvider _contextProvider;
+        private readonly IExceptionHelper _exceptionHelper;
+        private readonly IGetRuleShapes _getRuleShapes;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
@@ -32,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             IProgress<ProgressMessage> progress,
             CancellationTokenSource cancellationTokenSource,
             IContextProvider contextProvider,
+            IGetRuleShapes getRuleShapes,
             IJumpDataParser jumpDataParser,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
@@ -43,9 +46,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             Application = application;
             Progress = progress;
             CancellationTokenSource = cancellationTokenSource;
+            _exceptionHelper = contextProvider.ExceptionHelper;
             _resultMessageBuilder = contextProvider.ResultMessageBuilder;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _contextProvider = contextProvider;
+            _getRuleShapes = getRuleShapes;
             _jumpDataParser = jumpDataParser;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
@@ -60,6 +65,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
         private List<ResultMessage> ValidationErrors { get; } = new List<ResultMessage>();
         private IProgress<ProgressMessage> Progress { get; }
         private CancellationTokenSource CancellationTokenSource { get; }
+        private IDictionary<string, Shape>? JumpToShapes { get; set; }
+        private IList<Shape> UsedConnectors { get; } = new List<Shape>();
+        private int connectorCount;
         #endregion Properties
 
         internal async Task<IList<ResultMessage>> Validate()
@@ -67,6 +75,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             await Task.Run(PreValidate, CancellationTokenSource.Token);
             if (ValidationErrors.Count > 0)
                 return ValidationErrors;
+
+            JumpToShapes = GetJumpToShapes();
 
             await Task.Run(ValidateShapes, CancellationTokenSource.Token);
             return ValidationErrors;
@@ -104,6 +114,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
                         case UniversalMasterName.APP10CONNECTOBJECT:
                         case UniversalMasterName.OTHERSCONNECTOBJECT:
                         case UniversalMasterName.CONNECTOBJECT:
+                            connectorCount++;
                             if (shape.Connects.Count != 2)
                             {
                                 AddValidationMessage(Strings.connectorRequires2Shapes, GetVisioFileSource(page, shape));
@@ -116,7 +127,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
                             break;
                         case UniversalMasterName.JUMPOBJECT:
                             List<ResultMessage> jumpErrors = new();
-                            _shapeValidator.Validate(SourceFile, page, shape, jumpErrors, Application);
+                            _shapeValidator.ValidateShape(SourceFile, page, new ShapeBag(shape), jumpErrors, Application);
                             if (jumpErrors.Any())
                             {
                                 jumpErrors.ForEach(error => ValidationErrors.Add(error));
@@ -170,23 +181,106 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
 
         private void ValidateShapes()
         {
+            ValidateShapes(new ShapeBag(FindBeginShape()));
+        }
+
+        private void ValidateShapes(ShapeBag shapeBag)
+        {
+            List<ShapeBag> ruleShapes = new();
+            List<Shape> ruleConnectors = new();
+
+            foreach (Connect fromConnect in shapeBag.Shape.FromConnects)
+            {
+                if (fromConnect.FromPart == (short)VisFromParts.visEnd)
+                    continue;
+
+                if (UsedConnectors.Contains(fromConnect.FromSheet))
+                    continue;
+
+                ruleShapes.Clear();
+                ruleConnectors.Clear();
+                ruleConnectors.Add(fromConnect.FromSheet);
+                ruleShapes.Add(shapeBag);
+
+                _getRuleShapes.GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors, JumpToShapes!);
+                Validate(ruleShapes, ruleConnectors);
+
+                foreach (Shape connector in ruleConnectors)
+                {
+                    if (!UsedConnectors.Contains(connector))
+                        UsedConnectors.Add(connector);
+                }
+
+                Progress.Report
+                (
+                    new ProgressMessage
+                    (
+                        (int)((float)UsedConnectors.Count / (float)connectorCount * 100),
+                        string.Format(CultureInfo.CurrentCulture, Strings.progressFormTaskValidatingFormat, FileName)
+                    )
+                );
+
+                ShapeBag lastShapeBag = ruleShapes[^1];
+                if (!ShapeCollections.EndModuleShapes.ToHashSet().Contains(lastShapeBag.Shape.Master.NameU))
+                {
+                    ValidateShapes(lastShapeBag);
+                }
+            }
+        }
+
+        private void Validate(IList<ShapeBag> ruleShapes, List<Shape> ruleConnectors)
+        {
+            foreach (Shape connector in ruleConnectors)
+            {
+                _shapeValidator.ValidateConnector(SourceFile, connector.ContainingPage, connector, ValidationErrors, Application);
+            }
+
+            foreach (ShapeBag shapeBag in ruleShapes)
+            {
+                ValidateOutgoingBlankConnectors(shapeBag.Shape, shapeBag.Shape.ContainingPage);
+                _shapeValidator.ValidateShape(SourceFile, shapeBag.Shape.ContainingPage, shapeBag, ValidationErrors, Application);
+            }
+        }
+
+        private Shape FindBeginShape()
+        {
             foreach (Page page in Document.Pages)
             {
                 foreach (Shape shape in page.Shapes)
                 {
-                    ValidateOutgoingBlankConnectors(shape, page);
-                    _shapeValidator.Validate(SourceFile, page, shape, ValidationErrors, Application);
-
-                    Progress.Report
-                    (
-                        new ProgressMessage
-                        (
-                            (int)(((float)shape.Index / (float)page.Shapes.Count) * 100),
-                            string.Format(CultureInfo.CurrentCulture, Strings.progressFormTaskValidatingPageFormat, FileName, page.Index)
-                        )
-                    );
+                    if (shape.Master.NameU == UniversalMasterName.MODULEBEGIN
+                        || shape.Master.NameU == UniversalMasterName.BEGINFLOW)
+                        return shape;
                 }
             }
+
+            throw _exceptionHelper.CriticalException("{31C4473A-86DD-4F6C-AB6B-475E138AFC88}");
+        }
+
+        private IDictionary<string, Shape> GetJumpToShapes()
+        {
+            var jumpToShapes = new Dictionary<string, Shape>();
+            foreach (Page page in Document.Pages)
+            {
+                foreach (Shape shape in page.Shapes)
+                {
+                    if (shape.Master.NameU == UniversalMasterName.JUMPOBJECT
+                        && shape.FromConnects.Count > 0
+                        && shape.FromConnects[1].FromPart == (short)VisFromParts.visBegin)
+                    {
+                        jumpToShapes.Add
+                        (
+                            _jumpDataParser.Parse
+                            (
+                                _xmlDocumentHelpers.ToXmlElement(_shapeXmlHelper.GetXmlString(shape))
+                            ),
+                            shape
+                        );
+                    }
+                }
+            }
+
+            return jumpToShapes;
         }
 
         private VisioFileSource GetVisioFileSource(Page page, Shape shape)

@@ -16,14 +16,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class DiagramValidator : IDiagramValidator
     {
         private readonly IContextProvider _contextProvider;
+        private readonly IGetRuleShapes _getRuleShapes;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IShapeValidator _shapeValidator;
 
-        public DiagramValidator(IContextProvider contextProvider, IJumpDataParser jumpDataParser, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper, IShapeValidator shapeValidator)
+        public DiagramValidator(IContextProvider contextProvider, IGetRuleShapes getRuleShapes, IJumpDataParser jumpDataParser, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper, IShapeValidator shapeValidator)
         {
             _contextProvider = contextProvider;
+            _getRuleShapes = getRuleShapes;
             _jumpDataParser = jumpDataParser;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
@@ -40,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 progress,
                 cancellationTokenSource,
                 _contextProvider,
+                _getRuleShapes,
                 _jumpDataParser,
                 _shapeHelper,
                 _shapeXmlHelper,

@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -64,11 +65,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             List<ResultMessage> errors = new();
 
             //act
-            validator.Validate
+            validator.ValidateShape
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
+                new ShapeBag(shape),
                 errors,
                 applicationTypeInfo
             );
@@ -105,11 +106,11 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             var exception = Assert.Throws<CriticalLogicBuilderException>
             (
-                () => validator.Validate
+                () => validator.ValidateShape
                 (
                     sourceFile,
                     GetPage(visioDocument),
-                    shape,
+                    new ShapeBag(shape),
                     errors,
                     applicationTypeInfo
                 )
