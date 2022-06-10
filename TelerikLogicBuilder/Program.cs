@@ -209,6 +209,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<IDiagramValidator, DiagramValidator>()
             .AddSingleton<IFileSystemFileDeleter, FileSystemFileDeleter>()
             .AddSingleton<IFileSystemFileDeployer, FileSystemFileDeployer>()
+            .AddSingleton<IGetRuleShapes, GetRuleShapes>()
             .AddSingleton<IRulesAssembler, RulesAssembler>()
             .AddSingleton<IRuleSetLoader, RuleSetLoader>()
             .AddSingleton<IRulesValidator, RulesValidator>()

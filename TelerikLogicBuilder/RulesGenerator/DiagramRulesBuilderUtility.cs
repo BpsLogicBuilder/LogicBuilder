@@ -19,9 +19,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
     internal class DiagramRulesBuilderUtility
     {
         private readonly IDiagramValidator _diagramValidator;
+        private readonly IGetRuleShapes _getRuleShapes;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IJumpDataParser _jumpDataParser;
-        private readonly IShapeHelper _shapeHelper;
         private readonly IShapeSetRuleBuilder _shapeSetRuleBuilder;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -34,8 +34,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             CancellationTokenSource cancellationTokenSource,
             IContextProvider contextProvider,
             IDiagramValidator diagramValidator,
+            IGetRuleShapes getRuleShapes,
             IJumpDataParser jumpDataParser,
-            IShapeHelper shapeHelper,
             IShapeSetRuleBuilder shapeSetRuleBuilder,
             IShapeXmlHelper shapeXmlHelper)
         {
@@ -49,8 +49,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             _exceptionHelper = contextProvider.ExceptionHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _diagramValidator = diagramValidator;
+            _getRuleShapes = getRuleShapes;
             _jumpDataParser = jumpDataParser;
-            _shapeHelper = shapeHelper;
             _shapeSetRuleBuilder = shapeSetRuleBuilder;
             _shapeXmlHelper = shapeXmlHelper; 
         }
@@ -109,15 +109,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
                 if (UsedConnectors.Contains(fromConnect.FromSheet))
                     continue;
 
-                UsedConnectors.Add(fromConnect.FromSheet);
-
                 ruleShapes.Clear();
                 ruleConnectors.Clear();
                 ruleConnectors.Add(fromConnect.FromSheet);
                 ruleShapes.Add(shapeBag);
 
-                GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors);
-                GenerateRules(ruleShapes, ruleConnectors);
+                _getRuleShapes.GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors, JumpToShapes);
+
+                foreach (Shape connector in ruleConnectors)
+                {
+                    if (!UsedConnectors.Contains(connector))
+                        UsedConnectors.Add(connector);
+                }
+
+                GenerateRules(ruleShapes, new Shape[] { fromConnect.FromSheet });
 
                 Progress.Report
                 (
@@ -166,111 +171,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
                     ResourceStrings
                 )
             );
-        }
-
-        private Shape GetNextApplicationSpecificConnector(Shape lastShape, string connectorMaterNameU)
-        {
-            foreach (Connect lastShapeFromConnect in lastShape.FromConnects)
-            {
-                if (lastShapeFromConnect.FromPart == (short)VisFromParts.visEnd)
-                    continue;
-
-                if (lastShapeFromConnect.FromSheet.Master.NameU == connectorMaterNameU)
-                    return lastShapeFromConnect.FromSheet;
-            }
-
-            throw _exceptionHelper.CriticalException("{B5381FEA-3521-4B80-B96D-4E49E328FA6E}");
-        }
-
-        private ShapeBag GetShapeBag(Shape toShape, Shape connector, ShapeBag fromShapeBag)
-        {
-            if (connector.Master.NameU == UniversalMasterName.CONNECTOBJECT)
-                return new ShapeBag(toShape);
-
-            if (connector.Master.NameU != UniversalMasterName.CONNECTOBJECT && toShape.Master.NameU == UniversalMasterName.MERGEOBJECT)
-                return new ShapeBag(toShape);
-
-            if (ShapeCollections.ApplicationConnectors.ToHashSet().Contains(connector.Master.NameU))
-                return new ShapeBag(toShape, _shapeHelper.GetOtherApplicationsList(connector, fromShapeBag));
-
-            throw _exceptionHelper.CriticalException("{5F8D5C31-0CBA-4B97-AA0E-06FEBFD26876}");
-        }
-
-        private void GetShapes(Shape connector, IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors)
-        {
-            Shape lastShape = _shapeHelper.GetToShape(connector);
-
-            switch (lastShape.Master.NameU)
-            {
-                case UniversalMasterName.ACTION:
-                    ruleShapes.Add(GetShapeBag(lastShape, connector, ruleShapes[ruleShapes.Count - 1]));
-                    break;
-                case UniversalMasterName.JUMPOBJECT:
-                    string jumpShapeText = _jumpDataParser.Parse
-                    (
-                        _xmlDocumentHelpers.ToXmlElement(_shapeXmlHelper.GetXmlString(lastShape))
-                    );
-                    Shape jumpToShape = JumpToShapes[jumpShapeText];
-                    Shape jumpToShapeConnector = jumpToShape.FromConnects[1].FromSheet;
-                    if (!UsedConnectors.Contains(jumpToShapeConnector))
-                        UsedConnectors.Add(jumpToShapeConnector);
-
-                    GetShapes(jumpToShapeConnector, ruleShapes, ruleConnectors);
-                    return;//If lastShape is a jump object it can only have a visEnd connector attached
-                           //so no reason to continue.
-                default:
-                    ruleShapes.Add(GetShapeBag(lastShape, connector, ruleShapes[ruleShapes.Count - 1]));
-                    return;
-            }
-
-            if (lastShape.Master.NameU == UniversalMasterName.ACTION && ShapeCollections.ApplicationConnectors.ToHashSet().Contains(connector.Master.NameU))
-            {//In this case the next connector selected is dependent on the previous connector
-                Shape nextApplicationSpecificConnector = GetNextApplicationSpecificConnector(lastShape, connector.Master.NameU);
-
-                if (!UsedConnectors.Contains(nextApplicationSpecificConnector))
-                    UsedConnectors.Add(nextApplicationSpecificConnector);
-                if (!ruleConnectors.Contains(nextApplicationSpecificConnector))
-                    ruleConnectors.Add(nextApplicationSpecificConnector);
-
-                GetShapes(nextApplicationSpecificConnector, ruleShapes, ruleConnectors);
-                return;
-            }
-
-            foreach (Connect lastShapeFromConnect in lastShape.FromConnects)
-            {
-                if (lastShapeFromConnect.FromPart == (short)VisFromParts.visEnd)
-                    continue;
-
-                if (!UsedConnectors.Contains(lastShapeFromConnect.FromSheet))
-                    UsedConnectors.Add(lastShapeFromConnect.FromSheet);
-                if (!ruleConnectors.Contains(lastShapeFromConnect.FromSheet))//last shape is always Action at this point
-                    ruleConnectors.Add(lastShapeFromConnect.FromSheet);     //because Jump Shape can't have a visBegin connector
-                                                                            //and also be a last shape
-
-                GetShapes(lastShapeFromConnect.FromSheet, ruleShapes, ruleConnectors);
-                //Shape nextShape = _shapeHelper.GetToShape(lastShapeFromConnect.FromSheet);
-
-                //switch (nextShape.Master.NameU)
-                //{
-                //    /*looks the same as doing this step on 208 to 218 above*/
-                //    case UniversalMasterName.JUMPOBJECT:
-                //        string jumpShapeText = _jumpDataParser.Parse
-                //        (
-                //            _xmlDocumentHelpers.ToXmlElement(_shapeXmlHelper.GetXmlString(nextShape))
-                //        );
-
-                //        Shape jumpToShape = JumpToShapes[jumpShapeText];
-                //        Shape jumpToShapeConnector = jumpToShape.FromConnects[1].FromSheet;
-                //        if (!UsedConnectors.Contains(jumpToShapeConnector))
-                //            UsedConnectors.Add(jumpToShapeConnector);
-
-                //        GetShapes(jumpToShapeConnector, ruleShapes, ruleConnectors);
-                //        break;
-                //    default:
-                //        GetShapes(lastShapeFromConnect.FromSheet, ruleShapes, ruleConnectors);
-                //        break;
-                //}
-            }
         }
 
         /// <summary>
