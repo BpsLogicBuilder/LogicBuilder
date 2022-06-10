@@ -236,7 +236,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             }
 
             foreach (ShapeBag shapeBag in ruleShapes)
-            {
+            {//Jump shapes are not collected by _getRuleShapes.GetShapes(). They are validated in PreValidate().
+             //Some shapes will be validated more than once (each time they appear in a list)
+             //The ShapeBag is necessary because the application for the "Others Connect Object" depends on the diverging merge shape.
                 ValidateOutgoingBlankConnectors(shapeBag.Shape, shapeBag.Shape.ContainingPage);
                 _shapeValidator.ValidateShape(SourceFile, shapeBag.Shape.ContainingPage, shapeBag, ValidationErrors, Application);
             }
