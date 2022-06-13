@@ -3346,6 +3346,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string titleBarCloseContextMenuText {
+            get {
+                return ResourceManager.GetString("titleBarCloseContextMenuText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} ....
         /// </summary>
         internal static string truncatedMessageTextFormat {

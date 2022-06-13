@@ -90,11 +90,17 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IDictionary<string, RadMenuItem> validateApplicationRulesMenuItemList = new Dictionary<string, RadMenuItem>();
 
         #region Methods
+        private UserControls.ProjectExplorer? projectExplorer;
         private async void Initialize()
         {
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
                 this.Icon = _formInitializer.GetLogicBuilderIcon();
+                this.projectExplorer = new ABIS.LogicBuilder.FlowBuilder.UserControls.ProjectExplorer();
+                this.projectExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+                this.splitPanelExplorer.SuspendLayout();
+                this.splitPanelExplorer.Controls.Add(this.projectExplorer);
+                this.splitPanelExplorer.ResumeLayout();
             }
 
             commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;

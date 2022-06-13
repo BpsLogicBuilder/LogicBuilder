@@ -29,7 +29,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                 _xmlDocumentHelpers.GetXmlString
                 (
-                    _xmlDocumentHelpers.ToXmlDocument(xmlElement.FirstChild!)/*Fragment element always has a first child by schema definition*/
+                    _xmlDocumentHelpers.ToXmlDocument
+                    (
+                        _xmlDocumentHelpers.GetSingleChildElement(xmlElement)
+                    )
                 ),
                 _contextProvider
             ); ;

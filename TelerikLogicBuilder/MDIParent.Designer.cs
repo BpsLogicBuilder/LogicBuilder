@@ -448,8 +448,8 @@
             // 
             // 
             this.splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3582996F, 0F);
-            this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(354, 0);
+            this.splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.332996F, 0F);
+            this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(329, 0);
             this.splitPanelLeft.TabStop = false;
             // 
             // radSplitContainerLeft
@@ -473,8 +473,8 @@
             // 
             // 
             this.splitPanelEdit.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelEdit.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.3135313F);
-            this.splitPanelEdit.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 190);
+            this.splitPanelEdit.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.246732F);
+            this.splitPanelEdit.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 149);
             this.splitPanelEdit.TabStop = false;
             // 
             // splitPanelMessages
@@ -485,8 +485,8 @@
             // 
             // 
             this.splitPanelMessages.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelMessages.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.3135313F);
-            this.splitPanelMessages.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -190);
+            this.splitPanelMessages.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.246732F);
+            this.splitPanelMessages.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -149);
             this.splitPanelMessages.TabStop = false;
             // 
             // splitPanelExplorer
@@ -497,25 +497,9 @@
             // 
             // 
             this.splitPanelExplorer.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3582996F, 0F);
-            this.splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-354, 0);
+            this.splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.332996F, 0F);
+            this.splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-329, 0);
             this.splitPanelExplorer.TabStop = false;
-            // 
-            // radProgressBarElement1
-            // 
-            this.radProgressBarElement1.Name = "radProgressBarElement1";
-            this.radProgressBarElement1.SeparatorColor1 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorColor2 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorColor3 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorColor4 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorGradientAngle = 0;
-            this.radProgressBarElement1.SeparatorGradientPercentage1 = 0.4F;
-            this.radProgressBarElement1.SeparatorGradientPercentage2 = 0.6F;
-            this.radProgressBarElement1.SeparatorNumberOfColors = 2;
-            this.radStatusStrip1.SetSpring(this.radProgressBarElement1, false);
-            this.radProgressBarElement1.StepWidth = 14;
-            this.radProgressBarElement1.SweepAngle = 90;
-            resources.ApplyResources(this.radProgressBarElement1, "radProgressBarElement1");
             // 
             // radStatusStrip1
             // 
@@ -536,10 +520,10 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radStatusStrip1);
             this.Controls.Add(this.radSplitContainerBase);
             this.Controls.Add(this.radCommandBar1);
             this.Controls.Add(this.radMenu1);
+            this.Controls.Add(this.radStatusStrip1);
             this.IsMdiContainer = true;
             this.Name = "MDIParent";
             // 

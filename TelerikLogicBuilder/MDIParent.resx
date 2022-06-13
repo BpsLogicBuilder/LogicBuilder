@@ -72,6 +72,41 @@
   <data name="radMenuItemRules.Text" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="radMenuItemTools.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="radMenuItemTheme.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="radMenuItemHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radMenu1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 20</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Name" xml:space="preserve">
+    <value>radMenu1</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenu, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radMenuItemBuildRules.Text" xml:space="preserve">
+    <value>Build Rules...</value>
+  </data>
   <data name="radMenuItemBuildActiveDrawing.Text" xml:space="preserve">
     <value>Active Drawing</value>
   </data>
@@ -81,8 +116,8 @@
   <data name="radMenuItemBuildSelectedModules.Text" xml:space="preserve">
     <value>Select Modules...</value>
   </data>
-  <data name="radMenuItemBuildRules.Text" xml:space="preserve">
-    <value>Build Rules...</value>
+  <data name="radMenuItemValidateDocuments.Text" xml:space="preserve">
+    <value>Validate Documents...</value>
   </data>
   <data name="radMenuItemValidateActiveDrawing.Text" xml:space="preserve">
     <value>Active Drawing</value>
@@ -93,18 +128,17 @@
   <data name="radMenuItemValidateSelectedModules.Text" xml:space="preserve">
     <value>Select Modules...</value>
   </data>
-  <data name="radMenuItemValidateDocuments.Text" xml:space="preserve">
-    <value>Validate Documents...</value>
-  </data>
   <data name="radMenuItemValidateRules.Text" xml:space="preserve">
     <value>Validate Rules...</value>
   </data>
   <data name="radMenuSeparatorItem1.Text" xml:space="preserve">
     <value>radMenuSeparatorItem1</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="radMenuSeparatorItem1.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemFileSystemDeployment.Text" xml:space="preserve">
+    <value>File System Deployment...</value>
   </data>
   <data name="radMenuItemFileSystemDeploy.Text" xml:space="preserve">
     <value>Deploy...</value>
@@ -112,17 +146,14 @@
   <data name="radMenuItemFileSystemDelete.Text" xml:space="preserve">
     <value>Delete...</value>
   </data>
-  <data name="radMenuItemFileSystemDeployment.Text" xml:space="preserve">
-    <value>File System Deployment...</value>
+  <data name="radMenuItemWebApiDeployment.Text" xml:space="preserve">
+    <value>Web-API Deployment...</value>
   </data>
   <data name="radMenuItemWebApiDeploy.Text" xml:space="preserve">
     <value>Deploy...</value>
   </data>
   <data name="radMenuItemWebApiDelete.Text" xml:space="preserve">
     <value>Delete...</value>
-  </data>
-  <data name="radMenuItemWebApiDeployment.Text" xml:space="preserve">
-    <value>Web-API Deployment...</value>
   </data>
   <data name="radMenuSeparatorItem2.Text" xml:space="preserve">
     <value>radMenuSeparatorItem2</value>
@@ -132,9 +163,6 @@
   </data>
   <data name="radMenuItemSelectApplication.Text" xml:space="preserve">
     <value>Select Application...</value>
-  </data>
-  <data name="radMenuItemTools.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
   </data>
   <data name="radMenuItemOffice2007Black.Text" xml:space="preserve">
     <value>Office 2007 Black</value>
@@ -165,34 +193,6 @@
   </data>
   <data name="radMenuItemOffice2019Light.Text" xml:space="preserve">
     <value>Office 2019 Light</value>
-  </data>
-  <data name="radMenuItemTheme.Text" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="radMenuItemHelp.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="radMenu1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>996, 20</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Name" xml:space="preserve">
-    <value>radMenu1</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenu, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="commandBarRowElement1.DisplayName" xml:space="preserve">
     <value>Command Bar</value>
@@ -278,19 +278,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radCommandBar1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="splitPanelEdit.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="splitPanelEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 498</value>
+    <value>823, 438</value>
   </data>
   <data name="splitPanelEdit.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="splitPanelEdit.Text" xml:space="preserve">
-    <value>splitPanel3</value>
   </data>
   <data name="&gt;&gt;splitPanelEdit.Name" xml:space="preserve">
     <value>splitPanelEdit</value>
@@ -305,16 +302,13 @@
     <value>0</value>
   </data>
   <data name="splitPanelMessages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 506</value>
+    <value>0, 446</value>
   </data>
   <data name="splitPanelMessages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 114</value>
+    <value>823, 148</value>
   </data>
   <data name="splitPanelMessages.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
-  </data>
-  <data name="splitPanelMessages.Text" xml:space="preserve">
-    <value>splitPanel4</value>
   </data>
   <data name="&gt;&gt;splitPanelMessages.Name" xml:space="preserve">
     <value>splitPanelMessages</value>
@@ -338,7 +332,7 @@
     <value>Horizontal</value>
   </data>
   <data name="radSplitContainerLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 620</value>
+    <value>823, 594</value>
   </data>
   <data name="radSplitContainerLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -359,7 +353,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 620</value>
+    <value>823, 594</value>
   </data>
   <data name="splitPanelLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -380,10 +374,10 @@
     <value>0</value>
   </data>
   <data name="splitPanelExplorer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>856, 0</value>
+    <value>831, 0</value>
   </data>
   <data name="splitPanelExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 620</value>
+    <value>165, 594</value>
   </data>
   <data name="splitPanelExplorer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -410,7 +404,7 @@
     <value>0, 50</value>
   </data>
   <data name="radSplitContainerBase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>996, 620</value>
+    <value>996, 594</value>
   </data>
   <data name="radSplitContainerBase.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -425,7 +419,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radSplitContainerBase.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="radLabelElement1.Text" xml:space="preserve">
     <value />
@@ -449,10 +443,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radStatusStrip1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="radProgressBarElement1.Text" xml:space="preserve">
-    <value />
+    <value>3</value>
   </data>
   <metadata name="office2007BlackTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

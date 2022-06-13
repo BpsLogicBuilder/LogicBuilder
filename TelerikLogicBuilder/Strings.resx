@@ -821,6 +821,9 @@
     <value>Document: {0}, Row: {1}, Column: {2}.</value>
     <comment>0=FileName; 1=row; 2=column</comment>
   </data>
+	<data name="titleBarCloseContextMenuText" xml:space="preserve">
+    <value>Close</value>
+  </data>
 	<data name="truncatedMessageTextFormat" xml:space="preserve">
     <value>{0} ...</value>
     <comment>0=truncated message</comment>
