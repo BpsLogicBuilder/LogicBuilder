@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initializati
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IValidateSelectedRules _validateSelectedRules;
         private readonly IVariableListInitializer _variableListInitializer;
 
+        //controls
+        private readonly ProjectExplorer _projectExplorer;
+
         public MDIParent(
             IBuildSaveAssembleRulesForSelectedDocuments buildSaveConsolidateSelectedDocumentRules,
             ICheckSelectedApplication checkSelectedApplication,
@@ -58,7 +62,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IThemeManager themeManager,
             IValidateSelectedDocuments validateSelectedDocuments,
             IValidateSelectedRules validateSelectedRules,
-            IVariableListInitializer variableListInitializer)
+            IVariableListInitializer variableListInitializer,
+            ProjectExplorer projectExplorer)
         {
             _buildSaveConsolidateSelectedDocumentRules = buildSaveConsolidateSelectedDocumentRules;
             _checkSelectedApplication = checkSelectedApplication;
@@ -78,6 +83,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _validateSelectedRules = validateSelectedRules;
             _variableListInitializer = variableListInitializer;
 
+            _projectExplorer = projectExplorer;
+
             InitializeComponent();
             Initialize();
         }
@@ -90,16 +97,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IDictionary<string, RadMenuItem> validateApplicationRulesMenuItemList = new Dictionary<string, RadMenuItem>();
 
         #region Methods
-        private UserControls.ProjectExplorer? projectExplorer;
         private async void Initialize()
         {
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
                 this.Icon = _formInitializer.GetLogicBuilderIcon();
-                this.projectExplorer = new ABIS.LogicBuilder.FlowBuilder.UserControls.ProjectExplorer();
-                this.projectExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+                _projectExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
                 this.splitPanelExplorer.SuspendLayout();
-                this.splitPanelExplorer.Controls.Add(this.projectExplorer);
+                this.splitPanelExplorer.Controls.Add(_projectExplorer);
                 this.splitPanelExplorer.ResumeLayout();
             }
 

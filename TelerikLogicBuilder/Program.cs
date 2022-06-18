@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Prompts;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
@@ -35,9 +36,12 @@ using ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows.Forms;
 
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.Tests")]
@@ -52,9 +56,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 .BuildServiceProvider();
         }
 
+        #region Variables
+        private static MDIParent? mdiParent;
+        #endregion Variables
+
         public static IServiceProvider ServiceProvider { get; set; }
         public static IServiceCollection ServiceCollection => new ServiceCollection()
-            .AddTransient<MDIParent, MDIParent>()
+            .AddTransient<MDIParent>()
 
             //Services
             .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
@@ -228,7 +236,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //RulesGenerator.Forms
             .AddTransient<ISelectRulesResourcesPairFormFactory, SelectRulesResourcesPairFormFactory>()
             .AddTransient<ISelectRulesFormFactory, SelectRulesFormFactory>()
-            .AddTransient<SelectDocumentsForm, SelectDocumentsForm>()
+            .AddTransient<SelectDocumentsForm>()
             .AddTransient<Func<string, SelectRulesForm>>
             (
                 provider =>
@@ -253,8 +261,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     applicationName
                 )
              )
-            .AddTransient<SelectRulesForm, SelectRulesForm>()
-            .AddTransient<SelectRulesResourcesPairForm, SelectRulesResourcesPairForm>()
+            .AddTransient<SelectRulesForm>()
+            .AddTransient<SelectRulesResourcesPairForm>()
 
             //RulesGenerator.ShapeValidators
             .AddSingleton<IActionShapeValidator, ActionShapeValidator>()
@@ -297,6 +305,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddSingleton<ISelectDocunentsTreeViewBuilder, SelectDocunentsTreeViewBuilder>()
             .AddSingleton<ISelectModulesForDeploymentTreeViewBuilder, SelectModulesForDeploymentTreeViewBuilder>()
             .AddSingleton<ISelectRulesTreeViewBuilder, SelectRulesTreeViewBuilder>()
+
+            //UserControls
+            .AddTransient<ProjectExplorer>()
 
             //XmlValidation
             .AddSingleton<IXmlValidator, XmlValidator>()
@@ -347,16 +358,61 @@ namespace ABIS.LogicBuilder.FlowBuilder
         [STAThread]
         static void Main()
         {
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fr-FR");
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR");
+            System.Windows.Forms.Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.themeName;
 
-            var form = ServiceProvider.GetRequiredService<MDIParent>();
+            mdiParent = ServiceProvider.GetRequiredService<MDIParent>();
 
-            ServiceProvider.GetRequiredService<IFormInitializer>().SetCenterScreen(form);
+            ServiceProvider.GetRequiredService<IFormInitializer>().SetCenterScreen(mdiParent);
 
-            Application.Run(form);
+            Application.Run(mdiParent);
         }
+
+        #region EventHandlers
+        internal static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                if (e.ExceptionObject is Exception ex)
+                {
+                    DisplayMessage.Show(mdiParent!, ex.Message, GetRightToLeft());
+                    EventLogger.WriteEntry(ApplicationProperties.Name, ex);
+                }
+                else
+                {
+                    DisplayMessage.Show(mdiParent!, e.ExceptionObject.ToString()!, GetRightToLeft());
+                    EventLogger.WriteEntry(ApplicationProperties.Name, e.ExceptionObject.ToString()!, System.Diagnostics.EventLogEntryType.Error);
+                }
+            }
+            finally
+            {
+                System.Windows.Forms.Application.Exit();
+            }
+        }
+
+        internal static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            try
+            {
+                DisplayMessage.Show(mdiParent!, e.Exception.Message, GetRightToLeft());
+                EventLogger.WriteEntry(ApplicationProperties.Name, e.Exception);
+            }
+            finally
+            {
+                System.Windows.Forms.Application.Exit();
+            }
+        }
+
+        private static RightToLeft GetRightToLeft()
+            => mdiParent?.RightToLeft ?? RightToLeft.No;
+        #endregion EventHandlers
     }
 }

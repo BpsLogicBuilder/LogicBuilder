@@ -69,8 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 {
                     DialogResult dialogResult = DisplayMessage.ShowQuestion
                     (
-                        $"{GetDialogMessage()}{Environment.NewLine}{Environment.NewLine}{Strings.createNewProjectFileQuestion}",
-                        _messageBoxOptionsHelper.MessageBoxOptions
+                        $"{GetDialogMessage()}{Environment.NewLine}{Environment.NewLine}{Strings.createNewProjectFileQuestion}"
                     );
 
                     if (dialogResult == DialogResult.OK)

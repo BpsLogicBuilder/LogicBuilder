@@ -9,6 +9,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 {
     internal static class ForeColorUtility
     {
+        private static Dictionary<string, string> TreeViewNormalBorderColorRepositoryTable => new()
+        {
+            [ThemeCollections.Office2007Black] = "GrayBorder",
+            [ThemeCollections.Office2007Silver] = "GrayBorder",
+            [ThemeCollections.Office2010Black] = "TreeViewBorder",
+            [ThemeCollections.Office2010Blue] = "TreeViewBorder",
+            [ThemeCollections.Office2010Silver] = "TreeViewBorder",
+            [ThemeCollections.Office2013Dark] = "BorderSolid(171;171;171)",
+            [ThemeCollections.Office2013Light] = "BorderSolid(171;171;171)",
+            [ThemeCollections.Office2019Dark] = "MainBorder",
+            [ThemeCollections.Office2019Gray] = "MainBorder",
+            [ThemeCollections.Office2019Light] = "MainBorder",
+        };
+
         private static Dictionary<string, string> ErrorRepositoryTable => new()
         {
             [ThemeCollections.Office2007Black] = "BlackForeColor",
@@ -37,6 +51,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             [ThemeCollections.Office2019Light] = "AccentForeColor"
         };
 
+        public static Color GetTreeViewBorderErrorColor()
+        {
+            return Color.Red;
+        }
+
+        public static Color GetTreeViewBorderColor(string themeName)
+        {
+            if (!ThemeCollections.OfficeThemes.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{85F5E92B-C561-4B7B-A2D1-46631248D62D}"));
+
+            return GetForeColorFromRepository(themeName, TreeViewNormalBorderColorRepositoryTable);
+        }
+
         public static Color GetErrorForeColor(string themeName)
         {
             if (!ThemeCollections.OfficeThemes.Contains(themeName))
@@ -59,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             StyleRepository repositoryFromTheme = theme.FindRepository(colorRepositoryTable[themeName]);
             PropertySetting styleForeColor = repositoryFromTheme.FindSetting(MessageSettings.ForeColorSetting);
 
-            return (Color)styleForeColor.Value;
+            return (Color)(styleForeColor.Value ?? styleForeColor.EndValue);
         }
 
         private struct MessageSettings

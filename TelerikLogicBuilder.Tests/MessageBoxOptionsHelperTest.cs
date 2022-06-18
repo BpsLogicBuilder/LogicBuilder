@@ -26,10 +26,10 @@ namespace TelerikLogicBuilder.Tests
             IMessageBoxOptionsHelper helper = serviceProvider.GetRequiredService<IMessageBoxOptionsHelper>();
 
             //act
-            helper.MessageBoxOptions = MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign;
+            helper.MessageBoxOptions = RightToLeft.Yes;
 
             //assert
-            Assert.Equal(helper.MessageBoxOptions, MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+            Assert.Equal(RightToLeft.Yes, helper.MessageBoxOptions);
         }
     }
 }

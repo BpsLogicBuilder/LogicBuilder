@@ -42,27 +42,27 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
             catch (System.ComponentModel.InvalidEnumArgumentException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (ArgumentException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (System.ComponentModel.Win32Exception e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (InvalidOperationException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (System.Security.SecurityException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (Exception e)
             {
-                DisplayMessage.Show(string.Format(CultureInfo.CurrentCulture, Strings.unhandledEventLoggerExceptionFormat, e.GetType().ToString(), e.Message), (MessageBoxOptions)0);
+                DisplayMessage.Show(string.Format(CultureInfo.CurrentCulture, Strings.unhandledEventLoggerExceptionFormat, e.GetType().ToString(), e.Message));
                 throw;
             }
         }
@@ -86,27 +86,27 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
             catch (System.ComponentModel.InvalidEnumArgumentException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (ArgumentException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (System.ComponentModel.Win32Exception e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (InvalidOperationException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (System.Security.SecurityException e)
             {
-                DisplayMessage.Show(e.Message, (MessageBoxOptions)0);
+                DisplayMessage.Show(e.Message);
             }
             catch (Exception e)
             {
-                DisplayMessage.Show(string.Format(CultureInfo.CurrentCulture, Strings.unhandledEventLoggerExceptionFormat, e.GetType().ToString(), e.Message), (MessageBoxOptions)0);
+                DisplayMessage.Show(string.Format(CultureInfo.CurrentCulture, Strings.unhandledEventLoggerExceptionFormat, e.GetType().ToString(), e.Message));
                 throw;
             }
         }
