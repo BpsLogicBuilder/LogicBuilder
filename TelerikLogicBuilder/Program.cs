@@ -64,6 +64,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public static IServiceCollection ServiceCollection => new ServiceCollection()
             .AddTransient<MDIParent>()
 
+            //Commands
+            .AddMdiParentCommands()
+
             //Services
             .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
             .AddSingleton<ICellXmlHelper, CellXmlHelper>()
@@ -237,6 +240,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddTransient<ISelectRulesResourcesPairFormFactory, SelectRulesResourcesPairFormFactory>()
             .AddTransient<ISelectRulesFormFactory, SelectRulesFormFactory>()
             .AddTransient<SelectDocumentsForm>()
+            .AddTransient<ITryGetSelectedDocuments, TryGetSelectedDocuments>()
+            .AddTransient<ITryGetSelectedRules, TryGetSelectedRules>()
+            .AddTransient<ITryGetSelectedRulesResourcesPairs, TryGetSelectedRulesResourcesPairs>()
             .AddTransient<Func<string, SelectRulesForm>>
             (
                 provider =>

@@ -184,7 +184,6 @@
             // 
             this.radMenuItemBuildSelectedModules.Name = "radMenuItemBuildSelectedModules";
             resources.ApplyResources(this.radMenuItemBuildSelectedModules, "radMenuItemBuildSelectedModules");
-            this.radMenuItemBuildSelectedModules.Click += new System.EventHandler(this.RadMenuItemBuildSelectedModules_Click);
             // 
             // radMenuItemValidateDocuments
             // 
@@ -209,7 +208,6 @@
             // 
             this.radMenuItemValidateSelectedModules.Name = "radMenuItemValidateSelectedModules";
             resources.ApplyResources(this.radMenuItemValidateSelectedModules, "radMenuItemValidateSelectedModules");
-            this.radMenuItemValidateSelectedModules.Click += new System.EventHandler(this.RadMenuItemValidateSelectedModules_Click);
             // 
             // radMenuItemValidateRules
             // 
@@ -288,70 +286,60 @@
             this.radMenuItemOffice2007Black.Name = "radMenuItemOffice2007Black";
             this.radMenuItemOffice2007Black.Tag = "Office2007Black";
             resources.ApplyResources(this.radMenuItemOffice2007Black, "radMenuItemOffice2007Black");
-            this.radMenuItemOffice2007Black.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2007Silver
             // 
             this.radMenuItemOffice2007Silver.Name = "radMenuItemOffice2007Silver";
             this.radMenuItemOffice2007Silver.Tag = "Office2007Silver";
             resources.ApplyResources(this.radMenuItemOffice2007Silver, "radMenuItemOffice2007Silver");
-            this.radMenuItemOffice2007Silver.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2010Black
             // 
             this.radMenuItemOffice2010Black.Name = "radMenuItemOffice2010Black";
             this.radMenuItemOffice2010Black.Tag = "Office2010Black";
             resources.ApplyResources(this.radMenuItemOffice2010Black, "radMenuItemOffice2010Black");
-            this.radMenuItemOffice2010Black.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2010Blue
             // 
             this.radMenuItemOffice2010Blue.Name = "radMenuItemOffice2010Blue";
             this.radMenuItemOffice2010Blue.Tag = "Office2010Blue";
             resources.ApplyResources(this.radMenuItemOffice2010Blue, "radMenuItemOffice2010Blue");
-            this.radMenuItemOffice2010Blue.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2010Silver
             // 
             this.radMenuItemOffice2010Silver.Name = "radMenuItemOffice2010Silver";
             this.radMenuItemOffice2010Silver.Tag = "Office2010Silver";
             resources.ApplyResources(this.radMenuItemOffice2010Silver, "radMenuItemOffice2010Silver");
-            this.radMenuItemOffice2010Silver.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2013Dark
             // 
             this.radMenuItemOffice2013Dark.Name = "radMenuItemOffice2013Dark";
             this.radMenuItemOffice2013Dark.Tag = "Office2013Dark";
             resources.ApplyResources(this.radMenuItemOffice2013Dark, "radMenuItemOffice2013Dark");
-            this.radMenuItemOffice2013Dark.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2013Light
             // 
             this.radMenuItemOffice2013Light.Name = "radMenuItemOffice2013Light";
             this.radMenuItemOffice2013Light.Tag = "Office2013Light";
             resources.ApplyResources(this.radMenuItemOffice2013Light, "radMenuItemOffice2013Light");
-            this.radMenuItemOffice2013Light.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2019Dark
             // 
             this.radMenuItemOffice2019Dark.Name = "radMenuItemOffice2019Dark";
             this.radMenuItemOffice2019Dark.Tag = "Office2019Dark";
             resources.ApplyResources(this.radMenuItemOffice2019Dark, "radMenuItemOffice2019Dark");
-            this.radMenuItemOffice2019Dark.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2019Gray
             // 
             this.radMenuItemOffice2019Gray.Name = "radMenuItemOffice2019Gray";
             this.radMenuItemOffice2019Gray.Tag = "Office2019Gray";
             resources.ApplyResources(this.radMenuItemOffice2019Gray, "radMenuItemOffice2019Gray");
-            this.radMenuItemOffice2019Gray.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemOffice2019Light
             // 
             this.radMenuItemOffice2019Light.Name = "radMenuItemOffice2019Light";
             this.radMenuItemOffice2019Light.Tag = "Office2019Light";
             resources.ApplyResources(this.radMenuItemOffice2019Light, "radMenuItemOffice2019Light");
-            this.radMenuItemOffice2019Light.Click += new System.EventHandler(this.RadThemeMenuItem_Click);
             // 
             // radMenuItemHelp
             // 
@@ -387,7 +375,6 @@
             this.commandBarButtonEdit.Name = "commandBarButtonEdit";
             this.commandBarButtonEdit.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.commandBarButtonEdit.UseCompatibleTextRendering = false;
-            this.commandBarButtonEdit.Click += new System.EventHandler(this.CommandBarButtonEdit_Click);
             // 
             // commandBarButtonSave
             // 
