@@ -48,11 +48,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
 
         public void Build(RadTreeView treeView)
         {
-            treeView.ImageList = _treeViewService.ImageList;
-            treeView.TreeViewElement.ShowNodeToolTips = true;
-
             documentProfileErrors.Clear();
             documentNames.Clear();
+
+            treeView.BeginUpdate();
+            treeView.ImageList = _treeViewService.ImageList;
+            treeView.TreeViewElement.ShowNodeToolTips = true;
             treeView.Nodes.Clear();
 
             string documentPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
@@ -67,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
                 return;
             }
 
-            treeView.BeginUpdate();
+            
             StateImageRadTreeNode rootNode = new()
             {
                 ImageIndex = TreeNodeImageIndexes.PROJECTFOLDERIMAGEINDEX,

@@ -28,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public void CreateProfile()
         {
             _documentsExplorer.CreateProfile();
+            _rulesExplorer.CreateProfile();
         }
 
         private void Initialize()

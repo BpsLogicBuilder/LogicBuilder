@@ -1,18 +1,43 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
-using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 {
     internal class RulesExplorerTreeViewBuilder : IRulesExplorerTreeViewBuilder
     {
-        public void Build(RadTreeView treeView)
+        private readonly IConfigurationService _configurationService;
+        private readonly IFileIOHelper _fileIOHelper;
+        private readonly IPathHelper _pathHelper;
+        private readonly ITreeViewService _treeViewService;
+        private readonly UiNotificationService _uiNotificationService;
+
+        public RulesExplorerTreeViewBuilder(
+            IConfigurationService configurationService,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            ITreeViewService treeViewService,
+            UiNotificationService uiNotificationService)
         {
-            throw new NotImplementedException();
+            _configurationService = configurationService;
+            _fileIOHelper = fileIOHelper;
+            _pathHelper = pathHelper;
+            _treeViewService = treeViewService;
+            _uiNotificationService = uiNotificationService;
         }
+
+        public void Build(RadTreeView treeView, IDictionary<string, string> expandedNodes) 
+            => new RulesExplorerTreeViewBuilderUtility
+            (
+                _configurationService,
+                _fileIOHelper,
+                _pathHelper,
+                _treeViewService,
+                _uiNotificationService,
+                expandedNodes
+            ).Build(treeView);
     }
 }

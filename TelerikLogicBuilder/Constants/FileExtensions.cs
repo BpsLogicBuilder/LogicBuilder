@@ -22,5 +22,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                 TABLEFILEEXTENSION 
             }
         );
+
+        internal static readonly HashSet<string> RulesFolderFileExtensions = new
+        (
+            new string[]
+            {
+                RULESFILEEXTENSION,
+                RESOURCEFILEEXTENSION,
+                RESOURCETEXTFILEEXTENSION
+            }
+        );
     }
 }
