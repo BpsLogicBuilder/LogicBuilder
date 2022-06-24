@@ -7,7 +7,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddUserControls(this IServiceCollection services)
         {
             return services
-                .AddTransient<ProjectExplorer>();
+                .AddTransient<ConfigurationExplorer>()
+                .AddTransient<DocumentsExplorer>()
+                .AddTransient<ProjectExplorer>()
+                .AddTransient<RulesExplorer>();
         }
     }
 }

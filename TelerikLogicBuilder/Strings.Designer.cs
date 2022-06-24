@@ -2239,6 +2239,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Name already exists at: {0}..
+        /// </summary>
+        internal static string fileExistsExceptionMessage {
+            get {
+                return ResourceManager.GetString("fileExistsExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type float..
         /// </summary>
         internal static string floatKeyIndexIsInvalidFormat {

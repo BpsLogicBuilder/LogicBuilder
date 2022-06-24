@@ -34,18 +34,9 @@
             this.radPageViewDocuments = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewRules = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewConfiguration = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radTreeViewDocuments = new Telerik.WinControls.UI.RadTreeView();
-            this.radTreeViewRules = new Telerik.WinControls.UI.RadTreeView();
-            this.radTreeViewConfiguration = new Telerik.WinControls.UI.RadTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.titleBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
-            this.radPageViewDocuments.SuspendLayout();
-            this.radPageViewRules.SuspendLayout();
-            this.radPageViewConfiguration.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewDocuments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewRules)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewConfiguration)).BeginInit();
             this.SuspendLayout();
             // 
             // titleBar1
@@ -68,14 +59,13 @@
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(0, 23);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewConfiguration;
+            this.radPageView1.SelectedPage = this.radPageViewDocuments;
             this.radPageView1.Size = new System.Drawing.Size(450, 612);
             this.radPageView1.TabIndex = 1;
             this.radPageView1.ViewMode = Telerik.WinControls.UI.PageViewMode.OfficeNavigationBar;
             // 
             // radPageViewDocuments
             // 
-            this.radPageViewDocuments.Controls.Add(this.radTreeViewDocuments);
             this.radPageViewDocuments.ItemSize = new System.Drawing.SizeF(73F, 36F);
             this.radPageViewDocuments.Location = new System.Drawing.Point(10, 10);
             this.radPageViewDocuments.Name = "radPageViewDocuments";
@@ -84,7 +74,6 @@
             // 
             // radPageViewRules
             // 
-            this.radPageViewRules.Controls.Add(this.radTreeViewRules);
             this.radPageViewRules.ItemSize = new System.Drawing.SizeF(43F, 36F);
             this.radPageViewRules.Location = new System.Drawing.Point(10, 10);
             this.radPageViewRules.Name = "radPageViewRules";
@@ -93,39 +82,11 @@
             // 
             // radPageViewConfiguration
             // 
-            this.radPageViewConfiguration.Controls.Add(this.radTreeViewConfiguration);
             this.radPageViewConfiguration.ItemSize = new System.Drawing.SizeF(85F, 36F);
             this.radPageViewConfiguration.Location = new System.Drawing.Point(10, 10);
             this.radPageViewConfiguration.Name = "radPageViewConfiguration";
             this.radPageViewConfiguration.Size = new System.Drawing.Size(429, 556);
             this.radPageViewConfiguration.Text = "Configuration";
-            // 
-            // radTreeViewDocuments
-            // 
-            this.radTreeViewDocuments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTreeViewDocuments.Location = new System.Drawing.Point(0, 0);
-            this.radTreeViewDocuments.Name = "radTreeViewDocuments";
-            this.radTreeViewDocuments.Size = new System.Drawing.Size(429, 556);
-            this.radTreeViewDocuments.SpacingBetweenNodes = -1;
-            this.radTreeViewDocuments.TabIndex = 0;
-            // 
-            // radTreeViewRules
-            // 
-            this.radTreeViewRules.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTreeViewRules.Location = new System.Drawing.Point(0, 0);
-            this.radTreeViewRules.Name = "radTreeViewRules";
-            this.radTreeViewRules.Size = new System.Drawing.Size(429, 556);
-            this.radTreeViewRules.SpacingBetweenNodes = -1;
-            this.radTreeViewRules.TabIndex = 0;
-            // 
-            // radTreeViewConfiguration
-            // 
-            this.radTreeViewConfiguration.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTreeViewConfiguration.Location = new System.Drawing.Point(0, 0);
-            this.radTreeViewConfiguration.Name = "radTreeViewConfiguration";
-            this.radTreeViewConfiguration.Size = new System.Drawing.Size(429, 556);
-            this.radTreeViewConfiguration.SpacingBetweenNodes = -1;
-            this.radTreeViewConfiguration.TabIndex = 0;
             // 
             // ProjectExplorer
             // 
@@ -138,12 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.titleBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
             this.radPageView1.ResumeLayout(false);
-            this.radPageViewDocuments.ResumeLayout(false);
-            this.radPageViewRules.ResumeLayout(false);
-            this.radPageViewConfiguration.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewDocuments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewRules)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewConfiguration)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -155,8 +110,5 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewDocuments;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewRules;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewConfiguration;
-        private Telerik.WinControls.UI.RadTreeView radTreeViewDocuments;
-        private Telerik.WinControls.UI.RadTreeView radTreeViewRules;
-        private Telerik.WinControls.UI.RadTreeView radTreeViewConfiguration;
     }
 }

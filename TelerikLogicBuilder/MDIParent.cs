@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Forms;
+using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
@@ -22,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal partial class MDIParent : RadForm
     {
-       private readonly ICheckSelectedApplication _checkSelectedApplication;
+        private readonly ICheckSelectedApplication _checkSelectedApplication;
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorListInitializer _constructorListInitializer;
         private readonly IFormInitializer _formInitializer;
@@ -30,8 +31,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IFunctionListInitializer _functionListInitializer;
         private readonly ILoadContextSponsor _loadContextSponsor;
         private readonly ILoadProjectProperties _loadProjectProperties;
+        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
         private readonly IThemeManager _themeManager;
         private readonly IVariableListInitializer _variableListInitializer;
+        private readonly UiNotificationService _uiNotificationService;
 
         private readonly Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> _getBuildSaveConsolidateSelectedDocumentsCommand;
         private readonly Func<MDIParent, string, DeleteSelectedFilesFromApiCommand> _getDeleteSelectedFilesFromApiCommand;
@@ -55,9 +58,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IFunctionListInitializer functionListInitializer,
             ILoadContextSponsor loadContextSponsor,
             ILoadProjectProperties loadProjectProperties,
+            IMessageBoxOptionsHelper messageBoxOptionsHelper,
             IThemeManager themeManager,
             IVariableListInitializer variableListInitializer,
-            Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> getBuildSaveConsolidateSelectedDocumentsCommand,
+            UiNotificationService uiNotificationService,
+        Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> getBuildSaveConsolidateSelectedDocumentsCommand,
             Func<MDIParent, string, DeleteSelectedFilesFromApiCommand> getDeleteSelectedFilesFromApiCommand,
             Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
             Func<MDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
@@ -80,12 +85,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _functionListInitializer = functionListInitializer;
             _loadContextSponsor = loadContextSponsor;
             _loadProjectProperties = loadProjectProperties;
+            _messageBoxOptionsHelper = messageBoxOptionsHelper;
             _themeManager = themeManager;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
             _getValidateSelectedDocumentsCommand = getValidateSelectedDocumentsCommand;
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
             _variableListInitializer = variableListInitializer;
+            _uiNotificationService = uiNotificationService;
 
             _getBuildSaveConsolidateSelectedDocumentsCommand = getBuildSaveConsolidateSelectedDocumentsCommand;
             _projectExplorer = projectExplorer;
@@ -104,13 +111,18 @@ namespace ABIS.LogicBuilder.FlowBuilder
         #region Methods
         private async void Initialize()
         {
+            _messageBoxOptionsHelper.MessageBoxOptions = this.RightToLeft;
+            _uiNotificationService.LogicBuilderExceptionSubject.Subscribe(LogicBuilderExceptionOccurred);
+
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
                 this.Icon = _formInitializer.GetLogicBuilderIcon();
+                _formInitializer.SetCenterScreen(this);
                 _projectExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
                 this.splitPanelExplorer.SuspendLayout();
                 this.splitPanelExplorer.Controls.Add(_projectExplorer);
-                this.splitPanelExplorer.ResumeLayout();
+                this.splitPanelExplorer.ResumeLayout(false);
+                this.splitPanelExplorer.PerformLayout();
             }
 
             AddClickCommand
@@ -145,6 +157,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddThemeMenuItemClickCommands(this.radMenuItemTheme);
 
             await LoadAssembliesOnProjectOpen();
+
+            _projectExplorer.CreateProfile();
         }
 
         internal async Task RunAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
@@ -170,7 +184,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             {
                 radProgressBarElement1.Value1 = 0;
                 radLabelElement1.Text = ex.Message;
-                RadMessageBox.Show(ex.Message);
+                DisplayMessage.Show(this, ex.Message, _messageBoxOptionsHelper.MessageBoxOptions);
             }
             catch (OperationCanceledException)
             {
@@ -238,7 +252,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             );
         }
 
-        private void AddClickCommand(RadMenuItem menuItem, IClickCommand command)
+        private static void AddClickCommand(RadMenuItem menuItem, IClickCommand command)
         {
             menuItem.Click += (sender, args) => command.Execute();
         }
@@ -252,6 +266,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             radProgressBarElement1.Value1 = 0;
             radLabelElement1.Text = Strings.statusBarReadyMessage;
+        }
+
+        private void LogicBuilderExceptionOccurred(LogicBuilderException exception)
+        {
+            DisplayMessage.Show(this, exception.Message, _messageBoxOptionsHelper.MessageBoxOptions);
         }
 
         private void SetSelectedApplication(string applicationName)
@@ -309,7 +328,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             );
         }
 
-        private void UpdateApplicationMenuItems(IList<Application> applicationList, RadMenuItem parentMenuItem, IDictionary<string, RadMenuItem> itemDictionary, Func<string, IClickCommand> getClickCommand, bool addEllipsis = true)
+        private static void UpdateApplicationMenuItems(IList<Application> applicationList, RadMenuItem parentMenuItem, IDictionary<string, RadMenuItem> itemDictionary, Func<string, IClickCommand> getClickCommand, bool addEllipsis = true)
         {
             itemDictionary.Clear();
             parentMenuItem.Items.Clear();

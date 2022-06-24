@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Prompts;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -55,8 +54,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.themeName;
 
             mdiParent = ServiceProvider.GetRequiredService<MDIParent>();
-
-            ServiceProvider.GetRequiredService<IFormInitializer>().SetCenterScreen(mdiParent);
 
             Application.Run(mdiParent);
         }

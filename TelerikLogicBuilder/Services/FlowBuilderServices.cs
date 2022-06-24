@@ -32,6 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<ITreeViewService, TreeViewService>()
                 .AddSingleton<ITypeHelper, TypeHelper>()
                 .AddSingleton<ITypeLoadHelper, TypeLoadHelper>()
+                .AddSingleton<UiNotificationService>()
                 .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
                 .AddTransient(typeof(IScopedDisposableManager<>), typeof(ScopedDisposableManager<>));
     }

@@ -484,6 +484,10 @@
 	<data name="equalSign" xml:space="preserve">
     <value>=</value>
   </data>
+	<data name="fileExistsExceptionMessage" xml:space="preserve">
+    <value>File Name already exists at: {0}.FR</value>
+    <comment>0=FullPath</comment>
+  </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>FragmentsFR</value>
   </data>
