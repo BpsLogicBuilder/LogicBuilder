@@ -52,6 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
             documentNames.Clear();
 
             treeView.BeginUpdate();
+            treeView.ShowRootLines = false;
             treeView.ImageList = _treeViewService.ImageList;
             treeView.TreeViewElement.ShowNodeToolTips = true;
             treeView.Nodes.Clear();

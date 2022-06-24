@@ -40,6 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
         {
             treeView.BeginUpdate();
 
+            treeView.ShowRootLines = false;
             treeView.ImageList = _treeViewService.ImageList;
             treeView.Nodes.Clear();
 
