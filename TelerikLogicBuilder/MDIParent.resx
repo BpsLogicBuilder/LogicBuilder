@@ -57,55 +57,207 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="radMenuItemNewProject.Text" xml:space="preserve">
+    <value>New Project...</value>
+  </data>
+  <data name="radMenuItemOpenProject.Text" xml:space="preserve">
+    <value>Open Project...</value>
+  </data>
+  <data name="radMenuSeparatorItemPageSetup.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem3</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radMenuSeparatorItemPageSetup.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemPageSetup.Text" xml:space="preserve">
+    <value>Page Setup...</value>
+  </data>
+  <data name="radMenuSeparatorItem3.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem3</value>
+  </data>
+  <data name="radMenuSeparatorItem3.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="radMenuItemCloseProject.Text" xml:space="preserve">
+    <value>Close Project</value>
+  </data>
+  <data name="radMenuSeparatorItem4.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem4</value>
+  </data>
+  <data name="radMenuSeparatorItem4.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemExit.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="radMenuSeparatorItem5.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem5</value>
+  </data>
+  <data name="radMenuSeparatorItem5.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemRecentProjects.Text" xml:space="preserve">
+    <value>Recent Projects...</value>
+  </data>
   <data name="radMenuItemFile.Text" xml:space="preserve">
     <value>&amp;File</value>
+  </data>
+  <data name="radMenuItemUndo.Text" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="radMenuItemRedo.Text" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="radMenuSeparatorItemUpdate.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem6</value>
+  </data>
+  <data name="radMenuSeparatorItemUpdate.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemUpdate.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="radMenuItemDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="radMenuSeparatorItemFind.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem6</value>
+  </data>
+  <data name="radMenuSeparatorItemFind.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemFindShape.Text" xml:space="preserve">
+    <value>Shape...</value>
+  </data>
+  <data name="radMenuItemFindCell.Text" xml:space="preserve">
+    <value>Cell...</value>
+  </data>
+  <data name="radMenuItemFindText.Text" xml:space="preserve">
+    <value>Text...</value>
+  </data>
+  <data name="radMenuItemFindConstructor.Text" xml:space="preserve">
+    <value>Constructor...</value>
+  </data>
+  <data name="radMenuItemFindFunction.Text" xml:space="preserve">
+    <value>Function...</value>
+  </data>
+  <data name="radMenuItemFindVariable.Text" xml:space="preserve">
+    <value>Variable...</value>
+  </data>
+  <data name="radMenuItemFind.Text" xml:space="preserve">
+    <value>Find...</value>
+  </data>
+  <data name="radMenuItemReplaceText.Text" xml:space="preserve">
+    <value>Text...</value>
+  </data>
+  <data name="radMenuItemReplaceConstructor.Text" xml:space="preserve">
+    <value>Constructor...</value>
+  </data>
+  <data name="radMenuItemReplaceFunction.Text" xml:space="preserve">
+    <value>Function...</value>
+  </data>
+  <data name="radMenuItemReplaceVariable.Text" xml:space="preserve">
+    <value>Variable...</value>
+  </data>
+  <data name="radMenuItemReplace.Text" xml:space="preserve">
+    <value>Replace...</value>
+  </data>
+  <data name="radMenuItemFindInFilesText.Text" xml:space="preserve">
+    <value>Text...</value>
+  </data>
+  <data name="radMenuItemFindInFilesConstructor.Text" xml:space="preserve">
+    <value>Constructor...</value>
+  </data>
+  <data name="radMenuItemFindInFilesFunction.Text" xml:space="preserve">
+    <value>Function...</value>
+  </data>
+  <data name="radMenuItemFindInFilesVariable.Text" xml:space="preserve">
+    <value>Variable...</value>
+  </data>
+  <data name="radMenuItemFindinFiles.Text" xml:space="preserve">
+    <value>Find in Files...</value>
+  </data>
+  <data name="radMenuSeparatorItemIndexInformation.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem6</value>
+  </data>
+  <data name="radMenuSeparatorItemIndexInformation.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemIndexInformation.Text" xml:space="preserve">
+    <value>Index Information...</value>
   </data>
   <data name="radMenuItemEdit.Text" xml:space="preserve">
     <value>&amp;Edit</value>
   </data>
+  <data name="radMenuItemProjectExplorer.Text" xml:space="preserve">
+    <value>Project Explorer</value>
+  </data>
+  <data name="radMenuItemMessagesList.Text" xml:space="preserve">
+    <value>Messages List</value>
+  </data>
+  <data name="radMenuItemFlowDiagramStencil.Text" xml:space="preserve">
+    <value>Flow Diagram Stencil</value>
+  </data>
+  <data name="radMenuItemApplicationsStencil.Text" xml:space="preserve">
+    <value>Applications Stencil</value>
+  </data>
+  <data name="radMenuItemPanZoomWindow.Text" xml:space="preserve">
+    <value>Pan &amp;&amp; Zoom Window</value>
+  </data>
   <data name="radMenuItemView.Text" xml:space="preserve">
     <value>&amp;View</value>
+  </data>
+  <data name="radMenuItemConstructors.Text" xml:space="preserve">
+    <value>Constructors</value>
+  </data>
+  <data name="radMenuItemFunctions.Text" xml:space="preserve">
+    <value>Functions</value>
+  </data>
+  <data name="radMenuItemVariables.Text" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="radMenuItemConnectorObjectTypes.Text" xml:space="preserve">
+    <value>Connector Object Types</value>
+  </data>
+  <data name="radMenuItemXMLFragments.Text" xml:space="preserve">
+    <value>XML Fragments</value>
+  </data>
+  <data name="radMenuSeparatorItem6.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem6</value>
+  </data>
+  <data name="radMenuSeparatorItem6.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemProjectProperties.Text" xml:space="preserve">
+    <value>Project Properties</value>
   </data>
   <data name="radMenuItemProject.Text" xml:space="preserve">
     <value>&amp;Project</value>
   </data>
+  <data name="radMenuItemFullChaining.Text" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="radMenuItemNoneChaining.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="radMenuItemUpdateOnlyChaining.Text" xml:space="preserve">
+    <value>Update Only</value>
+  </data>
+  <data name="radMenuItemChaining.Text" xml:space="preserve">
+    <value>Chaining...</value>
+  </data>
+  <data name="radMenuItemToggleReevaluateAll.Text" xml:space="preserve">
+    <value>Toggle Reevaluate All</value>
+  </data>
+  <data name="radMenuItemToggleActivateAll.Text" xml:space="preserve">
+    <value>Toggle Activate All</value>
+  </data>
   <data name="radMenuItemRules.Text" xml:space="preserve">
     <value>Rules</value>
-  </data>
-  <data name="radMenuItemTools.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
-  </data>
-  <data name="radMenuItemTheme.Text" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="radMenuItemHelp.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="radMenu1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>996, 20</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Name" xml:space="preserve">
-    <value>radMenu1</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenu, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="radMenuItemBuildRules.Text" xml:space="preserve">
-    <value>Build Rules...</value>
   </data>
   <data name="radMenuItemBuildActiveDrawing.Text" xml:space="preserve">
     <value>Active Drawing</value>
@@ -116,8 +268,8 @@
   <data name="radMenuItemBuildSelectedModules.Text" xml:space="preserve">
     <value>Select Modules...</value>
   </data>
-  <data name="radMenuItemValidateDocuments.Text" xml:space="preserve">
-    <value>Validate Documents...</value>
+  <data name="radMenuItemBuildRules.Text" xml:space="preserve">
+    <value>Build Rules...</value>
   </data>
   <data name="radMenuItemValidateActiveDrawing.Text" xml:space="preserve">
     <value>Active Drawing</value>
@@ -128,6 +280,9 @@
   <data name="radMenuItemValidateSelectedModules.Text" xml:space="preserve">
     <value>Select Modules...</value>
   </data>
+  <data name="radMenuItemValidateDocuments.Text" xml:space="preserve">
+    <value>Validate Documents...</value>
+  </data>
   <data name="radMenuItemValidateRules.Text" xml:space="preserve">
     <value>Validate Rules...</value>
   </data>
@@ -137,23 +292,23 @@
   <data name="radMenuSeparatorItem1.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="radMenuItemFileSystemDeployment.Text" xml:space="preserve">
-    <value>File System Deployment...</value>
-  </data>
   <data name="radMenuItemFileSystemDeploy.Text" xml:space="preserve">
     <value>Deploy...</value>
   </data>
   <data name="radMenuItemFileSystemDelete.Text" xml:space="preserve">
     <value>Delete...</value>
   </data>
-  <data name="radMenuItemWebApiDeployment.Text" xml:space="preserve">
-    <value>Web-API Deployment...</value>
+  <data name="radMenuItemFileSystemDeployment.Text" xml:space="preserve">
+    <value>File System Deployment...</value>
   </data>
   <data name="radMenuItemWebApiDeploy.Text" xml:space="preserve">
     <value>Deploy...</value>
   </data>
   <data name="radMenuItemWebApiDelete.Text" xml:space="preserve">
     <value>Delete...</value>
+  </data>
+  <data name="radMenuItemWebApiDeployment.Text" xml:space="preserve">
+    <value>Web-API Deployment...</value>
   </data>
   <data name="radMenuSeparatorItem2.Text" xml:space="preserve">
     <value>radMenuSeparatorItem2</value>
@@ -163,6 +318,9 @@
   </data>
   <data name="radMenuItemSelectApplication.Text" xml:space="preserve">
     <value>Select Application...</value>
+  </data>
+  <data name="radMenuItemTools.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
   </data>
   <data name="radMenuItemOffice2007Black.Text" xml:space="preserve">
     <value>Office 2007 Black</value>
@@ -194,6 +352,24 @@
   <data name="radMenuItemOffice2019Light.Text" xml:space="preserve">
     <value>Office 2019 Light</value>
   </data>
+  <data name="radMenuItemTheme.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="radMenuItemContents.Text" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="radMenuSeparatorItem7.Text" xml:space="preserve">
+    <value>radMenuSeparatorItem7</value>
+  </data>
+  <data name="radMenuSeparatorItem7.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radMenuItemAbout.Text" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="radMenuItemHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
   <data name="commandBarRowElement1.DisplayName" xml:space="preserve">
     <value>Command Bar</value>
   </data>
@@ -203,6 +379,7 @@
   <data name="commandBarButtonEdit.Alignment" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopLeft</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="commandBarButtonEdit.AngleTransform" type="System.Single, mscorlib">
     <value>0</value>
   </data>
@@ -490,6 +667,27 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>996, 670</value>
   </data>
+  <data name="radMenu1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 20</value>
+  </data>
+  <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Name" xml:space="preserve">
+    <value>radMenu1</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenu, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -503,6 +701,72 @@
     <value>radMenuItemFile</value>
   </data>
   <data name="&gt;&gt;radMenuItemFile.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemNewProject.Name" xml:space="preserve">
+    <value>radMenuItemNewProject</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemNewProject.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemOpenProject.Name" xml:space="preserve">
+    <value>radMenuItemOpenProject</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemOpenProject.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemPageSetup.Name" xml:space="preserve">
+    <value>radMenuSeparatorItemPageSetup</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemPageSetup.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemPageSetup.Name" xml:space="preserve">
+    <value>radMenuItemPageSetup</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemPageSetup.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem3.Name" xml:space="preserve">
+    <value>radMenuSeparatorItem3</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemSave.Name" xml:space="preserve">
+    <value>radMenuItemSave</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemSave.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemCloseProject.Name" xml:space="preserve">
+    <value>radMenuItemCloseProject</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemCloseProject.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem4.Name" xml:space="preserve">
+    <value>radMenuSeparatorItem4</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemExit.Name" xml:space="preserve">
+    <value>radMenuItemExit</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemExit.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem5.Name" xml:space="preserve">
+    <value>radMenuSeparatorItem5</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem5.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemRecentProjects.Name" xml:space="preserve">
+    <value>radMenuItemRecentProjects</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemRecentProjects.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radMenuItemEdit.Name" xml:space="preserve">
@@ -828,6 +1092,282 @@
   </data>
   <data name="&gt;&gt;office2013DarkTheme1.Type" xml:space="preserve">
     <value>Telerik.WinControls.Themes.Office2013DarkTheme, Telerik.WinControls.Themes.Office2013Dark, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemUndo.Name" xml:space="preserve">
+    <value>radMenuItemUndo</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemUndo.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemRedo.Name" xml:space="preserve">
+    <value>radMenuItemRedo</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemRedo.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemUpdate.Name" xml:space="preserve">
+    <value>radMenuSeparatorItemUpdate</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemUpdate.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemUpdate.Name" xml:space="preserve">
+    <value>radMenuItemUpdate</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemUpdate.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemDelete.Name" xml:space="preserve">
+    <value>radMenuItemDelete</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemDelete.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemFind.Name" xml:space="preserve">
+    <value>radMenuSeparatorItemFind</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemFind.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFind.Name" xml:space="preserve">
+    <value>radMenuItemFind</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFind.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplace.Name" xml:space="preserve">
+    <value>radMenuItemReplace</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplace.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindinFiles.Name" xml:space="preserve">
+    <value>radMenuItemFindinFiles</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindinFiles.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemIndexInformation.Name" xml:space="preserve">
+    <value>radMenuSeparatorItemIndexInformation</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItemIndexInformation.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemIndexInformation.Name" xml:space="preserve">
+    <value>radMenuItemIndexInformation</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemIndexInformation.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindShape.Name" xml:space="preserve">
+    <value>radMenuItemFindShape</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindShape.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindCell.Name" xml:space="preserve">
+    <value>radMenuItemFindCell</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindCell.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindText.Name" xml:space="preserve">
+    <value>radMenuItemFindText</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindText.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindConstructor.Name" xml:space="preserve">
+    <value>radMenuItemFindConstructor</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindConstructor.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindFunction.Name" xml:space="preserve">
+    <value>radMenuItemFindFunction</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindFunction.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindVariable.Name" xml:space="preserve">
+    <value>radMenuItemFindVariable</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindVariable.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceText.Name" xml:space="preserve">
+    <value>radMenuItemReplaceText</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceText.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceConstructor.Name" xml:space="preserve">
+    <value>radMenuItemReplaceConstructor</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceConstructor.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceFunction.Name" xml:space="preserve">
+    <value>radMenuItemReplaceFunction</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceFunction.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceVariable.Name" xml:space="preserve">
+    <value>radMenuItemReplaceVariable</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemReplaceVariable.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesText.Name" xml:space="preserve">
+    <value>radMenuItemFindInFilesText</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesText.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesConstructor.Name" xml:space="preserve">
+    <value>radMenuItemFindInFilesConstructor</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesConstructor.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesFunction.Name" xml:space="preserve">
+    <value>radMenuItemFindInFilesFunction</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesFunction.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesVariable.Name" xml:space="preserve">
+    <value>radMenuItemFindInFilesVariable</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFindInFilesVariable.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemProjectExplorer.Name" xml:space="preserve">
+    <value>radMenuItemProjectExplorer</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemProjectExplorer.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemMessagesList.Name" xml:space="preserve">
+    <value>radMenuItemMessagesList</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemMessagesList.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFlowDiagramStencil.Name" xml:space="preserve">
+    <value>radMenuItemFlowDiagramStencil</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFlowDiagramStencil.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemApplicationsStencil.Name" xml:space="preserve">
+    <value>radMenuItemApplicationsStencil</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemApplicationsStencil.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemPanZoomWindow.Name" xml:space="preserve">
+    <value>radMenuItemPanZoomWindow</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemPanZoomWindow.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemConstructors.Name" xml:space="preserve">
+    <value>radMenuItemConstructors</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemConstructors.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFunctions.Name" xml:space="preserve">
+    <value>radMenuItemFunctions</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFunctions.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemVariables.Name" xml:space="preserve">
+    <value>radMenuItemVariables</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemVariables.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemConnectorObjectTypes.Name" xml:space="preserve">
+    <value>radMenuItemConnectorObjectTypes</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemConnectorObjectTypes.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemXMLFragments.Name" xml:space="preserve">
+    <value>radMenuItemXMLFragments</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemXMLFragments.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem6.Name" xml:space="preserve">
+    <value>radMenuSeparatorItem6</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem6.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemProjectProperties.Name" xml:space="preserve">
+    <value>radMenuItemProjectProperties</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemProjectProperties.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemChaining.Name" xml:space="preserve">
+    <value>radMenuItemChaining</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemChaining.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemToggleReevaluateAll.Name" xml:space="preserve">
+    <value>radMenuItemToggleReevaluateAll</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemToggleReevaluateAll.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemToggleActivateAll.Name" xml:space="preserve">
+    <value>radMenuItemToggleActivateAll</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemToggleActivateAll.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFullChaining.Name" xml:space="preserve">
+    <value>radMenuItemFullChaining</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemFullChaining.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemNoneChaining.Name" xml:space="preserve">
+    <value>radMenuItemNoneChaining</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemNoneChaining.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemUpdateOnlyChaining.Name" xml:space="preserve">
+    <value>radMenuItemUpdateOnlyChaining</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemUpdateOnlyChaining.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemContents.Name" xml:space="preserve">
+    <value>radMenuItemContents</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemContents.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem7.Name" xml:space="preserve">
+    <value>radMenuSeparatorItem7</value>
+  </data>
+  <data name="&gt;&gt;radMenuSeparatorItem7.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuSeparatorItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemAbout.Name" xml:space="preserve">
+    <value>radMenuItemAbout</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemAbout.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MDIParent</value>
