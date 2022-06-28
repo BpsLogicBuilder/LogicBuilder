@@ -39,6 +39,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.radPageViewRules.SuspendLayout();
             this.radPageViewConfiguration.SuspendLayout();
 
+            ((Telerik.WinControls.UI.RadOfficeNavigationBarElement)this.radPageView1.ViewElement).OverflowItem.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+
             _documentsExplorer.Dock = DockStyle.Fill;
             _rulesExplorer.Dock = DockStyle.Fill;
             _configurationExplorer.Dock = DockStyle.Fill;

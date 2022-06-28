@@ -770,6 +770,9 @@
     <value>Building {0}</value>
     <comment>0=filename</comment>
   </data>
+	<data name="progressFormTaskInitializing" xml:space="preserve">
+    <value>Initializing</value>
+  </data>
 	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
     <value>Initializing Page {0}</value>
     <comment>0=PageIndex</comment>

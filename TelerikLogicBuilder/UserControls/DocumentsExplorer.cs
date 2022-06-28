@@ -140,8 +140,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         }
 
         #region Event Handlers
-        private void DocumentProfileErrors_ErrorCountChanged(int errorCount) 
-            => SetTreeViewBorderColor(errorCount);
+        private void DocumentProfileErrors_ErrorCountChanged(int errorCount)
+        {
+            SetTreeViewBorderColor(errorCount);
+            _uiNotificationService.NotifyDocumentExplorerErrorCountChanged(errorCount);
+        }
 
         private void DocumentsExplorer_Disposed(object? sender, EventArgs e) => DisposeFileSystemWatcher();
 

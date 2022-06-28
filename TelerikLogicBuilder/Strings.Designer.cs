@@ -3076,6 +3076,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Initializing.
+        /// </summary>
+        internal static string progressFormTaskInitializing {
+            get {
+                return ResourceManager.GetString("progressFormTaskInitializing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initializing Page {0}.
         /// </summary>
         internal static string progressFormTaskInitializingPageFormat {
