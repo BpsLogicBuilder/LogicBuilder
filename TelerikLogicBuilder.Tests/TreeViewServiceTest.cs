@@ -39,7 +39,7 @@ namespace TelerikLogicBuilder.Tests
                     {
                         new RadTreeNode()
                         {
-                            ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                            ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                         },
                         true
                     },
@@ -47,7 +47,7 @@ namespace TelerikLogicBuilder.Tests
                     {
                         new RadTreeNode()
                         {
-                            ImageIndex = TreeNodeImageIndexes.OPENEDFOLDERIMAGEINDEX
+                            ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
                         },
                         true
                     },
@@ -55,7 +55,7 @@ namespace TelerikLogicBuilder.Tests
                     {
                         new RadTreeNode()
                         {
-                            ImageIndex = TreeNodeImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX
+                            ImageIndex = ImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX
                         },
                         true
                     },
@@ -63,7 +63,7 @@ namespace TelerikLogicBuilder.Tests
                     {
                         new RadTreeNode()
                         {
-                            ImageIndex = TreeNodeImageIndexes.CUTOPENEDFOLDERIMAGEINDEX
+                            ImageIndex = ImageIndexes.CUTOPENEDFOLDERIMAGEINDEX
                         },
                         true
                     },
@@ -71,7 +71,7 @@ namespace TelerikLogicBuilder.Tests
                     {
                         new RadTreeNode()
                         {
-                            ImageIndex = TreeNodeImageIndexes.VISIOFILEIMAGEINDEX
+                            ImageIndex = ImageIndexes.VISIOFILEIMAGEINDEX
                         },
                         false
                     },
@@ -79,7 +79,7 @@ namespace TelerikLogicBuilder.Tests
                     {
                         new RadTreeNode()
                         {
-                            ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                            ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                         },
                         false
                     }
@@ -108,11 +108,11 @@ namespace TelerikLogicBuilder.Tests
             ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
             RadTreeNode parentNode = new()
             {
-                ImageIndex = TreeNodeImageIndexes.OPENEDFOLDERIMAGEINDEX
+                ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
             };
             RadTreeNode childNode = new()
             {
-                ImageIndex = TreeNodeImageIndexes.VISIOFILEIMAGEINDEX
+                ImageIndex = ImageIndexes.VISIOFILEIMAGEINDEX
             };
             parentNode.Nodes.Add(childNode);
 

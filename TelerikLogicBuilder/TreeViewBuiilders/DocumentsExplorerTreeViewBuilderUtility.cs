@@ -16,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IImageListService _imageListService;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
@@ -28,6 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
+            IImageListService imageListService,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService,
@@ -38,6 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
+            _imageListService = imageListService;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
@@ -53,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
 
             treeView.BeginUpdate();
             treeView.ShowRootLines = false;
-            treeView.ImageList = _treeViewService.ImageList;
+            treeView.ImageList = _imageListService.ImageList;
             treeView.TreeViewElement.ShowNodeToolTips = true;
             treeView.Nodes.Clear();
 
@@ -72,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
             
             StateImageRadTreeNode rootNode = new()
             {
-                ImageIndex = TreeNodeImageIndexes.PROJECTFOLDERIMAGEINDEX,
+                ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX,
                 Text = _configurationService.ProjectProperties.ProjectName,
                 Name = documentPath
             };
@@ -107,9 +110,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
                 int GetImageIndex()
                     => fileExtension switch
                     {
-                        FileExtensions.VSDXFILEEXTENSION => TreeNodeImageIndexes.VSDXFILEIMAGEINDEX,
-                        FileExtensions.VISIOFILEEXTENSION => TreeNodeImageIndexes.VISIOFILEIMAGEINDEX,
-                        FileExtensions.TABLEFILEEXTENSION => TreeNodeImageIndexes.TABLEFILEIMAGEINDEX,
+                        FileExtensions.VSDXFILEEXTENSION => ImageIndexes.VSDXFILEIMAGEINDEX,
+                        FileExtensions.VISIOFILEEXTENSION => ImageIndexes.VISIOFILEIMAGEINDEX,
+                        FileExtensions.TABLEFILEEXTENSION => ImageIndexes.TABLEFILEIMAGEINDEX,
                         _ => throw _exceptionHelper.CriticalException("{061F9EE2-AB56-4648-B109-BB3CFBF88706}"),
                     };
             }
@@ -118,7 +121,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
             {
                 StateImageRadTreeNode childNode = new()
                 {
-                    ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX,
+                    ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX,
                     Name = subDirectoryInfo.FullName,
                     Text = subDirectoryInfo.Name
                 };

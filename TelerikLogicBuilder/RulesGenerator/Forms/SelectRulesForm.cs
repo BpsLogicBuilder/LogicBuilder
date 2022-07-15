@@ -49,8 +49,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
                 return;
 
             e.Node.ImageIndex = e.Node.Expanded
-                ? TreeNodeImageIndexes.OPENEDFOLDERIMAGEINDEX
-                : TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX;
+                ? ImageIndexes.OPENEDFOLDERIMAGEINDEX
+                : ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
         }
     }
 }

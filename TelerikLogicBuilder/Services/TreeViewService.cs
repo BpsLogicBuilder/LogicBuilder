@@ -14,22 +14,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             _exceptionHelper = exceptionHelper;
         }
 
-        public ImageList ImageList => new()
-        {
-            Images =
-            {
-                Properties.Resources.OpenedFolder,
-                Properties.Resources.closedFolder,
-                Properties.Resources.Visio_Application_16xLG,
-                Properties.Resources.Visio_16,
-                Properties.Resources.TABLE,
-                Properties.Resources.Project,
-                Properties.Resources.OPENFOLDCUT,
-                Properties.Resources.CLSDFOLDCUT,
-                Properties.Resources.File
-            }
-        };
-
         public bool IsFileNode(RadTreeNode treeNode)
         {
             return !IsRootNode(treeNode) && !IsFolderNode(treeNode);
@@ -40,10 +24,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             if (treeNode == null)
                 throw _exceptionHelper.CriticalException("{5AA2AB5A-1BFF-444B-83A9-DDF0700513D5}");
 
-            return treeNode.ImageIndex == TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX 
-                || treeNode.ImageIndex == TreeNodeImageIndexes.OPENEDFOLDERIMAGEINDEX 
-                || treeNode.ImageIndex == TreeNodeImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX 
-                || treeNode.ImageIndex == TreeNodeImageIndexes.CUTOPENEDFOLDERIMAGEINDEX;
+            return treeNode.ImageIndex == ImageIndexes.CLOSEDFOLDERIMAGEINDEX 
+                || treeNode.ImageIndex == ImageIndexes.OPENEDFOLDERIMAGEINDEX 
+                || treeNode.ImageIndex == ImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX 
+                || treeNode.ImageIndex == ImageIndexes.CUTOPENEDFOLDERIMAGEINDEX;
         }
 
         public bool IsRootNode(RadTreeNode treeNode)

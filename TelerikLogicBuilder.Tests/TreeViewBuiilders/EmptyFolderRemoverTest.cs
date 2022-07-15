@@ -40,7 +40,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                 {
                     new RadTreeNode("folderChild01", Array.Empty<RadTreeNode>())
                     {
-                        ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                        ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     },
                     new RadTreeNode
                     (
@@ -49,21 +49,21 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                         {
                             new RadTreeNode("grandChild0201", Array.Empty<RadTreeNode>())
                             {
-                                ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                                ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                             },
                             new RadTreeNode("folderGrandChild0201", Array.Empty<RadTreeNode>())
                             {
-                                ImageIndex =TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                                ImageIndex =ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                             },
                         }
                     )
                     {
-                        ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                        ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     }
                 }
             )
             {
-                ImageIndex = TreeNodeImageIndexes.PROJECTFOLDERIMAGEINDEX
+                ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX
             };
 
             service.RemoveEmptyFolders(treeNode);

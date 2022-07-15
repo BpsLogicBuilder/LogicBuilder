@@ -5,7 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface ITreeViewService
     {
-        ImageList ImageList { get; }
         bool IsRootNode(RadTreeNode treeNode);
         bool IsFileNode(RadTreeNode treeNode);
         bool IsFolderNode(RadTreeNode treeNode);

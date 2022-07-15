@@ -49,17 +49,17 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                             {
                                 Name = "grandChild0101",
                                 CheckState = ToggleState.On,
-                                ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                                ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                             },
                             new RadTreeNode("folderGrandChild0101", Array.Empty<RadTreeNode>())
                             {
-                                ImageIndex =TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                                ImageIndex =ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                             },
                         }
                     )
                     {
                         Name = "folderChild01",
-                        ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                        ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     },
                     new RadTreeNode
                     (
@@ -70,27 +70,27 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                             {
                                 Name = "grandChild0201",
                                 CheckState = ToggleState.Off,
-                                ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                                ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                             },
                             new RadTreeNode("grandChild0202", Array.Empty<RadTreeNode>())
                             {
                                 Name = "grandChild0202",
                                 CheckState = ToggleState.On,
-                                ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                                ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                             },
                             new RadTreeNode("folderGrandChild0201", Array.Empty<RadTreeNode>())
                             {
-                                ImageIndex =TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                                ImageIndex =ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                             },
                         }
                     )
                     {
-                        ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                        ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     }
                 }
             )
             {
-                ImageIndex = TreeNodeImageIndexes.PROJECTFOLDERIMAGEINDEX
+                ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX
             };
 
 
@@ -122,17 +122,17 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                             {
                                 Name = "grandChild0101",
                                 CheckState = ToggleState.On,
-                                ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                                ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                             },
                             new RadTreeNode("folderGrandChild0101", Array.Empty<RadTreeNode>())
                             {
-                                ImageIndex =TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                                ImageIndex =ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                             },
                         }
                     )
                     {
                         Name = "folderChild01",
-                        ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                        ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     },
                     new RadTreeNode
                     (
@@ -143,27 +143,27 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                             {
                                 Name = "grandChild0201",
                                 CheckState = ToggleState.Off,
-                                ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                                ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                             },
                             new RadTreeNode("grandChild0202", Array.Empty<RadTreeNode>())
                             {
                                 Name = "grandChild0202",
                                 CheckState = ToggleState.On,
-                                ImageIndex = TreeNodeImageIndexes.VSDXFILEIMAGEINDEX
+                                ImageIndex = ImageIndexes.VSDXFILEIMAGEINDEX
                             },
                             new RadTreeNode("folderGrandChild0201", Array.Empty<RadTreeNode>())
                             {
-                                ImageIndex =TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                                ImageIndex =ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                             },
                         }
                     )
                     {
-                        ImageIndex = TreeNodeImageIndexes.CLOSEDFOLDERIMAGEINDEX
+                        ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     }
                 }
             )
             {
-                ImageIndex = TreeNodeImageIndexes.PROJECTFOLDERIMAGEINDEX
+                ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX
             };
 
 

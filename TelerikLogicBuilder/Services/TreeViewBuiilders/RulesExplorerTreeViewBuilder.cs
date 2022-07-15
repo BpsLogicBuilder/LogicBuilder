@@ -11,6 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
     {
         private readonly IConfigurationService _configurationService;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IImageListService _imageListService;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
@@ -18,12 +19,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         public RulesExplorerTreeViewBuilder(
             IConfigurationService configurationService,
             IFileIOHelper fileIOHelper,
+            IImageListService imageListService,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _fileIOHelper = fileIOHelper;
+            _imageListService = imageListService;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
@@ -34,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             (
                 _configurationService,
                 _fileIOHelper,
+                _imageListService,
                 _pathHelper,
                 _treeViewService,
                 _uiNotificationService,

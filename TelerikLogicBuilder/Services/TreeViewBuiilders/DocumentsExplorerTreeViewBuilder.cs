@@ -13,6 +13,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IImageListService _imageListService;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
@@ -21,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
+            IImageListService imageListService,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService)
@@ -28,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
+            _imageListService = imageListService;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
@@ -39,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 _configurationService,
                 _exceptionHelper,
                 _fileIOHelper,
+                _imageListService,
                 _pathHelper,
                 _treeViewService,
                 _uiNotificationService,

@@ -14,17 +14,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
     {
         private readonly IConfigurationService _configurationService;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IImageListService _imageListService;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
 
         public ConfigurationExplorerTreeViewBuilder(
             IConfigurationService configurationService,
             IFileIOHelper fileIOHelper,
+            IImageListService imageListService,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _fileIOHelper = fileIOHelper;
+            _imageListService = imageListService;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
         }
@@ -34,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             treeView.BeginUpdate();
 
             treeView.ShowRootLines = false;
-            treeView.ImageList = _treeViewService.ImageList;
+            treeView.ImageList = _imageListService.ImageList;
             treeView.Nodes.Clear();
             string documentPath = _configurationService.ProjectProperties.ProjectPath;
 
@@ -45,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 
                 StateImageRadTreeNode rootNode = new()
                 {
-                    ImageIndex = TreeNodeImageIndexes.PROJECTFOLDERIMAGEINDEX,
+                    ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX,
                     Text = _configurationService.ProjectProperties.ProjectName,
                     Name = documentPath
                 };
@@ -64,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 
         private void AddFileNodes(StateImageRadTreeNode treeNode, string directoryPath)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(directoryPath);
+            DirectoryInfo directoryInfo = new(directoryPath);
             foreach (FileInfo fileInfo in directoryInfo.GetFiles())
             {
                 if (
@@ -77,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 {
                     StateImageRadTreeNode childNode = new()
                     {
-                        ImageIndex = TreeNodeImageIndexes.FILEIMAGEINDEX,
+                        ImageIndex = ImageIndexes.FILEIMAGEINDEX,
                         Name = fileInfo.FullName,
                         Text = fileInfo.Name
                     };

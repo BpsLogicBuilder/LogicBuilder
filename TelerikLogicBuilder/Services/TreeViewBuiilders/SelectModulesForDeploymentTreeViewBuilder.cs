@@ -12,13 +12,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
     {
         private readonly IConfigurationService _configurationService;
         private readonly IEmptyFolderRemover _emptyFolderRemover;
+        private readonly IImageListService _imageListService;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
 
-        public SelectModulesForDeploymentTreeViewBuilder(IConfigurationService configurationService, IEmptyFolderRemover emptyFolderRemover, IPathHelper pathHelper, ITreeViewService treeViewService)
+        public SelectModulesForDeploymentTreeViewBuilder(
+            IConfigurationService configurationService,
+            IEmptyFolderRemover emptyFolderRemover,
+            IImageListService imageListService,
+            IPathHelper pathHelper,
+            ITreeViewService treeViewService)
         {
             _configurationService = configurationService;
             _emptyFolderRemover = emptyFolderRemover;
+            _imageListService = imageListService;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
         }
@@ -26,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         public void Build(RadTreeView treeView, string applicationName)
         {
             treeView.TriStateMode = true;
-            treeView.ImageList = _treeViewService.ImageList;
+            treeView.ImageList = _imageListService.ImageList;
             treeView.Nodes.Clear();
 
             string rulesPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.RULESFOLDER, applicationName, ProjectPropertiesConstants.BUILDFOLDER);
@@ -36,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             treeView.BeginUpdate();
             RadTreeNode rootNode = new()
             {
-                ImageIndex = TreeNodeImageIndexes.PROJECTFOLDERIMAGEINDEX,
+                ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX,
                 Text = _configurationService.ProjectProperties.ProjectName,
                 Name = rulesPath
             };
@@ -59,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 
                 RadTreeNode childNode = new()
                 {
-                    ImageIndex = TreeNodeImageIndexes.FILEIMAGEINDEX,
+                    ImageIndex = ImageIndexes.FILEIMAGEINDEX,
                     Name = fileInfo.FullName,
                     Text = _pathHelper.GetModuleName(fileInfo.Name),
                     Tag = new RulesResourcesPair
