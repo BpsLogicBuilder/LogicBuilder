@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
@@ -8,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initializati
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +24,7 @@ using Application = ABIS.LogicBuilder.FlowBuilder.Configuration.Application;
 
 namespace ABIS.LogicBuilder.FlowBuilder
 {
-    internal partial class MDIParent : RadForm
+    internal partial class MDIParent : RadForm, IMDIParent
     {
         private readonly ICheckSelectedApplication _checkSelectedApplication;
         private readonly IConfigurationService _configurationService;
@@ -37,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IVariableListInitializer _variableListInitializer;
         private readonly UiNotificationService _uiNotificationService;
 
+        private readonly Func<IMDIParent, BuildActiveDocumentCommand> _getBuildActiveDocumentCommand;
         private readonly Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> _getBuildSaveConsolidateSelectedDocumentsCommand;
         private readonly Func<MDIParent, string, DeleteSelectedFilesFromApiCommand> _getDeleteSelectedFilesFromApiCommand;
         private readonly Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
@@ -44,6 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
         private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
         private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
+        private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
         private readonly Func<MDIParent, ValidateSelectedDocumentsCommand> _getValidateSelectedDocumentsCommand;
         private readonly Func<MDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
 
@@ -64,6 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IThemeManager themeManager,
             IVariableListInitializer variableListInitializer,
             UiNotificationService uiNotificationService,
+            Func<IMDIParent, BuildActiveDocumentCommand> getBuildActiveDocumentCommand,
             Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> getBuildSaveConsolidateSelectedDocumentsCommand,
             Func<MDIParent, string, DeleteSelectedFilesFromApiCommand> getDeleteSelectedFilesFromApiCommand,
             Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
@@ -71,6 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
             Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
             Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
+            Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
             Func<MDIParent, ValidateSelectedDocumentsCommand> getValidateSelectedDocumentsCommand,
             Func<MDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
             Messages messages,
@@ -92,11 +98,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _themeManager = themeManager;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
+            _getValidateActiveDocumentCommand = getValidateActiveDocumentCommand;
             _getValidateSelectedDocumentsCommand = getValidateSelectedDocumentsCommand;
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
 
+            _getBuildActiveDocumentCommand = getBuildActiveDocumentCommand;
             _getBuildSaveConsolidateSelectedDocumentsCommand = getBuildSaveConsolidateSelectedDocumentsCommand;
             _messages = messages;
             _projectExplorer = projectExplorer;
@@ -118,59 +126,91 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IDisposable logicBuilderExceptionSubscription;
         private readonly IDisposable documentExplorerErrorCountChangedSubscription;
 
+        public RadCommandBar CommandBar => radCommandBar1;
+        public CommandBarButton CommandBarButtonSave => commandBarButtonSave;
+        public RadMenuItem RadMenuItemDelete => radMenuItemDelete;
+        public RadMenuItem RadMenuItemSave => radMenuItemSave;
+        public RadMenuItem RadMenuItemUndo => radMenuItemUndo;
+        public RadMenuItem RadMenuItemRedo => radMenuItemRedo;
+        public RadMenuItem RadMenuItemIndexInformation => radMenuItemIndexInformation;
+        public RadMenuItem RadMenuItemChaining => radMenuItemChaining;
+        public RadMenuItem RadMenuItemToggleActivateAll => radMenuItemToggleActivateAll;
+        public RadMenuItem RadMenuItemToggleReevaluateAll => radMenuItemToggleReevaluateAll;
+        public RadMenuItem RadMenuItemFullChaining => radMenuItemFullChaining;
+        public RadMenuItem RadMenuItemNoneChaining => radMenuItemNoneChaining;
+        public RadMenuItem RadMenuItemUpdateOnlyChaining => radMenuItemUpdateOnlyChaining;
+
+        public IDocumentEditor? EditControl { get; set; }
+
         #region Methods
-        private void Initialize()
+        public void AddTableControl(IDocumentEditor documentEditor) 
+            => AddDocumentEditorControl(documentEditor, false, true);
+
+        public void AddVisioControl(IDocumentEditor documentEditor) 
+            => AddDocumentEditorControl(documentEditor, true, false);
+
+        public void ChangeCursor(Cursor cursor) => this.Cursor = cursor;
+
+        public void CloseProject()
         {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-            {
-                return;
-            }
+            if (this.EditControl != null)
+                this.EditControl.Close();
 
-            _messageBoxOptionsHelper.MessageBoxOptions = this.RightToLeft;
-            _formInitializer.SetCenterScreen(this);
-            _projectExplorer.Dock = DockStyle.Fill;
-            this.splitPanelExplorer.SuspendLayout();
-            this.splitPanelExplorer.Controls.Add(_projectExplorer);
-            this.splitPanelExplorer.ResumeLayout(false);
-            this.splitPanelExplorer.PerformLayout();
-
-            _messages.Dock = DockStyle.Fill;
-            this.splitPanelMessages.SuspendLayout();
-            this.splitPanelMessages.Controls.Add(_messages);
-            this.splitPanelMessages.ResumeLayout(false);
-            this.splitPanelMessages.PerformLayout();
-
-            SetShortCutKeys();
-            this.Icon = _formInitializer.GetLogicBuilderIcon();
-
-            this.radProgressBarElement1.Visibility = ElementVisibility.Collapsed;
-            this.commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
-            radCommandBar1.Visible = false;
-            _messages.Visible = false;
+            _projectExplorer.ClearProfile();
             _projectExplorer.Visible = false;
-
+            /*TODO Clear Message Tabs*/
+            _messages.Visible = false;
             SetButtonStates(false);
-            SetEditControlMenuStates(false, false);
             UpdateRecentProjectMenuItems();
-            _themeManager.CheckMenuItemForCurrentTheme(this.radMenuItemTheme.Items);
+            ClearApplicationMenuItems();
 
-            AddClickCommand
+            _loadContextSponsor.UnloadAssembliesOnCloseProject();
+            _configurationService.ClearConfigurationData();
+
+            this.Refresh();
+        }
+
+        public async void OpenProject(string fullName)
+        {
+            if (!System.IO.File.Exists(fullName))
+                return;
+
+            this.Refresh();
+            this.Cursor = Cursors.WaitCursor;
+            UpdateProgress(20, Strings.progressFormTaskInitializing);
+
+            _configurationService.ProjectProperties = _loadProjectProperties.Load(fullName);
+            UpdateApplicationMenuItems();
+            SetSelectedApplication
             (
-                this.radMenuItemBuildSelectedModules,
-                _getBuildSaveConsolidateSelectedDocumentsCommand(this)
-            );
-            AddClickCommand
-            (
-                this.radMenuItemValidateSelectedModules,
-                _getValidateSelectedDocumentsCommand(this)
+                /*Gets the first one if none have been selected*/
+                _configurationService.GetSelectedApplication().Name
             );
 
-            AddThemeMenuItemClickCommands(this.radMenuItemTheme);
+            _configurationService.ConstructorList = _constructorListInitializer.InitializeList();
+            _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
+            _configurationService.FunctionList = _functionListInitializer.InitializeList();
+            _configurationService.VariableList = _variableListInitializer.InitializeList();
 
-            this.splitPanelEdit.ControlRemoved += SplitPanelEdit_ControlRemoved;
-            this.Disposed += MDIParent_Disposed;
+            UpdateProgress(50, Strings.progressFormTaskInitializing);
 
-            //OpenProject(@"C:\TelerikLogicBuilder\FlowProjects\Contoso.Test\Contoso.Test.lbproj");
+            await LoadAssembliesOnProjectOpen();
+
+            //enable menu items prior to generating explorer
+            //if explorer has errors, some menu items must be disabled
+            SetButtonStates(true);
+
+            UpdateProgress(60, Strings.progressFormTaskInitializing);
+
+            _projectExplorer.CreateProfile();
+            _projectExplorer.Visible = true;
+
+            UpdateProgress(80, Strings.progressFormTaskInitializing);
+            RecentFilesList.Add(fullName);
+
+            UpdateProgress(100, Strings.progressFormTaskInitializing);
+            TaskComplete(Strings.statusBarReadyMessage);
+            this.Cursor = Cursors.Default;
         }
 
         internal async Task RunAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
@@ -216,7 +256,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
         }
 
-        internal async Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
+        public async Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
         {
             var progress = new Progress<ProgressMessage>(percent =>
             {
@@ -243,7 +283,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     catch (LogicBuilderException ex)
                     {
                         UpdateProgress(0, ex.Message);
-                        RadMessageBox.Show(ex.Message);
+                        LogicBuilderExceptionOccurred(ex);
                     }
                     catch (OperationCanceledException)
                     {
@@ -265,9 +305,63 @@ namespace ABIS.LogicBuilder.FlowBuilder
             );
         }
 
+        private void AddBuildActiveDocumentCommands()
+        {
+            void handler(object? sender, EventArgs args) => _getBuildActiveDocumentCommand(this).Execute();
+            radMenuItemBuildActiveDrawing.Click += handler;
+            radMenuItemBuildActiveTable.Click += handler;
+            commandBarButtonBuild.Click += handler;
+        }
+
         private static void AddClickCommand(RadMenuItem menuItem, IClickCommand command)
         {
             menuItem.Click += (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            AddClickCommand
+            (
+                this.radMenuItemBuildSelectedModules,
+                _getBuildSaveConsolidateSelectedDocumentsCommand(this)
+            );
+            AddClickCommand
+            (
+                this.radMenuItemValidateSelectedModules,
+                _getValidateSelectedDocumentsCommand(this)
+            );
+
+            AddBuildActiveDocumentCommands();
+
+            AddValidateActiveDocumentCommands();
+
+            AddThemeMenuItemClickCommands(this.radMenuItemTheme);
+        }
+
+        private void AddDocumentEditorControl(IDocumentEditor documentEditor, bool visioOpen, bool tableOpen)
+        {
+            Native.NativeMethods.LockWindowUpdate(this.Handle);
+            AddEditControl(documentEditor);
+            SetEditControlMenuStates(visioOpen, tableOpen);
+            this.Refresh();
+            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
+        }
+
+        private void AddEditControl(IDocumentEditor documentEditor)
+        {
+            Control editControl = (Control)documentEditor;
+            editControl.Dock = DockStyle.Fill;
+            EditControl = documentEditor;
+            this.splitPanelEdit.Controls.Clear();
+            this.splitPanelEdit.Controls.Add(editControl);
+        }
+
+        private void AddValidateActiveDocumentCommands()
+        {
+            void handler(object? sender, EventArgs args) => _getValidateActiveDocumentCommand(this).Execute();
+            radMenuItemValidateActiveDrawing.Click += handler;
+            radMenuItemValidateActiveTable.Click += handler;
+            commandBarButtonValidate.Click += handler;
         }
 
         private void AddThemeMenuItemClickCommands(RadMenuItem themeMenuItem)
@@ -278,7 +372,28 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
         }
 
-        private void Dispose(IDisposable disposable)
+        private void ClearApplicationMenuItems()
+        {
+            radMenuItemSelectApplication.Items.Clear();
+            selectedApplicationRulesMenuItemList.Clear();
+
+            radMenuItemFileSystemDeploy.Items.Clear();
+            deployFileSystemApplicationMenuItemList.Clear();
+
+            radMenuItemFileSystemDelete.Items.Clear();
+            deleteFileSystemApplicationMenuItemList.Clear();
+
+            radMenuItemWebApiDeploy.Items.Clear();
+            deployWebApiApplicationMenuItemList.Clear();
+
+            radMenuItemWebApiDelete.Items.Clear();
+            deleteWebApiApplicationMenuItemList.Clear();
+
+            radMenuItemValidateRules.Items.Clear();
+            validateApplicationRulesMenuItemList.Clear();
+        }
+
+        private static void Dispose(IDisposable disposable)
         {
             if (disposable != null)
                 disposable.Dispose();
@@ -306,13 +421,59 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //Tools Menu
         }
 
+        private void Initialize()
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
+
+            _messageBoxOptionsHelper.MainWindow = this;
+            _messageBoxOptionsHelper.MessageBoxOptions = this.RightToLeft;
+            _formInitializer.SetCenterScreen(this);
+            _projectExplorer.Dock = DockStyle.Fill;
+            this.splitPanelExplorer.SuspendLayout();
+            this.splitPanelExplorer.Controls.Add(_projectExplorer);
+            this.splitPanelExplorer.ResumeLayout(false);
+            this.splitPanelExplorer.PerformLayout();
+
+            _messages.Dock = DockStyle.Fill;
+            this.splitPanelMessages.SuspendLayout();
+            this.splitPanelMessages.Controls.Add(_messages);
+            this.splitPanelMessages.ResumeLayout(false);
+            this.splitPanelMessages.PerformLayout();
+
+            SetShortCutKeys();
+            this.Icon = _formInitializer.GetLogicBuilderIcon();
+
+            this.radProgressBarElement1.Visibility = ElementVisibility.Collapsed;
+
+            radCommandBar1.Enabled = false;
+            this.commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
+            
+            _messages.Visible = false;
+            _projectExplorer.Visible = false;
+
+            SetButtonStates(false);
+            SetEditControlMenuStates(false, false);
+            UpdateRecentProjectMenuItems();
+            _themeManager.CheckMenuItemForCurrentTheme(this.radMenuItemTheme.Items);
+
+            AddClickCommands();
+
+            this.splitPanelEdit.ControlRemoved += SplitPanelEdit_ControlRemoved;
+            this.Disposed += MDIParent_Disposed;
+
+            //OpenProject(@"C:\Test\SomeProject1\SomeProject1.lbproj");
+        }
+
         private async Task LoadAssembliesOnProjectOpen()
         {
             radProgressBarElement1.Value1 = 50;
             radLabelElement1.Text = Strings.loadingAssemblies2;
 
             await _loadContextSponsor.LoadAssembiesOnOpenProject();
-
+            
             radProgressBarElement1.Value1 = 0;
             radLabelElement1.Text = Strings.statusBarReadyMessage;
         }
@@ -320,46 +481,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private void LogicBuilderExceptionOccurred(LogicBuilderException exception)
         {
             DisplayMessage.Show(this, exception.Message, _messageBoxOptionsHelper.MessageBoxOptions);
-        }
-
-        private async void OpenProject(string fullName)
-        {
-            this.Refresh();
-            this.Cursor = Cursors.WaitCursor;
-            UpdateProgress(20, Strings.progressFormTaskInitializing);
-
-            _configurationService.ProjectProperties = _loadProjectProperties.Load(fullName);
-            UpdateApplicationMenuItems();
-            SetSelectedApplication
-            (
-                /*Gets the first one if none have been selected*/
-                _configurationService.GetSelectedApplication().Name
-            );
-
-            _configurationService.ConstructorList = _constructorListInitializer.InitializeList();
-            _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
-            _configurationService.FunctionList = _functionListInitializer.InitializeList();
-            _configurationService.VariableList = _variableListInitializer.InitializeList();
-
-            UpdateProgress(50, Strings.progressFormTaskInitializing);
-
-            await LoadAssembliesOnProjectOpen();
-
-            //enable menu items prior to generating explorer
-            //if explorer has errors, some menu items must be disabled
-            SetButtonStates(true);
-
-            UpdateProgress(60, Strings.progressFormTaskInitializing);
-
-            _projectExplorer.CreateProfile();
-            _projectExplorer.Visible = true;
-
-            UpdateProgress(80, Strings.progressFormTaskInitializing);
-            RecentFilesList.Add(fullName);
-
-            UpdateProgress(100, Strings.progressFormTaskInitializing);
-            TaskComplete(Strings.statusBarReadyMessage);
-            this.Cursor = Cursors.Default;
         }
 
         /// <summary>
@@ -375,6 +496,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             radMenuItemRecentProjects.Enabled = !projectOpen;
             if (projectOpen)
             {
+                recentProjectsMenuItemList.Clear();
                 radMenuItemRecentProjects.Items.Clear();
             }
             //File Menu
@@ -439,7 +561,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         /// </summary>
         /// <param name="visioOpen"></param>
         /// <param name="tableOpen"></param>
-        private void SetEditControlMenuStates(bool visioOpen, bool tableOpen)
+        public void SetEditControlMenuStates(bool visioOpen, bool tableOpen)
         {
             this.radCommandBar1.Enabled = visioOpen || tableOpen;
 
@@ -493,7 +615,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             radMenuItemValidateActiveTable.Visibility = GetVisibility(tableOpen);
             //Tools Menu
 
-            ElementVisibility GetVisibility(bool visible)
+            static ElementVisibility GetVisibility(bool visible)
                 => visible ? ElementVisibility.Visible : ElementVisibility.Collapsed;
         }
 
@@ -538,7 +660,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             //Help Menu
             DoSet(radMenuItemContents, Keys.Control, keys: Keys.F1);
 
-            void DoSet(RadMenuItem menuItem, Keys modifiers, params Keys[] keys)
+            static void DoSet(RadMenuItem menuItem, Keys modifiers, params Keys[] keys)
             {
                 menuItem.Shortcuts.Add(new RadShortcut(modifiers, keys));
             }
@@ -620,6 +742,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void UpdateRecentProjectMenuItems()
         {
+            RecentFilesList.Refresh();
             foreach (string key in RecentFilesList.FileList.Keys)
             {
                 RadMenuItem radMenuItem = new
@@ -646,6 +769,15 @@ namespace ABIS.LogicBuilder.FlowBuilder
             radProgressBarElement1.Visibility = ElementVisibility.Collapsed;
             radLabelElement1.Text = message;
         }
+
+        public void RemoveEditControl()
+        {
+            this.splitPanelEdit.Controls.Clear();
+            if (this.EditControl != null)
+                Dispose((IDisposable)this.EditControl);
+
+            this.EditControl = null;
+        }
         #endregion Methods
 
         #region Event Handlers
@@ -657,8 +789,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void SplitPanelEdit_ControlRemoved(object? sender, ControlEventArgs e)
         {
-            ContainerControl? control = e.Control as ContainerControl;
-            if (control != null)
+            if (e.Control is ContainerControl control)
                 control.Dispose();
         }
         #endregion Event Handlers

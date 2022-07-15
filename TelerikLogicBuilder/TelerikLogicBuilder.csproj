@@ -8,11 +8,26 @@
 	<RootNamespace>ABIS.LogicBuilder.FlowBuilder</RootNamespace>
 	<AssemblyName>FlowBuilder</AssemblyName>
 	<ApplicationIcon>Simple.ico</ApplicationIcon>
+		<Platforms>AnyCPU;x64;x86</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
 	<CustomResourceTypesSupport>true</CustomResourceTypesSupport>
 	<Nullable>enable</Nullable>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+		<OutputPath>bin\Debugx86\</OutputPath>
+		<IntermediateOutputPath>obj\Debugx86\</IntermediateOutputPath>
+		<DefineConstants>TRACE;DEBUG;VERSION_2007</DefineConstants>
+		<PlatformTarget>x86</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+		<OutputPath>bin\Releasex86\</OutputPath>
+		<IntermediateOutputPath>obj\Releasex86\</IntermediateOutputPath>
+		<DefineConstants>TRACE;VERSION_2010;VERSION_32</DefineConstants>
+		<PlatformTarget>x86</PlatformTarget>
+	</PropertyGroup>
 
   <ItemGroup>
     <Content Include="Simple.ico" />

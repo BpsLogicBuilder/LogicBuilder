@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public void SetTheme(string themeName)
         {
-            if (!ThemeCollections.OfficeThemes.Contains(themeName))
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
                 throw _exceptionHelper.CriticalException("{22FDC293-A727-4845-AF68-A3275B239D4E}");
 
             ThemeResolutionService.ApplicationThemeName = themeName;

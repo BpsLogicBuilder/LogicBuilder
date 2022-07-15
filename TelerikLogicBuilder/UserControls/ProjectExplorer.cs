@@ -25,6 +25,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             Initialize();
         }
 
+        public void ClearProfile()
+        {
+            _configurationExplorer.ClearProfile();
+            _documentsExplorer.ClearProfile();
+            _rulesExplorer.ClearProfile();
+            this.radPageView1.SelectedPage = this.radPageViewDocuments;
+        }
+
         public void CreateProfile()
         {
             _configurationExplorer.CreateProfile();

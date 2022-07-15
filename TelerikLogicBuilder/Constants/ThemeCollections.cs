@@ -4,6 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 {
     internal struct ThemeCollections
     {
+		public const string ControlDefault = "ControlDefault";
 		public const string Office2007Black = "Office2007Black";
 		public const string Office2007Silver = "Office2007Silver";
 		public const string Office2010Black = "Office2010Black";
@@ -15,10 +16,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 		public const string Office2019Gray = "Office2019Gray";
 		public const string Office2019Light = "Office2019Light";
 
-		internal static readonly HashSet<string> OfficeThemes = new
+		internal static readonly HashSet<string> ThemeNames = new
 		(
 			new string[] 
 			{
+				ControlDefault,
 				Office2007Black,
 				Office2007Silver,
 				Office2010Black,

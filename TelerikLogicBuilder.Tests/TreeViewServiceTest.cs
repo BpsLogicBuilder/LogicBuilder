@@ -20,7 +20,7 @@ namespace TelerikLogicBuilder.Tests
         #endregion Fields
 
         [Fact]
-        public void CanCreateThemeManager()
+        public void CanCreateTreeViewService()
         {
             //arrange
             ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();

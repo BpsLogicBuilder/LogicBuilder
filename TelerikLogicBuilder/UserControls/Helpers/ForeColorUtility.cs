@@ -9,8 +9,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 {
     internal static class ForeColorUtility
     {
+        private const string DefaultTheme = ThemeCollections.ControlDefault;
+
         private static Dictionary<string, string> TreeViewNormalBorderColorRepositoryTable => new()
         {
+            [ThemeCollections.ControlDefault] = "TreeViewControlBorder",
             [ThemeCollections.Office2007Black] = "GrayBorder",
             [ThemeCollections.Office2007Silver] = "GrayBorder",
             [ThemeCollections.Office2010Black] = "TreeViewBorder",
@@ -25,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
         private static Dictionary<string, string> ErrorRepositoryTable => new()
         {
+            [ThemeCollections.ControlDefault] = "NormalButtonForeColor",
             [ThemeCollections.Office2007Black] = "BlackForeColor",
             [ThemeCollections.Office2007Silver] = "BlackForeColor",
             [ThemeCollections.Office2010Black] = "ForeColorBlack",
@@ -39,6 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
         private static Dictionary<string, string> OkRepositoryTable => new()
         {
+            [ThemeCollections.ControlDefault] = "CalculatorButtonForeColorHover",
             [ThemeCollections.Office2007Black] = "ForeColor(0;50;208)",
             [ThemeCollections.Office2007Silver] = "ForeColor(0;50;208)",
             [ThemeCollections.Office2010Black] = "ForeColorWhite",
@@ -51,22 +56,55 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             [ThemeCollections.Office2019Light] = "AccentForeColor"
         };
 
-        public static Color GetTreeViewBorderErrorColor()
+        private static Dictionary<string, string> TextBoxForeColorRepositoryTable => new()
         {
-            return Color.Red;
-        }
+            [ThemeCollections.ControlDefault] = "BlackText",
+            [ThemeCollections.Office2007Black] = "DefaultEditorFont",
+            [ThemeCollections.Office2007Silver] = "DefaultEditorFont",
+            [ThemeCollections.Office2010Black] = "ForeColorBlack",
+            [ThemeCollections.Office2010Blue] = "ForeColorBlack",
+            [ThemeCollections.Office2010Silver] = "BlackText",
+            [ThemeCollections.Office2013Dark] = "ForeColor(38;38;38)",
+            [ThemeCollections.Office2013Light] = "ForeColor(38;38;38)",
+            [ThemeCollections.Office2019Dark] = "MainForeColor",
+            [ThemeCollections.Office2019Gray] = "MainForeColor",
+            [ThemeCollections.Office2019Light] = "MainForeColor",
+        };
 
-        public static Color GetTreeViewBorderColor(string themeName)
+        private static Dictionary<string, string> TextBoxBackColorRepositoryTable => new()
         {
-            if (!ThemeCollections.OfficeThemes.Contains(themeName))
-                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{85F5E92B-C561-4B7B-A2D1-46631248D62D}"));
+            [ThemeCollections.ControlDefault] = "EditorFill",
+            [ThemeCollections.Office2007Black] = "WhiteFill",
+            [ThemeCollections.Office2007Silver] = "WhiteFill",
+            [ThemeCollections.Office2010Black] = "ControlFill",
+            [ThemeCollections.Office2010Blue] = "WhiteFill",
+            [ThemeCollections.Office2010Silver] = "WhiteFill",
+            [ThemeCollections.Office2013Dark] = "FillSolid(255;255;255)",
+            [ThemeCollections.Office2013Light] = "FillSolid(255;255;255)",
+            [ThemeCollections.Office2019Dark] = "MainFill",
+            [ThemeCollections.Office2019Gray] = "MainFill",
+            [ThemeCollections.Office2019Light] = "MainFill",
+        };
 
-            return GetForeColorFromRepository(themeName, TreeViewNormalBorderColorRepositoryTable);
-        }
+        private static Dictionary<string, string> TextBoxBorderColorRepositoryTable => new()
+        {
+            [ThemeCollections.ControlDefault] = "EditorBorder",
+            [ThemeCollections.Office2007Black] = "GrayBorder",
+            [ThemeCollections.Office2007Silver] = "GrayBorder",
+            [ThemeCollections.Office2010Black] = "TextBoxNormalBorder",
+            [ThemeCollections.Office2010Blue] = "TextBoxNormalBorder",
+            [ThemeCollections.Office2010Silver] = "TextBoxNormalBorder",
+            [ThemeCollections.Office2013Dark] = "BorderSolid(171;171;171)",
+            [ThemeCollections.Office2013Light] = "BorderSolid(171;171;171)",
+            [ThemeCollections.Office2019Dark] = "MainBorder",
+            [ThemeCollections.Office2019Gray] = "MainBorder",
+            [ThemeCollections.Office2019Light] = "MainBorder",
+        };
 
         public static Color GetErrorForeColor(string themeName)
         {
-            if (!ThemeCollections.OfficeThemes.Contains(themeName))
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
                 throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{E49A3619-879C-4DCF-9575-E77F97F31E0E}"));
 
             return GetForeColorFromRepository(themeName, ErrorRepositoryTable);
@@ -74,23 +112,72 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
         public static Color GetOkForeColor(string themeName)
         {
-            if (!ThemeCollections.OfficeThemes.Contains(themeName))
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
                 throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{53746E6D-A654-4818-A81D-303295E6346C}"));
 
             return GetForeColorFromRepository(themeName, OkRepositoryTable);
         }
 
-        private static Color GetForeColorFromRepository(string themeName, IDictionary<string, string> colorRepositoryTable)
+        public static Color GetTextBoxBackColor(string themeName)
+        {
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{B990227F-B257-4812-B686-FB02854828B7}"));
+
+            return GetBackColorFromRepository(themeName, TextBoxBackColorRepositoryTable);
+        }
+
+        public static Color GetTextBoxBorderColor(string themeName)
+        {
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{AF8A7831-BB55-47E4-AB00-0E4E8DA220EB}"));
+
+            return GetForeColorFromRepository(themeName, TextBoxBorderColorRepositoryTable);
+        }
+
+        public static Color GetTextBoxForeColor(string themeName)
+        {
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{ECCF7199-0B6A-4608-9350-83870591B104}"));
+
+            return GetForeColorFromRepository(themeName, TextBoxForeColorRepositoryTable);
+        }
+
+        public static Color GetTreeViewBorderErrorColor()
+        {
+            return Color.Red;
+        }
+
+        public static Color GetTreeViewBorderColor(string themeName)
+        {
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{85F5E92B-C561-4B7B-A2D1-46631248D62D}"));
+
+            return GetForeColorFromRepository(themeName, TreeViewNormalBorderColorRepositoryTable);
+        }
+
+        private static Color GetBackColorFromRepository(string themeName, IDictionary<string, string> colorRepositoryTable)
+            => GetColorFromRepository(themeName, colorRepositoryTable, MessageSettings.BackColorSetting);
+
+        private static Color GetForeColorFromRepository(string themeName, IDictionary<string, string> colorRepositoryTable) 
+            => GetColorFromRepository(themeName, colorRepositoryTable, MessageSettings.ForeColorSetting);
+
+        private static Color GetColorFromRepository(string themeName, IDictionary<string, string> colorRepositoryTable, string setting)
         {
             var theme = ThemeResolutionService.GetTheme(themeName);
             StyleRepository repositoryFromTheme = theme.FindRepository(colorRepositoryTable[themeName]);
-            PropertySetting styleForeColor = repositoryFromTheme.FindSetting(MessageSettings.ForeColorSetting);
+            PropertySetting styleForeColor = repositoryFromTheme.FindSetting(setting);
 
             return (Color)(styleForeColor.Value ?? styleForeColor.EndValue);
         }
 
         private struct MessageSettings
         {
+            internal const string BackColorSetting = "BackColor";
             internal const string ForeColorSetting = "ForeColor";
         }
     }

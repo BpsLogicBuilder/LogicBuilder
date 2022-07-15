@@ -13,7 +13,18 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         internal static IServiceCollection AddMdiParentCommands(this IServiceCollection services)
         {
-            return services.AddTransient<Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand>>
+            return services.AddTransient<Func<IMDIParent, BuildActiveDocumentCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<BuildActiveDocumentCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IConfigurationService>(),
+                    provider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>(),
+                    mdiParent
+                )
+            )
+            .AddTransient<Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand>>
             (
                 provider =>
                 mdiParent => ActivatorUtilities.CreateInstance<BuildSaveConsolidateSelectedDocumentsCommand>
@@ -23,6 +34,18 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider.GetRequiredService<ITryGetSelectedDocuments>(),
                     provider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>(),
                     mdiParent
+                )
+            )
+            .AddTransient<Func<IMDIParent, string, BuildActiveDocumentCommand>>
+            (
+                provider =>
+                (mdiParent, sourceFile) => ActivatorUtilities.CreateInstance<BuildActiveDocumentCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IConfigurationService>(),
+                    provider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>(),
+                    mdiParent,
+                    sourceFile
                 )
             )
             .AddTransient<Func<MDIParent, string, DeleteSelectedFilesFromApiCommand>>
@@ -108,6 +131,17 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider,
                     provider.GetRequiredService<IConfigurationService>(),
                     provider.GetRequiredService<ITryGetSelectedDocuments>(),
+                    provider.GetRequiredService<IValidateSelectedDocuments>(),
+                    mdiParent
+                )
+            )
+            .AddTransient<Func<IMDIParent, ValidateActiveDocumentCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<ValidateActiveDocumentCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IConfigurationService>(),
                     provider.GetRequiredService<IValidateSelectedDocuments>(),
                     mdiParent
                 )

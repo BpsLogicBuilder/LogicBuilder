@@ -295,6 +295,18 @@
 	<data name="chainingUpdateValidationError" xml:space="preserve">
     <value>The field or property to be updated must be represented by a string and cannot include functions or variables.FR</value>
   </data>
+	<data name="closeFileWarningFormat" xml:space="preserve">
+    <value>Please close {0} before proceeding.FR</value>
+    <comment>0=FileName</comment>
+  </data>
+	<data name="closeFolderFilesWarningFormat" xml:space="preserve">
+    <value>Please close all files in {0} before proceeding.FR</value>
+    <comment>0=FolderName</comment>
+  </data>
+	<data name="columnIndexIsInvalidFormat" xml:space="preserve">
+    <value>Column Index {0} is invalid.FR</value>
+    <comment>0=column index as seen by the user</comment>
+  </data>
 	<data name="commentShapeCannotHaveConnectors" xml:space="preserve">
     <value>Comment shapes may not be attached to connectors.FR</value>
   </data>
@@ -412,6 +424,18 @@
 	<data name="defaultRulesFolder" xml:space="preserve">
     <value>RulesFR</value>
   </data>
+	<data name="deleteFileQuestionFormat" xml:space="preserve">
+    <value>Delete the file: {0}?FR</value>
+    <comment>0=FileName</comment>
+  </data>
+	<data name="deleteFolderQuestion" xml:space="preserve">
+    <value>Delete the folder: {0}?FR</value>
+    <comment>0=Foldername</comment>
+  </data>
+	<data name="deleteProjectQuestionFormat" xml:space="preserve">
+    <value>Delete the project: {0}?FR</value>
+    <comment>0=ProjectName</comment>
+  </data>
 	<data name="deletingRulesFormat" xml:space="preserve">
     <value>Deleting {0} RulesFR</value>
     <comment>0=Application Nickname</comment>
@@ -484,9 +508,29 @@
 	<data name="equalSign" xml:space="preserve">
     <value>=</value>
   </data>
+	<data name="fileAlreadyExistsFormat" xml:space="preserve">
+    <value>File {0} already Exists.FR</value>
+    <comment>0=fileFullName</comment>
+  </data>
 	<data name="fileExistsExceptionMessage" xml:space="preserve">
     <value>File Name already exists at: {0}.FR</value>
     <comment>0=FullPath</comment>
+  </data>
+	<data name="fileNotFoundFormat" xml:space="preserve">
+    <value>File "{0}" not found.FR</value>
+    <comment>0=fileName or FileFullName</comment>
+  </data>
+	<data name="fileNotWriteableFormat" xml:space="preserve">
+    <value>"{0}" is not writeable.  Make the file writeable?  Choose "Yes" to make writeable, "No" to open for read only and Cancel to quit?FR</value>
+    <comment>0=fileName</comment>
+  </data>
+	<data name="folderAlreadyExistsFormat" xml:space="preserve">
+    <value>Folder {0} already Exists.FR</value>
+    <comment>0=folderFullName</comment>
+  </data>
+	<data name="formCaptionReadOnlyFormat" xml:space="preserve">
+    <value>{0} [Read-Only]FR</value>
+    <comment>0=FileName</comment>
   </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>FragmentsFR</value>
@@ -573,6 +617,30 @@
     <value>The generic argument name "{0}" for generic parameter "{1}" in constructor "{2}" is not one of the constructor's generic arguments: "{3}".FR</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName;3=listOfGenericArguments</comment>
   </data>
+	<data name="inputFileNewFileNameCaption" xml:space="preserve">
+    <value>New File NameFR</value>
+  </data>
+	<data name="inputFileNewFileNamePrompt" xml:space="preserve">
+    <value>Enter New File Name:FR</value>
+  </data>
+	<data name="inputFileNewFolderNameCaption" xml:space="preserve">
+    <value>New Folder NameFR</value>
+  </data>
+	<data name="inputFileNewFolderNamePrompt" xml:space="preserve">
+    <value>Enter New Folder Name:FR</value>
+  </data>
+	<data name="inputNewProjectNameCaption" xml:space="preserve">
+    <value>New Project NameFR</value>
+  </data>
+  <data name="inputNewProjectNamePrompt" xml:space="preserve">
+    <value>Enter New Project Name:FR</value>
+  </data>
+	<data name="installVisio2010or2013or2016or2019x64" xml:space="preserve">
+    <value>You are running BPS Logic Builder for Visio (x64) 2010, 2013, 2016, 2019 or 2021.  Please install the x64 version of Visio 2010 or Visio 2013 or Visio 2016 or Visio 2019 or Visio 2021. Please note that only one version can be installed at a time.FR</value>
+  </data>
+	<data name="installVisio2010or2013or2016or2019x86" xml:space="preserve">
+    <value>You are running BPS Logic Builder for Visio (x86) 2010, 2013, 2016, 2019 or 2021.  Please install the x86 version of Visio 2010 or Visio 2013 or Visio 2016 or Visio 2019 or Visio 2021. Please note that only one version can be installed at a time.FR</value>
+  </data>
 	<data name="invalidAnyParameterConfigurationForBinaryOperatorFormat" xml:space="preserve">
 		<value>For the binary operator "{0}", both parameters can be of literal type "Any" or neither can be of literal type "Any". First parameter: "{1}", second parameter: "{2}".FR</value>
 	</data>
@@ -590,9 +658,16 @@
 	<data name="invalidCellData" xml:space="preserve">
     <value>Invalid Data.FR</value>
   </data>
+	<data name="invalidFileNameMessageFormat" xml:space="preserve">
+    <value>{0} File Name must be less than 50 characters long and cannot include the following characters: \ / : * ? &lt; &gt; |FR</value>
+    <comment>0=Form Field</comment>
+  </data>
 	<data name="invalidFunctionCategoryFormat" xml:space="preserve">
     <value>Function "{0}" has invalid function category "{1}" given the element type "{2}".FR</value>
     <comment>0=functionName;1=functionCategory;2=elementName</comment>
+  </data>
+	<data name="invalidInputMessage" xml:space="preserve">
+    <value>Invalid Input!FR</value>
   </data>
 	<data name="invalidLiteralInputFormat" xml:space="preserve">
     <value>Input "{0}" is invalid for the literal type "{1}"FR.</value>
@@ -623,6 +698,9 @@
 	<data name="invalidRuleSetFormat" xml:space="preserve">
     <value>The rule set file "{0}" is invalid.FR</value>
     <comment>0=RuleSetName</comment>
+  </data>
+	<data name="invalidShapeMessage" xml:space="preserve">
+    <value>Please use shapes form the specified Logic Builder Stencils only.FR</value>
   </data>
 	<data name="invalidVariableElementFormat" xml:space="preserve">
     <value>The variable "{0}" has an invalid value element for the category "{1}".FR</value>
@@ -661,6 +739,15 @@
     <value>{0}Of{1}FR</value>
     <comment>0=listType 1=UnderlyingType</comment>
   </data>
+	<data name="listViewTextTbl" xml:space="preserve">
+    <value>(*.TBL)FR</value>
+  </data>
+	<data name="listViewTextVsd" xml:space="preserve">
+    <value>(*.VSD)FR</value>
+  </data>
+	<data name="listViewTextVsdx" xml:space="preserve">
+    <value>(*.VSDX)FR</value>
+  </data>
 	<data name="loadingAssemblies" xml:space="preserve">
     <value>Reloading assemblies. Please wait.FR</value>
   </data>
@@ -696,6 +783,63 @@
     <value>The {0} element is required for dialog connectors.FR</value>
     <comment>0=connector category</comment>
   </data>
+	<data name="mnuItemAddExistingFileText" xml:space="preserve">
+    <value>Existing...FR</value>
+  </data>
+	<data name="mnuItemAddFileText" xml:space="preserve">
+    <value>Add File...FR</value>
+  </data>
+	<data name="mnuItemAddNewFileText" xml:space="preserve">
+    <value>New...FR</value>
+  </data>
+	<data name="mnuItemAddNewRowText" xml:space="preserve">
+    <value>Add New RowFR</value>
+  </data>
+	<data name="mnuItemCloseProjectText" xml:space="preserve">
+    <value>Close ProjectFR</value>
+  </data>
+	<data name="mnuItemCopyCellText" xml:space="preserve">
+    <value>Copy CellFR</value>
+  </data>
+	<data name="mnuItemCopyRowText" xml:space="preserve">
+    <value>Copy RowFR</value>
+  </data>
+	<data name="mnuItemCreateDirectoryText" xml:space="preserve">
+    <value>Create FolderFR</value>
+  </data>
+	<data name="mnuItemCutText" xml:space="preserve">
+    <value>CutFR</value>
+  </data>
+	<data name="mnuItemDeleteRowText" xml:space="preserve">
+    <value>Delete RowFR</value>
+  </data>
+	<data name="mnuItemDeleteText" xml:space="preserve">
+    <value>DeleteFR</value>
+  </data>
+	<data name="mnuItemInsertCopiedRowText" xml:space="preserve">
+    <value>Insert Copied RowFR</value>
+  </data>
+	<data name="mnuItemInsertNewRowText" xml:space="preserve">
+    <value>Insert New RowFR</value>
+  </data>
+	<data name="mnuItemOpenFileText" xml:space="preserve">
+    <value>Open FileFR</value>
+  </data>
+	<data name="mnuItemPasteCellText" xml:space="preserve">
+    <value>Paste CellFR</value>
+  </data>
+	<data name="mnuItemPasteRowText" xml:space="preserve">
+    <value>Paste RowFR</value>
+  </data>
+	<data name="mnuItemPasteText" xml:space="preserve">
+    <value>PasteFR</value>
+  </data>
+	<data name="mnuItemRefreshText" xml:space="preserve">
+    <value>RefreshFR</value>
+  </data>
+	<data name="mnuItemRenameText" xml:space="preserve">
+    <value>Rename...FR</value>
+  </data>
 	<data name="moduleEndIsInvalidForBeginFlow" xml:space="preserve">
     <value>Module End shape is invalid when the initial shape is Begin Flow.FR</value>
   </data>
@@ -727,6 +871,13 @@
   </data>
 	<data name="othersConnectorInvalid" xml:space="preserve">
     <value>Others Connect Object is invalid when all applications are accounted for.FR</value>
+  </data>
+	<data name="pageIndexIsInvalidFormat" xml:space="preserve">
+    <value>Page Index {0} is invalid.FR</value>
+    <comment>0=pageIndex</comment>
+  </data>
+	<data name="pageMovedOrDeleted" xml:space="preserve">
+    <value>Page has been moved or deleted.FR</value>
   </data>
 	<data name="parameterCountMustBeTwoFormat" xml:space="preserve">
     <value>Because Parameters Layout is Binary, function {0} must have exactly 2 parameters.FR</value>
@@ -785,6 +936,14 @@
     <value>Validating {0} page {1}FR</value>
     <comment>0=FileName; 1=PageIndex</comment>
   </data>
+	<data name="projectPathCannotBeTheRootFolderFormat" xml:space="preserve">
+		<value>The project path "{0}" cannot be the root folder.FR</value>
+		<comment>0=project path</comment>
+	</data>
+	<data name="projectPathDoesNotExistFormat" xml:space="preserve">
+		<value>The project path "{0}" does not exist.FR</value>
+		<comment>0=project path</comment>
+	</data>
 	<data name="referenceCannotEqualVariable" xml:space="preserve">
     <value>The variable index cannot be the same as the variable it references. Reference Name: "{0}", variable: "{1}".FR</value>
     <comment>0=referenceName; 1=variableName</comment>
@@ -799,9 +958,17 @@
     <value>Variable "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).FR</value>
     <comment>0=VariableName</comment>
   </data>
+	<data name="rowIndexIsInvalidFormat" xml:space="preserve">
+    <value>Row Index {0} is invalid.FR</value>
+    <comment>0=1based Row Number</comment>
+  </data>
 	<data name="ruleSetIsValidFormat" xml:space="preserve">
     <value>Module "{0}" is valid.FR</value>
     <comment>0=ModuleName</comment>
+  </data>
+	<data name="saveFormQuestionFormat" xml:space="preserve">
+    <value>Save {0}?FR</value>
+    <comment>0=FileName</comment>
   </data>
 	<data name="selectRulesToDelete" xml:space="preserve">
     <value>Select Rules to DeleteFR</value>
@@ -818,6 +985,13 @@
 	<data name="shapeConnectedToBothEnds" xml:space="preserve">
     <value>The same Action Shape or Jump Object may not be connected to both ends of a connector.FR</value>
   </data>
+	<data name="shapeDeleted" xml:space="preserve">
+    <value>Shape has been deleted.FR</value>
+  </data>
+	<data name="shapeIndexIsInvalidFormat" xml:space="preserve">
+    <value>Shape Index {0} is in valid on page {1}.FR</value>
+    <comment>0=shapeIndex; 1=pageIndex</comment>
+  </data>
   <data name="spaceString" xml:space="preserve">
     <value>&#32;</value>
   </data>
@@ -828,6 +1002,9 @@
     <value>Document: {0}, Row: {1}, Column: {2}.FR</value>
     <comment>0=FileName; 1=row; 2=column</comment>
   </data>
+	<data name="theProjectWillCloseAndReopen" xml:space="preserve">
+		<value>The project will close and reopen.FR</value>
+	</data>
 	<data name="titleBarCloseContextMenuText" xml:space="preserve">
     <value>CloseFR</value>
   </data>
@@ -859,6 +1036,9 @@
   </data>
 	<data name="unhandledEventLoggerExceptionFormat" xml:space="preserve">
     <value>The event logger has generated an unhandled exception of type: "{0}". Message: "{1}".FR</value>
+  </data>
+	<data name="unsuccessfulProjectDeletion" xml:space="preserve">
+    <value>Not all project files were successfully removed. The remaining files must be manually deleted.</value>
   </data>
 	<data name="validApplicationSpecificShapes" xml:space="preserve">
     <value>Shapes that can be connected to an Application Specific Connector are as follows: "Action", "Merge", "Module", "Wait Condition", "Wait Decision".FR</value>

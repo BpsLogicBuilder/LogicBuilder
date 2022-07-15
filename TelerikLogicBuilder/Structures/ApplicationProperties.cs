@@ -12,7 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
         #endregion Constants
 
         #region Variables
-        private static string _applicationPath = string.Empty;
+        private static string? _applicationPath;
         #endregion Variables
 
         #region Properties

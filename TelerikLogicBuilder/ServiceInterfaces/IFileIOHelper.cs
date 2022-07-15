@@ -6,6 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     internal interface IFileIOHelper
     {
         void CopyFile(FileInfo source, FileInfo destination);
+        void CopyFile(string sourceFullName, string destinationFullName);
         void CreateDirectory(string fullName);
         void DeleteFile(string fullName);
         void DeleteFolder(string fullName, bool recursive);

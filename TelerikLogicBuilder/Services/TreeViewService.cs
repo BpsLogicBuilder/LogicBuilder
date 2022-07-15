@@ -30,6 +30,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         };
 
+        public bool IsFileNode(RadTreeNode treeNode)
+        {
+            return !IsRootNode(treeNode) && !IsFolderNode(treeNode);
+        }
+
         public bool IsFolderNode(RadTreeNode treeNode)
         {
             if (treeNode == null)

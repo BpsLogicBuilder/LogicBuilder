@@ -66,5 +66,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             form.MinimizeBox = false;
             form.ControlBox = false;
         }
+
+        public void SetToolTipDefaults(ToolTip toolTip)
+        {
+            toolTip.AutoPopDelay = 5000;
+            toolTip.InitialDelay = 250;
+            toolTip.ReshowDelay = 250;
+            toolTip.ShowAlways = true;
+        }
     }
 }

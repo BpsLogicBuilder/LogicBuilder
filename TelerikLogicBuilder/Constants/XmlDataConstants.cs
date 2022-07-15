@@ -200,5 +200,8 @@
         //Fragment for quickly updating objects during editing.
         internal const string FRAGMENTSROOTFOLDERNAMEATTRIBUTE = "Fragments";
         internal const string FRAGMENTELEMENT = "fragment";
+
+        //root element for rules table dataset
+        internal const string TABLESELEMENT = "tables";
     }
 }

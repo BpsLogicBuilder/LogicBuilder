@@ -1,4 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.UserControls
+﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+
+namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     partial class ProjectExplorer
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.titleBar1 = new ABIS.LogicBuilder.FlowBuilder.UserControls.TitleBar();
+            this.titleBar1 = new ABIS.LogicBuilder.FlowBuilder.Components.TitleBar();
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewDocuments = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewRules = new Telerik.WinControls.UI.RadPageViewPage();

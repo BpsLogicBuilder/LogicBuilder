@@ -55,6 +55,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radLabelMessages.MaximumSize = new Size(radPanelMessages.Size.Width, int.MaxValue);
             radLabelMessages.TextWrap = true;
             radLabelMessages.TextAlignment = ContentAlignment.TopLeft;
+
+            ClearMessage();
         }
 
         private void SetTheme(string themeName)

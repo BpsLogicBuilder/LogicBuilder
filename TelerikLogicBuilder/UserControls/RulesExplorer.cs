@@ -46,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public void ClearProfile()
         {
             radTreeView1.Nodes.Clear();
+            expandedNodes.Clear();
             DisposeFileSystemWatcher();
         }
 

@@ -37,12 +37,12 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IProjectPropertiesXmlParser projectPropertiesXmlParser = serviceProvider.GetRequiredService<IProjectPropertiesXmlParser>();
 
             //act
-            var result = projectPropertiesXmlParser.GeProjectProperties(GetXmlDocument().DocumentElement!, "MyProject", @"C:\_RulesProject\deployment\");
+            var result = projectPropertiesXmlParser.GeProjectProperties(GetXmlDocument().DocumentElement!, "MyProject", @"C:\ProjectPath\");
 
             //assert
             Assert.Equal("MyProject", result.ProjectName);
-            Assert.Equal(@"C:\_RulesProject\deployment\", result.ProjectPath);
-            Assert.Equal(@"c:\_rulesproject\deployment\myproject.lbproj", result.ProjectFileFullName.ToLowerInvariant());
+            Assert.Equal(@"C:\ProjectPath\", result.ProjectPath);
+            Assert.Equal(@"c:\projectpath\myproject.lbproj", result.ProjectFileFullName.ToLowerInvariant());
             Assert.Equal("BusinessApp.EXE", result.ApplicationList.First().Value.ActivityAssembly);
         }
 

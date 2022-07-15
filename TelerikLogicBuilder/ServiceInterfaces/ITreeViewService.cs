@@ -7,6 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     {
         ImageList ImageList { get; }
         bool IsRootNode(RadTreeNode treeNode);
+        bool IsFileNode(RadTreeNode treeNode);
         bool IsFolderNode(RadTreeNode treeNode);
         void MakeVisible(RadTreeNode treeNode);
     }

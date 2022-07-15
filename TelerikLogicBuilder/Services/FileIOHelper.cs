@@ -40,6 +40,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
+        public void CopyFile(string sourceFullName, string destinationFullName)
+        {
+            try
+            {
+                CopyFile(GetNewFileInfo(sourceFullName), GetNewFileInfo(destinationFullName));
+            }
+            catch (ArgumentException ex)
+            {
+                throw new LogicBuilderException(ex.Message, ex);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new LogicBuilderException(ex.Message, ex);
+            }
+            catch (IOException ex)
+            {
+                throw new LogicBuilderException(ex.Message, ex);
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                throw new LogicBuilderException(ex.Message, ex);
+            }
+            catch (NotSupportedException ex)
+            {
+                throw new LogicBuilderException(ex.Message, ex);
+            }
+        }
+
         public void CreateDirectory(string fullName)
         {
             try

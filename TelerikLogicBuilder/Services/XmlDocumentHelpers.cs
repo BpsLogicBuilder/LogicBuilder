@@ -70,6 +70,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         #endregion Properties
 
         #region Methods
+        public XmlWriter CreateFormattedXmlWriter(string fullPath)
+            => XmlWriter.Create(fullPath, FormattedSettings);
+
+        public XmlWriter CreateFormattedXmlWriter(string fullPath, Encoding encoding)
+        {
+            XmlWriterSettings xmlWriterSettings = FormattedSettings.Clone();
+            xmlWriterSettings.Encoding = encoding;
+            return XmlWriter.Create(fullPath, xmlWriterSettings);
+        }
+
         public XmlWriter CreateFormattedXmlWriter(StringBuilder stringBuilder) 
             => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), FormattedSettings);
 

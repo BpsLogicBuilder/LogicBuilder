@@ -646,6 +646,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please close {0} before proceeding..
+        /// </summary>
+        internal static string closeFileWarningFormat {
+            get {
+                return ResourceManager.GetString("closeFileWarningFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please close all files in {0} before proceeding..
+        /// </summary>
+        internal static string closeFolderFilesWarningFormat {
+            get {
+                return ResourceManager.GetString("closeFolderFilesWarningFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column Index {0} is invalid..
+        /// </summary>
+        internal static string columnIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("columnIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comment shapes may not be attached to connectors..
         /// </summary>
         internal static string commentShapeCannotHaveConnectors {
@@ -1101,6 +1128,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string defaultRulesFolder {
             get {
                 return ResourceManager.GetString("defaultRulesFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the file: {0}?.
+        /// </summary>
+        internal static string deleteFileQuestionFormat {
+            get {
+                return ResourceManager.GetString("deleteFileQuestionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the folder: {0}?.
+        /// </summary>
+        internal static string deleteFolderQuestion {
+            get {
+                return ResourceManager.GetString("deleteFolderQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the project: {0}?.
+        /// </summary>
+        internal static string deleteProjectQuestionFormat {
+            get {
+                return ResourceManager.GetString("deleteProjectQuestionFormat", resourceCulture);
             }
         }
         
@@ -2239,11 +2293,38 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File {0} already Exists..
+        /// </summary>
+        internal static string fileAlreadyExistsFormat {
+            get {
+                return ResourceManager.GetString("fileAlreadyExistsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File Name already exists at: {0}..
         /// </summary>
         internal static string fileExistsExceptionMessage {
             get {
                 return ResourceManager.GetString("fileExistsExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File &quot;{0}&quot; not found..
+        /// </summary>
+        internal static string fileNotFoundFormat {
+            get {
+                return ResourceManager.GetString("fileNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot; is not writeable.  Make the file writeable?  Choose &quot;Yes&quot; to make writeable, &quot;No&quot; to open for read only and Cancel to quit?.
+        /// </summary>
+        internal static string fileNotWriteableFormat {
+            get {
+                return ResourceManager.GetString("fileNotWriteableFormat", resourceCulture);
             }
         }
         
@@ -2271,6 +2352,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string floatKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("floatKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder {0} already Exists..
+        /// </summary>
+        internal static string folderAlreadyExistsFormat {
+            get {
+                return ResourceManager.GetString("folderAlreadyExistsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} [Read-Only].
+        /// </summary>
+        internal static string formCaptionReadOnlyFormat {
+            get {
+                return ResourceManager.GetString("formCaptionReadOnlyFormat", resourceCulture);
             }
         }
         
@@ -2500,6 +2599,78 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New File Name.
+        /// </summary>
+        internal static string inputFileNewFileNameCaption {
+            get {
+                return ResourceManager.GetString("inputFileNewFileNameCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter New File Name:.
+        /// </summary>
+        internal static string inputFileNewFileNamePrompt {
+            get {
+                return ResourceManager.GetString("inputFileNewFileNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Folder Name.
+        /// </summary>
+        internal static string inputFileNewFolderNameCaption {
+            get {
+                return ResourceManager.GetString("inputFileNewFolderNameCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter New Folder Name:.
+        /// </summary>
+        internal static string inputFileNewFolderNamePrompt {
+            get {
+                return ResourceManager.GetString("inputFileNewFolderNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Project Name.
+        /// </summary>
+        internal static string inputNewProjectNameCaption {
+            get {
+                return ResourceManager.GetString("inputNewProjectNameCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter New Project Name:.
+        /// </summary>
+        internal static string inputNewProjectNamePrompt {
+            get {
+                return ResourceManager.GetString("inputNewProjectNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are running BPS Logic Builder for Visio (x64) 2010, 2013, 2016, 2019 or 2021.  Please install the x64 version of Visio 2010 or Visio 2013 or Visio 2016 or Visio 2019 or Visio 2021. Please note that only one version can be installed at a time..
+        /// </summary>
+        internal static string installVisio2010or2013or2016or2019x64 {
+            get {
+                return ResourceManager.GetString("installVisio2010or2013or2016or2019x64", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are running BPS Logic Builder for Visio (x86) 2010, 2013, 2016, 2019 or 2021.  Please install the x86 version of Visio 2010 or Visio 2013 or Visio 2016 or Visio 2019 or Visio 2021. Please note that only one version can be installed at a time..
+        /// </summary>
+        internal static string installVisio2010or2013or2016or2019x86 {
+            get {
+                return ResourceManager.GetString("installVisio2010or2013or2016or2019x86", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be an integer..
         /// </summary>
         internal static string integerKeyIndexIsInvalidFormat {
@@ -2572,11 +2743,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} File Name must be less than 50 characters long and cannot include the following characters: \ / : * ? &lt; &gt; |.
+        /// </summary>
+        internal static string invalidFileNameMessageFormat {
+            get {
+                return ResourceManager.GetString("invalidFileNameMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function &quot;{0}&quot; has invalid function category &quot;{1}&quot; given the element type &quot;{2}&quot;..
         /// </summary>
         internal static string invalidFunctionCategoryFormat {
             get {
                 return ResourceManager.GetString("invalidFunctionCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Input!.
+        /// </summary>
+        internal static string invalidInputMessage {
+            get {
+                return ResourceManager.GetString("invalidInputMessage", resourceCulture);
             }
         }
         
@@ -2649,6 +2838,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidRuleSetFormat {
             get {
                 return ResourceManager.GetString("invalidRuleSetFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use shapes form the specified Logic Builder Stencils only..
+        /// </summary>
+        internal static string invalidShapeMessage {
+            get {
+                return ResourceManager.GetString("invalidShapeMessage", resourceCulture);
             }
         }
         
@@ -2748,6 +2946,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string listVariableTypeFormat {
             get {
                 return ResourceManager.GetString("listVariableTypeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (*.TBL).
+        /// </summary>
+        internal static string listViewTextTbl {
+            get {
+                return ResourceManager.GetString("listViewTextTbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (*.VSD).
+        /// </summary>
+        internal static string listViewTextVsd {
+            get {
+                return ResourceManager.GetString("listViewTextVsd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (*.VSDX).
+        /// </summary>
+        internal static string listViewTextVsdx {
+            get {
+                return ResourceManager.GetString("listViewTextVsdx", resourceCulture);
             }
         }
         
@@ -2878,6 +3103,177 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing....
+        /// </summary>
+        internal static string mnuItemAddExistingFileText {
+            get {
+                return ResourceManager.GetString("mnuItemAddExistingFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add File....
+        /// </summary>
+        internal static string mnuItemAddFileText {
+            get {
+                return ResourceManager.GetString("mnuItemAddFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New....
+        /// </summary>
+        internal static string mnuItemAddNewFileText {
+            get {
+                return ResourceManager.GetString("mnuItemAddNewFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Row.
+        /// </summary>
+        internal static string mnuItemAddNewRowText {
+            get {
+                return ResourceManager.GetString("mnuItemAddNewRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Project.
+        /// </summary>
+        internal static string mnuItemCloseProjectText {
+            get {
+                return ResourceManager.GetString("mnuItemCloseProjectText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Cell.
+        /// </summary>
+        internal static string mnuItemCopyCellText {
+            get {
+                return ResourceManager.GetString("mnuItemCopyCellText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Row.
+        /// </summary>
+        internal static string mnuItemCopyRowText {
+            get {
+                return ResourceManager.GetString("mnuItemCopyRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Folder.
+        /// </summary>
+        internal static string mnuItemCreateDirectoryText {
+            get {
+                return ResourceManager.GetString("mnuItemCreateDirectoryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        internal static string mnuItemCutText {
+            get {
+                return ResourceManager.GetString("mnuItemCutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Row.
+        /// </summary>
+        internal static string mnuItemDeleteRowText {
+            get {
+                return ResourceManager.GetString("mnuItemDeleteRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string mnuItemDeleteText {
+            get {
+                return ResourceManager.GetString("mnuItemDeleteText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Copied Row.
+        /// </summary>
+        internal static string mnuItemInsertCopiedRowText {
+            get {
+                return ResourceManager.GetString("mnuItemInsertCopiedRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert New Row.
+        /// </summary>
+        internal static string mnuItemInsertNewRowText {
+            get {
+                return ResourceManager.GetString("mnuItemInsertNewRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open File.
+        /// </summary>
+        internal static string mnuItemOpenFileText {
+            get {
+                return ResourceManager.GetString("mnuItemOpenFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Cell.
+        /// </summary>
+        internal static string mnuItemPasteCellText {
+            get {
+                return ResourceManager.GetString("mnuItemPasteCellText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Row.
+        /// </summary>
+        internal static string mnuItemPasteRowText {
+            get {
+                return ResourceManager.GetString("mnuItemPasteRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        internal static string mnuItemPasteText {
+            get {
+                return ResourceManager.GetString("mnuItemPasteText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string mnuItemRefreshText {
+            get {
+                return ResourceManager.GetString("mnuItemRefreshText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename....
+        /// </summary>
+        internal static string mnuItemRenameText {
+            get {
+                return ResourceManager.GetString("mnuItemRenameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module End shape is invalid when the initial shape is Begin Flow..
         /// </summary>
         internal static string moduleEndIsInvalidForBeginFlow {
@@ -2964,6 +3360,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string othersConnectorInvalid {
             get {
                 return ResourceManager.GetString("othersConnectorInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Index {0} is invalid..
+        /// </summary>
+        internal static string pageIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("pageIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page has been moved or deleted..
+        /// </summary>
+        internal static string pageMovedOrDeleted {
+            get {
+                return ResourceManager.GetString("pageMovedOrDeleted", resourceCulture);
             }
         }
         
@@ -3112,6 +3526,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project path &quot;{0}&quot; cannot be the root folder..
+        /// </summary>
+        internal static string projectPathCannotBeTheRootFolderFormat {
+            get {
+                return ResourceManager.GetString("projectPathCannotBeTheRootFolderFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project path &quot;{0}&quot; does not exist..
+        /// </summary>
+        internal static string projectPathDoesNotExistFormat {
+            get {
+                return ResourceManager.GetString("projectPathDoesNotExistFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The variable index cannot be the same as the variable it references. Reference Name: &quot;{0}&quot;, variable: &quot;{1}&quot;..
         /// </summary>
         internal static string referenceCannotEqualVariable {
@@ -3148,11 +3580,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Row Index {0} is invalid..
+        /// </summary>
+        internal static string rowIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("rowIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module &quot;{0}&quot; is valid..
         /// </summary>
         internal static string ruleSetIsValidFormat {
             get {
                 return ResourceManager.GetString("ruleSetIsValidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save {0}?.
+        /// </summary>
+        internal static string saveFormQuestionFormat {
+            get {
+                return ResourceManager.GetString("saveFormQuestionFormat", resourceCulture);
             }
         }
         
@@ -3229,6 +3679,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shape has been deleted..
+        /// </summary>
+        internal static string shapeDeleted {
+            get {
+                return ResourceManager.GetString("shapeDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shape Index {0} is in valid on page {1}..
+        /// </summary>
+        internal static string shapeIndexIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("shapeIndexIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type short..
         /// </summary>
         internal static string shortKeyIndexIsInvalidFormat {
@@ -3279,6 +3747,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string tableVisibleLinkFormat {
             get {
                 return ResourceManager.GetString("tableVisibleLinkFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project will close and reopen..
+        /// </summary>
+        internal static string theProjectWillCloseAndReopen {
+            get {
+                return ResourceManager.GetString("theProjectWillCloseAndReopen", resourceCulture);
             }
         }
         
@@ -3495,6 +3972,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string unhandledEventLoggerExceptionFormat {
             get {
                 return ResourceManager.GetString("unhandledEventLoggerExceptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not all project files were successfully removed. The remaining files must be manually deleted..
+        /// </summary>
+        internal static string unsuccessfulProjectDeletion {
+            get {
+                return ResourceManager.GetString("unsuccessfulProjectDeletion", resourceCulture);
             }
         }
         

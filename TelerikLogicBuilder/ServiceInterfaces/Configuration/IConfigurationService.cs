@@ -4,6 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration
 {
     internal interface IConfigurationService
     {
+        void ClearConfigurationData();
         Application? GetApplication(string applicationName);
         Application GetSelectedApplication();
         string GetSelectedApplicationKey();

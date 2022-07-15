@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml;
 
@@ -18,6 +20,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
             ApplicationList = applicationList;
             ConnectorObjectTypes = connectorObjectTypes;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+
+            var directoryInfo = contextProvider.FileIOHelper.GetNewDirectoryInfo(projectPath);
+            if (!directoryInfo.Exists)
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathDoesNotExistFormat, projectPath));
+
+            if (directoryInfo.Parent == null)
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathCannotBeTheRootFolderFormat, projectPath));
         }
 
         internal string ProjectName { get; set; }

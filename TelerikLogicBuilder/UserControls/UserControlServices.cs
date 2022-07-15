@@ -11,7 +11,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<DocumentsExplorer>()
                 .AddTransient<Messages>()
                 .AddTransient<ProjectExplorer>()
-                .AddTransient<RulesExplorer>();
+                .AddTransient<RulesExplorer>()
+
+                //DocumentsExplorerHelpers
+                .AddDocumentsExplorerCommands();
         }
     }
 }

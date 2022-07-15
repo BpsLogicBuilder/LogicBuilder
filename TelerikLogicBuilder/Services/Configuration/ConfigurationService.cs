@@ -85,6 +85,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             set => _variableList = value;
         }
 
+        public void ClearConfigurationData()
+        {
+            _projectProperties = null;
+            _constructorList = null;
+            _fragmentList = null;
+            _functionList = null;
+            _variableList = null;
+            _selectedApplication = null;
+        }
+
         public Application? GetApplication(string applicationName) 
             => ProjectProperties.ApplicationList.TryGetValue(applicationName.ToLower(CultureInfo.InvariantCulture), out Application? application) 
             ? application 

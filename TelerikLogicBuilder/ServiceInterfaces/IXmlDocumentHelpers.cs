@@ -7,6 +7,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IXmlDocumentHelpers
     {
+        XmlWriter CreateFormattedXmlWriter(string fullPath);
+        XmlWriter CreateFormattedXmlWriter(string fullPath, Encoding encoding);
         XmlWriter CreateFormattedXmlWriter(StringBuilder stringBuilder);
         XmlWriter CreateFormattedXmlWriterWithDeclaration(StringBuilder stringBuilder);
         XmlWriter CreateUnformattedXmlWriter(StringBuilder stringBuilder);

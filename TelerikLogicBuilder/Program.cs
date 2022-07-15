@@ -25,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public static IServiceProvider ServiceProvider { get; set; }
         public static IServiceCollection ServiceCollection => new ServiceCollection()
             .AddMdiParentCommands()
+            .AddEditingControls()
             .AddFlowBuilder()
             .AddConfiguration()
             .AddData()

@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder
 {
@@ -13,11 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
     {
         static RecentFilesList()
         {
-            fileList = LoadIsolatedFileContents();
-            fileDisplayList = BuildDisplayList();
-
-            //remove none exist files from storage
-            SaveIsolatedFileContents();
+            Refresh();
         }
         #region Constants
         private const string RECENTFILESFILENAME = "RecentFiles.txt";
@@ -27,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         #endregion Constants
 
         #region Variables
-        private static readonly List<string> fileList;
+        private static List<string> fileList;
         private static Dictionary<string, string> fileDisplayList;
         #endregion Variables
 
@@ -48,6 +45,16 @@ namespace ABIS.LogicBuilder.FlowBuilder
         #endregion Properties
 
         #region Methods
+        [MemberNotNull(nameof(fileList),
+            nameof(fileDisplayList))]
+        internal static void Refresh()
+        {
+            fileList = LoadIsolatedFileContents();
+            fileDisplayList = BuildDisplayList();
+
+            //remove none exist files from storage
+            SaveIsolatedFileContents();
+        }
         private static Dictionary<string, string> BuildDisplayList()
         {
             Dictionary<string, string> displayList = new();
