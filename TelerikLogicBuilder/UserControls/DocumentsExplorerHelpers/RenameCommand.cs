@@ -85,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _pathHelper.GetFileName(selectedNode.Name);
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFileNameCaption, Strings.inputFileNewFileNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.MainWindow);
+            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;
@@ -111,7 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _pathHelper.GetFolderName(selectedNode.Name);
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFolderNameCaption, Strings.inputFileNewFolderNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.MainWindow);
+            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;
@@ -136,7 +136,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         private void RenameProject(RadTreeNode selectedNode)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
             if (mdiParent.EditControl != null)
             {
                 throw new LogicBuilderException
@@ -154,16 +154,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _configurationService.ProjectProperties.ProjectName;
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputNewProjectNameCaption, Strings.inputNewProjectNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.MainWindow);
+            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;
 
             DialogResult result = DisplayMessage.ShowQuestion
             (
-                _messageBoxOptionsHelper.MainWindow,
+                _messageBoxOptionsHelper.Instance,
                 Strings.theProjectWillCloseAndReopen,
-                _messageBoxOptionsHelper.MessageBoxOptions
+                _messageBoxOptionsHelper.RightToLeft
             );
 
             if (result != DialogResult.OK)

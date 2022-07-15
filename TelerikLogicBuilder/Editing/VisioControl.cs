@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             InitializeComponent();
             this.openedAsReadOnly = openedAsReadOnly;
-            this.parentForm = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            this.parentForm = (IMDIParent)_messageBoxOptionsHelper.Instance;
             Initialize();
 
             this.parentForm.CommandBarButtonSave.Enabled = !openedAsReadOnly;
@@ -357,7 +357,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm, 
                     string.Format(CultureInfo.CurrentCulture, Strings.pageIndexIsInvalidFormat, pageIndex), 
                     string.Empty, 
-                    this._messageBoxOptionsHelper.MessageBoxOptions
+                    this._messageBoxOptionsHelper.RightToLeft
                 );
                 return;
             }
@@ -370,7 +370,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     string.Format(CultureInfo.CurrentCulture, 
                     Strings.shapeIndexIsInvalidFormat, shapeIndex, pageIndex), 
                     string.Empty,
-                    this._messageBoxOptionsHelper.MessageBoxOptions
+                    this._messageBoxOptionsHelper.RightToLeft
                 );
                 return;
             }
@@ -392,7 +392,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.pageIndexIsInvalidFormat, pageIndex), 
                     string.Empty,
-                    this._messageBoxOptionsHelper.MessageBoxOptions
+                    this._messageBoxOptionsHelper.RightToLeft
                 );
                 return;
             }
@@ -404,7 +404,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm,
                     Strings.pageMovedOrDeleted, 
                     string.Empty,
-                    this._messageBoxOptionsHelper.MessageBoxOptions
+                    this._messageBoxOptionsHelper.RightToLeft
                 );
                 return;
             }
@@ -415,7 +415,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 (
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.shapeIndexIsInvalidFormat, shapeIndex, pageIndex),
-                    _messageBoxOptionsHelper.MessageBoxOptions
+                    _messageBoxOptionsHelper.RightToLeft
                 );
                 return;
             }
@@ -447,7 +447,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (
                         (IWin32Window)this.parentForm,
                         Strings.shapeDeleted,
-                        _messageBoxOptionsHelper.MessageBoxOptions
+                        _messageBoxOptionsHelper.RightToLeft
                     );
                     return;
                 }
@@ -597,7 +597,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             if (!File.Exists(applicationsStencilPath))
             {
-                DisplayMessage.Show((IWin32Window)this.parentForm, string.Format(CultureInfo.CurrentCulture, Strings.fileNotFoundFormat, applicationsStencilPath), _messageBoxOptionsHelper.MessageBoxOptions);
+                DisplayMessage.Show((IWin32Window)this.parentForm, string.Format(CultureInfo.CurrentCulture, Strings.fileNotFoundFormat, applicationsStencilPath), _messageBoxOptionsHelper.RightToLeft);
                 return;
             }
 
@@ -618,7 +618,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 (
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.fileNotFoundFormat, flowDiagramStencilPath),
-                    _messageBoxOptionsHelper.MessageBoxOptions
+                    _messageBoxOptionsHelper.RightToLeft
                 );
                 return;
             }
@@ -701,7 +701,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                         _pathHelper.GetFileName(this.visioSourceFile)
                     ), 
                     string.Empty, 
-                    _messageBoxOptionsHelper.MessageBoxOptions
+                    _messageBoxOptionsHelper.RightToLeft
                 );
                 if (dialogResult == DialogResult.Yes)
                     SaveOnClose();

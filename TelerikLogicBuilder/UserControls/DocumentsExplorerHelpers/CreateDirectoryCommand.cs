@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             using IScopedDisposableManager<InputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<InputBoxForm>>();
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFolderNameCaption, Strings.inputFileNewFolderNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.MainWindow);
+            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;

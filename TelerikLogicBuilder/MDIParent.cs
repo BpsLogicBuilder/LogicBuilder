@@ -236,7 +236,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             {
                 radProgressBarElement1.Value1 = 0;
                 radLabelElement1.Text = ex.Message;
-                DisplayMessage.Show(this, ex.Message, _messageBoxOptionsHelper.MessageBoxOptions);
+                DisplayMessage.Show(this, ex.Message, _messageBoxOptionsHelper.RightToLeft);
             }
             catch (OperationCanceledException)
             {
@@ -428,8 +428,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 return;
             }
 
-            _messageBoxOptionsHelper.MainWindow = this;
-            _messageBoxOptionsHelper.MessageBoxOptions = this.RightToLeft;
+            _messageBoxOptionsHelper.Instance = this;
+            _messageBoxOptionsHelper.RightToLeft = this.RightToLeft;
             _formInitializer.SetCenterScreen(this);
             _projectExplorer.Dock = DockStyle.Fill;
             this.splitPanelExplorer.SuspendLayout();
@@ -480,7 +480,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void LogicBuilderExceptionOccurred(LogicBuilderException exception)
         {
-            DisplayMessage.Show(this, exception.Message, _messageBoxOptionsHelper.MessageBoxOptions);
+            DisplayMessage.Show(this, exception.Message, _messageBoxOptionsHelper.RightToLeft);
         }
 
         /// <summary>

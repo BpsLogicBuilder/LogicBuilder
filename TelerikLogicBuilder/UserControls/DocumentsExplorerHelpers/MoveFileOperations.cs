@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         public void MoveFile(RadTreeNode treeNode, string newFileFullName)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
             if (string.Compare(mdiParent.EditControl?.SourceFile, treeNode.Name, StringComparison.InvariantCultureIgnoreCase) == 0)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.closeFileWarningFormat, treeNode.Text));
 
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         public void MoveFolder(RadTreeNode treeNode, string newFolderFullName)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
             if (mdiParent.EditControl?.SourceFile.ToLowerInvariant().Trim().Contains(treeNode.Name.ToLowerInvariant().Trim()) == true)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.closeFolderFilesWarningFormat, treeNode.Text));
 

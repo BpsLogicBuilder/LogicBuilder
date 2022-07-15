@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         public override void Execute()
         {
-            ((IMDIParent)_messageBoxOptionsHelper.MainWindow).CloseProject();
+            ((IMDIParent)_messageBoxOptionsHelper.Instance).CloseProject();
         }
     }
 }

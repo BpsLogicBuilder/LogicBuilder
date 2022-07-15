@@ -13,7 +13,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             _exceptionHelper = exceptionHelper;
         }
 
-        public IWin32Window MainWindow
+        public IWin32Window Instance
         {
             get
             {
@@ -25,6 +25,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             set => _mainWindow = value;
         }
 
-        public RightToLeft MessageBoxOptions { get; set; }
+        public RightToLeft RightToLeft { get; set; }
     }
 }

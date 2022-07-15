@@ -30,16 +30,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             DialogResult dialogResult = DisplayMessage.ShowQuestion
             (
-                _messageBoxOptionsHelper.MainWindow,
+                _messageBoxOptionsHelper.Instance,
                 string.Format(CultureInfo.CurrentCulture, Strings.deleteFileQuestionFormat, treeNode.Text),
                 string.Empty,
-                _messageBoxOptionsHelper.MessageBoxOptions,
+                _messageBoxOptionsHelper.RightToLeft,
                 Telerik.WinControls.RadMessageIcon.Error
             );
             if (dialogResult != DialogResult.OK)
                 return;
 
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
 
             if (string.Compare(mdiParent.EditControl?.SourceFile, treeNode.Name, StringComparison.InvariantCultureIgnoreCase) == 0)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.closeFileWarningFormat, treeNode.Text));
@@ -51,16 +51,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             DialogResult dialogResult = DisplayMessage.ShowQuestion
             (
-                _messageBoxOptionsHelper.MainWindow,
+                _messageBoxOptionsHelper.Instance,
                 string.Format(CultureInfo.CurrentCulture, Strings.deleteFolderQuestion, treeNode.Text),
                 string.Empty,
-                _messageBoxOptionsHelper.MessageBoxOptions,
+                _messageBoxOptionsHelper.RightToLeft,
                 Telerik.WinControls.RadMessageIcon.Error
             );
             if (dialogResult != DialogResult.OK)
                 return;
 
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
 
             if (mdiParent.EditControl?.SourceFile.ToLowerInvariant().Trim().Contains(treeNode.Name.ToLowerInvariant().Trim()) == true)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.closeFolderFilesWarningFormat, treeNode.Text));
@@ -72,17 +72,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             DialogResult dialogResult = DisplayMessage.ShowQuestion
             (
-                _messageBoxOptionsHelper.MainWindow,
+                _messageBoxOptionsHelper.Instance,
                 string.Format(CultureInfo.CurrentCulture, Strings.deleteProjectQuestionFormat, treeNode.Text), 
                 string.Empty,
-                _messageBoxOptionsHelper.MessageBoxOptions,
+                _messageBoxOptionsHelper.RightToLeft,
                 Telerik.WinControls.RadMessageIcon.Error
             );
 
             if (dialogResult != DialogResult.OK)
                 return;
 
-            IMDIParent mdIParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdIParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
             if (mdIParent.EditControl != null)
                 mdIParent.EditControl.Close();
 

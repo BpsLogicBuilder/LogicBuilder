@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 using IScopedDisposableManager<TextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
                 TextViewer textViewer = disposableManager.ScopedService;
                 textViewer.SetText(configErrors.ToArray());
-                textViewer.ShowDialog(_messageBoxOptionsHelper.MainWindow);
+                textViewer.ShowDialog(_messageBoxOptionsHelper.Instance);
                 return;
             }
 

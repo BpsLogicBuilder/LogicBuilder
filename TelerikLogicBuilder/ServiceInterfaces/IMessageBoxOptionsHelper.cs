@@ -4,7 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IMessageBoxOptionsHelper
     {
-        IWin32Window MainWindow { get; set; }
-        RightToLeft MessageBoxOptions { get; set; }
+        IWin32Window Instance { get; set; }
+        RightToLeft RightToLeft { get; set; }
     }
 }

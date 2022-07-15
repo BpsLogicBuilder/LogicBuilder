@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             using IScopedDisposableManager<AddNewFileForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<AddNewFileForm>>();
             AddNewFileForm addNewFile = disposableManager.ScopedService;
-            addNewFile.ShowDialog(_messageBoxOptionsHelper.MainWindow);
+            addNewFile.ShowDialog(_messageBoxOptionsHelper.Instance);
 
             if (addNewFile.DialogResult == DialogResult.OK)
             {
@@ -70,7 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 if (!_documentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
                     _documentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
 
-                IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+                IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
                 mdiParent.ChangeCursor(Cursors.WaitCursor);
                 CreateFile();
                 mdiParent.ChangeCursor(Cursors.Default);

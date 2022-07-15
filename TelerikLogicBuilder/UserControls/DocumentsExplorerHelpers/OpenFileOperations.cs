@@ -46,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             if (GetOpenFile(fileFullname) != null)
                 return;
 
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
             mdiParent.ChangeCursor(Cursors.WaitCursor);
             OpenFile(fileFullname, _getTableControl, mdiParent.AddTableControl);
             mdiParent.ChangeCursor(Cursors.Default);
@@ -63,13 +63,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 using IScopedDisposableManager<TextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
                 TextViewer textViewer = disposableManager.ScopedService;
                 textViewer.SetText(configErrors.ToArray());
-                textViewer.ShowDialog(_messageBoxOptionsHelper.MainWindow);
+                textViewer.ShowDialog(_messageBoxOptionsHelper.Instance);
                 return;
             }
 
             try
             {
-                IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+                IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
                 mdiParent.ChangeCursor(Cursors.WaitCursor);
                 OpenFile(fileFullname, _getVisioControl, mdiParent.AddVisioControl);
                 mdiParent.ChangeCursor(Cursors.Default);
@@ -82,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         private IDocumentEditor? GetOpenFile(string fullName)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
             if (mdiParent.EditControl == null)
                 return null;
 
@@ -94,7 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         private void OpenFile(string fullName, Func<string, bool, IDocumentEditor> getControl, Action<IDocumentEditor> addControl)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.MainWindow;
+            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
             mdiParent.EditControl?.Close();
 
             if (!_fileIOHelper.GetNewFileInfo(fullName).IsReadOnly)
@@ -105,9 +105,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             DialogResult dialogResult = DisplayMessage.ShowYesNoCancel
             (
-                _messageBoxOptionsHelper.MainWindow,
+                _messageBoxOptionsHelper.Instance,
                 string.Format(CultureInfo.CurrentCulture, Strings.fileNotWriteableFormat, _pathHelper.GetFileName(fullName)),
-                _messageBoxOptionsHelper.MessageBoxOptions
+                _messageBoxOptionsHelper.RightToLeft
             );
 
             if (dialogResult == DialogResult.Yes)
