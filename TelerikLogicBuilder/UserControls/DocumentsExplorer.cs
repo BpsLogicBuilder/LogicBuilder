@@ -298,7 +298,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void FileSystemWatcher_Deleted(object sender, FileSystemEventArgs e) 
             => BuildTreeViewThreadSafe();
 
-        private void FileSystemWatcher_Error(object sender, ErrorEventArgs e) { RadMessageBox.Show("AAAA" + e.GetException().Message); ; }
+        private void FileSystemWatcher_Error(object sender, ErrorEventArgs e) { }
 
         private void FileSystemWatcher_Renamed(object sender, RenamedEventArgs e) 
             => BuildTreeViewThreadSafe();
