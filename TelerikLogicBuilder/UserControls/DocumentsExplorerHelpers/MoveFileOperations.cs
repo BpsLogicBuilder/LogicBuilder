@@ -10,17 +10,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     internal class MoveFileOperations : IMoveFileOperations
     {
         private readonly IFileIOHelper _fileIOHelper;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
 
-        public MoveFileOperations(IFileIOHelper fileIOHelper, IMessageBoxOptionsHelper messageBoxOptionsHelper)
+        public MoveFileOperations(IFileIOHelper fileIOHelper, IMainWindow mainWindow)
         {
             _fileIOHelper = fileIOHelper;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
         }
 
         public void MoveFile(RadTreeNode treeNode, string newFileFullName)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
             if (string.Compare(mdiParent.EditControl?.SourceFile, treeNode.Name, StringComparison.InvariantCultureIgnoreCase) == 0)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.closeFileWarningFormat, treeNode.Text));
 
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         public void MoveFolder(RadTreeNode treeNode, string newFolderFullName)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
             if (mdiParent.EditControl?.SourceFile.ToLowerInvariant().Trim().Contains(treeNode.Name.ToLowerInvariant().Trim()) == true)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.closeFolderFilesWarningFormat, treeNode.Text));
 

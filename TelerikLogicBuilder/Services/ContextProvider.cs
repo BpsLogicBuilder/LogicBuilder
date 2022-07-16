@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IFunctionHelper functionHelper,
-            IMessageBoxOptionsHelper messageBoxOptionsHelper,
+            IMainWindow mainWindow,
             IModuleNamesReader moduleNamesReader,
             IParameterHelper parameterHelper,
             IPathHelper pathHelper,
@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             ExceptionHelper = exceptionHelper;
             FileIOHelper = fileIOHelper;
             FunctionHelper = functionHelper;
-            MessageBoxOptionsHelper = messageBoxOptionsHelper;
+            MainWindow = mainWindow;
             ModuleNamesReader = moduleNamesReader;
             ParameterHelper = parameterHelper;
             PathHelper = pathHelper;
@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public IExceptionHelper ExceptionHelper { get; }
         public IFileIOHelper FileIOHelper { get; }
         public IFunctionHelper FunctionHelper { get; }
-        public IMessageBoxOptionsHelper MessageBoxOptionsHelper { get; }
+        public IMainWindow MainWindow { get; }
         public IModuleNamesReader ModuleNamesReader { get; }
         public IParameterHelper ParameterHelper { get; }
         public IPathHelper PathHelper { get; }

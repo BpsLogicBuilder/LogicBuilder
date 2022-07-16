@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IMoveFileOperations _moveFileOperations;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
@@ -30,7 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
-            IMessageBoxOptionsHelper messageBoxOptionsHelper,
+            IMainWindow mainWindow,
             IMoveFileOperations moveFileOperations,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
             _moveFileOperations = moveFileOperations;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
@@ -85,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _pathHelper.GetFileName(selectedNode.Name);
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFileNameCaption, Strings.inputFileNewFileNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
+            inputBox.ShowDialog(_mainWindow.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;
@@ -111,7 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _pathHelper.GetFolderName(selectedNode.Name);
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFolderNameCaption, Strings.inputFileNewFolderNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
+            inputBox.ShowDialog(_mainWindow.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;
@@ -136,7 +136,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         private void RenameProject(RadTreeNode selectedNode)
         {
-            IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
             if (mdiParent.EditControl != null)
             {
                 throw new LogicBuilderException
@@ -154,16 +154,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _configurationService.ProjectProperties.ProjectName;
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputNewProjectNameCaption, Strings.inputNewProjectNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
+            inputBox.ShowDialog(_mainWindow.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;
 
             DialogResult result = DisplayMessage.ShowQuestion
             (
-                _messageBoxOptionsHelper.Instance,
+                _mainWindow.Instance,
                 Strings.theProjectWillCloseAndReopen,
-                _messageBoxOptionsHelper.RightToLeft
+                _mainWindow.RightToLeft
             );
 
             if (result != DialogResult.OK)

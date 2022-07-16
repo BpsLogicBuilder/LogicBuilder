@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider,
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IMessageBoxOptionsHelper>(),
+                        provider.GetRequiredService<IMainWindow>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<UiNotificationService>(),
@@ -33,7 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider,
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IMessageBoxOptionsHelper>(),
+                        provider.GetRequiredService<IMainWindow>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<UiNotificationService>(),
                         visioSourceFile,

@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEncryption _encryption;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IXmlValidator _xmlValidator;
         private readonly ICreateConstructors _createConstructors;
 
@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _pathHelper = contextProvider.PathHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _encryption = contextProvider.Encryption;
-            _messageBoxOptionsHelper = contextProvider.MessageBoxOptionsHelper;
+            _mainWindow = contextProvider.MainWindow;
             _createConstructors = createConstructors;
             _xmlValidator = xmlValidator;
             

@@ -14,13 +14,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     internal class AddNewFileOperations : IAddNewFileOperations
     {
         private readonly ICheckVisioConfiguration _checkVisioConfiguration;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public AddNewFileOperations(ICheckVisioConfiguration checkVisioConfiguration, IMessageBoxOptionsHelper messageBoxOptionsHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public AddNewFileOperations(ICheckVisioConfiguration checkVisioConfiguration, IMainWindow mainWindow, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _checkVisioConfiguration = checkVisioConfiguration;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 using IScopedDisposableManager<TextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
                 TextViewer textViewer = disposableManager.ScopedService;
                 textViewer.SetText(configErrors.ToArray());
-                textViewer.ShowDialog(_messageBoxOptionsHelper.Instance);
+                textViewer.ShowDialog(_mainWindow.Instance);
                 return;
             }
 

@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IEncryption _encryption;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly ICreateProjectProperties _createProjectProperties;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlValidator _xmlValidator;
         private readonly IApplicationXmlParser _applicationXmlParser;
@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _encryption = contextProvider.Encryption;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _createProjectProperties = createProjectProperties;
-            _messageBoxOptionsHelper = contextProvider.MessageBoxOptionsHelper;
+            _mainWindow = contextProvider.MainWindow;
             _pathHelper = contextProvider.PathHelper;
             _applicationXmlParser = applicationXmlParser;
             _contextProvider = contextProvider;

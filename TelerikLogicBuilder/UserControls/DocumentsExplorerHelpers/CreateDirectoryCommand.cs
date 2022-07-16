@@ -13,7 +13,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     internal class CreateDirectoryCommand : ClickCommandBase
     {
         private readonly IFileIOHelper _fileIOHelper;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
@@ -21,14 +21,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         public CreateDirectoryCommand(
             IFileIOHelper fileIOHelper,
-            IMessageBoxOptionsHelper messageBoxOptionsHelper,
+            IMainWindow mainWindow,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService,
             IDocumentsExplorer documentsExplorer)
         {
             _fileIOHelper = fileIOHelper;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             using IScopedDisposableManager<InputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<InputBoxForm>>();
             InputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFolderNameCaption, Strings.inputFileNewFolderNamePrompt);
-            inputBox.ShowDialog(_messageBoxOptionsHelper.Instance);
+            inputBox.ShowDialog(_mainWindow.Instance);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;

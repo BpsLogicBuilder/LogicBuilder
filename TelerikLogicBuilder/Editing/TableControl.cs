@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly UiNotificationService _uiNotificationService;
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         public TableControl(
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            IMessageBoxOptionsHelper messageBoxOptionsHelper,
+            IMainWindow mainWindow,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             UiNotificationService uiNotificationService,
@@ -41,14 +41,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             _exceptionHelper = exceptionHelper; 
             _formInitializer = formInitializer;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _uiNotificationService = uiNotificationService;
 
             InitializeComponent();
             this.openedAsReadOnly = openedAsReadOnly;
-            this.parentForm = (IMDIParent)_messageBoxOptionsHelper.Instance;
+            this.parentForm = (IMDIParent)_mainWindow.Instance;
             Initialize();
 
             this.parentForm.CommandBarButtonSave.Enabled = !openedAsReadOnly;
@@ -471,7 +471,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.rowIndexIsInvalidFormat, userRowIndex),
                     string.Empty,
-                    this._messageBoxOptionsHelper.RightToLeft
+                    this._mainWindow.RightToLeft
                 );
                 return;
             }
@@ -483,7 +483,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.columnIndexIsInvalidFormat, userColumnIndex),
                     string.Empty,
-                    this._messageBoxOptionsHelper.RightToLeft
+                    this._mainWindow.RightToLeft
                 );
                 return;
             }
@@ -876,7 +876,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                         _pathHelper.GetFileName(this.tableSourceFile)
                     ),
                     string.Empty,
-                    _messageBoxOptionsHelper.RightToLeft
+                    _mainWindow.RightToLeft
                 );
                 if (dialogResult == DialogResult.Yes)
                     SaveOnClose();
@@ -1134,7 +1134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             (
                 (IWin32Window)this.parentForm,
                 e.Exception.Message,
-                _messageBoxOptionsHelper.RightToLeft
+                _mainWindow.RightToLeft
             );
         }
 

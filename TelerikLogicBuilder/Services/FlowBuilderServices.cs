@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IFormInitializer, FormInitializer>()
                 .AddSingleton<IImageListService, ImageListService>()
                 .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
-                .AddSingleton<IMessageBoxOptionsHelper, MessageBoxOptionsHelper>()
+                .AddSingleton<IMainWindow, MainWindow>()
                 .AddSingleton<IModuleNamesReader, ModuleNamesReader>()
                 .AddSingleton<IParameterAttributeReader, ParameterAttributeReader>()
                 .AddSingleton<IPathHelper, PathHelper>()

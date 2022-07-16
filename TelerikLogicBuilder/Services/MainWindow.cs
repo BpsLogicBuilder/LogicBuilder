@@ -3,12 +3,12 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
-    internal class MessageBoxOptionsHelper : IMessageBoxOptionsHelper
+    internal class MainWindow : IMainWindow
     {
         private readonly IExceptionHelper _exceptionHelper;
         private IWin32Window? _mainWindow;
 
-        public MessageBoxOptionsHelper(IExceptionHelper exceptionHelper)
+        public MainWindow(IExceptionHelper exceptionHelper)
         {
             _exceptionHelper = exceptionHelper;
         }

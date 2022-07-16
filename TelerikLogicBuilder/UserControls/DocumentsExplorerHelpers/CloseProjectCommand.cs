@@ -5,16 +5,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 {
     internal class CloseProjectCommand : ClickCommandBase
     {
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
 
-        public CloseProjectCommand(IMessageBoxOptionsHelper messageBoxOptionsHelper)
+        public CloseProjectCommand(IMainWindow mainWindow)
         {
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
         }
 
         public override void Execute()
         {
-            ((IMDIParent)_messageBoxOptionsHelper.Instance).CloseProject();
+            ((IMDIParent)_mainWindow.Instance).CloseProject();
         }
     }
 }

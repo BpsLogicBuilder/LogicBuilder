@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         IExceptionHelper ExceptionHelper { get; }
         IFileIOHelper FileIOHelper { get; }
         IFunctionHelper FunctionHelper { get; }
-        IMessageBoxOptionsHelper MessageBoxOptionsHelper { get; }
+        IMainWindow MainWindow { get; }
         IModuleNamesReader ModuleNamesReader { get; }
         IParameterHelper ParameterHelper { get; }
         IPathHelper PathHelper { get; }

@@ -19,26 +19,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     internal partial class VisioControl : UserControl, IDocumentEditor, IDrawingControl
     {
         private readonly IFormInitializer _formInitializer;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly UiNotificationService _uiNotificationService;
 
         public VisioControl(
             IFormInitializer formInitializer, 
-            IMessageBoxOptionsHelper messageBoxOptionsHelper, 
+            IMainWindow mainWindow, 
             IPathHelper pathHelper, 
             UiNotificationService uiNotificationService, 
             string visioSourceFile, 
             bool openedAsReadOnly)
         {
             _formInitializer = formInitializer;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
             _pathHelper = pathHelper;
             _uiNotificationService = uiNotificationService;
 
             InitializeComponent();
             this.openedAsReadOnly = openedAsReadOnly;
-            this.parentForm = (IMDIParent)_messageBoxOptionsHelper.Instance;
+            this.parentForm = (IMDIParent)_mainWindow.Instance;
             Initialize();
 
             this.parentForm.CommandBarButtonSave.Enabled = !openedAsReadOnly;
@@ -357,7 +357,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm, 
                     string.Format(CultureInfo.CurrentCulture, Strings.pageIndexIsInvalidFormat, pageIndex), 
                     string.Empty, 
-                    this._messageBoxOptionsHelper.RightToLeft
+                    this._mainWindow.RightToLeft
                 );
                 return;
             }
@@ -370,7 +370,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     string.Format(CultureInfo.CurrentCulture, 
                     Strings.shapeIndexIsInvalidFormat, shapeIndex, pageIndex), 
                     string.Empty,
-                    this._messageBoxOptionsHelper.RightToLeft
+                    this._mainWindow.RightToLeft
                 );
                 return;
             }
@@ -392,7 +392,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.pageIndexIsInvalidFormat, pageIndex), 
                     string.Empty,
-                    this._messageBoxOptionsHelper.RightToLeft
+                    this._mainWindow.RightToLeft
                 );
                 return;
             }
@@ -404,7 +404,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm,
                     Strings.pageMovedOrDeleted, 
                     string.Empty,
-                    this._messageBoxOptionsHelper.RightToLeft
+                    this._mainWindow.RightToLeft
                 );
                 return;
             }
@@ -415,7 +415,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 (
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.shapeIndexIsInvalidFormat, shapeIndex, pageIndex),
-                    _messageBoxOptionsHelper.RightToLeft
+                    _mainWindow.RightToLeft
                 );
                 return;
             }
@@ -447,7 +447,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (
                         (IWin32Window)this.parentForm,
                         Strings.shapeDeleted,
-                        _messageBoxOptionsHelper.RightToLeft
+                        _mainWindow.RightToLeft
                     );
                     return;
                 }
@@ -597,7 +597,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             if (!File.Exists(applicationsStencilPath))
             {
-                DisplayMessage.Show((IWin32Window)this.parentForm, string.Format(CultureInfo.CurrentCulture, Strings.fileNotFoundFormat, applicationsStencilPath), _messageBoxOptionsHelper.RightToLeft);
+                DisplayMessage.Show((IWin32Window)this.parentForm, string.Format(CultureInfo.CurrentCulture, Strings.fileNotFoundFormat, applicationsStencilPath), _mainWindow.RightToLeft);
                 return;
             }
 
@@ -618,7 +618,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 (
                     (IWin32Window)this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.fileNotFoundFormat, flowDiagramStencilPath),
-                    _messageBoxOptionsHelper.RightToLeft
+                    _mainWindow.RightToLeft
                 );
                 return;
             }
@@ -701,7 +701,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                         _pathHelper.GetFileName(this.visioSourceFile)
                     ), 
                     string.Empty, 
-                    _messageBoxOptionsHelper.RightToLeft
+                    _mainWindow.RightToLeft
                 );
                 if (dialogResult == DialogResult.Yes)
                     SaveOnClose();

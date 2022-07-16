@@ -8,9 +8,9 @@ using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
 namespace TelerikLogicBuilder.Tests
 {
-    public class MessageBoxOptionsHelperTest
+    public class MainWindowTest
     {
-        public MessageBoxOptionsHelperTest()
+        public MainWindowTest()
         {
             serviceProvider = FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
@@ -23,7 +23,7 @@ namespace TelerikLogicBuilder.Tests
         public void CanSetMessageBoxOptions()
         {
             //arrange
-            IMessageBoxOptionsHelper helper = serviceProvider.GetRequiredService<IMessageBoxOptionsHelper>();
+            IMainWindow helper = serviceProvider.GetRequiredService<IMainWindow>();
 
             //act
             helper.RightToLeft = RightToLeft.Yes;

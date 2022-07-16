@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IFunctionListInitializer _functionListInitializer;
         private readonly ILoadContextSponsor _loadContextSponsor;
         private readonly ILoadProjectProperties _loadProjectProperties;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IThemeManager _themeManager;
         private readonly IVariableListInitializer _variableListInitializer;
         private readonly UiNotificationService _uiNotificationService;
@@ -64,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IFunctionListInitializer functionListInitializer,
             ILoadContextSponsor loadContextSponsor,
             ILoadProjectProperties loadProjectProperties,
-            IMessageBoxOptionsHelper messageBoxOptionsHelper,
+            IMainWindow mainWindow,
             IThemeManager themeManager,
             IVariableListInitializer variableListInitializer,
             UiNotificationService uiNotificationService,
@@ -94,7 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _functionListInitializer = functionListInitializer;
             _loadContextSponsor = loadContextSponsor;
             _loadProjectProperties = loadProjectProperties;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
             _themeManager = themeManager;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
@@ -236,7 +236,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             {
                 radProgressBarElement1.Value1 = 0;
                 radLabelElement1.Text = ex.Message;
-                DisplayMessage.Show(this, ex.Message, _messageBoxOptionsHelper.RightToLeft);
+                DisplayMessage.Show(this, ex.Message, _mainWindow.RightToLeft);
             }
             catch (OperationCanceledException)
             {
@@ -428,8 +428,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 return;
             }
 
-            _messageBoxOptionsHelper.Instance = this;
-            _messageBoxOptionsHelper.RightToLeft = this.RightToLeft;
+            _mainWindow.Instance = this;
+            _mainWindow.RightToLeft = this.RightToLeft;
             _formInitializer.SetCenterScreen(this);
             _projectExplorer.Dock = DockStyle.Fill;
             this.splitPanelExplorer.SuspendLayout();
@@ -480,7 +480,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void LogicBuilderExceptionOccurred(LogicBuilderException exception)
         {
-            DisplayMessage.Show(this, exception.Message, _messageBoxOptionsHelper.RightToLeft);
+            DisplayMessage.Show(this, exception.Message, _mainWindow.RightToLeft);
         }
 
         /// <summary>

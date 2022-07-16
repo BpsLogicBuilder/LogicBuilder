@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     {
         private readonly IConfigurationService _configurationService;
         private readonly IPathHelper _pathHelper;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IXmlValidator _xmlValidator;
         private readonly ICreateFragments _createFragments;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -26,7 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             _configurationService = contextProvider.ConfigurationService;
             _pathHelper = contextProvider.PathHelper;
-            _messageBoxOptionsHelper = contextProvider.MessageBoxOptionsHelper;
+            _mainWindow = contextProvider.MainWindow;
             _createFragments = createFragments;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _xmlValidator = xmlValidator;

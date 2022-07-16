@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     {
         private readonly IAddNewFileOperations _addNewFileOperations;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IMessageBoxOptionsHelper _messageBoxOptionsHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         public AddNewFileCommand(
             IAddNewFileOperations addNewFileOperations,
             IExceptionHelper exceptionHelper,
-            IMessageBoxOptionsHelper messageBoxOptionsHelper,
+            IMainWindow mainWindow,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService,
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             _addNewFileOperations = addNewFileOperations;
             _exceptionHelper = exceptionHelper;
-            _messageBoxOptionsHelper = messageBoxOptionsHelper;
+            _mainWindow = mainWindow;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             using IScopedDisposableManager<AddNewFileForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<AddNewFileForm>>();
             AddNewFileForm addNewFile = disposableManager.ScopedService;
-            addNewFile.ShowDialog(_messageBoxOptionsHelper.Instance);
+            addNewFile.ShowDialog(_mainWindow.Instance);
 
             if (addNewFile.DialogResult == DialogResult.OK)
             {
@@ -70,7 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 if (!_documentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
                     _documentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
 
-                IMDIParent mdiParent = (IMDIParent)_messageBoxOptionsHelper.Instance;
+                IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
                 mdiParent.ChangeCursor(Cursors.WaitCursor);
                 CreateFile();
                 mdiParent.ChangeCursor(Cursors.Default);
