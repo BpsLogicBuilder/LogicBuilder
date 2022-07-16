@@ -6,6 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     internal class MainWindow : IMainWindow
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private RightToLeft? _rightToLeft;
         private IWin32Window? _mainWindow;
 
         public MainWindow(IExceptionHelper exceptionHelper)
@@ -22,9 +23,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
                 return _mainWindow;
             }
-            set => _mainWindow = value;
+            set
+            {
+                _rightToLeft = ((Form)value).RightToLeft;
+                _mainWindow = value;
+            }
         }
 
-        public RightToLeft RightToLeft { get; set; }
+        public RightToLeft RightToLeft 
+        { 
+            get
+            {
+                if (!_rightToLeft.HasValue)
+                    throw _exceptionHelper.CriticalException("{ACEE9906-C13F-43A0-AB1F-5982883EB593}");
+
+                return _rightToLeft.Value;
+            }
+        }
     }
 }

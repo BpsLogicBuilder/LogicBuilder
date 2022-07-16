@@ -24,9 +24,13 @@ namespace TelerikLogicBuilder.Tests
         {
             //arrange
             IMainWindow helper = serviceProvider.GetRequiredService<IMainWindow>();
+            using Form form = new()
+            {
+                RightToLeft = RightToLeft.Yes
+            };
 
             //act
-            helper.RightToLeft = RightToLeft.Yes;
+            helper.Instance = form;
 
             //assert
             Assert.Equal(RightToLeft.Yes, helper.RightToLeft);

@@ -429,7 +429,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
 
             _mainWindow.Instance = this;
-            _mainWindow.RightToLeft = this.RightToLeft;
             _formInitializer.SetCenterScreen(this);
             _projectExplorer.Dock = DockStyle.Fill;
             this.splitPanelExplorer.SuspendLayout();
