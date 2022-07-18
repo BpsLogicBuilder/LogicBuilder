@@ -28,12 +28,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             try
             {
-                RadTreeNode selectedNode = _documentsExplorer.TreeView.SelectedNode;
+                RadTreeNode? selectedNode = _documentsExplorer.TreeView.SelectedNode;
                 if (selectedNode == null)
                     return;
+
                 if (_treeViewService.IsFileNode(selectedNode))
                 {
                     _deleteOperations.DeleteFile(selectedNode);
+                    _documentsExplorer.RefreshTreeView();
                 }
                 else if (_treeViewService.IsRootNode(selectedNode))
                 {
@@ -45,6 +47,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
                     if (_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
                         _documentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
+
+                    _documentsExplorer.RefreshTreeView();
                 }
             }
             catch (LogicBuilderException ex)

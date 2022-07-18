@@ -60,6 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             radTextBoxFileName.TextChanged += RadTextBoxFileName_TextChanged;
 
             radListView1.VisualItemFormatting += RadListView1_VisualItemFormatting;
+            radListView1.AllowEdit = false;
             radListView1.MultiSelect = false;
             radListView1.Padding = new Padding(30);
             radListView1.ImageList = _imageListService.ImageList;

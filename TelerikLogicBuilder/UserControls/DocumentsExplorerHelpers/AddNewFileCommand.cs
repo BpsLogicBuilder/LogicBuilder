@@ -44,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             try
             {
                 AddNewFile(_documentsExplorer.TreeView.SelectedNode);
+                _documentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
@@ -51,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             }
         }
 
-        private void AddNewFile(RadTreeNode selectedNode)
+        private void AddNewFile(RadTreeNode? selectedNode)
         {
             if (selectedNode == null)
                 return;
@@ -67,13 +68,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 if (_documentsExplorer.DocumentNames.TryGetValue(addNewFile.FileName.ToLowerInvariant(), out string? existingFileFullPath))
                     throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.fileExistsExceptionMessage, existingFileFullPath));
 
-                if (!_documentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
-                    _documentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
-
                 IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
                 mdiParent.ChangeCursor(Cursors.WaitCursor);
                 CreateFile();
                 mdiParent.ChangeCursor(Cursors.Default);
+
+                if (!_documentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
+                    _documentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
             }
 
             void CreateFile()

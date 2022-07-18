@@ -7,14 +7,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     {
         private readonly IExceptionHelper _exceptionHelper;
         private RightToLeft? _rightToLeft;
-        private IWin32Window? _mainWindow;
+        private Form? _mainWindow;
 
         public MainWindow(IExceptionHelper exceptionHelper)
         {
             _exceptionHelper = exceptionHelper;
         }
 
-        public IWin32Window Instance
+        public Form Instance
         {
             get
             {
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
             set
             {
-                _rightToLeft = ((Form)value).RightToLeft;
+                _rightToLeft = value.RightToLeft;
                 _mainWindow = value;
             }
         }

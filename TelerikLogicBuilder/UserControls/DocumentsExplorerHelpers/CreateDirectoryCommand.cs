@@ -40,6 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             try
             {
                 CreateDirectory(_documentsExplorer.TreeView.SelectedNode);
+                _documentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
@@ -64,10 +65,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             string newFolderFullName = _pathHelper.CombinePaths(destinationFolderNode.Name, inputBox.Input.Trim());
 
+            _fileIOHelper.CreateDirectory(newFolderFullName);
+
             if (!_documentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
                 _documentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
-
-            _fileIOHelper.CreateDirectory(newFolderFullName);
         }
 
         RadTreeNode GetFolderNode(RadTreeNode treeNode) 

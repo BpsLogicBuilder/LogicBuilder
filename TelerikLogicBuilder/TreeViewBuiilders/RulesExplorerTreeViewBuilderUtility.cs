@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using Telerik.WinControls.UI;
 
@@ -41,50 +42,59 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
 
         public void Build(RadTreeView treeView)
         {
+            Point point = new(treeView.HScrollBar.Value, treeView.VScrollBar.Value);
+            string? selectedNodeName = treeView.SelectedNode?.Name;
+
             treeView.BeginUpdate();
+            Build();
+            treeView.EndUpdate();
 
-            treeView.ShowRootLines = false;
-            treeView.ImageList = _imageListService.ImageList;
-            treeView.Nodes.Clear();
+            /*ScrollToPreviousPosition does not work if executed before treeView.EndUpdate();.*/
+            _treeViewService.SelectTreeNode(treeView, selectedNodeName);
+            _treeViewService.ScrollToPreviousPosition(treeView, point);
 
-            string documentPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.RULESFOLDER);
-            try
+            void Build()
             {
+                treeView.ShowRootLines = false;
+                treeView.ImageList = _imageListService.ImageList;
+                treeView.Nodes.Clear();
+
+                string documentPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.RULESFOLDER);
+                try
+                {
+                    foreach (Application application in _configurationService.ProjectProperties.ApplicationList.Values)
+                    {
+                        VerifyFolderExists(application.Name, ProjectPropertiesConstants.BUILDFOLDER);
+                        VerifyFolderExists(application.Name, ProjectPropertiesConstants.DIAGRAMFOLDER);
+                        VerifyFolderExists(application.Name, ProjectPropertiesConstants.TABLEFOLDER);
+                    }
+
+                    void VerifyFolderExists(string applicationName, string subDirectoryname)
+                    {
+                        string fullPath = _pathHelper.CombinePaths(documentPath, applicationName, subDirectoryname);
+                        if (!Directory.Exists(fullPath))
+                            _fileIOHelper.CreateDirectory(fullPath);
+                    }
+                }
+                catch (LogicBuilderException ex)
+                {
+                    _uiNotificationService.NotifyLogicBuilderException(ex);
+                    return;
+                }
+
+                StateImageRadTreeNode rootNode = new()
+                {
+                    ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX,
+                    Text = _configurationService.ProjectProperties.ProjectName,
+                    Name = documentPath
+                };
+                treeView.Nodes.Add(rootNode);
+
                 foreach (Application application in _configurationService.ProjectProperties.ApplicationList.Values)
                 {
-                    VerifyFolderExists(application.Name, ProjectPropertiesConstants.BUILDFOLDER);
-                    VerifyFolderExists(application.Name, ProjectPropertiesConstants.DIAGRAMFOLDER);
-                    VerifyFolderExists(application.Name, ProjectPropertiesConstants.TABLEFOLDER);
-                }
-
-                void VerifyFolderExists(string applicationName, string subDirectoryname)
-                {
-                    string fullPath = _pathHelper.CombinePaths(documentPath, applicationName, subDirectoryname);
-                    if (!Directory.Exists(fullPath))
-                        _fileIOHelper.CreateDirectory(fullPath);
+                    AddApplicationFolderNode(rootNode, documentPath, application);
                 }
             }
-            catch (LogicBuilderException ex)
-            {
-                _uiNotificationService.NotifyLogicBuilderException(ex);
-                return;
-            }
-
-            
-            StateImageRadTreeNode rootNode = new()
-            {
-                ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX,
-                Text = _configurationService.ProjectProperties.ProjectName,
-                Name = documentPath
-            };
-            treeView.Nodes.Add(rootNode);
-
-            foreach (Application application in _configurationService.ProjectProperties.ApplicationList.Values)
-            {
-                AddApplicationFolderNode(rootNode, documentPath, application);
-            }
-
-            treeView.EndUpdate();
         }
 
         private void AddApplicationFolderNode(StateImageRadTreeNode treeNode, string documentPath, Application application)

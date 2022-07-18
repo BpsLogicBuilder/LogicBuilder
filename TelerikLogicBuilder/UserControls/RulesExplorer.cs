@@ -1,11 +1,7 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Exceptions;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -13,32 +9,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal partial class RulesExplorer : UserControl
     {
-        private readonly IConfigurationService _configurationService;
+        private readonly IMainWindow _mainWindow;
         private readonly IRulesExplorerTreeViewBuilder _rulesExplorerTreeViewBuilder;
-        private readonly IExceptionHelper _exceptionHelper;
-        private readonly IFileIOHelper _fileIOHelper;
-        private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
         private readonly Dictionary<string, string> expandedNodes = new();
-        private FileSystemWatcher? fileSystemWatcher;
+
+        private readonly IDisposable refreshTreeViewSubscription;
 
         public RulesExplorer(
-            IConfigurationService configurationService,
+            IMainWindow mainWindow,
             IRulesExplorerTreeViewBuilder rulesExplorerTreeViewBuilder,
-            IExceptionHelper exceptionHelper,
-            IFileIOHelper fileIOHelper,
-            IPathHelper pathHelper,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService)
         {
-            _configurationService = configurationService;
+            _mainWindow = mainWindow;
             _rulesExplorerTreeViewBuilder = rulesExplorerTreeViewBuilder;
-            _exceptionHelper = exceptionHelper;
-            _fileIOHelper = fileIOHelper;
-            _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
+
+            refreshTreeViewSubscription = _uiNotificationService.RulesExplorerRefreshSubject.Subscribe(RefreshTreeView);
+
             InitializeComponent();
             Initialize();
         }
@@ -47,20 +38,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             radTreeView1.Nodes.Clear();
             expandedNodes.Clear();
-            DisposeFileSystemWatcher();
         }
 
         public void CreateProfile()
         {
-            if (fileSystemWatcher != null)
-                throw _exceptionHelper.CriticalException("{06424D44-70CD-45FB-9E82-6822B7B7489D}");
-
-            //Can't create until the project is opened and CreateProfile is called.
-            //It should always be null if CreateProfile is called only when the project opens.
-            CreateFileSystemWatcher();
-
             BuildTreeView();
         }
+
+        public void RefreshTreeView()
+            => BuildTreeView();
 
         private void BuildTreeView()
             => _rulesExplorerTreeViewBuilder.Build
@@ -69,74 +55,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 expandedNodes
             );
 
-        private void BuildTreeViewThreadSafe()
+        private static void Dispose(IDisposable disposable)
         {
-            if (InvokeRequired)
-            {
-                this.Invoke(BuildTreeView);
-            }
-            else
-            {
-                BuildTreeView();
-            }
-        }
-
-        private void CreateFileSystemWatcher()
-        {
-            string documentPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.RULESFOLDER);
-            try
-            {
-                if (!Directory.Exists(documentPath))
-                    _fileIOHelper.CreateDirectory(documentPath);
-            }
-            catch (LogicBuilderException ex)
-            {
-                _uiNotificationService.NotifyLogicBuilderException(ex);
-                return;
-            }
-
-            fileSystemWatcher = new(documentPath);
-
-            fileSystemWatcher.Changed += FileSystemWatcher_Changed;
-            fileSystemWatcher.Created += FileSystemWatcher_Created;
-            fileSystemWatcher.Deleted += FileSystemWatcher_Deleted;
-            fileSystemWatcher.Error += FileSystemWatcher_Error;
-            fileSystemWatcher.Renamed += FileSystemWatcher_Renamed;
-
-            fileSystemWatcher.IncludeSubdirectories = true;
-            fileSystemWatcher.EnableRaisingEvents = true;
-        }
-
-        private void DisposeFileSystemWatcher()
-        {
-            if (fileSystemWatcher != null)
-            {
-                fileSystemWatcher.Dispose();
-                fileSystemWatcher = null;
-            }
+            if (disposable != null)
+                disposable.Dispose();
         }
 
         private void Initialize()
         {
             this.radTreeView1.NodeExpandedChanged += RadTreeView1_NodeExpandedChanged;
             this.Disposed += RulesExplorer_Disposed;
+            this.Load += RulesExplorer_Load;
         }
 
+        private void RefreshTreeView(bool refresh) 
+            => BuildTreeView();
+
         #region Event Handlers
-        private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
-            => BuildTreeViewThreadSafe();
-
-        private void FileSystemWatcher_Created(object sender, FileSystemEventArgs e)
-            => BuildTreeViewThreadSafe();
-
-        private void FileSystemWatcher_Deleted(object sender, FileSystemEventArgs e)
-            => BuildTreeViewThreadSafe();
-
-        private void FileSystemWatcher_Error(object sender, ErrorEventArgs e) { }
-
-        private void FileSystemWatcher_Renamed(object sender, RenamedEventArgs e)
-            => BuildTreeViewThreadSafe();
-
         private void RadTreeView1_NodeExpandedChanged(object sender, RadTreeViewEventArgs e)
         {
             if (_treeViewService.IsRootNode(e.Node))
@@ -158,7 +93,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
         }
 
-        private void RulesExplorer_Disposed(object? sender, EventArgs e) => DisposeFileSystemWatcher();
+        private void RulesExplorer_Disposed(object? sender, EventArgs e)
+        {
+            Dispose(refreshTreeViewSubscription);
+        }
+
+        private void RulesExplorer_Load(object? sender, EventArgs e)
+        {
+            _mainWindow.Instance.Activated += MainWind_Activated;
+        }
+
+        private void MainWind_Activated(object? sender, EventArgs e)
+        {
+            RefreshTreeView();
+        }
         #endregion Event Handlers
     }
 }

@@ -14,13 +14,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         private readonly IConfigurationService _configurationService;
         private readonly ITryGetSelectedDocuments _tryGetSelectedDocuments;
         private readonly IBuildSaveAssembleRulesForSelectedDocuments _buildSaveConsolidateSelectedDocumentRules;
+        private readonly UiNotificationService _uiNotificationService;
         private readonly MDIParent mdiParent;
 
-        public BuildSaveConsolidateSelectedDocumentsCommand(IConfigurationService configurationService, ITryGetSelectedDocuments tryGetSelectedDocuments, IBuildSaveAssembleRulesForSelectedDocuments buildSaveConsolidateSelectedDocumentRules, MDIParent mdiParent)
+        public BuildSaveConsolidateSelectedDocumentsCommand(
+            IConfigurationService configurationService,
+            ITryGetSelectedDocuments tryGetSelectedDocuments,
+            IBuildSaveAssembleRulesForSelectedDocuments buildSaveConsolidateSelectedDocumentRules,
+            UiNotificationService uiNotificationService,
+            MDIParent mdiParent)
         {
             _configurationService = configurationService;
             _tryGetSelectedDocuments = tryGetSelectedDocuments;
             _buildSaveConsolidateSelectedDocumentRules = buildSaveConsolidateSelectedDocumentRules;
+            _uiNotificationService = uiNotificationService;
             this.mdiParent = mdiParent;
         }
 
@@ -30,6 +37,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
                 return;
 
             await this.mdiParent.RunLoadContextAsync(BuildSelectedDocumentRules);
+
+            _uiNotificationService.RequestRulesExplorerRefresh(true);
 
             Task BuildSelectedDocumentRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _buildSaveConsolidateSelectedDocumentRules.BuildRules

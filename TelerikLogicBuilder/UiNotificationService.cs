@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using System;
 using System.Reactive.Subjects;
 
 namespace ABIS.LogicBuilder.FlowBuilder
@@ -8,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         #region Properties
         public Subject<int> DocumentExplorerErrorCountChangedSubject { get; } = new();
         public Subject<LogicBuilderException> LogicBuilderExceptionSubject { get; } = new();
+        public Subject<bool> RulesExplorerRefreshSubject { get; } = new();
         #endregion Properties
 
         public void NotifyDocumentExplorerErrorCountChanged(int errorCount)
@@ -18,6 +20,16 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public void NotifyLogicBuilderException(LogicBuilderException exception)
         {
             this.LogicBuilderExceptionSubject.OnNext(exception);
+        }
+
+        public void RequestRulesExplorerRefresh(bool refresh)
+        {
+            this.RulesExplorerRefreshSubject.OnNext(refresh);
+        }
+
+        internal IDisposable? RequestDocumentExplorerRefresh(Action refreshTreeView)
+        {
+            throw new NotImplementedException();
         }
     }
 }

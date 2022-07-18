@@ -55,7 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return RemoveLeadingPathSeparator(path);
         }
 
-        public string GetExtension(string fileName) => fileName[fileName.LastIndexOf(".")..].ToLowerInvariant();
+        public string GetExtension(string fileName) => Path.GetExtension(fileName)?.ToLowerInvariant() ?? string.Empty;
 
         public string GetFileName(string fileName) => Path.GetFileName(fileName);
 

@@ -1,15 +1,12 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -18,18 +15,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal partial class DocumentsExplorer : UserControl, IDocumentsExplorer
     {
-        private readonly IConfigurationService _configurationService;
         private readonly IDocumentsExplorerTreeViewBuilder _documentsExplorerTreeViewBuilder;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IFileIOHelper _fileIOHelper;
         private readonly IImageListService _imageImageListService;
-        private readonly IPathHelper _pathHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
         private readonly DocumentExplorerErrorsList documentProfileErrors = new();
         private readonly Dictionary<string, string> documentNames = new();
         private readonly Dictionary<string, string> expandedNodes = new();
-        private FileSystemWatcher? fileSystemWatcher;
         private RadTreeNode? _cutTreeNode;
 
         private readonly RadMenuItem mnuItemOpenFile = new(Strings.mnuItemOpenFileText) { ImageIndex = ImageIndexes.OPENIMAGEINDEX };
@@ -64,12 +58,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public IDictionary<string, string> ExpandedNodes => expandedNodes;
 
         public DocumentsExplorer(
-            IConfigurationService configurationService,
             IDocumentsExplorerTreeViewBuilder documentsExplorerTreeViewBuilder,
             IExceptionHelper exceptionHelper,
-            IFileIOHelper fileIOHelper,
             IImageListService imageImageListService,
-            IPathHelper pathHelper,
+            IMainWindow mainWindow,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService,
             Func<IDocumentsExplorer, AddExistingFileCommand> getAddExistingFileCommand,
@@ -83,12 +75,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             Func<IDocumentsExplorer, RefreshDocumentsExplorerCommand> getRefreshDocumentsExplorerCommand,
             Func<IDocumentsExplorer, RenameCommand> getRenameDocumentCommand)
         {
-            _configurationService = configurationService;
             _documentsExplorerTreeViewBuilder = documentsExplorerTreeViewBuilder;
             _exceptionHelper = exceptionHelper;
-            _fileIOHelper = fileIOHelper;
             _imageImageListService = imageImageListService;
-            _pathHelper = pathHelper;
+            _mainWindow = mainWindow;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
             _getAddExistingFileCommand = getAddExistingFileCommand;
@@ -110,33 +100,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             radTreeView1.Nodes.Clear();
             expandedNodes.Clear();
-            DisposeFileSystemWatcher();
         }
 
         public void CreateProfile()
         {
-            if (fileSystemWatcher != null)
-                throw _exceptionHelper.CriticalException("{905A8EA2-4C2D-4B99-AAB4-5B0D00CB4E03}");
-
-            //Can't create until the project is opened and CreateProfile is called.
-            //It should always be null if CreateProfile is called only when the project opens.
-            CreateFileSystemWatcher();
-
             BuildTreeView();
         }
 
-        public void RefreshTreeView()
-        {
-            //if (InvokeRequired)
-            //{
-            //    this.Invoke(BuildTreeView);
-            //}
-            //else
-            //{
-            //    BuildTreeView();
-            //}
-            BuildTreeView();
-        }
+        public void RefreshTreeView() 
+            => BuildTreeView();
 
         private static void AddClickCommand(RadMenuItem radMenuItem, IClickCommand command)
         {
@@ -151,18 +123,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 documentNames, 
                 expandedNodes
             );
-
-        private void BuildTreeViewThreadSafe()
-        {
-            if (InvokeRequired)
-            {
-                this.Invoke(BuildTreeView);
-            }
-            else
-            {
-                BuildTreeView();
-            }
-        }
 
         private void CreateContextMenu()
         {
@@ -206,41 +166,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             };
         }
 
-        private void CreateFileSystemWatcher()
-        {
-            string documentPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
-            try
-            {
-                if (!Directory.Exists(documentPath))
-                    _fileIOHelper.CreateDirectory(documentPath);
-            }
-            catch (LogicBuilderException ex)
-            {
-                _uiNotificationService.NotifyLogicBuilderException(ex);
-                return;
-            }
-
-            fileSystemWatcher = new(documentPath);
-
-            fileSystemWatcher.Changed += FileSystemWatcher_Changed;
-            fileSystemWatcher.Created += FileSystemWatcher_Created;
-            fileSystemWatcher.Deleted += FileSystemWatcher_Deleted;
-            fileSystemWatcher.Error += FileSystemWatcher_Error;
-            fileSystemWatcher.Renamed += FileSystemWatcher_Renamed;
-
-            fileSystemWatcher.IncludeSubdirectories = true;
-            fileSystemWatcher.EnableRaisingEvents = true;
-        }
-
-        private void DisposeFileSystemWatcher()
-        {
-            if (fileSystemWatcher != null)
-            {
-                fileSystemWatcher.Dispose();
-                fileSystemWatcher = null;
-            }
-        }
-
         private void Initialize()
         {
             this.radTreeView1.CreateNodeElement += RadTreeView1_CreateNodeElement;
@@ -251,6 +176,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             documentProfileErrors.ErrorCountChanged += DocumentProfileErrors_ErrorCountChanged;
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             this.Disposed += DocumentsExplorer_Disposed;
+            this.Load += DocumentsExplorer_Load;
 
             CreateContextMenu();
         }
@@ -287,21 +213,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _uiNotificationService.NotifyDocumentExplorerErrorCountChanged(errorCount);
         }
 
-        private void DocumentsExplorer_Disposed(object? sender, EventArgs e) => DisposeFileSystemWatcher();
+        private void DocumentsExplorer_Disposed(object? sender, EventArgs e)
+        {
+        }
 
-        private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs e) 
-            => BuildTreeViewThreadSafe();
+        private void DocumentsExplorer_Load(object? sender, EventArgs e)
+        {
+            _mainWindow.Instance.Activated += MainWindow_Activated;//_mainWindow.Instance unavailable in the constructor
+        }
 
-        private void FileSystemWatcher_Created(object sender, FileSystemEventArgs e) 
-            => BuildTreeViewThreadSafe();
-
-        private void FileSystemWatcher_Deleted(object sender, FileSystemEventArgs e) 
-            => BuildTreeViewThreadSafe();
-
-        private void FileSystemWatcher_Error(object sender, ErrorEventArgs e) { }
-
-        private void FileSystemWatcher_Renamed(object sender, RenamedEventArgs e) 
-            => BuildTreeViewThreadSafe();
+        private void MainWindow_Activated(object? sender, EventArgs e)
+        {
+            RefreshTreeView();
+        }
 
         private void RadTreeView1_CreateNodeElement(object sender, CreateTreeNodeElementEventArgs e)
         {

@@ -58,9 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                         }
 
                         RadTreeNode folderNode = GetFolderNode(_documentsExplorer.TreeView.SelectedNode);
-                        if (!_documentsExplorer.ExpandedNodes.ContainsKey(folderNode.Name))
-                            _documentsExplorer.ExpandedNodes.Add(folderNode.Name, folderNode.Text);
-
+                        
                         _fileIOHelper.CopyFile
                         (
                             fileFullName,
@@ -70,7 +68,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                                 fileName
                             )
                         );
+
+                        if (!_documentsExplorer.ExpandedNodes.ContainsKey(folderNode.Name))
+                            _documentsExplorer.ExpandedNodes.Add(folderNode.Name, folderNode.Text);
                     }
+
+                    _documentsExplorer.RefreshTreeView();
 
                     RadTreeNode GetFolderNode(RadTreeNode treeNode) 
                         => _treeViewService.IsFileNode(treeNode) 

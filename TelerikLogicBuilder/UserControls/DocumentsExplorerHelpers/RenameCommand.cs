@@ -59,10 +59,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 if (_treeViewService.IsFileNode(selectedNode))
                 {
                     RenameFile(selectedNode);
+                    _documentsExplorer.RefreshTreeView();
                 }
                 else if (_treeViewService.IsFolderNode(selectedNode))
                 {
                     RenameFolder(selectedNode);
+                    _documentsExplorer.RefreshTreeView();
                 }
                 else if (_treeViewService.IsRootNode(selectedNode))
                 {
@@ -95,14 +97,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             string newFileName = inputBox.Input.ToLowerInvariant().EndsWith(fileExtension) ? inputBox.Input : $"{inputBox.Input}{fileExtension}";
             string newFileFullName = _pathHelper.CombinePaths(path, newFileName);
 
-            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Parent.Name))
-                _documentsExplorer.ExpandedNodes.Add(selectedNode.Parent.Name, selectedNode.Parent.Text);
-
             _moveFileOperations.MoveFile
             (
                 selectedNode,
                 newFileFullName
             );
+
+            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Parent.Name))
+                _documentsExplorer.ExpandedNodes.Add(selectedNode.Parent.Name, selectedNode.Parent.Text);
         }
 
         private void RenameFolder(RadTreeNode selectedNode)
@@ -119,11 +121,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             DirectoryInfo directoryInfo = _fileIOHelper.GetNewDirectoryInfo(selectedNode.Name);
             string newFolderFullName = _pathHelper.CombinePaths(directoryInfo.Parent!.FullName, inputBox.Input);
 
-            if (_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
-            {
-                _documentsExplorer.ExpandedNodes.Add(newFolderFullName, inputBox.Input);
-            }
-
             _moveFileOperations.MoveFolder
             (
                 selectedNode,
@@ -131,7 +128,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             );
 
             if (_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+            {
+                if (!_documentsExplorer.ExpandedNodes.ContainsKey(newFolderFullName))
+                    _documentsExplorer.ExpandedNodes.Add(newFolderFullName, inputBox.Input);
+
                 _documentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
+            }
         }
 
         private void RenameProject(RadTreeNode selectedNode)

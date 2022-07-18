@@ -21,6 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider,
                     provider.GetRequiredService<IConfigurationService>(),
                     provider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>(),
+                    provider.GetRequiredService<UiNotificationService>(),
                     mdiParent
                 )
             )
@@ -33,6 +34,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider.GetRequiredService<IConfigurationService>(),
                     provider.GetRequiredService<ITryGetSelectedDocuments>(),
                     provider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>(),
+                    provider.GetRequiredService<UiNotificationService>(),
                     mdiParent
                 )
             )

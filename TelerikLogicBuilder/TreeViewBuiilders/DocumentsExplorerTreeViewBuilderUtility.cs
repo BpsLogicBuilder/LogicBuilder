@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using Telerik.WinControls.UI;
@@ -54,35 +55,45 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
             documentProfileErrors.Clear();
             documentNames.Clear();
 
+            Point point = new(treeView.HScrollBar.Value, treeView.VScrollBar.Value);
+            string? selectedNodeName = treeView.SelectedNode?.Name;
+
             treeView.BeginUpdate();
-            treeView.ShowRootLines = false;
-            treeView.ImageList = _imageListService.ImageList;
-            treeView.TreeViewElement.ShowNodeToolTips = true;
-            treeView.Nodes.Clear();
-
-            string documentPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
-            try
-            {
-                if (!Directory.Exists(documentPath))
-                    _fileIOHelper.CreateDirectory(documentPath);
-            }
-            catch (LogicBuilderException ex)
-            {
-                _uiNotificationService.NotifyLogicBuilderException(ex);
-                return;
-            }
-
-            
-            StateImageRadTreeNode rootNode = new()
-            {
-                ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX,
-                Text = _configurationService.ProjectProperties.ProjectName,
-                Name = documentPath
-            };
-            treeView.Nodes.Add(rootNode);
-            AddDocumentNodes(rootNode, documentPath, true);
-
+            Build();
             treeView.EndUpdate();
+
+            /*ScrollToPreviousPosition does not work if executed before treeView.EndUpdate();.*/
+            _treeViewService.SelectTreeNode(treeView, selectedNodeName);
+            _treeViewService.ScrollToPreviousPosition(treeView, point);
+
+            void Build()
+            {
+                treeView.ShowRootLines = false;
+                treeView.ImageList = _imageListService.ImageList;
+                treeView.TreeViewElement.ShowNodeToolTips = true;
+                treeView.Nodes.Clear();
+
+                string documentPath = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
+                try
+                {
+                    if (!Directory.Exists(documentPath))
+                        _fileIOHelper.CreateDirectory(documentPath);
+                }
+                catch (LogicBuilderException ex)
+                {
+                    _uiNotificationService.NotifyLogicBuilderException(ex);
+                    return;
+                }
+
+                StateImageRadTreeNode rootNode = new()
+                {
+                    ImageIndex = ImageIndexes.PROJECTFOLDERIMAGEINDEX,
+                    Text = _configurationService.ProjectProperties.ProjectName,
+                    Name = documentPath
+                };
+                treeView.Nodes.Add(rootNode);
+                AddDocumentNodes(rootNode, documentPath, true);
+            }
         }
 
         #region Private Methods

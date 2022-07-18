@@ -52,6 +52,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 {
                     throw _exceptionHelper.CriticalException("{12782526-5DE8-43BF-AFBE-B1A5B277A5B4}");
                 }
+
+                _documentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
@@ -73,14 +75,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 _pathHelper.GetFileName(cutTreeNode.Name)
             );
 
-            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
-                _documentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
-
             _moveFileOperations.MoveFile
             (
                 cutTreeNode,
                 newFileFullName
             );
+
+            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+                _documentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
         }
 
         private void PasteFolder(RadTreeNode selectedNode, RadTreeNode cutTreeNode)
@@ -93,14 +95,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 _pathHelper.GetFolderName(cutTreeNode.Name)
             );
 
-            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
-                _documentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
-
             _moveFileOperations.MoveFolder
             (
                 cutTreeNode,
                 newFolderFullName
             );
+
+            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+                _documentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
 
             if (_documentsExplorer.ExpandedNodes.ContainsKey(cutTreeNode.Name))
                 _documentsExplorer.ExpandedNodes.Remove(cutTreeNode.Name);

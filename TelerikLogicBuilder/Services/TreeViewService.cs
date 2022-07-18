@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.Drawing;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -50,6 +51,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 treeNode.Parent.Expand();
 
             treeNode.EnsureVisible();
+        }
+
+        public void ScrollToPreviousPosition(RadTreeView treeView, Point point)
+        {
+            if (point.X < treeView.HScrollBar.Minimum || point.X > treeView.HScrollBar.Maximum)
+                return;
+
+            if (point.Y < treeView.VScrollBar.Minimum || point.Y > treeView.VScrollBar.Maximum)
+                return;
+
+            treeView.VScrollBar.Value = point.Y;
+            treeView.HScrollBar.Value = point.X;
+        }
+
+        public void SelectTreeNode(RadTreeView treeView, string? nodeName)
+        {
+            if (nodeName == null)
+                return;
+
+            var node = treeView.Find(n => n.Name == nodeName);
+            if (node != null)
+                treeView.SelectedNode = node;
         }
     }
 }
