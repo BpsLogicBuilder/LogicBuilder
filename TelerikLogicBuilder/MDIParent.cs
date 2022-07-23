@@ -256,6 +256,31 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
         }
 
+        public async Task RunLoadContextAsync(Func<CancellationTokenSource, Task> task)
+        {
+            await _loadContextSponsor.RunAsync
+            (
+                async () =>
+                {
+
+                    try
+                    {
+                        var cancellationTokenSource = new CancellationTokenSource();
+                        await task(cancellationTokenSource);
+                    }
+                    catch (LogicBuilderException ex)
+                    {
+                        LogicBuilderExceptionOccurred(ex);
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        LogicBuilderExceptionOccurred(new LogicBuilderException(ex.Message, ex));
+                    }
+                },
+                new Progress<ProgressMessage>(percent => {})
+            );
+        }
+
         public async Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
         {
             var progress = new Progress<ProgressMessage>(percent =>

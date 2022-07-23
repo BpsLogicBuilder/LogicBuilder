@@ -424,6 +424,9 @@
 	<data name="defaultRulesFolder" xml:space="preserve">
     <value>RulesFR</value>
   </data>
+	<data name="deleteAllRulesQuestion" xml:space="preserve">
+    <value>Delete All Rules?FR</value>
+  </data>
 	<data name="deleteFileQuestionFormat" xml:space="preserve">
     <value>Delete the file: {0}?FR</value>
     <comment>0=FileName</comment>
@@ -816,6 +819,9 @@
 	<data name="mnuItemDeleteText" xml:space="preserve">
     <value>DeleteFR</value>
   </data>
+	<data name="mnuItemDeleteAllRulesText" xml:space="preserve">
+    <value>Delete All RulesFR</value>
+  </data>
 	<data name="mnuItemInsertCopiedRowText" xml:space="preserve">
     <value>Insert Copied RowFR</value>
   </data>
@@ -839,6 +845,12 @@
   </data>
 	<data name="mnuItemRenameText" xml:space="preserve">
     <value>Rename...FR</value>
+  </data>
+	<data name="mnuItemValidateRulesText" xml:space="preserve">
+    <value>ValidateFR</value>
+  </data>
+	<data name="mnuItemViewRulesText" xml:space="preserve">
+    <value>ViewFR</value>
   </data>
 	<data name="moduleEndIsInvalidForBeginFlow" xml:space="preserve">
     <value>Module End shape is invalid when the initial shape is Begin Flow.FR</value>
@@ -962,9 +974,27 @@
     <value>Row Index {0} is invalid.FR</value>
     <comment>0=1based Row Number</comment>
   </data>
+	<data name="ruleErrorMatch" xml:space="preserve">
+    <value>^Rule ".+" validation failed.FR</value>
+  </data>
 	<data name="ruleSetIsValidFormat" xml:space="preserve">
     <value>Module "{0}" is valid.FR</value>
     <comment>0=ModuleName</comment>
+  </data>
+	<data name="ruleSetListViewColumnHeaderTextActive" xml:space="preserve">
+    <value>ActiveFR</value>
+  </data>
+	<data name="ruleSetListViewColumnHeaderTextName" xml:space="preserve">
+    <value>NameFR</value>
+  </data>
+	<data name="ruleSetListViewColumnHeaderTextPriority" xml:space="preserve">
+    <value>PriorityFR</value>
+  </data>
+	<data name="ruleSetListViewColumnHeaderTextReevaluation" xml:space="preserve">
+    <value>ReevaluationFR</value>
+  </data>
+	<data name="ruleSetListViewColumnHeaderTextRulePreview" xml:space="preserve">
+    <value>Rule PreviewFR</value>
   </data>
 	<data name="saveFormQuestionFormat" xml:space="preserve">
     <value>Save {0}?FR</value>
@@ -1402,6 +1432,18 @@
   </data>
 	<data name="enumDescriptionConnectors" xml:space="preserve">
     <value>ConnectorsFR</value>
+  </data>
+	<data name="enumDescriptionFull" xml:space="preserve">
+    <value>FullFR</value>
+  </data>
+	<data name="enumDescriptionUpdateOnly" xml:space="preserve">
+    <value>Update OnlyFR</value>
+  </data>
+	<data name="enumDescriptionAlways" xml:space="preserve">
+    <value>AlwaysFR</value>
+  </data>
+	<data name="enumDescriptionNever" xml:space="preserve">
+    <value>NeverFR</value>
   </data>
 	<data name="fieldPropertyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>

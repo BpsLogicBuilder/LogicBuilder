@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System.Globalization;
@@ -9,6 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class ConfigurationService : IConfigurationService
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IPathHelper _pathHelper;
         private ProjectProperties? _projectProperties;
         private ConstructorList? _constructorList;
         private FragmentList? _fragmentList;
@@ -16,9 +18,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private VariableList? _variableList;
         private string? _selectedApplication;
 
-        public ConfigurationService(IExceptionHelper exceptionHelper)
+        public ConfigurationService(IExceptionHelper exceptionHelper, IPathHelper pathHelper)
         {
             _exceptionHelper = exceptionHelper;
+            _pathHelper = pathHelper;
         }
 
         public ProjectProperties ProjectProperties
@@ -99,6 +102,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             => ProjectProperties.ApplicationList.TryGetValue(applicationName.ToLower(CultureInfo.InvariantCulture), out Application? application) 
             ? application 
             : null;
+
+        public Application GetApplicationFromPath(string path)
+        {
+            string ruleFolderFullName = _pathHelper.CombinePaths(ProjectProperties.ProjectPath, ProjectPropertiesConstants.RULESFOLDER);
+
+            if (path.Length <= ruleFolderFullName.Length + 1)
+                throw _exceptionHelper.CriticalException("{9C760EA5-3747-4B56-AD97-E2F5839CA4A9}");
+
+            if (!path.StartsWith(ruleFolderFullName, true, CultureInfo.InvariantCulture))
+                throw _exceptionHelper.CriticalException("{53959DC0-9AD2-4C6E-939A-C8C4CED59181}");
+
+            string applicationName = path.Remove(0, ruleFolderFullName.Length + 1);
+            if (applicationName.Contains(FileConstants.DIRECTORYSEPARATOR))
+                applicationName = applicationName[..applicationName.IndexOf(FileConstants.DIRECTORYSEPARATOR)];
+
+            if (ProjectProperties.ApplicationList.TryGetValue(applicationName.ToLower(CultureInfo.InvariantCulture), out Application? application))
+                return application;
+
+            throw _exceptionHelper.CriticalException("{AE753220-85DB-4F14-A131-2B87BB40EB92}");
+        }
 
         public Application GetSelectedApplication()
         {

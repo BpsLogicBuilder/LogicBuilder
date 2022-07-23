@@ -70,6 +70,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return enumNames.Select(item => (T)Enum.Parse(typeof(T), item)).ToList();
         }
 
+        public string GetEnumResourceString(string? enumName)
+        {
+            if (string.IsNullOrEmpty(enumName))
+                throw _exceptionHelper.CriticalException("{87C725C2-BEB3-4BDC-AFDD-E750642957D9}");
+
+            string? resourceValue = Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, enumName));
+
+            if (resourceValue == null)
+                throw _exceptionHelper.CriticalException("{5E5F427C-CA44-4D7F-99F1-18DE4680D629}");
+
+            return resourceValue;
+        }
+
         public GenericConfigCategory GetGenericConfigCategory(string elementName)
         {
             return elementName switch
@@ -429,18 +442,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         e => GetVisibleEnumText(e)
                     )
             );
-
-        private string GetEnumResourceString(string? enumName)
-        {
-            if (string.IsNullOrEmpty(enumName))
-                throw _exceptionHelper.CriticalException("{87C725C2-BEB3-4BDC-AFDD-E750642957D9}");
-
-            string? resourceValue = Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, enumName));
-
-            if (resourceValue == null)
-                throw _exceptionHelper.CriticalException("{5E5F427C-CA44-4D7F-99F1-18DE4680D629}");
-
-            return resourceValue;
-        }
     }
 }

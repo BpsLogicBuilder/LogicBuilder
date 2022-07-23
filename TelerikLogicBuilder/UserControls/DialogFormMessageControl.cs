@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
@@ -22,6 +23,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private State _state;
 
         #region Methods
+        public void ClearMessage()
+        {
+            _state = State.Ok;
+            SetColorOk(ThemeResolutionService.ApplicationThemeName);
+            radGroupBoxMessages.Text = Strings.dialogFormMessageControlMessagesGroupBoxHeader;
+            radLabelMessages.Text = string.Empty;
+        }
+
         public void SetErrorMessage(string message)
         {
             _state = State.Error;
@@ -40,16 +49,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radLabelMessages.Text = message;
         }
 
-        public void ClearMessage()
-        {
-            _state = State.Ok;
-            radLabelMessages.Text = string.Empty;
-            radGroupBoxMessages.Text = string.Empty;
-        }
-
         private void Initialize()
         {
             radPanelMessages.AutoScroll = true;
+            ((BorderPrimitive)radPanelMessages.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
             radLabelMessages.AutoSize = true;
             radLabelMessages.Padding = new Padding(10);
             radLabelMessages.MaximumSize = new Size(radPanelMessages.Size.Width, int.MaxValue);
@@ -76,6 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void SetColorOk(string themeName)
         {
+            ((BorderPrimitive)radGroupBoxMessages.GroupBoxElement.Content.Children[1]).ForeColor = ForeColorUtility.GetGroupBoxBorderColor(themeName);
             Color color = ForeColorUtility.GetOkForeColor(themeName);
             radLabelMessages.ForeColor = color;
             radGroupBoxMessages.ForeColor = color;
@@ -83,6 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void SetErrorColor(string themeName)
         {
+            ((BorderPrimitive)radGroupBoxMessages.GroupBoxElement.Content.Children[1]).ForeColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
             Color color = ForeColorUtility.GetErrorForeColor(themeName);
             radLabelMessages.ForeColor = color;
             radGroupBoxMessages.ForeColor = color;

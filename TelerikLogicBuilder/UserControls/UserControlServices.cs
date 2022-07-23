@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -11,10 +12,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<DocumentsExplorer>()
                 .AddTransient<Messages>()
                 .AddTransient<ProjectExplorer>()
+                .AddSingleton<IRadDropDownListHelper, RadDropDownListHelper>()
                 .AddTransient<RulesExplorer>()
 
                 //DocumentsExplorerHelpers
-                .AddDocumentsExplorerCommands();
+                .AddDocumentsExplorerCommands()
+
+                //RulesExplorerHelpers
+                .AddRulesExplorerCommands();
         }
     }
 }

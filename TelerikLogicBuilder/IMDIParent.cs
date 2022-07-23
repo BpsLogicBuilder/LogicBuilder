@@ -31,6 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         void ChangeCursor(Cursor cursor);
         void RemoveEditControl();
         Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task);
+        Task RunLoadContextAsync(Func<CancellationTokenSource, Task> task);
         void OpenProject(string projectFileFullname);
         void SetEditControlMenuStates(bool visioOpen, bool tableOpen);
 

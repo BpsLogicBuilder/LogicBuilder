@@ -10,6 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool CanBeInteger(LiteralVariableType variableType);
         IList<string> ConvertEnumListToStringList<T>(IList<T>? excludedItems = null);
         IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames);
+        string GetEnumResourceString(string? enumName);
         GenericConfigCategory GetGenericConfigCategory(string elementName);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);

@@ -42,6 +42,20 @@ namespace TelerikLogicBuilder.Tests.Configuration
             Assert.Equal(returnsApplication, application != null);
         }
 
+        [Fact]
+        public void ReturnsConfiguredApplicationGivenRulesFilePath()
+        {
+            //arrange
+            IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
+            configurationService.ProjectProperties = GetProjectProperties(serviceProvider.GetRequiredService<IContextProvider>());
+
+            //act
+            Application? application = configurationService.GetApplicationFromPath(@"C:\ProjectPath\RULES\App01\diagram\someFile.module");
+
+            //assert
+            Assert.True(application != null);
+        }
+
         #region Fields
         private readonly IServiceProvider serviceProvider;
         #endregion Fields

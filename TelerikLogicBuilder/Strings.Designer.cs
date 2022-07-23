@@ -1132,6 +1132,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete All Rules?.
+        /// </summary>
+        internal static string deleteAllRulesQuestion {
+            get {
+                return ResourceManager.GetString("deleteAllRulesQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete the file: {0}?.
         /// </summary>
         internal static string deleteFileQuestionFormat {
@@ -1371,6 +1380,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string endShapeOutgoing {
             get {
                 return ResourceManager.GetString("endShapeOutgoing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always.
+        /// </summary>
+        internal static string enumDescriptionAlways {
+            get {
+                return ResourceManager.GetString("enumDescriptionAlways", resourceCulture);
             }
         }
         
@@ -1618,6 +1636,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full.
+        /// </summary>
+        internal static string enumDescriptionFull {
+            get {
+                return ResourceManager.GetString("enumDescriptionFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generic.
         /// </summary>
         internal static string enumDescriptionGeneric {
@@ -1776,6 +1803,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionMultipleLineTextBox {
             get {
                 return ResourceManager.GetString("enumDescriptionMultipleLineTextBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Never.
+        /// </summary>
+        internal static string enumDescriptionNever {
+            get {
+                return ResourceManager.GetString("enumDescriptionNever", resourceCulture);
             }
         }
         
@@ -2217,6 +2253,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionULongKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionULongKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Only.
+        /// </summary>
+        internal static string enumDescriptionUpdateOnly {
+            get {
+                return ResourceManager.GetString("enumDescriptionUpdateOnly", resourceCulture);
             }
         }
         
@@ -3184,6 +3229,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete All Rules.
+        /// </summary>
+        internal static string mnuItemDeleteAllRulesText {
+            get {
+                return ResourceManager.GetString("mnuItemDeleteAllRulesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Row.
         /// </summary>
         internal static string mnuItemDeleteRowText {
@@ -3270,6 +3324,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemRenameText {
             get {
                 return ResourceManager.GetString("mnuItemRenameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate.
+        /// </summary>
+        internal static string mnuItemValidateRulesText {
+            get {
+                return ResourceManager.GetString("mnuItemValidateRulesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        internal static string mnuItemViewRulesText {
+            get {
+                return ResourceManager.GetString("mnuItemViewRulesText", resourceCulture);
             }
         }
         
@@ -3589,11 +3661,65 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ^Rule &quot;.+&quot; validation failed..
+        /// </summary>
+        internal static string ruleErrorMatch {
+            get {
+                return ResourceManager.GetString("ruleErrorMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module &quot;{0}&quot; is valid..
         /// </summary>
         internal static string ruleSetIsValidFormat {
             get {
                 return ResourceManager.GetString("ruleSetIsValidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string ruleSetListViewColumnHeaderTextActive {
+            get {
+                return ResourceManager.GetString("ruleSetListViewColumnHeaderTextActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string ruleSetListViewColumnHeaderTextName {
+            get {
+                return ResourceManager.GetString("ruleSetListViewColumnHeaderTextName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Priority.
+        /// </summary>
+        internal static string ruleSetListViewColumnHeaderTextPriority {
+            get {
+                return ResourceManager.GetString("ruleSetListViewColumnHeaderTextPriority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reevaluation.
+        /// </summary>
+        internal static string ruleSetListViewColumnHeaderTextReevaluation {
+            get {
+                return ResourceManager.GetString("ruleSetListViewColumnHeaderTextReevaluation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rule Preview.
+        /// </summary>
+        internal static string ruleSetListViewColumnHeaderTextRulePreview {
+            get {
+                return ResourceManager.GetString("ruleSetListViewColumnHeaderTextRulePreview", resourceCulture);
             }
         }
         

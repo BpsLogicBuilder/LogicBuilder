@@ -11,22 +11,54 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
     {
         private const string DefaultTheme = ThemeCollections.ControlDefault;
 
-        private static Dictionary<string, string> TreeViewNormalBorderColorRepositoryTable => new()
+        private static Dictionary<string, string> ErrorRepositoryTable => new()
         {
-            [ThemeCollections.ControlDefault] = "TreeViewControlBorder",
+            [ThemeCollections.ControlDefault] = "CalculatorButtonForeColorHover",
+            [ThemeCollections.Office2007Black] = "ForeColor(0;50;208)",
+            [ThemeCollections.Office2007Silver] = "ForeColor(0;50;208)",
+            [ThemeCollections.Office2010Black] = "ForeColorWhite",
+            [ThemeCollections.Office2010Blue] = "RedBorder",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
+            [ThemeCollections.Office2010Silver] = "RedBorder",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
+            //[ThemeCollections.Office2010Blue] = "ForeColorOrange",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
+            //[ThemeCollections.Office2010Silver] = "ForeColor(214;121;3)",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
+            [ThemeCollections.Office2013Dark] = "ForeColor(0;114;198)",
+            [ThemeCollections.Office2013Light] = "ForeColor(0;114;198)",
+            [ThemeCollections.Office2019Dark] = "AccentMouseOverBorderForeColor",
+            [ThemeCollections.Office2019Gray] = "AccentForeColor",
+            [ThemeCollections.Office2019Light] = "AccentForeColor"
+        };
+
+        private static Dictionary<string, string> GroupBoxBorderColorRepositoryTable => new()
+        {
+            [ThemeCollections.ControlDefault] = "EditorBorder",
             [ThemeCollections.Office2007Black] = "GrayBorder",
             [ThemeCollections.Office2007Silver] = "GrayBorder",
-            [ThemeCollections.Office2010Black] = "TreeViewBorder",
-            [ThemeCollections.Office2010Blue] = "TreeViewBorder",
-            [ThemeCollections.Office2010Silver] = "TreeViewBorder",
-            [ThemeCollections.Office2013Dark] = "BorderSolid(171;171;171)",
-            [ThemeCollections.Office2013Light] = "BorderSolid(171;171;171)",
+            [ThemeCollections.Office2010Black] = "GroupBoxBorder",
+            [ThemeCollections.Office2010Blue] = "GroupBoxBorder",
+            [ThemeCollections.Office2010Silver] = "GroupBoxBorder",
+            [ThemeCollections.Office2013Dark] = "ForeColor(38;38;38)",
+            [ThemeCollections.Office2013Light] = "ForeColor(38;38;38)",
             [ThemeCollections.Office2019Dark] = "MainBorder",
             [ThemeCollections.Office2019Gray] = "MainBorder",
             [ThemeCollections.Office2019Light] = "MainBorder",
         };
 
-        private static Dictionary<string, string> ErrorRepositoryTable => new()
+        private static Dictionary<string, string> GroupBoxForeColorRepositoryTable => new()
+        {
+            [ThemeCollections.ControlDefault] = "BlackText",
+            [ThemeCollections.Office2007Black] = "BlackForeColor",
+            [ThemeCollections.Office2007Silver] = "BlackForeColor",
+            [ThemeCollections.Office2010Black] = "ForeColorBlack",
+            [ThemeCollections.Office2010Blue] = "ForeColorBlack",
+            [ThemeCollections.Office2010Silver] = "BlackText",
+            [ThemeCollections.Office2013Dark] = "BorderSolid(0;0;0)",
+            [ThemeCollections.Office2013Light] = "BorderSolid(0;0;0)",
+            [ThemeCollections.Office2019Dark] = "MainForeColor",
+            [ThemeCollections.Office2019Gray] = "MainForeColor",
+            [ThemeCollections.Office2019Light] = "MainForeColor",
+        };
+
+        private static Dictionary<string, string> OkRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "NormalButtonForeColor",
             [ThemeCollections.Office2007Black] = "BlackForeColor",
@@ -39,21 +71,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             [ThemeCollections.Office2019Dark] = "MainForeColor",
             [ThemeCollections.Office2019Gray] = "MainForeColor",
             [ThemeCollections.Office2019Light] = "MainForeColor",
-        };
-
-        private static Dictionary<string, string> OkRepositoryTable => new()
-        {
-            [ThemeCollections.ControlDefault] = "CalculatorButtonForeColorHover",
-            [ThemeCollections.Office2007Black] = "ForeColor(0;50;208)",
-            [ThemeCollections.Office2007Silver] = "ForeColor(0;50;208)",
-            [ThemeCollections.Office2010Black] = "ForeColorWhite",
-            [ThemeCollections.Office2010Blue] = "ForeColorOrange",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
-            [ThemeCollections.Office2010Silver] = "ForeColor(214;121;3)",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
-            [ThemeCollections.Office2013Dark] = "ForeColor(0;114;198)",
-            [ThemeCollections.Office2013Light] = "ForeColor(0;114;198)",
-            [ThemeCollections.Office2019Dark] = "AccentMouseOverBorderForeColor",
-            [ThemeCollections.Office2019Gray] = "AccentForeColor",
-            [ThemeCollections.Office2019Light] = "AccentForeColor"
         };
 
         private static Dictionary<string, string> TextBoxForeColorRepositoryTable => new()
@@ -101,6 +118,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             [ThemeCollections.Office2019Light] = "MainBorder",
         };
 
+        private static Dictionary<string, string> TreeViewNormalBorderColorRepositoryTable => new()
+        {
+            [ThemeCollections.ControlDefault] = "TreeViewControlBorder",
+            [ThemeCollections.Office2007Black] = "GrayBorder",
+            [ThemeCollections.Office2007Silver] = "GrayBorder",
+            [ThemeCollections.Office2010Black] = "TreeViewBorder",
+            [ThemeCollections.Office2010Blue] = "TreeViewBorder",
+            [ThemeCollections.Office2010Silver] = "TreeViewBorder",
+            [ThemeCollections.Office2013Dark] = "BorderSolid(171;171;171)",
+            [ThemeCollections.Office2013Light] = "BorderSolid(171;171;171)",
+            [ThemeCollections.Office2019Dark] = "MainBorder",
+            [ThemeCollections.Office2019Gray] = "MainBorder",
+            [ThemeCollections.Office2019Light] = "MainBorder",
+        };
+
         public static Color GetErrorForeColor(string themeName)
         {
             themeName ??= DefaultTheme;
@@ -108,6 +140,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
                 throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{E49A3619-879C-4DCF-9575-E77F97F31E0E}"));
 
             return GetForeColorFromRepository(themeName, ErrorRepositoryTable);
+        }
+
+        public static Color GetGroupBoxBorderColor(string themeName)
+        {
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{A0BBBD23-9C5D-45B3-8700-37CE0E064961}"));
+
+            return GetForeColorFromRepository(themeName, GroupBoxBorderColorRepositoryTable);
+        }
+
+        public static Color GetGroupBoxBorderErrorColor()
+        {
+            return Color.Red;
+        }
+
+        public static Color GetGroupBoxForeColor(string themeName)
+        {
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{E7C95FE0-605B-4104-BA76-5E2FDFC99D69}"));
+
+            return GetForeColorFromRepository(themeName, GroupBoxForeColorRepositoryTable);
         }
 
         public static Color GetOkForeColor(string themeName)

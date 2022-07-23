@@ -6,6 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration
     {
         void ClearConfigurationData();
         Application? GetApplication(string applicationName);
+        Application GetApplicationFromPath(string path);
         Application GetSelectedApplication();
         string GetSelectedApplicationKey();
         void SetSelectedApplication(string applicationName);

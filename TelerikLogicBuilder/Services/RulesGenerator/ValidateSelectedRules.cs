@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
@@ -32,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         public async Task<IList<ResultMessage>> Validate(IList<string> sourceFiles, Application application, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
         {
             List<ResultMessage> resultMessages = new();
+            ApplicationTypeInfo applicationTypeInfo = _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name);
 
             for (int i = 0; i < sourceFiles.Count; i++)
             {
@@ -44,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                     IList<ResultMessage> validationMessages = await _rulesValidator.Validate
                     (
                         ruleSet,
-                        _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
+                        applicationTypeInfo,
                         cancellationTokenSource
                     );
 
@@ -60,8 +62,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                             (
                                 string.Format
                                 (
-                                    CultureInfo.CurrentCulture, 
-                                    Strings.ruleSetIsValidFormat, 
+                                    CultureInfo.CurrentCulture,
+                                    Strings.ruleSetIsValidFormat,
                                     fileName
                                 )
                             )
