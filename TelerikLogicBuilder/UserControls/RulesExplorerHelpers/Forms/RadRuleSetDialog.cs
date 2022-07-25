@@ -3,14 +3,12 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using LogicBuilder.Workflow.Activities.Rules;
-using LogicBuilder.Workflow.ComponentModel.Compiler;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -40,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
         }
 
         private readonly RadToolTip toolTip = new();
-        private readonly Dictionary<string, string> validationErrors = new();
+        private Dictionary<string, string>? validationErrors;
         private RuleValidation? ruleValidation;
 
         public void Setup(Type activityType, RuleSet ruleSet, List<Assembly> references)
@@ -59,26 +57,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             {
 
                 if (ruleSet.Validate(ruleValidation))
-                    return;
-
-                HashSet<string> ruleNames = ruleSet.Rules.Select(r => r.Name).ToHashSet();
-
-                foreach (ValidationError validationError in ruleValidation.Errors)
                 {
-                    if (!Regex.IsMatch(validationError.ErrorText, Strings.ruleErrorMatch))
-                        continue;
-
-                    string[] parts = validationError.ErrorText.Split(new char[] { '"', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (!ruleNames.Contains(parts[1]))
-                        continue;
-
-                    string ruleName = parts[1];
-
-                    if (validationErrors.TryGetValue(ruleName, out string? error))
-                        validationErrors[ruleName] = $"{error}{Environment.NewLine}{validationError.ErrorText}";
-                    else
-                        validationErrors.Add(ruleName, validationError.ErrorText);
+                    validationErrors = new Dictionary<string, string>();
+                    return;
                 }
+
+                validationErrors = ruleValidation.ErrorsByRuleName
+                    .ToDictionary
+                    (
+                        kvp => kvp.Key,
+                        kvp => string.Join(Environment.NewLine, kvp.Value.Select(v => v.ErrorText))
+                    );
             }
             catch (Exception ex)
             {
@@ -177,7 +166,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
                 return;
 
             Rule rule = (Rule)e.VisualItem.Data.Tag;
-            e.VisualItem.ForeColor = validationErrors.ContainsKey(rule.Name)
+            e.VisualItem.ForeColor = validationErrors?.ContainsKey(rule.Name) == true
                 ? ForeColorUtility.GetErrorForeColor(ThemeResolutionService.ApplicationThemeName)
                 : ForeColorUtility.GetOkForeColor(ThemeResolutionService.ApplicationThemeName);
         }
@@ -189,22 +178,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
 
             Rule rule = (Rule)radListViewRuleSet.SelectedItem.Tag;
             BorderPrimitive border = (BorderPrimitive)radGroupBoxRule.GroupBoxElement.Content.Children[1];
-            //if (ruleValidation.ErrorsPerRule.TryGetValue(rule.Name, out IList<string> errors))
-            //{
-            //    border.ForeColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
-            //    radGroupBoxRule.ForeColor = ForeColorUtility.GetErrorForeColor(ThemeResolutionService.ApplicationThemeName);
-            //    toolTip.SetToolTip(radGroupBoxRule, validationErrors[rule.Name]);
-            //    dialogFormMessageControl1.SetErrorMessage(validationErrors[rule.Name]);
-            //}
-            //else
-            //{
-            //    border.ForeColor = ForeColorUtility.GetGroupBoxBorderColor(ThemeResolutionService.ApplicationThemeName);
-            //    radGroupBoxRule.ForeColor = ForeColorUtility.GetOkForeColor(ThemeResolutionService.ApplicationThemeName);
-            //    toolTip.SetToolTip(radGroupBoxRule, String.Empty);
-            //    dialogFormMessageControl1.ClearMessage();
-            //}
 
-            if (validationErrors.ContainsKey(rule.Name))
+            if (validationErrors?.ContainsKey(rule.Name) == true)
             {
                 border.ForeColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
                 radGroupBoxRule.ForeColor = ForeColorUtility.GetErrorForeColor(ThemeResolutionService.ApplicationThemeName);
