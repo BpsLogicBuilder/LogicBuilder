@@ -3,6 +3,7 @@
     internal interface ITableControl
     {
         void FindCell();
+        void FindCell(int userRowIndex, int userColumnIndex);
         void SetEvaluationFull();
         void SetEvaluationNone();
         void SetEvaluationUpdateOnly();

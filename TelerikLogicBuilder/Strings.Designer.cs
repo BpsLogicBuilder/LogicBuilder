@@ -799,6 +799,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ╟.
+        /// </summary>
+        internal static string constructorVisibleTextBegin {
+            get {
+                return ResourceManager.GetString("constructorVisibleTextBegin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ╢.
+        /// </summary>
+        internal static string constructorVisibleTextEnd {
+            get {
+                return ResourceManager.GetString("constructorVisibleTextEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new Constructors File?.
         /// </summary>
         internal static string createNewConstructorsFileQuestion {
@@ -2599,6 +2617,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [.
+        /// </summary>
+        internal static string functionVisibleTextBegin {
+            get {
+                return ResourceManager.GetString("functionVisibleTextBegin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ].
+        /// </summary>
+        internal static string functionVisibleTextEnd {
+            get {
+                return ResourceManager.GetString("functionVisibleTextEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generic methods are not supported. Method name: &quot;{0}&quot;..
         /// </summary>
         internal static string genericMethodsNotSupportedFormat {
@@ -4314,6 +4350,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableTypeNameMustBeEmptyFormat {
             get {
                 return ResourceManager.GetString("variableTypeNameMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;.
+        /// </summary>
+        internal static string variableVisibleTextBegin {
+            get {
+                return ResourceManager.GetString("variableVisibleTextBegin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;.
+        /// </summary>
+        internal static string variableVisibleTextEnd {
+            get {
+                return ResourceManager.GetString("variableVisibleTextEnd", resourceCulture);
             }
         }
         

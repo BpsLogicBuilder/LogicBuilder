@@ -18,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             radPanelMessages.ClientSizeChanged += RadPanelMessages_ClientSizeChanged;
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
+            this.Disposed += DialogFormMessageControl_Disposed;
         }
 
         private State _state;
@@ -96,6 +97,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         #endregion Methods
 
         #region Event Handlers
+        private void DialogFormMessageControl_Disposed(object? sender, EventArgs e)
+        {
+            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
+        }
+
         private void RadPanelMessages_ClientSizeChanged(object? sender, EventArgs e)
         {
             radLabelMessages.MaximumSize = new Size(radPanelMessages.Size.Width, int.MaxValue);

@@ -215,6 +215,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void DocumentsExplorer_Disposed(object? sender, EventArgs e)
         {
+            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
         }
 
         private void DocumentsExplorer_Load(object? sender, EventArgs e)

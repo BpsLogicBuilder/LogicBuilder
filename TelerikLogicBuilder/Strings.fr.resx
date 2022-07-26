@@ -357,6 +357,14 @@
     <value>{0} - {1}({2})FR</value>
     <comment>0=constructorName 1=Type 2=parametersToString</comment>
   </data>
+	<data name="constructorVisibleTextBegin" xml:space="preserve">
+    <value>&#x255F;</value>
+    <comment>Must be a string with length==1 i.e. character e.g. HHH(Table: value=phone;key=MM;field=DD)</comment>
+  </data>
+	<data name="constructorVisibleTextEnd" xml:space="preserve">
+    <value>&#x2562;</value>
+    <comment>Must be a string with length==1 i.e. character</comment>
+  </data>
 	<data name="createNewConstructorsFileQuestion" xml:space="preserve">
     <value>Create a new Constructors File?FR</value>
   </data>
@@ -611,6 +619,14 @@
 	<data name="functionTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for function {0} must be empty when the reference category is not "Type"or "Static Reference".FR</value>
     <comment>0=functionName</comment>
+  </data>
+	<data name="functionVisibleTextBegin" xml:space="preserve">
+    <value>[</value>
+    <comment>Must be a string with length==1 i.e. character e.g. Set Variable: {&lt;AAS Table Key&gt; EqualsUS GGG&lt;ACIS INL usoc&gt;HHH[Table: value=phone;key=MM;field=DD]}</comment>
+  </data>
+	<data name="functionVisibleTextEnd" xml:space="preserve">
+    <value>]</value>
+    <comment>Must be a string with length==1 i.e. character</comment>
   </data>
 	<data name="genericMethodsNotSupportedFormat" xml:space="preserve">
     <value>Generic methods are not supported. Method name: "{0}".FR</value>
@@ -1117,6 +1133,14 @@
   </data>
 	<data name="variableTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for  variable {0} must be empty when the reference category is not "Type"or "Static Reference".FR</value>
+  </data>
+	<data name="variableVisibleTextBegin" xml:space="preserve">
+    <value>&lt;</value>
+    <comment>Must be a string with length==1 i.e. character</comment>
+  </data>
+	<data name="variableVisibleTextEnd" xml:space="preserve">
+    <value>&gt;</value>
+    <comment>Must be a string with length==1 i.e. character</comment>
   </data>
 	<data name="waitConditionShapeDataRequired" xml:space="preserve">
     <value>Wait Condition Shape requires data.FR</value>

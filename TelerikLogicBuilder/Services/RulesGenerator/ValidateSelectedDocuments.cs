@@ -1,4 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -19,15 +21,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IDiagramValidator _diagramValidator;
         private readonly ITableValidator _tableValidator;
+        private readonly IDisplayResultMessages _displayResultMessages;
 
         public ValidateSelectedDocuments(
             IApplicationTypeInfoManager applicationTypeInfoManager,
             IDiagramValidator diagramValidator,
-            ITableValidator tableValidator)
+            ITableValidator tableValidator,
+            IDisplayResultMessages displayResultMessages)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _diagramValidator = diagramValidator;
             _tableValidator = tableValidator;
+            _displayResultMessages = displayResultMessages;
         }
 
         public async Task<IList<ResultMessage>> Validate(IList<string> sourceFiles, FlowBuilder.Configuration.Application application, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
@@ -43,21 +48,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                                         || sourceFile.EndsWith(FileExtensions.VSDXFILEEXTENSION))
                     {
                         Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
-                        resultMessages.AddRange
+                        IList<ResultMessage> visioDocumentResults = await _diagramValidator.Validate
                         (
-                            await _diagramValidator.Validate
-                            (
-                                sourceFile,
-                                visioDocument,
-                                _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
-                                progress,
-                                cancellationTokenSource
-                            )
+                            sourceFile,
+                            visioDocument,
+                            _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
+                            progress,
+                            cancellationTokenSource
                         );
+
+                        foreach (ResultMessage resultMessage in visioDocumentResults)
+                        {
+                            resultMessages.Add(resultMessage);
+                            _displayResultMessages.AppendMessage(resultMessage, MessageTab.Documents);
+                        }
+
                         visioDocument.Close();
                     }
                     else if (sourceFile.EndsWith(FileExtensions.TABLEFILEEXTENSION))
                     {
+                        List<ResultMessage> tableDocumentResults = new List<ResultMessage>();
                         DataSet dataSet = new()
                         {
                             Locale = CultureInfo.InvariantCulture
@@ -76,31 +86,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                         }
                         catch (ConstraintException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (UnauthorizedAccessException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (ArgumentException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (IOException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (System.Security.SecurityException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
 
-                        resultMessages.AddRange
+                        tableDocumentResults.AddRange
                         (
                             await _tableValidator.Validate
                             (
@@ -111,6 +121,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                                 cancellationTokenSource
                             )
                         );
+
+                        foreach (ResultMessage resultMessage in tableDocumentResults)
+                        {
+                            resultMessages.Add(resultMessage);
+                            _displayResultMessages.AppendMessage(resultMessage, MessageTab.Documents);
+                        }
 
                         dataSet.Dispose();
                     }

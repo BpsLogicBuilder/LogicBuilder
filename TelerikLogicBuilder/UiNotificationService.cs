@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
-using System;
 using System.Reactive.Subjects;
 
 namespace ABIS.LogicBuilder.FlowBuilder
@@ -25,11 +24,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public void RequestRulesExplorerRefresh(bool refresh)
         {
             this.RulesExplorerRefreshSubject.OnNext(refresh);
-        }
-
-        internal IDisposable? RequestDocumentExplorerRefresh(Action refreshTreeView)
-        {
-            throw new NotImplementedException();
         }
     }
 }

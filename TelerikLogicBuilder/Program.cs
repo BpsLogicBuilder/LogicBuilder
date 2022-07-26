@@ -27,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             .AddMdiParentCommands()
             .AddEditingControls()
             .AddFlowBuilder()
+            .AddComponents()
             .AddConfiguration()
             .AddData()
             .AddDataParsers()

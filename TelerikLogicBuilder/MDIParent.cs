@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
@@ -9,7 +10,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initializati
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
-using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -141,6 +141,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public RadMenuItem RadMenuItemUpdateOnlyChaining => radMenuItemUpdateOnlyChaining;
 
         public IDocumentEditor? EditControl { get; set; }
+        public IMessages Messages => _messages;
 
         #region Methods
         public void AddTableControl(IDocumentEditor documentEditor) 
@@ -158,7 +159,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             _projectExplorer.ClearProfile();
             _projectExplorer.Visible = false;
-            /*TODO Clear Message Tabs*/
+            _messages.Clear(MessageTab.Documents);
+            _messages.Clear(MessageTab.Rules);
+            _messages.Clear(MessageTab.Messages);
+            _messages.Clear(MessageTab.PageSearchResults);
             _messages.Visible = false;
             SetButtonStates(false);
             UpdateRecentProjectMenuItems();

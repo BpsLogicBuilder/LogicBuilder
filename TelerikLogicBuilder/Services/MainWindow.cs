@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     {
         private readonly IExceptionHelper _exceptionHelper;
         private RightToLeft? _rightToLeft;
-        private Form? _mainWindow;
+        private Form? _instance;
 
         public MainWindow(IExceptionHelper exceptionHelper)
         {
@@ -18,15 +18,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             get
             {
-                if (_mainWindow == null)
+                if (_instance == null)
                     throw _exceptionHelper.CriticalException("{AB3C4989-4FFF-4CC4-88AB-49DBA1BE35E3}");
 
-                return _mainWindow;
+                return _instance;
             }
             set
             {
                 _rightToLeft = value.RightToLeft;
-                _mainWindow = value;
+                _instance = value;
             }
         }
 

@@ -1,21 +1,17 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    public partial class RichTextBoxViewerPanel : UserControl
+    internal partial class RichInputBoxMessagePanel : UserControl
     {
-        public RichTextBoxViewerPanel()
+        private readonly RichInputBox _richInputBox;
+        public RichInputBoxMessagePanel(RichInputBox richInputBox)
         {
+            _richInputBox = richInputBox;
             InitializeComponent();
             this.office2007BlackTheme1 = new Telerik.WinControls.Themes.Office2007BlackTheme();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
@@ -41,32 +37,41 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private Telerik.WinControls.Themes.Office2019DarkTheme office2019DarkTheme1;
         private Telerik.WinControls.Themes.Office2019LightTheme office2019LightTheme1;
 
-        public RichTextBox RichTextBox => this.richTextBox1;
-
         private void Initialize()
         {
-            this.richTextBox1.WordWrap = false;
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.BorderStyle = BorderStyle.None;
-            this.richTextBox1.ScrollBars = RichTextBoxScrollBars.Both;
-            this.richTextBox1.Select(0, 0);
+            ((ISupportInitialize)(this.radPanel1)).BeginInit();
+            this.radPanel1.SuspendLayout();
+            this.SuspendLayout();
+            _richInputBox.Dock = DockStyle.Fill;
+            _richInputBox.BorderStyle = BorderStyle.None;
+            _richInputBox.WordWrap = false;
+            _richInputBox.ReadOnly = true;
+            _richInputBox.DetectUrls = false;
+            _richInputBox.HideSelection = false;
 
-            this.richTextBox1.BackColor = ForeColorUtility.GetTextBoxBackColor(ThemeResolutionService.ApplicationThemeName);
-            this.richTextBox1.ForeColor = ForeColorUtility.GetTextBoxForeColor(ThemeResolutionService.ApplicationThemeName);
+            this.radPanel1.Controls.Add(_richInputBox);
+            ((ISupportInitialize)(this.radPanel1)).EndInit();
+            this.radPanel1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+            _richInputBox.BackColor = ForeColorUtility.GetTextBoxBackColor(ThemeResolutionService.ApplicationThemeName);
+            _richInputBox.ForeColor = ForeColorUtility.GetTextBoxForeColor(ThemeResolutionService.ApplicationThemeName);
 
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
-            this.Disposed += RichTextBoxViewerPanel_Disposed;
+            this.Disposed += RichInputBoxMessagePanel_Disposed;
         }
 
-        private void RichTextBoxViewerPanel_Disposed(object? sender, EventArgs e)
+        public RichInputBox RichInputBox => _richInputBox;
+
+        private void RichInputBoxMessagePanel_Disposed(object? sender, System.EventArgs e)
         {
             ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
         }
 
         private void ThemeResolutionService_ApplicationThemeChanged(object sender, ThemeChangedEventArgs args)
         {
-            this.richTextBox1.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
-            this.richTextBox1.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
+            _richInputBox.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
+            _richInputBox.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
         }
     }
 }

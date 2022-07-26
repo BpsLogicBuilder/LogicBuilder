@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         RadCommandBar CommandBar { get; }
         CommandBarButton CommandBarButtonSave { get; }
         IDocumentEditor? EditControl { get; set; }
+        IMessages Messages { get; }
         RadMenuItem RadMenuItemDelete { get; }
         RadMenuItem RadMenuItemSave { get; }
         RadMenuItem RadMenuItemUndo { get; }

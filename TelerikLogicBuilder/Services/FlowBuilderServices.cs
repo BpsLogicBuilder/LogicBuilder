@@ -15,6 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<ICheckVisioConfiguration, CheckVisioConfiguration>()
                 .AddSingleton<IConstructorTypeHelper, ConstructorTypeHelper>()
                 .AddSingleton<IContextProvider, ContextProvider>()
+                .AddSingleton<IDisplayResultMessages, DisplayResultMessages>()
                 .AddSingleton<IEncryption, Encryption>()
                 .AddSingleton<IEnumHelper, EnumHelper>()
                 .AddSingleton<IExceptionHelper, ExceptionHelper>()
