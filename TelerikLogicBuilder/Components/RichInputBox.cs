@@ -27,6 +27,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             _xmlDocumentHelpers = xmlDocumentHelpers;
             //12/2006 Calling component sets DetectUrls property
             InitializeComponent();
+
+            //the font will be replaced (links erased) on theme changes if it hasn't been set
+            this.Font = base.Font;
         }
 
         //12/2006 char array constant to distinguish between variables and functions
