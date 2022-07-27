@@ -67,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                     }
                     else if (sourceFile.EndsWith(FileExtensions.TABLEFILEEXTENSION))
                     {
-                        List<ResultMessage> tableDocumentResults = new List<ResultMessage>();
+                        List<ResultMessage> tableDocumentResults = new();
                         DataSet dataSet = new()
                         {
                             Locale = CultureInfo.InvariantCulture
@@ -143,9 +143,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 visioApplication.Quit();
             }
 
-            return resultMessages.Count == 0 
-                ? new ResultMessage[] { new ResultMessage(Strings.validationSuccessful) } 
-                : resultMessages;
+            if (resultMessages.Count == 0)
+            {
+                resultMessages.Add(new ResultMessage(Strings.validationSuccessful));
+                _displayResultMessages.AppendMessage(resultMessages[0], MessageTab.Documents);
+            }
+
+            return resultMessages;
         }
     }
 }

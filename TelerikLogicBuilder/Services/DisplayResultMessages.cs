@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             IMessages messagePanel = ((IMDIParent)MainWindowInstance).Messages;
             messagePanel.GoToNextEmptyLine(messageTab);
-            if (message.LinkHiddenText == null)
+            if (string.IsNullOrEmpty(message.LinkHiddenText))
             {
                 messagePanel.InsertText(message.Message, messageTab);
             }
@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             messagePanel.InsertText(Environment.NewLine, messageTab);
             messagePanel.SelectedMessageTab = messageTab;
-            ((Control)messagePanel).Visible = true;
+            messagePanel.Visible = true;
         }
 
         public void DisplayMessages(IList<ResultMessage> results, MessageTab messageTab)
@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             IMessages messagePanel = ((IMDIParent)MainWindowInstance).Messages;
             foreach (ResultMessage message in results)
             {
-                if (message.LinkHiddenText == null)
+                if (string.IsNullOrEmpty(message.LinkHiddenText))
                     messagePanel.InsertText(message.Message, messageTab);
                 else
                 {
@@ -70,7 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
             messagePanel.Select(0, 0, messageTab);
             messagePanel.SelectedMessageTab = messageTab;
-            ((Control)messagePanel).Visible = true;
+            messagePanel.Visible = true;
         }
 
         public void DisplayMessages(IList<string> results, MessageTab messageTab)

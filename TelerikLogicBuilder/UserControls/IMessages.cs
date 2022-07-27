@@ -5,6 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
     internal interface IMessages
     {
         MessageTab SelectedMessageTab { set; }
+        bool Visible { set; }
         void Clear(MessageTab messageTab);
         void GoToNextEmptyLine(MessageTab messageTab);
         void InsertLink(string text, string hyperlink, LinkType linkType, MessageTab messageTab);
