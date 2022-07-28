@@ -52,9 +52,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             messagePanel.Visible = true;
         }
 
+        public void Clear(MessageTab messageTab)
+        {
+            IMessages messagePanel = ((IMDIParent)MainWindowInstance).Messages;
+            messagePanel.Clear(messageTab);
+        }
+
         public void DisplayMessages(IList<ResultMessage> results, MessageTab messageTab)
         {
             IMessages messagePanel = ((IMDIParent)MainWindowInstance).Messages;
+            messagePanel.Clear(messageTab);
             foreach (ResultMessage message in results)
             {
                 if (string.IsNullOrEmpty(message.LinkHiddenText))

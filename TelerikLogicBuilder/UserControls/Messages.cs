@@ -217,7 +217,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             string xmlString = richInputBox.GetHiddenLinkText(charIndex);
             richInputBox.Select(boundary.Start, boundary.Finish - boundary.Start + 1);
-            
+
             switch (_xmlDocumentHelpers.ToXmlElement(xmlString).Name)
             {
                 case XmlDataConstants.DIAGRAMERRORSOURCE:

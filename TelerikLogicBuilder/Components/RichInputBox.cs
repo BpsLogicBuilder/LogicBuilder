@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Native;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,10 +28,36 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             _xmlDocumentHelpers = xmlDocumentHelpers;
             //12/2006 Calling component sets DetectUrls property
             InitializeComponent();
+            this.office2007BlackTheme1 = new Telerik.WinControls.Themes.Office2007BlackTheme();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.office2010BlackTheme1 = new Telerik.WinControls.Themes.Office2010BlackTheme();
+            this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
+            this.office2010SilverTheme1 = new Telerik.WinControls.Themes.Office2010SilverTheme();
+            this.office2013DarkTheme1 = new Telerik.WinControls.Themes.Office2013DarkTheme();
+            this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.office2019GrayTheme1 = new Telerik.WinControls.Themes.Office2019GrayTheme();
+            this.office2019LightTheme1 = new Telerik.WinControls.Themes.Office2019LightTheme();
+            this.office2019DarkTheme1 = new Telerik.WinControls.Themes.Office2019DarkTheme();
 
+            this.BackColor = ForeColorUtility.GetTextBoxBackColor(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
+            this.ForeColor = ForeColorUtility.GetTextBoxForeColor(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
+
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
+            this.Disposed += RichInputBox_Disposed;
             //the font will be replaced (links erased) on theme changes if it hasn't been set
             this.Font = base.Font;
         }
+
+        private Telerik.WinControls.Themes.Office2007BlackTheme office2007BlackTheme1;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.Themes.Office2010BlackTheme office2010BlackTheme1;
+        private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
+        private Telerik.WinControls.Themes.Office2010SilverTheme office2010SilverTheme1;
+        private Telerik.WinControls.Themes.Office2013DarkTheme office2013DarkTheme1;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme1;
+        private Telerik.WinControls.Themes.Office2019GrayTheme office2019GrayTheme1;
+        private Telerik.WinControls.Themes.Office2019DarkTheme office2019DarkTheme1;
+        private Telerik.WinControls.Themes.Office2019LightTheme office2019LightTheme1;
 
         //12/2006 char array constant to distinguish between variables and functions
         #region Constants
@@ -160,12 +187,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         private void SetSelectionAsLinkBoundary()
         {
             if (this.SelectionLength != 1) return;
+            this.SelectionProtected = false;
             FontStyle fontStyle = this.SelectionFont.Style;
             if (!this.SelectionFont.Underline)
                 fontStyle |= FontStyle.Underline;
-
+            
             this.SelectionFont = new Font(this.SelectionFont, fontStyle);
-            this.SelectionColor = BOUNDARYFORECOLOR;
+            this.SelectionColor = ForeColorUtility.GetLinkBoundaryColor(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
             this.SelectionProtected = true;
         }
 
@@ -178,7 +206,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
                 fontStyle &= ~FontStyle.Underline;
 
             this.SelectionFont = new Font(this.SelectionFont, fontStyle);
-            this.SelectionColor = RichInputBox.DefaultForeColor;
+            this.SelectionColor = ForeColorUtility.GetTextBoxForeColor(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
         }
 
         //12/2006 new method
@@ -219,6 +247,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             text = text.Replace("&#10;", "\n");
 
             this.SelectionStart = position;
+            ResetSelectionToNormal();
             this.SelectedText = text;
             position += text.Length;
             this.Select(position, 0);
@@ -305,6 +334,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             SetSelectionAsLinkBoundary();
             position++;
             this.Select(position, 0);
+            ResetSelectionToNormal();
 
             //Cancel Suspend Text Changed Event
             suspendTextChangedEvent = false;
@@ -806,6 +836,55 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             this.ResumeEvents(eventMask);
             return eligible;
         }
+
+        //7/2022 new method
+        private void ResetNonLinkTextOnThemeChange()
+        {
+            IntPtr eventMask = this.SuspendEvents();
+            List<LinkBoundaries> boundaries = GetBoundaryPositions();
+            if (boundaries.Count == 0)
+            {
+                //edge case: this.Text.Length == 1
+                this.Select(0, this.Text.Length);
+                ResetSelectionToNormal();
+                this.ResumeEvents(eventMask);
+                return;
+            }
+
+            for (int i = 0; i < boundaries.Count; i++)
+            {
+                this.Select(boundaries[i].Start, 1);
+                SetSelectionAsLinkBoundary();
+
+                if (i == 0)
+                {
+                    //edge case: boundaries[i].Start == 1
+                    this.Select(0, boundaries[i].Start);
+                    ResetSelectionToNormal();
+                }
+                else
+                {
+                    //edge case: boundaries[i - 1].Finish == 49, boundaries[i].Start == 51
+                    this.Select(boundaries[i - 1].Finish + 1, boundaries[i].Start - boundaries[i - 1].Finish - 1);
+                    ResetSelectionToNormal();
+                }
+
+                if (i == boundaries.Count - 1)
+                {
+                    //edge case: boundaries[i].Finish == 49, Text.Length = 51
+                    if (boundaries[i].Finish < this.Text.Length - 1)
+                    {
+                        this.Select(boundaries[i].Finish + 1, this.Text.Length - boundaries[i].Finish - 1);
+                        ResetSelectionToNormal();
+                    }
+                }
+
+                this.Select(boundaries[i].Finish, 1);
+                SetSelectionAsLinkBoundary();
+            }
+
+            this.ResumeEvents(eventMask);
+        }
         #endregion Methods
 
         #region EventHandlers
@@ -956,6 +1035,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
                 return;
 
             base.OnTextChanged(e);
+        }
+
+        private void RichInputBox_Disposed(object? sender, EventArgs e)
+        {
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
+        }
+
+        private void ThemeResolutionService_ApplicationThemeChanged(object sender, Telerik.WinControls.ThemeChangedEventArgs args)
+        {
+            this.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
+            this.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
+            ResetNonLinkTextOnThemeChange();
         }
         #endregion EventHandlers
     }

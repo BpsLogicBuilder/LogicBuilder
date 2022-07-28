@@ -165,6 +165,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             return GetForeColorFromRepository(themeName, GroupBoxForeColorRepositoryTable);
         }
 
+        public static Color GetLinkBoundaryColor(string themeName)
+        {
+            if (themeName == ThemeCollections.Office2019Dark)
+                return GetTextBoxForeColor(themeName);
+
+            return Color.Blue;
+        }
+
         public static Color GetOkForeColor(string themeName)
         {
             themeName ??= DefaultTheme;

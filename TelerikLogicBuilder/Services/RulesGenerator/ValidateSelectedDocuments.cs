@@ -39,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             List<ResultMessage> resultMessages = new();
             InvisibleApp visioApplication = new();
+            _displayResultMessages.Clear(MessageTab.Documents);
 
             try
             {
