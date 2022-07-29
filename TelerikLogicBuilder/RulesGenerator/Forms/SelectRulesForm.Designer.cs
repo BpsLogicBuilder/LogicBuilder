@@ -34,7 +34,6 @@
             this.radTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.splitPanelBottom = new Telerik.WinControls.UI.SplitPanel();
             this.radPanelMessages = new Telerik.WinControls.UI.RadPanel();
-            this.dialogFormMessageControl1 = new ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControl();
             this.radPanelCommandButtons = new Telerik.WinControls.UI.RadPanel();
             this.radButtonCancel = new Telerik.WinControls.UI.RadButton();
             this.radButtonOk = new Telerik.WinControls.UI.RadButton();
@@ -48,7 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).BeginInit();
             this.splitPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            this.radPanelMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandButtons)).BeginInit();
             this.radPanelCommandButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCancel)).BeginInit();
@@ -133,20 +131,11 @@
             // 
             // radPanelMessages
             // 
-            this.radPanelMessages.Controls.Add(this.dialogFormMessageControl1);
             this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelMessages.Location = new System.Drawing.Point(0, 0);
             this.radPanelMessages.Name = "radPanelMessages";
             this.radPanelMessages.Size = new System.Drawing.Size(782, 170);
             this.radPanelMessages.TabIndex = 1;
-            // 
-            // dialogFormMessageControl1
-            // 
-            this.dialogFormMessageControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dialogFormMessageControl1.Location = new System.Drawing.Point(0, 0);
-            this.dialogFormMessageControl1.Name = "dialogFormMessageControl1";
-            this.dialogFormMessageControl1.Size = new System.Drawing.Size(782, 170);
-            this.dialogFormMessageControl1.TabIndex = 0;
             // 
             // radPanelCommandButtons
             // 
@@ -197,7 +186,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).EndInit();
             this.splitPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandButtons)).EndInit();
             this.radPanelCommandButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButtonCancel)).EndInit();
@@ -215,7 +203,6 @@
         private Telerik.WinControls.UI.RadTreeView radTreeView;
         private Telerik.WinControls.UI.SplitPanel splitPanelBottom;
         private Telerik.WinControls.UI.RadPanel radPanelMessages;
-        private UserControls.DialogFormMessageControl dialogFormMessageControl1;
         private Telerik.WinControls.UI.RadPanel radPanelCommandButtons;
         private Telerik.WinControls.UI.RadButton radButtonCancel;
         private Telerik.WinControls.UI.RadButton radButtonOk;

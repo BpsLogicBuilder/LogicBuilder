@@ -16,5 +16,6 @@
         internal const byte NEWFOLDERIMAGEINDEX = 11;
         internal const byte CUTIMAGEINDEX = 12;
         internal const byte REFRESHIMAGEINDEX = 13;
+        internal const byte COPYIMAGEINDEX = 14;
     }
 }

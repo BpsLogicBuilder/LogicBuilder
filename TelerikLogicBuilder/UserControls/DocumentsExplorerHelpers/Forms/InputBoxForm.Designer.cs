@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.radPanelBottom = new Telerik.WinControls.UI.RadPanel();
-            this.dialogFormMessageControl1 = new ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControl();
             this.radPanelCommandButtons = new Telerik.WinControls.UI.RadPanel();
             this.radButtonCancel = new Telerik.WinControls.UI.RadButton();
             this.radButtonOk = new Telerik.WinControls.UI.RadButton();
             this.radPanelFill = new Telerik.WinControls.UI.RadPanel();
             this.radGroupBoxPrompt = new Telerik.WinControls.UI.RadGroupBox();
             this.radTextBoxInput = new Telerik.WinControls.UI.RadTextBox();
+            this.radPanelMessages = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
             this.radPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandButtons)).BeginInit();
@@ -47,26 +47,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPrompt)).BeginInit();
             this.radGroupBoxPrompt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanelBottom
             // 
-            this.radPanelBottom.Controls.Add(this.dialogFormMessageControl1);
+            this.radPanelBottom.Controls.Add(this.radPanelMessages);
             this.radPanelBottom.Controls.Add(this.radPanelCommandButtons);
             this.radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanelBottom.Location = new System.Drawing.Point(0, 97);
             this.radPanelBottom.Name = "radPanelBottom";
             this.radPanelBottom.Size = new System.Drawing.Size(754, 137);
             this.radPanelBottom.TabIndex = 1;
-            // 
-            // dialogFormMessageControl1
-            // 
-            this.dialogFormMessageControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dialogFormMessageControl1.Location = new System.Drawing.Point(0, 0);
-            this.dialogFormMessageControl1.Name = "dialogFormMessageControl1";
-            this.dialogFormMessageControl1.Size = new System.Drawing.Size(593, 137);
-            this.dialogFormMessageControl1.TabIndex = 3;
             // 
             // radPanelCommandButtons
             // 
@@ -101,7 +94,7 @@
             this.radPanelFill.Location = new System.Drawing.Point(0, 0);
             this.radPanelFill.Name = "radPanelFill";
             this.radPanelFill.Padding = new System.Windows.Forms.Padding(10);
-            this.radPanelFill.Size = new System.Drawing.Size(754, 97);
+            this.radPanelFill.Size = new System.Drawing.Size(754, 234);
             this.radPanelFill.TabIndex = 2;
             // 
             // radGroupBoxPrompt
@@ -123,14 +116,22 @@
             this.radTextBoxInput.TabIndex = 3;
             this.radTextBoxInput.TextChanged += new System.EventHandler(this.RadTextBoxInput_TextChanged);
             // 
+            // radPanelMessages
+            // 
+            this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanelMessages.Location = new System.Drawing.Point(0, 0);
+            this.radPanelMessages.Name = "radPanelMessages";
+            this.radPanelMessages.Size = new System.Drawing.Size(593, 137);
+            this.radPanelMessages.TabIndex = 3;
+            // 
             // InputBoxForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 234);
-            this.Controls.Add(this.radPanelFill);
             this.Controls.Add(this.radPanelBottom);
+            this.Controls.Add(this.radPanelFill);
             this.Name = "InputBoxForm";
             // 
             // 
@@ -149,6 +150,7 @@
             this.radGroupBoxPrompt.ResumeLayout(false);
             this.radGroupBoxPrompt.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -157,12 +159,12 @@
         #endregion
 
         private Telerik.WinControls.UI.RadPanel radPanelBottom;
-        private DialogFormMessageControl dialogFormMessageControl1;
         private Telerik.WinControls.UI.RadPanel radPanelCommandButtons;
         private Telerik.WinControls.UI.RadButton radButtonCancel;
         private Telerik.WinControls.UI.RadButton radButtonOk;
         private Telerik.WinControls.UI.RadPanel radPanelFill;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxPrompt;
         private Telerik.WinControls.UI.RadTextBox radTextBoxInput;
+        private Telerik.WinControls.UI.RadPanel radPanelMessages;
     }
 }

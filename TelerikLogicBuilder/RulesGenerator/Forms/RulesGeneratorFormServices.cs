@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -24,6 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IGetAllCheckedNodes>(),
                         provider.GetRequiredService<ISelectRulesTreeViewBuilder>(),
+                        provider.GetRequiredService<DialogFormMessageControl>(),
                         applicationName
                     )
                 )
@@ -36,6 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IGetAllCheckedNodes>(),
                         provider.GetRequiredService<ISelectModulesForDeploymentTreeViewBuilder>(),
+                        provider.GetRequiredService<DialogFormMessageControl>(),
                         applicationName
                     )
                  )

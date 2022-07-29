@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -11,12 +12,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private readonly IFormInitializer _formInitializer;
         private readonly IGetAllCheckedNodes _getAllCheckedNodeNames;
         private readonly ISelectDocunentsTreeViewBuilder _selectDocunentsTreeViewBuilder;
+        private readonly DialogFormMessageControl _dialogFormMessageControl;
 
-        public SelectDocumentsForm(IFormInitializer formInitializer, IGetAllCheckedNodes getAllCheckedNodeNames, ISelectDocunentsTreeViewBuilder selectDocunentsTreeViewBuilder)
+        public SelectDocumentsForm(IFormInitializer formInitializer, IGetAllCheckedNodes getAllCheckedNodeNames, ISelectDocunentsTreeViewBuilder selectDocunentsTreeViewBuilder, DialogFormMessageControl dialogFormMessageControl)
         {
             _formInitializer = formInitializer;
             _getAllCheckedNodeNames = getAllCheckedNodeNames;
             _selectDocunentsTreeViewBuilder = selectDocunentsTreeViewBuilder;
+            _dialogFormMessageControl = dialogFormMessageControl;
             InitializeComponent();
             Initialize();
         }
@@ -25,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         private void Initialize()
         {
+            InitializeDialogFormMessageControl();
             _formInitializer.SetFormDefaults(this, 648);
             _selectDocunentsTreeViewBuilder.Build(radTreeView);
 
@@ -32,6 +36,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
             radButtonCancel.DialogResult = DialogResult.Cancel;
             radButtonOk.Anchor = AnchorConstants.AnchorsLeftTopRight;
             radButtonCancel.Anchor = AnchorConstants.AnchorsLeftTopRight;
+        }
+
+        private void InitializeDialogFormMessageControl()
+        {
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerMain)).BeginInit();
+            this.radSplitContainerMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).BeginInit();
+            this.splitPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
+            this.radPanelMessages.SuspendLayout();
+            this.SuspendLayout();
+
+            _dialogFormMessageControl.Dock = DockStyle.Fill;
+            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
+            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerMain)).EndInit();
+            this.radSplitContainerMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).EndInit();
+            this.splitPanelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
+            this.radPanelMessages.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
 
         private void RadTreeView_NodeExpandedChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)

@@ -30,7 +30,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.Delete,
                         Properties.Resources.newFolder,
                         Properties.Resources.Cut,
-                        Properties.Resources.refresh
+                        Properties.Resources.refresh,
+                        Properties.Resources.Copy
                     }
                 };
 

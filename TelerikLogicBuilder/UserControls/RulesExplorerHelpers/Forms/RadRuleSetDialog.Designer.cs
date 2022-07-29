@@ -30,7 +30,6 @@
         {
             this.radPanelBottom = new Telerik.WinControls.UI.RadPanel();
             this.radPanelBottomFill = new Telerik.WinControls.UI.RadPanel();
-            this.dialogFormMessageControl1 = new ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControl();
             this.radPanelCloseButton = new Telerik.WinControls.UI.RadPanel();
             this.radButtonClose = new Telerik.WinControls.UI.RadButton();
             this.radGroupBoxRule = new Telerik.WinControls.UI.RadGroupBox();
@@ -54,7 +53,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
             this.radPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottomFill)).BeginInit();
-            this.radPanelBottomFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCloseButton)).BeginInit();
             this.radPanelCloseButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonClose)).BeginInit();
@@ -95,20 +93,11 @@
             // 
             // radPanelBottomFill
             // 
-            this.radPanelBottomFill.Controls.Add(this.dialogFormMessageControl1);
             this.radPanelBottomFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelBottomFill.Location = new System.Drawing.Point(0, 0);
             this.radPanelBottomFill.Name = "radPanelBottomFill";
             this.radPanelBottomFill.Size = new System.Drawing.Size(809, 98);
             this.radPanelBottomFill.TabIndex = 5;
-            // 
-            // dialogFormMessageControl1
-            // 
-            this.dialogFormMessageControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dialogFormMessageControl1.Location = new System.Drawing.Point(0, 0);
-            this.dialogFormMessageControl1.Name = "dialogFormMessageControl1";
-            this.dialogFormMessageControl1.Size = new System.Drawing.Size(809, 98);
-            this.dialogFormMessageControl1.TabIndex = 0;
             // 
             // radPanelCloseButton
             // 
@@ -175,7 +164,7 @@
             this.radLabelPriority.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radLabelPriority.Location = new System.Drawing.Point(190, 16);
             this.radLabelPriority.Name = "radLabelPriority";
-            this.radLabelPriority.Size = new System.Drawing.Size(42, 18);
+            this.radLabelPriority.Size = new System.Drawing.Size(181, 18);
             this.radLabelPriority.TabIndex = 1;
             this.radLabelPriority.Text = "Priority";
             // 
@@ -184,7 +173,7 @@
             this.radLabelName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radLabelName.Location = new System.Drawing.Point(3, 16);
             this.radLabelName.Name = "radLabelName";
-            this.radLabelName.Size = new System.Drawing.Size(36, 18);
+            this.radLabelName.Size = new System.Drawing.Size(181, 18);
             this.radLabelName.TabIndex = 0;
             this.radLabelName.Text = "Name";
             // 
@@ -324,7 +313,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottomFill)).EndInit();
-            this.radPanelBottomFill.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCloseButton)).EndInit();
             this.radPanelCloseButton.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButtonClose)).EndInit();
@@ -382,6 +370,5 @@
         private Telerik.WinControls.UI.RadPanel radPanelRuleSetTop;
         private Telerik.WinControls.UI.RadDropDownList radDropDownListChaining;
         private Telerik.WinControls.UI.RadLabel radLabelChaining;
-        private DialogFormMessageControl dialogFormMessageControl1;
     }
 }

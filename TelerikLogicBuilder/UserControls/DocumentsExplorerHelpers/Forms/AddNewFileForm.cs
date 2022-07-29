@@ -15,15 +15,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IImageListService _imageListService;
         private readonly IFormInitializer _formInitializer;
+        private readonly DialogFormMessageControl _dialogFormMessageControl;
 
         public AddNewFileForm(
             IExceptionHelper exceptionHelper,
             IImageListService imageListService,
-            IFormInitializer formInitializer)
+            IFormInitializer formInitializer,
+            DialogFormMessageControl dialogFormMessageControl)
         {
             _exceptionHelper = exceptionHelper;
             _imageListService = imageListService;
             _formInitializer = formInitializer;
+            _dialogFormMessageControl = dialogFormMessageControl;
 
             InitializeComponent();
             Initialize();
@@ -51,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private void Initialize()
         {
+            InitializeDialogFormMessageControl();
             _formInitializer.SetFormDefaults(this, 557);
 
             radGroupBoxFileType.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
@@ -89,6 +93,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
                 };
         }
 
+        private void InitializeDialogFormMessageControl()
+        {
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
+            this.radPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
+            this.radPanelMessages.SuspendLayout();
+            this.SuspendLayout();
+
+            _dialogFormMessageControl.Dock = DockStyle.Fill;
+            _dialogFormMessageControl.Location = new Point(0, 0);
+            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
+            this.radPanelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
+            this.radPanelMessages.ResumeLayout(false);
+            this.ResumeLayout(false);
+        }
+
         private void RadTextBoxFileName_TextChanged(object? sender, EventArgs e)
         {
             if (radTextBoxFileName.Text.Trim().Length == 0)
@@ -97,12 +120,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             }
             else if (!Regex.IsMatch(radTextBoxFileName.Text, RegularExpressions.FILENAME))
             {
-                dialogFormMessageControl1.SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.invalidFileNameMessageFormat, radLabelFileName.Text));
+                _dialogFormMessageControl.SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.invalidFileNameMessageFormat, radLabelFileName.Text));
                 radButtonOk.Enabled = false;
             }
             else
             {
-                dialogFormMessageControl1.ClearMessage();
+                _dialogFormMessageControl.ClearMessage();
                 radButtonOk.Enabled = true;
             }
         }

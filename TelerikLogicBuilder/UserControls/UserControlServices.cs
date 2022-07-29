@@ -9,6 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<ConfigurationExplorer>()
+                .AddTransient<DialogFormMessageControl>()
                 .AddTransient<DocumentsExplorer>()
                 .AddTransient<Messages>()
                 .AddTransient<ProjectExplorer>()

@@ -22,17 +22,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
+        private readonly DialogFormMessageControl _dialogFormMessageControl;
 
         public RadRuleSetDialog(
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            IRadDropDownListHelper radDropDownListHelper)
+            IRadDropDownListHelper radDropDownListHelper,
+            DialogFormMessageControl dialogFormMessageControl)
         {
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _radDropDownListHelper = radDropDownListHelper;
+            _dialogFormMessageControl = dialogFormMessageControl;
             InitializeComponent();
             Initialize();
         }
@@ -77,6 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
 
         private void Initialize()
         {
+            InitializeDialogFormMessageControl();
             _formInitializer.SetFormDefaults(this, 789);
 
             radGroupBoxRuleSet.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
@@ -88,7 +92,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             ((BorderPrimitive)radPanelBottom.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
             ((BorderPrimitive)radPanelBottomFill.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
-            dialogFormMessageControl1.Padding = new Padding(6, 0, 3, 0);
+            _dialogFormMessageControl.Padding = new Padding(6, 0, 3, 0);
             radPanelBottomFill.Padding = new Padding(6, 0, 0, 0);
             radPanelBottom.Padding = new Padding(0, 0, 10, 10);
 
@@ -129,7 +133,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             radLabelChaining.Font = new Font(radLabelChaining.Font, FontStyle.Bold);
             radLabelName.Font = new Font(radLabelName.Font, FontStyle.Bold);
             radLabelPriority.Font = new Font(radLabelPriority.Font, FontStyle.Bold);
-            radButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            radButtonClose.DialogResult = DialogResult.Cancel;
+        }
+
+        private void InitializeDialogFormMessageControl()
+        {
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
+            this.radPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottomFill)).BeginInit();
+            this.radPanelBottomFill.SuspendLayout();
+            this.SuspendLayout();
+
+            _dialogFormMessageControl.Dock = DockStyle.Fill;
+            _dialogFormMessageControl.Location = new Point(0, 0);
+            this.radPanelBottomFill.Controls.Add(_dialogFormMessageControl);
+
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
+            this.radPanelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottomFill)).EndInit();
+            this.radPanelBottomFill.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
 
         private void InitializeFields(RuleSet ruleSet)
@@ -184,14 +207,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
                 border.ForeColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
                 radGroupBoxRule.ForeColor = ForeColorUtility.GetErrorForeColor(ThemeResolutionService.ApplicationThemeName);
                 toolTip.SetToolTip(radGroupBoxRule, validationErrors[rule.Name]);
-                dialogFormMessageControl1.SetErrorMessage(validationErrors[rule.Name]);
+                _dialogFormMessageControl.SetErrorMessage(validationErrors[rule.Name]);
             }
             else
             {
                 border.ForeColor = ForeColorUtility.GetGroupBoxBorderColor(ThemeResolutionService.ApplicationThemeName);
                 radGroupBoxRule.ForeColor = ForeColorUtility.GetOkForeColor(ThemeResolutionService.ApplicationThemeName);
                 toolTip.SetToolTip(radGroupBoxRule, String.Empty);
-                dialogFormMessageControl1.ClearMessage();
+                _dialogFormMessageControl.ClearMessage();
             }
 
             radTextBoxName.Text = rule.Name;

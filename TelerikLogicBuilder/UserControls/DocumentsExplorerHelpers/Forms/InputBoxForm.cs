@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -9,12 +10,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
     internal partial class InputBoxForm : Telerik.WinControls.UI.RadForm
     {
         private readonly IFormInitializer _formInitializer;
+        private readonly DialogFormMessageControl _dialogFormMessageControl;
 
-        public InputBoxForm(IFormInitializer formInitializer)
+        public InputBoxForm(IFormInitializer formInitializer, DialogFormMessageControl dialogFormMessageControl)
         {
             _formInitializer = formInitializer;
+            _dialogFormMessageControl = dialogFormMessageControl;
             InitializeComponent();
             Initialize();
+        }
+
+        private void InitializeDialogFormMessageControl()
+        {
+            ((ISupportInitialize)(this.radPanelBottom)).BeginInit();
+            this.radPanelBottom.SuspendLayout();
+            ((ISupportInitialize)(this.radPanelMessages)).BeginInit();
+            this.radPanelMessages.SuspendLayout();
+            this.SuspendLayout();
+
+            _dialogFormMessageControl.Dock = DockStyle.Fill;
+            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
+            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+
+            ((ISupportInitialize)(this.radPanelBottom)).EndInit();
+            this.radPanelBottom.ResumeLayout(false);
+            ((ISupportInitialize)(this.radPanelMessages)).EndInit();
+            this.radPanelMessages.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         private string regularExpression = string.Empty;
@@ -34,6 +57,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private void Initialize()
         {
+            InitializeDialogFormMessageControl();
+
             _formInitializer.SetFormDefaults(this, 264);
             
             radGroupBoxPrompt.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
@@ -55,12 +80,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             }
             else if (regularExpression.Length != 0 && !Regex.IsMatch(radTextBoxInput.Text, regularExpression))
             {
-                dialogFormMessageControl1.SetErrorMessage(Strings.invalidInputMessage);
+                _dialogFormMessageControl.SetErrorMessage(Strings.invalidInputMessage);
                 radButtonOk.Enabled = false;
             }
             else
             {
-                dialogFormMessageControl1.ClearMessage();
+                _dialogFormMessageControl.ClearMessage();
                 radButtonOk.Enabled = true;
             }
         }
