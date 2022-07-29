@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
     {
         static Program()
         {
+            LoadThemes();
             ServiceProvider = ServiceCollection
                 .BuildServiceProvider();
         }
@@ -23,20 +24,33 @@ namespace ABIS.LogicBuilder.FlowBuilder
         #endregion Variables
 
         public static IServiceProvider ServiceProvider { get; set; }
-        public static IServiceCollection ServiceCollection => new ServiceCollection()
-            .AddMdiParentCommands()
-            .AddEditingControls()
-            .AddFlowBuilder()
-            .AddComponents()
-            .AddConfiguration()
-            .AddData()
-            .AddDataParsers()
-            .AddIntellisense()
-            .AddReflection()
-            .AddRulesGenerator()
-            .AddTreeViewBuiilders()
-            .AddUserControls()
-            .AddXmlValidation();
+
+        private static IServiceCollection? _serviceCollection;
+        public static IServiceCollection ServiceCollection
+        {
+            get
+            {
+                if (_serviceCollection == null)
+                {
+                    _serviceCollection = new ServiceCollection()
+                        .AddMdiParentCommands()
+                        .AddEditingControls()
+                        .AddFlowBuilder()
+                        .AddComponents()
+                        .AddConfiguration()
+                        .AddData()
+                        .AddDataParsers()
+                        .AddIntellisense()
+                        .AddReflection()
+                        .AddRulesGenerator()
+                        .AddTreeViewBuiilders()
+                        .AddUserControls()
+                        .AddXmlValidation();
+                }
+
+                return _serviceCollection;
+            }
+        }
 
         /// <summary>
         /// The main entry point for the application.
@@ -58,6 +72,21 @@ namespace ABIS.LogicBuilder.FlowBuilder
             mdiParent = ServiceProvider.GetRequiredService<MDIParent>();
 
             Application.Run(mdiParent);
+        }
+
+        internal static void LoadThemes()
+        {
+            //_ = new Telerik.WinControls.Themes.ControlDefault();
+            _ = new Telerik.WinControls.Themes.Office2007BlackTheme();
+            _ = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            _ = new Telerik.WinControls.Themes.Office2010BlackTheme();
+            _ = new Telerik.WinControls.Themes.Office2010BlueTheme();
+            _ = new Telerik.WinControls.Themes.Office2010SilverTheme();
+            _ = new Telerik.WinControls.Themes.Office2013DarkTheme();
+            _ = new Telerik.WinControls.Themes.Office2013LightTheme();
+            _ = new Telerik.WinControls.Themes.Office2019GrayTheme();
+            _ = new Telerik.WinControls.Themes.Office2019LightTheme();
+            _ = new Telerik.WinControls.Themes.Office2019DarkTheme();
         }
 
         #region EventHandlers
