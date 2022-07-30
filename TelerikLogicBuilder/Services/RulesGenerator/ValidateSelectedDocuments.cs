@@ -20,19 +20,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IDiagramValidator _diagramValidator;
-        private readonly ITableValidator _tableValidator;
         private readonly IDisplayResultMessages _displayResultMessages;
+        private readonly ITableValidator _tableValidator;
 
         public ValidateSelectedDocuments(
             IApplicationTypeInfoManager applicationTypeInfoManager,
             IDiagramValidator diagramValidator,
-            ITableValidator tableValidator,
-            IDisplayResultMessages displayResultMessages)
+            IDisplayResultMessages displayResultMessages,
+            ITableValidator tableValidator)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _diagramValidator = diagramValidator;
-            _tableValidator = tableValidator;
             _displayResultMessages = displayResultMessages;
+            _tableValidator = tableValidator;
         }
 
         public async Task<IList<ResultMessage>> Validate(IList<string> sourceFiles, FlowBuilder.Configuration.Application application, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)

@@ -1,5 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -19,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IDiagramRulesBuilder _diagramRulesBuilder;
+        private readonly IDisplayResultMessages _displayResultMessages;
         private readonly ISaveDiagramResources _saveDiagramResources;
         private readonly ISaveDiagramRules _saveDiagramRules;
         private readonly ISaveTableResources _saveTableResources;
@@ -26,10 +30,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IRulesAssembler _rulesAssembler;
         private readonly ITableRulesBuilder _tableRulesBuilder;
 
-        public BuildSaveAssembleRulesForSelectedDocuments(IApplicationTypeInfoManager applicationTypeInfoManager, IDiagramRulesBuilder diagramRulesBuilder, ISaveDiagramResources saveDiagramResources, ISaveDiagramRules saveDiagramRules, ISaveTableResources saveTableResources, ISaveTableRules saveTableRules, IRulesAssembler rulesAssembler, ITableRulesBuilder tableRulesBuilder)
+        public BuildSaveAssembleRulesForSelectedDocuments(
+            IApplicationTypeInfoManager applicationTypeInfoManager,
+            IDiagramRulesBuilder diagramRulesBuilder,
+            IDisplayResultMessages displayResultMessages,
+            ISaveDiagramResources saveDiagramResources,
+            ISaveDiagramRules saveDiagramRules,
+            ISaveTableResources saveTableResources,
+            ISaveTableRules saveTableRules,
+            IRulesAssembler rulesAssembler,
+            ITableRulesBuilder tableRulesBuilder)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _diagramRulesBuilder = diagramRulesBuilder;
+            _displayResultMessages = displayResultMessages;
             _saveDiagramResources = saveDiagramResources;
             _saveDiagramRules = saveDiagramRules;
             _saveTableResources = saveTableResources;
@@ -42,6 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             List<ResultMessage> resultMessages = new();
             InvisibleApp visioApplication = new();
+            _displayResultMessages.Clear(MessageTab.Documents);
 
             try
             {
@@ -50,30 +65,41 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                     if (sourceFile.EndsWith(FileExtensions.VISIOFILEEXTENSION)
                                         || sourceFile.EndsWith(FileExtensions.VSDXFILEEXTENSION))
                     {
-                        Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
-                        BuildRulesResult buildResults = await _diagramRulesBuilder.BuildRules
-                        (
-                            sourceFile, 
-                            visioDocument, 
-                            _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name), 
-                            progress, 
-                            cancellationTokenSource
-                        );
-                        visioDocument.Close();
+                        List<ResultMessage> visioDocumentResults = new();
+                        try
+                        {
+                            Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
+                            BuildRulesResult buildResults = await _diagramRulesBuilder.BuildRules
+                            (
+                                sourceFile,
+                                visioDocument,
+                                _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
+                                progress,
+                                cancellationTokenSource
+                            );
+                            visioDocument.Close();
+                            visioDocumentResults.AddRange(buildResults.ResultMessages);
 
-                        if (buildResults.ResultMessages.Count > 0)
-                        {
-                            resultMessages.AddRange(buildResults.ResultMessages);
-                            continue;
+                            if (visioDocumentResults.Count == 0)
+                            {
+                                _saveDiagramRules.Save(sourceFile, buildResults.Rules);
+                                _saveDiagramResources.Save(sourceFile, buildResults.ResourceStrings);
+                            }
                         }
-                        else
+                        catch (LogicBuilderException ex)
                         {
-                            _saveDiagramRules.Save(sourceFile, buildResults.Rules);
-                            _saveDiagramResources.Save(sourceFile, buildResults.ResourceStrings);
+                            visioDocumentResults.Add(new ResultMessage(ex.Message));
+                        }
+
+                        foreach (ResultMessage resultMessage in visioDocumentResults)
+                        {
+                            resultMessages.Add(resultMessage);
+                            _displayResultMessages.AppendMessage(resultMessage, MessageTab.Documents);
                         }
                     }
                     else if (sourceFile.EndsWith(FileExtensions.TABLEFILEEXTENSION))
                     {
+                        List<ResultMessage> tableDocumentResults = new();
                         DataSet dataSet = new()
                         {
                             Locale = CultureInfo.InvariantCulture
@@ -92,48 +118,57 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                         }
                         catch (ConstraintException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (UnauthorizedAccessException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (ArgumentException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (IOException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
                         catch (System.Security.SecurityException ex)
                         {
-                            resultMessages.Add(new ResultMessage(ex.Message));
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
                             continue;
                         }
 
-                        BuildRulesResult buildResults = await _tableRulesBuilder.BuildRules
-                        (
-                            sourceFile,
-                            dataSet,
-                            _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
-                            progress,
-                            cancellationTokenSource
-                        );
+                        try
+                        {
+                            BuildRulesResult buildResults = await _tableRulesBuilder.BuildRules
+                            (
+                                sourceFile,
+                                dataSet,
+                                _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
+                                progress,
+                                cancellationTokenSource
+                            );
 
-                        if (buildResults.ResultMessages.Count > 0)
-                        {
-                            resultMessages.AddRange(buildResults.ResultMessages);
-                            continue;
+                            tableDocumentResults.AddRange(buildResults.ResultMessages);
+                            if (tableDocumentResults.Count == 0)
+                            {
+                                _saveTableRules.Save(sourceFile, dataSet, buildResults.Rules);
+                                _saveTableResources.Save(sourceFile, buildResults.ResourceStrings);
+                            }
                         }
-                        else
+                        catch (LogicBuilderException ex)
                         {
-                            _saveTableRules.Save(sourceFile, dataSet, buildResults.Rules);
-                            _saveTableResources.Save(sourceFile, buildResults.ResourceStrings);
+                            tableDocumentResults.Add(new ResultMessage(ex.Message));
+                        }
+
+                        foreach (ResultMessage resultMessage in tableDocumentResults)
+                        {
+                            resultMessages.Add(resultMessage);
+                            _displayResultMessages.AppendMessage(resultMessage, MessageTab.Documents);
                         }
                     }
                 }
@@ -151,10 +186,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             if (resultMessages.Count > 0)
                 return resultMessages;
 
-            await _rulesAssembler.AssembleRules(sourceFiles, progress, cancellationTokenSource);
-            await _rulesAssembler.AssembleResources(sourceFiles, progress, cancellationTokenSource);
+            try
+            {
+                await _rulesAssembler.AssembleRules(sourceFiles, progress, cancellationTokenSource);
+                await _rulesAssembler.AssembleResources(sourceFiles, progress, cancellationTokenSource);
+            }
+            catch (LogicBuilderException ex)
+            {
+                ResultMessage resultMessage = new(ex.Message);
+                resultMessages.Add(resultMessage);
+                _displayResultMessages.AppendMessage(resultMessage, MessageTab.Documents);
+            }
 
-            return new ResultMessage[] { new ResultMessage(Strings.buildSuccessful) };
+            if (resultMessages.Count == 0)
+            {
+                resultMessages.Add(new ResultMessage(Strings.buildSuccessful));
+                _displayResultMessages.AppendMessage(resultMessages[0], MessageTab.Documents);
+            }
+
+            return resultMessages;
         }
     }
 }

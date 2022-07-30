@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using TelerikLogicBuilder.IntegrationTests.Mocks;
 using Xunit;
 using Application = ABIS.LogicBuilder.FlowBuilder.Configuration.Application;
 
@@ -45,6 +46,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             //arrange
             ILoadContextSponsor loadContextSponsor = _fixture.LoadContextSponsor;
             IBuildSaveAssembleRulesForSelectedDocuments builder = _fixture.ServiceProvider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>();
+            using System.Windows.Forms.Form form = new MockMdiParent();
+            IMainWindow mainWindow = _fixture.ServiceProvider.GetRequiredService<IMainWindow>();
+            mainWindow.Instance = form;
             string sourceFile = GetFullSourceFilePath(nameof(BuildSaveAssembleRulesSucceeds));
             var application = _fixture.ConfigurationService.GetSelectedApplication();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx

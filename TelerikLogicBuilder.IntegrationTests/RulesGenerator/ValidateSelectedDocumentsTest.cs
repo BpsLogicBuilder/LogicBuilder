@@ -1,6 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -9,7 +8,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
 using System;
@@ -17,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Telerik.WinControls.UI;
+using TelerikLogicBuilder.IntegrationTests.Mocks;
 using Xunit;
 using Application = ABIS.LogicBuilder.FlowBuilder.Configuration.Application;
 
@@ -93,119 +91,6 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         {
             visioDocument.Saved = true;
             visioDocument.Close();
-        }
-
-        class MockMessages : IMessages
-        {
-            public MessageTab SelectedMessageTab { set { } }
-
-            public bool Visible { set { } }
-
-            public void Clear(MessageTab messageTab)
-            {
-            }
-
-            public void GoToNextEmptyLine(MessageTab messageTab)
-            {
-            }
-
-            public void InsertLink(string text, string hyperlink, LinkType linkType, MessageTab messageTab)
-            {
-            }
-
-            public void InsertLink(string text, string hyperlink, int position, LinkType linkType, MessageTab messageTab)
-            {
-            }
-
-            public void InsertText(string text, MessageTab messageTab)
-            {
-            }
-
-            public void InsertText(string text, int position, MessageTab messageTab)
-            {
-            }
-
-            public void Select(int start, int length, MessageTab messageTab)
-            {
-            }
-        }
-
-        class MockMdiParent : System.Windows.Forms.Form, IMDIParent
-        {
-            public RadCommandBar CommandBar => throw new NotImplementedException();
-
-            public CommandBarButton CommandBarButtonSave => throw new NotImplementedException();
-
-            public IDocumentEditor? EditControl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-            public IMessages Messages => new MockMessages();
-
-            public RadMenuItem RadMenuItemDelete => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemSave => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemUndo => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemRedo => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemIndexInformation => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemChaining => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemToggleActivateAll => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemToggleReevaluateAll => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemFullChaining => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemNoneChaining => throw new NotImplementedException();
-
-            public RadMenuItem RadMenuItemUpdateOnlyChaining => throw new NotImplementedException();
-
-            public void AddTableControl(IDocumentEditor documentEditor)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void AddVisioControl(IDocumentEditor documentEditor)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void ChangeCursor(System.Windows.Forms.Cursor cursor)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void CloseProject()
-            {
-                throw new NotImplementedException();
-            }
-
-            public void OpenProject(string projectFileFullname)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void RemoveEditControl()
-            {
-                throw new NotImplementedException();
-            }
-
-            public Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Task RunLoadContextAsync(Func<CancellationTokenSource, Task> task)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SetEditControlMenuStates(bool visioOpen, bool tableOpen)
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 
