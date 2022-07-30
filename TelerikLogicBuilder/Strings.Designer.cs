@@ -3247,6 +3247,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy to Clipboard.
+        /// </summary>
+        internal static string mnuItemCopyToClipboardText {
+            get {
+                return ResourceManager.GetString("mnuItemCopyToClipboardText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Folder.
         /// </summary>
         internal static string mnuItemCreateDirectoryText {
@@ -3315,6 +3324,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemOpenFileText {
             get {
                 return ResourceManager.GetString("mnuItemOpenFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open In Text Viewer.
+        /// </summary>
+        internal static string mnuItemOpenInTextViewerText {
+            get {
+                return ResourceManager.GetString("mnuItemOpenInTextViewerText", resourceCulture);
             }
         }
         

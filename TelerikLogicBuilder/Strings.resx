@@ -823,6 +823,9 @@
 	<data name="mnuItemCopyRowText" xml:space="preserve">
     <value>Copy Row</value>
   </data>
+	<data name="mnuItemCopyToClipboardText" xml:space="preserve">
+    <value>Copy to Clipboard</value>
+  </data>
 	<data name="mnuItemCreateDirectoryText" xml:space="preserve">
     <value>Create Folder</value>
   </data>
@@ -846,6 +849,9 @@
   </data>
 	<data name="mnuItemOpenFileText" xml:space="preserve">
     <value>Open File</value>
+  </data>
+	<data name="mnuItemOpenInTextViewerText" xml:space="preserve">
+    <value>Open In Text Viewer</value>
   </data>
 	<data name="mnuItemPasteCellText" xml:space="preserve">
     <value>Paste Cell</value>

@@ -17,6 +17,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<RichInputBoxMessagePanel>()
                 .AddTransient<RulesExplorer>()
 
+                //DialogFormMessageControlHelpers
+                .AddDialogFormMessageControlCommands()
+
                 //DocumentsExplorerHelpers
                 .AddDocumentsExplorerCommands()
 

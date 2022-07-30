@@ -24,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             ContextMenuStrip = null;
 
             TitleBarElement.CloseButton.Click += new EventHandler(CloseButton_Click);
+            this.Disposed += TitleBar_Disposed;
         }
 
         private readonly RadContextMenuManager radContextMenuManager;
@@ -47,6 +48,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         void CloseButton_Click(object? sender, EventArgs e)
         {
             CloseClick?.Invoke();
+        }
+
+        private void TitleBar_Disposed(object? sender, EventArgs e)
+        {
+            radContextMenuManager.Dispose();
         }
     }
 }
