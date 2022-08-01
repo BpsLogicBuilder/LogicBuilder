@@ -51,6 +51,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.RuleBuilders
         public ConditionsRuleBuilderFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();

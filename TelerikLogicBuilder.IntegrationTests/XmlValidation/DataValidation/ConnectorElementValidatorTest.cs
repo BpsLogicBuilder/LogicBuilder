@@ -156,6 +156,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         public ConnectorElementValidatorFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConstructorTypeHelper = ServiceProvider.GetRequiredService<IConstructorTypeHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();

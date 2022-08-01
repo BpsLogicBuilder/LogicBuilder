@@ -217,6 +217,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         public GenericReturnTypeHelperFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             GenericReturnTypeHelper = ServiceProvider.GetRequiredService<IGenericReturnTypeHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();

@@ -41,11 +41,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
         public void LoadAssembiesIfNeeded(IProgress<ProgressMessage>? progress = null)
         {
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
             EnsureAssembliesAreCurrent();
             if (AssemblyLoadNeeded)
             {
                 if (progress != null)
                 {
+                    mdiParent.ChangeCursor(Cursors.WaitCursor);
                     progress.Report(new ProgressMessage(50, Strings.loadingAssemblies));
                 }
             }
@@ -55,6 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
             if (progress != null)
             {
+                mdiParent.ChangeCursor(Cursors.Default);
                 progress.Report(new ProgressMessage(0, Strings.statusBarReadyMessage));
             }
         }
