@@ -9,6 +9,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Application = ABIS.LogicBuilder.FlowBuilder.Configuration.Application;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 {
@@ -17,14 +19,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         private readonly IPathHelper _pathHelper;
         private readonly IConfigurationService _configurationService;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IAssemblyLoadContextManager _assemblyLoadContextService;
         private readonly IApplicationTypeInfoManager _applicationTypeInfoService;
 
-        public LoadContextSponsor(IContextProvider contextProvider, IAssemblyLoadContextManager assemblyLoadContextService, IApplicationTypeInfoManager applicationTypeInfoService)
+        public LoadContextSponsor(
+            IContextProvider contextProvider,
+            IAssemblyLoadContextManager assemblyLoadContextService,
+            IApplicationTypeInfoManager applicationTypeInfoService)
         {
-            _pathHelper = contextProvider.PathHelper;
             _configurationService = contextProvider.ConfigurationService;
             _fileIOHelper = contextProvider.FileIOHelper;
+            _mainWindow = contextProvider.MainWindow;
+            _pathHelper = contextProvider.PathHelper;
             _assemblyLoadContextService = assemblyLoadContextService;
             _applicationTypeInfoService = applicationTypeInfoService;
         }
@@ -54,11 +61,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
         public async Task LoadAssembiesIfNeededAsync(IProgress<ProgressMessage>? progress = null)
         {
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
             EnsureAssembliesAreCurrent();
             if (AssemblyLoadNeeded)
             {
                 if (progress != null)
                 {
+                    mdiParent.ChangeCursor(Cursors.WaitCursor);
                     progress.Report(new ProgressMessage(50, Strings.loadingAssemblies));
                 }
             }
@@ -74,6 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
             if (progress != null)
             {
+                mdiParent.ChangeCursor(Cursors.Default);
                 progress.Report(new ProgressMessage(0, Strings.statusBarReadyMessage));
             }
         }
@@ -135,6 +145,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
             if (!AllBinFoldersCurrent())
             {
                 _assemblyLoadContextService.UnloadLoadContexts();
+                _applicationTypeInfoService.ClearApplications();
                 RefreshAllBinFolders();
             }
         }

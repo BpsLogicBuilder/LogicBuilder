@@ -56,7 +56,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
 
         public void ChangeCursor(System.Windows.Forms.Cursor cursor)
         {
-            throw new NotImplementedException();
         }
 
         public void CloseProject()

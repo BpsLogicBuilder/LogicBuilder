@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -18,13 +19,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class ValidateSelectedRules : IValidateSelectedRules
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
+        private readonly IDisplayResultMessages _displayResultMessages;
         private readonly IPathHelper _pathHelper;
         private readonly IRuleSetLoader _ruleSetLoader;
         private readonly IRulesValidator _rulesValidator;
 
-        public ValidateSelectedRules(IApplicationTypeInfoManager applicationTypeInfoManager, IPathHelper pathHelper, IRuleSetLoader ruleSetLoader, IRulesValidator rulesValidator)
+        public ValidateSelectedRules(
+            IApplicationTypeInfoManager applicationTypeInfoManager,
+            IDisplayResultMessages displayResultMessages,
+            IPathHelper pathHelper,
+            IRuleSetLoader ruleSetLoader,
+            IRulesValidator rulesValidator)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
+            _displayResultMessages = displayResultMessages;
             _pathHelper = pathHelper;
             _ruleSetLoader = ruleSetLoader;
             _rulesValidator = rulesValidator;
@@ -34,29 +42,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             List<ResultMessage> resultMessages = new();
             ApplicationTypeInfo applicationTypeInfo = _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name);
+            _displayResultMessages.Clear(MessageTab.Rules);
 
             for (int i = 0; i < sourceFiles.Count; i++)
             {
                 string fileName = string.Empty;
+                List<ResultMessage> validationMessages = new();
                 try
                 {
                     fileName = _pathHelper.GetFileName(sourceFiles[i]);
                     RuleSet ruleSet = _ruleSetLoader.LoadRuleSet(sourceFiles[i]);
 
-                    IList<ResultMessage> validationMessages = await _rulesValidator.Validate
+                    validationMessages.AddRange
                     (
-                        ruleSet,
-                        applicationTypeInfo,
-                        cancellationTokenSource
+                        await _rulesValidator.Validate
+                        (
+                            ruleSet,
+                            applicationTypeInfo,
+                            cancellationTokenSource
+                        )
                     );
 
-                    if (validationMessages.Count > 0)
+                    if (validationMessages.Count == 0)
                     {
-                        resultMessages.AddRange(validationMessages);
-                    }
-                    else
-                    {
-                        resultMessages.Add
+                        validationMessages.Add
                         (
                             new ResultMessage
                             (
@@ -72,26 +81,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 }
                 catch (LogicBuilderException ex)
                 {
-                    resultMessages.Add(new ResultMessage(ex.Message));
+                    validationMessages.Add(new ResultMessage(ex.Message));
                     continue;
                 }
                 catch (ArgumentException ex)
                 {
-                    resultMessages.Add(new ResultMessage(ex.Message));
+                    validationMessages.Add(new ResultMessage(ex.Message));
                     continue;
                 }
                 catch (IOException ex)
                 {
-                    resultMessages.Add(new ResultMessage(ex.Message));
+                    validationMessages.Add(new ResultMessage(ex.Message));
                     continue;
                 }
                 catch (NotSupportedException ex)
                 {
-                    resultMessages.Add(new ResultMessage(ex.Message));
+                    validationMessages.Add(new ResultMessage(ex.Message));
                     continue;
                 }
                 finally
                 {
+                    foreach (ResultMessage resultMessage in validationMessages)
+                    {
+                        resultMessages.Add(resultMessage);
+                        _displayResultMessages.AppendMessage(resultMessage, MessageTab.Rules);
+                    }
+
                     progress.Report
                     (
                         new ProgressMessage

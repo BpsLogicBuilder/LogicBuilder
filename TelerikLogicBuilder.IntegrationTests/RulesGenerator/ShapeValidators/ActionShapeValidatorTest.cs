@@ -263,13 +263,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
 
         public ActionShapeValidatorFixture()
-        {
+        {           
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso",

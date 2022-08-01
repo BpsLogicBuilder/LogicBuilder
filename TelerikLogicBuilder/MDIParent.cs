@@ -289,8 +289,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
         {
             var progress = new Progress<ProgressMessage>(percent =>
             {
-                radProgressBarElement1.Value1 = percent.Progress;
-                radLabelElement1.Text = string.Format(CultureInfo.CurrentCulture, Strings.progressFormStatusMessageFormat2, percent.Message, percent.Progress);
+                UpdateProgress
+                (
+                    percent.Progress,
+                    string.Format(CultureInfo.CurrentCulture, Strings.progressFormStatusMessageFormat2, percent.Message, percent.Progress)
+                );
             });
 
             await _loadContextSponsor.RunAsync
@@ -307,16 +310,16 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     {
                         await task(progress, cancellationTokenSource);
                         await Task.Delay(40);
-                        UpdateProgress(0, Strings.statusBarReadyMessage);
+                        TaskComplete(Strings.statusBarReadyMessage);
                     }
                     catch (LogicBuilderException ex)
                     {
-                        UpdateProgress(0, ex.Message);
+                        TaskComplete(ex.Message);
                         LogicBuilderExceptionOccurred(ex);
                     }
                     catch (OperationCanceledException)
                     {
-                        UpdateProgress(0, Strings.progressFormOperationCancelled);
+                        TaskComplete(Strings.progressFormOperationCancelled);
                     }
                     finally
                     {
@@ -795,6 +798,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private void TaskComplete(string message)
         {
             radProgressBarElement1.Visibility = ElementVisibility.Collapsed;
+            radProgressBarElement1.Value1 = 0;
             radLabelElement1.Text = message;
         }
 
