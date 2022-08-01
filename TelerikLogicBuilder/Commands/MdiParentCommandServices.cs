@@ -160,6 +160,26 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent,
                     applicationName
                 )
+            )
+            .AddTransient<Func<IMDIParent, ViewApplicationsStencilCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<ViewApplicationsStencilCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
+            )
+            .AddTransient<Func<IMDIParent, ViewFlowDiagramStencilCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<ViewFlowDiagramStencilCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
             );
         }
     }

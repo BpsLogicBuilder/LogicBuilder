@@ -29,8 +29,27 @@
 		<PlatformTarget>x86</PlatformTarget>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="fr\Stencils\Applications.vss" />
+	  <None Remove="fr\Stencils\Logic Builder.vss" />
+	  <None Remove="Stencils\Applications.vss" />
+	  <None Remove="Stencils\Logic Builder.vss" />
+	</ItemGroup>
+
   <ItemGroup>
+    <Content Include="fr\Stencils\Applications.vss">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fr\Stencils\Logic Builder.vss">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Simple.ico" />
+    <Content Include="Stencils\Applications.vss">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stencils\Logic Builder.vss">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

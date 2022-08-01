@@ -91,8 +91,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider,
                         provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IMainWindow>(),
+                        provider.GetRequiredService<IOpenFileOperations>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<UiNotificationService>(),
                         documentExplorer
                     )
                 )

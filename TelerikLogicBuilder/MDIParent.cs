@@ -50,6 +50,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
         private readonly Func<MDIParent, ValidateSelectedDocumentsCommand> _getValidateSelectedDocumentsCommand;
         private readonly Func<MDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
+        private readonly Func<IMDIParent, ViewApplicationsStencilCommand> _getViewApplicationsStencilCommand;
+        private readonly Func<IMDIParent, ViewFlowDiagramStencilCommand> _getViewFlowDiagramStencilCommand;
 
         //controls
         private readonly ProjectExplorer _projectExplorer;
@@ -79,6 +81,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
             Func<MDIParent, ValidateSelectedDocumentsCommand> getValidateSelectedDocumentsCommand,
             Func<MDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
+            Func<IMDIParent, ViewApplicationsStencilCommand> getViewApplicationsStencilCommand,
+            Func<IMDIParent, ViewFlowDiagramStencilCommand> getViewFlowDiagramStencilCommand,
             Messages messages,
             ProjectExplorer projectExplorer)
         {
@@ -101,6 +105,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getValidateActiveDocumentCommand = getValidateActiveDocumentCommand;
             _getValidateSelectedDocumentsCommand = getValidateSelectedDocumentsCommand;
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
+            _getViewApplicationsStencilCommand = getViewApplicationsStencilCommand;
+            _getViewFlowDiagramStencilCommand = getViewFlowDiagramStencilCommand;
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
 
@@ -368,6 +374,18 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddBuildActiveDocumentCommands();
 
             AddValidateActiveDocumentCommands();
+
+            AddClickCommand
+            (
+                this.radMenuItemApplicationsStencil,
+                _getViewApplicationsStencilCommand(this)
+            );
+
+            AddClickCommand
+            (
+                this.radMenuItemFlowDiagramStencil,
+                _getViewFlowDiagramStencilCommand(this)
+            );
 
             AddThemeMenuItemClickCommands(this.radMenuItemTheme);
         }

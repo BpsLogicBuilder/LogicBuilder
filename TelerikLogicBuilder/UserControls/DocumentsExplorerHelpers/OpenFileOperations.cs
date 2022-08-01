@@ -46,10 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             if (GetOpenFile(fileFullname) != null)
                 return;
 
-            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
-            mdiParent.ChangeCursor(Cursors.WaitCursor);
-            OpenFile(fileFullname, _getTableControl, mdiParent.AddTableControl);
-            mdiParent.ChangeCursor(Cursors.Default);
+            OpenFile(fileFullname, _getTableControl, ((IMDIParent)_mainWindow.Instance).AddTableControl);
         }
 
         public void OpenVisioFile(string fileFullname)
@@ -69,10 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             try
             {
-                IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
-                mdiParent.ChangeCursor(Cursors.WaitCursor);
-                OpenFile(fileFullname, _getVisioControl, mdiParent.AddVisioControl);
-                mdiParent.ChangeCursor(Cursors.Default);
+                OpenFile(fileFullname, _getVisioControl, ((IMDIParent)_mainWindow.Instance).AddVisioControl);
             }
             catch (COMException ex)
             {
