@@ -44,6 +44,10 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
 
         public RadMenuItem RadMenuItemUpdateOnlyChaining => throw new NotImplementedException();
 
+        public SplitPanel SplitPanelMessages => throw new NotImplementedException();
+
+        public SplitPanel SplitPanelExplorer => throw new NotImplementedException();
+
         public void AddTableControl(IDocumentEditor documentEditor)
         {
             throw new NotImplementedException();

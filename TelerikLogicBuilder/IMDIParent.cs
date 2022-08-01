@@ -27,6 +27,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
         RadMenuItem RadMenuItemNoneChaining { get; }
         RadMenuItem RadMenuItemUpdateOnlyChaining { get; }
 
+        SplitPanel SplitPanelMessages { get; }
+        SplitPanel SplitPanelExplorer { get; }
+
         void AddTableControl(IDocumentEditor documentEditor);
         void AddVisioControl(IDocumentEditor documentEditor);
         void CloseProject();

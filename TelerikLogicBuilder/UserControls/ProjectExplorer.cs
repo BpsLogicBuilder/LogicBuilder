@@ -1,28 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    internal partial class ProjectExplorer : UserControl
+    internal partial class ProjectExplorer : UserControl, IProjectExplorer
     {
+        private readonly IMainWindow _mainWindow;
+
         //controls
         private readonly ConfigurationExplorer _configurationExplorer;
         private readonly DocumentsExplorer _documentsExplorer;
         private readonly RulesExplorer _rulesExplorer;
-        public ProjectExplorer(ConfigurationExplorer configurationExplorer, DocumentsExplorer documentsExplorer, RulesExplorer rulesExplorer)
+        public ProjectExplorer(IMainWindow mainWindow, ConfigurationExplorer configurationExplorer, DocumentsExplorer documentsExplorer, RulesExplorer rulesExplorer)
         {
+            _mainWindow = mainWindow;
             _configurationExplorer = configurationExplorer;
             _documentsExplorer = documentsExplorer;
             _rulesExplorer = rulesExplorer;
             InitializeComponent();
             Initialize();
+            InitializeEventHandlers();
+        }
+
+        bool IProjectExplorer.Visible
+        {
+            set
+            {
+                ChangeVisibility(value);
+            }
+        }
+
+        private void ChangeVisibility(bool isVisible)
+        {
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
+            mdiParent.SplitPanelExplorer.Collapsed = !isVisible;
+            base.Visible = isVisible;
         }
 
         public void ClearProfile()
@@ -63,5 +75,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             this.radPageView1.SelectedPage = this.radPageViewDocuments;
         }
+
+        private void InitializeEventHandlers()
+        {
+            this.titleBar1.CloseClick += TitleBar1_CloseClick;
+        }
+
+        #region Event Handlers
+        private void TitleBar1_CloseClick()
+        {
+            ChangeVisibility(false);
+        }
+#       endregion Event Handlers
     }
 }

@@ -1,10 +1,12 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal interface IMessages
     {
         MessageTab SelectedMessageTab { set; }
+        DockStyle Dock { set; }
         bool Visible { set; }
         void Clear(MessageTab messageTab);
         void GoToNextEmptyLine(MessageTab messageTab);

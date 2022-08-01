@@ -54,8 +54,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<IMDIParent, ViewFlowDiagramStencilCommand> _getViewFlowDiagramStencilCommand;
 
         //controls
-        private readonly ProjectExplorer _projectExplorer;
-        private readonly Messages _messages;
+        private readonly IProjectExplorer _projectExplorer;
+        private readonly IMessages _messages;
 
         public MDIParent(
             ICheckSelectedApplication checkSelectedApplication,
@@ -83,8 +83,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<MDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
             Func<IMDIParent, ViewApplicationsStencilCommand> getViewApplicationsStencilCommand,
             Func<IMDIParent, ViewFlowDiagramStencilCommand> getViewFlowDiagramStencilCommand,
-            Messages messages,
-            ProjectExplorer projectExplorer)
+            IMessages messages,
+            IProjectExplorer projectExplorer)
         {
             _checkSelectedApplication = checkSelectedApplication;
             _configurationService = configurationService;
@@ -145,6 +145,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public RadMenuItem RadMenuItemFullChaining => radMenuItemFullChaining;
         public RadMenuItem RadMenuItemNoneChaining => radMenuItemNoneChaining;
         public RadMenuItem RadMenuItemUpdateOnlyChaining => radMenuItemUpdateOnlyChaining;
+
+        public SplitPanel SplitPanelMessages => this.splitPanelMessages;
+        public SplitPanel SplitPanelExplorer => this.splitPanelExplorer;
 
         public IDocumentEditor? EditControl { get; set; }
         public IMessages Messages => _messages;
@@ -484,13 +487,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _formInitializer.SetCenterScreen(this);
             _projectExplorer.Dock = DockStyle.Fill;
             this.splitPanelExplorer.SuspendLayout();
-            this.splitPanelExplorer.Controls.Add(_projectExplorer);
+            this.splitPanelExplorer.Controls.Add((Control)_projectExplorer);
             this.splitPanelExplorer.ResumeLayout(false);
             this.splitPanelExplorer.PerformLayout();
 
             _messages.Dock = DockStyle.Fill;
             this.splitPanelMessages.SuspendLayout();
-            this.splitPanelMessages.Controls.Add(_messages);
+            this.splitPanelMessages.Controls.Add((Control)_messages);
             this.splitPanelMessages.ResumeLayout(false);
             this.splitPanelMessages.PerformLayout();
 

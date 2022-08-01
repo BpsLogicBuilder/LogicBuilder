@@ -68,6 +68,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
         }
 
+        bool IMessages.Visible
+        {
+            set 
+            {
+                ChangeVisibility(value);
+            }
+        }
+
         public void Clear(MessageTab messageTab) 
             => GetRichInputBox(messageTab).Clear();
 
@@ -102,6 +110,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             RichInputBox richInputBox = GetRichInputBox(messageTab);
             richInputBox.Select(start, length);
             richInputBox.Focus();
+        }
+
+        private void ChangeVisibility(bool isVisible)
+        {
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
+            mdiParent.SplitPanelMessages.Collapsed = !isVisible;
+            base.Visible = isVisible;
         }
 
         private void FindCell(string xmlString)
@@ -233,7 +248,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void TitleBar1_CloseClick()
         {
-            this.Visible = false;
+            ChangeVisibility(false);
         }
         #endregion Event Handlers
     }
