@@ -233,19 +233,17 @@ namespace ABIS.LogicBuilder.FlowBuilder
             {
                 await task(progress, cancellationTokenSource);
                 await Task.Delay(40);
-                radProgressBarElement1.Value1 = 0;
-                radLabelElement1.Text = Strings.statusBarReadyMessage;
+                TaskComplete(Strings.statusBarReadyMessage);
             }
             catch (LogicBuilderException ex)
             {
-                radProgressBarElement1.Value1 = 0;
-                radLabelElement1.Text = ex.Message;
-                DisplayMessage.Show(this, ex.Message, _mainWindow.RightToLeft);
+                TaskComplete(ex.Message);
+                LogicBuilderExceptionOccurred(ex);
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException ex)
             {
-                radProgressBarElement1.Value1 = 0;
-                radLabelElement1.Text = Strings.progressFormOperationCancelled;
+                TaskComplete(Strings.progressFormOperationCancelled);
+                LogicBuilderExceptionOccurred(new LogicBuilderException(ex.Message, ex));
             }
             finally
             {
@@ -266,10 +264,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             (
                 async () =>
                 {
-
+                    var cancellationTokenSource = new CancellationTokenSource();
                     try
                     {
-                        var cancellationTokenSource = new CancellationTokenSource();
                         await task(cancellationTokenSource);
                     }
                     catch (LogicBuilderException ex)
@@ -279,6 +276,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     catch (OperationCanceledException ex)
                     {
                         LogicBuilderExceptionOccurred(new LogicBuilderException(ex.Message, ex));
+                    }
+                    finally
+                    {
+                        cancellationTokenSource.Dispose();
                     }
                 },
                 new Progress<ProgressMessage>(percent => {})
@@ -317,9 +318,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
                         TaskComplete(ex.Message);
                         LogicBuilderExceptionOccurred(ex);
                     }
-                    catch (OperationCanceledException)
+                    catch (OperationCanceledException ex)
                     {
                         TaskComplete(Strings.progressFormOperationCancelled);
+                        LogicBuilderExceptionOccurred(new LogicBuilderException(ex.Message, ex));
                     }
                     finally
                     {

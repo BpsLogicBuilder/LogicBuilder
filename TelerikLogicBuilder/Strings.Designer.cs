@@ -3301,6 +3301,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string mnuItemEditText {
+            get {
+                return ResourceManager.GetString("mnuItemEditText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Copied Row.
         /// </summary>
         internal static string mnuItemInsertCopiedRowText {

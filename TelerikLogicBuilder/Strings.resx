@@ -841,6 +841,9 @@
 	<data name="mnuItemDeleteAllRulesText" xml:space="preserve">
     <value>Delete All Rules</value>
   </data>
+	<data name="mnuItemEditText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
 	<data name="mnuItemInsertCopiedRowText" xml:space="preserve">
     <value>Insert Copied Row</value>
   </data>

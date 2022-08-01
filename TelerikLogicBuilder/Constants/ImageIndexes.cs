@@ -17,5 +17,6 @@
         internal const byte CUTIMAGEINDEX = 12;
         internal const byte REFRESHIMAGEINDEX = 13;
         internal const byte COPYIMAGEINDEX = 14;
+        internal const byte EDITIMAGEINDEX = 15;
     }
 }

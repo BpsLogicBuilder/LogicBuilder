@@ -14,7 +14,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal partial class RulesExplorer : UserControl, IRulesExplorer
     {
-        private readonly IConfigurationService _configurationService;
         private readonly IMainWindow _mainWindow;
         private readonly IImageListService _imageImageListService;
         private readonly IRulesExplorerTreeViewBuilder _rulesExplorerTreeViewBuilder;
@@ -41,7 +40,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public IDictionary<string, string> ExpandedNodes => expandedNodes;
 
         public RulesExplorer(
-            IConfigurationService configurationService,
             IMainWindow mainWindow,
             IImageListService imageImageListService,
             IRulesExplorerTreeViewBuilder rulesExplorerTreeViewBuilder,
@@ -53,7 +51,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             Func<IRulesExplorer, ViewCommand> getViewCommand,
             Func<IRulesExplorer, RefreshRulesExplorerCommand> getRefreshRulesExplorerCommand)
         {
-            _configurationService = configurationService;
             _mainWindow = mainWindow;
             _imageImageListService = imageImageListService;
             _rulesExplorerTreeViewBuilder = rulesExplorerTreeViewBuilder;
