@@ -58,10 +58,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             this.axDrawingControl1.Name = "axDrawingControl1";
             this.axDrawingControl1.Size = new System.Drawing.Size(1110, 664);
             this.axDrawingControl1.TabIndex = 1;
-            this.axDrawingControl1.SelectionChanged += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_SelectionChangedEventHandler(this.axDrawingControl1_SelectionChanged);
-            this.axDrawingControl1.MouseDownEvent += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseDownEventHandler(this.axDrawingControl1_MouseDownEvent);
-            this.axDrawingControl1.MouseUpEvent += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseUpEventHandler(this.axDrawingControl1_MouseUpEvent);
-            this.axDrawingControl1.DocumentOpened += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_DocumentOpenedEventHandler(this.axDrawingControl1_DocumentOpened);
+            this.axDrawingControl1.SelectionChanged += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_SelectionChangedEventHandler(this.AxDrawingControl1_SelectionChanged);
+            this.axDrawingControl1.MouseDownEvent += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseDownEventHandler(AxDrawingControl1_MouseDownEvent);
+            this.axDrawingControl1.MouseUpEvent += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseUpEventHandler(AxDrawingControl1_MouseUpEvent);
+            this.axDrawingControl1.DocumentOpened += new AxMicrosoft.Office.Interop.VisOcx.EVisOcx_DocumentOpenedEventHandler(this.AxDrawingControl1_DocumentOpened);
             // 
             // VisioControl
             // 

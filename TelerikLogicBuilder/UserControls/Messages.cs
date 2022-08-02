@@ -130,9 +130,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 _openFileOperations.OpenVisioFile(cellDetails.FileFullName);
 
                 IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
-                if (mdiParent.EditControl is ITableControl visioControl)
+                if (mdiParent.EditControl is ITableControl tableControl)
                 {//mdiParent.EditControl could be null if user cancels in _openFileOperations.OpenTableFile
-                    visioControl.FindCell
+                    tableControl.FindCell
                     (
                         cellDetails.RowIndex,
                         cellDetails.ColumnIndex

@@ -1,11 +1,14 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -135,7 +138,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private void CloseOtherStencils()
         {
             this.axDrawingControl1.Focus();
-            List<Visio.Document> docsToClose = new List<Visio.Document>();
+            List<Visio.Document> docsToClose = new();
             foreach (Visio.Document document in axDrawingControl1.Document.Application.Documents)
             {//Need to check if stencils are open.  Simply closing all stencils and reopening fails - i.e. window count remains the same after calling axDrawingControl1.Document.Application.Documents.OpenEx(stencilPath, Flags)
                 if (document.Type == Visio.VisDocumentTypes.visTypeStencil
@@ -174,7 +177,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 axDrawingControl1.Window.Selection.Delete();
         }
 
-        private void DisplayIndexInformation()
+        private static void DisplayIndexInformation()
         {
             //if (axDrawingControl1.Window.Selection.Count < 1)
             //    return;
@@ -261,7 +264,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
         }
 
-        private void FindAndReplaceConstructor()
+        private static void FindAndReplaceConstructor()
         {
             //using (FindReplaceConstructorInShape findText = new FindReplaceConstructorInShape(axDrawingControl1.Document)
             //{
@@ -274,7 +277,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private void FindAndReplaceFunction()
+        private static void FindAndReplaceFunction()
         {
             //using (FindReplaceFunctionInShape findText = new FindReplaceFunctionInShape(axDrawingControl1.Document)
             //{
@@ -287,7 +290,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private void FindAndReplaceText()
+        private static void FindAndReplaceText()
         {
             //using (FindReplaceShapeText findText = new FindReplaceShapeText(axDrawingControl1.Document)
             //{
@@ -300,7 +303,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private void FindAndReplaceVariable()
+        private static void FindAndReplaceVariable()
         {
             //using (FindReplaceVariableInShape findText = new FindReplaceVariableInShape(axDrawingControl1.Document)
             //{
@@ -313,7 +316,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private void FindConstructor()
+        private static void FindConstructor()
         {
             //using (FindConstructorInShape findText = new FindConstructorInShape(axDrawingControl1.Document)
             //{
@@ -325,7 +328,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private void FindFunction()
+        private static void FindFunction()
         {
             //using (FindFunctionInShape findText = new FindFunctionInShape(axDrawingControl1.Document)
             //{
@@ -339,48 +342,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindShape()
         {
-            //FindShape findShape = new FindShape
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //};
-            //findShape.OkClicked += new FindShape.OkClickedHandler(findShape_OkClicked);
-            //findShape.Show(this);
-        }
-
-        private void FindShape(int pageIndex, int shapeIndex)
-        {
-            if (axDrawingControl1.Document.Pages.Count < pageIndex)
-            {
-                DisplayMessage.Show
-                (
-                    (IWin32Window)this.parentForm, 
-                    string.Format(CultureInfo.CurrentCulture, Strings.pageIndexIsInvalidFormat, pageIndex), 
-                    string.Empty, 
-                    this._mainWindow.RightToLeft
-                );
-                return;
-            }
-
-            if (axDrawingControl1.Document.Pages[pageIndex].Shapes.Count < shapeIndex)
-            {
-                DisplayMessage.Show
-                (
-                    (IWin32Window)this.parentForm, 
-                    string.Format(CultureInfo.CurrentCulture, 
-                    Strings.shapeIndexIsInvalidFormat, shapeIndex, pageIndex), 
-                    string.Empty,
-                    this._mainWindow.RightToLeft
-                );
-                return;
-            }
-
-            Visio.Shape shape = axDrawingControl1.Document.Pages[pageIndex].Shapes[shapeIndex];
-            double xCoordinate = shape.get_CellsSRC((short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowXFormOut, (short)Visio.VisCellIndices.visXFormPinX).ResultIU;
-            double yCoordinate = shape.get_CellsSRC((short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowXFormOut, (short)Visio.VisCellIndices.visXFormPinY).ResultIU;
-            axDrawingControl1.Window.Page = axDrawingControl1.Document.Pages[pageIndex];
-            axDrawingControl1.Window.Select(shape, (short)Visio.VisSelectArgs.visSelect);
-            axDrawingControl1.Window.ScrollViewTo(xCoordinate, yCoordinate);
+            using IScopedDisposableManager<FindShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindShape>>();
+            FindShape findShape = disposableManager.ScopedService;
+            findShape.StartPosition = FormStartPosition.Manual;
+            findShape.Location = new Point(100, 50);
+            findShape.Setup(axDrawingControl1.Document);
+            findShape.ShowDialog(this);
         }
 
         public void FindShape(int pageIndex, int shapeIndex, int pageId, int shapeId)
@@ -462,7 +429,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
         }
 
-        private void FindText()
+        private static void FindText()
         {
             //using (FindText findText = new FindText(axDrawingControl1.Document)
             //{
@@ -474,7 +441,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private void FindVariable()
+        private static void FindVariable()
         {
             //using (FindVariableInShape findText = new FindVariableInShape(axDrawingControl1.Document)
             //{
@@ -534,8 +501,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             _formInitializer.SetToolTipDefaults(toolTip);
 
             axDrawingControl1.Dock = DockStyle.Fill;
-            this.parentForm.FormClosing += new FormClosingEventHandler(parentForm_FormClosing);
-            this.titleBar1.CloseClick += new Components.TitleBar.CloseClickHandler(titleBar1_CloseClick);
+            this.parentForm.FormClosing += new FormClosingEventHandler(ParentForm_FormClosing);
+            this.titleBar1.CloseClick += new Components.TitleBar.CloseClickHandler(TitleBar1_CloseClick);
 
             DocumentSaveAsEventHandler = new VisOCX.EVisOcx_DocumentSavedAsEventHandler(DocumentSavedAs_EventHandler);
             axDrawingControl1.DocumentSavedAs += DocumentSaveAsEventHandler;
@@ -559,8 +526,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             if (axDrawingControl1.Window == null)
                 return true;
 
-            System.Array astrStencilNames;
-            axDrawingControl1.Window.DockedStencils(out astrStencilNames);
+            axDrawingControl1.Window.DockedStencils(out Array astrStencilNames);
             for (int i = 0; i < astrStencilNames.GetLength(0); i++)
             {
                 string path = astrStencilNames.GetValue(i)?.ToString() ?? "";
@@ -859,7 +825,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             if (ContextString != null && ContextString.Contains(VisioDoubleClick.COMMANDSTRING))
             {
                 string sourceTag = VisioDoubleClick.SOURCETAG;
-                string shapeIndexString = ContextString.Substring(ContextString.IndexOf(sourceTag) + sourceTag.Length);
+                string shapeIndexString = ContextString[(ContextString.IndexOf(sourceTag) + sourceTag.Length)..];
                 int shapeId = int.Parse(shapeIndexString, CultureInfo.InvariantCulture);
 
                 selectedShape = _application.ActivePage.Shapes.get_ItemFromID(shapeId);
@@ -881,21 +847,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
         }
 
-        private void axDrawingControl1_MouseDownEvent(object sender, AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseDownEvent e)
+        private static void AxDrawingControl1_MouseDownEvent(object sender, AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseDownEvent e)
         {
         }
 
-        void titleBar1_CloseClick()
+        void TitleBar1_CloseClick()
         {
             CloseControl();
         }
 
-        void parentForm_FormClosing(object? sender, FormClosingEventArgs e)
+        void ParentForm_FormClosing(object? sender, FormClosingEventArgs e)
         {
             SaveAndReleaseDocument();
         }
 
-        private void axDrawingControl1_SelectionChanged(object sender, AxMicrosoft.Office.Interop.VisOcx.EVisOcx_SelectionChangedEvent e)
+        private void AxDrawingControl1_SelectionChanged(object sender, AxMicrosoft.Office.Interop.VisOcx.EVisOcx_SelectionChangedEvent e)
         {
             if (axDrawingControl1.Window.Selection.Count > 0)
             {
@@ -944,16 +910,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
         }
 
-        private void axDrawingControl1_MouseUpEvent(object sender, AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseUpEvent e)
+        private static void AxDrawingControl1_MouseUpEvent(object sender, AxMicrosoft.Office.Interop.VisOcx.EVisOcx_MouseUpEvent e)
         {
         }
 
-        private void findShape_OkClicked(int pageIndex, int shapeIndex)
-        {
-            FindShape(pageIndex, shapeIndex);
-        }
-
-        private void axDrawingControl1_DocumentOpened(object sender, VisOCX.EVisOcx_DocumentOpenedEvent e)
+        private void AxDrawingControl1_DocumentOpened(object sender, VisOCX.EVisOcx_DocumentOpenedEvent e)
         {
             this.axDrawingControl1.Focus();
             OpenStencils();

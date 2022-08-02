@@ -45,6 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
         private readonly Func<MDIParent, string, DeploySelectedFilesToApiCommand> _getDeploySelectedFilesToApiCommand;
         private readonly Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
+        private readonly Func<IMDIParent, FindCellCommand> _getFindCellCommand;
+        private readonly Func<IMDIParent, FindShapeCommand> _getFindShapeCommand;
         private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
         private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
         private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
@@ -78,6 +80,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
             Func<MDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
             Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
+            Func<IMDIParent, FindCellCommand> getFindCellCommand,
+            Func<IMDIParent, FindShapeCommand> getFindShapeCommand,
             Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
             Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
             Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
@@ -93,10 +97,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _checkSelectedApplication = checkSelectedApplication;
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
-            _getDeleteSelectedFilesFromApiCommand = getDeleteSelectedFilesFromApiCommand;
-            _getDeleteSelectedFilesFromFileSystemCommand = getDeleteSelectedFilesFromFileSystemCommand;
-            _getDeploySelectedFilesToApiCommand = getDeploySelectedFilesToApiCommand;
-            _getDeploySelectedFilesToFileSystemCommand = getDeploySelectedFilesToFileSystemCommand;
             _formInitializer = formInitializer;
             _fragmentListInitializer = fragmentListInitializer;
             _functionListInitializer = functionListInitializer;
@@ -104,6 +104,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _loadProjectProperties = loadProjectProperties;
             _mainWindow = mainWindow;
             _themeManager = themeManager;
+            _variableListInitializer = variableListInitializer;
+            _uiNotificationService = uiNotificationService;
+            _getDeleteSelectedFilesFromApiCommand = getDeleteSelectedFilesFromApiCommand;
+            _getDeleteSelectedFilesFromFileSystemCommand = getDeleteSelectedFilesFromFileSystemCommand;
+            _getDeploySelectedFilesToApiCommand = getDeploySelectedFilesToApiCommand;
+            _getDeploySelectedFilesToFileSystemCommand = getDeploySelectedFilesToFileSystemCommand;
+            _getFindCellCommand = getFindCellCommand;
+            _getFindShapeCommand = getFindShapeCommand;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
             _getValidateActiveDocumentCommand = getValidateActiveDocumentCommand;
@@ -113,8 +121,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getViewFlowDiagramStencilCommand = getViewFlowDiagramStencilCommand;
             _getViewMessagesCommand = getViewMessagesCommand;
             _getViewProjectExplorerCommand = getViewProjectExplorerCommand;
-            _variableListInitializer = variableListInitializer;
-            _uiNotificationService = uiNotificationService;
 
             _getBuildActiveDocumentCommand = getBuildActiveDocumentCommand;
             _getBuildSaveConsolidateSelectedDocumentsCommand = getBuildSaveConsolidateSelectedDocumentsCommand;
@@ -369,44 +375,57 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void AddClickCommands()
         {
+
+            #region Tools Menu
             AddClickCommand
-            (
-                this.radMenuItemBuildSelectedModules,
-                _getBuildSaveConsolidateSelectedDocumentsCommand(this)
-            );
+                (
+                    this.radMenuItemBuildSelectedModules,
+                    _getBuildSaveConsolidateSelectedDocumentsCommand(this)
+                );
             AddClickCommand
             (
                 this.radMenuItemValidateSelectedModules,
                 _getValidateSelectedDocumentsCommand(this)
             );
-
             AddBuildActiveDocumentCommands();
-
             AddValidateActiveDocumentCommands();
+            #endregion Tools Menu
 
+            #region Edit/Find
             AddClickCommand
             (
-                this.radMenuItemApplicationsStencil,
-                _getViewApplicationsStencilCommand(this)
+                this.radMenuItemFindCell,
+                _getFindCellCommand(this)
             );
-
             AddClickCommand
             (
-                this.radMenuItemFlowDiagramStencil,
-                _getViewFlowDiagramStencilCommand(this)
+                this.radMenuItemFindShape,
+                _getFindShapeCommand(this)
             );
+            #endregion Edit/Find
 
+            #region View Menu
             AddClickCommand
-            (
-                this.radMenuItemMessagesList,
-                _getViewMessagesCommand(_messages)
-            );
-
+                (
+                    this.radMenuItemMessagesList,
+                    _getViewMessagesCommand(_messages)
+                );
             AddClickCommand
             (
                 this.radMenuItemProjectExplorer,
                 _getViewProjectExplorerCommand(_projectExplorer)
             );
+            AddClickCommand
+            (
+                this.radMenuItemApplicationsStencil,
+                _getViewApplicationsStencilCommand(this)
+            );
+            AddClickCommand
+            (
+                this.radMenuItemFlowDiagramStencil,
+                _getViewFlowDiagramStencilCommand(this)
+            );
+            #endregion View Menu
 
             AddThemeMenuItemClickCommands(this.radMenuItemTheme);
         }

@@ -2779,6 +2779,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Integers only..
+        /// </summary>
+        internal static string integersOnly {
+            get {
+                return ResourceManager.GetString("integersOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For the binary operator &quot;{0}&quot;, both parameters can be of literal type &quot;Any&quot; or neither can be of literal type &quot;Any&quot;. First parameter: &quot;{1}&quot;, second parameter: &quot;{2}&quot;..
         /// </summary>
         internal static string invalidAnyParameterConfigurationForBinaryOperatorFormat {

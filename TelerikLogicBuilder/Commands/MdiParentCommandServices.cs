@@ -103,6 +103,26 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationName
                 )
             )
+            .AddTransient<Func<IMDIParent, FindCellCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<FindCellCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
+            )
+            .AddTransient<Func<IMDIParent, FindShapeCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<FindShapeCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
+            )
             .AddTransient<Func<RadMenuItem, string, SetSelectedApplicationCommand>>
             (
                 provider =>

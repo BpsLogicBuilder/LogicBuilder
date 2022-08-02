@@ -1,9 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
 using LogicBuilder.Workflow.Activities.Rules;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -448,13 +450,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindCell()
         {
-            //FindCell findCell = new FindCell
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //};
-            //findCell.OkClicked += new FindCell.OkClickedHandler(findCell_OkClicked);
-            //findCell.Show(this);
+            using IScopedDisposableManager<FindCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindCell>>();
+            FindCell findCell = disposableManager.ScopedService;
+            findCell.StartPosition = FormStartPosition.Manual;
+            findCell.Location = new Point(100, 50);
+            findCell.Setup(dataGridView1);
+            findCell.ShowDialog(this);
         }
 
         /// <summary>
@@ -476,7 +477,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 return;
             }
 
-            if (userColumnIndex > TableColumns.PRIORITYCOLUMNINDEXUSER || userColumnIndex < TableColumns.CONDITIONCOLUMNINDEXUSER)
+            if (userColumnIndex > TableColumns.ACTIVECOLUMNINDEXUSER || userColumnIndex < TableColumns.CONDITIONCOLUMNINDEXUSER)
             {
                 DisplayMessage.Show
                 (
@@ -494,10 +495,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 TableColumns.CONDITIONCOLUMNINDEXUSER => TableColumns.CONDITIONCOLUMNINDEX,
                 TableColumns.ACTIONCOLUMNINDEXUSER => TableColumns.ACTIONCOLUMNINDEX,
                 TableColumns.PRIORITYCOLUMNINDEXUSER => TableColumns.PRIORITYCOLUMNINDEX,
+                TableColumns.REEVALUATECOLUMNINDEXUSER => TableColumns.REEVALUATECOLUMNINDEX,
+                TableColumns.ACTIVECOLUMNINDEXUSER => TableColumns.ACTIVECOLUMNINDEX,
                 _ => throw _exceptionHelper.CriticalException("{DADB78A7-A670-4D1C-ABCA-B97187DAD7B6}"),
             };
             ClearSelection();
-            dataGridView1.Rows[rowIndex].Cells[columnIndex].IsSelected = true;
+            dataGridView1.Rows[rowIndex].IsCurrent = true;
+            dataGridView1.Columns[columnIndex].IsCurrent = true;
             dataGridView1.Rows[rowIndex].Cells[columnIndex].EnsureVisible();
         }
 

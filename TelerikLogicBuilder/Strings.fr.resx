@@ -660,6 +660,9 @@
 	<data name="installVisio2010or2013or2016or2019x86" xml:space="preserve">
     <value>You are running BPS Logic Builder for Visio (x86) 2010, 2013, 2016, 2019 or 2021.  Please install the x86 version of Visio 2010 or Visio 2013 or Visio 2016 or Visio 2019 or Visio 2021. Please note that only one version can be installed at a time.FR</value>
   </data>
+	<data name="integersOnly" xml:space="preserve">
+    <value>Integers only.FR</value>
+  </data>
 	<data name="invalidAnyParameterConfigurationForBinaryOperatorFormat" xml:space="preserve">
 		<value>For the binary operator "{0}", both parameters can be of literal type "Any" or neither can be of literal type "Any". First parameter: "{1}", second parameter: "{2}".FR</value>
 	</data>
