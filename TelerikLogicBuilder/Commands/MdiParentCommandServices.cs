@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 using Telerik.WinControls.UI;
 
@@ -179,6 +180,24 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider,
                     provider.GetRequiredService<IExceptionHelper>(),
                     mdiParent
+                )
+            )
+            .AddTransient<Func<IMessages, ViewMessagesCommand>>
+            (
+                provider =>
+                messages => ActivatorUtilities.CreateInstance<ViewMessagesCommand>
+                (
+                    provider,
+                    messages
+                )
+            )
+            .AddTransient<Func<IProjectExplorer, ViewProjectExplorerCommand>>
+            (
+                provider =>
+                projectExplorer => ActivatorUtilities.CreateInstance<ViewProjectExplorerCommand>
+                (
+                    provider,
+                    projectExplorer
                 )
             );
         }

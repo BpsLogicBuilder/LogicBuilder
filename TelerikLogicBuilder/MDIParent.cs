@@ -52,6 +52,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<MDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
         private readonly Func<IMDIParent, ViewApplicationsStencilCommand> _getViewApplicationsStencilCommand;
         private readonly Func<IMDIParent, ViewFlowDiagramStencilCommand> _getViewFlowDiagramStencilCommand;
+        private readonly Func<IMessages, ViewMessagesCommand> _getViewMessagesCommand;
+        private readonly Func<IProjectExplorer, ViewProjectExplorerCommand> _getViewProjectExplorerCommand;
 
         //controls
         private readonly IProjectExplorer _projectExplorer;
@@ -83,6 +85,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<MDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
             Func<IMDIParent, ViewApplicationsStencilCommand> getViewApplicationsStencilCommand,
             Func<IMDIParent, ViewFlowDiagramStencilCommand> getViewFlowDiagramStencilCommand,
+            Func<IMessages, ViewMessagesCommand> getViewMessagesCommand,
+            Func<IProjectExplorer, ViewProjectExplorerCommand> getViewProjectExplorerCommand,
             IMessages messages,
             IProjectExplorer projectExplorer)
         {
@@ -107,6 +111,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
             _getViewApplicationsStencilCommand = getViewApplicationsStencilCommand;
             _getViewFlowDiagramStencilCommand = getViewFlowDiagramStencilCommand;
+            _getViewMessagesCommand = getViewMessagesCommand;
+            _getViewProjectExplorerCommand = getViewProjectExplorerCommand;
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
 
@@ -388,6 +394,18 @@ namespace ABIS.LogicBuilder.FlowBuilder
             (
                 this.radMenuItemFlowDiagramStencil,
                 _getViewFlowDiagramStencilCommand(this)
+            );
+
+            AddClickCommand
+            (
+                this.radMenuItemMessagesList,
+                _getViewMessagesCommand(_messages)
+            );
+
+            AddClickCommand
+            (
+                this.radMenuItemProjectExplorer,
+                _getViewProjectExplorerCommand(_projectExplorer)
             );
 
             AddThemeMenuItemClickCommands(this.radMenuItemTheme);
