@@ -12,6 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IGenericFunctionHelper, GenericFunctionHelper>()
                 .AddSingleton<IGenericParametersHelper, GenericParametersHelper>()
                 .AddSingleton<IGenericReturnTypeHelper, GenericReturnTypeHelper>()
-                .AddSingleton<IGetValidConfigurationFromData, GetValidConfigurationFromData>();
+                .AddSingleton<IGetValidConfigurationFromData, GetValidConfigurationFromData>()
+                .AddSingleton<IRefreshVisibleTextHelper, RefreshVisibleTextHelper>();
     }
 }

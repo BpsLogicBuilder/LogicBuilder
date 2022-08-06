@@ -59,10 +59,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         {
             InitializeDialogFormMessageControl();
 
-            _formInitializer.SetFormDefaults(this, 264);
-            
             radGroupBoxPrompt.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
             radTextBoxInput.Anchor = AnchorConstants.AnchorsLeftRightBottom;
+
+            _formInitializer.SetFormDefaults(this, 264);
 
             radButtonOk.Enabled = false;
             radButtonOk.DialogResult = DialogResult.OK;

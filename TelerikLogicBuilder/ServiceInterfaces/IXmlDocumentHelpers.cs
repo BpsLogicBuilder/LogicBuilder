@@ -17,6 +17,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode);
         XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool>? filter = null);
         string GetUnformattedXmlString(XmlDocument xmlDocument);
+        /// <summary>
+        /// Returns the visible text represention of the elements mixed XML child nodes
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        string GetVisibleText(XmlElement element);
         string GetXmlString(XmlDocument xmlDocument);
         XmlAttribute MakeAttribute(XmlDocument xmlDocument, string name, string attributeValue);
         XmlElement MakeElement(XmlDocument xmlDocument, string name, string? innerXml = null, IDictionary<string, string>? attributes = null);

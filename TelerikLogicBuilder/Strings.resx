@@ -176,6 +176,14 @@
 	<data name="beginShapeOutgoingRequired" xml:space="preserve">
     <value>Begin Flow and Module Begin Shapes require only one blank outgoing connector.</value>
   </data>
+	<data name="binaryFunctionParametersFormat" xml:space="preserve">
+    <value>{0} {1} {2}</value>
+    <comment>0=firstParameter; 1=operator; 2=secondParameter</comment>
+  </data>
+	<data name="binaryFunctionSeparatorFormat" xml:space="preserve">
+    <value> {0} </value>
+    <comment>0=functionName;</comment>
+  </data>
 	<data name="binaryOperatorCodeNameInvalidFormat" xml:space="preserve">
     <value>Invalid Member Name "{0}" for Binary Operator "{1}". Valid code names are: {2}.</value>
     <comment>0=Member Name; 1=Function; 2=List of valid names</comment>
@@ -461,6 +469,10 @@
   </data>
 	<data name="dialogBoxOutgoingCount" xml:space="preserve">
     <value>Without a multiple choice dialog function or diverging application logic, only one connector can exit a Dialog Shape.</value>
+  </data>
+	<data name="dialogConnectorFormat" xml:space="preserve">
+    <value>{0}:{1}</value>
+    <comment>Must include {0} and {1} for index and text respectively</comment>
   </data>
 	<data name="dialogDuplicateChoiceFormat" xml:space="preserve">
     <value>Shape has two connectors with identical choices.  Connector number {0} is a duplicate.</value>
@@ -749,6 +761,10 @@
 	<data name="jumpShapeUniqueTextForToShape" xml:space="preserve">
     <value>Duplicate Jump Shape. Text in a "To" Jump Shapes must be unique.</value>
   </data>
+	<data name="listParameterCountFormat" xml:space="preserve">
+    <value>{0}: Count({1})</value>
+    <comment>0=parameterName;1=itemCount;</comment>
+  </data>
 	<data name="listParameterTypeNameFormat" xml:space="preserve">
     <value>{0}Of{1}: {2}</value>
     <comment>0=listType 1=UnderlyingType 2=name</comment>
@@ -770,6 +786,10 @@
 	<data name="listViewTextVsdx" xml:space="preserve">
     <value>(*.VSDX)</value>
   </data>
+	<data name="literalParameterDescriptionFormat" xml:space="preserve">
+    <value>{0}={1}</value>
+    <comment>0=parameterName 1=parameterVisibleText</comment>
+  </data>
 	<data name="loadingAssemblies" xml:space="preserve">
     <value>Reloading assemblies. Please wait.</value>
   </data>
@@ -779,6 +799,10 @@
 	<data name="memberNameIsInvalidFormat" xml:space="preserve">
     <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=functionName</comment>
+  </data>
+	<data name="memberParametersFormat" xml:space="preserve">
+    <value>{0}: {1}</value>
+    <comment>0=functionName;1=parametersList;</comment>
   </data>
 	<data name="mergeAppConnectorComments" xml:space="preserve">
     <value>Merge Object requires a minimum of two attached application connectors all pointing in the same direction (all incoming or all outgoing).</value>
@@ -906,8 +930,19 @@
 	<data name="noConnectorsOnJumpFormat" xml:space="preserve">
     <value>Jump shape has no connectors.</value>
   </data>
+	<data name="notFromDecisionSeparator" xml:space="preserve">
+    <value>:</value>
+    <comment>NotUS: &lt;ACIS INL usoc&gt; EqualsUS HWWXB</comment>
+  </data>
+	<data name="notFromDecisionStringFormat" xml:space="preserve">
+    <value>({0}{1} {2})</value>
+    <comment>e.g. 0="Not" 1=: 2="&lt;ACIS INL usoc&gt; EqualsUS HWWXB" </comment>
+  </data>
 	<data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.</value>
+  </data>
+	<data name="oneSearchOccurrence" xml:space="preserve">
+    <value>1 found.</value>
   </data>
 	<data name="othersConnectorInvalid" xml:space="preserve">
     <value>Others Connect Object is invalid when all applications are accounted for.</value>
@@ -922,11 +957,18 @@
 	<data name="parameterCountMustBeTwoFormat" xml:space="preserve">
     <value>Because Parameters Layout is Binary, function {0} must have exactly 2 parameters.</value>
   </data>
+	<data name="parameterFromValueSeparator" xml:space="preserve">
+    <value>=</value>
+    <comment>Descr: value=HHH[Substring: start=0;finish=1;value=TTTTT][Concat desp: value=GG;desparg=HH]</comment>
+  </data>
 	<data name="parameterNotLiteralFormat" xml:space="preserve">
     <value>The parameter "{0}" of type "{1}" is not a valid literal.</value>
   </data>
 	<data name="parameterNotOptionalFormat" xml:space="preserve">
     <value>Parameter "{0}" is not optional.</value>
+  </data>
+	<data name="parametersDelimiter" xml:space="preserve">
+    <value>;</value>
   </data>
 	<data name="parametersLayoutMustBeBinaryFormat" xml:space="preserve">
     <value>Parameters Layout for function {0} must be "Binary" when the function category is "Binary Operator".</value>
@@ -938,6 +980,10 @@
 	<data name="parameterTypeNameFormat2" xml:space="preserve">
     <value>{0}: {1}</value>
     <comment>0=type 1=name</comment>
+  </data>
+	<data name="popupVariableDescriptionFormat" xml:space="preserve">
+    <value>&lt;{0}&gt;</value>
+    <comment>0=VariableName</comment>
   </data>
 	<data name="progressFormOperationCancelled" xml:space="preserve">
     <value>Operation Cancelled</value>
@@ -1028,6 +1074,16 @@
     <value>Save {0}?</value>
     <comment>0=FileName</comment>
   </data>
+	<data name="searchAllPagesComplete" xml:space="preserve">
+    <value>Finished searching all pages.</value>
+  </data>
+	<data name="searchOccurrencesFormat" xml:space="preserve">
+    <value>{0} found.</value>
+    <comment>0=occurrences</comment>
+  </data>
+	<data name="searchPageComplete" xml:space="preserve">
+    <value>Finished searching the page.</value>
+  </data>
 	<data name="selectRulesToDelete" xml:space="preserve">
     <value>Select Rules to Delete</value>
   </data>
@@ -1036,6 +1092,10 @@
   </data>
 	<data name="selectRulesToValidate" xml:space="preserve">
     <value>Select Rules to Validate</value>
+  </data>
+	<data name="setValueFunctionVisibleTextFormat" xml:space="preserve">
+    <value>{0}: {{{1}}}</value>
+    <comment>0=function name; 1=operation description,; e.g. Set Value: {&lt;var&gt; Equals 1.0}</comment>
   </data>
 	<data name="shapeBoxOutgoingBlanks" xml:space="preserve">
     <value>With the exception of diverging application logic, only one blank connector can exit this shape.</value>

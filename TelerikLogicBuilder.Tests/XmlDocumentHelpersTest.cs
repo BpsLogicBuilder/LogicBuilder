@@ -1,8 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -287,6 +290,59 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(3, result.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Length);
+        }
+
+        public static IList<object[]> MixedXml_Data
+        {
+            get
+            {
+                return new List<object[]>
+                {
+                    new object[] { @"<literalParameter name=""p1""><variable name=""myvariable"" visibleText=""myvariable"" /></literalParameter>", "<myvariable>" },
+                    new object[] { @"<text name=""p1""><function name=""functionName"" visibleText=""functionVisibleText""></function></text>", "functionVisibleText" },
+                    new object[] { @"<text name=""p1""><constructor name=""constructorName"" visibleText=""constructorVisibleText""></constructor></text>", "constructorVisibleText" },
+                    new object[] { @"<text name=""p1"">SomeText</text>", "SomeText" },
+                    new object[] { @"<text name=""p1"">Text Mixed <variable name=""myvariable"" visibleText=""myvariable"" /> With Element</text>", @"Text Mixed <myvariable> With Element" }
+                };
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(MixedXml_Data))]
+        public void GetVisibleTextWorks(string xml, string visibleText)
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlElement xmlElement = GetXmlElement(xml);
+
+            //act
+            var result = helper.GetVisibleText(xmlElement);
+
+            //assert
+            Assert.Equal(visibleText, result);
+        }
+
+        [Fact]
+        public void GetVisibleTextThrowsForInvalidChildElement()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlElement xmlElement = GetXmlElement(@"<text name=""p1"">Text Mixed <garbage name=""garbage"" visibleText=""garbage"" /> With Element</text>");
+
+            //act
+            var result = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetVisibleText(xmlElement));
+
+            //assert
+            Assert.Equal
+            (
+                string.Format
+                (
+                    CultureInfo.InvariantCulture,
+                    Strings.invalidArgumentTextFormat, 
+                    "{51C90B4E-2ABE-4381-817E-87EA1D72F684}"
+                ), 
+                result.Message
+            );
         }
 
         [Fact]

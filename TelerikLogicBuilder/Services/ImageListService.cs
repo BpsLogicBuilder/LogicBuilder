@@ -32,7 +32,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.Cut,
                         Properties.Resources.refresh,
                         Properties.Resources.Copy,
-                        Properties.Resources.Edit
+                        Properties.Resources.Edit,
+                        Properties.Resources.functionButtonImage
                     }
                 };
 

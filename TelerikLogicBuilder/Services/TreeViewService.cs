@@ -31,6 +31,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || treeNode.ImageIndex == ImageIndexes.CUTOPENEDFOLDERIMAGEINDEX;
         }
 
+        public bool IsMethodNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{A0B43A22-1119-44E6-8B88-8C97210F6617}");
+
+            return treeNode.ImageIndex == ImageIndexes.METHODIMAGEINDEX;
+        }
+
         public bool IsRootNode(RadTreeNode treeNode)
         {
             if (treeNode == null)

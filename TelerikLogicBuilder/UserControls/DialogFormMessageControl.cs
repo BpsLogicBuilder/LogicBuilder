@@ -181,6 +181,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void ThemeResolutionService_ApplicationThemeChanged(object sender, ThemeChangedEventArgs args)
         {
+            if (this.IsDisposed)
+                return;
+
             SetTheme(args.ThemeName);
         }
         #endregion Event Handlers

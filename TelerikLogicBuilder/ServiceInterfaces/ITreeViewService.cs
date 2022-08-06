@@ -8,6 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool IsRootNode(RadTreeNode treeNode);
         bool IsFileNode(RadTreeNode treeNode);
         bool IsFolderNode(RadTreeNode treeNode);
+        bool IsMethodNode(RadTreeNode treeNode);
         void MakeVisible(RadTreeNode treeNode);
         void ScrollToPreviousPosition(RadTreeView treeView, Point point);
         void SelectTreeNode(RadTreeView treeView, string? nodeName);

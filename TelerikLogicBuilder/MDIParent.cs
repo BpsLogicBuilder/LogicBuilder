@@ -45,8 +45,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
         private readonly Func<MDIParent, string, DeploySelectedFilesToApiCommand> _getDeploySelectedFilesToApiCommand;
         private readonly Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
+        private readonly ExitCommand _exitCommand;
+        private readonly Func<IMDIParent, FindConstructorCommand> _getFindConstructorCommand;
         private readonly Func<IMDIParent, FindCellCommand> _getFindCellCommand;
+        private readonly Func<IMDIParent, FindFunctionCommand> _getFindFunctionCommand;
         private readonly Func<IMDIParent, FindShapeCommand> _getFindShapeCommand;
+        private readonly Func<IMDIParent, FindTextCommand> _getFindTextCommand;
+        private readonly Func<IMDIParent, FindVariableCommand> _getFindVariableCommand;
         private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
         private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
         private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
@@ -80,8 +85,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
             Func<MDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
             Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
+            ExitCommand exitCommand,
+            Func<IMDIParent, FindConstructorCommand> getFindConstructorCommand,
             Func<IMDIParent, FindCellCommand> getFindCellCommand,
+            Func<IMDIParent, FindFunctionCommand> getFindFunctionCommand,
             Func<IMDIParent, FindShapeCommand> getFindShapeCommand,
+            Func<IMDIParent, FindTextCommand> getFindTextommand,
+            Func<IMDIParent, FindVariableCommand> getFindVariableCommand,
             Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
             Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
             Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
@@ -110,8 +120,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getDeleteSelectedFilesFromFileSystemCommand = getDeleteSelectedFilesFromFileSystemCommand;
             _getDeploySelectedFilesToApiCommand = getDeploySelectedFilesToApiCommand;
             _getDeploySelectedFilesToFileSystemCommand = getDeploySelectedFilesToFileSystemCommand;
+            _exitCommand = exitCommand;
+            _getFindConstructorCommand = getFindConstructorCommand;
             _getFindCellCommand = getFindCellCommand;
+            _getFindFunctionCommand = getFindFunctionCommand;
             _getFindShapeCommand = getFindShapeCommand;
+            _getFindTextCommand = getFindTextommand;
+            _getFindVariableCommand = getFindVariableCommand;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
             _getValidateActiveDocumentCommand = getValidateActiveDocumentCommand;
@@ -375,6 +390,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void AddClickCommands()
         {
+            #region File Menu
+            AddClickCommand(this.radMenuItemExit, _exitCommand);
+            #endregion File Menu
 
             #region Tools Menu
             AddClickCommand
@@ -392,16 +410,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
             #endregion Tools Menu
 
             #region Edit/Find
-            AddClickCommand
-            (
-                this.radMenuItemFindCell,
-                _getFindCellCommand(this)
-            );
-            AddClickCommand
-            (
-                this.radMenuItemFindShape,
-                _getFindShapeCommand(this)
-            );
+            AddClickCommand(this.radMenuItemFindConstructor, _getFindConstructorCommand(this));
+            AddClickCommand(this.radMenuItemFindCell, _getFindCellCommand(this));
+            AddClickCommand(this.radMenuItemFindFunction, _getFindFunctionCommand(this));
+            AddClickCommand(this.radMenuItemFindShape, _getFindShapeCommand(this));
+            AddClickCommand(this.radMenuItemFindText, _getFindTextCommand(this));
+            AddClickCommand(this.radMenuItemFindVariable, _getFindVariableCommand(this));
             #endregion Edit/Find
 
             #region View Menu

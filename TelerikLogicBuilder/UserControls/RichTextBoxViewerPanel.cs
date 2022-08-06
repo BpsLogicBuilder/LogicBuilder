@@ -44,6 +44,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void ThemeResolutionService_ApplicationThemeChanged(object sender, ThemeChangedEventArgs args)
         {
+            if (this.IsDisposed)
+                return;
+
             this.richTextBox1.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
             this.richTextBox1.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
         }

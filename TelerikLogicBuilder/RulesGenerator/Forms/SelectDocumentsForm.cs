@@ -29,13 +29,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
+            radButtonOk.Anchor = AnchorConstants.AnchorsLeftTopRight;
+            radButtonCancel.Anchor = AnchorConstants.AnchorsLeftTopRight;
             _formInitializer.SetFormDefaults(this, 648);
             _selectDocunentsTreeViewBuilder.Build(radTreeView);
 
             radButtonOk.DialogResult = DialogResult.OK;
             radButtonCancel.DialogResult = DialogResult.Cancel;
-            radButtonOk.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            radButtonCancel.Anchor = AnchorConstants.AnchorsLeftTopRight;
         }
 
         private void InitializeDialogFormMessageControl()

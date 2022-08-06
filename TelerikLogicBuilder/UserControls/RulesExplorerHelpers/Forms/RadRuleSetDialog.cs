@@ -81,7 +81,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
-            _formInitializer.SetFormDefaults(this, 789);
 
             radGroupBoxRuleSet.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
             radGroupBoxRule.Anchor = AnchorConstants.AnchorsLeftRightBottom;
@@ -89,6 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             radTextBoxConditions.Anchor = AnchorConstants.AnchorsLeftTopRight;
             radTextBoxActions.Anchor = AnchorConstants.AnchorsLeftTopRight;
             radButtonClose.Anchor = AnchorConstants.AnchorsRightBottom;
+            _formInitializer.SetFormDefaults(this, 789);
             ((BorderPrimitive)radPanelBottom.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
             ((BorderPrimitive)radPanelBottomFill.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 

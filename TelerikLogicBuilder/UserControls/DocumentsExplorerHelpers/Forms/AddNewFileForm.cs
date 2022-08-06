@@ -55,11 +55,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
-            _formInitializer.SetFormDefaults(this, 557);
 
             radGroupBoxFileType.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
             radLabelFileName.Anchor = AnchorConstants.AnchorsLeftBottom;
             radTextBoxFileName.Anchor = AnchorConstants.AnchorsLeftRightBottom;
+            _formInitializer.SetFormDefaults(this, 557);
 
             radTextBoxFileName.TextChanged += RadTextBoxFileName_TextChanged;
 

@@ -250,6 +250,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} {1} {2}.
+        /// </summary>
+        internal static string binaryFunctionParametersFormat {
+            get {
+                return ResourceManager.GetString("binaryFunctionParametersFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  {0} .
+        /// </summary>
+        internal static string binaryFunctionSeparatorFormat {
+            get {
+                return ResourceManager.GetString("binaryFunctionSeparatorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Member Name &quot;{0}&quot; for Binary Operator &quot;{1}&quot;. Valid code names are: {2}..
         /// </summary>
         internal static string binaryOperatorCodeNameInvalidFormat {
@@ -1218,6 +1236,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string dialogBoxOutgoingCount {
             get {
                 return ResourceManager.GetString("dialogBoxOutgoingCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}:{1}.
+        /// </summary>
+        internal static string dialogConnectorFormat {
+            get {
+                return ResourceManager.GetString("dialogConnectorFormat", resourceCulture);
             }
         }
         
@@ -3022,6 +3049,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}: Count({1}).
+        /// </summary>
+        internal static string listParameterCountFormat {
+            get {
+                return ResourceManager.GetString("listParameterCountFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}Of{1}: {2}.
         /// </summary>
         internal static string listParameterTypeNameFormat {
@@ -3063,6 +3099,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string listViewTextVsdx {
             get {
                 return ResourceManager.GetString("listViewTextVsdx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}={1}.
+        /// </summary>
+        internal static string literalParameterDescriptionFormat {
+            get {
+                return ResourceManager.GetString("literalParameterDescriptionFormat", resourceCulture);
             }
         }
         
@@ -3117,6 +3162,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string memberNameIsInvalidFormat {
             get {
                 return ResourceManager.GetString("memberNameIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}: {1}.
+        /// </summary>
+        internal static string memberParametersFormat {
+            get {
+                return ResourceManager.GetString("memberParametersFormat", resourceCulture);
             }
         }
         
@@ -3490,11 +3544,38 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to :.
+        /// </summary>
+        internal static string notFromDecisionSeparator {
+            get {
+                return ResourceManager.GetString("notFromDecisionSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ({0}{1} {2}).
+        /// </summary>
+        internal static string notFromDecisionStringFormat {
+            get {
+                return ResourceManager.GetString("notFromDecisionStringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Method not implemented in {0}..
         /// </summary>
         internal static string notImplementedMessageFormat {
             get {
                 return ResourceManager.GetString("notImplementedMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 found..
+        /// </summary>
+        internal static string oneSearchOccurrence {
+            get {
+                return ResourceManager.GetString("oneSearchOccurrence", resourceCulture);
             }
         }
         
@@ -3535,6 +3616,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to =.
+        /// </summary>
+        internal static string parameterFromValueSeparator {
+            get {
+                return ResourceManager.GetString("parameterFromValueSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The parameter &quot;{0}&quot; of type &quot;{1}&quot; is not a valid literal..
         /// </summary>
         internal static string parameterNotLiteralFormat {
@@ -3549,6 +3639,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string parameterNotOptionalFormat {
             get {
                 return ResourceManager.GetString("parameterNotOptionalFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ;.
+        /// </summary>
+        internal static string parametersDelimiter {
+            get {
+                return ResourceManager.GetString("parametersDelimiter", resourceCulture);
             }
         }
         
@@ -3576,6 +3675,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string parameterTypeNameFormat2 {
             get {
                 return ResourceManager.GetString("parameterTypeNameFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;{0}&gt;.
+        /// </summary>
+        internal static string popupVariableDescriptionFormat {
+            get {
+                return ResourceManager.GetString("popupVariableDescriptionFormat", resourceCulture);
             }
         }
         
@@ -3832,6 +3940,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finished searching all pages..
+        /// </summary>
+        internal static string searchAllPagesComplete {
+            get {
+                return ResourceManager.GetString("searchAllPagesComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} found..
+        /// </summary>
+        internal static string searchOccurrencesFormat {
+            get {
+                return ResourceManager.GetString("searchOccurrencesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished searching the page..
+        /// </summary>
+        internal static string searchPageComplete {
+            get {
+                return ResourceManager.GetString("searchPageComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Rules to Delete.
         /// </summary>
         internal static string selectRulesToDelete {
@@ -3855,6 +3990,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string selectRulesToValidate {
             get {
                 return ResourceManager.GetString("selectRulesToValidate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}: {{{1}}}.
+        /// </summary>
+        internal static string setValueFunctionVisibleTextFormat {
+            get {
+                return ResourceManager.GetString("setValueFunctionVisibleTextFormat", resourceCulture);
             }
         }
         

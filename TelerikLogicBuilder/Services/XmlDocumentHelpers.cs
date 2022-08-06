@@ -158,6 +158,47 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return stringBuilder.ToString();
         }
 
+        public string GetVisibleText(XmlElement element)
+            => element.ChildNodes
+                .OfType<XmlNode>()
+                .Aggregate
+                (
+                    new StringBuilder(), (sb, next) =>
+                    {
+                        switch (next.NodeType)
+                        {
+                            case XmlNodeType.Element:
+                                XmlElement xmlElement = (XmlElement)next;
+                                switch (xmlElement.Name)
+                                {
+                                    case XmlDataConstants.VARIABLEELEMENT:
+                                        sb.Append(string.Format(CultureInfo.CurrentCulture, Strings.popupVariableDescriptionFormat, xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value));/*name attribute not null*/
+                                        break;
+                                    case XmlDataConstants.FUNCTIONELEMENT:
+                                        sb.Append(xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value);/*visibleText attribute not null*/
+                                        break;
+                                    case XmlDataConstants.CONSTRUCTORELEMENT:
+                                        sb.Append(xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value);/*visibleText attribute not null*/
+                                        break;
+                                    default:
+                                        throw _exceptionHelper.CriticalException("{51C90B4E-2ABE-4381-817E-87EA1D72F684}");
+                                }
+                                break;
+                            case XmlNodeType.Text:
+                                XmlText xmlText = (XmlText)next;
+                                sb.Append(xmlText.Value);
+                                break;
+                            case XmlNodeType.Whitespace:
+                                XmlWhitespace xmlWhitespace = (XmlWhitespace)next;
+                                sb.Append(xmlWhitespace.Value);
+                                break;
+                            default:
+                                break;
+                        }
+                        return sb;
+                    }
+                ).ToString();
+
         public string GetXmlString(XmlDocument xmlDocument)
         {
             StringBuilder stringBuilder = new();
@@ -256,8 +297,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        public XmlElement ToXmlElement(string xmlString, bool preserveWhiteSpace = true) 
-            => ToXmlDocument(xmlString, preserveWhiteSpace).DocumentElement!;
+        public XmlElement ToXmlElement(string xmlString, bool preserveWhiteSpace = true)
+        {
+            if (string.IsNullOrEmpty(xmlString))
+                throw _exceptionHelper.CriticalException("{F125DCE9-91EB-4E14-8E25-7ABF51DA0DA2}");
+
+            return ToXmlDocument(xmlString, preserveWhiteSpace).DocumentElement!;
+        }
         #endregion Methods
     }
 }

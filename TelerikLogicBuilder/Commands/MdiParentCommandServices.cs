@@ -103,6 +103,17 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationName
                 )
             )
+            .AddTransient<ExitCommand>()
+            .AddTransient<Func<IMDIParent, FindConstructorCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<FindConstructorCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
+            )
             .AddTransient<Func<IMDIParent, FindCellCommand>>
             (
                 provider =>
@@ -113,10 +124,40 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent
                 )
             )
+            .AddTransient<Func<IMDIParent, FindFunctionCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<FindFunctionCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
+            )
             .AddTransient<Func<IMDIParent, FindShapeCommand>>
             (
                 provider =>
                 mdiParent => ActivatorUtilities.CreateInstance<FindShapeCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
+            )
+            .AddTransient<Func<IMDIParent, FindTextCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<FindTextCommand>
+                (
+                    provider,
+                    provider.GetRequiredService<IExceptionHelper>(),
+                    mdiParent
+                )
+            )
+            .AddTransient<Func<IMDIParent, FindVariableCommand>>
+            (
+                provider =>
+                mdiParent => ActivatorUtilities.CreateInstance<FindVariableCommand>
                 (
                     provider,
                     provider.GetRequiredService<IExceptionHelper>(),

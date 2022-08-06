@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
@@ -429,16 +430,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
         }
 
-        private static void FindText()
+        private void FindText()
         {
-            //using (FindText findText = new FindText(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindTextInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindTextInShape>>();
+            FindTextInShape findText = disposableManager.ScopedService;
+            findText.Setup(axDrawingControl1.Document);
+            findText.StartPosition = FormStartPosition.Manual;
+            findText.Location = new Point(100, 50);
+            findText.ShowDialog((Form)this.parentForm);
         }
 
         private static void FindVariable()
@@ -662,11 +661,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     (IWin32Window)this.parentForm,
                     string.Format
                     (
-                        CultureInfo.CurrentCulture, 
-                        Strings.saveFormQuestionFormat, 
+                        CultureInfo.CurrentCulture,
+                        Strings.saveFormQuestionFormat,
                         _pathHelper.GetFileName(this.visioSourceFile)
-                    ), 
-                    string.Empty, 
+                    ),
+                    string.Empty,
                     _mainWindow.RightToLeft
                 );
                 if (dialogResult == DialogResult.Yes)

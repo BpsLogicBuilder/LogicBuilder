@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
@@ -11,8 +12,13 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControls(this IServiceCollection services)
         {
             return services
+                .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
                 .AddTransient<FindCell>()
                 .AddTransient<FindShape>()
+                .AddTransient<FindTextInCell>()
+                .AddTransient<FindTextInShape>()
+                .AddSingleton<IFunctionsFormFieldSetHelper, FunctionsFormFieldSetHelper>()
+                .AddSingleton<ISearchFunctions, SearchFunctions>()
                 .AddTransient<Func<string, bool, TableControl>>
                 (
                     provider =>

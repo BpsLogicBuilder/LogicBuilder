@@ -107,6 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
             finally
             {
+                mdiParent!.Close();
                 System.Windows.Forms.Application.Exit();
             }
         }
@@ -120,6 +121,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
             finally
             {
+                mdiParent!.Close();
                 System.Windows.Forms.Application.Exit();
             }
         }

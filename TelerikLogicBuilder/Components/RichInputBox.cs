@@ -1022,6 +1022,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
         private void ThemeResolutionService_ApplicationThemeChanged(object sender, Telerik.WinControls.ThemeChangedEventArgs args)
         {
+            if (this.IsDisposed)
+                return;
+
             this.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
             this.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
             ResetNonLinkTextOnThemeChange();

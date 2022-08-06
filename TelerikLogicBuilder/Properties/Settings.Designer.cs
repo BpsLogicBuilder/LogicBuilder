@@ -12,7 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -32,6 +32,234 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
             }
             set {
                 this["themeName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findInAllDocuments {
+            get {
+                return ((bool)(this["findInAllDocuments"]));
+            }
+            set {
+                this["findInAllDocuments"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findTextMatchCase {
+            get {
+                return ((bool)(this["findTextMatchCase"]));
+            }
+            set {
+                this["findTextMatchCase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool findTextMatchWholeWord {
+            get {
+                return ((bool)(this["findTextMatchWholeWord"]));
+            }
+            set {
+                this["findTextMatchWholeWord"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string textFindWhat {
+            get {
+                return ((string)(this["textFindWhat"]));
+            }
+            set {
+                this["textFindWhat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string textReplaceWith {
+            get {
+                return ((string)(this["textReplaceWith"]));
+            }
+            set {
+                this["textReplaceWith"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findConstructorMatchCase {
+            get {
+                return ((bool)(this["findConstructorMatchCase"]));
+            }
+            set {
+                this["findConstructorMatchCase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findConstructorMatchWholeWord {
+            get {
+                return ((bool)(this["findConstructorMatchWholeWord"]));
+            }
+            set {
+                this["findConstructorMatchWholeWord"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string constructorFindWhat {
+            get {
+                return ((string)(this["constructorFindWhat"]));
+            }
+            set {
+                this["constructorFindWhat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string constructorReplaceWith {
+            get {
+                return ((string)(this["constructorReplaceWith"]));
+            }
+            set {
+                this["constructorReplaceWith"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findFunctionMatchCase {
+            get {
+                return ((bool)(this["findFunctionMatchCase"]));
+            }
+            set {
+                this["findFunctionMatchCase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findFunctionMatchWholeWord {
+            get {
+                return ((bool)(this["findFunctionMatchWholeWord"]));
+            }
+            set {
+                this["findFunctionMatchWholeWord"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string functionFindWhat {
+            get {
+                return ((string)(this["functionFindWhat"]));
+            }
+            set {
+                this["functionFindWhat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string functionReplaceWith {
+            get {
+                return ((string)(this["functionReplaceWith"]));
+            }
+            set {
+                this["functionReplaceWith"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findVariableMatchCase {
+            get {
+                return ((bool)(this["findVariableMatchCase"]));
+            }
+            set {
+                this["findVariableMatchCase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findVariableMatchWholeWord {
+            get {
+                return ((bool)(this["findVariableMatchWholeWord"]));
+            }
+            set {
+                this["findVariableMatchWholeWord"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string variableFindWhat {
+            get {
+                return ((string)(this["variableFindWhat"]));
+            }
+            set {
+                this["variableFindWhat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string variableReplaceWith {
+            get {
+                return ((string)(this["variableReplaceWith"]));
+            }
+            set {
+                this["variableReplaceWith"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findCurrentPage {
+            get {
+                return ((bool)(this["findCurrentPage"]));
+            }
+            set {
+                this["findCurrentPage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool findCurrentRow {
+            get {
+                return ((bool)(this["findCurrentRow"]));
+            }
+            set {
+                this["findCurrentRow"] = value;
             }
         }
     }

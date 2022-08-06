@@ -25,10 +25,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
         private void Initialize()
         {
             this.Text = ApplicationProperties.Name;
-            _formInitializer.SetProgressFormDefaults(this, 288);
+            
             radPanelLabel.Anchor = AnchorConstants.AnchorsLeftTopRight;
             radPanelProgressBar.Anchor = AnchorConstants.AnchorsLeftTopRight;
             radButtonCancel.Anchor = AnchorConstants.AnchorsLeftTopRight;
+
+            _formInitializer.SetProgressFormDefaults(this, 288);
         }
 
         private void Progress_ProgressChanged(object? sender, ProgressMessage e)
