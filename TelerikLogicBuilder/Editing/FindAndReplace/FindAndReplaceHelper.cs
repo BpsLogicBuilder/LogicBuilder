@@ -68,13 +68,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
-        public Shape? FindItemAllPages(Document visioDocument, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchPageIndex, ref int searchShapeIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, List<string>> matchFunc)
+        public Shape? FindItemAllPages(Document visioDocument, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchPageIndex, ref int searchShapeIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, IList<string>> matchFunc)
         {
             for (int i = searchPageIndex; i <= visioDocument.Pages.Count; i++)
             {
                 for (int j = searchShapeIndex; j <= visioDocument.Pages[i].Shapes.Count; j++)
                 {
-                    List<string> matches = FindMatchesInShape(visioDocument.Pages[i].Shapes[j], searchString, matchFunc, matchCase, matchWholeWord);
+                    IList<string> matches = FindMatchesInShape(visioDocument.Pages[i].Shapes[j], searchString, matchFunc, matchCase, matchWholeWord);
                     groupBoxOccurrences.Text = GetOccurrencesString(matches);
                     if (matches.Any())
                     {
@@ -107,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             return null;
         }
 
-        public GridViewCellInfo? FindItemAllRows(RadGridView dataGridView, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchRowIndex, ref int searchCellIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, List<string>> matchFunc)
+        public GridViewCellInfo? FindItemAllRows(RadGridView dataGridView, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchRowIndex, ref int searchCellIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, IList<string>> matchFunc)
         {
             GridViewRowCollection rows = dataGridView.Rows;
             GridViewColumnCollection columns = dataGridView.Columns;
@@ -116,7 +116,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             {
                 for (int j = searchCellIndex; j < rows[i].Cells.Count; j++)
                 {
-                    List<string> matches = FindMatchesInCell(rows[i].Cells[j].Value.ToString() ?? string.Empty, j, searchString, matchFunc, matchCase, matchWholeWord);
+                    IList<string> matches = FindMatchesInCell(rows[i].Cells[j].Value.ToString() ?? string.Empty, j, searchString, matchFunc, matchCase, matchWholeWord);
                     groupBoxOccurrences.Text = GetOccurrencesString(matches);
                     if (matches.Any())
                     {
@@ -147,12 +147,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             return null;
         }
 
-        public Shape? FindItemCurrentPage(Document visioDocument, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchShapeIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, List<string>> matchFunc)
+        public Shape? FindItemCurrentPage(Document visioDocument, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchShapeIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, IList<string>> matchFunc)
         {
             Page page = (Page)visioDocument.Application.ActiveWindow.Page;
             for (int j = searchShapeIndex; j <= page.Shapes.Count; j++)
             {
-                List<string> matches = FindMatchesInShape(page.Shapes[j], searchString, matchFunc, matchCase, matchWholeWord);
+                IList<string> matches = FindMatchesInShape(page.Shapes[j], searchString, matchFunc, matchCase, matchWholeWord);
                 groupBoxOccurrences.Text = GetOccurrencesString(matches);
                 if (matches.Any())
                 {
@@ -177,7 +177,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             return null;
         }
 
-        public GridViewCellInfo? FindItemCurrentRow(RadGridView dataGridView, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchCellIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, List<string>> matchFunc)
+        public GridViewCellInfo? FindItemCurrentRow(RadGridView dataGridView, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchCellIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, IList<string>> matchFunc)
         {
             GridViewRowInfo? row = dataGridView.CurrentCell?.RowInfo;
 
@@ -189,7 +189,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
             for (int j = searchCellIndex; j < row.Cells.Count; j++)
             {
-                List<string> matches = FindMatchesInCell(row.Cells[j].Value.ToString() ?? string.Empty, j, searchString, matchFunc, matchCase, matchWholeWord);
+                IList<string> matches = FindMatchesInCell(row.Cells[j].Value.ToString() ?? string.Empty, j, searchString, matchFunc, matchCase, matchWholeWord);
                 groupBoxOccurrences.Text = GetOccurrencesString(matches);
                 if (matches.Any())
                 {
@@ -345,19 +345,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             );
         }
 
-        private List<string> FindMatchesInShape(Shape shape, string searchString, Func<string, string, bool, bool, List<string>> matchFunc, bool matchCase, bool matchWholeWord)
+        private IList<string> FindMatchesInShape(Shape shape, string searchString, Func<string, string, bool, bool, IList<string>> matchFunc, bool matchCase, bool matchWholeWord)
         {
             if (!ShapeCollections.TextSearchableShapes.Contains(shape.Master.NameU))
                 return new List<string>();
 
             string shapeXml = _shapeXmlHelper.GetXmlString(shape);
             if (shapeXml.Length == 0)
-                return new List<string>();
+                return Array.Empty<string>();
 
             return matchFunc(shapeXml, searchString, matchCase, matchWholeWord);
         }
 
-        private List<string> FindMatchesInCell(string cellText, int columnIndex, string searchString, Func<string, string, bool, bool, List<string>> matchFunc, bool matchCase, bool matchWholeWord)
+        private IList<string> FindMatchesInCell(string cellText, int columnIndex, string searchString, Func<string, string, bool, bool, IList<string>> matchFunc, bool matchCase, bool matchWholeWord)
         {
             switch (columnIndex)
             {
@@ -366,7 +366,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                 case TableColumns.PRIORITYCOLUMNINDEX:
                     break;
                 default:
-                    return new List<string>();
+                    return Array.Empty<string>();
             }
 
             string cellXml = _cellXmlHelper.GetXmlString(cellText, columnIndex);
@@ -376,7 +376,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             return matchFunc(cellXml, searchString, matchCase, matchWholeWord);
         }
 
-        private static string GetOccurrencesString(List<string> matches)
+        private static string GetOccurrencesString(IList<string> matches)
         {
             if (!matches.Any())
                 return string.Empty;
