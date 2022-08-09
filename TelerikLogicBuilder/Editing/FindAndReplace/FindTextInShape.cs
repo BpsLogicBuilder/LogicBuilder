@@ -34,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         private int searchShapeIndex = 1;
         #endregion Variables
 
+        #region Methods
         public void Setup(Document visioDocument)
         {
             this.visioDocument = visioDocument;
@@ -85,7 +86,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         {
             radButtonFindNext.Enabled = radTextBoxText.Text.Length > 0;
         }
+        #endregion Methods
 
+        #region Event Handlers
         private void RadTextBoxText_TextChanged(object sender, EventArgs e)
         {
             ResetSearchIndexes();
@@ -95,6 +98,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         private void RadButtonFindNext_Click(object sender, EventArgs e)
         {
             FindNext();
+        }
+
+        private void RadCheckBoxMatchCase_CheckStateChanged(object sender, EventArgs e)
+        {
+            ResetSearchIndexes();
+        }
+
+        private void RadCheckBoxMatchWholeWord_CheckStateChanged(object sender, EventArgs e)
+        {
+            ResetSearchIndexes();
         }
 
         private void RadRadioButtonCurrentPage_CheckStateChanged(object sender, EventArgs e)
@@ -115,5 +128,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             Settings.Default.textFindWhat = radTextBoxText.Text;
             Settings.Default.Save();
         }
+        #endregion Event Handlers
     }
 }

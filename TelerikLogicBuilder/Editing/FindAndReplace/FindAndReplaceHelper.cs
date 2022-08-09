@@ -16,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
     internal class FindAndReplaceHelper : IFindAndReplaceHelper
     {
         private readonly IAssertFunctionDataParser _assertFunctionDataParser;
+        private readonly ICellXmlHelper _cellXmlHelper;
         private readonly IConditionsDataParser _conditionsDataParser;
         private readonly IConnectorDataParser _connectorDataParser;
         private readonly IDecisionDataParser _decisionDataParser;
@@ -33,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         public FindAndReplaceHelper(
             IAssertFunctionDataParser assertFunctionDataParser,
+            ICellXmlHelper cellXmlHelper,
             IConditionsDataParser conditionsDataParser,
             IConnectorDataParser connectorDataParser,
             IDecisionDataParser decisionDataParser,
@@ -49,6 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _assertFunctionDataParser = assertFunctionDataParser;
+            _cellXmlHelper = cellXmlHelper;
             _conditionsDataParser = conditionsDataParser;
             _connectorDataParser = connectorDataParser;
             _decisionDataParser = decisionDataParser;
@@ -104,6 +107,46 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             return null;
         }
 
+        public GridViewCellInfo? FindItemAllRows(RadGridView dataGridView, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchRowIndex, ref int searchCellIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, List<string>> matchFunc)
+        {
+            GridViewRowCollection rows = dataGridView.Rows;
+            GridViewColumnCollection columns = dataGridView.Columns;
+
+            for (int i = searchRowIndex; i < rows.Count; i++)
+            {
+                for (int j = searchCellIndex; j < rows[i].Cells.Count; j++)
+                {
+                    List<string> matches = FindMatchesInCell(rows[i].Cells[j].Value.ToString() ?? string.Empty, j, searchString, matchFunc, matchCase, matchWholeWord);
+                    groupBoxOccurrences.Text = GetOccurrencesString(matches);
+                    if (matches.Any())
+                    {
+                        listOccurrences.Items.AddRange(matches);
+                        rows[i].IsCurrent = true;
+                        columns[j].IsCurrent = true;
+                        rows[i].Cells[j].EnsureVisible();
+
+                        if (j < rows[i].Cells.Count)
+                        {
+                            searchCellIndex = j + 1;
+                            searchRowIndex = i;
+                        }
+                        else if (j == rows[i].Cells.Count)
+                        {
+                            searchCellIndex = 0;
+                            searchRowIndex = i + 1;
+                        }
+                        return rows[i].Cells[j];
+                    }
+                }
+                searchCellIndex = 0;
+                searchRowIndex = i + 1;
+            }
+            searchRowIndex = 0;
+            searchCellIndex = 0;
+            DisplayMessage.Show(_mainWindow.Instance, Strings.searchAllRowsComplete, _mainWindow.RightToLeft);
+            return null;
+        }
+
         public Shape? FindItemCurrentPage(Document visioDocument, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchShapeIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, List<string>> matchFunc)
         {
             Page page = (Page)visioDocument.Application.ActiveWindow.Page;
@@ -131,6 +174,38 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
             searchShapeIndex = 1;
             DisplayMessage.Show(_mainWindow.Instance, Strings.searchPageComplete, _mainWindow.RightToLeft);
+            return null;
+        }
+
+        public GridViewCellInfo? FindItemCurrentRow(RadGridView dataGridView, RadListControl listOccurrences, RadGroupBox groupBoxOccurrences, ref int searchCellIndex, string searchString, bool matchCase, bool matchWholeWord, Func<string, string, bool, bool, List<string>> matchFunc)
+        {
+            GridViewRowInfo? row = dataGridView.CurrentCell?.RowInfo;
+
+            if (row == null)
+            {
+                DisplayMessage.Show(_mainWindow.Instance, Strings.noCurrentRow, _mainWindow.RightToLeft);
+                return null;
+            }
+
+            for (int j = searchCellIndex; j < row.Cells.Count; j++)
+            {
+                List<string> matches = FindMatchesInCell(row.Cells[j].Value.ToString() ?? string.Empty, j, searchString, matchFunc, matchCase, matchWholeWord);
+                groupBoxOccurrences.Text = GetOccurrencesString(matches);
+                if (matches.Any())
+                {
+                    listOccurrences.Items.AddRange(matches);
+                    dataGridView.Columns[j].IsCurrent = true;
+                    row.Cells[j].EnsureVisible();
+                    if (j < row.Cells.Count)
+                    {
+                        searchCellIndex = j + 1;
+                    }
+
+                    return row.Cells[j];
+                }
+            }
+            searchCellIndex = 0;
+            DisplayMessage.Show(_mainWindow.Instance, Strings.searchRowComplete, _mainWindow.RightToLeft);
             return null;
         }
 
@@ -280,6 +355,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                 return new List<string>();
 
             return matchFunc(shapeXml, searchString, matchCase, matchWholeWord);
+        }
+
+        private List<string> FindMatchesInCell(string cellText, int columnIndex, string searchString, Func<string, string, bool, bool, List<string>> matchFunc, bool matchCase, bool matchWholeWord)
+        {
+            switch (columnIndex)
+            {
+                case TableColumns.CONDITIONCOLUMNINDEX:
+                case TableColumns.ACTIONCOLUMNINDEX:
+                case TableColumns.PRIORITYCOLUMNINDEX:
+                    break;
+                default:
+                    return new List<string>();
+            }
+
+            string cellXml = _cellXmlHelper.GetXmlString(cellText, columnIndex);
+            if (cellXml.Length == 0)
+                return new List<string>();
+
+            return matchFunc(cellXml, searchString, matchCase, matchWholeWord);
         }
 
         private static string GetOccurrencesString(List<string> matches)

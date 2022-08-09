@@ -34,18 +34,18 @@
             this.radButtonCancel = new Telerik.WinControls.UI.RadButton();
             this.radButtonFindNext = new Telerik.WinControls.UI.RadButton();
             this.radPanelTop = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelFil = new Telerik.WinControls.UI.RadPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBoxText = new Telerik.WinControls.UI.RadGroupBox();
+            this.radTextBoxText = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBoxSearch = new Telerik.WinControls.UI.RadGroupBox();
+            this.radRadioButtonAllPages = new Telerik.WinControls.UI.RadRadioButton();
+            this.radRadioButtonCurrentPage = new Telerik.WinControls.UI.RadRadioButton();
             this.radGroupBoxOptions = new Telerik.WinControls.UI.RadGroupBox();
+            this.radCheckBoxMatchWholeWord = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBoxMatchCase = new Telerik.WinControls.UI.RadCheckBox();
+            this.radPanelFil = new Telerik.WinControls.UI.RadPanel();
             this.radGroupBoxOccurrences = new Telerik.WinControls.UI.RadGroupBox();
             this.radListOccurrences = new Telerik.WinControls.UI.RadListControl();
-            this.radTextBoxText = new Telerik.WinControls.UI.RadTextBox();
-            this.radRadioButtonCurrentPage = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButtonAllPages = new Telerik.WinControls.UI.RadRadioButton();
-            this.radCheckBoxMatchCase = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBoxMatchWholeWord = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
             this.radPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
@@ -55,23 +55,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonFindNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTop)).BeginInit();
             this.radPanelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFil)).BeginInit();
-            this.radPanelFil.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxText)).BeginInit();
             this.radGroupBoxText.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSearch)).BeginInit();
             this.radGroupBoxSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonAllPages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonCurrentPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOptions)).BeginInit();
             this.radGroupBoxOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchWholeWord)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchCase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelFil)).BeginInit();
+            this.radPanelFil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOccurrences)).BeginInit();
             this.radGroupBoxOccurrences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radListOccurrences)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonCurrentPage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonAllPages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchCase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchWholeWord)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,16 +129,6 @@
             this.radPanelTop.Size = new System.Drawing.Size(506, 284);
             this.radPanelTop.TabIndex = 2;
             // 
-            // radPanelFil
-            // 
-            this.radPanelFil.Controls.Add(this.radGroupBoxOccurrences);
-            this.radPanelFil.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelFil.Location = new System.Drawing.Point(0, 284);
-            this.radPanelFil.Name = "radPanelFil";
-            this.radPanelFil.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanelFil.Size = new System.Drawing.Size(506, 187);
-            this.radPanelFil.TabIndex = 3;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -169,6 +159,14 @@
             this.radGroupBoxText.TabIndex = 0;
             this.radGroupBoxText.Text = "Text";
             // 
+            // radTextBoxText
+            // 
+            this.radTextBoxText.Location = new System.Drawing.Point(15, 32);
+            this.radTextBoxText.Name = "radTextBoxText";
+            this.radTextBoxText.Size = new System.Drawing.Size(457, 20);
+            this.radTextBoxText.TabIndex = 0;
+            this.radTextBoxText.TextChanged += new System.EventHandler(this.RadTextBoxText_TextChanged);
+            // 
             // radGroupBoxSearch
             // 
             this.radGroupBoxSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -182,6 +180,24 @@
             this.radGroupBoxSearch.TabIndex = 1;
             this.radGroupBoxSearch.Text = "Search";
             // 
+            // radRadioButtonAllPages
+            // 
+            this.radRadioButtonAllPages.Location = new System.Drawing.Point(155, 39);
+            this.radRadioButtonAllPages.Name = "radRadioButtonAllPages";
+            this.radRadioButtonAllPages.Size = new System.Drawing.Size(66, 18);
+            this.radRadioButtonAllPages.TabIndex = 4;
+            this.radRadioButtonAllPages.Text = "All Pages";
+            this.radRadioButtonAllPages.CheckStateChanged += new System.EventHandler(this.RadRadioButtonAllPages_CheckStateChanged);
+            // 
+            // radRadioButtonCurrentPage
+            // 
+            this.radRadioButtonCurrentPage.Location = new System.Drawing.Point(27, 39);
+            this.radRadioButtonCurrentPage.Name = "radRadioButtonCurrentPage";
+            this.radRadioButtonCurrentPage.Size = new System.Drawing.Size(85, 18);
+            this.radRadioButtonCurrentPage.TabIndex = 0;
+            this.radRadioButtonCurrentPage.Text = "Current Page";
+            this.radRadioButtonCurrentPage.CheckStateChanged += new System.EventHandler(this.RadRadioButtonCurrentPage_CheckStateChanged);
+            // 
             // radGroupBoxOptions
             // 
             this.radGroupBoxOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -194,6 +210,34 @@
             this.radGroupBoxOptions.Size = new System.Drawing.Size(490, 85);
             this.radGroupBoxOptions.TabIndex = 2;
             this.radGroupBoxOptions.Text = "Options";
+            // 
+            // radCheckBoxMatchWholeWord
+            // 
+            this.radCheckBoxMatchWholeWord.Location = new System.Drawing.Point(155, 40);
+            this.radCheckBoxMatchWholeWord.Name = "radCheckBoxMatchWholeWord";
+            this.radCheckBoxMatchWholeWord.Size = new System.Drawing.Size(118, 18);
+            this.radCheckBoxMatchWholeWord.TabIndex = 1;
+            this.radCheckBoxMatchWholeWord.Text = "Match Whole Word";
+            this.radCheckBoxMatchWholeWord.CheckStateChanged += new System.EventHandler(this.RadCheckBoxMatchWholeWord_CheckStateChanged);
+            // 
+            // radCheckBoxMatchCase
+            // 
+            this.radCheckBoxMatchCase.Location = new System.Drawing.Point(27, 40);
+            this.radCheckBoxMatchCase.Name = "radCheckBoxMatchCase";
+            this.radCheckBoxMatchCase.Size = new System.Drawing.Size(78, 18);
+            this.radCheckBoxMatchCase.TabIndex = 0;
+            this.radCheckBoxMatchCase.Text = "Match Case";
+            this.radCheckBoxMatchCase.CheckStateChanged += new System.EventHandler(this.RadCheckBoxMatchCase_CheckStateChanged);
+            // 
+            // radPanelFil
+            // 
+            this.radPanelFil.Controls.Add(this.radGroupBoxOccurrences);
+            this.radPanelFil.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanelFil.Location = new System.Drawing.Point(0, 284);
+            this.radPanelFil.Name = "radPanelFil";
+            this.radPanelFil.Padding = new System.Windows.Forms.Padding(5);
+            this.radPanelFil.Size = new System.Drawing.Size(506, 187);
+            this.radPanelFil.TabIndex = 3;
             // 
             // radGroupBoxOccurrences
             // 
@@ -213,48 +257,6 @@
             this.radListOccurrences.Name = "radListOccurrences";
             this.radListOccurrences.Size = new System.Drawing.Size(492, 157);
             this.radListOccurrences.TabIndex = 0;
-            // 
-            // radTextBoxText
-            // 
-            this.radTextBoxText.Location = new System.Drawing.Point(15, 32);
-            this.radTextBoxText.Name = "radTextBoxText";
-            this.radTextBoxText.Size = new System.Drawing.Size(457, 20);
-            this.radTextBoxText.TabIndex = 0;
-            this.radTextBoxText.TextChanged += new System.EventHandler(this.RadTextBoxText_TextChanged);
-            // 
-            // radRadioButtonCurrentPage
-            // 
-            this.radRadioButtonCurrentPage.Location = new System.Drawing.Point(27, 39);
-            this.radRadioButtonCurrentPage.Name = "radRadioButtonCurrentPage";
-            this.radRadioButtonCurrentPage.Size = new System.Drawing.Size(85, 18);
-            this.radRadioButtonCurrentPage.TabIndex = 0;
-            this.radRadioButtonCurrentPage.Text = "Current Page";
-            this.radRadioButtonCurrentPage.CheckStateChanged += new System.EventHandler(this.RadRadioButtonCurrentPage_CheckStateChanged);
-            // 
-            // radRadioButtonAllPages
-            // 
-            this.radRadioButtonAllPages.Location = new System.Drawing.Point(155, 39);
-            this.radRadioButtonAllPages.Name = "radRadioButtonAllPages";
-            this.radRadioButtonAllPages.Size = new System.Drawing.Size(66, 18);
-            this.radRadioButtonAllPages.TabIndex = 4;
-            this.radRadioButtonAllPages.Text = "All Pages";
-            this.radRadioButtonAllPages.CheckStateChanged += new System.EventHandler(this.RadRadioButtonAllPages_CheckStateChanged);
-            // 
-            // radCheckBoxMatchCase
-            // 
-            this.radCheckBoxMatchCase.Location = new System.Drawing.Point(27, 40);
-            this.radCheckBoxMatchCase.Name = "radCheckBoxMatchCase";
-            this.radCheckBoxMatchCase.Size = new System.Drawing.Size(78, 18);
-            this.radCheckBoxMatchCase.TabIndex = 0;
-            this.radCheckBoxMatchCase.Text = "Match Case";
-            // 
-            // radCheckBoxMatchWholeWord
-            // 
-            this.radCheckBoxMatchWholeWord.Location = new System.Drawing.Point(155, 40);
-            this.radCheckBoxMatchWholeWord.Name = "radCheckBoxMatchWholeWord";
-            this.radCheckBoxMatchWholeWord.Size = new System.Drawing.Size(118, 18);
-            this.radCheckBoxMatchWholeWord.TabIndex = 1;
-            this.radCheckBoxMatchWholeWord.Text = "Match Whole Word";
             // 
             // FindTextInShape
             // 
@@ -281,26 +283,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonFindNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTop)).EndInit();
             this.radPanelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFil)).EndInit();
-            this.radPanelFil.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxText)).EndInit();
             this.radGroupBoxText.ResumeLayout(false);
             this.radGroupBoxText.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSearch)).EndInit();
             this.radGroupBoxSearch.ResumeLayout(false);
             this.radGroupBoxSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonAllPages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonCurrentPage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOptions)).EndInit();
             this.radGroupBoxOptions.ResumeLayout(false);
             this.radGroupBoxOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchWholeWord)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchCase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelFil)).EndInit();
+            this.radPanelFil.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOccurrences)).EndInit();
             this.radGroupBoxOccurrences.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radListOccurrences)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonCurrentPage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonAllPages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchCase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchWholeWord)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

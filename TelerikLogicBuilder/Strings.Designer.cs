@@ -3544,6 +3544,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No current row to search..
+        /// </summary>
+        internal static string noCurrentRow {
+            get {
+                return ResourceManager.GetString("noCurrentRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to :.
         /// </summary>
         internal static string notFromDecisionSeparator {
@@ -3949,6 +3958,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finished searching all rows..
+        /// </summary>
+        internal static string searchAllRowsComplete {
+            get {
+                return ResourceManager.GetString("searchAllRowsComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} found..
         /// </summary>
         internal static string searchOccurrencesFormat {
@@ -3963,6 +3981,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string searchPageComplete {
             get {
                 return ResourceManager.GetString("searchPageComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished searching the current row..
+        /// </summary>
+        internal static string searchRowComplete {
+            get {
+                return ResourceManager.GetString("searchRowComplete", resourceCulture);
             }
         }
         

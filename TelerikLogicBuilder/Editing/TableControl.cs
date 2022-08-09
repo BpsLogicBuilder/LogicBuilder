@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
@@ -531,13 +532,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindText()
         {
-            //using (TableFindText findText = new TableFindText(this.dataGridView1)
-            //{
-            //    StartPosition = FormStartPosition.CenterParent
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindTextInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindTextInCell>>();
+            FindTextInCell findText = disposableManager.ScopedService;
+            findText.Setup(this.dataGridView1);
+            findText.StartPosition = FormStartPosition.Manual;
+            findText.Location = new Point(100, 50);
+            findText.ShowDialog((Form)this.parentForm);
         }
 
         private void FindVariable()

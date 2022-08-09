@@ -1,9 +1,12 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -25,21 +28,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                     .Where
                     (
                         n => matchWholeWord /*Value is not null for XmlText*/
-                        ? n.Value!.Equals(searchString, matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)
+                        ? ContainsWord(n.Value!, searchString, matchCase)
                         : n.Value!.Contains(searchString, matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)
                     )
                     .Select(node => node.Value)
                     .Concat
                     (
-                        xmlDocument.SelectNodes($"//{XmlDataConstants.METAOBJECTELEMENT}/@{XmlDataConstants.OBJECTTYPEATTRIBUTE}")!/*SelectNodes is never null when XmlNode is XmlDocument*/
-                            .OfType<XmlAttribute>()
+                        _xmlDocumentHelpers
+                            .SelectElements(xmlDocument, $"//{XmlDataConstants.CONNECTORELEMENT}[@{XmlDataConstants.CONNECTORCATEGORYATTRIBUTE}={((int)ConnectorCategory.Dialog).ToString(CultureInfo.InvariantCulture)}]")
+                            .Select(element => _xmlDocumentHelpers.GetSingleChildElement(element, e => e.Name == XmlDataConstants.METAOBJECTELEMENT))
+                            .Select(element => element.GetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE))
                             .Where
                             (
-                                n => matchWholeWord
-                                    ? n.Value.Equals(searchString, matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)
-                                    : n.Value.Contains(searchString, matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)
+                                attributeValue => matchWholeWord
+                                    ? ContainsWord(attributeValue, searchString, matchCase)
+                                    : attributeValue.Contains(searchString, matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)
                             )
-                            .Select(node => node.Value)
                     ).ToList()!;
         }
 
@@ -51,5 +55,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                 matchCase, 
                 matchWholeWord
             );
+
+        private static bool ContainsWord(string content, string searchString, bool matchCase) 
+            => Regex.IsMatch(content, $"\\b{searchString}\\b", matchCase ? RegexOptions.None : RegexOptions.IgnoreCase);
     }
 }

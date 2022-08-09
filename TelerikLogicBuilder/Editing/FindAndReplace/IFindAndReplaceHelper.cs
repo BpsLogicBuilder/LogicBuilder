@@ -20,6 +20,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             bool matchWholeWord,
             Func<string, string, bool, bool, List<string>> matchFunc);
 
+        GridViewCellInfo? FindItemAllRows(RadGridView dataGridView,
+            RadListControl listOccurrences,
+            RadGroupBox groupBoxOccurrences,
+            ref int searchRowIndex,
+            ref int searchCellIndex,
+            string searchString,
+            bool matchCase,
+            bool matchWholeWord,
+            Func<string, string, bool, bool, List<string>> matchFunc);
+
         Shape? FindItemCurrentPage(Document visioDocument,
             RadListControl listOccurrences,
             RadGroupBox groupBoxOccurrences,
@@ -28,6 +38,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             bool matchCase,
             bool matchWholeWord,
             Func<string, string, bool, bool, List<string>> matchFunc);
+
+        GridViewCellInfo? FindItemCurrentRow(RadGridView dataGridView,
+            RadListControl listOccurrences,
+            RadGroupBox groupBoxOccurrences,
+            ref int searchCellIndex,
+            string searchString,
+            bool matchCase,
+            bool matchWholeWord,
+            Func<string, string, bool, bool, List<string>> matchFunc);
+
         string GetVisibleText(int columnIndex, string cellXml);
         string GetVisibleText(string universalMasterName, string shapeXml);
     }

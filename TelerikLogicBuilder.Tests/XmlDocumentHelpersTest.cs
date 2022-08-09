@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -85,6 +86,114 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(3, result.Count);
+        }
+
+        [Fact]
+        public void GetChildElementsWithFilterWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlElement xmlElement = GetXmlElement(@"<connector name=""1"" connectorCategory=""1"">
+                                                      <text>
+                                                        FFF
+                                                        <function name=""get message"" visibleText=""visibleText"">
+                                                          <genericArguments />
+                                                          <parameters>
+                                                            <literalParameter name=""value"">
+                                                              <function name=""table"" visibleText=""visibleText"">
+                                                                <genericArguments />
+                                                                <parameters>
+                                                                  <literalParameter name=""value"">tmq</literalParameter>
+                                                                  <literalParameter name=""key"">
+                                                                    <variable name=""tmqkey"" visibleText=""visibleText"" />
+                                                                  </literalParameter>
+                                                                  <literalParameter name=""field"">MSGID</literalParameter>
+                                                                </parameters>
+                                                              </function>
+                                                            </literalParameter>
+                                                          </parameters>
+                                                        </function>
+                                                      </text>
+                                                      <metaObject objectType=""Fully.Qualified.Type.Name"">
+                                                        <constructor name=""StringQuestionDataParameters"" visibleText=""StringQuestionDataParameters"">
+                                                          <genericArguments />
+                                                          <parameters>
+                                                            <literalParameter name=""val1"">
+                                                              <variable name=""ZBU"" visibleText=""visibleText"" />
+                                                            </literalParameter>
+                                                            <literalParameter name=""val2"">CS</literalParameter>
+                                                          </parameters>
+                                                        </constructor>
+                                                      </metaObject>
+                                                    </connector>");
+
+            //act
+            var result = helper.GetChildElements
+            (
+                xmlElement, 
+                element => element.Name == XmlDataConstants.METAOBJECTELEMENT
+                        && element.ParentNode is XmlElement parentElement
+                        && parentElement.Name == XmlDataConstants.CONNECTORELEMENT
+                        && parentElement.GetAttribute(XmlDataConstants.CONNECTORCATEGORYATTRIBUTE) == ((int)ConnectorCategory.Dialog).ToString(CultureInfo.InvariantCulture)
+            );
+
+            //assert
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void SelectingMetaObjectElementFromConnectorElementWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlDocument xmlDocument = GetXmlDocument(@"<connector name=""1"" connectorCategory=""1"">
+                                                          <text>
+                                                            FFF
+                                                            <function name=""get message"" visibleText=""visibleText"">
+                                                              <genericArguments />
+                                                              <parameters>
+                                                                <literalParameter name=""value"">
+                                                                  <function name=""table"" visibleText=""visibleText"">
+                                                                    <genericArguments />
+                                                                    <parameters>
+                                                                      <literalParameter name=""value"">tmq</literalParameter>
+                                                                      <literalParameter name=""key"">
+                                                                        <variable name=""tmqkey"" visibleText=""visibleText"" />
+                                                                      </literalParameter>
+                                                                      <literalParameter name=""field"">MSGID</literalParameter>
+                                                                    </parameters>
+                                                                  </function>
+                                                                </literalParameter>
+                                                              </parameters>
+                                                            </function>
+                                                          </text>
+                                                          <metaObject objectType=""Fully.Qualified.Type.Name"">
+                                                            <constructor name=""StringQuestionDataParameters"" visibleText=""StringQuestionDataParameters"">
+                                                              <genericArguments />
+                                                              <parameters>
+                                                                <literalParameter name=""val1"">
+                                                                  <variable name=""ZBU"" visibleText=""visibleText"" />
+                                                                </literalParameter>
+                                                                <literalParameter name=""val2"">CS</literalParameter>
+                                                              </parameters>
+                                                            </constructor>
+                                                          </metaObject>
+                                                        </connector>");
+
+            //act
+            var result = helper
+                .SelectElements(xmlDocument, $"//{XmlDataConstants.CONNECTORELEMENT}[@{XmlDataConstants.CONNECTORCATEGORYATTRIBUTE}={((int)ConnectorCategory.Dialog).ToString(CultureInfo.InvariantCulture)}]")
+                .Select(element => helper.GetSingleChildElement(element, e => e.Name == XmlDataConstants.METAOBJECTELEMENT))
+                .Select(element => element.Attributes[XmlDataConstants.OBJECTTYPEATTRIBUTE])
+                .Where
+                (
+                    attributeValue => true
+                )
+                .ToList();
+
+
+            //assert
+            Assert.Single(result);
         }
 
         [Fact]

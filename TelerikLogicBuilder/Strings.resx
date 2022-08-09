@@ -930,6 +930,9 @@
 	<data name="noConnectorsOnJumpFormat" xml:space="preserve">
     <value>Jump shape has no connectors.</value>
   </data>
+	<data name="noCurrentRow" xml:space="preserve">
+    <value>No current row to search.</value>
+  </data>
 	<data name="notFromDecisionSeparator" xml:space="preserve">
     <value>:</value>
     <comment>NotUS: &lt;ACIS INL usoc&gt; EqualsUS HWWXB</comment>
@@ -1077,12 +1080,18 @@
 	<data name="searchAllPagesComplete" xml:space="preserve">
     <value>Finished searching all pages.</value>
   </data>
+	<data name="searchAllRowsComplete" xml:space="preserve">
+    <value>Finished searching all rows.</value>
+  </data>
 	<data name="searchOccurrencesFormat" xml:space="preserve">
     <value>{0} found.</value>
     <comment>0=occurrences</comment>
   </data>
 	<data name="searchPageComplete" xml:space="preserve">
     <value>Finished searching the page.</value>
+  </data>
+	<data name="searchRowComplete" xml:space="preserve">
+    <value>Finished searching the current row.</value>
   </data>
 	<data name="selectRulesToDelete" xml:space="preserve">
     <value>Select Rules to Delete</value>
