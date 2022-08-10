@@ -14,9 +14,12 @@ namespace Microsoft.Extensions.DependencyInjection
             return services
                 .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
                 .AddTransient<FindCell>()
+                .AddTransient<FindConstructorInShape>()
+                .AddTransient<FindFunctionInShape>()
                 .AddTransient<FindShape>()
                 .AddTransient<FindTextInCell>()
                 .AddTransient<FindTextInShape>()
+                .AddTransient<FindVariableInShape>()
                 .AddSingleton<IFunctionsFormFieldSetHelper, FunctionsFormFieldSetHelper>()
                 .AddSingleton<ISearchFunctions, SearchFunctions>()
                 .AddTransient<Func<string, bool, TableControl>>

@@ -317,28 +317,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private static void FindConstructor()
+        private void FindConstructor()
         {
-            //using (FindConstructorInShape findText = new FindConstructorInShape(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindConstructorInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindConstructorInShape>>();
+            FindConstructorInShape findConstructor = disposableManager.ScopedService;
+            findConstructor.Setup(axDrawingControl1.Document);
+            findConstructor.StartPosition = FormStartPosition.Manual;
+            findConstructor.Location = new Point(100, 50);
+            findConstructor.ShowDialog((Form)this.parentForm);
         }
 
-        private static void FindFunction()
+        private void FindFunction()
         {
-            //using (FindFunctionInShape findText = new FindFunctionInShape(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindFunctionInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindFunctionInShape>>();
+            FindFunctionInShape findFunction = disposableManager.ScopedService;
+            findFunction.Setup(axDrawingControl1.Document);
+            findFunction.StartPosition = FormStartPosition.Manual;
+            findFunction.Location = new Point(100, 50);
+            findFunction.ShowDialog((Form)this.parentForm);
         }
 
         private void FindShape()
@@ -440,16 +436,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findText.ShowDialog((Form)this.parentForm);
         }
 
-        private static void FindVariable()
+        private void FindVariable()
         {
-            //using (FindVariableInShape findText = new FindVariableInShape(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindVariableInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindVariableInShape>>();
+            FindVariableInShape findVariable = disposableManager.ScopedService;
+            findVariable.Setup(axDrawingControl1.Document);
+            findVariable.StartPosition = FormStartPosition.Manual;
+            findVariable.Location = new Point(100, 50);
+            findVariable.ShowDialog((Form)this.parentForm);
         }
 
         void IDocumentEditor.Close() => CloseControl();
@@ -510,6 +504,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             _application = axDrawingControl1.Window.Application;
             MarkerEventEventHandler = new Visio.EApplication_MarkerEventEventHandler(Application_MarkerEvent);
+            _application.MarkerEvent -= MarkerEventEventHandler;
             _application.MarkerEvent += MarkerEventEventHandler;
 
             DocumentOpenedEventHandler = new VisOCX.EVisOcx_DocumentOpenedEventHandler(DocumentOpened_EventHandler);

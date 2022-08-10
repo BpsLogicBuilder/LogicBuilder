@@ -2419,6 +2419,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find Constructor.
+        /// </summary>
+        internal static string findConstructorFormText {
+            get {
+                return ResourceManager.GetString("findConstructorFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Function.
+        /// </summary>
+        internal static string findFunctionFormText {
+            get {
+                return ResourceManager.GetString("findFunctionFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Text.
+        /// </summary>
+        internal static string findTextFormText {
+            get {
+                return ResourceManager.GetString("findTextFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Variable.
+        /// </summary>
+        internal static string findVariableFormText {
+            get {
+                return ResourceManager.GetString("findVariableFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, Member Name for variable {0} must be of type float..
         /// </summary>
         internal static string floatKeyIndexIsInvalidFormat {

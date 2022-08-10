@@ -547,6 +547,18 @@
     <value>"{0}" is not writeable.  Make the file writeable?  Choose "Yes" to make writeable, "No" to open for read only and Cancel to quit?</value>
     <comment>0=fileName</comment>
   </data>
+	<data name="findConstructorFormText" xml:space="preserve">
+    <value>Find Constructor</value>
+  </data>
+	<data name="findFunctionFormText" xml:space="preserve">
+    <value>Find Function</value>
+  </data>
+	<data name="findTextFormText" xml:space="preserve">
+    <value>Find Text</value>
+  </data>
+	<data name="findVariableFormText" xml:space="preserve">
+    <value>Find Variable</value>
+  </data>
 	<data name="folderAlreadyExistsFormat" xml:space="preserve">
     <value>Folder {0} already Exists.</value>
     <comment>0=folderFullName</comment>

@@ -1,9 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
@@ -20,7 +15,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
 
         public override void Execute()
         {
-            throw new NotImplementedException();
+            if (mdiParent.EditControl == null)
+                throw _exceptionHelper.CriticalException("{4B65CC5B-7CD2-45F6-BA2E-CA05344BA732}");
+
+            mdiParent.EditControl.FindFunction();
         }
     }
 }
