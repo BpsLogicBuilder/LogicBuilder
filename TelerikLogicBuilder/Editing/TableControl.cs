@@ -508,26 +508,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindConstructor()
         {
-            //using (FindConstructorInCell findText = new FindConstructorInCell(this.dataGridView1)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindConstructorInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindConstructorInCell>>();
+            FindConstructorInCell findConstructor = disposableManager.ScopedService;
+            findConstructor.Setup(this.dataGridView1);
+            findConstructor.StartPosition = FormStartPosition.Manual;
+            findConstructor.Location = new Point(100, 50);
+            findConstructor.ShowDialog((Form)this.parentForm);
         }
 
         private void FindFunction()
         {
-            //using (FindFunctionInCell findText = new FindFunctionInCell(this.dataGridView1)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindFunctionInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindFunctionInCell>>();
+            FindFunctionInCell findFunction = disposableManager.ScopedService;
+            findFunction.Setup(this.dataGridView1);
+            findFunction.StartPosition = FormStartPosition.Manual;
+            findFunction.Location = new Point(100, 50);
+            findFunction.ShowDialog((Form)this.parentForm);
         }
 
         private void FindText()
@@ -542,14 +538,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindVariable()
         {
-            //using (FindVariableInCell findText = new FindVariableInCell(this.dataGridView1)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //}
+            using IScopedDisposableManager<FindVariableInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindVariableInCell>>();
+            FindVariableInCell findVariable = disposableManager.ScopedService;
+            findVariable.Setup(this.dataGridView1);
+            findVariable.StartPosition = FormStartPosition.Manual;
+            findVariable.Location = new Point(100, 50);
+            findVariable.ShowDialog((Form)this.parentForm);
         }
 
         private DataSet GetEmptyDataset()

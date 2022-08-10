@@ -2,13 +2,13 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
-using Microsoft.Office.Interop.Visio;
 using System;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal partial class FindConfiguredItemInShapeBase : Telerik.WinControls.UI.RadForm
+    internal partial class FindConfiguredItemInCellBase : RadForm
     {
         protected IConfigurationService _configurationService;
         protected IExceptionHelper _exceptionHelper;
@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         protected IRadDropDownListHelper _radDropDownListHelper;
         protected ISearchFunctions _searchFunctions;
 
-        public FindConfiguredItemInShapeBase(
+        public FindConfiguredItemInCellBase(
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
             IFindAndReplaceHelper findAndReplaceHelper,
@@ -36,15 +36,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         }
 
         #region Variables
-        protected Document? visioDocument;
-        protected int searchPageIndex = 1;
-        protected int searchShapeIndex = 1;
+        protected RadGridView? dataGridView;
+        protected int searchRowIndex;
+        protected int searchCellIndex;
         #endregion Variables
 
         #region Methods
-        public void Setup(Document visioDocument)
+        public void Setup(RadGridView dataGridView)
         {
-            this.visioDocument = visioDocument;
+            this.dataGridView = dataGridView;
         }
 
         private void Initialize()
@@ -90,8 +90,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void ResetSearchIndexes()
         {
-            searchPageIndex = 1;
-            searchShapeIndex = 1;
+            searchRowIndex = 0;
+            searchCellIndex = 0;
             radGroupBoxOccurrences.Text = string.Empty;
             radListOccurrences.Items.Clear();
         }
@@ -114,12 +114,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             FindNext();
         }
 
-        private void RadRadioButtonCurrentPage_CheckStateChanged(object sender, EventArgs e)
+        private void RadRadioButtonCurrentRow_CheckStateChanged(object sender, EventArgs e)
         {
             ResetSearchIndexes();
         }
 
-        private void RadRadioButtonAllPages_CheckStateChanged(object sender, EventArgs e)
+        private void RadRadioButtonAllRows_CheckStateChanged(object sender, EventArgs e)
         {
             //ResetSearchIndexes();
         }
@@ -134,7 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             ResetSearchIndexes();
         }
 
-        private void FindConfiguredItemInShapeBase_FormClosing(object sender, FormClosingEventArgs e)
+        private void FindConfiguredItemInCellBase_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveSettings();
         }

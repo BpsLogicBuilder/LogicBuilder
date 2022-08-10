@@ -117,7 +117,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void RadRadioButtonAllRows_CheckStateChanged(object sender, EventArgs e)
         {
-            ResetSearchIndexes();
+            //ResetSearchIndexes();
         }
 
         private void FindTextInCell_FormClosing(object sender, FormClosingEventArgs e)
