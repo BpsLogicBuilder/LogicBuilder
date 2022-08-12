@@ -550,14 +550,26 @@
 	<data name="findConstructorFormText" xml:space="preserve">
     <value>Find ConstructorFR</value>
   </data>
+	<data name="findConstructorInFilesFormText" xml:space="preserve">
+    <value>Find Constructor in FilesFR</value>
+  </data>
 	<data name="findFunctionFormText" xml:space="preserve">
     <value>Find FunctionFR</value>
+  </data>
+	<data name="findFunctionInFilesFormText" xml:space="preserve">
+    <value>Find Function in FilesFR</value>
   </data>
 	<data name="findTextFormText" xml:space="preserve">
     <value>Find TextFR</value>
   </data>
+	<data name="findTextInFilesFormText" xml:space="preserve">
+    <value>Find Text in FilesFR</value>
+  </data>
 	<data name="findVariableFormText" xml:space="preserve">
     <value>Find VariableFR</value>
+  </data>
+	<data name="findVariableInFilesFormText" xml:space="preserve">
+    <value>Find Variable in FilesFR</value>
   </data>
 	<data name="folderAlreadyExistsFormat" xml:space="preserve">
     <value>Folder {0} already Exists.FR</value>
@@ -808,6 +820,10 @@
 	<data name="loadingAssemblies2" xml:space="preserve">
     <value>Loading assemblies. Please wait.FR</value>
   </data>
+	<data name="matchingShapesAndCellsFormat" xml:space="preserve">
+    <value>Matching shapes and cells: {0}   Matching files: {1}   Total files searched: {2}FR</value>
+    <comment>0=Matching Shapes Or Cells Found; 1=#Matching Files; 2=Files Searched</comment>
+  </data>
 	<data name="memberNameIsInvalidFormat" xml:space="preserve">
     <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
     <comment>0=functionName</comment>
@@ -1028,6 +1044,10 @@
 	<data name="progressFormTaskInitializingPageFormat" xml:space="preserve">
     <value>Initializing Page {0}FR</value>
     <comment>0=PageIndex</comment>
+  </data>
+	<data name="progressFormTaskSearchingFileFormat" xml:space="preserve">
+    <value>Searching {0}FR</value>
+    <comment>0=FileName</comment>
   </data>
 	<data name="progressFormTaskValidatingFormat" xml:space="preserve">
     <value>Validating {0}FR</value>

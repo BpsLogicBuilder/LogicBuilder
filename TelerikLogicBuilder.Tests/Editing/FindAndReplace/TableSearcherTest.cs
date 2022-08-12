@@ -1,11 +1,14 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
+﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,56 +17,201 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Xml;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
+using Application = ABIS.LogicBuilder.FlowBuilder.Configuration.Application;
 
-namespace TelerikLogicBuilder.Tests.RulesGenerator
+namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
 {
-    public class CellHelperTest : IClassFixture<CellHelperFixture>
+    public class TableSearcherTest : IClassFixture<TableSearcherFixture>
     {
-        private readonly CellHelperFixture _fixture;
+        private readonly TableSearcherFixture _fixture;
 
-        public CellHelperTest(CellHelperFixture fixture)
+        public TableSearcherTest(TableSearcherFixture fixture)
         {
             _fixture = fixture;
         }
 
+        const string FileNameNoExtention = "Module";
+
         [Fact]
-        public void CanCreateCellHelper()
+        public void CanCreateTableSearcher()
         {
             //arrange
-            ICellHelper helper = _fixture.ServiceProvider.GetRequiredService<ICellHelper>();
+            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
 
             //assert
             Assert.NotNull(helper);
         }
 
         [Theory]
-        [InlineData(0, 1)]
-        [InlineData(1, 0)]
-        public void CountDialogFunctionsReturnsTheExpectedDialogCount(int row, int expectedCount)
+        [InlineData("Strong", true, true, true)]
+        [InlineData("Stron", true, true, false)]
+        [InlineData("Stron", true, false, true)]
+        [InlineData("STRON", true, false, false)]
+        [InlineData("STRONG", false, true, true)]
+        [InlineData("STRONGD", false, true, false)]
+        public async Task TextSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            ICellHelper helper = _fixture.ServiceProvider.GetRequiredService<ICellHelper>();
-            string sourceFile = GetFullSourceFilePath(nameof(helper.CountDialogFunctions), nameof(CountDialogFunctionsReturnsTheExpectedDialogCount));
+            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
+            string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
             DataSet dataSet = GetDataSet(sourceFile);
+            var progress = new Progress<ProgressMessage>(percent =>
+            {
+            });
+            var cancellationToken = new CancellationTokenSource();
 
             //act
-            var result = helper.CountDialogFunctions(dataSet.Tables[TableName.RULESTABLE]!.Rows[row].ItemArray.GetValue(TableColumns.ACTIONCOLUMNINDEX)!);
+            var result = await helper.Search
+            (
+                sourceFile,
+                dataSet,
+                searchString,
+                matchCase,
+                matchWholeWord,
+                searchFunctions.FindTextMatches,
+                progress,
+                cancellationToken
+            );
+
             dataSet.Dispose();
 
             //assert
-            Assert.Equal(expectedCount, result);
+            Assert.Equal
+            (
+                found,
+                result.CellCount > 0
+            );
         }
 
-        private static XmlElement GetXmlElement(string xmlString)
-            => GetXmlDocument(xmlString).DocumentElement!;
-
-        private static XmlDocument GetXmlDocument(string xmlString)
+        [Theory]
+        [InlineData("CommandButtonParameters", true, true, true)]
+        [InlineData("CommandButtonParameter", true, true, false)]
+        [InlineData("CommandButtonParamet", true, false, true)]
+        [InlineData("COMMANDBUTTONPARAMET", true, false, false)]
+        [InlineData("COMMANDBUTTONPARAMETERS", false, true, true)]
+        [InlineData("COMMANDBUTTONPARAMETERSs", false, true, false)]
+        public async Task ConstructorSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
-            XmlDocument xmlDocument = new();
-            xmlDocument.LoadXml(xmlString);
-            return xmlDocument;
+            //arrange
+            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
+            string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
+            DataSet dataSet = GetDataSet(sourceFile);
+            var progress = new Progress<ProgressMessage>(percent =>
+            {
+            });
+            var cancellationToken = new CancellationTokenSource();
+
+            //act
+            var result = await helper.Search
+            (
+                sourceFile,
+                dataSet,
+                searchString,
+                matchCase,
+                matchWholeWord,
+                searchFunctions.FindConstructorMatches,
+                progress,
+                cancellationToken
+            );
+
+            dataSet.Dispose();
+
+            //assert
+            Assert.Equal
+            (
+                found,
+                result.CellCount > 0
+            );
+        }
+
+        [Theory]
+        [InlineData("Set Variable", true, true, true)]
+        [InlineData("Set Variabl", true, true, false)]
+        [InlineData("Set Variabl", true, false, true)]
+        [InlineData("SET VARIABL", true, false, false)]
+        [InlineData("SET VARIABLE", false, true, true)]
+        [InlineData("SET VARIABLEs", false, true, false)]
+        public async Task FunctionSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
+        {
+            //arrange
+            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
+            string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
+            DataSet dataSet = GetDataSet(sourceFile);
+            var progress = new Progress<ProgressMessage>(percent =>
+            {
+            });
+            var cancellationToken = new CancellationTokenSource();
+
+            //act
+            var result = await helper.Search
+            (
+                sourceFile,
+                dataSet,
+                searchString,
+                matchCase,
+                matchWholeWord,
+                searchFunctions.FindFunctionMatches,
+                progress,
+                cancellationToken
+            );
+
+            dataSet.Dispose();
+
+            //assert
+            Assert.Equal
+            (
+                found,
+                result.CellCount > 0
+            );
+        }
+
+        [Theory]
+        [InlineData("SomeObject", true, true, true)]
+        [InlineData("SomeObjec", true, true, false)]
+        [InlineData("SomeObjec", true, false, true)]
+        [InlineData("SOMEOBJEC", true, false, false)]
+        [InlineData("SOMEOBJECT", false, true, true)]
+        [InlineData("SOMEOBJECTs", false, true, false)]
+        public async Task VariableSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
+        {
+            //arrange
+            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
+            string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
+            DataSet dataSet = GetDataSet(sourceFile);
+            var progress = new Progress<ProgressMessage>(percent =>
+            {
+            });
+            var cancellationToken = new CancellationTokenSource();
+
+            //act
+            var result = await helper.Search
+            (
+                sourceFile,
+                dataSet,
+                searchString,
+                matchCase,
+                matchWholeWord,
+                searchFunctions.FindVariableMatches,
+                progress,
+                cancellationToken
+            );
+
+            dataSet.Dispose();
+
+            //assert
+            Assert.Equal
+            (
+                found,
+                result.CellCount > 0
+            );
         }
 
         private static DataSet GetDataSet(string sourceFullPath)
@@ -84,17 +232,17 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             return dataSet;
         }
 
-        private static string GetFullSourceFilePath(string methodName, string fileNameNoExtension)
-            => System.IO.Path.Combine(Directory.GetCurrentDirectory(), @$"Tables\{nameof(CellHelperTest)}\{methodName}\{fileNameNoExtension}.tbl");
+        private static string GetFullSourceFilePath(string fileNameNoExtension)
+            => System.IO.Path.Combine(Directory.GetCurrentDirectory(), @$"Diagrams\{nameof(TableSearcherTest)}\{fileNameNoExtension}.tbl");
     }
 
-    public class CellHelperFixture : IDisposable
+    public class TableSearcherFixture : IDisposable
     {
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
 
-        public CellHelperFixture()
+        public TableSearcherFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();

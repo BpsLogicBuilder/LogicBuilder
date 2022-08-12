@@ -2428,11 +2428,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find Constructor in Files.
+        /// </summary>
+        internal static string findConstructorInFilesFormText {
+            get {
+                return ResourceManager.GetString("findConstructorInFilesFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Find Function.
         /// </summary>
         internal static string findFunctionFormText {
             get {
                 return ResourceManager.GetString("findFunctionFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Function in Files.
+        /// </summary>
+        internal static string findFunctionInFilesFormText {
+            get {
+                return ResourceManager.GetString("findFunctionInFilesFormText", resourceCulture);
             }
         }
         
@@ -2446,11 +2464,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find Text in Files.
+        /// </summary>
+        internal static string findTextInFilesFormText {
+            get {
+                return ResourceManager.GetString("findTextInFilesFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Find Variable.
         /// </summary>
         internal static string findVariableFormText {
             get {
                 return ResourceManager.GetString("findVariableFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Variable in Files.
+        /// </summary>
+        internal static string findVariableInFilesFormText {
+            get {
+                return ResourceManager.GetString("findVariableInFilesFormText", resourceCulture);
             }
         }
         
@@ -3193,6 +3229,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Matching shapes and cells: {0}   Matching files: {1}   Total files searched: {2}.
+        /// </summary>
+        internal static string matchingShapesAndCellsFormat {
+            get {
+                return ResourceManager.GetString("matchingShapesAndCellsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string memberNameIsInvalidFormat {
@@ -3801,6 +3846,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string progressFormTaskInitializingPageFormat {
             get {
                 return ResourceManager.GetString("progressFormTaskInitializingPageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching {0}.
+        /// </summary>
+        internal static string progressFormTaskSearchingFileFormat {
+            get {
+                return ResourceManager.GetString("progressFormTaskSearchingFileFormat", resourceCulture);
             }
         }
         

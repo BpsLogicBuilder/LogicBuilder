@@ -3,14 +3,11 @@ using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Telerik.WinControls.UI;
 
-namespace TelerikLogicBuilder.IntegrationTests.Mocks
+namespace TelerikLogicBuilder.Tests.Mocks
 {
     internal class MockMdiParent : System.Windows.Forms.Form, IMDIParent
     {

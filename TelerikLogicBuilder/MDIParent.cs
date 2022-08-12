@@ -47,11 +47,15 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
         private readonly ExitCommand _exitCommand;
         private readonly Func<IMDIParent, FindConstructorCommand> _getFindConstructorCommand;
+        private readonly FindConstructorInFilesCommand _findConstructorInFilesCommand;
         private readonly Func<IMDIParent, FindCellCommand> _getFindCellCommand;
         private readonly Func<IMDIParent, FindFunctionCommand> _getFindFunctionCommand;
+        private readonly FindFunctionInFilesCommand _findFunctionInFilesCommand;
         private readonly Func<IMDIParent, FindShapeCommand> _getFindShapeCommand;
         private readonly Func<IMDIParent, FindTextCommand> _getFindTextCommand;
+        private readonly FindTextInFilesCommand _findTextInFilesCommand;
         private readonly Func<IMDIParent, FindVariableCommand> _getFindVariableCommand;
+        private readonly FindVariableInFilesCommand _findVariableInFilesCommand;
         private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
         private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
         private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
@@ -87,11 +91,15 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
             ExitCommand exitCommand,
             Func<IMDIParent, FindConstructorCommand> getFindConstructorCommand,
+            FindConstructorInFilesCommand findConstructorInFilesCommand,
             Func<IMDIParent, FindCellCommand> getFindCellCommand,
             Func<IMDIParent, FindFunctionCommand> getFindFunctionCommand,
+            FindFunctionInFilesCommand findFunctionInFilesCommand,
             Func<IMDIParent, FindShapeCommand> getFindShapeCommand,
             Func<IMDIParent, FindTextCommand> getFindTextommand,
+            FindTextInFilesCommand findTextInFilesCommand,
             Func<IMDIParent, FindVariableCommand> getFindVariableCommand,
+            FindVariableInFilesCommand findVariableInFilesCommand,
             Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
             Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
             Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
@@ -122,11 +130,15 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getDeploySelectedFilesToFileSystemCommand = getDeploySelectedFilesToFileSystemCommand;
             _exitCommand = exitCommand;
             _getFindConstructorCommand = getFindConstructorCommand;
+            _findConstructorInFilesCommand = findConstructorInFilesCommand;
             _getFindCellCommand = getFindCellCommand;
             _getFindFunctionCommand = getFindFunctionCommand;
+            _findFunctionInFilesCommand = findFunctionInFilesCommand;
             _getFindShapeCommand = getFindShapeCommand;
             _getFindTextCommand = getFindTextommand;
+            _findTextInFilesCommand = findTextInFilesCommand;
             _getFindVariableCommand = getFindVariableCommand;
+            _findVariableInFilesCommand = findVariableInFilesCommand;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
             _getValidateActiveDocumentCommand = getValidateActiveDocumentCommand;
@@ -253,7 +265,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             this.Cursor = Cursors.Default;
         }
 
-        internal async Task RunAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
+        public async Task RunAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task)
         {
             var progress = new Progress<ProgressMessage>(percent =>
             {
@@ -416,6 +428,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddClickCommand(this.radMenuItemFindShape, _getFindShapeCommand(this));
             AddClickCommand(this.radMenuItemFindText, _getFindTextCommand(this));
             AddClickCommand(this.radMenuItemFindVariable, _getFindVariableCommand(this));
+
+            AddClickCommand(this.radMenuItemFindInFilesText, _findTextInFilesCommand);
+            AddClickCommand(this.radMenuItemFindInFilesConstructor, _findConstructorInFilesCommand);
+            AddClickCommand(this.radMenuItemFindInFilesFunction, _findFunctionInFilesCommand);
+            AddClickCommand(this.radMenuItemFindInFilesVariable, _findVariableInFilesCommand);
             #endregion Edit/Find
 
             #region View Menu

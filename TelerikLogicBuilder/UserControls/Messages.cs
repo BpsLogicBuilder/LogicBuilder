@@ -127,7 +127,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 (
                     _xmlDocumentHelpers.ToXmlElement(xmlString)
                 );
-                _openFileOperations.OpenVisioFile(cellDetails.FileFullName);
+                _openFileOperations.OpenTableFile(cellDetails.FileFullName);
 
                 IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
                 if (mdiParent.EditControl is ITableControl tableControl)

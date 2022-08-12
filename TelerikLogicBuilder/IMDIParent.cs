@@ -35,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         void CloseProject();
         void ChangeCursor(Cursor cursor);
         void RemoveEditControl();
+        Task RunAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task);
         Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task);
         Task RunLoadContextAsync(Func<CancellationTokenSource, Task> task);
         void OpenProject(string projectFileFullname);

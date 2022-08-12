@@ -12,19 +12,26 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControls(this IServiceCollection services)
         {
             return services
+                .AddSingleton<IDiagramSearcher, DiagramSearcher>()
                 .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
                 .AddTransient<FindCell>()
                 .AddTransient<FindConstructorInCell>()
+                .AddTransient<FindConstructorInFiles>()
                 .AddTransient<FindConstructorInShape>()
                 .AddTransient<FindFunctionInCell>()
+                .AddTransient<FindFunctionInFiles>()
                 .AddTransient<FindFunctionInShape>()
                 .AddTransient<FindShape>()
                 .AddTransient<FindTextInCell>()
+                .AddTransient<FindTextInFiles>()
                 .AddTransient<FindTextInShape>()
                 .AddTransient<FindVariableInCell>()
+                .AddTransient<FindVariableInFiles>()
                 .AddTransient<FindVariableInShape>()
                 .AddSingleton<IFunctionsFormFieldSetHelper, FunctionsFormFieldSetHelper>()
+                .AddSingleton<IGetSourceFilesForDocumentSearch, GetSourceFilesForDocumentSearch>()
                 .AddSingleton<ISearchFunctions, SearchFunctions>()
+                .AddSingleton<ISearchSelectedDocuments, SearchSelectedDocuments>()
                 .AddTransient<Func<string, bool, TableControl>>
                 (
                     provider =>
@@ -41,6 +48,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         openedAsReadOnly
                     )
                 )
+                .AddSingleton<ITableSearcher, TableSearcher>()
                 .AddTransient<Func<string, bool, VisioControl>>
                 (
                     provider =>

@@ -114,6 +114,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent
                 )
             )
+            .AddTransient<FindConstructorInFilesCommand>()
             .AddTransient<Func<IMDIParent, FindCellCommand>>
             (
                 provider =>
@@ -134,6 +135,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent
                 )
             )
+            .AddTransient<FindFunctionInFilesCommand>()
             .AddTransient<Func<IMDIParent, FindShapeCommand>>
             (
                 provider =>
@@ -154,6 +156,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent
                 )
             )
+            .AddTransient<FindTextInFilesCommand>()
             .AddTransient<Func<IMDIParent, FindVariableCommand>>
             (
                 provider =>
@@ -164,6 +167,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent
                 )
             )
+            .AddTransient<FindVariableInFilesCommand>()
             .AddTransient<Func<RadMenuItem, string, SetSelectedApplicationCommand>>
             (
                 provider =>

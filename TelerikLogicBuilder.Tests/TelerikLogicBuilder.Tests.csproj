@@ -36,13 +36,43 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Diagrams\DiagramSearcherTest\VariableSearchReturnsTheExpectedResults.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramSearcherTest\ConstructorSearchReturnsTheExpectedResults.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramSearcherTest\FunctionSearchReturnsTheExpectedResults.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\DiagramSearcherTest\TextSearchReturnsTheExpectedResults.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\GetRuleShapesTest\GetRuleShapesReturnsExpectedResults.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\SearchSelectedDocumentsTest\ConstructorSearchWorks.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\SearchSelectedDocumentsTest\FunctionSearchWorks.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\SearchSelectedDocumentsTest\Module.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\SearchSelectedDocumentsTest\TextSearchWorks.vsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\SearchSelectedDocumentsTest\VariableSearchWorks.vsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnectors\ThrowsForInvalidShape.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnectors\ReturnsTheListOfBlankConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\TableSearcherTest\Module.tbl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Tables\CellHelperTest\CountDialogFunctions\CountDialogFunctionsReturnsTheExpectedDialogCount.tbl">
@@ -240,6 +270,12 @@
     <None Update="Diagrams\ShapeXmlHelperTest.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Mocks\MockMdiParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             InitializeDialogFormMessageControl();
 
             radGroupBoxPrompt.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
-            radTextBoxInput.Anchor = AnchorConstants.AnchorsLeftRightBottom;
+            radTextBoxInput.Anchor = AnchorConstants.AnchorsLeftTopRight;
 
             _formInitializer.SetFormDefaults(this, 264);
 
