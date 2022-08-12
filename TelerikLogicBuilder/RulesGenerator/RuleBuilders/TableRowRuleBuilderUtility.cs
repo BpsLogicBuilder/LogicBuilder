@@ -182,7 +182,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
         /// </summary>
         internal void GenerateRules()
         {
-            string conditionsXml = _cellXmlHelper.GetXmlString((string)DataRow.ItemArray.GetValue(TableColumns.CONDITIONCOLUMNINDEX)!, TableColumns.PRIORITYCOLUMNINDEX);
+            string conditionsXml = _cellXmlHelper.GetXmlString((string)DataRow.ItemArray.GetValue(TableColumns.CONDITIONCOLUMNINDEX)!, TableColumns.CONDITIONCOLUMNINDEX);
             if (conditionsXml.Length == 0)
             {
                 NoConditionsRule();

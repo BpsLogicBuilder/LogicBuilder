@@ -15,7 +15,7 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public CommandBarButton CommandBarButtonSave => throw new NotImplementedException();
 
-        public IDocumentEditor? EditControl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IDocumentEditor? EditControl { get => null; set => throw new NotImplementedException(); }
 
         public IMessages Messages => new MockMessages();
 
