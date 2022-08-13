@@ -39,30 +39,30 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IVariableListInitializer _variableListInitializer;
         private readonly UiNotificationService _uiNotificationService;
 
-        private readonly Func<IMDIParent, BuildActiveDocumentCommand> _getBuildActiveDocumentCommand;
+        private readonly BuildActiveDocumentCommand _buildActiveDocumentCommand;
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
         private readonly Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> _getDeleteSelectedFilesFromApiCommand;
         private readonly Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
         private readonly Func<IMDIParent, string, DeploySelectedFilesToApiCommand> _getDeploySelectedFilesToApiCommand;
         private readonly Func<IMDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
         private readonly ExitCommand _exitCommand;
-        private readonly Func<IMDIParent, FindConstructorCommand> _getFindConstructorCommand;
+        private readonly FindConstructorCommand _findConstructorCommand;
         private readonly FindConstructorInFilesCommand _findConstructorInFilesCommand;
-        private readonly Func<IMDIParent, FindCellCommand> _getFindCellCommand;
-        private readonly Func<IMDIParent, FindFunctionCommand> _getFindFunctionCommand;
+        private readonly FindCellCommand _findCellCommand;
+        private readonly FindFunctionCommand _findFunctionCommand;
         private readonly FindFunctionInFilesCommand _findFunctionInFilesCommand;
-        private readonly Func<IMDIParent, FindShapeCommand> _getFindShapeCommand;
-        private readonly Func<IMDIParent, FindTextCommand> _getFindTextCommand;
+        private readonly FindShapeCommand _findShapeCommand;
+        private readonly FindTextCommand _findTextCommand;
         private readonly FindTextInFilesCommand _findTextInFilesCommand;
-        private readonly Func<IMDIParent, FindVariableCommand> _getFindVariableCommand;
+        private readonly FindVariableCommand _findVariableCommand;
         private readonly FindVariableInFilesCommand _findVariableInFilesCommand;
         private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
         private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
-        private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
+        private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
         private readonly Func<IMDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
-        private readonly Func<IMDIParent, ViewApplicationsStencilCommand> _getViewApplicationsStencilCommand;
-        private readonly Func<IMDIParent, ViewFlowDiagramStencilCommand> _getViewFlowDiagramStencilCommand;
+        private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
+        private readonly ViewFlowDiagramStencilCommand _viewFlowDiagramStencilCommand;
         private readonly Func<IMessages, ViewMessagesCommand> _getViewMessagesCommand;
         private readonly Func<IProjectExplorer, ViewProjectExplorerCommand> _getViewProjectExplorerCommand;
 
@@ -83,30 +83,30 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IThemeManager themeManager,
             IVariableListInitializer variableListInitializer,
             UiNotificationService uiNotificationService,
-            Func<IMDIParent, BuildActiveDocumentCommand> getBuildActiveDocumentCommand,
+            BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
             Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> getDeleteSelectedFilesFromApiCommand,
             Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
             Func<IMDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
             Func<IMDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
             ExitCommand exitCommand,
-            Func<IMDIParent, FindConstructorCommand> getFindConstructorCommand,
+            FindConstructorCommand findConstructorCommand,
             FindConstructorInFilesCommand findConstructorInFilesCommand,
-            Func<IMDIParent, FindCellCommand> getFindCellCommand,
-            Func<IMDIParent, FindFunctionCommand> getFindFunctionCommand,
+            FindCellCommand findCellCommand,
+            FindFunctionCommand findFunctionCommand,
             FindFunctionInFilesCommand findFunctionInFilesCommand,
-            Func<IMDIParent, FindShapeCommand> getFindShapeCommand,
-            Func<IMDIParent, FindTextCommand> getFindTextommand,
+            FindShapeCommand findShapeCommand,
+            FindTextCommand findTextommand,
             FindTextInFilesCommand findTextInFilesCommand,
-            Func<IMDIParent, FindVariableCommand> getFindVariableCommand,
+            FindVariableCommand findVariableCommand,
             FindVariableInFilesCommand findVariableInFilesCommand,
             Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
             Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
-            Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
+            ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
             Func<IMDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
-            Func<IMDIParent, ViewApplicationsStencilCommand> getViewApplicationsStencilCommand,
-            Func<IMDIParent, ViewFlowDiagramStencilCommand> getViewFlowDiagramStencilCommand,
+            ViewApplicationsStencilCommand viewApplicationsStencilCommand,
+            ViewFlowDiagramStencilCommand viewFlowDiagramStencilCommand,
             Func<IMessages, ViewMessagesCommand> getViewMessagesCommand,
             Func<IProjectExplorer, ViewProjectExplorerCommand> getViewProjectExplorerCommand,
             IMessages messages,
@@ -129,27 +129,27 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getDeploySelectedFilesToApiCommand = getDeploySelectedFilesToApiCommand;
             _getDeploySelectedFilesToFileSystemCommand = getDeploySelectedFilesToFileSystemCommand;
             _exitCommand = exitCommand;
-            _getFindConstructorCommand = getFindConstructorCommand;
+            _findConstructorCommand = findConstructorCommand;
             _findConstructorInFilesCommand = findConstructorInFilesCommand;
-            _getFindCellCommand = getFindCellCommand;
-            _getFindFunctionCommand = getFindFunctionCommand;
+            _findCellCommand = findCellCommand;
+            _findFunctionCommand = findFunctionCommand;
             _findFunctionInFilesCommand = findFunctionInFilesCommand;
-            _getFindShapeCommand = getFindShapeCommand;
-            _getFindTextCommand = getFindTextommand;
+            _findShapeCommand = findShapeCommand;
+            _findTextCommand = findTextommand;
             _findTextInFilesCommand = findTextInFilesCommand;
-            _getFindVariableCommand = getFindVariableCommand;
+            _findVariableCommand = findVariableCommand;
             _findVariableInFilesCommand = findVariableInFilesCommand;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
-            _getValidateActiveDocumentCommand = getValidateActiveDocumentCommand;
+            _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
-            _getViewApplicationsStencilCommand = getViewApplicationsStencilCommand;
-            _getViewFlowDiagramStencilCommand = getViewFlowDiagramStencilCommand;
+            _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
+            _viewFlowDiagramStencilCommand = viewFlowDiagramStencilCommand;
             _getViewMessagesCommand = getViewMessagesCommand;
             _getViewProjectExplorerCommand = getViewProjectExplorerCommand;
 
-            _getBuildActiveDocumentCommand = getBuildActiveDocumentCommand;
+            _buildActiveDocumentCommand = buildActiveDocumentCommand;
             _buildSaveConsolidateSelectedDocumentsCommand = buildSaveConsolidateSelectedDocumentsCommand;
             _messages = messages;
             _projectExplorer = projectExplorer;
@@ -389,7 +389,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void AddBuildActiveDocumentCommands()
         {
-            void handler(object? sender, EventArgs args) => _getBuildActiveDocumentCommand(this).Execute();
+            void handler(object? sender, EventArgs args) => _buildActiveDocumentCommand.Execute();
             radMenuItemBuildActiveDrawing.Click += handler;
             radMenuItemBuildActiveTable.Click += handler;
             commandBarButtonBuild.Click += handler;
@@ -422,12 +422,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
             #endregion Tools Menu
 
             #region Edit/Find
-            AddClickCommand(this.radMenuItemFindConstructor, _getFindConstructorCommand(this));
-            AddClickCommand(this.radMenuItemFindCell, _getFindCellCommand(this));
-            AddClickCommand(this.radMenuItemFindFunction, _getFindFunctionCommand(this));
-            AddClickCommand(this.radMenuItemFindShape, _getFindShapeCommand(this));
-            AddClickCommand(this.radMenuItemFindText, _getFindTextCommand(this));
-            AddClickCommand(this.radMenuItemFindVariable, _getFindVariableCommand(this));
+            AddClickCommand(this.radMenuItemFindConstructor, _findConstructorCommand);
+            AddClickCommand(this.radMenuItemFindCell, _findCellCommand);
+            AddClickCommand(this.radMenuItemFindFunction, _findFunctionCommand);
+            AddClickCommand(this.radMenuItemFindShape, _findShapeCommand);
+            AddClickCommand(this.radMenuItemFindText, _findTextCommand);
+            AddClickCommand(this.radMenuItemFindVariable, _findVariableCommand);
 
             AddClickCommand(this.radMenuItemFindInFilesText, _findTextInFilesCommand);
             AddClickCommand(this.radMenuItemFindInFilesConstructor, _findConstructorInFilesCommand);
@@ -449,12 +449,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddClickCommand
             (
                 this.radMenuItemApplicationsStencil,
-                _getViewApplicationsStencilCommand(this)
+                _viewApplicationsStencilCommand
             );
             AddClickCommand
             (
                 this.radMenuItemFlowDiagramStencil,
-                _getViewFlowDiagramStencilCommand(this)
+                _viewFlowDiagramStencilCommand
             );
             #endregion View Menu
 
@@ -481,7 +481,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void AddValidateActiveDocumentCommands()
         {
-            void handler(object? sender, EventArgs args) => _getValidateActiveDocumentCommand(this).Execute();
+            void handler(object? sender, EventArgs args) => _validateActiveDocumentCommand.Execute();
             radMenuItemValidateActiveDrawing.Click += handler;
             radMenuItemValidateActiveTable.Click += handler;
             commandBarButtonValidate.Click += handler;

@@ -14,18 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         internal static IServiceCollection AddMdiParentCommands(this IServiceCollection services)
         {
-            return services.AddTransient<Func<IMDIParent, BuildActiveDocumentCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<BuildActiveDocumentCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IConfigurationService>(),
-                    provider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>(),
-                    provider.GetRequiredService<UiNotificationService>(),
-                    mdiParent
-                )
-            )
+            return services.AddTransient<BuildActiveDocumentCommand>()
             .AddTransient<BuildSaveConsolidateSelectedDocumentsCommand>()
             .AddTransient<Func<IMDIParent, string, BuildActiveDocumentCommand>>
             (
@@ -92,69 +81,15 @@ namespace Microsoft.Extensions.DependencyInjection
                 )
             )
             .AddTransient<ExitCommand>()
-            .AddTransient<Func<IMDIParent, FindConstructorCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<FindConstructorCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<FindConstructorCommand>()
             .AddTransient<FindConstructorInFilesCommand>()
-            .AddTransient<Func<IMDIParent, FindCellCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<FindCellCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
-            .AddTransient<Func<IMDIParent, FindFunctionCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<FindFunctionCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<FindCellCommand>()
+            .AddTransient<FindFunctionCommand>()
             .AddTransient<FindFunctionInFilesCommand>()
-            .AddTransient<Func<IMDIParent, FindShapeCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<FindShapeCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
-            .AddTransient<Func<IMDIParent, FindTextCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<FindTextCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<FindShapeCommand>()
+            .AddTransient<FindTextCommand>()
             .AddTransient<FindTextInFilesCommand>()
-            .AddTransient<Func<IMDIParent, FindVariableCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<FindVariableCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<FindVariableCommand>()
             .AddTransient<FindVariableInFilesCommand>()
             .AddTransient<Func<RadMenuItem, string, SetSelectedApplicationCommand>>
             (
@@ -180,17 +115,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 )
             )
             .AddTransient<ValidateSelectedDocumentsCommand>()
-            .AddTransient<Func<IMDIParent, ValidateActiveDocumentCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<ValidateActiveDocumentCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IConfigurationService>(),
-                    provider.GetRequiredService<IValidateSelectedDocuments>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<ValidateActiveDocumentCommand>()
             .AddTransient<Func<IMDIParent, string, ValidateSelectedRulesCommand>>
             (
                 provider =>
@@ -204,26 +129,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationName
                 )
             )
-            .AddTransient<Func<IMDIParent, ViewApplicationsStencilCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<ViewApplicationsStencilCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
-            .AddTransient<Func<IMDIParent, ViewFlowDiagramStencilCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<ViewFlowDiagramStencilCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IExceptionHelper>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<ViewApplicationsStencilCommand>()
+            .AddTransient<ViewFlowDiagramStencilCommand>()
             .AddTransient<Func<IMessages, ViewMessagesCommand>>
             (
                 provider =>

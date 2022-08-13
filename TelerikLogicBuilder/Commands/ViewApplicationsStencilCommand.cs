@@ -6,17 +6,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
     internal class ViewApplicationsStencilCommand : ClickCommandBase
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IMDIParent mdiParent;
+        private readonly IMainWindow _mainWindow;
 
-        public ViewApplicationsStencilCommand(IExceptionHelper exceptionHelper, IMDIParent mdiParent)
+        public ViewApplicationsStencilCommand(
+            IExceptionHelper exceptionHelper,
+            IMainWindow mainWindow)
         {
             _exceptionHelper = exceptionHelper;
-            this.mdiParent = mdiParent;
+            _mainWindow = mainWindow;
         }
 
         public override void Execute()
         {
-            if (this.mdiParent.EditControl is not IDrawingControl drawingControl)
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
+
+            if (mdiParent.EditControl is not IDrawingControl drawingControl)
                 throw _exceptionHelper.CriticalException("{9EA5D049-35F8-4A78-BA89-E1E9790B4C6F}");
 
             drawingControl.ShowApplicationsStencil();
