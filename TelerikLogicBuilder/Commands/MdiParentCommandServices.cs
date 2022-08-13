@@ -51,7 +51,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     sourceFile
                 )
             )
-            .AddTransient<Func<MDIParent, string, DeleteSelectedFilesFromApiCommand>>
+            .AddTransient<Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand>>
             (
                 provider =>
                 (mdiParent, applicationName) => ActivatorUtilities.CreateInstance<DeleteSelectedFilesFromApiCommand>
@@ -64,7 +64,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationName
                 )
             )
-            .AddTransient<Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand>>
+            .AddTransient<Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand>>
             (
                 provider =>
                 (mdiParent, applicationName) => ActivatorUtilities.CreateInstance<DeleteSelectedFilesFromFileSystemCommand>
@@ -77,7 +77,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationName
                 )
             )
-            .AddTransient<Func<MDIParent, string, DeploySelectedFilesToApiCommand>>
+            .AddTransient<Func<IMDIParent, string, DeploySelectedFilesToApiCommand>>
             (
                 provider =>
                 (mdiParent, applicationName) => ActivatorUtilities.CreateInstance<DeploySelectedFilesToApiCommand>
@@ -90,7 +90,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationName
                 )
             )
-            .AddTransient<Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand>>
+            .AddTransient<Func<IMDIParent, string, DeploySelectedFilesToFileSystemCommand>>
             (
                 provider =>
                 (mdiParent, applicationName) => ActivatorUtilities.CreateInstance<DeploySelectedFilesToFileSystemCommand>
@@ -214,7 +214,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent
                 )
             )
-            .AddTransient<Func<MDIParent, string, ValidateSelectedRulesCommand>>
+            .AddTransient<Func<IMDIParent, string, ValidateSelectedRulesCommand>>
             (
                 provider =>
                 (mdiParent, applicationName) => ActivatorUtilities.CreateInstance<ValidateSelectedRulesCommand>

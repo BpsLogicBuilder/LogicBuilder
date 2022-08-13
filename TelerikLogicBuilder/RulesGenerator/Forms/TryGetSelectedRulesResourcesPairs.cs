@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 {
     internal class TryGetSelectedRulesResourcesPairs : ITryGetSelectedRulesResourcesPairs
     {
-        public bool Try(string selctedApplication, string title, out IList<RulesResourcesPair> sourceFiles, IWin32Window dialogOwner)
+        private readonly IMainWindow _mainWindow;
+
+        public TryGetSelectedRulesResourcesPairs(IMainWindow mainWindow)
+        {
+            _mainWindow = mainWindow;
+        }
+
+        public bool Try(string selctedApplication, string title, out IList<RulesResourcesPair> sourceFiles)
         {
             using ISelectRulesResourcesPairFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<ISelectRulesResourcesPairFormFactory>();
             SelectRulesResourcesPairForm selectRulesForm = disposableManager.GetScopedService(selctedApplication);
             selectRulesForm.SetTitle(title);
-            selectRulesForm.ShowDialog(dialogOwner);
+            selectRulesForm.ShowDialog(_mainWindow.Instance);
 
             if (selectRulesForm.DialogResult != DialogResult.OK
                 || selectRulesForm.SourceFiles.Count == 0)

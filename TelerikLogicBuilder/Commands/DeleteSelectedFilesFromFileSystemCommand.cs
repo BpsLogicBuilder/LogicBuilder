@@ -14,10 +14,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         private readonly IConfigurationService _configurationService;
         private readonly ITryGetSelectedRulesResourcesPairs _tryGetSelectedRulesResourcesPairs;
         private readonly IDeleteSelectedFilesFromFileSystem _deleteSelectedFilesFromFileSystem;
-        private readonly MDIParent mdiParent;
+        private readonly IMDIParent mdiParent;
         private readonly string applicationName;
 
-        public DeleteSelectedFilesFromFileSystemCommand(IConfigurationService configurationService, ITryGetSelectedRulesResourcesPairs tryGetSelectedRulesResourcesPairs, IDeleteSelectedFilesFromFileSystem deleteSelectedFilesFromFileSystem, MDIParent mdiParent, string applicationName)
+        public DeleteSelectedFilesFromFileSystemCommand(
+            IConfigurationService configurationService,
+            ITryGetSelectedRulesResourcesPairs tryGetSelectedRulesResourcesPairs,
+            IDeleteSelectedFilesFromFileSystem deleteSelectedFilesFromFileSystem,
+            IMDIParent mdiParent,
+            string applicationName)
         {
             _configurationService = configurationService;
             _tryGetSelectedRulesResourcesPairs = tryGetSelectedRulesResourcesPairs;
@@ -33,8 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
                     (
                         applicationName,
                         Strings.selectRulesToDelete,
-                        out IList<RulesResourcesPair> sourceFiles,
-                        this.mdiParent
+                        out IList<RulesResourcesPair> sourceFiles
                     )
                )
             {

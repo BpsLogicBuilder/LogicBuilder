@@ -463,6 +463,9 @@
     <value>Deploying {0} Rules</value>
     <comment>0=Application Nickname</comment>
   </data>
+	<data name="deploymentComplete" xml:space="preserve">
+    <value>Deployment Complete!</value>
+  </data>
 	<data name="diagramVisibleLinkFormat" xml:space="preserve">
     <value>Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}.</value>
     <comment>0=fileName; 1=PageNumber; 2=Master; 3=ShapeIndex</comment>
@@ -534,6 +537,14 @@
 	<data name="fileAlreadyExistsFormat" xml:space="preserve">
     <value>File {0} already Exists.</value>
     <comment>0=fileFullName</comment>
+  </data>
+	<data name="fileDeleted" xml:space="preserve">
+    <value>{0} deleted.</value>
+    <comment>0=functionName</comment>
+  </data>
+	<data name="fileDeployed" xml:space="preserve">
+    <value>{0} deployed.</value>
+    <comment>0=functionName</comment>
   </data>
 	<data name="fileExistsExceptionMessage" xml:space="preserve">
     <value>File Name already exists at: {0}.</value>
@@ -974,6 +985,9 @@
   </data>
 	<data name="oneSearchOccurrence" xml:space="preserve">
     <value>1 found.</value>
+  </data>
+	<data name="operationComplete" xml:space="preserve">
+    <value>Operation Complete!</value>
   </data>
 	<data name="othersConnectorInvalid" xml:space="preserve">
     <value>Others Connect Object is invalid when all applications are accounted for.</value>

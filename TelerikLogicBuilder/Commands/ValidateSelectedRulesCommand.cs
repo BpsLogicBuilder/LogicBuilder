@@ -14,10 +14,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         private readonly IConfigurationService _configurationService;
         private readonly ITryGetSelectedRules _tryGetSelectedRules;
         private readonly IValidateSelectedRules _validateSelectedRules;
-        private readonly MDIParent mdiParent;
+        private readonly IMDIParent mdiParent;
         private readonly string applicationName;
 
-        public ValidateSelectedRulesCommand(IConfigurationService configurationService, ITryGetSelectedRules tryGetSelectedRules, IValidateSelectedRules validateSelectedRules, MDIParent mdiParent, string applicationName)
+        public ValidateSelectedRulesCommand(
+            IConfigurationService configurationService,
+            ITryGetSelectedRules tryGetSelectedRules,
+            IValidateSelectedRules validateSelectedRules,
+            IMDIParent mdiParent,
+            string applicationName)
         {
             _configurationService = configurationService;
             _tryGetSelectedRules = tryGetSelectedRules;
@@ -28,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
 
         public async override void Execute()
         {
-            if (!_tryGetSelectedRules.Try(applicationName, Strings.selectRulesToValidate, out IList<string> sourceFiles, mdiParent))
+            if (!_tryGetSelectedRules.Try(applicationName, Strings.selectRulesToValidate, out IList<string> sourceFiles))
                 return;
 
             await this.mdiParent.RunLoadContextAsync(ValidateSelectedDocuments);

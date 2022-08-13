@@ -41,10 +41,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private readonly Func<IMDIParent, BuildActiveDocumentCommand> _getBuildActiveDocumentCommand;
         private readonly Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> _getBuildSaveConsolidateSelectedDocumentsCommand;
-        private readonly Func<MDIParent, string, DeleteSelectedFilesFromApiCommand> _getDeleteSelectedFilesFromApiCommand;
-        private readonly Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
-        private readonly Func<MDIParent, string, DeploySelectedFilesToApiCommand> _getDeploySelectedFilesToApiCommand;
-        private readonly Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
+        private readonly Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> _getDeleteSelectedFilesFromApiCommand;
+        private readonly Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
+        private readonly Func<IMDIParent, string, DeploySelectedFilesToApiCommand> _getDeploySelectedFilesToApiCommand;
+        private readonly Func<IMDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
         private readonly ExitCommand _exitCommand;
         private readonly Func<IMDIParent, FindConstructorCommand> _getFindConstructorCommand;
         private readonly FindConstructorInFilesCommand _findConstructorInFilesCommand;
@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
         private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
         private readonly Func<MDIParent, ValidateSelectedDocumentsCommand> _getValidateSelectedDocumentsCommand;
-        private readonly Func<MDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
+        private readonly Func<IMDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
         private readonly Func<IMDIParent, ViewApplicationsStencilCommand> _getViewApplicationsStencilCommand;
         private readonly Func<IMDIParent, ViewFlowDiagramStencilCommand> _getViewFlowDiagramStencilCommand;
         private readonly Func<IMessages, ViewMessagesCommand> _getViewMessagesCommand;
@@ -85,10 +85,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             UiNotificationService uiNotificationService,
             Func<IMDIParent, BuildActiveDocumentCommand> getBuildActiveDocumentCommand,
             Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> getBuildSaveConsolidateSelectedDocumentsCommand,
-            Func<MDIParent, string, DeleteSelectedFilesFromApiCommand> getDeleteSelectedFilesFromApiCommand,
-            Func<MDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
-            Func<MDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
-            Func<MDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
+            Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> getDeleteSelectedFilesFromApiCommand,
+            Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
+            Func<IMDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
+            Func<IMDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
             ExitCommand exitCommand,
             Func<IMDIParent, FindConstructorCommand> getFindConstructorCommand,
             FindConstructorInFilesCommand findConstructorInFilesCommand,
@@ -104,7 +104,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
             Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
             Func<MDIParent, ValidateSelectedDocumentsCommand> getValidateSelectedDocumentsCommand,
-            Func<MDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
+            Func<IMDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
             Func<IMDIParent, ViewApplicationsStencilCommand> getViewApplicationsStencilCommand,
             Func<IMDIParent, ViewFlowDiagramStencilCommand> getViewFlowDiagramStencilCommand,
             Func<IMessages, ViewMessagesCommand> getViewMessagesCommand,
@@ -587,6 +587,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             this.Disposed += MDIParent_Disposed;
 
             //OpenProject(@"C:\Test\SomeProject1\SomeProject1.lbproj");
+            //OpenProject(@"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj");
         }
 
         private async Task LoadAssembliesOnProjectOpen()

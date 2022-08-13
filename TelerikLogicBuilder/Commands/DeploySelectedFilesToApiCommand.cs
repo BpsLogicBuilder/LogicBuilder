@@ -14,10 +14,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         private readonly IConfigurationService _configurationService;
         private readonly ITryGetSelectedRulesResourcesPairs _tryGetSelectedRulesResourcesPairs;
         private readonly IDeploySelectedFilesToApi _deploySelectedFilesToApi;
-        private readonly MDIParent mdiParent;
+        private readonly IMDIParent mdiParent;
         private readonly string applicationName;
 
-        public DeploySelectedFilesToApiCommand(IConfigurationService configurationService, ITryGetSelectedRulesResourcesPairs tryGetSelectedRulesResourcesPairs, IDeploySelectedFilesToApi deploySelectedFilesToApi, MDIParent mdiParent, string applicationName)
+        public DeploySelectedFilesToApiCommand(
+            IConfigurationService configurationService,
+            ITryGetSelectedRulesResourcesPairs tryGetSelectedRulesResourcesPairs,
+            IDeploySelectedFilesToApi deploySelectedFilesToApi,
+            IMDIParent mdiParent,
+            string applicationName)
         {
             _configurationService = configurationService;
             _tryGetSelectedRulesResourcesPairs = tryGetSelectedRulesResourcesPairs;
@@ -33,8 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
                     (
                         applicationName,
                         Strings.selectRulesToDeploy,
-                        out IList<RulesResourcesPair> sourceFiles,
-                        this.mdiParent
+                        out IList<RulesResourcesPair> sourceFiles
                     )
                )
             {

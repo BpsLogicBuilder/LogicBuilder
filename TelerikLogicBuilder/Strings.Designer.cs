@@ -1222,6 +1222,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deployment Complete!.
+        /// </summary>
+        internal static string deploymentComplete {
+            get {
+                return ResourceManager.GetString("deploymentComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document: {0}, Page: {1}, Master: {2}, Shape Index: {3}..
         /// </summary>
         internal static string diagramVisibleLinkFormat {
@@ -2388,6 +2397,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string fileAlreadyExistsFormat {
             get {
                 return ResourceManager.GetString("fileAlreadyExistsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} deleted..
+        /// </summary>
+        internal static string fileDeleted {
+            get {
+                return ResourceManager.GetString("fileDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} deployed..
+        /// </summary>
+        internal static string fileDeployed {
+            get {
+                return ResourceManager.GetString("fileDeployed", resourceCulture);
             }
         }
         
@@ -3666,6 +3693,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string oneSearchOccurrence {
             get {
                 return ResourceManager.GetString("oneSearchOccurrence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation Complete!.
+        /// </summary>
+        internal static string operationComplete {
+            get {
+                return ResourceManager.GetString("operationComplete", resourceCulture);
             }
         }
         
