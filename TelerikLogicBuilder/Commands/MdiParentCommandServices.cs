@@ -26,19 +26,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     mdiParent
                 )
             )
-            .AddTransient<Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<BuildSaveConsolidateSelectedDocumentsCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IConfigurationService>(),
-                    provider.GetRequiredService<ITryGetSelectedDocuments>(),
-                    provider.GetRequiredService<IBuildSaveAssembleRulesForSelectedDocuments>(),
-                    provider.GetRequiredService<UiNotificationService>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<BuildSaveConsolidateSelectedDocumentsCommand>()
             .AddTransient<Func<IMDIParent, string, BuildActiveDocumentCommand>>
             (
                 provider =>
@@ -191,18 +179,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     themeName
                 )
             )
-            .AddTransient<Func<MDIParent, ValidateSelectedDocumentsCommand>>
-            (
-                provider =>
-                mdiParent => ActivatorUtilities.CreateInstance<ValidateSelectedDocumentsCommand>
-                (
-                    provider,
-                    provider.GetRequiredService<IConfigurationService>(),
-                    provider.GetRequiredService<ITryGetSelectedDocuments>(),
-                    provider.GetRequiredService<IValidateSelectedDocuments>(),
-                    mdiParent
-                )
-            )
+            .AddTransient<ValidateSelectedDocumentsCommand>()
             .AddTransient<Func<IMDIParent, ValidateActiveDocumentCommand>>
             (
                 provider =>

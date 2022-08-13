@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -11,32 +12,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
     internal class BuildSaveConsolidateSelectedDocumentsCommand : ClickCommandBase
     {
-        private readonly IConfigurationService _configurationService;
-        private readonly ITryGetSelectedDocuments _tryGetSelectedDocuments;
         private readonly IBuildSaveAssembleRulesForSelectedDocuments _buildSaveConsolidateSelectedDocumentRules;
+        private readonly IConfigurationService _configurationService;
+        private readonly IMainWindow _mainWindow;
+        private readonly ITryGetSelectedDocuments _tryGetSelectedDocuments;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly MDIParent mdiParent;
 
         public BuildSaveConsolidateSelectedDocumentsCommand(
-            IConfigurationService configurationService,
-            ITryGetSelectedDocuments tryGetSelectedDocuments,
             IBuildSaveAssembleRulesForSelectedDocuments buildSaveConsolidateSelectedDocumentRules,
-            UiNotificationService uiNotificationService,
-            MDIParent mdiParent)
+            IConfigurationService configurationService,
+            IMainWindow mainWindow,
+            ITryGetSelectedDocuments tryGetSelectedDocuments,
+            UiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
+            _mainWindow = mainWindow;
             _tryGetSelectedDocuments = tryGetSelectedDocuments;
             _buildSaveConsolidateSelectedDocumentRules = buildSaveConsolidateSelectedDocumentRules;
             _uiNotificationService = uiNotificationService;
-            this.mdiParent = mdiParent;
         }
 
         public override async void Execute()
         {
-            if (!_tryGetSelectedDocuments.Try(out IList<string> sourceFiles, this.mdiParent))
+            if (!_tryGetSelectedDocuments.Try(out IList<string> sourceFiles))
                 return;
 
-            await this.mdiParent.RunLoadContextAsync(BuildSelectedDocumentRules);
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
+            await mdiParent.RunLoadContextAsync(BuildSelectedDocumentRules);
 
             _uiNotificationService.RequestRulesExplorerRefresh(true);
 

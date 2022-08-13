@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly UiNotificationService _uiNotificationService;
 
         private readonly Func<IMDIParent, BuildActiveDocumentCommand> _getBuildActiveDocumentCommand;
-        private readonly Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> _getBuildSaveConsolidateSelectedDocumentsCommand;
+        private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
         private readonly Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> _getDeleteSelectedFilesFromApiCommand;
         private readonly Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
         private readonly Func<IMDIParent, string, DeploySelectedFilesToApiCommand> _getDeploySelectedFilesToApiCommand;
@@ -59,7 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
         private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
         private readonly Func<IMDIParent, ValidateActiveDocumentCommand> _getValidateActiveDocumentCommand;
-        private readonly Func<MDIParent, ValidateSelectedDocumentsCommand> _getValidateSelectedDocumentsCommand;
+        private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
         private readonly Func<IMDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
         private readonly Func<IMDIParent, ViewApplicationsStencilCommand> _getViewApplicationsStencilCommand;
         private readonly Func<IMDIParent, ViewFlowDiagramStencilCommand> _getViewFlowDiagramStencilCommand;
@@ -84,7 +84,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IVariableListInitializer variableListInitializer,
             UiNotificationService uiNotificationService,
             Func<IMDIParent, BuildActiveDocumentCommand> getBuildActiveDocumentCommand,
-            Func<MDIParent, BuildSaveConsolidateSelectedDocumentsCommand> getBuildSaveConsolidateSelectedDocumentsCommand,
+            BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
             Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> getDeleteSelectedFilesFromApiCommand,
             Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
             Func<IMDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
@@ -103,7 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
             Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
             Func<IMDIParent, ValidateActiveDocumentCommand> getValidateActiveDocumentCommand,
-            Func<MDIParent, ValidateSelectedDocumentsCommand> getValidateSelectedDocumentsCommand,
+            ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
             Func<IMDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
             Func<IMDIParent, ViewApplicationsStencilCommand> getViewApplicationsStencilCommand,
             Func<IMDIParent, ViewFlowDiagramStencilCommand> getViewFlowDiagramStencilCommand,
@@ -142,7 +142,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetThemeCommand = getSetThemeCommand;
             _getValidateActiveDocumentCommand = getValidateActiveDocumentCommand;
-            _getValidateSelectedDocumentsCommand = getValidateSelectedDocumentsCommand;
+            _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
             _getViewApplicationsStencilCommand = getViewApplicationsStencilCommand;
             _getViewFlowDiagramStencilCommand = getViewFlowDiagramStencilCommand;
@@ -150,7 +150,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getViewProjectExplorerCommand = getViewProjectExplorerCommand;
 
             _getBuildActiveDocumentCommand = getBuildActiveDocumentCommand;
-            _getBuildSaveConsolidateSelectedDocumentsCommand = getBuildSaveConsolidateSelectedDocumentsCommand;
+            _buildSaveConsolidateSelectedDocumentsCommand = buildSaveConsolidateSelectedDocumentsCommand;
             _messages = messages;
             _projectExplorer = projectExplorer;
 
@@ -408,14 +408,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             #region Tools Menu
             AddClickCommand
-                (
-                    this.radMenuItemBuildSelectedModules,
-                    _getBuildSaveConsolidateSelectedDocumentsCommand(this)
-                );
+            (
+                this.radMenuItemBuildSelectedModules,
+                _buildSaveConsolidateSelectedDocumentsCommand
+            );
             AddClickCommand
             (
                 this.radMenuItemValidateSelectedModules,
-                _getValidateSelectedDocumentsCommand(this)
+                _validateSelectedDocumentsCommand
             );
             AddBuildActiveDocumentCommands();
             AddValidateActiveDocumentCommands();

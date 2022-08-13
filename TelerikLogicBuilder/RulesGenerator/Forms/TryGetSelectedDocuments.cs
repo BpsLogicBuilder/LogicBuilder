@@ -8,11 +8,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 {
     internal class TryGetSelectedDocuments : ITryGetSelectedDocuments
     {
-        public bool Try(out IList<string> selectedDocuments, IWin32Window dialogOwner)
+        private readonly IMainWindow _mainWindow;
+
+        public TryGetSelectedDocuments(IMainWindow mainWindow)
+        {
+            _mainWindow = mainWindow;
+        }
+
+        public bool Try(out IList<string> selectedDocuments)
         {
             using IScopedDisposableManager<SelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectDocumentsForm>>();
             SelectDocumentsForm selectDocunentsForm = disposableManager.ScopedService;
-            selectDocunentsForm.ShowDialog(dialogOwner);
+            selectDocunentsForm.ShowDialog(_mainWindow.Instance);
 
             if (selectDocunentsForm.DialogResult != DialogResult.OK
                 || selectDocunentsForm.SourceFiles.Count == 0)
