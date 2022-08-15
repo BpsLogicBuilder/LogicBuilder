@@ -15,29 +15,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
         private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IRulesExplorer _rulesExplorer;
 
         public DeleteRulesExplorerFileCommand(
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IRulesExplorer rulesExplorer)
+            UiNotificationService uiNotificationService)
         {
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
             _mainWindow = mainWindow;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _rulesExplorer = rulesExplorer;
         }
 
         public override void Execute()
         {
             try
             {
-                RadTreeNode? selectedNode = _rulesExplorer.TreeView.SelectedNode;
+                RadTreeNode? selectedNode = _mainWindow.RulesExplorer.TreeView.SelectedNode;
                 if (selectedNode == null)
                     return;
 
@@ -45,7 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
                     throw _exceptionHelper.CriticalException("{9C072D29-B70A-4618-BE56-4841B5F74C15}");
                 
                 DeleteFile(selectedNode);
-                _rulesExplorer.RefreshTreeView();
+                _mainWindow.RulesExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {

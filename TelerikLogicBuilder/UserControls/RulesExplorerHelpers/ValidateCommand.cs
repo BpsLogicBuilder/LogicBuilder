@@ -21,7 +21,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
         private readonly ITreeViewService _treeViewService;
         private readonly IValidateSelectedRules _validateSelectedRules;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IRulesExplorer _rulesExplorer;
 
         public ValidateCommand(
             IConfigurationService configurationService,
@@ -29,8 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
             IValidateSelectedRules validateSelectedRules,
-            UiNotificationService uiNotificationService,
-            IRulesExplorer rulesExplorer)
+            UiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
@@ -38,14 +36,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             _treeViewService = treeViewService;
             _validateSelectedRules = validateSelectedRules;
             _uiNotificationService = uiNotificationService;
-            _rulesExplorer = rulesExplorer;
         }
 
         public async override void Execute()
         {
             try
             {
-                RadTreeNode? selectedNode = _rulesExplorer.TreeView.SelectedNode;
+                RadTreeNode? selectedNode = _mainWindow.RulesExplorer.TreeView.SelectedNode;
                 if (selectedNode == null)
                     return;
 

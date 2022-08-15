@@ -41,7 +41,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
         private readonly IRuleSetLoader _ruleSetLoader;
         private readonly IRulesValidator _rulesValidator;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IRulesExplorer _rulesExplorer;
 
         public ViewCommand(
             IApplicationTypeInfoManager applicationTypeInfoManager,
@@ -53,8 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             ITreeViewService treeViewService,
             IRuleSetLoader ruleSetLoader,
             IRulesValidator rulesValidator,
-            UiNotificationService uiNotificationService,
-            IRulesExplorer rulesExplorer)
+            UiNotificationService uiNotificationService)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _configurationService = configurationService;
@@ -66,7 +64,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             _uiNotificationService = uiNotificationService;
             _ruleSetLoader = ruleSetLoader;
             _rulesValidator = rulesValidator;
-            _rulesExplorer = rulesExplorer;
         }
 
         public async override void Execute()
@@ -74,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
             try
             {
-                RadTreeNode? selectedNode = _rulesExplorer.TreeView.SelectedNode;
+                RadTreeNode? selectedNode = _mainWindow.RulesExplorer.TreeView.SelectedNode;
                 if (selectedNode == null)
                     return;
 
@@ -95,7 +92,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
 
             async Task View(CancellationTokenSource cancellationTokenSource)
             {
-                RadTreeNode? selectedNode = _rulesExplorer.TreeView.SelectedNode;
+                RadTreeNode? selectedNode = _mainWindow.RulesExplorer.TreeView.SelectedNode;
                 if (selectedNode == null)
                     throw _exceptionHelper.CriticalException("{57A4930B-6DB2-4C66-A5FB-FB2404672394}");
 

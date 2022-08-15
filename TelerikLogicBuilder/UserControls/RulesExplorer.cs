@@ -29,11 +29,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly RadMenuItem mnuItemView = new(Strings.mnuItemViewRulesText);
         private readonly RadMenuItem mnuItemRefresh = new(Strings.mnuItemRefreshText) { ImageIndex = ImageIndexes.REFRESHIMAGEINDEX };
 
-        private readonly Func<IRulesExplorer, DeleteAllRulesCommand> _getDeleteAllRulesCommand;
-        private readonly Func<IRulesExplorer, DeleteRulesExplorerFileCommand> _getDeleteRulesExplorerFileCommand;
-        private readonly Func<IRulesExplorer, ValidateCommand> _getValidateCommand;
-        private readonly Func<IRulesExplorer, ViewCommand> _getViewCommand;
-        private readonly Func<IRulesExplorer, RefreshRulesExplorerCommand> _getRefreshRulesExplorerCommand;
+        private readonly DeleteAllRulesCommand _deleteAllRulesCommand;
+        private readonly DeleteRulesExplorerFileCommand _deleteRulesExplorerFileCommand;
+        private readonly ValidateCommand _validateCommand;
+        private readonly ViewCommand _viewCommand;
+        private readonly RefreshRulesExplorerCommand _refreshRulesExplorerCommand;
 
         public RadTreeView TreeView => this.radTreeView1;
 
@@ -45,22 +45,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IRulesExplorerTreeViewBuilder rulesExplorerTreeViewBuilder,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService,
-            Func<IRulesExplorer, DeleteAllRulesCommand> getDeleteAllRulesCommand,
-            Func<IRulesExplorer, DeleteRulesExplorerFileCommand> getDeleteRulesExplorerFileCommand,
-            Func<IRulesExplorer, ValidateCommand> getValidateCommand,
-            Func<IRulesExplorer, ViewCommand> getViewCommand,
-            Func<IRulesExplorer, RefreshRulesExplorerCommand> getRefreshRulesExplorerCommand)
+            DeleteAllRulesCommand deleteAllRulesCommand,
+            DeleteRulesExplorerFileCommand deleteRulesExplorerFileCommand,
+            ValidateCommand validateCommand,
+            ViewCommand viewCommand,
+            RefreshRulesExplorerCommand refreshRulesExplorerCommand)
         {
             _mainWindow = mainWindow;
             _imageImageListService = imageImageListService;
             _rulesExplorerTreeViewBuilder = rulesExplorerTreeViewBuilder;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _getDeleteAllRulesCommand = getDeleteAllRulesCommand;
-            _getDeleteRulesExplorerFileCommand = getDeleteRulesExplorerFileCommand;
-            _getValidateCommand = getValidateCommand;
-            _getViewCommand = getViewCommand;
-            _getRefreshRulesExplorerCommand = getRefreshRulesExplorerCommand;
+            _deleteAllRulesCommand = deleteAllRulesCommand;
+            _deleteRulesExplorerFileCommand = deleteRulesExplorerFileCommand;
+            _validateCommand = validateCommand;
+            _viewCommand = viewCommand;
+            _refreshRulesExplorerCommand = refreshRulesExplorerCommand;
 
             refreshTreeViewSubscription = _uiNotificationService.RulesExplorerRefreshSubject.Subscribe(RefreshTreeView);
 
@@ -96,11 +96,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemDeleteAllRules, _getDeleteAllRulesCommand(this));
-            AddClickCommand(mnuItemDelete, _getDeleteRulesExplorerFileCommand(this));
-            AddClickCommand(mnuItemValidate, _getValidateCommand(this));
-            AddClickCommand(mnuItemView, _getViewCommand(this));
-            AddClickCommand(mnuItemRefresh, _getRefreshRulesExplorerCommand(this));
+            AddClickCommand(mnuItemDeleteAllRules, _deleteAllRulesCommand);
+            AddClickCommand(mnuItemDelete, _deleteRulesExplorerFileCommand);
+            AddClickCommand(mnuItemValidate, _validateCommand);
+            AddClickCommand(mnuItemView, _viewCommand);
+            AddClickCommand(mnuItemRefresh, _refreshRulesExplorerCommand);
 
             radTreeView1.RadContextMenu = new()
             {

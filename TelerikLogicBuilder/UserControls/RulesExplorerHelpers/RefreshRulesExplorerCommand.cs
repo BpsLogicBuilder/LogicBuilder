@@ -1,19 +1,20 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
 {
     internal class RefreshRulesExplorerCommand : ClickCommandBase
     {
-        private readonly IRulesExplorer _rulesExplorer;
+        private readonly IMainWindow _mainWindow;
 
-        public RefreshRulesExplorerCommand(IRulesExplorer rulesExplorer)
+        public RefreshRulesExplorerCommand(IMainWindow mainWindow)
         {
-            _rulesExplorer = rulesExplorer;
+            _mainWindow = mainWindow;
         }
 
         public override void Execute()
         {
-            _rulesExplorer.RefreshTreeView();
+            _mainWindow.RulesExplorer.RefreshTreeView();
         }
     }
 }

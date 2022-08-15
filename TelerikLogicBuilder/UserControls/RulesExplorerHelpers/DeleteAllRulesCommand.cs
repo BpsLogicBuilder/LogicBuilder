@@ -11,18 +11,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IMainWindow _mainWindow;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IRulesExplorer _rulesExplorer;
 
         public DeleteAllRulesCommand(
             IFileIOHelper fileIOHelper,
             IMainWindow mainWindow,
-            UiNotificationService uiNotificationService,
-            IRulesExplorer rulesExplorer)
+            UiNotificationService uiNotificationService)
         {
             _fileIOHelper = fileIOHelper;
             _mainWindow = mainWindow;
             _uiNotificationService = uiNotificationService;
-            _rulesExplorer = rulesExplorer;
         }
 
         public override void Execute()
@@ -30,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             try
             {
                 DeleteAllRules();
-                _rulesExplorer.RefreshTreeView();
+                _mainWindow.RulesExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
@@ -52,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             if (dialogResult != DialogResult.OK)
                 return;
 
-            _fileIOHelper.DeleteFolder(_rulesExplorer.TreeView.Nodes[0].Name, true);
+            _fileIOHelper.DeleteFolder(_mainWindow.RulesExplorer.TreeView.Nodes[0].Name, true);
         }
     }
 }
