@@ -1,19 +1,19 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.UserControls;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
     internal class ViewMessagesCommand : ClickCommandBase
     {
-        private readonly IMessages _messages;
+        private readonly IMainWindow _mainWindow;
 
-        public ViewMessagesCommand(IMessages messages)
+        public ViewMessagesCommand(IMainWindow mainWindow)
         {
-            _messages = messages;
+            _mainWindow = mainWindow;
         }
 
         public override void Execute()
         {
-            _messages.Visible = true;
+            _mainWindow.Messages.Visible = true;
         }
     }
 }

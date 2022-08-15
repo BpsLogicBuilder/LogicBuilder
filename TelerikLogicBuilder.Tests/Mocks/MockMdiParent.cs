@@ -45,6 +45,8 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public SplitPanel SplitPanelExplorer => throw new NotImplementedException();
 
+        public IProjectExplorer ProjectExplorer => throw new NotImplementedException();
+
         public void AddTableControl(IDocumentEditor documentEditor)
         {
             throw new NotImplementedException();

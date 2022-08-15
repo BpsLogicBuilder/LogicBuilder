@@ -63,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly Func<IMDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
         private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
         private readonly ViewFlowDiagramStencilCommand _viewFlowDiagramStencilCommand;
-        private readonly Func<IMessages, ViewMessagesCommand> _getViewMessagesCommand;
+        private readonly ViewMessagesCommand _viewMessagesCommand;
         private readonly Func<IProjectExplorer, ViewProjectExplorerCommand> _getViewProjectExplorerCommand;
 
         //controls
@@ -107,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Func<IMDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
             ViewApplicationsStencilCommand viewApplicationsStencilCommand,
             ViewFlowDiagramStencilCommand viewFlowDiagramStencilCommand,
-            Func<IMessages, ViewMessagesCommand> getViewMessagesCommand,
+            ViewMessagesCommand viewMessagesCommand,
             Func<IProjectExplorer, ViewProjectExplorerCommand> getViewProjectExplorerCommand,
             IMessages messages,
             IProjectExplorer projectExplorer)
@@ -146,7 +146,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
             _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
             _viewFlowDiagramStencilCommand = viewFlowDiagramStencilCommand;
-            _getViewMessagesCommand = getViewMessagesCommand;
+            _viewMessagesCommand = viewMessagesCommand;
             _getViewProjectExplorerCommand = getViewProjectExplorerCommand;
 
             _buildActiveDocumentCommand = buildActiveDocumentCommand;
@@ -190,6 +190,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         public IDocumentEditor? EditControl { get; set; }
         public IMessages Messages => _messages;
+        public IProjectExplorer ProjectExplorer => _projectExplorer;
 
         #region Methods
         public void AddTableControl(IDocumentEditor documentEditor) 
@@ -439,7 +440,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddClickCommand
                 (
                     this.radMenuItemMessagesList,
-                    _getViewMessagesCommand(_messages)
+                    _viewMessagesCommand
                 );
             AddClickCommand
             (

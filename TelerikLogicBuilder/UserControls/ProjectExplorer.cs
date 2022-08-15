@@ -30,6 +30,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
         }
 
+        public IConfigurationExplorer ConfigurationExplorer => _configurationExplorer;
+
+        public IDocumentsExplorer DocumentsExplorer => _documentsExplorer;
+
+        public IRulesExplorer RulesExplorer => _rulesExplorer;
+
         private void ChangeVisibility(bool isVisible)
         {
             IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;

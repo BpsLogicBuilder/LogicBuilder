@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
@@ -29,6 +30,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 _instance = value;
             }
         }
+
+        public IMDIParent MDIParent => (IMDIParent)Instance;
+
+        public IMessages Messages => MDIParent.Messages;
+
+        public IProjectExplorer ProjectExplorer => MDIParent.ProjectExplorer;
 
         public RightToLeft RightToLeft 
         { 

@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         CommandBarButton CommandBarButtonSave { get; }
         IDocumentEditor? EditControl { get; set; }
         IMessages Messages { get; }
+        IProjectExplorer ProjectExplorer { get; }
         RadMenuItem RadMenuItemDelete { get; }
         RadMenuItem RadMenuItemSave { get; }
         RadMenuItem RadMenuItemUndo { get; }
