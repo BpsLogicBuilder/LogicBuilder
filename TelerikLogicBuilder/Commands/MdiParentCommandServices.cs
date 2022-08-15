@@ -132,15 +132,7 @@ namespace Microsoft.Extensions.DependencyInjection
             .AddTransient<ViewApplicationsStencilCommand>()
             .AddTransient<ViewFlowDiagramStencilCommand>()
             .AddTransient<ViewMessagesCommand>()
-            .AddTransient<Func<IProjectExplorer, ViewProjectExplorerCommand>>
-            (
-                provider =>
-                projectExplorer => ActivatorUtilities.CreateInstance<ViewProjectExplorerCommand>
-                (
-                    provider,
-                    projectExplorer
-                )
-            );
+            .AddTransient<ViewProjectExplorerCommand>();
         }
     }
 }

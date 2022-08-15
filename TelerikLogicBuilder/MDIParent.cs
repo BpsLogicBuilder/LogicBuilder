@@ -64,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
         private readonly ViewFlowDiagramStencilCommand _viewFlowDiagramStencilCommand;
         private readonly ViewMessagesCommand _viewMessagesCommand;
-        private readonly Func<IProjectExplorer, ViewProjectExplorerCommand> _getViewProjectExplorerCommand;
+        private readonly ViewProjectExplorerCommand _viewProjectExplorerCommand;
 
         //controls
         private readonly IProjectExplorer _projectExplorer;
@@ -108,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ViewApplicationsStencilCommand viewApplicationsStencilCommand,
             ViewFlowDiagramStencilCommand viewFlowDiagramStencilCommand,
             ViewMessagesCommand viewMessagesCommand,
-            Func<IProjectExplorer, ViewProjectExplorerCommand> getViewProjectExplorerCommand,
+            ViewProjectExplorerCommand viewProjectExplorerCommand,
             IMessages messages,
             IProjectExplorer projectExplorer)
         {
@@ -147,7 +147,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
             _viewFlowDiagramStencilCommand = viewFlowDiagramStencilCommand;
             _viewMessagesCommand = viewMessagesCommand;
-            _getViewProjectExplorerCommand = getViewProjectExplorerCommand;
+            _viewProjectExplorerCommand = viewProjectExplorerCommand;
 
             _buildActiveDocumentCommand = buildActiveDocumentCommand;
             _buildSaveConsolidateSelectedDocumentsCommand = buildSaveConsolidateSelectedDocumentsCommand;
@@ -445,7 +445,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddClickCommand
             (
                 this.radMenuItemProjectExplorer,
-                _getViewProjectExplorerCommand(_projectExplorer)
+                _viewProjectExplorerCommand
             );
             AddClickCommand
             (

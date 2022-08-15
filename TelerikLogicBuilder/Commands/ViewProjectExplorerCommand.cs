@@ -1,19 +1,20 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.UserControls;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
     internal class ViewProjectExplorerCommand : ClickCommandBase
     {
-        private readonly IProjectExplorer _projectExplorer;
+        private readonly IMainWindow _mainWindow;
 
-        public ViewProjectExplorerCommand(IProjectExplorer projectExplorer)
+        public ViewProjectExplorerCommand(IMainWindow mainWindow)
         {
-            _projectExplorer = projectExplorer;
+            _mainWindow = mainWindow;
         }
 
         public override void Execute()
         {
-            _projectExplorer.Visible = true;
+            _mainWindow.ProjectExplorer.Visible = true;
         }
     }
 }
