@@ -5,22 +5,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 {
     internal class CutDocumentCommand : ClickCommandBase
     {
-        private readonly IDocumentsExplorer _documentsExplorer;
+        private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
 
-        public CutDocumentCommand(ITreeViewService treeViewService, IDocumentsExplorer documentsExplorer)
+        public CutDocumentCommand(
+            IMainWindow mainWindow,
+            ITreeViewService treeViewService)
         {
-            _documentsExplorer = documentsExplorer;
+            _mainWindow = mainWindow;
             _treeViewService = treeViewService;
         }
 
         public override void Execute()
         {
-            if (_documentsExplorer.TreeView.SelectedNode == null
-                || _treeViewService.IsRootNode(_documentsExplorer.TreeView.SelectedNode))
+            if (_mainWindow.DocumentsExplorer.TreeView.SelectedNode == null
+                || _treeViewService.IsRootNode(_mainWindow.DocumentsExplorer.TreeView.SelectedNode))
                 return;
 
-            _documentsExplorer.CutTreeNode = _documentsExplorer.TreeView.SelectedNode;
+            _mainWindow.DocumentsExplorer.CutTreeNode = _mainWindow.DocumentsExplorer.TreeView.SelectedNode;
         }
     }
 }

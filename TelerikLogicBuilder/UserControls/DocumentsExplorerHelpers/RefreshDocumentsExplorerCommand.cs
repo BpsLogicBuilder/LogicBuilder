@@ -1,19 +1,20 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 {
     internal class RefreshDocumentsExplorerCommand : ClickCommandBase
     {
-        private readonly IDocumentsExplorer _documentsExplorer;
+        private readonly IMainWindow _mainWindow;
 
-        public RefreshDocumentsExplorerCommand(IDocumentsExplorer documentsExplorer)
+        public RefreshDocumentsExplorerCommand(IMainWindow mainWindow)
         {
-            _documentsExplorer = documentsExplorer;
+            _mainWindow = mainWindow;
         }
 
         public override void Execute()
         {
-            _documentsExplorer.RefreshTreeView();
+            _mainWindow.DocumentsExplorer.RefreshTreeView();
         }
     }
 }

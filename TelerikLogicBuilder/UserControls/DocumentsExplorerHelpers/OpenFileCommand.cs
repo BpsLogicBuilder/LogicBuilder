@@ -15,7 +15,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IDocumentsExplorer _documentsExplorer;
 
         public OpenFileCommand(
             IExceptionHelper exceptionHelper,
@@ -23,8 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IOpenFileOperations openFileOperations,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IDocumentsExplorer documentsExplorer)
+            UiNotificationService uiNotificationService)
         {
             _exceptionHelper = exceptionHelper;
             _mainWindow = mainWindow;
@@ -32,7 +30,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _documentsExplorer = documentsExplorer;
         }
 
         public override void Execute()
@@ -42,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             {
                 
                 mdiParent.ChangeCursor(Cursors.WaitCursor);
-                RequestDocumentOpened(_documentsExplorer.TreeView.SelectedNode);
+                RequestDocumentOpened(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
             }
             catch (LogicBuilderException ex)
             {

@@ -8,52 +8,52 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     internal class PasteCommand : ClickCommandBase
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IMoveFileOperations _moveFileOperations;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IDocumentsExplorer _documentsExplorer;
 
         public PasteCommand(
             IExceptionHelper exceptionHelper,
+            IMainWindow mainWindow,
             IMoveFileOperations moveFileOperations,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IDocumentsExplorer documentsExplorer)
+            UiNotificationService uiNotificationService)
         {
             _exceptionHelper = exceptionHelper;
+            _mainWindow = mainWindow;
             _moveFileOperations = moveFileOperations;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _documentsExplorer = documentsExplorer;
         }
 
         public override void Execute()
         {
             try
             {
-                if (_documentsExplorer.TreeView.SelectedNode == null)
+                if (_mainWindow.DocumentsExplorer.TreeView.SelectedNode == null)
                     return;
 
-                if (_documentsExplorer.CutTreeNode == null)
+                if (_mainWindow.DocumentsExplorer.CutTreeNode == null)
                     return;
 
-                if (_treeViewService.IsFileNode(_documentsExplorer.CutTreeNode))
+                if (_treeViewService.IsFileNode(_mainWindow.DocumentsExplorer.CutTreeNode))
                 {
-                    PasteFile(_documentsExplorer.TreeView.SelectedNode, _documentsExplorer.CutTreeNode);
+                    PasteFile(_mainWindow.DocumentsExplorer.TreeView.SelectedNode, _mainWindow.DocumentsExplorer.CutTreeNode);
                 }
-                else if (_treeViewService.IsFolderNode(_documentsExplorer.CutTreeNode))
+                else if (_treeViewService.IsFolderNode(_mainWindow.DocumentsExplorer.CutTreeNode))
                 {
-                    PasteFolder(_documentsExplorer.TreeView.SelectedNode, _documentsExplorer.CutTreeNode);
+                    PasteFolder(_mainWindow.DocumentsExplorer.TreeView.SelectedNode, _mainWindow.DocumentsExplorer.CutTreeNode);
                 }
                 else
                 {
                     throw _exceptionHelper.CriticalException("{12782526-5DE8-43BF-AFBE-B1A5B277A5B4}");
                 }
 
-                _documentsExplorer.RefreshTreeView();
+                _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             }
             finally
             {
-                _documentsExplorer.CutTreeNode = null;
+                _mainWindow.DocumentsExplorer.CutTreeNode = null;
             }
         }
 
@@ -81,8 +81,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 newFileFullName
             );
 
-            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
-                _documentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
+            if (!_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+                _mainWindow.DocumentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
         }
 
         private void PasteFolder(RadTreeNode selectedNode, RadTreeNode cutTreeNode)
@@ -101,11 +101,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 newFolderFullName
             );
 
-            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
-                _documentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
+            if (!_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+                _mainWindow.DocumentsExplorer.ExpandedNodes.Add(selectedNode.Name, selectedNode.Text);
 
-            if (_documentsExplorer.ExpandedNodes.ContainsKey(cutTreeNode.Name))
-                _documentsExplorer.ExpandedNodes.Remove(cutTreeNode.Name);
+            if (_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(cutTreeNode.Name))
+                _mainWindow.DocumentsExplorer.ExpandedNodes.Remove(cutTreeNode.Name);
         }
     }
 }

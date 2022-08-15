@@ -13,8 +13,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     internal class AddExistingFileCommand : ClickCommandBase
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IDocumentsExplorer _documentsExplorer;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
@@ -22,14 +22,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         public AddExistingFileCommand(
             IConfigurationService configurationService,
             IFileIOHelper fileIOHelper,
+            IMainWindow mainWindow,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IDocumentsExplorer documentsExplorer)
+            UiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
-            _documentsExplorer = documentsExplorer;
             _fileIOHelper = fileIOHelper;
+            _mainWindow = mainWindow;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
@@ -52,12 +52,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                     foreach (string fileFullName in files)
                     {
                         string fileName = _pathHelper.GetFileName(fileFullName).ToLowerInvariant();
-                        if (_documentsExplorer.DocumentNames.TryGetValue(fileName, out string? existingFileFullPath))
+                        if (_mainWindow.DocumentsExplorer.DocumentNames.TryGetValue(fileName, out string? existingFileFullPath))
                         {
                             throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.fileExistsExceptionMessage, existingFileFullPath));
                         }
 
-                        RadTreeNode folderNode = GetFolderNode(_documentsExplorer.TreeView.SelectedNode);
+                        RadTreeNode folderNode = GetFolderNode(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
                         
                         _fileIOHelper.CopyFile
                         (
@@ -69,11 +69,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                             )
                         );
 
-                        if (!_documentsExplorer.ExpandedNodes.ContainsKey(folderNode.Name))
-                            _documentsExplorer.ExpandedNodes.Add(folderNode.Name, folderNode.Text);
+                        if (!_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(folderNode.Name))
+                            _mainWindow.DocumentsExplorer.ExpandedNodes.Add(folderNode.Name, folderNode.Text);
                     }
 
-                    _documentsExplorer.RefreshTreeView();
+                    _mainWindow.DocumentsExplorer.RefreshTreeView();
 
                     RadTreeNode GetFolderNode(RadTreeNode treeNode) 
                         => _treeViewService.IsFileNode(treeNode) 

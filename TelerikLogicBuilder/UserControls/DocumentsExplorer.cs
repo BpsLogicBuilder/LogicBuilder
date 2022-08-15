@@ -38,16 +38,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly RadMenuItem mnuItemCloseProject = new(Strings.mnuItemCloseProjectText);
         private readonly RadMenuItem mnuItemRefresh = new(Strings.mnuItemRefreshText) { ImageIndex = ImageIndexes.REFRESHIMAGEINDEX };
 
-        private readonly Func<IDocumentsExplorer, AddExistingFileCommand> _getAddExistingFileCommand;
-        private readonly Func<IDocumentsExplorer, AddNewFileCommand> _getAddNewFileCommand;
+        private readonly AddExistingFileCommand _addExistingFileCommand;
+        private readonly AddNewFileCommand _addNewFileCommand;
         private readonly Func<CloseProjectCommand> _getCloseProjectCommand;
-        private readonly Func<IDocumentsExplorer, CreateDirectoryCommand> _getCreateDirectoryCommand;
-        private readonly Func<IDocumentsExplorer, CutDocumentCommand> _getCutDocumentCommand;
-        private readonly Func<IDocumentsExplorer, DeleteCommand> _getDeleteDocumentCommand;
-        private readonly Func<IDocumentsExplorer, OpenFileCommand> _getOpenFileCommand;
-        private readonly Func<IDocumentsExplorer, PasteCommand> _getPasteDocumentCommand;
-        private readonly Func<IDocumentsExplorer, RefreshDocumentsExplorerCommand> _getRefreshDocumentsExplorerCommand;
-        private readonly Func<IDocumentsExplorer, RenameCommand> _getRenameDocumentCommand;
+        private readonly CreateDirectoryCommand _createDirectoryCommand;
+        private readonly CutDocumentCommand _cutDocumentCommand;
+        private readonly DeleteCommand _deleteDocumentCommand;
+        private readonly OpenFileCommand _openFileCommand;
+        private readonly PasteCommand _pasteDocumentCommand;
+        private readonly RefreshDocumentsExplorerCommand _refreshDocumentsExplorerCommand;
+        private readonly RenameCommand _renameDocumentCommand;
 
         public RadTreeNode? CutTreeNode { get => _cutTreeNode; set => _cutTreeNode = value; }
 
@@ -64,16 +64,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
             UiNotificationService uiNotificationService,
-            Func<IDocumentsExplorer, AddExistingFileCommand> getAddExistingFileCommand,
-            Func<IDocumentsExplorer, AddNewFileCommand> getAddNewFileCommand,
+            AddExistingFileCommand addExistingFileCommand,
+            AddNewFileCommand addNewFileCommand,
             Func<CloseProjectCommand> getCloseProjectCommand,
-            Func<IDocumentsExplorer, CreateDirectoryCommand> getCreateDirectoryCommand,
-            Func<IDocumentsExplorer, CutDocumentCommand> getCutDocumentCommand,
-            Func<IDocumentsExplorer, DeleteCommand> getDeleteDocumentCommand,
-            Func<IDocumentsExplorer, OpenFileCommand> getOpenFileCommand,
-            Func<IDocumentsExplorer, PasteCommand> getPasteDocumentCommand,
-            Func<IDocumentsExplorer, RefreshDocumentsExplorerCommand> getRefreshDocumentsExplorerCommand,
-            Func<IDocumentsExplorer, RenameCommand> getRenameDocumentCommand)
+            CreateDirectoryCommand createDirectoryCommand,
+            CutDocumentCommand cutDocumentCommand,
+            DeleteCommand deleteDocumentCommand,
+            OpenFileCommand openFileCommand,
+            PasteCommand pasteDocumentCommand,
+            RefreshDocumentsExplorerCommand refreshDocumentsExplorerCommand,
+            RenameCommand renameDocumentCommand)
         {
             _documentsExplorerTreeViewBuilder = documentsExplorerTreeViewBuilder;
             _exceptionHelper = exceptionHelper;
@@ -81,16 +81,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _mainWindow = mainWindow;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _getAddExistingFileCommand = getAddExistingFileCommand;
-            _getAddNewFileCommand = getAddNewFileCommand;
+            _addExistingFileCommand = addExistingFileCommand;
+            _addNewFileCommand = addNewFileCommand;
             _getCloseProjectCommand = getCloseProjectCommand;
-            _getCreateDirectoryCommand = getCreateDirectoryCommand;
-            _getCutDocumentCommand = getCutDocumentCommand;
-            _getDeleteDocumentCommand = getDeleteDocumentCommand;
-            _getOpenFileCommand = getOpenFileCommand;
-            _getPasteDocumentCommand = getPasteDocumentCommand;
-            _getRefreshDocumentsExplorerCommand = getRefreshDocumentsExplorerCommand;
-            _getRenameDocumentCommand = getRenameDocumentCommand;
+            _createDirectoryCommand = createDirectoryCommand;
+            _cutDocumentCommand = cutDocumentCommand;
+            _deleteDocumentCommand = deleteDocumentCommand;
+            _openFileCommand = openFileCommand;
+            _pasteDocumentCommand = pasteDocumentCommand;
+            _refreshDocumentsExplorerCommand = refreshDocumentsExplorerCommand;
+            _renameDocumentCommand = renameDocumentCommand;
 
             InitializeComponent();
             Initialize();
@@ -126,16 +126,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemOpenFile, _getOpenFileCommand(this));
-            AddClickCommand(mnuItemRename, _getRenameDocumentCommand(this));
-            AddClickCommand(mnuItemDelete, _getDeleteDocumentCommand(this));
-            AddClickCommand(mnuItemAddNewFile, _getAddNewFileCommand(this));
-            AddClickCommand(mnuItemAddExistingFile, _getAddExistingFileCommand(this));
-            AddClickCommand(mnuItemCreateDirectory, _getCreateDirectoryCommand(this));
-            AddClickCommand(mnuItemCut, _getCutDocumentCommand(this));
-            AddClickCommand(mnuItemPaste, _getPasteDocumentCommand(this));
+            AddClickCommand(mnuItemOpenFile, _openFileCommand);
+            AddClickCommand(mnuItemRename, _renameDocumentCommand);
+            AddClickCommand(mnuItemDelete, _deleteDocumentCommand);
+            AddClickCommand(mnuItemAddNewFile, _addNewFileCommand);
+            AddClickCommand(mnuItemAddExistingFile, _addExistingFileCommand);
+            AddClickCommand(mnuItemCreateDirectory, _createDirectoryCommand);
+            AddClickCommand(mnuItemCut, _cutDocumentCommand);
+            AddClickCommand(mnuItemPaste, _pasteDocumentCommand);
             AddClickCommand(mnuItemCloseProject, _getCloseProjectCommand());
-            AddClickCommand(mnuItemRefresh, _getRefreshDocumentsExplorerCommand(this));
+            AddClickCommand(mnuItemRefresh, _refreshDocumentsExplorerCommand);
 
             mnuItemAddFile.Items.AddRange
             (

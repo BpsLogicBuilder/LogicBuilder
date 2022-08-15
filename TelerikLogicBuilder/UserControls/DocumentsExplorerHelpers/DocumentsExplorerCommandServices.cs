@@ -12,34 +12,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         internal static IServiceCollection AddDocumentsExplorerCommands(this IServiceCollection services) 
             => services.AddTransient<AddNewFileForm>()
-                .AddTransient<Func<IDocumentsExplorer, AddExistingFileCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<AddExistingFileCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<IFileIOHelper>(),
-                        provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<UiNotificationService>(),
-                        documentExplorer
-                    )
-                )
-                .AddTransient<Func<IDocumentsExplorer, AddNewFileCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<AddNewFileCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<IAddNewFileOperations>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IMainWindow>(),
-                        provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<UiNotificationService>(),
-                        documentExplorer
-                    )
-                )
+                .AddTransient<AddExistingFileCommand>()
+                .AddTransient<AddNewFileCommand>()
                 .AddTransient<Func<CloseProjectCommand>>
                 (
                     provider =>
@@ -48,97 +22,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider
                     )
                 )
-                .AddTransient<Func<IDocumentsExplorer, CreateDirectoryCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<CreateDirectoryCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<IFileIOHelper>(),
-                        provider.GetRequiredService<IMainWindow>(),
-                        provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<UiNotificationService>(),
-                        documentExplorer
-                    )
-                )
-                .AddTransient<Func<IDocumentsExplorer, CutDocumentCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<CutDocumentCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<ITreeViewService>(),
-                        documentExplorer
-                    )
-                )
-                .AddTransient<Func<IDocumentsExplorer, DeleteCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<DeleteCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<IDeleteOperations>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<UiNotificationService>(),
-                        documentExplorer
-                    )
-                )
-                .AddTransient<Func<IDocumentsExplorer, OpenFileCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<OpenFileCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IMainWindow>(),
-                        provider.GetRequiredService<IOpenFileOperations>(),
-                        provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<UiNotificationService>(),
-                        documentExplorer
-                    )
-                )
-                .AddTransient<Func<IDocumentsExplorer, PasteCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<PasteCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IMoveFileOperations>(),
-                        provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<UiNotificationService>(),
-                        documentExplorer
-                    )
-                )
-                .AddTransient<Func<IDocumentsExplorer, RefreshDocumentsExplorerCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<RefreshDocumentsExplorerCommand>
-                    (
-                        provider,
-                        documentExplorer
-                    )
-                )
-                .AddTransient<Func<IDocumentsExplorer, RenameCommand>>
-                (
-                    provider =>
-                    documentExplorer => ActivatorUtilities.CreateInstance<RenameCommand>
-                    (
-                        provider,
-                        provider.GetRequiredService<IConfigurationService>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFileIOHelper>(),
-                        provider.GetRequiredService<IMainWindow>(),
-                        provider.GetRequiredService<IMoveFileOperations>(),
-                        provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<UiNotificationService>(),
-                        documentExplorer
-                    )
-                )
+                .AddTransient<CreateDirectoryCommand>()
+                .AddTransient<CutDocumentCommand>()
+                .AddTransient<DeleteCommand>()
+                .AddTransient<OpenFileCommand>()
+                .AddTransient<PasteCommand>()
+                .AddTransient<RefreshDocumentsExplorerCommand>()
+                .AddTransient<RenameCommand>()
                 .AddTransient<IOpenFileOperations, OpenFileOperations>()//must be transient because it uses a scoped disposable
                 .AddTransient<IAddNewFileOperations, AddNewFileOperations>()//must be transient because it uses a scoped disposable
                 .AddTransient<InputBoxForm>()

@@ -19,7 +19,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IDocumentsExplorer _documentsExplorer;
 
         public AddNewFileCommand(
             IAddNewFileOperations addNewFileOperations,
@@ -27,8 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IMainWindow mainWindow,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IDocumentsExplorer documentsExplorer)
+            UiNotificationService uiNotificationService)
         {
             _addNewFileOperations = addNewFileOperations;
             _exceptionHelper = exceptionHelper;
@@ -36,15 +34,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _documentsExplorer = documentsExplorer;
         }
 
         public override void Execute()
         {
             try
             {
-                AddNewFile(_documentsExplorer.TreeView.SelectedNode);
-                _documentsExplorer.RefreshTreeView();
+                AddNewFile(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
+                _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
@@ -65,7 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             if (addNewFile.DialogResult == DialogResult.OK)
             {
-                if (_documentsExplorer.DocumentNames.TryGetValue(addNewFile.FileName.ToLowerInvariant(), out string? existingFileFullPath))
+                if (_mainWindow.DocumentsExplorer.DocumentNames.TryGetValue(addNewFile.FileName.ToLowerInvariant(), out string? existingFileFullPath))
                     throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.fileExistsExceptionMessage, existingFileFullPath));
 
                 IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
@@ -73,8 +70,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 CreateFile();
                 mdiParent.ChangeCursor(Cursors.Default);
 
-                if (!_documentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
-                    _documentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
+                if (!_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
+                    _mainWindow.DocumentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
             }
 
             void CreateFile()

@@ -17,30 +17,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IDocumentsExplorer _documentsExplorer;
 
         public CreateDirectoryCommand(
             IFileIOHelper fileIOHelper,
             IMainWindow mainWindow,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IDocumentsExplorer documentsExplorer)
+            UiNotificationService uiNotificationService)
         {
             _fileIOHelper = fileIOHelper;
             _mainWindow = mainWindow;
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _documentsExplorer = documentsExplorer;
         }
 
         public override void Execute()
         {
             try
             {
-                CreateDirectory(_documentsExplorer.TreeView.SelectedNode);
-                _documentsExplorer.RefreshTreeView();
+                CreateDirectory(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
+                _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
@@ -67,8 +64,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             _fileIOHelper.CreateDirectory(newFolderFullName);
 
-            if (!_documentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
-                _documentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
+            if (!_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(destinationFolderNode.Name))
+                _mainWindow.DocumentsExplorer.ExpandedNodes.Add(destinationFolderNode.Name, destinationFolderNode.Text);
         }
 
         RadTreeNode GetFolderNode(RadTreeNode treeNode) 

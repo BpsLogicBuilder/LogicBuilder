@@ -8,34 +8,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     internal class DeleteCommand : ClickCommandBase
     {
         private readonly IDeleteOperations _deleteOperations;
+        private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IDocumentsExplorer _documentsExplorer;
 
         public DeleteCommand(
             IDeleteOperations deleteOperations,
+            IMainWindow mainWindow,
             ITreeViewService treeViewService,
-            UiNotificationService notificationService,
-            IDocumentsExplorer documentsExplorer)
+            UiNotificationService uiNotificationService)
         {
-            _treeViewService = treeViewService;
             _deleteOperations = deleteOperations;
-            _uiNotificationService = notificationService;
-            _documentsExplorer = documentsExplorer;
+            _mainWindow = mainWindow;
+            _treeViewService = treeViewService;
+            _uiNotificationService = uiNotificationService;
         }
 
         public override void Execute()
         {
             try
             {
-                RadTreeNode? selectedNode = _documentsExplorer.TreeView.SelectedNode;
+                RadTreeNode? selectedNode = _mainWindow.DocumentsExplorer.TreeView.SelectedNode;
                 if (selectedNode == null)
                     return;
 
                 if (_treeViewService.IsFileNode(selectedNode))
                 {
                     _deleteOperations.DeleteFile(selectedNode);
-                    _documentsExplorer.RefreshTreeView();
+                    _mainWindow.DocumentsExplorer.RefreshTreeView();
                 }
                 else if (_treeViewService.IsRootNode(selectedNode))
                 {
@@ -45,10 +45,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 {
                     _deleteOperations.DeleteFolder(selectedNode);
 
-                    if (_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
-                        _documentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
+                    if (_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+                        _mainWindow.DocumentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
 
-                    _documentsExplorer.RefreshTreeView();
+                    _mainWindow.DocumentsExplorer.RefreshTreeView();
                 }
             }
             catch (LogicBuilderException ex)

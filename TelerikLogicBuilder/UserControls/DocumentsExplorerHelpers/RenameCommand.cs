@@ -24,7 +24,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IDocumentsExplorer _documentsExplorer;
 
         public RenameCommand(
             IConfigurationService configurationService,
@@ -34,8 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IMoveFileOperations moveFileOperations,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IDocumentsExplorer documentsExplorer)
+            UiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
@@ -45,30 +43,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _documentsExplorer = documentsExplorer;
         }
 
         public override void Execute()
         {
             try
             {
-                RadTreeNode? selectedNode = _documentsExplorer.TreeView.SelectedNode;
+                RadTreeNode? selectedNode = _mainWindow.DocumentsExplorer.TreeView.SelectedNode;
                 if (selectedNode == null)
                     return;
 
                 if (_treeViewService.IsFileNode(selectedNode))
                 {
                     RenameFile(selectedNode);
-                    _documentsExplorer.RefreshTreeView();
+                    _mainWindow.DocumentsExplorer.RefreshTreeView();
                 }
                 else if (_treeViewService.IsFolderNode(selectedNode))
                 {
                     RenameFolder(selectedNode);
-                    _documentsExplorer.RefreshTreeView();
+                    _mainWindow.DocumentsExplorer.RefreshTreeView();
                 }
                 else if (_treeViewService.IsRootNode(selectedNode))
                 {
-                    RenameProject(selectedNode);
+                    RenameProject();
                 }
                 else
                 {
@@ -103,8 +100,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 newFileFullName
             );
 
-            if (!_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Parent.Name))
-                _documentsExplorer.ExpandedNodes.Add(selectedNode.Parent.Name, selectedNode.Parent.Text);
+            if (!_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Parent.Name))
+                _mainWindow.DocumentsExplorer.ExpandedNodes.Add(selectedNode.Parent.Name, selectedNode.Parent.Text);
         }
 
         private void RenameFolder(RadTreeNode selectedNode)
@@ -127,16 +124,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 newFolderFullName
             );
 
-            if (_documentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+            if (_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
             {
-                if (!_documentsExplorer.ExpandedNodes.ContainsKey(newFolderFullName))
-                    _documentsExplorer.ExpandedNodes.Add(newFolderFullName, inputBox.Input);
+                if (!_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(newFolderFullName))
+                    _mainWindow.DocumentsExplorer.ExpandedNodes.Add(newFolderFullName, inputBox.Input);
 
-                _documentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
+                _mainWindow.DocumentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
             }
         }
 
-        private void RenameProject(RadTreeNode selectedNode)
+        private void RenameProject()
         {
             IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
             if (mdiParent.EditControl != null)
