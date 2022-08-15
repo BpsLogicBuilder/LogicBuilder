@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private readonly AddExistingFileCommand _addExistingFileCommand;
         private readonly AddNewFileCommand _addNewFileCommand;
-        private readonly Func<CloseProjectCommand> _getCloseProjectCommand;
+        private readonly CloseProjectCommand _closeProjectCommand;
         private readonly CreateDirectoryCommand _createDirectoryCommand;
         private readonly CutDocumentCommand _cutDocumentCommand;
         private readonly DeleteCommand _deleteDocumentCommand;
@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             UiNotificationService uiNotificationService,
             AddExistingFileCommand addExistingFileCommand,
             AddNewFileCommand addNewFileCommand,
-            Func<CloseProjectCommand> getCloseProjectCommand,
+            CloseProjectCommand closeProjectCommand,
             CreateDirectoryCommand createDirectoryCommand,
             CutDocumentCommand cutDocumentCommand,
             DeleteCommand deleteDocumentCommand,
@@ -83,7 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _uiNotificationService = uiNotificationService;
             _addExistingFileCommand = addExistingFileCommand;
             _addNewFileCommand = addNewFileCommand;
-            _getCloseProjectCommand = getCloseProjectCommand;
+            _closeProjectCommand = closeProjectCommand;
             _createDirectoryCommand = createDirectoryCommand;
             _cutDocumentCommand = cutDocumentCommand;
             _deleteDocumentCommand = deleteDocumentCommand;
@@ -134,7 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             AddClickCommand(mnuItemCreateDirectory, _createDirectoryCommand);
             AddClickCommand(mnuItemCut, _cutDocumentCommand);
             AddClickCommand(mnuItemPaste, _pasteDocumentCommand);
-            AddClickCommand(mnuItemCloseProject, _getCloseProjectCommand());
+            AddClickCommand(mnuItemCloseProject, _closeProjectCommand);
             AddClickCommand(mnuItemRefresh, _refreshDocumentsExplorerCommand);
 
             mnuItemAddFile.Items.AddRange

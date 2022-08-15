@@ -14,14 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             => services.AddTransient<AddNewFileForm>()
                 .AddTransient<AddExistingFileCommand>()
                 .AddTransient<AddNewFileCommand>()
-                .AddTransient<Func<CloseProjectCommand>>
-                (
-                    provider =>
-                    () => ActivatorUtilities.CreateInstance<CloseProjectCommand>
-                    (
-                        provider
-                    )
-                )
+                .AddTransient<CloseProjectCommand>()
                 .AddTransient<CreateDirectoryCommand>()
                 .AddTransient<CutDocumentCommand>()
                 .AddTransient<DeleteCommand>()
