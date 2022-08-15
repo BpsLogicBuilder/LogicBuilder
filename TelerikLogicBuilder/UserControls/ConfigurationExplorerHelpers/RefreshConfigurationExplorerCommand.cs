@@ -1,19 +1,20 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelpers
 {
     internal class RefreshConfigurationExplorerCommand : ClickCommandBase
     {
-        private readonly IConfigurationExplorer _configurationExplorer;
+        private readonly IMainWindow _mainWindow;
 
-        public RefreshConfigurationExplorerCommand(IConfigurationExplorer configurationExplorer)
+        public RefreshConfigurationExplorerCommand(IMainWindow mainWindow)
         {
-            _configurationExplorer = configurationExplorer;
+            _mainWindow = mainWindow;
         }
 
         public override void Execute()
         {
-            _configurationExplorer.RefreshTreeView();
+            _mainWindow.ProjectExplorer.ConfigurationExplorer.RefreshTreeView();
         }
     }
 }

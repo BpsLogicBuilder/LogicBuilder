@@ -15,9 +15,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IImageListService _imageImageListService;
         private readonly ITreeViewService _treeViewService;
 
-        private readonly Func<IConfigurationExplorer, EditConfigurationCommand> _getEditConfigurationCommand;
-        private readonly Func<IConfigurationExplorer, RefreshConfigurationExplorerCommand> _getRefreshConfigurationExplorerCommand;
-
+        private readonly EditConfigurationCommand _editConfigurationCommand;
+        private readonly RefreshConfigurationExplorerCommand _refreshConfigurationExplorerCommand;
 
         private readonly RadMenuItem mnuItemEdit = new(Strings.mnuItemEditText) { ImageIndex = ImageIndexes.EDITIMAGEINDEX };
         private readonly RadMenuItem mnuItemRefresh = new(Strings.mnuItemRefreshText) { ImageIndex = ImageIndexes.REFRESHIMAGEINDEX };
@@ -26,14 +25,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IConfigurationExplorerTreeViewBuilder configurationExplorerTreeViewBuilder,
             IImageListService imageImageListService,
             ITreeViewService treeViewService,
-            Func<IConfigurationExplorer, EditConfigurationCommand> getEditConfigurationCommand,
-            Func<IConfigurationExplorer, RefreshConfigurationExplorerCommand> getRefreshConfigurationExplorerCommand)
+            EditConfigurationCommand editConfigurationCommand,
+            RefreshConfigurationExplorerCommand refreshConfigurationExplorerCommand)
         {
             _configurationExplorerTreeViewBuilder = configurationExplorerTreeViewBuilder;
             _imageImageListService = imageImageListService;
             _treeViewService = treeViewService;
-            _getEditConfigurationCommand = getEditConfigurationCommand;
-            _getRefreshConfigurationExplorerCommand = getRefreshConfigurationExplorerCommand;
+            _editConfigurationCommand = editConfigurationCommand;
+            _refreshConfigurationExplorerCommand = refreshConfigurationExplorerCommand;
 
             InitializeComponent();
             Initialize();
@@ -64,8 +63,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemEdit, _getEditConfigurationCommand(this));
-            AddClickCommand(mnuItemRefresh, _getRefreshConfigurationExplorerCommand(this));
+            AddClickCommand(mnuItemEdit, _editConfigurationCommand);
+            AddClickCommand(mnuItemRefresh, _refreshConfigurationExplorerCommand);
 
             radTreeView1.RadContextMenu = new()
             {

@@ -23,7 +23,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelper
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly UiNotificationService _uiNotificationService;
-        private readonly IConfigurationExplorer _configurationExplorer;
 
         public EditConfigurationCommand(
             IConfigurationService configurationService,
@@ -36,8 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelper
             IMainWindow mainWindow,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
-            IConfigurationExplorer configurationExplorer)
+            UiNotificationService uiNotificationService)
         {
             
             _configurationService = configurationService;
@@ -51,12 +49,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelper
             _pathHelper = pathHelper;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
-            _configurationExplorer = configurationExplorer;
         }
 
         public async override void Execute()
         {
-            RadTreeNode? selectedNode = _configurationExplorer.TreeView.SelectedNode;
+            RadTreeNode? selectedNode = _mainWindow.ProjectExplorer.ConfigurationExplorer.TreeView.SelectedNode;
             if (selectedNode == null)
                 return;
 
