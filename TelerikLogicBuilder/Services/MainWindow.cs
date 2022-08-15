@@ -15,6 +15,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             _exceptionHelper = exceptionHelper;
         }
 
+        public IConfigurationExplorer ConfigurationExplorer => ProjectExplorer.ConfigurationExplorer;
+
+        public IDocumentsExplorer DocumentsExplorer => ProjectExplorer.DocumentsExplorer;
+
         public Form Instance
         {
             get
@@ -47,5 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 return _rightToLeft.Value;
             }
         }
+
+        public IRulesExplorer RulesExplorer => ProjectExplorer.RulesExplorer;
     }
 }

@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelper
 
         public override void Execute()
         {
-            _mainWindow.ProjectExplorer.ConfigurationExplorer.RefreshTreeView();
+            _mainWindow.ConfigurationExplorer.RefreshTreeView();
         }
     }
 }

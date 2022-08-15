@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelper
 
         public async override void Execute()
         {
-            RadTreeNode? selectedNode = _mainWindow.ProjectExplorer.ConfigurationExplorer.TreeView.SelectedNode;
+            RadTreeNode? selectedNode = _mainWindow.ConfigurationExplorer.TreeView.SelectedNode;
             if (selectedNode == null)
                 return;
 
