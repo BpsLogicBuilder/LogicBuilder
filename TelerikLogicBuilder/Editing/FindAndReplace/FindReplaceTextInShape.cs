@@ -76,6 +76,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
             this.AcceptButton = radButtonFindNext;
 
+            this.Text = Strings.replaceTextFormText;
+
             radRadioButtonCurrentPage.IsChecked = true;
             /*We'll use the CurrentPages CheckStateChanged for ResetSearchIndexes() - only one is required*/
             if (Settings.Default.findCurrentPage == false)

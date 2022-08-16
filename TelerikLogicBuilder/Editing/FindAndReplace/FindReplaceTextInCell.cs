@@ -49,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                                     && radTextBoxReplace.Text.Length > 0 
                                     && dataGridViewCell != null;
 
+        #region Methods
         public void Setup(RadGridView dataGridView, DataSet dataSet)
         {
             this.dataGridView = dataGridView;
@@ -77,6 +78,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             _formInitializer.SetFormDefaults(this, 724);
 
             this.AcceptButton = radButtonFindNext;
+
+            this.Text = Strings.replaceTextFormText;
 
             radRadioButtonCurrentRow.IsChecked = true;
             /*We'll use the CurrentRows CheckStateChanged for ResetSearchIndexes() - only one is required*/
@@ -108,6 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             radButtonFindNext.Enabled = radTextBoxFind.Text.Length > 0;
             radButtonReplace.Enabled = CanReplace;
         }
+        #endregion Methods
 
         #region Event Handlers
         private void RadTextBoxFind_TextChanged(object sender, EventArgs e)

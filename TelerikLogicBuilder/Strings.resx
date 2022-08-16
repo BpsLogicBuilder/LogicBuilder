@@ -1093,6 +1093,18 @@
     <value>Variable "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).</value>
     <comment>0=VariableName</comment>
   </data>
+	<data name="replaceConstructorFormText" xml:space="preserve">
+    <value>Replace Constructor</value>
+  </data>
+	<data name="replaceFunctionFormText" xml:space="preserve">
+    <value>Replace Function</value>
+  </data>
+	<data name="replaceTextFormText" xml:space="preserve">
+    <value>Replace Text</value>
+  </data>
+	<data name="replaceVariableFormText" xml:space="preserve">
+    <value>Replace Variable</value>
+  </data>
 	<data name="rowIndexIsInvalidFormat" xml:space="preserve">
     <value>Row Index {0} is invalid.</value>
     <comment>0=1based Row Number</comment>

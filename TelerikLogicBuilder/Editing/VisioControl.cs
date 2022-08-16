@@ -265,30 +265,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
         }
 
-        private static void FindAndReplaceConstructor()
+        private void FindAndReplaceConstructor()
         {
-            //using (FindReplaceConstructorInShape findText = new FindReplaceConstructorInShape(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //    Save();
-            //}
+            using IScopedDisposableManager<FindReplaceConstructorInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceConstructorInShape>>();
+            FindReplaceConstructorInShape findReplace = disposableManager.ScopedService;
+            findReplace.Setup(axDrawingControl1.Document);
+            findReplace.StartPosition = FormStartPosition.Manual;
+            findReplace.Location = new Point(100, 50);
+            findReplace.ShowDialog((Form)this.parentForm);
+            Save();
         }
 
-        private static void FindAndReplaceFunction()
+        private void FindAndReplaceFunction()
         {
-            //using (FindReplaceFunctionInShape findText = new FindReplaceFunctionInShape(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //    Save();
-            //}
+            using IScopedDisposableManager<FindReplaceFunctionInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceFunctionInShape>>();
+            FindReplaceFunctionInShape findReplace = disposableManager.ScopedService;
+            findReplace.Setup(axDrawingControl1.Document);
+            findReplace.StartPosition = FormStartPosition.Manual;
+            findReplace.Location = new Point(100, 50);
+            findReplace.ShowDialog((Form)this.parentForm);
+            Save();
         }
 
         private void FindAndReplaceText()
@@ -299,19 +295,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplaceText.StartPosition = FormStartPosition.Manual;
             findReplaceText.Location = new Point(100, 50);
             findReplaceText.ShowDialog((Form)this.parentForm);
+            Save();
         }
 
-        private static void FindAndReplaceVariable()
+        private void FindAndReplaceVariable()
         {
-            //using (FindReplaceVariableInShape findText = new FindReplaceVariableInShape(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //    Save();
-            //}
+            using IScopedDisposableManager<FindReplaceVariableInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceVariableInShape>>();
+            FindReplaceVariableInShape findReplace = disposableManager.ScopedService;
+            findReplace.Setup(axDrawingControl1.Document);
+            findReplace.StartPosition = FormStartPosition.Manual;
+            findReplace.Location = new Point(100, 50);
+            findReplace.ShowDialog((Form)this.parentForm);
+            Save();
         }
 
         private void FindConstructor()

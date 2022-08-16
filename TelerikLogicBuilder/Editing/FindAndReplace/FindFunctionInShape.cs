@@ -90,6 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             Settings.Default.findFunctionMatchCase = radCheckBoxMatchCase.Checked;
             Settings.Default.findFunctionMatchWholeWord = radCheckBoxMatchWholeWord.Checked;
             Settings.Default.functionFindWhat = radDropDownListText.Text;
+            Settings.Default.Save();
         }
     }
 }

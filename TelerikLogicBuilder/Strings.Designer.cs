@@ -3967,6 +3967,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace Constructor.
+        /// </summary>
+        internal static string replaceConstructorFormText {
+            get {
+                return ResourceManager.GetString("replaceConstructorFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace Function.
+        /// </summary>
+        internal static string replaceFunctionFormText {
+            get {
+                return ResourceManager.GetString("replaceFunctionFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace Text.
+        /// </summary>
+        internal static string replaceTextFormText {
+            get {
+                return ResourceManager.GetString("replaceTextFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace Variable.
+        /// </summary>
+        internal static string replaceVariableFormText {
+            get {
+                return ResourceManager.GetString("replaceVariableFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Row Index {0} is invalid..
         /// </summary>
         internal static string rowIndexIsInvalidFormat {
