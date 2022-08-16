@@ -54,11 +54,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelper
         public async override void Execute()
         {
             RadTreeNode? selectedNode = _mainWindow.ConfigurationExplorer.TreeView.SelectedNode;
-            if (selectedNode == null)
+            if (selectedNode == null ||
+                    !_treeViewService.IsFileNode(selectedNode))
                 return;
-
-            if (!_treeViewService.IsFileNode(selectedNode))
-                throw _exceptionHelper.CriticalException("{AE031350-BABD-426C-B9CF-CC99FD9A7611}");
 
             IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
 

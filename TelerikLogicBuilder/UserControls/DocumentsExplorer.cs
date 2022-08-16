@@ -173,6 +173,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.radTreeView1.NodeFormatting += RadTreeView1_NodeFormatting;
             this.radTreeView1.NodeExpandedChanged += RadTreeView1_NodeExpandedChanged;
             this.radTreeView1.NodeMouseClick += RadTreeView1_NodeMouseClick;
+            this.radTreeView1.NodeMouseDoubleClick += RadTreeView1_NodeMouseDoubleClick;
             documentProfileErrors.ErrorCountChanged += DocumentProfileErrors_ErrorCountChanged;
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             this.Disposed += DocumentsExplorer_Disposed;
@@ -282,6 +283,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 SetContextMenuState(this.radTreeView1.SelectedNode);
 
         }
+
+        private void RadTreeView1_NodeMouseDoubleClick(object sender, RadTreeViewEventArgs e) 
+            => _openFileCommand.Execute();
 
         private void ThemeResolutionService_ApplicationThemeChanged(object sender, ThemeChangedEventArgs args) 
             => SetTreeViewBorderColor(documentProfileErrors.Count);

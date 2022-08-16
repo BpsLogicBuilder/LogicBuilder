@@ -84,6 +84,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             this.radTreeView1.MouseDown += RadTreeView1_MouseDown;
             this.radTreeView1.NodeMouseClick += RadTreeView1_NodeMouseClick;
+            this.radTreeView1.NodeMouseDoubleClick += RadTreeView1_NodeMouseDoubleClick;
             CreateContextMenu();
         }
 
@@ -99,6 +100,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             if (this.radTreeView1.SelectedNode != null)
                 SetContextMenuState(this.radTreeView1.SelectedNode);
         }
+
+        private void RadTreeView1_NodeMouseDoubleClick(object sender, RadTreeViewEventArgs e) 
+            => _editConfigurationCommand.Execute();
 
         private void RadTreeView1_MouseDown(object? sender, MouseEventArgs e)
         {//handles case in which clicked area doesn't have a node

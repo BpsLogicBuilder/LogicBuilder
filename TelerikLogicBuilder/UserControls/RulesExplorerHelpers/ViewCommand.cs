@@ -72,11 +72,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             try
             {
                 RadTreeNode? selectedNode = _mainWindow.RulesExplorer.TreeView.SelectedNode;
-                if (selectedNode == null)
+                if (selectedNode == null ||
+                    !_treeViewService.IsFileNode(selectedNode))
                     return;
-
-                if (!_treeViewService.IsFileNode(selectedNode))
-                    throw _exceptionHelper.CriticalException("{624B0FC5-47ED-4542-A3F4-E2E7EAC94B17}");
 
                 mdiParent.ChangeCursor(Cursors.WaitCursor);
                 await mdiParent.RunLoadContextAsync(View);

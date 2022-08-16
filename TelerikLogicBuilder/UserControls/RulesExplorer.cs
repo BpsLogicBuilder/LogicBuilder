@@ -128,6 +128,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.radTreeView1.MouseDown += RadTreeView1_MouseDown;
             this.radTreeView1.NodeExpandedChanged += RadTreeView1_NodeExpandedChanged;
             this.radTreeView1.NodeMouseClick += RadTreeView1_NodeMouseClick;
+            this.radTreeView1.NodeMouseDoubleClick += RadTreeView1_NodeMouseDoubleClick;
             this.Disposed += RulesExplorer_Disposed;
             this.Load += RulesExplorer_Load;
 
@@ -165,6 +166,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 SetContextMenuState(this.radTreeView1.SelectedNode);
             }
         }
+
+        private void RadTreeView1_NodeMouseDoubleClick(object sender, RadTreeViewEventArgs e) 
+            => _viewCommand.Execute();
 
         private void RadTreeView1_NodeExpandedChanged(object sender, RadTreeViewEventArgs e)
         {
