@@ -426,14 +426,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceText()
         {
-            //using (FindReplaceCellText findText = new FindReplaceCellText(this.dataGridView1, this.dataSet)
-            //{
-            //    StartPosition = FormStartPosition.CenterParent
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //    Save();
-            //}
+            using IScopedDisposableManager<FindReplaceTextInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceTextInCell>>();
+            FindReplaceTextInCell findReplaceText = disposableManager.ScopedService;
+            findReplaceText.Setup(this.dataGridView1, this.dataSet);
+            findReplaceText.StartPosition = FormStartPosition.Manual;
+            findReplaceText.Location = new Point(100, 50);
+            findReplaceText.ShowDialog((Form)this.parentForm);
         }
 
         private void FindAndReplaceVariable()
@@ -649,8 +647,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             dataGridView1.MasterTemplate.BestFitColumns(BestFitColumnMode.HeaderCells);
             dataGridView1.TableElement.RowHeaderColumnWidth = ROWHEADERSWIDTH;
             dataGridView1.Columns[TableColumns.CONDITIONCOLUMNINDEX].Width = CONDITIONCOLUMNWIDTH;
+            dataGridView1.Columns[TableColumns.CONDITIONCOLUMNINDEX].WrapText = false;
             dataGridView1.Columns[TableColumns.CONDITIONCOLUMNINDEX].AutoSizeMode = BestFitColumnMode.None;
             dataGridView1.Columns[TableColumns.ACTIONCOLUMNINDEX].Width = ACTIONCOLUMNWIDTH;
+            dataGridView1.Columns[TableColumns.ACTIONCOLUMNINDEX].WrapText = false;
             dataGridView1.Columns[TableColumns.ACTIONCOLUMNINDEX].AutoSizeMode = BestFitColumnMode.None;
             dataGridView1.Columns[TableColumns.PRIORITYCOLUMNINDEX].Width = PRIORITYCOLUMNWIDTH;
             dataGridView1.Columns[TableColumns.PRIORITYCOLUMNINDEX].AutoSizeMode = BestFitColumnMode.None;

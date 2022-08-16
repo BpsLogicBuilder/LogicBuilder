@@ -504,17 +504,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 
         private string GetVariableValueVisibleText(XmlElement objectElement, ApplicationTypeInfo application)
         {
-            switch (objectElement.Name)
+            return objectElement.Name switch
             {
-                case XmlDataConstants.LITERALVARIABLEELEMENT:
-                    return GetLiteralVariableValueVisibleText(objectElement, application);
-                case XmlDataConstants.OBJECTVARIABLEELEMENT:
-                case XmlDataConstants.LITERALLISTVARIABLEELEMENT:
-                case XmlDataConstants.OBJECTLISTVARIABLEELEMENT:
-                    return GetObjectVariableVisibleText(objectElement, application);
-                default:
-                    throw _exceptionHelper.CriticalException("{3AA526B2-FA51-48A8-A77E-B1AC77B4E780}");
-            }
+                XmlDataConstants.LITERALVARIABLEELEMENT => GetLiteralVariableValueVisibleText(objectElement, application),
+                XmlDataConstants.OBJECTVARIABLEELEMENT or XmlDataConstants.LITERALLISTVARIABLEELEMENT or XmlDataConstants.OBJECTLISTVARIABLEELEMENT => GetObjectVariableVisibleText(objectElement, application),
+                _ => throw _exceptionHelper.CriticalException("{3AA526B2-FA51-48A8-A77E-B1AC77B4E780}"),
+            };
         }
 
         private string GetVariableVisibleText(XmlElement variableElement)

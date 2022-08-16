@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Properties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -68,7 +69,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         protected virtual void GetSettings()
         {
-            throw new NotImplementedException();
+            radRadioButtonCurrentRow.IsChecked = true;
+            /*We'll use the CurrentRow's CheckStateChanged for ResetSearchIndexes() - only one is required*/
+            if (Settings.Default.findCurrentRow == false)
+                radRadioButtonAllRows.IsChecked = true;
         }
 
         protected virtual void InitializeControls()

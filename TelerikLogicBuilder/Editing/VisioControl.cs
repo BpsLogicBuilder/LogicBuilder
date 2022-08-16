@@ -291,17 +291,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //}
         }
 
-        private static void FindAndReplaceText()
+        private void FindAndReplaceText()
         {
-            //using (FindReplaceShapeText findText = new FindReplaceShapeText(axDrawingControl1.Document)
-            //{
-            //    StartPosition = FormStartPosition.Manual,
-            //    Location = new Point(100, 50)
-            //})
-            //{
-            //    findText.ShowDialog(this);
-            //    Save();
-            //}
+            using IScopedDisposableManager<FindReplaceTextInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceTextInShape>>();
+            FindReplaceTextInShape findReplaceText = disposableManager.ScopedService;
+            findReplaceText.Setup(axDrawingControl1.Document);
+            findReplaceText.StartPosition = FormStartPosition.Manual;
+            findReplaceText.Location = new Point(100, 50);
+            findReplaceText.ShowDialog((Form)this.parentForm);
         }
 
         private static void FindAndReplaceVariable()

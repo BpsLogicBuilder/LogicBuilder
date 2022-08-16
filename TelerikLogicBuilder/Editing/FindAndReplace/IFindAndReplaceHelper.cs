@@ -1,9 +1,8 @@
-﻿using Microsoft.Office.Interop.Visio;
+﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
@@ -49,6 +48,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             Func<string, string, bool, bool, IList<string>> matchFunc);
 
         string GetVisibleText(int columnIndex, string cellXml);
+
         string GetVisibleText(string universalMasterName, string shapeXml);
+
+        void ReplaceCellItem(GridViewCellInfo currentCell,
+            DataSet dataSet,
+            string searchString,
+            string replaceString,
+            bool matchCase,
+            bool matchWholeWord,
+            Func<string, string, string, bool, bool, string> replaceFunc,
+            ApplicationTypeInfo applicationTypeInfo);
+
+        void ReplaceShapeItem(Shape shape,
+            string searchString,
+            string replaceString,
+            bool matchCase,
+            bool matchWholeWord,
+            Func<string, string, string, bool, bool, string> replaceFunc,
+            ApplicationTypeInfo applicationTypeInfo);
     }
 }

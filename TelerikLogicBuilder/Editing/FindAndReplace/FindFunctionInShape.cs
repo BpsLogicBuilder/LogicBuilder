@@ -64,10 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         protected override void GetSettings()
         {
-            if (Settings.Default.findCurrentPage)
-                radRadioButtonCurrentPage.IsChecked = true;
-            else
-                radRadioButtonAllPages.IsChecked = true;
+            base.GetSettings();
 
             radCheckBoxMatchCase.Checked = Settings.Default.findFunctionMatchCase;
             radCheckBoxMatchWholeWord.Checked = Settings.Default.findFunctionMatchWholeWord;

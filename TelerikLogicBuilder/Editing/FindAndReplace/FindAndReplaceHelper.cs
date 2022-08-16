@@ -2,13 +2,17 @@
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Xml;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
@@ -28,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         private readonly IMainWindow _mainWindow;
         private readonly IModuleDataParser _moduleDataParser;
         private readonly IPriorityDataParser _priorityDataParser;
+        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly IRetractFunctionDataParser _retractFunctionDataParser;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -46,6 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             IMainWindow mainWindow,
             IModuleDataParser moduleDataParser,
             IPriorityDataParser priorityDataParser,
+            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IRetractFunctionDataParser retractFunctionDataParser,
             IShapeXmlHelper shapeXmlHelper,
             IXmlDocumentHelpers xmlDocumentHelpers)
@@ -63,6 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             _mainWindow = mainWindow;
             _moduleDataParser = moduleDataParser;
             _priorityDataParser = priorityDataParser;
+            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _retractFunctionDataParser = retractFunctionDataParser;
             _shapeXmlHelper = shapeXmlHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -244,6 +251,56 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             };
         }
 
+        public void ReplaceCellItem(GridViewCellInfo currentCell,
+            DataSet dataSet,
+            string searchString,
+            string replaceString,
+            bool matchCase,
+            bool matchWholeWord,
+            Func<string, string, string, bool, bool, string> replaceFunc,
+            ApplicationTypeInfo applicationTypeInfo)
+        {
+            switch (currentCell.ColumnInfo.Index)
+            {
+                case TableColumns.CONDITIONCOLUMNINDEX:
+                case TableColumns.ACTIONCOLUMNINDEX:
+                case TableColumns.PRIORITYCOLUMNINDEX:
+                    break;
+                default:
+                    return;
+            }
+
+            string cellXml = _cellXmlHelper.GetXmlString(currentCell);
+            if (cellXml.Length == 0)
+                return;
+
+            cellXml = replaceFunc(cellXml, searchString, replaceString, matchCase, matchWholeWord);
+            cellXml = RefreshCellDataVisibleTexts(cellXml, applicationTypeInfo);
+
+            _cellXmlHelper.SetXmlString(dataSet, currentCell, cellXml, GetVisibleText(currentCell.ColumnInfo.Index, cellXml));
+        }
+
+        public void ReplaceShapeItem(Shape shape,
+            string searchString,
+            string replaceString,
+            bool matchCase,
+            bool matchWholeWord,
+            Func<string, string, string, bool, bool, string> replaceFunc,
+            ApplicationTypeInfo applicationTypeInfo)
+        {
+            if (!ShapeCollections.TextSearchableShapes.Contains(shape.Master.NameU))
+                return;
+
+            string shapeXml = _shapeXmlHelper.GetXmlString(shape);
+            if (shapeXml.Length == 0)
+                return;
+
+            shapeXml = replaceFunc(shapeXml, searchString, replaceString, matchCase, matchWholeWord);
+            shapeXml = RefreshShapeDataVisibleTexts(shapeXml, applicationTypeInfo);
+
+            _shapeXmlHelper.SetXmlString(shape, shapeXml, GetVisibleText(shape.Master.NameU, shapeXml));
+        }
+
         private string BuildConditionsVisibleText(string shapeXml)
         {
             ConditionsData conditionsData = _conditionsDataParser.Parse
@@ -382,6 +439,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                 return string.Empty;
 
             return string.Format(CultureInfo.CurrentCulture, Strings.searchOccurrencesFormat, matches.Count.ToString(CultureInfo.CurrentCulture));
+        }
+
+        private string RefreshCellDataVisibleTexts(string xmlString, ApplicationTypeInfo applicationTypeInfo)
+        {
+            XmlDocument cellXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlString);
+            cellXmlDocument = _refreshVisibleTextHelper.RefreshVariableVisibleTexts(cellXmlDocument);
+            cellXmlDocument = _refreshVisibleTextHelper.RefreshFunctionVisibleTexts(cellXmlDocument, applicationTypeInfo);
+            cellXmlDocument = _refreshVisibleTextHelper.RefreshConstructorVisibleTexts(cellXmlDocument, applicationTypeInfo);
+            cellXmlDocument = _refreshVisibleTextHelper.RefreshSetValueFunctionVisibleTexts(cellXmlDocument, applicationTypeInfo);
+            cellXmlDocument = _refreshVisibleTextHelper.RefreshSetValueToNullFunctionVisibleTexts(cellXmlDocument);
+            return cellXmlDocument.OuterXml;
+        }
+
+        private string RefreshShapeDataVisibleTexts(string xmlString, ApplicationTypeInfo applicationTypeInfo)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlString);
+            shapeXmlDocument = _refreshVisibleTextHelper.RefreshVariableVisibleTexts(shapeXmlDocument);
+            shapeXmlDocument = _refreshVisibleTextHelper.RefreshFunctionVisibleTexts(shapeXmlDocument, applicationTypeInfo);
+            shapeXmlDocument = _refreshVisibleTextHelper.RefreshConstructorVisibleTexts(shapeXmlDocument, applicationTypeInfo);
+            shapeXmlDocument = _refreshVisibleTextHelper.RefreshDecisionVisibleTexts(shapeXmlDocument, applicationTypeInfo);
+            shapeXmlDocument = _refreshVisibleTextHelper.RefreshSetValueFunctionVisibleTexts(shapeXmlDocument, applicationTypeInfo);
+            shapeXmlDocument = _refreshVisibleTextHelper.RefreshSetValueToNullFunctionVisibleTexts(shapeXmlDocument);
+            return shapeXmlDocument.OuterXml;
         }
     }
 }

@@ -60,9 +60,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
             this.AcceptButton = radButtonFindNext;
 
-            if (Settings.Default.findCurrentPage)
-                radRadioButtonCurrentPage.IsChecked = true;
-            else
+            radRadioButtonCurrentPage.IsChecked = true;
+            /*We'll use the CurrentPages CheckStateChanged for ResetSearchIndexes() - only one is required*/
+            if (Settings.Default.findCurrentPage == false)
                 radRadioButtonAllPages.IsChecked = true;
 
             radCheckBoxMatchCase.Checked = Settings.Default.findTextMatchCase;

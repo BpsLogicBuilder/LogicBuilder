@@ -51,6 +51,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly FindCellCommand _findCellCommand;
         private readonly FindFunctionCommand _findFunctionCommand;
         private readonly FindFunctionInFilesCommand _findFunctionInFilesCommand;
+        private readonly FindReplaceConstructorCommand _findReplaceConstructorCommand;
+        private readonly FindReplaceFunctionCommand _findReplaceFunctionCommand;
+        private readonly FindReplaceTextCommand _findReplaceTextCommand;
+        private readonly FindReplaceVariableCommand _findReplaceVariableCommand;
         private readonly FindShapeCommand _findShapeCommand;
         private readonly FindTextCommand _findTextCommand;
         private readonly FindTextInFilesCommand _findTextInFilesCommand;
@@ -95,6 +99,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             FindCellCommand findCellCommand,
             FindFunctionCommand findFunctionCommand,
             FindFunctionInFilesCommand findFunctionInFilesCommand,
+            FindReplaceConstructorCommand findReplaceConstructorCommand,
+            FindReplaceFunctionCommand findReplaceFunctionCommand,
+            FindReplaceTextCommand findReplaceTextCommand,
+            FindReplaceVariableCommand findReplaceVariableCommand,
             FindShapeCommand findShapeCommand,
             FindTextCommand findTextommand,
             FindTextInFilesCommand findTextInFilesCommand,
@@ -134,6 +142,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _findCellCommand = findCellCommand;
             _findFunctionCommand = findFunctionCommand;
             _findFunctionInFilesCommand = findFunctionInFilesCommand;
+            _findReplaceConstructorCommand = findReplaceConstructorCommand;
+            _findReplaceFunctionCommand = findReplaceFunctionCommand;
+            _findReplaceTextCommand = findReplaceTextCommand;
+            _findReplaceVariableCommand = findReplaceVariableCommand;
             _findShapeCommand = findShapeCommand;
             _findTextCommand = findTextommand;
             _findTextInFilesCommand = findTextInFilesCommand;
@@ -429,6 +441,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddClickCommand(this.radMenuItemFindShape, _findShapeCommand);
             AddClickCommand(this.radMenuItemFindText, _findTextCommand);
             AddClickCommand(this.radMenuItemFindVariable, _findVariableCommand);
+
+            AddClickCommand(this.radMenuItemReplaceConstructor, _findReplaceConstructorCommand);
+            AddClickCommand(this.radMenuItemReplaceFunction, _findReplaceFunctionCommand);
+            AddClickCommand(this.radMenuItemReplaceText, _findReplaceTextCommand);
+            AddClickCommand(this.radMenuItemReplaceVariable, _findReplaceVariableCommand);
 
             AddClickCommand(this.radMenuItemFindInFilesText, _findTextInFilesCommand);
             AddClickCommand(this.radMenuItemFindInFilesConstructor, _findConstructorInFilesCommand);

@@ -25,6 +25,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<FindTextInCell>()
                 .AddTransient<FindTextInFiles>()
                 .AddTransient<FindTextInShape>()
+                .AddTransient<FindReplaceTextInCell>()
+                .AddTransient<FindReplaceTextInShape>()
                 .AddTransient<FindVariableInCell>()
                 .AddTransient<FindVariableInFiles>()
                 .AddTransient<FindVariableInShape>()
