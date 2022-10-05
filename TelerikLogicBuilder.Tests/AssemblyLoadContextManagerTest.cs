@@ -73,7 +73,7 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.NotNull(assemblyLoadContextManager);
-            Assert.NotEmpty(assemblyLoadContextManager.GetAssemblyLoadContextDictionary());
+            Assert.NotEmpty(assemblyLoadContextManager.GetAssemblyLoadContextDictionary()!);
         }
     }
 }

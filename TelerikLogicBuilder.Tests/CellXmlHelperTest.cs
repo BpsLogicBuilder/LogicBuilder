@@ -57,7 +57,7 @@ namespace TelerikLogicBuilder.Tests
             dataSet.Dispose();
 
             //assert
-            Assert.Equal(xmlElement.Name, XmlDataConstants.FUNCTIONSELEMENT);
+            Assert.Equal(XmlDataConstants.FUNCTIONSELEMENT, xmlElement.Name);
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace TelerikLogicBuilder.Tests
             dataSet.Dispose();
 
             //assert
-            Assert.Equal(xmlElement.Name, XmlDataConstants.FUNCTIONSELEMENT);
+            Assert.Equal(XmlDataConstants.FUNCTIONSELEMENT, xmlElement.Name);
         }
 
         private static XmlElement GetXmlElement(string xmlString)
