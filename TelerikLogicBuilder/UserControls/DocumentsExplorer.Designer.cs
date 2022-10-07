@@ -28,33 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radTreeView1
-            // 
-            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.Size = new System.Drawing.Size(450, 635);
-            this.radTreeView1.SpacingBetweenNodes = -1;
-            this.radTreeView1.TabIndex = 0;
             // 
             // DocumentsExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radTreeView1);
             this.Name = "DocumentsExplorer";
             this.Size = new System.Drawing.Size(450, 635);
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadTreeView radTreeView1;
     }
 }

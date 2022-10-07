@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
@@ -7,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -24,7 +26,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly DocumentExplorerErrorsList documentProfileErrors = new();
         private readonly Dictionary<string, string> documentNames = new();
         private readonly Dictionary<string, string> expandedNodes = new();
-        private RadTreeNode? _cutTreeNode;
 
         private readonly RadMenuItem mnuItemOpenFile = new(Strings.mnuItemOpenFileText) { ImageIndex = ImageIndexes.OPENIMAGEINDEX };
         private readonly RadMenuItem mnuItemRename = new(Strings.mnuItemRenameText);
@@ -49,7 +50,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly RefreshDocumentsExplorerCommand _refreshDocumentsExplorerCommand;
         private readonly RenameCommand _renameDocumentCommand;
 
-        public RadTreeNode? CutTreeNode { get => _cutTreeNode; set => _cutTreeNode = value; }
+        private readonly RadTreeView radTreeView1;
+
+        public RadTreeNode? CutTreeNode { get; set; }
 
         public RadTreeView TreeView => this.radTreeView1;
 
@@ -63,6 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IImageListService imageImageListService,
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
+            FileSystemTreeView fileSystemTreeView,
             UiNotificationService uiNotificationService,
             AddExistingFileCommand addExistingFileCommand,
             AddNewFileCommand addNewFileCommand,
@@ -79,7 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _exceptionHelper = exceptionHelper;
             _imageImageListService = imageImageListService;
             _mainWindow = mainWindow;
-            _treeViewService = treeViewService;
+            _treeViewService = treeViewService;           
             _uiNotificationService = uiNotificationService;
             _addExistingFileCommand = addExistingFileCommand;
             _addNewFileCommand = addNewFileCommand;
@@ -91,6 +95,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _pasteDocumentCommand = pasteDocumentCommand;
             _refreshDocumentsExplorerCommand = refreshDocumentsExplorerCommand;
             _renameDocumentCommand = renameDocumentCommand;
+
+            this.radTreeView1 = fileSystemTreeView;
 
             InitializeComponent();
             Initialize();
@@ -168,6 +174,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void Initialize()
         {
+            ((ISupportInitialize)this.radTreeView1).BeginInit();
+            this.SuspendLayout();
+            this.radTreeView1.Dock = DockStyle.Fill;
+            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.Size = new System.Drawing.Size(450, 635);
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            this.radTreeView1.TabIndex = 0;
+            this.Controls.Add(this.radTreeView1);
+            ((ISupportInitialize)this.radTreeView1).EndInit();
+            this.ResumeLayout(false);
+
+            this.radTreeView1.AllowDragDrop = true;
+
             this.radTreeView1.CreateNodeElement += RadTreeView1_CreateNodeElement;
             this.radTreeView1.MouseDown += RadTreeView1_MouseDown;
             this.radTreeView1.NodeFormatting += RadTreeView1_NodeFormatting;
@@ -185,7 +205,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void SetContextMenuState(RadTreeNode selectedNode)
         {
             mnuItemOpenFile.Enabled = EnableOpenFile();
-            mnuItemPaste.Enabled = _cutTreeNode != null;
+            mnuItemPaste.Enabled = CutTreeNode != null;
             mnuItemCut.Enabled = selectedNode != this.radTreeView1.Nodes[0];
 
             mnuItemAddFile.Enabled = documentProfileErrors.Count == 0;
