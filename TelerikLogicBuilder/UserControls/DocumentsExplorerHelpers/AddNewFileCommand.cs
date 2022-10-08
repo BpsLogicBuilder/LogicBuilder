@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -40,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             try
             {
-                AddNewFile(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
+                AddNewFile();
                 _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
@@ -49,12 +50,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             }
         }
 
-        private void AddNewFile(RadTreeNode? selectedNode)
+        private void AddNewFile()
         {
-            if (selectedNode == null)
+            IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(_mainWindow.DocumentsExplorer.TreeView);
+            if (selectedNodes.Count != 1)
                 return;
 
-            RadTreeNode destinationFolderNode = GetFolderNode(selectedNode);
+            RadTreeNode destinationFolderNode = GetFolderNode(selectedNodes[0]);
 
             using IScopedDisposableManager<AddNewFileForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<AddNewFileForm>>();
             AddNewFileForm addNewFile = disposableManager.ScopedService;

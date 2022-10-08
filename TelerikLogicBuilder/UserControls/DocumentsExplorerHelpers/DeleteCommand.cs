@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System;
+using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
@@ -28,32 +30,40 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             try
             {
-                RadTreeNode? selectedNode = _mainWindow.DocumentsExplorer.TreeView.SelectedNode;
-                if (selectedNode == null)
+                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(_mainWindow.DocumentsExplorer.TreeView);
+                if (selectedNodes.Count == 0)
                     return;
 
-                if (_treeViewService.IsFileNode(selectedNode))
-                {
-                    _deleteOperations.DeleteFile(selectedNode);
-                    _mainWindow.DocumentsExplorer.RefreshTreeView();
-                }
-                else if (_treeViewService.IsRootNode(selectedNode))
-                {
-                    _deleteOperations.DeleteProject(selectedNode);
-                }
-                else if (_treeViewService.IsFolderNode(selectedNode))
-                {
-                    _deleteOperations.DeleteFolder(selectedNode);
+                if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
+                    throw new ArgumentException($"{nameof(selectedNodes)}: {{DCACA44D-651B-4609-A3D2-842D5D1D2FA2}}");
 
-                    if (_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
-                        _mainWindow.DocumentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
+                foreach (RadTreeNode selectedNode in selectedNodes)
+                {
+                    if (_treeViewService.IsFileNode(selectedNode))
+                    {
+                        _deleteOperations.DeleteFile(selectedNode);
+                        _mainWindow.DocumentsExplorer.RefreshTreeView();
+                    }
+                    else if (_treeViewService.IsRootNode(selectedNode))
+                    {
+                        _deleteOperations.DeleteProject(selectedNode);
+                    }
+                    else if (_treeViewService.IsFolderNode(selectedNode))
+                    {
+                        _deleteOperations.DeleteFolder(selectedNode);
 
-                    _mainWindow.DocumentsExplorer.RefreshTreeView();
+                        if (_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(selectedNode.Name))
+                            _mainWindow.DocumentsExplorer.ExpandedNodes.Remove(selectedNode.Name);
+                    }
                 }
             }
             catch (LogicBuilderException ex)
             {
                 _uiNotificationService.NotifyLogicBuilderException(ex);
+            }
+            finally
+            {
+                _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
         }
     }

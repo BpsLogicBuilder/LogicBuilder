@@ -49,6 +49,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
                 if (files?.Any() == true)
                 {
+                    IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(_mainWindow.DocumentsExplorer.TreeView);
+                    if (selectedNodes.Count != 1)
+                        return;
+
+                    RadTreeNode folderNode = GetFolderNode(selectedNodes[0]);
+
                     foreach (string fileFullName in files)
                     {
                         string fileName = _pathHelper.GetFileName(fileFullName).ToLowerInvariant();
@@ -56,8 +62,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                         {
                             throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.fileExistsExceptionMessage, existingFileFullPath));
                         }
-
-                        RadTreeNode folderNode = GetFolderNode(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
                         
                         _fileIOHelper.CopyFile
                         (

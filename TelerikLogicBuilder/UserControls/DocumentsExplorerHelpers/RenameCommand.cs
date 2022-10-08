@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -49,9 +50,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             try
             {
-                RadTreeNode? selectedNode = _mainWindow.DocumentsExplorer.TreeView.SelectedNode;
-                if (selectedNode == null)
+                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(_mainWindow.DocumentsExplorer.TreeView);
+                if (selectedNodes.Count != 1)
                     return;
+
+                RadTreeNode selectedNode = selectedNodes[0];
 
                 if (_treeViewService.IsFileNode(selectedNode))
                 {

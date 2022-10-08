@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using System.Drawing;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
@@ -13,6 +13,41 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public TreeViewService(IExceptionHelper exceptionHelper)
         {
             _exceptionHelper = exceptionHelper;
+        }
+
+        public bool CollectionIncludesNodeAndDescendant(IList<RadTreeNode> treeNodes)
+        {
+            HashSet<RadTreeNode> hashSet = treeNodes.ToHashSet();
+            foreach(RadTreeNode node in treeNodes)
+            {
+                if (AncestorPresent(node, hashSet))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public IList<RadTreeNode> GetSelectedNodes(RadTreeView treeView)
+        {
+            List<RadTreeNode> returnList = new();
+
+            HashSet<RadTreeNode> hashSet = GetAllNodes().ToHashSet();
+            foreach (RadTreeNode radTreeNode in hashSet)
+            {
+                if (!AncestorPresent(radTreeNode, hashSet))
+                    returnList.Add(radTreeNode);
+            }
+
+            return returnList;
+
+            List<RadTreeNode> GetAllNodes()
+            {
+                if (treeView.SelectedNodes.Count > 0)
+                    return new List<RadTreeNode>(treeView.SelectedNodes);
+                else if (treeView.SelectedNode != null)
+                    return new List<RadTreeNode> { treeView.SelectedNode };
+                return new List<RadTreeNode>();
+            }
         }
 
         public bool IsFileNode(RadTreeNode treeNode)
@@ -61,7 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             treeNode.EnsureVisible();
         }
 
-        public void ScrollToPreviousPosition(RadTreeView treeView, Point point)
+        public void ScrollToPreviousPosition(RadTreeView treeView, System.Drawing.Point point)
         {
             if (point.X < treeView.HScrollBar.Minimum || point.X > treeView.HScrollBar.Maximum)
                 return;
@@ -81,6 +116,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             var node = treeView.Find(n => n.Name == nodeName);
             if (node != null)
                 treeView.SelectedNode = node;
+        }
+
+        public void SelectTreeNodes(RadTreeView treeView, IList<string> nodeNames)
+        {
+            foreach (string name in nodeNames)
+            {
+                var node = treeView.Find(n => n.Name == name);
+                if (node != null && node.Selected == false)
+                    node.Selected = true;
+            }
+        }
+
+        private bool AncestorPresent(RadTreeNode treeNode, HashSet<RadTreeNode> allNodesHashSet)
+        {
+            if (treeNode.Parent == null)
+                return false;
+
+            if (allNodesHashSet.Contains(treeNode.Parent))
+                return true;
+
+            return AncestorPresent(treeNode.Parent, allNodesHashSet);
         }
     }
 }

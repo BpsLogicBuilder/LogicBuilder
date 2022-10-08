@@ -5,7 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal interface IDocumentsExplorer
     {
-        RadTreeNode? CutTreeNode { get; set; }
+        IList<RadTreeNode> CutTreeNodes { get; }
         IDictionary<string, string> DocumentNames { get; }
         IDictionary<string, string> ExpandedNodes { get; }
         RadTreeView TreeView { get; }

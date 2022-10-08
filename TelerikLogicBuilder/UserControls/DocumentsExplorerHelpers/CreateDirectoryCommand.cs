@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -36,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             try
             {
-                CreateDirectory(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
+                CreateDirectory();
                 _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
@@ -45,10 +46,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             }
         }
 
-        private void CreateDirectory(RadTreeNode selectedNode)
+        private void CreateDirectory()
         {
-            if (selectedNode == null)
+            IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(_mainWindow.DocumentsExplorer.TreeView);
+            if (selectedNodes.Count != 1)
                 return;
+
+            RadTreeNode selectedNode = selectedNodes[0];
 
             RadTreeNode destinationFolderNode = GetFolderNode(selectedNode);
 

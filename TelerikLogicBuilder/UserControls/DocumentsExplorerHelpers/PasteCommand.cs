@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System;
+using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
@@ -34,26 +36,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             try
             {
-                if (_mainWindow.DocumentsExplorer.TreeView.SelectedNode == null)
+                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(_mainWindow.DocumentsExplorer.TreeView);
+                if (selectedNodes.Count != 1)
                     return;
 
-                if (_mainWindow.DocumentsExplorer.CutTreeNode == null)
+                if (_mainWindow.DocumentsExplorer.CutTreeNodes.Count == 0)
                     return;
 
-                if (_treeViewService.IsFileNode(_mainWindow.DocumentsExplorer.CutTreeNode))
-                {
-                    PasteFile(_mainWindow.DocumentsExplorer.TreeView.SelectedNode, _mainWindow.DocumentsExplorer.CutTreeNode);
-                }
-                else if (_treeViewService.IsFolderNode(_mainWindow.DocumentsExplorer.CutTreeNode))
-                {
-                    PasteFolder(_mainWindow.DocumentsExplorer.TreeView.SelectedNode, _mainWindow.DocumentsExplorer.CutTreeNode);
-                }
-                else
-                {
-                    throw _exceptionHelper.CriticalException("{12782526-5DE8-43BF-AFBE-B1A5B277A5B4}");
-                }
+                if (_treeViewService.CollectionIncludesNodeAndDescendant(_mainWindow.DocumentsExplorer.CutTreeNodes))
+                    throw new ArgumentException($"{nameof(_mainWindow.DocumentsExplorer.CutTreeNodes)}: {{A80740CD-0542-4E70-8897-72CBE8A88B55}}");
 
-                _mainWindow.DocumentsExplorer.RefreshTreeView();
+                RadTreeNode selectedNode = selectedNodes[0];
+
+                foreach (RadTreeNode cutTreeNode in _mainWindow.DocumentsExplorer.CutTreeNodes)
+                {
+                    if (_treeViewService.IsFileNode(cutTreeNode))
+                    {
+                        PasteFile(selectedNode, cutTreeNode);
+                    }
+                    else if (_treeViewService.IsFolderNode(cutTreeNode))
+                    {
+                        PasteFolder(selectedNode, cutTreeNode);
+                    }
+                    else
+                    {
+                        throw _exceptionHelper.CriticalException("{12782526-5DE8-43BF-AFBE-B1A5B277A5B4}");
+                    }
+                }
             }
             catch (LogicBuilderException ex)
             {
@@ -61,7 +70,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             }
             finally
             {
-                _mainWindow.DocumentsExplorer.CutTreeNode = null;
+                _mainWindow.DocumentsExplorer.RefreshTreeView();
+                _mainWindow.DocumentsExplorer.CutTreeNodes.Clear();
             }
         }
 

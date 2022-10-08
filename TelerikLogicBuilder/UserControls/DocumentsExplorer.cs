@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private readonly RadTreeView radTreeView1;
 
-        public RadTreeNode? CutTreeNode { get; set; }
+        public IList<RadTreeNode> CutTreeNodes { get; } = new List<RadTreeNode>();
 
         public RadTreeView TreeView => this.radTreeView1;
 
@@ -187,6 +187,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.ResumeLayout(false);
 
             this.radTreeView1.AllowDragDrop = true;
+            this.radTreeView1.MultiSelect = true;
 
             this.radTreeView1.CreateNodeElement += RadTreeView1_CreateNodeElement;
             this.radTreeView1.MouseDown += RadTreeView1_MouseDown;
@@ -202,21 +203,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             CreateContextMenu();
         }
 
-        private void SetContextMenuState(RadTreeNode selectedNode)
+        private void SetContextMenuState(IList<RadTreeNode> selectedNodes)
         {
             mnuItemOpenFile.Enabled = EnableOpenFile();
-            mnuItemPaste.Enabled = CutTreeNode != null;
-            mnuItemCut.Enabled = selectedNode != this.radTreeView1.Nodes[0];
-
-            mnuItemAddFile.Enabled = documentProfileErrors.Count == 0;
+            mnuItemRename.Enabled = selectedNodes.Count == 1;
+            mnuItemDelete.Enabled = selectedNodes.Count > 0;
+            mnuItemAddFile.Enabled = selectedNodes.Count == 1 && documentProfileErrors.Count == 0;
+            mnuItemCreateDirectory.Enabled = selectedNodes.Count == 1;
+            mnuItemCut.Enabled = selectedNodes.Count > 0 && this.radTreeView1.Nodes[0].Selected == false;
+            mnuItemPaste.Enabled = CutTreeNodes.Count > 0 && selectedNodes.Count == 1;
 
             bool EnableOpenFile()
             {
-                if (documentProfileErrors.Count > 0)
+                if (selectedNodes.Count != 1 || documentProfileErrors.Count > 0)
+                {
                     return false;
+                }
 
-                return !_treeViewService.IsFolderNode(selectedNode)
-                    && !_treeViewService.IsRootNode(selectedNode);
+                return _treeViewService.IsFileNode(selectedNodes[0]);
             }
         }
 
@@ -260,7 +264,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             if (treeNode == null && this.radTreeView1.Nodes.Count > 0)
             {
                 this.radTreeView1.SelectedNode = this.radTreeView1.Nodes[0];
-                SetContextMenuState(this.radTreeView1.SelectedNode);
+                SetContextMenuState(_treeViewService.GetSelectedNodes(TreeView));
             }
         }
 
@@ -299,9 +303,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void RadTreeView1_NodeMouseClick(object sender, RadTreeViewEventArgs e)
         {
             this.radTreeView1.SelectedNode = e.Node;
-            if (this.radTreeView1.SelectedNode != null)
-                SetContextMenuState(this.radTreeView1.SelectedNode);
-
+            SetContextMenuState(_treeViewService.GetSelectedNodes(TreeView));
         }
 
         private void RadTreeView1_NodeMouseDoubleClick(object sender, RadTreeViewEventArgs e) 

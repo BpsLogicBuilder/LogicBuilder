@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -13,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
         {
         }
 
-        //can't inject because FileSystemDragDropService is created before FileSystemTreeViewElement's constructor runs
+        //can't inject because FileSystemDragDropService is created before FileSystemTreeViewElement(passed in)'s constructor runs
         private IFileSystemDragDropHandler FileSystemDragDropHandler
         {
             get
@@ -65,7 +66,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
                 return;
             }
 
-            FileSystemDragDropHandler.DragDrop(targetNodeElement.Data, this.draggedNode);
+            if (this.draggedNode.TreeView.Nodes[0].Selected)
+                return;
+
+            FileSystemDragDropHandler.DragDrop(targetNodeElement.Data, this.GetDraggedNodes(this.draggedNode));
         }
     }
 }

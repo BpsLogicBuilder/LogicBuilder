@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -39,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             {
                 
                 mdiParent.ChangeCursor(Cursors.WaitCursor);
-                RequestDocumentOpened(_mainWindow.DocumentsExplorer.TreeView.SelectedNode);
+                RequestDocumentOpened();
             }
             catch (LogicBuilderException ex)
             {
@@ -50,11 +51,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 mdiParent.ChangeCursor(Cursors.Default);
             }
             
-            void RequestDocumentOpened(RadTreeNode selectedNode)
+            void RequestDocumentOpened()
             {
-                if (selectedNode == null
-                    || _treeViewService.IsRootNode(selectedNode)
-                    || _treeViewService.IsFolderNode(selectedNode))
+                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(_mainWindow.DocumentsExplorer.TreeView);
+                if (selectedNodes.Count != 1)
+                    return;
+
+                RadTreeNode selectedNode = selectedNodes[0];
+
+                if (!_treeViewService.IsFileNode(selectedNode))
                     return;
 
                 switch (_pathHelper.GetExtension(selectedNode.Name))

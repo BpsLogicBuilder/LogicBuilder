@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
+using System;
+using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
@@ -30,28 +32,39 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
             _uiNotificationService = uiNotificationService;
         }
 
-        public void DragDrop(RadTreeNode destinationNode, RadTreeNode draggingTreeNode)
+        public void DragDrop(RadTreeNode destinationNode, IList<RadTreeNode> draggingTreeNodes)
         {
+            if (draggingTreeNodes.Count == 0)
+                return;
+
+            if (_treeViewService.CollectionIncludesNodeAndDescendant(draggingTreeNodes))
+                throw new ArgumentException($"{nameof(draggingTreeNodes)}: {{C45085F5-9509-4BA2-B39C-FFF633B301FC}}");
+
             try
             {
-                if (_treeViewService.IsFileNode(draggingTreeNode))
+                foreach (RadTreeNode draggingTreeNode in draggingTreeNodes)
                 {
-                    MoveFile(destinationNode, draggingTreeNode);
+                    if (_treeViewService.IsFileNode(draggingTreeNode))
+                    {
+                        MoveFile(destinationNode, draggingTreeNode);
+                    }
+                    else if (_treeViewService.IsFolderNode(draggingTreeNode))
+                    {
+                        MoveFolder(destinationNode, draggingTreeNode);
+                    }
+                    else
+                    {
+                        throw _exceptionHelper.CriticalException("{AB0ED335-A566-416D-8ED0-D233E25D2644}");
+                    }
                 }
-                else if (_treeViewService.IsFolderNode(draggingTreeNode))
-                {
-                    MoveFolder(destinationNode, draggingTreeNode);
-                }
-                else
-                {
-                    throw _exceptionHelper.CriticalException("{AB0ED335-A566-416D-8ED0-D233E25D2644}");
-                }
-
-                _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
             catch (LogicBuilderException ex)
             {
                 _uiNotificationService.NotifyLogicBuilderException(ex);
+            }
+            finally
+            {
+                _mainWindow.DocumentsExplorer.RefreshTreeView();
             }
         }
 
