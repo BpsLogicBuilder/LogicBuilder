@@ -44,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly AddNewFileCommand _addNewFileCommand;
         private readonly CloseProjectCommand _closeProjectCommand;
         private readonly CreateDirectoryCommand _createDirectoryCommand;
-        private readonly CutDocumentCommand _cutDocumentCommand;
+        private readonly CutCommand _cutCommand;
         private readonly DeleteCommand _deleteDocumentCommand;
         private readonly OpenFileCommand _openFileCommand;
         private readonly PasteCommand _pasteDocumentCommand;
@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             AddNewFileCommand addNewFileCommand,
             CloseProjectCommand closeProjectCommand,
             CreateDirectoryCommand createDirectoryCommand,
-            CutDocumentCommand cutDocumentCommand,
+            CutCommand cutCommand,
             DeleteCommand deleteDocumentCommand,
             OpenFileCommand openFileCommand,
             PasteCommand pasteDocumentCommand,
@@ -90,7 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _addNewFileCommand = addNewFileCommand;
             _closeProjectCommand = closeProjectCommand;
             _createDirectoryCommand = createDirectoryCommand;
-            _cutDocumentCommand = cutDocumentCommand;
+            _cutCommand = cutCommand;
             _deleteDocumentCommand = deleteDocumentCommand;
             _openFileCommand = openFileCommand;
             _pasteDocumentCommand = pasteDocumentCommand;
@@ -139,7 +139,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             AddClickCommand(mnuItemAddNewFile, _addNewFileCommand);
             AddClickCommand(mnuItemAddExistingFile, _addExistingFileCommand);
             AddClickCommand(mnuItemCreateDirectory, _createDirectoryCommand);
-            AddClickCommand(mnuItemCut, _cutDocumentCommand);
+            AddClickCommand(mnuItemCut, _cutCommand);
             AddClickCommand(mnuItemPaste, _pasteDocumentCommand);
             AddClickCommand(mnuItemCloseProject, _closeProjectCommand);
             AddClickCommand(mnuItemRefresh, _refreshDocumentsExplorerCommand);

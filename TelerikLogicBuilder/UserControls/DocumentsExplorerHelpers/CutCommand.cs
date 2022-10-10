@@ -8,12 +8,12 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 {
-    internal class CutDocumentCommand : ClickCommandBase
+    internal class CutCommand : ClickCommandBase
     {
         private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
 
-        public CutDocumentCommand(
+        public CutCommand(
             IMainWindow mainWindow,
             ITreeViewService treeViewService)
         {

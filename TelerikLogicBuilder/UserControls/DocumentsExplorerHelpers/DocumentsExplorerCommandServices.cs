@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<AddNewFileCommand>()
                 .AddTransient<CloseProjectCommand>()
                 .AddTransient<CreateDirectoryCommand>()
-                .AddTransient<CutDocumentCommand>()
+                .AddTransient<CutCommand>()
                 .AddTransient<DeleteCommand>()
                 .AddTransient<OpenFileCommand>()
                 .AddTransient<PasteCommand>()
