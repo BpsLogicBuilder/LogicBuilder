@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -286,6 +287,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 {
                     expandedNodes.Remove(e.Node.Name);
                 }
+            }
+
+            if (CutTreeNodes.ToHashSet().Contains(e.Node))
+            {
+                e.Node.ImageIndex = e.Node.Expanded
+                    ? ImageIndexes.CUTOPENEDFOLDERIMAGEINDEX
+                    : ImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX;
+            }
+            else
+            {
+                e.Node.ImageIndex = e.Node.Expanded
+                    ? ImageIndexes.OPENEDFOLDERIMAGEINDEX
+                    : ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
             }
         }
 

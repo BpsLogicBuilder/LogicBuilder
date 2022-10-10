@@ -189,6 +189,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                     expandedNodes.Remove(e.Node.Name);
                 }
             }
+
+            e.Node.ImageIndex = e.Node.Expanded
+                ? ImageIndexes.OPENEDFOLDERIMAGEINDEX
+                : ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
         }
 
         private void RadTreeView1_NodeMouseClick(object sender, RadTreeViewEventArgs e)

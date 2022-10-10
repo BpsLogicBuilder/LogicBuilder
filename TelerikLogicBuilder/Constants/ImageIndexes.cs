@@ -19,5 +19,8 @@
         internal const byte COPYIMAGEINDEX = 14;
         internal const byte EDITIMAGEINDEX = 15;
         internal const byte METHODIMAGEINDEX = 16;
+        internal const byte CUTVSDXFILEIMAGEINDEX = 17;
+        internal const byte CUTVISIOFILEIMAGEINDEX = 18;
+        internal const byte CUTTABLEFILEIMAGEINDEX = 19;
     }
 }

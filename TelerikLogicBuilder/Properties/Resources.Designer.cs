@@ -193,9 +193,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CLSDFOLDCUT {
+        internal static System.Drawing.Bitmap closedFolderCut {
             get {
-                object obj = ResourceManager.GetObject("CLSDFOLDCUT", resourceCulture);
+                object obj = ResourceManager.GetObject("closedFolderCut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -643,9 +643,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap OPENFOLD {
+        internal static System.Drawing.Bitmap OpenedFolderCut {
             get {
-                object obj = ResourceManager.GetObject("OPENFOLD", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenedFolderCut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -653,9 +653,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap OPENFOLDCUT {
+        internal static System.Drawing.Bitmap OPENFOLD {
             get {
-                object obj = ResourceManager.GetObject("OPENFOLDCUT", resourceCulture);
+                object obj = ResourceManager.GetObject("OPENFOLD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -983,9 +983,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Visio_16Cut {
+            get {
+                object obj = ResourceManager.GetObject("Visio_16Cut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Visio_Application_16xLG {
             get {
                 object obj = ResourceManager.GetObject("Visio_Application_16xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visio_Application_16xLGCut {
+            get {
+                object obj = ResourceManager.GetObject("Visio_Application_16xLGCut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

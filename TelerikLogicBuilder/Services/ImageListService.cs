@@ -23,8 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.Visio_16,
                         Properties.Resources.TABLE,
                         Properties.Resources.Project,
-                        Properties.Resources.OPENFOLDCUT,
-                        Properties.Resources.CLSDFOLDCUT,
+                        Properties.Resources.OpenedFolderCut,
+                        Properties.Resources.closedFolderCut,
                         Properties.Resources.File,
                         Properties.Resources.Open,
                         Properties.Resources.Delete,
@@ -33,7 +33,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.refresh,
                         Properties.Resources.Copy,
                         Properties.Resources.Edit,
-                        Properties.Resources.functionButtonImage
+                        Properties.Resources.functionButtonImage,
+                        Properties.Resources.Visio_Application_16xLGCut,
+                        Properties.Resources.Visio_16Cut,
+                        Properties.Resources.TABLECUT
                     }
                 };
 

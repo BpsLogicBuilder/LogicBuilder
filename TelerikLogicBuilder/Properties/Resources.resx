@@ -157,8 +157,8 @@
   <data name="closedFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\closedFolder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CLSDFOLDCUT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CLSDFOLDCUT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="closedFolderCut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closedFolderCut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Column" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Column.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,11 +292,11 @@
   <data name="OpenedFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenedFolder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OpenedFolderCut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenedFolderCut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="OPENFOLD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OPENFOLD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="OPENFOLDCUT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OPENFOLDCUT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="padlock1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\padlock1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -392,9 +392,15 @@
     <value>..\Resources\variableButtonImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Visio_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Visio_16.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Visio_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Visio_16Cut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Visio_16Cut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Visio_Application_16xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Visio_Application_16xLG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Visio_Application_16xLGCut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Visio_Application_16xLGCut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
