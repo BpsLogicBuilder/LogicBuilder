@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Commands.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
@@ -26,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal partial class MDIParent : RadForm, IMDIParent
     {
+        private readonly IApplicationCommandsFactory _applicationCommandsFactory;
         private readonly ICheckSelectedApplication _checkSelectedApplication;
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorListInitializer _constructorListInitializer;
@@ -41,10 +43,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private readonly BuildActiveDocumentCommand _buildActiveDocumentCommand;
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
-        private readonly Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> _getDeleteSelectedFilesFromApiCommand;
-        private readonly Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> _getDeleteSelectedFilesFromFileSystemCommand;
-        private readonly Func<IMDIParent, string, DeploySelectedFilesToApiCommand> _getDeploySelectedFilesToApiCommand;
-        private readonly Func<IMDIParent, string, DeploySelectedFilesToFileSystemCommand> _getDeploySelectedFilesToFileSystemCommand;
         private readonly ExitCommand _exitCommand;
         private readonly FindConstructorCommand _findConstructorCommand;
         private readonly FindConstructorInFilesCommand _findConstructorInFilesCommand;
@@ -60,11 +58,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly FindTextInFilesCommand _findTextInFilesCommand;
         private readonly FindVariableCommand _findVariableCommand;
         private readonly FindVariableInFilesCommand _findVariableInFilesCommand;
-        private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
-        private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
         private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
-        private readonly Func<IMDIParent, string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
         private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
         private readonly ViewFlowDiagramStencilCommand _viewFlowDiagramStencilCommand;
         private readonly ViewMessagesCommand _viewMessagesCommand;
@@ -75,6 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IMessages _messages;
 
         public MDIParent(
+            IApplicationCommandsFactory applicationCommandsFactory,
             ICheckSelectedApplication checkSelectedApplication,
             IConfigurationService configurationService,
             IConstructorListInitializer constructorListInitializer,
@@ -89,10 +85,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             UiNotificationService uiNotificationService,
             BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
-            Func<IMDIParent, string, DeleteSelectedFilesFromApiCommand> getDeleteSelectedFilesFromApiCommand,
-            Func<IMDIParent, string, DeleteSelectedFilesFromFileSystemCommand> getDeleteSelectedFilesFromFileSystemCommand,
-            Func<IMDIParent, string, DeploySelectedFilesToApiCommand> getDeploySelectedFilesToApiCommand,
-            Func<IMDIParent, string, DeploySelectedFilesToFileSystemCommand> getDeploySelectedFilesToFileSystemCommand,
             ExitCommand exitCommand,
             FindConstructorCommand findConstructorCommand,
             FindConstructorInFilesCommand findConstructorInFilesCommand,
@@ -108,11 +100,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             FindTextInFilesCommand findTextInFilesCommand,
             FindVariableCommand findVariableCommand,
             FindVariableInFilesCommand findVariableInFilesCommand,
-            Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
-            Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
             ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
-            Func<IMDIParent, string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand,
             ViewApplicationsStencilCommand viewApplicationsStencilCommand,
             ViewFlowDiagramStencilCommand viewFlowDiagramStencilCommand,
             ViewMessagesCommand viewMessagesCommand,
@@ -120,6 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IMessages messages,
             IProjectExplorer projectExplorer)
         {
+            _applicationCommandsFactory = applicationCommandsFactory;
             _checkSelectedApplication = checkSelectedApplication;
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
@@ -132,10 +122,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _themeManager = themeManager;
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
-            _getDeleteSelectedFilesFromApiCommand = getDeleteSelectedFilesFromApiCommand;
-            _getDeleteSelectedFilesFromFileSystemCommand = getDeleteSelectedFilesFromFileSystemCommand;
-            _getDeploySelectedFilesToApiCommand = getDeploySelectedFilesToApiCommand;
-            _getDeploySelectedFilesToFileSystemCommand = getDeploySelectedFilesToFileSystemCommand;
             _exitCommand = exitCommand;
             _findConstructorCommand = findConstructorCommand;
             _findConstructorInFilesCommand = findConstructorInFilesCommand;
@@ -151,11 +137,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _findTextInFilesCommand = findTextInFilesCommand;
             _findVariableCommand = findVariableCommand;
             _findVariableInFilesCommand = findVariableInFilesCommand;
-            _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
-            _getSetThemeCommand = getSetThemeCommand;
             _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
-            _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
             _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
             _viewFlowDiagramStencilCommand = viewFlowDiagramStencilCommand;
             _viewMessagesCommand = viewMessagesCommand;
@@ -509,7 +492,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         {
             foreach (RadMenuItem radMenuItem in themeMenuItem.Items)
             {
-                AddClickCommand(radMenuItem, _getSetThemeCommand(themeMenuItem, (string)radMenuItem.Tag));
+                AddClickCommand(radMenuItem, _applicationCommandsFactory.GetSetThemeCommand(themeMenuItem, (string)radMenuItem.Tag));
             }
         }
 
@@ -816,42 +799,42 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 applicationList, 
                 radMenuItemFileSystemDeploy, 
                 deployFileSystemApplicationMenuItemList,
-                applicationName => _getDeploySelectedFilesToFileSystemCommand(this, applicationName)
+                applicationName => _applicationCommandsFactory.GetDeploySelectedFilesToFileSystemCommand(applicationName)
             );
             UpdateApplicationMenuItems
             (
                 applicationList, 
                 radMenuItemFileSystemDelete, 
                 deleteFileSystemApplicationMenuItemList,
-                applicationName => _getDeleteSelectedFilesFromFileSystemCommand(this, applicationName)
+                applicationName => _applicationCommandsFactory.GetDeleteSelectedFilesFromFileSystemCommand(applicationName)
             );
             UpdateApplicationMenuItems
             (
                 applicationList, 
                 radMenuItemWebApiDeploy, 
                 deployWebApiApplicationMenuItemList,
-                applicationName => _getDeploySelectedFilesToApiCommand(this, applicationName)
+                applicationName => _applicationCommandsFactory.GetDeploySelectedFilesToApiCommand(applicationName)
             );
             UpdateApplicationMenuItems
             (
                 applicationList, 
                 radMenuItemWebApiDelete, 
                 deleteWebApiApplicationMenuItemList,
-                applicationName => _getDeleteSelectedFilesFromApiCommand(this, applicationName)
+                applicationName => _applicationCommandsFactory.GetDeleteSelectedFilesFromApiCommand(applicationName)
             );
             UpdateApplicationMenuItems
             (
                 applicationList, 
                 radMenuItemValidateRules, 
                 validateApplicationRulesMenuItemList,
-                applicationName => _getValidateSelectedRulesCommand(this, applicationName)
+                applicationName => _applicationCommandsFactory.GetValidateSelectedRulesCommand(applicationName)
             );
             UpdateApplicationMenuItems
             (
                 applicationList, 
                 radMenuItemSelectApplication, 
                 selectedApplicationRulesMenuItemList, 
-                applicationName => _getSetSelectedApplicationCommand(radMenuItemSelectApplication, applicationName), 
+                applicationName => _applicationCommandsFactory.GetSetSelectedApplicationCommand(radMenuItemSelectApplication, applicationName), 
                 false
             );
         }

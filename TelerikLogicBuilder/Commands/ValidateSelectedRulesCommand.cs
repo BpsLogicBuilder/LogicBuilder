@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -14,20 +15,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         private readonly IConfigurationService _configurationService;
         private readonly ITryGetSelectedRules _tryGetSelectedRules;
         private readonly IValidateSelectedRules _validateSelectedRules;
-        private readonly IMDIParent mdiParent;
+        private readonly IMainWindow _mainWindow;
         private readonly string applicationName;
 
         public ValidateSelectedRulesCommand(
             IConfigurationService configurationService,
             ITryGetSelectedRules tryGetSelectedRules,
             IValidateSelectedRules validateSelectedRules,
-            IMDIParent mdiParent,
+            IMainWindow mainWindow,
             string applicationName)
         {
             _configurationService = configurationService;
             _tryGetSelectedRules = tryGetSelectedRules;
             _validateSelectedRules = validateSelectedRules;
-            this.mdiParent = mdiParent;
+            _mainWindow = mainWindow;
             this.applicationName = applicationName;
         }
 
@@ -36,9 +37,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
             if (!_tryGetSelectedRules.Try(applicationName, Strings.selectRulesToValidate, out IList<string> sourceFiles))
                 return;
 
-            await this.mdiParent.RunLoadContextAsync(ValidateSelectedDocuments);
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
 
-            Task ValidateSelectedDocuments(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
+            await mdiParent.RunLoadContextAsync(ValidateSelectedRules);
+
+            Task ValidateSelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _validateSelectedRules.Validate
                 (
                     sourceFiles,

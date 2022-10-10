@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -14,20 +15,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         private readonly IConfigurationService _configurationService;
         private readonly ITryGetSelectedRulesResourcesPairs _tryGetSelectedRulesResourcesPairs;
         private readonly IDeleteSelectedFilesFromFileSystem _deleteSelectedFilesFromFileSystem;
-        private readonly IMDIParent mdiParent;
+        private readonly IMainWindow _mainWindow;
         private readonly string applicationName;
 
         public DeleteSelectedFilesFromFileSystemCommand(
             IConfigurationService configurationService,
             ITryGetSelectedRulesResourcesPairs tryGetSelectedRulesResourcesPairs,
             IDeleteSelectedFilesFromFileSystem deleteSelectedFilesFromFileSystem,
-            IMDIParent mdiParent,
+            IMainWindow mainWindow,
             string applicationName)
         {
             _configurationService = configurationService;
             _tryGetSelectedRulesResourcesPairs = tryGetSelectedRulesResourcesPairs;
             _deleteSelectedFilesFromFileSystem = deleteSelectedFilesFromFileSystem;
-            this.mdiParent = mdiParent;
+            _mainWindow = mainWindow;
             this.applicationName = applicationName;
         }
 
@@ -45,7 +46,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
                 return;
             }
 
-            await this.mdiParent.RunAsync(DeleteSelectedRules);
+            IMDIParent mdiParent = (IMDIParent)_mainWindow.Instance;
+
+            await mdiParent.RunAsync(DeleteSelectedRules);
 
             Task DeleteSelectedRules(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
                 => _deleteSelectedFilesFromFileSystem.Delete
