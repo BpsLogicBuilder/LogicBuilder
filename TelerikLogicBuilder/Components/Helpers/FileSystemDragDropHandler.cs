@@ -40,10 +40,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
             if (_treeViewService.CollectionIncludesNodeAndDescendant(draggingTreeNodes))
                 throw new ArgumentException($"{nameof(draggingTreeNodes)}: {{C45085F5-9509-4BA2-B39C-FFF633B301FC}}");
 
+            if (_treeViewService.IsFileNode(destinationNode))
+                destinationNode = destinationNode.Parent;
+
             try
             {
                 foreach (RadTreeNode draggingTreeNode in draggingTreeNodes)
                 {
+                    RadTreeNode draggingTreeNodeParent = draggingTreeNode.Parent;
+                    if (string.Compare(destinationNode.Name, draggingTreeNodeParent.Name, StringComparison.InvariantCultureIgnoreCase) == 0)
+                        continue;
+
                     if (_treeViewService.IsFileNode(draggingTreeNode))
                     {
                         MoveFile(destinationNode, draggingTreeNode);
@@ -70,11 +77,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
 
         private void MoveFile(RadTreeNode destinationNode, RadTreeNode draggingTreeNode)
         {
+            if (_treeViewService.IsFileNode(destinationNode))
+                throw new ArgumentException($"{nameof(destinationNode)}: {{2E9DF5AC-D019-4807-940B-FB2B73648A69}}");
+
             string newFileFullName = _pathHelper.CombinePaths
             (
-                _treeViewService.IsFileNode(destinationNode)
-                    ? destinationNode.Parent.Name
-                    : destinationNode.Name,
+                destinationNode.Name,
                 _pathHelper.GetFileName(draggingTreeNode.Name)
             );
 
@@ -90,11 +98,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
 
         private void MoveFolder(RadTreeNode destinationNode, RadTreeNode draggingTreeNode)
         {
+            if (_treeViewService.IsFileNode(destinationNode))
+                throw new ArgumentException($"{nameof(destinationNode)}: {{1C6B2F71-0E33-40D2-8542-523A7FC704C9}}");
+
             string newFolderFullName = _pathHelper.CombinePaths
             (
-                _treeViewService.IsFileNode(destinationNode)
-                    ? destinationNode.Parent.Name
-                    : destinationNode.Name,
+                destinationNode.Name,
                 _pathHelper.GetFolderName(draggingTreeNode.Name)
             );
 
@@ -108,7 +117,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
                 _mainWindow.DocumentsExplorer.ExpandedNodes.Add(destinationNode.Name, destinationNode.Text);
 
             if (_mainWindow.DocumentsExplorer.ExpandedNodes.ContainsKey(draggingTreeNode.Name))
+            {
                 _mainWindow.DocumentsExplorer.ExpandedNodes.Remove(draggingTreeNode.Name);
+                _mainWindow.DocumentsExplorer.ExpandedNodes.Add(newFolderFullName, draggingTreeNode.Text);
+            }
         }
     }
 }
