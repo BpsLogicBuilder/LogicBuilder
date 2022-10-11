@@ -15,24 +15,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class LoadProjectProperties : ILoadProjectProperties
     {
-        private readonly IEncryption _encryption;
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly ICreateProjectProperties _createProjectProperties;
-        private readonly IMainWindow _mainWindow;
-        private readonly IPathHelper _pathHelper;
-        private readonly IXmlValidator _xmlValidator;
         private readonly IApplicationXmlParser _applicationXmlParser;
         private readonly IContextProvider _contextProvider;
+        private readonly ICreateProjectProperties _createProjectProperties;
+        private readonly IEncryption _encryption;
+        private readonly IPathHelper _pathHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlValidator _xmlValidator;
 
-        public LoadProjectProperties(IContextProvider contextProvider, ICreateProjectProperties createProjectProperties, IApplicationXmlParser applicationXmlParser, IXmlValidator xmlValidator)
+        public LoadProjectProperties(
+            IApplicationXmlParser applicationXmlParser,
+            IContextProvider contextProvider,
+            ICreateProjectProperties createProjectProperties,
+            IEncryption encryption,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlValidator xmlValidator)
         {
-            _encryption = contextProvider.Encryption;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _createProjectProperties = createProjectProperties;
-            _mainWindow = contextProvider.MainWindow;
-            _pathHelper = contextProvider.PathHelper;
             _applicationXmlParser = applicationXmlParser;
             _contextProvider = contextProvider;
+            _createProjectProperties = createProjectProperties;
+            _encryption = encryption;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidator;
         }
 

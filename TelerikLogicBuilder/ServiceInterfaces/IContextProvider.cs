@@ -7,7 +7,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IContextProvider
     {
-        IEncryption Encryption { get; }
         IEnumHelper EnumHelper { get; }
         IExceptionHelper ExceptionHelper { get; }
         IFileIOHelper FileIOHelper { get; }

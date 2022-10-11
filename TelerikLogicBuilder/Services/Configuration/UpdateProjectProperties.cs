@@ -13,19 +13,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class UpdateProjectProperties : IUpdateProjectProperties
     {
+        private readonly IContextProvider _contextProvider;
         private readonly IEncryption _encryption;
+        private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlValidator _xmlValidator;
-        private readonly IFileIOHelper _fileIOHelper;
-        private readonly IContextProvider _contextProvider;
 
-        public UpdateProjectProperties(IContextProvider contextProvider, IXmlValidator xmlValidator)
+        public UpdateProjectProperties(
+            IContextProvider contextProvider,
+            IEncryption encryption,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlValidator xmlValidator)
         {
-            _encryption = contextProvider.Encryption;
-            _pathHelper = contextProvider.PathHelper;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _contextProvider = contextProvider;
+            _encryption = encryption;
+            _pathHelper = pathHelper;
             _xmlValidator = xmlValidator;
+            _fileIOHelper = fileIOHelper;
+            _contextProvider = contextProvider;
         }
 
         public ProjectProperties Update(string fullPath, Dictionary<string, Application> applicationList, HashSet<string> connectorObjectTypes)

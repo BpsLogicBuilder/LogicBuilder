@@ -9,7 +9,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     internal class ContextProvider : IContextProvider
     {
         public ContextProvider(
-            IEncryption encryption,
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
@@ -25,7 +24,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             IVariableHelper variableHelper,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            Encryption = encryption;
             EnumHelper = enumHelper;
             ExceptionHelper = exceptionHelper;
             FileIOHelper = fileIOHelper;
@@ -42,7 +40,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             XmlDocumentHelpers = xmlDocumentHelpers;
         }
 
-        public IEncryption Encryption { get; }
         public IEnumHelper EnumHelper { get; }
         public IExceptionHelper ExceptionHelper { get; }
         public IFileIOHelper FileIOHelper { get; }

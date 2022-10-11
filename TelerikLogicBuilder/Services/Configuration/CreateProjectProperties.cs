@@ -14,18 +14,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class CreateProjectProperties : ICreateProjectProperties
     {
+        private readonly IContextProvider _contextProvider;
         private readonly IEncryption _encryption;
+        private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlValidator _xmlValidator;
-        private readonly IFileIOHelper _fileIOHelper;
-        private readonly IContextProvider _contextProvider;
 
-        public CreateProjectProperties(IContextProvider contextProvider, IXmlValidator xmlValidator)
+        public CreateProjectProperties(
+            IContextProvider contextProvider,
+            IEncryption encryption,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlValidator xmlValidator)
         {
-            _encryption = contextProvider.Encryption;
-            _pathHelper = contextProvider.PathHelper;
-            _fileIOHelper = contextProvider.FileIOHelper;
             _contextProvider = contextProvider;
+            _encryption = encryption;
+            _fileIOHelper = fileIOHelper;
+            _pathHelper = pathHelper;
             _xmlValidator = xmlValidator;
         }
 
