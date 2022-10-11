@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -13,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddSingleton<IDiagramSearcher, DiagramSearcher>()
+                .AddSingleton<IDocumentEditorFactory, DocumentEditorFactory>()
                 .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
                 .AddTransient<FindCell>()
                 .AddTransient<FindConstructorInCell>()

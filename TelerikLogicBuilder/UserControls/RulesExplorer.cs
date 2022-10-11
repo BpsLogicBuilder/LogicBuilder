@@ -172,7 +172,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void RadTreeView1_NodeExpandedChanged(object sender, RadTreeViewEventArgs e)
         {
-            if (_treeViewService.IsRootNode(e.Node))
+            if (_treeViewService.IsRootNode(e.Node)
+                || _treeViewService.IsFileNode(e.Node))/*NodeExpandedChanged runs for file nodes on double click*/
                 return;
 
             if (e.Node.Expanded)

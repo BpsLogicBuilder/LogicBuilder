@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -16,29 +17,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
     internal class OpenFileOperations : IOpenFileOperations
     {
         private readonly ICheckVisioConfiguration _checkVisioConfiguration;
+        private readonly IDocumentEditorFactory _documentEditorFactory;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
-        private readonly Func<string, bool, TableControl> _getTableControl;
-        private readonly Func<string, bool, VisioControl> _getVisioControl;
 
         public OpenFileOperations(
             ICheckVisioConfiguration checkVisioConfiguration,
+            IDocumentEditorFactory documentEditorFactory,
             IFileIOHelper fileIOHelper,
             IExceptionHelper exceptionHelper,
             IMainWindow mainWindow,
-            IPathHelper pathHelper,
-            Func<string, bool, TableControl> getTableControl,
-            Func<string, bool, VisioControl> getVisioControl)
+            IPathHelper pathHelper)
         {
             _checkVisioConfiguration = checkVisioConfiguration;
+            _documentEditorFactory = documentEditorFactory;
             _fileIOHelper = fileIOHelper;
             _exceptionHelper = exceptionHelper;
             _mainWindow = mainWindow;
             _pathHelper = pathHelper;
-            _getTableControl = getTableControl;
-            _getVisioControl = getVisioControl;
         }
 
         public void OpenTableFile(string fileFullname)
@@ -46,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             if (GetOpenFile(fileFullname) != null)
                 return;
 
-            OpenFile(fileFullname, _getTableControl, ((IMDIParent)_mainWindow.Instance).AddTableControl);
+            OpenFile(fileFullname, _documentEditorFactory.GetTableControl, ((IMDIParent)_mainWindow.Instance).AddTableControl);
         }
 
         public void OpenVisioFile(string fileFullname)
@@ -66,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             try
             {
-                OpenFile(fileFullname, _getVisioControl, ((IMDIParent)_mainWindow.Instance).AddVisioControl);
+                OpenFile(fileFullname, _documentEditorFactory.GetVisioControl, ((IMDIParent)_mainWindow.Instance).AddVisioControl);
             }
             catch (COMException ex)
             {
