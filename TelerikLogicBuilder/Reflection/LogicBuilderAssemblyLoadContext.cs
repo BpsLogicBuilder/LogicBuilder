@@ -7,15 +7,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
     internal class LogicBuilderAssemblyLoadContext : AssemblyLoadContext
     {
         private readonly string activityAssemblyFullName;
-        private readonly AssemblyDependencyResolver _resolver;
+        private readonly AssemblyDependencyResolver? _resolver;
 
-        #region Constants
-        #endregion Constants
-
-
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public LogicBuilderAssemblyLoadContext(string activityAssemblyFullName) : base(isCollectible: true)
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.activityAssemblyFullName = activityAssemblyFullName;
             if (File.Exists(this.activityAssemblyFullName))
