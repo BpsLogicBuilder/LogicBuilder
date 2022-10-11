@@ -2,7 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Drawing;
@@ -16,19 +16,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal partial class DialogFormMessageControl : UserControl
     {
+        private readonly IDialogFormMessageCommandFactory _dialogFormMessageCommandFactory;
         private readonly IImageListService _imageImageListService;
-        private readonly Func<RadLabel, CopyToClipboardCommand> _getCopyToClipboardCommand;
-        private readonly Func<RadLabel, OpenInTextViewerCommand> _getOpenInTextViewerCommand;
 
         private readonly RadMenuItem mnuItemCopy = new(Strings.mnuItemCopyToClipboardText) { ImageIndex = ImageIndexes.COPYIMAGEINDEX };
         private readonly RadMenuItem mnuItemOpen = new(Strings.mnuItemOpenInTextViewerText) { ImageIndex = ImageIndexes.OPENIMAGEINDEX };
         private readonly RadContextMenuManager radContextMenuManager;
 
-        public DialogFormMessageControl(IImageListService imageImageListService, Func<RadLabel, CopyToClipboardCommand> getCopyToClipboardCommand, Func<RadLabel, OpenInTextViewerCommand> getOpenInTextViewerCommand)
+        public DialogFormMessageControl(
+            IDialogFormMessageCommandFactory dialogFormMessageCommandFactory,
+            IImageListService imageImageListService)
         {
+            _dialogFormMessageCommandFactory = dialogFormMessageCommandFactory;
             _imageImageListService = imageImageListService;
-            _getCopyToClipboardCommand = getCopyToClipboardCommand;
-            _getOpenInTextViewerCommand = getOpenInTextViewerCommand;
             radContextMenuManager = new RadContextMenuManager();
             InitializeComponent();
             Initialize();
@@ -77,8 +77,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemCopy, _getCopyToClipboardCommand(radLabelMessages));
-            AddClickCommand(mnuItemOpen, _getOpenInTextViewerCommand(radLabelMessages));
+            AddClickCommand(mnuItemCopy, _dialogFormMessageCommandFactory.GetCopyToClipboardCommand(radLabelMessages));
+            AddClickCommand(mnuItemOpen, _dialogFormMessageCommandFactory.GetOpenInTextViewerCommand(radLabelMessages));
 
             RadContextMenu radContextMenu = new()
             {
