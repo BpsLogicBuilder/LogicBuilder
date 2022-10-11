@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         {
             _xmlElementValidator = xmlElementValidator;
             _decisionDataParser = xmlElementValidator.DecisionDataParser;
-            _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
+            _configurationService = xmlElementValidator.ConfigurationService;
         }
 
         //ElementValidator properties are created in the XmlElementValidator constructor.

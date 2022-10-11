@@ -39,10 +39,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             _functionGenericsConfigrationValidator = xmlElementValidator.FunctionGenericsConfigrationValidator;
             _genericFunctionHelper = xmlElementValidator.GenericFunctionHelper;
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
+            _configurationService = xmlElementValidator.ConfigurationService;
             _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
-            _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
+            _exceptionHelper = xmlElementValidator.ExceptionHelper;
+            _typeHelper = xmlElementValidator.TypeHelper;
             _variableHelper = xmlElementValidator.ContextProvider.VariableHelper;
         }
 

@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation
@@ -12,6 +13,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         ICallElementValidator CallElementValidator { get; }
         IConditionsDataParser ConditionsDataParser { get; }
         IConditionsElementValidator ConditionsElementValidator { get; }
+        IConfigurationService ConfigurationService { get; }
         IConnectorDataParser ConnectorDataParser { get; }
         IConnectorElementValidator ConnectorElementValidator { get; }
         IConstructorDataParser ConstructorDataParser { get; }
@@ -23,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IDecisionElementValidator DecisionElementValidator { get; }
         IDecisionsDataParser DecisionsDataParser { get; }
         IDecisionsElementValidator DecisionsElementValidator { get; }
+        IExceptionHelper ExceptionHelper { get; }
         IFunctionsDataParser FunctionsDataParser { get; }
         IFunctionElementValidator FunctionElementValidator { get; }
         IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
@@ -49,6 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
         IRetractFunctionDataParser RetractFunctionDataParser { get; }
         IRetractFunctionElementValidator RetractFunctionElementValidator { get; }
         IRuleChainingUpdateFunctionElementValidator RuleChainingUpdateFunctionElementValidator { get; }
+        ITypeHelper TypeHelper { get; }
         ITypeLoadHelper TypeLoadHelper { get; }
         IVariableDataParser VariableDataParser { get; }
         IVariableValueDataParser VariableValueDataParser { get; }

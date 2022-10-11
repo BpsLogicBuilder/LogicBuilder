@@ -13,17 +13,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class UpdateFragments : IUpdateFragments
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IPathHelper _pathHelper;
-        private readonly IFileIOHelper _fileIOHelper;
-        private readonly IXmlValidator _xmlValidator;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFileIOHelper _fileIOHelper;
+        private readonly IPathHelper _pathHelper;
+        private readonly IXmlValidator _xmlValidator;
 
-        public UpdateFragments(IContextProvider contextProvider, IXmlValidator xmlValidator)
+        public UpdateFragments(
+            IConfigurationService configurationService,
+            IExceptionHelper exceptionHelper,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlValidator xmlValidator)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _configurationService = configurationService;
+            _exceptionHelper = exceptionHelper;
+            _fileIOHelper = fileIOHelper;
+            _pathHelper = pathHelper;
             _xmlValidator = xmlValidator;
         }
 

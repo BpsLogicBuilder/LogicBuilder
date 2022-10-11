@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
@@ -8,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
     internal class XmlElementValidator : IXmlElementValidator
     {
         public XmlElementValidator(IContextProvider contextProvider,
+                                   IConfigurationService configurationService,
                                    IAnyParametersHelper anyParametersHelper,
                                    IAssertFunctionDataParser assertFunctionDataParser,
                                    IConditionsDataParser conditionsDataParser,
@@ -17,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IConstructorTypeHelper constructorTypeHelper,
                                    IDecisionDataParser decisionDataParser,
                                    IDecisionsDataParser decisionsDataParser,
+                                   IExceptionHelper exceptionHelper,
                                    IFunctionDataParser functionDataParser,
                                    IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
                                    IFunctionsDataParser functionsDataParser,
@@ -24,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                                    IGenericFunctionHelper genericFunctionHelper,
                                    IMetaObjectDataParser metaObjectDataParser,
                                    IRetractFunctionDataParser retractFunctionDataParser,
+                                   ITypeHelper typeHelper,
                                    ITypeLoadHelper typeLoadHelper,
                                    IVariableDataParser variableDataParser,
                                    IVariableValueDataParser variableValueDataParser)
@@ -31,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             #region Injected 
             //Must be assigned first because they may be required in some of the manually initialized constructors.
             ContextProvider = contextProvider;
+            ConfigurationService = configurationService;
             AssertFunctionDataParser = assertFunctionDataParser;
             AnyParametersHelper = anyParametersHelper;
             ConditionsDataParser = conditionsDataParser;
@@ -40,6 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             ConstructorTypeHelper = constructorTypeHelper;
             DecisionDataParser = decisionDataParser;
             DecisionsDataParser = decisionsDataParser;
+            ExceptionHelper = exceptionHelper;
             FunctionDataParser = functionDataParser;
             FunctionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
             FunctionsDataParser = functionsDataParser;
@@ -47,6 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             GenericFunctionHelper = genericFunctionHelper;
             MetaObjectDataParser = metaObjectDataParser;
             RetractFunctionDataParser = retractFunctionDataParser;
+            TypeHelper = typeHelper;
             TypeLoadHelper = typeLoadHelper;
             VariableDataParser = variableDataParser; 
             VariableValueDataParser = variableValueDataParser;
@@ -85,16 +92,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public IAnyParametersHelper AnyParametersHelper { get; }
         public IAssertFunctionDataParser AssertFunctionDataParser { get; }
         public IConditionsDataParser ConditionsDataParser { get; }
+        public IConfigurationService ConfigurationService { get; }
+        public IConnectorDataParser ConnectorDataParser { get; }
         public IConstructorDataParser ConstructorDataParser { get; }
         public IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator { get; }
         public IConstructorTypeHelper ConstructorTypeHelper { get; }
         public IContextProvider ContextProvider { get; }
+        public IExceptionHelper ExceptionHelper { get; }
         public IFunctionDataParser FunctionDataParser { get; }
         public IFunctionGenericsConfigrationValidator FunctionGenericsConfigrationValidator { get; }
         public IFunctionsDataParser FunctionsDataParser { get; }
         public IGenericConstructorHelper GenericConstructorHelper { get; }
         public IGenericFunctionHelper GenericFunctionHelper { get; }
         public IRetractFunctionDataParser RetractFunctionDataParser { get; }
+        public ITypeHelper TypeHelper { get; }
         public ITypeLoadHelper TypeLoadHelper { get; }
         public IVariableDataParser VariableDataParser { get; }
 
@@ -105,8 +116,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         public ICallElementValidator CallElementValidator { get; }
 
         public IConditionsElementValidator ConditionsElementValidator { get; }
-
-        public IConnectorDataParser ConnectorDataParser { get; }
 
         public IConnectorElementValidator ConnectorElementValidator { get; }
 

@@ -13,22 +13,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class UpdateFunctions : IUpdateFunctions
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IPathHelper _pathHelper;
-        private readonly IFileIOHelper _fileIOHelper;
         private readonly IEncryption _encryption;
+        private readonly IFileIOHelper _fileIOHelper;
+        private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public UpdateFunctions(IContextProvider contextProvider, IXmlValidator xmlValidator)
+        public UpdateFunctions(
+            IConfigurationService configurationService,
+            IEncryption encryption,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlValidator xmlValidator,
+            IExceptionHelper exceptionHelper)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _encryption = contextProvider.Encryption;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _configurationService = configurationService;
+            _encryption = encryption;
+            _fileIOHelper = fileIOHelper;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidator;
+            _exceptionHelper = exceptionHelper;
         }
 
         public void Update(XmlDocument xmlDocument)

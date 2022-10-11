@@ -25,21 +25,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 {
     internal class RulesAssembler : IRulesAssembler
     {
-        private readonly IExceptionHelper _exceptionHelper;
         private readonly IConfigurationService _configurationService;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly ILongStringManager _longStringManager;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public RulesAssembler(IContextProvider contextProvider, ILongStringManager longStringManager)
+        public RulesAssembler(
+            IConfigurationService configurationService,
+            IExceptionHelper exceptionHelper,
+            IFileIOHelper fileIOHelper,
+            ILongStringManager longStringManager,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _configurationService = contextProvider.ConfigurationService;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _pathHelper = contextProvider.PathHelper;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _configurationService = configurationService;
+            _exceptionHelper = exceptionHelper;
+            _fileIOHelper = fileIOHelper;
             _longStringManager = longStringManager;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public Task AssembleResources(IList<string> sourceFiles, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)

@@ -17,7 +17,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class AssertFunctionElementValidator : IAssertFunctionElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IAssertFunctionDataParser _assertFunctionDataParser;
         private readonly IConfigurationService _configurationService;
         private readonly IEnumHelper _enumHelper;
@@ -25,13 +24,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
         private readonly IVariableValueDataParser _variableValueDataParser;
+        private readonly IXmlElementValidator _xmlElementValidator;
 
         public AssertFunctionElementValidator(IXmlElementValidator xmlElementValidator)
         {
             _xmlElementValidator = xmlElementValidator;
-            _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
+            _configurationService = xmlElementValidator.ConfigurationService;
             _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
+            _exceptionHelper = xmlElementValidator.ExceptionHelper;
             _assertFunctionDataParser = xmlElementValidator.AssertFunctionDataParser;
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
             _variableDataParser = xmlElementValidator.VariableDataParser;

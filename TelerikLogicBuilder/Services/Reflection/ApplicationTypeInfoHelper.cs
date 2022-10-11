@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -13,26 +14,31 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Reflection
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 {
-    internal class ApplicationTypeInfoUtility
+    internal class ApplicationTypeInfoHelper : IApplicationTypeInfoHelper
     {
+        private readonly IAssemblyHelper _assemblyHelper;
+        private readonly IAssemblyLoader _assemblyLoader;
         private readonly IConfigurationService _configurationService;
         private readonly IPathHelper _pathHelper;
-        private readonly IAssemblyLoader _assemblyLoader;
-        private readonly IAssemblyHelper _assemblyHelper;
         private readonly ITypeHelper _typeHelper;
 
-        public ApplicationTypeInfoUtility(IContextProvider contextProvider, IAssemblyLoader assemblyLoader, IAssemblyHelper assemblyHelper)
+        public ApplicationTypeInfoHelper(
+            IAssemblyHelper assemblyHelper,
+            IAssemblyLoader assemblyLoader,
+            IConfigurationService configurationService,
+            IPathHelper pathHelper,
+            ITypeHelper typeHelper)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _assemblyLoader = assemblyLoader;
             _assemblyHelper = assemblyHelper;
+            _assemblyLoader = assemblyLoader;
+            _configurationService = configurationService;
+            _pathHelper = pathHelper;
+            _typeHelper = typeHelper;
         }
 
-        internal ApplicationTypeInfo CreateApplicationTypeInfo()
+        public ApplicationTypeInfo CreateApplicationTypeInfo()
         {
             Application application = _configurationService.GetSelectedApplication();
             Assembly? activityAssembly;
@@ -129,7 +135,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
                 return GetUnavailableApplicationTypeInfo();
             }
 
-            ApplicationTypeInfo GetUnavailableApplicationTypeInfo() 
+            ApplicationTypeInfo GetUnavailableApplicationTypeInfo()
                 => new
                 (
                     _pathHelper,

@@ -16,16 +16,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
     internal class FunctionValidationHelper : IFunctionValidationHelper
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IVariableHelper _variableHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IVariableHelper _variableHelper;
 
-        public FunctionValidationHelper(IContextProvider contextProvider)
+        public FunctionValidationHelper(
+            IConfigurationService configurationService,
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            IVariableHelper variableHelper)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _variableHelper = contextProvider.VariableHelper;
-            _enumHelper = contextProvider.EnumHelper;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _configurationService = configurationService;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _variableHelper = variableHelper;
         }
 
         public void ValidateFunctionIndirectReferenceName(ValidIndirectReference referenceDefinition, string referenceName, string functionName, ICollection<string> errors)

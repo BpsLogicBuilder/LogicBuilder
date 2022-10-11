@@ -58,6 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             string moduleName,
             ApplicationTypeInfo application,
             IDictionary<string, string> resourceStrings,
+            IConfigurationService configurationService,
             IContextProvider contextProvider,
             IAnyParametersHelper anyParametersHelper,
             IConstructorDataParser constructorDataParser,
@@ -82,7 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             this.resourceStrings = resourceStrings;
             this.moduleName = moduleName;
             _anyParametersHelper = anyParametersHelper;
-            _configurationService = contextProvider.ConfigurationService;
+            _configurationService = configurationService;
             _enumHelper = contextProvider.EnumHelper;
             _exceptionHelper = contextProvider.ExceptionHelper;
             _functionHelper = contextProvider.FunctionHelper;

@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +7,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 {
     internal class ApplicationTypeInfoManager : IApplicationTypeInfoManager
     {
-        private readonly IContextProvider _contextProvider;
-        private readonly IAssemblyLoader _assemblyLoader;
-        private readonly IAssemblyHelper _assemblyHelper;
+        private readonly IApplicationTypeInfoHelper _applicationTypeInfoHelper;
 
         private IDictionary<string, ApplicationTypeInfo>? _applicationInfos = new Dictionary<string, ApplicationTypeInfo>();
 
-        public ApplicationTypeInfoManager(IContextProvider contextProvider, IAssemblyLoader assemblyLoader, IAssemblyHelper assemblyHelper)
+        public ApplicationTypeInfoManager(IApplicationTypeInfoHelper applicationTypeInfoHelper)
         {
-            _contextProvider = contextProvider;
-            _assemblyLoader = assemblyLoader;
-            _assemblyHelper = assemblyHelper;
+            _applicationTypeInfoHelper = applicationTypeInfoHelper;
         }
 
         public bool HasApplications => _applicationInfos?.All(application => application.Value.AssemblyAvailable) == true;
@@ -54,11 +49,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         }
 
         private ApplicationTypeInfo CreateApplicationTypeInfo() 
-            => new ApplicationTypeInfoUtility
-            (
-                _contextProvider,
-                _assemblyLoader,
-                _assemblyHelper
-            ).CreateApplicationTypeInfo();
+            => _applicationTypeInfoHelper.CreateApplicationTypeInfo();
     }
 }

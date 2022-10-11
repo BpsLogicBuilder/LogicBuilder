@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -10,12 +11,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
     internal class MergeShapeValidator : IMergeShapeValidator
     {
+        private readonly IConfigurationService _configurationService;
         private readonly IContextProvider _contextProvider;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IShapeHelper _shapeHelper;
 
-        public MergeShapeValidator(IContextProvider contextProvider, IShapeHelper shapeHelper)
+        public MergeShapeValidator(
+            IConfigurationService configurationService,
+            IContextProvider contextProvider,
+            IExceptionHelper exceptionHelper,
+            IShapeHelper shapeHelper)
         {
+            _configurationService = configurationService;
             _contextProvider = contextProvider;
+            _exceptionHelper = exceptionHelper;
             _shapeHelper = shapeHelper;
         }
 
@@ -27,7 +36,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 page,
                 shape,
                 validationErrors,
+                _configurationService,
                 _contextProvider,
+                _exceptionHelper,
                 _shapeHelper
             ).Validate();
         }

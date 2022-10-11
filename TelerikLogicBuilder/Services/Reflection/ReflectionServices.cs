@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IApplicationTypeInfoManager, ApplicationTypeInfoManager>()
                 .AddSingleton<IAssemblyHelper, AssemblyHelper>()
                 .AddSingleton<IAssemblyLoader, AssemblyLoader>()
+                .AddSingleton<IApplicationTypeInfoHelper, ApplicationTypeInfoHelper>()
                 .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
                 .AddSingleton<IReflectionHelper, ReflectionHelper>();
     }

@@ -142,6 +142,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 this.ModuleName,
                 this.Application,
                 this.ResourceStrings,
+                configurationService,
                 contextProvider,
                 anyParametersHelper,
                 constructorDataParser,

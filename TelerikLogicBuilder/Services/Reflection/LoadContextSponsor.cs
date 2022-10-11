@@ -16,24 +16,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 {
     internal class LoadContextSponsor : ILoadContextSponsor
     {
-        private readonly IPathHelper _pathHelper;
+        private readonly IApplicationTypeInfoManager _applicationTypeInfoService;
+        private readonly IAssemblyLoadContextManager _assemblyLoadContextService;
         private readonly IConfigurationService _configurationService;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IMainWindow _mainWindow;
-        private readonly IAssemblyLoadContextManager _assemblyLoadContextService;
-        private readonly IApplicationTypeInfoManager _applicationTypeInfoService;
+        private readonly IPathHelper _pathHelper;
 
         public LoadContextSponsor(
-            IContextProvider contextProvider,
+            IApplicationTypeInfoManager applicationTypeInfoService,
             IAssemblyLoadContextManager assemblyLoadContextService,
-            IApplicationTypeInfoManager applicationTypeInfoService)
+            IConfigurationService configurationService,
+            IFileIOHelper fileIOHelper,
+            IMainWindow mainWindow,
+            IPathHelper pathHelper)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _mainWindow = contextProvider.MainWindow;
-            _pathHelper = contextProvider.PathHelper;
-            _assemblyLoadContextService = assemblyLoadContextService;
             _applicationTypeInfoService = applicationTypeInfoService;
+            _assemblyLoadContextService = assemblyLoadContextService;
+            _configurationService = configurationService;
+            _fileIOHelper = fileIOHelper;
+            _mainWindow = mainWindow;
+            _pathHelper = pathHelper;
         }
 
         private bool AssemblyLoadNeeded

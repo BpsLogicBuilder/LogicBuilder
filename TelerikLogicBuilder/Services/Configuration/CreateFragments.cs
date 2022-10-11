@@ -15,17 +15,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class CreateFragments : ICreateFragments
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IPathHelper _pathHelper;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
 
-        public CreateFragments(IContextProvider contextProvider, IXmlValidator xmlValidator)
+        public CreateFragments(
+            IConfigurationService configurationService,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlValidator xmlValidator)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _configurationService = configurationService;
+            _fileIOHelper = fileIOHelper;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidator;
         }
 

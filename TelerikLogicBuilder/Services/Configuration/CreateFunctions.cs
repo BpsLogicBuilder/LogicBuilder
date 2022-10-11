@@ -14,23 +14,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class CreateFunctions : ICreateFunctions
     {
-        private readonly IConfigurationService _configurationService;
-        private readonly IPathHelper _pathHelper;
-        private readonly IFileIOHelper _fileIOHelper;
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEncryption _encryption;
-        private readonly IXmlValidator _xmlValidator;
         private readonly IBuiltInFunctionsLoader _builtInFunctionsLoader;
+        private readonly IConfigurationService _configurationService;
+        private readonly IEncryption _encryption;
+        private readonly IFileIOHelper _fileIOHelper;
+        private readonly IPathHelper _pathHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlValidator _xmlValidator;
 
-        public CreateFunctions(IContextProvider contextProvider, IXmlValidator xmlValidator, IBuiltInFunctionsLoader builtInFunctionsLoader)
+        public CreateFunctions(
+            IBuiltInFunctionsLoader builtInFunctionsLoader,
+            IConfigurationService configurationService,
+            IEncryption encryption,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlValidator xmlValidator)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _encryption = contextProvider.Encryption;
-            _xmlValidator = xmlValidator;
             _builtInFunctionsLoader = builtInFunctionsLoader;
+            _configurationService = configurationService;
+            _encryption = encryption;
+            _fileIOHelper = fileIOHelper;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlValidator = xmlValidator;
         }
 
         public XmlDocument Create()

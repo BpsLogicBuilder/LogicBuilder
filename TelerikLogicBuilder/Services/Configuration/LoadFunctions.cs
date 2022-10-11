@@ -15,25 +15,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class LoadFunctions : ILoadFunctions
     {
+        private readonly IBuiltInFunctionsLoader _builtInFunctionsLoader;
         private readonly IConfigurationService _configurationService;
+        private readonly ICreateFunctions _createFunctions;
+        private readonly IEncryption _encryption;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEncryption _encryption;
         private readonly IXmlValidator _xmlValidator;
-        private readonly ICreateFunctions _createFunctions;
-        private readonly IBuiltInFunctionsLoader _builtInFunctionsLoader;
-        private readonly IMainWindow _mainWindow;
 
-        public LoadFunctions(IContextProvider contextProvider, IXmlValidator xmlValidator, IBuiltInFunctionsLoader builtInFunctionsLoader, ICreateFunctions createFunctions, IMainWindow mainWindow)
+        public LoadFunctions(
+            IBuiltInFunctionsLoader builtInFunctionsLoader,
+            IConfigurationService configurationService,
+            ICreateFunctions createFunctions,
+            IEncryption encryption,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlValidator xmlValidator)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _encryption = contextProvider.Encryption;
-            _xmlValidator = xmlValidator;
             _builtInFunctionsLoader = builtInFunctionsLoader;
+            _configurationService = configurationService;
             _createFunctions = createFunctions;
-            _mainWindow = mainWindow;
+            _encryption = encryption;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlValidator = xmlValidator;
         }
 
         public XmlDocument Load()

@@ -13,19 +13,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class UpdateVariables : IUpdateVariables
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IPathHelper _pathHelper;
-        private readonly IFileIOHelper _fileIOHelper;
         private readonly IEncryption _encryption;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFileIOHelper _fileIOHelper;
+        private readonly IPathHelper _pathHelper;
         private readonly IXmlValidator _xmlValidator;
 
-        public UpdateVariables(IContextProvider contextProvider, IXmlValidator xmlValidator)
+        public UpdateVariables(
+            IConfigurationService configurationService,
+            IEncryption encryption,
+            IExceptionHelper exceptionHelper,
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlValidator xmlValidator)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _fileIOHelper = contextProvider.FileIOHelper;
-            _encryption = contextProvider.Encryption;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _configurationService = configurationService;
+            _encryption = encryption;
+            _exceptionHelper = exceptionHelper;
+            _fileIOHelper = fileIOHelper;
+            _pathHelper = pathHelper;
             _xmlValidator = xmlValidator;
         }
 

@@ -25,13 +25,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
             Page page,
             Shape shape,
             List<ResultMessage> validationErrors,
+            IConfigurationService configurationService,
             IContextProvider contextProvider,
             IModuleDataParser moduleDataParser,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper)
             : base(sourceFile, page, shape, validationErrors, contextProvider)
         {
-            _configurationService = contextProvider.ConfigurationService;
+            _configurationService = configurationService;
             _exceptionHelper = contextProvider.ExceptionHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
             _moduleDataParser = moduleDataParser;

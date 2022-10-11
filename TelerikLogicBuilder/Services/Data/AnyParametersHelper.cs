@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
         {//float.TryParse and double.TryParse will succeed and round for higher precision numbers
          //decimal fails to parse 1.7976931348623157E+308 where double succeeds
          //Investigation suggests that TryParse cannot be used to distinguish between float, double and decimal
-         //I can't find a case where double.TryParse returns false and decimal.TryParse retirns true so we'll use double
+         //I can't find a case where double.TryParse returns false and decimal.TryParse returns true so we'll use double
          //where the floating point type is undecided.
             [typeof(sbyte)] = new List<Type> { typeof(short), typeof(int), typeof(long), typeof(double) },
             [typeof(byte)] = new List<Type> { typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(double) },
@@ -48,15 +48,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             [typeof(double)] = new List<Type> { }
         };
 
-        public AnyParametersHelper(IContextProvider contextProvider, IConstructorDataParser constructorDataParser, IFunctionDataParser functionDataParser, IGenericConstructorHelper genericConstructorHelper, IGenericFunctionHelper genericFunctionHelper, ITypeLoadHelper typeLoadHelper, IVariableDataParser variableDataParser)
+        public AnyParametersHelper(
+            IConfigurationService configurationService,
+            IConstructorDataParser constructorDataParser,
+            IExceptionHelper exceptionHelper,
+            IFunctionDataParser functionDataParser,
+            IGenericConstructorHelper genericConstructorHelper,
+            IGenericFunctionHelper genericFunctionHelper,
+            ITypeHelper typeHelper,
+            ITypeLoadHelper typeLoadHelper,
+            IVariableDataParser variableDataParser)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _typeHelper = contextProvider.TypeHelper;
+            _configurationService = configurationService;
             _constructorDataParser = constructorDataParser;
+            _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
             _genericConstructorHelper = genericConstructorHelper;
             _genericFunctionHelper = genericFunctionHelper;
+            _typeHelper = typeHelper;
             _typeLoadHelper = typeLoadHelper;
             _variableDataParser = variableDataParser;
         }

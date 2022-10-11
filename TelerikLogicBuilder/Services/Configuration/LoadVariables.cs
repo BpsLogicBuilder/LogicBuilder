@@ -16,21 +16,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class LoadVariables : ILoadVariables
     {
         private readonly IConfigurationService _configurationService;
+        private readonly ICreateVariables _createVariables;
+        private readonly IEncryption _encryption;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEncryption _encryption;
-        private readonly IMainWindow _mainWindow;
         private readonly IXmlValidator _xmlValidator;
-        private readonly ICreateVariables _createVariables;
 
-        public LoadVariables(IContextProvider contextProvider, IXmlValidator xmlValidator, ICreateVariables createVariables)
+        public LoadVariables(
+            IConfigurationService configurationService,
+            ICreateVariables createVariables,
+            IEncryption encryption,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlValidator xmlValidator)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _encryption = contextProvider.Encryption;
-            _mainWindow = contextProvider.MainWindow;
+            _configurationService = configurationService;
             _createVariables = createVariables;
+            _encryption = encryption;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidator;
         }
 

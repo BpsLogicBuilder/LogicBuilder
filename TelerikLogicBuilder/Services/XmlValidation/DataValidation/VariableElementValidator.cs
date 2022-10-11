@@ -25,9 +25,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         {
             _variableDataParser = xmlElementValidator.VariableDataParser;
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
-            _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
+            _configurationService = xmlElementValidator.ConfigurationService;
+            _exceptionHelper = xmlElementValidator.ExceptionHelper;
+            _typeHelper = xmlElementValidator.TypeHelper;
         }
 
         public void Validate(XmlElement variableElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)

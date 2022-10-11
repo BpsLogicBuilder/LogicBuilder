@@ -26,9 +26,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         public RetractFunctionElementValidator(IXmlElementValidator xmlElementValidator)
         {
-            _configurationService = xmlElementValidator.ContextProvider.ConfigurationService;
-            _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
+            _configurationService = xmlElementValidator.ConfigurationService;
+            _typeHelper = xmlElementValidator.TypeHelper;
+            _exceptionHelper = xmlElementValidator.ExceptionHelper;
             _retractFunctionDataParser = xmlElementValidator.RetractFunctionDataParser;
             _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
             _variableDataParser = xmlElementValidator.VariableDataParser;

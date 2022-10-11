@@ -19,10 +19,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly IGenericsConfigrationValidator _genericsConfigrationValidator;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        public FunctionGenericsConfigrationValidator(IContextProvider contextProvider, IGenericsConfigrationValidator genericsConfigrationValidator, ITypeLoadHelper typeLoadHelper)
+        public FunctionGenericsConfigrationValidator(
+            IConfigurationService configurationService,
+            IEnumHelper enumHelper,
+            IGenericsConfigrationValidator genericsConfigrationValidator,
+            ITypeLoadHelper typeLoadHelper)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _enumHelper = contextProvider.EnumHelper;
+            _configurationService = configurationService;
+            _enumHelper = enumHelper;
             _genericsConfigrationValidator = genericsConfigrationValidator;
             _typeLoadHelper = typeLoadHelper;
         }

@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
@@ -10,7 +9,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     internal class ContextProvider : IContextProvider
     {
         public ContextProvider(
-            IConfigurationService configurationService,
             IEncryption encryption,
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
@@ -27,7 +25,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             IVariableHelper variableHelper,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            ConfigurationService = configurationService;
             Encryption = encryption;
             EnumHelper = enumHelper;
             ExceptionHelper = exceptionHelper;
@@ -45,7 +42,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             XmlDocumentHelpers = xmlDocumentHelpers;
         }
 
-        public IConfigurationService ConfigurationService { get; }
         public IEncryption Encryption { get; }
         public IEnumHelper EnumHelper { get; }
         public IExceptionHelper ExceptionHelper { get; }

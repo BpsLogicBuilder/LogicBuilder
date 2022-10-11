@@ -16,19 +16,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class LoadFragments : ILoadFragments
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IPathHelper _pathHelper;
-        private readonly IMainWindow _mainWindow;
-        private readonly IXmlValidator _xmlValidator;
         private readonly ICreateFragments _createFragments;
+        private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlValidator _xmlValidator;
 
-        public LoadFragments(IContextProvider contextProvider, IXmlValidator xmlValidator, ICreateFragments createFragments)
+        public LoadFragments(
+            IConfigurationService configurationService,
+            ICreateFragments createFragments,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlValidator xmlValidator)
         {
-            _configurationService = contextProvider.ConfigurationService;
-            _pathHelper = contextProvider.PathHelper;
-            _mainWindow = contextProvider.MainWindow;
+            _configurationService = configurationService;
             _createFragments = createFragments;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidator;
         }
 
