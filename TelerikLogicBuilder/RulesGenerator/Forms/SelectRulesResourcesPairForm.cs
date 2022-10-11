@@ -18,7 +18,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private readonly ISelectModulesForDeploymentTreeViewBuilder _selectModulesForDeploymentTreeViewBuilder;
         private readonly DialogFormMessageControl _dialogFormMessageControl;
 
-        public SelectRulesResourcesPairForm(IFormInitializer formInitializer, IGetAllCheckedNodes getAllCheckedNodeNames, ISelectModulesForDeploymentTreeViewBuilder selectModulesForDeploymentTreeViewBuilder, DialogFormMessageControl dialogFormMessageControl, string applicationName)
+        public SelectRulesResourcesPairForm(
+            IFormInitializer formInitializer,
+            IGetAllCheckedNodes getAllCheckedNodeNames,
+            ISelectModulesForDeploymentTreeViewBuilder selectModulesForDeploymentTreeViewBuilder,
+            DialogFormMessageControl dialogFormMessageControl,
+            string applicationName)
         {
             _formInitializer = formInitializer;
             _getAllCheckedNodeNames = getAllCheckedNodeNames;
@@ -38,8 +43,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
             this.Text = title;
             this.radGroupBoxTop.Text = title;
         }
-
-        
 
         private void Initialize()
         {

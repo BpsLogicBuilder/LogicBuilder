@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
@@ -10,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         internal static IServiceCollection AddRulesGeneratorForms(this IServiceCollection services)
             => services
+                .AddTransient<ICreateSelectRulesFormFactory, CreateSelectRulesFormFactory>()
                 .AddTransient<ISelectRulesResourcesPairFormFactory, SelectRulesResourcesPairFormFactory>()
                 .AddTransient<ISelectRulesFormFactory, SelectRulesFormFactory>()
                 .AddTransient<SelectDocumentsForm>()
@@ -19,12 +21,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<Func<string, SelectRulesForm>>
                 (
                     provider =>
-                    applicationName => ActivatorUtilities.CreateInstance<SelectRulesForm>
+                    applicationName => new SelectRulesForm
                     (
-                        provider,
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IGetAllCheckedNodes>(),
                         provider.GetRequiredService<ISelectRulesTreeViewBuilder>(),
+                        provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<DialogFormMessageControl>(),
                         applicationName
                     )
@@ -32,17 +34,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<Func<string, SelectRulesResourcesPairForm>>
                 (
                     provider =>
-                    applicationName => ActivatorUtilities.CreateInstance<SelectRulesResourcesPairForm>
+                    applicationName => new SelectRulesResourcesPairForm
                     (
-                        provider,
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IGetAllCheckedNodes>(),
                         provider.GetRequiredService<ISelectModulesForDeploymentTreeViewBuilder>(),
                         provider.GetRequiredService<DialogFormMessageControl>(),
                         applicationName
                     )
-                 )
-                .AddTransient<SelectRulesForm>()
-                .AddTransient<SelectRulesResourcesPairForm>();
+                 );
     }
 }

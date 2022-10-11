@@ -1,6 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Collections.Generic;
@@ -14,13 +13,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private readonly IFormInitializer _formInitializer;
         private readonly IGetAllCheckedNodes _getAllCheckedNodeNames;
         private readonly ISelectRulesTreeViewBuilder _selectRulesTreeViewBuilder;
+        private readonly ITreeViewService _treeViewService;
         private readonly DialogFormMessageControl _dialogFormMessageControl;
 
-        public SelectRulesForm(IFormInitializer formInitializer, IGetAllCheckedNodes getAllCheckedNodeNames, ISelectRulesTreeViewBuilder selectRulesTreeViewBuilder, DialogFormMessageControl dialogFormMessageControl, string applicationName)
+        public SelectRulesForm(
+            IFormInitializer formInitializer,
+            IGetAllCheckedNodes getAllCheckedNodeNames,
+            ISelectRulesTreeViewBuilder selectRulesTreeViewBuilder,
+            ITreeViewService treeViewService,
+            DialogFormMessageControl dialogFormMessageControl,
+            string applicationName)
         {
             _formInitializer = formInitializer;
             _getAllCheckedNodeNames = getAllCheckedNodeNames;
             _selectRulesTreeViewBuilder = selectRulesTreeViewBuilder;
+            _treeViewService = treeViewService;
             _dialogFormMessageControl = dialogFormMessageControl;
             _applicationName = applicationName;
             InitializeComponent();
@@ -72,7 +79,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         private void RadTreeView_NodeExpandedChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
         {
-            if (e.Node == radTreeView.Nodes[0])
+            if (_treeViewService.IsRootNode(e.Node)
+                || _treeViewService.IsFileNode(e.Node))/*NodeExpandedChanged runs for file nodes on double click*/
                 return;
 
             e.Node.ImageIndex = e.Node.Expanded

@@ -1,29 +1,29 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
+namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories
 {
     internal class SelectRulesResourcesPairFormFactory : ISelectRulesResourcesPairFormFactory
     {
         private readonly IServiceScope _scope;
-        private readonly Func<string, SelectRulesResourcesPairForm> _factoryMethod;
+        private readonly ICreateSelectRulesFormFactory _createSelectRulesFormFactory;
         private SelectRulesResourcesPairForm? _scopedService;
 
         public SelectRulesResourcesPairFormFactory(IServiceScopeFactory serviceScopeFactory)
         {
             _scope = serviceScopeFactory.CreateScope();
-            _factoryMethod = _scope.ServiceProvider.GetRequiredService<Func<string, SelectRulesResourcesPairForm>>();
+            _createSelectRulesFormFactory = _scope.ServiceProvider.GetRequiredService<ICreateSelectRulesFormFactory>();
         }
 
         public SelectRulesResourcesPairForm GetScopedService(string applicationName)
         {
-            _scopedService = _factoryMethod(applicationName);
+            _scopedService = _createSelectRulesFormFactory.GetSelectRulesResourcesPairForm(applicationName);
             return _scopedService;
         }
 
         public void Dispose()
         {
-            //The factory method uses ActivatorUtilities.CreateInstance (outside the container) because of the parameter
+            //The factory method uses new SelectRulesResourcesPairForm() (outside the container) because of the parameter
             //so we have to dispose of the service manually (_scope.Dispose() will not dispose _scopedService).
             _scopedService?.Dispose();
             _scope.Dispose();
