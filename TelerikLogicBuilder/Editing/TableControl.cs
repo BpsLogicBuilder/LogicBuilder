@@ -30,7 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public TableControl(
             IExceptionHelper exceptionHelper,
@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             IMainWindow mainWindow,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            UiNotificationService uiNotificationService,
+            IUiNotificationService uiNotificationService,
             string tableSourceFile,
             bool openedAsReadOnly)
         {

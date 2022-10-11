@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IOpenFileOperations _openFileOperations;
         private readonly ITableErrorSourceDataParser _tableErrorSourceDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
         private readonly RichInputBoxMessagePanel _richInputBoxMessagePanelDocuments;
         private readonly RichInputBoxMessagePanel _richInputBoxMessagePanelRules;
         private readonly RichInputBoxMessagePanel _richInputBoxMessagePanelMessages;
@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IOpenFileOperations openFileOperations,
             ITableErrorSourceDataParser tableErrorSourceDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            UiNotificationService uiNotificationService,
+            IUiNotificationService uiNotificationService,
             RichInputBoxMessagePanel richInputBoxMessagePanelDocuments,
             RichInputBoxMessagePanel richInputBoxMessagePanelRules,
             RichInputBoxMessagePanel richInputBoxMessagePanelMessages,

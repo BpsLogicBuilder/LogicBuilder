@@ -25,13 +25,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private readonly IFormInitializer _formInitializer;
         private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public VisioControl(
             IFormInitializer formInitializer, 
             IMainWindow mainWindow, 
             IPathHelper pathHelper, 
-            UiNotificationService uiNotificationService, 
+            IUiNotificationService uiNotificationService, 
             string visioSourceFile, 
             bool openedAsReadOnly)
         {

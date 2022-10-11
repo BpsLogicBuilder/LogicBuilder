@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
         private readonly ITreeViewService _treeViewService;
         private readonly IRuleSetLoader _ruleSetLoader;
         private readonly IRulesValidator _rulesValidator;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public ViewCommand(
             IApplicationTypeInfoManager applicationTypeInfoManager,
@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             ITreeViewService treeViewService,
             IRuleSetLoader ruleSetLoader,
             IRulesValidator rulesValidator,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _configurationService = configurationService;

@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
         private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
         private readonly IValidateSelectedRules _validateSelectedRules;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public ValidateCommand(
             IConfigurationService configurationService,
@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
             IValidateSelectedRules validateSelectedRules,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;

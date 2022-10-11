@@ -13,13 +13,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         private readonly IBuildSaveAssembleRulesForSelectedDocuments _buildSaveConsolidateSelectedDocumentRules;
         private readonly IConfigurationService _configurationService;
         private readonly IMainWindow _mainWindow;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public BuildActiveDocumentCommand(
             IBuildSaveAssembleRulesForSelectedDocuments buildSaveConsolidateSelectedDocumentRules,
             IConfigurationService configurationService,
             IMainWindow mainWindow,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _buildSaveConsolidateSelectedDocumentRules = buildSaveConsolidateSelectedDocumentRules;
             _configurationService = configurationService;

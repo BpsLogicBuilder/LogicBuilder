@@ -16,14 +16,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IImageListService _imageListService;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public ConfigurationExplorerTreeViewBuilder(
             IConfigurationService configurationService,
             IFileIOHelper fileIOHelper,
             IImageListService imageListService,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _fileIOHelper = fileIOHelper;

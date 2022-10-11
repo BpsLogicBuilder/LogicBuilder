@@ -51,7 +51,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IMainWindow>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        provider.GetRequiredService<UiNotificationService>(),
+                        provider.GetRequiredService<IUiNotificationService>(),
                         tableSourceFile,
                         openedAsReadOnly
                     )
@@ -66,7 +66,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IMainWindow>(),
                         provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<UiNotificationService>(),
+                        provider.GetRequiredService<IUiNotificationService>(),
                         visioSourceFile,
                         openedAsReadOnly
                     )

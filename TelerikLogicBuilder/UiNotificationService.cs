@@ -3,7 +3,7 @@ using System.Reactive.Subjects;
 
 namespace ABIS.LogicBuilder.FlowBuilder
 {
-    internal class UiNotificationService
+    internal class UiNotificationService : IUiNotificationService
     {
         #region Properties
         public Subject<int> DocumentExplorerErrorCountChangedSubject { get; } = new();

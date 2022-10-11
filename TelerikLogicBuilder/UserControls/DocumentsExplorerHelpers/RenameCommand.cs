@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IMoveFileOperations _moveFileOperations;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public RenameCommand(
             IConfigurationService configurationService,
@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IMoveFileOperations moveFileOperations,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;

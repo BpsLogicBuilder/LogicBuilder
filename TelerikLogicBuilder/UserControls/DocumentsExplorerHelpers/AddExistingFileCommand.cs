@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public AddExistingFileCommand(
             IConfigurationService configurationService,
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IMainWindow mainWindow,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _configurationService = configurationService;
             _fileIOHelper = fileIOHelper;

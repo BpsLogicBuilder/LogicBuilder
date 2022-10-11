@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IOpenFileOperations _openFileOperations;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public OpenFileCommand(
             IExceptionHelper exceptionHelper,
@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IOpenFileOperations openFileOperations,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _exceptionHelper = exceptionHelper;
             _mainWindow = mainWindow;

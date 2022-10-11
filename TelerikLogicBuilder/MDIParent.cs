@@ -39,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly IMainWindow _mainWindow;
         private readonly IThemeManager _themeManager;
         private readonly IVariableListInitializer _variableListInitializer;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         private readonly BuildActiveDocumentCommand _buildActiveDocumentCommand;
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
@@ -82,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IMainWindow mainWindow,
             IThemeManager themeManager,
             IVariableListInitializer variableListInitializer,
-            UiNotificationService uiNotificationService,
+            IUiNotificationService uiNotificationService,
             BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
             ExitCommand exitCommand,

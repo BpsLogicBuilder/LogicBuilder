@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IImageListService _imageImageListService;
         private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
         private readonly DocumentExplorerErrorsList documentProfileErrors = new();
         private readonly Dictionary<string, string> documentNames = new();
         private readonly Dictionary<string, string> expandedNodes = new();
@@ -68,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
             FileSystemTreeView fileSystemTreeView,
-            UiNotificationService uiNotificationService,
+            IUiNotificationService uiNotificationService,
             AddExistingFileCommand addExistingFileCommand,
             AddNewFileCommand addNewFileCommand,
             CloseProjectCommand closeProjectCommand,

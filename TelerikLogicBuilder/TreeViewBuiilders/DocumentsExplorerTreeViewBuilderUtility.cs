@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
         private readonly IImageListService _imageListService;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         private readonly IDictionary<string, string> documentNames;
         private readonly DocumentExplorerErrorsList documentProfileErrors; 
@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders
             IImageListService imageListService,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
+            IUiNotificationService uiNotificationService,
             IDictionary<string, string> documentNames,
             DocumentExplorerErrorsList documentProfileErrors,
             IDictionary<string, string> expandedNodes)

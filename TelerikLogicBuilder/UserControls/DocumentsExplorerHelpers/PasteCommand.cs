@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IMoveFileOperations _moveFileOperations;
         private readonly IPathHelper _pathHelper;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public PasteCommand(
             IExceptionHelper exceptionHelper,
@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IMoveFileOperations moveFileOperations,
             IPathHelper pathHelper,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _exceptionHelper = exceptionHelper;
             _mainWindow = mainWindow;

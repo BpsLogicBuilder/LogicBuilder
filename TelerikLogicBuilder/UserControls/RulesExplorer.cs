@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IImageListService _imageImageListService;
         private readonly IRulesExplorerTreeViewBuilder _rulesExplorerTreeViewBuilder;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
         private readonly Dictionary<string, string> expandedNodes = new();
 
         private readonly IDisposable refreshTreeViewSubscription;
@@ -44,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IImageListService imageImageListService,
             IRulesExplorerTreeViewBuilder rulesExplorerTreeViewBuilder,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService,
+            IUiNotificationService uiNotificationService,
             DeleteAllRulesCommand deleteAllRulesCommand,
             DeleteRulesExplorerFileCommand deleteRulesExplorerFileCommand,
             ValidateCommand validateCommand,

@@ -10,12 +10,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
     {
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IMainWindow _mainWindow;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public DeleteAllRulesCommand(
             IFileIOHelper fileIOHelper,
             IMainWindow mainWindow,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _fileIOHelper = fileIOHelper;
             _mainWindow = mainWindow;

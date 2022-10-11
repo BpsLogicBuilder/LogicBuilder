@@ -14,14 +14,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public DeleteRulesExplorerFileCommand(
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;

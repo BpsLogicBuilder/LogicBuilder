@@ -12,13 +12,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         private readonly IDeleteOperations _deleteOperations;
         private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
-        private readonly UiNotificationService _uiNotificationService;
+        private readonly IUiNotificationService _uiNotificationService;
 
         public DeleteCommand(
             IDeleteOperations deleteOperations,
             IMainWindow mainWindow,
             ITreeViewService treeViewService,
-            UiNotificationService uiNotificationService)
+            IUiNotificationService uiNotificationService)
         {
             _deleteOperations = deleteOperations;
             _mainWindow = mainWindow;
