@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -72,7 +73,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"];
             List<GenericConfigBase> dataConfiguredGenericArguments = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -83,10 +84,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "C",
                     LiteralParameterType.String,
@@ -97,8 +97,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 )
             };
 
@@ -130,7 +129,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["OneGenericArgument"];
             List<GenericConfigBase> dataConfiguredGenericArguments = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -141,10 +140,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "B",
                     LiteralParameterType.String,
@@ -155,8 +153,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 )
             };
 
@@ -188,7 +185,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"];
             List<GenericConfigBase> dataConfiguredGenericArguments = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -199,17 +196,15 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new ObjectGenericConfig
+                _fixture.GenericConfigFactory.GetObjectGenericConfig
                 (
                     "B",
                     "SomeTypeNotFound",
                     true,
                     false,
-                    false,
-                    _fixture.ContextProvider
+                    false
                 )
             };
 
@@ -242,7 +237,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
 
             List<GenericConfigBase> dataConfiguredGenericArguments = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -253,10 +248,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "B",
                     LiteralParameterType.String,
@@ -267,8 +261,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 )
             };
 
@@ -300,7 +293,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             Constructor constructor = _fixture.ConfigurationService.ConstructorList.Constructors["GenericResponse"];
             List<GenericConfigBase> dataConfiguredGenericArguments = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -311,10 +304,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "B",
                     LiteralParameterType.Integer,
@@ -325,8 +317,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
             };
 
@@ -348,6 +339,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ConstructorGenericsConfigrationValidator = ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            GenericConfigFactory = ServiceProvider.GetRequiredService<IGenericConfigFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
@@ -511,6 +503,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator;
         internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
+        internal IGenericConfigFactory GenericConfigFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
         internal ITypeLoadHelper TypeLoadHelper;

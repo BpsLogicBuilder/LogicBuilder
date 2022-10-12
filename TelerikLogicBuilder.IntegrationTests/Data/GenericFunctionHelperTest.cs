@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -47,7 +48,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -58,17 +59,15 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new ObjectGenericConfig
+                _fixture.GenericConfigFactory.GetObjectGenericConfig
                 (
                     "B",
                     "Contoso.Domain.Entities.DepartmentModel",
                     true,
                     false,
-                    false,
-                    _fixture.ContextProvider
+                    false
                 )
             };
 
@@ -92,7 +91,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -103,8 +102,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 )
             };
 
@@ -164,7 +162,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -175,17 +173,15 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new ObjectGenericConfig
+                _fixture.GenericConfigFactory.GetObjectGenericConfig
                 (
                     "C",
                     "Contoso.Domain.Entities.DepartmentModel",
                     true,
                     false,
-                    false,
-                    _fixture.ContextProvider
+                    false
                 )
             };
 
@@ -209,7 +205,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -220,17 +216,15 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new ObjectGenericConfig
+                _fixture.GenericConfigFactory.GetObjectGenericConfig
                 (
                     "B",
                     "Contoso.Domain.Entities.DepartmentModel",
                     true,
                     false,
-                    false,
-                    _fixture.ContextProvider
+                    false
                 )
             };
 
@@ -261,7 +255,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -272,17 +266,15 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 ),
-                new ObjectGenericConfig
+                _fixture.GenericConfigFactory.GetObjectGenericConfig
                 (
                     "B",
                     "Contoso.Domain.Entities.DepartmentModel",
                     true,
                     false,
-                    false,
-                    _fixture.ContextProvider
+                    false
                 )
             };
             ApplicationTypeInfo application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -311,7 +303,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             IGenericFunctionHelper helper = _fixture.ServiceProvider.GetRequiredService<IGenericFunctionHelper>();
             List<GenericConfigBase> genericConfigs = new()
             {
-                new LiteralGenericConfig
+                _fixture.GenericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -322,8 +314,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    _fixture.ContextProvider
+                    new List<string>()
                 )
             };
 
@@ -356,6 +347,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            GenericConfigFactory = ServiceProvider.GetRequiredService<IGenericConfigFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -517,6 +509,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IGenericConfigFactory GenericConfigFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IReturnTypeFactory ReturnTypeFactory;

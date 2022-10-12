@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,10 +35,10 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         public void GenericArgumentCountMatchesTypeWorksForMatchingConfiguredArguments()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IGenericConfigFactory genericConfigFactory = serviceProvider.GetRequiredService<IGenericConfigFactory>();
             List<GenericConfigBase> configuredData = new()
             {
-                new LiteralGenericConfig
+                genericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -48,10 +49,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    contextProvider
+                    new List<string>()
                 ),
-                new LiteralGenericConfig
+                genericConfigFactory.GetLiteralGenericConfig
                 (
                     "B",
                     LiteralParameterType.String,
@@ -62,8 +62,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    contextProvider
+                    new List<string>()
                 )
             };
             IGenericsConfigrationValidator validator = serviceProvider.GetRequiredService<IGenericsConfigrationValidator>();
@@ -79,10 +78,10 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         public void GenericArgumentCountMatchesTypeFailsForIncorrectNumberOfConfiguredArguments()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IGenericConfigFactory genericConfigFactory = serviceProvider.GetRequiredService<IGenericConfigFactory>();
             List<GenericConfigBase> configuredData = new()
             {
-                new LiteralGenericConfig
+                genericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -93,8 +92,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    contextProvider
+                    new List<string>()
                 )
             };
             IGenericsConfigrationValidator validator = serviceProvider.GetRequiredService<IGenericsConfigrationValidator>();
@@ -110,11 +108,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         public void GenericArgumentNameMismatchFailsForValidArguments()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IGenericConfigFactory genericConfigFactory = serviceProvider.GetRequiredService<IGenericConfigFactory>();
             List<string> configuredArgumentNames = new() { "A", "B" };
             List<GenericConfigBase> configuredData = new()
             {
-                new LiteralGenericConfig
+                genericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -125,10 +123,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    contextProvider
+                    new List<string>()
                 ),
-                new LiteralGenericConfig
+                genericConfigFactory.GetLiteralGenericConfig
                 (
                     "B",
                     LiteralParameterType.String,
@@ -139,8 +136,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    contextProvider
+                    new List<string>()
                 )
             };
             IGenericsConfigrationValidator validator = serviceProvider.GetRequiredService<IGenericsConfigrationValidator>();
@@ -156,11 +152,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         public void GenericArgumentNameMismatchWorksForMismatchedArgumentname()
         {
             //arrange
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IGenericConfigFactory genericConfigFactory = serviceProvider.GetRequiredService<IGenericConfigFactory>();
             List<string> configuredArgumentNames = new() { "A", "C" };
             List<GenericConfigBase> configuredData = new()
             {
-                new LiteralGenericConfig
+                genericConfigFactory.GetLiteralGenericConfig
                 (
                     "A",
                     LiteralParameterType.String,
@@ -171,10 +167,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    contextProvider
+                    new List<string>()
                 ),
-                new LiteralGenericConfig
+                genericConfigFactory.GetLiteralGenericConfig
                 (
                     "B",
                     LiteralParameterType.String,
@@ -185,8 +180,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                     "",
                     "",
                     "",
-                    new List<string>(),
-                    contextProvider
+                    new List<string>()
                 )
             };
             IGenericsConfigrationValidator validator = serviceProvider.GetRequiredService<IGenericsConfigrationValidator>();

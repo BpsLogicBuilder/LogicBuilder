@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -47,12 +48,12 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
 
             get
             {
-                IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+                IGenericConfigFactory genericConfigFactory = serviceProvider.GetRequiredService<IGenericConfigFactory>();
                 return new List<object[]>
                 {
                     new object[]
                     {
-                        new LiteralGenericConfig
+                        genericConfigFactory.GetLiteralGenericConfig
                         (
                             "A",
                             LiteralParameterType.String,
@@ -63,29 +64,27 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             "",
                             "",
                             "",
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         typeof(LiteralParameter),
                         typeof(ListOfLiteralsParameter)
                     },
                     new object[]
                     {
-                        new ObjectGenericConfig
+                        genericConfigFactory.GetObjectGenericConfig
                         (
                             "A",
                             "Contoso.Domain.Entities.DepartmentModel",
                             true,
                             false,
-                            false,
-                            contextProvider
+                            false
                         ),
                         typeof(ObjectParameter),
                         typeof(ListOfObjectsParameter)
                     },
                     new object[]
                     {
-                        new LiteralListGenericConfig
+                        genericConfigFactory.GetLiteralListGenericConfig
                         (
                             "A",
                             LiteralParameterType.String,
@@ -95,21 +94,19 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             "",
                             "",
                             new List<string>(),
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         typeof(ListOfLiteralsParameter),
                         typeof(ListOfObjectsParameter)
                     },
                     new object[]
                     {
-                        new ObjectListGenericConfig
+                        genericConfigFactory.GetObjectListGenericConfig
                         (
                             "A",
                             "Contoso.Domain.Entities.DepartmentModel",
                             ListType.GenericList,
-                            ListParameterInputStyle.HashSetForm,
-                            contextProvider
+                            ListParameterInputStyle.HashSetForm
                         ),
                         typeof(ListOfObjectsParameter),
                         typeof(ListOfObjectsParameter)

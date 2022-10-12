@@ -11,19 +11,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal ObjectGenericConfig(string genericArgumentName,
+        internal ObjectGenericConfig(
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string genericArgumentName,
             string objectType,
             bool useForEquality,
             bool useForHashCode,
-            bool useForToString,
-            IContextProvider contextProvider)
+            bool useForToString)
             : base(genericArgumentName)
         {
             this.ObjectType = objectType;
             this.UseForEquality = useForEquality;
             this.UseForHashCode = useForHashCode;
             this.UseForToString = useForToString;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

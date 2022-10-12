@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -70,12 +71,12 @@ namespace TelerikLogicBuilder.IntegrationTests
             
             get
             {
-                IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+                IGenericConfigFactory genericConfigFactory = serviceProvider.GetRequiredService<IGenericConfigFactory>();
                 return new List<object[]>
                 {
                     new object[]
                     {
-                        new LiteralGenericConfig
+                        genericConfigFactory.GetLiteralGenericConfig
                         (
                             "A",
                             LiteralParameterType.String,
@@ -86,27 +87,25 @@ namespace TelerikLogicBuilder.IntegrationTests
                             "",
                             "",
                             "",
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         typeof(string).FullName!
                     },
                     new object[]
                     {
-                        new ObjectGenericConfig
+                        genericConfigFactory.GetObjectGenericConfig
                         (
                             "A",
                             "Contoso.Domain.Entities.DepartmentModel",
                             true,
                             false,
-                            false,
-                            contextProvider
+                            false
                         ),
                         "Contoso.Domain.Entities.DepartmentModel"
                     },
                     new object[]
                     {
-                        new LiteralListGenericConfig
+                        genericConfigFactory.GetLiteralListGenericConfig
                         (
                             "A",
                             LiteralParameterType.String,
@@ -116,20 +115,18 @@ namespace TelerikLogicBuilder.IntegrationTests
                             "",
                             "",
                             new List<string>(),
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {
-                        new ObjectListGenericConfig
+                        genericConfigFactory.GetObjectListGenericConfig
                         (
                             "A",
                             "Contoso.Domain.Entities.DepartmentModel",
                             ListType.GenericList,
-                            ListParameterInputStyle.HashSetForm,
-                            contextProvider
+                            ListParameterInputStyle.HashSetForm
                         ),
                         "System.Collections.Generic.List`1[[Contoso.Domain.Entities.DepartmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
                     },
@@ -312,7 +309,7 @@ namespace TelerikLogicBuilder.IntegrationTests
         {
             get
             {
-                IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+                IGenericConfigFactory genericConfigFactory = serviceProvider.GetRequiredService<IGenericConfigFactory>();
                 IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
 
                 return new List<object[]>
@@ -343,14 +340,13 @@ namespace TelerikLogicBuilder.IntegrationTests
                         ),
                         new List<GenericConfigBase>()
                         {
-                            new ObjectGenericConfig
+                            genericConfigFactory.GetObjectGenericConfig
                             (
                                 "A",
                                 "Contoso.Domain.Entities.DepartmentModel",
                                 true,
                                 false,
-                                false,
-                                contextProvider
+                                false
                             )
                         },
                         "Contoso.Domain.Entities.DepartmentModel"
@@ -384,14 +380,13 @@ namespace TelerikLogicBuilder.IntegrationTests
                         ),
                         new List<GenericConfigBase>()
                         {
-                            new ObjectGenericConfig
+                            genericConfigFactory.GetObjectGenericConfig
                             (
                                 "A",
                                 "Contoso.Domain.Entities.DepartmentModel",
                                 true,
                                 false,
-                                false,
-                                contextProvider
+                                false
                             )
                         },
                         "System.Collections.Generic.List`1[[Contoso.Domain.Entities.DepartmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"

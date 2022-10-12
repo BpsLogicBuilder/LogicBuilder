@@ -11,17 +11,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal ObjectListGenericConfig(string genericArgumentName,
+        internal ObjectListGenericConfig(
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string genericArgumentName,
             string objectType,
             ListType listType,
-            ListParameterInputStyle control,
-            IContextProvider contextProvider)
+            ListParameterInputStyle control)
             : base(genericArgumentName)
         {
             this.ObjectType = objectType;
             this.ListType = listType;
             this.Control = control;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

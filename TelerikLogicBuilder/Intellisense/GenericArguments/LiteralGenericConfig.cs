@@ -13,7 +13,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal LiteralGenericConfig(string genericArgumentName,
+        internal LiteralGenericConfig(
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string genericArgumentName,
             LiteralParameterType literalType,
             LiteralParameterInputStyle control,
             bool useForEquality,
@@ -22,8 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
             string propertySource,
             string propertySourceParameter,
             string defaultValue,
-            List<string> domain,
-            IContextProvider contextProvider)
+            List<string> domain)
             : base(genericArgumentName)
         {
             this.LiteralType = literalType;
@@ -35,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
             this.PropertySourceParameter = propertySourceParameter;
             this.DefaultValue = defaultValue;
             this.Domain = domain;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties
