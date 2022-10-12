@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -499,6 +500,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             XmlElementValidator = ServiceProvider.GetRequiredService<IXmlElementValidator>();
+            ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -541,7 +543,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Constructor>
                 {
-                    ["TestResponseA"] = new Constructor
+                    ["TestResponseA"] = ConstructorFactory.GetConstructor
                     (
                         "TestResponseA",
                         "Contoso.Test.Business.Responses.TestResponseA",
@@ -565,10 +567,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string>(),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["GenericResponse"] = new Constructor
+                    ["GenericResponse"] = ConstructorFactory.GetConstructor
                     (
                         "GenericResponse",
                         "Contoso.Test.Business.Responses.GenericResponse`2",
@@ -592,10 +593,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string> { "A", "B" },
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["TypeNotFoundConstructor"] = new Constructor
+                    ["TypeNotFoundConstructor"] = ConstructorFactory.GetConstructor
                     (
                         "TypeNotFoundConstructor",
                         "Contoso.Test.Business.Responses.TypeNotFoundConstructor",
@@ -619,8 +619,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string>(),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -981,6 +980,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IXmlElementValidator XmlElementValidator;
+        internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,19 +28,18 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             //arrange
             IConstructorManager constructorManager = serviceProvider.GetRequiredService<IConstructorManager>();
             IExistingConstructorFinder existingConstructorFinder = serviceProvider.GetRequiredService<IExistingConstructorFinder>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IConstructorFactory constructorFactory = serviceProvider.GetRequiredService<IConstructorFactory>();
             ConstructorInfo constructorInfo = typeof(TestClassWithContructor).GetConstructors().First();
             Constructor? constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
             Dictionary<string, Constructor> existingConstructors = new()
             {
-                [constructorInfo.Name] = new Constructor
+                [constructorInfo.Name] = constructorFactory.GetConstructor
                 (
                     constructor!.Name,
                     constructor.TypeName,
                     constructor.Parameters,
                     constructor.GenericArguments,
-                    constructor.Summary,
-                    contextProvider
+                    constructor.Summary
                 )
             };
 
@@ -56,19 +56,18 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
             //arrange
             IConstructorManager constructorManager = serviceProvider.GetRequiredService<IConstructorManager>();
             IExistingConstructorFinder existingConstructorFinder = serviceProvider.GetRequiredService<IExistingConstructorFinder>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IConstructorFactory constructorFactory = serviceProvider.GetRequiredService<IConstructorFactory>();
             ConstructorInfo constructorInfo = typeof(TestClassWithContructor).GetConstructors().First();
             Constructor? constructor = constructorManager.CreateConstructor(constructorInfo.Name, constructorInfo);
             Dictionary<string, Constructor> existingConstructors = new()
             {
-                [constructorInfo.Name] = new Constructor
+                [constructorInfo.Name] = constructorFactory.GetConstructor
                 (
                     constructor!.Name,
                     constructor.TypeName,
                     constructor.Parameters,
                     constructor.GenericArguments,
-                    constructor.Summary,
-                    contextProvider
+                    constructor.Summary
                 )
             };
 

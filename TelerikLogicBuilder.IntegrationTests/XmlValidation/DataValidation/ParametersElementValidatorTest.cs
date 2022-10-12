@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -138,6 +139,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             XmlElementValidator = ServiceProvider.GetRequiredService<IXmlElementValidator>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
@@ -178,7 +180,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Constructor>
                 {
-                    ["TestResponseA"] = new Constructor
+                    ["TestResponseA"] = ConstructorFactory.GetConstructor
                     (
                         "TestResponseA",
                         "Contoso.Test.Business.Responses.TestResponseA",
@@ -202,10 +204,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string>(),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["TestResponseC"] = new Constructor
+                    ["TestResponseC"] = ConstructorFactory.GetConstructor
                     (
                         "TestResponseC",
                         "Contoso.Test.Business.Responses.TestResponseC",
@@ -224,8 +225,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string>(),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -245,6 +245,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationService ConfigurationService;
         internal IXmlElementValidator XmlElementValidator;
         internal IContextProvider ContextProvider;
+        internal IConstructorFactory ConstructorFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
         internal ITypeLoadHelper TypeLoadHelper;

@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -344,6 +345,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ConstructorGenericsConfigrationValidator = ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -386,7 +388,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Constructor>
                 {
-                    ["GenericResponse"] = new Constructor
+                    ["GenericResponse"] = ConstructorFactory.GetConstructor
                     (
                         "GenericResponse",
                         "Contoso.Test.Business.Responses.GenericResponse`2",
@@ -410,10 +412,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string> { "A", "B"},
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["TypeNotFoundConstructor"] = new Constructor
+                    ["TypeNotFoundConstructor"] = ConstructorFactory.GetConstructor
                     (
                         "TypeNotFoundConstructor",
                         "Contoso.Test.Business.Responses.TypeNotFoundConstructor",
@@ -437,10 +438,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string>(),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["OneGenericArgument"] = new Constructor
+                    ["OneGenericArgument"] = ConstructorFactory.GetConstructor
                     (
                         "OneGenericArgument",
                         "Contoso.Test.Business.OneGenericArgument`1",
@@ -464,10 +464,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string> { "A", "B" },
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["TypeWithNoGenericArguments"] = new Constructor
+                    ["TypeWithNoGenericArguments"] = ConstructorFactory.GetConstructor
                     (
                         "TypeWithNoGenericArguments",
                         "Contoso.Test.Business.Responses.TestResponseA",
@@ -491,8 +490,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string> { "A", "B" },
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -511,6 +509,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IConstructorGenericsConfigrationValidator ConstructorGenericsConfigrationValidator;
+        internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

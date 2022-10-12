@@ -13,14 +13,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public Constructor(string Name, string TypeName, List<ParameterBase> Parameters, List<string> genericArguments, string Summary, IContextProvider contextProvider)
+        public Constructor(IXmlDocumentHelpers xmlDocumentHelpers, string name, string typeName, List<ParameterBase> parameters, List<string> genericArguments, string summary)
         {
-            this.Name = Name;
-            this.TypeName = TypeName;
-            this.Parameters = Parameters;
+            this.Name = name;
+            this.TypeName = typeName;
+            this.Parameters = parameters;
             this.GenericArguments = genericArguments;
-            this.Summary = Summary;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this.Summary = summary;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

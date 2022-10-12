@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -460,6 +461,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         internal InvisibleApp VisioApplication;
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
+        internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IReturnTypeFactory ReturnTypeFactory;
@@ -470,6 +472,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
+            ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -531,7 +534,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             (
                 new Dictionary<string, Constructor>
                 {
-                    ["CommandButtonParameters"] = new Constructor
+                    ["CommandButtonParameters"] = ConstructorFactory.GetConstructor
                     (
                         "CommandButtonParameters",
                         "Contoso.Forms.Parameters.CommandButtonParameters",
@@ -571,8 +574,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                             )
                         },
                         new List<string>(),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
@@ -9,17 +10,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
 {
     internal class ConstructorManager : IConstructorManager
     {
-        private readonly IParametersManager _parametersManager;
+        private readonly IConstructorFactory _constructorFactory;
         private readonly IMemberAttributeReader _memberAttributeReader;
+        private readonly IParametersManager _parametersManager;
         private readonly ITypeHelper _typeHelper;
-        private readonly IContextProvider _contextProvider;
 
-        public ConstructorManager(IContextProvider contextProvider, IParametersManager parametersManager, IMemberAttributeReader memberAttributeReader)
+        public ConstructorManager(
+            IConstructorFactory constructorFactory,
+            IMemberAttributeReader memberAttributeReader,
+            IParametersManager parametersManager,
+            ITypeHelper typeHelper)
         {
-            _typeHelper = contextProvider.TypeHelper;
-            _contextProvider = contextProvider;
-            _parametersManager = parametersManager;
+            _constructorFactory = constructorFactory;
             _memberAttributeReader = memberAttributeReader;
+            _parametersManager = parametersManager;
+            _typeHelper = typeHelper;
         }
 
         public Constructor? CreateConstructor(string name, ConstructorInfo cInfo)
@@ -27,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
             if (cInfo.DeclaringType == null)
                 return null;
 
-            return new
+            return _constructorFactory.GetConstructor
             (
                 name,
                 _typeHelper.ToId(cInfo.DeclaringType),
@@ -39,8 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
                     .Where(a => a.IsGenericParameter)
                     .Select(a => a.Name)
                     .ToList(),
-                _memberAttributeReader.GetSummary(cInfo),
-                _contextProvider
+                _memberAttributeReader.GetSummary(cInfo)
             );
         }
     }

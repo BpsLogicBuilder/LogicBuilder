@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -12,20 +13,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 {
     internal class GenericConstructorHelper : IGenericConstructorHelper
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IConstructorFactory _constructorFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IGenericParametersHelper _genericParametersHelper;
         private readonly IGenericsConfigrationValidator _genericsConfigrationValidator;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        public GenericConstructorHelper(IContextProvider contextProvider, IGenericParametersHelper genericParametersHelper, IGenericsConfigrationValidator genericsConfigrationValidator, ITypeLoadHelper typeLoadHelper)
+        public GenericConstructorHelper(
+            IConstructorFactory constructorFactory,
+            IExceptionHelper exceptionHelper,
+            IGenericParametersHelper genericParametersHelper,
+            IGenericsConfigrationValidator genericsConfigrationValidator,
+            ITypeHelper typeHelper,
+            ITypeLoadHelper typeLoadHelper)
         {
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _contextProvider = contextProvider;
+            _constructorFactory = constructorFactory;
+            _exceptionHelper = exceptionHelper;
             _genericParametersHelper = genericParametersHelper;
             _genericsConfigrationValidator = genericsConfigrationValidator;
+            _typeHelper = typeHelper;
             _typeLoadHelper = typeLoadHelper;
         }
 
@@ -37,14 +44,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             if (constructor.GenericArguments.Count != genericParameters.Count)
                 throw _exceptionHelper.CriticalException("{FE6A7D95-BDE6-43D6-93BE-1018DF6F6C82}");
 
-            return new Constructor
+            return _constructorFactory.GetConstructor
             (
                 constructor.Name,
                 _typeHelper.ToId(MakeGenericType(constructor, genericParameters, application)),
                 _genericParametersHelper.GetConvertedParameters(constructor.Parameters, genericParameters, application),
                 constructor.GenericArguments,
-                constructor.Summary,
-                _contextProvider
+                constructor.Summary
             );
         }
 

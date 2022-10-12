@@ -22,14 +22,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
         private readonly Dictionary<string, Constructor> existingConstructors;
 
         public ChildConstructorFinderUtility(Dictionary<string, Constructor> existingConstructors, 
-            IContextProvider contextProvider,
             IConstructorManager constructorManager,
             IParametersManager parametersManager,
+            IReflectionHelper reflectionHelper,
+            ITypeHelper typeHelper,
+            IStringHelper stringHelper,
             IMemberAttributeReader memberAttributeReader)
         {
-            _reflectionHelper = contextProvider.ReflectionHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _stringHelper = contextProvider.StringHelper;
+            _reflectionHelper = reflectionHelper;
+            _typeHelper = typeHelper;
+            _stringHelper = stringHelper;
             _constructorManager = constructorManager;
             _parametersManager = parametersManager;
             _memberAttributeReader = memberAttributeReader;

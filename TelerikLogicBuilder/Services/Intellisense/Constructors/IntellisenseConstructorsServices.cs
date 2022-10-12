@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
                 .AddSingleton<IConstructorManager, ConstructorManager>()
                 .AddSingleton<IConstructorXmlParser, ConstructorXmlParser>()
-                .AddSingleton<IExistingConstructorFinder, ExistingConstructorFinder>();
+                .AddSingleton<IExistingConstructorFinder, ExistingConstructorFinder>()
+                .AddIntellisenseConstructorUtilities();
     }
 }
