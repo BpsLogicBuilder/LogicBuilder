@@ -10,10 +10,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal ObjectReturnType(string objectType, IContextProvider contextProvider)
+        internal ObjectReturnType(IXmlDocumentHelpers xmlDocumentHelpers, string objectType)
         {
             this.ObjectType = objectType;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

@@ -14,6 +14,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IFunctionXmlParser, FunctionXmlParser>()
                 .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
                 .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
-                .AddSingleton<IReturnTypeXmlParser, ReturnTypeXmlParser>();
+                .AddSingleton<IReturnTypeXmlParser, ReturnTypeXmlParser>()
+                .AddIntellisenseReturnTypeInfos()
+                .AddIntellisenseReturnTypes();
     }
 }

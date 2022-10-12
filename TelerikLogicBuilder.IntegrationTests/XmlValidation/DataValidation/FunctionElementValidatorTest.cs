@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -493,6 +494,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
@@ -579,7 +581,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Sequential,
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -596,7 +598,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Sequential,
                         new List<ParameterBase>(),
                         new List<string>(),
-                        new ObjectReturnType("XYZ", ContextProvider),
+                        ReturnTypeFactory.GetObjectReturnType("XYZ"),
                         "",
                         ContextProvider
                     ),
@@ -626,7 +628,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -656,7 +658,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -686,7 +688,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -716,7 +718,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     )
@@ -821,6 +823,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
     }

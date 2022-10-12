@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -547,6 +548,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
@@ -721,7 +723,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -772,7 +774,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -823,7 +825,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -858,7 +860,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -875,7 +877,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Sequential,
                         new List<ParameterBase>(),
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Void, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
                         "",
                         ContextProvider
                     ),
@@ -892,7 +894,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Sequential,
                         new List<ParameterBase>(),
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Void, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
                         "",
                         ContextProvider
                     ),
@@ -1028,6 +1030,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
     }

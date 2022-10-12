@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -357,6 +358,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
@@ -372,7 +374,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "App01",
                         "Contoso.Test.Flow.dll",
                         $@"{TestFolders.TestAssembliesFolder}\Contoso.Test.Flow\bin\Debug\netstandard2.0",
-                        ABIS.LogicBuilder.FlowBuilder.Enums.RuntimeType.NetCore,
+                        RuntimeType.NetCore,
                         new List<string>(),
                         "Contoso.Test.Flow.FlowActivity",
                         "",
@@ -416,7 +418,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Sequential,
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -433,7 +435,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Sequential,
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -468,7 +470,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                             )
                         },
                         new List<string> { "A", "B" },
-                        new GenericReturnType("B", ContextProvider),
+                        ReturnTypeFactory.GetGenericReturnType("B"),
                         "",
                         ContextProvider
                     ),
@@ -485,7 +487,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Sequential,
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     )
@@ -517,6 +519,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
     }

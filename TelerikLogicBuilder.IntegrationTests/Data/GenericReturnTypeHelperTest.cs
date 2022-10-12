@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -137,10 +138,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             //act
             ReturnTypeBase genericReturnTypeResult = _fixture.GenericReturnTypeHelper.GetConvertedReturnType
             (
-                new GenericReturnType
+                _fixture.ReturnTypeFactory.GetGenericReturnType
                 (
-                    "A",
-                    _fixture.ContextProvider
+                    "A"
                 ),
                 new List<GenericConfigBase>
                 {
@@ -150,11 +150,10 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             );
             ReturnTypeBase listOfGenericsReturnTypeResult = _fixture.GenericReturnTypeHelper.GetConvertedReturnType
             (
-                new ListOfGenericsReturnType
+                _fixture.ReturnTypeFactory.GetListOfGenericsReturnType
                 (
                     "A",
-                    ListType.GenericList,
-                    _fixture.ContextProvider
+                    ListType.GenericList
                 ),
                 new List<GenericConfigBase>
                 {
@@ -178,10 +177,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 () =>
                 _fixture.GenericReturnTypeHelper.GetConvertedReturnType
                 (
-                    new GenericReturnType
+                    _fixture.ReturnTypeFactory.GetGenericReturnType
                     (
-                        "A",
-                        _fixture.ContextProvider
+                        "A"
                     ),
                     new List<GenericConfigBase>
                     {
@@ -196,11 +194,10 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 () =>
                 _fixture.GenericReturnTypeHelper.GetConvertedReturnType
                 (
-                    new ListOfGenericsReturnType
+                    _fixture.ReturnTypeFactory.GetListOfGenericsReturnType
                     (
                         "A",
-                        ListType.GenericList,
-                        _fixture.ContextProvider
+                        ListType.GenericList
                     ),
                     new List<GenericConfigBase>
                     {
@@ -221,6 +218,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             GenericReturnTypeHelper = ServiceProvider.GetRequiredService<IGenericReturnTypeHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
@@ -281,6 +279,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
     }

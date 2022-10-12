@@ -10,10 +10,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal GenericReturnType(string genericArgumentName, IContextProvider contextProvider)
+        internal GenericReturnType(IXmlDocumentHelpers xmlDocumentHelpers, string genericArgumentName)
         {
             this.GenericArgumentName = genericArgumentName;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

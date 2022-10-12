@@ -12,12 +12,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEnumHelper _enumHelper;
 
-        internal ListOfGenericsReturnType(string genericArgumentName, ListType listType, IContextProvider contextProvider)
+        internal ListOfGenericsReturnType(IEnumHelper enumHelper, IXmlDocumentHelpers xmlDocumentHelpers, string genericArgumentName, ListType listType)
         {
             this.GenericArgumentName = genericArgumentName;
             this.ListType = listType;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _enumHelper = contextProvider.EnumHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _enumHelper = enumHelper;
         }
 
         #region Properties

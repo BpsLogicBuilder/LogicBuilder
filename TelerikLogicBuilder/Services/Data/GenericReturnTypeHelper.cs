@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -11,18 +12,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 {
     internal class GenericReturnTypeHelper : IGenericReturnTypeHelper
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IReturnTypeFactory _returnTypeFactory;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        public GenericReturnTypeHelper(IContextProvider contextProvider, ITypeLoadHelper typeLoadHelper)
+        public GenericReturnTypeHelper(
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            IReturnTypeFactory returnTypeFactory,
+            ITypeHelper typeHelper,
+            ITypeLoadHelper typeLoadHelper)
         {
-            _enumHelper = contextProvider.EnumHelper;
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _contextProvider = contextProvider;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _returnTypeFactory = returnTypeFactory;
+            _typeHelper = typeHelper;
             _typeLoadHelper = typeLoadHelper;
         }
 
@@ -64,57 +70,51 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 
         #region Return Types from Generic Parameter
         private LiteralReturnType ConvertToLiteralReturn(LiteralGenericConfig literalConfig) 
-            => new
+            => _returnTypeFactory.GetLiteralReturnType
             (
                 _enumHelper.GetLiteralFunctionReturnType
                 (
                     _enumHelper.GetSystemType(literalConfig.LiteralType)
-                ), 
-                _contextProvider
+                )
             );
 
         private ObjectReturnType ConvertToObjectReturn(ObjectGenericConfig objectConfig) 
-            => new
+            => _returnTypeFactory.GetObjectReturnType
             (
-                objectConfig.ObjectType,
-                _contextProvider
+                objectConfig.ObjectType
             );
 
         private ListOfLiteralsReturnType ConvertToLiteralListReturn(LiteralListGenericConfig literalListConfig)
-            => new
+            => _returnTypeFactory.GetListOfLiteralsReturnType
             (
                 _enumHelper.GetLiteralFunctionReturnType(_enumHelper.GetSystemType(literalListConfig.LiteralType)),
-                literalListConfig.ListType,
-                _contextProvider
+                literalListConfig.ListType
             );
 
         private ListOfObjectsReturnType ConvertToObjectListReturn(ObjectListGenericConfig objectListConfig) 
-            => new
+            => _returnTypeFactory.GetListOfObjectsReturnType
             (
                 objectListConfig.ObjectType,
-                objectListConfig.ListType,
-                _contextProvider
+                objectListConfig.ListType
             );
         #endregion Return Types from Generic Parameter
 
         #region  Return Types from List Of Generics Parameter
         private ListOfLiteralsReturnType ConvertToLiteralListReturn(LiteralGenericConfig literalConfig, ListOfGenericsReturnType returnType) 
-            => new
+            => _returnTypeFactory.GetListOfLiteralsReturnType
             (
                 _enumHelper.GetLiteralFunctionReturnType
                 (
                     _enumHelper.GetSystemType(literalConfig.LiteralType)
                 ),
-                returnType.ListType,
-                _contextProvider
+                returnType.ListType
             );
 
         private ListOfObjectsReturnType ConvertToObjectListReturn(ObjectGenericConfig literalConfig, ListOfGenericsReturnType returnType) 
-            => new
+            => _returnTypeFactory.GetListOfObjectsReturnType
             (
                 literalConfig.ObjectType,
-                returnType.ListType,
-                _contextProvider
+                returnType.ListType
             );
 
         private ListOfObjectsReturnType ConvertToObjectListReturn(LiteralListGenericConfig literalListConfig, ListOfGenericsReturnType returnType, ApplicationTypeInfo application)
@@ -123,11 +123,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 throw _exceptionHelper.CriticalException("{4D84D9CB-3BAC-45CA-966F-C87354208E43}");
                 //generic types should be validated before conversion
 
-            return new
+            return _returnTypeFactory.GetListOfObjectsReturnType
             (
                 _typeHelper.ToId(literalListConfigType),
-                returnType.ListType,
-                _contextProvider
+                returnType.ListType
             );
         }
 
@@ -137,11 +136,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 throw _exceptionHelper.CriticalException("{4AD84CE6-D34A-4158-8FD6-2F2806587A66}");
                 //generic types should be validated before conversion
 
-            return new
+            return _returnTypeFactory.GetListOfObjectsReturnType
             (
                 _typeHelper.ToId(objectListConfigType),
-                returnType.ListType,
-                _contextProvider
+                returnType.ListType
             );
         }
         #endregion Return Types from List Of Generics Parameter

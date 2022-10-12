@@ -1,19 +1,19 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using System.Reflection;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
 {
     internal class GenericReturnTypeInfo : ReturnTypeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IReturnTypeFactory _returnTypeFactory;
 
-        internal GenericReturnTypeInfo(MethodInfo mInfo, IContextProvider contextProvider) : base(mInfo)
+        internal GenericReturnTypeInfo(IReturnTypeFactory returnTypeFactory, MethodInfo mInfo) : base(mInfo)
         {
-            _contextProvider = contextProvider;
+            _returnTypeFactory = returnTypeFactory;
         }
 
         #region Methods
-        internal override ReturnTypeBase GetReturnType() => new GenericReturnType(this.MInfo.ReturnType.Name, _contextProvider);
+        internal override ReturnTypeBase GetReturnType() => _returnTypeFactory.GetGenericReturnType(this.MInfo.ReturnType.Name);
         #endregion Methods
     }
 }

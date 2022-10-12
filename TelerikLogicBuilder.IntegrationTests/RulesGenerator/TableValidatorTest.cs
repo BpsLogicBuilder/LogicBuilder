@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -202,6 +203,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             ConfigurationService.ProjectProperties = new ProjectProperties
@@ -274,7 +276,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                         {
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Void, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
                         "",
                         ContextProvider
                     ),
@@ -309,7 +311,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                              )
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -360,7 +362,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -395,7 +397,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                              )
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     )
@@ -426,6 +428,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IReturnTypeFactory ReturnTypeFactory;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
     }

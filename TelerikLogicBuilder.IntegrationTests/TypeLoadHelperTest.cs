@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
@@ -312,34 +313,33 @@ namespace TelerikLogicBuilder.IntegrationTests
             get
             {
                 IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+                IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
+
                 return new List<object[]>
                 {
                     new object[]
                     {
-                        new LiteralReturnType
+                        returnTypeFactory.GetLiteralReturnType
                         (
-                            LiteralFunctionReturnType.Integer,
-                            contextProvider
+                            LiteralFunctionReturnType.Integer
                         ),
                         new List<GenericConfigBase>(),
                         typeof(int).FullName!
                     },
                     new object[]
                     {
-                        new ObjectReturnType
+                        returnTypeFactory.GetObjectReturnType
                         (
-                            "Contoso.Domain.Entities.DepartmentModel",
-                            contextProvider
+                            "Contoso.Domain.Entities.DepartmentModel"
                         ),
                         new List<GenericConfigBase>(),
                         "Contoso.Domain.Entities.DepartmentModel"
                     },
                     new object[]
                     {
-                        new GenericReturnType
+                        returnTypeFactory.GetGenericReturnType
                         (
-                            "A",
-                            contextProvider
+                            "A"
                         ),
                         new List<GenericConfigBase>()
                         {
@@ -357,33 +357,30 @@ namespace TelerikLogicBuilder.IntegrationTests
                     },
                     new object[]
                     {
-                        new ListOfLiteralsReturnType
+                        returnTypeFactory.GetListOfLiteralsReturnType
                         (
                             LiteralFunctionReturnType.Integer,
-                            ListType.GenericList,
-                            contextProvider
+                            ListType.GenericList
                         ),
                         new List<GenericConfigBase>(),
                         "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {
-                        new ListOfObjectsReturnType
+                        returnTypeFactory.GetListOfObjectsReturnType
                         (
                             "Contoso.Domain.Entities.DepartmentModel",
-                            ListType.GenericList,
-                            contextProvider
+                            ListType.GenericList
                         ),
                         new List<GenericConfigBase>(),
                         "System.Collections.Generic.List`1[[Contoso.Domain.Entities.DepartmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
                     },
                     new object[]
                     {
-                        new ListOfGenericsReturnType
+                        returnTypeFactory.GetListOfGenericsReturnType
                         (
                             "A",
-                            ListType.GenericList,
-                            contextProvider
+                            ListType.GenericList
                         ),
                         new List<GenericConfigBase>()
                         {

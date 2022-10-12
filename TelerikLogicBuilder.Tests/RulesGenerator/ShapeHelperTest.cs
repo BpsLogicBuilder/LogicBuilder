@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -1549,12 +1550,14 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IReturnTypeFactory ReturnTypeFactory;
 
         public ShapeHelperFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso",
@@ -1636,7 +1639,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                              )
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -1666,7 +1669,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                              )
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     )

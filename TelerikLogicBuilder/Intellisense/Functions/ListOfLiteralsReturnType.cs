@@ -12,12 +12,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEnumHelper _enumHelper;
 
-        internal ListOfLiteralsReturnType(LiteralFunctionReturnType underlyingLiteralType, ListType listType, IContextProvider contextProvider)
+        internal ListOfLiteralsReturnType(
+            IEnumHelper enumHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            LiteralFunctionReturnType underlyingLiteralType,
+            ListType listType)
         {
             this.UnderlyingLiteralType = underlyingLiteralType;
             this.ListType = listType;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _enumHelper = contextProvider.EnumHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _enumHelper = enumHelper;
         }
 
         #region Properties

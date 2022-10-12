@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -241,12 +242,14 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IReturnTypeFactory ReturnTypeFactory;
 
         public TableSearcherFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso",
@@ -317,7 +320,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         {
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Void, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
                         "",
                         ContextProvider
                     ),
@@ -352,7 +355,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                              )
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -403,7 +406,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                             )
                         },
                         new List<string>(),
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     ),
@@ -438,7 +441,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                              )
                         },
                         new List<string> { },
-                        new LiteralReturnType(LiteralFunctionReturnType.Boolean, ContextProvider),
+                        ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
                         "",
                         ContextProvider
                     )
