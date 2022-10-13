@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,12 +35,12 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
         {
             get
             {
-                IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+                IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
                 return new List<object[]>
                 {
                     new object[]
                     {
-                        new LiteralParameter
+                        parameterFactory.GetLiteralParameter
                         (
                             "stringProperty",
                             false,
@@ -52,14 +53,13 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
                             "",
                             "",
                             "",
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         true
                     },
                     new object[]
                     {
-                        new LiteralParameter
+                        parameterFactory.GetLiteralParameter
                         (
                             "stringProperty",
                             false,
@@ -72,14 +72,13 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
                             "",
                             "",
                             "",
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         false
                     },
                     new object[]
                     {
-                        new ObjectParameter
+                        parameterFactory.GetObjectParameter
                         (
                             "objectProperty",
                             false,
@@ -87,26 +86,24 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
                             "System.Object",
                             true,
                             false,
-                            true,
-                           contextProvider
+                            true
                         ),
                         false
                     },
                     new object[]
                     {
-                        new GenericParameter
+                        parameterFactory.GetGenericParameter
                         (
                             "aProperty",
                             false,
                             "",
-                            "A",
-                            contextProvider
+                            "A"
                         ),
                         false
                     },
                     new object[]
                     {
-                        new ListOfLiteralsParameter
+                        parameterFactory.GetListOfLiteralsParameter
                         (
                             "charArray",
                             false,
@@ -119,36 +116,33 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Parameters
                             "",
                             new List<string>(),
                             new char[] { ',' },
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         false
                     },
                     new object[]
                     {
-                        new ListOfObjectsParameter
+                        parameterFactory.GetListOfObjectsParameter
                         (
                             "objectArray",
                             false,
                             "",
                             "System.Object",
                             ListType.Array,
-                            ListParameterInputStyle.HashSetForm,
-                            contextProvider
+                            ListParameterInputStyle.HashSetForm
                         ),
                         false
                     },
                     new object[]
                     {
-                        new ListOfGenericsParameter
+                        parameterFactory.GetListOfGenericsParameter
                         (
                             "objectArray",
                             false,
                             "",
                             "A",
                             ListType.Array,
-                            ListParameterInputStyle.HashSetForm,
-                            contextProvider
+                            ListParameterInputStyle.HashSetForm
                         ),
                         false
                     }

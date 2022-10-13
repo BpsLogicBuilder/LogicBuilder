@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -350,6 +351,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             GenericConfigFactory = ServiceProvider.GetRequiredService<IGenericConfigFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
@@ -444,21 +446,19 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Sequential,
                         new List<ParameterBase>
                         {
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "aProperty",
                                 false,
                                 "",
-                                "A",
-                                ContextProvider
+                                "A"
                             ),
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "bProperty",
                                 false,
                                 "",
-                                "B",
-                                ContextProvider
+                                "B"
                             )
                         },
                         new List<string> { "A", "B" },
@@ -512,6 +512,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IGenericConfigFactory GenericConfigFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;

@@ -13,20 +13,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         private readonly IEnumHelper _enumHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal ListOfGenericsParameter(string name,
+        internal ListOfGenericsParameter(
+            IEnumHelper enumHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string name,
             bool isOptional,
             string comments,
             string genericArgumentName,
             ListType listType,
-            ListParameterInputStyle control,
-            IContextProvider contextProvider)
+            ListParameterInputStyle control)
             : base(name, isOptional, comments)
         {
             this.GenericArgumentName = genericArgumentName;
             this.ListType = listType;
             this.Control = control;
-            this._enumHelper = contextProvider.EnumHelper;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._enumHelper = enumHelper;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

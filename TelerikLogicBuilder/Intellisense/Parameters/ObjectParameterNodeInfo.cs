@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Reflection;
 
@@ -6,14 +7,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 {
     internal class ObjectParameterNodeInfo : ParameterNodeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IParameterFactory _parameterFactory;
         private readonly ITypeHelper _typeHelper;
 
-        public ObjectParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+        public ObjectParameterNodeInfo(
+            IParameterAttributeReader parameterAttributeReader,
+            IParameterFactory parameterFactory,
+            ITypeHelper typeHelper,
+            ParameterInfo pInfo)
             : base(pInfo, parameterAttributeReader)
         {
-            this._contextProvider = contextProvider;
-            this._typeHelper = contextProvider.TypeHelper;
+            _parameterFactory = parameterFactory;
+            this._typeHelper = typeHelper;
         }
 
         /// <summary>
@@ -61,13 +66,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         /// <summary>
         /// The Parameter
         /// </summary>
-        internal override ParameterBase Parameter => new ObjectParameter(this.Name,
+        internal override ParameterBase Parameter => _parameterFactory.GetObjectParameter(this.Name,
                   this.IsOptional,
                   this.Comments,
                   this._typeHelper.ToId(this.PInfo.ParameterType),
                   this.UseForEquality,
                   this.UseForHashCode,
-                  this.UseForToString,
-                  this._contextProvider);
+                  this.UseForToString);
     }
 }

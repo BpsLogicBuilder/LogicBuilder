@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 {
     internal class ListOfLiteralsParameterNodeInfo : ParameterNodeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
-        private readonly ITypeHelper _typeHelper;
         private readonly IEnumHelper _enumHelper;
+        private readonly IParameterFactory _parameterFactory;
         private readonly IStringHelper _stringHelper;
+        private readonly ITypeHelper _typeHelper;
 
-        internal ListOfLiteralsParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+        internal ListOfLiteralsParameterNodeInfo(
+            IEnumHelper enumHelper,
+            IParameterAttributeReader parameterAttributeReader,
+            IParameterFactory parameterFactory,
+            IStringHelper stringHelper,
+            ITypeHelper typeHelper,
+            ParameterInfo pInfo)
             : base(pInfo, parameterAttributeReader)
         {
-            _contextProvider = contextProvider;
-            _typeHelper = contextProvider.TypeHelper;
-            _enumHelper = contextProvider.EnumHelper;
-            _stringHelper = contextProvider.StringHelper;
+            _parameterFactory = parameterFactory;
+            _typeHelper = typeHelper;
+            _enumHelper = enumHelper;
+            _stringHelper = stringHelper;
         }
 
         #region Properties
@@ -106,7 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         /// <summary>
         /// The Parameter
         /// </summary>
-        internal override ParameterBase Parameter => new ListOfLiteralsParameter(this.Name,
+        internal override ParameterBase Parameter => _parameterFactory.GetListOfLiteralsParameter(this.Name,
                   this.IsOptional,
                   this.Comments,
                   this.Type,
@@ -117,8 +124,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                   this.PropertySourceParameter,
                   this.DefaultValuesForLiteralList,
                   this.DefaultValueDelimiters,
-                  this.Domain,
-                  this._contextProvider);
+                  this.Domain);
         #endregion Properties
     }
 }

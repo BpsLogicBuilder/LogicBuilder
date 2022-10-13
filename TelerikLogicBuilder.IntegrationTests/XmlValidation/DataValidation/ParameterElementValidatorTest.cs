@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -45,7 +46,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             XmlElement xmlElement = GetXmlElement(@"<literalParameter name=""stringProperty"">AAA</literalParameter>");
             List<string> errors = new();
-            LiteralParameter parameter = new
+            LiteralParameter parameter = _fixture.ParameterFactory.GetLiteralParameter
             (
                 "stringProperty",
                 false,
@@ -58,8 +59,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 "",
                 "",
                 "",
-                new List<string>(),
-                _fixture.ContextProvider
+                new List<string>()
             );
 
             //act
@@ -84,7 +84,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                         </constructor>
                                                     </objectParameter>");
             List<string> errors = new();
-            ObjectParameter parameter = new
+            ObjectParameter parameter = _fixture.ParameterFactory.GetObjectParameter
             (
                 "objectProperty",
                 false,
@@ -92,8 +92,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 "Contoso.Test.Business.Responses.TestResponseA",
                 true,
                 false,
-                false,
-                _fixture.ContextProvider
+                false
             );
 
             //act
@@ -116,7 +115,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                         </literalList>
                                                       </literalListParameter>");
             List<string> errors = new();
-            ListOfLiteralsParameter parameter = new
+            ListOfLiteralsParameter parameter = _fixture.ParameterFactory.GetListOfLiteralsParameter
             (
                 "Includes",
                 false,
@@ -129,8 +128,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 "",
                 new List<string>(),
                 Array.Empty<char>(),
-                new List<string>(),
-                _fixture.ContextProvider
+                new List<string>()
             );
 
             //act
@@ -167,15 +165,14 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                         </objectList>
                                                     </objectListParameter>");
             List<string> errors = new();
-            ListOfObjectsParameter parameter = new
+            ListOfObjectsParameter parameter = _fixture.ParameterFactory.GetListOfObjectsParameter
             (
                 "objects",
                 false,
                 "",
                 "Contoso.Test.Business.Responses.TestResponseA",
                 ListType.GenericList,
-                ListParameterInputStyle.HashSetForm,
-                _fixture.ContextProvider
+                ListParameterInputStyle.HashSetForm
             );
 
             //act
@@ -235,6 +232,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
@@ -279,7 +277,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "Contoso.Test.Business.Responses.TestResponseA",
                         new List<ParameterBase>
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "stringProperty",
                                 false,
@@ -292,8 +290,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -320,6 +317,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
     }

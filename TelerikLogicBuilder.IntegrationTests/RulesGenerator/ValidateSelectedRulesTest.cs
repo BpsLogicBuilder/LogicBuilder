@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -92,6 +93,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -199,7 +201,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "message",
                                 false,
@@ -212,8 +214,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                              )
                         },
                         new List<string> { },
@@ -292,6 +293,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;

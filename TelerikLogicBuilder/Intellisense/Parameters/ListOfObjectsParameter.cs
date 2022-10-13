@@ -14,21 +14,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IStringHelper _stringHelper;
 
-        internal ListOfObjectsParameter(string name,
+        internal ListOfObjectsParameter(
+            IEnumHelper enumHelper,
+            IStringHelper stringHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string name,
             bool isOptional,
             string comments,
             string objectType,
             ListType listType,
-            ListParameterInputStyle control,
-            IContextProvider contextProvider)
+            ListParameterInputStyle control)
             : base(name, isOptional, comments)
         {
             this.ObjectType = objectType;
             this.ListType = listType;
             this.Control = control;
-            this._enumHelper = contextProvider.EnumHelper;
-            this._stringHelper = contextProvider.StringHelper;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._enumHelper = enumHelper;
+            this._stringHelper = stringHelper;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
@@ -138,13 +139,12 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new List<ParameterBase>
                 {
-                    new GenericParameter
+                    _fixture.ParameterFactory.GetGenericParameter
                     (
                         "aProperty",
                         false,
                         "",
-                        "A",
-                        _fixture.ContextProvider
+                        "A"
                     )
                 },
                 new List<GenericConfigBase>
@@ -157,15 +157,14 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new List<ParameterBase>
                 {
-                    new ListOfGenericsParameter
+                    _fixture.ParameterFactory.GetListOfGenericsParameter
                     (
                         "aProperty",
                         false,
                         "",
                         "A",
                         ListType.GenericList,
-                        ListParameterInputStyle.ListForm,
-                        _fixture.ContextProvider
+                        ListParameterInputStyle.ListForm
                     )
                 },
                 new List<GenericConfigBase>
@@ -195,13 +194,12 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 (
                     new List<ParameterBase>
                     {
-                        new GenericParameter
+                        _fixture.ParameterFactory.GetGenericParameter
                         (
                             "aProperty",
                             false,
                             "",
-                            "A",
-                            _fixture.ContextProvider
+                            "A"
                         )
                     },
                     new List<GenericConfigBase>
@@ -219,15 +217,14 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 (
                     new List<ParameterBase>
                     {
-                        new ListOfGenericsParameter
+                        _fixture.ParameterFactory.GetListOfGenericsParameter
                         (
                             "aProperty",
                             false,
                             "",
                             "A",
                             ListType.GenericList,
-                            ListParameterInputStyle.ListForm,
-                            _fixture.ContextProvider
+                            ListParameterInputStyle.ListForm
                         )
                     },
                     new List<GenericConfigBase>
@@ -250,6 +247,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
@@ -307,6 +305,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
     }

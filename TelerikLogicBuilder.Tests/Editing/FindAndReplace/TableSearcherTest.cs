@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -242,6 +243,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
 
         public TableSearcherFixture()
@@ -249,6 +251,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -337,7 +340,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "setting",
                                 false,
@@ -350,8 +353,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                              )
                         },
                         new List<string> { },
@@ -372,7 +374,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -385,10 +387,9 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -401,8 +402,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -423,7 +423,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "message",
                                 false,
@@ -436,8 +436,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                              )
                         },
                         new List<string> { },

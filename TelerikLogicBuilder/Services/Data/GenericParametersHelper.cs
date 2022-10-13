@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
@@ -12,16 +13,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 {
     internal class GenericParametersHelper : IGenericParametersHelper
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IParameterFactory _parameterFactory;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        public GenericParametersHelper(IContextProvider contextProvider, ITypeLoadHelper typeLoadHelper)
+        public GenericParametersHelper(
+            IExceptionHelper exceptionHelper,
+            IParameterFactory parameterFactory,
+            ITypeHelper typeHelper,
+            ITypeLoadHelper typeLoadHelper)
         {
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _contextProvider = contextProvider;
+            _exceptionHelper = exceptionHelper;
+            _parameterFactory = parameterFactory;
+            _typeHelper = typeHelper;
             _typeLoadHelper = typeLoadHelper;
         }
 
@@ -66,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 
         #region Parameters from Generic Parameter
         private LiteralParameter ConvertToLiteralParameter(LiteralGenericConfig literalConfig, GenericParameter parameter) 
-            => new            
+            => _parameterFactory.GetLiteralParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
@@ -79,11 +84,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 literalConfig.PropertySource,
                 literalConfig.PropertySourceParameter,
                 literalConfig.DefaultValue,
-                literalConfig.Domain,
-                _contextProvider
+                literalConfig.Domain
             );
         private ObjectParameter ConvertToObjectParameter(ObjectGenericConfig objectConfig, GenericParameter parameter) 
-            => new
+            => _parameterFactory.GetObjectParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
@@ -91,11 +95,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 objectConfig.ObjectType,
                 objectConfig.UseForEquality,
                 objectConfig.UseForHashCode,
-                objectConfig.UseForToString,
-                _contextProvider
+                objectConfig.UseForToString
             );
         private ListOfLiteralsParameter ConvertToLiteralListParameter(LiteralListGenericConfig literalListConfig, GenericParameter parameter) 
-            => new
+            => _parameterFactory.GetListOfLiteralsParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
@@ -108,25 +111,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 literalListConfig.PropertySourceParameter,
                 literalListConfig.DefaultValues,
                 MiscellaneousConstants.DEFAULT_PARAMETER_DELIMITERS,
-                literalListConfig.Domain,
-                _contextProvider
+                literalListConfig.Domain
             );
         private ListOfObjectsParameter ConvertToObjectListParameter(ObjectListGenericConfig literalConfig, GenericParameter parameter) 
-            => new
+            => _parameterFactory.GetListOfObjectsParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
                 parameter.Comments,
                 literalConfig.ObjectType,
                 literalConfig.ListType,
-                literalConfig.Control,
-                _contextProvider
+                literalConfig.Control
             );
         #endregion Parameters from Generic Parameter
 
         #region Parameters from List of Generic Parameters
         private ListOfLiteralsParameter ConvertToLiteralListParameter(LiteralGenericConfig literalConfig, ListOfGenericsParameter parameter) 
-            => new
+            => _parameterFactory.GetListOfLiteralsParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
@@ -139,19 +140,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 literalConfig.PropertySourceParameter,
                 new List<string>() { literalConfig.DefaultValue },
                 MiscellaneousConstants.DEFAULT_PARAMETER_DELIMITERS,
-                literalConfig.Domain,
-                _contextProvider
+                literalConfig.Domain
             );
         private ListOfObjectsParameter ConvertToObjectListParameter(ObjectGenericConfig objectConfig, ListOfGenericsParameter parameter) 
-            => new
+            => _parameterFactory.GetListOfObjectsParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
                 parameter.Comments,
                 objectConfig.ObjectType,
                 parameter.ListType,
-                parameter.Control,
-                _contextProvider
+                parameter.Control
             );
         private ListOfObjectsParameter ConvertToObjectListParameter(LiteralListGenericConfig literalListConfig, ListOfGenericsParameter parameter, ApplicationTypeInfo application)
         {
@@ -159,15 +158,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 throw _exceptionHelper.CriticalException("{55C3F831-F053-4DC8-8691-5501A96EDC33}");
                 //generic types should be validated before conversion
 
-            return new
+            return _parameterFactory.GetListOfObjectsParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
                 parameter.Comments,
                 _typeHelper.ToId(literalListConfigType),
                 parameter.ListType,
-                parameter.Control,
-                _contextProvider
+                parameter.Control
             );
         }
 
@@ -177,15 +175,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 throw _exceptionHelper.CriticalException("{9104C719-9142-4B57-9E80-BB8931EBCE13}");
                 //generic types should be validated before conversion
 
-            return new
+            return _parameterFactory.GetListOfObjectsParameter
             (
                 parameter.Name,
                 parameter.IsOptional,
                 parameter.Comments,
                 _typeHelper.ToId(objectListConfigType),
                 parameter.ListType,
-                parameter.Control,
-                _contextProvider
+                parameter.Control
             );
         }
         #endregion Parameters from List of  Generic Parameters

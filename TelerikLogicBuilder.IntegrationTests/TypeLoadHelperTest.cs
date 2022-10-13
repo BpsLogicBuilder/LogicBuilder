@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -183,12 +184,12 @@ namespace TelerikLogicBuilder.IntegrationTests
 
             get
             {
-                IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+                IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
                 return new List<object[]>
                 {
                     new object[]
                     {
-                        new LiteralParameter
+                        parameterFactory.GetLiteralParameter
                         (
                             "A",
                             false,
@@ -201,14 +202,13 @@ namespace TelerikLogicBuilder.IntegrationTests
                             "",
                             "",
                             "",
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         typeof(string).FullName!
                     },
                     new object[]
                     {
-                        new ObjectParameter
+                        parameterFactory.GetObjectParameter
                         (
                             "A",
                             false,
@@ -216,14 +216,13 @@ namespace TelerikLogicBuilder.IntegrationTests
                             "Contoso.Domain.Entities.DepartmentModel",
                             true,
                             false,
-                            false,
-                            contextProvider
+                            false
                         ),
                         "Contoso.Domain.Entities.DepartmentModel"
                     },
                     new object[]
                     {
-                        new ListOfLiteralsParameter
+                        parameterFactory.GetListOfLiteralsParameter
                         (
                             "A",
                             false,
@@ -236,22 +235,20 @@ namespace TelerikLogicBuilder.IntegrationTests
                             "",
                             new List<string>(),
                             Array.Empty<char>(),
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {
-                        new ListOfObjectsParameter
+                        parameterFactory.GetListOfObjectsParameter
                         (
                             "A",
                             false,
                             "",
                             "Contoso.Domain.Entities.DepartmentModel",
                             ListType.GenericList,
-                            ListParameterInputStyle.HashSetForm,
-                            contextProvider
+                            ListParameterInputStyle.HashSetForm
                         ),
                         "System.Collections.Generic.List`1[[Contoso.Domain.Entities.DepartmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
                     },

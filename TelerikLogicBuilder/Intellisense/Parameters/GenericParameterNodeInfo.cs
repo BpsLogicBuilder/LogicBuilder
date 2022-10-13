@@ -1,25 +1,28 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Reflection;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 {
     internal class GenericParameterNodeInfo : ParameterNodeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IParameterFactory _parameterFactory;
 
-        internal GenericParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+        internal GenericParameterNodeInfo(
+            IParameterAttributeReader parameterAttributeReader,
+            IParameterFactory parameterFactory,
+            ParameterInfo pInfo)
             : base(pInfo, parameterAttributeReader)
         {
-            _contextProvider = contextProvider;
+            _parameterFactory = parameterFactory;
         }
 
-        internal override ParameterBase Parameter => new GenericParameter
+        internal override ParameterBase Parameter => _parameterFactory.GetGenericParameter
         (
             this.Name,
             this.IsOptional,
             this.Comments,
-            this.PInfo.ParameterType.Name,
-            this._contextProvider
+            this.PInfo.ParameterType.Name
         );
     }
 }

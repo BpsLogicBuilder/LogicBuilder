@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
@@ -260,6 +261,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -324,7 +326,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         "Contoso.Forms.Parameters.CommandButtonParameters",
                         new List<ParameterBase>
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "command",
                                 false,
@@ -337,10 +339,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "buttonIcon",
                                 false,
@@ -353,8 +354,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -381,7 +381,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "setting",
                                 false,
@@ -394,8 +394,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                              )
                         },
                         new List<string> { },
@@ -440,6 +439,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;

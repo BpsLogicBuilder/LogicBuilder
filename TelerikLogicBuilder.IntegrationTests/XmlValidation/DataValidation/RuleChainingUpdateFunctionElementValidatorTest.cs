@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +44,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">AAA</literalParameter>") };
             Function function = new
@@ -58,7 +60,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 ParametersLayout.Sequential,
                 new List<ParameterBase>
                 {
-                    new LiteralParameter
+                    parameterFactory.GetLiteralParameter
                     (
                         "Variable",
                         false,
@@ -71,8 +73,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         "",
-                        new List<string>(),
-                        contextProvider
+                        new List<string>()
                     )
                 },
                 new List<string>(),
@@ -98,6 +99,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">AAA</literalParameter>") };
             Function function = new
@@ -113,7 +115,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 ParametersLayout.Sequential,
                 new List<ParameterBase>
                 {
-                    new LiteralParameter
+                    parameterFactory.GetLiteralParameter
                     (
                         "Variable",
                         false,
@@ -126,10 +128,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         "",
-                        new List<string>(),
-                        contextProvider
+                        new List<string>()
                     ),
-                    new LiteralParameter
+                    parameterFactory.GetLiteralParameter
                     (
                         "stringProperty2",
                         false,
@@ -142,8 +143,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         "",
-                        new List<string>(),
-                        contextProvider
+                        new List<string>()
                     )
                 },
                 new List<string>(),
@@ -169,6 +169,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] 
             { 
@@ -188,7 +189,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 ParametersLayout.Sequential,
                 new List<ParameterBase>
                 {
-                    new LiteralParameter
+                    parameterFactory.GetLiteralParameter
                     (
                         "Variable",
                         false,
@@ -201,8 +202,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         "",
-                        new List<string>(),
-                        contextProvider
+                        new List<string>()
                     )
                 },
                 new List<string>(),
@@ -228,6 +228,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable""></literalParameter>") };
             Function function = new
@@ -243,7 +244,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 ParametersLayout.Sequential,
                 new List<ParameterBase>
                 {
-                    new LiteralParameter
+                    parameterFactory.GetLiteralParameter
                     (
                         "Variable",
                         false,
@@ -256,8 +257,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         "",
-                        new List<string>(),
-                        contextProvider
+                        new List<string>()
                     )
                 },
                 new List<string>(),
@@ -283,6 +283,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">ZZZ<variable name=""IntegerItem"" visibleText=""visibleText"" /></literalParameter>") };
             Function function = new
@@ -298,7 +299,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 ParametersLayout.Sequential,
                 new List<ParameterBase>
                 {
-                    new LiteralParameter
+                    parameterFactory.GetLiteralParameter
                     (
                         "Variable",
                         false,
@@ -311,8 +312,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         "",
-                        new List<string>(),
-                        contextProvider
+                        new List<string>()
                     )
                 },
                 new List<string>(),
@@ -338,6 +338,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
             IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">ZZZ</literalParameter>") };
             Function function = new
@@ -353,7 +354,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 ParametersLayout.Sequential,
                 new List<ParameterBase>
                 {
-                    new LiteralParameter
+                    parameterFactory.GetLiteralParameter
                     (
                         "Variable",
                         false,
@@ -366,8 +367,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         "",
-                        new List<string>(),
-                        contextProvider
+                        new List<string>()
                     )
                 },
                 new List<string>(),

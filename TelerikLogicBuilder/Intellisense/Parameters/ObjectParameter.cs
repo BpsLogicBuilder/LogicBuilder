@@ -12,22 +12,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         private readonly IStringHelper _stringHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal ObjectParameter(string name,
+        internal ObjectParameter(
+            IStringHelper stringHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string name,
             bool isOptional,
             string comments,
             string objectType,
             bool useForEquality,
             bool useForHashCode,
-            bool useForToString,
-            IContextProvider contextProvider)
+            bool useForToString)
             : base(name, isOptional, comments)
         {
             this.ObjectType = objectType;
             this.UseForEquality = useForEquality;
             this.UseForHashCode = useForHashCode;
             this.UseForToString = useForToString;
-            this._stringHelper = contextProvider.StringHelper;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._stringHelper = stringHelper;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

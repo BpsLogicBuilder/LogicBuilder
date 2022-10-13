@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Reflection;
 
@@ -6,16 +7,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 {
     internal class ListOfObjectsParameterNodeInfo : ParameterNodeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
-        private readonly ITypeHelper _typeHelper;
         private readonly IEnumHelper _enumHelper;
+        private readonly IParameterFactory _parameterFactory;
+        private readonly ITypeHelper _typeHelper;
 
-        public ListOfObjectsParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+        public ListOfObjectsParameterNodeInfo(
+            IEnumHelper enumHelper,
+            IParameterAttributeReader parameterAttributeReader,
+            IParameterFactory parameterFactory,
+            ITypeHelper typeHelper,
+            ParameterInfo pInfo)
             : base(pInfo, parameterAttributeReader)
         {
-            _contextProvider = contextProvider;
-            _typeHelper = contextProvider.TypeHelper;
-            _enumHelper = contextProvider.EnumHelper;
+            _parameterFactory = parameterFactory;
+            _typeHelper = typeHelper;
+            _enumHelper = enumHelper;
         }
 
         /// <summary>
@@ -31,12 +37,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         /// <summary>
         /// The Parameter
         /// </summary>
-        internal override ParameterBase Parameter => new ListOfObjectsParameter(this.Name,
+        internal override ParameterBase Parameter => _parameterFactory.GetListOfObjectsParameter(this.Name,
                   this.IsOptional,
                   this.Comments,
                   this._typeHelper.ToId(this._typeHelper.GetUndelyingTypeForValidList(this.PInfo.ParameterType)),
                   this.ListType,
-                  this.ListControl,
-                  this._contextProvider);
+                  this.ListControl);
     }
 }

@@ -6,11 +6,11 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -444,6 +444,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
@@ -504,7 +505,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -517,10 +518,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -533,8 +533,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -555,7 +554,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -568,10 +567,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -584,8 +582,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -606,7 +603,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -619,8 +616,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -641,7 +637,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -654,10 +650,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -670,8 +665,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -692,7 +686,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -705,10 +699,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -721,8 +714,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -743,7 +735,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -756,10 +748,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -772,8 +763,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -794,7 +784,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -807,10 +797,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -823,8 +812,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -910,6 +898,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;

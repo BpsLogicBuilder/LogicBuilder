@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
@@ -94,6 +95,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
 
         public CellHelperFixture()
@@ -101,6 +103,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -189,7 +192,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "setting",
                                 false,
@@ -202,8 +205,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                              )
                         },
                         new List<string> { },
@@ -224,7 +226,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -237,10 +239,9 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -253,8 +254,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -275,7 +275,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "message",
                                 false,
@@ -288,8 +288,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                              )
                         },
                         new List<string> { },

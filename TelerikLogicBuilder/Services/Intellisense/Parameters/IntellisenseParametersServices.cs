@@ -11,6 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IParameterHelper, ParameterHelper>()
                 .AddSingleton<IParametersManager, ParametersManager>()
                 .AddSingleton<IParametersMatcher, ParametersMatcher>()
-                .AddSingleton<IParametersXmlParser, ParametersXmlParser>();
+                .AddSingleton<IParametersXmlParser, ParametersXmlParser>()
+                .AddIntellisenseParameterFactories()
+                .AddIntellisenseParameterNodeInfoFactories();
     }
 }

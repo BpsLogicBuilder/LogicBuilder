@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -229,6 +230,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
 
         public DiagramSearcherFixture()
@@ -236,6 +238,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -305,7 +308,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new ObjectParameter
+                            ParameterFactory.GetObjectParameter
                             (
                                 "setting",
                                 false,
@@ -313,8 +316,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                                 "Contoso.Forms.Parameters.DataForm.DataFormSettingsParameters",
                                 true,
                                 false,
-                                true,
-                                ContextProvider
+                                true
                              )
                         },
                         new List<string> { },
@@ -335,7 +337,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         ParametersLayout.Sequential,
                         new List<ParameterBase>()
                         {
-                            new ObjectParameter
+                            ParameterFactory.GetObjectParameter
                             (
                                 "navBar",
                                 false,
@@ -343,8 +345,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                                 "Contoso.Forms.Parameters.Navigation.NavigationBarParameters",
                                 true,
                                 false,
-                                true,
-                                ContextProvider
+                                true
                              )
                         },
                         new List<string> { },

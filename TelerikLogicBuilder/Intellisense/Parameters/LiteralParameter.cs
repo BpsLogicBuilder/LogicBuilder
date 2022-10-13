@@ -15,7 +15,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         private readonly ITypeHelper _typeHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal LiteralParameter(string name,
+        internal LiteralParameter(
+            IEnumHelper enumHelper,
+            ITypeHelper typeHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string name,
             bool isOptional,
             string comments,
             LiteralParameterType literalType,
@@ -26,8 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
             string propertySource,
             string propertySourceParameter,
             string defaultValue,
-            List<string> domain,
-            IContextProvider contextProvider)
+            List<string> domain)
             : base(name, isOptional, comments)
         {
             this.LiteralType = literalType;
@@ -39,9 +42,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
             this.PropertySourceParameter = propertySourceParameter;
             this.DefaultValue = defaultValue;
             this.Domain = domain;
-            this._enumHelper = contextProvider.EnumHelper;
-            this._typeHelper = contextProvider.TypeHelper;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._enumHelper = enumHelper;
+            this._typeHelper = typeHelper;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

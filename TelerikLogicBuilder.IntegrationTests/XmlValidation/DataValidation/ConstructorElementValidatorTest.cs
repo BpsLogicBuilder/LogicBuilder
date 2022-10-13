@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -351,6 +352,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
@@ -395,7 +397,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "Contoso.Test.Business.Responses.TestResponseA",
                         new List<ParameterBase>
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "stringProperty",
                                 false,
@@ -408,8 +410,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -421,21 +422,19 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "Contoso.Test.Business.Responses.GenericResponse`2",
                         new List<ParameterBase>
                         {
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "aProperty",
                                 false,
                                 "",
-                                "A",
-                                ContextProvider
+                                "A"
                             ),
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "bProperty",
                                 false,
                                 "",
-                                "B",
-                                ContextProvider
+                                "B"
                             )
                         },
                         new List<string> { "A", "B" },
@@ -447,7 +446,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "Contoso.Test.Business.Responses.TypeNotFoundConstructor",
                         new List<ParameterBase>
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "stringProperty",
                                 false,
@@ -460,8 +459,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -488,6 +486,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
     }

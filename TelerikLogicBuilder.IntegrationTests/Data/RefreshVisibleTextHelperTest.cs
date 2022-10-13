@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -550,6 +551,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
@@ -595,7 +597,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "Contoso.Test.Business.Responses.TestResponseA",
                         new List<ParameterBase>
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "stringProperty",
                                 false,
@@ -608,8 +610,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -621,21 +622,19 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "Contoso.Test.Business.Responses.GenericResponse`2",
                         new List<ParameterBase>
                         {
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "aProperty",
                                 false,
                                 "",
-                                "A",
-                                ContextProvider
+                                "A"
                             ),
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "bProperty",
                                 false,
                                 "",
-                                "B",
-                                ContextProvider
+                                "B"
                             )
                         },
                         new List<string> { "A", "B" },
@@ -647,7 +646,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "Contoso.Test.Business.Responses.TypeNotFoundConstructor",
                         new List<ParameterBase>
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "stringProperty",
                                 false,
@@ -660,8 +659,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -688,7 +686,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -701,10 +699,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -717,8 +714,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -739,7 +735,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -752,10 +748,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -768,8 +763,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -790,7 +784,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Binary,
                         new List<ParameterBase>()
                         {
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value1",
                                 false,
@@ -803,10 +797,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             ),
-                            new LiteralParameter
+                            ParameterFactory.GetLiteralParameter
                             (
                                 "value2",
                                 false,
@@ -819,8 +812,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                 "",
                                 "",
                                 "",
-                                new List<string>(),
-                                ContextProvider
+                                new List<string>()
                             )
                         },
                         new List<string>(),
@@ -841,21 +833,19 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         ParametersLayout.Sequential,
                         new List<ParameterBase>
                         {
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "aProperty",
                                 false,
                                 "",
-                                "A",
-                                ContextProvider
+                                "A"
                             ),
-                            new GenericParameter
+                            ParameterFactory.GetGenericParameter
                             (
                                 "bProperty",
                                 false,
                                 "",
-                                "B",
-                                ContextProvider
+                                "B"
                             )
                         },
                         new List<string> { "A", "B" },
@@ -1030,6 +1020,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
+        internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;

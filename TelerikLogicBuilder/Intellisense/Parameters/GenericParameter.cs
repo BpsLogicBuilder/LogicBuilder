@@ -11,15 +11,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal GenericParameter(string name,
+        internal GenericParameter(
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string name,
             bool isOptional,
             string comments,
-            string genericArgumentName,
-            IContextProvider contextProvider)
+            string genericArgumentName)
             : base(name, isOptional, comments)
         {
             this.GenericArgumentName = genericArgumentName;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

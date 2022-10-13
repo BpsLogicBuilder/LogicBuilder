@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,14 +9,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
 {
     internal class LiteralParameterNodeInfo : ParameterNodeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IEnumHelper _enumHelper;
+        private readonly IParameterFactory _parameterFactory;
 
-        internal LiteralParameterNodeInfo(ParameterInfo pInfo, IContextProvider contextProvider, IParameterAttributeReader parameterAttributeReader)
+        internal LiteralParameterNodeInfo(
+            IEnumHelper enumHelper,
+            IParameterAttributeReader parameterAttributeReader,
+            IParameterFactory parameterFactory,
+            ParameterInfo pInfo)
             : base(pInfo, parameterAttributeReader)
         {
-            this._contextProvider = contextProvider;
-            this._enumHelper = contextProvider.EnumHelper;
+            _parameterFactory = parameterFactory;
+            this._enumHelper = enumHelper;
         }
 
         /// <summary>
@@ -143,7 +148,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
         {
             get
             {
-                return new LiteralParameter(this.Name,
+                return _parameterFactory.GetLiteralParameter(this.Name,
                   this.IsOptional,
                   this.Comments,
                   this.Type,
@@ -154,8 +159,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters
                   this.PropertySource,
                   this.PropertySourceParameter,
                   this.DefaultValue,
-                  this.Domain,
-                  this._contextProvider);
+                  this.Domain);
             }
         }
     }
