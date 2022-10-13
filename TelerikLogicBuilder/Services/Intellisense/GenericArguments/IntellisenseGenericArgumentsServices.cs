@@ -8,6 +8,6 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddIntellisenseGenericArguments(this IServiceCollection services)
             => services
                 .AddSingleton<IGenericConfigXmlParser, GenericConfigXmlParser>()
-                .AddIntellisenseGenericConfigs();
+                .AddIntellisenseGenericConfigFactories();
     }
 }

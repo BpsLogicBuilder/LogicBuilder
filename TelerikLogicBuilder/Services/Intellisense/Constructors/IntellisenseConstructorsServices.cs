@@ -11,6 +11,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IConstructorManager, ConstructorManager>()
                 .AddSingleton<IConstructorXmlParser, ConstructorXmlParser>()
                 .AddSingleton<IExistingConstructorFinder, ExistingConstructorFinder>()
-                .AddIntellisenseConstructorUtilities();
+                .AddIntellisenseConstructorFactories();
     }
 }

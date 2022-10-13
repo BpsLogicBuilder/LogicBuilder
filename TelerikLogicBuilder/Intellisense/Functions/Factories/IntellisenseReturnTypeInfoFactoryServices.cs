@@ -6,9 +6,9 @@ using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class IntellisenseReturnTypeInfoServices
+    internal static class IntellisenseReturnTypeInfoFactoryServices
     {
-        internal static IServiceCollection AddIntellisenseReturnTypeInfos(this IServiceCollection services)
+        internal static IServiceCollection AddIntellisenseReturnTypeInfoFactories(this IServiceCollection services)
         {
             return services
                 .AddTransient<Func<MethodInfo, GenericReturnTypeInfo>>

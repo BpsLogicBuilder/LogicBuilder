@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class IntellisenseGenericConfigServices
+    internal static class IntellisenseGenericConfigFactoryServices
     {
-        internal static IServiceCollection AddIntellisenseGenericConfigs(this IServiceCollection services)
+        internal static IServiceCollection AddIntellisenseGenericConfigFactories(this IServiceCollection services)
         {
             return services
                 .AddTransient<Func<string, LiteralParameterType, LiteralParameterInputStyle, bool, bool, bool, string, string, string, List<string>, LiteralGenericConfig>>
