@@ -2,8 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -92,6 +92,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -136,7 +137,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, VariableBase>
                 {
-                    ["StringItem"] = new LiteralVariable
+                    ["StringItem"] = VariableFactory.GetLiteralVariable
                     (
                         "StringItem",
                         "StringItem",
@@ -152,8 +153,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         LiteralVariableInputStyle.SingleLineTextBox,
                         "",
                         "",
-                        new List<string>(),
-                        ContextProvider
+                        new List<string>()
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -177,5 +177,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal ILoadContextSponsor LoadContextSponsor;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
+        internal IVariableFactory VariableFactory;
     }
 }

@@ -30,29 +30,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                                                 string castReferenceAs, 
                                                 ReferenceCategories referenceCategory);
         #endregion Properties
-
-        #region Methods
-        internal static VariableNodeInfoBase Create(MemberInfo mInfo, Type memberType, IContextProvider contextProvider, IMemberAttributeReader memberAttributeReader)
-        {
-            if (contextProvider.TypeHelper.IsLiteralType(memberType))
-                return new LiteralVariableNodeInfo(mInfo, memberType, contextProvider, memberAttributeReader);
-            else if (contextProvider.TypeHelper.IsValidList(memberType))
-            {
-                Type underlyingType = contextProvider.TypeHelper.GetUndelyingTypeForValidList(memberType);
-                if (contextProvider.TypeHelper.IsLiteralType(underlyingType))
-                    return new ListOfLiteralsVariableNodeInfo(mInfo, memberType, contextProvider, memberAttributeReader);
-                else
-                    return new ListOfObjectsVariableNodeInfo(mInfo, memberType, contextProvider, memberAttributeReader);
-            }
-            else if (memberType.IsAbstract || memberType.IsInterface || memberType.IsEnum)
-            {//keeping these separate form the regular concrete type below - may need further work
-                return new ObjectVariableNodeInfo(mInfo, memberType, contextProvider, memberAttributeReader);
-            }
-            else
-            {
-                return new ObjectVariableNodeInfo(mInfo, memberType, contextProvider, memberAttributeReader);
-            }
-        }
-        #endregion Methods
     }
 }

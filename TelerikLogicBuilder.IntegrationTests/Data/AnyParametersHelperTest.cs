@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
@@ -1263,6 +1264,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -1340,7 +1342,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, VariableBase>
                 {
-                    ["System_Object"] = new ObjectVariable
+                    ["System_Object"] = VariableFactory.GetObjectVariable
                     (
                         "System_Object",
                         "System_Object",
@@ -1352,8 +1354,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "",
                         ReferenceCategories.InstanceReference,
                         "",
-                        "System.Object",
-                        ContextProvider
+                        "System.Object"
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -1369,7 +1370,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
 
         LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => new
+            => VariableFactory.GetLiteralVariable
             (
                 name,
                 name,
@@ -1385,8 +1386,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>(),
-                ContextProvider
+                new List<string>()
             );
 
         public void Dispose()
@@ -1405,5 +1405,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
+        internal IVariableFactory VariableFactory;
     }
 }

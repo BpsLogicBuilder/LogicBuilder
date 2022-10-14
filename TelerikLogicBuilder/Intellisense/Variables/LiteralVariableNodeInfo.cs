@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
 {
     internal class LiteralVariableNodeInfo : VariableNodeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IEnumHelper _enumHelper;
+        private readonly IVariableFactory _variableFactory;
 
-        internal LiteralVariableNodeInfo(MemberInfo mInfo, Type memberType, IContextProvider contextProvider, IMemberAttributeReader memberAttributeReader)
+        internal LiteralVariableNodeInfo(
+            IEnumHelper enumHelper,
+            IMemberAttributeReader memberAttributeReader,
+            IVariableFactory variableFactory,
+            MemberInfo mInfo,
+            Type memberType)
             : base(mInfo, memberType, memberAttributeReader)
         {
-            _enumHelper = contextProvider.EnumHelper;
-            _contextProvider = contextProvider;
+            _enumHelper = enumHelper;
+            _variableFactory = variableFactory;
         }
 
         /// <summary>
@@ -59,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         }
 
         internal override VariableBase GetVariable(string name, string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory) 
-            => new LiteralVariable
+            => _variableFactory.GetLiteralVariable
             (
                 name,
                 memberName,
@@ -75,8 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                 this.LiteralControl,
                 this.PropertySource,
                 this.DefaultValue,
-                this.Domain,
-                _contextProvider
+                this.Domain
             );
     }
 }

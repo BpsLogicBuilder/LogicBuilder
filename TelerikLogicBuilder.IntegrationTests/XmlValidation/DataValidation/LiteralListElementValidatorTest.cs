@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -144,6 +145,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -220,7 +222,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => new
+            => VariableFactory.GetLiteralVariable
             (
                 name,
                 name,
@@ -236,8 +238,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>(),
-                ContextProvider
+                new List<string>()
             );
 
         public void Dispose()
@@ -254,5 +255,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal ILoadContextSponsor LoadContextSponsor;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
+        internal IVariableFactory VariableFactory;
     }
 }

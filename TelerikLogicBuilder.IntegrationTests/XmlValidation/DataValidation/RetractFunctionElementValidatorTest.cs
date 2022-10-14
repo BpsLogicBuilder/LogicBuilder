@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -253,6 +254,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -371,7 +373,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, VariableBase>
                 {
-                    ["System_Object"] = new ObjectVariable
+                    ["System_Object"] = VariableFactory.GetObjectVariable
                     (
                         "System_Object",
                         "System_Object",
@@ -383,10 +385,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         ReferenceCategories.InstanceReference,
                         "",
-                        "System.Object",
-                        ContextProvider
+                        "System.Object"
                     ),
-                    ["VariableTypeNotFound"] = new ObjectVariable
+                    ["VariableTypeNotFound"] = VariableFactory.GetObjectVariable
                     (
                         "VariableTypeNotFound",
                         "VariableTypeNotFound",
@@ -398,10 +399,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         ReferenceCategories.InstanceReference,
                         "",
-                        "System.Object",
-                        ContextProvider
+                        "System.Object"
                     ),
-                    ["LiteralListVariable"] = new ListOfLiteralsVariable
+                    ["LiteralListVariable"] = VariableFactory.GetListOfLiteralsVariable
                     (
                         "LiteralListVariable",
                         "LiteralListVariable",
@@ -419,10 +419,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         LiteralVariableInputStyle.SingleLineTextBox,
                         "",
                         new List<string>(),
-                        new List<string>(),
-                        ContextProvider
+                        new List<string>()
                     ),
-                    ["ObjectListVariable"] = new ListOfObjectsVariable
+                    ["ObjectListVariable"] = VariableFactory.GetListOfObjectsVariable
                     (
                         "ObjectListVariable",
                         "ObjectListVariable",
@@ -436,12 +435,12 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "Contoso.Test.Business.Responses.TestResponseA",
                         ListType.GenericList,
-                        ListVariableInputStyle.ListForm,
-                        ContextProvider
+                        ListVariableInputStyle.ListForm
                     ),
                     ["InvalidVariableType"] = new InvalidVariableType
                     (
-                        ContextProvider
+                        ServiceProvider.GetRequiredService<IEnumHelper>(),
+                        ServiceProvider.GetRequiredService<IStringHelper>()
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -458,7 +457,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => new
+            => VariableFactory.GetLiteralVariable
             (
                 name,
                 name,
@@ -474,8 +473,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>(),
-                ContextProvider
+                new List<string>()
             );
 
         public void Dispose()
@@ -496,5 +494,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
+        internal IVariableFactory VariableFactory;
     }
 }

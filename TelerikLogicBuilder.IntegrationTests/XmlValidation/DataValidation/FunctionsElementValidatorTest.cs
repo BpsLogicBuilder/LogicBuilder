@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -144,6 +145,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -333,7 +335,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => new
+            => VariableFactory.GetLiteralVariable
             (
                 name,
                 name,
@@ -349,8 +351,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>(),
-                ContextProvider
+                new List<string>()
             );
 
         public void Dispose()
@@ -370,5 +371,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
+        internal IVariableFactory VariableFactory;
     }
 }

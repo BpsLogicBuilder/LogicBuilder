@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -180,6 +181,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -241,7 +243,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, VariableBase>
                 {
-                    ["IntItem"] = new LiteralVariable
+                    ["IntItem"] = VariableFactory.GetLiteralVariable
                     (
                         "IntItem",
                         "IntItem",
@@ -257,10 +259,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         LiteralVariableInputStyle.SingleLineTextBox,
                         "",
                         "",
-                        new List<string>(),
-                        ContextProvider
+                        new List<string>()
                     ),
-                    ["ObjectVariableNotFound"] = new ObjectVariable
+                    ["ObjectVariableNotFound"] = VariableFactory.GetObjectVariable
                     (
                         "ObjectVariableNotFound",
                         "ObjectVariableNotFound",
@@ -272,8 +273,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         ReferenceCategories.InstanceReference,
                         "",
-                        "System.Object",
-                        ContextProvider
+                        "System.Object"
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
@@ -297,5 +297,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal ILoadContextSponsor LoadContextSponsor;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
+        internal IVariableFactory VariableFactory;
     }
 }

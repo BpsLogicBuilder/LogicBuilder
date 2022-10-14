@@ -11,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IVariablesManager, VariablesManager>()
                 .AddSingleton<IVariablesNodeInfoManager, VariablesNodeInfoManager>()
                 .AddSingleton<IVariablesXmlParser, VariablesXmlParser>()
-                .AddSingleton<IVariableValidationHelper, VariableValidationHelper>();
+                .AddSingleton<IVariableValidationHelper, VariableValidationHelper>()
+                .AddIntellisenseVariableFactories();
     }
 }

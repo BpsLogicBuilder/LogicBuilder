@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Reflection;
@@ -7,16 +8,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
 {
     internal class ListOfObjectsVariableNodeInfo : VariableNodeInfoBase
     {
-        private readonly ITypeHelper _typeHelper;
         private readonly IEnumHelper _enumHelper;
-        private readonly IContextProvider _contextProvider;
+        private readonly ITypeHelper _typeHelper;
+        private readonly IVariableFactory _variableFactory;
 
-        internal ListOfObjectsVariableNodeInfo(MemberInfo mInfo, Type memberType, IContextProvider contextProvider, IMemberAttributeReader memberAttributeReader)
+        internal ListOfObjectsVariableNodeInfo(
+            IEnumHelper enumHelper,
+            ITypeHelper typeHelper,
+            IMemberAttributeReader memberAttributeReader,
+            IVariableFactory variableFactory,
+            MemberInfo mInfo,
+            Type memberType)
             : base(mInfo, memberType, memberAttributeReader)
         {
-            _typeHelper = contextProvider.TypeHelper;
-            _enumHelper = contextProvider.EnumHelper;
-            _contextProvider = contextProvider;
+            _typeHelper = typeHelper;
+            _enumHelper = enumHelper;
+            _variableFactory = variableFactory;
         }
 
         #region Fields
@@ -34,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         internal ListType ListType => _enumHelper.GetListType(this.MemberType);
 
         internal override VariableBase GetVariable(string name, string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory)
-            => new ListOfObjectsVariable
+            => _variableFactory.GetListOfObjectsVariable
             (   name,
                 memberName,
                 variableCategory,
@@ -47,8 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                 this.Comments,
                 _typeHelper.ToId(_typeHelper.GetUndelyingTypeForValidList(this.MemberType)),
                 this.ListType,
-                this.ListControl,
-                _contextProvider
+                this.ListControl
             );
     }
 }

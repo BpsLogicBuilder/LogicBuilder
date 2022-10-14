@@ -13,7 +13,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal ListOfLiteralsVariable(string name,
+        internal ListOfLiteralsVariable(
+                    IEnumHelper enumHelper,
+                    IStringHelper stringHelper,
+                    IXmlDocumentHelpers xmlDocumentHelpers,
+                    string name,
                     string memberName,
                     VariableCategory variableCategory,
                     string castVariableAs,
@@ -29,9 +33,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                     LiteralVariableInputStyle elementControl,
                     string propertySource,
                     List<string> defaultValue,
-                    List<string> domain,
-                    IContextProvider contextProvider)
-            : base(name,
+                    List<string> domain)
+            : base(enumHelper,
+                    stringHelper,
+                    name,
                     memberName,
                     variableCategory,
                     castVariableAs,
@@ -40,8 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                     referenceDefinition,
                     castReferenceAs,
                     referenceCategory,
-                    comments,
-                    contextProvider)
+                    comments)
         {
             this.LiteralType = literalType;
             this.ListType = listType;
@@ -50,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
             this.PropertySource = propertySource;
             this.DefaultValue = defaultValue;
             this.Domain = domain;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

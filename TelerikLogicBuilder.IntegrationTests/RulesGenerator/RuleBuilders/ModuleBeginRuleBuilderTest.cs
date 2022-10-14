@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -52,6 +53,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.RuleBuilders
         internal IReturnTypeFactory ReturnTypeFactory;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IVariableFactory VariableFactory;
 
         public ModuleBeginRuleBuilderFixture()
         {
@@ -65,6 +67,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.RuleBuilders
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso",
@@ -285,7 +288,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.RuleBuilders
         }
 
         LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => new
+            => VariableFactory.GetLiteralVariable
             (
                 name,
                 name,
@@ -301,8 +304,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.RuleBuilders
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>(),
-                ContextProvider
+                new List<string>()
             );
 
         public void Dispose()

@@ -13,7 +13,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         private readonly IEnumHelper _enumHelper;
         private readonly IStringHelper _stringHelper;
 
-        internal VariableBase(string name, string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, string comments, IContextProvider contextProvider)
+        internal VariableBase(
+            IEnumHelper enumHelper,
+            IStringHelper stringHelper,
+            string name,
+            string memberName,
+            VariableCategory variableCategory,
+            string castVariableAs,
+            string typeName,
+            string referenceName,
+            string referenceDefinition,
+            string castReferenceAs,
+            ReferenceCategories referenceCategory,
+            string comments)
         {
             this.Name = name;
             this.MemberName = memberName;
@@ -25,8 +37,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
             this.ReferenceCategory = referenceCategory;
             this.CastReferenceAs = castReferenceAs;
             this.Comments = comments;
-            _enumHelper = contextProvider.EnumHelper;
-            _stringHelper = contextProvider.StringHelper;
+            _enumHelper = enumHelper;
+            _stringHelper = stringHelper;
         }
 
         #region Properties

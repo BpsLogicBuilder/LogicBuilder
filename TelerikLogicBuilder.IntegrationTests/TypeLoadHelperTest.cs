@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -445,12 +446,12 @@ namespace TelerikLogicBuilder.IntegrationTests
 
             get
             {
-                IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+                IVariableFactory variableFactory = serviceProvider.GetRequiredService<IVariableFactory>();
                 return new List<object[]>
                 {
                     new object[]
                     {
-                        new LiteralVariable
+                        variableFactory.GetLiteralVariable
                         (
                             "name",
                             "memberName",
@@ -466,14 +467,13 @@ namespace TelerikLogicBuilder.IntegrationTests
                             LiteralVariableInputStyle.SingleLineTextBox,
                             "",
                             "",
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         typeof(string).FullName!
                     },
                     new object[]
                     {
-                        new ObjectVariable
+                        variableFactory.GetObjectVariable
                         (
                             "name",
                             "memberName",
@@ -485,14 +485,13 @@ namespace TelerikLogicBuilder.IntegrationTests
                             "~",
                             ReferenceCategories.InstanceReference,
                             "comments",
-                            "Contoso.Domain.Entities.DepartmentModel",
-                            contextProvider
+                            "Contoso.Domain.Entities.DepartmentModel"
                         ),
                         "Contoso.Domain.Entities.DepartmentModel"
                     },
                     new object[]
                     {
-                        new ListOfLiteralsVariable
+                        variableFactory.GetListOfLiteralsVariable
                         (
                             "name",
                             "memberName",
@@ -510,14 +509,13 @@ namespace TelerikLogicBuilder.IntegrationTests
                             LiteralVariableInputStyle.SingleLineTextBox,
                             "",
                             new List<string>(),
-                            new List<string>(),
-                            contextProvider
+                            new List<string>()
                         ),
                         "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {
-                        new ListOfObjectsVariable
+                        variableFactory.GetListOfObjectsVariable
                         (
                             "name",
                             "memberName",
@@ -531,8 +529,7 @@ namespace TelerikLogicBuilder.IntegrationTests
                             "comments",
                             "Contoso.Domain.Entities.DepartmentModel",
                             ListType.GenericList,
-                            ListVariableInputStyle.HashSetForm,
-                            contextProvider
+                            ListVariableInputStyle.HashSetForm
                         ),
                         "System.Collections.Generic.List`1[[Contoso.Domain.Entities.DepartmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
                     },
@@ -545,6 +542,8 @@ namespace TelerikLogicBuilder.IntegrationTests
             public InvalidVariableType() 
                 : base
                 (
+                    serviceProvider.GetRequiredService<IEnumHelper>(),
+                    serviceProvider.GetRequiredService<IStringHelper>(),
                     "name",
                     "memberName",
                     VariableCategory.Field,
@@ -554,8 +553,7 @@ namespace TelerikLogicBuilder.IntegrationTests
                     "referenceDefinition", 
                     "~",
                     ReferenceCategories.InstanceReference,
-                    "comments",
-                    serviceProvider.GetRequiredService<IContextProvider>()
+                    "comments"
                 )
             {
             }

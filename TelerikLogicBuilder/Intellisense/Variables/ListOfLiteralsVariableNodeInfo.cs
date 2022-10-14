@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
 {
     internal class ListOfLiteralsVariableNodeInfo : VariableNodeInfoBase
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IEnumHelper _enumHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly IStringHelper _stringHelper;
+        private readonly IVariableFactory _variableFactory;
 
-        internal ListOfLiteralsVariableNodeInfo(MemberInfo mInfo, Type memberType, IContextProvider contextProvider, IMemberAttributeReader memberAttributeReader)
+        internal ListOfLiteralsVariableNodeInfo(
+            IEnumHelper enumHelper,
+            ITypeHelper typeHelper,
+            IMemberAttributeReader memberAttributeReader,
+            IStringHelper stringHelper,
+            IVariableFactory variableFactory,
+            MemberInfo mInfo,
+            Type memberType)
             : base(mInfo, memberType, memberAttributeReader)
         {
-            _enumHelper = contextProvider.EnumHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _stringHelper = contextProvider.StringHelper;
-            _contextProvider = contextProvider;
+            _enumHelper = enumHelper;
+            _typeHelper = typeHelper;
+            _stringHelper = stringHelper;
+            _variableFactory = variableFactory;
         }
 
         internal LiteralVariableType LiteralType => _enumHelper.GetLiteralVariableType(_typeHelper.GetUndelyingTypeForValidList(this.MemberType));
@@ -87,7 +95,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         }
 
         internal override VariableBase GetVariable(string name, string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory)
-            => new ListOfLiteralsVariable
+            => _variableFactory.GetListOfLiteralsVariable
             (
                 name,
                 memberName,
@@ -105,8 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                 this.ElementControl,
                 this.PropertySource,
                 this.DefaultValuesForLiteralList,
-                this.Domain,
-                _contextProvider
+                this.Domain
             );
     }
 }

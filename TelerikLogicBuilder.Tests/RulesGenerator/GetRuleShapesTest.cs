@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -139,6 +140,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal IFunctionFactory FunctionFactory;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
+        internal IVariableFactory VariableFactory;
 
         public GetRuleShapesFixture()
         {
@@ -148,6 +150,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso",
@@ -367,7 +370,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         }
 
         LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => new
+            => VariableFactory.GetLiteralVariable
             (
                 name,
                 name,
@@ -383,8 +386,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>(),
-                ContextProvider
+                new List<string>()
             );
 
         public void Dispose()

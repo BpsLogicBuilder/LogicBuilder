@@ -12,7 +12,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal ListOfObjectsVariable(string name,
+        internal ListOfObjectsVariable(
+                    IEnumHelper enumHelper,
+                    IStringHelper stringHelper,
+                    IXmlDocumentHelpers xmlDocumentHelpers,
+                    string name,
                     string memberName,
                     VariableCategory variableCategory,
                     string castVariableAs,
@@ -24,9 +28,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                     string comments,
                     string objectType,
                     ListType listType,
-                    ListVariableInputStyle control,
-                    IContextProvider contextProvider)
-            : base(name,
+                    ListVariableInputStyle control)
+            : base(enumHelper,
+                    stringHelper,
+                    name,
                     memberName,
                     variableCategory,
                     castVariableAs,
@@ -35,13 +40,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
                     referenceDefinition,
                     castReferenceAs,
                     referenceCategory,
-                    comments,
-                    contextProvider)
+                    comments)
         {
             this.ObjectType = objectType;
             this.ListType = listType;
             this.Control = control;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

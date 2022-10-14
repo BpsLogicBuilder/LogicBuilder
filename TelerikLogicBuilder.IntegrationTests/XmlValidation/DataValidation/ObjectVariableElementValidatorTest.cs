@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -56,7 +57,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                     </objectVariable>");
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             List<string> errors = new();
-            ObjectVariable variable = new
+            ObjectVariable variable = _fixture.VariableFactory.GetObjectVariable
             (
                 "Response",
                 "Response",
@@ -68,8 +69,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 "",
                 ReferenceCategories.InstanceReference,
                 "",
-                "Contoso.Test.Business.Responses.TestResponseA",
-                _fixture.ContextProvider
+                "Contoso.Test.Business.Responses.TestResponseA"
             );
 
             //act
@@ -96,7 +96,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                         </literalList>
                                                       </literalListParameter>");
             List<string> errors = new();
-            ObjectVariable variable = new
+            ObjectVariable variable = _fixture.VariableFactory.GetObjectVariable
             (
                 "Response",
                 "Response",
@@ -108,8 +108,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 "",
                 ReferenceCategories.InstanceReference,
                 "",
-                "Contoso.Test.Business.Responses.TestResponseA",
-                _fixture.ContextProvider
+                "Contoso.Test.Business.Responses.TestResponseA"
             );
 
             //act
@@ -136,7 +135,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                                                     </objectVariable>");
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             List<string> errors = new();
-            ObjectVariable variable = new
+            ObjectVariable variable = _fixture.VariableFactory.GetObjectVariable
             (
                 "Response",
                 "Response",
@@ -148,8 +147,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 "",
                 ReferenceCategories.InstanceReference,
                 "",
-                "Contoso.Test.Business.Responses.TypeNotFound",
-                _fixture.ContextProvider
+                "Contoso.Test.Business.Responses.TypeNotFound"
             );
 
             //act
@@ -196,6 +194,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
@@ -281,5 +280,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IParameterFactory ParameterFactory;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
+        internal IVariableFactory VariableFactory;
     }
 }

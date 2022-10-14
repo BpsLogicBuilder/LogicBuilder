@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -98,6 +99,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
             (
                 "Contoso",
@@ -253,7 +255,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         }
 
         LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => new
+            => VariableFactory.GetLiteralVariable
             (
                 name,
                 name,
@@ -269,8 +271,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>(),
-                ContextProvider
+                new List<string>()
             );
 
         public void Dispose()
@@ -296,5 +297,6 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         internal IReturnTypeFactory ReturnTypeFactory;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IVariableFactory VariableFactory;
     }
 }
