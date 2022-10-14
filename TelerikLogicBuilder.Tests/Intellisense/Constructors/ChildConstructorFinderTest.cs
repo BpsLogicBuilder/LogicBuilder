@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -24,12 +25,12 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Constructors
         public void AddChildConstructorsAddsExpectedConstructors()
         {
             //arrange
-            IChildConstructorFinder finder = serviceProvider.GetRequiredService<IChildConstructorFinder>();
             Dictionary<string, Constructor> existingConstructors = new();
+            IChildConstructorFinder finder = serviceProvider.GetRequiredService<IChildConstructorFinderFactory>().GetChildConstructorFinder(existingConstructors);
             ParameterInfo[] parameters = typeof(TestClassWithChildContructor).GetConstructors().First().GetParameters();
 
             //act
-            finder.AddChildConstructors(existingConstructors, parameters);
+            finder.AddChildConstructors(parameters);
 
             //assert
             Assert.NotEmpty(existingConstructors);

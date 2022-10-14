@@ -7,7 +7,6 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         internal static IServiceCollection AddIntellisenseConstructors(this IServiceCollection services)
             => services
-                .AddSingleton<IChildConstructorFinder, ChildConstructorFinder>()
                 .AddSingleton<IConstructorManager, ConstructorManager>()
                 .AddSingleton<IConstructorXmlParser, ConstructorXmlParser>()
                 .AddSingleton<IExistingConstructorFinder, ExistingConstructorFinder>()
