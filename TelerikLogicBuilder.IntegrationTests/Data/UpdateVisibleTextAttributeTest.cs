@@ -504,6 +504,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -627,7 +628,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Function>
                 {
-                    ["Equals"] = new Function
+                    ["Equals"] = FunctionFactory.GetFunction
                     (
                         "Equals",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.ValueEquality)!,
@@ -673,10 +674,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Greater Than"] = new Function
+                    ["Greater Than"] = FunctionFactory.GetFunction
                     (
                         "Greater Than",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.GreaterThan)!,
@@ -722,10 +722,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Less Than"] = new Function
+                    ["Less Than"] = FunctionFactory.GetFunction
                     (
                         "Less Than",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.LessThan)!,
@@ -771,10 +770,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["StaticMethod"] = new Function
+                    ["StaticMethod"] = FunctionFactory.GetFunction
                     (
                         "StaticMethod",
                         "StaticMethod",
@@ -804,10 +802,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         },
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Set To Null"] = new Function
+                    ["Set To Null"] = FunctionFactory.GetFunction
                     (
                         "Set To Null",
                         "assert",
@@ -821,10 +818,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         new List<ParameterBase>(),
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Set Variable"] = new Function
+                    ["Set Variable"] = FunctionFactory.GetFunction
                     (
                         "Set Variable",
                         "assert",
@@ -838,8 +834,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         new List<ParameterBase>(),
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                        "",
-                        ContextProvider
+                        ""
                     ),
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -973,6 +968,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;

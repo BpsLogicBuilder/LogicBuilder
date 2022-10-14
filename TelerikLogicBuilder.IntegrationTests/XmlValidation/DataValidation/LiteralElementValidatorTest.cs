@@ -279,6 +279,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -353,7 +354,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Function> 
                 {
-                    ["GetString"] = new Function
+                    ["GetString"] = FunctionFactory.GetFunction
                     (
                         "GetString",
                         "GetString",
@@ -367,8 +368,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.String),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -425,6 +425,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IXmlElementValidator XmlElementValidator;
         internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
+        internal IFunctionFactory FunctionFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;

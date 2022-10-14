@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
@@ -10,22 +11,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
 {
     internal class FunctionNodeInfo
     {
-        private readonly ITypeHelper _typeHelper;
-        private readonly IContextProvider _contextProvider;
+        private readonly IFunctionFactory _functionFactory;
         private readonly IMemberAttributeReader _memberAttributeReader;
         private readonly IParametersManager _parametersManager;
         private readonly IReturnTypeManager _returnTypeManager;
+        private readonly ITypeHelper _typeHelper;
 
         public FunctionNodeInfo(
-            MethodInfo mInfo,
-            IContextProvider contextProvider,
+            IFunctionFactory functionFactory,
             IMemberAttributeReader memberAttributeReader,
             IParametersManager parametersManager,
-            IReturnTypeManager returnTypeManager)
+            IReturnTypeManager returnTypeManager,
+            ITypeHelper typeHelper,
+            MethodInfo mInfo)
         {
             MInfo = mInfo;
-            _typeHelper = contextProvider.TypeHelper;
-            _contextProvider = contextProvider;
+            _functionFactory = functionFactory;
+            _typeHelper = typeHelper;
             _memberAttributeReader = memberAttributeReader;
             _parametersManager = parametersManager;
             _returnTypeManager = returnTypeManager;
@@ -58,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
             if (MInfo.DeclaringType == null)
                 return null;
 
-            return new
+            return _functionFactory.GetFunction
             (
                 name,
                 memberName,
@@ -80,8 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
                     .ToList(),
                 new List<string>(MInfo.DeclaringType.GetGenericArguments().Select(a => a.Name)),
                 _returnTypeManager.GetReturnTypeInfo(MInfo).GetReturnType(),
-                this.Sumnmary,
-                _contextProvider
+                this.Sumnmary
             );
         }
         #endregion Methods

@@ -1551,6 +1551,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IFunctionFactory FunctionFactory;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
 
@@ -1559,6 +1560,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
@@ -1616,7 +1618,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             (
                 new Dictionary<string, Function>
                 {
-                    ["DisplayEditForm"] = new Function
+                    ["DisplayEditForm"] = FunctionFactory.GetFunction
                     (
                         "DisplayEditForm",
                         "DisplayEditForm",
@@ -1642,10 +1644,9 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["SetupNavigationMenu"] = new Function
+                    ["SetupNavigationMenu"] = FunctionFactory.GetFunction
                     (
                         "SetupNavigationMenu",
                         "UpdateNavigationBar",
@@ -1671,8 +1672,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),

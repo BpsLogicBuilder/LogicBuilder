@@ -247,6 +247,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -321,7 +322,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Function>
                 {
-                    ["Set To Null"] = new Function
+                    ["Set To Null"] = FunctionFactory.GetFunction
                     (
                         "Set To Null",
                         "assert",
@@ -335,10 +336,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Set Variable Wrong Category"] = new Function
+                    ["Set Variable Wrong Category"] = FunctionFactory.GetFunction
                     (
                         "Set Variable Wrong Category",
                         "StaticMethod",
@@ -352,8 +352,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -491,6 +490,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;

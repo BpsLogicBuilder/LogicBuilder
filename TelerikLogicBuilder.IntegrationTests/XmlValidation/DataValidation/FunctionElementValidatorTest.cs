@@ -496,6 +496,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -570,7 +571,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Function>
                 {
-                    ["StaticMethod"] = new Function
+                    ["StaticMethod"] = FunctionFactory.GetFunction
                     (
                         "StaticMethod",
                         "StaticMethod",
@@ -584,10 +585,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["ReturnTypeNotLoaded"] = new Function
+                    ["ReturnTypeNotLoaded"] = FunctionFactory.GetFunction
                     (
                         "ReturnTypeNotLoaded",
                         "ReturnTypeNotLoaded",
@@ -601,10 +601,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string>(),
                         ReturnTypeFactory.GetObjectReturnType("XYZ"),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["FunctionWithVariableIndexerInReference"] = new Function
+                    ["FunctionWithVariableIndexerInReference"] = FunctionFactory.GetFunction
                     (
                         "FunctionWithVariableIndexerInReference",
                         "Equals",
@@ -630,10 +629,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["FunctionWithMissingVariableIndexerInReference"] = new Function
+                    ["FunctionWithMissingVariableIndexerInReference"] = FunctionFactory.GetFunction
                     (
                         "FunctionWithMissingVariableIndexerInReference",
                         "Equals",
@@ -659,10 +657,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["FunctionWithVariableArrayIndexerInReference"] = new Function
+                    ["FunctionWithVariableArrayIndexerInReference"] = FunctionFactory.GetFunction
                     (
                         "FunctionWithVariableArrayIndexerInReference",
                         "Equals",
@@ -688,10 +685,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["FunctionWithMissingVariableArrayIndexerInReference"] = new Function
+                    ["FunctionWithMissingVariableArrayIndexerInReference"] = FunctionFactory.GetFunction
                     (
                         "FunctionWithMissingVariableArrayIndexerInReference",
                         "Equals",
@@ -717,8 +713,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -821,6 +816,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;

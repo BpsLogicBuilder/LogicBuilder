@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -13,19 +14,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 {
     internal class GenericFunctionHelper : IGenericFunctionHelper
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFunctionFactory _functionFactory;
         private readonly IGenericParametersHelper _genericParametersHelper;
         private readonly IGenericReturnTypeHelper _genericReturnTypeHelper;
         private readonly IGenericsConfigrationValidator _genericsConfigrationValidator;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        public GenericFunctionHelper(IContextProvider contextProvider, IGenericParametersHelper genericParametersHelper, IGenericReturnTypeHelper genericReturnTypeHelper, IGenericsConfigrationValidator genericsConfigrationValidator, ITypeLoadHelper typeLoadHelper)
+        public GenericFunctionHelper(
+            IExceptionHelper exceptionHelper,
+            IFunctionFactory functionFactory,
+            IGenericParametersHelper genericParametersHelper,
+            IGenericReturnTypeHelper genericReturnTypeHelper,
+            IGenericsConfigrationValidator genericsConfigrationValidator,
+            ITypeHelper typeHelper,
+            ITypeLoadHelper typeLoadHelper)
         {
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _typeHelper = contextProvider.TypeHelper;
-            _contextProvider = contextProvider;
+            _exceptionHelper = exceptionHelper;
+            _functionFactory = functionFactory;
+            _typeHelper = typeHelper;
             _genericParametersHelper = genericParametersHelper;
             _genericReturnTypeHelper = genericReturnTypeHelper;
             _genericsConfigrationValidator = genericsConfigrationValidator;
@@ -40,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             if (function.GenericArguments.Count != genericParameters.Count)
                 throw _exceptionHelper.CriticalException("{B9480848-F58F-4D09-B6C8-4989FBE19D00}");
 
-            return new Function
+            return _functionFactory.GetFunction
             (
                 function.Name,
                 function.MemberName,
@@ -54,8 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 _genericParametersHelper.GetConvertedParameters(function.Parameters, genericParameters, application),
                 function.GenericArguments,
                 _genericReturnTypeHelper.GetConvertedReturnType(function.ReturnType, genericParameters, application),
-                function.Summary,
-                _contextProvider
+                function.Summary
             );
         }
 

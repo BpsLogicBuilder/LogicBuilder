@@ -153,6 +153,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -202,7 +203,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Function>
                 {
-                    ["Equals"] = new Function
+                    ["Equals"] = FunctionFactory.GetFunction
                     (
                         "Equals",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.ValueEquality)!,
@@ -248,10 +249,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Greater Than"] = new Function
+                    ["Greater Than"] = FunctionFactory.GetFunction
                     (
                         "Greater Than",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.GreaterThan)!,
@@ -297,10 +297,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Less Than"] = new Function
+                    ["Less Than"] = FunctionFactory.GetFunction
                     (
                         "Less Than",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.LessThan)!,
@@ -346,8 +345,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -412,6 +410,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;

@@ -260,6 +260,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
@@ -272,6 +273,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -333,7 +335,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             (
                 new Dictionary<string, Function>
                 {
-                    ["ClearErrorMessages"] = new Function
+                    ["ClearErrorMessages"] = FunctionFactory.GetFunction
                     (
                         "ClearErrorMessages",
                         "Clear",
@@ -349,10 +351,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["WriteToLog"] = new Function
+                    ["WriteToLog"] = FunctionFactory.GetFunction
                     (
                         "WriteToLog",
                         "WriteToLog",
@@ -383,10 +384,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["DisplayString"] = new Function
+                    ["DisplayString"] = FunctionFactory.GetFunction
                     (
                         "DisplayString",
                         "DisplayString",
@@ -417,8 +417,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),

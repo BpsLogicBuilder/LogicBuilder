@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
+﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,11 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
         internal void CreateFunction(string methodName)
         {
             //arrange
-            IFunctionNodeInfoManager functionManager = serviceProvider.GetRequiredService<IFunctionNodeInfoManager>();
+            IFunctionNodeInfoFactory functionNodeInfoFactory = serviceProvider.GetRequiredService<IFunctionNodeInfoFactory>();
             MethodInfo methodInfo = typeof(TestParameterClass<>).GetMethod(methodName)!;
 
             //act
-            var result = functionManager.GetFunctionNodeInfo(methodInfo);
+            var result = functionNodeInfoFactory.GetFunctionNodeInfo(methodInfo);
 
             //assert
             Assert.NotNull(result);

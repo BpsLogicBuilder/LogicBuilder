@@ -17,7 +17,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         private readonly IStringHelper _stringHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        internal Function(string name, string memberName, FunctionCategories functionCategory, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout, List<ParameterBase> parameters, List<string> genericArguments, ReturnTypeBase returnType, string summary, IContextProvider contextProvider)
+        internal Function(
+            IEnumHelper enumHelper,
+            IStringHelper stringHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string name,
+            string memberName,
+            FunctionCategories functionCategory,
+            string typeName,
+            string referenceName,
+            string referenceDefinition,
+            string castReferenceAs,
+            ReferenceCategories referenceCategory,
+            ParametersLayout parametersLayout,
+            List<ParameterBase> parameters,
+            List<string> genericArguments,
+            ReturnTypeBase returnType,
+            string summary)
         {
             this.Name = name;
             this.MemberName = memberName;
@@ -33,9 +49,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
             this.ReturnType = returnType;
             this.Summary = summary;
 
-            _enumHelper = contextProvider.EnumHelper;
-            _stringHelper = contextProvider.StringHelper;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _enumHelper = enumHelper;
+            _stringHelper = stringHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties

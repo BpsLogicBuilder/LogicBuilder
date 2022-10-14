@@ -442,6 +442,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
@@ -492,7 +493,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Function>
                 {
-                    ["UndefinedCodeBinaryOperatorType"] = new Function
+                    ["UndefinedCodeBinaryOperatorType"] = FunctionFactory.GetFunction
                     (
                         "UndefinedCodeBinaryOperatorType",
                         "UndefinedCodeBinaryOperatorType",
@@ -538,10 +539,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Byte),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Assign"] = new Function
+                    ["Assign"] = FunctionFactory.GetFunction
                     (
                         "Assign",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.Assign)!,
@@ -587,10 +587,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Byte),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["AddOneParameter"] = new Function
+                    ["AddOneParameter"] = FunctionFactory.GetFunction
                     (
                         "AddOneParameter",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.Add)!,
@@ -621,10 +620,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Byte),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["AddStrings"] = new Function
+                    ["AddStrings"] = FunctionFactory.GetFunction
                     (
                         "AddStrings",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.Add)!,
@@ -670,10 +668,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.String),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["AddAny"] = new Function
+                    ["AddAny"] = FunctionFactory.GetFunction
                     (
                         "AddAny",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.Add)!,
@@ -719,10 +716,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.SByte),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["AddAnyOneParameterAny"] = new Function
+                    ["AddAnyOneParameterAny"] = FunctionFactory.GetFunction
                     (
                         "AddAnyOneParameterAny",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.Add)!,
@@ -768,10 +764,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.SByte),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["AddWrongFunctionCategory"] = new Function
+                    ["AddWrongFunctionCategory"] = FunctionFactory.GetFunction
                     (
                         "AddAny",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.Add)!,
@@ -817,8 +812,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.SByte),
-                        "",
-                        ContextProvider
+                        ""
                     ),
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -897,6 +891,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;

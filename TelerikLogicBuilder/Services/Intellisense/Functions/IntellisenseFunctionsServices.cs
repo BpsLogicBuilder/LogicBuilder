@@ -9,13 +9,11 @@ namespace Microsoft.Extensions.DependencyInjection
             => services
                 .AddSingleton<IFunctionHelper, FunctionHelper>()
                 .AddSingleton<IFunctionManager, FunctionManager>()
-                .AddSingleton<IFunctionNodeInfoManager, FunctionNodeInfoManager>()
                 .AddSingleton<IFunctionValidationHelper, FunctionValidationHelper>()
                 .AddSingleton<IFunctionXmlParser, FunctionXmlParser>()
                 .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
                 .AddSingleton<IReturnTypeManager, ReturnTypeManager>()
                 .AddSingleton<IReturnTypeXmlParser, ReturnTypeXmlParser>()
-                .AddIntellisenseReturnTypeInfoFactories()
-                .AddIntellisenseReturnTypeFactories();
+                .AddFunctionFactories();
     }
 }

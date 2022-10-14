@@ -1258,6 +1258,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
@@ -1306,7 +1307,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Function>
                 {
-                    ["StaticMethodReturnsGenericType"] = new Function
+                    ["StaticMethodReturnsGenericType"] = FunctionFactory.GetFunction
                     (
                         "StaticMethodReturnsGenericType",
                         "StaticMethodReturnsGenericType",
@@ -1320,8 +1321,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         new List<ParameterBase>(),
                         new List<string> { "A" },
                         ReturnTypeFactory.GetGenericReturnType("A"), 
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -1400,6 +1400,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IReturnTypeFactory ReturnTypeFactory;
         internal ITypeLoadHelper TypeLoadHelper;

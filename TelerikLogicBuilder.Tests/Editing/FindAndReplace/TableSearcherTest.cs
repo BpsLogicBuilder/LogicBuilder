@@ -243,6 +243,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         internal IServiceProvider ServiceProvider;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IFunctionFactory FunctionFactory;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
 
@@ -251,6 +252,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             ConfigurationService.ProjectProperties = new ProjectProperties
@@ -308,7 +310,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             (
                 new Dictionary<string, Function>
                 {
-                    ["ClearErrorMessages"] = new Function
+                    ["ClearErrorMessages"] = FunctionFactory.GetFunction
                     (
                         "ClearErrorMessages",
                         "Clear",
@@ -324,10 +326,9 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["DisplayString"] = new Function
+                    ["DisplayString"] = FunctionFactory.GetFunction
                     (
                         "DisplayString",
                         "DisplayString",
@@ -358,10 +359,9 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["Equals"] = new Function
+                    ["Equals"] = FunctionFactory.GetFunction
                     (
                         "Equals",
                         Enum.GetName(typeof(CodeBinaryOperatorType), CodeBinaryOperatorType.ValueEquality)!,
@@ -407,10 +407,9 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         },
                         new List<string>(),
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["WriteToLog"] = new Function
+                    ["WriteToLog"] = FunctionFactory.GetFunction
                     (
                         "WriteToLog",
                         "WriteToLog",
@@ -441,8 +440,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         },
                         new List<string> { },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),

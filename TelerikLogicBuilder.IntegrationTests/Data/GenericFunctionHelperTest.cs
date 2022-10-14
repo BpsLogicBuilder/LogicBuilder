@@ -348,6 +348,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             GenericConfigFactory = ServiceProvider.GetRequiredService<IGenericConfigFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -399,7 +400,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             (
                 new Dictionary<string, Function>
                 {
-                    ["StaticMethod"] = new Function
+                    ["StaticMethod"] = FunctionFactory.GetFunction
                     (
                         "StaticMethod",
                         "StaticMethod",
@@ -413,10 +414,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["StaticMethodTypeNotFound"] = new Function
+                    ["StaticMethodTypeNotFound"] = FunctionFactory.GetFunction
                     (
                         "StaticMethodTypeNotFound",
                         "StaticMethodTypeNotFound",
@@ -430,10 +430,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["StaticMethodGenericReturn"] = new Function
+                    ["StaticMethodGenericReturn"] = FunctionFactory.GetFunction
                     (
                         "StaticMethodGenericReturn",
                         "StaticMethodGenericReturn",
@@ -463,10 +462,9 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         },
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetGenericReturnType("B"),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["StaticNonGenericMethod"] = new Function
+                    ["StaticNonGenericMethod"] = FunctionFactory.GetFunction
                     (
                         "StaticNonGenericMethod",
                         "StaticNonGenericMethod",
@@ -480,8 +478,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -511,6 +508,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IContextProvider ContextProvider;
         internal IGenericConfigFactory GenericConfigFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
+        internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;

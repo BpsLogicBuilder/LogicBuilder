@@ -380,6 +380,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             XmlElementValidator = ServiceProvider.GetRequiredService<IXmlElementValidator>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             GenericConfigFactory = ServiceProvider.GetRequiredService<IGenericConfigFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -430,7 +431,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             (
                 new Dictionary<string, Function>
                 {
-                    ["StaticMethod"] = new Function
+                    ["StaticMethod"] = FunctionFactory.GetFunction
                     (
                         "StaticMethod",
                         "StaticMethod",
@@ -444,10 +445,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["StaticMethodOneArgument"] = new Function
+                    ["StaticMethodOneArgument"] = FunctionFactory.GetFunction
                     (
                         "StaticMethodOneArgument",
                         "StaticMethodOneArgument",
@@ -461,10 +461,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["StaticMethodWrongCategory"] = new Function
+                    ["StaticMethodWrongCategory"] = FunctionFactory.GetFunction
                     (
                         "StaticMethodWrongCategory",
                         "StaticMethodWrongCategory",
@@ -478,10 +477,9 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     ),
-                    ["StaticNonGenericMethod"] = new Function
+                    ["StaticNonGenericMethod"] = FunctionFactory.GetFunction
                     (
                         "StaticNonGenericMethod",
                         "StaticNonGenericMethod",
@@ -495,8 +493,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         new List<ParameterBase>(),
                         new List<string> { "A", "B" },
                         ReturnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Boolean),
-                        "",
-                        ContextProvider
+                        ""
                     )
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
@@ -533,6 +530,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationService ConfigurationService;
         internal IXmlElementValidator XmlElementValidator;
         internal IContextProvider ContextProvider;
+        internal IFunctionFactory FunctionFactory;
         internal IGenericConfigFactory GenericConfigFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
@@ -12,21 +13,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
 {
     internal class FunctionXmlParser : IFunctionXmlParser
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFunctionFactory _functionFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParametersXmlParser _parametersXmlParser;
         private readonly IReturnTypeXmlParser _returnTypeXmlParser;
 
-        public FunctionXmlParser(IContextProvider contextProvider, IParametersXmlParser parametersXmlParser, IReturnTypeXmlParser returnTypeXmlParser)
+        public FunctionXmlParser(
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            IFunctionFactory functionFactory,
+            IParametersXmlParser parametersXmlParser,
+            IReturnTypeXmlParser returnTypeXmlParser,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _enumHelper = contextProvider.EnumHelper;
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _contextProvider = contextProvider;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _functionFactory = functionFactory;
             _parametersXmlParser = parametersXmlParser;
             _returnTypeXmlParser = returnTypeXmlParser;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public Function Parse(XmlElement xmlElement)
@@ -38,7 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
 
             Function GetFunction(IDictionary<string, XmlElement> elements)
             {
-                return new Function
+                return _functionFactory.GetFunction
                 (
                     xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                     elements[XmlDataConstants.MEMBERNAMEELEMENT].InnerText,
@@ -52,8 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
                     _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]).Select(e => _parametersXmlParser.Parse(e)).ToList(),
                     _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.GENERICARGUMENTSELEMENT]).Select(e => e.InnerText).ToList(),
                     _returnTypeXmlParser.Parse(_xmlDocumentHelpers.GetSingleChildElement(elements[XmlDataConstants.RETURNTYPEELEMENT])),
-                    elements[XmlDataConstants.SUMMARYELEMENT].InnerText,
-                    _contextProvider
+                    elements[XmlDataConstants.SUMMARYELEMENT].InnerText
                 );
             }
         }

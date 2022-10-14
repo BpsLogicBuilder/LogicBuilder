@@ -43,11 +43,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IFunctionFactory functionFactory = serviceProvider.GetRequiredService<IFunctionFactory>();
             IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">AAA</literalParameter>") };
-            Function function = new
+            Function function = functionFactory.GetFunction
             (
                 "ChainingUpdate",
                 "Update",
@@ -78,8 +78,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 },
                 new List<string>(),
                 returnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                "",
-                contextProvider
+                ""
             );
             List<string> errors = new();
 
@@ -98,11 +97,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IFunctionFactory functionFactory = serviceProvider.GetRequiredService<IFunctionFactory>();
             IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">AAA</literalParameter>") };
-            Function function = new
+            Function function = functionFactory.GetFunction
             (
                 "ChainingUpdate",
                 "Update",
@@ -148,8 +147,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 },
                 new List<string>(),
                 returnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                "",
-                contextProvider
+                ""
             );
             List<string> errors = new();
 
@@ -168,7 +166,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IFunctionFactory functionFactory = serviceProvider.GetRequiredService<IFunctionFactory>();
             IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] 
@@ -176,7 +174,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 GetXmlElement(@"<literalParameter name=""Variable"">AAA</literalParameter>") ,
                 GetXmlElement(@"<literalParameter name=""literalProperty"">AAA</literalParameter>")
             };
-            Function function = new
+            Function function = functionFactory.GetFunction
             (
                 "ChainingUpdate",
                 "Update",
@@ -207,8 +205,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 },
                 new List<string>(),
                 returnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                "",
-                contextProvider
+                ""
             );
             List<string> errors = new();
 
@@ -227,11 +224,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IFunctionFactory functionFactory = serviceProvider.GetRequiredService<IFunctionFactory>();
             IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable""></literalParameter>") };
-            Function function = new
+            Function function = functionFactory.GetFunction
             (
                 "ChainingUpdate",
                 "Update",
@@ -262,8 +259,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 },
                 new List<string>(),
                 returnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                "",
-                contextProvider
+                ""
             );
             List<string> errors = new();
 
@@ -282,11 +278,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IFunctionFactory functionFactory = serviceProvider.GetRequiredService<IFunctionFactory>();
             IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">ZZZ<variable name=""IntegerItem"" visibleText=""visibleText"" /></literalParameter>") };
-            Function function = new
+            Function function = functionFactory.GetFunction
             (
                 "ChainingUpdate",
                 "Update",
@@ -317,8 +313,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 },
                 new List<string>(),
                 returnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                "",
-                contextProvider
+                ""
             );
             List<string> errors = new();
 
@@ -337,11 +332,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             //arrange
             IRuleChainingUpdateFunctionElementValidator xmlValidator = serviceProvider.GetRequiredService<IRuleChainingUpdateFunctionElementValidator>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IFunctionFactory functionFactory = serviceProvider.GetRequiredService<IFunctionFactory>();
             IParameterFactory parameterFactory = serviceProvider.GetRequiredService<IParameterFactory>();
             IReturnTypeFactory returnTypeFactory = serviceProvider.GetRequiredService<IReturnTypeFactory>();
             IList<XmlElement> parameterElementsList = new XmlElement[] { GetXmlElement(@"<literalParameter name=""Variable"">ZZZ</literalParameter>") };
-            Function function = new
+            Function function = functionFactory.GetFunction
             (
                 "ChainingUpdate",
                 "Update",
@@ -372,8 +367,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 },
                 new List<string>(),
                 returnTypeFactory.GetLiteralReturnType(LiteralFunctionReturnType.Void),
-                "",
-                contextProvider
+                ""
             );
             List<string> errors = new();
 
