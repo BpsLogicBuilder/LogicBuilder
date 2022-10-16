@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
@@ -13,13 +14,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     {
         private readonly IEncryption _encryption;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IXmlValidator _xmlValidator;
+        private readonly IXmlValidatorFactory _xmlValidatorFactory;
 
-        public CellXmlHelper(IEncryption encryption, IExceptionHelper exceptionHelper, IXmlValidator xmlValidator)
+        public CellXmlHelper(IEncryption encryption, IExceptionHelper exceptionHelper, IXmlValidatorFactory xmlValidatorFactory)
         {
             _encryption = encryption;
             _exceptionHelper = exceptionHelper;
-            _xmlValidator = xmlValidator;
+            _xmlValidatorFactory = xmlValidatorFactory;
         }
 
         public string GetXmlString(GridViewCellInfo cell)
@@ -43,11 +44,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 string xml = _encryption.Decrypt(encryptedData);
 
-                var validationResponse = _xmlValidator.Validate
+                var validationResponse = _xmlValidatorFactory.GetXmlValidator
                 (
-                    schemaName,
-                    xml
-                );
+                    schemaName
+                ).Validate(xml);
 
                 return validationResponse.Success ? xml : string.Empty;
             }
@@ -64,11 +64,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             try
             {
-                var validationResponse = _xmlValidator.Validate
+                var validationResponse = _xmlValidatorFactory.GetXmlValidator
                 (
-                    GetSchemaName(columnIndex),
-                    cellXml
-                );
+                    GetSchemaName(columnIndex)
+                ).Validate(cellXml);
 
                 if (!validationResponse.Success)
                     throw _exceptionHelper.CriticalException("{EE8A6D4C-E57B-4BD3-9DD5-3C8F741C63C5}");

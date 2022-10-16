@@ -1,33 +1,92 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Xml;
+using System.Xml.Schema;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation
 {
     internal class XmlValidator : IXmlValidator
     {
-        private readonly IConnectorDataXmlValidator _connectorDataXmlValidator;
-        private readonly IConstructorsXmlValidator _constructorsXmlValidator;
-        private readonly IFunctionsXmlValidator _functionsXmlValidator;
-        private readonly IVariablesXmlValidator _variablesXmlValidator;
-
-        public XmlValidator(IConnectorDataXmlValidator connectorDataXmlValidator, IConstructorsXmlValidator constructorsXmlValidator, IFunctionsXmlValidator functionsXmlValidator, IVariablesXmlValidator variablesXmlValidator)
+        internal XmlValidator(XmlSchema xmlSchema)
         {
-            _connectorDataXmlValidator = connectorDataXmlValidator;
-            _constructorsXmlValidator = constructorsXmlValidator;
-            _functionsXmlValidator = functionsXmlValidator;
-            _variablesXmlValidator = variablesXmlValidator;
+            this.xmlSchema = xmlSchema;
         }
 
-        public XmlValidationResponse Validate(SchemaName schemaName, string xmlString) 
-            => schemaName switch
+        #region Variables
+        private readonly XmlDocument xmlDocument = new();
+        private XmlSchema xmlSchema;
+        private readonly List<string> xmlDocumentErrors = new();
+        private static readonly object lockValidation = new();
+        #endregion Variables
+
+        #region Properties
+        protected XmlDocument XmlDocument
+        {
+            get { return xmlDocument; }
+        }
+
+        protected List<string> XmlDocumentErrors
+        {
+            get { return xmlDocumentErrors; }
+        }
+
+        protected virtual XmlSchema Schema
+        {
+            get { return xmlSchema; }
+            set { xmlSchema = value; }
+        }
+        #endregion Properties
+
+        #region Methods
+        public virtual XmlValidationResponse Validate(string xmlString)
+        {
+            xmlDocument.LoadXml(xmlString);
+            DoXmlSchemaValidation();
+            IList<string> validationErrors = LoadXmlDocumentValidationErrors();
+
+            return new XmlValidationResponse
             {
-                SchemaName.ConnectorDataSchema => _connectorDataXmlValidator.Validate(xmlString),
-                SchemaName.ConstructorSchema => _constructorsXmlValidator.Validate(xmlString),
-                SchemaName.FunctionsSchema => _functionsXmlValidator.Validate(xmlString),
-                SchemaName.VariablesSchema => _variablesXmlValidator.Validate(xmlString),
-                _ => XmlValidatorUtility.GetXmlValidator(schemaName, xmlString).ValidateXmlDocument(),
+                Success = validationErrors.Count == 0,
+                Errors = validationErrors.ToList()
             };
+        }
+
+        protected void DoXmlSchemaValidation()
+        {
+            if (xmlSchema == null)
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{F384E2F2-E91C-41FC-B4CA-2EFDBBCD167F}"));
+
+            lock (lockValidation)
+            {
+                xmlDocument.Schemas.Add(xmlSchema);
+                xmlDocument.Validate(ValidateXmlDocumentEventHandler);
+            }
+        }
+
+        protected IList<string> LoadXmlDocumentValidationErrors()
+        {
+            List<string> errorMessages = new(xmlDocumentErrors);
+            xmlDocumentErrors.Clear();
+            return errorMessages;
+        }
+        #endregion Methods
+
+        #region EventHandlers
+        private void ValidateXmlDocumentEventHandler(object? sender, ValidationEventArgs e)
+        {
+            if (e.Severity == XmlSeverityType.Error)
+            {
+                xmlDocumentErrors.Add(e.Message);
+            }
+            else
+            {
+                //Debug.Print(e.Message);
+            }
+        }
+        #endregion EventHandlers
     }
 }

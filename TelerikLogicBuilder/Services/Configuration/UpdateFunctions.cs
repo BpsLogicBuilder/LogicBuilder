@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.IO;
 using System.Xml;
@@ -23,19 +24,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         public UpdateFunctions(
             IConfigurationService configurationService,
             IEncryption encryption,
+            IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IXmlValidator xmlValidator,
-            IExceptionHelper exceptionHelper)
+            IXmlValidatorFactory xmlValidatorFactory)
         {
             _configurationService = configurationService;
             _encryption = encryption;
+            _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            _xmlValidator = xmlValidator;
-            _exceptionHelper = exceptionHelper;
+            _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.FunctionsSchema);
         }
 
         public void Update(XmlDocument xmlDocument)
@@ -50,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
                 void ValidateXml(string xmlString)
                 {
-                    var validationResponse = _xmlValidator.Validate(SchemaName.FunctionsSchema, xmlString);
+                    var validationResponse = _xmlValidator.Validate(xmlString);
                     if (validationResponse.Success == false)
                         throw new CriticalLogicBuilderException(string.Join(Environment.NewLine, validationResponse.Errors));
                 }

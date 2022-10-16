@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -25,13 +26,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
-            IXmlValidator xmlValidator)
+            IXmlValidatorFactory xmlValidatorFactory)
         {
             _contextProvider = contextProvider;
             _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
-            _xmlValidator = xmlValidator;
+            _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.ProjectPropertiesSchema);
         }
 
         public ProjectProperties Create(string pathToProjectFolder, string projectName)
@@ -113,7 +114,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             try
             {
                 string xmlString = projectProperties.ToXml;
-                var validationResponse = _xmlValidator.Validate(SchemaName.ProjectPropertiesSchema, xmlString);
+                var validationResponse = _xmlValidator.Validate(xmlString);
                 if (validationResponse.Success == false)
                     throw new CriticalLogicBuilderException(string.Join(Environment.NewLine, validationResponse.Errors));
 

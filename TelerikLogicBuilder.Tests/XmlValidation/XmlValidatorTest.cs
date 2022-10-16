@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -19,23 +20,31 @@ namespace TelerikLogicBuilder.Tests.XmlValidation
         #endregion Fields
 
         [Fact]
-        public void CanCreateXmlValidator()
+        public void CanCreateXmlValidatorFactory()
         {
             //arrange
-            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidator>();
+            IXmlValidatorFactory xmlValidatorFactory = serviceProvider.GetRequiredService<IXmlValidatorFactory>();
 
             //assert
-            Assert.NotNull(xmlValidator);
+            Assert.NotNull(xmlValidatorFactory);
+        }
+
+        [Fact]
+        public void CreateXmlValidatorThrows()
+        {
+            //assert
+            Assert.Throws<InvalidOperationException>(() => serviceProvider.GetRequiredService<IXmlValidator>());
         }
 
         [Fact]
         public void CanValidateInvalidConstructorData()
         {
             //arrange
-            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>()
+                .GetXmlValidator(SchemaName.ParametersDataSchema);
 
             //act
-            var result = xmlValidator.Validate(SchemaName.ParametersDataSchema, @"<constructor name=""TestResponseC"" visibleText=""TestResponseC"" >
+            var result = xmlValidator.Validate(@"<constructor name=""TestResponseC"" visibleText=""TestResponseC"" >
                                                         <genericArguments />
                                                         <parameters>
                                                             <objectParameter name=""objectProperty""></objectParameter>
@@ -51,10 +60,11 @@ namespace TelerikLogicBuilder.Tests.XmlValidation
         public void CanValidateValidConstructorData()
         {
             //arrange
-            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>()
+                .GetXmlValidator(SchemaName.ParametersDataSchema);
 
             //act
-            var result = xmlValidator.Validate(SchemaName.ParametersDataSchema, @"<constructor name=""TestResponseC"" visibleText=""TestResponseC"" >
+            var result = xmlValidator.Validate(@"<constructor name=""TestResponseC"" visibleText=""TestResponseC"" >
                                                         <genericArguments />
                                                         <parameters>
                                                             <objectParameter name=""objectProperty"">

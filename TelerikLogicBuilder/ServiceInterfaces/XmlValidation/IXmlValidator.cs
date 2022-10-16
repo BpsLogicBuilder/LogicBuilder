@@ -5,6 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation
 {
     internal interface IXmlValidator
     {
-        XmlValidationResponse Validate(SchemaName schemaName, string xmlString);
+        XmlValidationResponse Validate(string xmlString);
     }
 }

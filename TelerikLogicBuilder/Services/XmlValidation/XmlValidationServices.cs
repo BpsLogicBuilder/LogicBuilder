@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -9,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
             => services
                 .AddSingleton<IXmlValidator, XmlValidator>()
                 .AddXmlConfigurationValidation()
-                .AddXmlDataValidation();
+                .AddXmlDataValidation()
+                .AddXmlValidatorFactories();
     }
 }

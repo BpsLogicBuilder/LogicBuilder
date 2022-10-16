@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Globalization;
 using System.IO;
@@ -25,13 +26,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IXmlValidator xmlValidator)
+            IXmlValidatorFactory xmlValidatorFactory)
         {
             _configurationService = configurationService;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            _xmlValidator = xmlValidator;
+            _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.FragmentsSchema);
         }
 
         public XmlDocument Create()
@@ -60,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
                 void ValidateXml(string xmlString)
                 {
-                    var validationResponse = _xmlValidator.Validate(SchemaName.FragmentsSchema, xmlString);
+                    var validationResponse = _xmlValidator.Validate(xmlString);
                     if (validationResponse.Success == false)
                         throw new CriticalLogicBuilderException(string.Join(Environment.NewLine, validationResponse.Errors));
                 }

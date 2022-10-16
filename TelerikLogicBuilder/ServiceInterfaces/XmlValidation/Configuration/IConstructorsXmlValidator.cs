@@ -2,8 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration
 {
-    internal interface IConstructorsXmlValidator
+    internal interface IConstructorsXmlValidator : IXmlValidator
     {
-        XmlValidationResponse Validate(string xmlString);
     }
 }

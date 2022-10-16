@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Globalization;
 using System.IO;
@@ -30,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IEncryption encryption,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IXmlValidator xmlValidator)
+            IXmlValidatorFactory xmlValidatorFactory)
         {
             _applicationXmlParser = applicationXmlParser;
             _contextProvider = contextProvider;
@@ -38,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _encryption = encryption;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            _xmlValidator = xmlValidator;
+            _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.ProjectPropertiesSchema);
         }
 
         public ProjectProperties Load(string fullPath)
@@ -51,7 +52,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
                 var validationResponse = _xmlValidator.Validate
                 (
-                    SchemaName.ProjectPropertiesSchema,
                     _xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml
                 );
                 if (validationResponse.Success == false)

@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using Microsoft.Office.Interop.Visio;
 using System.Xml;
 
@@ -12,14 +13,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private readonly IEncryption _encryption;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IShapeDataCellManager _shapeDataCellManager;
-        private readonly IXmlValidator _xmlValidator;
+        private readonly IXmlValidatorFactory _xmlValidatorFactory;
 
-        public ShapeXmlHelper(IEncryption encryption, IExceptionHelper exceptionHelper, IShapeDataCellManager shapeDataCellManager, IXmlValidator xmlValidator)
+        public ShapeXmlHelper(IEncryption encryption, IExceptionHelper exceptionHelper, IShapeDataCellManager shapeDataCellManager, IXmlValidatorFactory xmlValidatorFactory)
         {
             _encryption = encryption;
             _exceptionHelper = exceptionHelper;
             _shapeDataCellManager = shapeDataCellManager;
-            _xmlValidator = xmlValidator;
+            _xmlValidatorFactory = xmlValidatorFactory;
         }
 
         public string GetXmlString(Shape shape)
@@ -34,11 +35,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 if (string.IsNullOrEmpty(xml))
                     return string.Empty;
 
-                var validationResponse = _xmlValidator.Validate
+                var validationResponse = _xmlValidatorFactory.GetXmlValidator
                 (
-                    GetSchemaName(shape.Master.NameU),
-                    xml
-                );
+                    GetSchemaName(shape.Master.NameU)
+                    
+                ).Validate(xml);
 
                 return validationResponse.Success ? xml : string.Empty;
             }
@@ -52,11 +53,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             try
             {
-                var validationResponse = _xmlValidator.Validate
+                var validationResponse = _xmlValidatorFactory.GetXmlValidator
                 (
-                    GetSchemaName(shape.Master.NameU),
-                    xml
-                );
+                    GetSchemaName(shape.Master.NameU)
+                ).Validate(xml);
 
                 if (validationResponse.Success)
                 {
