@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -30,7 +31,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
             IUpdateProjectProperties updateProjectProperties = serviceProvider.GetRequiredService<IUpdateProjectProperties>();
             ILoadProjectProperties loadProjectProperties = serviceProvider.GetRequiredService<ILoadProjectProperties>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
             ProjectProperties projectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
@@ -43,7 +44,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                 projectProperties.ProjectFileFullName,
                 new Dictionary<string, Application>
                 {
-                    ["App01"] = new Application
+                    ["App01"] = configurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -60,15 +61,13 @@ namespace TelerikLogicBuilder.Tests.Configuration
                         "RulesFileName",
                         "PathToRulesFile",
                         new List<string>(),
-                        new WebApiDeployment
+                        configurationItemFactory.GetWebApiDeployment
                         (
                             "http://localhost:3677/api/transfer/PostFileData",
                             "http://localhost:3677/api/transfer/PostVariableMetaData",
                             "http://localhost:3677/api/transfer/DeleteRules",
-                            "http://localhost:3677/api/transfer/DeleteAllRules",
-                            contextProvider
-                        ),
-                        contextProvider
+                            "http://localhost:3677/api/transfer/DeleteAllRules"
+                        )
                     )
                 }, 
                 new HashSet<string> { "Flow1.ConnectorData", "Flow2.ConnectorData" }

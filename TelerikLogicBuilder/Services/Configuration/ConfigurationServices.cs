@@ -33,6 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IUpdateProjectProperties, UpdateProjectProperties>()
                 .AddSingleton<IUpdateVariables, UpdateVariables>()
                 .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
-                .AddConfigurationInitialization();
+                .AddConfigurationInitialization()
+                .AddConfigurationItemFactories();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,14 +36,14 @@ namespace TelerikLogicBuilder.Tests
             //arrange
             IAssemblyLoadContextManager assemblyLoadContextManager = serviceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
-            configurationService.ProjectProperties = new ProjectProperties
+            IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            configurationService.ProjectProperties = configurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = new Application
+                    ["app01"] = configurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -59,12 +60,10 @@ namespace TelerikLogicBuilder.Tests
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", contextProvider),
-                        contextProvider
+                        configurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>(),
-                contextProvider
+                new HashSet<string>()
             );
 
 

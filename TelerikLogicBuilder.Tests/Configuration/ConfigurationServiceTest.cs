@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -34,7 +35,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
         {
             //arrange
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            configurationService.ProjectProperties = GetProjectProperties(serviceProvider.GetRequiredService<IContextProvider>());
+            configurationService.ProjectProperties = GetProjectProperties(serviceProvider.GetRequiredService<IConfigurationItemFactory>());
 
             //act
             Application? application = configurationService.GetApplication(applicationName);
@@ -47,7 +48,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
         {
             //arrange
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            configurationService.ProjectProperties = GetProjectProperties(serviceProvider.GetRequiredService<IContextProvider>());
+            configurationService.ProjectProperties = GetProjectProperties(serviceProvider.GetRequiredService<IConfigurationItemFactory>());
 
             //act
             Application? application = configurationService.GetApplicationFromPath(@"C:\ProjectPath\RULES\App01\diagram\someFile.module");
@@ -60,15 +61,15 @@ namespace TelerikLogicBuilder.Tests.Configuration
         private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
-        static ProjectProperties GetProjectProperties(IContextProvider ContextProvider)
+        static ProjectProperties GetProjectProperties(IConfigurationItemFactory ConfigurationItemFactory)
         {
-            return new ProjectProperties
+            return ConfigurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = new Application
+                    ["app01"] = ConfigurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -85,10 +86,9 @@ namespace TelerikLogicBuilder.Tests.Configuration
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = new Application
+                    ["app02"] = ConfigurationItemFactory.GetApplication
                     (
                         "App02",
                         "App02",
@@ -105,12 +105,10 @@ namespace TelerikLogicBuilder.Tests.Configuration
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>(),
-                ContextProvider
+                new HashSet<string>()
             );
         }
     }

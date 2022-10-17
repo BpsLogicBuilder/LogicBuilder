@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -14,23 +15,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class UpdateProjectProperties : IUpdateProjectProperties
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlValidator _xmlValidator;
 
         public UpdateProjectProperties(
-            IContextProvider contextProvider,
+            IConfigurationItemFactory configurationItemFactory,
             IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlValidatorFactory xmlValidatorFactory)
         {
+            _configurationItemFactory = configurationItemFactory;
             _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
-            _contextProvider = contextProvider;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.ProjectPropertiesSchema);
         }
 
@@ -39,13 +40,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             string projectName = _pathHelper.GetFileNameNoExtention(fullPath);
             string projectPath = _pathHelper.GetFilePath(fullPath);
 
-            ProjectProperties projectProperties = new
+            ProjectProperties projectProperties = _configurationItemFactory.GetProjectProperties
             (
                 projectName,
                 projectPath,
                 applicationList,
-                connectorObjectTypes,
-                _contextProvider
+                connectorObjectTypes
             );
 
             Save(projectProperties);

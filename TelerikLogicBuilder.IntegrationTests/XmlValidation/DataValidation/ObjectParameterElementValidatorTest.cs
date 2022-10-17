@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
@@ -171,6 +172,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
+            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             XmlElementValidator = ServiceProvider.GetRequiredService<IXmlElementValidator>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
@@ -181,13 +183,13 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
-            ConfigurationService.ProjectProperties = new ProjectProperties
+            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = new Application
+                    ["app01"] = ConfigurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -204,12 +206,10 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>(),
-                ContextProvider
+                new HashSet<string>()
             );
 
             ConfigurationService.ConstructorList = new ConstructorList
@@ -256,6 +256,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         internal IServiceProvider ServiceProvider;
+        internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IXmlElementValidator XmlElementValidator;
         internal IContextProvider ContextProvider;

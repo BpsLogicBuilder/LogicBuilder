@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
@@ -243,6 +244,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
+            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -251,13 +253,13 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             TypeLoadHelper = ServiceProvider.GetRequiredService<ITypeLoadHelper>();
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
 
-            ConfigurationService.ProjectProperties = new ProjectProperties
+            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = new Application
+                    ["app01"] = ConfigurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -274,12 +276,10 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>(),
-                ContextProvider
+                new HashSet<string>()
             );
 
             ConfigurationService.ConstructorList = new ConstructorList
@@ -301,6 +301,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
 
         internal IServiceProvider ServiceProvider;
+        internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;

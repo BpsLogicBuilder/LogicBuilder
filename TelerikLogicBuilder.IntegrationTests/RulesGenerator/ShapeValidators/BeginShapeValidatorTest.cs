@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -179,14 +180,15 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            ConfigurationService.ProjectProperties = new ProjectProperties
+            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = new Application
+                    ["app01"] = ConfigurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -203,10 +205,9 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = new Application
+                    ["app02"] = ConfigurationItemFactory.GetApplication
                     (
                         "App02",
                         "App02",
@@ -223,12 +224,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>(),
-                ContextProvider
+                new HashSet<string>()
             );
 
             VisioApplication = new InvisibleApp();
@@ -247,6 +246,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
 
         internal InvisibleApp VisioApplication;
         internal IServiceProvider ServiceProvider;
+        internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
     }

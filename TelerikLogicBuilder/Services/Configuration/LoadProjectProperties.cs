@@ -16,28 +16,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class LoadProjectProperties : ILoadProjectProperties
     {
-        private readonly IApplicationXmlParser _applicationXmlParser;
-        private readonly IContextProvider _contextProvider;
         private readonly ICreateProjectProperties _createProjectProperties;
         private readonly IEncryption _encryption;
         private readonly IPathHelper _pathHelper;
+        private readonly IProjectPropertiesXmlParser _projectPropertiesXmlParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
 
         public LoadProjectProperties(
-            IApplicationXmlParser applicationXmlParser,
-            IContextProvider contextProvider,
             ICreateProjectProperties createProjectProperties,
             IEncryption encryption,
             IPathHelper pathHelper,
+            IProjectPropertiesXmlParser projectPropertiesXmlParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory)
         {
-            _applicationXmlParser = applicationXmlParser;
-            _contextProvider = contextProvider;
             _createProjectProperties = createProjectProperties;
             _encryption = encryption;
             _pathHelper = pathHelper;
+            _projectPropertiesXmlParser = projectPropertiesXmlParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.ProjectPropertiesSchema);
         }
@@ -57,13 +54,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 if (validationResponse.Success == false)
                     throw new XmlValidationException(string.Join(Environment.NewLine, validationResponse.Errors));
 
-                return new ProjectPropertiesXmlParserUtility
+                return _projectPropertiesXmlParser.GeProjectProperties
                 (
                     _xmlDocumentHelpers.GetDocumentElement(xmlDocument),
-                    _contextProvider,
-                    _applicationXmlParser
-                ).GetProjectProperties
-                (
                     _pathHelper.GetFileNameNoExtention(fullPath),
                     _pathHelper.GetFilePath(fullPath)
                 );

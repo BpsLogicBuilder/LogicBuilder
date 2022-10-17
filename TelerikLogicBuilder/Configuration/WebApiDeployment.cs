@@ -8,13 +8,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
     internal class WebApiDeployment
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        internal WebApiDeployment(string postFileDataUrl, string postVariablesMetaUrl, string deleteRulesUrl, string deleteAllRulesUrl, IContextProvider contextProvider)
+        internal WebApiDeployment(
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string postFileDataUrl,
+            string postVariablesMetaUrl,
+            string deleteRulesUrl,
+            string deleteAllRulesUrl)
         {
             this.PostFileDataUrl = postFileDataUrl;
             this.PostVariablesMetaUrl = postVariablesMetaUrl;
             this.DeleteRulesUrl = deleteRulesUrl;
             this.DeleteAllRulesUrl = deleteAllRulesUrl;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public string PostFileDataUrl { get; private set; }

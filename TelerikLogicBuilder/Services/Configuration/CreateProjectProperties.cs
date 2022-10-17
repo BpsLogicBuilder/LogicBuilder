@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -15,20 +16,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class CreateProjectProperties : ICreateProjectProperties
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlValidator _xmlValidator;
 
         public CreateProjectProperties(
-            IContextProvider contextProvider,
+            IConfigurationItemFactory configurationItemFactory,
             IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlValidatorFactory xmlValidatorFactory)
         {
-            _contextProvider = contextProvider;
+            _configurationItemFactory = configurationItemFactory;
             _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
@@ -39,13 +40,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             string projectPath = _pathHelper.CombinePaths(pathToProjectFolder.Trim(), projectName);
 
-            ProjectProperties projectProperties = new
+            ProjectProperties projectProperties = _configurationItemFactory.GetProjectProperties
             (
                 projectName,
                 projectPath,
                 GetDefaultApplicationList(),
-                new HashSet<string>(),
-                _contextProvider
+                new HashSet<string>()
             );
 
             Save(projectProperties);
@@ -58,13 +58,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             string projectName = _pathHelper.GetFileNameNoExtention(fullPath);
             string projectPath = _pathHelper.GetFilePath(fullPath);
 
-            ProjectProperties projectProperties = new
+            ProjectProperties projectProperties = _configurationItemFactory.GetProjectProperties
             (
                 projectName,
                 projectPath,
                 GetDefaultApplicationList(),
-                new HashSet<string>(),
-                _contextProvider
+                new HashSet<string>()
             );
 
             Save(projectProperties);
@@ -79,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             return new Dictionary<string, Application>
             {
-                [applicationNameString] = new
+                [applicationNameString] = _configurationItemFactory.GetApplication
                 (
                     applicationNameString,
                     applicationNameString,
@@ -96,15 +95,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     Strings.defaultRulesFile,
                     _pathHelper.CombinePaths(programFilesPath, applicationNameString, Strings.defaultRulesFolder),
                     new List<string>(),
-                    new WebApiDeployment
+                    _configurationItemFactory.GetWebApiDeployment
                     (
                         Strings.defaultPostFileDataUrl,
                         Strings.defaultPostVariableMetaDataUrl,
                         Strings.defaultDeleteRulesUrl,
-                        Strings.defaultDeleteAllRulesUrl,
-                        _contextProvider
-                    ),
-                    _contextProvider
+                        Strings.defaultDeleteAllRulesUrl
+                    )
                 )
             };
         }

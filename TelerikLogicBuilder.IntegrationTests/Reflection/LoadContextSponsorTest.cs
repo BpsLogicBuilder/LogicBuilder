@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -27,17 +28,17 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
         {
             //arrange
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            IContextProvider contextProvider = serviceProvider.GetRequiredService<IContextProvider>();
+            IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
             IAssemblyLoadContextManager assemblyLoadContextService = serviceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             ILoadContextSponsor loadContextSponsor = serviceProvider.GetRequiredService<ILoadContextSponsor>();
 
-            configurationService.ProjectProperties = new ProjectProperties
+            configurationService.ProjectProperties = configurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = new Application
+                    ["app01"] = configurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -54,12 +55,10 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", contextProvider),
-                        contextProvider
+                        configurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>(),
-                contextProvider
+                new HashSet<string>()
             );
 
             //act

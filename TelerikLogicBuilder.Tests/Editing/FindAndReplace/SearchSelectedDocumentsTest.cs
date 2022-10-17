@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -184,6 +185,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
     public class SearchSelectedDocumentsFixture : IDisposable
     {
         internal IServiceProvider ServiceProvider;
+        internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
         internal IFunctionFactory FunctionFactory;
@@ -193,18 +195,19 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public SearchSelectedDocumentsFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
-            ConfigurationService.ProjectProperties = new ProjectProperties
+            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = new Application
+                    ["app01"] = ConfigurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -221,10 +224,9 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = new Application
+                    ["app02"] = ConfigurationItemFactory.GetApplication
                     (
                         "App02",
                         "App02",
@@ -241,12 +243,10 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         "",
                         "",
                         new List<string>(),
-                        new WebApiDeployment("", "", "", "", ContextProvider),
-                        ContextProvider
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>(),
-                ContextProvider
+                new HashSet<string>()
             );
 
             ConfigurationService.FunctionList = new FunctionList

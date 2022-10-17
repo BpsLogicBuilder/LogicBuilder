@@ -12,16 +12,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ProjectProperties(string projectName, string projectPath, Dictionary<string, Application> applicationList, HashSet<string> connectorObjectTypes, IContextProvider contextProvider)
+        public ProjectProperties(
+            IFileIOHelper fileIOHelper,
+            IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string projectName,
+            string projectPath,
+            Dictionary<string, Application> applicationList,
+            HashSet<string> connectorObjectTypes)
         {
             ProjectName = projectName;
             ProjectPath = projectPath;
-            ProjectFileFullName = $"{contextProvider.PathHelper.CombinePaths(projectPath, projectName)}{FileExtensions.PROJECTFILEEXTENSION}";
+            ProjectFileFullName = $"{pathHelper.CombinePaths(projectPath, projectName)}{FileExtensions.PROJECTFILEEXTENSION}";
             ApplicationList = applicationList;
             ConnectorObjectTypes = connectorObjectTypes;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
 
-            var directoryInfo = contextProvider.FileIOHelper.GetNewDirectoryInfo(projectPath);
+            var directoryInfo = fileIOHelper.GetNewDirectoryInfo(projectPath);
             if (!directoryInfo.Exists)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathDoesNotExistFormat, projectPath));
 

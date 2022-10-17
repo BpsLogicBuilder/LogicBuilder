@@ -11,7 +11,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
     internal class Application : IEquatable<Application>, IComparable<Application>
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        public Application(string name, string nickname, string activityAssembly, string activityAssemblyPath, RuntimeType runtime, List<string> loadAssemblyPaths, string activityClass, string applicationExcecutable, string applicationExcecutablePath, List<string> startupArguments, string resourceFile, string resourceFileDeploymentPath, string rulesFile, string rulesDeploymentPath, List<string> modules, WebApiDeployment webApiDeployment, IContextProvider contextProvider)
+        public Application(
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string name,
+            string nickname,
+            string activityAssembly,
+            string activityAssemblyPath,
+            RuntimeType runtime,
+            List<string> loadAssemblyPaths,
+            string activityClass,
+            string applicationExcecutable,
+            string applicationExcecutablePath,
+            List<string> startupArguments,
+            string resourceFile,
+            string resourceFileDeploymentPath,
+            string rulesFile,
+            string rulesDeploymentPath,
+            List<string> modules,
+            WebApiDeployment webApiDeployment)
         {
             this.Name = name;
             this.Nickname = nickname;
@@ -29,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
             this.RulesDeploymentPath = rulesDeploymentPath;
             this.ExcludedModules = modules;
             this.WebApiDeployment = webApiDeployment;
-            this._xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            this._xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         #region Properties
