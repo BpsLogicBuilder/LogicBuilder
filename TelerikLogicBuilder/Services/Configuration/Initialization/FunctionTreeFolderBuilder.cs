@@ -1,127 +1,121 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
 {
     internal class FunctionTreeFolderBuilder : IFunctionTreeFolderBuilder
     {
+        private readonly IEmptyTreeFolderRemover _emptyTreeFolderRemover;
+        private readonly IExceptionHelper _exceptionHelpers;
         private readonly IFunctionXmlParser _functionXmlParser;
-        private readonly IContextProvider _contextProvider;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private static readonly string FUNCTIONSROOTXPATHFORMAT = $"/forms/form[@name='{XmlDataConstants.FUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.FUNCTIONSROOTFOLDERNAMEATTRIBUTE}']";
         private static readonly string BUILTINFUNCTIONSROOTXPATHFORMAT = $"/forms/form[@name='{XmlDataConstants.BUILTINFUNCTIONSFORMROOTNODENAME}']/folder[@name='{XmlDataConstants.BUILTINFUNCTIONSROOTFOLDERNAMEATTRIBUTE}']";
 
-        public FunctionTreeFolderBuilder(IContextProvider contextProvider, IFunctionXmlParser functionXmlParser)
+        public FunctionTreeFolderBuilder(
+            IEmptyTreeFolderRemover emptyTreeFolderRemover,
+            IExceptionHelper exceptionHelpers,
+            IFunctionXmlParser functionXmlParser,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _contextProvider = contextProvider;
+            _emptyTreeFolderRemover = emptyTreeFolderRemover;
+            _exceptionHelpers = exceptionHelpers;
             _functionXmlParser = functionXmlParser;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
-        public TreeFolder GetBooleanFunctionsTreeFolder(XmlDocument xmlDocument) 
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                FUNCTIONSROOTXPATHFORMAT,
-                Strings.functionsRootFolderText,
-                e => IsBoolFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+        public TreeFolder GetBooleanFunctionsTreeFolder(XmlDocument xmlDocument)
+            => GetFunctionsTreeFolder(xmlDocument, IsBoolFunction);
 
-        public TreeFolder GetBuiltInBooleanFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                BUILTINFUNCTIONSROOTXPATHFORMAT,
-                Strings.builtInFunctionsRootFolderText,
-                e => IsBoolFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+        public TreeFolder GetBuiltInBooleanFunctionsTreeFolder(XmlDocument xmlDocument) 
+            => GetBuiltInFunctionsTreeFolder(xmlDocument, IsBoolFunction);
 
         public TreeFolder GetBuiltInDialogFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                BUILTINFUNCTIONSROOTXPATHFORMAT,
-                Strings.builtInFunctionsRootFolderText,
-                e => IsDialogFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+            => GetBuiltInFunctionsTreeFolder(xmlDocument, IsDialogFunction);
 
         public TreeFolder GetBuiltInTableFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                BUILTINFUNCTIONSROOTXPATHFORMAT,
-                Strings.builtInFunctionsRootFolderText,
-                e => IsTableFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+            => GetBuiltInFunctionsTreeFolder(xmlDocument, IsTableFunction);
 
         public TreeFolder GetBuiltInValueFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                BUILTINFUNCTIONSROOTXPATHFORMAT,
-                Strings.builtInFunctionsRootFolderText,
-                e => IsValueFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+            => GetBuiltInFunctionsTreeFolder(xmlDocument, IsValueFunction);
 
         public TreeFolder GetBuiltInVoidFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                BUILTINFUNCTIONSROOTXPATHFORMAT,
-                Strings.builtInFunctionsRootFolderText,
-                e => IsVoidFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+            => GetBuiltInFunctionsTreeFolder(xmlDocument, IsVoidFunction);
 
         public TreeFolder GetDialogFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                FUNCTIONSROOTXPATHFORMAT,
-                Strings.functionsRootFolderText,
-                e => IsDialogFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+            => GetFunctionsTreeFolder(xmlDocument, IsDialogFunction);
 
         public TreeFolder GetTableFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                FUNCTIONSROOTXPATHFORMAT,
-                Strings.functionsRootFolderText,
-                e => IsTableFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+            => GetFunctionsTreeFolder(xmlDocument, IsTableFunction);
 
         public TreeFolder GetValueFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
-            (
-                _contextProvider,
-                FUNCTIONSROOTXPATHFORMAT,
-                Strings.functionsRootFolderText,
-                e => IsValueFunction(e)
-            )
-            .GetTreeFolder(xmlDocument);
+            => GetFunctionsTreeFolder(xmlDocument, IsValueFunction);
 
         public TreeFolder GetVoidFunctionsTreeFolder(XmlDocument xmlDocument)
-            => new FunctionListFolderBuilderUtility
+            => GetFunctionsTreeFolder(xmlDocument, IsVoidFunction);
+
+        private TreeFolder GetBuiltInFunctionsTreeFolder(XmlDocument xmlDocument, Func<XmlElement, bool> functionsFilter)
+            => GetTreeFolder(xmlDocument, BUILTINFUNCTIONSROOTXPATHFORMAT, Strings.builtInFunctionsRootFolderText, functionsFilter);
+
+        private TreeFolder GetFunctionsTreeFolder(XmlDocument xmlDocument, Func<XmlElement, bool> functionsFilter)
+            => GetTreeFolder(xmlDocument, FUNCTIONSROOTXPATHFORMAT, Strings.functionsRootFolderText, functionsFilter);
+
+        private void GetFolderChildren(XmlNode xmleNode, TreeFolder treeFolder, Func<XmlElement, bool> functionsFilter)
+        {
+            _xmlDocumentHelpers.GetChildElements
             (
-                _contextProvider,
-                FUNCTIONSROOTXPATHFORMAT,
-                Strings.functionsRootFolderText,
-                e => IsVoidFunction(e)
+                xmleNode,
+                functionsFilter,
+                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
             )
-            .GetTreeFolder(xmlDocument);
+            .ForEach
+            (
+                functionNode => treeFolder.FileNames.Add(functionNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+            );
+
+            _xmlDocumentHelpers.GetChildElements
+            (
+                xmleNode,
+                e => e.Name == XmlDataConstants.FOLDERELEMENT,
+                e => e.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+            )
+            .ForEach
+            (
+                folderNode =>
+                {
+                    TreeFolder childFolder = new
+                    (
+                        folderNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        new List<string>(),
+                        new List<TreeFolder>()
+                    );
+                    treeFolder.FolderNames.Add(childFolder);
+                    GetFolderChildren(folderNode, childFolder, functionsFilter);
+                }
+            );
+        }
+
+        private TreeFolder GetTreeFolder(XmlDocument xmlDocument, string rootFolderXPath, string rootFolderText, Func<XmlElement, bool> functionsFilter)
+        {
+            if (xmlDocument == null)
+                throw _exceptionHelpers.CriticalException("{0DAB5714-3982-4BE3-979E-3CED2DDEB4A4}");
+
+            XmlElement xnodRoot = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, rootFolderXPath);
+
+            TreeFolder treeFolder = new(rootFolderText, new List<string>(), new List<TreeFolder>());
+            GetFolderChildren(xnodRoot, treeFolder, functionsFilter);
+            _emptyTreeFolderRemover.RemoveEmptyFolders(treeFolder);
+            return treeFolder;
+        }
 
         bool IsVoidFunction(XmlElement functionElement)
         {

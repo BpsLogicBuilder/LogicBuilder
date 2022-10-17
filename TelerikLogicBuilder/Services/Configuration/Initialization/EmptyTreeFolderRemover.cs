@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Xml;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
+using System.Collections.Generic;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
 {
-    abstract internal class ConfigurationItemFolderBuilderUtility
+    internal class EmptyTreeFolderRemover : IEmptyTreeFolderRemover
     {
-        abstract internal TreeFolder GetTreeFolder(XmlDocument xmlDocument);
-
-        protected void RemoveEmptyFolders(TreeFolder treeFolder)
+        public void RemoveEmptyFolders(TreeFolder treeFolder)
         {
             List<TreeFolder> foldersToRemove = new();
 
@@ -25,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Initialization
             );
         }
 
-        private bool HasFileDescendants(TreeFolder treeFolder)
+        private static bool HasFileDescendants(TreeFolder treeFolder)
         {
             if (treeFolder.FileNames.Count > 0)
                 return true;

@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IConstructorDictionaryBuilder, ConstructorDictionaryBuilder>()
                 .AddSingleton<IConstructorListInitializer, ConstructorListInitializer>()
                 .AddSingleton<IConstructorTreeFolderBuilder, ConstructorTreeFolderBuilder>()
+                .AddSingleton<IEmptyTreeFolderRemover, EmptyTreeFolderRemover>()
                 .AddSingleton<IFragmentDictionaryBuilder, FragmentDictionaryBuilder>()
                 .AddSingleton<IFragmentListInitializer, FragmentListInitializer>()
                 .AddSingleton<IFragmentTreeFolderBuilder, FragmentTreeFolderBuilder>()
