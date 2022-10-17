@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
 {
-    internal class ConnectorDataXmlValidator : XmlValidator, IConnectorDataXmlValidator
+    internal class ConnectorDataXmlValidator : XmlValidator
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 

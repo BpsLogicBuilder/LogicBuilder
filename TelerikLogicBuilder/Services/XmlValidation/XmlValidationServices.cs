@@ -9,7 +9,6 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddXmlValidation(this IServiceCollection services) 
             => services
                 .AddSingleton<IXmlValidator, XmlValidator>()
-                .AddXmlConfigurationValidation()
                 .AddXmlDataValidation()
                 .AddXmlValidatorFactories();
     }

@@ -2,7 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void CanCreateVariablesXmlValidator()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
 
             //assert
             Assert.NotNull(xmlValidator);
@@ -39,7 +40,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateValidXmlWorks()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
 
             //act
             var result = xmlValidator.Validate(GetXmlString());
@@ -52,7 +53,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateThrowsXmlExceptionForInvalidXml()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
 
             //act
             Assert.Throws<XmlException>(() => xmlValidator.Validate(@"<folder1 name=""variables"">
@@ -63,7 +64,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateReturnsFailureResponseForInvalidStructure()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
 
             //act
             var result = xmlValidator.Validate(@"<folder name=""variables"">
@@ -77,7 +78,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void InvalidReferenceDefinitionReturnsFailureResponse()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
             Dictionary<string, string> fieldsToSet = new()
             {
@@ -110,7 +111,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void InvalidmemberNameReturnsFailureResponse()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.MEMBERNAMEELEMENT] = "2MemberName"
@@ -134,7 +135,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ReferenceNamePopulatedAndMustBeEmptyReturnsFailureResponse(string referenceCategory)
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "foo",
@@ -159,7 +160,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ReferenceDefinitionPopulatedAndMustBeEmptyReturnsFailureResponse(string referenceCategory)
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "Property",
@@ -184,7 +185,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void CastReferenceAsPopulatedAndMustBeEmptyReturnsFailureResponse(string referenceCategory)
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.CASTREFERENCEASELEMENT] = "Foo",
@@ -211,7 +212,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         internal void ReferenceNameOrDefinitionEmptyMustBePopulatedReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition)
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
@@ -237,7 +238,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         internal void ReferenceDefinitionLengthsDoesNotMatchReferenceNameLengthReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition)
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
@@ -261,7 +262,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void CastReferenceAsLengthsDoesNotMatchReferenceNameLengthReturnsFailureResponse()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = "Property",
@@ -288,7 +289,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         internal void InvalidTypeNameReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition, string typeName)
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
@@ -315,7 +316,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         internal void TypeNameNotEmptyReturnsFailureResponse(ReferenceCategories referenceCategory, string referenceName, string referenceDefinition, string typeName)
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCEDEFINITIONELEMENT] = referenceDefinition,
@@ -340,7 +341,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void InvalidIndirectReferenceNameReturnsFailureResponse()
         {
             //arrange
-            IVariablesXmlValidator xmlValidator = serviceProvider.GetRequiredService<IVariablesXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.VariablesSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.REFERENCENAMEELEMENT] = "foo",

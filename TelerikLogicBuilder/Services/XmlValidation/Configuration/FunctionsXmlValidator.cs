@@ -2,7 +2,6 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
 using System;
 using System.CodeDom;
@@ -14,7 +13,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
 {
-    internal class FunctionsXmlValidator : XmlValidator, IFunctionsXmlValidator
+    internal class FunctionsXmlValidator : XmlValidator
     {
         private readonly IEnumHelper _enumHelper;
         private readonly IFunctionValidationHelper _functionValidationHelper;

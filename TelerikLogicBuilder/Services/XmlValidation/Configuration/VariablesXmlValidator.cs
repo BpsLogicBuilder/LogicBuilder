@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
 {
-    internal class VariablesXmlValidator : XmlValidator, IVariablesXmlValidator
+    internal class VariablesXmlValidator : XmlValidator
     {
         private readonly IEnumHelper _enumHelper;
         private readonly IStringHelper _stringHelper;

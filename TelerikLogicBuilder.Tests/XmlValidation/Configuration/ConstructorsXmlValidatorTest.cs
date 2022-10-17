@@ -1,7 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -28,7 +30,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateValidXmlWorks()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
 
             //act
             var result = xmlValidator.Validate(GetXmlString());
@@ -41,7 +43,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateReturnsFailureResponseForInvalidStructure()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
 
             //act
             var result = xmlValidator.Validate(@"<folder name=""variables"">
@@ -55,7 +57,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateThrowsXmlExceptionForInvalidXml()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
 
             //act
             Assert.Throws<XmlException>(() => xmlValidator.Validate(@"<folder1 name=""variables"">
@@ -66,7 +68,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void InvalidParameterOrderReturnsFailureResponse()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -119,7 +121,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void InvalidTypeNameReturnsFailureResponse()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             Dictionary<string, string> fieldsToSet = new()
             {
                 [XmlDataConstants.TYPENAMEELEMENT] = "2Pac"
@@ -141,7 +143,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void MissingParameterSourcedPropertyForLiteralReturnsFailureResponse()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -201,7 +203,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidParameterSourcedPropertyForLiteralReturnsSuccess()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -244,7 +246,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void MissingParameterSourcedPropertyForLiteralListReturnsFailureResponse()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -310,7 +312,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidParameterSourcedPropertyForLiteralListReturnsSuccess()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -359,7 +361,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidGenericParameterReturnsSuccess()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -396,7 +398,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidGenericListParameterReturnsSuccess()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -435,7 +437,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void InvalidGenericArgumentReturnsFailure()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));
@@ -466,7 +468,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void UnknownGenericArgumentNameForParametersReturnsFailureResponse()
         {
             //arrange
-            IConstructorsXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConstructorsXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConstructorSchema);
             IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
             XmlDocument document = new();
             document.LoadXml(GetXmlString(null));

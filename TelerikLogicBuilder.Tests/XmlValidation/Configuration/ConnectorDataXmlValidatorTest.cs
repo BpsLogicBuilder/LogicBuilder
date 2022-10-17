@@ -1,13 +1,12 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using Xunit;
 
@@ -28,7 +27,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateValidDialogXmlWorks()
         {
             //arrange
-            IConnectorDataXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConnectorDataXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConnectorDataSchema);
 
             //act
             var result = xmlValidator.Validate(@"<connector name=""1"" connectorCategory=""1"">
@@ -73,7 +72,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateValidDecisionXmlWorks()
         {
             //arrange
-            IConnectorDataXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConnectorDataXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConnectorDataSchema);
 
             //act
             var result = xmlValidator.Validate(@"<connector name=""1"" connectorCategory=""0"">
@@ -107,7 +106,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateReturnsFailureResponseForInvalidStructure()
         {
             //arrange
-            IConnectorDataXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConnectorDataXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConnectorDataSchema);
 
             //act
             var result = xmlValidator.Validate(@"<folder name=""variables"">
@@ -121,7 +120,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void ValidateThrowsXmlExceptionForInvalidXml()
         {
             //arrange
-            IConnectorDataXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConnectorDataXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConnectorDataSchema);
 
             //act
             Assert.Throws<XmlException>(() => xmlValidator.Validate(@"<folder1 name=""variables"">
@@ -132,7 +131,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void XmlWithInvalidCategoryReturnsFailureResponse()
         {
             //arrange
-            IConnectorDataXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConnectorDataXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConnectorDataSchema);
 
             //act
             var result = xmlValidator.Validate(@"<connector name=""1"" connectorCategory=""2"">
@@ -159,7 +158,7 @@ namespace TelerikLogicBuilder.Tests.XmlValidation.Configuration
         public void XmlWithDialodCategoryAndWithoutMetaObjectElementReturnsFailureResponse()
         {
             //arrange
-            IConnectorDataXmlValidator xmlValidator = serviceProvider.GetRequiredService<IConnectorDataXmlValidator>();
+            IXmlValidator xmlValidator = serviceProvider.GetRequiredService<IXmlValidatorFactory>().GetXmlValidator(SchemaName.ConnectorDataSchema);
 
             //act
             var result = xmlValidator.Validate(@"<connector name=""1"" connectorCategory=""1"">
