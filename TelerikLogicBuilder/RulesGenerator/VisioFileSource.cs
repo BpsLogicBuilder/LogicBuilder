@@ -4,10 +4,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
 {
     internal class VisioFileSource
     {
-        public VisioFileSource(string sourceFileFullname, int pageId, short pageIndex, string shapeMasterName, int shapeId, int shapeIndex, IContextProvider contextProvider)
+        public VisioFileSource(IPathHelper pathHelper, string sourceFileFullname, int pageId, short pageIndex, string shapeMasterName, int shapeId, int shapeIndex)
         {
             SourceFileFullname = sourceFileFullname;
-            FileName = contextProvider.PathHelper.GetFileName(sourceFileFullname);
+            FileName = pathHelper.GetFileName(sourceFileFullname);
             PageId = pageId;
             PageIndex = pageIndex;
             ShapeMasterName = shapeMasterName;

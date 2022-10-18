@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -87,19 +88,18 @@ namespace TelerikLogicBuilder.Tests
         {
             //arrange
             IResultMessageBuilder builder = serviceProvider.GetRequiredService<IResultMessageBuilder>();
-
+            
             //act
             var result = builder.BuilderMessage
             (
-                new VisioFileSource
+                serviceProvider.GetRequiredService<IVisioFileSourceFactory>().GetVisioFileSource
                 (
                     @"C:\folder\file.vsd",
                     21,
                     2,
                     "Action",
                     31,
-                    3,
-                    serviceProvider.GetRequiredService<IContextProvider>()
+                    3
                 ),
                 "Visio Source Message"
             );

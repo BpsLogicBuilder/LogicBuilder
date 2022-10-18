@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -34,20 +35,27 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         }
 
         [Fact]
-        public void CanCreateDiagramValidator()
+        public void CanCreateDiagramValidatorFactory()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
 
             //assert
-            Assert.NotNull(validator);
+            Assert.NotNull(validatorFactory);
+        }
+
+        [Fact]
+        public void CreateDiagramValidatorThrows()
+        {
+            //assert
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>());
         }
 
         [Fact]
         public async Task DiagramValidationSucceeds()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(DiagramValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -62,14 +70,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -81,7 +89,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForDuplicateToJumpShapes()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateToJumpShapes));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -96,14 +104,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -115,7 +123,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMissingFromJumpShape()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingFromJumpShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -130,14 +138,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -149,7 +157,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMissingToJumpShape()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingToJumpShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -164,14 +172,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -183,7 +191,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForConnectorNotConnectingTwoShapes()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForConnectorNotConnectingTwoShapes));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -198,14 +206,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -217,7 +225,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMissingBeginShape()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingBeginShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -232,14 +240,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -255,7 +263,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMultipleBeginShapes()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMultipleBeginShapes));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -270,14 +278,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -293,7 +301,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForModuleEndInBeginFlowDocument()
         {
             //arrange
-            IDiagramValidator validator = _fixture.ServiceProvider.GetRequiredService<IDiagramValidator>();
+            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForModuleEndInBeginFlowDocument));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -308,14 +316,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 

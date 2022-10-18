@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
@@ -14,10 +15,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
     internal class DiagramSearcherUtility
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IPathHelper _pathHelper;
         private readonly IResultMessageBuilder _resultMessageBuilder;
         private readonly IShapeXmlHelper _shapeXmlHelper;
+        private readonly IVisioFileSourceFactory _visioFileSourceFactory;
 
         public DiagramSearcherUtility(
             string sourceFile,
@@ -29,7 +30,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             IProgress<ProgressMessage> progress,
             CancellationTokenSource cancellationTokenSource,
             IContextProvider contextProvider,
-            IShapeXmlHelper shapeXmlHelper)
+            IShapeXmlHelper shapeXmlHelper,
+            IVisioFileSourceFactory visioFileSourceFactory)
         {
             SourceFile = sourceFile;
             Document = document;
@@ -41,8 +43,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             CancellationTokenSource = cancellationTokenSource;
             _pathHelper = contextProvider.PathHelper;
             _resultMessageBuilder = contextProvider.ResultMessageBuilder;
-            _contextProvider = contextProvider;
             _shapeXmlHelper = shapeXmlHelper;
+            _visioFileSourceFactory = visioFileSourceFactory;
 
             FileName = _pathHelper.GetFileName(SourceFile);
         }
@@ -82,15 +84,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             => _resultMessageBuilder.BuilderMessage(visioFileSource, message);
 
         private VisioFileSource GetVisioFileSource(Page page, Shape shape)
-            => new
+            => _visioFileSourceFactory.GetVisioFileSource
             (
                 SourceFile,
                 page.ID,
                 page.Index,
                 shape.Master.Name,
                 shape.ID,
-                shape.Index,
-                _contextProvider
+                shape.Index
             );
 
         private void SearchDiagram()
@@ -122,10 +123,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                         ShapeCount++;
                         AddSearchResult
                         (
-                            shapeText.Length > MiscellaneousConstants.MAXTEXTDISPLAYED 
-                                ? shapeText[..MiscellaneousConstants.MAXTEXTDISPLAYED] 
+                            shapeText.Length > MiscellaneousConstants.MAXTEXTDISPLAYED
+                                ? shapeText[..MiscellaneousConstants.MAXTEXTDISPLAYED]
                                 : shapeText,
-                            page, 
+                            page,
                             shape
                         );
                     }

@@ -16,7 +16,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IDeploySelectedFilesToApi, DeploySelectedFilesToApi>()
                 .AddSingleton<IDeploySelectedFilesToFileSystem, DeploySelectedFilesToFileSystem>()
                 .AddSingleton<IDiagramRulesBuilder, DiagramRulesBuilder>()
-                .AddSingleton<IDiagramValidator, DiagramValidator>()
                 .AddSingleton<IFileSystemFileDeleter, FileSystemFileDeleter>()
                 .AddSingleton<IFileSystemFileDeployer, FileSystemFileDeployer>()
                 .AddSingleton<IGetRuleShapes, GetRuleShapes>()
@@ -34,8 +33,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<ITableValidator, TableValidator>()
                 .AddSingleton<IValidateSelectedDocuments, ValidateSelectedDocuments>()
                 .AddSingleton<IValidateSelectedRules, ValidateSelectedRules>()
-            .AddRulesGeneratorForms()
-            .AddRulesGeneratorRuleBuilders()
-            .AddRulesGeneratorShapeValidators();
+                .AddRulesGeneratorFactories()
+                .AddRulesGeneratorForms()
+                .AddRulesGeneratorRuleBuilders()
+                .AddRulesGeneratorShapeValidators();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
@@ -18,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
 {
     internal class DiagramRulesBuilderUtility
     {
-        private readonly IDiagramValidator _diagramValidator;
+        private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IGetRuleShapes _getRuleShapes;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IJumpDataParser _jumpDataParser;
@@ -33,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             IProgress<ProgressMessage> progress,
             CancellationTokenSource cancellationTokenSource,
             IContextProvider contextProvider,
-            IDiagramValidator diagramValidator,
+            IDiagramValidatorFactory diagramValidatorFactory,
             IGetRuleShapes getRuleShapes,
             IJumpDataParser jumpDataParser,
             IShapeSetRuleBuilder shapeSetRuleBuilder,
@@ -48,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
             CancellationTokenSource = cancellationTokenSource;
             _exceptionHelper = contextProvider.ExceptionHelper;
             _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _diagramValidator = diagramValidator;
+            _diagramValidatorFactory = diagramValidatorFactory;
             _getRuleShapes = getRuleShapes;
             _jumpDataParser = jumpDataParser;
             _shapeSetRuleBuilder = shapeSetRuleBuilder;
@@ -73,7 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
 
         internal async Task<BuildRulesResult> BuildRules()
         {
-            var validationErrors = await _diagramValidator.Validate(SourceFile, Document, Application, Progress, CancellationTokenSource);
+            var validationErrors = await _diagramValidatorFactory.GetDiagramValidator(SourceFile, Document, Application, Progress, CancellationTokenSource).Validate();
             if (validationErrors.Count > 0)
                 return new BuildRulesResult(validationErrors, Rules, ResourceStrings);
 

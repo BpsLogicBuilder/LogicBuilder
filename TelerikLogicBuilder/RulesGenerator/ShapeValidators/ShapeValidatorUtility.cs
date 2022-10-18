@@ -17,13 +17,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators
             Shape = shape;
             VisioFileSource = new VisioFileSource
             (
+                contextProvider.PathHelper,
                 sourceFile, 
                 page.ID, 
                 page.Index, 
                 shape.Master.Name, 
                 shape.ID, 
-                shape.Index, 
-                contextProvider
+                shape.Index
             );
             ValidationErrors = validationErrors;
             _resultMessageBuilder = contextProvider.ResultMessageBuilder;

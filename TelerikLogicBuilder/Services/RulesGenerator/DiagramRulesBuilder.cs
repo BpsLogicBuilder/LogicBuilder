@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
@@ -15,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class DiagramRulesBuilder : IDiagramRulesBuilder
     {
         private readonly IContextProvider _contextProvider;
-        private readonly IDiagramValidator _diagramValidator;
+        private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IGetRuleShapes _getRuleShapes;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IShapeSetRuleBuilder _shapeSetRuleBuilder;
@@ -23,14 +24,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 
         public DiagramRulesBuilder(
             IContextProvider contextProvider,
-            IDiagramValidator diagramValidator,
+            IDiagramValidatorFactory diagramValidatorFactory,
             IGetRuleShapes getRuleShapes,
             IJumpDataParser jumpDataParser,
             IShapeSetRuleBuilder shapeSetRuleBuilder,
             IShapeXmlHelper shapeXmlHelper)
         {
             _contextProvider = contextProvider;
-            _diagramValidator = diagramValidator;
+            _diagramValidatorFactory = diagramValidatorFactory;
             _getRuleShapes = getRuleShapes;
             _jumpDataParser = jumpDataParser;
             _shapeSetRuleBuilder = shapeSetRuleBuilder;
@@ -46,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 progress,
                 cancellationTokenSource,
                 _contextProvider,
-                _diagramValidator,
+                _diagramValidatorFactory,
                 _getRuleShapes,
                 _jumpDataParser,
                 _shapeSetRuleBuilder,

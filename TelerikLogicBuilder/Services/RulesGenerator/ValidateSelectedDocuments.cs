@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
@@ -19,18 +20,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class ValidateSelectedDocuments : IValidateSelectedDocuments
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
-        private readonly IDiagramValidator _diagramValidator;
+        private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IDisplayResultMessages _displayResultMessages;
         private readonly ITableValidator _tableValidator;
 
         public ValidateSelectedDocuments(
             IApplicationTypeInfoManager applicationTypeInfoManager,
-            IDiagramValidator diagramValidator,
+            IDiagramValidatorFactory diagramValidatorFactory,
             IDisplayResultMessages displayResultMessages,
             ITableValidator tableValidator)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
-            _diagramValidator = diagramValidator;
+            _diagramValidatorFactory = diagramValidatorFactory;
             _displayResultMessages = displayResultMessages;
             _tableValidator = tableValidator;
         }
@@ -49,14 +50,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                                         || sourceFile.EndsWith(FileExtensions.VSDXFILEEXTENSION))
                     {
                         Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
-                        IList<ResultMessage> visioDocumentResults = await _diagramValidator.Validate
+                        IList<ResultMessage> visioDocumentResults = await _diagramValidatorFactory.GetDiagramValidator
                         (
                             sourceFile,
                             visioDocument,
                             _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
                             progress,
                             cancellationTokenSource
-                        );
+                        ).Validate();
 
                         foreach (ResultMessage resultMessage in visioDocumentResults)
                         {
