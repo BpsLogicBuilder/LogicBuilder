@@ -1,48 +1,143 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
-    internal class WaitDecisionShapeValidator : IWaitDecisionShapeValidator
+    internal class WaitDecisionShapeValidator : IShapeValidator
     {
-        private readonly IApplicationSpecificFlowShapeValidator _applicationSpecificFlowShapeValidator;
-        private readonly IContextProvider _contextProvider;
+        private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IDecisionsElementValidator _decisionsElementValidator;
+        private readonly IResultMessageHelper _resultMessageHelper;
         private readonly IShapeHelper _shapeHelper;
+        private readonly IShapeValidatorFactory _shapeValidatorFactory;
         private readonly IShapeXmlHelper _shapeXmlHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public WaitDecisionShapeValidator(IApplicationSpecificFlowShapeValidator applicationSpecificFlowShapeValidator, IContextProvider contextProvider, IDecisionsElementValidator decisionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper)
+        public WaitDecisionShapeValidator(
+            IApplicationTypeInfoManager applicationTypeInfoManager,
+            IDecisionsElementValidator decisionsElementValidator,
+            IResultMessageHelperFactory resultMessageHelperfactory,
+            IShapeHelper shapeHelper,
+            IShapeValidatorFactory shapeValidatorFactory,
+            IShapeXmlHelper shapeXmlHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string sourceFile,
+            Page page,
+            ShapeBag shapeBag,
+            List<ResultMessage> validationErrors,
+            ApplicationTypeInfo application)
         {
-            _applicationSpecificFlowShapeValidator = applicationSpecificFlowShapeValidator;
-            _contextProvider = contextProvider;
+            _applicationTypeInfoManager = applicationTypeInfoManager;
             _decisionsElementValidator = decisionsElementValidator;
-            _shapeHelper = shapeHelper;
-            _shapeXmlHelper = shapeXmlHelper;
-        }
-
-        public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
-        {
-            new WaitDecisionShapeValidatorUtility
+            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
             (
                 sourceFile,
                 page,
-                shape,
-                validationErrors,
-                application,
-                _contextProvider,
-                _applicationSpecificFlowShapeValidator,
-                _decisionsElementValidator,
-                _shapeHelper,
-                _shapeXmlHelper
-            ).Validate();
+                shapeBag.Shape,
+                validationErrors
+            );
+            _shapeHelper = shapeHelper;
+            _shapeValidatorFactory = shapeValidatorFactory;
+            _shapeXmlHelper = shapeXmlHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+
+            Application = application;
+            Page = page;
+            Shape = shapeBag.Shape;
+            ShapeBag = shapeBag;
+            SourceFile = sourceFile;
+            ValidationErrors = validationErrors;
+        }
+
+        private ApplicationTypeInfo Application { get; }
+        private Page Page { get; }
+        private Shape Shape { get; }
+        private ShapeBag ShapeBag { get; }
+        private string SourceFile { get; }
+        private List<ResultMessage> ValidationErrors { get; }
+
+        public void Validate()
+        {
+            if (_shapeHelper.CountIncomingConnectors(this.Shape) == 0)
+                _resultMessageHelper.AddValidationMessage(Strings.waitDecisionShapeIncomingRequired);
+
+            if (this.Shape.FromConnects.Count < 1)
+                return;
+
+            bool allApplication = _shapeHelper.HasAllApplicationConnectors(this.Shape);
+            bool allNonApplication = _shapeHelper.HasAllNonApplicationConnectors(this.Shape);
+
+            if (!(allApplication || allNonApplication))
+            {
+                _resultMessageHelper.AddValidationMessage(Strings.allWaitDecisionsConnectorsSameStencil);
+                return;
+            }
+
+            if (allNonApplication)
+                ValidateNonApplicationSpecific();
+
+            if (allApplication)
+            {
+                _shapeValidatorFactory.GetApplicationSpecificFlowShapeValidator
+                (
+                    this.SourceFile,
+                    this.Page,
+                    this.Shape,
+                    this.ValidationErrors
+                ).Validate();
+            }
+
+            string waitDecisionXml = _shapeXmlHelper.GetXmlString(this.Shape);
+            if (waitDecisionXml.Length == 0)
+            {
+                _resultMessageHelper.AddValidationMessage(Strings.waitDecisionShapeDataRequired);
+                return;
+            }
+
+            List<string> errors = new();
+            foreach (Shape connector in _shapeHelper.GetOutgoingBlankConnectors(this.Shape))
+            {//need the appropriate ApplicationTypeInfo for application specific connectors
+                _decisionsElementValidator.Validate
+                (
+                    _xmlDocumentHelpers.ToXmlElement(waitDecisionXml),
+                    GetApplicationTypeInfo(connector),
+                    errors
+                );
+            }
+            errors.ForEach(error => _resultMessageHelper.AddValidationMessage(error));
+
+            ApplicationTypeInfo GetApplicationTypeInfo(Shape connector)
+            {
+                if (connector.Master.NameU == UniversalMasterName.CONNECTOBJECT)
+                    return this.Application;
+
+                return _applicationTypeInfoManager.GetApplicationTypeInfo
+                (
+                    _shapeHelper.GetApplicationList(connector, ShapeBag).OrderBy(n => n).First()
+                );
+            }
+        }
+
+        /// <summary>
+        /// Ensures there is only one out going connector and that it is blank.
+        /// </summary>
+        private void ValidateNonApplicationSpecific()
+        {
+            if (_shapeHelper.CountOutgoingBlankConnectors(this.Shape) != 1
+                || _shapeHelper.CountOutgoingConnectors(this.Shape) != 1)
+                _resultMessageHelper.AddValidationMessage(Strings.waitDecisionShapeOutgoingRequired);
         }
     }
 }

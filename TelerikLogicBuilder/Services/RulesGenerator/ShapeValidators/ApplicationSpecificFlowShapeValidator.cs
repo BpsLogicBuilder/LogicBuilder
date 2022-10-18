@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators;
+﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -9,23 +9,65 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
     internal class ApplicationSpecificFlowShapeValidator : IApplicationSpecificFlowShapeValidator
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IResultMessageHelper _resultMessageHelper;
 
-        public ApplicationSpecificFlowShapeValidator(IContextProvider contextProvider)
+        public ApplicationSpecificFlowShapeValidator(
+            IResultMessageHelperFactory resultMessageHelperfactory,
+            string sourceFile,
+            Page page,
+            Shape shape, 
+            List<ResultMessage> validationErrors)
         {
-            _contextProvider = contextProvider;
-        }
-
-        public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors)
-        {
-            new ApplicationSpecificFlowShapeValidatorUtility
+            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
             (
                 sourceFile,
                 page,
                 shape,
-                validationErrors,
-                _contextProvider
-            ).Validate();
+                validationErrors
+            );
+
+            Shape = shape;
+        }
+
+        private Shape Shape { get; }
+
+        public void Validate()
+        {
+            HashSet<string> outgoingConnectors = new();
+            HashSet<string> incomingConnectors = new();
+            foreach (Connect shapeFromConnect in this.Shape.FromConnects)
+            {
+                if (shapeFromConnect.FromPart == (short)VisFromParts.visBegin)
+                {
+                    if (outgoingConnectors.Contains(shapeFromConnect.FromSheet.Master.NameU))
+                        _resultMessageHelper.AddValidationMessage(Strings.duplicateOutgoingConnector);
+                    else
+                        outgoingConnectors.Add(shapeFromConnect.FromSheet.Master.NameU);
+                }
+            }
+
+            foreach (Connect shapeFromConnect in this.Shape.FromConnects)
+            {
+                if (shapeFromConnect.FromPart == (short)VisFromParts.visEnd)
+                {
+                    if (incomingConnectors.Contains(shapeFromConnect.FromSheet.Master.NameU))
+                        _resultMessageHelper.AddValidationMessage(Strings.duplicateIncomingConnector);
+                    else
+                        incomingConnectors.Add(shapeFromConnect.FromSheet.Master.NameU);
+                }
+            }
+
+            if (outgoingConnectors.Count != incomingConnectors.Count)
+            {
+                _resultMessageHelper.AddValidationMessage(Strings.applicationConnectorMismatch);
+                return;
+            }
+
+            foreach (string master in outgoingConnectors)
+            {
+                if (!incomingConnectors.Contains(master))
+                    _resultMessageHelper.AddValidationMessage(Strings.applicationConnectorMismatch);
+            }
         }
     }
 }

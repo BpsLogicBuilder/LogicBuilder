@@ -5,7 +5,6 @@ using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
 using System;
@@ -25,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
-        private readonly IShapeValidator _shapeValidator;
+        private readonly IShapeValidatorFactory _shapeValidatorFactory;
         private readonly IResultMessageBuilder _resultMessageBuilder;
         private readonly IVisioFileSourceFactory _visioFileSourceFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -37,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             IPathHelper pathHelper,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
-            IShapeValidator shapeValidator,
+            IShapeValidatorFactory shapeValidatorFactory,
             IResultMessageBuilder resultMessageBuilder,
             IVisioFileSourceFactory visioFileSourceFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -58,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             _jumpDataParser = jumpDataParser;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
-            _shapeValidator = shapeValidator;
+            _shapeValidatorFactory = shapeValidatorFactory;
             _resultMessageBuilder = resultMessageBuilder;
             _visioFileSourceFactory = visioFileSourceFactory;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -134,7 +133,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                             break;
                         case UniversalMasterName.JUMPOBJECT:
                             List<ResultMessage> jumpErrors = new();
-                            _shapeValidator.ValidateShape(SourceFile, page, new ShapeBag(shape), jumpErrors, Application);
+                            _shapeValidatorFactory.GetShapeValidator
+                            (
+                                SourceFile, 
+                                page, 
+                                new ShapeBag(shape), 
+                                jumpErrors, 
+                                Application
+                            ).Validate();
+
                             if (jumpErrors.Any())
                             {
                                 jumpErrors.ForEach(error => ValidationErrors.Add(error));
@@ -239,7 +246,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             foreach (Shape connector in ruleConnectors)
             {
-                _shapeValidator.ValidateConnector(SourceFile, connector.ContainingPage, connector, ValidationErrors, Application);
+                _shapeValidatorFactory.GetConnectorValidator
+                (
+                    SourceFile, 
+                    connector.ContainingPage, 
+                    connector, ValidationErrors, 
+                    Application
+                ).Validate();
             }
 
             foreach (ShapeBag shapeBag in ruleShapes)
@@ -247,7 +260,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
              //Some shapes will be validated more than once (each time they appear in a list)
              //The ShapeBag is necessary because the application for the "Others Connect Object" depends on the diverging merge shape.
                 ValidateOutgoingBlankConnectors(shapeBag.Shape, shapeBag.Shape.ContainingPage);
-                _shapeValidator.ValidateShape(SourceFile, shapeBag.Shape.ContainingPage, shapeBag, ValidationErrors, Application);
+                _shapeValidatorFactory.GetShapeValidator
+                (
+                    SourceFile, 
+                    shapeBag.Shape.ContainingPage, 
+                    shapeBag, 
+                    ValidationErrors, 
+                    Application
+                ).Validate();
             }
         }
 

@@ -3,10 +3,12 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
@@ -29,20 +31,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
 
         [Fact]
-        public void CanCreateMergeShapeValidator()
-        {
-            //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
-
-            //assert
-            Assert.NotNull(validator);
-        }
-
-        [Fact]
         public void MergeShapeValidationSucceeds()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(MergeShapeValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -72,15 +64,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -92,7 +86,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForUnecessaryOthersConnector()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForUnecessaryOthersConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -122,15 +116,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -142,7 +138,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForIncomingAndOutGoingApplicationConnectors()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForIncomingAndOutGoingApplicationConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -173,15 +169,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -193,7 +191,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForIncomingAndOutGoingRegularConnectors()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForIncomingAndOutGoingRegularConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -224,15 +222,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -244,7 +244,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForOutGoingRegularAndApplicationConnectors()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForOutGoingRegularAndApplicationConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -275,15 +275,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -295,7 +297,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForIncomningRegularAndApplicationConnectors()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForIncomningRegularAndApplicationConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -326,15 +328,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -346,7 +350,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForDuplicateIncomingApplication()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateIncomingApplication));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -376,15 +380,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -396,7 +402,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForDuplicateOutgoingApplication()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateOutgoingApplication));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -426,15 +432,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -446,7 +454,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForNotMergingOrSplitting()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForNotMergingOrSplitting));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -463,15 +471,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -483,7 +493,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForMergingWithoutOutgoingRegularConnector()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMergingWithoutOutgoingRegularConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -513,15 +523,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -533,7 +545,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForMergingWithMultipleOutgoingRegularConnectors()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMergingWithoutOutgoingRegularConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -563,15 +575,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -583,7 +597,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForSplittingWithoutIncomingRegularConnector()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForSplittingWithoutIncomingRegularConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -612,15 +626,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -632,7 +648,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForSplittingWithApplicationUnaccountedFor()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForSplittingWithApplicationUnaccountedFor));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             _fixture.ConfigurationService.ProjectProperties = ConfiguredWithThreeApplications;
@@ -663,15 +679,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             _fixture.ConfigurationService.ProjectProperties = ConfiguredWithTwoApplications;
             CloseVisioDocument(visioDocument);
@@ -694,7 +712,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForMergingWithApplicationUnaccountedFor()
         {
             //arrange
-            IMergeShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IMergeShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMergingWithApplicationUnaccountedFor));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             _fixture.ConfigurationService.ProjectProperties = ConfiguredWithThreeApplications;
@@ -725,15 +743,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 }
             );
             List<ResultMessage> errors = new();
+            var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validator.Validate
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
-                shape,
-                errors
-            );
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
 
             _fixture.ConfigurationService.ProjectProperties = ConfiguredWithTwoApplications;
             CloseVisioDocument(visioDocument);

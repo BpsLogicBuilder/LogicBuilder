@@ -1,5 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators;
+﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
@@ -10,35 +10,70 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
-    internal class ConditionShapeValidator : IConditionShapeValidator
+    internal class ConditionShapeValidator : IShapeValidator
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IConditionsElementValidator _conditionsElementValidator;
+        private readonly IResultMessageHelper _resultMessageHelper;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ConditionShapeValidator(IContextProvider contextProvider, IConditionsElementValidator conditionsElementValidator, IShapeHelper shapeHelper, IShapeXmlHelper shapeXmlHelper)
+        public ConditionShapeValidator(
+            IConditionsElementValidator conditionsElementValidator,
+            IResultMessageHelperFactory resultMessageHelperfactory,
+            IShapeHelper shapeHelper,
+            IShapeXmlHelper shapeXmlHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            string sourceFile,
+            Page page,
+            Shape shape,
+            List<ResultMessage> validationErrors,
+            ApplicationTypeInfo application)
         {
-            _contextProvider = contextProvider;
             _conditionsElementValidator = conditionsElementValidator;
-            _shapeHelper = shapeHelper;
-            _shapeXmlHelper = shapeXmlHelper;
-        }
-
-        public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors, ApplicationTypeInfo application)
-        {
-            new ConditionShapeValidatorUtility
+            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
             (
                 sourceFile,
                 page,
                 shape,
-                validationErrors,
-                application,
-                _contextProvider,
-                _conditionsElementValidator,
-                _shapeHelper,
-                _shapeXmlHelper
-            ).Validate();
+                validationErrors
+            );
+            _shapeHelper = shapeHelper;
+            _shapeXmlHelper = shapeXmlHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+
+            Application = application;
+            Shape = shape;
+        }
+
+        private ApplicationTypeInfo Application { get; }
+        private Shape Shape { get; }
+
+        public void Validate()
+        {
+            if (_shapeHelper.CountOutgoingConnectors(this.Shape) != 2
+                || _shapeHelper.GetOutgoingYesConnector(this.Shape) == null
+                || _shapeHelper.GetOutgoingNoConnector(this.Shape) == null)
+                _resultMessageHelper.AddValidationMessage(Strings.conditionBoxOutgoingRequired);
+
+            if (_shapeHelper.CountIncomingConnectors(this.Shape) == 0)
+                _resultMessageHelper.AddValidationMessage(Strings.conditionBoxIncomingRequired);
+
+            string conditionsXml = _shapeXmlHelper.GetXmlString(this.Shape);
+            if (conditionsXml.Length == 0)
+            {
+                _resultMessageHelper.AddValidationMessage(Strings.conditionShapeDataRequired);
+                return;
+            }
+
+            List<string> errors = new();
+            _conditionsElementValidator.Validate
+            (
+                _xmlDocumentHelpers.ToXmlElement(conditionsXml),
+                Application,
+                errors
+            );
+            errors.ForEach(error => _resultMessageHelper.AddValidationMessage(error));
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
-using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -36,17 +36,24 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void CanCreateShapeValidator()
         {
             //arrange
-            IShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
 
             //assert
-            Assert.NotNull(validator);
+            Assert.NotNull(validatorFactory);
+        }
+
+        [Fact]
+        public void CreateShapeValidatorThrows()
+        {
+            //assert
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<IShapeValidator>());
         }
 
         [Fact]
         public void ShapeValidationSucceeds()
         {
             //arrange
-            IShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(ShapeValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -66,14 +73,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             List<ResultMessage> errors = new();
 
             //act
-            validator.ValidateShape
+            validatorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
                 new ShapeBag(shape),
                 errors,
                 applicationTypeInfo
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -85,7 +92,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void ShapeValidatorThrowsForInvalidShape()
         {
             //arrange
-            IShapeValidator validator = _fixture.ServiceProvider.GetRequiredService<IShapeValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(ShapeValidatorThrowsForInvalidShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -107,14 +114,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             var exception = Assert.Throws<CriticalLogicBuilderException>
             (
-                () => validator.ValidateShape
+                () => validatorFactory.GetShapeValidator
                 (
                     sourceFile,
                     GetPage(visioDocument),
                     new ShapeBag(shape),
                     errors,
                     applicationTypeInfo
-                )
+                ).Validate()
             );
 
             CloseVisioDocument(visioDocument);
@@ -122,7 +129,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //assert
             Assert.Equal
             (
-                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{1847D564-79A4-49C0-8B82-DD7A91B3EA44}"),
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{3F24C6C4-277E-46F8-9AE2-5BCC160641B3}"),
                 exception.Message
             );
         }

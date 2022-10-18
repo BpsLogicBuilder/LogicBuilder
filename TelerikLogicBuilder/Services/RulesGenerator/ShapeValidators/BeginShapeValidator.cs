@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.ShapeValidators;
+﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
@@ -8,28 +8,41 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
-    internal class BeginShapeValidator : IBeginShapeValidator
+    internal class BeginShapeValidator : IShapeValidator
     {
-        private readonly IContextProvider _contextProvider;
         private readonly IShapeHelper _shapeHelper;
+        private readonly IResultMessageHelper _resultMessageHelper;
 
-        public BeginShapeValidator(IContextProvider contextProvider, IShapeHelper shapeHelper)
+        public BeginShapeValidator(
+            IResultMessageHelperFactory resultMessageHelperfactory,
+            IShapeHelper shapeHelper,
+            string sourceFile,
+            Page page,
+            Shape shape,
+            List<ResultMessage> validationErrors)
         {
-            _contextProvider = contextProvider;
-            _shapeHelper = shapeHelper;
-        }
-
-        public void Validate(string sourceFile, Page page, Shape shape, List<ResultMessage> validationErrors)
-        {
-            new BeginShapeValidatorUtility
+            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
             (
                 sourceFile,
                 page,
                 shape,
-                validationErrors,
-                _contextProvider,
-                _shapeHelper
-            ).Validate();
+                validationErrors
+            );
+            _shapeHelper = shapeHelper;
+
+            Shape = shape;
+        }
+
+        private Shape Shape { get; }
+
+        public void Validate()
+        {
+            if (_shapeHelper.CountOutgoingBlankConnectors(this.Shape) != 1
+                    || _shapeHelper.CountOutgoingConnectors(this.Shape) != 1)
+                _resultMessageHelper.AddValidationMessage(Strings.beginShapeOutgoingRequired);
+
+            if (_shapeHelper.CountIncomingConnectors(this.Shape) > 0)
+                _resultMessageHelper.AddValidationMessage(Strings.beginShapeIncoming);
         }
     }
 }

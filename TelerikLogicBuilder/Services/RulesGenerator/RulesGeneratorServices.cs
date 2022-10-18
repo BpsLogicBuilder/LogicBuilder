@@ -35,7 +35,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IValidateSelectedRules, ValidateSelectedRules>()
                 .AddRulesGeneratorFactories()
                 .AddRulesGeneratorForms()
-                .AddRulesGeneratorRuleBuilders()
-                .AddRulesGeneratorShapeValidators();
+                .AddRulesGeneratorRuleBuilders();
     }
 }

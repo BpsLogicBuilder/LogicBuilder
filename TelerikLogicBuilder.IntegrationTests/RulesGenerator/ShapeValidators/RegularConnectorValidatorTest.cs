@@ -9,12 +9,12 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
@@ -37,20 +37,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
 
         [Fact]
-        public void CanCreateRegularConnectorValidator()
-        {
-            //arrange
-            IRegularConnectorValidator validator = _fixture.ServiceProvider.GetRequiredService<IRegularConnectorValidator>();
-
-            //assert
-            Assert.NotNull(validator);
-        }
-
-        [Fact]
         public void RegularConnectorValidationSucceeds()
         {
             //arrange
-            IRegularConnectorValidator validator = _fixture.ServiceProvider.GetRequiredService<IRegularConnectorValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(RegularConnectorValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -74,14 +64,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             List<ResultMessage> errors = new();
 
             //act
-            validator.Validate
+            validatorFactory.GetConnectorValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
                 applicationTypeInfo
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -93,7 +83,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationIfConnectedToLessThanTwoShapes()
         {
             //arrange
-            IRegularConnectorValidator validator = _fixture.ServiceProvider.GetRequiredService<IRegularConnectorValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationIfConnectedToLessThanTwoShapes));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -117,14 +107,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             List<ResultMessage> errors = new();
 
             //act
-            validator.Validate
+            validatorFactory.GetConnectorValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
                 applicationTypeInfo
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -136,7 +126,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationIfBothEndsAreConnectedToTheSameShape()
         {
             //arrange
-            IRegularConnectorValidator validator = _fixture.ServiceProvider.GetRequiredService<IRegularConnectorValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationIfBothEndsAreConnectedToTheSameShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -160,14 +150,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             List<ResultMessage> errors = new();
 
             //act
-            validator.Validate
+            validatorFactory.GetConnectorValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
                 applicationTypeInfo
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
@@ -179,7 +169,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationForContainingADialogFunction()
         {
             //arrange
-            IRegularConnectorValidator validator = _fixture.ServiceProvider.GetRequiredService<IRegularConnectorValidator>();
+            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForContainingADialogFunction));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             IShapeXmlHelper shapeXmlHelper = _fixture.ServiceProvider.GetRequiredService<IShapeXmlHelper>();
@@ -212,14 +202,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             List<ResultMessage> errors = new();
 
             //act
-            validator.Validate
+            validatorFactory.GetConnectorValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
                 shape,
                 errors,
                 applicationTypeInfo
-            );
+            ).Validate();
 
             CloseVisioDocument(visioDocument);
 
