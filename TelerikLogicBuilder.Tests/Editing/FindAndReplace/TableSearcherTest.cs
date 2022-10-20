@@ -1,6 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder;
-using ABIS.LogicBuilder.FlowBuilder.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -9,8 +9,6 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +18,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -40,13 +37,10 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         const string FileNameNoExtention = "Module";
 
         [Fact]
-        public void CanCreateTableSearcher()
+        public void CreateTableSearcherThrows()
         {
-            //arrange
-            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
-
             //assert
-            Assert.NotNull(helper);
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<ITableSearcher>());
         }
 
         [Theory]
@@ -59,7 +53,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task TextSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -69,7 +63,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            var result = await helper.Search
+            var result = await factory.GetTableSearcher
             (
                 sourceFile,
                 dataSet,
@@ -79,7 +73,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindTextMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             dataSet.Dispose();
 
@@ -101,7 +95,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task ConstructorSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -111,7 +105,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            var result = await helper.Search
+            var result = await factory.GetTableSearcher
             (
                 sourceFile,
                 dataSet,
@@ -121,7 +115,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindConstructorMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             dataSet.Dispose();
 
@@ -143,7 +137,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task FunctionSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -153,7 +147,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            var result = await helper.Search
+            var result = await factory.GetTableSearcher
             (
                 sourceFile,
                 dataSet,
@@ -163,7 +157,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindFunctionMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             dataSet.Dispose();
 
@@ -185,7 +179,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task VariableSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            ITableSearcher helper = _fixture.ServiceProvider.GetRequiredService<ITableSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(FileNameNoExtention);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -195,7 +189,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            var result = await helper.Search
+            var result = await factory.GetTableSearcher
             (
                 sourceFile,
                 dataSet,
@@ -205,7 +199,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindVariableMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             dataSet.Dispose();
 

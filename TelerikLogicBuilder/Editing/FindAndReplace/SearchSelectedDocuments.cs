@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -16,18 +17,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
     internal class SearchSelectedDocuments : ISearchSelectedDocuments
     {
-        private readonly IDiagramSearcher _diagramSearcher;
         private readonly IDisplayResultMessages _displayResultMessages;
-        private readonly ITableSearcher _tableSearcher;
+        private readonly ISearcherFactory _searcherFactory;
 
         public SearchSelectedDocuments(
-            IDiagramSearcher diagramSearcher,
             IDisplayResultMessages displayResultMessages,
-            ITableSearcher tableSearcher)
+            ISearcherFactory searcherFactory)
         {
-            _diagramSearcher = diagramSearcher;
             _displayResultMessages = displayResultMessages;
-            _tableSearcher = tableSearcher;
+            _searcherFactory = searcherFactory;
         }
 
         public async Task<IList<ResultMessage>> Search(
@@ -54,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                         || sourceFile.EndsWith(FileExtensions.VSDXFILEEXTENSION))
                     {
                         Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
-                        SearchDiagramResults searchDiagramResults = await _diagramSearcher.Search
+                        SearchDiagramResults searchDiagramResults = await _searcherFactory.GetDiagramSearcher
                         (
                             sourceFile,
                             visioDocument,
@@ -64,7 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                             matchFunc,
                             progress,
                             cancellationTokenSource
-                        );
+                        ).Search();
 
                         foreach (ResultMessage resultMessage in searchDiagramResults.ResultMessages)
                         {
@@ -125,7 +123,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                             continue;
                         }
 
-                        SearchTableResults searchTableResults = await _tableSearcher.Search
+                        SearchTableResults searchTableResults = await _searcherFactory.GetTableSearcher
                         (
                             sourceFile,
                             dataSet,
@@ -135,7 +133,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                             matchFunc,
                             progress,
                             cancellationTokenSource
-                        );
+                        ).Search();
 
                         foreach (ResultMessage resultMessage in searchTableResults.ResultMessages)
                         {

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -30,13 +31,10 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         }
 
         [Fact]
-        public void CanCreateDiagramSearcher()
+        public void CreateDiagramSearcherThroed()
         {
-            //arrange
-            IDiagramSearcher helper = _fixture.ServiceProvider.GetRequiredService<IDiagramSearcher>();
-
             //assert
-            Assert.NotNull(helper);
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<IDiagramSearcher>());
         }
 
         [Theory]
@@ -49,7 +47,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task TextSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            IDiagramSearcher helper = _fixture.ServiceProvider.GetRequiredService<IDiagramSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(nameof(TextSearchReturnsTheExpectedResults));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -62,7 +60,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             });
             var cancellationToken = new CancellationTokenSource();
 
-            var result = await helper.Search
+            var result = await factory.GetDiagramSearcher
             (
                 sourceFile,
                 visioDocument,
@@ -72,7 +70,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindTextMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             CloseVisioDocument(visioDocument);
 
@@ -93,7 +91,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task ConstructorSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            IDiagramSearcher helper = _fixture.ServiceProvider.GetRequiredService<IDiagramSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(nameof(ConstructorSearchReturnsTheExpectedResults));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -106,7 +104,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             });
             var cancellationToken = new CancellationTokenSource();
 
-            var result = await helper.Search
+            var result = await factory.GetDiagramSearcher
             (
                 sourceFile,
                 visioDocument,
@@ -116,7 +114,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindConstructorMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             CloseVisioDocument(visioDocument);
 
@@ -137,7 +135,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task FunctionSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            IDiagramSearcher helper = _fixture.ServiceProvider.GetRequiredService<IDiagramSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(nameof(FunctionSearchReturnsTheExpectedResults));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -150,7 +148,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             });
             var cancellationToken = new CancellationTokenSource();
 
-            var result = await helper.Search
+            var result = await factory.GetDiagramSearcher
             (
                 sourceFile,
                 visioDocument,
@@ -160,7 +158,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindFunctionMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             CloseVisioDocument(visioDocument);
 
@@ -181,7 +179,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task VariableSearchReturnsTheExpectedResults(string searchString, bool matchCase, bool matchWholeWord, bool found)
         {
             //arrange
-            IDiagramSearcher helper = _fixture.ServiceProvider.GetRequiredService<IDiagramSearcher>();
+            ISearcherFactory factory = _fixture.ServiceProvider.GetRequiredService<ISearcherFactory>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
             string sourceFile = GetFullSourceFilePath(nameof(VariableSearchReturnsTheExpectedResults));
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -194,7 +192,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
             });
             var cancellationToken = new CancellationTokenSource();
 
-            var result = await helper.Search
+            var result = await factory.GetDiagramSearcher
             (
                 sourceFile,
                 visioDocument,
@@ -204,7 +202,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                 searchFunctions.FindVariableMatches,
                 progress,
                 cancellationToken
-            );
+            ).Search();
 
             CloseVisioDocument(visioDocument);
 
