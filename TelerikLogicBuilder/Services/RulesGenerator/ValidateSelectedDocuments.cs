@@ -22,18 +22,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IDisplayResultMessages _displayResultMessages;
-        private readonly ITableValidator _tableValidator;
+        private readonly ITableValidatorFactory _tableValidatorFactory;
 
         public ValidateSelectedDocuments(
             IApplicationTypeInfoManager applicationTypeInfoManager,
             IDiagramValidatorFactory diagramValidatorFactory,
             IDisplayResultMessages displayResultMessages,
-            ITableValidator tableValidator)
+            ITableValidatorFactory tableValidatorFactory)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _diagramValidatorFactory = diagramValidatorFactory;
             _displayResultMessages = displayResultMessages;
-            _tableValidator = tableValidator;
+            _tableValidatorFactory = tableValidatorFactory;
         }
 
         public async Task<IList<ResultMessage>> Validate(IList<string> sourceFiles, FlowBuilder.Configuration.Application application, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
@@ -114,14 +114,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 
                         tableDocumentResults.AddRange
                         (
-                            await _tableValidator.Validate
+                            await _tableValidatorFactory.GetTableValidator
                             (
                                 sourceFile,
                                 dataSet,
                                 _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
                                 progress,
                                 cancellationTokenSource
-                            )
+                            ).Validate()
                         );
 
                         foreach (ResultMessage resultMessage in tableDocumentResults)

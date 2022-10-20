@@ -1,172 +1,160 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
 using Microsoft.Office.Interop.Visio;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
 {
-    internal class ConditionsRuleBuilder : IConditionsRuleBuilder
+    internal class ConditionsRuleBuilder : IShapeSetRuleBuilder
     {
-        private readonly IContextProvider _contextProvider;
-        private readonly IAnyParametersHelper _anyParametersHelper;
-        private readonly IAssertFunctionDataParser _assertFunctionDataParser;
+        private readonly ICodeExpressionBuilder _codeExpressionBuilder;
         private readonly IConditionsDataParser _conditionsDataParser;
-        private readonly IConfigurationService _configurationService;
         private readonly IConnectorDataParser _connectorDataParser;
-        private readonly IConstructorDataParser _constructorDataParser;
-        private readonly IDiagramResourcesManager _diagramResourcesManager;
-        private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFunctionDataParser _functionDataParser;
-        private readonly IFunctionHelper _functionHelper;
-        private readonly IFunctionsDataParser _functionsDataParser;
-        private readonly IGetValidConfigurationFromData _getValidConfigurationFromData;
-        private readonly ILiteralListDataParser _literalListDataParser;
-        private readonly ILiteralListParameterDataParser _literalListParameterDataParser;
-        private readonly ILiteralListVariableDataParser _literalListVariableDataParser;
-        private readonly IMetaObjectDataParser _metaObjectDataParser;
-        private readonly IModuleDataParser _moduleDataParser;
-        private readonly IObjectDataParser _objectDataParser;
-        private readonly IObjectListDataParser _objectListDataParser;
-        private readonly IObjectListParameterDataParser _objectListParameterDataParser;
-        private readonly IObjectListVariableDataParser _objectListVariableDataParser;
-        private readonly IObjectParameterDataParser _objectParameterDataParser;
-        private readonly IObjectVariableDataParser _objectVariableDataParser;
-        private readonly IParameterHelper _parameterHelper;
-        private readonly IRetractFunctionDataParser _retractFunctionDataParser;
+        private readonly IShapeSetRuleBuilderHelper _shapeSetRuleBuilderHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
-        private readonly ITypeLoadHelper _typeLoadHelper;
-        private readonly IVariableDataParser _variableDataParser;
-        private readonly IVariableHelper _variableHelper;
-        private readonly IVariableValueDataParser _variableValueDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public ConditionsRuleBuilder(
-            IContextProvider contextProvider,
-            IAnyParametersHelper anyParametersHelper,
-            IAssertFunctionDataParser assertFunctionDataParser,
             IConditionsDataParser conditionsDataParser,
-            IConfigurationService configurationService,
             IConnectorDataParser connectorDataParser,
-            IConstructorDataParser constructorDataParser,
-            IDiagramResourcesManager diagramResourcesManager,
-            IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IFunctionDataParser functionDataParser,
-            IFunctionHelper functionHelper,
-            IFunctionsDataParser functionsDataParser,
-            IGetValidConfigurationFromData getValidConfigurationFromData,
-            ILiteralListDataParser literalListDataParser,
-            ILiteralListParameterDataParser literalListParameterDataParser,
-            ILiteralListVariableDataParser literalListVariableDataParser,
-            IMetaObjectDataParser metaObjectDataParser,
-            IModuleDataParser moduleDataParser,
-            IObjectDataParser objectDataParser,
-            IObjectListDataParser objectListDataParser,
-            IObjectListParameterDataParser objectListParameterDataParser,
-            IObjectListVariableDataParser objectListVariableDataParser,
-            IObjectParameterDataParser objectParameterDataParser,
-            IObjectVariableDataParser objectVariableDataParser,
-            IParameterHelper parameterHelper,
-            IRetractFunctionDataParser retractFunctionDataParser,
+            IRuleBuilderFactory ruleBuilderFactory,
             IShapeXmlHelper shapeXmlHelper,
-            ITypeLoadHelper typeLoadHelper,
-            IVariableDataParser variableDataParser,
-            IVariableHelper variableHelper,
-            IVariableValueDataParser variableValueDataParser,
-            IXmlDocumentHelpers xmlDocumentHelpers)
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IList<ShapeBag> ruleShapes,
+            IList<Shape> ruleConnectors,
+            string moduleName,
+            int ruleCount,
+            ApplicationTypeInfo application,
+            IDictionary<string, string> resourceStrings)
         {
-            _contextProvider = contextProvider;
-            _anyParametersHelper = anyParametersHelper;
-            _assertFunctionDataParser = assertFunctionDataParser;
+            _codeExpressionBuilder = ruleBuilderFactory.GetCodeExpressionBuilder
+            (
+                application,
+                resourceStrings,
+                moduleName
+            );
             _conditionsDataParser = conditionsDataParser;
-            _configurationService = configurationService;
             _connectorDataParser = connectorDataParser;
-            _constructorDataParser = constructorDataParser;
-            _diagramResourcesManager = diagramResourcesManager;
-            _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
-            _functionHelper = functionHelper;
-            _functionsDataParser = functionsDataParser;
-            _getValidConfigurationFromData = getValidConfigurationFromData;
-            _literalListDataParser = literalListDataParser;
-            _literalListParameterDataParser = literalListParameterDataParser;
-            _literalListVariableDataParser = literalListVariableDataParser;
-            _metaObjectDataParser = metaObjectDataParser;
-            _moduleDataParser = moduleDataParser;
-            _objectDataParser = objectDataParser;
-            _objectListDataParser = objectListDataParser;
-            _objectListParameterDataParser = objectListParameterDataParser;
-            _objectListVariableDataParser = objectListVariableDataParser;
-            _objectParameterDataParser = objectParameterDataParser;
-            _objectVariableDataParser = objectVariableDataParser;
-            _parameterHelper = parameterHelper;
-            _retractFunctionDataParser = retractFunctionDataParser;
-            _shapeXmlHelper = shapeXmlHelper;
-            _typeLoadHelper = typeLoadHelper;
-            _variableDataParser = variableDataParser;
-            _variableHelper = variableHelper;
-            _variableValueDataParser = variableValueDataParser;
-            _xmlDocumentHelpers = xmlDocumentHelpers;
-        }
-
-        public IList<RuleBag> GenerateRules(IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors, string moduleName, int ruleCount, ApplicationTypeInfo application, IDictionary<string, string> resourceStrings)
-        {
-            var ruleBuilder = new ConditionsRuleBuilderUtility
+            _shapeSetRuleBuilderHelper = ruleBuilderFactory.GetShapeSetRuleBuilderHelper
             (
                 ruleShapes,
                 ruleConnectors,
                 moduleName,
                 ruleCount,
                 application,
-                resourceStrings,
-                _contextProvider,
-                _anyParametersHelper,
-                _assertFunctionDataParser,
-                _conditionsDataParser,
-                _configurationService,
-                _connectorDataParser,
-                _constructorDataParser,
-                _diagramResourcesManager,
-                _enumHelper,
-                _exceptionHelper,
-                _functionDataParser,
-                _functionHelper,
-                _functionsDataParser,
-                _getValidConfigurationFromData,
-                _literalListDataParser,
-                _literalListParameterDataParser,
-                _literalListVariableDataParser,
-                _metaObjectDataParser,
-                _moduleDataParser,
-                _objectDataParser,
-                _objectListDataParser,
-                _objectListParameterDataParser,
-                _objectListVariableDataParser,
-                _objectParameterDataParser,
-                _objectVariableDataParser,
-                _parameterHelper,
-                _retractFunctionDataParser,
-                _shapeXmlHelper,
-                _xmlDocumentHelpers,
-                _typeLoadHelper,
-                _variableDataParser,
-                _variableHelper,
-                _variableValueDataParser
+                resourceStrings
+            );
+            _shapeXmlHelper = shapeXmlHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+        }
+
+        public IList<RuleBag> GenerateRules()
+        {
+            string conditionsXml = _shapeXmlHelper.GetXmlString(_shapeSetRuleBuilderHelper.RuleShapes[0].Shape);
+            if (string.IsNullOrEmpty(conditionsXml))
+                throw _exceptionHelper.CriticalException("{3C274E76-0F7A-47DE-9CEF-4469BE712F32}");
+
+            string connectorXml = _shapeXmlHelper.GetXmlString(_shapeSetRuleBuilderHelper.FirstConnector);
+            if (string.IsNullOrEmpty(connectorXml))
+                throw _exceptionHelper.CriticalException("{C6B44DA3-1A7C-4C8A-A6E8-D67AAC3EFDDD}");
+
+            ConditionsData conditionsData = _conditionsDataParser.Parse
+            (
+                _xmlDocumentHelpers.ToXmlElement(conditionsXml)
+            );
+            ConnectorData firstConnectorData = _connectorDataParser.Parse
+            (
+                _xmlDocumentHelpers.ToXmlElement(connectorXml)
             );
 
-            ruleBuilder.GenerateRules();
-            return ruleBuilder.Rules;
+            switch (conditionsData.FirstChildElementName)
+            {
+                case XmlDataConstants.NOTELEMENT:
+                case XmlDataConstants.FUNCTIONELEMENT:
+                case XmlDataConstants.ANDELEMENT:
+                    AndRule(conditionsData, firstConnectorData);
+                    break;
+                case XmlDataConstants.ORELEMENT:
+                    OrRule(conditionsData, firstConnectorData);
+                    break;
+                default:
+                    throw _exceptionHelper.CriticalException("{6E643796-6C30-4520-AB2E-F40D2595E7CD}");
+            }
+
+            return _shapeSetRuleBuilderHelper.GetRules();
         }
+
+        /// <summary>
+        /// generates one rule when decisions are ORed
+        /// </summary>
+        private void OrRule(ConditionsData conditionsData, ConnectorData firstConnectorData)
+        {
+            _shapeSetRuleBuilderHelper.RuleCount++;
+            _shapeSetRuleBuilderHelper.Conditions.Add(new IfCondition(_codeExpressionBuilder.BuildDriverCondition(_shapeSetRuleBuilderHelper.RuleShapes[0].Shape.Index, _shapeSetRuleBuilderHelper.RuleShapes[0].Shape.ContainingPage.Index)));
+
+            //all conditions into one rule
+            _shapeSetRuleBuilderHelper.Conditions.Add
+            (
+                GetAllConditions
+                (
+                    conditionsData,
+                    firstConnectorData.Index == 1,
+                    CodeBinaryOperatorType.BooleanOr
+                )
+            );
+
+            _shapeSetRuleBuilderHelper.GenerateRightHandSide();
+        }
+
+        /// <summary>
+        /// generates one rule when decisions are ANDed
+        /// </summary>
+        private void AndRule(ConditionsData conditionsData, ConnectorData firstConnectorData)
+        {
+            _shapeSetRuleBuilderHelper.RuleCount++;
+            _shapeSetRuleBuilderHelper.Conditions.Add(new IfCondition(_codeExpressionBuilder.BuildDriverCondition(_shapeSetRuleBuilderHelper.RuleShapes[0].Shape.Index, _shapeSetRuleBuilderHelper.RuleShapes[0].Shape.ContainingPage.Index)));
+
+            //all conditions into one rule
+            _shapeSetRuleBuilderHelper.Conditions.Add
+            (
+                GetAllConditions
+                (
+                    conditionsData,
+                    firstConnectorData.Index == 1,
+                    CodeBinaryOperatorType.BooleanAnd
+                )
+            );
+
+            _shapeSetRuleBuilderHelper.GenerateRightHandSide();
+        }
+
+        private IfCondition GetAllConditions(ConditionsData conditionsData, bool isYesPath, CodeBinaryOperatorType binaryOperator)
+            => new
+            (
+                _codeExpressionBuilder.AggregateConditions
+                (
+                    conditionsData
+                        .FunctionElements
+                        .Select(e => _functionDataParser.Parse(e))
+                        .Select(fData => _codeExpressionBuilder.BuildIfCondition(fData)),
+                    binaryOperator
+                ),
+                !isYesPath//if yes Path the Not is false
+            );
     }
 }

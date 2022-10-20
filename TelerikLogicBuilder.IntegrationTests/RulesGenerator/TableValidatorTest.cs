@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -37,20 +38,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         }
 
         [Fact]
-        public void CanCreateTableValidator()
+        public void CreateTableValidatorThrows()
         {
-            //arrange
-            ITableValidator validator = _fixture.ServiceProvider.GetRequiredService<ITableValidator>();
-
             //assert
-            Assert.NotNull(validator);
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<ITableValidator>());
         }
 
         [Fact]
         public async Task TableValidationSucceeds()
         {
             //arrange
-            ITableValidator validator = _fixture.ServiceProvider.GetRequiredService<ITableValidator>();
+            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(TableValidationSucceeds));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -60,14 +58,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             dataSet.Dispose();
 
@@ -79,7 +77,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForDialogFunctionInActionCell()
         {
             //arrange
-            ITableValidator validator = _fixture.ServiceProvider.GetRequiredService<ITableValidator>();
+            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDialogFunctionInActionCell));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -89,14 +87,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             dataSet.Dispose();
 
@@ -112,7 +110,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForNoDataInActionCell()
         {
             //arrange
-            ITableValidator validator = _fixture.ServiceProvider.GetRequiredService<ITableValidator>();
+            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForNoDataInActionCell));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -122,14 +120,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             dataSet.Dispose();
 
@@ -145,7 +143,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForNoDataInPriorityCell()
         {
             //arrange
-            ITableValidator validator = _fixture.ServiceProvider.GetRequiredService<ITableValidator>();
+            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForNoDataInPriorityCell));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -155,14 +153,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validator.Validate
+            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
                 applicationTypeInfo,
                 progress,
                 cancellationToken
-            );
+            ).Validate();
 
             dataSet.Dispose();
 

@@ -4,10 +4,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
 {
     internal class TableFileSource
     {
-        public TableFileSource(string sourceFileFullname, int row, int column, IContextProvider contextProvider)
+        public TableFileSource(IPathHelper pathHelper, string sourceFileFullname, int row, int column)
         {
             SourceFileFullname = sourceFileFullname;
-            FileName = contextProvider.PathHelper.GetFileName(sourceFileFullname);
+            FileName = pathHelper.GetFileName(sourceFileFullname);
             Row = row;
             Column = column;
         }

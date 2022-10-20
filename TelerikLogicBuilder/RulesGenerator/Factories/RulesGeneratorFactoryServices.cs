@@ -5,17 +5,24 @@ using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders;
 using ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -37,6 +44,59 @@ namespace Microsoft.Extensions.DependencyInjection
                         validationErrors
                     )
                 )
+                .AddTransient<Func<ApplicationTypeInfo, IDictionary<string, string>, string, ICodeExpressionBuilder>>
+                (
+                    provider =>
+                    (application, resourceStrings, resourceNamePrefix) => new CodeExpressionBuilder
+                    (
+                        provider.GetRequiredService<IAnyParametersHelper>(),
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IConstructorDataParser>(),
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionHelper>(),
+                        provider.GetRequiredService<IGetValidConfigurationFromData>(),
+                        provider.GetRequiredService<ILiteralListDataParser>(),
+                        provider.GetRequiredService<ILiteralListParameterDataParser>(),
+                        provider.GetRequiredService<ILiteralListVariableDataParser>(),
+                        provider.GetRequiredService<IMetaObjectDataParser>(),
+                        provider.GetRequiredService<IObjectDataParser>(),
+                        provider.GetRequiredService<IObjectListDataParser>(),
+                        provider.GetRequiredService<IObjectListParameterDataParser>(),
+                        provider.GetRequiredService<IObjectListVariableDataParser>(),
+                        provider.GetRequiredService<IObjectParameterDataParser>(),
+                        provider.GetRequiredService<IObjectVariableDataParser>(),
+                        provider.GetRequiredService<IParameterHelper>(),
+                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
+                        provider.GetRequiredService<IVariableHelper>(),
+                        application,
+                        resourceStrings,
+                        resourceNamePrefix
+                    )
+                )
+                .AddTransient<Func<string, Document, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, IDiagramRulesBuilder>>
+                (
+                    provider =>
+                    (sourceFile, document, application, progress, cancellationTokenSource) => new DiagramRulesBuilder
+                    (
+                        provider.GetRequiredService<IDiagramValidatorFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IGetRuleShapes>(),
+                        provider.GetRequiredService<IJumpDataParser>(),
+                        provider.GetRequiredService<IPathHelper>(),
+                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IShapeXmlHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        sourceFile,
+                        document,
+                        application,
+                        progress,
+                        cancellationTokenSource
+                    )
+                )
                 .AddTransient<Func<string, Document, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, IDiagramValidator>>
                 (
                     provider =>
@@ -56,9 +116,217 @@ namespace Microsoft.Extensions.DependencyInjection
                         document,
                         application,
                         progress,
-                        cancellationTokenSource)
+                        cancellationTokenSource
+                    )
                 )
                 .AddTransient<IDiagramValidatorFactory, DiagramValidatorFactory>()
+                .AddTransient<Func<IDictionary<string, string>, string, IResourcesManager>>
+                (
+                    provider =>
+                    (resourceStrings, resourceNamePrefix) => new ResourcesManager
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        resourceStrings, 
+                        resourceNamePrefix
+                    )
+                )
+                .AddTransient<IRuleBuilderFactory, RuleBuilderFactory>()
+                .AddTransient<Func<IList<ShapeBag>, IList<Shape>, string, int, ApplicationTypeInfo, IDictionary<string, string>, IShapeSetRuleBuilder>>
+                (
+                    provider =>
+                    (ruleShapes, ruleConnectors, moduleName, ruleCount, application, resourceStrings) =>
+                    {
+                        switch (ruleShapes[0].Shape.Master.NameU)
+                        {
+                            case UniversalMasterName.BEGINFLOW:
+                                return new BeginFlowRuleBuilder
+                                (
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            case UniversalMasterName.CONDITIONOBJECT:
+                                return new ConditionsRuleBuilder
+                                (
+                                    provider.GetRequiredService<IConditionsDataParser>(),
+                                    provider.GetRequiredService<IConnectorDataParser>(),
+                                    provider.GetRequiredService<IExceptionHelper>(),
+                                    provider.GetRequiredService<IFunctionDataParser>(),
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IShapeXmlHelper>(),
+                                    provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            case UniversalMasterName.DECISIONOBJECT:
+                                return new DecisionsRuleBuilder
+                                (
+                                    provider.GetRequiredService<IConnectorDataParser>(),
+                                    provider.GetRequiredService<IDecisionDataParser>(),
+                                    provider.GetRequiredService<IDecisionsDataParser>(),
+                                    provider.GetRequiredService<IExceptionHelper>(),
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IShapeXmlHelper>(),
+                                    provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            case UniversalMasterName.DIALOG:
+                                IShapeXmlHelper shapeXmlHelper = provider.GetRequiredService<IShapeXmlHelper>();
+                                if (string.IsNullOrEmpty(shapeXmlHelper.GetXmlString(ruleConnectors[0])))
+                                {
+                                    return new DialogWithoutExitsRuleBuilder
+                                    (
+                                        provider.GetRequiredService<IExceptionHelper>(),
+                                        provider.GetRequiredService<IFunctionDataParser>(),
+                                        provider.GetRequiredService<IFunctionsDataParser>(),
+                                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                                        shapeXmlHelper,
+                                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                        ruleShapes,
+                                        ruleConnectors,
+                                        moduleName,
+                                        ruleCount,
+                                        application,
+                                        resourceStrings
+                                    );
+                                }
+                                else
+                                {
+                                    return new DialogWithExitsRuleBuilder
+                                    (
+                                        provider.GetRequiredService<IConnectorDataParser>(),
+                                        provider.GetRequiredService<IExceptionHelper>(),
+                                        provider.GetRequiredService<IFunctionDataParser>(),
+                                        provider.GetRequiredService<IFunctionsDataParser>(),
+                                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                                        provider.GetRequiredService<IShapeHelper>(),
+                                        shapeXmlHelper,
+                                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                        ruleShapes,
+                                        ruleConnectors,
+                                        moduleName,
+                                        ruleCount,
+                                        application,
+                                        resourceStrings
+                                    );
+                                }
+                            case UniversalMasterName.MERGEOBJECT:
+                                return new MergeRuleBuilder
+                                (
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IShapeHelper>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            case UniversalMasterName.MODULEBEGIN:
+                                return new ModuleBeginRuleBuilder
+                                (
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            case UniversalMasterName.MODULE:
+                                return new ModuleRuleBuilder
+                                (
+                                    provider.GetRequiredService<IExceptionHelper>(),
+                                    provider.GetRequiredService<IModuleDataParser>(),
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IShapeHelper>(),
+                                    provider.GetRequiredService<IShapeXmlHelper>(),
+                                    provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            case UniversalMasterName.WAITCONDITIONOBJECT:
+                                return new WaitConditionsRuleBuilder
+                                (
+                                    provider.GetRequiredService<IConditionsDataParser>(),
+                                    provider.GetRequiredService<IExceptionHelper>(),
+                                    provider.GetRequiredService<IFunctionDataParser>(),
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IShapeHelper>(),
+                                    provider.GetRequiredService<IShapeXmlHelper>(),
+                                    provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            case UniversalMasterName.WAITDECISIONOBJECT:
+                                return new WaitDecisionsRuleBuilder
+                                (
+                                    provider.GetRequiredService<IDecisionDataParser>(),
+                                    provider.GetRequiredService<IDecisionsDataParser>(),
+                                    provider.GetRequiredService<IExceptionHelper>(),
+                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IShapeHelper>(),
+                                    provider.GetRequiredService<IShapeXmlHelper>(),
+                                    provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                    ruleShapes,
+                                    ruleConnectors,
+                                    moduleName,
+                                    ruleCount,
+                                    application,
+                                    resourceStrings
+                                );
+                            default:
+                                throw provider.GetRequiredService<IExceptionHelper>().CriticalException("{A8CD2AD7-38CE-42C3-83F7-918DA14BE587}");
+                        }
+                    }
+                )
+                .AddTransient<Func<IList<ShapeBag>, IList<Shape>, string, int, ApplicationTypeInfo, IDictionary<string, string>, IShapeSetRuleBuilderHelper>>
+                (
+                    provider =>
+                    (ruleShapes, ruleConnectors, moduleName, ruleCount, application, resourceStrings) => new ShapeSetRuleBuilderHelper
+                    (
+                        provider.GetRequiredService<IAssertFunctionDataParser>(),
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionsDataParser>(),
+                        provider.GetRequiredService<IGetValidConfigurationFromData>(),
+                        provider.GetRequiredService<IModuleDataParser>(),
+                        provider.GetRequiredService<IRetractFunctionDataParser>(),
+                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IShapeXmlHelper>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
+                        provider.GetRequiredService<IVariableValueDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        ruleShapes,
+                        ruleConnectors,
+                        moduleName,
+                        ruleCount,
+                        application,
+                        resourceStrings
+                    )
+                )
                 .AddTransient<Func<string, Page, Shape, List<ResultMessage>, ApplicationTypeInfo, IShapeValidator>>
                 (
                     provider =>
@@ -271,6 +539,81 @@ namespace Microsoft.Extensions.DependencyInjection
                     }
                 )
                 .AddTransient<IShapeValidatorFactory, ShapeValidatorFactory>()
+                .AddTransient<Func<string, int, int, TableFileSource>>
+                (
+                    provider =>
+                    (sourceFileFullname, row, column) => new TableFileSource
+                    (
+                        provider.GetRequiredService<IPathHelper>(),
+                        sourceFileFullname,
+                        row, 
+                        column
+                    )
+                )
+                .AddTransient<ITableFileSourceFactory, TableFileSourceFactory>()
+                .AddTransient<Func<DataRow, string, int, ApplicationTypeInfo, IDictionary<string, string>, ITableRowRuleBuilder>>
+                (
+                    provider =>
+                    (dataRow, moduleName, ruleCount, application, resourceStrings) => new TableRowRuleBuilder
+                    (
+                        provider.GetRequiredService<IAssertFunctionDataParser>(),
+                        provider.GetRequiredService<ICellXmlHelper>(),
+                        provider.GetRequiredService<IConditionsDataParser>(),
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionsDataParser>(),
+                        provider.GetRequiredService<IGetValidConfigurationFromData>(),
+                        provider.GetRequiredService<IPriorityDataParser>(),
+                        provider.GetRequiredService<IRetractFunctionDataParser>(),
+                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
+                        provider.GetRequiredService<IVariableValueDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        dataRow,
+                        moduleName,
+                        ruleCount,
+                        application,
+                        resourceStrings
+                    )
+                )
+                .AddTransient<Func<string, DataSet, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, ITableRulesBuilder>>
+                (
+                    provider =>
+                    (sourceFile, dataSet, application, progress, cancellationTokenSource) => new TableRulesBuilder
+                    (
+                        provider.GetRequiredService<IPathHelper>(),
+                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<ITableValidatorFactory>(),
+                        sourceFile,
+                        dataSet,
+                        application,
+                        progress,
+                        cancellationTokenSource
+                    )
+                )
+                .AddTransient<Func<string, DataSet, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, ITableValidator>>
+                (
+                    provider =>
+                    (sourceFile, dataSet, application, progress, cancellationTokenSource) => new TableValidator
+                    (
+                        provider.GetRequiredService<ICellHelper>(),
+                        provider.GetRequiredService<ICellXmlHelper>(),
+                        provider.GetRequiredService<IConditionsElementValidator>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFunctionsElementValidator>(),
+                        provider.GetRequiredService<IPathHelper>(),
+                        provider.GetRequiredService<IPriorityDataParser>(),
+                        provider.GetRequiredService<IResultMessageBuilder>(),
+                        provider.GetRequiredService<ITableFileSourceFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        sourceFile,
+                        dataSet,
+                        application,
+                        progress,
+                        cancellationTokenSource)
+                )
+                .AddTransient<ITableValidatorFactory, TableValidatorFactory>()
                 .AddTransient<Func<string, int, short, string, int, int, VisioFileSource>>
                 (
                     provider =>
@@ -285,7 +628,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         shapeIndex
                     )
                 )
-                .AddTransient<IVisioFileSourceFactory, VisioFileSourceFactory>(); ;
+                .AddTransient<IVisioFileSourceFactory, VisioFileSourceFactory>();
         }
     }
 }

@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
@@ -21,35 +22,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class BuildSaveAssembleRulesForSelectedDocuments : IBuildSaveAssembleRulesForSelectedDocuments
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
-        private readonly IDiagramRulesBuilder _diagramRulesBuilder;
         private readonly IDisplayResultMessages _displayResultMessages;
         private readonly ISaveDiagramResources _saveDiagramResources;
         private readonly ISaveDiagramRules _saveDiagramRules;
         private readonly ISaveTableResources _saveTableResources;
         private readonly ISaveTableRules _saveTableRules;
         private readonly IRulesAssembler _rulesAssembler;
-        private readonly ITableRulesBuilder _tableRulesBuilder;
+        private readonly IRuleBuilderFactory _ruleBuilderFactory;
 
         public BuildSaveAssembleRulesForSelectedDocuments(
             IApplicationTypeInfoManager applicationTypeInfoManager,
-            IDiagramRulesBuilder diagramRulesBuilder,
             IDisplayResultMessages displayResultMessages,
             ISaveDiagramResources saveDiagramResources,
             ISaveDiagramRules saveDiagramRules,
             ISaveTableResources saveTableResources,
             ISaveTableRules saveTableRules,
             IRulesAssembler rulesAssembler,
-            ITableRulesBuilder tableRulesBuilder)
+            IRuleBuilderFactory ruleBuilderFactory)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
-            _diagramRulesBuilder = diagramRulesBuilder;
+            _ruleBuilderFactory = ruleBuilderFactory;
             _displayResultMessages = displayResultMessages;
             _saveDiagramResources = saveDiagramResources;
             _saveDiagramRules = saveDiagramRules;
             _saveTableResources = saveTableResources;
             _saveTableRules = saveTableRules;
             _rulesAssembler = rulesAssembler;
-            _tableRulesBuilder = tableRulesBuilder;
         }
 
         public async Task<IList<ResultMessage>> BuildRules(IList<string> sourceFiles, FlowBuilder.Configuration.Application application, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
@@ -69,14 +67,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                         try
                         {
                             Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
-                            BuildRulesResult buildResults = await _diagramRulesBuilder.BuildRules
+                            BuildRulesResult buildResults = await _ruleBuilderFactory.GetDiagramRulesBuilder
                             (
                                 sourceFile,
                                 visioDocument,
                                 _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
                                 progress,
                                 cancellationTokenSource
-                            );
+                            ).BuildRules();
                             visioDocument.Close();
                             visioDocumentResults.AddRange(buildResults.ResultMessages);
 
@@ -144,14 +142,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 
                         try
                         {
-                            BuildRulesResult buildResults = await _tableRulesBuilder.BuildRules
+                            BuildRulesResult buildResults = await _ruleBuilderFactory.GetTableRulesBuilder
                             (
                                 sourceFile,
                                 dataSet,
                                 _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name),
                                 progress,
                                 cancellationTokenSource
-                            );
+                            ).BuildRules();
 
                             tableDocumentResults.AddRange(buildResults.ResultMessages);
                             if (tableDocumentResults.Count == 0)

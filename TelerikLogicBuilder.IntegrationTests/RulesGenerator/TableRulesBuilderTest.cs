@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
@@ -40,20 +41,17 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         }
 
         [Fact]
-        public void CanCreateTableRulesBuilder()
+        public void CreateTableRulesBuilderThrows()
         {
-            //arrange
-            ITableRulesBuilder builder = _fixture.ServiceProvider.GetRequiredService<ITableRulesBuilder>();
-
             //assert
-            Assert.NotNull(builder);
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<ITableRulesBuilder>());
         }
 
         [Fact]
         public async Task TableRulesBuilderSucceeds()
         {
             //arrange
-            ITableRulesBuilder builder = _fixture.ServiceProvider.GetRequiredService<ITableRulesBuilder>();
+            IRuleBuilderFactory builderFactory = _fixture.ServiceProvider.GetRequiredService<IRuleBuilderFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(TableRulesBuilderSucceeds));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -65,14 +63,14 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             //act
             BuildRulesResult result = await _fixture.LoadContextSponsor.RunAsync<BuildRulesResult>
             (
-                async () => await builder.BuildRules
+                async () => await builderFactory.GetTableRulesBuilder
                 (
                     sourceFile,
                     dataSet,
                     applicationTypeInfo,
                     progress,
                     cancellationToken
-                ),
+                ).BuildRules(),
                 progress
             );
 

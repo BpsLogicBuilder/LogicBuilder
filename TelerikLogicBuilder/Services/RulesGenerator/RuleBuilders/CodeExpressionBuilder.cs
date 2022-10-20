@@ -6,6 +6,8 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
@@ -22,9 +24,9 @@ using System.Globalization;
 using System.Linq;
 using System.Xml;
 
-namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
+namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
 {
-    internal class CodeExpressionBuilderUtility
+    internal class CodeExpressionBuilder : ICodeExpressionBuilder
     {
         private readonly IAnyParametersHelper _anyParametersHelper;
         private readonly IConfigurationService _configurationService;
@@ -32,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFunctionDataParser _functionDataParser;
-        private readonly IFunctionHelper _functionHelper; 
+        private readonly IFunctionHelper _functionHelper;
         private readonly IGetValidConfigurationFromData _getValidConfigurationFromData;
         private readonly ILiteralListDataParser _literalListDataParser;
         private readonly ILiteralListParameterDataParser _literalListParameterDataParser;
@@ -49,20 +51,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
         private readonly IVariableHelper _variableHelper;
-        
-        private readonly ApplicationTypeInfo application;
-        private readonly IDictionary<string, string> resourceStrings;
-        private readonly string moduleName;
 
-        public CodeExpressionBuilderUtility(
-            string moduleName,
-            ApplicationTypeInfo application,
-            IDictionary<string, string> resourceStrings,
-            IConfigurationService configurationService,
-            IContextProvider contextProvider,
+        private readonly ApplicationTypeInfo application;
+        //private readonly IDictionary<string, string> resourceStrings;
+        //private readonly string moduleName;
+
+        public CodeExpressionBuilder(
             IAnyParametersHelper anyParametersHelper,
+            IConfigurationService configurationService,
             IConstructorDataParser constructorDataParser,
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
             IFunctionDataParser functionDataParser,
+            IFunctionHelper functionHelper,
             IGetValidConfigurationFromData getValidConfigurationFromData,
             ILiteralListDataParser literalListDataParser,
             ILiteralListParameterDataParser literalListParameterDataParser,
@@ -75,21 +76,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             IObjectParameterDataParser objectParameterDataParser,
             IObjectVariableDataParser objectVariableDataParser,
             IParameterHelper parameterHelper,
-            IResourcesManager resourcesManager,
+            IRuleBuilderFactory ruleBuilderFactory,
             ITypeLoadHelper typeLoadHelper,
-            IVariableDataParser variableDataParser)
+            IVariableDataParser variableDataParser,
+            IVariableHelper variableHelper,
+            ApplicationTypeInfo application,
+            IDictionary<string, string> resourceStrings,
+            string resourceNamePrefix)
         {
-            this.application = application;
-            this.resourceStrings = resourceStrings;
-            this.moduleName = moduleName;
             _anyParametersHelper = anyParametersHelper;
             _configurationService = configurationService;
-            _enumHelper = contextProvider.EnumHelper;
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _functionHelper = contextProvider.FunctionHelper;
-            _variableHelper = contextProvider.VariableHelper;
             _constructorDataParser = constructorDataParser;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
+            _functionHelper = functionHelper;
             _getValidConfigurationFromData = getValidConfigurationFromData;
             _literalListDataParser = literalListDataParser;
             _literalListParameterDataParser = literalListParameterDataParser;
@@ -102,9 +103,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             _objectParameterDataParser = objectParameterDataParser;
             _objectVariableDataParser = objectVariableDataParser;
             _parameterHelper = parameterHelper;
-            _resourcesManager = resourcesManager;
-            _typeLoadHelper = typeLoadHelper;  
+            _resourcesManager = ruleBuilderFactory.GetResourcesManager(resourceStrings, resourceNamePrefix);
+            _typeLoadHelper = typeLoadHelper;
             _variableDataParser = variableDataParser;
+            _variableHelper = variableHelper;
+
+            this.application = application;
         }
 
         #region Constants
@@ -115,16 +119,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
 
         #region Properties
         private static CodePropertyReferenceExpression DirectorReference
-            => new (new CodeThisReferenceExpression(), RuleFunctionConstants.DIRECTORPROPERTYNAME);
+            => new(new CodeThisReferenceExpression(), RuleFunctionConstants.DIRECTORPROPERTYNAME);
         #endregion Properties
 
-        /// <summary>
-        /// Result of multiple binary operations where operatorType == CodeBinaryOperatorType.BooleanAnd or operatorType == CodeBinaryOperatorType.BooleanOr
-        /// </summary>
-        /// <param name="conditions"></param>
-        /// <param name="operatorType"></param>
-        /// <returns></returns>
-        public static CodeExpression AggregateConditions(IEnumerable<IfCondition> conditions, CodeBinaryOperatorType operatorType)
+        public CodeExpression AggregateConditions(IEnumerable<IfCondition> conditions, CodeBinaryOperatorType operatorType)
             => conditions
                 .Select(c => c.ResultantCondition)
                 .Aggregate
@@ -138,12 +136,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                     }
                 );
 
-        /// <summary>
-        /// Builds a Code Assign Statement given the value data and the variable
-        /// </summary>
-        /// <param name="valueData"></param>
-        /// <param name="variable"></param>
-        /// <returns></returns>
         public CodeStatement BuildAssignmentStatement(VariableValueData valueData, VariableBase variable)
             => new CodeAssignStatement
             (
@@ -151,20 +143,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 BuildAssignmentValue(valueData, variable)
             );
 
-        /// <summary>
-        /// Builds a Code Assign Statement to set a variable to null.
-        /// </summary>
-        /// <param name="variable"></param>
-        /// <returns></returns>
         public CodeStatement BuildAssignToNullStatement(VariableBase variable)
             => new CodeAssignStatement(BuildImplementedVariableExpression(variable), new CodePrimitiveExpression(null));
 
-        /// <summary>
-        /// Returns a Code Binary Operator Expression for property == propertyValue test
-        /// </summary>
-        /// <param name="connectorXmlNode"></param>
-        /// <returns></returns>
-        public static CodeExpression BuildDirectorPropertyCondition(string property, CodeExpression propertyValue)
+        public CodeExpression BuildDirectorPropertyCondition(string property, CodeExpression propertyValue)
             => new CodeBinaryOperatorExpression
             {
                 Left = new CodePropertyReferenceExpression(DirectorReference, property),
@@ -172,12 +154,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 Right = propertyValue
             };
 
-        /// <summary>
-        /// Returns a Code Binary Operator Expression for the Driver condition given shape index and page index
-        /// </summary>
-        /// <param name="connectorXmlNode"></param>
-        /// <returns></returns>
-        public static CodeExpression BuildDriverCondition(int shapeIndex, int pageIndex)
+        public CodeExpression BuildDriverCondition(int shapeIndex, int pageIndex)
             => new CodeBinaryOperatorExpression
             {
                 Left = new CodePropertyReferenceExpression(DirectorReference, DirectorProperties.DRIVERPROPERTY),
@@ -185,13 +162,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 Right = new CodePrimitiveExpression(string.Format(CultureInfo.InvariantCulture, RuleDefinitionConstants.DRIVERFORMAT, shapeIndex, pageIndex))
             };
 
-        /// <summary>
-        /// Builds a Method Invoke Expression given function data
-        /// </summary>
-        /// <param name="functionData"></param>
-        /// <param name="connectorDataList"></param>
-        /// <returns></returns>
-        /// <exception cref="CriticalLogicBuilderException"></exception>
         public CodeExpression BuildFunction(FunctionData functionData, IList<ConnectorData>? connectorDataList)
         {
             if (!_getValidConfigurationFromData.TryGetFunction(functionData, this.application, out Function? function))
@@ -219,37 +189,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             );
         }
 
-        /// <summary>
-        /// returns If Condition given decision data
-        /// </summary>
-        /// <param name="decisionData"></param>
-        /// <returns></returns>
         public IfCondition BuildIfCondition(DecisionData decisionData)
         {
             if (decisionData == null)
                 throw _exceptionHelper.CriticalException("{EB2A4A3E-20E2-4582-8D85-C1F4C69F36AD}");
-            
+
             if (!_getValidConfigurationFromData.TryGetVariable(decisionData, this.application, out VariableBase? _))
                 throw _exceptionHelper.CriticalException("{34CAA9D0-BE61-42EA-BCF6-8A790CD09CAA}");
 
             return new(BuildPredicates(decisionData), decisionData.IsNotDecision);
         }
 
-        /// <summary>
-        /// Returns If Condition given function data
-        /// </summary>
-        /// <param name="functionData"></param>
-        /// <returns></returns>
         public IfCondition BuildIfCondition(FunctionData functionData)
         {
             return new(BuildCondition(functionData), functionData.IsNotFunction);
         }
 
-        /// <summary>
-        /// Returns a Code Binary Operator Expression for the Selection condition given connector XML
-        /// </summary>
-        /// <param name="connectorXmlNode"></param>
-        /// <returns></returns>
         public CodeExpression BuildSelectCondition(XmlNode connectorXmlNode)
             => new CodeBinaryOperatorExpression
             {
@@ -258,12 +213,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 Right = BuildSelectionShortString(connectorXmlNode)
             };
 
-        /// <summary>
-        /// Returns a Code Binary Operator Expression for the Selection condition given a string
-        /// </summary>
-        /// <param name="connectorXmlNode"></param>
-        /// <returns></returns>
-        public static CodeExpression BuildSelectCondition(string text)
+        public CodeExpression BuildSelectCondition(string text)
             => new CodeBinaryOperatorExpression
             {
                 Left = new CodePropertyReferenceExpression(DirectorReference, DirectorProperties.SELECTIONPROPERTY),
@@ -301,9 +251,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 (
                     _anyParametersHelper.GetTypes
                     (
-                        functionData.ParameterElementsList[0], 
+                        functionData.ParameterElementsList[0],
                         functionData.ParameterElementsList[1],
-                        _enumHelper.ParseEnumText<CodeBinaryOperatorType>(function.MemberName), 
+                        _enumHelper.ParseEnumText<CodeBinaryOperatorType>(function.MemberName),
                         applicaton
                     )
                 );
@@ -391,7 +341,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
 
             if (function.FunctionCategory == FunctionCategories.Cast)
             {
-                if(!_typeLoadHelper.TryGetSystemType(function.ReturnType, functionData.GenericArguments, this.application, out Type? returnType))
+                if (!_typeLoadHelper.TryGetSystemType(function.ReturnType, functionData.GenericArguments, this.application, out Type? returnType))
                     throw _exceptionHelper.CriticalException("{440F5987-D1A9-4917-B0E0-43A4C8B0FAE3}");
 
                 return new CodeCastExpression(returnType, BuildParameter(functionData.ParameterElementsList[0], function));
@@ -461,7 +411,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             };
         }
 
-        private CodeExpression BuildLiteralList(LiteralListData literalListData) 
+        private CodeExpression BuildLiteralList(LiteralListData literalListData)
             => GetListExpression
             (
                 literalListData.ListType,
@@ -472,7 +422,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                     (
                         i => BuildParameterValue
                         (
-                            i, 
+                            i,
                             _enumHelper.GetLiteralType
                             (
                                 _enumHelper.GetSystemType(literalListData.LiteralType)
@@ -503,10 +453,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
         private CodeExpression BuildObject(ObjectData objectData)
             => BuildObject(objectData.ChildElementCategory, objectData.ChildElement);
 
-        internal CodeExpression BuildObject(MetaObjectData objectData)
+        private CodeExpression BuildObject(MetaObjectData objectData)
             => BuildObject(objectData.ChildElementCategory, objectData.ChildElement);
 
-        private CodeExpression BuildObject(ObjectCategory objectCategory, XmlElement objectElement) 
+        private CodeExpression BuildObject(ObjectCategory objectCategory, XmlElement objectElement)
             => objectCategory switch
             {
                 ObjectCategory.Constructor => BuildConstructor(_constructorDataParser.Parse(objectElement)),
@@ -672,27 +622,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             {
                 return literalType switch
                 {
-                    LiteralType.NullableByte 
-                    or LiteralType.NullableSByte 
-                    or LiteralType.NullableChar 
-                    or LiteralType.NullableUShort 
-                    or LiteralType.NullableShort 
-                    or LiteralType.NullableUInteger 
-                    or LiteralType.NullableInteger 
-                    or LiteralType.NullableULong 
-                    or LiteralType.NullableLong 
-                    or LiteralType.NullableFloat 
-                    or LiteralType.NullableDouble 
-                    or LiteralType.NullableDecimal 
-                    or LiteralType.NullableDateTime 
-                    or LiteralType.NullableDateTimeOffset 
-                    or LiteralType.NullableDateOnly 
-                    or LiteralType.NullableDate 
-                    or LiteralType.NullableTimeSpan 
-                    or LiteralType.NullableTimeOnly 
-                    or LiteralType.NullableTimeOfDay 
-                    or LiteralType.NullableGuid 
-                    or LiteralType.NullableBoolean 
+                    LiteralType.NullableByte
+                    or LiteralType.NullableSByte
+                    or LiteralType.NullableChar
+                    or LiteralType.NullableUShort
+                    or LiteralType.NullableShort
+                    or LiteralType.NullableUInteger
+                    or LiteralType.NullableInteger
+                    or LiteralType.NullableULong
+                    or LiteralType.NullableLong
+                    or LiteralType.NullableFloat
+                    or LiteralType.NullableDouble
+                    or LiteralType.NullableDecimal
+                    or LiteralType.NullableDateTime
+                    or LiteralType.NullableDateTimeOffset
+                    or LiteralType.NullableDateOnly
+                    or LiteralType.NullableDate
+                    or LiteralType.NullableTimeSpan
+                    or LiteralType.NullableTimeOnly
+                    or LiteralType.NullableTimeOfDay
+                    or LiteralType.NullableGuid
+                    or LiteralType.NullableBoolean
                         => new CodePrimitiveExpression(null),
                     LiteralType.String => new CodePrimitiveExpression(string.Empty),
                     _ => throw _exceptionHelper.CriticalException("{2C72E704-8BC1-4670-B17E-F3BE0178DF7A}"),
@@ -707,9 +657,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                         XmlElement xmlElement = (XmlElement)textXmlNode.ChildNodes[0]!;
                         return xmlElement.Name switch
                         {
-                            XmlDataConstants.VARIABLEELEMENT 
-                            or XmlDataConstants.FUNCTIONELEMENT 
-                            or XmlDataConstants.CONSTRUCTORELEMENT 
+                            XmlDataConstants.VARIABLEELEMENT
+                            or XmlDataConstants.FUNCTIONELEMENT
+                            or XmlDataConstants.CONSTRUCTORELEMENT
                                 => GetNodeValue(xmlElement),
                             _ => throw _exceptionHelper.CriticalException("{C56AF6A6-E9D7-4D5A-81EF-3F3AB88865FA}"),
                         };
@@ -724,7 +674,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 }
             }
 
-            string shortString = _resourcesManager.GetShortString(textXmlNode, this.resourceStrings, this.moduleName);
+            string shortString = _resourcesManager.GetShortString(textXmlNode);
             CodeExpression getResourceMethod = BuildGetResorceFunction(shortString, _enumHelper.GetSystemType(literalType));
             return new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), RuleFunctionConstants.VIRTUALFUNCTIONFORMATSTRING, new CodeExpression[] { getResourceMethod, GetFormatArgList(textXmlNode) });
         }
@@ -763,9 +713,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                         XmlElement xmlElement = (XmlElement)singleChildNode;
                         return xmlElement.Name switch
                         {
-                            XmlDataConstants.VARIABLEELEMENT 
-                            or XmlDataConstants.FUNCTIONELEMENT 
-                            or XmlDataConstants.CONSTRUCTORELEMENT 
+                            XmlDataConstants.VARIABLEELEMENT
+                            or XmlDataConstants.FUNCTIONELEMENT
+                            or XmlDataConstants.CONSTRUCTORELEMENT
                                 => GetNodeValue(xmlElement),
                             _ => throw _exceptionHelper.CriticalException("{BB0B2794-451A-47C2-A3D0-986C6FEE20B9}"),
                         };
@@ -779,12 +729,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 }
             }
 
-            string shortString = _resourcesManager.GetShortString(textXmlNode, this.resourceStrings, this.moduleName);
+            string shortString = _resourcesManager.GetShortString(textXmlNode);
             CodeExpression getStringMethod = BuildGetResorceFunction(shortString, typeof(string));
             return new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), RuleFunctionConstants.VIRTUALFUNCTIONFORMATSTRING, new CodeExpression[] { getStringMethod, GetFormatArgList(textXmlNode) });
         }
 
-        CodeExpression BuildSelectionShortString(XmlNode textXmlNode)
+        private CodeExpression BuildSelectionShortString(XmlNode textXmlNode)
         {
             if (textXmlNode.ChildNodes.Count == 0)
                 throw _exceptionHelper.CriticalException("{71E84850-E556-4923-B987-996A83C892D1}");
@@ -798,15 +748,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                         XmlElement xmlElement = (XmlElement)singleChildNode;
                         return xmlElement.Name switch
                         {
-                            XmlDataConstants.VARIABLEELEMENT 
+                            XmlDataConstants.VARIABLEELEMENT
                             or XmlDataConstants.FUNCTIONELEMENT
-                            or XmlDataConstants.CONSTRUCTORELEMENT 
+                            or XmlDataConstants.CONSTRUCTORELEMENT
                                 => GetNodeValue(xmlElement),
                             _ => throw _exceptionHelper.CriticalException("{8D790BDE-227C-408C-B2F1-A6F6D605B500}"),
                         };
                     case XmlNodeType.Text:
                         XmlText xmlText = (XmlText)singleChildNode;
-                        return new CodePrimitiveExpression(_resourcesManager.GetShortString(xmlText.Value!, this.resourceStrings, this.moduleName));
+                        return new CodePrimitiveExpression(_resourcesManager.GetShortString(xmlText.Value!));
                     case XmlNodeType.Whitespace:
                         throw _exceptionHelper.CriticalException("{65D50FF6-42B9-4755-9B32-823499316C18}");
                     default:
@@ -814,7 +764,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 }
             }
 
-            return new CodePrimitiveExpression(_resourcesManager.GetShortString(textXmlNode, this.resourceStrings, this.moduleName));
+            return new CodePrimitiveExpression(_resourcesManager.GetShortString(textXmlNode));
         }
 
         private CodeExpression BuildVariable(string variableName)
@@ -868,7 +818,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
             return arrayIndices;
         }
 
-        private CodeExpression GetFormatArgList(XmlNode parameterNode) 
+        private CodeExpression GetFormatArgList(XmlNode parameterNode)
             => BuildCollectionListExpression
             (
                 parameterNode.ChildNodes.OfType<XmlNode>().Aggregate
@@ -957,7 +907,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
                 LiteralType.TimeOfDay or LiteralType.NullableTimeOfDay => GetParseMethodInvokeExpression(typeof(TimeOfDay)),
                 LiteralType.Guid or LiteralType.NullableGuid => GetParseGuidMethodInvokeExpression(typeof(Guid)),
                 LiteralType.Boolean or LiteralType.NullableBoolean => new CodePrimitiveExpression(bool.Parse(literalText)),
-                LiteralType.String => BuildGetResorceFunction(_resourcesManager.GetShortString(literalText, this.resourceStrings, this.moduleName), typeof(string)),
+                LiteralType.String => BuildGetResorceFunction(_resourcesManager.GetShortString(literalText), typeof(string)),
                 LiteralType.Void => throw _exceptionHelper.CriticalException("{4AE26DD7-C355-4874-A37E-18A1F5B2DCA5}"),
                 _ => throw _exceptionHelper.CriticalException("{7EC2F1AF-8E24-4203-8C18-37214E7FD5ED}"),
             };

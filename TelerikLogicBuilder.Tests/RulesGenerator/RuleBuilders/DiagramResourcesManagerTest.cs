@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
+﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,10 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.RuleBuilders
         #endregion Fields
 
         [Fact]
-        public void CanCreateDiagramResourcesManager()
+        public void CreateResourcesManagerThrows()
         {
-            //arrange
-            IDiagramResourcesManager helper = serviceProvider.GetRequiredService<IDiagramResourcesManager>();
-
             //assert
-            Assert.NotNull(helper);
+            Assert.Throws<InvalidOperationException>(() => serviceProvider.GetRequiredService<IResourcesManager>());
         }
 
         [Theory]
@@ -34,13 +32,13 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.RuleBuilders
         public void GetShortStringGivenLongStringWorks(string longString, string expectedShortString)
         {
             //arrange
-            IDiagramResourcesManager helper = serviceProvider.GetRequiredService<IDiagramResourcesManager>();
+            IRuleBuilderFactory factory = serviceProvider.GetRequiredService<IRuleBuilderFactory>();
             Dictionary<string, string> resourseStrings = new();
             string moduleName = "mymodule";
 
 
             //act
-            var result = helper.GetShortString(longString, resourseStrings, moduleName);
+            var result = factory.GetResourcesManager(resourseStrings, moduleName).GetShortString(longString);
 
             //assert
             Assert.Equal(expectedShortString, result);
@@ -67,13 +65,13 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.RuleBuilders
         public void GetShortStringGivenXmlNodeWorks(string xmlString, string expectedShortString)
         {
             //arrange
-            IDiagramResourcesManager helper = serviceProvider.GetRequiredService<IDiagramResourcesManager>();
+            IRuleBuilderFactory factory = serviceProvider.GetRequiredService<IRuleBuilderFactory>();
             Dictionary<string, string> resourseStrings = new();
             string moduleName = "mymodule";
 
 
             //act
-            var result = helper.GetShortString(GetXmlElement(xmlString), resourseStrings, moduleName);
+            var result = factory.GetResourcesManager(resourseStrings, moduleName).GetShortString(GetXmlElement(xmlString));
 
             //assert
             Assert.Equal(expectedShortString, result);

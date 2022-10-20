@@ -84,10 +84,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         private TableFileSource GetTableFileSource(int row, int column)
             => new
             (
+                _contextProvider.PathHelper,
                 SourceFile,
                 row,
-                column,
-                _contextProvider
+                column
             );
 
         private void SearchTable()

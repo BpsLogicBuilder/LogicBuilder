@@ -1,45 +1,36 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Xml;
 
-namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.RuleBuilders
+namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
 {
-    internal abstract class ResourcesManagerUtilityBase
+    internal class ResourcesManager : IResourcesManager
     {
         private readonly IExceptionHelper _exceptionHelper;
 
-        protected ResourcesManagerUtilityBase(IExceptionHelper exceptionHelper, IDictionary<string, string> resourceStrings, string moduleName)
+        private readonly IDictionary<string, string> resourceStrings;
+
+        public ResourcesManager(
+            IExceptionHelper exceptionHelper,
+            IDictionary<string, string> resourceStrings,
+            string prefix)
         {
             _exceptionHelper = exceptionHelper;
             this.resourceStrings = resourceStrings;
-            this.moduleName = moduleName;
+            Prefix = prefix;
         }
 
-        #region Variables
-        protected IDictionary<string, string> resourceStrings;
-        protected string moduleName;
-        #endregion Variables
+        private string Prefix { get; }
 
-        protected abstract string Prefix { get; }
+        public string GetShortString(XmlNode xmlNode)
+            => MakeShortString(GetStringFormat(xmlNode));
 
-        /// <summary>
-        /// gets index for the resource file for a format string.  The format string is used when the parameter includes a combination of text, variable or function
-        /// </summary>
-        /// <param name="parameterNode"></param>
-        /// <returns></returns>
-        internal string GetShortString(XmlNode parameterNode) 
-            => MakeShortString(GetStringFormat(parameterNode));
-
-        /// <summary>
-        /// gets index for the resource file for a string
-        /// </summary>
-        /// <param name="longString"></param>
-        /// <returns></returns>
-        internal string GetShortString(string longString) 
+        public string GetShortString(string longString)
             => MakeShortString(longString);
 
         /// <summary>

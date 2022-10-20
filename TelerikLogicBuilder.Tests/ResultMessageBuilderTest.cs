@@ -52,12 +52,11 @@ namespace TelerikLogicBuilder.Tests
             //act
             var result = builder.BuilderMessage
             (
-                new TableFileSource
+                serviceProvider.GetRequiredService<ITableFileSourceFactory>().GetTableFileSource
                 (
                     @"C:\folder\file.tbl",
                     2, 
-                    3,
-                    serviceProvider.GetRequiredService<IContextProvider>()
+                    3
                 ), 
                 "Table Source Message"
             );

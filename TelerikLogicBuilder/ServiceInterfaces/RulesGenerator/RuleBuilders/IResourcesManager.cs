@@ -5,7 +5,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBui
 {
     internal interface IResourcesManager
     {
-        string GetShortString(XmlNode xmlNode, IDictionary<string, string> resourceStrings, string moduleName);
-        string GetShortString(string longString, IDictionary<string, string> resourceStrings, string moduleName);
+        /// <summary>
+        /// gets index for the resource file for a format string.  The format string is used when the parameter includes a combination of text, variable or function
+        /// </summary>
+        /// <param name="xmlNode"></param>
+        /// <returns></returns>
+        string GetShortString(XmlNode xmlNode);
+
+        /// <summary>
+        /// gets index for the resource file for a string
+        /// </summary>
+        /// <param name="longString"></param>
+        /// <returns></returns>
+        string GetShortString(string longString);
     }
 }
