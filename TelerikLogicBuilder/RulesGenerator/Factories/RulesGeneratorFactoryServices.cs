@@ -84,7 +84,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IDiagramValidatorFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IGetRuleShapes>(),
                         provider.GetRequiredService<IJumpDataParser>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IRuleBuilderFactory>(),
@@ -103,13 +102,13 @@ namespace Microsoft.Extensions.DependencyInjection
                     (sourceFile, document, application, progress, cancellationTokenSource) => new DiagramValidator
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IGetRuleShapes>(),
                         provider.GetRequiredService<IJumpDataParser>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IShapeHelper>(),
                         provider.GetRequiredService<IShapeXmlHelper>(),
                         provider.GetRequiredService<IShapeValidatorFactory>(),
                         provider.GetRequiredService<IResultMessageBuilder>(),
+                        provider.GetRequiredService<IRuleBuilderFactory>(),
                         provider.GetRequiredService<IVisioFileSourceFactory>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         sourceFile,
@@ -120,6 +119,19 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IDiagramValidatorFactory, DiagramValidatorFactory>()
+                .AddTransient<Func<IDictionary<string, Shape>, IGetRuleShapes>>
+                (
+                    provider =>
+                    jumpToShapes => new GetRuleShapes
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IJumpDataParser>(),
+                        provider.GetRequiredService<IShapeHelper>(),
+                        provider.GetRequiredService<IShapeXmlHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        jumpToShapes
+                    )
+                )
                 .AddTransient<Func<IDictionary<string, string>, string, IResourcesManager>>
                 (
                     provider =>

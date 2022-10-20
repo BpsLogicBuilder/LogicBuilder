@@ -17,7 +17,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IDeploySelectedFilesToFileSystem, DeploySelectedFilesToFileSystem>()
                 .AddSingleton<IFileSystemFileDeleter, FileSystemFileDeleter>()
                 .AddSingleton<IFileSystemFileDeployer, FileSystemFileDeployer>()
-                .AddSingleton<IGetRuleShapes, GetRuleShapes>()
                 .AddSingleton<IRulesAssembler, RulesAssembler>()
                 .AddSingleton<IRuleSetLoader, RuleSetLoader>()
                 .AddSingleton<IRulesValidator, RulesValidator>()

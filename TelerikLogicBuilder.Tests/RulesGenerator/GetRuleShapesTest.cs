@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
@@ -34,13 +35,10 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         }
 
         [Fact]
-        public void CanCreateGetRuleShapes()
+        public void CreateGetRuleShapesThrows()
         {
-            //arrange
-            IGetRuleShapes helper = _fixture.ServiceProvider.GetRequiredService<IGetRuleShapes>();
-
             //assert
-            Assert.NotNull(helper);
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<IGetRuleShapes>());
         }
 
         [Theory]
@@ -49,7 +47,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         public void GetRuleShapesReturnsExpectedResults(string masterName, int expectedShapeCount, int expectedConnectorCount)
         {
             //arrange
-            IGetRuleShapes helper = _fixture.ServiceProvider.GetRequiredService<IGetRuleShapes>();
+            IRuleBuilderFactory ruleBuilderFactory = _fixture.ServiceProvider.GetRequiredService<IRuleBuilderFactory>();
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             IJumpDataParser jumpDataParser = _fixture.ServiceProvider.GetRequiredService<IJumpDataParser>();
             IXmlDocumentHelpers xmlDocumentHelpers = _fixture.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>();
@@ -83,7 +81,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             ruleShapes.Add(new ShapeBag(fromShape));
             ruleConnectors.Add(connector);
 
-            helper.GetShapes(connector, ruleShapes, ruleConnectors, jumpToShapes);
+            ruleBuilderFactory.GetGetRuleShapes(jumpToShapes).GetShapes(connector, ruleShapes, ruleConnectors);
 
             //assert
             Assert.Equal(expectedShapeCount, ruleShapes.Count);

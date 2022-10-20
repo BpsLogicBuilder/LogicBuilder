@@ -23,6 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
             IProgress<ProgressMessage> progress,
             CancellationTokenSource cancellationTokenSource);
 
+        IGetRuleShapes GetGetRuleShapes(IDictionary<string, Shape> jumpToShapes);
+
         IResourcesManager GetResourcesManager(IDictionary<string, string> resourceStrings,
             string resourceNamePrefix);
 

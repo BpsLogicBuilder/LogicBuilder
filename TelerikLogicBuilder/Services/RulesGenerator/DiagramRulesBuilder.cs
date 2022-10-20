@@ -21,7 +21,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     {
         private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IGetRuleShapes _getRuleShapes;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IRuleBuilderFactory _ruleBuilderFactory;
         private readonly IShapeXmlHelper _shapeXmlHelper;
@@ -30,7 +29,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         public DiagramRulesBuilder(
             IDiagramValidatorFactory diagramValidatorFactory,
             IExceptionHelper exceptionHelper,
-            IGetRuleShapes getRuleShapes,
             IJumpDataParser jumpDataParser,
             IPathHelper pathHelper,
             IRuleBuilderFactory ruleBuilderFactory,
@@ -43,7 +41,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             CancellationTokenSource cancellationTokenSource)
         {
             _diagramValidatorFactory = diagramValidatorFactory;
-            _getRuleShapes = getRuleShapes;
             _exceptionHelper = exceptionHelper;
             _jumpDataParser = jumpDataParser;
             _ruleBuilderFactory = ruleBuilderFactory;
@@ -118,7 +115,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 ruleConnectors.Add(fromConnect.FromSheet);
                 ruleShapes.Add(shapeBag);
 
-                _getRuleShapes.GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors, JumpToShapes);
+                _ruleBuilderFactory
+                    .GetGetRuleShapes(JumpToShapes)
+                    .GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors);
 
                 foreach (Shape connector in ruleConnectors)
                 {

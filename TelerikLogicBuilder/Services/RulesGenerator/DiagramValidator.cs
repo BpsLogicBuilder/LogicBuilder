@@ -20,24 +20,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class DiagramValidator : IDiagramValidator
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IGetRuleShapes _getRuleShapes;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IShapeValidatorFactory _shapeValidatorFactory;
+        private readonly IRuleBuilderFactory _ruleBuilderFactory;
         private readonly IResultMessageBuilder _resultMessageBuilder;
         private readonly IVisioFileSourceFactory _visioFileSourceFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public DiagramValidator(
             IExceptionHelper exceptionHelper,
-            IGetRuleShapes getRuleShapes,
             IJumpDataParser jumpDataParser,
             IPathHelper pathHelper,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
             IShapeValidatorFactory shapeValidatorFactory,
             IResultMessageBuilder resultMessageBuilder,
+            IRuleBuilderFactory ruleBuilderFactory,
             IVisioFileSourceFactory visioFileSourceFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
@@ -53,12 +53,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             Progress = progress;
             CancellationTokenSource = cancellationTokenSource;
             _exceptionHelper = exceptionHelper;
-            _getRuleShapes = getRuleShapes;
             _jumpDataParser = jumpDataParser;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
             _shapeValidatorFactory = shapeValidatorFactory;
             _resultMessageBuilder = resultMessageBuilder;
+            _ruleBuilderFactory = ruleBuilderFactory;
             _visioFileSourceFactory = visioFileSourceFactory;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
@@ -216,7 +216,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 ruleConnectors.Add(fromConnect.FromSheet);
                 ruleShapes.Add(shapeBag);
 
-                _getRuleShapes.GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors, JumpToShapes!);
+                _ruleBuilderFactory
+                    .GetGetRuleShapes(JumpToShapes!)
+                    .GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors);
+
                 Validate(ruleShapes, ruleConnectors);
 
                 foreach (Shape connector in ruleConnectors)

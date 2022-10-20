@@ -6,6 +6,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator
 {
     internal interface IGetRuleShapes
     {
-        void GetShapes(Shape connector, IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors, IDictionary<string, Shape> jumpToShapes);
+        void GetShapes(Shape connector, IList<ShapeBag> ruleShapes, IList<Shape> ruleConnectors);
     }
 }

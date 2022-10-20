@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
     {
         private readonly Func<ApplicationTypeInfo, IDictionary<string, string>, string, ICodeExpressionBuilder> _getCodeExpressionBuilder;
         private readonly Func<string, Document, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, IDiagramRulesBuilder> _getDiagramRulesBuilder;
+        private readonly Func<IDictionary<string, Shape>, IGetRuleShapes> _getGetRuleShapes;
         private readonly Func<IList<ShapeBag>, IList<Shape>, string, int, ApplicationTypeInfo, IDictionary<string, string>, IShapeSetRuleBuilderHelper> _getShapeSetRuleBuilderHelper;
         private readonly Func<IDictionary<string, string>, string, IResourcesManager> _getResourcesManager;
         private readonly Func<IList<ShapeBag>, IList<Shape>, string, int, ApplicationTypeInfo, IDictionary<string, string>, IShapeSetRuleBuilder> _getShapeSetRuleBuilder;
@@ -22,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
 
         public RuleBuilderFactory(Func<ApplicationTypeInfo, IDictionary<string, string>, string, ICodeExpressionBuilder> getCodeExpressionBuilder,
             Func<string, Document, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, IDiagramRulesBuilder> getDiagramRulesBuilder,
+            Func<IDictionary<string, Shape>, IGetRuleShapes> getGetRuleShapes,
             Func<IDictionary<string, string>, string, IResourcesManager> getResourcesManager,
             Func<IList<ShapeBag>, IList<Shape>, string, int, ApplicationTypeInfo, IDictionary<string, string>, IShapeSetRuleBuilder> getShapeSetRuleBuilder,
             Func<IList<ShapeBag>, IList<Shape>, string, int, ApplicationTypeInfo, IDictionary<string, string>, IShapeSetRuleBuilderHelper> getShapeSetRuleBuilderHelper,
@@ -30,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
         {
             _getCodeExpressionBuilder = getCodeExpressionBuilder;
             _getDiagramRulesBuilder = getDiagramRulesBuilder;
+            _getGetRuleShapes = getGetRuleShapes;
             _getResourcesManager = getResourcesManager;
             _getShapeSetRuleBuilder = getShapeSetRuleBuilder;
             _getShapeSetRuleBuilderHelper = getShapeSetRuleBuilderHelper;
@@ -42,6 +45,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
 
         public IDiagramRulesBuilder GetDiagramRulesBuilder(string sourceFile, Document document, ApplicationTypeInfo application, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
             => _getDiagramRulesBuilder(sourceFile, document, application, progress, cancellationTokenSource);
+
+        public IGetRuleShapes GetGetRuleShapes(IDictionary<string, Shape> jumpToShapes)
+            => _getGetRuleShapes(jumpToShapes);
 
         public IResourcesManager GetResourcesManager(IDictionary<string, string> resourceStrings, string resourceNamePrefix)
             => _getResourcesManager(resourceStrings, resourceNamePrefix);
