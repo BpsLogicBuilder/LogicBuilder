@@ -32,7 +32,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void JumpShapeValidationSucceeds()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(JumpShapeValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -54,7 +54,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validatorFactory.GetShapeValidator
+            rulesGeneratorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
@@ -73,7 +73,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationBecauseJumpShapeHasNoData()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationBecauseJumpShapeHasNoData));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -95,7 +95,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validatorFactory.GetShapeValidator
+            rulesGeneratorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
@@ -114,7 +114,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationBecauseJumpShapeHasNoConnectors()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationBecauseJumpShapeHasNoConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -135,7 +135,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validatorFactory.GetShapeValidator
+            rulesGeneratorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
@@ -154,7 +154,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationBecauseJumpShapeHasBothIncomingAndOutgoingConnectors()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationBecauseJumpShapeHasBothIncomingAndOutgoingConnectors));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -175,7 +175,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validatorFactory.GetShapeValidator
+            rulesGeneratorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
@@ -194,7 +194,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void FailsValidationBecauseJumpShapeHasMoreThanOneOutgoingConnector()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationBecauseJumpShapeHasMoreThanOneOutgoingConnector));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -216,7 +216,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             var applicationTypeInfo = _fixture.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>().GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
 
             //act
-            validatorFactory.GetShapeValidator
+            rulesGeneratorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),

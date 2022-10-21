@@ -36,10 +36,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void CanCreateShapeValidator()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
 
             //assert
-            Assert.NotNull(validatorFactory);
+            Assert.NotNull(rulesGeneratorFactory);
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void ShapeValidationSucceeds()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(ShapeValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -73,7 +73,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             List<ResultMessage> errors = new();
 
             //act
-            validatorFactory.GetShapeValidator
+            rulesGeneratorFactory.GetShapeValidator
             (
                 sourceFile,
                 GetPage(visioDocument),
@@ -92,7 +92,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public void ShapeValidatorThrowsForInvalidShape()
         {
             //arrange
-            IShapeValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IShapeValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(ShapeValidatorThrowsForInvalidShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -114,7 +114,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             //act
             var exception = Assert.Throws<CriticalLogicBuilderException>
             (
-                () => validatorFactory.GetShapeValidator
+                () => rulesGeneratorFactory.GetShapeValidator
                 (
                     sourceFile,
                     GetPage(visioDocument),

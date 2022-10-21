@@ -82,7 +82,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (sourceFile, document, application, progress, cancellationTokenSource) => new DiagramRulesBuilder
                     (
-                        provider.GetRequiredService<IDiagramValidatorFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IJumpDataParser>(),
                         provider.GetRequiredService<IPathHelper>(),
@@ -106,7 +105,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IShapeHelper>(),
                         provider.GetRequiredService<IShapeXmlHelper>(),
-                        provider.GetRequiredService<IShapeValidatorFactory>(),
                         provider.GetRequiredService<IResultMessageBuilder>(),
                         provider.GetRequiredService<IRulesGeneratorFactory>(),
                         provider.GetRequiredService<IVisioFileSourceFactory>(),
@@ -118,7 +116,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         cancellationTokenSource
                     )
                 )
-                .AddTransient<IDiagramValidatorFactory, DiagramValidatorFactory>()
                 .AddTransient<Func<IDictionary<string, Shape>, IGetRuleShapes>>
                 (
                     provider =>
@@ -339,7 +336,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         resourceStrings
                     )
                 )
-                .AddTransient<Func<string, Page, Shape, List<ResultMessage>, ApplicationTypeInfo, IShapeValidator>>
+                .AddTransient<Func<string, Page, Shape, List<ResultMessage>, ApplicationTypeInfo, IConnectorValidator>>
                 (
                     provider =>
                     (sourceFile, page, shape, validationErrors, application) =>
@@ -402,8 +399,8 @@ namespace Microsoft.Extensions.DependencyInjection
                                 provider.GetRequiredService<IFunctionsElementValidator>(),
                                 provider.GetRequiredService<IResultMessageHelperFactory>(),
                                 provider.GetRequiredService<IShapeHelper>(),
-                                provider.GetRequiredService<IShapeValidatorFactory>(),
                                 provider.GetRequiredService<IShapeXmlHelper>(),
+                                provider.GetRequiredService<IRulesGeneratorFactory>(),
                                 provider.GetRequiredService<IXmlDocumentHelpers>(),
                                 sourceFile,
                                 page,
@@ -508,8 +505,8 @@ namespace Microsoft.Extensions.DependencyInjection
                                 provider.GetRequiredService<IModuleNamesReader>(),
                                 provider.GetRequiredService<IResultMessageHelperFactory>(),
                                 provider.GetRequiredService<IShapeHelper>(),
-                                provider.GetRequiredService<IShapeValidatorFactory>(),
                                 provider.GetRequiredService<IShapeXmlHelper>(),
+                                provider.GetRequiredService<IRulesGeneratorFactory>(),
                                 provider.GetRequiredService<IXmlDocumentHelpers>(),
                                 sourceFile,
                                 page,
@@ -522,8 +519,8 @@ namespace Microsoft.Extensions.DependencyInjection
                                 provider.GetRequiredService<IConditionsElementValidator>(),
                                 provider.GetRequiredService<IResultMessageHelperFactory>(),
                                 provider.GetRequiredService<IShapeHelper>(),
-                                provider.GetRequiredService<IShapeValidatorFactory>(),
                                 provider.GetRequiredService<IShapeXmlHelper>(),
+                                provider.GetRequiredService<IRulesGeneratorFactory>(),
                                 provider.GetRequiredService<IXmlDocumentHelpers>(),
                                 sourceFile,
                                 page,
@@ -537,8 +534,8 @@ namespace Microsoft.Extensions.DependencyInjection
                                 provider.GetRequiredService<IDecisionsElementValidator>(),
                                 provider.GetRequiredService<IResultMessageHelperFactory>(),
                                 provider.GetRequiredService<IShapeHelper>(),
-                                provider.GetRequiredService<IShapeValidatorFactory>(),
                                 provider.GetRequiredService<IShapeXmlHelper>(),
+                                provider.GetRequiredService<IRulesGeneratorFactory>(),
                                 provider.GetRequiredService<IXmlDocumentHelpers>(),
                                 sourceFile,
                                 page,
@@ -550,7 +547,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         };
                     }
                 )
-                .AddTransient<IShapeValidatorFactory, ShapeValidatorFactory>()
                 .AddTransient<Func<string, int, int, TableFileSource>>
                 (
                     provider =>
@@ -596,7 +592,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IRulesGeneratorFactory>(),
-                        provider.GetRequiredService<ITableValidatorFactory>(),
                         sourceFile,
                         dataSet,
                         application,
@@ -625,7 +620,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         progress,
                         cancellationTokenSource)
                 )
-                .AddTransient<ITableValidatorFactory, TableValidatorFactory>()
                 .AddTransient<Func<string, int, short, string, int, int, VisioFileSource>>
                 (
                     provider =>

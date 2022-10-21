@@ -38,10 +38,10 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public void CanCreateDiagramValidatorFactory()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
 
             //assert
-            Assert.NotNull(validatorFactory);
+            Assert.NotNull(rulesGeneratorFactory);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task DiagramValidationSucceeds()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(DiagramValidationSucceeds));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -70,7 +70,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
@@ -89,7 +89,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForDuplicateToJumpShapes()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDuplicateToJumpShapes));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -104,7 +104,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
@@ -123,7 +123,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMissingFromJumpShape()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingFromJumpShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -138,7 +138,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
@@ -157,7 +157,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMissingToJumpShape()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingToJumpShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -172,7 +172,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
@@ -191,7 +191,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForConnectorNotConnectingTwoShapes()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForConnectorNotConnectingTwoShapes));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -206,7 +206,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
@@ -225,7 +225,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMissingBeginShape()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMissingBeginShape));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -240,7 +240,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
@@ -263,7 +263,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForMultipleBeginShapes()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForMultipleBeginShapes));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -278,7 +278,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,
@@ -301,7 +301,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForModuleEndInBeginFlowDocument()
         {
             //arrange
-            IDiagramValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<IDiagramValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForModuleEndInBeginFlowDocument));
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
@@ -316,7 +316,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetDiagramValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetDiagramValidator
             (
                 sourceFile,
                 visioDocument,

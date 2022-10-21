@@ -19,12 +19,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class TableRulesBuilder : ITableRulesBuilder
     {
         private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
-        private readonly ITableValidatorFactory _tableValidatorFactory;
 
         public TableRulesBuilder(
             IPathHelper pathHelper,
             IRulesGeneratorFactory rulesGeneratorFactory,
-            ITableValidatorFactory tableValidatorFactory,
             string sourceFile,
             DataSet dataSet,
             ApplicationTypeInfo application,
@@ -32,7 +30,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             CancellationTokenSource cancellationTokenSource)
         {
             _rulesGeneratorFactory = rulesGeneratorFactory;
-            _tableValidatorFactory = tableValidatorFactory;
 
             SourceFile = sourceFile;
             FileName = pathHelper.GetFileName(SourceFile);
@@ -58,7 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 
         public async Task<BuildRulesResult> BuildRules()
         {
-            var validationErrors = await _tableValidatorFactory.GetTableValidator
+            var validationErrors = await _rulesGeneratorFactory.GetTableValidator
             (
                 SourceFile,
                 DataSet,

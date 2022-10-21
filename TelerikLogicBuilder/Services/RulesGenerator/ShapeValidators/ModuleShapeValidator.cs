@@ -17,8 +17,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IModuleNamesReader _moduleNamesReader;
         private readonly IResultMessageHelper _resultMessageHelper;
         private readonly IShapeHelper _shapeHelper;
-        private readonly IShapeValidatorFactory _shapeValidatorFactory;
         private readonly IShapeXmlHelper _shapeXmlHelper;
+        private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public ModuleShapeValidator(
@@ -26,8 +26,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IModuleNamesReader moduleNamesReader,
             IResultMessageHelperFactory resultMessageHelperfactory,
             IShapeHelper shapeHelper,
-            IShapeValidatorFactory shapeValidatorFactory,
             IShapeXmlHelper shapeXmlHelper,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             Page page,
@@ -44,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 validationErrors
             );
             _shapeHelper = shapeHelper;
-            _shapeValidatorFactory = shapeValidatorFactory;
+            _rulesGeneratorFactory = rulesGeneratorFactory;
             _shapeXmlHelper = shapeXmlHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
 
@@ -105,7 +105,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 
             if (allApplication)
             {
-                _shapeValidatorFactory.GetApplicationSpecificFlowShapeValidator
+                _rulesGeneratorFactory.GetApplicationSpecificFlowShapeValidator
                 (
                     this.SourceFile,
                     this.Page,

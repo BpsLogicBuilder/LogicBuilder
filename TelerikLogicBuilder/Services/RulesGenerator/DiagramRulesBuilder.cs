@@ -19,7 +19,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 {
     internal class DiagramRulesBuilder : IDiagramRulesBuilder
     {
-        private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
@@ -27,7 +26,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public DiagramRulesBuilder(
-            IDiagramValidatorFactory diagramValidatorFactory,
             IExceptionHelper exceptionHelper,
             IJumpDataParser jumpDataParser,
             IPathHelper pathHelper,
@@ -40,7 +38,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             IProgress<ProgressMessage> progress,
             CancellationTokenSource cancellationTokenSource)
         {
-            _diagramValidatorFactory = diagramValidatorFactory;
             _exceptionHelper = exceptionHelper;
             _jumpDataParser = jumpDataParser;
             _rulesGeneratorFactory = rulesGeneratorFactory;
@@ -74,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 
         public async Task<BuildRulesResult> BuildRules()
         {
-            var validationErrors = await _diagramValidatorFactory.GetDiagramValidator(SourceFile, Document, Application, Progress, CancellationTokenSource).Validate();
+            var validationErrors = await _rulesGeneratorFactory.GetDiagramValidator(SourceFile, Document, Application, Progress, CancellationTokenSource).Validate();
             if (validationErrors.Count > 0)
                 return new BuildRulesResult(validationErrors, Rules, ResourceStrings);
 

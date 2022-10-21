@@ -20,20 +20,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     internal class ValidateSelectedDocuments : IValidateSelectedDocuments
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
-        private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IDisplayResultMessages _displayResultMessages;
-        private readonly ITableValidatorFactory _tableValidatorFactory;
+        private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
 
         public ValidateSelectedDocuments(
             IApplicationTypeInfoManager applicationTypeInfoManager,
-            IDiagramValidatorFactory diagramValidatorFactory,
             IDisplayResultMessages displayResultMessages,
-            ITableValidatorFactory tableValidatorFactory)
+            IRulesGeneratorFactory rulesGeneratorFactory)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
-            _diagramValidatorFactory = diagramValidatorFactory;
+            _rulesGeneratorFactory = rulesGeneratorFactory;
             _displayResultMessages = displayResultMessages;
-            _tableValidatorFactory = tableValidatorFactory;
         }
 
         public async Task<IList<ResultMessage>> Validate(IList<string> sourceFiles, FlowBuilder.Configuration.Application application, IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
@@ -50,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                                         || sourceFile.EndsWith(FileExtensions.VSDXFILEEXTENSION))
                     {
                         Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
-                        IList<ResultMessage> visioDocumentResults = await _diagramValidatorFactory.GetDiagramValidator
+                        IList<ResultMessage> visioDocumentResults = await _rulesGeneratorFactory.GetDiagramValidator
                         (
                             sourceFile,
                             visioDocument,
@@ -114,7 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 
                         tableDocumentResults.AddRange
                         (
-                            await _tableValidatorFactory.GetTableValidator
+                            await _rulesGeneratorFactory.GetTableValidator
                             (
                                 sourceFile,
                                 dataSet,

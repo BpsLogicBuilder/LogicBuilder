@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
-    internal class ApplicationConnectorValidator : IShapeValidator
+    internal class ApplicationConnectorValidator : IConnectorValidator
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;

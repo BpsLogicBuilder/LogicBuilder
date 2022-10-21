@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
-    internal class RegularConnectorValidator : IShapeValidator
+    internal class RegularConnectorValidator : IConnectorValidator
     {
         private readonly IConnectorElementValidator _connectorElementValidator;
         private readonly IResultMessageHelper _resultMessageHelper;

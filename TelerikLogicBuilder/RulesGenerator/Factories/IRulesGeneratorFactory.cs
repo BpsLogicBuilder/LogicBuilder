@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
 using System;
@@ -12,12 +13,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
 {
     internal interface IRulesGeneratorFactory
     {
+        IApplicationSpecificFlowShapeValidator GetApplicationSpecificFlowShapeValidator(string sourceFile,
+            Page page,
+            Shape shape,
+            List<ResultMessage> validationErrors);
+
         ICodeExpressionBuilder GetCodeExpressionBuilder(
             ApplicationTypeInfo application,
             IDictionary<string, string> resourceStrings,
             string resourceNamePrefix);
 
+        IConnectorValidator GetConnectorValidator(string sourceFile, Page page, Shape connector, List<ResultMessage> validationErrors, ApplicationTypeInfo application);
+
         IDiagramRulesBuilder GetDiagramRulesBuilder(string sourceFile,
+            Document document,
+            ApplicationTypeInfo application,
+            IProgress<ProgressMessage> progress,
+            CancellationTokenSource cancellationTokenSource);
+
+        IDiagramValidator GetDiagramValidator(string sourceFile,
             Document document,
             ApplicationTypeInfo application,
             IProgress<ProgressMessage> progress,
@@ -42,6 +56,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
             ApplicationTypeInfo application,
             IDictionary<string, string> resourceStrings);
 
+        IShapeValidator GetShapeValidator(string sourceFile, Page page, ShapeBag shapeBag, List<ResultMessage> validationErrors, ApplicationTypeInfo application);
+
         ITableRowRuleBuilder GetTableRowRuleBuilder(DataRow dataRow,
             string moduleName,
             int ruleCount,
@@ -49,6 +65,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
             IDictionary<string, string> resourceStrings);
 
         ITableRulesBuilder GetTableRulesBuilder(string sourceFile,
+            DataSet dataSet,
+            ApplicationTypeInfo application,
+            IProgress<ProgressMessage> progress,
+            CancellationTokenSource cancellationTokenSource);
+
+        ITableValidator GetTableValidator(string sourceFile,
             DataSet dataSet,
             ApplicationTypeInfo application,
             IProgress<ProgressMessage> progress,

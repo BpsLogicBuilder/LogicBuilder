@@ -23,7 +23,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IJumpDataParser _jumpDataParser;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
-        private readonly IShapeValidatorFactory _shapeValidatorFactory;
         private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
         private readonly IResultMessageBuilder _resultMessageBuilder;
         private readonly IVisioFileSourceFactory _visioFileSourceFactory;
@@ -35,7 +34,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             IPathHelper pathHelper,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
-            IShapeValidatorFactory shapeValidatorFactory,
             IResultMessageBuilder resultMessageBuilder,
             IRulesGeneratorFactory rulesGeneratorFactory,
             IVisioFileSourceFactory visioFileSourceFactory,
@@ -56,7 +54,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             _jumpDataParser = jumpDataParser;
             _shapeHelper = shapeHelper;
             _shapeXmlHelper = shapeXmlHelper;
-            _shapeValidatorFactory = shapeValidatorFactory;
             _resultMessageBuilder = resultMessageBuilder;
             _rulesGeneratorFactory = rulesGeneratorFactory;
             _visioFileSourceFactory = visioFileSourceFactory;
@@ -133,7 +130,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                             break;
                         case UniversalMasterName.JUMPOBJECT:
                             List<ResultMessage> jumpErrors = new();
-                            _shapeValidatorFactory.GetShapeValidator
+                            _rulesGeneratorFactory.GetShapeValidator
                             (
                                 SourceFile, 
                                 page, 
@@ -249,11 +246,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             foreach (Shape connector in ruleConnectors)
             {
-                _shapeValidatorFactory.GetConnectorValidator
+                _rulesGeneratorFactory.GetConnectorValidator
                 (
                     SourceFile, 
                     connector.ContainingPage, 
-                    connector, ValidationErrors, 
+                    connector, 
+                    ValidationErrors, 
                     Application
                 ).Validate();
             }
@@ -263,7 +261,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
              //Some shapes will be validated more than once (each time they appear in a list)
              //The ShapeBag is necessary because the application for the "Others Connect Object" depends on the diverging merge shape.
                 ValidateOutgoingBlankConnectors(shapeBag.Shape, shapeBag.Shape.ContainingPage);
-                _shapeValidatorFactory.GetShapeValidator
+                _rulesGeneratorFactory.GetShapeValidator
                 (
                     SourceFile, 
                     shapeBag.Shape.ContainingPage, 

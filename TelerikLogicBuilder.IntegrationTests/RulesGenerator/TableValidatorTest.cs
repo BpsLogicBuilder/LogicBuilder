@@ -48,7 +48,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task TableValidationSucceeds()
         {
             //arrange
-            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(TableValidationSucceeds));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -58,7 +58,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
@@ -77,7 +77,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForDialogFunctionInActionCell()
         {
             //arrange
-            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForDialogFunctionInActionCell));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -87,7 +87,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
@@ -110,7 +110,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForNoDataInActionCell()
         {
             //arrange
-            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForNoDataInActionCell));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -120,7 +120,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
@@ -143,7 +143,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task FailsValidationForNoDataInPriorityCell()
         {
             //arrange
-            ITableValidatorFactory validatorFactory = _fixture.ServiceProvider.GetRequiredService<ITableValidatorFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(FailsValidationForNoDataInPriorityCell));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);
@@ -153,7 +153,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
             var cancellationToken = new CancellationTokenSource();
 
             //act
-            IList<ResultMessage> errors = await validatorFactory.GetTableValidator
+            IList<ResultMessage> errors = await rulesGeneratorFactory.GetTableValidator
             (
                 sourceFile,
                 dataSet,
