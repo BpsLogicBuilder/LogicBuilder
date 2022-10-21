@@ -33,7 +33,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.RuleBuilders
         public void GetShortStringGivenLongStringWorks(string longString, string expectedShortString)
         {
             //arrange
-            IRuleBuilderFactory factory = serviceProvider.GetRequiredService<IRuleBuilderFactory>();
+            IRulesGeneratorFactory factory = serviceProvider.GetRequiredService<IRulesGeneratorFactory>();
             Dictionary<string, string> resourseStrings = new();
             string moduleName = "mymodule";
 
@@ -66,7 +66,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.RuleBuilders
         public void GetShortStringGivenXmlNodeWorks(string xmlString, string expectedShortString)
         {
             //arrange
-            IRuleBuilderFactory factory = serviceProvider.GetRequiredService<IRuleBuilderFactory>();
+            IRulesGeneratorFactory factory = serviceProvider.GetRequiredService<IRulesGeneratorFactory>();
             Dictionary<string, string> resourseStrings = new();
             string moduleName = "mymodule";
 

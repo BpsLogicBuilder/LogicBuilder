@@ -47,7 +47,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         public void GetRuleShapesReturnsExpectedResults(string masterName, int expectedShapeCount, int expectedConnectorCount)
         {
             //arrange
-            IRuleBuilderFactory ruleBuilderFactory = _fixture.ServiceProvider.GetRequiredService<IRuleBuilderFactory>();
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             IShapeHelper shapeHelper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
             IJumpDataParser jumpDataParser = _fixture.ServiceProvider.GetRequiredService<IJumpDataParser>();
             IXmlDocumentHelpers xmlDocumentHelpers = _fixture.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>();
@@ -81,7 +81,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             ruleShapes.Add(new ShapeBag(fromShape));
             ruleConnectors.Add(connector);
 
-            ruleBuilderFactory.GetGetRuleShapes(jumpToShapes).GetShapes(connector, ruleShapes, ruleConnectors);
+            rulesGeneratorFactory.GetGetRuleShapes(jumpToShapes).GetShapes(connector, ruleShapes, ruleConnectors);
 
             //assert
             Assert.Equal(expectedShapeCount, ruleShapes.Count);

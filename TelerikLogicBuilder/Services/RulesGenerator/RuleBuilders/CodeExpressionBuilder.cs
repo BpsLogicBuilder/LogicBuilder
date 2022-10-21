@@ -53,8 +53,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
         private readonly IVariableHelper _variableHelper;
 
         private readonly ApplicationTypeInfo application;
-        //private readonly IDictionary<string, string> resourceStrings;
-        //private readonly string moduleName;
 
         public CodeExpressionBuilder(
             IAnyParametersHelper anyParametersHelper,
@@ -76,7 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             IObjectParameterDataParser objectParameterDataParser,
             IObjectVariableDataParser objectVariableDataParser,
             IParameterHelper parameterHelper,
-            IRuleBuilderFactory ruleBuilderFactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             ITypeLoadHelper typeLoadHelper,
             IVariableDataParser variableDataParser,
             IVariableHelper variableHelper,
@@ -103,7 +101,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             _objectParameterDataParser = objectParameterDataParser;
             _objectVariableDataParser = objectVariableDataParser;
             _parameterHelper = parameterHelper;
-            _resourcesManager = ruleBuilderFactory.GetResourcesManager(resourceStrings, resourceNamePrefix);
+            _resourcesManager = rulesGeneratorFactory.GetResourcesManager(resourceStrings, resourceNamePrefix);
             _typeLoadHelper = typeLoadHelper;
             _variableDataParser = variableDataParser;
             _variableHelper = variableHelper;

@@ -51,7 +51,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task TableRulesBuilderSucceeds()
         {
             //arrange
-            IRuleBuilderFactory builderFactory = _fixture.ServiceProvider.GetRequiredService<IRuleBuilderFactory>();
+            IRulesGeneratorFactory builderFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(TableRulesBuilderSucceeds));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             DataSet dataSet = GetDataSet(sourceFile);

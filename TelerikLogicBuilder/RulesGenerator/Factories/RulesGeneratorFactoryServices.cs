@@ -68,7 +68,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IObjectParameterDataParser>(),
                         provider.GetRequiredService<IObjectVariableDataParser>(),
                         provider.GetRequiredService<IParameterHelper>(),
-                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IVariableHelper>(),
@@ -86,7 +86,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IJumpDataParser>(),
                         provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                         provider.GetRequiredService<IShapeXmlHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         sourceFile,
@@ -108,7 +108,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IShapeXmlHelper>(),
                         provider.GetRequiredService<IShapeValidatorFactory>(),
                         provider.GetRequiredService<IResultMessageBuilder>(),
-                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                         provider.GetRequiredService<IVisioFileSourceFactory>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         sourceFile,
@@ -142,7 +142,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         resourceNamePrefix
                     )
                 )
-                .AddTransient<IRuleBuilderFactory, RuleBuilderFactory>()
+                .AddTransient<IRulesGeneratorFactory, RulesGeneratorFactory>()
                 .AddTransient<Func<IList<ShapeBag>, IList<Shape>, string, int, ApplicationTypeInfo, IDictionary<string, string>, IShapeSetRuleBuilder>>
                 (
                     provider =>
@@ -153,7 +153,7 @@ namespace Microsoft.Extensions.DependencyInjection
                             case UniversalMasterName.BEGINFLOW:
                                 return new BeginFlowRuleBuilder
                                 (
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     ruleShapes,
                                     ruleConnectors,
                                     moduleName,
@@ -168,7 +168,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                     provider.GetRequiredService<IConnectorDataParser>(),
                                     provider.GetRequiredService<IExceptionHelper>(),
                                     provider.GetRequiredService<IFunctionDataParser>(),
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     provider.GetRequiredService<IShapeXmlHelper>(),
                                     provider.GetRequiredService<IXmlDocumentHelpers>(),
                                     ruleShapes,
@@ -185,7 +185,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                     provider.GetRequiredService<IDecisionDataParser>(),
                                     provider.GetRequiredService<IDecisionsDataParser>(),
                                     provider.GetRequiredService<IExceptionHelper>(),
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     provider.GetRequiredService<IShapeXmlHelper>(),
                                     provider.GetRequiredService<IXmlDocumentHelpers>(),
                                     ruleShapes,
@@ -204,7 +204,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                         provider.GetRequiredService<IExceptionHelper>(),
                                         provider.GetRequiredService<IFunctionDataParser>(),
                                         provider.GetRequiredService<IFunctionsDataParser>(),
-                                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                                         shapeXmlHelper,
                                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                                         ruleShapes,
@@ -223,7 +223,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                         provider.GetRequiredService<IExceptionHelper>(),
                                         provider.GetRequiredService<IFunctionDataParser>(),
                                         provider.GetRequiredService<IFunctionsDataParser>(),
-                                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                                         provider.GetRequiredService<IShapeHelper>(),
                                         shapeXmlHelper,
                                         provider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -238,7 +238,7 @@ namespace Microsoft.Extensions.DependencyInjection
                             case UniversalMasterName.MERGEOBJECT:
                                 return new MergeRuleBuilder
                                 (
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     provider.GetRequiredService<IShapeHelper>(),
                                     ruleShapes,
                                     ruleConnectors,
@@ -250,7 +250,7 @@ namespace Microsoft.Extensions.DependencyInjection
                             case UniversalMasterName.MODULEBEGIN:
                                 return new ModuleBeginRuleBuilder
                                 (
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     ruleShapes,
                                     ruleConnectors,
                                     moduleName,
@@ -263,7 +263,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                 (
                                     provider.GetRequiredService<IExceptionHelper>(),
                                     provider.GetRequiredService<IModuleDataParser>(),
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     provider.GetRequiredService<IShapeHelper>(),
                                     provider.GetRequiredService<IShapeXmlHelper>(),
                                     provider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -280,7 +280,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                     provider.GetRequiredService<IConditionsDataParser>(),
                                     provider.GetRequiredService<IExceptionHelper>(),
                                     provider.GetRequiredService<IFunctionDataParser>(),
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     provider.GetRequiredService<IShapeHelper>(),
                                     provider.GetRequiredService<IShapeXmlHelper>(),
                                     provider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -297,7 +297,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                     provider.GetRequiredService<IDecisionDataParser>(),
                                     provider.GetRequiredService<IDecisionsDataParser>(),
                                     provider.GetRequiredService<IExceptionHelper>(),
-                                    provider.GetRequiredService<IRuleBuilderFactory>(),
+                                    provider.GetRequiredService<IRulesGeneratorFactory>(),
                                     provider.GetRequiredService<IShapeHelper>(),
                                     provider.GetRequiredService<IShapeXmlHelper>(),
                                     provider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -326,7 +326,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IGetValidConfigurationFromData>(),
                         provider.GetRequiredService<IModuleDataParser>(),
                         provider.GetRequiredService<IRetractFunctionDataParser>(),
-                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                         provider.GetRequiredService<IShapeXmlHelper>(),
                         provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IVariableValueDataParser>(),
@@ -578,7 +578,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IGetValidConfigurationFromData>(),
                         provider.GetRequiredService<IPriorityDataParser>(),
                         provider.GetRequiredService<IRetractFunctionDataParser>(),
-                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                         provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IVariableValueDataParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -595,7 +595,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (sourceFile, dataSet, application, progress, cancellationTokenSource) => new TableRulesBuilder
                     (
                         provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<IRuleBuilderFactory>(),
+                        provider.GetRequiredService<IRulesGeneratorFactory>(),
                         provider.GetRequiredService<ITableValidatorFactory>(),
                         sourceFile,
                         dataSet,

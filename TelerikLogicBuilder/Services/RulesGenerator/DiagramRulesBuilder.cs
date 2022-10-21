@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IDiagramValidatorFactory _diagramValidatorFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IJumpDataParser _jumpDataParser;
-        private readonly IRuleBuilderFactory _ruleBuilderFactory;
+        private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             IExceptionHelper exceptionHelper,
             IJumpDataParser jumpDataParser,
             IPathHelper pathHelper,
-            IRuleBuilderFactory ruleBuilderFactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             IShapeXmlHelper shapeXmlHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             _diagramValidatorFactory = diagramValidatorFactory;
             _exceptionHelper = exceptionHelper;
             _jumpDataParser = jumpDataParser;
-            _ruleBuilderFactory = ruleBuilderFactory;
+            _rulesGeneratorFactory = rulesGeneratorFactory;
             _shapeXmlHelper = shapeXmlHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
 
@@ -115,7 +115,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                 ruleConnectors.Add(fromConnect.FromSheet);
                 ruleShapes.Add(shapeBag);
 
-                _ruleBuilderFactory
+                _rulesGeneratorFactory
                     .GetGetRuleShapes(JumpToShapes)
                     .GetShapes(fromConnect.FromSheet, ruleShapes, ruleConnectors);
 
@@ -163,7 +163,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             Rules.AddRange
             (
-                _ruleBuilderFactory.GetShapeSetRuleBuilder
+                _rulesGeneratorFactory.GetShapeSetRuleBuilder
                 (
                     ruleShapes,
                     ruleConnectors,

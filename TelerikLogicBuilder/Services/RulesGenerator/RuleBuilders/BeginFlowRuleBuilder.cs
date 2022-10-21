@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
         private readonly IShapeSetRuleBuilderHelper _shapeSetRuleBuilderHelper;
 
         public BeginFlowRuleBuilder(
-            IRuleBuilderFactory ruleBuilderFactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             IList<ShapeBag> ruleShapes,
             IList<Shape> ruleConnectors,
             string moduleName,
@@ -25,13 +25,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             ApplicationTypeInfo application,
             IDictionary<string, string> resourceStrings)
         {
-            _codeExpressionBuilder = ruleBuilderFactory.GetCodeExpressionBuilder
+            _codeExpressionBuilder = rulesGeneratorFactory.GetCodeExpressionBuilder
             (
                 application,
                 resourceStrings,
                 moduleName
             );
-            _shapeSetRuleBuilderHelper = ruleBuilderFactory.GetShapeSetRuleBuilderHelper
+            _shapeSetRuleBuilderHelper = rulesGeneratorFactory.GetShapeSetRuleBuilderHelper
             (
                 ruleShapes,
                 ruleConnectors,

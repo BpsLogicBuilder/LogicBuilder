@@ -18,12 +18,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 {
     internal class TableRulesBuilder : ITableRulesBuilder
     {
-        private readonly IRuleBuilderFactory _ruleBuilderFactory;
+        private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
         private readonly ITableValidatorFactory _tableValidatorFactory;
 
         public TableRulesBuilder(
             IPathHelper pathHelper,
-            IRuleBuilderFactory ruleBuilderFactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             ITableValidatorFactory tableValidatorFactory,
             string sourceFile,
             DataSet dataSet,
@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             IProgress<ProgressMessage> progress,
             CancellationTokenSource cancellationTokenSource)
         {
-            _ruleBuilderFactory = ruleBuilderFactory;
+            _rulesGeneratorFactory = rulesGeneratorFactory;
             _tableValidatorFactory = tableValidatorFactory;
 
             SourceFile = sourceFile;
@@ -107,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             Rules.AddRange
             (
-                _ruleBuilderFactory.GetTableRowRuleBuilder
+                _rulesGeneratorFactory.GetTableRowRuleBuilder
                 (
                     dataRow,
                     ModuleName,

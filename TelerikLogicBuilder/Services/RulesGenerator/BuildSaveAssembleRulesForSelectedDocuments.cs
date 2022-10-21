@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly ISaveTableResources _saveTableResources;
         private readonly ISaveTableRules _saveTableRules;
         private readonly IRulesAssembler _rulesAssembler;
-        private readonly IRuleBuilderFactory _ruleBuilderFactory;
+        private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
 
         public BuildSaveAssembleRulesForSelectedDocuments(
             IApplicationTypeInfoManager applicationTypeInfoManager,
@@ -38,10 +38,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             ISaveTableResources saveTableResources,
             ISaveTableRules saveTableRules,
             IRulesAssembler rulesAssembler,
-            IRuleBuilderFactory ruleBuilderFactory)
+            IRulesGeneratorFactory rulesGeneratorFactory)
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
-            _ruleBuilderFactory = ruleBuilderFactory;
+            _rulesGeneratorFactory = rulesGeneratorFactory;
             _displayResultMessages = displayResultMessages;
             _saveDiagramResources = saveDiagramResources;
             _saveDiagramRules = saveDiagramRules;
@@ -67,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                         try
                         {
                             Document visioDocument = visioApplication.Documents.OpenEx(sourceFile, (short)VisOpenSaveArgs.visOpenCopy);
-                            BuildRulesResult buildResults = await _ruleBuilderFactory.GetDiagramRulesBuilder
+                            BuildRulesResult buildResults = await _rulesGeneratorFactory.GetDiagramRulesBuilder
                             (
                                 sourceFile,
                                 visioDocument,
@@ -142,7 +142,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
 
                         try
                         {
-                            BuildRulesResult buildResults = await _ruleBuilderFactory.GetTableRulesBuilder
+                            BuildRulesResult buildResults = await _rulesGeneratorFactory.GetTableRulesBuilder
                             (
                                 sourceFile,
                                 dataSet,

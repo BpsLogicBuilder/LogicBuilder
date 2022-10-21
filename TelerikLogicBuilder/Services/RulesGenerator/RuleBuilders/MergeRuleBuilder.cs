@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
         private readonly IShapeSetRuleBuilderHelper _shapeSetRuleBuilderHelper;
 
         public MergeRuleBuilder(
-            IRuleBuilderFactory ruleBuilderFactory, 
+            IRulesGeneratorFactory rulesGeneratorFactory, 
             IShapeHelper shapeHelper,
             IList<ShapeBag> ruleShapes,
             IList<Shape> ruleConnectors,
@@ -29,14 +29,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             ApplicationTypeInfo application,
             IDictionary<string, string> resourceStrings)
         {
-            _codeExpressionBuilder = ruleBuilderFactory.GetCodeExpressionBuilder
+            _codeExpressionBuilder = rulesGeneratorFactory.GetCodeExpressionBuilder
             (
                 application,
                 resourceStrings,
                 moduleName
             );
             _shapeHelper = shapeHelper;
-            _shapeSetRuleBuilderHelper = ruleBuilderFactory.GetShapeSetRuleBuilderHelper
+            _shapeSetRuleBuilderHelper = rulesGeneratorFactory.GetShapeSetRuleBuilderHelper
             (
                 ruleShapes,
                 ruleConnectors,

@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             IExceptionHelper exceptionHelper, 
             IFunctionDataParser functionDataParser,
             IFunctionsDataParser functionsDataParser,
-            IRuleBuilderFactory ruleBuilderFactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             IShapeHelper shapeHelper, 
             IShapeXmlHelper shapeXmlHelper, 
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             ApplicationTypeInfo application,
             IDictionary<string, string> resourceStrings)
         {
-            _codeExpressionBuilder = ruleBuilderFactory.GetCodeExpressionBuilder
+            _codeExpressionBuilder = rulesGeneratorFactory.GetCodeExpressionBuilder
             (
                 application,
                 resourceStrings,
@@ -59,7 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
             _functionsDataParser = functionsDataParser;
-            _shapeSetRuleBuilderHelper = ruleBuilderFactory.GetShapeSetRuleBuilderHelper
+            _shapeSetRuleBuilderHelper = rulesGeneratorFactory.GetShapeSetRuleBuilderHelper
             (
                 ruleShapes,
                 ruleConnectors,

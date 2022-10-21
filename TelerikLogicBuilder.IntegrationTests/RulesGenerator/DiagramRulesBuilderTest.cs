@@ -46,7 +46,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task DiagramRulesBuilderSucceeds()
         {
             //arrange
-            IRuleBuilderFactory builderFactory = _fixture.ServiceProvider.GetRequiredService<IRuleBuilderFactory>();
+            IRulesGeneratorFactory builderFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
             string sourceFile = GetFullSourceFilePath(nameof(DiagramRulesBuilderSucceeds));
             var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx

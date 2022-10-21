@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
 {
-    internal class RuleBuilderFactory : IRuleBuilderFactory
+    internal class RulesGeneratorFactory : IRulesGeneratorFactory
     {
         private readonly Func<ApplicationTypeInfo, IDictionary<string, string>, string, ICodeExpressionBuilder> _getCodeExpressionBuilder;
         private readonly Func<string, Document, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, IDiagramRulesBuilder> _getDiagramRulesBuilder;
@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
         private readonly Func<DataRow, string, int, ApplicationTypeInfo, IDictionary<string, string>, ITableRowRuleBuilder> _getTableRowRuleBuilder;
         private readonly Func<string, DataSet, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, ITableRulesBuilder> _getTableRulesBuilder;
 
-        public RuleBuilderFactory(Func<ApplicationTypeInfo, IDictionary<string, string>, string, ICodeExpressionBuilder> getCodeExpressionBuilder,
+        public RulesGeneratorFactory(Func<ApplicationTypeInfo, IDictionary<string, string>, string, ICodeExpressionBuilder> getCodeExpressionBuilder,
             Func<string, Document, ApplicationTypeInfo, IProgress<ProgressMessage>, CancellationTokenSource, IDiagramRulesBuilder> getDiagramRulesBuilder,
             Func<IDictionary<string, Shape>, IGetRuleShapes> getGetRuleShapes,
             Func<IDictionary<string, string>, string, IResourcesManager> getResourcesManager,

@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             IGetValidConfigurationFromData getValidConfigurationFromData,
             IPriorityDataParser priorityDataParser,
             IRetractFunctionDataParser retractFunctionDataParser,
-            IRuleBuilderFactory ruleBuilderFactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             IVariableDataParser variableDataParser,
             IVariableValueDataParser variableValueDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
         {
             _assertFunctionDataParser = assertFunctionDataParser;
             _cellXmlHelper = cellXmlHelper;
-            _codeExpressionBuilder = ruleBuilderFactory.GetCodeExpressionBuilder
+            _codeExpressionBuilder = rulesGeneratorFactory.GetCodeExpressionBuilder
             (
                 application,
                 resourceStrings,

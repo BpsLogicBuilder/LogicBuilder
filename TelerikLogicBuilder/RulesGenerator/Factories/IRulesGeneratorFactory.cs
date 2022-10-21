@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories
 {
-    internal interface IRuleBuilderFactory
+    internal interface IRulesGeneratorFactory
     {
         ICodeExpressionBuilder GetCodeExpressionBuilder(
             ApplicationTypeInfo application,
