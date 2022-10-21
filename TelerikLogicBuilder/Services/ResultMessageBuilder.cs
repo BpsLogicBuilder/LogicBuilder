@@ -1,29 +1,29 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using System.Globalization;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ResultMessageBuilder : IResultMessageBuilder
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IStructuresFactory _structuresFactory;
 
-        public ResultMessageBuilder(IXmlDocumentHelpers xmlDocumentHelpers)
+        public ResultMessageBuilder(IStructuresFactory structuresFactory)
         {
-            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _structuresFactory = structuresFactory;
         }
 
         public ResultMessage BuilderMessage(VisioFileSource source, string message) 
             => new
             (
-                new DiagramErrorSourceData
+                _structuresFactory.GetDiagramErrorSourceData
                 (
                     source.SourceFileFullname,
                     source.PageIndex,
                     source.ShapeIndex,
                     source.PageId,
-                    source.ShapeId,
-                    _xmlDocumentHelpers
+                    source.ShapeId
                 ).ToXml,
                 string.Format
                 (
@@ -40,12 +40,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public ResultMessage BuilderMessage(TableFileSource source, string message)
             => new
             (
-                new TableErrorSourceData
+                _structuresFactory.GetTableErrorSourceData
                 (
                     source.SourceFileFullname,
                     source.Row,
-                    source.Column,
-                    _xmlDocumentHelpers
+                    source.Column
                 ).ToXml,
                 string.Format
                 (

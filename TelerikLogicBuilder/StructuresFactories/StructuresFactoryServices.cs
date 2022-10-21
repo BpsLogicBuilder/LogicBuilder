@@ -13,6 +13,19 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddStructuresFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<string, int, int, int, int, DiagramErrorSourceData>>
+                (
+                    provider =>
+                    (fileFullName, pageIndex, shapeIndex, pageId, shapeId) => new DiagramErrorSourceData
+                    (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        fileFullName,
+                        pageIndex,
+                        shapeIndex,
+                        pageId,
+                        shapeId
+                    )
+                )
                 .AddTransient<Func<string, Page, Shape, List<ResultMessage>, IDiagramResultMessageHelper>>
                 (
                     provider =>
@@ -27,6 +40,17 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IStructuresFactory, StructuresFactory>()
+                .AddTransient<Func<string, int, int, TableErrorSourceData>>
+                (
+                    provider =>
+                    (fileFullName, rowIndex, columnIndex) => new TableErrorSourceData
+                    (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        fileFullName,
+                        rowIndex, 
+                        columnIndex
+                    )
+                )
                 .AddTransient<Func<string, int, int, TableFileSource>>
                 (
                     provider =>

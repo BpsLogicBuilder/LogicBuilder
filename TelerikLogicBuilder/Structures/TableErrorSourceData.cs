@@ -10,7 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public TableErrorSourceData(string fileFullName, int rowIndex, int columnIndex, IXmlDocumentHelpers xmlDocumentHelpers)
+        public TableErrorSourceData(IXmlDocumentHelpers xmlDocumentHelpers, string fileFullName, int rowIndex, int columnIndex)
         {
             FileFullName = fileFullName;
             RowIndex = rowIndex;

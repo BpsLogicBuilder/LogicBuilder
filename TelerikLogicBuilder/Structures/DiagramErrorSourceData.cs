@@ -10,7 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public DiagramErrorSourceData(string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId, IXmlDocumentHelpers xmlDocumentHelpers)
+        public DiagramErrorSourceData(IXmlDocumentHelpers xmlDocumentHelpers, string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId)
         {
             FileFullName = fileFullName;
             PageIndex = pageIndex;
