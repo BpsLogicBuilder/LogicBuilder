@@ -1,5 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,27 +9,34 @@ using System.Linq;
 using System.Reflection;
 using System.Security;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Reflection
+namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 {
-    internal class LoadAssemblyFromNameUtility
+    internal class LoadAssemblyFromName : ILoadAssemblyFromName
     {
-        private readonly string activityAssemblyFullName;
-        private readonly string[] paths;
-        private readonly LogicBuilderAssemblyLoadContext assemblyLoadContext;
+        private readonly IAssemblyLoadContextManager _assemblyLoadContextManager;
         private readonly IPathHelper _pathHelper;
+
+        private readonly string activityAssemblyFullName;
+        private readonly LogicBuilderAssemblyLoadContext assemblyLoadContext;
+        private readonly string[] paths;
+
+        public LoadAssemblyFromName(
+            IAssemblyLoadContextManager assemblyLoadContextManager,
+            IPathHelper pathHelper,
+            string activityAssemblyFullName,
+            string[] paths)
+        {
+            _assemblyLoadContextManager = assemblyLoadContextManager;
+            _pathHelper = pathHelper;
+            this.activityAssemblyFullName = activityAssemblyFullName;
+            this.assemblyLoadContext = _assemblyLoadContextManager.GetAssemblyLoadContext();
+            this.paths = paths;
+        }
 
         private const string DOTDLL = ".DLL";
         private const string COMMA = ",";
 
-        public LoadAssemblyFromNameUtility(LogicBuilderAssemblyLoadContext assemblyLoadContext, IPathHelper pathHelper, string activityAssemblyFullName, string[] paths)
-        {
-            this.activityAssemblyFullName = activityAssemblyFullName;
-            this.paths = paths;
-            this.assemblyLoadContext = assemblyLoadContext;
-            _pathHelper = pathHelper;
-        }
-
-        internal Assembly? LoadAssembly(AssemblyName assemblyName)
+        public Assembly? LoadAssembly(AssemblyName assemblyName)
         {
             if (assemblyName == null)
                 return null;

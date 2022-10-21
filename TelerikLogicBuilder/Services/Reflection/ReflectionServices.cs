@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
+﻿using ABIS.LogicBuilder.FlowBuilder.Reflection.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -9,9 +10,11 @@ namespace Microsoft.Extensions.DependencyInjection
             => services
                 .AddSingleton<IApplicationTypeInfoManager, ApplicationTypeInfoManager>()
                 .AddSingleton<IAssemblyHelper, AssemblyHelper>()
-                .AddSingleton<IAssemblyLoader, AssemblyLoader>()
                 .AddSingleton<IApplicationTypeInfoHelper, ApplicationTypeInfoHelper>()
+                .AddSingleton<ILoadAssemblyFromPath, LoadAssemblyFromPath>()
                 .AddSingleton<ILoadContextSponsor, LoadContextSponsor>()
-                .AddSingleton<IReflectionHelper, ReflectionHelper>();
+                .AddSingleton<IReflectionFactory, ReflectionFactory>()
+                .AddSingleton<IReflectionHelper, ReflectionHelper>()
+                .AddReflectionFactories();
     }
 }

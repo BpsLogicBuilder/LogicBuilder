@@ -19,21 +19,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
     internal class ApplicationTypeInfoHelper : IApplicationTypeInfoHelper
     {
         private readonly IAssemblyHelper _assemblyHelper;
-        private readonly IAssemblyLoader _assemblyLoader;
         private readonly IConfigurationService _configurationService;
+        private readonly ILoadAssemblyFromPath _loadAssemblyFromPath;
         private readonly IPathHelper _pathHelper;
         private readonly ITypeHelper _typeHelper;
 
         public ApplicationTypeInfoHelper(
             IAssemblyHelper assemblyHelper,
-            IAssemblyLoader assemblyLoader,
             IConfigurationService configurationService,
+            ILoadAssemblyFromPath loadAssemblyFromPath,
             IPathHelper pathHelper,
             ITypeHelper typeHelper)
         {
             _assemblyHelper = assemblyHelper;
-            _assemblyLoader = assemblyLoader;
             _configurationService = configurationService;
+            _loadAssemblyFromPath = loadAssemblyFromPath;
             _pathHelper = pathHelper;
             _typeHelper = typeHelper;
         }
@@ -63,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
             try
             {
-                activityAssembly = _assemblyLoader.LoadAssembly(assemblyFullName);
+                activityAssembly = _loadAssemblyFromPath.LoadAssembly(assemblyFullName);
 
                 if (activityAssembly != null)
                 {

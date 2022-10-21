@@ -5,9 +5,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.Reflection
 {
-    public class AssemblyLoaderTest
+    public class LoadAssemblyFromPathTest
     {
-        public AssemblyLoaderTest()
+        public LoadAssemblyFromPathTest()
         {
             serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
         }
@@ -20,7 +20,7 @@ namespace TelerikLogicBuilder.Tests.Reflection
         public void CanCreateAssemblyLoader()
         {
             //arrange
-            IAssemblyLoader assemblyLoader = serviceProvider.GetRequiredService<IAssemblyLoader>();
+            ILoadAssemblyFromPath assemblyLoader = serviceProvider.GetRequiredService<ILoadAssemblyFromPath>();
 
             //assert
             Assert.NotNull(assemblyLoader);
