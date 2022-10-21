@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -9,16 +9,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 {
     internal class ApplicationSpecificFlowShapeValidator : IApplicationSpecificFlowShapeValidator
     {
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
 
         public ApplicationSpecificFlowShapeValidator(
-            IResultMessageHelperFactory resultMessageHelperfactory,
+            IStructuresFactory structuresFactory,
             string sourceFile,
             Page page,
             Shape shape, 
             List<ResultMessage> validationErrors)
         {
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

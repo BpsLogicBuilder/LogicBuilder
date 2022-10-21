@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
@@ -11,17 +11,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
     internal class CommentShapeValidator : IShapeValidator
     {
         private readonly IShapeHelper _shapeHelper;
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
 
         public CommentShapeValidator(
-            IResultMessageHelperFactory resultMessageHelperfactory,
             IShapeHelper shapeHelper,
+            IStructuresFactory structuresFactory,
             string sourceFile,
             Page page,
             Shape shape,
             List<ResultMessage> validationErrors)
         {
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

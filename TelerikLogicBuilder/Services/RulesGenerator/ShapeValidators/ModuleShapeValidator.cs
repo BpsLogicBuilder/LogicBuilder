@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
     {
         private readonly IModuleDataParser _moduleDataParser;
         private readonly IModuleNamesReader _moduleNamesReader;
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
@@ -24,10 +24,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         public ModuleShapeValidator(
             IModuleDataParser moduleDataParser,
             IModuleNamesReader moduleNamesReader,
-            IResultMessageHelperFactory resultMessageHelperfactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
-            IRulesGeneratorFactory rulesGeneratorFactory,
+            IStructuresFactory structuresFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             Page page,
@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         {
             _moduleDataParser = moduleDataParser;
             _moduleNamesReader = moduleNamesReader;
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

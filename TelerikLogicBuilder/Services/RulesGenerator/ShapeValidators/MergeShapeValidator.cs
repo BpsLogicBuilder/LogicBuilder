@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
@@ -16,15 +16,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
         private readonly IShapeHelper _shapeHelper;
 
         public MergeShapeValidator(
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
             IPathHelper pathHelper,
-            IResultMessageHelperFactory resultMessageHelperfactory,
             IShapeHelper shapeHelper,
+            IStructuresFactory structuresFactory,
             string sourceFile,
             Page page,
             Shape shape,
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         {
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

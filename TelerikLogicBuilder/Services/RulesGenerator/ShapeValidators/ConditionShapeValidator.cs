@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
@@ -13,16 +13,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
     internal class ConditionShapeValidator : IShapeValidator
     {
         private readonly IConditionsElementValidator _conditionsElementValidator;
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public ConditionShapeValidator(
             IConditionsElementValidator conditionsElementValidator,
-            IResultMessageHelperFactory resultMessageHelperfactory,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
+            IStructuresFactory structuresFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             Page page,
@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             ApplicationTypeInfo application)
         {
             _conditionsElementValidator = conditionsElementValidator;
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

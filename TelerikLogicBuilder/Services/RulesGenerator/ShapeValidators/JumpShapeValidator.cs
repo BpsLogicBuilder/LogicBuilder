@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.ShapeValidators;
@@ -11,14 +11,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
     internal class JumpShapeValidator : IShapeValidator
     {
         private readonly IJumpDataParser _jumpDataParser;
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public JumpShapeValidator(
             IJumpDataParser jumpDataParser,
-            IResultMessageHelperFactory resultMessageHelperfactory,
             IShapeXmlHelper shapeXmlHelper,
+            IStructuresFactory structuresFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             Page page,
@@ -26,7 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             List<ResultMessage> validationErrors)
         {
             _jumpDataParser = jumpDataParser;
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

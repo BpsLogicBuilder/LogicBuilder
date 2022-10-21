@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
@@ -19,19 +19,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IDecisionsElementValidator _decisionsElementValidator;
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
+        private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
-        private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public WaitDecisionShapeValidator(
             IApplicationTypeInfoManager applicationTypeInfoManager,
             IDecisionsElementValidator decisionsElementValidator,
-            IResultMessageHelperFactory resultMessageHelperfactory,
+            IRulesGeneratorFactory rulesGeneratorFactory,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
-            IRulesGeneratorFactory rulesGeneratorFactory,
+            IStructuresFactory structuresFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             Page page,
@@ -41,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         {
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _decisionsElementValidator = decisionsElementValidator;
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

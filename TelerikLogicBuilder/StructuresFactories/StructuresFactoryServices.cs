@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Services;
@@ -9,25 +9,25 @@ using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class FactoryServices
+    internal static class StructuresFactoryServices
     {
-        internal static IServiceCollection AddFactories(this IServiceCollection services)
+        internal static IServiceCollection AddStructuresFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<string, Page, Shape, List<ResultMessage>, IResultMessageHelper>>
+                .AddTransient<Func<string, Page, Shape, List<ResultMessage>, IDiagramResultMessageHelper>>
                 (
                     provider =>
-                    (sourceFile, page, shape, validationErrors) => new ResultMessageHelper
+                    (sourceFile, page, shape, resultMessages) => new DiagramResultMessageHelper
                     (
                         provider.GetRequiredService<IResultMessageBuilder>(),
                         provider.GetRequiredService<IVisioFileSourceFactory>(),
                         sourceFile,
                         page,
                         shape,
-                        validationErrors
+                        resultMessages
                     )
                 )
-                .AddTransient<IResultMessageHelperFactory, ResultMessageHelperFactory>();
+                .AddTransient<IStructuresFactory, StructuresFactory>();
         }
     }
 }

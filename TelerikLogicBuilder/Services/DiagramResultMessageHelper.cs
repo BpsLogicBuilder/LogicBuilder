@@ -7,17 +7,17 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
-    internal class ResultMessageHelper : IResultMessageHelper
+    internal class DiagramResultMessageHelper : IDiagramResultMessageHelper
     {
         private readonly IResultMessageBuilder _resultMessageBuilder;
 
-        public ResultMessageHelper(
+        public DiagramResultMessageHelper(
             IResultMessageBuilder resultMessageBuilder,
             IVisioFileSourceFactory visioFileSourceFactory,
             string sourceFile,
             Page page,
             Shape shape,
-            List<ResultMessage> validationErrors)
+            List<ResultMessage> resultMessages)
         {
             _resultMessageBuilder = resultMessageBuilder;
             visioFileSource = visioFileSourceFactory.GetVisioFileSource
@@ -29,14 +29,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 shape.ID,
                 shape.Index
             );
-            this.validationErrors = validationErrors;
+            this.resultMessages = resultMessages;
         }
 
-        private readonly List<ResultMessage> validationErrors;
+        private readonly List<ResultMessage> resultMessages;
         private readonly VisioFileSource visioFileSource;
 
         public void AddValidationMessage(string message)
-            => validationErrors.Add(GetResultMessage(message));
+            => resultMessages.Add(GetResultMessage(message));
 
         public ResultMessage GetResultMessage(string message)
             => _resultMessageBuilder.BuilderMessage(visioFileSource, message);

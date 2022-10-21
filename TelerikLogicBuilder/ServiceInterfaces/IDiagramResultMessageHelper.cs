@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
-    internal interface IResultMessageHelper
+    internal interface IDiagramResultMessageHelper
     {
         void AddValidationMessage(string message);
         ResultMessage GetResultMessage(string message);

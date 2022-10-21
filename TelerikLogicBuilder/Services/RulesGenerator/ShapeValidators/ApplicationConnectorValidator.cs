@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IModuleDataParser _moduleDataParser;
-        private readonly IResultMessageHelper _resultMessageHelper;
+        private readonly IDiagramResultMessageHelper _resultMessageHelper;
         private readonly IShapeHelper _shapeHelper;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -28,9 +28,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             IExceptionHelper exceptionHelper,
             IModuleDataParser moduleDataParser,
             IPathHelper pathHelper,
-            IResultMessageHelperFactory resultMessageHelperfactory,
             IShapeHelper shapeHelper,
             IShapeXmlHelper shapeXmlHelper,
+            IStructuresFactory structuresFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             Page page,
@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
             _moduleDataParser = moduleDataParser;
-            _resultMessageHelper = resultMessageHelperfactory.GetResultMessageHelper
+            _resultMessageHelper = structuresFactory.GetDiagramResultMessageHelper
             (
                 sourceFile,
                 page,

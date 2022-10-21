@@ -3,13 +3,13 @@ using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Office.Interop.Visio;
 using System.Collections.Generic;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.StructuresFactories
 {
-    internal interface IResultMessageHelperFactory
+    internal interface IStructuresFactory
     {
-        IResultMessageHelper GetResultMessageHelper(string sourceFile,
+        IDiagramResultMessageHelper GetDiagramResultMessageHelper(string sourceFile,
             Page page,
             Shape shape,
-            List<ResultMessage> validationErrors);
+            List<ResultMessage> resultMessages);
     }
 }
