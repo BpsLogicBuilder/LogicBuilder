@@ -3,9 +3,9 @@ using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IResultMessageBuilder>(),
                         provider.GetRequiredService<IShapeXmlHelper>(),
-                        provider.GetRequiredService<IVisioFileSourceFactory>(),
+                        provider.GetRequiredService<IStructuresFactory>(),
                         sourceFile,
                         document,
                         searchString,
@@ -90,7 +90,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ICellXmlHelper>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IResultMessageBuilder>(),
-                        provider.GetRequiredService<ITableFileSourceFactory>(),
+                        provider.GetRequiredService<IStructuresFactory>(),
                         sourceFile,
                         dataSet,
                         searchString,

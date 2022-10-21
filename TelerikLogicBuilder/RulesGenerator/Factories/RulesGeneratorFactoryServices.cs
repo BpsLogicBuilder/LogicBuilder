@@ -103,11 +103,11 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IJumpDataParser>(),
                         provider.GetRequiredService<IPathHelper>(),
-                        provider.GetRequiredService<IShapeHelper>(),
-                        provider.GetRequiredService<IShapeXmlHelper>(),
                         provider.GetRequiredService<IResultMessageBuilder>(),
                         provider.GetRequiredService<IRulesGeneratorFactory>(),
-                        provider.GetRequiredService<IVisioFileSourceFactory>(),
+                        provider.GetRequiredService<IShapeHelper>(),
+                        provider.GetRequiredService<IShapeXmlHelper>(),
+                        provider.GetRequiredService<IStructuresFactory>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         sourceFile,
                         document,
@@ -547,18 +547,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         };
                     }
                 )
-                .AddTransient<Func<string, int, int, TableFileSource>>
-                (
-                    provider =>
-                    (sourceFileFullname, row, column) => new TableFileSource
-                    (
-                        provider.GetRequiredService<IPathHelper>(),
-                        sourceFileFullname,
-                        row, 
-                        column
-                    )
-                )
-                .AddTransient<ITableFileSourceFactory, TableFileSourceFactory>()
                 .AddTransient<Func<DataRow, string, int, ApplicationTypeInfo, IDictionary<string, string>, ITableRowRuleBuilder>>
                 (
                     provider =>
@@ -612,29 +600,14 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IPriorityDataParser>(),
                         provider.GetRequiredService<IResultMessageBuilder>(),
-                        provider.GetRequiredService<ITableFileSourceFactory>(),
+                        provider.GetRequiredService<IStructuresFactory>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         sourceFile,
                         dataSet,
                         application,
                         progress,
                         cancellationTokenSource)
-                )
-                .AddTransient<Func<string, int, short, string, int, int, VisioFileSource>>
-                (
-                    provider =>
-                    (sourceFileFullname, pageId, pageIndex, shapeMasterName, shapeId, shapeIndex) => new VisioFileSource
-                    (
-                        provider.GetRequiredService<IPathHelper>(),
-                        sourceFileFullname,
-                        pageId,
-                        pageIndex,
-                        shapeMasterName,
-                        shapeId,
-                        shapeIndex
-                    )
-                )
-                .AddTransient<IVisioFileSourceFactory, VisioFileSourceFactory>();
+                );
         }
     }
 }

@@ -11,5 +11,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.StructuresFactories
             Page page,
             Shape shape,
             List<ResultMessage> resultMessages);
+
+        TableFileSource GetTableFileSource(string sourceFileFullname, int row, int column);
+
+        VisioFileSource GetVisioFileSource(string sourceFileFullname, int pageId, short pageIndex, string shapeMasterName, int shapeId, int shapeIndex);
     }
 }

@@ -1,8 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
@@ -17,13 +16,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
     {
         private readonly IResultMessageBuilder _resultMessageBuilder;
         private readonly IShapeXmlHelper _shapeXmlHelper;
-        private readonly IVisioFileSourceFactory _visioFileSourceFactory;
+        private readonly IStructuresFactory _structuresFactory;
 
         public DiagramSearcher(
             IPathHelper pathHelper,
             IResultMessageBuilder resultMessageBuilder,
             IShapeXmlHelper shapeXmlHelper,
-            IVisioFileSourceFactory visioFileSourceFactory,
+            IStructuresFactory structuresFactory,
             string sourceFile,
             Document document,
             string searchString,
@@ -35,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         {
             _resultMessageBuilder = resultMessageBuilder;
             _shapeXmlHelper = shapeXmlHelper;
-            _visioFileSourceFactory = visioFileSourceFactory;
+            _structuresFactory = structuresFactory;
 
             SourceFile = sourceFile;
             Document = document;
@@ -83,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             => _resultMessageBuilder.BuilderMessage(visioFileSource, message);
 
         private VisioFileSource GetVisioFileSource(Page page, Shape shape)
-            => _visioFileSourceFactory.GetVisioFileSource
+            => _structuresFactory.GetVisioFileSource
             (
                 SourceFile,
                 page.ID,

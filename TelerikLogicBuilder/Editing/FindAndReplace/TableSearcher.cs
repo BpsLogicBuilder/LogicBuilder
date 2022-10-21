@@ -1,8 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,13 +16,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
     {
         private readonly ICellXmlHelper _cellXmlHelper;
         private readonly IResultMessageBuilder _resultMessageBuilder;
-        private readonly ITableFileSourceFactory _tableFileSourceFactory;
+        private readonly IStructuresFactory _structuresFactory;
 
         public TableSearcher(
             ICellXmlHelper cellXmlHelper,
             IPathHelper pathHelper,
             IResultMessageBuilder resultMessageBuilder,
-            ITableFileSourceFactory tableFileSourceFactory,
+            IStructuresFactory structuresFactory,
             string sourceFile,
             DataSet dataSet,
             string searchString,
@@ -35,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         {
             _cellXmlHelper = cellXmlHelper;
             _resultMessageBuilder = resultMessageBuilder;
-            _tableFileSourceFactory = tableFileSourceFactory;
+            _structuresFactory = structuresFactory;
 
             SourceFile = sourceFile;
             DataSet = dataSet;
@@ -84,7 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             => _resultMessageBuilder.BuilderMessage(tableFileSource, message);
 
         private TableFileSource GetTableFileSource(int row, int column)
-            => _tableFileSourceFactory.GetTableFileSource
+            => _structuresFactory.GetTableFileSource
             (
                 SourceFile,
                 row,

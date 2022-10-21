@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
@@ -52,7 +51,7 @@ namespace TelerikLogicBuilder.Tests
             //act
             var result = builder.BuilderMessage
             (
-                serviceProvider.GetRequiredService<ITableFileSourceFactory>().GetTableFileSource
+                serviceProvider.GetRequiredService<IStructuresFactory>().GetTableFileSource
                 (
                     @"C:\folder\file.tbl",
                     2, 
@@ -91,7 +90,7 @@ namespace TelerikLogicBuilder.Tests
             //act
             var result = builder.BuilderMessage
             (
-                serviceProvider.GetRequiredService<IVisioFileSourceFactory>().GetVisioFileSource
+                serviceProvider.GetRequiredService<IStructuresFactory>().GetVisioFileSource
                 (
                     @"C:\folder\file.vsd",
                     21,

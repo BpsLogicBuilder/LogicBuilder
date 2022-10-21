@@ -1,13 +1,12 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         private readonly IFunctionsElementValidator _functionsElementValidator;
         private readonly IPriorityDataParser _priorityDataParser;
         private readonly IResultMessageBuilder _resultMessageBuilder;
-        private readonly ITableFileSourceFactory _tableFileSourceFactory;
+        private readonly IStructuresFactory _structuresFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public TableValidator(
@@ -38,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             IPathHelper pathHelper,
             IPriorityDataParser priorityDataParser,
             IResultMessageBuilder resultMessageBuilder,
-            ITableFileSourceFactory tableFileSourceFactory,
+            IStructuresFactory structuresFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             DataSet dataSet,
@@ -53,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             _functionsElementValidator = functionsElementValidator;
             _priorityDataParser = priorityDataParser;
             _resultMessageBuilder = resultMessageBuilder;
-            _tableFileSourceFactory = tableFileSourceFactory;
+            _structuresFactory = structuresFactory;
             _xmlDocumentHelpers = xmlDocumentHelpers;
 
             SourceFile = sourceFile;
@@ -206,7 +205,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         }
 
         private TableFileSource GetTableFileSource(int row, int column)
-            => _tableFileSourceFactory.GetTableFileSource
+            => _structuresFactory.GetTableFileSource
             (
                 SourceFile,
                 row,

@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
-namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
+namespace ABIS.LogicBuilder.FlowBuilder.Structures
 {
     internal class TableFileSource
     {

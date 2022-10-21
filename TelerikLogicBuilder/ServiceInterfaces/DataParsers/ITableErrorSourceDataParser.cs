@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
+﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers

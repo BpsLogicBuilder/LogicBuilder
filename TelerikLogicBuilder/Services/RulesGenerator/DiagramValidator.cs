@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.StructuresFactories;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
@@ -21,22 +22,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IJumpDataParser _jumpDataParser;
-        private readonly IShapeHelper _shapeHelper;
-        private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IRulesGeneratorFactory _rulesGeneratorFactory;
         private readonly IResultMessageBuilder _resultMessageBuilder;
-        private readonly IVisioFileSourceFactory _visioFileSourceFactory;
+        private readonly IShapeHelper _shapeHelper;
+        private readonly IShapeXmlHelper _shapeXmlHelper;
+        private readonly IStructuresFactory _structuresFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public DiagramValidator(
             IExceptionHelper exceptionHelper,
             IJumpDataParser jumpDataParser,
             IPathHelper pathHelper,
-            IShapeHelper shapeHelper,
-            IShapeXmlHelper shapeXmlHelper,
             IResultMessageBuilder resultMessageBuilder,
             IRulesGeneratorFactory rulesGeneratorFactory,
-            IVisioFileSourceFactory visioFileSourceFactory,
+            IShapeHelper shapeHelper,
+            IShapeXmlHelper shapeXmlHelper,
+            IStructuresFactory structuresFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string sourceFile,
             Document document,
@@ -56,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             _shapeXmlHelper = shapeXmlHelper;
             _resultMessageBuilder = resultMessageBuilder;
             _rulesGeneratorFactory = rulesGeneratorFactory;
-            _visioFileSourceFactory = visioFileSourceFactory;
+            _structuresFactory = structuresFactory;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
@@ -314,7 +315,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         }
 
         private VisioFileSource GetVisioFileSource(Page page, Shape shape)
-            => _visioFileSourceFactory.GetVisioFileSource
+            => _structuresFactory.GetVisioFileSource
             (
                 SourceFile,
                 page.ID,
@@ -325,7 +326,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             );
 
         private VisioFileSource GetVisioFileSource(ShapeIdInfo shapeIdInfo)
-            => _visioFileSourceFactory.GetVisioFileSource
+            => _structuresFactory.GetVisioFileSource
             (
                 SourceFile,
                 shapeIdInfo.PageId,

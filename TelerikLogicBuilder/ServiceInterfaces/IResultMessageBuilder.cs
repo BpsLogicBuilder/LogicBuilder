@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
-using ABIS.LogicBuilder.FlowBuilder.Structures;
+﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {

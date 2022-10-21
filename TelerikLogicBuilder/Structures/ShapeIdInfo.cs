@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Structures
 {
     internal class ShapeIdInfo
     {
