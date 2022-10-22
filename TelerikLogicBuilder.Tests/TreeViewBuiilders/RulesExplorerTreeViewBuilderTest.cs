@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -23,25 +24,22 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         }
 
         [Fact]
-        public void CanCreateRulesExplorerTreeViewBuilder()
+        public void CreateRulesExplorerTreeViewBuilderThrows()
         {
-            //arrange
-            IRulesExplorerTreeViewBuilder service = _fixture.ServiceProvider.GetRequiredService<IRulesExplorerTreeViewBuilder>();
-
             //assert
-            Assert.NotNull(service);
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<IRulesExplorerTreeViewBuilder>());
         }
 
         [Fact]
         public void CanBuildTreeView()
         {
             //arrange
-            IRulesExplorerTreeViewBuilder service = _fixture.ServiceProvider.GetRequiredService<IRulesExplorerTreeViewBuilder>();
+            ITreeViewBuiilderFactory factory = _fixture.ServiceProvider.GetRequiredService<ITreeViewBuiilderFactory>();
             RadTreeView radTreeView = new();
             Dictionary<string, string> expandedNodes = new();
 
             //act
-            service.Build(radTreeView, expandedNodes);
+            factory.GetRulesExplorerTreeViewBuilder(expandedNodes).Build(radTreeView);
 
             //assert
             Assert.NotNull(radTreeView.Nodes[0]);//project

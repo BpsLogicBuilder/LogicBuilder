@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddReflectionFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<string, string[], ILoadAssemblyFromName>>
+                .AddSingleton<Func<string, string[], ILoadAssemblyFromName>>
                 (
                     provider =>
                     (activityAssemblyFullName, paths) => new LoadAssemblyFromName
@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         paths
                     )
                 )
-                .AddTransient<IReflectionFactory, ReflectionFactory>();
+                .AddSingleton<IReflectionFactory, ReflectionFactory>();
         }
     }
 }

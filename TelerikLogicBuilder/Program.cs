@@ -30,9 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         {
             get
             {
-                if (_serviceCollection == null)
-                {
-                    _serviceCollection = new ServiceCollection()
+                _serviceCollection ??= new ServiceCollection()
                         .AddMdiParentCommands()
                         .AddEditingControls()
                         .AddFlowBuilder()
@@ -46,7 +44,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
                         .AddTreeViewBuiilders()
                         .AddUserControls()
                         .AddXmlValidation();
-                }
 
                 return _serviceCollection;
             }

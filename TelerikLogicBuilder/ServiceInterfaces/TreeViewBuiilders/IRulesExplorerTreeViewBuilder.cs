@@ -5,6 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders
 {
     internal interface IRulesExplorerTreeViewBuilder
     {
-        void Build(RadTreeView treeView, IDictionary<string, string> expandedNodes);
+        void Build(RadTreeView treeView);
     }
 }

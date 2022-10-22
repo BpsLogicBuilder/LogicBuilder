@@ -2,8 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -18,10 +18,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal partial class DocumentsExplorer : UserControl, IDocumentsExplorer
     {
-        private readonly IDocumentsExplorerTreeViewBuilder _documentsExplorerTreeViewBuilder;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IImageListService _imageImageListService;
         private readonly IMainWindow _mainWindow;
+        private readonly ITreeViewBuiilderFactory _treeViewBuiilderFactory;
         private readonly ITreeViewService _treeViewService;
         private readonly IUiNotificationService _uiNotificationService;
         private readonly DocumentExplorerErrorsList documentProfileErrors = new();
@@ -62,10 +62,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public IDictionary<string, string> ExpandedNodes => expandedNodes;
 
         public DocumentsExplorer(
-            IDocumentsExplorerTreeViewBuilder documentsExplorerTreeViewBuilder,
             IExceptionHelper exceptionHelper,
             IImageListService imageImageListService,
             IMainWindow mainWindow,
+            ITreeViewBuiilderFactory treeViewBuiilderFactory,
             ITreeViewService treeViewService,
             FileSystemTreeView fileSystemTreeView,
             IUiNotificationService uiNotificationService,
@@ -80,10 +80,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             RefreshDocumentsExplorerCommand refreshDocumentsExplorerCommand,
             RenameCommand renameDocumentCommand)
         {
-            _documentsExplorerTreeViewBuilder = documentsExplorerTreeViewBuilder;
             _exceptionHelper = exceptionHelper;
             _imageImageListService = imageImageListService;
             _mainWindow = mainWindow;
+            _treeViewBuiilderFactory = treeViewBuiilderFactory;
             _treeViewService = treeViewService;           
             _uiNotificationService = uiNotificationService;
             _addExistingFileCommand = addExistingFileCommand;
@@ -123,13 +123,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         }
 
         private void BuildTreeView() 
-            => _documentsExplorerTreeViewBuilder.Build
+            => _treeViewBuiilderFactory.GetDocumentsExplorerTreeViewBuilder
             (
-                radTreeView1, 
-                documentProfileErrors, 
-                documentNames, 
+                documentNames,
+                documentProfileErrors,
                 expandedNodes
-            );
+            ).Build(radTreeView1);
 
         private void CreateContextMenu()
         {

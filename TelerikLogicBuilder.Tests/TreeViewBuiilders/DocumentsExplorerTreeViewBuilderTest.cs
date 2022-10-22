@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -24,27 +25,29 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         }
 
         [Fact]
-        public void CanCreateDocumentsExplorerTreeViewBuilder()
+        public void CreateDocumentsExplorerTreeViewBuilderThrows()
         {
-            //arrange
-            IDocumentsExplorerTreeViewBuilder service = _fixture.ServiceProvider.GetRequiredService<IDocumentsExplorerTreeViewBuilder>();
-
             //assert
-            Assert.NotNull(service);
+            Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<IDocumentsExplorerTreeViewBuilder>());
         }
 
         [Fact]
         public void CanBuildTreeView()
         {
             //arrange
-            IDocumentsExplorerTreeViewBuilder service = _fixture.ServiceProvider.GetRequiredService<IDocumentsExplorerTreeViewBuilder>();
+            ITreeViewBuiilderFactory factory = _fixture.ServiceProvider.GetRequiredService<ITreeViewBuiilderFactory>();
             RadTreeView radTreeView = new();
             DocumentExplorerErrorsList documentProfileErrors = new();
             Dictionary<string, string> documentNames = new();
             Dictionary<string, string> expandedNodes = new();
 
             //act
-            service.Build(radTreeView, documentProfileErrors, documentNames, expandedNodes);
+            factory.GetDocumentsExplorerTreeViewBuilder
+            (
+                documentNames,
+                documentProfileErrors, 
+                expandedNodes
+            ).Build(radTreeView);
 
             //assert
             Assert.NotNull(radTreeView.Nodes[0]);

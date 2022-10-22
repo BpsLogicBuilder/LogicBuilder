@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
     {
         private readonly IMainWindow _mainWindow;
         private readonly IImageListService _imageImageListService;
-        private readonly IRulesExplorerTreeViewBuilder _rulesExplorerTreeViewBuilder;
+        private readonly ITreeViewBuiilderFactory _treeViewBuiilderFactory;
         private readonly ITreeViewService _treeViewService;
         private readonly IUiNotificationService _uiNotificationService;
         private readonly Dictionary<string, string> expandedNodes = new();
@@ -42,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public RulesExplorer(
             IMainWindow mainWindow,
             IImageListService imageImageListService,
-            IRulesExplorerTreeViewBuilder rulesExplorerTreeViewBuilder,
+            ITreeViewBuiilderFactory treeViewBuiilderFactory,
             ITreeViewService treeViewService,
             IUiNotificationService uiNotificationService,
             DeleteAllRulesCommand deleteAllRulesCommand,
@@ -53,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             _mainWindow = mainWindow;
             _imageImageListService = imageImageListService;
-            _rulesExplorerTreeViewBuilder = rulesExplorerTreeViewBuilder;
+            _treeViewBuiilderFactory = treeViewBuiilderFactory;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
             _deleteAllRulesCommand = deleteAllRulesCommand;
@@ -88,10 +89,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         }
 
         private void BuildTreeView()
-            => _rulesExplorerTreeViewBuilder.Build
+            => _treeViewBuiilderFactory.GetRulesExplorerTreeViewBuilder(expandedNodes).Build
             (
-                radTreeView1,
-                expandedNodes
+                radTreeView1
             );
 
         private void CreateContextMenu()
