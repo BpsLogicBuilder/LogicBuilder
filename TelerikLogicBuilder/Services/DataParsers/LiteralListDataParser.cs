@@ -9,15 +9,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 {
     internal class LiteralListDataParser : ILiteralListDataParser
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public LiteralListDataParser(IContextProvider contextProvider)
+        public LiteralListDataParser(
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _exceptionHelper = contextProvider.ExceptionHelper;
-            _enumHelper = contextProvider.EnumHelper;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public LiteralListData Parse(XmlElement xmlElement)

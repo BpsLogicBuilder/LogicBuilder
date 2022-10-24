@@ -9,13 +9,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 {
     internal class ConditionsDataParser : IConditionsDataParser
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ConditionsDataParser(IContextProvider contextProvider)
+        public ConditionsDataParser(
+            IExceptionHelper exceptionHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public ConditionsData Parse(XmlElement xmlElement)

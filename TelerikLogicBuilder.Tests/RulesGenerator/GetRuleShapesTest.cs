@@ -14,6 +14,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
+using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
 using System;
@@ -137,6 +138,8 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IEnumHelper EnumHelper;
+        internal ITypeHelper TypeHelper;
         internal IFunctionFactory FunctionFactory;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
@@ -148,6 +151,8 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
+            TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
@@ -373,7 +378,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                 name,
                 name,
                 VariableCategory.StringKeyIndexer,
-                ContextProvider.TypeHelper.ToId(ContextProvider.EnumHelper.GetSystemType(literalVariableType)),
+                TypeHelper.ToId(EnumHelper.GetSystemType(literalVariableType)),
                 "",
                 "flowManager.FlowDataCache.Items",
                 "Field.Property.Property",

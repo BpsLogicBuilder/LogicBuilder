@@ -258,6 +258,8 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IEnumHelper EnumHelper;
+        internal ITypeHelper TypeHelper;
         internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
@@ -273,6 +275,8 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
+            TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
@@ -418,7 +422,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                 name,
                 name,
                 VariableCategory.StringKeyIndexer,
-                ContextProvider.TypeHelper.ToId(ContextProvider.EnumHelper.GetSystemType(literalVariableType)),
+                TypeHelper.ToId(EnumHelper.GetSystemType(literalVariableType)),
                 "",
                 "flowManager.FlowDataCache.Items",
                 "Field.Property.Property",

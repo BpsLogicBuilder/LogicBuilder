@@ -10,15 +10,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 {
     internal class ConstructorDataParser : IConstructorDataParser
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IGenericConfigXmlParser _genericConfigXmlParser;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ConstructorDataParser(IContextProvider contextProvider, IGenericConfigXmlParser genericConfigXmlParser)
+        public ConstructorDataParser(
+            IExceptionHelper exceptionHelper,
+            IGenericConfigXmlParser genericConfigXmlParser,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _exceptionHelper = exceptionHelper;
             _genericConfigXmlParser = genericConfigXmlParser;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public ConstructorData Parse(XmlElement xmlElement)

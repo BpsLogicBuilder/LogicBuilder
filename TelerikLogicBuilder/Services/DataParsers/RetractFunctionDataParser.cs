@@ -8,13 +8,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 {
     internal class RetractFunctionDataParser : IRetractFunctionDataParser
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public RetractFunctionDataParser(IContextProvider contextProvider)
+        public RetractFunctionDataParser(
+            IExceptionHelper exceptionHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public RetractFunctionData Parse(XmlElement xmlElement)

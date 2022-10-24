@@ -97,6 +97,8 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
+            TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
@@ -182,7 +184,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 name,
                 name,
                 VariableCategory.StringKeyIndexer,
-                ContextProvider.TypeHelper.ToId(ContextProvider.EnumHelper.GetSystemType(literalVariableType)),
+                TypeHelper.ToId(EnumHelper.GetSystemType(literalVariableType)),
                 "",
                 "flowManager.FlowDataCache.Items",
                 "Field.Property.Property",
@@ -207,9 +209,11 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IEnumHelper EnumHelper;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;
+        internal ITypeHelper TypeHelper;
         internal ITypeLoadHelper TypeLoadHelper;
         internal IApplicationTypeInfoManager ApplicationTypeInfoManager;
         internal IVariableFactory VariableFactory;

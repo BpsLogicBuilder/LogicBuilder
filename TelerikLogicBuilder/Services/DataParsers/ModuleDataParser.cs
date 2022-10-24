@@ -7,13 +7,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 {
     internal class ModuleDataParser : IModuleDataParser
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ModuleDataParser(IXmlDocumentHelpers xmlDocumentHelpers, IExceptionHelper exceptionHelper)
+        public ModuleDataParser(
+            IExceptionHelper exceptionHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _xmlDocumentHelpers = xmlDocumentHelpers;
             _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public string Parse(XmlElement xmlElement)

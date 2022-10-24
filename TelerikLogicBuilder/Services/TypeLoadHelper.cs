@@ -20,11 +20,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public TypeLoadHelper(IContextProvider contextProvider, IAssemblyLoadContextManager assemblyLoadContextService)
+        public TypeLoadHelper(
+            IAssemblyLoadContextManager assemblyLoadContextService,
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper)
         {
             _assemblyLoadContextService = assemblyLoadContextService;
-            _enumHelper = contextProvider.EnumHelper;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
         }
 
         public bool TryGetSystemType(GenericConfigBase config, ApplicationTypeInfo application, [NotNullWhen(true)] out Type? type)

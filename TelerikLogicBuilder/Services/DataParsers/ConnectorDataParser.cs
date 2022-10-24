@@ -12,13 +12,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 {
     internal class ConnectorDataParser : IConnectorDataParser
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ConnectorDataParser(IContextProvider contextProvider)
+        public ConnectorDataParser(
+            IExceptionHelper exceptionHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public ConnectorData Parse(XmlElement xmlElement)

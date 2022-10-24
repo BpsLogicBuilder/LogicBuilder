@@ -13,15 +13,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
 {
     internal class VariableValidationHelper : IVariableValidationHelper
     {
-        private readonly IVariableHelper _variableHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IVariableHelper _variableHelper;
 
-        public VariableValidationHelper(IContextProvider contextProvider)
+        public VariableValidationHelper(
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            IVariableHelper variableHelper)
         {
-            _variableHelper = contextProvider.VariableHelper;
-            _enumHelper = contextProvider.EnumHelper;
-            _exceptionHelper = contextProvider.ExceptionHelper;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _variableHelper = variableHelper;
         }
 
         public void ValidateMemberName(VariableCategory variableCategory, string memberName, string variableName, ICollection<string> errors, IDictionary<string, VariableBase> variables)

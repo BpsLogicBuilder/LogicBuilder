@@ -166,6 +166,8 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConstructorTypeHelper = ServiceProvider.GetRequiredService<IConstructorTypeHelper>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
+            EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
+            TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
@@ -276,7 +278,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 name,
                 name,
                 VariableCategory.StringKeyIndexer,
-                ContextProvider.TypeHelper.ToId(ContextProvider.EnumHelper.GetSystemType(literalVariableType)),
+                TypeHelper.ToId(EnumHelper.GetSystemType(literalVariableType)),
                 "",
                 "flowManager.FlowDataCache.Items",
                 "Field.Property.Property",
@@ -302,6 +304,8 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationService ConfigurationService;
         internal IConstructorTypeHelper ConstructorTypeHelper;
         internal IContextProvider ContextProvider;
+        internal IEnumHelper EnumHelper;
+        internal ITypeHelper TypeHelper;
         internal IConstructorFactory ConstructorFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

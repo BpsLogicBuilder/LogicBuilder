@@ -149,7 +149,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 (
                     CultureInfo.CurrentCulture,
                     Strings.functionGenericArgsMisMatchFormat2,
-                    _fixture.ContextProvider.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
+                    _fixture.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
                     function.TypeName,
                     string.Join(Strings.itemsCommaSeparator, function.GenericArguments)
                 ),
@@ -207,7 +207,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 (
                     CultureInfo.CurrentCulture,
                     Strings.functionGenericArgsMisMatchFormat2,
-                    _fixture.ContextProvider.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
+                    _fixture.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
                     function.TypeName,
                     string.Join(Strings.itemsCommaSeparator, function.GenericArguments)
                 ),
@@ -317,7 +317,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
                 (
                     CultureInfo.CurrentCulture,
                     Strings.functionGenericArgsMisMatchFormat2,
-                    _fixture.ContextProvider.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
+                    _fixture.EnumHelper.GetVisibleEnumText(ReferenceCategories.Type),
                     function.TypeName,
                     string.Join(Strings.itemsCommaSeparator, function.GenericArguments)
                 ),
@@ -381,6 +381,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+            EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             GenericConfigFactory = ServiceProvider.GetRequiredService<IGenericConfigFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -529,6 +530,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IContextProvider ContextProvider;
+        internal IEnumHelper EnumHelper;
         internal IFunctionFactory FunctionFactory;
         internal IGenericConfigFactory GenericConfigFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
