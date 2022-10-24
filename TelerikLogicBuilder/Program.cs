@@ -21,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         #region Variables
         private static MDIParent? mdiParent;
+        private static Form? splashScreen;
         #endregion Variables
 
         public static IServiceProvider ServiceProvider { get; set; }
@@ -65,9 +66,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.themeName;
+            ShowSplashScreen();
 
             mdiParent = ServiceProvider.GetRequiredService<MDIParent>();
 
+            CloseSplashScreen();
             Application.Run(mdiParent);
         }
 
@@ -84,6 +87,20 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _ = new Telerik.WinControls.Themes.Office2019GrayTheme();
             _ = new Telerik.WinControls.Themes.Office2019LightTheme();
             _ = new Telerik.WinControls.Themes.Office2019DarkTheme();
+        }
+
+        private static void ShowSplashScreen()
+        {
+            splashScreen = ServiceProvider.GetRequiredService<SplashScreen>();
+            splashScreen.Show();
+        }
+
+        private static void CloseSplashScreen()
+        {
+            if (splashScreen == null)
+                return;
+
+             splashScreen.Close();
         }
 
         #region EventHandlers
