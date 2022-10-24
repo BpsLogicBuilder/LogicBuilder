@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -18,32 +19,41 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class BinaryOperatorFunctionElementValidator : IBinaryOperatorFunctionElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IAnyParametersHelper _anyParametersHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IParameterHelper _parameterHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public BinaryOperatorFunctionElementValidator(IXmlElementValidator xmlElementValidator)
+        public BinaryOperatorFunctionElementValidator(
+            IAnyParametersHelper anyParametersHelper,
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            IParameterHelper parameterHelper,
+            ITypeHelper typeHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _anyParametersHelper = xmlElementValidator.AnyParametersHelper;
-            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
-            _parameterHelper = xmlElementValidator.ContextProvider.ParameterHelper;
-            _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
-            _xmlDocumentHelpers = xmlElementValidator.ContextProvider.XmlDocumentHelpers;
+            _anyParametersHelper = anyParametersHelper;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _parameterHelper = parameterHelper;
+            _typeHelper = typeHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor.
-        //These fields may be null in the constructor i.e. when new FunctionElementValidator((XmlElementValidator)this)
-        //therefore they must be properties.
-        private IParametersElementValidator ParametersElementValidator => _xmlElementValidator.ParametersElementValidator;
-        private IConstructorElementValidator ConstructorElementValidator => _xmlElementValidator.ConstructorElementValidator;
-        private IFunctionElementValidator FunctionElementValidator => _xmlElementValidator.FunctionElementValidator;
-        private IVariableElementValidator VariableElementValidator => _xmlElementValidator.VariableElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private IParametersElementValidator? _parametersElementValidator;
+		private IParametersElementValidator ParametersElementValidator => _parametersElementValidator ??= _xmlElementValidatorFactory.GetParametersElementValidator();
+        private IConstructorElementValidator? _constructorElementValidator;
+		private IConstructorElementValidator ConstructorElementValidator => _constructorElementValidator ??= _xmlElementValidatorFactory.GetConstructorElementValidator();
+        private IFunctionElementValidator? _functionElementValidator;
+		private IFunctionElementValidator FunctionElementValidator => _functionElementValidator ??= _xmlElementValidatorFactory.GetFunctionElementValidator();
+        private IVariableElementValidator? _variableElementValidator;
+		private IVariableElementValidator VariableElementValidator => _variableElementValidator ??= _xmlElementValidatorFactory.GetVariableElementValidator();
 
         public void Validate(Function function, IList<XmlElement> parameterElementsList, ApplicationTypeInfo application, List<string> validationErrors)
         {

@@ -21,13 +21,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
 
-        public VariableElementValidator(IXmlElementValidator xmlElementValidator)
+        public VariableElementValidator(
+            IExceptionHelper exceptionHelper,
+            IConfigurationService configurationService,
+            ITypeHelper typeHelper,
+            ITypeLoadHelper typeLoadHelper,
+            IVariableDataParser variableDataParser)
         {
-            _variableDataParser = xmlElementValidator.VariableDataParser;
-            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _configurationService = xmlElementValidator.ConfigurationService;
-            _exceptionHelper = xmlElementValidator.ExceptionHelper;
-            _typeHelper = xmlElementValidator.TypeHelper;
+            _exceptionHelper = exceptionHelper;
+            _configurationService = configurationService;
+            _typeHelper = typeHelper;
+            _typeLoadHelper = typeLoadHelper;
+            _variableDataParser = variableDataParser;
         }
 
         public void Validate(XmlElement variableElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)

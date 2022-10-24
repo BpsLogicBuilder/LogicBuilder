@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,23 +13,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class LiteralListElementValidator : ILiteralListElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public LiteralListElementValidator(IXmlElementValidator xmlElementValidator)
+        public LiteralListElementValidator(
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            ITypeHelper typeHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
-            _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
-            _xmlDocumentHelpers = xmlElementValidator.ContextProvider.XmlDocumentHelpers;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _typeHelper = typeHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
-        private ILiteralElementValidator LiteralElementValidator => _xmlElementValidator.LiteralElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private ILiteralElementValidator? _literalElementValidator;
+		private ILiteralElementValidator LiteralElementValidator => _literalElementValidator ??= _xmlElementValidatorFactory.GetLiteralElementValidator();
 
         public void Validate(XmlElement literalListElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
         {

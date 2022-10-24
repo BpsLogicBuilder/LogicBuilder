@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,19 +14,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class ParametersElementValidator : IParametersElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IEnumHelper _enumHelper;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public ParametersElementValidator(IXmlElementValidator xmlElementValidator)
+        public ParametersElementValidator(
+            IEnumHelper enumHelper,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
+            _enumHelper = enumHelper;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor.
-        //These fields may be null in the constructor i.e. when new FunctionElementValidator((XmlElementValidator)this)
-        //therefore they must be properties.
-        private IParameterElementValidator ParameterElementValidator => _xmlElementValidator.ParameterElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private IParameterElementValidator? _parameterElementValidator;
+		private IParameterElementValidator ParameterElementValidator => _parameterElementValidator ??= _xmlElementValidatorFactory.GetParameterElementValidator();
 
         public void Validate(IList<ParameterBase> parameters, IList<XmlElement> parameterElementsList, ApplicationTypeInfo application, List<string> validationErrors)
         {

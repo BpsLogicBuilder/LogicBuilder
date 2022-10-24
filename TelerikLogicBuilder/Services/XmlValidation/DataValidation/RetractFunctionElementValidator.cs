@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,14 +25,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
 
-        public RetractFunctionElementValidator(IXmlElementValidator xmlElementValidator)
+        public RetractFunctionElementValidator(
+            IConfigurationService configurationService,
+            ITypeHelper typeHelper,
+            IExceptionHelper exceptionHelper,
+            IRetractFunctionDataParser retractFunctionDataParser,
+            ITypeLoadHelper typeLoadHelper,
+            IVariableDataParser variableDataParser)
         {
-            _configurationService = xmlElementValidator.ConfigurationService;
-            _typeHelper = xmlElementValidator.TypeHelper;
-            _exceptionHelper = xmlElementValidator.ExceptionHelper;
-            _retractFunctionDataParser = xmlElementValidator.RetractFunctionDataParser;
-            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _variableDataParser = xmlElementValidator.VariableDataParser;
+            _configurationService = configurationService;
+            _typeHelper = typeHelper;
+            _exceptionHelper = exceptionHelper;
+            _retractFunctionDataParser = retractFunctionDataParser;
+            _typeLoadHelper = typeLoadHelper;
+            _variableDataParser = variableDataParser;
         }
 
         public void Validate(XmlElement functionElement, ApplicationTypeInfo application, List<string> validationErrors)

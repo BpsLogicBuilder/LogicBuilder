@@ -278,7 +278,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
-            XmlElementValidator = ServiceProvider.GetRequiredService<IXmlElementValidator>();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -424,7 +423,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
-        internal IXmlElementValidator XmlElementValidator;
         internal IConstructorFactory ConstructorFactory;
         internal IContextProvider ContextProvider;
         internal IFunctionFactory FunctionFactory;

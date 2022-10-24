@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -10,19 +11,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class LiteralListParameterElementValidator : ILiteralListParameterElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IEnumHelper _enumHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public LiteralListParameterElementValidator(IXmlElementValidator xmlElementValidator)
+        public LiteralListParameterElementValidator(
+            IEnumHelper enumHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
-            _xmlDocumentHelpers = xmlElementValidator.ContextProvider.XmlDocumentHelpers;
+            _enumHelper = enumHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
-        private ICallElementValidator CallElementValidator => _xmlElementValidator.CallElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private ICallElementValidator? _callElementValidator;
+		private ICallElementValidator CallElementValidator => _callElementValidator ??= _xmlElementValidatorFactory.GetCallElementValidator();
 
         public void Validate(XmlElement parameterElement, ListOfLiteralsParameter parameter, ApplicationTypeInfo application, List<string> validationErrors)
         {

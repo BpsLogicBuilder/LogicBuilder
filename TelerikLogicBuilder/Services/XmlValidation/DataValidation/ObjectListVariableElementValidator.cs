@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,23 +13,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class ObjectListVariableElementValidator : IObjectListVariableElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public ObjectListVariableElementValidator(IXmlElementValidator xmlElementValidator)
+        public ObjectListVariableElementValidator(
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            ITypeLoadHelper typeLoadHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
-            _xmlDocumentHelpers = xmlElementValidator.ContextProvider.XmlDocumentHelpers;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _typeLoadHelper = typeLoadHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
-        private ICallElementValidator CallElementValidator => _xmlElementValidator.CallElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private ICallElementValidator? _callElementValidator;
+		private ICallElementValidator CallElementValidator => _callElementValidator ??= _xmlElementValidatorFactory.GetCallElementValidator();
 
         public void Validate(XmlElement variableElement, ListOfObjectsVariable variable, ApplicationTypeInfo application, List<string> validationErrors)
         {

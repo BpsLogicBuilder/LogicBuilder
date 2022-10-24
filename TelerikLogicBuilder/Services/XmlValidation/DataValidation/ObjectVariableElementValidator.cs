@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,19 +13,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class ObjectVariableElementValidator : IObjectVariableElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public ObjectVariableElementValidator(IXmlElementValidator xmlElementValidator)
+        public ObjectVariableElementValidator(
+            IExceptionHelper exceptionHelper,
+            ITypeLoadHelper typeLoadHelper,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
-            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
+            _exceptionHelper = exceptionHelper;
+            _typeLoadHelper = typeLoadHelper;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
-        private IObjectElementValidator ObjectElementValidator => _xmlElementValidator.ObjectElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private IObjectElementValidator? _objectElementValidator;
+		private IObjectElementValidator ObjectElementValidator => _objectElementValidator ??= _xmlElementValidatorFactory.GetObjectElementValidator();
 
         public void Validate(XmlElement variableElement, ObjectVariable variable, ApplicationTypeInfo application, List<string> validationErrors)
         {

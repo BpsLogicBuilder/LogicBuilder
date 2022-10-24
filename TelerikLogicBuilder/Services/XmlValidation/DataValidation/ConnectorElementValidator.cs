@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -12,20 +13,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class ConnectorElementValidator : IConnectorElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IConnectorDataParser _connectorDataParser;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public ConnectorElementValidator(IXmlElementValidator xmlElementValidator)
+        public ConnectorElementValidator(
+            IConnectorDataParser connectorDataParser,
+            IExceptionHelper exceptionHelper,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _connectorDataParser = xmlElementValidator.ConnectorDataParser;
-            _exceptionHelper = xmlElementValidator.ExceptionHelper;
+            _connectorDataParser = connectorDataParser;
+            _exceptionHelper = exceptionHelper;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
-        private ILiteralElementValidator LiteralElementValidator => _xmlElementValidator.LiteralElementValidator;
-        private IMetaObjectElementValidator MetaObjectElementValidator => _xmlElementValidator.MetaObjectElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private ILiteralElementValidator? _literalElementValidator;
+		private ILiteralElementValidator LiteralElementValidator => _literalElementValidator ??= _xmlElementValidatorFactory.GetLiteralElementValidator();
+        private IMetaObjectElementValidator? _metaObjectElementValidator;
+		private IMetaObjectElementValidator MetaObjectElementValidator => _metaObjectElementValidator ??= _xmlElementValidatorFactory.GetMetaObjectElementValidator();
 
         public void Validate(XmlElement connectorElement, ApplicationTypeInfo application, List<string> validationErrors)
         {

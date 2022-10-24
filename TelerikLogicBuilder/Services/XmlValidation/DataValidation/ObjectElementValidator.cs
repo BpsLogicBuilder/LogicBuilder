@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -10,19 +11,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class ObjectElementValidator : IObjectElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public ObjectElementValidator(IXmlElementValidator xmlElementValidator)
+        public ObjectElementValidator(
+            IExceptionHelper exceptionHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
-            _xmlDocumentHelpers = xmlElementValidator.ContextProvider.XmlDocumentHelpers;
+            _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
-        private ICallElementValidator CallElementValidator => _xmlElementValidator.CallElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private ICallElementValidator? _callElementValidator;
+		private ICallElementValidator CallElementValidator => _callElementValidator ??= _xmlElementValidatorFactory.GetCallElementValidator();
 
         public void Validate(XmlElement objectElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
         {

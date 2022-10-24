@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,27 +25,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
         private readonly IVariableValueDataParser _variableValueDataParser;
-        private readonly IXmlElementValidator _xmlElementValidator;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public AssertFunctionElementValidator(IXmlElementValidator xmlElementValidator)
+        public AssertFunctionElementValidator(
+            IAssertFunctionDataParser assertFunctionDataParser,
+            IConfigurationService configurationService,
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            ITypeLoadHelper typeLoadHelper,
+            IVariableDataParser variableDataParser,
+            IVariableValueDataParser variableValueDataParser,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _configurationService = xmlElementValidator.ConfigurationService;
-            _enumHelper = xmlElementValidator.ContextProvider.EnumHelper;
-            _exceptionHelper = xmlElementValidator.ExceptionHelper;
-            _assertFunctionDataParser = xmlElementValidator.AssertFunctionDataParser;
-            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _variableDataParser = xmlElementValidator.VariableDataParser;
-            _variableValueDataParser = xmlElementValidator.VariableValueDataParser;
+            _assertFunctionDataParser = assertFunctionDataParser;
+            _configurationService = configurationService;
+            _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
+            _typeLoadHelper = typeLoadHelper;
+            _variableDataParser = variableDataParser;
+            _variableValueDataParser = variableValueDataParser;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor.
-        //These fields may be null in the constructor i.e. when new AssertFunctionElementValidator((XmlElementValidator)this) runs
-        //therefore they must be properties.
-        private ILiteralVariableElementValidator LiteralVariableElementValidator => _xmlElementValidator.LiteralVariableElementValidator;
-        private IObjectVariableElementValidator ObjectVariableElementValidator => _xmlElementValidator.ObjectVariableElementValidator;
-        private ILiteralListVariableElementValidator LiteralListVariableElementValidator => _xmlElementValidator.LiteralListVariableElementValidator;
-        private IObjectListVariableElementValidator ObjectListVariableElementValidator => _xmlElementValidator.ObjectListVariableElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private ILiteralVariableElementValidator? _literalVariableElementValidator;
+		private ILiteralVariableElementValidator LiteralVariableElementValidator => _literalVariableElementValidator ??= _xmlElementValidatorFactory.GetLiteralVariableElementValidator();
+        private IObjectVariableElementValidator? _objectVariableElementValidator;
+		private IObjectVariableElementValidator ObjectVariableElementValidator => _objectVariableElementValidator ??= _xmlElementValidatorFactory.GetObjectVariableElementValidator();
+        private ILiteralListVariableElementValidator? _literalListVariableElementValidator;
+		private ILiteralListVariableElementValidator LiteralListVariableElementValidator => _literalListVariableElementValidator ??= _xmlElementValidatorFactory.GetLiteralListVariableElementValidator();
+        private IObjectListVariableElementValidator? _objectListVariableElementValidator;
+		private IObjectListVariableElementValidator ObjectListVariableElementValidator => _objectListVariableElementValidator ??= _xmlElementValidatorFactory.GetObjectListVariableElementValidator();
 
         public void Validate(XmlElement functionElement, ApplicationTypeInfo application, List<string> validationErrors)
         {

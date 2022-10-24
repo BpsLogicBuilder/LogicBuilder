@@ -37,7 +37,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IParametersElementValidator, ParametersElementValidator>()
                 .AddSingleton<IRetractFunctionElementValidator, RetractFunctionElementValidator>()
                 .AddSingleton<IRuleChainingUpdateFunctionElementValidator, RuleChainingUpdateFunctionElementValidator>()
-                .AddSingleton<IVariableElementValidator, VariableElementValidator>()
-                .AddSingleton<IXmlElementValidator, XmlElementValidator>();
+                .AddSingleton<IVariableElementValidator, VariableElementValidator>();
     }
 }

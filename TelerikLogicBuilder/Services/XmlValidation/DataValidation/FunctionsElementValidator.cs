@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -10,22 +11,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class FunctionsElementValidator : IFunctionsElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IFunctionsDataParser _functionsDataParser;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public FunctionsElementValidator(IXmlElementValidator xmlElementValidator)
+        public FunctionsElementValidator(
+            IFunctionsDataParser functionsDataParser,
+            IExceptionHelper exceptionHelper,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _functionsDataParser = xmlElementValidator.FunctionsDataParser;
-            _exceptionHelper = xmlElementValidator.ContextProvider.ExceptionHelper;
+            _functionsDataParser = functionsDataParser;
+            _exceptionHelper = exceptionHelper;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor and may be null in the constructor
-        //so can't be sset as readonly fields in the constructor
-        private IAssertFunctionElementValidator AssertFunctionElementValidator => _xmlElementValidator.AssertFunctionElementValidator;
-        private IFunctionElementValidator FunctionElementValidator => _xmlElementValidator.FunctionElementValidator;
-        private IRetractFunctionElementValidator RetractFunctionElementValidator => _xmlElementValidator.RetractFunctionElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private IAssertFunctionElementValidator? _assertFunctionElementValidator;
+		private IAssertFunctionElementValidator AssertFunctionElementValidator => _assertFunctionElementValidator ??= _xmlElementValidatorFactory.GetAssertFunctionElementValidator();
+        private IFunctionElementValidator? _functionElementValidator;
+		private IFunctionElementValidator FunctionElementValidator => _functionElementValidator ??= _xmlElementValidatorFactory.GetFunctionElementValidator();
+        private IRetractFunctionElementValidator? _retractFunctionElementValidator;
+		private IRetractFunctionElementValidator RetractFunctionElementValidator => _retractFunctionElementValidator ??= _xmlElementValidatorFactory.GetRetractFunctionElementValidator();
 
         public void Validate(XmlElement functionsElement, ApplicationTypeInfo application, List<string> validationErrors)
         {

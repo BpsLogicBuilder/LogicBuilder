@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,36 +16,35 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class ConstructorElementValidator : IConstructorElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IConstructorDataParser _constructorDataParser;
         private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
         private readonly IConstructorTypeHelper _constructorTypeHelper;
         private readonly IGenericConstructorHelper _genericConstructorHelper;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
-        //private readonly fields were injected into XmlElementValidator
+        private readonly IXmlElementValidatorFactory _xmlElementValidatorFactory;
 
-        public ConstructorElementValidator(IXmlElementValidator xmlElementValidator)
+        public ConstructorElementValidator(
+            IConstructorDataParser constructorDataParser,
+            IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
+            IConstructorTypeHelper constructorTypeHelper,
+            IGenericConstructorHelper genericConstructorHelper,
+            ITypeHelper typeHelper,
+            ITypeLoadHelper typeLoadHelper,
+            IXmlElementValidatorFactory xmlElementValidatorFactory)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _constructorDataParser = xmlElementValidator.ConstructorDataParser;
-            _constructorGenericsConfigrationValidator = xmlElementValidator.ConstructorGenericsConfigrationValidator;
-            _constructorTypeHelper = xmlElementValidator.ConstructorTypeHelper;
-            _genericConstructorHelper = xmlElementValidator.GenericConstructorHelper;
-            _typeLoadHelper = xmlElementValidator.TypeLoadHelper;
-            _typeHelper = xmlElementValidator.ContextProvider.TypeHelper;
+            _constructorDataParser = constructorDataParser;
+            _constructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
+            _constructorTypeHelper = constructorTypeHelper;
+            _genericConstructorHelper = genericConstructorHelper;
+            _typeHelper = typeHelper;
+            _typeLoadHelper = typeLoadHelper;
+            _xmlElementValidatorFactory = xmlElementValidatorFactory;
         }
 
-        //ElementValidator properties are created in the XmlElementValidator constructor.
-        //e.g. if new ConstructorElementValidator((XmlElementValidator)this) is called in the
-        //XmlElementValidator constructor and _parameterElementValidator is assigned in this constructor,
-        //then _parameterElementValidator could be null.
-        //using properties e.g.
-        // private IParameterElementValidator? _parameterElementValidator;
-        // public IParameterElementValidator ParameterElementValidator
-        //     => _parameterElementValidator ??= new ParameterElementValidator(this);
-        // resulted in multiple .dll access errors in the tests.
-        private IParametersElementValidator ParametersElementValidator => _xmlElementValidator.ParametersElementValidator;
+        //Element validators cannot be injected because of cyclic dependencies.
+        private IParametersElementValidator? _parametersElementValidator;
+		private IParametersElementValidator ParametersElementValidator => _parametersElementValidator ??= _xmlElementValidatorFactory.GetParametersElementValidator();
 
         public void Validate(XmlElement constructorElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
         {

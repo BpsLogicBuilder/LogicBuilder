@@ -9,13 +9,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
     internal class RuleChainingUpdateFunctionElementValidator : IRuleChainingUpdateFunctionElementValidator
     {
-        private readonly IXmlElementValidator _xmlElementValidator;
         private readonly IExceptionHelper _exceptionHelper;
 
-        public RuleChainingUpdateFunctionElementValidator(IXmlElementValidator xmlElementValidator)
+        public RuleChainingUpdateFunctionElementValidator(IExceptionHelper exceptionHelper)
         {
-            _xmlElementValidator = xmlElementValidator;
-            _exceptionHelper = _xmlElementValidator.ContextProvider.ExceptionHelper;
+            _exceptionHelper = exceptionHelper;
         }
 
         public void Validate(Function function, IList<XmlElement> parameterElementsList, List<string> validationErrors)
