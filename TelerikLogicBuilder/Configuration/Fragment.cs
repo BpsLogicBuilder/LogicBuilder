@@ -8,11 +8,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
     internal class Fragment
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        public Fragment(string name, string xml, IContextProvider contextProvider)
+        public Fragment(IXmlDocumentHelpers xmlDocumentHelpers, string name, string xml)
         {
             Name = name;
             Xml = xml;
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public string Name { get; set; }

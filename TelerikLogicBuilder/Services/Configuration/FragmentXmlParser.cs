@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -8,16 +9,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class FragmentXmlParser : IFragmentXmlParser
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public FragmentXmlParser(
-            IContextProvider contextProvider,
+            IConfigurationItemFactory configurationItemFactory,
             IExceptionHelper exceptionHelper,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _contextProvider = contextProvider;
+            _configurationItemFactory = configurationItemFactory;
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
@@ -27,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             if (xmlElement.Name != XmlDataConstants.FRAGMENTELEMENT)
                 throw _exceptionHelper.CriticalException("{B0C817E4-F83C-4140-9850-ECE0F5BE3506}");
 
-            return new Fragment
+            return _configurationItemFactory.GetFragment
             (
                 xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                 _xmlDocumentHelpers.GetXmlString
@@ -36,9 +37,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     (
                         _xmlDocumentHelpers.GetSingleChildElement(xmlElement)
                     )
-                ),
-                _contextProvider
-            ); ;
+                )
+            );
         }
     }
 }
