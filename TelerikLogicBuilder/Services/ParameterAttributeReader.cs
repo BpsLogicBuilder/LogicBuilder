@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.AttributeReaders;
+using ABIS.LogicBuilder.FlowBuilder.AttributeReaders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -10,11 +11,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class ParameterAttributeReader : IParameterAttributeReader
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IAttributeReaderFactory _attributeReaderFactory;
 
-        public ParameterAttributeReader(IContextProvider contextProvider)
+        public ParameterAttributeReader(IAttributeReaderFactory attributeReaderFactory)
         {
-            _contextProvider = contextProvider;
+            _attributeReaderFactory = attributeReaderFactory;
         }
 
         public string GetComments(ParameterInfo parameter)
@@ -23,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.COMMENTSATTRIBUTE)
                 {
-                    return new CommentsAttributeReader(attr, _contextProvider.ExceptionHelper).Comments;
+                    return _attributeReaderFactory.GetCommentsAttributeReader(attr).Comments;
                 }
             }
 
@@ -36,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.DOMAINLOOKUPATTRIBUTE)
                 {
-                    return new DomainAttributeReader(attr, _contextProvider).Domain;
+                    return _attributeReaderFactory.GetDomainAttributeReader(attr).Domain;
                 }
             }
 
@@ -49,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.LISTEDITORCONTROLATTRIBUTE)
                 {
-                    return new ListControlTypeAttributeReader(attr, _contextProvider.ExceptionHelper).GetListParameterInputStyle();
+                    return _attributeReaderFactory.GetListControlTypeAttributeReader(attr).GetListParameterInputStyle();
                 }
             }
 
@@ -62,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.PARAMETEREDITORCONTROLATTRIBUTE)
                 {
-                    return new ParameterControlTypeAttributeReader(attr, _contextProvider.ExceptionHelper).GetLiteralInputStyle();
+                    return _attributeReaderFactory.GetParameterControlTypeAttributeReader(attr).GetLiteralInputStyle();
                 }
             }
 
@@ -78,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     if (next.GetType().FullName != AttributeConstants.NAMEVALUEATTRIBUTE)
                         return dictionary;
 
-                    NameValueAttributeReader attributeReader = new(next, _contextProvider.ExceptionHelper);
+                    NameValueAttributeReader attributeReader = _attributeReaderFactory.GetNameValueAttributeReader(next);
                     if (attributeReader != null)
                     {
                         var pair = attributeReader.GetNameValuePair();
@@ -98,7 +99,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.PARAMETEREDITORCONTROLATTRIBUTE)
                 {
-                    return new ParameterControlTypeAttributeReader(attr, _contextProvider.ExceptionHelper).GetObjectInputStyle();
+                    return _attributeReaderFactory.GetParameterControlTypeAttributeReader(attr).GetObjectInputStyle();
                 }
             }
 

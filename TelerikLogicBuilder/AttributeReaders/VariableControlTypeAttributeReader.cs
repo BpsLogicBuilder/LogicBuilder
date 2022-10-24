@@ -6,7 +6,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
 {
     internal class VariableControlTypeAttributeReader : AttributeReader
     {
-        public VariableControlTypeAttributeReader(object attribute, IExceptionHelper exceptionHelper) : base(exceptionHelper)
+        public VariableControlTypeAttributeReader(
+            IExceptionHelper exceptionHelper,
+            object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
         }

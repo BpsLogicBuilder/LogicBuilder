@@ -6,7 +6,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
 {
     internal class ParameterControlTypeAttributeReader: AttributeReader
     {
-        public ParameterControlTypeAttributeReader(object attribute, IExceptionHelper exceptionHelper) : base(exceptionHelper)
+        public ParameterControlTypeAttributeReader(
+            IExceptionHelper exceptionHelper,
+            object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
         }

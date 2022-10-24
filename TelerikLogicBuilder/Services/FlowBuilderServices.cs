@@ -38,6 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IUiNotificationService, UiNotificationService>()
                 .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
                 .AddTransient(typeof(IScopedDisposableManager<>), typeof(ScopedDisposableManager<>))
+                .AddAttributeReaderFactories()
                 .AddStructuresFactories();
     }
 }

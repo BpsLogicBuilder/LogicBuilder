@@ -6,7 +6,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
 {
     internal class ListControlTypeAttributeReader : AttributeReader
     {
-        public ListControlTypeAttributeReader(object attribute, IExceptionHelper exceptionHelper) : base(exceptionHelper)
+        public ListControlTypeAttributeReader(
+            IExceptionHelper exceptionHelper,
+            object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
         }

@@ -5,7 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
 {
     internal class AlsoKnownAsAttributeReader : AttributeReader
     {
-        public AlsoKnownAsAttributeReader(object attribute, IExceptionHelper exceptionHelper) : base(exceptionHelper)
+        public AlsoKnownAsAttributeReader(IExceptionHelper exceptionHelper, object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
         }

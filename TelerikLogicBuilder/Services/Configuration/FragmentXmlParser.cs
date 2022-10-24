@@ -8,15 +8,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class FragmentXmlParser : IFragmentXmlParser
     {
-        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IExceptionHelper _exceptionHelper;
         private readonly IContextProvider _contextProvider;
+        private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public FragmentXmlParser(IContextProvider contextProvider)
+        public FragmentXmlParser(
+            IContextProvider contextProvider,
+            IExceptionHelper exceptionHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _xmlDocumentHelpers = contextProvider.XmlDocumentHelpers;
-            _exceptionHelper = contextProvider.ExceptionHelper;
             _contextProvider = contextProvider;
+            _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
         public Fragment Parse(XmlElement xmlElement)

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.AttributeReaders;
+using ABIS.LogicBuilder.FlowBuilder.AttributeReaders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -10,11 +11,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class MemberAttributeReader : IMemberAttributeReader
     {
-        private readonly IContextProvider _contextProvider;
+        private readonly IAttributeReaderFactory _attributeReaderFactory;
 
-        public MemberAttributeReader(IContextProvider contextProvider)
+        public MemberAttributeReader(IAttributeReaderFactory attributeReaderFactory)
         {
-            _contextProvider = contextProvider;
+            _attributeReaderFactory = attributeReaderFactory;
         }
 
         public string GetAlsoKnownAs(MemberInfo member)
@@ -23,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.ALSOKNOWNASATTRIBUTE)
                 {
-                    return new AlsoKnownAsAttributeReader(attr, _contextProvider.ExceptionHelper).AlsoKnownAs;
+                    return _attributeReaderFactory.GetAlsoKnownAsAttributeReader(attr).AlsoKnownAs;
                 }
             }
 
@@ -36,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.DOMAINLOOKUPATTRIBUTE)
                 {
-                    return new DomainAttributeReader(attr, _contextProvider).Domain;
+                    return _attributeReaderFactory.GetDomainAttributeReader(attr).Domain;
                 }
             }
 
@@ -49,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.FUNCTIONGROUPATTRIBUTE)
                 {
-                    return new FunctionGroupAttributeReader(attr, _contextProvider.ExceptionHelper).GetFunctionCategory();
+                    return _attributeReaderFactory.GetFunctionGroupAttributeReader(attr).GetFunctionCategory();
                 }
             }
 
@@ -62,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.SUMMARYATTRIBUTE)
                 {
-                    return new SummaryAttributeReader(attr, _contextProvider.ExceptionHelper).Summary;
+                    return _attributeReaderFactory.GetSummaryAttributeReader(attr).Summary;
                 }
             }
 
@@ -75,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.LISTEDITORCONTROLATTRIBUTE)
                 {
-                    return new ListControlTypeAttributeReader(attr, _contextProvider.ExceptionHelper).GetListVariableInputStyle();
+                    return _attributeReaderFactory.GetListControlTypeAttributeReader(attr).GetListVariableInputStyle();
                 }
             }
 
@@ -88,7 +89,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.VARIABLEEDITORCONTROLATTRIBUTE)
                 {
-                    return new VariableControlTypeAttributeReader(attr, _contextProvider.ExceptionHelper).GetLiteralInputStyle();
+                    return _attributeReaderFactory.GetVariableControlTypeAttributeReader(attr).GetLiteralInputStyle();
                 }
             }
 
@@ -104,7 +105,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     if (next.GetType().FullName != AttributeConstants.NAMEVALUEATTRIBUTE)
                         return dictionary;
 
-                    NameValueAttributeReader attributeReader = new(next, _contextProvider.ExceptionHelper);
+                    NameValueAttributeReader attributeReader = _attributeReaderFactory.GetNameValueAttributeReader(next);
                     if (attributeReader != null)
                     {
                         var pair = attributeReader.GetNameValuePair();
@@ -124,7 +125,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.VARIABLEEDITORCONTROLATTRIBUTE)
                 {
-                    return new VariableControlTypeAttributeReader(attr, _contextProvider.ExceptionHelper).GetObjectInputStyle();
+                    return _attributeReaderFactory.GetVariableControlTypeAttributeReader(attr).GetObjectInputStyle();
                 }
             }
 
@@ -137,7 +138,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             {
                 if (attr.GetType().FullName == AttributeConstants.COMMENTSATTRIBUTE)
                 {
-                    return new CommentsAttributeReader(attr, _contextProvider.ExceptionHelper).Comments;
+                    return _attributeReaderFactory.GetCommentsAttributeReader(attr).Comments;
                 }
             }
 

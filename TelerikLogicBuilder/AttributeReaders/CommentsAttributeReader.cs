@@ -5,7 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
 {
     internal class CommentsAttributeReader : AttributeReader
     {
-        public CommentsAttributeReader(object attribute, IExceptionHelper exceptionHelper) : base(exceptionHelper)
+        public CommentsAttributeReader(IExceptionHelper exceptionHelper, object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
         }

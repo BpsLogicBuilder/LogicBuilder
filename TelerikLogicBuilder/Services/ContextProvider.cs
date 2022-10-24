@@ -9,7 +9,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
     internal class ContextProvider : IContextProvider
     {
         public ContextProvider(
-            IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IFunctionHelper functionHelper,
             IMainWindow mainWindow,
@@ -23,7 +22,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             IVariableHelper variableHelper,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            ExceptionHelper = exceptionHelper;
             FileIOHelper = fileIOHelper;
             FunctionHelper = functionHelper;
             MainWindow = mainWindow;
@@ -38,7 +36,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             XmlDocumentHelpers = xmlDocumentHelpers;
         }
 
-        public IExceptionHelper ExceptionHelper { get; }
         public IFileIOHelper FileIOHelper { get; }
         public IFunctionHelper FunctionHelper { get; }
         public IMainWindow MainWindow { get; }

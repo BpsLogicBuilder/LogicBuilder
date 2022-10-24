@@ -10,10 +10,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
         private readonly object attribute;
         private readonly IStringHelper _stringHelper;
 
-        public DomainAttributeReader(object attribute, IContextProvider contextProvider) : base(contextProvider.ExceptionHelper)
+        public DomainAttributeReader(
+            IExceptionHelper exceptionHelper,
+            IStringHelper stringHelper,
+            object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
-            _stringHelper = contextProvider.StringHelper;
+            _stringHelper = stringHelper;
         }
 
         internal List<string> Domain

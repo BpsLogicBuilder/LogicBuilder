@@ -3,9 +3,11 @@ using LogicBuilder.Attributes;
 
 namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
 {
-    internal class SummaryAttributeReader: AttributeReader
+    internal class SummaryAttributeReader : AttributeReader
     {
-        public SummaryAttributeReader(object attribute, IExceptionHelper exceptionHelper) : base(exceptionHelper)
+        public SummaryAttributeReader(
+            IExceptionHelper exceptionHelper,
+            object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
         }

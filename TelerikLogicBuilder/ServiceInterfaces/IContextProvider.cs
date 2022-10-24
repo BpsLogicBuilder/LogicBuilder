@@ -7,7 +7,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
 {
     internal interface IContextProvider
     {
-        IExceptionHelper ExceptionHelper { get; }
         IFileIOHelper FileIOHelper { get; }
         IFunctionHelper FunctionHelper { get; }
         IMainWindow MainWindow { get; }

@@ -6,7 +6,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.AttributeReaders
 {
     internal class NameValueAttributeReader: AttributeReader
     {
-        public NameValueAttributeReader(object attribute, IExceptionHelper exceptionHelper) : base(exceptionHelper)
+        public NameValueAttributeReader(
+            IExceptionHelper exceptionHelper,
+            object attribute) : base(exceptionHelper)
         {
             this.attribute = attribute;
         }
