@@ -216,7 +216,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             GenericReturnTypeHelper = ServiceProvider.GetRequiredService<IGenericReturnTypeHelper>();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -274,7 +273,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IGenericReturnTypeHelper GenericReturnTypeHelper;
-        internal IContextProvider ContextProvider;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IReturnTypeFactory ReturnTypeFactory;

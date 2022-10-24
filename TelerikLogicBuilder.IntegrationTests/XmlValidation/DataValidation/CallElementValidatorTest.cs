@@ -163,7 +163,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConstructorTypeHelper = ServiceProvider.GetRequiredService<IConstructorTypeHelper>();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
             TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
@@ -320,7 +319,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IConstructorTypeHelper ConstructorTypeHelper;
-        internal IContextProvider ContextProvider;
         internal IConstructorFactory ConstructorFactory;
         internal IEnumHelper EnumHelper;
         internal ITypeHelper TypeHelper;

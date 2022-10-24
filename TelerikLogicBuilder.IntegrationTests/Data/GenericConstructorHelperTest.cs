@@ -348,7 +348,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             GenericConfigFactory = ServiceProvider.GetRequiredService<IGenericConfigFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -496,7 +495,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IConstructorFactory ConstructorFactory;
-        internal IContextProvider ContextProvider;
         internal IGenericConfigFactory GenericConfigFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

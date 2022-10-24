@@ -249,7 +249,6 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
@@ -427,7 +426,6 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IConstructorFactory ConstructorFactory;
-        internal IContextProvider ContextProvider;
         internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;
         internal IParameterFactory ParameterFactory;

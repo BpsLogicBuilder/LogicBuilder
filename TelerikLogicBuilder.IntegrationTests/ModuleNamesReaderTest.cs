@@ -50,7 +50,6 @@ namespace TelerikLogicBuilder.IntegrationTests
         public ModuleNamesReaderFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
@@ -111,6 +110,5 @@ namespace TelerikLogicBuilder.IntegrationTests
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
-        internal IContextProvider ContextProvider;
     }
 }

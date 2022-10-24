@@ -83,7 +83,6 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
             TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
@@ -283,7 +282,6 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
-        internal IContextProvider ContextProvider;
         internal IEnumHelper EnumHelper;
         internal IFunctionFactory FunctionFactory;
         internal ILoadContextSponsor LoadContextSponsor;

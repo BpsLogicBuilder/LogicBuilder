@@ -504,7 +504,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
+  
             EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
             TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -964,7 +964,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IConstructorFactory ConstructorFactory;
-        internal IContextProvider ContextProvider;
         internal IEnumHelper EnumHelper;
         internal ITypeHelper TypeHelper;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;

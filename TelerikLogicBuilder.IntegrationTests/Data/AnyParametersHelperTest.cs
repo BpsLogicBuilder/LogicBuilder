@@ -1259,7 +1259,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
             TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
@@ -1401,7 +1400,6 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
-        internal IContextProvider ContextProvider;
         internal IEnumHelper EnumHelper;
         internal ITypeHelper TypeHelper;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;

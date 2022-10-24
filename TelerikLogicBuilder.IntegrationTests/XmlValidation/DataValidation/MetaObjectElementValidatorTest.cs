@@ -113,7 +113,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConstructorTypeHelper = ServiceProvider.GetRequiredService<IConstructorTypeHelper>();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             LoadContextSponsor = ServiceProvider.GetRequiredService<ILoadContextSponsor>();
@@ -222,7 +221,6 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IConstructorTypeHelper ConstructorTypeHelper;
-        internal IContextProvider ContextProvider;
         internal IConstructorFactory ConstructorFactory;
         internal IAssemblyLoadContextManager AssemblyLoadContextService;
         internal ILoadContextSponsor LoadContextSponsor;

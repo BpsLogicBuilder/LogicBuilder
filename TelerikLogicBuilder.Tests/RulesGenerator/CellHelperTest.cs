@@ -96,7 +96,6 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
-        internal IContextProvider ContextProvider;
         internal IFunctionFactory FunctionFactory;
         internal IParameterFactory ParameterFactory;
         internal IReturnTypeFactory ReturnTypeFactory;
@@ -104,7 +103,6 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         public CellHelperFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();

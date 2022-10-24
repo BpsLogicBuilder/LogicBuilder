@@ -137,7 +137,6 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
         internal IConfigurationService ConfigurationService;
-        internal IContextProvider ContextProvider;
         internal IEnumHelper EnumHelper;
         internal ITypeHelper TypeHelper;
         internal IFunctionFactory FunctionFactory;
@@ -148,7 +147,6 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         public GetRuleShapesFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-            ContextProvider = ServiceProvider.GetRequiredService<IContextProvider>();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
