@@ -56,7 +56,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.Controls.Add(this.radButtonTextBox1);
             this.Name = "HelperButtonTextBox";
             this.Size = new System.Drawing.Size(350, 24);
