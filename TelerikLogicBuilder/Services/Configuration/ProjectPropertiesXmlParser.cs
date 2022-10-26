@@ -1,9 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml;
 
@@ -14,17 +16,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IApplicationXmlParser _applicationXmlParser;
         private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFileIOHelper _fileIOHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public ProjectPropertiesXmlParser(
             IApplicationXmlParser applicationXmlParser,
             IConfigurationItemFactory configurationItemFactory,
             IExceptionHelper exceptionHelper,
+            IFileIOHelper fileIOHelper,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _applicationXmlParser = applicationXmlParser;
             _configurationItemFactory = configurationItemFactory;
             _exceptionHelper = exceptionHelper;
+            _fileIOHelper = fileIOHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
@@ -32,6 +37,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             if (xmlElement.Name != XmlDataConstants.PROJECTPROPERTIESELEMENT)
                 throw _exceptionHelper.CriticalException("{52526EA2-92A1-4057-9B48-EA3B85517BDA}");
+
+            var directoryInfo = _fileIOHelper.GetNewDirectoryInfo(projectPath);
+            if (!directoryInfo.Exists)
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathDoesNotExistFormat, projectPath));
+
+            if (directoryInfo.Parent == null)
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathCannotBeTheRootFolderFormat, projectPath));
 
             return GetProjectProperties
             (

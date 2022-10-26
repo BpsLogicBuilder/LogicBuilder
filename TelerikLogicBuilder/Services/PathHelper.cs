@@ -61,13 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public string GetFileNameNoExtention(string fileName) => Path.GetFileNameWithoutExtension(fileName);
 
-        public string GetFilePath(string fileName)
-        {
-            if (!File.Exists(fileName))
-                throw _exceptionHelper.CriticalException("{0A5AE88C-572A-43E1-A0BC-CF140DE1BE79}");
-
-            return Path.GetDirectoryName(fileName)!;
-        }
+        public string GetFilePath(string fileName) => Path.GetDirectoryName(fileName)!;
 
         public string GetFolderName(string folderPath)
         {

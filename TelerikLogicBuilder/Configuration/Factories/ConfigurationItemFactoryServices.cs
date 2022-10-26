@@ -52,7 +52,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (projectName, projectPath, applicationList, connectorObjectTypes) => new ProjectProperties
                     (
-                        provider.GetRequiredService<IFileIOHelper>(),
                         provider.GetRequiredService<IPathHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         projectName,

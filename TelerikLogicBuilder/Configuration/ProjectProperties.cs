@@ -13,7 +13,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public ProjectProperties(
-            IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             string projectName,
@@ -27,13 +26,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
             ApplicationList = applicationList;
             ConnectorObjectTypes = connectorObjectTypes;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-
-            var directoryInfo = fileIOHelper.GetNewDirectoryInfo(projectPath);
-            if (!directoryInfo.Exists)
-                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathDoesNotExistFormat, projectPath));
-
-            if (directoryInfo.Parent == null)
-                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathCannotBeTheRootFolderFormat, projectPath));
         }
 
         internal string ProjectName { get; set; }

@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Xml;
 
@@ -39,6 +40,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             string projectName = _pathHelper.GetFileNameNoExtention(fullPath);
             string projectPath = _pathHelper.GetFilePath(fullPath);
+
+            var directoryInfo = _fileIOHelper.GetNewDirectoryInfo(projectPath);
+            if (!directoryInfo.Exists)
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathDoesNotExistFormat, projectPath));
+
+            if (directoryInfo.Parent == null)
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathCannotBeTheRootFolderFormat, projectPath));
 
             ProjectProperties projectProperties = _configurationItemFactory.GetProjectProperties
             (

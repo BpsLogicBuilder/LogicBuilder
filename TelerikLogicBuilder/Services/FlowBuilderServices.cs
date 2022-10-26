@@ -39,6 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IXmlDocumentHelpers, XmlDocumentHelpers>()
                 .AddTransient(typeof(IScopedDisposableManager<>), typeof(ScopedDisposableManager<>))
                 .AddAttributeReaderFactories()
+                .AddFactories()
                 .AddStructuresFactories();
     }
 }
