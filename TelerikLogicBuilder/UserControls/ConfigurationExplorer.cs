@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelpers;
-using System;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -12,7 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
     internal partial class ConfigurationExplorer : UserControl, IConfigurationExplorer
     {
         private readonly IConfigurationExplorerTreeViewBuilder _configurationExplorerTreeViewBuilder;
-        private readonly IImageListService _imageImageListService;
+        private readonly IImageListService _imageListService;
         private readonly ITreeViewService _treeViewService;
 
         private readonly EditConfigurationCommand _editConfigurationCommand;
@@ -23,13 +22,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public ConfigurationExplorer(
             IConfigurationExplorerTreeViewBuilder configurationExplorerTreeViewBuilder,
-            IImageListService imageImageListService,
+            IImageListService imageListService,
             ITreeViewService treeViewService,
             EditConfigurationCommand editConfigurationCommand,
             RefreshConfigurationExplorerCommand refreshConfigurationExplorerCommand)
         {
             _configurationExplorerTreeViewBuilder = configurationExplorerTreeViewBuilder;
-            _imageImageListService = imageImageListService;
+            _imageListService = imageListService;
             _treeViewService = treeViewService;
             _editConfigurationCommand = editConfigurationCommand;
             _refreshConfigurationExplorerCommand = refreshConfigurationExplorerCommand;
@@ -68,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             radTreeView1.RadContextMenu = new()
             {
-                ImageList = _imageImageListService.ImageList,
+                ImageList = _imageListService.ImageList,
                 Items =
                 {
                     new RadMenuSeparatorItem(),

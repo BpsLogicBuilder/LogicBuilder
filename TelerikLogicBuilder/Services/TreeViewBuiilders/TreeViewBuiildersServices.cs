@@ -8,6 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddTreeViewBuiilders(this IServiceCollection services) 
             => services
                 .AddSingleton<IConfigurationExplorerTreeViewBuilder, ConfigurationExplorerTreeViewBuilder>()
+                .AddSingleton<IConfigureProjectPropertiesTreeviewBuilder, ConfigureProjectPropertiesTreeviewBuilder>()
                 .AddSingleton<IEmptyFolderRemover, EmptyFolderRemover>()
                 .AddSingleton<IGetAllCheckedNodes, GetAllCheckedNodes>()
                 .AddSingleton<ISelectDocunentsTreeViewBuilder, SelectDocunentsTreeViewBuilder>()

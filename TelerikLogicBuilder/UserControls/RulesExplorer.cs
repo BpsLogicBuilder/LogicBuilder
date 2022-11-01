@@ -1,8 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers;
 using System;
@@ -16,8 +14,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
     internal partial class RulesExplorer : UserControl, IRulesExplorer
     {
         private readonly IMainWindow _mainWindow;
-        private readonly IImageListService _imageImageListService;
-        private readonly ITreeViewBuiilderFactory _treeViewBuiilderFactory;
+        private readonly IImageListService _imageListService;
+        private readonly ITreeViewBuilderFactory _treeViewBuiilderFactory;
         private readonly ITreeViewService _treeViewService;
         private readonly IUiNotificationService _uiNotificationService;
         private readonly Dictionary<string, string> expandedNodes = new();
@@ -42,8 +40,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public RulesExplorer(
             IMainWindow mainWindow,
-            IImageListService imageImageListService,
-            ITreeViewBuiilderFactory treeViewBuiilderFactory,
+            IImageListService imageListService,
+            ITreeViewBuilderFactory treeViewBuiilderFactory,
             ITreeViewService treeViewService,
             IUiNotificationService uiNotificationService,
             DeleteAllRulesCommand deleteAllRulesCommand,
@@ -53,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             RefreshRulesExplorerCommand refreshRulesExplorerCommand)
         {
             _mainWindow = mainWindow;
-            _imageImageListService = imageImageListService;
+            _imageListService = imageListService;
             _treeViewBuiilderFactory = treeViewBuiilderFactory;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;
@@ -104,7 +102,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             radTreeView1.RadContextMenu = new()
             {
-                ImageList = _imageImageListService.ImageList,
+                ImageList = _imageListService.ImageList,
                 Items =
                 {
                     mnuItemDeleteAllRules,

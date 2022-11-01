@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
     internal partial class DialogFormMessageControl : UserControl
     {
         private readonly IDialogFormMessageCommandFactory _dialogFormMessageCommandFactory;
-        private readonly IImageListService _imageImageListService;
+        private readonly IImageListService _imageListService;
 
         private readonly RadMenuItem mnuItemCopy = new(Strings.mnuItemCopyToClipboardText) { ImageIndex = ImageIndexes.COPYIMAGEINDEX };
         private readonly RadMenuItem mnuItemOpen = new(Strings.mnuItemOpenInTextViewerText) { ImageIndex = ImageIndexes.OPENIMAGEINDEX };
@@ -25,10 +25,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public DialogFormMessageControl(
             IDialogFormMessageCommandFactory dialogFormMessageCommandFactory,
-            IImageListService imageImageListService)
+            IImageListService imageListService)
         {
             _dialogFormMessageCommandFactory = dialogFormMessageCommandFactory;
-            _imageImageListService = imageImageListService;
+            _imageListService = imageListService;
             radContextMenuManager = new RadContextMenuManager();
             InitializeComponent();
             Initialize();
@@ -64,8 +64,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             _state = State.Ok;
             SetColorOk(ThemeResolutionService.ApplicationThemeName);
-            radGroupBoxMessages.Text = string.IsNullOrEmpty(title) 
-                ? Strings.dialogFormMessageControlMessagesGroupBoxHeader 
+            radGroupBoxMessages.Text = string.IsNullOrEmpty(title)
+                ? Strings.dialogFormMessageControlMessagesGroupBoxHeader
                 : title;
             radLabelMessages.Text = message;
         }
@@ -82,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             RadContextMenu radContextMenu = new()
             {
-                ImageList = _imageImageListService.ImageList,
+                ImageList = _imageListService.ImageList,
                 Items =
                 {
                     new RadMenuSeparatorItem(),

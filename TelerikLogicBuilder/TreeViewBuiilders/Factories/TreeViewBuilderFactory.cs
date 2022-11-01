@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
 {
-    internal class TreeViewBuiilderFactory : ITreeViewBuiilderFactory
+    internal class TreeViewBuilderFactory : ITreeViewBuilderFactory
     {
         private readonly Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> _getDocumentsExplorerTreeViewBuilder;
         private readonly Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder> _getRulesExplorerTreeViewBuilder;
 
-        public TreeViewBuiilderFactory(
+        public TreeViewBuilderFactory(
             Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> getDocumentsExplorerTreeViewBuilder,
             Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder> getRulesExplorerTreeViewBuilder)
         {

@@ -44,14 +44,14 @@
             this.lblNickname = new Telerik.WinControls.UI.RadLabel();
             this.lblActivityClass = new Telerik.WinControls.UI.RadLabel();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
-            this.helperButtonTextBox1 = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.txtActivityAssemblyPath = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.txtActivityAssembly = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.cmbRuntime = new Telerik.WinControls.UI.RadDropDownList();
             this.txtActivityClass = new Telerik.WinControls.UI.RadTextBox();
-            this.txtResourceFileDeployment = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
-            this.txtModules = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
+            this.txtResourceFilesDeployment = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
+            this.txtExcludedModules = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.txtWebApiDeployment = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
+            this.radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNickname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblWebApiDeployment)).BeginInit();
@@ -68,6 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbRuntime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActivityClass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).BeginInit();
+            this.radGroupBoxApplication.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -92,16 +94,15 @@
             this.tableLayoutPanel.Controls.Add(this.lblNickname, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.lblActivityClass, 1, 7);
             this.tableLayoutPanel.Controls.Add(this.txtName, 2, 1);
-            this.tableLayoutPanel.Controls.Add(this.helperButtonTextBox1, 3, 0);
             this.tableLayoutPanel.Controls.Add(this.txtActivityAssemblyPath, 2, 4);
             this.tableLayoutPanel.Controls.Add(this.txtActivityAssembly, 2, 3);
             this.tableLayoutPanel.Controls.Add(this.cmbRuntime, 2, 5);
             this.tableLayoutPanel.Controls.Add(this.txtActivityClass, 2, 7);
-            this.tableLayoutPanel.Controls.Add(this.txtResourceFileDeployment, 2, 8);
-            this.tableLayoutPanel.Controls.Add(this.txtModules, 2, 10);
+            this.tableLayoutPanel.Controls.Add(this.txtResourceFilesDeployment, 2, 8);
+            this.tableLayoutPanel.Controls.Add(this.txtExcludedModules, 2, 10);
             this.tableLayoutPanel.Controls.Add(this.txtWebApiDeployment, 2, 11);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 13;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -117,31 +118,33 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(855, 528);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(851, 508);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // txtRulesDeployment
             // 
             this.txtRulesDeployment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtRulesDeployment.Location = new System.Drawing.Point(291, 311);
+            this.txtRulesDeployment.Location = new System.Drawing.Point(290, 311);
             this.txtRulesDeployment.Name = "txtRulesDeployment";
-            this.txtRulesDeployment.Size = new System.Drawing.Size(540, 24);
+            this.txtRulesDeployment.ReadOnly = false;
+            this.txtRulesDeployment.Size = new System.Drawing.Size(537, 24);
             this.txtRulesDeployment.TabIndex = 10;
             // 
             // txtLoadAssemblyPaths
             // 
             this.txtLoadAssemblyPaths.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLoadAssemblyPaths.Location = new System.Drawing.Point(291, 203);
+            this.txtLoadAssemblyPaths.Location = new System.Drawing.Point(290, 203);
             this.txtLoadAssemblyPaths.Name = "txtLoadAssemblyPaths";
-            this.txtLoadAssemblyPaths.Size = new System.Drawing.Size(540, 23);
+            this.txtLoadAssemblyPaths.ReadOnly = false;
+            this.txtLoadAssemblyPaths.Size = new System.Drawing.Size(537, 24);
             this.txtLoadAssemblyPaths.TabIndex = 8;
             // 
             // txtNickname
             // 
             this.txtNickname.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtNickname.Location = new System.Drawing.Point(291, 59);
+            this.txtNickname.Location = new System.Drawing.Point(290, 59);
             this.txtNickname.Name = "txtNickname";
-            this.txtNickname.Size = new System.Drawing.Size(540, 20);
+            this.txtNickname.Size = new System.Drawing.Size(537, 20);
             this.txtNickname.TabIndex = 1;
             // 
             // lblWebApiDeployment
@@ -149,7 +152,7 @@
             this.lblWebApiDeployment.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblWebApiDeployment.Location = new System.Drawing.Point(23, 383);
             this.lblWebApiDeployment.Name = "lblWebApiDeployment";
-            this.lblWebApiDeployment.Size = new System.Drawing.Size(262, 18);
+            this.lblWebApiDeployment.Size = new System.Drawing.Size(117, 18);
             this.lblWebApiDeployment.TabIndex = 0;
             this.lblWebApiDeployment.Text = "Web-API Deployment:";
             // 
@@ -158,7 +161,7 @@
             this.lblModules.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblModules.Location = new System.Drawing.Point(23, 347);
             this.lblModules.Name = "lblModules";
-            this.lblModules.Size = new System.Drawing.Size(262, 18);
+            this.lblModules.Size = new System.Drawing.Size(100, 18);
             this.lblModules.TabIndex = 0;
             this.lblModules.Text = "Excluded Modules:";
             // 
@@ -167,7 +170,7 @@
             this.lblRulesDeployment.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblRulesDeployment.Location = new System.Drawing.Point(23, 311);
             this.lblRulesDeployment.Name = "lblRulesDeployment";
-            this.lblRulesDeployment.Size = new System.Drawing.Size(262, 18);
+            this.lblRulesDeployment.Size = new System.Drawing.Size(100, 18);
             this.lblRulesDeployment.TabIndex = 0;
             this.lblRulesDeployment.Text = "Rules Deployment:";
             // 
@@ -176,7 +179,7 @@
             this.lblResourceFileDeployment.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblResourceFileDeployment.Location = new System.Drawing.Point(23, 275);
             this.lblResourceFileDeployment.Name = "lblResourceFileDeployment";
-            this.lblResourceFileDeployment.Size = new System.Drawing.Size(262, 18);
+            this.lblResourceFileDeployment.Size = new System.Drawing.Size(139, 18);
             this.lblResourceFileDeployment.TabIndex = 0;
             this.lblResourceFileDeployment.Text = "Resource File Deployment:";
             // 
@@ -185,7 +188,7 @@
             this.lblLoadAssemblyPaths.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblLoadAssemblyPaths.Location = new System.Drawing.Point(23, 203);
             this.lblLoadAssemblyPaths.Name = "lblLoadAssemblyPaths";
-            this.lblLoadAssemblyPaths.Size = new System.Drawing.Size(262, 18);
+            this.lblLoadAssemblyPaths.Size = new System.Drawing.Size(114, 18);
             this.lblLoadAssemblyPaths.TabIndex = 0;
             this.lblLoadAssemblyPaths.Text = "Load Assembly Paths:";
             // 
@@ -194,7 +197,7 @@
             this.lblRuntime.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblRuntime.Location = new System.Drawing.Point(23, 167);
             this.lblRuntime.Name = "lblRuntime";
-            this.lblRuntime.Size = new System.Drawing.Size(262, 18);
+            this.lblRuntime.Size = new System.Drawing.Size(50, 18);
             this.lblRuntime.TabIndex = 0;
             this.lblRuntime.Text = "Runtime:";
             // 
@@ -203,7 +206,7 @@
             this.lblActivityAssemblyPath.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblActivityAssemblyPath.Location = new System.Drawing.Point(23, 131);
             this.lblActivityAssemblyPath.Name = "lblActivityAssemblyPath";
-            this.lblActivityAssemblyPath.Size = new System.Drawing.Size(262, 18);
+            this.lblActivityAssemblyPath.Size = new System.Drawing.Size(121, 18);
             this.lblActivityAssemblyPath.TabIndex = 0;
             this.lblActivityAssemblyPath.Text = "Activity Assembly Path:";
             // 
@@ -212,7 +215,7 @@
             this.lblActivityAssembly.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblActivityAssembly.Location = new System.Drawing.Point(23, 95);
             this.lblActivityAssembly.Name = "lblActivityAssembly";
-            this.lblActivityAssembly.Size = new System.Drawing.Size(262, 18);
+            this.lblActivityAssembly.Size = new System.Drawing.Size(96, 18);
             this.lblActivityAssembly.TabIndex = 0;
             this.lblActivityAssembly.Text = "Activity Assembly:";
             // 
@@ -221,7 +224,7 @@
             this.lblName.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblName.Location = new System.Drawing.Point(23, 23);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(262, 18);
+            this.lblName.Size = new System.Drawing.Size(39, 18);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name:";
             // 
@@ -230,7 +233,7 @@
             this.lblNickname.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblNickname.Location = new System.Drawing.Point(23, 59);
             this.lblNickname.Name = "lblNickname";
-            this.lblNickname.Size = new System.Drawing.Size(262, 18);
+            this.lblNickname.Size = new System.Drawing.Size(59, 18);
             this.lblNickname.TabIndex = 1;
             this.lblNickname.Text = "Nickname:";
             // 
@@ -239,90 +242,97 @@
             this.lblActivityClass.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblActivityClass.Location = new System.Drawing.Point(23, 239);
             this.lblActivityClass.Name = "lblActivityClass";
-            this.lblActivityClass.Size = new System.Drawing.Size(262, 18);
+            this.lblActivityClass.Size = new System.Drawing.Size(73, 18);
             this.lblActivityClass.TabIndex = 0;
             this.lblActivityClass.Text = "Activity Class:";
             // 
             // txtName
             // 
             this.txtName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtName.Location = new System.Drawing.Point(291, 23);
+            this.txtName.Location = new System.Drawing.Point(290, 23);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(540, 20);
+            this.txtName.Size = new System.Drawing.Size(537, 20);
             this.txtName.TabIndex = 2;
-            // 
-            // helperButtonTextBox1
-            // 
-            this.helperButtonTextBox1.AutoSize = true;
-            this.helperButtonTextBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.helperButtonTextBox1.Location = new System.Drawing.Point(837, 3);
-            this.helperButtonTextBox1.Name = "helperButtonTextBox1";
-            this.tableLayoutPanel.SetRowSpan(this.helperButtonTextBox1, 3);
-            this.helperButtonTextBox1.Size = new System.Drawing.Size(15, 5);
-            this.helperButtonTextBox1.TabIndex = 3;
             // 
             // txtActivityAssemblyPath
             // 
             this.txtActivityAssemblyPath.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtActivityAssemblyPath.Location = new System.Drawing.Point(291, 131);
+            this.txtActivityAssemblyPath.Location = new System.Drawing.Point(290, 131);
             this.txtActivityAssemblyPath.Name = "txtActivityAssemblyPath";
-            this.txtActivityAssemblyPath.Size = new System.Drawing.Size(540, 23);
+            this.txtActivityAssemblyPath.ReadOnly = false;
+            this.txtActivityAssemblyPath.Size = new System.Drawing.Size(537, 23);
             this.txtActivityAssemblyPath.TabIndex = 5;
             // 
             // txtActivityAssembly
             // 
             this.txtActivityAssembly.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtActivityAssembly.Location = new System.Drawing.Point(291, 95);
+            this.txtActivityAssembly.Location = new System.Drawing.Point(290, 95);
             this.txtActivityAssembly.Name = "txtActivityAssembly";
-            this.txtActivityAssembly.Size = new System.Drawing.Size(540, 30);
+            this.txtActivityAssembly.ReadOnly = false;
+            this.txtActivityAssembly.Size = new System.Drawing.Size(537, 30);
             this.txtActivityAssembly.TabIndex = 6;
             // 
             // cmbRuntime
             // 
             this.cmbRuntime.Dock = System.Windows.Forms.DockStyle.Top;
             this.cmbRuntime.DropDownAnimationEnabled = true;
-            this.cmbRuntime.Location = new System.Drawing.Point(291, 167);
+            this.cmbRuntime.Location = new System.Drawing.Point(290, 167);
             this.cmbRuntime.Name = "cmbRuntime";
-            this.cmbRuntime.Size = new System.Drawing.Size(540, 20);
+            this.cmbRuntime.Size = new System.Drawing.Size(537, 20);
             this.cmbRuntime.TabIndex = 7;
             // 
             // txtActivityClass
             // 
             this.txtActivityClass.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtActivityClass.Location = new System.Drawing.Point(291, 239);
+            this.txtActivityClass.Location = new System.Drawing.Point(290, 239);
             this.txtActivityClass.Name = "txtActivityClass";
-            this.txtActivityClass.Size = new System.Drawing.Size(540, 20);
+            this.txtActivityClass.Size = new System.Drawing.Size(537, 20);
             this.txtActivityClass.TabIndex = 1;
             // 
-            // txtResourceFileDeployment
+            // txtResourceFilesDeployment
             // 
-            this.txtResourceFileDeployment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtResourceFileDeployment.Location = new System.Drawing.Point(291, 275);
-            this.txtResourceFileDeployment.Name = "txtResourceFileDeployment";
-            this.txtResourceFileDeployment.Size = new System.Drawing.Size(540, 24);
-            this.txtResourceFileDeployment.TabIndex = 9;
+            this.txtResourceFilesDeployment.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtResourceFilesDeployment.Location = new System.Drawing.Point(290, 275);
+            this.txtResourceFilesDeployment.Name = "txtResourceFilesDeployment";
+            this.txtResourceFilesDeployment.ReadOnly = false;
+            this.txtResourceFilesDeployment.Size = new System.Drawing.Size(537, 24);
+            this.txtResourceFilesDeployment.TabIndex = 9;
             // 
-            // txtModules
+            // txtExcludedModules
             // 
-            this.txtModules.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtModules.Location = new System.Drawing.Point(291, 347);
-            this.txtModules.Name = "txtModules";
-            this.txtModules.Size = new System.Drawing.Size(540, 24);
-            this.txtModules.TabIndex = 11;
+            this.txtExcludedModules.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtExcludedModules.Location = new System.Drawing.Point(290, 347);
+            this.txtExcludedModules.Name = "txtExcludedModules";
+            this.txtExcludedModules.ReadOnly = false;
+            this.txtExcludedModules.Size = new System.Drawing.Size(537, 24);
+            this.txtExcludedModules.TabIndex = 11;
             // 
             // txtWebApiDeployment
             // 
             this.txtWebApiDeployment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtWebApiDeployment.Location = new System.Drawing.Point(291, 383);
+            this.txtWebApiDeployment.Location = new System.Drawing.Point(290, 383);
             this.txtWebApiDeployment.Name = "txtWebApiDeployment";
-            this.txtWebApiDeployment.Size = new System.Drawing.Size(540, 24);
+            this.txtWebApiDeployment.ReadOnly = false;
+            this.txtWebApiDeployment.Size = new System.Drawing.Size(537, 24);
             this.txtWebApiDeployment.TabIndex = 12;
+            // 
+            // radGroupBoxApplication
+            // 
+            this.radGroupBoxApplication.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBoxApplication.Controls.Add(this.tableLayoutPanel);
+            this.radGroupBoxApplication.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBoxApplication.HeaderText = "Application";
+            this.radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBoxApplication.Name = "radGroupBoxApplication";
+            this.radGroupBoxApplication.Size = new System.Drawing.Size(855, 528);
+            this.radGroupBoxApplication.TabIndex = 1;
+            this.radGroupBoxApplication.Text = "Application";
             // 
             // ApplicationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel);
+            this.Controls.Add(this.radGroupBoxApplication);
             this.Name = "ApplicationControl";
             this.Size = new System.Drawing.Size(855, 528);
             this.tableLayoutPanel.ResumeLayout(false);
@@ -342,6 +352,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbRuntime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActivityClass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).EndInit();
+            this.radGroupBoxApplication.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -362,15 +374,15 @@
         private Telerik.WinControls.UI.RadLabel lblActivityClass;
         private Telerik.WinControls.UI.RadTextBox txtNickname;
         private Telerik.WinControls.UI.RadTextBox txtName;
-        private FlowBuilder.UserControls.HelperButtonTextBox helperButtonTextBox1;
         private FlowBuilder.UserControls.HelperButtonTextBox txtActivityAssemblyPath;
         private FlowBuilder.UserControls.HelperButtonTextBox txtActivityAssembly;
         private Telerik.WinControls.UI.RadDropDownList cmbRuntime;
         private FlowBuilder.UserControls.HelperButtonTextBox txtLoadAssemblyPaths;
         private Telerik.WinControls.UI.RadTextBox txtActivityClass;
         private FlowBuilder.UserControls.HelperButtonTextBox txtRulesDeployment;
-        private FlowBuilder.UserControls.HelperButtonTextBox txtResourceFileDeployment;
-        private FlowBuilder.UserControls.HelperButtonTextBox txtModules;
+        private FlowBuilder.UserControls.HelperButtonTextBox txtResourceFilesDeployment;
+        private FlowBuilder.UserControls.HelperButtonTextBox txtExcludedModules;
         private FlowBuilder.UserControls.HelperButtonTextBox txtWebApiDeployment;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
     }
 }

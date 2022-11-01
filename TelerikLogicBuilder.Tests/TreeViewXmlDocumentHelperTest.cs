@@ -27,7 +27,7 @@ namespace TelerikLogicBuilder.Tests
         [Fact]
         public void CreateTreeViewXmlDocumentHelperThrows()
         {
-            //asert
+            //assert
             Assert.Throws<InvalidOperationException>(() => serviceProvider.GetRequiredService<ITreeViewXmlDocumentHelper>());
         }
 
@@ -47,11 +47,10 @@ namespace TelerikLogicBuilder.Tests
 
             ITreeViewXmlDocumentHelper treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper
             (
-                new RadTreeView(),
                 SchemaName.ProjectPropertiesSchema
             );
 
-            treeViewXmlDocumentHelper.LoadXmlDocument(projectFileFullName);
+            treeViewXmlDocumentHelper.LoadXmlDocument(projectProperties.ToXml);
             Assert.Equal("ProjectProperties", treeViewXmlDocumentHelper.XmlTreeDocument.DocumentElement!.Name);
         }
 
@@ -71,7 +70,6 @@ namespace TelerikLogicBuilder.Tests
 
             ITreeViewXmlDocumentHelper treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper
             (
-                new RadTreeView(),
                 SchemaName.FragmentsSchema
             );
 
@@ -86,7 +84,6 @@ namespace TelerikLogicBuilder.Tests
 
             ITreeViewXmlDocumentHelper treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper
             (
-                new RadTreeView(),
                 SchemaName.ProjectPropertiesSchema
             );
 

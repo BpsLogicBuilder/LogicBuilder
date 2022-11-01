@@ -19,9 +19,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
     internal partial class DocumentsExplorer : UserControl, IDocumentsExplorer
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IImageListService _imageImageListService;
+        private readonly IImageListService _imageListService;
         private readonly IMainWindow _mainWindow;
-        private readonly ITreeViewBuiilderFactory _treeViewBuiilderFactory;
+        private readonly ITreeViewBuilderFactory _treeViewBuiilderFactory;
         private readonly ITreeViewService _treeViewService;
         private readonly IUiNotificationService _uiNotificationService;
         private readonly DocumentExplorerErrorsList documentProfileErrors = new();
@@ -63,9 +63,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public DocumentsExplorer(
             IExceptionHelper exceptionHelper,
-            IImageListService imageImageListService,
+            IImageListService imageListService,
             IMainWindow mainWindow,
-            ITreeViewBuiilderFactory treeViewBuiilderFactory,
+            ITreeViewBuilderFactory treeViewBuiilderFactory,
             ITreeViewService treeViewService,
             FileSystemTreeView fileSystemTreeView,
             IUiNotificationService uiNotificationService,
@@ -81,7 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             RenameCommand renameDocumentCommand)
         {
             _exceptionHelper = exceptionHelper;
-            _imageImageListService = imageImageListService;
+            _imageListService = imageListService;
             _mainWindow = mainWindow;
             _treeViewBuiilderFactory = treeViewBuiilderFactory;
             _treeViewService = treeViewService;           
@@ -154,7 +154,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             radTreeView1.RadContextMenu = new()
             {
-                ImageList = _imageImageListService.ImageList,
+                ImageList = _imageListService.ImageList,
                 Items =
                 {
                     mnuItemOpenFile,

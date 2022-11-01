@@ -13,14 +13,12 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<RadTreeView, SchemaName, ITreeViewXmlDocumentHelper>>
+                .AddTransient<Func<SchemaName, ITreeViewXmlDocumentHelper>>
                 (
                     provider =>
-                    (treeView, schema) => new TreeViewXmlDocumentHelper
+                    schema => new TreeViewXmlDocumentHelper
                     (
-                        provider.GetRequiredService<IEncryption>(),
                         provider.GetRequiredService<IXmlValidatorFactory>(),
-                        treeView, 
                         schema
                     )
                 )

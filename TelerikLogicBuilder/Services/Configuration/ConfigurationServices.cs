@@ -11,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IBuiltInFunctionsLoader, BuiltInFunctionsLoader>()
                 .AddSingleton<IConfigurationService, ConfigurationService>()
                 .AddSingleton<ICreateConstructors, CreateConstructors>()
+                .AddSingleton<ICreateDefaultApplication, CreateDefaultApplication>()
                 .AddSingleton<ICreateFragments, CreateFragments>()
                 .AddSingleton<ICreateFunctions, CreateFunctions>()
                 .AddSingleton<ICreateProjectProperties, CreateProjectProperties>()
@@ -33,7 +34,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IUpdateProjectProperties, UpdateProjectProperties>()
                 .AddSingleton<IUpdateVariables, UpdateVariables>()
                 .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
+                .AddApplicationControlCommandFactories()
+                .AddConfigurationControlFactories()
+                .AddConfigurationHelpers()
                 .AddConfigurationInitialization()
-                .AddConfigurationItemFactories();
+                .AddConfigurationItemFactories()
+                .AddConfigureProjectPropertiesContextMenuCommandFactories()
+                .AddConfigureProjectPropertiesFactories();
     }
 }

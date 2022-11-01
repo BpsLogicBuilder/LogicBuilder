@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
 {
-    partial class RootNodeControl
+    partial class ProjectPropertiesRootNodeControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,16 +29,31 @@
         private void InitializeComponent()
         {
             this.radPanelFill = new Telerik.WinControls.UI.RadPanel();
+            this.radGroupBoxProjectProperties = new Telerik.WinControls.UI.RadGroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelFill)).BeginInit();
+            this.radPanelFill.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxProjectProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanelFill
             // 
+            this.radPanelFill.Controls.Add(this.radGroupBoxProjectProperties);
             this.radPanelFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelFill.Location = new System.Drawing.Point(0, 0);
             this.radPanelFill.Name = "radPanelFill";
             this.radPanelFill.Size = new System.Drawing.Size(692, 517);
             this.radPanelFill.TabIndex = 0;
+            // 
+            // radGroupBoxProjectProperties
+            // 
+            this.radGroupBoxProjectProperties.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBoxProjectProperties.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBoxProjectProperties.HeaderText = "Project Properties";
+            this.radGroupBoxProjectProperties.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBoxProjectProperties.Name = "radGroupBoxProjectProperties";
+            this.radGroupBoxProjectProperties.Size = new System.Drawing.Size(692, 517);
+            this.radGroupBoxProjectProperties.TabIndex = 0;
+            this.radGroupBoxProjectProperties.Text = "Project Properties";
             // 
             // RootNodeControl
             // 
@@ -48,6 +63,8 @@
             this.Name = "RootNodeControl";
             this.Size = new System.Drawing.Size(692, 517);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelFill)).EndInit();
+            this.radPanelFill.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxProjectProperties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -55,5 +72,6 @@
         #endregion
 
         private Telerik.WinControls.UI.RadPanel radPanelFill;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBoxProjectProperties;
     }
 }

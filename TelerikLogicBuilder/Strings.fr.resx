@@ -311,6 +311,9 @@
     <value>Please close all files in {0} before proceeding.FR</value>
     <comment>0=FolderName</comment>
   </data>
+	<data name="collectionIndicatorText" xml:space="preserve">
+    <value>(Collection)FR</value>
+  </data>
 	<data name="columnIndexIsInvalidFormat" xml:space="preserve">
     <value>Column Index {0} is invalid.FR</value>
     <comment>0=column index as seen by the user</comment>
@@ -326,6 +329,9 @@
   </data>
 	<data name="conditionShapeDataRequired" xml:space="preserve">
     <value>Conditions Shape requires data.FR</value>
+  </data>
+	<data name="configurationFormIndicatorText" xml:space="preserve">
+    <value>(Form)FR</value>
   </data>
 	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
     <value>The connector category {0} is undefined.FR</value>
@@ -716,6 +722,10 @@
   <data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.FR</value>
   </data>
+	<data name="invalidClassNameFormat" xml:space="preserve">
+    <value>{0} is invalid.  Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.FR</value>
+    <comment>0=ClassName</comment>
+  </data>
 	<data name="invalidConfigurationDocumentFormat" xml:space="preserve">
     <value>{0} has invalid data.FR</value>
     <comment>{0}=fileFullName</comment>
@@ -729,6 +739,10 @@
   </data>
 	<data name="invalidFileNameMessageFormat" xml:space="preserve">
     <value>{0} File Name must be less than 50 characters long and cannot include the following characters: \ / : * ? &lt; &gt; |FR</value>
+    <comment>0=Form Field</comment>
+  </data>
+	<data name="invalidFilePathMessageFormat" xml:space="preserve">
+    <value>{0} File Path must be less than 230 characters long and cannot include the following characters: * ? &lt; &gt; |FR</value>
     <comment>0=Form Field</comment>
   </data>
 	<data name="invalidFunctionCategoryFormat" xml:space="preserve">
@@ -770,6 +784,10 @@
   </data>
 	<data name="invalidShapeMessage" xml:space="preserve">
     <value>Please use shapes form the specified Logic Builder Stencils only.FR</value>
+  </data>
+	<data name="invalidTxtNameTextFormat" xml:space="preserve">
+    <value>{0} Name must be less than 50 characters long and cannot include the following characters: " \FR</value>
+    <comment>0=Variable, Function or Folder Name</comment>
   </data>
 	<data name="invalidVariableElementFormat" xml:space="preserve">
     <value>The variable "{0}" has an invalid value element for the category "{1}".FR</value>
@@ -879,6 +897,9 @@
   </data>
 	<data name="mnuItemAddNewRowText" xml:space="preserve">
     <value>Add New RowFR</value>
+  </data>
+	<data name="mnuItemAddText" xml:space="preserve">
+    <value>AddFR</value>
   </data>
 	<data name="mnuItemCloseProjectText" xml:space="preserve">
     <value>Close ProjectFR</value>
@@ -1079,6 +1100,9 @@
 		<value>The project path "{0}" does not exist.FR</value>
 		<comment>0=project path</comment>
 	</data>
+	<data name="projectPropertiesRootNodeText" xml:space="preserve">
+    <value>Project PropertiesFR</value>
+  </data>
 	<data name="referenceCannotEqualVariable" xml:space="preserve">
     <value>The variable index cannot be the same as the variable it references. Reference Name: "{0}", variable: "{1}".FR</value>
     <comment>0=referenceName; 1=variableName</comment>
@@ -1607,6 +1631,18 @@
   </data>
 	<data name="enumDescriptionNever" xml:space="preserve">
     <value>NeverFR</value>
+  </data>
+	<data name="enumDescriptionNetCore" xml:space="preserve">
+    <value>.NET (.NET, .NET Core, UWP)FR</value>
+  </data>
+	<data name="enumDescriptionNetFramework" xml:space="preserve">
+    <value>.NET Framework (WPF, Windows Forms, ASP.NET)FR</value>
+  </data>
+	<data name="enumDescriptionNetNative" xml:space="preserve">
+    <value>.NET Native (UWP)FR</value>
+  </data>
+	<data name="enumDescriptionXamarin" xml:space="preserve">
+    <value>Xamarin (Android, iOS, OS X)FR</value>
   </data>
 	<data name="fieldPropertyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>

@@ -40,7 +40,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
         Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task);
         Task RunLoadContextAsync(Func<CancellationTokenSource, Task> task);
         void OpenProject(string projectFileFullname);
+        void SetButtonStates(bool projectOpen);
         void SetEditControlMenuStates(bool visioOpen, bool tableOpen);
+        void UpdateApplicationMenuItems();
 
         event FormClosingEventHandler FormClosing;
     }

@@ -682,6 +682,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (Collection).
+        /// </summary>
+        internal static string collectionIndicatorText {
+            get {
+                return ResourceManager.GetString("collectionIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Column Index {0} is invalid..
         /// </summary>
         internal static string columnIndexIsInvalidFormat {
@@ -723,6 +732,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string conditionShapeDataRequired {
             get {
                 return ResourceManager.GetString("conditionShapeDataRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Form).
+        /// </summary>
+        internal static string configurationFormIndicatorText {
+            get {
+                return ResourceManager.GetString("configurationFormIndicatorText", resourceCulture);
             }
         }
         
@@ -1861,6 +1879,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .NET (.NET, .NET Core, UWP).
+        /// </summary>
+        internal static string enumDescriptionNetCore {
+            get {
+                return ResourceManager.GetString("enumDescriptionNetCore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .NET Framework (WPF, Windows Forms, ASP.NET).
+        /// </summary>
+        internal static string enumDescriptionNetFramework {
+            get {
+                return ResourceManager.GetString("enumDescriptionNetFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .NET Native (UWP).
+        /// </summary>
+        internal static string enumDescriptionNetNative {
+            get {
+                return ResourceManager.GetString("enumDescriptionNetNative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Never.
         /// </summary>
         internal static string enumDescriptionNever {
@@ -2361,6 +2406,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionVoid {
             get {
                 return ResourceManager.GetString("enumDescriptionVoid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xamarin (Android, iOS, OS X).
+        /// </summary>
+        internal static string enumDescriptionXamarin {
+            get {
+                return ResourceManager.GetString("enumDescriptionXamarin", resourceCulture);
             }
         }
         
@@ -2941,6 +2995,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid.  Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores..
+        /// </summary>
+        internal static string invalidClassNameFormat {
+            get {
+                return ResourceManager.GetString("invalidClassNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} has invalid data..
         /// </summary>
         internal static string invalidConfigurationDocumentFormat {
@@ -2964,6 +3027,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidFileNameMessageFormat {
             get {
                 return ResourceManager.GetString("invalidFileNameMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} File Path must be less than 230 characters long and cannot include the following characters: * ? &lt; &gt; |.
+        /// </summary>
+        internal static string invalidFilePathMessageFormat {
+            get {
+                return ResourceManager.GetString("invalidFilePathMessageFormat", resourceCulture);
             }
         }
         
@@ -3063,6 +3135,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidShapeMessage {
             get {
                 return ResourceManager.GetString("invalidShapeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Name must be less than 50 characters long and cannot include the following characters: &quot; \.
+        /// </summary>
+        internal static string invalidTxtNameTextFormat {
+            get {
+                return ResourceManager.GetString("invalidTxtNameTextFormat", resourceCulture);
             }
         }
         
@@ -3387,6 +3468,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddNewRowText {
             get {
                 return ResourceManager.GetString("mnuItemAddNewRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string mnuItemAddText {
+            get {
+                return ResourceManager.GetString("mnuItemAddText", resourceCulture);
             }
         }
         
@@ -3927,6 +4017,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string projectPathDoesNotExistFormat {
             get {
                 return ResourceManager.GetString("projectPathDoesNotExistFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Properties.
+        /// </summary>
+        internal static string projectPropertiesRootNodeText {
+            get {
+                return ResourceManager.GetString("projectPropertiesRootNodeText", resourceCulture);
             }
         }
         

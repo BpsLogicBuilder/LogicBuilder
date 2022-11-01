@@ -383,6 +383,191 @@ namespace ABIS.LogicBuilder.FlowBuilder
             );
         }
 
+        /// <summary>
+        /// Enables or disables buttons depending on whether a project is currently open
+        /// </summary>
+        /// <param name="projectOpen"></param>
+        public void SetButtonStates(bool projectOpen)
+        {
+            //File Menu
+            radMenuItemNewProject.Enabled = !projectOpen;
+            radMenuItemOpenProject.Enabled = !projectOpen;
+            radMenuItemCloseProject.Enabled = projectOpen;
+            radMenuItemRecentProjects.Enabled = !projectOpen;
+            if (projectOpen)
+            {
+                recentProjectsMenuItemList.Clear();
+                radMenuItemRecentProjects.Items.Clear();
+            }
+            //File Menu
+
+            //Edit Menu
+            radMenuItemFindinFiles.Enabled = projectOpen;
+            radMenuItemFindInFilesText.Enabled = projectOpen;//must be disabled(though not visible) because of shortcut keys
+
+            //must be disabled (though not visible) because of shortcut keys
+            radMenuItemFindText.Enabled = projectOpen;
+            radMenuItemFindConstructor.Enabled = projectOpen;
+            radMenuItemFindFunction.Enabled = projectOpen;
+            radMenuItemFindVariable.Enabled = projectOpen;
+            //must be disabled (though not visible) because of shortcut keys
+
+            //must be disabled (though not visible) because of shortcut keys
+            radMenuItemReplaceText.Enabled = projectOpen;
+            radMenuItemReplaceConstructor.Enabled = projectOpen;
+            radMenuItemReplaceFunction.Enabled = projectOpen;
+            radMenuItemReplaceVariable.Enabled = projectOpen;
+            //must be disabled (though not visible) because of shortcut keys
+            //Edit Menu
+
+            //View Menu
+            radMenuItemProjectExplorer.Enabled = projectOpen;
+            radMenuItemMessagesList.Enabled = projectOpen;
+            //View Menu
+
+            //Project Menu
+            radMenuItemConstructors.Enabled = projectOpen;
+            radMenuItemFunctions.Enabled = projectOpen;
+            radMenuItemVariables.Enabled = projectOpen;
+            radMenuItemConnectorObjectTypes.Enabled = projectOpen;
+            radMenuItemXMLFragments.Enabled = projectOpen;
+            radMenuItemProjectProperties.Enabled = projectOpen;
+            //Project Menu
+
+            //Tools Menu
+            radMenuItemBuildRules.Enabled = projectOpen;
+            //must be disabled (though not visible) because of shortcut keys
+            radMenuItemBuildSelectedModules.Enabled = projectOpen;
+            radMenuItemBuildActiveDrawing.Enabled = projectOpen;
+            radMenuItemBuildActiveTable.Enabled = projectOpen;
+            //must be disabled (though not visible) because of shortcut keys
+
+            radMenuItemValidateDocuments.Enabled = projectOpen;
+            //must be disabled (though not visible) because of shortcut keys
+            radMenuItemValidateSelectedModules.Enabled = projectOpen;
+            radMenuItemValidateActiveDrawing.Enabled = projectOpen;
+            radMenuItemValidateActiveTable.Enabled = projectOpen;
+            //must be disabled (though not visible) because of shortcut keys
+
+            radMenuItemValidateRules.Enabled = projectOpen;
+            radMenuItemFileSystemDeployment.Enabled = projectOpen;
+            radMenuItemWebApiDeployment.Enabled = projectOpen;
+            radMenuItemSelectApplication.Enabled = projectOpen;
+            //Tools Menu
+        }
+
+        /// <summary>
+        /// Hides or shows menu buttons depending on whether a diagram, table or neither is open
+        /// </summary>
+        /// <param name="visioOpen"></param>
+        /// <param name="tableOpen"></param>
+        public void SetEditControlMenuStates(bool visioOpen, bool tableOpen)
+        {
+            this.radCommandBar1.Enabled = visioOpen || tableOpen;
+
+            //File Menu
+            radMenuItemSave.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemPageSetup.Visibility = GetVisibility(visioOpen);
+            radMenuSeparatorItemPageSetup.Visibility = GetVisibility(visioOpen);
+            //File Menu
+
+            //Edit Menu
+            radMenuItemUndo.Visibility = GetVisibility(visioOpen);
+            radMenuItemRedo.Visibility = GetVisibility(visioOpen);
+
+            radMenuSeparatorItemUpdate.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemUpdate.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemDelete.Visibility = GetVisibility(visioOpen || tableOpen);
+
+            radMenuSeparatorItemFind.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemFind.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemFindShape.Visibility = GetVisibility(visioOpen);
+            radMenuItemFindCell.Visibility = GetVisibility(tableOpen);
+            radMenuItemFindText.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemFindConstructor.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemFindFunction.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemFindVariable.Visibility = GetVisibility(visioOpen || tableOpen);
+
+            radMenuItemReplace.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemReplaceText.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemReplaceConstructor.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemReplaceFunction.Visibility = GetVisibility(visioOpen || tableOpen);
+            radMenuItemReplaceVariable.Visibility = GetVisibility(visioOpen || tableOpen);
+
+            radMenuSeparatorItemIndexInformation.Visibility = GetVisibility(visioOpen);
+            radMenuItemIndexInformation.Visibility = GetVisibility(visioOpen);
+            //Edit Menu
+
+            //View Menu
+            radMenuItemFlowDiagramStencil.Visibility = GetVisibility(visioOpen);
+            radMenuItemApplicationsStencil.Visibility = GetVisibility(visioOpen);
+            radMenuItemPanZoomWindow.Visibility = GetVisibility(visioOpen);
+            //View Menu
+
+            //Rules Menu
+            radMenuItemRules.Visibility = GetVisibility(tableOpen);
+            //Rules Menu
+
+            //Tools Menu
+            radMenuItemBuildActiveDrawing.Visibility = GetVisibility(visioOpen);
+            radMenuItemBuildActiveTable.Visibility = GetVisibility(tableOpen);
+            radMenuItemValidateActiveDrawing.Visibility = GetVisibility(visioOpen);
+            radMenuItemValidateActiveTable.Visibility = GetVisibility(tableOpen);
+            //Tools Menu
+
+            static ElementVisibility GetVisibility(bool visible)
+                => visible ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+        }
+
+        public void UpdateApplicationMenuItems()
+        {
+            List<Application> applicationList = new(_configurationService.ProjectProperties.ApplicationList.Values.OrderBy(a => a.Nickname));
+
+            UpdateApplicationMenuItems
+            (
+                applicationList,
+                radMenuItemFileSystemDeploy,
+                deployFileSystemApplicationMenuItemList,
+                applicationName => _applicationCommandsFactory.GetDeploySelectedFilesToFileSystemCommand(applicationName)
+            );
+            UpdateApplicationMenuItems
+            (
+                applicationList,
+                radMenuItemFileSystemDelete,
+                deleteFileSystemApplicationMenuItemList,
+                applicationName => _applicationCommandsFactory.GetDeleteSelectedFilesFromFileSystemCommand(applicationName)
+            );
+            UpdateApplicationMenuItems
+            (
+                applicationList,
+                radMenuItemWebApiDeploy,
+                deployWebApiApplicationMenuItemList,
+                applicationName => _applicationCommandsFactory.GetDeploySelectedFilesToApiCommand(applicationName)
+            );
+            UpdateApplicationMenuItems
+            (
+                applicationList,
+                radMenuItemWebApiDelete,
+                deleteWebApiApplicationMenuItemList,
+                applicationName => _applicationCommandsFactory.GetDeleteSelectedFilesFromApiCommand(applicationName)
+            );
+            UpdateApplicationMenuItems
+            (
+                applicationList,
+                radMenuItemValidateRules,
+                validateApplicationRulesMenuItemList,
+                applicationName => _applicationCommandsFactory.GetValidateSelectedRulesCommand(applicationName)
+            );
+            UpdateApplicationMenuItems
+            (
+                applicationList,
+                radMenuItemSelectApplication,
+                selectedApplicationRulesMenuItemList,
+                applicationName => _applicationCommandsFactory.GetSetSelectedApplicationCommand(radMenuItemSelectApplication, applicationName),
+                false
+            );
+        }
+
         private void AddBuildActiveDocumentCommands()
         {
             void handler(object? sender, EventArgs args) => _buildActiveDocumentCommand.Execute();
@@ -607,142 +792,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             DisplayMessage.Show(this, exception.Message, _mainWindow.RightToLeft);
         }
 
-        /// <summary>
-        /// Enables or disables buttons depending on whether a project is currently open
-        /// </summary>
-        /// <param name="projectOpen"></param>
-        private void SetButtonStates(bool projectOpen)
-        {
-            //File Menu
-            radMenuItemNewProject.Enabled = !projectOpen;
-            radMenuItemOpenProject.Enabled = !projectOpen;
-            radMenuItemCloseProject.Enabled = projectOpen;
-            radMenuItemRecentProjects.Enabled = !projectOpen;
-            if (projectOpen)
-            {
-                recentProjectsMenuItemList.Clear();
-                radMenuItemRecentProjects.Items.Clear();
-            }
-            //File Menu
-
-            //Edit Menu
-            radMenuItemFindinFiles.Enabled = projectOpen;
-            radMenuItemFindInFilesText.Enabled = projectOpen;//must be disabled(though not visible) because of shortcut keys
-
-            //must be disabled (though not visible) because of shortcut keys
-            radMenuItemFindText.Enabled = projectOpen;
-            radMenuItemFindConstructor.Enabled = projectOpen;
-            radMenuItemFindFunction.Enabled = projectOpen;
-            radMenuItemFindVariable.Enabled = projectOpen;
-            //must be disabled (though not visible) because of shortcut keys
-
-            //must be disabled (though not visible) because of shortcut keys
-            radMenuItemReplaceText.Enabled = projectOpen;
-            radMenuItemReplaceConstructor.Enabled = projectOpen;
-            radMenuItemReplaceFunction.Enabled = projectOpen;
-            radMenuItemReplaceVariable.Enabled = projectOpen;
-            //must be disabled (though not visible) because of shortcut keys
-            //Edit Menu
-
-            //View Menu
-            radMenuItemProjectExplorer.Enabled = projectOpen;
-            radMenuItemMessagesList.Enabled = projectOpen;
-            //View Menu
-
-            //Project Menu
-            radMenuItemConstructors.Enabled = projectOpen;
-            radMenuItemFunctions.Enabled = projectOpen;
-            radMenuItemVariables.Enabled = projectOpen;
-            radMenuItemConnectorObjectTypes.Enabled = projectOpen;
-            radMenuItemXMLFragments.Enabled = projectOpen;
-            radMenuItemProjectProperties.Enabled = projectOpen;
-            //Project Menu
-
-            //Tools Menu
-            radMenuItemBuildRules.Enabled = projectOpen;
-            //must be disabled (though not visible) because of shortcut keys
-            radMenuItemBuildSelectedModules.Enabled = projectOpen;
-            radMenuItemBuildActiveDrawing.Enabled = projectOpen;
-            radMenuItemBuildActiveTable.Enabled = projectOpen;
-            //must be disabled (though not visible) because of shortcut keys
-
-            radMenuItemValidateDocuments.Enabled = projectOpen;
-            //must be disabled (though not visible) because of shortcut keys
-            radMenuItemValidateSelectedModules.Enabled = projectOpen;
-            radMenuItemValidateActiveDrawing.Enabled = projectOpen;
-            radMenuItemValidateActiveTable.Enabled = projectOpen;
-            //must be disabled (though not visible) because of shortcut keys
-
-            radMenuItemValidateRules.Enabled = projectOpen;
-            radMenuItemFileSystemDeployment.Enabled = projectOpen;
-            radMenuItemWebApiDeployment.Enabled = projectOpen;
-            radMenuItemSelectApplication.Enabled = projectOpen;
-            //Tools Menu
-        }
-
-        /// <summary>
-        /// Hides or shows menu buttons depending on whether a diagram, table or neither is open
-        /// </summary>
-        /// <param name="visioOpen"></param>
-        /// <param name="tableOpen"></param>
-        public void SetEditControlMenuStates(bool visioOpen, bool tableOpen)
-        {
-            this.radCommandBar1.Enabled = visioOpen || tableOpen;
-
-            //File Menu
-            radMenuItemSave.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemPageSetup.Visibility = GetVisibility(visioOpen);
-            radMenuSeparatorItemPageSetup.Visibility = GetVisibility(visioOpen);
-            //File Menu
-
-            //Edit Menu
-            radMenuItemUndo.Visibility = GetVisibility(visioOpen);
-            radMenuItemRedo.Visibility = GetVisibility(visioOpen);
-
-            radMenuSeparatorItemUpdate.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemUpdate.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemDelete.Visibility = GetVisibility(visioOpen || tableOpen);
-
-            radMenuSeparatorItemFind.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemFind.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemFindShape.Visibility = GetVisibility(visioOpen);
-            radMenuItemFindCell.Visibility = GetVisibility(tableOpen);
-            radMenuItemFindText.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemFindConstructor.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemFindFunction.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemFindVariable.Visibility = GetVisibility(visioOpen || tableOpen);
-
-            radMenuItemReplace.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemReplaceText.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemReplaceConstructor.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemReplaceFunction.Visibility = GetVisibility(visioOpen || tableOpen);
-            radMenuItemReplaceVariable.Visibility = GetVisibility(visioOpen || tableOpen);
-
-            radMenuSeparatorItemIndexInformation.Visibility = GetVisibility(visioOpen);
-            radMenuItemIndexInformation.Visibility = GetVisibility(visioOpen);
-            //Edit Menu
-
-            //View Menu
-            radMenuItemFlowDiagramStencil.Visibility = GetVisibility(visioOpen);
-            radMenuItemApplicationsStencil.Visibility = GetVisibility(visioOpen);
-            radMenuItemPanZoomWindow.Visibility = GetVisibility(visioOpen);
-            //View Menu
-
-            //Rules Menu
-            radMenuItemRules.Visibility = GetVisibility(tableOpen);
-            //Rules Menu
-
-            //Tools Menu
-            radMenuItemBuildActiveDrawing.Visibility = GetVisibility(visioOpen);
-            radMenuItemBuildActiveTable.Visibility = GetVisibility(tableOpen);
-            radMenuItemValidateActiveDrawing.Visibility = GetVisibility(visioOpen);
-            radMenuItemValidateActiveTable.Visibility = GetVisibility(tableOpen);
-            //Tools Menu
-
-            static ElementVisibility GetVisibility(bool visible)
-                => visible ? ElementVisibility.Visible : ElementVisibility.Collapsed;
-        }
-
         private void SetSelectedApplication(string applicationName)
         {
             _configurationService.SetSelectedApplication(applicationName);
@@ -788,55 +837,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             {
                 menuItem.Shortcuts.Add(new RadShortcut(modifiers, keys));
             }
-        }
-
-        private void UpdateApplicationMenuItems()
-        {
-            List<Application> applicationList = new(_configurationService.ProjectProperties.ApplicationList.Values.OrderBy(a => a.Nickname));
-
-            UpdateApplicationMenuItems
-            (
-                applicationList, 
-                radMenuItemFileSystemDeploy, 
-                deployFileSystemApplicationMenuItemList,
-                applicationName => _applicationCommandsFactory.GetDeploySelectedFilesToFileSystemCommand(applicationName)
-            );
-            UpdateApplicationMenuItems
-            (
-                applicationList, 
-                radMenuItemFileSystemDelete, 
-                deleteFileSystemApplicationMenuItemList,
-                applicationName => _applicationCommandsFactory.GetDeleteSelectedFilesFromFileSystemCommand(applicationName)
-            );
-            UpdateApplicationMenuItems
-            (
-                applicationList, 
-                radMenuItemWebApiDeploy, 
-                deployWebApiApplicationMenuItemList,
-                applicationName => _applicationCommandsFactory.GetDeploySelectedFilesToApiCommand(applicationName)
-            );
-            UpdateApplicationMenuItems
-            (
-                applicationList, 
-                radMenuItemWebApiDelete, 
-                deleteWebApiApplicationMenuItemList,
-                applicationName => _applicationCommandsFactory.GetDeleteSelectedFilesFromApiCommand(applicationName)
-            );
-            UpdateApplicationMenuItems
-            (
-                applicationList, 
-                radMenuItemValidateRules, 
-                validateApplicationRulesMenuItemList,
-                applicationName => _applicationCommandsFactory.GetValidateSelectedRulesCommand(applicationName)
-            );
-            UpdateApplicationMenuItems
-            (
-                applicationList, 
-                radMenuItemSelectApplication, 
-                selectedApplicationRulesMenuItemList, 
-                applicationName => _applicationCommandsFactory.GetSetSelectedApplicationCommand(radMenuItemSelectApplication, applicationName), 
-                false
-            );
         }
 
         private static void UpdateApplicationMenuItems(IList<Application> applicationList, RadMenuItem parentMenuItem, IDictionary<string, RadMenuItem> itemDictionary, Func<string, IClickCommand> getClickCommand, bool addEllipsis = true)

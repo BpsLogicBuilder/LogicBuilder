@@ -37,19 +37,21 @@
             // 
             this.radButtonTextBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radButtonTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.radButtonTextBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.radButtonTextBox1.AutoSize = false;
             this.radButtonTextBox1.Name = "radButtonTextBox1";
             this.radButtonTextBox1.RightButtonItems.AddRange(new Telerik.WinControls.RadItem[] {
             this.radButtonHelper});
-            this.radButtonTextBox1.Size = new System.Drawing.Size(350, 23);
+            this.radButtonTextBox1.Size = new System.Drawing.Size(350, 24);
             this.radButtonTextBox1.TabIndex = 0;
             // 
             // radButtonHelper
             // 
             this.radButtonHelper.AutoSize = false;
-            this.radButtonHelper.Bounds = new System.Drawing.Rectangle(0, 0, 18, 18);
-            this.radButtonHelper.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.radButtonHelper.Bounds = new System.Drawing.Rectangle(0, 0, 16, 16);
+            this.radButtonHelper.Image = null;
+            this.radButtonHelper.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.radButtonHelper.Name = "radButtonHelper";
+            this.radButtonHelper.Padding = new System.Windows.Forms.Padding(0);
             this.radButtonHelper.Text = "";
             // 
             // HelperButtonTextBox

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static  class TreeViewBuiilderFactoryServices
+    internal static  class TreeViewBuilderFactoryServices
     {
         internal static IServiceCollection AddTreeViewBuiilderFactories(this IServiceCollection services)
         {
@@ -46,7 +46,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         expandedNodes
                     )
                 )
-                .AddTransient<ITreeViewBuiilderFactory, TreeViewBuiilderFactory>();
+                .AddTransient<ITreeViewBuilderFactory, TreeViewBuilderFactory>();
         }
     }
 }

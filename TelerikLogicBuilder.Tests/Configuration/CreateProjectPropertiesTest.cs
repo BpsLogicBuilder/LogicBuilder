@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 
@@ -35,6 +36,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
             //assert
             Assert.NotNull(projectProperties);
+            Assert.Equal("App01", projectProperties.ApplicationList.First().Value.Name);
         }
     }
 }

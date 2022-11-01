@@ -17,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class CreateProjectProperties : ICreateProjectProperties
     {
         private readonly IConfigurationItemFactory _configurationItemFactory;
+        private readonly ICreateDefaultApplication _createDefaultApplication;
         private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
@@ -24,12 +25,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
         public CreateProjectProperties(
             IConfigurationItemFactory configurationItemFactory,
+            ICreateDefaultApplication createDefaultApplication,
             IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlValidatorFactory xmlValidatorFactory)
         {
             _configurationItemFactory = configurationItemFactory;
+            _createDefaultApplication = createDefaultApplication;
             _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
@@ -73,36 +76,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
         private Dictionary<string, Application> GetDefaultApplicationList()
         {
-            string applicationNameString = string.Format(CultureInfo.CurrentCulture, Strings.applicationNameFormat, 1.ToString("00", CultureInfo.CurrentCulture));
-            string programFilesPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            Application application = _createDefaultApplication.Create
+            (
+                string.Format
+                (
+                    CultureInfo.CurrentCulture, 
+                    Strings.applicationNameFormat, 
+                    1.ToString("00", CultureInfo.CurrentCulture)
+                )
+            );
 
             return new Dictionary<string, Application>
             {
-                [applicationNameString] = _configurationItemFactory.GetApplication
-                (
-                    applicationNameString,
-                    applicationNameString,
-                    string.Concat(applicationNameString, Strings.dotExe),
-                    _pathHelper.CombinePaths(programFilesPath, applicationNameString, Strings.defaultActivityAssemblyFolder),
-                    RuntimeType.NetCore,
-                    new List<string>(),
-                    Strings.defaultActivityClass,
-                    string.Concat(applicationNameString, Strings.dotExe),
-                    _pathHelper.CombinePaths(programFilesPath, applicationNameString),
-                    new List<string>(),
-                    Strings.defaultResourcesFile,
-                    _pathHelper.CombinePaths(programFilesPath, applicationNameString, Strings.defaultResourcesFolder),
-                    Strings.defaultRulesFile,
-                    _pathHelper.CombinePaths(programFilesPath, applicationNameString, Strings.defaultRulesFolder),
-                    new List<string>(),
-                    _configurationItemFactory.GetWebApiDeployment
-                    (
-                        Strings.defaultPostFileDataUrl,
-                        Strings.defaultPostVariableMetaDataUrl,
-                        Strings.defaultDeleteRulesUrl,
-                        Strings.defaultDeleteAllRulesUrl
-                    )
-                )
+                [application.Name] = application
             };
         }
 

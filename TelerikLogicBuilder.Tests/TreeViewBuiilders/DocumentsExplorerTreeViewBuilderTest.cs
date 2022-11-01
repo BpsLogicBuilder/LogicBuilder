@@ -35,7 +35,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         public void CanBuildTreeView()
         {
             //arrange
-            ITreeViewBuiilderFactory factory = _fixture.ServiceProvider.GetRequiredService<ITreeViewBuiilderFactory>();
+            ITreeViewBuilderFactory factory = _fixture.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>();
             RadTreeView radTreeView = new();
             DocumentExplorerErrorsList documentProfileErrors = new();
             Dictionary<string, string> documentNames = new();

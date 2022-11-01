@@ -43,6 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
                         .AddReflection()
                         .AddRulesGenerator()
                         .AddTreeViewBuiilders()
+                        .AddXmlTreeViewSynchronizers()
                         .AddUserControls()
                         .AddXmlValidation();
 

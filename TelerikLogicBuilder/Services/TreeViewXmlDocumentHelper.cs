@@ -1,52 +1,40 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
-using System.Globalization;
 using System.Xml;
-using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class TreeViewXmlDocumentHelper : ITreeViewXmlDocumentHelper
     {
-        private readonly IEncryption _encryption;
-        private readonly IXmlValidatorFactory _xmlValidatorFactory;
+        private readonly IXmlValidator _xmlValidator;
 
         public TreeViewXmlDocumentHelper(
-            IEncryption encryption,
             IXmlValidatorFactory xmlValidatorFactory,
-            RadTreeView treeView,
             SchemaName schema)
         {
-            _encryption = encryption;
-            _xmlValidatorFactory = xmlValidatorFactory;
-            TreeView = treeView;
-            Schema = schema;
+            _xmlValidator = xmlValidatorFactory.GetXmlValidator(schema);
         }
 
         public XmlDocument BackupXmlTreeDocument { get; } = new XmlDocument();
 
-        public RadTreeView TreeView { get; }
-
-        public SchemaName Schema { get; }
-
         public XmlDocument XmlTreeDocument { get; } = new XmlDocument();
 
-        public void LoadXmlDocument(string xmlFileFullName)
+        public void LoadXmlDocument(string xmlString)
         {
             try
             {
-                string xmlString = _encryption.DecryptFromFile(xmlFileFullName);
                 XmlTreeDocument.LoadXml(xmlString);
                 BackupXmlTreeDocument.LoadXml(xmlString);
                 ValidateXmlDocument();
             }
             catch (XmlException ex)
             {
-                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.invalidConfigurationDocumentFormat, xmlFileFullName), ex);
+                throw new LogicBuilderException(ex.Message, ex);
             }
             catch (LogicBuilderException)
             {
@@ -56,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public void ValidateXmlDocument()
         {
-            XmlValidationResponse validationResponse = _xmlValidatorFactory.GetXmlValidator(Schema).Validate(XmlTreeDocument.OuterXml);
+            XmlValidationResponse validationResponse = _xmlValidator.Validate(XmlTreeDocument.OuterXml);
             if (validationResponse.Success)
             {
                 BackupXmlTreeDocument.LoadXml(XmlTreeDocument.OuterXml);

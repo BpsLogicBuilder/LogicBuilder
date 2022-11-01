@@ -91,7 +91,17 @@ namespace TelerikLogicBuilder.Tests.Mocks
             throw new NotImplementedException();
         }
 
+        public void SetButtonStates(bool projectOpen)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetEditControlMenuStates(bool visioOpen, bool tableOpen)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateApplicationMenuItems()
         {
             throw new NotImplementedException();
         }

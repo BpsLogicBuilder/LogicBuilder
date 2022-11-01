@@ -22,5 +22,6 @@
         internal const byte CUTVSDXFILEIMAGEINDEX = 17;
         internal const byte CUTVISIOFILEIMAGEINDEX = 18;
         internal const byte CUTTABLEFILEIMAGEINDEX = 19;
+        internal const byte APPLICATIONIMAGEINDEX = 20;
     }
 }

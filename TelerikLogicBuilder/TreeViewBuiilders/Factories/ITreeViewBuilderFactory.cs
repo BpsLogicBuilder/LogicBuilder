@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
 {
-    internal interface ITreeViewBuiilderFactory
+    internal interface ITreeViewBuilderFactory
     {
         IDocumentsExplorerTreeViewBuilder GetDocumentsExplorerTreeViewBuilder(IDictionary<string, string> documentNames,
             DocumentExplorerErrorsList documentProfileErrors,

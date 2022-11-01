@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -119,6 +120,129 @@ namespace TelerikLogicBuilder.Tests
             //act assert
             Assert.True(service.IsRootNode(parentNode));
             Assert.False(service.IsRootNode(childNode));
+        }
+
+        class TreeNodeComparer : IComparer<RadTreeNode>
+        {
+            readonly IServiceProvider serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+
+            public int Compare(RadTreeNode? treeNodeA, RadTreeNode? treeNodeB)
+            {
+                if (treeNodeA == null || treeNodeB == null)
+                    throw new InvalidOperationException("{58A0B075-2FA3-4935-84CC-F1AFDBFF69DC}");
+
+                ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+
+                if ((service.IsApplicationNode(treeNodeA) && service.IsApplicationNode(treeNodeB))
+                    || (service.IsFolderNode(treeNodeA) && service.IsFolderNode(treeNodeB)))
+                    return string.Compare(treeNodeA.Text, treeNodeB.Text);
+                else
+                    return service.IsApplicationNode(treeNodeA) ? -1 : 1;
+            }
+        }
+
+        private static readonly RadTreeNode[] nodeList = new RadTreeNode[]
+        {
+            new RadTreeNode
+            {
+                Text = "AFolder",
+                ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
+            },
+            new RadTreeNode
+            {
+                Text = "EFile",
+                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+            },
+            new RadTreeNode
+            {
+                Text = "AFile",
+                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+            },
+            new RadTreeNode
+            {
+                Text = "CFile",
+                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+            },
+            new RadTreeNode
+            {
+                Text = "EFolder",
+                ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
+            }
+        };
+
+        [Fact]
+        public void GetInsertPositionreturnsExpectedResultsForNewApplicationNode()
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+
+            RadTreeNode radTreeNode = new()
+            {
+                Text = "BFile",
+                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+            };
+
+            //act
+            int position = service.GetInsertPosition(nodeList, radTreeNode, new TreeNodeComparer());
+
+            //
+            Assert.Equal(1, position);
+        }
+
+        [Fact]
+        public void GetInsertPositionreturnsExpectedResultsForNewFolderNode()
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+
+            RadTreeNode radTreeNode = new()
+            {
+                Text = "BFolder",
+                ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
+            };
+
+            //act
+            int position = service.GetInsertPosition(nodeList, radTreeNode, new TreeNodeComparer());
+
+            //
+            Assert.Equal(4, position);
+        }
+
+        [Fact]
+        public void GetInsertPositionreturnsExpectedResultsForExistingApplicationNode()
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+
+            RadTreeNode radTreeNode = new()
+            {
+                Text = "CFile",
+                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+            };
+
+            //act
+            int position = service.GetInsertPosition(nodeList, radTreeNode, new TreeNodeComparer());
+
+            //
+            Assert.Equal(1, position);
+        }
+
+        [Fact]
+        public void GetInsertPositionreturnsExpectedResultsForExistingFolderNode()
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+
+            RadTreeNode radTreeNode = new()
+            {
+                Text = "AFolder",
+                ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
+            };
+            //act
+            int position = service.GetInsertPosition(nodeList, radTreeNode, new TreeNodeComparer());
+
+            //
+            Assert.Equal(3, position);
         }
 
         [Fact]
@@ -499,6 +623,128 @@ namespace TelerikLogicBuilder.Tests
             //act assert
             Assert.Empty(radTreeView.SelectedNodes);
             Assert.False(service.CollectionIncludesNodeAndDescendant(radTreeView.SelectedNodes));
+        }
+
+        [Theory]
+        [InlineData("AFile", "CFile")]
+        [InlineData("CFile", "EFolder")]
+        [InlineData("EFolder", "CFile")]
+        public void SelectClosestNodeOnDeleteSelectsExpectedSibling(string nodeToDelete, string expectedSelection)
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+            RadTreeView radTreeView = new()
+            {
+                Nodes =
+                {
+                    new RadTreeNode()
+                    {
+                        Text = "Parent",
+                        ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX,
+                        Nodes =
+                        {
+                            new RadTreeNode
+                            {
+                                Text = "AFile",
+                                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+                            },
+                            new RadTreeNode
+                            {
+                                Text = "CFile",
+                                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+                            },
+                            new RadTreeNode
+                            {
+                                Text = "EFolder",
+                                ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
+                            }
+                        }
+                    }
+                }
+            };
+
+            RadTreeNode radTreeNode = radTreeView.Find(n => n.Text == nodeToDelete);
+
+            //act
+            service.SelectClosestNodeOnDelete(radTreeNode);
+
+            //assert
+            Assert.Equal(expectedSelection, radTreeView.SelectedNode.Text);
+        }
+
+        [Fact]
+        public void SelectClosestNodeOnDeleteSelectsParentIfThereAreNoSiblings()
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+            RadTreeView radTreeView = new()
+            {
+                Nodes =
+                {
+                    new RadTreeNode()
+                    {
+                        Text = "Parent",
+                        ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX,
+                        Nodes =
+                        {
+                            new RadTreeNode
+                            {
+                                Text = "AFile",
+                                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+                            }
+                        }
+                    }
+                }
+            };
+
+            RadTreeNode radTreeNode = radTreeView.Find(n => n.Text == "AFile");
+
+            //act
+            service.SelectClosestNodeOnDelete(radTreeNode);
+
+            //assert
+            Assert.Equal("Parent", radTreeView.SelectedNode.Text);
+        }
+
+        [Fact]
+        public void SelectClosestNodeOnDeleteThrowsForRootNode()
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+            RadTreeView radTreeView = new()
+            {
+                Nodes =
+                {
+                    new RadTreeNode()
+                    {
+                        Text = "Parent",
+                        ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX,
+                        Nodes =
+                        {
+                            new RadTreeNode
+                            {
+                                Text = "AFile",
+                                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+                            },
+                            new RadTreeNode
+                            {
+                                Text = "CFile",
+                                ImageIndex = ImageIndexes.APPLICATIONIMAGEINDEX
+                            },
+                            new RadTreeNode
+                            {
+                                Text = "EFolder",
+                                ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX
+                            }
+                        }
+                    }
+                }
+            };
+
+            RadTreeNode radTreeNode = radTreeView.Find(n => n.Text == "Parent");
+
+            //assert
+            Assert.Throws<CriticalLogicBuilderException>(() => service.SelectClosestNodeOnDelete(radTreeNode));
         }
     }
 }

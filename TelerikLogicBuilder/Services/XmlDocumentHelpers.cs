@@ -70,6 +70,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         #endregion Properties
 
         #region Methods
+        public XmlElement AddElementToDoc(XmlDocument xmlDocument, XmlElement element) 
+            => MakeElement
+            (
+                xmlDocument,
+                element.Name,
+                element.InnerXml,
+                element.Attributes.Cast<XmlAttribute>().ToDictionary(e => e.Name, e => e.Value)
+            );
+
         public XmlWriter CreateFormattedXmlWriter(string fullPath)
             => XmlWriter.Create(fullPath, FormattedSettings);
 
