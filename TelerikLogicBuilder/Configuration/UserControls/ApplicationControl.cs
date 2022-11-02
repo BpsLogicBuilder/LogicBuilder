@@ -114,7 +114,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
 
             #region All three need to be set for scrolling to work (even with dock styles set to fill)
             radPanelApplication.AutoScroll = true;
-            radPanelApplication.SetAutoScrollMargin(20, 20);
+            radPanelApplication.SetAutoScrollMargin(1, 0);
             tableLayoutPanel.Anchor = AnchorConstants.AnchorsLeftTopRight; 
             #endregion
 
