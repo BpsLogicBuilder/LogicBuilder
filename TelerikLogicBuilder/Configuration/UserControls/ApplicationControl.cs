@@ -16,6 +16,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
@@ -109,6 +111,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
             txtActivityClass.Validating += TxtActivityClass_Validating;
             txtResourceFilesDeployment.Validating += TxtResourceFileDeployment_Validating;
             txtRulesDeployment.Validating += TxtRulesDeployment_Validating;
+
+            #region All three need to be set for scrolling to work (even with dock styles set to fill)
+            radPanelApplication.AutoScroll = true;
+            radPanelApplication.SetAutoScrollMargin(20, 20);
+            tableLayoutPanel.Anchor = AnchorConstants.AnchorsLeftTopRight; 
+            #endregion
+
+            ((BorderPrimitive)radPanelApplication.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
             InitializeReadOnlyTextBox(txtLoadAssemblyPaths, Strings.collectionIndicatorText);
             InitializeReadOnlyTextBox(txtExcludedModules, Strings.collectionIndicatorText);

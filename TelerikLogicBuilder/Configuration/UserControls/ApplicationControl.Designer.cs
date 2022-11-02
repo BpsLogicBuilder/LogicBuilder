@@ -52,6 +52,7 @@
             this.txtExcludedModules = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.txtWebApiDeployment = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
+            this.radPanelApplication = new Telerik.WinControls.UI.RadPanel();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNickname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblWebApiDeployment)).BeginInit();
@@ -70,6 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtActivityClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).BeginInit();
             this.radGroupBoxApplication.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).BeginInit();
+            this.radPanelApplication.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -102,7 +105,7 @@
             this.tableLayoutPanel.Controls.Add(this.txtExcludedModules, 2, 10);
             this.tableLayoutPanel.Controls.Add(this.txtWebApiDeployment, 2, 11);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(2, 18);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 13;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -319,7 +322,7 @@
             // radGroupBoxApplication
             // 
             this.radGroupBoxApplication.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxApplication.Controls.Add(this.tableLayoutPanel);
+            this.radGroupBoxApplication.Controls.Add(this.radPanelApplication);
             this.radGroupBoxApplication.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBoxApplication.HeaderText = "Application";
             this.radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
@@ -327,6 +330,15 @@
             this.radGroupBoxApplication.Size = new System.Drawing.Size(855, 528);
             this.radGroupBoxApplication.TabIndex = 1;
             this.radGroupBoxApplication.Text = "Application";
+            // 
+            // radPanelApplication
+            // 
+            this.radPanelApplication.Controls.Add(this.tableLayoutPanel);
+            this.radPanelApplication.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanelApplication.Location = new System.Drawing.Point(2, 18);
+            this.radPanelApplication.Name = "radPanelApplication";
+            this.radPanelApplication.Size = new System.Drawing.Size(851, 508);
+            this.radPanelApplication.TabIndex = 1;
             // 
             // ApplicationControl
             // 
@@ -354,6 +366,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtActivityClass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).EndInit();
             this.radGroupBoxApplication.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).EndInit();
+            this.radPanelApplication.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -384,5 +398,6 @@
         private FlowBuilder.UserControls.HelperButtonTextBox txtExcludedModules;
         private FlowBuilder.UserControls.HelperButtonTextBox txtWebApiDeployment;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
+        private Telerik.WinControls.UI.RadPanel radPanelApplication;
     }
 }
