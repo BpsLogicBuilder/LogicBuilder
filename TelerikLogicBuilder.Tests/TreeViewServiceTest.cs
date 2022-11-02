@@ -629,7 +629,7 @@ namespace TelerikLogicBuilder.Tests
         [InlineData("AFile", "CFile")]
         [InlineData("CFile", "EFolder")]
         [InlineData("EFolder", "CFile")]
-        public void SelectClosestNodeOnDeleteSelectsExpectedSibling(string nodeToDelete, string expectedSelection)
+        public void GetClosestNodeForSelectionAfterDeleteReturnsExpectedSibling(string nodeToDelete, string expectedSelection)
         {
             //arrange
             ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
@@ -666,14 +666,14 @@ namespace TelerikLogicBuilder.Tests
             RadTreeNode radTreeNode = radTreeView.Find(n => n.Text == nodeToDelete);
 
             //act
-            service.SelectClosestNodeOnDelete(radTreeNode);
+            RadTreeNode closestNode = service.GetClosestNodeForSelectionAfterDelete(radTreeNode);
 
             //assert
-            Assert.Equal(expectedSelection, radTreeView.SelectedNode.Text);
+            Assert.Equal(expectedSelection, closestNode.Text);
         }
 
         [Fact]
-        public void SelectClosestNodeOnDeleteSelectsParentIfThereAreNoSiblings()
+        public void GetClosestNodeForSelectionAfterDeleteReturnsParentIfThereAreNoSiblings()
         {
             //arrange
             ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
@@ -700,14 +700,14 @@ namespace TelerikLogicBuilder.Tests
             RadTreeNode radTreeNode = radTreeView.Find(n => n.Text == "AFile");
 
             //act
-            service.SelectClosestNodeOnDelete(radTreeNode);
+            RadTreeNode closestNode = service.GetClosestNodeForSelectionAfterDelete(radTreeNode);
 
             //assert
-            Assert.Equal("Parent", radTreeView.SelectedNode.Text);
+            Assert.Equal("Parent", closestNode.Text);
         }
 
         [Fact]
-        public void SelectClosestNodeOnDeleteThrowsForRootNode()
+        public void GetClosestNodeForSelectionAfterDeleteThrowsForRootNode()
         {
             //arrange
             ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
@@ -744,7 +744,7 @@ namespace TelerikLogicBuilder.Tests
             RadTreeNode radTreeNode = radTreeView.Find(n => n.Text == "Parent");
 
             //assert
-            Assert.Throws<CriticalLogicBuilderException>(() => service.SelectClosestNodeOnDelete(radTreeNode));
+            Assert.Throws<CriticalLogicBuilderException>(() => service.GetClosestNodeForSelectionAfterDelete(radTreeNode));
         }
     }
 }

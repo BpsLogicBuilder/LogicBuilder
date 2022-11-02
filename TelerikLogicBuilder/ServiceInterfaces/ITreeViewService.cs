@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         RadTreeNode AddChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null);
         bool CollectionIncludesNodeAndDescendant(IList<RadTreeNode> treeNodes);
         RadTreeNode GetChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null);
+        RadTreeNode GetClosestNodeForSelectionAfterDelete(RadTreeNode treeNode);
         int GetInsertPosition(RadTreeNode[] treeNodeArray, RadTreeNode newNode, IComparer<RadTreeNode> treeNodeComparer);
         IList<RadTreeNode> GetSelectedNodes(RadTreeView treeView);
         bool IsApplicationNode(RadTreeNode treeNode);
@@ -19,7 +20,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool IsRootNode(RadTreeNode treeNode);
         void MakeVisible(RadTreeNode treeNode);
         void ScrollToPreviousPosition(RadTreeView treeView, Point point);
-        void SelectClosestNodeOnDelete(RadTreeNode treeNode);
         void SelectTreeNode(RadTreeView treeView, string? nodeName);
         void SelectTreeNodes(RadTreeView treeView, IList<string> nodeNames);
     }

@@ -282,8 +282,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
         {
             try
             {
-                if (TreeView.SelectedNode == null)
-                    return;
+                if (TreeView.SelectedNode == null 
+                    || e.Node == null)//Don't update if e.Node is null because
+                    return;             //1) The selected node may have been deleted
+                                        //2) There is no navigation (i.e. e.Node == null)
 
                 _dialogFormMessageControl.ClearMessage();
                 UpdateXmlDocument(TreeView.SelectedNode);

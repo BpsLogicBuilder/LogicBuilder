@@ -60,6 +60,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             };
         }
 
+        public RadTreeNode GetClosestNodeForSelectionAfterDelete(RadTreeNode treeNode)
+        {
+            if (treeNode.NextNode != null)
+                return treeNode.NextNode;
+            else if (treeNode.PrevNode != null)
+                return treeNode.PrevNode;
+            else if (treeNode.Parent != null)
+                return treeNode.Parent;
+            else
+                throw _exceptionHelper.CriticalException("{87DF7DDA-A430-4A00-897F-FB590477A8D6}");
+        }
+
         public int GetInsertPosition(RadTreeNode[] treeNodeArray, RadTreeNode newNode, IComparer<RadTreeNode> treeNodeComparer)
         {
             Array.Sort(treeNodeArray, treeNodeComparer);
@@ -173,18 +185,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             treeView.VScrollBar.Value = point.Y;
             treeView.HScrollBar.Value = point.X;
-        }
-
-        public void SelectClosestNodeOnDelete(RadTreeNode treeNode)
-        {
-            if (treeNode.NextNode != null)
-                treeNode.TreeView.SelectedNode = treeNode.NextNode;
-            else if (treeNode.PrevNode != null)
-                treeNode.TreeView.SelectedNode = treeNode.PrevNode;
-            else if (treeNode.Parent != null)
-                treeNode.TreeView.SelectedNode = treeNode.Parent;
-            else
-                throw _exceptionHelper.CriticalException("{87DF7DDA-A430-4A00-897F-FB590477A8D6}");
         }
 
         public void SelectTreeNode(RadTreeView treeView, string? nodeName)

@@ -65,7 +65,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
 
         public void DeleteNode(RadTreeNode treeNode)
         {
-            _treeViewService.SelectClosestNodeOnDelete(treeNode);
+            RadTreeNode closestNode = _treeViewService.GetClosestNodeForSelectionAfterDelete(treeNode);
+            this.configureProjectProperties.TreeView.SelectedNode = null;
 
             XmlNode xmlNodeToDelete = _xmlDocumentHelpers.SelectSingleElement
             (
@@ -76,22 +77,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 xmlNodeToDelete.ParentNode ?? throw _exceptionHelper.CriticalException("{94F17B9D-30F3-4140-8AAE-7A7403021070}")
             )
             .RemoveChild(xmlNodeToDelete);
-            
 
-            try
-            {
-                this.configureProjectProperties.OnInvalidXmlRestoreDocumentAndThrow();
-            }
-            catch (LogicBuilderException)
-            {
-                this.configureProjectProperties.TreeView.SelectedNode = treeNode;
-                throw;
-            }
+            this.configureProjectProperties.OnInvalidXmlRestoreDocumentAndThrow();
 
             RadTreeNode parentNode = treeNode.Parent;
             treeNode.Remove();
             if (parentNode.Nodes.Count == 0)
                 parentNode.Collapse();
+
+            this.configureProjectProperties.TreeView.SelectedNode = closestNode;
         }
     }
 
