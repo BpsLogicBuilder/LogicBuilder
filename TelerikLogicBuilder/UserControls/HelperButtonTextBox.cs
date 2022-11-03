@@ -27,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void Initialize()
         {
             radButtonHelper.Image = Properties.Resources.more;
+            radButtonHelper.ImageAlignment = ContentAlignment.MiddleCenter;
             radButtonHelper.Click += RadButtonHelper_Click;
             radButtonTextBox1.Validating += TextBox_Validating;
             radButtonTextBox1.SizeChanged += RadButtonTextBox1_SizeChanged;

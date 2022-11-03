@@ -112,11 +112,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
             txtResourceFilesDeployment.Validating += TxtResourceFileDeployment_Validating;
             txtRulesDeployment.Validating += TxtRulesDeployment_Validating;
 
-            #region All three need to be set for scrolling to work (even with dock styles set to fill)
             radPanelApplication.AutoScroll = true;
-            radPanelApplication.SetAutoScrollMargin(1, 0);
-            tableLayoutPanel.Anchor = AnchorConstants.AnchorsLeftTopRight; 
-            #endregion
 
             ((BorderPrimitive)radPanelApplication.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
