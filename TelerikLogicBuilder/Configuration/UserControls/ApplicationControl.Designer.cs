@@ -53,6 +53,7 @@
             this.txtActivityAssembly = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
             this.radPanelApplication = new Telerik.WinControls.UI.RadPanel();
+            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNickname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblWebApiDeployment)).BeginInit();
@@ -73,6 +74,8 @@
             this.radGroupBoxApplication.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).BeginInit();
             this.radPanelApplication.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -104,33 +107,33 @@
             this.tableLayoutPanel.Controls.Add(this.txtExcludedModules, 2, 19);
             this.tableLayoutPanel.Controls.Add(this.txtWebApiDeployment, 2, 21);
             this.tableLayoutPanel.Controls.Add(this.txtActivityAssembly, 2, 5);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 23;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F / 431 * 100));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F / 431 * 100));
             this.tableLayoutPanel.Size = new System.Drawing.Size(851, 431);
             this.tableLayoutPanel.TabIndex = 0;
             // 
@@ -361,12 +364,21 @@
             // 
             // radPanelApplication
             // 
-            this.radPanelApplication.Controls.Add(this.tableLayoutPanel);
+            this.radPanelApplication.Controls.Add(this.radPanelTableParent);
             this.radPanelApplication.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelApplication.Location = new System.Drawing.Point(2, 18);
             this.radPanelApplication.Name = "radPanelApplication";
             this.radPanelApplication.Size = new System.Drawing.Size(851, 508);
             this.radPanelApplication.TabIndex = 1;
+            // 
+            // radPanelTableParent
+            // 
+            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
+            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            this.radPanelTableParent.Name = "radPanelTableParent";
+            this.radPanelTableParent.Size = new System.Drawing.Size(851, 431);
+            this.radPanelTableParent.TabIndex = 1;
             // 
             // ApplicationControl
             // 
@@ -396,6 +408,8 @@
             this.radGroupBoxApplication.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).EndInit();
             this.radPanelApplication.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
+            this.radPanelTableParent.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -427,5 +441,6 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
         private Telerik.WinControls.UI.RadPanel radPanelApplication;
         private FlowBuilder.UserControls.HelperButtonTextBox txtActivityAssembly;
+        private Telerik.WinControls.UI.RadPanel radPanelTableParent;
     }
 }
