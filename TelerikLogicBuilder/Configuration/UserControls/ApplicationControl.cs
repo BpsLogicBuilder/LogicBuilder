@@ -173,6 +173,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
             helperButtonTextBox.Font = new Font(helperButtonTextBox.Font, FontStyle.Bold);
             helperButtonTextBox.ReadOnly = true;
             helperButtonTextBox.Text = text;
+            helperButtonTextBox.SetPaddingType(HelperButtonTextBox.PaddingType.Bold);
         }
 
         private void LoadRuntimeComboBox()

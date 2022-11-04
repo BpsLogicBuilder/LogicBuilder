@@ -24,11 +24,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public new event CancelEventHandler? Validating;
 
+        internal void SetPaddingType(PaddingType paddingType)
+        {
+            if (paddingType == PaddingType.Bold)
+                radButtonTextBox1.TextBoxElement.Padding = new Padding(0);/*Makes the text more visible.  Unclear why because the original padding also appears to be zero.*/
+
+            if (paddingType == PaddingType.Normal)
+                radButtonTextBox1.TextBoxElement.Padding = new Padding(2);
+        }
+
         private void Initialize()
         {
             radButtonHelper.Image = Properties.Resources.more;
             radButtonHelper.ImageAlignment = ContentAlignment.MiddleCenter;
             radButtonHelper.Click += RadButtonHelper_Click;
+
             radButtonTextBox1.Validating += TextBox_Validating;
             radButtonTextBox1.SizeChanged += RadButtonTextBox1_SizeChanged;
             
@@ -48,6 +58,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void RadButtonHelper_Click(object? sender, EventArgs e)
         {
             ButtonClick?.Invoke(this, e);
+        }
+
+        internal enum PaddingType
+        {
+            Bold,
+            Normal
         }
     }
 }
