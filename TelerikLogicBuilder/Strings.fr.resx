@@ -789,6 +789,9 @@
     <value>{0} Name must be less than 50 characters long and cannot include the following characters: " \FR</value>
     <comment>0=Variable, Function or Folder Name</comment>
   </data>
+	<data name="invalidUrlInputFormat" xml:space="preserve">
+    <value>Url in "{0}" is invalid.FR</value>
+  </data>
 	<data name="invalidVariableElementFormat" xml:space="preserve">
     <value>The variable "{0}" has an invalid value element for the category "{1}".FR</value>
     <comment>0=parameterName;1=parameterCategory;</comment>

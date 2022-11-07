@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -15,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddConfigurationFormFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<IConfigurationFormFactory, ConfigurationFormFactory>()
                 .AddTransient<Func<IList<string>, ConfigureExcludedModules>>
                 (
                     provider =>
@@ -48,7 +50,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         openedAsReadOnly
                     )
                 )
-                .AddTransient<IConfigurationFormFactory, ConfigurationFormFactory>();
+                .AddTransient<Func<WebApiDeployment, ConfigureWebApiDeployment>>
+                (
+                    provider =>
+                    webApiDeployment => new ConfigureWebApiDeployment
+                    (
+                        provider.GetRequiredService<IConfigurationItemFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<DialogFormMessageControl>(),
+                        webApiDeployment
+                    )
+                );
         }
     }
 }

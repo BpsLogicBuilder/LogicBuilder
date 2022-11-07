@@ -55,7 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
                     _xmlDocumentHelpers.SelectSingleElement
                     (
                         this.xmlDocument, 
-                        $"{this.treeView.SelectedNode.Name}/{XmlDataConstants.EXCLUDEDMODULESELEMENT}"
+                        $"{selecteNode.Name}/{XmlDataConstants.EXCLUDEDMODULESELEMENT}"
                     )
                 )
                 .Select(e => e.InnerText)
@@ -72,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
             );
 
             _xmlDocumentHelpers
-                .SelectSingleElement(this.xmlDocument, $"{this.treeView.SelectedNode.Name}/{XmlDataConstants.EXCLUDEDMODULESELEMENT}")
+                .SelectSingleElement(this.xmlDocument, $"{selecteNode.Name}/{XmlDataConstants.EXCLUDEDMODULESELEMENT}")
                 .InnerXml = elementToUpdate.InnerXml;
         }
 

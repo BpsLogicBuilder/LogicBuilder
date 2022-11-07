@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -70,6 +71,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     applicationControl => new EditWebApiDeploymentCommand
                     (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IMainWindow>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IWebApiDeploymentXmlParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         applicationControl
                     )

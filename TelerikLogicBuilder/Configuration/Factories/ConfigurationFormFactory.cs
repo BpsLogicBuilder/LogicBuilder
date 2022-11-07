@@ -11,16 +11,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private Form? _scopedService;
         private readonly Func<IList<string>, ConfigureExcludedModules> _getConfigureExcludedModules;
         private readonly Func<bool, ConfigureProjectProperties> _getConfigureProjectProperties;
+        private readonly Func<WebApiDeployment, ConfigureWebApiDeployment> _getConfigureWebApiDeployment;
         private readonly IServiceScope _scope;
 
         public ConfigurationFormFactory(
             IServiceScopeFactory serviceScopeFactory,
             Func<IList<string>, ConfigureExcludedModules> getConfigureExcludedModules,
-            Func<bool, ConfigureProjectProperties> getConfigureProjectProperties)
+            Func<bool, ConfigureProjectProperties> getConfigureProjectProperties,
+            Func<WebApiDeployment, ConfigureWebApiDeployment> getConfigureWebApiDeployment)
         {
             _scope = serviceScopeFactory.CreateScope();
             _getConfigureExcludedModules = getConfigureExcludedModules;
             _getConfigureProjectProperties = getConfigureProjectProperties;
+            _getConfigureWebApiDeployment = getConfigureWebApiDeployment;
         }
 
         public ConfigureExcludedModules GetConfigureExcludedModules(IList<string> excludedModules)
@@ -41,6 +44,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             //so we have to dispose of the service manually (_scope.Dispose() will not dispose _scopedService).
             _scopedService?.Dispose();
             _scope.Dispose();
+        }
+
+        public ConfigureWebApiDeployment GetConfigureWebApiDeployment(WebApiDeployment webApiDeployment)
+        {
+            _scopedService = _getConfigureWebApiDeployment(webApiDeployment);
+            return (ConfigureWebApiDeployment)_scopedService;
         }
     }
 }

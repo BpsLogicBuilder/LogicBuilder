@@ -8,5 +8,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     {
         ConfigureExcludedModules GetConfigureExcludedModules(IList<string> excludedModules);
         ConfigureProjectProperties GetConfigureProjectProperties(bool openedAsReadOnly);
+        ConfigureWebApiDeployment GetConfigureWebApiDeployment(WebApiDeployment webApiDeployment);
     }
 }
