@@ -6,14 +6,27 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
+using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class ConfigureProjectPropertiesFactoryServices
+    internal static class ConfigurationFormFactoryServices
     {
-        internal static IServiceCollection AddConfigureProjectPropertiesFactories(this IServiceCollection services)
+        internal static IServiceCollection AddConfigurationFormFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IList<string>, ConfigureExcludedModules>>
+                (
+                    provider =>
+                    excludedModules => new ConfigureExcludedModules
+                    (
+                        provider.GetRequiredService<IConfigureExcludedModulesCommandFactory>(),
+                        provider.GetRequiredService<IExcludedModulesTreeViewBuilder>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        excludedModules
+                    )
+                )
                 .AddTransient<Func<bool, ConfigureProjectProperties>>
                 (
                     provider =>

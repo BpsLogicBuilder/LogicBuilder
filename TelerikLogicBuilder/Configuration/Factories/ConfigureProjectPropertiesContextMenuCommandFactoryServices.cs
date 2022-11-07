@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;

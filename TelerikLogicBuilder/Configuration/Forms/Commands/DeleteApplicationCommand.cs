@@ -1,12 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms.Commands
 {
     internal class DeleteApplicationCommand : ClickCommandBase
     {
@@ -34,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
         {
             try
             {
-                RadTreeNode selecteNode = this.configureProjectProperties.TreeView.SelectedNode;
+                RadTreeNode selecteNode = configureProjectProperties.TreeView.SelectedNode;
                 if (selecteNode == null)
                     return;
 
@@ -45,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
             }
             catch (LogicBuilderException ex)
             {
-                this.configureProjectProperties.SetErrorMessage(ex.Message);
+                configureProjectProperties.SetErrorMessage(ex.Message);
             }
         }
     }

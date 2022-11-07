@@ -39,7 +39,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigurationHelpers()
                 .AddConfigurationInitialization()
                 .AddConfigurationItemFactories()
+                .AddConfigureExcludedModulesCommandFactories()
                 .AddConfigureProjectPropertiesContextMenuCommandFactories()
-                .AddConfigureProjectPropertiesFactories();
+                .AddConfigurationFormFactories();
     }
 }

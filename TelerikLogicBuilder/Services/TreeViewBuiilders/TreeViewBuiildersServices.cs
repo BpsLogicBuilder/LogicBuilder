@@ -7,9 +7,11 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         internal static IServiceCollection AddTreeViewBuiilders(this IServiceCollection services) 
             => services
+                .AddSingleton<ICheckSelectedTreeNodes, CheckSelectedTreeNodes>()
                 .AddSingleton<IConfigurationExplorerTreeViewBuilder, ConfigurationExplorerTreeViewBuilder>()
                 .AddSingleton<IConfigureProjectPropertiesTreeviewBuilder, ConfigureProjectPropertiesTreeviewBuilder>()
                 .AddSingleton<IEmptyFolderRemover, EmptyFolderRemover>()
+                .AddSingleton<IExcludedModulesTreeViewBuilder, ExcludedModulesTreeViewBuilder>()
                 .AddSingleton<IGetAllCheckedNodes, GetAllCheckedNodes>()
                 .AddSingleton<ISelectDocunentsTreeViewBuilder, SelectDocunentsTreeViewBuilder>()
                 .AddSingleton<ISelectModulesForDeploymentTreeViewBuilder, SelectModulesForDeploymentTreeViewBuilder>()

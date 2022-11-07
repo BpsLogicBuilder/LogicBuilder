@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms.Commands;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
