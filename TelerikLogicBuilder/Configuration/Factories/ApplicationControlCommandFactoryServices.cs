@@ -72,7 +72,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationControl => new EditWebApiDeploymentCommand
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IMainWindow>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IWebApiDeploymentXmlParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),

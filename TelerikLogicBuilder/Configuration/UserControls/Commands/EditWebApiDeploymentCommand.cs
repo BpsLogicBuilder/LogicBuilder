@@ -15,16 +15,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
     internal class EditWebApiDeploymentCommand : ClickCommandBase
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
         private readonly IWebApiDeploymentXmlParser _webApiDeploymentXmlParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly RadTreeView treeView;
         private readonly XmlDocument xmlDocument;
+        private readonly IApplicationControl applicationControl;
 
         public EditWebApiDeploymentCommand(
             IExceptionHelper exceptionHelper,
-            IMainWindow mainWindow,
             ITreeViewService treeViewService,
             IWebApiDeploymentXmlParser webApiDeploymentXmlParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -33,10 +32,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _treeViewService = treeViewService;
-            _mainWindow = mainWindow;
             _webApiDeploymentXmlParser = webApiDeploymentXmlParser;
             this.treeView = applicationControl.TreeView;
             this.xmlDocument = applicationControl.XmlDocument;
+            this.applicationControl = applicationControl;
         }
 
         public override void Execute()
@@ -60,7 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
                     )
                 )
             );
-            configureWebApiDeployment.ShowDialog(_mainWindow.Instance);
+            configureWebApiDeployment.ShowDialog((Control)applicationControl);/*need the current parent not main windows*/
 
             if (configureWebApiDeployment.DialogResult != DialogResult.OK)
                 return;
