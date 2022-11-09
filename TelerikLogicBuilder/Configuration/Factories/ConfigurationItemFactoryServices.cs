@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
@@ -34,6 +35,15 @@ namespace Microsoft.Extensions.DependencyInjection
                         rulesDeploymentPath,
                         modules,
                         webApiDeployment
+                    )
+                )
+                .AddTransient<Func<string, AssemblyPath>>
+                (
+                    provider =>
+                    path => new AssemblyPath
+                    (
+                        provider.GetRequiredService<IPathHelper>(),
+                        path
                     )
                 )
                 .AddTransient<IConfigurationItemFactory, ConfigurationItemFactory>()

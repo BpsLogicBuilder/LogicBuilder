@@ -3166,6 +3166,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item {0} is aready in in the list..
+        /// </summary>
+        internal static string itemAlreadyListed {
+            get {
+                return ResourceManager.GetString("itemAlreadyListed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , .
         /// </summary>
         internal static string itemsCommaSeparator {
@@ -3234,6 +3243,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string listDescriptionFormat {
             get {
                 return ResourceManager.GetString("listDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item is empty..
+        /// </summary>
+        internal static string listItemIsEmpty {
+            get {
+                return ResourceManager.GetString("listItemIsEmpty", resourceCulture);
             }
         }
         

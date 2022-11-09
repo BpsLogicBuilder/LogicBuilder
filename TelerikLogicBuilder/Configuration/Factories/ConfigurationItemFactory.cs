@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -7,17 +8,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     internal class ConfigurationItemFactory : IConfigurationItemFactory
     {
         private readonly Func<string, string, string, string, RuntimeType, List<string>, string, string, string, List<string>, string, string, string, string, List<string>, WebApiDeployment, Application> _getApplication;
+        private readonly Func<string, AssemblyPath> _getAssemblyPath;
         private readonly Func<string, string, Fragment> _getFragment;
         private readonly Func<string, string, Dictionary<string, Application>, HashSet<string>, ProjectProperties> _getProjectProperties;
         private readonly Func<string, string, string, string, WebApiDeployment> _getWebApiDeployment;
 
         public ConfigurationItemFactory(
             Func<string, string, string, string, RuntimeType, List<string>, string, string, string, List<string>, string, string, string, string, List<string>, WebApiDeployment, Application> getApplication,
+            Func<string, AssemblyPath> getAssemblyPath,
             Func<string, string, Fragment> getFragment,
             Func<string, string, Dictionary<string, Application>, HashSet<string>, ProjectProperties> getProjectProperties,
             Func<string, string, string, string, WebApiDeployment> getWebApiDeployment)
         {
             _getApplication = getApplication;
+            _getAssemblyPath = getAssemblyPath;
             _getFragment = getFragment;
             _getProjectProperties = getProjectProperties;
             _getWebApiDeployment = getWebApiDeployment;
@@ -57,6 +61,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
                 rulesDeploymentPath,
                 modules,
                 webApiDeployment);
+
+        public AssemblyPath GetAssemblyPath(string path)
+            => _getAssemblyPath(path);
 
         public Fragment GetFragment(string name, string xml)
             => _getFragment(name, xml);

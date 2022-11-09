@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -14,12 +15,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
         private readonly IConfigureExcludedModulesCommandFactory _configureExcludedModulesCommandFactory;
         private readonly IExcludedModulesTreeViewBuilder _excludedModulesTreeViewBuilder;
         private readonly IFormInitializer _formInitializer;
+        private readonly IGetAllCheckedNodes _getAllCheckedNodes;
         private readonly ITreeViewService _treeViewService;
 
         public ConfigureExcludedModules(
             IConfigureExcludedModulesCommandFactory configureExcludedModulesCommandFactory,
             IExcludedModulesTreeViewBuilder excludedModulesTreeViewBuilder,
             IFormInitializer formInitializer,
+            IGetAllCheckedNodes getAllCheckedNodes,
             ITreeViewService treeViewService,
             IList<string> excludedModules)
         {
@@ -27,13 +30,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             _configureExcludedModulesCommandFactory = configureExcludedModulesCommandFactory;
             _excludedModulesTreeViewBuilder = excludedModulesTreeViewBuilder;
             _formInitializer = formInitializer;
+            _getAllCheckedNodes = getAllCheckedNodes;
             _treeViewService = treeViewService;
-            ExcludedModules = new List<string>(excludedModules);
+            existingExcludedModules = excludedModules;
 
             Initialize();
         }
 
-        public List<string> ExcludedModules { get; }
+        private readonly IList<string> existingExcludedModules;
+
+        public IList<string> ExcludedModules => _getAllCheckedNodes
+                    .GetNodes(radTreeView1.Nodes[0])
+                    .Select(n => n.Text)
+                    .OrderBy(n => n)
+                    .ToArray();
 
         public RadListControl ListControl => radListControl1;
 
@@ -43,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 
         private void BuildTreeView()
         {
-            _excludedModulesTreeViewBuilder.Build(radTreeView1, ExcludedModules);
+            _excludedModulesTreeViewBuilder.Build(radTreeView1, existingExcludedModules);
         }
 
         private void Initialize()

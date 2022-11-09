@@ -17,15 +17,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
     internal class EditExcludedModulesCommand : ClickCommandBase
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IMainWindow _mainWindow;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly RadTreeView treeView;
         private readonly XmlDocument xmlDocument;
+        private readonly IApplicationControl applicationControl;
 
         public EditExcludedModulesCommand(
             IExceptionHelper exceptionHelper,
-            IMainWindow mainWindow,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IApplicationControl applicationControl)
@@ -33,9 +32,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _treeViewService = treeViewService;
-            _mainWindow = mainWindow;
             this.treeView = applicationControl.TreeView;
             this.xmlDocument = applicationControl.XmlDocument;
+            this.applicationControl = applicationControl;
         }
 
         public override void Execute()
@@ -61,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
                 .Select(e => e.InnerText)
                 .ToArray()
             );
-            configureExcludedModules.ShowDialog(_mainWindow.Instance);
+            configureExcludedModules.ShowDialog((Control)applicationControl);
 
             if (configureExcludedModules.DialogResult != DialogResult.OK)
                 return;

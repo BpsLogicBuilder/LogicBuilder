@@ -25,8 +25,21 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureExcludedModulesCommandFactory>(),
                         provider.GetRequiredService<IExcludedModulesTreeViewBuilder>(),
                         provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IGetAllCheckedNodes>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         excludedModules
+                    )
+                )
+                .AddTransient<Func<IList<string>, ConfigureLoadAssemblyPaths>>
+                (
+                    provider =>
+                    existingPaths => new ConfigureLoadAssemblyPaths
+                    (
+                        provider.GetRequiredService<IConfigurationItemFactory>(),
+                        provider.GetRequiredService<IConfigurationControlFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<DialogFormMessageControl>(),
+                        existingPaths
                     )
                 )
                 .AddTransient<Func<bool, ConfigureProjectProperties>>

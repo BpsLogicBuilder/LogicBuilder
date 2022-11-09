@@ -5,7 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 {
     internal interface IConfigureExcludedModules
     {
-        List<string> ExcludedModules { get; }
+        IList<string> ExcludedModules { get; }
         RadListControl ListControl { get; }
         RadTreeView TreeView { get; }
         RadButton OkButton { get; }

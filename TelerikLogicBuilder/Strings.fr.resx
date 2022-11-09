@@ -796,6 +796,10 @@
     <value>The variable "{0}" has an invalid value element for the category "{1}".FR</value>
     <comment>0=parameterName;1=parameterCategory;</comment>
   </data>
+	<data name="itemAlreadyListed" xml:space="preserve">
+    <value>Item {0} is aready in in the list.FR</value>
+    <comment>0=new item</comment>
+  </data>
 	<data name="itemsCommaSeparator" xml:space="preserve">
     <value>, </value>
   </data>
@@ -816,6 +820,10 @@
   </data>
 	<data name="jumpShapeUniqueTextForToShape" xml:space="preserve">
     <value>Duplicate Jump Shape. Text in a "To" Jump Shapes must be unique.FR</value>
+  </data>
+	<data name="listItemIsEmpty" xml:space="preserve">
+    <value>Item is empty.FR</value>
+    <comment>0=new item</comment>
   </data>
 	<data name="listParameterCountFormat" xml:space="preserve">
     <value>{0}: Count({1})FR</value>

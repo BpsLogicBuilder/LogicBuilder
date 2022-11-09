@@ -25,7 +25,16 @@ namespace Microsoft.Extensions.DependencyInjection
                         configureProjectProperties
                     )
                 )
-                .AddTransient<IConfigurationControlFactory, ConfigurationControlFactory>();
+                .AddTransient<IConfigurationControlFactory, ConfigurationControlFactory>()
+                .AddTransient<Func<IConfigureLoadAssemblyPaths, ILoadAssemblyPathsControl>>
+                (
+                    provider =>
+                    configureLoadAssemblyPaths => new LoadAssemblyPathsControl
+                    (
+                        provider.GetRequiredService<ILoadAssemblyPathsCommandFactory>(),
+                        configureLoadAssemblyPaths
+                    )
+                );
         }
     }
 }

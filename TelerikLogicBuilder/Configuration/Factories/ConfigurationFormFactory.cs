@@ -10,6 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     {
         private Form? _scopedService;
         private readonly Func<IList<string>, ConfigureExcludedModules> _getConfigureExcludedModules;
+        private readonly Func<IList<string>, ConfigureLoadAssemblyPaths> _getConfigureLoadAssemblyPaths;
         private readonly Func<bool, ConfigureProjectProperties> _getConfigureProjectProperties;
         private readonly Func<WebApiDeployment, ConfigureWebApiDeployment> _getConfigureWebApiDeployment;
         private readonly IServiceScope _scope;
@@ -17,10 +18,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         public ConfigurationFormFactory(
             IServiceScopeFactory serviceScopeFactory,
             Func<IList<string>, ConfigureExcludedModules> getConfigureExcludedModules,
+            Func<IList<string>, ConfigureLoadAssemblyPaths> getConfigureLoadAssemblyPaths,
             Func<bool, ConfigureProjectProperties> getConfigureProjectProperties,
             Func<WebApiDeployment, ConfigureWebApiDeployment> getConfigureWebApiDeployment)
         {
             _scope = serviceScopeFactory.CreateScope();
+            _getConfigureLoadAssemblyPaths = getConfigureLoadAssemblyPaths;
             _getConfigureExcludedModules = getConfigureExcludedModules;
             _getConfigureProjectProperties = getConfigureProjectProperties;
             _getConfigureWebApiDeployment = getConfigureWebApiDeployment;
@@ -30,6 +33,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         {
             _scopedService = _getConfigureExcludedModules(excludedModules);
             return (ConfigureExcludedModules)_scopedService;
+        }
+
+        public ConfigureLoadAssemblyPaths GetConfigureLoadAssemblyPaths(IList<string> existingPaths)
+        {
+            _scopedService = _getConfigureLoadAssemblyPaths(existingPaths);
+            return (ConfigureLoadAssemblyPaths)_scopedService;
         }
 
         public ConfigureProjectProperties GetConfigureProjectProperties(bool openedAsReadOnly)

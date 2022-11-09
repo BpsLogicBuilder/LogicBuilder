@@ -21,8 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms.Commands
         public override void Execute()
         {
             configureExcludedModules.ListControl.Items.Clear();
-            configureExcludedModules.ExcludedModules.Clear();
-            configureExcludedModules.ExcludedModules.AddRange
+            configureExcludedModules.ListControl.Items.AddRange
             (
                 _getAllCheckedNodes
                     .GetNodes(configureExcludedModules.TreeView.Nodes[0])
@@ -30,8 +29,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms.Commands
                     .OrderBy(n => n)
                     .ToArray()
             );
-
-            configureExcludedModules.ListControl.Items.AddRange(configureExcludedModules.ExcludedModules);
             configureExcludedModules.OkButton.Enabled = true;
         }
     }

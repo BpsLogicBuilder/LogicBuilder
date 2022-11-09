@@ -35,7 +35,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     applicationControl => new EditExcludedModulesCommand
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IMainWindow>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         applicationControl
@@ -46,6 +45,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     applicationControl => new EditLoadAssemblyPathsCommand
                     (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         applicationControl
                     )
