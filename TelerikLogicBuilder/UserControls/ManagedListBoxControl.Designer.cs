@@ -32,7 +32,6 @@
             this.btnDown = new Telerik.WinControls.UI.RadButton();
             this.btnUp = new Telerik.WinControls.UI.RadButton();
             this.radPanelEditButtons = new Telerik.WinControls.UI.RadPanel();
-            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnCopy = new Telerik.WinControls.UI.RadButton();
             this.btnEdit = new Telerik.WinControls.UI.RadButton();
@@ -45,7 +44,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelEditButtons)).BeginInit();
             this.radPanelEditButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
@@ -69,7 +67,7 @@
             // 
             this.btnDown.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Down;
             this.btnDown.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnDown.Location = new System.Drawing.Point(6, 93);
+            this.btnDown.Location = new System.Drawing.Point(6, 63);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(24, 24);
             this.btnDown.TabIndex = 1;
@@ -79,14 +77,13 @@
             // 
             this.btnUp.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Up;
             this.btnUp.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnUp.Location = new System.Drawing.Point(6, 63);
+            this.btnUp.Location = new System.Drawing.Point(6, 33);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(24, 24);
             this.btnUp.TabIndex = 0;
             // 
             // radPanelEditButtons
             // 
-            this.radPanelEditButtons.Controls.Add(this.btnUpdate);
             this.radPanelEditButtons.Controls.Add(this.btnCancel);
             this.radPanelEditButtons.Controls.Add(this.btnCopy);
             this.radPanelEditButtons.Controls.Add(this.btnEdit);
@@ -97,17 +94,9 @@
             this.radPanelEditButtons.Size = new System.Drawing.Size(134, 168);
             this.radPanelEditButtons.TabIndex = 4;
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(9, 3);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
-            this.btnUpdate.TabIndex = 0;
-            this.btnUpdate.Text = "Update";
-            // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(9, 33);
+            this.btnCancel.Location = new System.Drawing.Point(9, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 1;
@@ -115,7 +104,7 @@
             // 
             // btnCopy
             // 
-            this.btnCopy.Location = new System.Drawing.Point(9, 63);
+            this.btnCopy.Location = new System.Drawing.Point(9, 33);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(110, 24);
             this.btnCopy.TabIndex = 2;
@@ -123,7 +112,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(9, 93);
+            this.btnEdit.Location = new System.Drawing.Point(9, 63);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(110, 24);
             this.btnEdit.TabIndex = 3;
@@ -131,7 +120,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(9, 123);
+            this.btnRemove.Location = new System.Drawing.Point(9, 93);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 24);
             this.btnRemove.TabIndex = 4;
@@ -170,7 +159,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelEditButtons)).EndInit();
             this.radPanelEditButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
@@ -188,7 +176,6 @@
         private Telerik.WinControls.UI.RadButton btnDown;
         private Telerik.WinControls.UI.RadButton btnUp;
         private Telerik.WinControls.UI.RadPanel radPanelEditButtons;
-        private Telerik.WinControls.UI.RadButton btnUpdate;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadButton btnCopy;
         private Telerik.WinControls.UI.RadButton btnEdit;

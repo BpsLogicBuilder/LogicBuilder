@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.radGroupBoxPaths = new Telerik.WinControls.UI.RadGroupBox();
+            this.managedListBoxControl = new ABIS.LogicBuilder.FlowBuilder.UserControls.ManagedListBoxControl();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
             this.txtPath = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
             this.radGroupBoxAddPath = new Telerik.WinControls.UI.RadGroupBox();
             this.radPanelTxtPath = new Telerik.WinControls.UI.RadPanel();
             this.radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
-            this.managedListBoxControl = new ABIS.LogicBuilder.FlowBuilder.UserControls.ManagedListBoxControl();
+            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPaths)).BeginInit();
             this.radGroupBoxPaths.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -44,6 +45,7 @@
             this.radPanelTxtPath.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelAddButton)).BeginInit();
             this.radPanelAddButton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBoxPaths
@@ -57,6 +59,15 @@
             this.radGroupBoxPaths.Size = new System.Drawing.Size(729, 182);
             this.radGroupBoxPaths.TabIndex = 1;
             this.radGroupBoxPaths.Text = "Paths";
+            // 
+            // managedListBoxControl
+            // 
+            this.managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.managedListBoxControl.Location = new System.Drawing.Point(2, 18);
+            this.managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
+            this.managedListBoxControl.Name = "managedListBoxControl";
+            this.managedListBoxControl.Size = new System.Drawing.Size(725, 162);
+            this.managedListBoxControl.TabIndex = 0;
             // 
             // btnAdd
             // 
@@ -99,6 +110,7 @@
             // 
             // radPanelAddButton
             // 
+            this.radPanelAddButton.Controls.Add(this.btnUpdate);
             this.radPanelAddButton.Controls.Add(this.btnAdd);
             this.radPanelAddButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.radPanelAddButton.Location = new System.Drawing.Point(593, 18);
@@ -106,14 +118,13 @@
             this.radPanelAddButton.Size = new System.Drawing.Size(134, 35);
             this.radPanelAddButton.TabIndex = 0;
             // 
-            // managedListBoxControl
+            // btnUpdate
             // 
-            this.managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.managedListBoxControl.Location = new System.Drawing.Point(2, 18);
-            this.managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
-            this.managedListBoxControl.Name = "managedListBoxControl";
-            this.managedListBoxControl.Size = new System.Drawing.Size(725, 162);
-            this.managedListBoxControl.TabIndex = 0;
+            this.btnUpdate.Location = new System.Drawing.Point(12, 3);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "Update";
             // 
             // LoadAssemblyPathsControl
             // 
@@ -133,6 +144,7 @@
             this.radPanelTxtPath.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelAddButton)).EndInit();
             this.radPanelAddButton.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,5 +158,6 @@
         private Telerik.WinControls.UI.RadPanel radPanelTxtPath;
         private Telerik.WinControls.UI.RadPanel radPanelAddButton;
         private FlowBuilder.UserControls.ManagedListBoxControl managedListBoxControl;
+        private Telerik.WinControls.UI.RadButton btnUpdate;
     }
 }

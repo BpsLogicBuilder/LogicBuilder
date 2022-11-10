@@ -1,11 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ListBox.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
+using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    public partial class ManagedListBoxControl : UserControl, IManagedListBoxControl
+    internal partial class ManagedListBoxControl : UserControl, IManagedListBoxControl
     {
         public ManagedListBoxControl()
         {
@@ -25,7 +28,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
         }
 
-        public RadButton BtnUpdate => btnUpdate;
+        public void CreateCommands(IRadListBoxManager radListBoxManager)
+        {
+            InitializeHButtonCommand(btnCancel, new ListBoxManagerCancelCommand(radListBoxManager));
+            InitializeHButtonCommand(btnCopy, new ListBoxManagerCopyCommand(radListBoxManager));
+            InitializeHButtonCommand(btnEdit, new ListBoxManagerEditCommand(radListBoxManager));
+            InitializeHButtonCommand(btnRemove, new ListBoxManagerRemoveCommand(radListBoxManager));
+            InitializeHButtonCommand(btnUp, new ListBoxManagerMoveUpCommand(radListBoxManager));
+            InitializeHButtonCommand(btnDown, new ListBoxManagerMoveDownCommand(radListBoxManager));
+        }
 
         public RadButton BtnCancel => btnCancel;
 
@@ -40,5 +51,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public RadButton BtnDown => btnDown;
 
         public RadListControl ListBox => listBox;
+
+        private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
+        {
+            radButton.Click += (sender, args) => command.Execute();
+        }
     }
 }

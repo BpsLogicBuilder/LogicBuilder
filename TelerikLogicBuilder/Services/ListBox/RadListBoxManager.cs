@@ -27,6 +27,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
         private RadButton BtnDown => this.listBoxHost.BtnDown;
         private RadListControl ListBox => this.listBoxHost.ListBox;
 
+        private bool _isUpdate;
+        private bool IsUpdate
+        {
+            get { return _isUpdate; }
+            set
+            {
+                _isUpdate = value;
+                SetButtonEnabledStates(_isUpdate);
+            }
+        }
+
         public bool Add(T item)
         {
             listBoxHost.ClearMessage();
@@ -59,8 +70,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             if (ListBox.SelectedIndex == -1)
                 return;
 
-            SetButtonEnabledStates(false);
-            listBoxHost.DisableControlsDuringEdit(false);
             listBoxHost.UpdateInputControls((T)ListBox.SelectedValue);
         }
 
@@ -69,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             if (ListBox.SelectedIndex == -1)
                 return;
 
-            SetButtonEnabledStates(true);
+            IsUpdate = true;
             listBoxHost.DisableControlsDuringEdit(true);
             listBoxHost.UpdateInputControls((T)ListBox.SelectedValue);
         }
@@ -122,7 +131,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
 
         public void ResetControls()
         {
-            SetButtonEnabledStates(false);
+            IsUpdate = false;
             listBoxHost.DisableControlsDuringEdit(false);
             listBoxHost.ClearInputControls();
         }
@@ -168,25 +177,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
         private void Initialize()
         {
             ListBox.SelectedIndexChanged += ListBox_SelectedIndexChanged;
+            IsUpdate = false;
         }
 
         private void SetButtonEnabledStates(bool isUpdate)
         {
-            BtnAdd.Enabled = !isUpdate;
-            BtnUpdate.Enabled = isUpdate;
-            BtnCancel.Enabled = isUpdate;
+            _isUpdate = isUpdate;
+            bool itemSelected = ListBox.SelectedIndex != -1;
+            BtnAdd.Visible = !isUpdate;
+            BtnUpdate.Visible = isUpdate;
 
-            BtnDown.Enabled = !isUpdate;
-            BtnUp.Enabled = !isUpdate;
-            BtnCopy.Enabled = !isUpdate;
-            BtnEdit.Enabled = !isUpdate;
-            BtnRemove.Enabled = !isUpdate;
+            BtnCancel.Enabled = isUpdate;
+            BtnDown.Enabled = !isUpdate && itemSelected;
+            BtnUp.Enabled = !isUpdate && itemSelected;
+            BtnCopy.Enabled = !isUpdate && itemSelected;
+            BtnEdit.Enabled = !isUpdate && itemSelected;
+            BtnRemove.Enabled = !isUpdate && itemSelected;
             ListBox.Enabled = !isUpdate;
         }
 
         #region Event Handlers
         private void ListBox_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
+            SetButtonEnabledStates(IsUpdate);
         }
         #endregion Event Handlers
     }

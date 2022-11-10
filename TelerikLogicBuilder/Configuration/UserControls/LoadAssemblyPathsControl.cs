@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands.LoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.ListBox.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
@@ -22,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
 
         public RadButton BtnAdd => btnAdd;
 
-        public RadButton BtnUpdate => managedListBoxControl.BtnUpdate;
+        public RadButton BtnUpdate => btnUpdate;
 
         public RadButton BtnCancel => managedListBoxControl.BtnCancel;
 
@@ -60,8 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
         public void ClearMessage() 
             => _configureLoadAssemblyPaths.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) 
-            => ListBox.Enabled = !disable;
+        public void DisableControlsDuringEdit(bool disable) { }
 
         public void SetErrorMessage(string message) 
             => _configureLoadAssemblyPaths.SetErrorMessage(message);
@@ -96,12 +94,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
                 BtnUpdate,
                 _loadAssemblyPathsCommandFactory.GetUpdateAssemblyPathListBoxItemCommand(this)
             );
-            InitializeHButtonCommand(BtnCancel, new ListBoxManagerCancelCommand(radListBoxManager));
-            InitializeHButtonCommand(BtnCopy, new ListBoxManagerCopyCommand(radListBoxManager));
-            InitializeHButtonCommand(BtnEdit, new ListBoxManagerEditCommand(radListBoxManager));
-            InitializeHButtonCommand(BtnRemove, new ListBoxManagerRemoveCommand(radListBoxManager));
-            InitializeHButtonCommand(BtnUp, new ListBoxManagerMoveUpCommand(radListBoxManager));
-            InitializeHButtonCommand(BtnDown, new ListBoxManagerMoveDownCommand(radListBoxManager));
+
+            managedListBoxControl.CreateCommands(radListBoxManager);
         }
 
         private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
