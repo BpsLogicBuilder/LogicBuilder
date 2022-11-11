@@ -63,6 +63,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add {
+            get {
+                object obj = ResourceManager.GetObject("Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Application {
             get {
                 object obj = ResourceManager.GetObject("Application", resourceCulture);
@@ -126,6 +136,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap checkIn {
             get {
                 object obj = ResourceManager.GetObject("checkIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CheckMark {
+            get {
+                object obj = ResourceManager.GetObject("CheckMark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,26 +253,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ConstructorListParameter {
-            get {
-                object obj = ResourceManager.GetObject("ConstructorListParameter", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ConstructorParameter {
-            get {
-                object obj = ResourceManager.GetObject("ConstructorParameter", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Copy {
             get {
                 object obj = ResourceManager.GetObject("Copy", resourceCulture);
@@ -276,26 +276,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap CutColumn {
             get {
                 object obj = ResourceManager.GetObject("CutColumn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CutConstructorListParameter {
-            get {
-                object obj = ResourceManager.GetObject("CutConstructorListParameter", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CutConstructorParameter {
-            get {
-                object obj = ResourceManager.GetObject("CutConstructorParameter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -336,6 +316,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap CutLiteralParameter {
             get {
                 object obj = ResourceManager.GetObject("CutLiteralParameter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CutObjectListParameter {
+            get {
+                object obj = ResourceManager.GetObject("CutObjectListParameter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CutObjectParameter {
+            get {
+                object obj = ResourceManager.GetObject("CutObjectParameter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -636,6 +636,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap objectListConstructor {
             get {
                 object obj = ResourceManager.GetObject("objectListConstructor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ObjectListParameter {
+            get {
+                object obj = ResourceManager.GetObject("ObjectListParameter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ObjectParameter {
+            get {
+                object obj = ResourceManager.GetObject("ObjectParameter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -946,6 +966,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap treeView {
             get {
                 object obj = ResourceManager.GetObject("treeView", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Type {
+            get {
+                object obj = ResourceManager.GetObject("Type", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

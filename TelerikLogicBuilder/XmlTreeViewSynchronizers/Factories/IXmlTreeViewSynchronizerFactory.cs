@@ -5,6 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
 {
     internal interface IXmlTreeViewSynchronizerFactory
     {
+        IConfigureGenericArgumentsXmlTreeViewSynchronizer GetConfigureGenericArgumentsXmlTreeViewSynchronizer(IConfigureGenericArguments configureGenericArguments);
         IProjectPropertiesXmlTreeViewSynchronizer GetProjectPropertiesXmlTreeViewSynchronizer(IConfigureProjectProperties configureProjectProperties);
     }
 }

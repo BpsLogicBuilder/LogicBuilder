@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool IsApplicationNode(RadTreeNode treeNode);
         bool IsFileNode(RadTreeNode treeNode);
         bool IsFolderNode(RadTreeNode treeNode);
+        bool IsGenericArgumentParameterNode(RadTreeNode treeNode);
         bool IsMethodNode(RadTreeNode treeNode);
         bool IsProjectRootNode(RadTreeNode treeNode);
         bool IsRootNode(RadTreeNode treeNode);

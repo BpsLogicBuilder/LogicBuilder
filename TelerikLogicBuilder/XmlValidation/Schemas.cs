@@ -243,7 +243,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 {
                     CreateSchemaElement("genericArguments", "genericArgumentsType", 1, 1, false, false, new XmlSchemaObject[]
                     {
-                        CreateUniqueConstraint("genericArgumentNameKey1", "./literal|./object|./literalList|./objectList", "@genericArgumentName")
+                        CreateUniqueConstraint("genericArgumentNameKey1", "./literalParameter|./objectParameter|./literalListParameter|./objectListParameter", "@genericArgumentName")
                     }),
                     CreateSchemaElement("parameters", "parametersType", 1, 1)
                 },
@@ -260,7 +260,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             {
                     CreateSchemaElement("genericArguments", "genericArgumentsType", 1, 1, false, false, new XmlSchemaObject[]
                     {
-                        CreateUniqueConstraint("genericArgumentNameKey", "./literal|./object|./literalList|./objectList", "@genericArgumentName")
+                        CreateUniqueConstraint("genericArgumentNameKey", "./literalParameter|./objectParameter|./literalListParameter|./objectListParameter", "@genericArgumentName")
                     }),
                     CreateSchemaElement("parameters", "parametersType", 1, 1)
             },

@@ -825,6 +825,12 @@
     <value>Item is empty.FR</value>
     <comment>0=new item</comment>
   </data>
+	<data name="listOfLiteralsGenericArgDescription" xml:space="preserve">
+    <value>List of LiteralsFR</value>
+  </data>
+	<data name="listOfObjectsGenericArgDescription" xml:space="preserve">
+    <value>List of ObjectsFR</value>
+  </data>
 	<data name="listParameterCountFormat" xml:space="preserve">
     <value>{0}: Count({1})FR</value>
     <comment>0=parameterName;1=itemCount;</comment>
@@ -849,6 +855,9 @@
   </data>
 	<data name="listViewTextVsdx" xml:space="preserve">
     <value>(*.VSDX)FR</value>
+  </data>
+	<data name="literalGenericArgDescription" xml:space="preserve">
+    <value>LiteralFR</value>
   </data>
 	<data name="literalParameterDescriptionFormat" xml:space="preserve">
     <value>{0}={1}FR</value>
@@ -1014,6 +1023,9 @@
   </data>
   <data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.FR</value>
+  </data>
+	<data name="objectGenericArgDescription" xml:space="preserve">
+    <value>ObjectFR</value>
   </data>
 	<data name="oneSearchOccurrence" xml:space="preserve">
     <value>1 found.FR</value>

@@ -23,5 +23,10 @@
         internal const byte CUTVISIOFILEIMAGEINDEX = 18;
         internal const byte CUTTABLEFILEIMAGEINDEX = 19;
         internal const byte APPLICATIONIMAGEINDEX = 20;
+        internal const byte TYPEIMAGEINDEX = 21;
+        internal const byte LITERALPARAMETERIMAGEINDEX = 22;
+        internal const byte OBJECTPARAMETERIMAGEINDEX = 23;
+        internal const byte LITERALLISTPARAMETERIMAGEINDEX = 24;
+        internal const byte OBJECTLISTPARAMETERIMAGEINDEX = 25;
     }
 }

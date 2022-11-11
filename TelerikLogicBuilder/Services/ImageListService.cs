@@ -37,7 +37,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.Visio_Application_16xLGCut,
                         Properties.Resources.Visio_16Cut,
                         Properties.Resources.TABLECUT,
-                        Properties.Resources.Application
+                        Properties.Resources.Application,
+                        Properties.Resources.Type,
+                        Properties.Resources.LiteralParameter,
+                        Properties.Resources.ObjectParameter,
+                        Properties.Resources.LiteralListParameter,
+                        Properties.Resources.ObjectListParameter
                     }
                 };
 

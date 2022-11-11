@@ -3256,6 +3256,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of Literals.
+        /// </summary>
+        internal static string listOfLiteralsGenericArgDescription {
+            get {
+                return ResourceManager.GetString("listOfLiteralsGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Objects.
+        /// </summary>
+        internal static string listOfObjectsGenericArgDescription {
+            get {
+                return ResourceManager.GetString("listOfObjectsGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}: Count({1}).
         /// </summary>
         internal static string listParameterCountFormat {
@@ -3306,6 +3324,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string listViewTextVsdx {
             get {
                 return ResourceManager.GetString("listViewTextVsdx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal.
+        /// </summary>
+        internal static string literalGenericArgDescription {
+            get {
+                return ResourceManager.GetString("literalGenericArgDescription", resourceCulture);
             }
         }
         
@@ -3801,6 +3828,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string notImplementedMessageFormat {
             get {
                 return ResourceManager.GetString("notImplementedMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object.
+        /// </summary>
+        internal static string objectGenericArgDescription {
+            get {
+                return ResourceManager.GetString("objectGenericArgDescription", resourceCulture);
             }
         }
         

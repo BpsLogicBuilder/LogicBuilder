@@ -30,7 +30,28 @@
         </object>
         <object>
           <constructor name="ddd" visibleText="vvv">
-            <genericArguments />
+						<genericArguments>
+							<literalParameter genericArgumentName="A">
+								<literalType>String</literalType>
+								<control>SingleLineTextBox</control>
+								<useForEquality>false</useForEquality>
+								<useForHashCode>false</useForHashCode>
+								<useForToString>true</useForToString>
+								<propertySource />
+								<propertySourceParameter />
+								<defaultValue />
+								<domain>
+									<item>true</item>
+									<item>false</item>
+								</domain>
+							</literalParameter>
+							<objectParameter genericArgumentName="B">
+								<objectType>Contoso.Test.Business.Responses.TypeNotFound</objectType>
+								<useForEquality>false</useForEquality>
+								<useForHashCode>false</useForHashCode>
+								<useForToString>true</useForToString>
+							</objectParameter>
+						</genericArguments>
             <parameters>
               <literalParameter name="key">disbabled</literalParameter>
               <literalParameter name="value">disabled</literalParameter>

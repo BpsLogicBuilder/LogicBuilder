@@ -200,7 +200,6 @@ namespace TelerikLogicBuilder.Tests.XmlTreeViewSynchronizers
             );
 
             //assert
-            //assert
             Assert.Throws<LogicBuilderException>
             (
                 () => projectPropertiesXmlTreeViewSynchronizer.DeleteNode

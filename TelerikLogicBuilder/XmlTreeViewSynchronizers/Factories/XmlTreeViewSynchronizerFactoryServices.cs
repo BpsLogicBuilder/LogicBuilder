@@ -12,6 +12,17 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddXmlTreeViewSynchronizerFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IConfigureGenericArguments, IConfigureGenericArgumentsXmlTreeViewSynchronizer>>
+                (
+                    provider =>
+                    configureGenericArguments => new ConfigureGenericArgumentsXmlTreeViewSynchronizer
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        configureGenericArguments
+                    )
+                )
                 .AddTransient<Func<IConfigureProjectProperties, IProjectPropertiesXmlTreeViewSynchronizer>>
                 (
                     provider =>

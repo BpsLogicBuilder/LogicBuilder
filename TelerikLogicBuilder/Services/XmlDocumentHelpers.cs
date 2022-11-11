@@ -120,6 +120,38 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return xmlDocument.DocumentElement;
         }
 
+        public string GetGenericArgumentTreeNodeDescription(XmlElement element)
+        {
+            Dictionary<string, string> descriptionTable = new()
+            {
+                [XmlDataConstants.LITERALPARAMETERELEMENT] = Strings.literalGenericArgDescription,
+                [XmlDataConstants.OBJECTPARAMETERELEMENT] = Strings.objectGenericArgDescription,
+                [XmlDataConstants.LITERALLISTPARAMETERELEMENT] = Strings.listOfLiteralsGenericArgDescription,
+                [XmlDataConstants.OBJECTLISTPARAMETERELEMENT] = Strings.listOfObjectsGenericArgDescription,
+            };
+
+            if (!descriptionTable.TryGetValue(element.Name, out string? description))
+                throw _exceptionHelper.CriticalException("{0E683F61-C0D3-484E-A183-C211D0F45C3D}");
+
+            return description;
+        }
+
+        public int GetImageIndex(XmlElement element)
+        {
+            Dictionary<string, int> indexTable = new()
+            {
+                [XmlDataConstants.LITERALPARAMETERELEMENT]= ImageIndexes.LITERALPARAMETERIMAGEINDEX,
+                [XmlDataConstants.OBJECTPARAMETERELEMENT] = ImageIndexes.OBJECTPARAMETERIMAGEINDEX,
+                [XmlDataConstants.LITERALLISTPARAMETERELEMENT] = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX,
+                [XmlDataConstants.OBJECTLISTPARAMETERELEMENT] = ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX,
+            };
+
+            if (!indexTable.TryGetValue(element.Name, out int imageIndex))
+                throw _exceptionHelper.CriticalException("{658C52A4-5380-4D8C-BFA9-3133968249C0}");
+
+            return imageIndex;
+        }
+
         public List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode)
         {
             switch (parameterElement.Name)

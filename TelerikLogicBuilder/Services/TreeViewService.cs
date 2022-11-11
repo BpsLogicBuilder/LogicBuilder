@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Telerik.WinControls.UI;
+using WinRT;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
@@ -134,6 +135,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || treeNode.ImageIndex == ImageIndexes.OPENEDFOLDERIMAGEINDEX
                 || treeNode.ImageIndex == ImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX
                 || treeNode.ImageIndex == ImageIndexes.CUTOPENEDFOLDERIMAGEINDEX;
+        }
+
+        public bool IsGenericArgumentParameterNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{5249D22F-3191-4AF1-A4DC-C201AD65786C}");
+
+            return treeNode.ImageIndex == ImageIndexes.LITERALPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.OBJECTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX;
         }
 
         public bool IsMethodNode(RadTreeNode treeNode)
