@@ -126,33 +126,6 @@ namespace TelerikLogicBuilder.IntegrationTests.TreeViewBuiilders
             );
         }
 
-        [Fact]
-        public void BuildTreeViewThrowsForFunctionNotConfigured()
-        {
-            //arrange
-            IConfigureConstructorGenericArgumentsTreeViewBuilder service = _fixture.ServiceProvider.GetRequiredService<IConfigureConstructorGenericArgumentsTreeViewBuilder>();
-            RadTreeView radTreeView = new();
-            XmlDocument xmlDocument = GetXmlDocument(@"<constructor name=""NotConfigured"" visibleText=""NotConfigured"" >
-                                                        <genericArguments />
-                                                        <parameters>
-                                                            <literalParameter name=""stringProperty""> XX</literalParameter>
-                                                        </parameters>
-                                                    </constructor>");
-
-            //act //assert
-            var exception = Assert.Throws<CriticalLogicBuilderException>(() => service.Build(radTreeView, xmlDocument));
-            Assert.Equal
-            (
-                string.Format
-                (
-                    CultureInfo.InvariantCulture,
-                    Strings.invalidArgumentTextFormat,
-                    "{A6DF6130-9A22-4FFA-9E49-E30F0610CD4B}"
-                ),
-                exception.Message
-            );
-        }
-
         private static XmlDocument GetXmlDocument(string xmlString)
         {
             XmlDocument xmlDocument = new();

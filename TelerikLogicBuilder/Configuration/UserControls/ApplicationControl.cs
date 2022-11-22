@@ -26,6 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
     {
         private readonly IApplicationControlCommandFactory _applicationControlCommandFactory;
         private readonly IEnumHelper _enumHelper;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -35,6 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
         public ApplicationControl(
             IApplicationControlCommandFactory applicationControlCommandFactory,
             IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
             IRadDropDownListHelper radDropDownListHelper,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -42,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
         {
             _applicationControlCommandFactory = applicationControlCommandFactory;
             _enumHelper = enumHelper;
+            _exceptionHelper = exceptionHelper;
             _radDropDownListHelper = radDropDownListHelper;
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -82,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
         public void UpdateXmlDocument(RadTreeNode treeNode)
         {
             if (!_treeViewService.IsApplicationNode(treeNode))
-                throw new ArgumentException($"{nameof(treeNode)}: {{73CAC96C-CCBD-44AB-9B7A-B6C368AA626D}}");
+                throw _exceptionHelper.CriticalException("{73CAC96C-CCBD-44AB-9B7A-B6C368AA626D}");
 
             List<string> errors = ValidateFields();
             if (errors.Count > 0)
@@ -99,7 +102,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
             appElements[XmlDataConstants.RESOURCEFILEDEPLOYMENTPATHELEMENT].InnerText = txtResourceFilesDeployment.Text.Trim();
             appElements[XmlDataConstants.RULESDEPLOYMENTPATHELEMENT].InnerText = txtRulesDeployment.Text.Trim();
 
-            this.configureProjectProperties.OnInvalidXmlRestoreDocumentAndThrow();
+            this.configureProjectProperties.ValidateXmlDocument();
         }
 
         private void Initialize()
@@ -181,7 +184,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
             _radDropDownListHelper.LoadComboItems<RuntimeType>(cmbRuntime);
         }
 
-        private void UpDateErrorControl(IList<string> errors, CancelEventArgs e)
+        private void UpdateErrorControl(IList<string> errors, CancelEventArgs e)
         {
             if (errors.Count > 0)
             {
@@ -266,42 +269,42 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
         {
             List<string> errors = new();
             ValidateActivityAssembly(errors);
-            UpDateErrorControl(errors, e);
+            UpdateErrorControl(errors, e);
         }
 
         private void TxtActivityAssemblyPath_Validating(object? sender, CancelEventArgs e)
         {
             List<string> errors = new();
             ValidateActivityAssemblyPath(errors);
-            UpDateErrorControl(errors, e);
+            UpdateErrorControl(errors, e);
         }
 
         private void TxtActivityClass_Validating(object? sender, CancelEventArgs e)
         {
             List<string> errors = new();
             ValidateActivityClass(errors);
-            UpDateErrorControl(errors, e);
+            UpdateErrorControl(errors, e);
         }
 
         private void TxtNickname_Validating(object? sender, CancelEventArgs e)
         {
             List<string> errors = new();
             ValidateNickname(errors);
-            UpDateErrorControl(errors, e);
+            UpdateErrorControl(errors, e);
         }
 
         private void TxtResourceFileDeployment_Validating(object? sender, CancelEventArgs e)
         {
             List<string> errors = new();
             ValidateResourceFileDeployment(errors);
-            UpDateErrorControl(errors, e);
+            UpdateErrorControl(errors, e);
         }
 
         private void TxtRulesDeployment_Validating(object? sender, CancelEventArgs e)
         {
             List<string> errors = new();
             ValidateRulesDeployment(errors);
-            UpDateErrorControl(errors, e);
+            UpdateErrorControl(errors, e);
         }
         #endregion Event Handlers
     }

@@ -6,6 +6,8 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -15,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
 {
     internal partial class LoadAssemblyPathsControl : UserControl, IListBoxHost<AssemblyPath>, ILoadAssemblyPathsControl
     {
+        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly ILoadAssemblyPathsCommandFactory _loadAssemblyPathsCommandFactory;
         private readonly IConfigureLoadAssemblyPaths _configureLoadAssemblyPaths;
         private readonly IRadListBoxManager<AssemblyPath> radListBoxManager;
@@ -42,14 +45,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
         public HelperButtonTextBox TxtPath => txtPath;
 
         public LoadAssemblyPathsControl(
+            IConfigurationItemFactory configurationItemFactory,
             ILoadAssemblyPathsCommandFactory loadAssemblyPathsCommandFactory,
             IConfigureLoadAssemblyPaths configureLoadAssemblyPaths)
         {
             InitializeComponent();
+            _configurationItemFactory = configurationItemFactory;
             _configureLoadAssemblyPaths = configureLoadAssemblyPaths;
             _loadAssemblyPathsCommandFactory = loadAssemblyPathsCommandFactory;
             radListBoxManager = new RadListBoxManager<AssemblyPath>(this);
-
             Initialize();
         }
 
@@ -61,11 +65,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
 
         public void DisableControlsDuringEdit(bool disable) { }
 
+        public IList<string> GetPaths() 
+            => ListBox.Items
+                    .Select(i => ((AssemblyPath)i.Value).Path)
+                    .ToArray();
+
         public void SetErrorMessage(string message) 
             => _configureLoadAssemblyPaths.SetErrorMessage(message);
 
         public void SetMessage(string message, string title = "") 
             => _configureLoadAssemblyPaths.SetMessage(message, title);
+
+        public void SetPaths(IList<string> paths)
+        {
+            ListBox.Items.AddRange
+            (
+                paths
+                    .Select(p => _configurationItemFactory.GetAssemblyPath(p.Trim()))
+                    .Select(ap => new RadListDataItem(ap.ToString(), ap))
+            );
+        }
 
         public void UpdateInputControls(AssemblyPath item) 
             => txtPath.Text = item.Path;

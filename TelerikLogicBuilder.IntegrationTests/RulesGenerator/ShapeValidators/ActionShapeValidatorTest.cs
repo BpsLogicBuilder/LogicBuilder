@@ -315,6 +315,25 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         "",
                         new List<string>(),
                         ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                    ),
+                    ["app03"] = ConfigurationItemFactory.GetApplication
+                    (
+                        "App03",
+                        "App03",
+                        "Contoso.Test.Flow.dll",
+                        $@"{TestFolders.TestAssembliesFolder}\Contoso.Test.Flow\bin\Debug\netstandard2.0",
+                        RuntimeType.NetCore,
+                        new List<string>(),
+                        "Contoso.Test.Flow.FlowActivity",
+                        "",
+                        "",
+                        new List<string>(),
+                        "",
+                        "",
+                        "",
+                        "",
+                        new List<string>(),
+                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
                 new HashSet<string>()

@@ -5,7 +5,6 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -15,24 +14,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 {
     internal partial class ConfigureLoadAssemblyPaths : Telerik.WinControls.UI.RadForm, IConfigureLoadAssemblyPaths
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IFormInitializer _formInitializer;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly ILoadAssemblyPathsControl _loadAssemblyPathsControl;
 
-        public RadListControl ListBox => _loadAssemblyPathsControl.ListBox;
-
-        public IList<string> Paths => ListBox.Items.Select(i => ((AssemblyPath)i.Value).Path).ToArray();
+        private readonly IList<string> existingPaths;
 
         public ConfigureLoadAssemblyPaths(
-            IConfigurationItemFactory configurationItemFactory,
             IConfigurationControlFactory configurationControlFactory,
             IFormInitializer formInitializer,
-            DialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControl dialogFormMessageControl,
             IList<string> existingPaths)
         {
             InitializeComponent();
-            _configurationItemFactory = configurationItemFactory;
             _formInitializer = formInitializer;
             _dialogFormMessageControl = dialogFormMessageControl;
             _loadAssemblyPathsControl = configurationControlFactory.GetLoadAssemblyPathsControl(this);
@@ -40,7 +34,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             Initialize();
         }
 
-        private readonly IList<string> existingPaths;
+        public RadListControl ListBox => _loadAssemblyPathsControl.ListBox;
+
+        public IList<string> Paths => _loadAssemblyPathsControl.GetPaths();
 
         public void ClearMessage()
         {
@@ -72,16 +68,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             LoadListBox();
         }
 
-        private void LoadListBox()
-        {
-            ListBox.Items.AddRange
-            (
-                existingPaths
-                    .Select(p => _configurationItemFactory.GetAssemblyPath(p.Trim()))
-                    .Select(ap => new RadListDataItem(ap.ToString(), ap))
-            );
-        }
-
         private void InitializeControls()
         {
             ((ISupportInitialize)this.radPanelBottom).BeginInit();
@@ -95,7 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             Control loadAssemblyPathsControl = (Control)_loadAssemblyPathsControl;
             loadAssemblyPathsControl.Dock = DockStyle.Fill;
@@ -111,6 +97,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             ((ISupportInitialize)this).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
+
+        private void LoadListBox()
+        {
+            _loadAssemblyPathsControl.SetPaths(existingPaths);
         }
     }
 }

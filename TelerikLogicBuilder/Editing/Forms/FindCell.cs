@@ -13,13 +13,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private RadGridView? dataGridView;
 
         public FindCell(
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            DialogFormMessageControl dialogFormMessageControl)
+            IDialogFormMessageControl dialogFormMessageControl)
         {
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
@@ -86,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             ((ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);

@@ -76,9 +76,9 @@ namespace TelerikLogicBuilder.Tests.XmlTreeViewSynchronizers
 
             IConfigureGenericArgumentsXmlTreeViewSynchronizer synchronizer = xmlTreeViewSynchronizerFactory.GetConfigureGenericArgumentsXmlTreeViewSynchronizer
             (
-                new ConfigureGenericArgumentsMock
+                new ConfigureGenericArgumentsFormMock
                 (
-                    treeViewXmlDocumentHelper.ValidateXmlDocument,
+                    treeViewXmlDocumentHelper,
                     treeView,
                     treeViewXmlDocumentHelper.XmlTreeDocument
                 )
@@ -147,9 +147,9 @@ namespace TelerikLogicBuilder.Tests.XmlTreeViewSynchronizers
 
             IConfigureGenericArgumentsXmlTreeViewSynchronizer synchronizer = xmlTreeViewSynchronizerFactory.GetConfigureGenericArgumentsXmlTreeViewSynchronizer
             (
-                new ConfigureGenericArgumentsMock
+                new ConfigureGenericArgumentsFormMock
                 (
-                    treeViewXmlDocumentHelper.ValidateXmlDocument,
+                    treeViewXmlDocumentHelper,
                     treeView,
                     treeViewXmlDocumentHelper.XmlTreeDocument
                 )

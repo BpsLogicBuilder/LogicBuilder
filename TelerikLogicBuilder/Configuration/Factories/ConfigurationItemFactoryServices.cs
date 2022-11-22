@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -47,6 +48,14 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IConfigurationItemFactory, ConfigurationItemFactory>()
+                .AddTransient<Func<string, ConnectorObjectListBoxItem>>
+                (
+                    provider =>
+                    text => new ConnectorObjectListBoxItem
+                    (
+                        text
+                    )
+                )
                 .AddTransient<Func<string, string, Fragment>>
                 (
                     provider =>

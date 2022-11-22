@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
     {
         private readonly IAssemblyHelper _assemblyHelper;
         private readonly IConfigurationService _configurationService;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly ILoadAssemblyFromPath _loadAssemblyFromPath;
         private readonly IPathHelper _pathHelper;
         private readonly ITypeHelper _typeHelper;
@@ -27,20 +28,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         public ApplicationTypeInfoHelper(
             IAssemblyHelper assemblyHelper,
             IConfigurationService configurationService,
+            IExceptionHelper exceptionHelper,
             ILoadAssemblyFromPath loadAssemblyFromPath,
             IPathHelper pathHelper,
             ITypeHelper typeHelper)
         {
             _assemblyHelper = assemblyHelper;
             _configurationService = configurationService;
+            _exceptionHelper = exceptionHelper;
             _loadAssemblyFromPath = loadAssemblyFromPath;
             _pathHelper = pathHelper;
             _typeHelper = typeHelper;
         }
 
-        public ApplicationTypeInfo CreateApplicationTypeInfo()
+        public ApplicationTypeInfo CreateApplicationTypeInfo(string applicationName)
         {
-            Application application = _configurationService.GetSelectedApplication();
+            Application application = _configurationService.GetApplication(applicationName) ?? throw _exceptionHelper.CriticalException("{CC7F9EBE-2E0D-4046-B03C-0C7CB834034B}");
             Assembly? activityAssembly;
             HashSet<Assembly> allAssemblies = new();
             Type? activityType;

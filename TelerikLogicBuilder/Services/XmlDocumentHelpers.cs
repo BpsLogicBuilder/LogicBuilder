@@ -56,17 +56,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
-        //private static XmlWriterSettings FragmentSettings
-        //{
-        //    get
-        //    {
-        //        return new XmlWriterSettings
-        //        {
-        //            OmitXmlDeclaration = true,
-        //            ConformanceLevel = ConformanceLevel.Fragment
-        //        };
-        //    }
-        //}
+        private static XmlWriterSettings FragmentSettings
+        {
+            get
+            {
+                return new XmlWriterSettings
+                {
+                    OmitXmlDeclaration = true,
+                    ConformanceLevel = ConformanceLevel.Fragment
+                };
+            }
+        }
         #endregion Properties
 
         #region Methods
@@ -94,6 +94,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public XmlWriter CreateFormattedXmlWriterWithDeclaration(StringBuilder stringBuilder) 
             => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), FormattedSettingsWithDeclaration);
+
+        public XmlWriter CreateFragmentXmlWriter(StringBuilder stringBuilder)
+            => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), FragmentSettings);
 
         public XmlWriter CreateUnformattedXmlWriter(StringBuilder stringBuilder) 
             => XmlWriter.Create(new StringWriter(stringBuilder, CultureInfo.InvariantCulture), UnformattedSettings);

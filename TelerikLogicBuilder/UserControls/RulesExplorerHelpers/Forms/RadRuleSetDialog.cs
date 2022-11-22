@@ -22,14 +22,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
         public RadRuleSetDialog(
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IRadDropDownListHelper radDropDownListHelper,
-            DialogFormMessageControl dialogFormMessageControl)
+            IDialogFormMessageControl dialogFormMessageControl)
         {
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
@@ -92,7 +92,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             ((BorderPrimitive)radPanelBottom.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
             ((BorderPrimitive)radPanelBottomFill.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
-            _dialogFormMessageControl.Padding = new Padding(6, 0, 3, 0);
+            ((Control)_dialogFormMessageControl).Padding = new Padding(6, 0, 3, 0);
             radPanelBottomFill.Padding = new Padding(6, 0, 0, 0);
             radPanelBottom.Padding = new Padding(0, 0, 10, 10);
 
@@ -146,7 +146,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelBottomFill.Controls.Add(_dialogFormMessageControl);
+            this.radPanelBottomFill.Controls.Add((Control)_dialogFormMessageControl);
 
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);

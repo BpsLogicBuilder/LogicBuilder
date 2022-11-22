@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -17,10 +16,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<ICreateFunctions, CreateFunctions>()
                 .AddSingleton<ICreateProjectProperties, CreateProjectProperties>()
                 .AddSingleton<ICreateVariables, CreateVariables>()
+                .AddTransient<IEditConnectorObjectTypes, EditConnectorObjectTypes>()
                 .AddSingleton<IEditConstructors, EditConstructors>()
                 .AddSingleton<IEditFragments, EditFragments>()
                 .AddSingleton<IEditFunctions, EditFunctions>()
-                .AddSingleton<IEditProjectProperties, EditProjectProperties>()
+                .AddTransient<IEditProjectProperties, EditProjectProperties>()
                 .AddSingleton<IEditVariables, EditVariables>()
                 .AddSingleton<IFragmentXmlParser, FragmentXmlParser>()
                 .AddSingleton<ILoadConstructors, LoadConstructors>()
@@ -36,6 +36,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IUpdateVariables, UpdateVariables>()
                 .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
                 .AddApplicationControlCommandFactories()
+                .AddConfigureConnectorObjectsCommandFactories()
+                .AddConfigureGenericArgumentsCommandFactories()
+                .AddConfigureGenericArgumentsControlFactories()
+                .AddConfigureGenericLiteralArgumentCommandFactories()
+                .AddConfigureGenericLiteralListArgumentCommandFactories()
                 .AddConfigurationControlFactories()
                 .AddConfigurationHelpers()
                 .AddConfigurationInitialization()

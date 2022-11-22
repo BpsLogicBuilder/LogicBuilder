@@ -62,7 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
             {
                 xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALPARAMETERELEMENT);
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE, this.GenericArgumentName);
-                    xmlTextWriter.WriteElementString(XmlDataConstants.LITERALTYPEELEMENT, Enum.GetName(typeof(LiteralType), this.LiteralType));
+                    xmlTextWriter.WriteElementString(XmlDataConstants.LITERALTYPEELEMENT, Enum.GetName(typeof(LiteralParameterType), this.LiteralType));
                     xmlTextWriter.WriteElementString(XmlDataConstants.CONTROLELEMENT, Enum.GetName(typeof(LiteralParameterInputStyle), this.Control));
                     xmlTextWriter.WriteElementString(XmlDataConstants.USEFOREQUALITYELEMENT, this.UseForEquality.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
                     xmlTextWriter.WriteElementString(XmlDataConstants.USEFORHASHCODEELEMENT, this.UseForHashCode.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());

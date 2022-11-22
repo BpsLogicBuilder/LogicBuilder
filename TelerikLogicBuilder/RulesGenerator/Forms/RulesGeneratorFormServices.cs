@@ -27,7 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IGetAllCheckedNodes>(),
                         provider.GetRequiredService<ISelectRulesTreeViewBuilder>(),
                         provider.GetRequiredService<ITreeViewService>(),
-                        provider.GetRequiredService<DialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
                         applicationName
                     )
                 )
@@ -39,7 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IGetAllCheckedNodes>(),
                         provider.GetRequiredService<ISelectModulesForDeploymentTreeViewBuilder>(),
-                        provider.GetRequiredService<DialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
                         applicationName
                     )
                  );

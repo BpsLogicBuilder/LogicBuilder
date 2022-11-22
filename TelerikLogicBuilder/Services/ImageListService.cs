@@ -42,7 +42,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.LiteralParameter,
                         Properties.Resources.ObjectParameter,
                         Properties.Resources.LiteralListParameter,
-                        Properties.Resources.ObjectListParameter
+                        Properties.Resources.ObjectListParameter,
+                        Properties.Resources.CutLiteralParameter,
+                        Properties.Resources.CutObjectParameter,
+                        Properties.Resources.CutLiteralListParameter,
+                        Properties.Resources.CutObjectListParameter
                     }
                 };
 

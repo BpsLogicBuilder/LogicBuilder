@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
         private readonly ITreeViewService _treeViewService;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
         private readonly IUpdateProjectProperties _updateProjectProperties;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
         private readonly RadMenuItem mnuItemAdd = new(Strings.mnuItemAddText);
         private readonly RadMenuItem mnuItemDelete = new(Strings.mnuItemDeleteText) { ImageIndex = ImageIndexes.DELETEIMAGEINDEX };
@@ -50,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             IServiceFactory serviceFactory,
             ITreeViewService treeViewService,
             IUpdateProjectProperties updateProjectProperties,
-            DialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControl dialogFormMessageControl,
             bool openedAsReadOnly)
         {
 
@@ -78,7 +78,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
         }
 
         #region Properties
-        public Action OnInvalidXmlRestoreDocumentAndThrow => _treeViewXmlDocumentHelper.ValidateXmlDocument;
         public RadTreeView TreeView => radTreeView1;
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
         #endregion Properties
@@ -91,6 +90,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 
         public void SetMessage(string message, string title = "") 
             => _dialogFormMessageControl.SetMessage(message, title);
+
+        public void ValidateXmlDocument() 
+            => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
         private void BuildTreeView()
         {
@@ -158,6 +160,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 
             radTreeView1.SelectedNode ??= radTreeView1.Nodes[0];
         }
+
         private static void InitializeContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
         {
             radMenuItem.Click += (sender, args) => command.Execute();
@@ -180,7 +183,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             ((ISupportInitialize)this.radPanelBottom).EndInit();
             this.radPanelBottom.ResumeLayout(false);
@@ -204,7 +207,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 
             newEditingControl.Dock = DockStyle.Fill;
             newEditingControl.Location = new System.Drawing.Point(0, 0);
-            splitPanelRight.Controls.Clear();
             splitPanelRight.Controls.Add(newEditingControl);
 
             ((ISupportInitialize)this.radSplitContainerTop).EndInit();
@@ -220,6 +222,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             {
                 foreach (Control control in splitPanelRight.Controls)
                     control.Visible = false;
+                splitPanelRight.Controls.Clear();
             }
         }
 
@@ -315,8 +318,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
                 {
                     if (radTreeView1.SelectedNode != null)
                     {
-                        IXmlElementControl xmlElementControl = (IXmlElementControl)splitPanelRight.Controls[0];
-                        xmlElementControl.UpdateXmlDocument(radTreeView1.SelectedNode);
+                        UpdateXmlDocument(radTreeView1.SelectedNode);
                     }
 
                     ProjectProperties projectProperties = _projectPropertiesXmlParser.GeProjectProperties

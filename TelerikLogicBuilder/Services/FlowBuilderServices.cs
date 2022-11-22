@@ -20,6 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IExceptionHelper, ExceptionHelper>()
                 .AddSingleton<IFileIOHelper, FileIOHelper>()
                 .AddSingleton<IFormInitializer, FormInitializer>()
+                .AddSingleton<IGetPromptForLiteralDomainUpdate, GetPromptForLiteralDomainUpdate>()
                 .AddSingleton<IImageListService, ImageListService>()
                 .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
                 .AddSingleton<IMainWindow, MainWindow>()

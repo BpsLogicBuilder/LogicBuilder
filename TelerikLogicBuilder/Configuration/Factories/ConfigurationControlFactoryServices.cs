@@ -1,6 +1,9 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -19,6 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IApplicationControlCommandFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -26,11 +30,23 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IConfigurationControlFactory, ConfigurationControlFactory>()
+                .AddTransient<Func<IConfigureConnectorObjectsForm, IConfigureConnectorObjectsControl>>
+                (
+                    provider =>
+                    configureConnectorObjectsForm => new ConfigureConnectorObjectsControl
+                    (
+                        provider.GetRequiredService<IConfigurationItemFactory>(),
+                        provider.GetRequiredService<IConfigureConnectorObjectsCommandFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        configureConnectorObjectsForm
+                    )
+                )
                 .AddTransient<Func<IConfigureLoadAssemblyPaths, ILoadAssemblyPathsControl>>
                 (
                     provider =>
-                    configureLoadAssemblyPaths => new LoadAssemblyPathsControl
+                    (configureLoadAssemblyPaths) => new LoadAssemblyPathsControl
                     (
+                        provider.GetRequiredService<IConfigurationItemFactory>(),
                         provider.GetRequiredService<ILoadAssemblyPathsCommandFactory>(),
                         configureLoadAssemblyPaths
                     )

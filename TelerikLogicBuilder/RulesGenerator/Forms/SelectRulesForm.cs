@@ -14,14 +14,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private readonly IGetAllCheckedNodes _getAllCheckedNodeNames;
         private readonly ISelectRulesTreeViewBuilder _selectRulesTreeViewBuilder;
         private readonly ITreeViewService _treeViewService;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
         public SelectRulesForm(
             IFormInitializer formInitializer,
             IGetAllCheckedNodes getAllCheckedNodeNames,
             ISelectRulesTreeViewBuilder selectRulesTreeViewBuilder,
             ITreeViewService treeViewService,
-            DialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControl dialogFormMessageControl,
             string applicationName)
         {
             _formInitializer = formInitializer;
@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerMain)).EndInit();
             this.radSplitContainerMain.ResumeLayout(false);

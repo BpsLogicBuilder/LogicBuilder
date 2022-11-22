@@ -10,9 +10,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
     internal partial class InputBoxForm : Telerik.WinControls.UI.RadForm
     {
         private readonly IFormInitializer _formInitializer;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
-        public InputBoxForm(IFormInitializer formInitializer, DialogFormMessageControl dialogFormMessageControl)
+        public InputBoxForm(IFormInitializer formInitializer, IDialogFormMessageControl dialogFormMessageControl)
         {
             _formInitializer = formInitializer;
             _dialogFormMessageControl = dialogFormMessageControl;
@@ -30,7 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             ((ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);

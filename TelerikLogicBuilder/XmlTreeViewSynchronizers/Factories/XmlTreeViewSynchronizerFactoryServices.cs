@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers;
@@ -12,15 +13,15 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddXmlTreeViewSynchronizerFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IConfigureGenericArguments, IConfigureGenericArgumentsXmlTreeViewSynchronizer>>
+                .AddTransient<Func<IConfigureGenericArgumentsForm, IConfigureGenericArgumentsXmlTreeViewSynchronizer>>
                 (
                     provider =>
-                    configureGenericArguments => new ConfigureGenericArgumentsXmlTreeViewSynchronizer
+                    configureGenericArgumentsForm => new ConfigureGenericArgumentsXmlTreeViewSynchronizer
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        configureGenericArguments
+                        configureGenericArgumentsForm
                     )
                 )
                 .AddTransient<Func<IConfigureProjectProperties, IProjectPropertiesXmlTreeViewSynchronizer>>

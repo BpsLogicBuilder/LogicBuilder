@@ -27,8 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
         public ApplicationTypeInfo GetApplicationTypeInfo(string applicationName)
         {
             applicationName = applicationName.ToLowerInvariant();
-            if (_applicationInfos == null)
-                _applicationInfos = new Dictionary<string, ApplicationTypeInfo>();
+            _applicationInfos ??= new Dictionary<string, ApplicationTypeInfo>();
 
             if (_applicationInfos.TryGetValue(applicationName, out ApplicationTypeInfo? applicationTypeInfo))
             {
@@ -43,12 +42,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
             ApplicationTypeInfo GetApplicationTypeInfo()
             {
-                _applicationInfos[applicationName] = this.CreateApplicationTypeInfo();
+                _applicationInfos[applicationName] = _applicationTypeInfoHelper.CreateApplicationTypeInfo(applicationName);
                 return _applicationInfos[applicationName];
             }
         }
-
-        private ApplicationTypeInfo CreateApplicationTypeInfo() 
-            => _applicationTypeInfoHelper.CreateApplicationTypeInfo();
     }
 }

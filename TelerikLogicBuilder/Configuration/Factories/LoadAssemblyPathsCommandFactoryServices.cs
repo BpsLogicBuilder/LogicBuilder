@@ -1,9 +1,9 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands.LoadAssemblyPaths;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
+namespace Microsoft.Extensions.DependencyInjection
 {
     internal static class LoadAssemblyPathsCommandFactoryServices
     {

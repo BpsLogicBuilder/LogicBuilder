@@ -1,0 +1,10 @@
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralListArgument.Commands;
+
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralListArgument.Factories
+{
+    internal interface IConfigureGenericLiteralListArgumentCommandFactory
+    {
+        UpdateGenericLiteralListDefaultValueCommand GetUpdateGenericLiteralListDefaultValueCommand(IConfigureGenericLiteralListArgumentControl configureGenericLiteralListArgumentControl);
+        UpdateGenericLiteralListDomainCommand GetUpdateGenericLiteralListDomainCommand(IConfigureGenericLiteralListArgumentControl configureGenericLiteralListArgumentControl);
+    }
+}

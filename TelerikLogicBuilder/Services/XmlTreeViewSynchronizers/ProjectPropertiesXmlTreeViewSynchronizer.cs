@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 .SelectSingleElement(this.configureProjectProperties.XmlDocument, destinationParentNode.Name)
                 .PrependChild(newXmlApplicationNode);
 
-            this.configureProjectProperties.OnInvalidXmlRestoreDocumentAndThrow();
+            this.configureProjectProperties.ValidateXmlDocument();
 
             RadTreeNode newTreeNode = _treeViewService.GetChildTreeNode
             (
@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             )
             .RemoveChild(xmlNodeToDelete);
 
-            this.configureProjectProperties.OnInvalidXmlRestoreDocumentAndThrow();
+            this.configureProjectProperties.ValidateXmlDocument();
 
             RadTreeNode closestNode = _treeViewService.GetClosestNodeForSelectionAfterDelete(treeNode);
             this.configureProjectProperties.TreeView.SelectedNode = null;/*ensures no action SelectedNodeChanging*/

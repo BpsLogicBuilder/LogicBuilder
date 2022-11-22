@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
@@ -14,18 +14,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IConfigureGenericArguments configureGenericArguments;
+        private readonly IConfigureGenericArgumentsForm configureGenericArgumentsForm;
 
         public ConfigureGenericArgumentsXmlTreeViewSynchronizer(
             IExceptionHelper exceptionHelper,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IConfigureGenericArguments configureGenericArguments)
+            IConfigureGenericArgumentsForm configureGenericArgumentsForm)
         {
             _exceptionHelper = exceptionHelper;
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.configureGenericArguments = configureGenericArguments;
+            this.configureGenericArgumentsForm = configureGenericArgumentsForm;
         }
 
         public void ReplaceArgumentNode(RadTreeNode existingTreeNode, XmlElement newXmlGenArgParameterNode)
@@ -42,14 +42,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     }.Contains(newXmlGenArgParameterNode.Name)))
                 throw _exceptionHelper.CriticalException("{73DA0C93-C8DF-4F60-8E03-8C329B9876E9}");
 
-            XmlElement existingXmlNode = _xmlDocumentHelpers.SelectSingleElement(configureGenericArguments.XmlDocument, existingTreeNode.Name);
+            XmlElement existingXmlNode = _xmlDocumentHelpers.SelectSingleElement(configureGenericArgumentsForm.XmlDocument, existingTreeNode.Name);
             if (existingXmlNode.ParentNode == null)
                 throw _exceptionHelper.CriticalException("{5C2CE7BC-F9C0-418F-AD14-8393AFC741F3}");
 
             existingXmlNode.ParentNode.InsertBefore(newXmlGenArgParameterNode, existingXmlNode);
             existingXmlNode.ParentNode.RemoveChild(existingXmlNode);
 
-            configureGenericArguments.OnInvalidXmlRestoreDocumentAndThrow();
+            configureGenericArgumentsForm.ValidateXmlDocument();
 
             RadTreeNode parentNode = existingTreeNode.Parent;
             RadTreeNode newNode = _treeViewService.GetChildTreeNode
@@ -63,9 +63,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             );
 
             parentNode.Nodes.Insert(existingTreeNode.Index, newNode);
-            configureGenericArguments.TreeView.SelectedNode = null;/*ensures no action SelectedNodeChanging*/
+            configureGenericArgumentsForm.TreeView.SelectedNode = null;/*ensures no action SelectedNodeChanging*/
             existingTreeNode.Remove();
-            configureGenericArguments.TreeView.SelectedNode = newNode;
+            configureGenericArgumentsForm.TreeView.SelectedNode = newNode;
         }
     }
 }

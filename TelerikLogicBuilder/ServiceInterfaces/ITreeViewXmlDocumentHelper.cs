@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         XmlDocument BackupXmlTreeDocument { get; }
         XmlDocument XmlTreeDocument { get; }
 
-        void LoadXmlDocument(string xmlFileFullName);
+        void LoadXmlDocument(string xmlString);
         void ValidateXmlDocument();
     }
 }

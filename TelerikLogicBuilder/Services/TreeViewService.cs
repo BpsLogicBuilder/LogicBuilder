@@ -148,12 +148,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || treeNode.ImageIndex == ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX;
         }
 
+        public bool IsListOfLiteralsTypeNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{35BD93C1-776A-46F0-9652-4F390293780D}");
+
+            return treeNode.ImageIndex == ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTLITERALLISTPARAMETERIMAGEINDEX;
+        }
+
+        public bool IsListOfObjectsTypeNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{469B4116-CBDA-416B-8555-8C8CEAA22612}");
+
+            return treeNode.ImageIndex == ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTOBJECTLISTPARAMETERIMAGEINDEX;
+        }
+
+        public bool IsLiteralTypeNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{59EA9B27-F660-4C66-8472-86A55434EED8}");
+
+            return treeNode.ImageIndex == ImageIndexes.LITERALPARAMETERIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTLITERALPARAMETERIMAGEINDEX;
+        }
+
         public bool IsMethodNode(RadTreeNode treeNode)
         {
             if (treeNode == null)
                 throw _exceptionHelper.CriticalException("{A0B43A22-1119-44E6-8B88-8C97210F6617}");
 
             return treeNode.ImageIndex == ImageIndexes.METHODIMAGEINDEX;
+        }
+
+        public bool IsObjectTypeNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{7037291D-B25C-4401-B6EB-D03E897EB992}");
+
+            return treeNode.ImageIndex == ImageIndexes.OBJECTPARAMETERIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTOBJECTPARAMETERIMAGEINDEX;
         }
 
         public bool IsProjectRootNode(RadTreeNode treeNode)

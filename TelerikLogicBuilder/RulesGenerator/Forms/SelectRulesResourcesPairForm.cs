@@ -16,13 +16,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private readonly IFormInitializer _formInitializer;
         private readonly IGetAllCheckedNodes _getAllCheckedNodeNames;
         private readonly ISelectModulesForDeploymentTreeViewBuilder _selectModulesForDeploymentTreeViewBuilder;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
         public SelectRulesResourcesPairForm(
             IFormInitializer formInitializer,
             IGetAllCheckedNodes getAllCheckedNodeNames,
             ISelectModulesForDeploymentTreeViewBuilder selectModulesForDeploymentTreeViewBuilder,
-            DialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControl dialogFormMessageControl,
             string applicationName)
         {
             _formInitializer = formInitializer;
@@ -68,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerMain)).EndInit();
             this.radSplitContainerMain.ResumeLayout(false);

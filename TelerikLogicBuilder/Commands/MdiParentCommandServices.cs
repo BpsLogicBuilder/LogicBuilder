@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder;
-using ABIS.LogicBuilder.FlowBuilder.Commands;
+﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Commands.Factories;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -65,6 +64,11 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationName
                     )
                 )
+                .AddTransient<EditConnectorObjectTypesCommand>()
+                .AddTransient<EditConstructorsCommand>()
+                .AddTransient<EditFunctionsCommand>()
+                .AddTransient<EditProjectPropertiesCommand>()
+                .AddTransient<EditVariablesCommand>()
                 .AddTransient<ExitCommand>()
                 .AddTransient<FindConstructorCommand>()
                 .AddTransient<FindConstructorInFilesCommand>()

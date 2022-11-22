@@ -20,6 +20,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             _exceptionHelper = exceptionHelper;
         }
 
+        public void ClearAutoComplete(RadDropDownList dropDownList)
+        {
+            dropDownList.Items.Clear();
+            dropDownList.DropDownListElement.AutoCompleteSuggest = null;
+        }
+
         public void LoadBooleans(RadDropDownList dropDownList, RadDropDownStyle dropDownStyle = RadDropDownStyle.DropDownList)
         {
             dropDownList.DropDownStyle = dropDownStyle;

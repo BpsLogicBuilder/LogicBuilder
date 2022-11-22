@@ -64,6 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments
                     xmlTextWriter.WriteElementString(XmlDataConstants.ELEMENTCONTROLELEMENT, Enum.GetName(typeof(LiteralParameterInputStyle), this.ElementControl));
                     xmlTextWriter.WriteElementString(XmlDataConstants.PROPERTYSOURCEELEMENT, this.PropertySource);
                     xmlTextWriter.WriteElementString(XmlDataConstants.PROPERTYSOURCEPARAMETERELEMENT, this.PropertySourceParameter);
+                    xmlTextWriter.WriteStartElement(XmlDataConstants.DEFAULTVALUEELEMENT);
                     this.DefaultValues.ForEach(item =>
                     {
                         xmlTextWriter.WriteStartElement(XmlDataConstants.ITEMELEMENT);

@@ -529,11 +529,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot load the required {0} &quot;{1}&quot;. {0} is required when {2} is &quot;{3}&quot;..
+        /// </summary>
+        internal static string cannotLoadFieldSourceFormat2 {
+            get {
+                return ResourceManager.GetString("cannotLoadFieldSourceFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot find the required property sourced parameter &quot;{0}&quot; for the parameter &quot;{1}&quot; in constructor &quot;{2}&quot;. The property sourced parameter must be one of the sibling parameters {3} when the control is {4}..
         /// </summary>
         internal static string cannotLoadPropertySourceParameterFormat {
             get {
                 return ResourceManager.GetString("cannotLoadPropertySourceParameterFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find the required {0} &quot;{1}&quot;. {0} must be one of the member parameters &quot;{2}&quot; when {3} is &quot;{4}&quot;..
+        /// </summary>
+        internal static string cannotLoadPropertySourceParameterFormat3 {
+            get {
+                return ResourceManager.GetString("cannotLoadPropertySourceParameterFormat3", resourceCulture);
             }
         }
         
@@ -552,6 +570,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string cannotLoadTypeForFunctionFormat {
             get {
                 return ResourceManager.GetString("cannotLoadTypeForFunctionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot load the type for the generic argument &quot;{0}&quot;..
+        /// </summary>
+        internal static string cannotLoadTypeForGenericArgument {
+            get {
+                return ResourceManager.GetString("cannotLoadTypeForGenericArgument", resourceCulture);
             }
         }
         
@@ -759,6 +786,141 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string connectorRequires2Shapes {
             get {
                 return ResourceManager.GetString("connectorRequires2Shapes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify the control used for updating the argument in the flow diagram shape..
+        /// </summary>
+        internal static string constrConfigControlHelp {
+            get {
+                return ResourceManager.GetString("constrConfigControlHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify a default value for the argument..
+        /// </summary>
+        internal static string constrConfigDefaultValueHelp {
+            get {
+                return ResourceManager.GetString("constrConfigDefaultValueHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The domain can be used to limit the possible values for this argument to a restricted list..
+        /// </summary>
+        internal static string constrConfigDomainHelp {
+            get {
+                return ResourceManager.GetString("constrConfigDomainHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify the control used for updating a list element in the flow diagram shape..
+        /// </summary>
+        internal static string constrConfigElementControlHelp {
+            get {
+                return ResourceManager.GetString("constrConfigElementControlHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the generic argument used by this parameter..
+        /// </summary>
+        internal static string constrConfigGenericArgumentNameHelp {
+            get {
+                return ResourceManager.GetString("constrConfigGenericArgumentNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The array&apos;s element type or the underlying generic type of the list or collection..
+        /// </summary>
+        internal static string constrConfigListLiteralTypeHelp {
+            get {
+                return ResourceManager.GetString("constrConfigListLiteralTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Type.FullName property of the array element or the underlying type of the list or collection..
+        /// </summary>
+        internal static string constrConfigListObjectTypeHelp {
+            get {
+                return ResourceManager.GetString("constrConfigListObjectTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify whether the list is an array, a generic list or a generic collection..
+        /// </summary>
+        internal static string constrConfigListTypeHelp {
+            get {
+                return ResourceManager.GetString("constrConfigListTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The argument&apos;s type..
+        /// </summary>
+        internal static string constrConfigLiteralTypeHelp {
+            get {
+                return ResourceManager.GetString("constrConfigLiteralTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.FullName property for the object..
+        /// </summary>
+        internal static string constrConfigObjectTypeHelp {
+            get {
+                return ResourceManager.GetString("constrConfigObjectTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify the fully qualified class as a source for a public properties domain when the {0} is &quot;{1}&quot;..
+        /// </summary>
+        internal static string constrConfigPropertySourceHelpFormat {
+            get {
+                return ResourceManager.GetString("constrConfigPropertySourceHelpFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify the parameter whose value will return the  fully qualified class as a source for a public properties domain when the {0} is &quot;{1}&quot;..
+        /// </summary>
+        internal static string constrConfigPropertySourceParameterHelpFormat {
+            get {
+                return ResourceManager.GetString("constrConfigPropertySourceParameterHelpFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicate whether or not this argument should be used calculate equality with another instance of this constructor..
+        /// </summary>
+        internal static string constrConfigUseForEqualityHelp {
+            get {
+                return ResourceManager.GetString("constrConfigUseForEqualityHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicate whether or not this argument should be used help determine the constructor&apos;s hash code..
+        /// </summary>
+        internal static string constrConfigUseForHashCodeHelp {
+            get {
+                return ResourceManager.GetString("constrConfigUseForHashCodeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicate whether or not this argument should be used to provide a string representation of the constructor..
+        /// </summary>
+        internal static string constrConfigUseForToStringHelp {
+            get {
+                return ResourceManager.GetString("constrConfigUseForToStringHelp", resourceCulture);
             }
         }
         
@@ -1384,6 +1546,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the characters in the domain (one per line):.
+        /// </summary>
+        internal static string domainCharacterPrompt {
+            get {
+                return ResourceManager.GetString("domainCharacterPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the numbers in the domain (one per line):.
+        /// </summary>
+        internal static string domainNumberPrompt {
+            get {
+                return ResourceManager.GetString("domainNumberPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the strings in the domain (one per line):.
+        /// </summary>
+        internal static string domainStringPrompt {
+            get {
+                return ResourceManager.GetString("domainStringPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the values in the domain (one per line):.
+        /// </summary>
+        internal static string domainValuePrompt {
+            get {
+                return ResourceManager.GetString("domainValuePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .exe.
         /// </summary>
         internal static string dotExe {
@@ -1416,6 +1614,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string doubleKeyReferenceIsInvalidFormat3 {
             get {
                 return ResourceManager.GetString("doubleKeyReferenceIsInvalidFormat3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Sourced Property Input.
+        /// </summary>
+        internal static string dropdownTextParameterSourcedPropertyInput {
+            get {
+                return ResourceManager.GetString("dropdownTextParameterSourcedPropertyInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Input.
+        /// </summary>
+        internal static string dropdownTextPropertyInput {
+            get {
+                return ResourceManager.GetString("dropdownTextPropertyInput", resourceCulture);
             }
         }
         
@@ -2446,6 +2662,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} must be empty when {1} is not &quot;{2}&quot;..
+        /// </summary>
+        internal static string fieldSourceMustBeEmptyFormat {
+            get {
+                return ResourceManager.GetString("fieldSourceMustBeEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File {0} already Exists..
         /// </summary>
         internal static string fileAlreadyExistsFormat {
@@ -2815,6 +3040,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The number of generic arguments {0}, does not match the type {1}..
+        /// </summary>
+        internal static string genericArgumentsCountMismatch {
+            get {
+                return ResourceManager.GetString("genericArgumentsCountMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generic methods are not supported. Method name: &quot;{0}&quot;..
         /// </summary>
         internal static string genericMethodsNotSupportedFormat {
@@ -3018,6 +3252,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidConsParameterOrder {
             get {
                 return ResourceManager.GetString("invalidConsParameterOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} &quot;{1}&quot; is not a valid {2}..
+        /// </summary>
+        internal static string invalidDomainFormat {
+            get {
+                return ResourceManager.GetString("invalidDomainFormat", resourceCulture);
             }
         }
         
@@ -3535,6 +3778,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add/Update Generic Arguments.
+        /// </summary>
+        internal static string mnuItemAddUpdateGenericArguments {
+            get {
+                return ResourceManager.GetString("mnuItemAddUpdateGenericArguments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close Project.
         /// </summary>
         internal static string mnuItemCloseProjectText {
@@ -3558,6 +3810,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemCopyRowText {
             get {
                 return ResourceManager.GetString("mnuItemCopyRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        internal static string mnuItemCopyText {
+            get {
+                return ResourceManager.GetString("mnuItemCopyText", resourceCulture);
             }
         }
         
@@ -3702,6 +3963,51 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemRenameText {
             get {
                 return ResourceManager.GetString("mnuItemRenameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with List of Literals Parameter.
+        /// </summary>
+        internal static string mnuItemReplaceWithListOfLiteralsParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemReplaceWithListOfLiteralsParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with List of Objects Parameter.
+        /// </summary>
+        internal static string mnuItemReplaceWithListOfObjectsParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemReplaceWithListOfObjectsParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with Literal Parameter.
+        /// </summary>
+        internal static string mnuItemReplaceWithLiteralParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemReplaceWithLiteralParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with Object Parameter.
+        /// </summary>
+        internal static string mnuItemReplaceWithObjectParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemReplaceWithObjectParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Assembly Qualified Name.
+        /// </summary>
+        internal static string mnuItemToAssemblyQualifiedName {
+            get {
+                return ResourceManager.GetString("mnuItemToAssemblyQualifiedName", resourceCulture);
             }
         }
         

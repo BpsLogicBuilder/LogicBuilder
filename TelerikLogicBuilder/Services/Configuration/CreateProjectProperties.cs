@@ -88,7 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             return new Dictionary<string, Application>
             {
-                [application.Name] = application
+                [application.Name.ToLowerInvariant()] = application
             };
         }
 

@@ -16,7 +16,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool IsFileNode(RadTreeNode treeNode);
         bool IsFolderNode(RadTreeNode treeNode);
         bool IsGenericArgumentParameterNode(RadTreeNode treeNode);
+        bool IsListOfLiteralsTypeNode(RadTreeNode treeNode);
+        bool IsListOfObjectsTypeNode(RadTreeNode treeNode);
+        bool IsLiteralTypeNode(RadTreeNode treeNode);
         bool IsMethodNode(RadTreeNode treeNode);
+        bool IsObjectTypeNode(RadTreeNode treeNode);
         bool IsProjectRootNode(RadTreeNode treeNode);
         bool IsRootNode(RadTreeNode treeNode);
         void MakeVisible(RadTreeNode treeNode);

@@ -28,5 +28,9 @@
         internal const byte OBJECTPARAMETERIMAGEINDEX = 23;
         internal const byte LITERALLISTPARAMETERIMAGEINDEX = 24;
         internal const byte OBJECTLISTPARAMETERIMAGEINDEX = 25;
+        internal const byte CUTLITERALPARAMETERIMAGEINDEX = 26;
+        internal const byte CUTOBJECTPARAMETERIMAGEINDEX = 27;
+        internal const byte CUTLITERALLISTPARAMETERIMAGEINDEX = 28;
+        internal const byte CUTOBJECTLISTPARAMETERIMAGEINDEX = 29;
     }
 }

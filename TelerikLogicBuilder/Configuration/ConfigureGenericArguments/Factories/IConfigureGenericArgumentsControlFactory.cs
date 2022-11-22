@@ -1,0 +1,15 @@
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralArgument;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralListArgument;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericObjectArgument;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericObjectListArgument;
+
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories
+{
+    internal interface IConfigureGenericArgumentsControlFactory
+    {
+        ConfigureGenericLiteralArgumentControl GetConfigureGenericLiteralArgumentControl(IConfigureGenericArgumentsForm configureGenericArgumentsForm);
+        ConfigureGenericLiteralListArgumentControl GetConfigureGenericLiteralListArgumentControl(IConfigureGenericArgumentsForm configureGenericArgumentsForm);
+        ConfigureGenericObjectArgumentControl GetConfigureGenericObjectArgumentControl(IConfigureGenericArgumentsForm configureGenericArgumentsForm);
+        ConfigureGenericObjectListArgumentControl GetConfigureGenericObjectListArgumentControl(IConfigureGenericArgumentsForm configureGenericArgumentsForm);
+    }
+}

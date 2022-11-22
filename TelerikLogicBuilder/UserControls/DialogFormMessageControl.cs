@@ -14,7 +14,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    internal partial class DialogFormMessageControl : UserControl
+    internal partial class DialogFormMessageControl : UserControl, IDialogFormMessageControl
     {
         private readonly IDialogFormMessageCommandFactory _dialogFormMessageCommandFactory;
         private readonly IImageListService _imageListService;

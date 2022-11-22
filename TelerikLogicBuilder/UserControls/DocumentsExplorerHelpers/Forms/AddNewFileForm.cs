@@ -15,13 +15,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IImageListService _imageListService;
         private readonly IFormInitializer _formInitializer;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
         public AddNewFileForm(
             IExceptionHelper exceptionHelper,
             IImageListService imageListService,
             IFormInitializer formInitializer,
-            DialogFormMessageControl dialogFormMessageControl)
+            IDialogFormMessageControl dialogFormMessageControl)
         {
             _exceptionHelper = exceptionHelper;
             _imageListService = imageListService;
@@ -103,7 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);

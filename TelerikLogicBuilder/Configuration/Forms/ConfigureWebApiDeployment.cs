@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -17,12 +18,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
     {
         private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IFormInitializer _formInitializer;
-        private readonly DialogFormMessageControl _dialogFormMessageControl;
+        private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
         public ConfigureWebApiDeployment(
             IConfigurationItemFactory configurationItemFactory,
             IFormInitializer formInitializer,
-            DialogFormMessageControl dialogFormMessageControl, 
+            IDialogFormMessageControl dialogFormMessageControl, 
             WebApiDeployment webApiDeployment)
         {
             InitializeComponent();
@@ -65,8 +66,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             this.SuspendLayout();
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add(_dialogFormMessageControl);
+            _dialogFormMessageControl.Location = new Point(0, 0);
+            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             ((ISupportInitialize)this.radPanelBottom).EndInit();
             this.radPanelBottom.ResumeLayout(false);

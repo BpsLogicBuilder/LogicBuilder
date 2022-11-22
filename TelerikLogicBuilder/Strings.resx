@@ -258,9 +258,17 @@
     <value>Class "{0}" could not be loaded.</value>
     <comment>0=ActivityClass</comment>
   </data>
+	<data name="cannotLoadFieldSourceFormat2" xml:space="preserve">
+    <value>Cannot load the required {0} "{1}". {0} is required when {2} is "{3}".</value>
+    <comment>0=lblPropertySourceText; 1=TypeFullName;2=lblliteralcontrolText; 3=ProperyInputText</comment>
+  </data>
 	<data name="cannotLoadPropertySourceParameterFormat" xml:space="preserve">
     <value>Cannot find the required property sourced parameter "{0}" for the parameter "{1}" in constructor "{2}". The property sourced parameter must be one of the sibling parameters {3} when the control is {4}.</value>
     <comment>0=sourceParameter; 1=parameter; 2=constructor;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
+  </data>
+	<data name="cannotLoadPropertySourceParameterFormat3" xml:space="preserve">
+    <value>Cannot find the required {0} "{1}". {0} must be one of the member parameters "{2}" when {3} is "{4}".</value>
+    <comment>0=lblPropertySourceParameterText; 1=parametername;2=MemberParameterList;3=lblliteralcontrolText;4=ProperyInputText</comment>
   </data>
 	<data name="cannotLoadTypeForConstructorFormat" xml:space="preserve">
     <value>Type "{0}" could not be loaded for the constructor "{1}".</value>
@@ -269,6 +277,10 @@
 	<data name="cannotLoadTypeForFunctionFormat" xml:space="preserve">
     <value>The return type "{0}" could not be loaded for the function "{1}".</value>
     <comment>0=typeName;1=functionName</comment>
+  </data>
+	<data name="cannotLoadTypeForGenericArgument" xml:space="preserve">
+    <value>Cannot load the type for the generic argument "{0}".</value>
+    <comment>0=generic argument name;</comment>
   </data>
 	<data name="cannotLoadTypeForGenericArgumentForConstructorFormat" xml:space="preserve">
     <value>Cannot load the type for the generic argument "{0}". Constructor name: {1}.</value>
@@ -339,6 +351,53 @@
   </data>
 	<data name="connectorRequires2Shapes" xml:space="preserve">
     <value>Connector must be connected to 2 shapes.</value>
+  </data>
+	<data name="constrConfigControlHelp" xml:space="preserve">
+    <value>Specify the control used for updating the argument in the flow diagram shape.</value>
+  </data>
+	<data name="constrConfigDefaultValueHelp" xml:space="preserve">
+    <value>Specify a default value for the argument.</value>
+  </data>
+	<data name="constrConfigDomainHelp" xml:space="preserve">
+    <value>The domain can be used to limit the possible values for this argument to a restricted list.</value>
+  </data>
+	<data name="constrConfigElementControlHelp" xml:space="preserve">
+    <value>Specify the control used for updating a list element in the flow diagram shape.</value>
+  </data>
+	<data name="constrConfigGenericArgumentNameHelp" xml:space="preserve">
+    <value>The name of the generic argument used by this parameter.</value>
+  </data>
+	<data name="constrConfigListLiteralTypeHelp" xml:space="preserve">
+    <value>The array's element type or the underlying generic type of the list or collection.</value>
+  </data>
+	<data name="constrConfigListObjectTypeHelp" xml:space="preserve">
+    <value>The Type.FullName property of the array element or the underlying type of the list or collection.</value>
+  </data>
+	<data name="constrConfigListTypeHelp" xml:space="preserve">
+    <value>Specify whether the list is an array, a generic list or a generic collection.</value>
+  </data>
+	<data name="constrConfigLiteralTypeHelp" xml:space="preserve">
+    <value>The argument's type.</value>
+  </data>
+	<data name="constrConfigObjectTypeHelp" xml:space="preserve">
+    <value>Type.FullName property for the object.</value>
+  </data>
+	<data name="constrConfigPropertySourceHelpFormat" xml:space="preserve">
+    <value>Specify the fully qualified class as a source for a public properties domain when the {0} is "{1}".</value>
+    <comment>0=control label for input type;1=string describing LiteralInputStyle.PropertyInput</comment>
+  </data>
+	<data name="constrConfigPropertySourceParameterHelpFormat" xml:space="preserve">
+    <value>Specify the parameter whose value will return the  fully qualified class as a source for a public properties domain when the {0} is "{1}".</value>
+    <comment>0=control label for input type;1=string describing LiteralInputStyle.ParameterSourcedPropertyInput</comment>
+  </data>
+	<data name="constrConfigUseForEqualityHelp" xml:space="preserve">
+    <value>Indicate whether or not this argument should be used calculate equality with another instance of this constructor.</value>
+  </data>
+	<data name="constrConfigUseForHashCodeHelp" xml:space="preserve">
+    <value>Indicate whether or not this argument should be used help determine the constructor's hash code.</value>
+  </data>
+	<data name="constrConfigUseForToStringHelp" xml:space="preserve">
+    <value>Indicate whether or not this argument should be used to provide a string representation of the constructor.</value>
   </data>
 	<data name="constrGenericArgNameInvalidFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for constructor "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
@@ -522,8 +581,26 @@
     <value>{0}...</value>
     <comment>0=MenuItem Text</comment>
   </data>
+	<data name="domainCharacterPrompt" xml:space="preserve">
+    <value>Enter the characters in the domain (one per line):</value>
+  </data>
+	<data name="domainNumberPrompt" xml:space="preserve">
+    <value>Enter the numbers in the domain (one per line):</value>
+  </data>
+	<data name="domainStringPrompt" xml:space="preserve">
+    <value>Enter the strings in the domain (one per line):</value>
+  </data>
+	<data name="domainValuePrompt" xml:space="preserve">
+    <value>Enter the values in the domain (one per line):</value>
+  </data>
 	<data name="dotExe" xml:space="preserve">
     <value>.exe</value>
+  </data>
+	<data name="dropdownTextParameterSourcedPropertyInput" xml:space="preserve">
+    <value>Parameter Sourced Property Input</value>
+  </data>
+	<data name="dropdownTextPropertyInput" xml:space="preserve">
+    <value>Property Input</value>
   </data>
 	<data name="duplicateIncomingConnector" xml:space="preserve">
     <value>Only one incoming connector per application is valid.</value>
@@ -681,6 +758,10 @@
     <value>]</value>
     <comment>Must be a string with length==1 i.e. character</comment>
   </data>
+	<data name="genericArgumentsCountMismatch" xml:space="preserve">
+    <value>The number of generic arguments {0}, does not match the type {1}.</value>
+    <comment>0=Argument count; 1=Generic Type Definition Name</comment>
+  </data>
 	<data name="genericMethodsNotSupportedFormat" xml:space="preserve">
     <value>Generic methods are not supported. Method name: "{0}".</value>
     <comment>0=methodName</comment>
@@ -736,6 +817,10 @@
   </data>
 	<data name="invalidCellData" xml:space="preserve">
     <value>Invalid Data.</value>
+  </data>
+	<data name="invalidDomainFormat" xml:space="preserve">
+    <value>{0} "{1}" is not a valid {2}.</value>
+    <comment>0=label 1=text 2=type</comment>
   </data>
 	<data name="invalidFileNameMessageFormat" xml:space="preserve">
     <value>{0} File Name must be less than 50 characters long and cannot include the following characters: \ / : * ? &lt; &gt; |</value>
@@ -921,6 +1006,9 @@
 	<data name="mnuItemAddText" xml:space="preserve">
     <value>Add</value>
   </data>
+	<data name="mnuItemAddUpdateGenericArguments" xml:space="preserve">
+    <value>Add/Update Generic Arguments</value>
+  </data>
 	<data name="mnuItemCloseProjectText" xml:space="preserve">
     <value>Close Project</value>
   </data>
@@ -929,6 +1017,9 @@
   </data>
 	<data name="mnuItemCopyRowText" xml:space="preserve">
     <value>Copy Row</value>
+  </data>
+	<data name="mnuItemCopyText" xml:space="preserve">
+    <value>Copy</value>
   </data>
 	<data name="mnuItemCopyToClipboardText" xml:space="preserve">
     <value>Copy to Clipboard</value>
@@ -977,6 +1068,21 @@
   </data>
 	<data name="mnuItemRenameText" xml:space="preserve">
     <value>Rename...</value>
+  </data>
+	<data name="mnuItemReplaceWithListOfLiteralsParameterText" xml:space="preserve">
+    <value>Replace with List of Literals Parameter</value>
+  </data>
+	<data name="mnuItemReplaceWithListOfObjectsParameterText" xml:space="preserve">
+    <value>Replace with List of Objects Parameter</value>
+  </data>
+	<data name="mnuItemReplaceWithLiteralParameterText" xml:space="preserve">
+    <value>Replace with Literal Parameter</value>
+  </data>
+	<data name="mnuItemReplaceWithObjectParameterText" xml:space="preserve">
+    <value>Replace with Object Parameter</value>
+  </data>
+	<data name="mnuItemToAssemblyQualifiedName" xml:space="preserve">
+    <value>To Assembly Qualified Name</value>
   </data>
 	<data name="mnuItemValidateRulesText" xml:space="preserve">
     <value>Validate</value>
@@ -1670,6 +1776,10 @@
 	<data name="fieldPropertyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=referenceDefinition; 1=referenceName; 2=variableName</comment>
+  </data>
+	<data name="fieldSourceMustBeEmptyFormat" xml:space="preserve">
+    <value>{0} must be empty when {1} is not "{2}".</value>
+    <comment>0=lblFieldSource;lblLiteralInputTypeControl;ProperyInputText</comment>
   </data>
 	<data name="arrayKeyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", each index in Reference Name "{1}" for variable "{2}" must be an integer greater than or equal to zero.</value>

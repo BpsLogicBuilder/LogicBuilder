@@ -51,7 +51,7 @@ namespace TelerikLogicBuilder.Tests.XmlTreeViewSynchronizers
             (
                 new ConfigureProjectPropertiesMock
                 (
-                    treeViewXmlDocumentHelper.ValidateXmlDocument,
+                    treeViewXmlDocumentHelper,
                     radTreeView,
                     treeViewXmlDocumentHelper.XmlTreeDocument
                 )
@@ -100,7 +100,7 @@ namespace TelerikLogicBuilder.Tests.XmlTreeViewSynchronizers
             (
                 new ConfigureProjectPropertiesMock
                 (
-                    treeViewXmlDocumentHelper.ValidateXmlDocument,
+                    treeViewXmlDocumentHelper,
                     radTreeView,
                     treeViewXmlDocumentHelper.XmlTreeDocument
                 )
@@ -142,7 +142,7 @@ namespace TelerikLogicBuilder.Tests.XmlTreeViewSynchronizers
             (
                 new ConfigureProjectPropertiesMock
                 (
-                    treeViewXmlDocumentHelper.ValidateXmlDocument,
+                    treeViewXmlDocumentHelper,
                     radTreeView,
                     treeViewXmlDocumentHelper.XmlTreeDocument
                 )
@@ -193,7 +193,7 @@ namespace TelerikLogicBuilder.Tests.XmlTreeViewSynchronizers
             (
                 new ConfigureProjectPropertiesMock
                 (
-                    treeViewXmlDocumentHelper.ValidateXmlDocument,
+                    treeViewXmlDocumentHelper,
                     radTreeView,
                     treeViewXmlDocumentHelper.XmlTreeDocument
                 )

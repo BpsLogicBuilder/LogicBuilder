@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
-using System;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Xml;
 using Telerik.WinControls.UI;
 
@@ -7,16 +7,16 @@ namespace TelerikLogicBuilder.Tests.Mocks
 {
     internal class ConfigureProjectPropertiesMock : IConfigureProjectProperties
     {
-        public ConfigureProjectPropertiesMock(Action onInvalidXmlRestoreDocumentAndThrow,
+        private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
+
+        public ConfigureProjectPropertiesMock(ITreeViewXmlDocumentHelper treeViewXmlDocumentHelper,
             RadTreeView treeView,
             XmlDocument xmlDocument)
         {
-            OnInvalidXmlRestoreDocumentAndThrow = onInvalidXmlRestoreDocumentAndThrow;
+            _treeViewXmlDocumentHelper = treeViewXmlDocumentHelper;
             TreeView = treeView;
             XmlDocument = xmlDocument;
         }
-
-        public Action OnInvalidXmlRestoreDocumentAndThrow { get; }
 
         public RadTreeView TreeView { get; }
 
@@ -32,6 +32,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public void SetMessage(string message, string title = "")
         {
+        }
+
+        public void ValidateXmlDocument()
+        {
+            _treeViewXmlDocumentHelper.ValidateXmlDocument();
         }
     }
 }

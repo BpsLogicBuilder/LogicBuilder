@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
 {
-    partial class ConfigureConstructorGenericArguments
+    partial class ConfigureFunctionGenericArgumentsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,12 +31,12 @@
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // ConfigureGenericParameters
+            // ConfigureFunctionGenericArguments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ConfigureGenericParameters";
-            this.Text = "ConfigureGenericParameters";
+            this.Name = "ConfigureFunctionGenericArguments";
+            this.Text = "ConfigureFunctionGenericArguments";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

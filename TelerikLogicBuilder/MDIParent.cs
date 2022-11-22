@@ -43,6 +43,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private readonly BuildActiveDocumentCommand _buildActiveDocumentCommand;
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
+        private readonly EditConnectorObjectTypesCommand _editConnectorObjectTypesCommand;
+        private readonly EditConstructorsCommand _editConstructorsCommand;
+        private readonly EditFunctionsCommand _editFunctionsCommand;
+        private readonly EditProjectPropertiesCommand _editProjectPropertiesCommand;
+        private readonly EditVariablesCommand _editVariablesCommand;
         private readonly ExitCommand _exitCommand;
         private readonly FindConstructorCommand _findConstructorCommand;
         private readonly FindConstructorInFilesCommand _findConstructorInFilesCommand;
@@ -85,6 +90,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IUiNotificationService uiNotificationService,
             BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
+            EditConnectorObjectTypesCommand editConnectorObjectTypesCommand,
+            EditConstructorsCommand editConstructorsCommand,
+            EditFunctionsCommand editFunctionsCommand,
+            EditProjectPropertiesCommand editProjectPropertiesCommand,
+            EditVariablesCommand editVariablesCommand,
             ExitCommand exitCommand,
             FindConstructorCommand findConstructorCommand,
             FindConstructorInFilesCommand findConstructorInFilesCommand,
@@ -122,6 +132,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _themeManager = themeManager;
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
+            _editConnectorObjectTypesCommand = editConnectorObjectTypesCommand;
+            _editConstructorsCommand = editConstructorsCommand;
+            _editFunctionsCommand = editFunctionsCommand;
+            _editProjectPropertiesCommand = editProjectPropertiesCommand;
+            _editVariablesCommand = editVariablesCommand;
             _exitCommand = exitCommand;
             _findConstructorCommand = findConstructorCommand;
             _findConstructorInFilesCommand = findConstructorInFilesCommand;
@@ -643,6 +658,34 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 _viewFlowDiagramStencilCommand
             );
             #endregion View Menu
+
+            #region Project Menu
+            AddClickCommand
+            (
+                this.radMenuItemConnectorObjectTypes,
+                _editConnectorObjectTypesCommand
+            );
+            AddClickCommand
+            (
+                this.radMenuItemConstructors,
+                _editConstructorsCommand
+            );
+            AddClickCommand
+            (
+                this.radMenuItemFunctions,
+                _editFunctionsCommand
+            );
+            AddClickCommand
+            (
+                this.radMenuItemProjectProperties,
+                _editProjectPropertiesCommand
+            );
+            AddClickCommand
+            (
+                this.radMenuItemVariables,
+                _editVariablesCommand
+            );
+            #endregion Project Menu
 
             AddThemeMenuItemClickCommands(this.radMenuItemTheme);
         }
