@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
@@ -46,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
                 throw _exceptionHelper.CriticalException("{F51FEA03-D7DC-4514-93BC-61DCB915E8B4}");
 
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            ConfigureLoadAssemblyPaths configureLoadAssemblyPaths = disposableManager.GetConfigureLoadAssemblyPaths
+            ConfigureLoadAssemblyPathsForm configureLoadAssemblyPaths = disposableManager.GetConfigureLoadAssemblyPaths
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

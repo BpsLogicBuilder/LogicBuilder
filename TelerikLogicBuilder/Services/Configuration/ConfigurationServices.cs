@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 
@@ -42,6 +43,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigureGenericArgumentsControlFactories()
                 .AddConfigureGenericLiteralArgumentCommandFactories()
                 .AddConfigureGenericLiteralListArgumentCommandFactories()
+                .AddConfigureLoadAssemblyPathsCommandFactories()
+                .AddConfigureLoadAssemblyPathsControlFactories()
                 .AddConfigurationControlFactories()
                 .AddConfigurationHelpers()
                 .AddConfigurationInitialization()
@@ -49,6 +52,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigureExcludedModulesCommandFactories()
                 .AddConfigureProjectPropertiesContextMenuCommandFactories()
                 .AddConfigurationFormFactories()
-                .AddLoadAssemblyPathsCommandFactories();
+                .AddLoadAssemblyPathsItemFactories();
     }
 }

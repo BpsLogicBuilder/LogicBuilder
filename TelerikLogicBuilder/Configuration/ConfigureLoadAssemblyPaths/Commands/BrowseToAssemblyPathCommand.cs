@@ -4,13 +4,13 @@ using System.IO;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands.LoadAssemblyPaths
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Commands
 {
     internal class BrowseToAssemblyPathCommand : ClickCommandBase
     {
         private readonly HelperButtonTextBox txtPath;
 
-        public BrowseToAssemblyPathCommand(ILoadAssemblyPathsControl loadAssemblyPathsControl)
+        public BrowseToAssemblyPathCommand(IConfigureLoadAssemblyPathsControl loadAssemblyPathsControl)
         {
             txtPath = loadAssemblyPathsControl.TxtPath;
         }

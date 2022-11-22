@@ -8,6 +8,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     {
         IApplicationControl GetApplicationControl(IConfigureProjectProperties configureProjectProperties);
         IConfigureConnectorObjectsControl GetConfigureConnectorObjectsControl(IConfigureConnectorObjectsForm configureConnectorObjectsForm);
-        ILoadAssemblyPathsControl GetLoadAssemblyPathsControl(IConfigureLoadAssemblyPaths configureLoadAssemblyPaths);
     }
 }

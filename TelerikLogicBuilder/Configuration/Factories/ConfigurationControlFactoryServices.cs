@@ -40,16 +40,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IServiceFactory>(),
                         configureConnectorObjectsForm
                     )
-                )
-                .AddTransient<Func<IConfigureLoadAssemblyPaths, ILoadAssemblyPathsControl>>
-                (
-                    provider =>
-                    (configureLoadAssemblyPaths) => new LoadAssemblyPathsControl
-                    (
-                        provider.GetRequiredService<IConfigurationItemFactory>(),
-                        provider.GetRequiredService<ILoadAssemblyPathsCommandFactory>(),
-                        configureLoadAssemblyPaths
-                    )
                 );
         }
     }

@@ -3,9 +3,9 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    internal interface ILoadAssemblyPathsControl
+    internal interface IConfigureLoadAssemblyPathsControl
     {
         IRadListBoxManager<AssemblyPath> RadListBoxManager { get; }
         HelperButtonTextBox TxtPath { get; }

@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Collections.Generic;
@@ -10,18 +9,18 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    internal partial class ConfigureLoadAssemblyPaths : Telerik.WinControls.UI.RadForm, IConfigureLoadAssemblyPaths
+    internal partial class ConfigureLoadAssemblyPathsForm : Telerik.WinControls.UI.RadForm, IConfigureLoadAssemblyPathsForm
     {
         private readonly IFormInitializer _formInitializer;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
-        private readonly ILoadAssemblyPathsControl _loadAssemblyPathsControl;
+        private readonly IConfigureLoadAssemblyPathsControl _loadAssemblyPathsControl;
 
         private readonly IList<string> existingPaths;
 
-        public ConfigureLoadAssemblyPaths(
-            IConfigurationControlFactory configurationControlFactory,
+        public ConfigureLoadAssemblyPathsForm(
+            IConfigureLoadAssemblyPathsControlFactory configurationLoadAssemblyPathsControlFactory,
             IFormInitializer formInitializer,
             IDialogFormMessageControl dialogFormMessageControl,
             IList<string> existingPaths)
@@ -29,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
             InitializeComponent();
             _formInitializer = formInitializer;
             _dialogFormMessageControl = dialogFormMessageControl;
-            _loadAssemblyPathsControl = configurationControlFactory.GetLoadAssemblyPathsControl(this);
+            _loadAssemblyPathsControl = configurationLoadAssemblyPathsControlFactory.GetLoadAssemblyPathsControl(this);
             this.existingPaths = existingPaths;
             Initialize();
         }

@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    partial class ConfigureLoadAssemblyPaths
+    partial class ConfigureLoadAssemblyPathsForm
     {
         /// <summary>
         /// Required designer variable.

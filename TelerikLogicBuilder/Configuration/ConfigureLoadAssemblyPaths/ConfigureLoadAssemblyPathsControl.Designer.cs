@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    partial class LoadAssemblyPathsControl
+    partial class ConfigureLoadAssemblyPathsControl
     {
         /// <summary> 
         /// Required designer variable.

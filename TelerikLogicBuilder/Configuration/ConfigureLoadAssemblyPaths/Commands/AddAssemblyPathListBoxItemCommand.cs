@@ -1,21 +1,21 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands.LoadAssemblyPaths
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Commands
 {
     internal class AddAssemblyPathListBoxItemCommand : ClickCommandBase
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
+        private readonly ILoadAssemblyPathsItemFactory _loadAssemblyPathsItemFactory;
         private readonly IRadListBoxManager<AssemblyPath> radListBoxManager;
         private readonly HelperButtonTextBox txtPath;
 
         public AddAssemblyPathListBoxItemCommand(
-            IConfigurationItemFactory configurationItemFactory,
-            ILoadAssemblyPathsControl loadAssemblyPathsControl)
+            ILoadAssemblyPathsItemFactory loadAssemblyPathsItemFactory,
+            IConfigureLoadAssemblyPathsControl loadAssemblyPathsControl)
         {
-            _configurationItemFactory = configurationItemFactory;
+            _loadAssemblyPathsItemFactory = loadAssemblyPathsItemFactory;
             radListBoxManager = loadAssemblyPathsControl.RadListBoxManager;
             txtPath = loadAssemblyPathsControl.TxtPath;
         }
@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands.Load
         {
             radListBoxManager.Add
             (
-                _configurationItemFactory.GetAssemblyPath(txtPath.Text.Trim())
+                _loadAssemblyPathsItemFactory.GetAssemblyPath(txtPath.Text.Trim())
             );
         }
     }

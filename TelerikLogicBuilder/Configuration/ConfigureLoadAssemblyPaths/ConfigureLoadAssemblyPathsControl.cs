@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands.LoadAssemblyPaths;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
@@ -13,13 +12,13 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    internal partial class LoadAssemblyPathsControl : UserControl, IListBoxHost<AssemblyPath>, ILoadAssemblyPathsControl
+    internal partial class ConfigureLoadAssemblyPathsControl : UserControl, IListBoxHost<AssemblyPath>, IConfigureLoadAssemblyPathsControl
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
-        private readonly ILoadAssemblyPathsCommandFactory _loadAssemblyPathsCommandFactory;
-        private readonly IConfigureLoadAssemblyPaths _configureLoadAssemblyPaths;
+        private readonly ILoadAssemblyPathsItemFactory _loadAssemblyPathsItemFactory;
+        private readonly IConfigureLoadAssemblyPathsCommandFactory _loadAssemblyPathsCommandFactory;
+        private readonly IConfigureLoadAssemblyPathsForm _configureLoadAssemblyPaths;
         private readonly IRadListBoxManager<AssemblyPath> radListBoxManager;
 
         public RadButton BtnAdd => btnAdd;
@@ -44,13 +43,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
 
         public HelperButtonTextBox TxtPath => txtPath;
 
-        public LoadAssemblyPathsControl(
-            IConfigurationItemFactory configurationItemFactory,
-            ILoadAssemblyPathsCommandFactory loadAssemblyPathsCommandFactory,
-            IConfigureLoadAssemblyPaths configureLoadAssemblyPaths)
+        public ConfigureLoadAssemblyPathsControl(
+            IConfigureLoadAssemblyPathsCommandFactory loadAssemblyPathsCommandFactory,
+            ILoadAssemblyPathsItemFactory loadAssemblyPathsItemFactory,
+            IConfigureLoadAssemblyPathsForm configureLoadAssemblyPaths)
         {
             InitializeComponent();
-            _configurationItemFactory = configurationItemFactory;
+            _loadAssemblyPathsItemFactory = loadAssemblyPathsItemFactory;
             _configureLoadAssemblyPaths = configureLoadAssemblyPaths;
             _loadAssemblyPathsCommandFactory = loadAssemblyPathsCommandFactory;
             radListBoxManager = new RadListBoxManager<AssemblyPath>(this);
@@ -81,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
             ListBox.Items.AddRange
             (
                 paths
-                    .Select(p => _configurationItemFactory.GetAssemblyPath(p.Trim()))
+                    .Select(p => _loadAssemblyPathsItemFactory.GetAssemblyPath(p.Trim()))
                     .Select(ap => new RadListDataItem(ap.ToString(), ap))
             );
         }

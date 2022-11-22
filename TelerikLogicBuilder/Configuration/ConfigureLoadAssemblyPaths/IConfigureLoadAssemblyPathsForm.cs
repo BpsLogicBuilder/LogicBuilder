@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    internal interface IConfigureLoadAssemblyPaths : IDisposable
+    internal interface IConfigureLoadAssemblyPathsForm : IDisposable
     {
         IList<string> Paths { get; }
         void ClearMessage();

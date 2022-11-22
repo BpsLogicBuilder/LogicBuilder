@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
     internal class AssemblyPath : IListBoxManageable
     {
         public AssemblyPath(
-            IPathHelper pathHelper, 
+            IPathHelper pathHelper,
             string path)
         {
             Path = pathHelper.RemoveTrailingPathSeparator(path.Trim());
@@ -22,29 +22,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls
         {
             get
             {
-                if (string.IsNullOrEmpty(this.Path))
+                if (string.IsNullOrEmpty(Path))
                     return new List<string> { Strings.listItemIsEmpty };
 
-                if (!Regex.IsMatch(this.Path, RegularExpressions.FILEPATH))
-                    return new List<string> { string.Format(CultureInfo.CurrentCulture, Strings.invalidFilePathMessageFormat, this.Path) };
+                if (!Regex.IsMatch(Path, RegularExpressions.FILEPATH))
+                    return new List<string> { string.Format(CultureInfo.CurrentCulture, Strings.invalidFilePathMessageFormat, Path) };
 
                 return new List<string>();
             }
         }
 
         #region Methods
-        public override string ToString() 
+        public override string ToString()
             => Path ?? string.Empty;
 
         public override bool Equals(object? obj)
         {
-            AssemblyPath? other = obj as AssemblyPath;
-            if (other == null) return false;
-            return this.Path.ToLowerInvariant().Equals(other.Path.ToLowerInvariant());
+            if (obj is not AssemblyPath other) return false;
+            return Path.ToLowerInvariant().Equals(other.Path.ToLowerInvariant());
         }
 
-        public override int GetHashCode() 
-            => this.Path.ToLowerInvariant().GetHashCode();
+        public override int GetHashCode()
+            => Path.ToLowerInvariant().GetHashCode();
         #endregion Methods
     }
 }

@@ -9,16 +9,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     {
         private readonly Func<IConfigureProjectProperties, IApplicationControl> _getApplicationControl;
         private readonly Func<IConfigureConnectorObjectsForm, IConfigureConnectorObjectsControl> _getConfigureConnectorObjectsControl;
-        private readonly Func<IConfigureLoadAssemblyPaths, ILoadAssemblyPathsControl> _getLoadAssemblyPathsControl;
 
         public ConfigurationControlFactory(
             Func<IConfigureProjectProperties, IApplicationControl> getApplicationControl,
-            Func<IConfigureConnectorObjectsForm,IConfigureConnectorObjectsControl> getConfigureConnectorObjectsControl,
-            Func<IConfigureLoadAssemblyPaths, ILoadAssemblyPathsControl> getLoadAssemblyPathsControl)
+            Func<IConfigureConnectorObjectsForm,IConfigureConnectorObjectsControl> getConfigureConnectorObjectsControl)
         {
             _getApplicationControl = getApplicationControl;
             _getConfigureConnectorObjectsControl = getConfigureConnectorObjectsControl;
-            _getLoadAssemblyPathsControl = getLoadAssemblyPathsControl;
         }
 
         public IApplicationControl GetApplicationControl(IConfigureProjectProperties configureProjectProperties)
@@ -26,8 +23,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
 
         public IConfigureConnectorObjectsControl GetConfigureConnectorObjectsControl(IConfigureConnectorObjectsForm configureConnectorObjectsForm)
             => _getConfigureConnectorObjectsControl(configureConnectorObjectsForm);
-
-        public ILoadAssemblyPathsControl GetLoadAssemblyPathsControl(IConfigureLoadAssemblyPaths configureLoadAssemblyPaths)
-            => _getLoadAssemblyPathsControl(configureLoadAssemblyPaths);
     }
 }

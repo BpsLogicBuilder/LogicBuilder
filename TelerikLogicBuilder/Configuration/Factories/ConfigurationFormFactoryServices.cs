@@ -4,6 +4,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -91,12 +93,12 @@ namespace Microsoft.Extensions.DependencyInjection
                         genericTypeDefinition
                     )
                 )
-                .AddTransient<Func<IList<string>, ConfigureLoadAssemblyPaths>>
+                .AddTransient<Func<IList<string>, ConfigureLoadAssemblyPathsForm>>
                 (
                     provider =>
-                    existingPaths => new ConfigureLoadAssemblyPaths
+                    existingPaths => new ConfigureLoadAssemblyPathsForm
                     (
-                        provider.GetRequiredService<IConfigurationControlFactory>(),
+                        provider.GetRequiredService<IConfigureLoadAssemblyPathsControlFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         existingPaths
