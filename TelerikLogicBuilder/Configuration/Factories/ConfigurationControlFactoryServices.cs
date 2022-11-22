@@ -29,18 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         configureProjectProperties
                     )
                 )
-                .AddTransient<IConfigurationControlFactory, ConfigurationControlFactory>()
-                .AddTransient<Func<IConfigureConnectorObjectsForm, IConfigureConnectorObjectsControl>>
-                (
-                    provider =>
-                    configureConnectorObjectsForm => new ConfigureConnectorObjectsControl
-                    (
-                        provider.GetRequiredService<IConfigurationItemFactory>(),
-                        provider.GetRequiredService<IConfigureConnectorObjectsCommandFactory>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        configureConnectorObjectsForm
-                    )
-                );
+                .AddTransient<IConfigurationControlFactory, ConfigurationControlFactory>();
         }
     }
 }

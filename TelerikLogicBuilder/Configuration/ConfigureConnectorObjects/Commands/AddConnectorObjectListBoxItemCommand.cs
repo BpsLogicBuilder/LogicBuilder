@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 
@@ -7,16 +7,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.
 {
     internal class AddConnectorObjectListBoxItemCommand : ClickCommandBase
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
+        private readonly IConnectorObjectsItemFactory _connectorObjectsItemFactory;
 
         private readonly AutoCompleteRadDropDownList txtType;
         private readonly IRadListBoxManager<ConnectorObjectListBoxItem> radListBoxManager;
 
         public AddConnectorObjectListBoxItemCommand(
-            IConfigurationItemFactory configurationItemFactory,
+            IConnectorObjectsItemFactory connectorObjectsItemFactory,
             IConfigureConnectorObjectsControl configureConnectorObjectsControl)
         {
-            _configurationItemFactory = configurationItemFactory;
+            _connectorObjectsItemFactory = connectorObjectsItemFactory;
             txtType = configureConnectorObjectsControl.TxtType;
             radListBoxManager= configureConnectorObjectsControl.RadListBoxManager;
         }
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.
         {
             radListBoxManager.Add
             (
-                _configurationItemFactory.GetConnectorObjectListBoxItem(txtType.Text.Trim())
+                _connectorObjectsItemFactory.GetConnectorObjectListBoxItem(txtType.Text.Trim())
             );
         }
     }

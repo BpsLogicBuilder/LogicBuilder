@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
@@ -33,8 +34,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     openedAsReadOnly => new ConfigureConnectorObjectsForm
                     (
-                        provider.GetRequiredService<IConfigurationControlFactory>(),
                         provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IConfigureConnectorObjectsControlFactory>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),

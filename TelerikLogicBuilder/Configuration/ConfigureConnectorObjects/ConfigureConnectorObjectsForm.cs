@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
@@ -39,8 +39,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
         private readonly bool openedAsReadOnly;
 
         public ConfigureConnectorObjectsForm(
-            IConfigurationControlFactory configurationControlFactory,
             IConfigurationService configurationService,
+            IConfigureConnectorObjectsControlFactory configureConnectorObjectsControlFactory,
             IDialogFormMessageControl dialogFormMessageControl,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
@@ -56,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _configurationService = configurationService;
-            _configureConnectorObjectsControl = configurationControlFactory.GetConfigureConnectorObjectsControl(this);
+            _configureConnectorObjectsControl = configureConnectorObjectsControlFactory.GetConfigureConnectorObjectsControl(this);
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _loadProjectProperties = loadProjectProperties;

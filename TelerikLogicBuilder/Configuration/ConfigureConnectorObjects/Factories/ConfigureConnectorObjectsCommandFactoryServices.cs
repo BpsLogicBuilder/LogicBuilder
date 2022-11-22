@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -16,7 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureConnectorObjectsControl => new AddConnectorObjectListBoxItemCommand
                     (
-                        provider.GetRequiredService<IConfigurationItemFactory>(),
+                        provider.GetRequiredService<IConnectorObjectsItemFactory>(),
                         configureConnectorObjectsControl
                     )
                 )
@@ -26,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureConnectorObjectsControl => new UpdateConnectorObjectListBoxItemCommand
                     (
-                        provider.GetRequiredService<IConfigurationItemFactory>(),
+                        provider.GetRequiredService<IConnectorObjectsItemFactory>(),
                         configureConnectorObjectsControl
                     )
                 );

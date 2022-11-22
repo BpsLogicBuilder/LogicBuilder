@@ -1,6 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -18,21 +17,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
 {
     internal partial class ConfigureConnectorObjectsControl : UserControl, IListBoxHost<ConnectorObjectListBoxItem>, IConfigureConnectorObjectsControl
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IConfigureConnectorObjectsCommandFactory _configureConnectorObjectsCommandFactory;
+        private readonly IConnectorObjectsItemFactory _connectorObjectsItemFactory;
         private readonly ITypeAutoCompleteManager _typeAutoCompleteManager;
 
         private readonly IConfigureConnectorObjectsForm configureConnectorObjectsForm;
         private readonly IRadListBoxManager<ConnectorObjectListBoxItem> radListBoxManager;
 
         public ConfigureConnectorObjectsControl(
-            IConfigurationItemFactory configurationItemFactory,
             IConfigureConnectorObjectsCommandFactory configureConnectorObjectsCommandFactory,
+            IConnectorObjectsItemFactory connectorObjectsItemFactory,
             IServiceFactory serviceFactory,
             IConfigureConnectorObjectsForm configureConnectorObjectsForm)
         {
             InitializeComponent();
-            _configurationItemFactory = configurationItemFactory;
+            _connectorObjectsItemFactory = connectorObjectsItemFactory;
             _configureConnectorObjectsCommandFactory = configureConnectorObjectsCommandFactory;
             _typeAutoCompleteManager = serviceFactory.GetTypeAutoCompleteManager
             (
@@ -83,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
             ListBox.Items.AddRange
             (
                 typeNames
-                    .Select(p => _configurationItemFactory.GetConnectorObjectListBoxItem(p.Trim()))
+                    .Select(p => _connectorObjectsItemFactory.GetConnectorObjectListBoxItem(p.Trim()))
                     .Select(cl => new RadListDataItem(cl.ToString(), cl))
             );
         }

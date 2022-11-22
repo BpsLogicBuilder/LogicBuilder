@@ -39,6 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IWebApiDeploymentXmlParser, WebApiDeploymentXmlParser>()
                 .AddApplicationControlCommandFactories()
                 .AddConfigureConnectorObjectsCommandFactories()
+                .AddConfigureConnectorObjectsControlFactories()
                 .AddConfigureGenericArgumentsCommandFactories()
                 .AddConfigureGenericArgumentsControlFactories()
                 .AddConfigureGenericLiteralArgumentCommandFactories()
@@ -52,6 +53,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigureExcludedModulesCommandFactories()
                 .AddConfigureProjectPropertiesContextMenuCommandFactories()
                 .AddConfigurationFormFactories()
+                .AddConnectorObjectsItemFactories()
                 .AddLoadAssemblyPathsItemFactories();
     }
 }
