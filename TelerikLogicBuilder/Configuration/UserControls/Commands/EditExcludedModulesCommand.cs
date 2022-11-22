@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
                 throw _exceptionHelper.CriticalException("{BBD9B576-5AB9-402E-87E8-148B8CC62E5A}");
 
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            ConfigureExcludedModules configureExcludedModules = disposableManager.GetConfigureExcludedModules
+            ConfigureExcludedModulesForm configureExcludedModules = disposableManager.GetConfigureExcludedModules
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

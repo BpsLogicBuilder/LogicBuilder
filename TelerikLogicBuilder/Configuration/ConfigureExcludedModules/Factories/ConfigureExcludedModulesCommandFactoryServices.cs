@@ -1,10 +1,9 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms.Commands;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories
 {
     internal static class ConfigureExcludedModulesCommandFactoryServices
     {

@@ -1,5 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
@@ -65,10 +67,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         genericTypeDefinition
                     )
                 )
-                .AddTransient<Func<IList<string>, ConfigureExcludedModules>>
+                .AddTransient<Func<IList<string>, ConfigureExcludedModulesForm>>
                 (
                     provider =>
-                    excludedModules => new ConfigureExcludedModules
+                    excludedModules => new ConfigureExcludedModulesForm
                     (
                         provider.GetRequiredService<IConfigureExcludedModulesCommandFactory>(),
                         provider.GetRequiredService<IExcludedModulesTreeViewBuilder>(),

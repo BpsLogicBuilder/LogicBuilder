@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -15,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             IList<string> configuredGenericArgumentNames,
             IList<ParameterBase> memberParameters,
             Type genericTypeDefinition);
-        ConfigureExcludedModules GetConfigureExcludedModules(IList<string> excludedModules);
+        ConfigureExcludedModulesForm GetConfigureExcludedModules(IList<string> excludedModules);
         ConfigureFunctionGenericArgumentsForm GetConfigureFunctionGenericArgumentsForm(XmlDocument xmlDocument,
             IList<string> configuredGenericArgumentNames,
             IList<ParameterBase> memberParameters,

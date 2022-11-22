@@ -2,7 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using System.Linq;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms.Commands
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Commands
 {
     internal class UpdateExcludedModulesCommand : ClickCommandBase
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
 {
     internal interface IConfigureExcludedModules
     {

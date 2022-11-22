@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
@@ -8,9 +8,9 @@ using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
 {
-    internal partial class ConfigureExcludedModules : RadForm, IConfigureExcludedModules
+    internal partial class ConfigureExcludedModulesForm : RadForm, IConfigureExcludedModules
     {
         private readonly IConfigureExcludedModulesCommandFactory _configureExcludedModulesCommandFactory;
         private readonly IExcludedModulesTreeViewBuilder _excludedModulesTreeViewBuilder;
@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
         private readonly IGetAllCheckedNodes _getAllCheckedNodes;
         private readonly ITreeViewService _treeViewService;
 
-        public ConfigureExcludedModules(
+        public ConfigureExcludedModulesForm(
             IConfigureExcludedModulesCommandFactory configureExcludedModulesCommandFactory,
             IExcludedModulesTreeViewBuilder excludedModulesTreeViewBuilder,
             IFormInitializer formInitializer,

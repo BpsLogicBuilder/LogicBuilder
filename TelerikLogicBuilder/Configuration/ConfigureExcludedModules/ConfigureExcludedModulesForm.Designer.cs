@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
 {
-    partial class ConfigureExcludedModules
+    partial class ConfigureExcludedModulesForm
     {
         /// <summary>
         /// Required designer variable.
