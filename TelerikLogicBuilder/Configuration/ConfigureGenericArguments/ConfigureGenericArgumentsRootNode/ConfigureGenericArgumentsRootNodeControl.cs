@@ -1,12 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericArgumentsRootNode
 {
-    public partial class ConfigureGenericArgumentsRootNodeControl : UserControl, IXmlElementControl
+    public partial class ConfigureGenericArgumentsRootNodeControl : UserControl, IConfigurationXmlElementControl
     {
         public ConfigureGenericArgumentsRootNodeControl()
         {

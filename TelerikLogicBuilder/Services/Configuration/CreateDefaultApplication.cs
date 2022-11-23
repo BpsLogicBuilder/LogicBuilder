@@ -1,27 +1,26 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class CreateDefaultApplication : ICreateDefaultApplication
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IPathHelper _pathHelper;
+        private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
         private readonly IWebApiDeploymentItemFactory _webApiDeploymentItemFactory;
 
         public CreateDefaultApplication(
-            IConfigurationItemFactory configurationItemFactory,
             IPathHelper pathHelper,
+            IProjectPropertiesItemFactory projectPropertiesItemFactory,
             IWebApiDeploymentItemFactory webApiDeploymentItemFactory)
         {
-            _configurationItemFactory = configurationItemFactory;
+            _projectPropertiesItemFactory = projectPropertiesItemFactory;
             _pathHelper = pathHelper;
             _webApiDeploymentItemFactory = webApiDeploymentItemFactory;
         }
@@ -30,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             string programFilesPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
 
-            return _configurationItemFactory.GetApplication
+            return _projectPropertiesItemFactory.GetApplication
             (
                 applicationNameString,
                 applicationNameString,

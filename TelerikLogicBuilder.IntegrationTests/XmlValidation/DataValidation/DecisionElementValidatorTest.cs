@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -153,7 +153,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
-            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+            ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
 			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
@@ -167,13 +167,13 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
 
-            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
+            ConfigurationService.ProjectProperties = ProjectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = ConfigurationItemFactory.GetApplication
+                    ["app01"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -411,7 +411,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         internal IServiceProvider ServiceProvider;
-        internal IConfigurationItemFactory ConfigurationItemFactory;
+        internal IProjectPropertiesItemFactory ProjectPropertiesItemFactory;
 		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IEnumHelper EnumHelper;

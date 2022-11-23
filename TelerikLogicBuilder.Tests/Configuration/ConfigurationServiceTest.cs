@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,15 +63,15 @@ namespace TelerikLogicBuilder.Tests.Configuration
 
         static ProjectProperties GetProjectProperties(IServiceProvider serviceProvider)
         {
-            IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            IProjectPropertiesItemFactory projectPropertiesItemFactory = serviceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
             IWebApiDeploymentItemFactory webApiDeploymentItemFactory = serviceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
-            return configurationItemFactory.GetProjectProperties
+            return projectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = configurationItemFactory.GetApplication
+                    ["app01"] = projectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -90,7 +90,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                         new List<string>(),
                         webApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = configurationItemFactory.GetApplication
+                    ["app02"] = projectPropertiesItemFactory.GetApplication
                     (
                         "App02",
                         "App02",

@@ -7,10 +7,11 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -107,12 +108,12 @@ namespace Microsoft.Extensions.DependencyInjection
                         existingPaths
                     )
                 )
-                .AddTransient<Func<bool, ConfigureProjectProperties>>
+                .AddTransient<Func<bool, ConfigureProjectPropertiesForm>>
                 (
                     provider =>
-                    openedAsReadOnly => new ConfigureProjectProperties
+                    openedAsReadOnly => new ConfigureProjectPropertiesForm
                     (
-                        provider.GetRequiredService<IConfigurationControlFactory>(),
+                        provider.GetRequiredService<IConfigureProjectPropertiesControlFactory>(),
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IConfigureProjectPropertiesContextMenuCommandFactory>(),
                         provider.GetRequiredService<IConfigureProjectPropertiesTreeviewBuilder>(),

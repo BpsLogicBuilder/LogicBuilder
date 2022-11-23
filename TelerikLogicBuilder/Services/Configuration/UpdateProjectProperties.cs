@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -16,20 +16,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class UpdateProjectProperties : IUpdateProjectProperties
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
+        private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
         private readonly IXmlValidator _xmlValidator;
 
         public UpdateProjectProperties(
-            IConfigurationItemFactory configurationItemFactory,
             IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
+            IProjectPropertiesItemFactory projectPropertiesItemFactory,
             IXmlValidatorFactory xmlValidatorFactory)
         {
-            _configurationItemFactory = configurationItemFactory;
+            _projectPropertiesItemFactory = projectPropertiesItemFactory;
             _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             if (directoryInfo.Parent == null)
                 throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.projectPathCannotBeTheRootFolderFormat, projectPath));
 
-            ProjectProperties projectProperties = _configurationItemFactory.GetProjectProperties
+            ProjectProperties projectProperties = _projectPropertiesItemFactory.GetProjectProperties
             (
                 projectName,
                 projectPath,

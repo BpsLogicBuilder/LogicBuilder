@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -16,22 +16,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class CreateProjectProperties : ICreateProjectProperties
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly ICreateDefaultApplication _createDefaultApplication;
         private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
+        private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
         private readonly IXmlValidator _xmlValidator;
 
         public CreateProjectProperties(
-            IConfigurationItemFactory configurationItemFactory,
             ICreateDefaultApplication createDefaultApplication,
             IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
+            IProjectPropertiesItemFactory projectPropertiesItemFactory,
             IXmlValidatorFactory xmlValidatorFactory)
         {
-            _configurationItemFactory = configurationItemFactory;
+            _projectPropertiesItemFactory = projectPropertiesItemFactory;
             _createDefaultApplication = createDefaultApplication;
             _encryption = encryption;
             _fileIOHelper = fileIOHelper;
@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             string projectPath = _pathHelper.CombinePaths(pathToProjectFolder.Trim(), projectName);
 
-            ProjectProperties projectProperties = _configurationItemFactory.GetProjectProperties
+            ProjectProperties projectProperties = _projectPropertiesItemFactory.GetProjectProperties
             (
                 projectName,
                 projectPath,
@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             string projectName = _pathHelper.GetFileNameNoExtention(fullPath);
             string projectPath = _pathHelper.GetFilePath(fullPath);
 
-            ProjectProperties projectProperties = _configurationItemFactory.GetProjectProperties
+            ProjectProperties projectProperties = _projectPropertiesItemFactory.GetProjectProperties
             (
                 projectName,
                 projectPath,

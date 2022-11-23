@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
@@ -582,15 +582,15 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             get
             {
-                var configurationItemFactory = _fixture.ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+                var projectPropertiesItemFactory = _fixture.ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
                 var webApiDeploymentItemFactory = _fixture.ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
-                return configurationItemFactory.GetProjectProperties
+                return projectPropertiesItemFactory.GetProjectProperties
                 (
                     "Contoso",
                     @"C:\ProjectPath",
                     new Dictionary<string, Application>
                     {
-                        ["app01"] = configurationItemFactory.GetApplication
+                        ["app01"] = projectPropertiesItemFactory.GetApplication
                         (
                             "App01",
                             "App01",
@@ -619,15 +619,15 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {
             get
             {
-                var configurationItemFactory = _fixture.ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+                var projectPropertiesItemFactory = _fixture.ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
                 var webApiDeploymentItemFactory = _fixture.ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
-                return configurationItemFactory.GetProjectProperties
+                return projectPropertiesItemFactory.GetProjectProperties
                 (
                     "Contoso",
                     @"C:\ProjectPath",
                     new Dictionary<string, Application>
                     {
-                        ["app01"] = configurationItemFactory.GetApplication
+                        ["app01"] = projectPropertiesItemFactory.GetApplication
                         (
                             "App01",
                             "App01",
@@ -646,7 +646,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                             new List<string>(),
                             webApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                         ),
-                        ["app02"] = configurationItemFactory.GetApplication
+                        ["app02"] = projectPropertiesItemFactory.GetApplication
                         (
                             "App02",
                             "App02",
@@ -701,7 +701,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         public ApplicationConnectorValidatorFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
 			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
@@ -768,7 +768,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
 
         internal InvisibleApp VisioApplication;
         internal IServiceProvider ServiceProvider;
-        internal IConfigurationItemFactory ConfigurationItemFactory;
+        internal IProjectPropertiesItemFactory ConfigurationItemFactory;
 		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
     }

@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Helpers;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,20 +1,17 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic.ApplicationServices;
 using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using ABIS.LogicBuilder.FlowBuilder.Configuration;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
@@ -82,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 }
 
                 using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-                ConfigureProjectProperties configureProjectProperties = disposableManager.GetConfigureProjectProperties(openedReadonly);
+                ConfigureProjectPropertiesForm configureProjectProperties = disposableManager.GetConfigureProjectProperties(openedReadonly);
                 configureProjectProperties.ShowDialog(_mainWindow.Instance);
 
                 if (!openedReadonly && configureProjectProperties.DialogResult == DialogResult.OK)

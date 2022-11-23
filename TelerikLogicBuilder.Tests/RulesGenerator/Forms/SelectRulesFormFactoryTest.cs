@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories;
@@ -53,23 +53,23 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.Forms
     public class SelectRulesFormFactoryFixture : IDisposable
     {
         internal IServiceProvider ServiceProvider;
-        internal IConfigurationItemFactory ConfigurationItemFactory;
+        internal IProjectPropertiesItemFactory ProjectPropertiesItemFactory;
 		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
 
         public SelectRulesFormFactoryFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+            ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
 			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
+            ConfigurationService.ProjectProperties = ProjectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
                 $@"{TestFolders.TestAssembliesFolder}\FlowProjects\Contoso.Test",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = ConfigurationItemFactory.GetApplication
+                    ["app01"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -88,7 +88,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.Forms
                         new List<string>(),
                         WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = ConfigurationItemFactory.GetApplication
+                    ["app02"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App02",
                         "App02",

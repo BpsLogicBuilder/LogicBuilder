@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using System;
 
@@ -8,11 +8,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
     internal class XmlTreeViewSynchronizerFactory : IXmlTreeViewSynchronizerFactory
     {
         private readonly Func<IConfigureGenericArgumentsForm, IConfigureGenericArgumentsXmlTreeViewSynchronizer> _getConfigureGenericArgumentsXmlTreeViewSynchronizer;
-        private readonly Func<IConfigureProjectProperties, IProjectPropertiesXmlTreeViewSynchronizer> _getProjectPropertiesXmlTreeViewSynchronizer;
+        private readonly Func<IConfigureProjectPropertiesForm, IProjectPropertiesXmlTreeViewSynchronizer> _getProjectPropertiesXmlTreeViewSynchronizer;
 
         public XmlTreeViewSynchronizerFactory(
             Func<IConfigureGenericArgumentsForm, IConfigureGenericArgumentsXmlTreeViewSynchronizer> getConfigureGenericArgumentsXmlTreeViewSynchronizer,
-            Func<IConfigureProjectProperties, IProjectPropertiesXmlTreeViewSynchronizer> getProjectPropertiesXmlTreeViewSynchronizer)
+            Func<IConfigureProjectPropertiesForm, IProjectPropertiesXmlTreeViewSynchronizer> getProjectPropertiesXmlTreeViewSynchronizer)
         {
             _getConfigureGenericArgumentsXmlTreeViewSynchronizer = getConfigureGenericArgumentsXmlTreeViewSynchronizer;
             _getProjectPropertiesXmlTreeViewSynchronizer = getProjectPropertiesXmlTreeViewSynchronizer;
@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
         public IConfigureGenericArgumentsXmlTreeViewSynchronizer GetConfigureGenericArgumentsXmlTreeViewSynchronizer(IConfigureGenericArgumentsForm configureGenericArgumentsForm)
             => _getConfigureGenericArgumentsXmlTreeViewSynchronizer(configureGenericArgumentsForm);
 
-        public IProjectPropertiesXmlTreeViewSynchronizer GetProjectPropertiesXmlTreeViewSynchronizer(IConfigureProjectProperties configureProjectProperties)
+        public IProjectPropertiesXmlTreeViewSynchronizer GetProjectPropertiesXmlTreeViewSynchronizer(IConfigureProjectPropertiesForm configureProjectProperties)
             => _getProjectPropertiesXmlTreeViewSynchronizer(configureProjectProperties);
     }
 }

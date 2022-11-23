@@ -1,11 +1,10 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
+﻿using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Xml;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralListArgument
 {
-    internal interface IConfigureGenericLiteralListArgumentControl : IXmlElementControl
+    internal interface IConfigureGenericLiteralListArgumentControl : IConfigurationXmlElementControl
     {
         RadTreeView TreeView { get; }
         HelperButtonTextBox TxtListLpDomain { get; }

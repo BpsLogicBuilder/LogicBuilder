@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -12,20 +12,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class ApplicationXmlParser : IApplicationXmlParser
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
         private readonly IWebApiDeploymentXmlParser _webApiDeploymentXmlParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public ApplicationXmlParser(
-            IConfigurationItemFactory configurationItemFactory,
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
+            IProjectPropertiesItemFactory projectPropertiesItemFactory,
             IWebApiDeploymentXmlParser webApiDeploymentXmlParser,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _configurationItemFactory = configurationItemFactory;
+            _projectPropertiesItemFactory = projectPropertiesItemFactory;
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _webApiDeploymentXmlParser = webApiDeploymentXmlParser;
@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             );
 
             Application GetApplication(Dictionary<string, XmlElement> elements)
-                => _configurationItemFactory.GetApplication
+                => _projectPropertiesItemFactory.GetApplication
                 (
                     xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                     xmlElement.GetAttribute(XmlDataConstants.NICKNAMEATTRIBUTE),

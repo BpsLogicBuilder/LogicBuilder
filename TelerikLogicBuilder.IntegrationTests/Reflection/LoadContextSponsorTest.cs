@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -29,18 +29,18 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
         {
             //arrange
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            IProjectPropertiesItemFactory projectPropertiesItemFactory = serviceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
             IWebApiDeploymentItemFactory webApiDeploymentItemFactory = serviceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             IAssemblyLoadContextManager assemblyLoadContextService = serviceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             ILoadContextSponsor loadContextSponsor = serviceProvider.GetRequiredService<ILoadContextSponsor>();
 
-            configurationService.ProjectProperties = configurationItemFactory.GetProjectProperties
+            configurationService.ProjectProperties = projectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = configurationItemFactory.GetApplication
+                    ["app01"] = projectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",

@@ -2,8 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<IList<string>, ConfigureExcludedModulesForm> _getConfigureExcludedModules;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
         private readonly Func<IList<string>, ConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
-        private readonly Func<bool, ConfigureProjectProperties> _getConfigureProjectProperties;
+        private readonly Func<bool, ConfigureProjectPropertiesForm> _getConfigureProjectProperties;
         private readonly Func<WebApiDeployment, ConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
         private readonly IServiceScope _scope;
 
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Func<IList<string>, ConfigureExcludedModulesForm> getConfigureExcludedModules,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> getConfigureFunctionGenericArgumentsForm,
             Func<IList<string>, ConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
-            Func<bool, ConfigureProjectProperties> getConfigureProjectProperties,
+            Func<bool, ConfigureProjectPropertiesForm> getConfigureProjectProperties,
             Func<WebApiDeployment, ConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
         {
             _scope = serviceScopeFactory.CreateScope();
@@ -79,10 +79,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             return (ConfigureLoadAssemblyPathsForm)_scopedService;
         }
 
-        public ConfigureProjectProperties GetConfigureProjectProperties(bool openedAsReadOnly)
+        public ConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly)
         {
             _scopedService = _getConfigureProjectProperties(openedAsReadOnly);
-            return (ConfigureProjectProperties)_scopedService;
+            return (ConfigureProjectPropertiesForm)_scopedService;
         }
 
         public ConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment)

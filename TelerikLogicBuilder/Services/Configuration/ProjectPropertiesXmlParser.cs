@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -14,20 +14,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class ProjectPropertiesXmlParser : IProjectPropertiesXmlParser
     {
         private readonly IApplicationXmlParser _applicationXmlParser;
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public ProjectPropertiesXmlParser(
             IApplicationXmlParser applicationXmlParser,
-            IConfigurationItemFactory configurationItemFactory,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
+            IProjectPropertiesItemFactory projectPropertiesItemFactory,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _applicationXmlParser = applicationXmlParser;
-            _configurationItemFactory = configurationItemFactory;
+            _projectPropertiesItemFactory = projectPropertiesItemFactory;
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             ProjectProperties GetProjectProperties(Dictionary<string, XmlElement> elements)
             {
-                return _configurationItemFactory.GetProjectProperties
+                return _projectPropertiesItemFactory.GetProjectProperties
                 (
                     projectName,
                     projectPath,

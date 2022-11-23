@@ -2,8 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             IList<ParameterBase> memberParameters,
             Type genericTypeDefinition);
         ConfigureLoadAssemblyPathsForm GetConfigureLoadAssemblyPaths(IList<string> existingPaths);
-        ConfigureProjectProperties GetConfigureProjectProperties(bool openedAsReadOnly);
+        ConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly);
         ConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment);
     }
 }

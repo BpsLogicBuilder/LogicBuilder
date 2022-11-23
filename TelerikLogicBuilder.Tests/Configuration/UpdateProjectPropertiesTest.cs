@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -32,7 +32,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
             IUpdateProjectProperties updateProjectProperties = serviceProvider.GetRequiredService<IUpdateProjectProperties>();
             ILoadProjectProperties loadProjectProperties = serviceProvider.GetRequiredService<ILoadProjectProperties>();
-            IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            IProjectPropertiesItemFactory projectPropertiesItemFactory = serviceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
             IWebApiDeploymentItemFactory webApiDeploymentItemFactory = serviceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ProjectProperties projectProperties = createProjectProperties.Create
             (
@@ -46,7 +46,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                 projectProperties.ProjectFileFullName,
                 new Dictionary<string, Application>
                 {
-                    ["App01"] = configurationItemFactory.GetApplication
+                    ["App01"] = projectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",

@@ -1,6 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using System;
@@ -17,13 +16,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IConfigureProjectProperties configureProjectProperties;
+        private readonly IConfigureProjectPropertiesForm configureProjectProperties;
 
         public ProjectPropertiesXmlTreeViewSynchronizer(
             IExceptionHelper exceptionHelper,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IConfigureProjectProperties configureProjectProperties)
+            IConfigureProjectPropertiesForm configureProjectProperties)
         {
             _exceptionHelper = exceptionHelper;
             _treeViewService = treeViewService;

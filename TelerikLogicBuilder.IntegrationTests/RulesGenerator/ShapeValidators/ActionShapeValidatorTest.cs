@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -251,7 +251,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
     {
         internal InvisibleApp VisioApplication;
         internal IServiceProvider ServiceProvider;
-        internal IConfigurationItemFactory ConfigurationItemFactory;
+        internal IProjectPropertiesItemFactory ProjectPropertiesItemFactory;
 		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IFunctionFactory FunctionFactory;
@@ -265,7 +265,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         {           
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
-            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+            ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
 			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
@@ -275,13 +275,13 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             ApplicationTypeInfoManager = ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>();
             AssemblyLoadContextService = ServiceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
-            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
+            ConfigurationService.ProjectProperties = ProjectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = ConfigurationItemFactory.GetApplication
+                    ["app01"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -300,7 +300,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         new List<string>(),
                         WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = ConfigurationItemFactory.GetApplication
+                    ["app02"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App02",
                         "App02",
@@ -319,7 +319,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
                         new List<string>(),
                         WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app03"] = ConfigurationItemFactory.GetApplication
+                    ["app03"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App03",
                         "App03",

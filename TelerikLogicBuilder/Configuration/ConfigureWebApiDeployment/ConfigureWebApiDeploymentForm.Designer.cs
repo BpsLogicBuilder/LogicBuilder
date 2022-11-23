@@ -259,7 +259,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "ConfigureWebApiDeployment";
+            this.Text = "Configure Web API Deployment";
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();

@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericArgumentsRootNode;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
@@ -310,7 +309,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
                 return;
 
             Navigate(treeNode);
-            IXmlElementControl xmlElementControl = (IXmlElementControl)radPanelFields.Controls[0];
+            IConfigurationXmlElementControl xmlElementControl = (IConfigurationXmlElementControl)radPanelFields.Controls[0];
             xmlElementControl.SetControlValues(treeNode);
         }
 
@@ -319,7 +318,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
             if (radPanelFields.Controls.Count != 1)
                 throw _exceptionHelper.CriticalException("{7881BC94-A8BD-4B11-874B-44A1673ACD60}");
 
-            if (radPanelFields.Controls[0] is not IXmlElementControl xmlElementControl)
+            if (radPanelFields.Controls[0] is not IConfigurationXmlElementControl xmlElementControl)
                 throw _exceptionHelper.CriticalException("{08969996-18B6-4397-80F0-36617E69510B}");
 
             xmlElementControl.UpdateXmlDocument(treeNode);

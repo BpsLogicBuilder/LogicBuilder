@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers;
@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         configureGenericArgumentsForm
                     )
                 )
-                .AddTransient<Func<IConfigureProjectProperties, IProjectPropertiesXmlTreeViewSynchronizer>>
+                .AddTransient<Func<IConfigureProjectPropertiesForm, IProjectPropertiesXmlTreeViewSynchronizer>>
                 (
                     provider =>
                     configureProjectProperties => new ProjectPropertiesXmlTreeViewSynchronizer

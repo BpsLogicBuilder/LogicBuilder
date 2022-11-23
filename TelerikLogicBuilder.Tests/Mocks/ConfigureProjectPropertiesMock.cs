@@ -1,11 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Xml;
 using Telerik.WinControls.UI;
 
 namespace TelerikLogicBuilder.Tests.Mocks
 {
-    internal class ConfigureProjectPropertiesMock : IConfigureProjectProperties
+    internal class ConfigureProjectPropertiesMock : IConfigureProjectPropertiesForm
     {
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
 

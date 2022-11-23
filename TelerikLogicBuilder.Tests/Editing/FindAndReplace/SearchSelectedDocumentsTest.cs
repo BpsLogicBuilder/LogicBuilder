@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -186,7 +186,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
     public class SearchSelectedDocumentsFixture : IDisposable
     {
         internal IServiceProvider ServiceProvider;
-        internal IConfigurationItemFactory ConfigurationItemFactory;
+        internal IProjectPropertiesItemFactory ProjectPropertiesItemFactory;
 		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IFunctionFactory FunctionFactory;
@@ -196,19 +196,19 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public SearchSelectedDocumentsFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
-            ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+            ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
 			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ReturnTypeFactory = ServiceProvider.GetRequiredService<IReturnTypeFactory>();
-            ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
+            ConfigurationService.ProjectProperties = ProjectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = ConfigurationItemFactory.GetApplication
+                    ["app01"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -227,7 +227,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         new List<string>(),
                         WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = ConfigurationItemFactory.GetApplication
+                    ["app02"] = ProjectPropertiesItemFactory.GetApplication
                     (
                         "App02",
                         "App02",
