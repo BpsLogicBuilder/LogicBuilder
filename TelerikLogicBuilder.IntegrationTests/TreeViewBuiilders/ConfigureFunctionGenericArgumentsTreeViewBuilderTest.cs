@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -168,6 +169,7 @@ namespace TelerikLogicBuilder.IntegrationTests.TreeViewBuiilders
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
             EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
@@ -204,7 +206,7 @@ namespace TelerikLogicBuilder.IntegrationTests.TreeViewBuiilders
                         "",
                         "",
                         new List<string>(),
-                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
                 new HashSet<string>()
@@ -336,6 +338,7 @@ namespace TelerikLogicBuilder.IntegrationTests.TreeViewBuiilders
 
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
+		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IConstructorFactory ConstructorFactory;
         internal IEnumHelper EnumHelper;

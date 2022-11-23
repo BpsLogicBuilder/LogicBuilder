@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.UserControls.Commands
                 throw _exceptionHelper.CriticalException("{830E589E-4C8F-4840-ABC6-5BF7B96AB93B}");
 
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            ConfigureWebApiDeployment configureWebApiDeployment = disposableManager.GetConfigureWebApiDeployment
+            ConfigureWebApiDeploymentForm configureWebApiDeployment = disposableManager.GetConfigureWebApiDeploymentForm
             (
                 _webApiDeploymentXmlParser.Parse
                 (

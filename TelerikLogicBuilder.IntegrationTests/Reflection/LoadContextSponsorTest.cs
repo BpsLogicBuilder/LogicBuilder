@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -29,6 +30,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
             //arrange
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
             IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            IWebApiDeploymentItemFactory webApiDeploymentItemFactory = serviceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             IAssemblyLoadContextManager assemblyLoadContextService = serviceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             ILoadContextSponsor loadContextSponsor = serviceProvider.GetRequiredService<ILoadContextSponsor>();
 
@@ -55,7 +57,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
                         "",
                         "",
                         new List<string>(),
-                        configurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        webApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
                 new HashSet<string>()

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -69,12 +70,14 @@ namespace TelerikLogicBuilder.Tests
     {
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
+		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
 
         public CheckSelectedApplicationFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             ConfigurationService.ProjectProperties = ConfigurationItemFactory.GetProjectProperties
             (
@@ -99,7 +102,7 @@ namespace TelerikLogicBuilder.Tests
                         "",
                         "",
                         new List<string>(),
-                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
                     ["app02"] = ConfigurationItemFactory.GetApplication
                     (
@@ -118,7 +121,7 @@ namespace TelerikLogicBuilder.Tests
                         "",
                         "",
                         new List<string>(),
-                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
                 new HashSet<string>()

@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
@@ -12,22 +12,22 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 {
-    internal partial class ConfigureWebApiDeployment : Telerik.WinControls.UI.RadForm
+    internal partial class ConfigureWebApiDeploymentForm : Telerik.WinControls.UI.RadForm
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IFormInitializer _formInitializer;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
+        private readonly IWebApiDeploymentItemFactory _webApiDeploymentItemFactory;
 
-        public ConfigureWebApiDeployment(
-            IConfigurationItemFactory configurationItemFactory,
+        public ConfigureWebApiDeploymentForm(
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl, 
+            IDialogFormMessageControl dialogFormMessageControl,
+            IWebApiDeploymentItemFactory webApiDeploymentItemFactory,
             WebApiDeployment webApiDeployment)
         {
             InitializeComponent();
-            _configurationItemFactory = configurationItemFactory;
+            _webApiDeploymentItemFactory = webApiDeploymentItemFactory;
             _formInitializer = formInitializer;
             _dialogFormMessageControl = dialogFormMessageControl;
 
@@ -86,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
 
         private void UpdateFields()
         {
-            WebApiDeployment = _configurationItemFactory.GetWebApiDeployment
+            WebApiDeployment = _webApiDeploymentItemFactory.GetWebApiDeployment
             (
                 txtPostFileDataUrl.Text,
                 Strings.defaultPostVariableMetaDataUrl,

@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -11,17 +11,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class WebApiDeploymentXmlParser : IWebApiDeploymentXmlParser
     {
-        private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IWebApiDeploymentItemFactory _webApiDeploymentItemFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public WebApiDeploymentXmlParser(
-            IConfigurationItemFactory configurationItemFactory,
             IExceptionHelper exceptionHelper,
+            IWebApiDeploymentItemFactory webApiDeploymentItemFactory,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
-            _configurationItemFactory = configurationItemFactory;
             _exceptionHelper = exceptionHelper;
+            _webApiDeploymentItemFactory = webApiDeploymentItemFactory;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             );
 
             WebApiDeployment GetWebApiDeployment(Dictionary<string, XmlElement> elements)
-                => _configurationItemFactory.GetWebApiDeployment
+                => _webApiDeploymentItemFactory.GetWebApiDeployment
                 (
                     elements[XmlDataConstants.POSTFILEDATAURLELEMENT].InnerText,
                     elements[XmlDataConstants.POSTVARIABLESMETADATAURLELEMENT].InnerText,

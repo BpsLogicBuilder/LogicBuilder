@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -32,6 +33,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
             IUpdateProjectProperties updateProjectProperties = serviceProvider.GetRequiredService<IUpdateProjectProperties>();
             ILoadProjectProperties loadProjectProperties = serviceProvider.GetRequiredService<ILoadProjectProperties>();
             IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            IWebApiDeploymentItemFactory webApiDeploymentItemFactory = serviceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ProjectProperties projectProperties = createProjectProperties.Create
             (
                 pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
@@ -61,7 +63,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                         "RulesFileName",
                         "PathToRulesFile",
                         new List<string>(),
-                        configurationItemFactory.GetWebApiDeployment
+                        webApiDeploymentItemFactory.GetWebApiDeployment
                         (
                             "http://localhost:3677/api/transfer/PostFileData",
                             "http://localhost:3677/api/transfer/PostVariableMetaData",

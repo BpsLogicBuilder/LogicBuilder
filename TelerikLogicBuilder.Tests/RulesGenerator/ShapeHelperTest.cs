@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -1551,6 +1552,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         internal InvisibleApp VisioApplication;
         internal IServiceProvider ServiceProvider;
         internal IConfigurationItemFactory ConfigurationItemFactory;
+		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
         internal IFunctionFactory FunctionFactory;
         internal IParameterFactory ParameterFactory;
@@ -1560,6 +1562,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ConfigurationItemFactory = ServiceProvider.GetRequiredService<IConfigurationItemFactory>();
+			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
             FunctionFactory = ServiceProvider.GetRequiredService<IFunctionFactory>();
             ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
@@ -1587,7 +1590,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                         "",
                         "",
                         new List<string>(),
-                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
                     ["app02"] = ConfigurationItemFactory.GetApplication
                     (
@@ -1606,7 +1609,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
                         "",
                         "",
                         new List<string>(),
-                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
                 new HashSet<string>()

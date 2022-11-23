@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -34,7 +35,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
         {
             //arrange
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            configurationService.ProjectProperties = GetProjectProperties(serviceProvider.GetRequiredService<IConfigurationItemFactory>());
+            configurationService.ProjectProperties = GetProjectProperties(serviceProvider);
 
             //act
             Application? application = configurationService.GetApplication(applicationName);
@@ -47,7 +48,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
         {
             //arrange
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            configurationService.ProjectProperties = GetProjectProperties(serviceProvider.GetRequiredService<IConfigurationItemFactory>());
+            configurationService.ProjectProperties = GetProjectProperties(serviceProvider);
 
             //act
             Application? application = configurationService.GetApplicationFromPath(@"C:\ProjectPath\RULES\App01\diagram\someFile.module");
@@ -60,15 +61,17 @@ namespace TelerikLogicBuilder.Tests.Configuration
         private readonly IServiceProvider serviceProvider;
         #endregion Fields
 
-        static ProjectProperties GetProjectProperties(IConfigurationItemFactory ConfigurationItemFactory)
+        static ProjectProperties GetProjectProperties(IServiceProvider serviceProvider)
         {
-            return ConfigurationItemFactory.GetProjectProperties
+            IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            IWebApiDeploymentItemFactory webApiDeploymentItemFactory = serviceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
+            return configurationItemFactory.GetProjectProperties
             (
                 "Contoso",
                 @"C:\ProjectPath",
                 new Dictionary<string, Application>
                 {
-                    ["app01"] = ConfigurationItemFactory.GetApplication
+                    ["app01"] = configurationItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
@@ -85,9 +88,9 @@ namespace TelerikLogicBuilder.Tests.Configuration
                         "",
                         "",
                         new List<string>(),
-                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        webApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     ),
-                    ["app02"] = ConfigurationItemFactory.GetApplication
+                    ["app02"] = configurationItemFactory.GetApplication
                     (
                         "App02",
                         "App02",
@@ -104,7 +107,7 @@ namespace TelerikLogicBuilder.Tests.Configuration
                         "",
                         "",
                         new List<string>(),
-                        ConfigurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        webApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
                 new HashSet<string>()

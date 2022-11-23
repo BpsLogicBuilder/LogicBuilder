@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -13,13 +14,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     {
         private readonly IConfigurationItemFactory _configurationItemFactory;
         private readonly IPathHelper _pathHelper;
+        private readonly IWebApiDeploymentItemFactory _webApiDeploymentItemFactory;
 
         public CreateDefaultApplication(
             IConfigurationItemFactory configurationItemFactory,
-            IPathHelper pathHelper)
+            IPathHelper pathHelper,
+            IWebApiDeploymentItemFactory webApiDeploymentItemFactory)
         {
             _configurationItemFactory = configurationItemFactory;
             _pathHelper = pathHelper;
+            _webApiDeploymentItemFactory = webApiDeploymentItemFactory;
         }
 
         public Application Create(string applicationNameString)
@@ -43,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 Strings.defaultRulesFile,
                 _pathHelper.CombinePaths(programFilesPath, applicationNameString, Strings.defaultRulesFolder),
                 new List<string>(),
-                _configurationItemFactory.GetWebApiDeployment
+                _webApiDeploymentItemFactory.GetWebApiDeployment
                 (
                     Strings.defaultPostFileDataUrl,
                     Strings.defaultPostVariableMetaDataUrl,

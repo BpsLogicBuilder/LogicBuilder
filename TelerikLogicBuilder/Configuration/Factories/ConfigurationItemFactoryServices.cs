@@ -59,18 +59,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationList,
                         connectorObjectTypes
                     )
-                )
-                .AddTransient<Func<string, string, string, string, WebApiDeployment>>
-                (
-                    provider =>
-                    (postFileDataUrl, postVariablesMetaUrl, deleteRulesUrl, deleteAllRulesUrl) => new WebApiDeployment
-                    (
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        postFileDataUrl,
-                        postVariablesMetaUrl,
-                        deleteRulesUrl,
-                        deleteAllRulesUrl
-                    )
                 );
         }
     }

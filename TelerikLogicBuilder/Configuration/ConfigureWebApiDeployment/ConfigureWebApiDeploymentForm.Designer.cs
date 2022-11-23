@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Forms
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 {
-    partial class ConfigureWebApiDeployment
+    partial class ConfigureWebApiDeploymentForm
     {
         /// <summary>
         /// Required designer variable.

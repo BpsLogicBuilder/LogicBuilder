@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -37,6 +38,7 @@ namespace TelerikLogicBuilder.Tests
             IAssemblyLoadContextManager assemblyLoadContextManager = serviceProvider.GetRequiredService<IAssemblyLoadContextManager>();
             IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
             IConfigurationItemFactory configurationItemFactory = serviceProvider.GetRequiredService<IConfigurationItemFactory>();
+            IWebApiDeploymentItemFactory webApiDeploymentItemFactory = serviceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             configurationService.ProjectProperties = configurationItemFactory.GetProjectProperties
             (
                 "Contoso",
@@ -60,7 +62,7 @@ namespace TelerikLogicBuilder.Tests
                         "",
                         "",
                         new List<string>(),
-                        configurationItemFactory.GetWebApiDeployment("", "", "", "")
+                        webApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
                 new HashSet<string>()

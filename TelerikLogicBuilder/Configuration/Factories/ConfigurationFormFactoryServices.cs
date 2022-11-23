@@ -7,6 +7,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -126,14 +128,14 @@ namespace Microsoft.Extensions.DependencyInjection
                         openedAsReadOnly
                     )
                 )
-                .AddTransient<Func<WebApiDeployment, ConfigureWebApiDeployment>>
+                .AddTransient<Func<WebApiDeployment, ConfigureWebApiDeploymentForm>>
                 (
                     provider =>
-                    webApiDeployment => new ConfigureWebApiDeployment
+                    webApiDeployment => new ConfigureWebApiDeploymentForm
                     (
-                        provider.GetRequiredService<IConfigurationItemFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IWebApiDeploymentItemFactory>(),
                         webApiDeployment
                     )
                 );

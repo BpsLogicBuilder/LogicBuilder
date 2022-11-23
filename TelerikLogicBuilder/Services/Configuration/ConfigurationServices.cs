@@ -54,6 +54,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigureProjectPropertiesContextMenuCommandFactories()
                 .AddConfigurationFormFactories()
                 .AddConnectorObjectsItemFactories()
-                .AddLoadAssemblyPathsItemFactories();
+                .AddLoadAssemblyPathsItemFactories()
+                .AddWebApiDeploymentItemFactories();
     }
 }
