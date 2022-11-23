@@ -7,16 +7,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     internal class ConfigurationItemFactory : IConfigurationItemFactory
     {
         private readonly Func<string, string, string, string, RuntimeType, List<string>, string, string, string, List<string>, string, string, string, string, List<string>, WebApiDeployment, Application> _getApplication;
-        private readonly Func<string, string, Fragment> _getFragment;
         private readonly Func<string, string, Dictionary<string, Application>, HashSet<string>, ProjectProperties> _getProjectProperties;
 
         public ConfigurationItemFactory(
             Func<string, string, string, string, RuntimeType, List<string>, string, string, string, List<string>, string, string, string, string, List<string>, WebApiDeployment, Application> getApplication,
-            Func<string, string, Fragment> getFragment,
             Func<string, string, Dictionary<string, Application>, HashSet<string>, ProjectProperties> getProjectProperties)
         {
             _getApplication = getApplication;
-            _getFragment = getFragment;
             _getProjectProperties = getProjectProperties;
         }
 
@@ -54,9 +51,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
                 rulesDeploymentPath,
                 modules,
                 webApiDeployment);
-
-        public Fragment GetFragment(string name, string xml)
-            => _getFragment(name, xml);
 
         public ProjectProperties GetProjectProperties(string projectName, string projectPath, Dictionary<string, Application> applicationList, HashSet<string> connectorObjectTypes)
             => _getProjectProperties(projectName, projectPath, applicationList, connectorObjectTypes);

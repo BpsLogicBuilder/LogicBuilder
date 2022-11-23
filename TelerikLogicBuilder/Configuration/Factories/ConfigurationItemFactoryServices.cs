@@ -37,16 +37,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IConfigurationItemFactory, ConfigurationItemFactory>()
-                .AddTransient<Func<string, string, Fragment>>
-                (
-                    provider =>
-                    (name, xml) => new Fragment
-                    (
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        name, 
-                        xml
-                    )
-                )
                 .AddTransient<Func<string, string, Dictionary<string, Application>, HashSet<string>, ProjectProperties>>
                 (
                     provider =>
