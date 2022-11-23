@@ -53,7 +53,7 @@
             // 
             // radButtonHelper
             // 
-            this.radButtonHelper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radButtonHelper.Dock = System.Windows.Forms.DockStyle.Top;
             this.radButtonHelper.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.more;
             this.radButtonHelper.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.radButtonHelper.Location = new System.Drawing.Point(1, 0);
