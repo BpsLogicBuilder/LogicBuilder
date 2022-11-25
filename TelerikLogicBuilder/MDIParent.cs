@@ -213,8 +213,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         public void CloseProject()
         {
-            if (this.EditControl != null)
-                this.EditControl.Close();
+            this.EditControl?.Close();
 
             _projectExplorer.ClearProfile();
             _projectExplorer.Visible = false;
@@ -718,7 +717,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private void AddThemeMenuItemClickCommands(RadMenuItem themeMenuItem)
         {
-            foreach (RadMenuItem radMenuItem in themeMenuItem.Items)
+            foreach (RadMenuItem radMenuItem in themeMenuItem.Items.Cast<RadMenuItem>())
             {
                 AddClickCommand(radMenuItem, _applicationCommandsFactory.GetSetThemeCommand(themeMenuItem, (string)radMenuItem.Tag));
             }
@@ -747,8 +746,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private static void Dispose(IDisposable disposable)
         {
-            if (disposable != null)
-                disposable.Dispose();
+            disposable?.Dispose();
         }
 
         private void DocumentExplorerErrorCountChanged(int errorCount)
