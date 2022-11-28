@@ -8,7 +8,7 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal class FindVariableInFiles : FindConfiguredItemInFilesBase
+    internal class FindVariableInFiles : FindConfiguredItemInFilesBase, IFindVariableInFiles
     {
         public FindVariableInFiles(
             IConfigurationService configurationService,

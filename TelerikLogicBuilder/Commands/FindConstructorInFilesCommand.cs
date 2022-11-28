@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
-    internal class FindConstructorInFilesCommand : FindInFilesCommandBase<FindConstructorInFiles>
+    internal class FindConstructorInFilesCommand : FindInFilesCommandBase<IFindConstructorInFiles>
     {
         public FindConstructorInFilesCommand(
             ICheckVisioConfiguration checkVisioConfiguration,

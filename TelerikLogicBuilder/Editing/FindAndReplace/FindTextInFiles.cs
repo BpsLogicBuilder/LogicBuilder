@@ -10,7 +10,7 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal partial class FindTextInFiles : Telerik.WinControls.UI.RadForm, IFindInFilesForm
+    internal partial class FindTextInFiles : Telerik.WinControls.UI.RadForm, IFindTextInFiles
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;

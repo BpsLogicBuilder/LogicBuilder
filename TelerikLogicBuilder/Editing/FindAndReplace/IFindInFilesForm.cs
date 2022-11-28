@@ -1,8 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+using System;
+using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal interface IFindInFilesForm
+    internal interface IFindInFilesForm : IDisposable
     {
         SearchOptions SearchType { get; }
 
@@ -13,5 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         bool MatchCase { get; }
 
         bool MatchWholeWord { get; }
+
+        DialogResult ShowDialog(IWin32Window owner);
     }
 }

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
-    internal abstract class FindInFilesCommandBase<TFindInFilesForm> : ClickCommandBase where TFindInFilesForm : Form, IFindInFilesForm
+    internal abstract class FindInFilesCommandBase<TFindInFilesForm> : ClickCommandBase where TFindInFilesForm : IFindInFilesForm
     {
         private readonly ICheckVisioConfiguration _checkVisioConfiguration;
         private readonly IGetSourceFilesForDocumentSearch _getSourceFilesForDocumentSearch;
