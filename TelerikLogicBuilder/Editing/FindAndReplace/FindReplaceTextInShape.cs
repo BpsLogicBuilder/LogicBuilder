@@ -5,7 +5,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using Microsoft.Office.Interop.Visio;
 using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
