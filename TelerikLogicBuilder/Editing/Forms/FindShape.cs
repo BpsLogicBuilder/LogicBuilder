@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
 {
-    internal partial class FindShape : Telerik.WinControls.UI.RadForm
+    internal partial class FindShape : Telerik.WinControls.UI.RadForm, IFindShape
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;

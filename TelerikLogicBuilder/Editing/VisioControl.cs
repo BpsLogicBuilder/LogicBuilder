@@ -331,8 +331,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindShape()
         {
-            using IScopedDisposableManager<FindShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindShape>>();
-            FindShape findShape = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindShape>>();
+            IFindShape findShape = disposableManager.ScopedService;
             findShape.StartPosition = FormStartPosition.Manual;
             findShape.Location = new Point(100, 50);
             findShape.Setup(axDrawingControl1.Document);

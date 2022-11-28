@@ -9,7 +9,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
 {
-    internal partial class FindCell : RadForm
+    internal partial class FindCell : RadForm, IFindCell
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;

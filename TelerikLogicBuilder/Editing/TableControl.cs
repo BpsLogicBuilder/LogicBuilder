@@ -444,8 +444,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindCell()
         {
-            using IScopedDisposableManager<FindCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindCell>>();
-            FindCell findCell = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindCell>>();
+            IFindCell findCell = disposableManager.ScopedService;
             findCell.StartPosition = FormStartPosition.Manual;
             findCell.Location = new Point(100, 50);
             findCell.Setup(dataGridView1);
