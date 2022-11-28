@@ -267,8 +267,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceConstructor()
         {
-            using IScopedDisposableManager<FindReplaceConstructorInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceConstructorInShape>>();
-            FindReplaceConstructorInShape findReplace = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceConstructorInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceConstructorInShape>>();
+            IFindReplaceConstructorInShape findReplace = disposableManager.ScopedService;
             findReplace.Setup(axDrawingControl1.Document);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
@@ -278,8 +278,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceFunction()
         {
-            using IScopedDisposableManager<FindReplaceFunctionInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceFunctionInShape>>();
-            FindReplaceFunctionInShape findReplace = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceFunctionInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceFunctionInShape>>();
+            IFindReplaceFunctionInShape findReplace = disposableManager.ScopedService;
             findReplace.Setup(axDrawingControl1.Document);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
@@ -289,8 +289,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceText()
         {
-            using IScopedDisposableManager<FindReplaceTextInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceTextInShape>>();
-            FindReplaceTextInShape findReplaceText = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceTextInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceTextInShape>>();
+            IFindReplaceTextInShape findReplaceText = disposableManager.ScopedService;
             findReplaceText.Setup(axDrawingControl1.Document);
             findReplaceText.StartPosition = FormStartPosition.Manual;
             findReplaceText.Location = new Point(100, 50);
@@ -300,8 +300,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceVariable()
         {
-            using IScopedDisposableManager<FindReplaceVariableInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceVariableInShape>>();
-            FindReplaceVariableInShape findReplace = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceVariableInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceVariableInShape>>();
+            IFindReplaceVariableInShape findReplace = disposableManager.ScopedService;
             findReplace.Setup(axDrawingControl1.Document);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);

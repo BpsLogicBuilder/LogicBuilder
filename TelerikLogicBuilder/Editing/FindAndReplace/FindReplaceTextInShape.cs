@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal partial class FindReplaceTextInShape : Telerik.WinControls.UI.RadForm
+    internal partial class FindReplaceTextInShape : Telerik.WinControls.UI.RadForm, IFindReplaceTextInShape
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IConfigurationService _configurationService;
