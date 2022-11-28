@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal partial class FindTextInShape : Telerik.WinControls.UI.RadForm
+    internal partial class FindTextInShape : Telerik.WinControls.UI.RadForm, IFindTextInShape
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFindAndReplaceHelper _findAndReplaceHelper;

@@ -272,7 +272,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplace.Setup(axDrawingControl1.Document);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
-            findReplace.ShowDialog((Form)this.parentForm);
+            findReplace.ShowDialog(this.parentForm);
             Save();
         }
 
@@ -283,7 +283,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplace.Setup(axDrawingControl1.Document);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
-            findReplace.ShowDialog((Form)this.parentForm);
+            findReplace.ShowDialog(this.parentForm);
             Save();
         }
 
@@ -294,7 +294,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplaceText.Setup(axDrawingControl1.Document);
             findReplaceText.StartPosition = FormStartPosition.Manual;
             findReplaceText.Location = new Point(100, 50);
-            findReplaceText.ShowDialog((Form)this.parentForm);
+            findReplaceText.ShowDialog(this.parentForm);
             Save();
         }
 
@@ -305,28 +305,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplace.Setup(axDrawingControl1.Document);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
-            findReplace.ShowDialog((Form)this.parentForm);
+            findReplace.ShowDialog(this.parentForm);
             Save();
         }
 
         private void FindConstructor()
         {
-            using IScopedDisposableManager<FindConstructorInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindConstructorInShape>>();
-            FindConstructorInShape findConstructor = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindConstructorInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindConstructorInShape>>();
+            IFindConstructorInShape findConstructor = disposableManager.ScopedService;
             findConstructor.Setup(axDrawingControl1.Document);
             findConstructor.StartPosition = FormStartPosition.Manual;
             findConstructor.Location = new Point(100, 50);
-            findConstructor.ShowDialog((Form)this.parentForm);
+            findConstructor.ShowDialog(this.parentForm);
         }
 
         private void FindFunction()
         {
-            using IScopedDisposableManager<FindFunctionInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindFunctionInShape>>();
-            FindFunctionInShape findFunction = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindFunctionInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindFunctionInShape>>();
+            IFindFunctionInShape findFunction = disposableManager.ScopedService;
             findFunction.Setup(axDrawingControl1.Document);
             findFunction.StartPosition = FormStartPosition.Manual;
             findFunction.Location = new Point(100, 50);
-            findFunction.ShowDialog((Form)this.parentForm);
+            findFunction.ShowDialog(this.parentForm);
         }
 
         private void FindShape()
@@ -420,22 +420,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindText()
         {
-            using IScopedDisposableManager<FindTextInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindTextInShape>>();
-            FindTextInShape findText = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindTextInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindTextInShape>>();
+            IFindTextInShape findText = disposableManager.ScopedService;
             findText.Setup(axDrawingControl1.Document);
             findText.StartPosition = FormStartPosition.Manual;
             findText.Location = new Point(100, 50);
-            findText.ShowDialog((Form)this.parentForm);
+            findText.ShowDialog(this.parentForm);
         }
 
         private void FindVariable()
         {
-            using IScopedDisposableManager<FindVariableInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindVariableInShape>>();
-            FindVariableInShape findVariable = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindVariableInShape> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindVariableInShape>>();
+            IFindVariableInShape findVariable = disposableManager.ScopedService;
             findVariable.Setup(axDrawingControl1.Document);
             findVariable.StartPosition = FormStartPosition.Manual;
             findVariable.Location = new Point(100, 50);
-            findVariable.ShowDialog((Form)this.parentForm);
+            findVariable.ShowDialog(this.parentForm);
         }
 
         void IDocumentEditor.Close() => CloseControl();

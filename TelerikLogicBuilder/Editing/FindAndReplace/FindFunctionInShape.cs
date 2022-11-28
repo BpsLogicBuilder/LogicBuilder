@@ -8,7 +8,7 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal class FindFunctionInShape : FindConfiguredItemInShapeBase
+    internal class FindFunctionInShape : FindConfiguredItemInShapeBase, IFindFunctionInShape
     {
         public FindFunctionInShape(
             IConfigurationService configurationService,
