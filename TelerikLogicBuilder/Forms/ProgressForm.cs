@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Forms
 {
-    internal partial class ProgressForm : Telerik.WinControls.UI.RadForm
+    internal partial class ProgressForm : Telerik.WinControls.UI.RadForm, IProgressForm
     {
         private readonly IFormInitializer _formInitializer;
         private readonly Progress<ProgressMessage> _progress;

@@ -284,7 +284,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             });
 
             var cancellationTokenSource = new CancellationTokenSource();
-            using ProgressForm progressForm = new(_formInitializer, progress, cancellationTokenSource);
+            using IProgressForm progressForm = new ProgressForm(_formInitializer, progress, cancellationTokenSource);
             progressForm.Show(this);
 
             try
@@ -362,7 +362,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     var cancellationTokenSource = new CancellationTokenSource();
                     //Showing the progress form after LoadAssembiesIfNeededAsync runs in LoadContextSponsor.RunAsync
                     //Don't see any value in cancelling the process during assembly loading
-                    using ProgressForm progressForm = new(_formInitializer, progress, cancellationTokenSource);
+                    using IProgressForm progressForm = new ProgressForm(_formInitializer, progress, cancellationTokenSource);
                     progressForm.Show(this);
 
                     try
