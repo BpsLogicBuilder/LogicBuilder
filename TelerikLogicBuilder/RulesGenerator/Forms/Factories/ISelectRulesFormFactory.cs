@@ -4,6 +4,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories
 {
     internal interface ISelectRulesFormFactory : IDisposable
     {
-        SelectRulesForm GetScopedService(string applicationName);
+        ISelectRulesForm GetScopedService(string applicationName);
     }
 }

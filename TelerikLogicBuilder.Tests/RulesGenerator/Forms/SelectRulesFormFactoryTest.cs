@@ -38,7 +38,7 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator.Forms
             //arrange
             ISelectRulesFormFactory factory = _fixture.ServiceProvider.GetRequiredService<ISelectRulesFormFactory>();
 
-            SelectRulesForm scopedDisposable = factory.GetScopedService("App01");
+            ISelectRulesForm scopedDisposable = factory.GetScopedService("App01");
 
             //act
             Assert.False(scopedDisposable.IsDisposed);

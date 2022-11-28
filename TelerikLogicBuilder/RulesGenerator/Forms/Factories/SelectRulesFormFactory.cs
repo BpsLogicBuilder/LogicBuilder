@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories
     {
         private readonly IServiceScope _scope;
         private readonly ICreateSelectRulesFormFactory _createSelectRulesFormFactory;
-        private SelectRulesForm? _scopedService;
+        private ISelectRulesForm? _scopedService;
 
         public SelectRulesFormFactory(IServiceScopeFactory serviceScopeFactory)
         {
@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories
             _createSelectRulesFormFactory = _scope.ServiceProvider.GetRequiredService<ICreateSelectRulesFormFactory>();
         }
 
-        public SelectRulesForm GetScopedService(string applicationName)
+        public ISelectRulesForm GetScopedService(string applicationName)
         {
             _scopedService = _createSelectRulesFormFactory.GetSelectRulesForm(applicationName);
             return _scopedService;

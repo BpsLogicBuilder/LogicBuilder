@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<ITryGetSelectedDocuments, TryGetSelectedDocuments>()
                 .AddTransient<ITryGetSelectedRules, TryGetSelectedRules>()
                 .AddTransient<ITryGetSelectedRulesResourcesPairs, TryGetSelectedRulesResourcesPairs>()
-                .AddTransient<Func<string, SelectRulesForm>>
+                .AddTransient<Func<string, ISelectRulesForm>>
                 (
                     provider =>
                     applicationName => new SelectRulesForm

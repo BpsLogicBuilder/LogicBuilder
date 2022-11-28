@@ -2,7 +2,7 @@
 {
     internal interface ICreateSelectRulesFormFactory
     {
-        SelectRulesForm GetSelectRulesForm(string applicationName);
+        ISelectRulesForm GetSelectRulesForm(string applicationName);
         SelectRulesResourcesPairForm GetSelectRulesResourcesPairForm(string applicationName);
     }
 }
