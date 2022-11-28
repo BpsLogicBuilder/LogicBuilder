@@ -31,7 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationName
                     )
                 )
-                .AddTransient<Func<string, SelectRulesResourcesPairForm>>
+                .AddTransient<Func<string, ISelectRulesResourcesPairForm>>
                 (
                     provider =>
                     applicationName => new SelectRulesResourcesPairForm

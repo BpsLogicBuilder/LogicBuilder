@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 {
-    internal partial class SelectRulesResourcesPairForm : Telerik.WinControls.UI.RadForm
+    internal partial class SelectRulesResourcesPairForm : Telerik.WinControls.UI.RadForm, ISelectRulesResourcesPairForm
     {
         private readonly string _applicationName;
         private readonly IFormInitializer _formInitializer;
@@ -34,11 +34,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
             Initialize();
         }
 
-        internal IList<RulesResourcesPair> SourceFiles => _getAllCheckedNodeNames.GetNodes(radTreeView.Nodes[0])
+        public IList<RulesResourcesPair> SourceFiles => _getAllCheckedNodeNames.GetNodes(radTreeView.Nodes[0])
                                                                 .Select(n => (RulesResourcesPair)n.Tag)
                                                                 .ToArray();
 
-        internal void SetTitle(string title)
+        public void SetTitle(string title)
         {
             this.Text = title;
             this.radGroupBoxTop.Text = title;

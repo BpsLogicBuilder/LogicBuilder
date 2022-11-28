@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         public bool Try(string selctedApplication, string title, out IList<RulesResourcesPair> sourceFiles)
         {
             using ISelectRulesResourcesPairFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<ISelectRulesResourcesPairFormFactory>();
-            SelectRulesResourcesPairForm selectRulesForm = disposableManager.GetScopedService(selctedApplication);
+            ISelectRulesResourcesPairForm selectRulesForm = disposableManager.GetScopedService(selctedApplication);
             selectRulesForm.SetTitle(title);
             selectRulesForm.ShowDialog(_mainWindow.Instance);
 

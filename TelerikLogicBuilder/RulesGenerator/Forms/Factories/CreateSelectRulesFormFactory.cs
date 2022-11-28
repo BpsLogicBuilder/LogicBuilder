@@ -5,11 +5,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories
     internal class CreateSelectRulesFormFactory : ICreateSelectRulesFormFactory
     {
         private readonly Func<string, ISelectRulesForm> _getSelectRulesForm;
-        private readonly Func<string, SelectRulesResourcesPairForm> _getSelectRulesResourcesPairForm;
+        private readonly Func<string, ISelectRulesResourcesPairForm> _getSelectRulesResourcesPairForm;
 
         public CreateSelectRulesFormFactory(
             Func<string, ISelectRulesForm> getSelectRulesForm,
-            Func<string, SelectRulesResourcesPairForm> getSelectRulesResourcesPairForm)
+            Func<string, ISelectRulesResourcesPairForm> getSelectRulesResourcesPairForm)
         {
             _getSelectRulesForm = getSelectRulesForm;
             _getSelectRulesResourcesPairForm = getSelectRulesResourcesPairForm;
@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms.Factories
         public ISelectRulesForm GetSelectRulesForm(string applicationName)
             => _getSelectRulesForm(applicationName);
 
-        public SelectRulesResourcesPairForm GetSelectRulesResourcesPairForm(string applicationName)
+        public ISelectRulesResourcesPairForm GetSelectRulesResourcesPairForm(string applicationName)
             => _getSelectRulesResourcesPairForm(applicationName);
     }
 }
