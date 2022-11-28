@@ -4264,6 +4264,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {{{0}}}.
+        /// </summary>
+        internal static string popupConstructorDescriptionFormat {
+            get {
+                return ResourceManager.GetString("popupConstructorDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{0}].
+        /// </summary>
+        internal static string popupFunctionDescriptionFormat {
+            get {
+                return ResourceManager.GetString("popupFunctionDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ({0}).
+        /// </summary>
+        internal static string popupLiteralListDescriptionFormat {
+            get {
+                return ResourceManager.GetString("popupLiteralListDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ({{{0}}}).
+        /// </summary>
+        internal static string popupObjectListDescriptionFormat {
+            get {
+                return ResourceManager.GetString("popupObjectListDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;{0}&gt;.
         /// </summary>
         internal static string popupVariableDescriptionFormat {

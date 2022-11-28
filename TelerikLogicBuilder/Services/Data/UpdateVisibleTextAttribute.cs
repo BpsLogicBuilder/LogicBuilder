@@ -290,9 +290,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return string.Format
             (
                 CultureInfo.CurrentCulture,
-                Strings.listParameterCountFormat,
-                literalListParameterName,
-                literalListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                Strings.popupLiteralListDescriptionFormat,
+                string.Format
+                (
+                    CultureInfo.CurrentCulture,
+                    Strings.listParameterCountFormat,
+                    literalListParameterName,
+                    literalListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                )
             );
         }
 
@@ -320,6 +325,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                                     sb.Append(string.Format(CultureInfo.CurrentCulture, Strings.popupVariableDescriptionFormat, xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value));/*name attribute not null*/
                                     break;
                                 case XmlDataConstants.FUNCTIONELEMENT:
+                                    sb.Append(Strings.functionVisibleTextBegin);
                                     sb.Append
                                     (
                                         GetFunctionVisibleText
@@ -328,8 +334,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                                             application
                                         )
                                     );
+                                    sb.Append(Strings.functionVisibleTextEnd);
                                     break;
                                 case XmlDataConstants.CONSTRUCTORELEMENT:
+                                    sb.Append(Strings.constructorVisibleTextBegin);
+                                    //We don't use curly braces for a possible literal constructor to avoid possible problems parsing the hidden text.
                                     sb.Append
                                     (
                                         GetConstructorVisibleText
@@ -338,6 +347,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                                             application
                                         )
                                     );
+                                    sb.Append(Strings.constructorVisibleTextBegin);
                                     break;
                                 default:
                                     throw _exceptionHelper.CriticalException("{896FEA72-7AD0-430D-808D-08AE2A6FF2E2}");
@@ -380,9 +390,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return string.Format
             (
                 CultureInfo.CurrentCulture,
-                Strings.listParameterCountFormat,
-                objectListParameterName,
-                objectlListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                Strings.popupObjectListDescriptionFormat,
+                string.Format
+                (
+                    CultureInfo.CurrentCulture,
+                    Strings.listParameterCountFormat,
+                    objectListParameterName,
+                    objectlListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                )
             );
         }
 
@@ -403,42 +418,64 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 case XmlDataConstants.VARIABLEELEMENT:
                     return string.Format(CultureInfo.CurrentCulture, Strings.popupVariableDescriptionFormat, objectElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
                 case XmlDataConstants.FUNCTIONELEMENT:
-                    return GetFunctionVisibleText
+                    return string.Format
                     (
-                        objectElement,
-                        application
+                        CultureInfo.CurrentCulture,
+                        Strings.popupFunctionDescriptionFormat,
+                        GetFunctionVisibleText
+                        (
+                            objectElement,
+                            application
+                        )
                     );
                 case XmlDataConstants.CONSTRUCTORELEMENT:
-                    return GetConstructorVisibleText
+                    return string.Format
                     (
-                        objectElement,
-                        application
+                        CultureInfo.CurrentCulture, 
+                        //We can use curly braces for the object constructor
+                        //becuase the control is a plain RichTextBox
+                        Strings.popupConstructorDescriptionFormat, 
+                        GetConstructorVisibleText
+                        (
+                            objectElement,
+                            application
+                        )
                     );
                 case XmlDataConstants.LITERALLISTELEMENT:
                     LiteralListData literalListData = _literalListDataParser.Parse(objectElement);
                     return string.Format
                     (
                         CultureInfo.CurrentCulture,
-                        Strings.listParameterCountFormat,
-                        _enumHelper.GetTypeDescription
+                        Strings.popupLiteralListDescriptionFormat,
+                        string.Format
                         (
-                            literalListData.ListType,
-                            _enumHelper.GetVisibleEnumText(literalListData.LiteralType)
-                        ),
-                        literalListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                            CultureInfo.CurrentCulture,
+                            Strings.listParameterCountFormat,
+                            _enumHelper.GetTypeDescription
+                            (
+                                literalListData.ListType,
+                                _enumHelper.GetVisibleEnumText(literalListData.LiteralType)
+                            ),
+                            literalListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                        )
                     );
                 case XmlDataConstants.OBJECTLISTELEMENT:
                     ObjectListData objectListData = _objectListDataParser.Parse(objectElement);
                     return string.Format
                     (
                         CultureInfo.CurrentCulture,
-                        Strings.listParameterCountFormat,
-                        _enumHelper.GetTypeDescription
+                        Strings.popupObjectListDescriptionFormat,
+                        string.Format
                         (
-                            objectListData.ListType,
-                            this._stringHelper.ToShortName(objectListData.ObjectType)
-                        ),
-                        objectListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                            CultureInfo.CurrentCulture,
+                            Strings.listParameterCountFormat,
+                            _enumHelper.GetTypeDescription
+                            (
+                                objectListData.ListType,
+                                this._stringHelper.ToShortName(objectListData.ObjectType)
+                            ),
+                            objectListData.ChildElements.Count.ToString(CultureInfo.CurrentCulture)
+                        )
                     );
                 default:
                     throw _exceptionHelper.CriticalException("{8FF9357A-E00C-4D9D-A4FB-54258F37C007}");

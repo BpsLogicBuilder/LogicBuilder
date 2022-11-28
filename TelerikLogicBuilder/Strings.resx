@@ -1176,6 +1176,19 @@
     <value>{0}: {1}</value>
     <comment>0=type 1=name</comment>
   </data>
+	<data name="popupConstructorDescriptionFormat" xml:space="preserve">
+    <value>{{{0}}}</value>
+  </data>
+	<data name="popupFunctionDescriptionFormat" xml:space="preserve">
+    <value>[{0}]</value>
+    <comment>0=FunctionName</comment>
+  </data>
+	<data name="popupLiteralListDescriptionFormat" xml:space="preserve">
+    <value>({0})</value>
+  </data>
+	<data name="popupObjectListDescriptionFormat" xml:space="preserve">
+    <value>({{{0}}})</value>
+  </data>
 	<data name="popupVariableDescriptionFormat" xml:space="preserve">
     <value>&lt;{0}&gt;</value>
     <comment>0=VariableName</comment>
