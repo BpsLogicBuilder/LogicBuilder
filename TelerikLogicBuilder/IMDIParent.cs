@@ -9,7 +9,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder
 {
-    internal interface IMDIParent
+    internal interface IMDIParent : IWin32Window
     {
         RadCommandBar CommandBar { get; }
         CommandBarButton CommandBarButtonSave { get; }

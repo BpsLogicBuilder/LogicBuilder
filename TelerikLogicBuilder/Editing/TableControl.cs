@@ -405,7 +405,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplace.Setup(this.dataGridView1, this.dataSet);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
-            findReplace.ShowDialog((Form)this.parentForm);
+            findReplace.ShowDialog(this.parentForm);
             Save();
         }
 
@@ -416,7 +416,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplace.Setup(this.dataGridView1, this.dataSet);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
-            findReplace.ShowDialog((Form)this.parentForm);
+            findReplace.ShowDialog(this.parentForm);
             Save();
         }
 
@@ -427,7 +427,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplaceText.Setup(this.dataGridView1, this.dataSet);
             findReplaceText.StartPosition = FormStartPosition.Manual;
             findReplaceText.Location = new Point(100, 50);
-            findReplaceText.ShowDialog((Form)this.parentForm);
+            findReplaceText.ShowDialog(this.parentForm);
             Save();
         }
 
@@ -438,7 +438,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             findReplace.Setup(this.dataGridView1, this.dataSet);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
-            findReplace.ShowDialog((Form)this.parentForm);
+            findReplace.ShowDialog(this.parentForm);
             Save();
         }
 
@@ -463,7 +463,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             {
                 DisplayMessage.Show
                 (
-                    (IWin32Window)this.parentForm,
+                    this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.rowIndexIsInvalidFormat, userRowIndex),
                     string.Empty,
                     this._mainWindow.RightToLeft
@@ -475,7 +475,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             {
                 DisplayMessage.Show
                 (
-                    (IWin32Window)this.parentForm,
+                    this.parentForm,
                     string.Format(CultureInfo.CurrentCulture, Strings.columnIndexIsInvalidFormat, userColumnIndex),
                     string.Empty,
                     this._mainWindow.RightToLeft
@@ -501,42 +501,42 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindConstructor()
         {
-            using IScopedDisposableManager<FindConstructorInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindConstructorInCell>>();
-            FindConstructorInCell findConstructor = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindConstructorInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindConstructorInCell>>();
+            IFindConstructorInCell findConstructor = disposableManager.ScopedService;
             findConstructor.Setup(this.dataGridView1);
             findConstructor.StartPosition = FormStartPosition.Manual;
             findConstructor.Location = new Point(100, 50);
-            findConstructor.ShowDialog((Form)this.parentForm);
+            findConstructor.ShowDialog(this.parentForm);
         }
 
         private void FindFunction()
         {
-            using IScopedDisposableManager<FindFunctionInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindFunctionInCell>>();
-            FindFunctionInCell findFunction = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindFunctionInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindFunctionInCell>>();
+            IFindFunctionInCell findFunction = disposableManager.ScopedService;
             findFunction.Setup(this.dataGridView1);
             findFunction.StartPosition = FormStartPosition.Manual;
             findFunction.Location = new Point(100, 50);
-            findFunction.ShowDialog((Form)this.parentForm);
+            findFunction.ShowDialog(this.parentForm);
         }
 
         private void FindText()
         {
-            using IScopedDisposableManager<FindTextInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindTextInCell>>();
-            FindTextInCell findText = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindTextInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindTextInCell>>();
+            IFindTextInCell findText = disposableManager.ScopedService;
             findText.Setup(this.dataGridView1);
             findText.StartPosition = FormStartPosition.Manual;
             findText.Location = new Point(100, 50);
-            findText.ShowDialog((Form)this.parentForm);
+            findText.ShowDialog(this.parentForm);
         }
 
         private void FindVariable()
         {
-            using IScopedDisposableManager<FindVariableInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindVariableInCell>>();
-            FindVariableInCell findVariable = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindVariableInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindVariableInCell>>();
+            IFindVariableInCell findVariable = disposableManager.ScopedService;
             findVariable.Setup(this.dataGridView1);
             findVariable.StartPosition = FormStartPosition.Manual;
             findVariable.Location = new Point(100, 50);
-            findVariable.ShowDialog((Form)this.parentForm);
+            findVariable.ShowDialog(this.parentForm);
         }
 
         private DataSet GetEmptyDataset()
@@ -861,7 +861,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             {
                 DialogResult dialogResult = DisplayMessage.ShowYesNo
                 (
-                    (IWin32Window)this.parentForm,
+                    this.parentForm,
                     string.Format
                     (
                         CultureInfo.CurrentCulture,
@@ -1125,7 +1125,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             DisplayMessage.Show
             (
-                (IWin32Window)this.parentForm,
+                this.parentForm,
                 e.Exception.Message,
                 _mainWindow.RightToLeft
             );
