@@ -15,14 +15,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
 {
     internal class ConfigurationFormFactory : IConfigurationFormFactory
     {
-        private Form? _scopedService;
+        private IDisposable? _scopedService;
         private readonly Func<bool, ConfigureConnectorObjectsForm> _getConfigureConnectorObjectsForm;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> _getConfigureConstructorGenericArgumentsForm;
         private readonly Func<IList<string>, ConfigureExcludedModulesForm> _getConfigureExcludedModules;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
         private readonly Func<IList<string>, ConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
         private readonly Func<bool, ConfigureProjectPropertiesForm> _getConfigureProjectProperties;
-        private readonly Func<WebApiDeployment, ConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
+        private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
         private readonly IServiceScope _scope;
 
         public ConfigurationFormFactory(
@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> getConfigureFunctionGenericArgumentsForm,
             Func<IList<string>, ConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
             Func<bool, ConfigureProjectPropertiesForm> getConfigureProjectProperties,
-            Func<WebApiDeployment, ConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
+            Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
         {
             _scope = serviceScopeFactory.CreateScope();
             _getConfigureConnectorObjectsForm = getConfigureConnectorObjectsForm;
@@ -85,10 +85,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             return (ConfigureProjectPropertiesForm)_scopedService;
         }
 
-        public ConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment)
+        public IConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment)
         {
             _scopedService = _getConfigureWebApiDeployment(webApiDeployment);
-            return (ConfigureWebApiDeploymentForm)_scopedService;
+            return (IConfigureWebApiDeploymentForm)_scopedService;
         }
 
         public void Dispose()

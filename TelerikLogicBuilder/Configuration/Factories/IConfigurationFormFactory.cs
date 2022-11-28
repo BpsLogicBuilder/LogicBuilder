@@ -25,6 +25,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Type genericTypeDefinition);
         ConfigureLoadAssemblyPathsForm GetConfigureLoadAssemblyPaths(IList<string> existingPaths);
         ConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly);
-        ConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment);
+        IConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment);
     }
 }

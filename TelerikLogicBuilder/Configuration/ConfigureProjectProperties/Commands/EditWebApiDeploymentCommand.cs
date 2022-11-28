@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
                 throw _exceptionHelper.CriticalException("{830E589E-4C8F-4840-ABC6-5BF7B96AB93B}");
 
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            ConfigureWebApiDeploymentForm configureWebApiDeployment = disposableManager.GetConfigureWebApiDeploymentForm
+            IConfigureWebApiDeploymentForm configureWebApiDeployment = disposableManager.GetConfigureWebApiDeploymentForm
             (
                 _webApiDeploymentXmlParser.Parse
                 (
@@ -59,9 +59,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
                     )
                 )
             );
-            configureWebApiDeployment.ShowDialog((Control)applicationControl);/*need the current parent not main windows*/
+            ((Form)configureWebApiDeployment).ShowDialog((Control)applicationControl);/*need the current parent not main windows*/
 
-            if (configureWebApiDeployment.DialogResult != DialogResult.OK)
+            if (((Form)configureWebApiDeployment).DialogResult != DialogResult.OK)
                 return;
 
             XmlElement elementToUpdate = _xmlDocumentHelpers.ToXmlElement

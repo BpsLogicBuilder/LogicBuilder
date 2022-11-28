@@ -14,7 +14,7 @@ using Telerik.WinControls.Primitives;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 {
-    internal partial class ConfigureWebApiDeploymentForm : Telerik.WinControls.UI.RadForm
+    internal partial class ConfigureWebApiDeploymentForm : Telerik.WinControls.UI.RadForm, IConfigureWebApiDeploymentForm
     {
         private readonly IFormInitializer _formInitializer;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
             Initialize();
         }
 
-        internal WebApiDeployment WebApiDeployment { get; private set;  }
+        public WebApiDeployment WebApiDeployment { get; private set;  }
 
         private void Initialize()
         {

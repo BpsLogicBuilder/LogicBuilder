@@ -129,7 +129,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         openedAsReadOnly
                     )
                 )
-                .AddTransient<Func<WebApiDeployment, ConfigureWebApiDeploymentForm>>
+                .AddTransient<Func<WebApiDeployment, IConfigureWebApiDeploymentForm>>
                 (
                     provider =>
                     webApiDeployment => new ConfigureWebApiDeploymentForm
