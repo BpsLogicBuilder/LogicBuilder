@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<ICreateSelectRulesFormFactory, CreateSelectRulesFormFactory>()
                 .AddTransient<ISelectRulesResourcesPairFormFactory, SelectRulesResourcesPairFormFactory>()
                 .AddTransient<ISelectRulesFormFactory, SelectRulesFormFactory>()
-                .AddTransient<SelectDocumentsForm>()
+                .AddTransient<ISelectDocumentsForm, SelectDocumentsForm>()
                 .AddTransient<ITryGetSelectedDocuments, TryGetSelectedDocuments>()
                 .AddTransient<ITryGetSelectedRules, TryGetSelectedRules>()
                 .AddTransient<ITryGetSelectedRulesResourcesPairs, TryGetSelectedRulesResourcesPairs>()

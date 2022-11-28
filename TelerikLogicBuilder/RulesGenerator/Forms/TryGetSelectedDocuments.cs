@@ -17,8 +17,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         public bool Try(out IList<string> selectedDocuments)
         {
-            using IScopedDisposableManager<SelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<SelectDocumentsForm>>();
-            SelectDocumentsForm selectDocunentsForm = disposableManager.ScopedService;
+            using IScopedDisposableManager<ISelectDocumentsForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ISelectDocumentsForm>>();
+            ISelectDocumentsForm selectDocunentsForm = disposableManager.ScopedService;
             selectDocunentsForm.ShowDialog(_mainWindow.Instance);
 
             if (selectDocunentsForm.DialogResult != DialogResult.OK
