@@ -9,7 +9,7 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal class FindReplaceVariableInCell : FindReplaceConfiguredItemInCellBase
+    internal class FindReplaceVariableInCell : FindReplaceConfiguredItemInCellBase, IFindReplaceVariableInCell
     {
         public FindReplaceVariableInCell(
             IApplicationTypeInfoManager applicationTypeInfoManager,

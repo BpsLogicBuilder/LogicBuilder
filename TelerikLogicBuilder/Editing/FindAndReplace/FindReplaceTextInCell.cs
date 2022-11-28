@@ -10,7 +10,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 {
-    internal partial class FindReplaceTextInCell : RadForm
+    internal partial class FindReplaceTextInCell : RadForm, IFindReplaceTextInCell
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IConfigurationService _configurationService;

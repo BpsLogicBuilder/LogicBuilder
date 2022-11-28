@@ -400,8 +400,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceConstructor()
         {
-            using IScopedDisposableManager<FindReplaceConstructorInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceConstructorInCell>>();
-            FindReplaceConstructorInCell findReplace = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceConstructorInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceConstructorInCell>>();
+            IFindReplaceConstructorInCell findReplace = disposableManager.ScopedService;
             findReplace.Setup(this.dataGridView1, this.dataSet);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
@@ -411,8 +411,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceFunction()
         {
-            using IScopedDisposableManager<FindReplaceFunctionInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceFunctionInCell>>();
-            FindReplaceFunctionInCell findReplace = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceFunctionInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceFunctionInCell>>();
+            IFindReplaceFunctionInCell findReplace = disposableManager.ScopedService;
             findReplace.Setup(this.dataGridView1, this.dataSet);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
@@ -422,8 +422,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceText()
         {
-            using IScopedDisposableManager<FindReplaceTextInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceTextInCell>>();
-            FindReplaceTextInCell findReplaceText = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceTextInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceTextInCell>>();
+            IFindReplaceTextInCell findReplaceText = disposableManager.ScopedService;
             findReplaceText.Setup(this.dataGridView1, this.dataSet);
             findReplaceText.StartPosition = FormStartPosition.Manual;
             findReplaceText.Location = new Point(100, 50);
@@ -433,8 +433,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void FindAndReplaceVariable()
         {
-            using IScopedDisposableManager<FindReplaceVariableInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<FindReplaceVariableInCell>>();
-            FindReplaceVariableInCell findReplace = disposableManager.ScopedService;
+            using IScopedDisposableManager<IFindReplaceVariableInCell> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IFindReplaceVariableInCell>>();
+            IFindReplaceVariableInCell findReplace = disposableManager.ScopedService;
             findReplace.Setup(this.dataGridView1, this.dataSet);
             findReplace.StartPosition = FormStartPosition.Manual;
             findReplace.Location = new Point(100, 50);
