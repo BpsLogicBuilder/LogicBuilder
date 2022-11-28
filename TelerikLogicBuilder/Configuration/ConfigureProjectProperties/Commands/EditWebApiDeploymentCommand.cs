@@ -59,9 +59,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
                     )
                 )
             );
-            ((Form)configureWebApiDeployment).ShowDialog((Control)applicationControl);/*need the current parent not main windows*/
+            configureWebApiDeployment.ShowDialog((Control)applicationControl);/*need the current parent not main windows*/
 
-            if (((Form)configureWebApiDeployment).DialogResult != DialogResult.OK)
+            if (configureWebApiDeployment.DialogResult != DialogResult.OK)
                 return;
 
             XmlElement elementToUpdate = _xmlDocumentHelpers.ToXmlElement
