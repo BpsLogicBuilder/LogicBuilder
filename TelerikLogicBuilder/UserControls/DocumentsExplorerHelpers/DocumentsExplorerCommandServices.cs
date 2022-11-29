@@ -19,7 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<RenameCommand>()
                 .AddTransient<IOpenFileOperations, OpenFileOperations>()//must be transient because it uses a scoped disposable
                 .AddTransient<IAddNewFileOperations, AddNewFileOperations>()//must be transient because it uses a scoped disposable
-                .AddTransient<InputBoxForm>()
+                .AddTransient<IInputBoxForm, InputBoxForm>()
                 .AddSingleton<IDeleteOperations, DeleteOperations>()
                 .AddSingleton<IMoveFileOperations, MoveFileOperations>()
                 .AddTransient<TextViewer>();

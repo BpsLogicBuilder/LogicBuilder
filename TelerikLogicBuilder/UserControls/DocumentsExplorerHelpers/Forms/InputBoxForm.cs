@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms
 {
-    internal partial class InputBoxForm : Telerik.WinControls.UI.RadForm
+    internal partial class InputBoxForm : Telerik.WinControls.UI.RadForm, IInputBoxForm
     {
         private readonly IFormInitializer _formInitializer;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
@@ -42,13 +42,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private string regularExpression = string.Empty;
 
-        internal string Input
+        public string Input
         {
             get { return radTextBoxInput.Text; }
             set { radTextBoxInput.Text = value; }
         }
 
-        internal void SetTitles(string regularExpression, string caption, string prompt)
+        public void SetTitles(string regularExpression, string caption, string prompt)
         {
             this.regularExpression = regularExpression;
             this.Text = caption;

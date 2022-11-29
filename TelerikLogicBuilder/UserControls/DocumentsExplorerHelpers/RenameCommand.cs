@@ -83,8 +83,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         private void RenameFile(RadTreeNode selectedNode)
         {
-            using IScopedDisposableManager<InputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<InputBoxForm>>();
-            InputBoxForm inputBox = disposableManager.ScopedService;
+            using IScopedDisposableManager<IInputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IInputBoxForm>>();
+            IInputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _pathHelper.GetFileName(selectedNode.Name);
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFileNameCaption, Strings.inputFileNewFileNamePrompt);
             inputBox.ShowDialog(_mainWindow.Instance);
@@ -109,8 +109,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
         private void RenameFolder(RadTreeNode selectedNode)
         {
-            using IScopedDisposableManager<InputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<InputBoxForm>>();
-            InputBoxForm inputBox = disposableManager.ScopedService;
+            using IScopedDisposableManager<IInputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IInputBoxForm>>();
+            IInputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _pathHelper.GetFolderName(selectedNode.Name);
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFolderNameCaption, Strings.inputFileNewFolderNamePrompt);
             inputBox.ShowDialog(_mainWindow.Instance);
@@ -152,8 +152,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
                 );
             }
 
-            using IScopedDisposableManager<InputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<InputBoxForm>>();
-            InputBoxForm inputBox = disposableManager.ScopedService;
+            using IScopedDisposableManager<IInputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IInputBoxForm>>();
+            IInputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.Input = _configurationService.ProjectProperties.ProjectName;
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputNewProjectNameCaption, Strings.inputNewProjectNamePrompt);
             inputBox.ShowDialog(_mainWindow.Instance);

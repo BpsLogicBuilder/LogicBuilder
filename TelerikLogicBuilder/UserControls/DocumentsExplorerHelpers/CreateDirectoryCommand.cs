@@ -56,8 +56,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             RadTreeNode destinationFolderNode = GetFolderNode(selectedNode);
 
-            using IScopedDisposableManager<InputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<InputBoxForm>>();
-            InputBoxForm inputBox = disposableManager.ScopedService;
+            using IScopedDisposableManager<IInputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IInputBoxForm>>();
+            IInputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.SetTitles(RegularExpressions.FILENAME, Strings.inputFileNewFolderNameCaption, Strings.inputFileNewFolderNamePrompt);
             inputBox.ShowDialog(_mainWindow.Instance);
 
