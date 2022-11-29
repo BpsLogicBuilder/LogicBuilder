@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -9,7 +10,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
-using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms;
 using LogicBuilder.Workflow.Activities.Rules;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Forms
 {
     partial class TextViewer
     {
@@ -60,6 +60,6 @@
 
         #endregion
 
-        private RichTextBoxViewerPanel richTextBoxViewerPanel1;
+        private ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxViewerPanel richTextBoxViewerPanel1;
     }
 }

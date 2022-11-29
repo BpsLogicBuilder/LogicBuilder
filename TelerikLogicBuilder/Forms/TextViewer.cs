@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms
+namespace ABIS.LogicBuilder.FlowBuilder.Forms
 {
     internal partial class TextViewer : RadForm
     {
