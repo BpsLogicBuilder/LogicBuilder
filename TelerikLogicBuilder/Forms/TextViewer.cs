@@ -3,7 +3,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Forms
 {
-    internal partial class TextViewer : RadForm
+    internal partial class TextViewer : RadForm, ITextViewer
     {
         private readonly IFormInitializer _formInitializer;
         public TextViewer(IFormInitializer formInitializer)
@@ -13,12 +13,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
             Initialize();
         }
 
-        internal void SetText(string[] lines)
+        public void SetText(string[] lines)
         {
             richTextBoxViewerPanel1.RichTextBox.Lines = lines;
         }
 
-        internal void SetText(string viewText)
+        public void SetText(string viewText)
         {
             richTextBoxViewerPanel1.RichTextBox.Text = viewText;
         }

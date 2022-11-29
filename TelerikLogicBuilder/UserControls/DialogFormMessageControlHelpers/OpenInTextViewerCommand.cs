@@ -23,8 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHel
             if (string.IsNullOrEmpty(_radLabelMessages.Text))
                 return;
 
-            using IScopedDisposableManager<TextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-            TextViewer textViewer = disposableManager.ScopedService;
+            using IScopedDisposableManager<ITextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+            ITextViewer textViewer = disposableManager.ScopedService;
             textViewer.SetText(_radLabelMessages.Text);
             textViewer.ShowDialog(_mainWindow.Instance);
         }

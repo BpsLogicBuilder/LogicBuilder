@@ -26,8 +26,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Prompts
             }
             else
             {
-                using IScopedDisposableManager<TextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-                TextViewer textViewer = disposableManager.ScopedService;
+                using IScopedDisposableManager<ITextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+                ITextViewer textViewer = disposableManager.ScopedService;
                 textViewer.Text = caption;
                 textViewer.SetText(message);
                 textViewer.StartPosition = FormStartPosition.CenterParent;
@@ -49,8 +49,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Prompts
             }
             else
             {
-                using IScopedDisposableManager<TextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-                TextViewer textViewer = disposableManager.ScopedService;
+                using IScopedDisposableManager<ITextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+                ITextViewer textViewer = disposableManager.ScopedService;
                 textViewer.Text = caption;
                 textViewer.SetText(message);
                 textViewer.StartPosition = FormStartPosition.CenterParent;

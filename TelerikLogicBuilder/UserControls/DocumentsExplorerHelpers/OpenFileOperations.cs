@@ -55,8 +55,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             IList<string> configErrors = _checkVisioConfiguration.Check();
             if (configErrors.Count > 0)
             {
-                using IScopedDisposableManager<TextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-                TextViewer textViewer = disposableManager.ScopedService;
+                using IScopedDisposableManager<ITextViewer> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+                ITextViewer textViewer = disposableManager.ScopedService;
                 textViewer.SetText(configErrors.ToArray());
                 textViewer.ShowDialog(_mainWindow.Instance);
                 return;

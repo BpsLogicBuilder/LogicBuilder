@@ -23,6 +23,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<IInputBoxForm, InputBoxForm>()
                 .AddSingleton<IDeleteOperations, DeleteOperations>()
                 .AddSingleton<IMoveFileOperations, MoveFileOperations>()
-                .AddTransient<TextViewer>();
+                .AddTransient<ITextViewer, TextViewer>();
     }
 }

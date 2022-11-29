@@ -111,8 +111,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
                                         )
                                         .ToArray();
 
-                    using IScopedDisposableManager<TextViewer> textViewerManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-                    TextViewer textViewer = textViewerManager.ScopedService;
+                    using IScopedDisposableManager<ITextViewer> textViewerManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+                    ITextViewer textViewer = textViewerManager.ScopedService;
                     textViewer.SetText(entries);
                     textViewer.ShowDialog(_mainWindow.Instance);
 
@@ -120,8 +120,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
                 else if (selectedNode.Name.EndsWith(FileExtensions.RESOURCETEXTFILEEXTENSION, true, CultureInfo.InvariantCulture))
                 {
                     using StreamReader inStream = new(selectedNode.Name, Encoding.Unicode);
-                    using IScopedDisposableManager<TextViewer> textViewerManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-                    TextViewer textViewer = textViewerManager.ScopedService;
+                    using IScopedDisposableManager<ITextViewer> textViewerManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+                    ITextViewer textViewer = textViewerManager.ScopedService;
                     textViewer.SetText(inStream.ReadToEnd());
                     textViewer.ShowDialog(_mainWindow.Instance);
                 }
@@ -150,8 +150,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
 
                     if (validationMessages.Count > 0)
                     {
-                        using IScopedDisposableManager<TextViewer> textViewerManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-                        TextViewer textViewer = textViewerManager.ScopedService;
+                        using IScopedDisposableManager<ITextViewer> textViewerManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+                        ITextViewer textViewer = textViewerManager.ScopedService;
                         textViewer.SetText(validationMessages.Select(m => m.Message).ToArray());
                         textViewer.ShowDialog(_mainWindow.Instance);
                     }

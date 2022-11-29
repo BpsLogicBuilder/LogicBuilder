@@ -53,8 +53,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
                 IList<string> configErrors = _checkVisioConfiguration.Check();
                 if (configErrors.Count > 0)
                 {
-                    using IScopedDisposableManager<TextViewer> textViewerDisposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<TextViewer>>();
-                    TextViewer textViewer = textViewerDisposableManager.ScopedService;
+                    using IScopedDisposableManager<ITextViewer> textViewerDisposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();
+                    ITextViewer textViewer = textViewerDisposableManager.ScopedService;
                     textViewer.SetText(configErrors.ToArray());
                     textViewer.ShowDialog(_mainWindow.Instance);
                     return Task.FromResult(Array.Empty<ResultMessage>());
