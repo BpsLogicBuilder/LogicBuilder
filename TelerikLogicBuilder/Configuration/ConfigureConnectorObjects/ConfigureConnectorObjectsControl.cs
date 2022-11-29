@@ -101,7 +101,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
 
         private void Initialize()
         {
-            txtType.Anchor = AnchorConstants.AnchorsLeftTopRight;
             CollapsePanelBorder(radPanelTxtType);
             CollapsePanelBorder(radPanelAddButton);
 

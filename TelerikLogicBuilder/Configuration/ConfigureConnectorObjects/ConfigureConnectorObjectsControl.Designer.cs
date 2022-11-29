@@ -30,12 +30,12 @@
         {
             this.radGroupBoxAddType = new Telerik.WinControls.UI.RadGroupBox();
             this.radPanelTxtType = new Telerik.WinControls.UI.RadPanel();
+            this.txtType = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
             this.radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
             this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
             this.radGroupBoxTypes = new Telerik.WinControls.UI.RadGroupBox();
             this.managedListBoxControl = new ABIS.LogicBuilder.FlowBuilder.UserControls.ManagedListBoxControl();
-            this.txtType = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxAddType)).BeginInit();
             this.radGroupBoxAddType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTxtType)).BeginInit();
@@ -67,8 +67,19 @@
             this.radPanelTxtType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelTxtType.Location = new System.Drawing.Point(2, 18);
             this.radPanelTxtType.Name = "radPanelTxtType";
+            this.radPanelTxtType.Padding = new System.Windows.Forms.Padding(12, 3, 12, 0);
             this.radPanelTxtType.Size = new System.Drawing.Size(591, 35);
             this.radPanelTxtType.TabIndex = 1;
+            // 
+            // txtType
+            // 
+            this.txtType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtType.Location = new System.Drawing.Point(12, 3);
+            this.txtType.Margin = new System.Windows.Forms.Padding(0);
+            this.txtType.Name = "txtType";
+            this.txtType.SelectedText = "";
+            this.txtType.Size = new System.Drawing.Size(567, 24);
+            this.txtType.TabIndex = 0;
             // 
             // radPanelAddButton
             // 
@@ -116,14 +127,6 @@
             this.managedListBoxControl.Name = "managedListBoxControl";
             this.managedListBoxControl.Size = new System.Drawing.Size(725, 162);
             this.managedListBoxControl.TabIndex = 0;
-            // 
-            // txtType
-            // 
-            this.txtType.Location = new System.Drawing.Point(4, 3);
-            this.txtType.Name = "txtType";
-            this.txtType.SelectedText = "";
-            this.txtType.Size = new System.Drawing.Size(581, 24);
-            this.txtType.TabIndex = 0;
             // 
             // ConfigureConnectorObjectsControl
             // 
