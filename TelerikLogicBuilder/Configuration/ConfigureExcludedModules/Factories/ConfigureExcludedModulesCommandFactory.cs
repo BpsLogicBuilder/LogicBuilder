@@ -5,15 +5,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.F
 {
     internal class ConfigureExcludedModulesCommandFactory : IConfigureExcludedModulesCommandFactory
     {
-        private readonly Func<IConfigureExcludedModules, UpdateExcludedModulesCommand> _getUpdateExcludedModulesCommand;
+        private readonly Func<IConfigureExcludedModulesForm, UpdateExcludedModulesCommand> _getUpdateExcludedModulesCommand;
 
         public ConfigureExcludedModulesCommandFactory(
-            Func<IConfigureExcludedModules, UpdateExcludedModulesCommand> getUpdateExcludedModulesCommand)
+            Func<IConfigureExcludedModulesForm, UpdateExcludedModulesCommand> getUpdateExcludedModulesCommand)
         {
             _getUpdateExcludedModulesCommand = getUpdateExcludedModulesCommand;
         }
 
-        public UpdateExcludedModulesCommand GetUpdateExcludedModulesCommand(IConfigureExcludedModules configureExcludedModules)
+        public UpdateExcludedModulesCommand GetUpdateExcludedModulesCommand(IConfigureExcludedModulesForm configureExcludedModules)
             => _getUpdateExcludedModulesCommand(configureExcludedModules);
     }
 }

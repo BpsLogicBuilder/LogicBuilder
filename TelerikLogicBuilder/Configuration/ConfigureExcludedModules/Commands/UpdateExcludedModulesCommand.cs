@@ -7,12 +7,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.C
     internal class UpdateExcludedModulesCommand : ClickCommandBase
     {
         private readonly IGetAllCheckedNodes _getAllCheckedNodes;
-        private readonly IConfigureExcludedModules configureExcludedModules;
+        private readonly IConfigureExcludedModulesForm configureExcludedModules;
 
 
         public UpdateExcludedModulesCommand(
             IGetAllCheckedNodes getAllCheckedNodes,
-            IConfigureExcludedModules configureExcludedModules)
+            IConfigureExcludedModulesForm configureExcludedModules)
         {
             _getAllCheckedNodes = getAllCheckedNodes;
             this.configureExcludedModules = configureExcludedModules;

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
+using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
 {
-    internal interface IConfigureExcludedModules
+    internal interface IConfigureExcludedModulesForm : IForm
     {
         IList<string> ExcludedModules { get; }
         RadListControl ListControl { get; }

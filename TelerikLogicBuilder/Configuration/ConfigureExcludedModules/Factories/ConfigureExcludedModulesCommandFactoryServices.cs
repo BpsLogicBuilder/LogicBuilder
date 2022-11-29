@@ -11,7 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.F
         {
             return services
                 .AddTransient<IConfigureExcludedModulesCommandFactory, ConfigureExcludedModulesCommandFactory>()
-                .AddTransient<Func<IConfigureExcludedModules, UpdateExcludedModulesCommand>>
+                .AddTransient<Func<IConfigureExcludedModulesForm, UpdateExcludedModulesCommand>>
                 (
                     provider =>
                     configureExcludedModules => new UpdateExcludedModulesCommand

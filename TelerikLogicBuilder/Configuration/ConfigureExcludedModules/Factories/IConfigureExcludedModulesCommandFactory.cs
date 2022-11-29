@@ -4,6 +4,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.F
 {
     internal interface IConfigureExcludedModulesCommandFactory
     {
-        UpdateExcludedModulesCommand GetUpdateExcludedModulesCommand(IConfigureExcludedModules configureExcludedModules);
+        UpdateExcludedModulesCommand GetUpdateExcludedModulesCommand(IConfigureExcludedModulesForm configureExcludedModules);
     }
 }

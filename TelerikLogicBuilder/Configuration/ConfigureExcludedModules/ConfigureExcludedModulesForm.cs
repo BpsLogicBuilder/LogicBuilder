@@ -10,7 +10,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
 {
-    internal partial class ConfigureExcludedModulesForm : RadForm, IConfigureExcludedModules
+    internal partial class ConfigureExcludedModulesForm : RadForm, IConfigureExcludedModulesForm
     {
         private readonly IConfigureExcludedModulesCommandFactory _configureExcludedModulesCommandFactory;
         private readonly IExcludedModulesTreeViewBuilder _excludedModulesTreeViewBuilder;

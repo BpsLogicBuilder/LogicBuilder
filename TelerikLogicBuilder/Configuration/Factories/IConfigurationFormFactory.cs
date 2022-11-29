@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             IList<string> configuredGenericArgumentNames,
             IList<ParameterBase> memberParameters,
             Type genericTypeDefinition);
-        ConfigureExcludedModulesForm GetConfigureExcludedModules(IList<string> excludedModules);
+        IConfigureExcludedModulesForm GetConfigureExcludedModules(IList<string> excludedModules);
         ConfigureFunctionGenericArgumentsForm GetConfigureFunctionGenericArgumentsForm(XmlDocument xmlDocument,
             IList<string> configuredGenericArgumentNames,
             IList<ParameterBase> memberParameters,

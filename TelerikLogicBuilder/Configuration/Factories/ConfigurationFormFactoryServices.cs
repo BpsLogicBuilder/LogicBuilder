@@ -73,7 +73,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         genericTypeDefinition
                     )
                 )
-                .AddTransient<Func<IList<string>, ConfigureExcludedModulesForm>>
+                .AddTransient<Func<IList<string>, IConfigureExcludedModulesForm>>
                 (
                     provider =>
                     excludedModules => new ConfigureExcludedModulesForm

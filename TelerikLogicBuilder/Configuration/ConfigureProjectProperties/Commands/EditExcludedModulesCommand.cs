@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
                 throw _exceptionHelper.CriticalException("{BBD9B576-5AB9-402E-87E8-148B8CC62E5A}");
 
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            ConfigureExcludedModulesForm configureExcludedModules = disposableManager.GetConfigureExcludedModules
+            IConfigureExcludedModulesForm configureExcludedModules = disposableManager.GetConfigureExcludedModules
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

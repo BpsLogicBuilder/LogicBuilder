@@ -8,7 +8,6 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
@@ -18,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private IDisposable? _scopedService;
         private readonly Func<bool, IConfigureConnectorObjectsForm> _getConfigureConnectorObjectsForm;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> _getConfigureConstructorGenericArgumentsForm;
-        private readonly Func<IList<string>, ConfigureExcludedModulesForm> _getConfigureExcludedModules;
+        private readonly Func<IList<string>, IConfigureExcludedModulesForm> _getConfigureExcludedModules;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
         private readonly Func<IList<string>, ConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
         private readonly Func<bool, ConfigureProjectPropertiesForm> _getConfigureProjectProperties;
@@ -29,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             IServiceScopeFactory serviceScopeFactory,
             Func<bool, IConfigureConnectorObjectsForm> getConfigureConnectorObjectsForm,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> getConfigureConstructorGenericArgumentsForm,
-            Func<IList<string>, ConfigureExcludedModulesForm> getConfigureExcludedModules,
+            Func<IList<string>, IConfigureExcludedModulesForm> getConfigureExcludedModules,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> getConfigureFunctionGenericArgumentsForm,
             Func<IList<string>, ConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
             Func<bool, ConfigureProjectPropertiesForm> getConfigureProjectProperties,
@@ -61,10 +60,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             return (ConfigureConstructorGenericArgumentsForm)_scopedService;
         }
 
-        public ConfigureExcludedModulesForm GetConfigureExcludedModules(IList<string> excludedModules)
+        public IConfigureExcludedModulesForm GetConfigureExcludedModules(IList<string> excludedModules)
         {
             _scopedService = _getConfigureExcludedModules(excludedModules);
-            return (ConfigureExcludedModulesForm)_scopedService;
+            return (IConfigureExcludedModulesForm)_scopedService;
         }
 
         public ConfigureFunctionGenericArgumentsForm GetConfigureFunctionGenericArgumentsForm(XmlDocument xmlDocument, IList<string> configuredGenericArgumentNames, IList<ParameterBase> memberParameters, Type genericTypeDefinition)
