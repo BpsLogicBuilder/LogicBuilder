@@ -10,7 +10,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms
 {
-    internal partial class AddNewFileForm : RadForm
+    internal partial class AddNewFileForm : RadForm, IAddNewFileForm
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IImageListService _imageListService;

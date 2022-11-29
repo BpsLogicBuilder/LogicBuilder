@@ -58,8 +58,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
 
             RadTreeNode destinationFolderNode = GetFolderNode(selectedNodes[0]);
 
-            using IScopedDisposableManager<AddNewFileForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<AddNewFileForm>>();
-            AddNewFileForm addNewFile = disposableManager.ScopedService;
+            using IScopedDisposableManager<IAddNewFileForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IAddNewFileForm>>();
+            IAddNewFileForm addNewFile = disposableManager.ScopedService;
             addNewFile.ShowDialog(_mainWindow.Instance);
 
             if (addNewFile.DialogResult == DialogResult.OK)

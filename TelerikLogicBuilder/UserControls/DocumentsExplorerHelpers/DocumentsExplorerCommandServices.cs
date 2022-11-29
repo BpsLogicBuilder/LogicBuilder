@@ -7,7 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
     internal static class DocumentsExplorerCommandServices
     {
         internal static IServiceCollection AddDocumentsExplorerCommands(this IServiceCollection services) 
-            => services.AddTransient<AddNewFileForm>()
+            => services.AddTransient<IAddNewFileForm, AddNewFileForm>()
                 .AddTransient<AddExistingFileCommand>()
                 .AddTransient<AddNewFileCommand>()
                 .AddTransient<CloseProjectCommand>()
