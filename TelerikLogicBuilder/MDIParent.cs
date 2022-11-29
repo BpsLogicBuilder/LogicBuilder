@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Commands.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -37,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly ILoadContextSponsor _loadContextSponsor;
         private readonly ILoadProjectProperties _loadProjectProperties;
         private readonly IMainWindow _mainWindow;
+        private readonly IServiceFactory _serviceFactory;
         private readonly IThemeManager _themeManager;
         private readonly IVariableListInitializer _variableListInitializer;
         private readonly IUiNotificationService _uiNotificationService;
@@ -85,6 +87,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ILoadContextSponsor loadContextSponsor,
             ILoadProjectProperties loadProjectProperties,
             IMainWindow mainWindow,
+            IServiceFactory serviceFactory,
             IThemeManager themeManager,
             IVariableListInitializer variableListInitializer,
             IUiNotificationService uiNotificationService,
@@ -129,6 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _loadContextSponsor = loadContextSponsor;
             _loadProjectProperties = loadProjectProperties;
             _mainWindow = mainWindow;
+            _serviceFactory = serviceFactory;
             _themeManager = themeManager;
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
@@ -284,7 +288,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             });
 
             var cancellationTokenSource = new CancellationTokenSource();
-            using IProgressForm progressForm = new ProgressForm(_formInitializer, progress, cancellationTokenSource);
+            using IProgressForm progressForm = _serviceFactory.GetProgressForm(progress, cancellationTokenSource);
             progressForm.Show(this);
 
             try
@@ -362,7 +366,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     var cancellationTokenSource = new CancellationTokenSource();
                     //Showing the progress form after LoadAssembiesIfNeededAsync runs in LoadContextSponsor.RunAsync
                     //Don't see any value in cancelling the process during assembly loading
-                    using IProgressForm progressForm = new ProgressForm(_formInitializer, progress, cancellationTokenSource);
+                    using IProgressForm progressForm = _serviceFactory.GetProgressForm(progress, cancellationTokenSource);
                     progressForm.Show(this);
 
                     try

@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         internal static IServiceCollection AddFlowBuilder(this IServiceCollection services)
             => services
-                .AddTransient<MDIParent>()
+                .AddTransient<IMDIParent, MDIParent>()
                 .AddSingleton<IAssemblyLoadContextManager, AssemblyLoadContextManager>()
                 .AddSingleton<ICellXmlHelper, CellXmlHelper>()
                 .AddSingleton<ICheckSelectedApplication, CheckSelectedApplication>()

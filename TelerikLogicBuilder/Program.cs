@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         }
 
         #region Variables
-        private static MDIParent? mdiParent;
+        private static IMDIParent? mdiParent;
         private static ISplashScreen? splashScreen;
         #endregion Variables
 
@@ -70,10 +70,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.themeName;
             ShowSplashScreen();
 
-            mdiParent = ServiceProvider.GetRequiredService<MDIParent>();
+            mdiParent = ServiceProvider.GetRequiredService<IMDIParent>();
 
             CloseSplashScreen();
-            Application.Run(mdiParent);
+            Application.Run((Form)mdiParent);
         }
 
         internal static void LoadThemes()

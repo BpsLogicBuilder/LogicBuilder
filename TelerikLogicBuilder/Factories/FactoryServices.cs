@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Components.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
@@ -11,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
+using System.Threading;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -28,6 +30,16 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         applicationForm
+                    )
+                )
+                .AddTransient<Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm>>
+                (
+                    provider =>
+                    (progress, cancellationTokenSource) => new ProgressForm
+                    (
+                        provider.GetRequiredService<IFormInitializer>(),
+                        progress, 
+                        cancellationTokenSource
                     )
                 )
                 .AddTransient<IServiceFactory, ServiceFactory>()
