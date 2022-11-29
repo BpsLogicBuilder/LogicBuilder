@@ -174,16 +174,18 @@
             this.radGroupBoxFileTypes.HeaderText = "File Types";
             this.radGroupBoxFileTypes.Location = new System.Drawing.Point(8, 281);
             this.radGroupBoxFileTypes.Name = "radGroupBoxFileTypes";
+            this.radGroupBoxFileTypes.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
             this.radGroupBoxFileTypes.Size = new System.Drawing.Size(490, 88);
             this.radGroupBoxFileTypes.TabIndex = 1;
             this.radGroupBoxFileTypes.Text = "File Types";
             // 
             // radDropDownListFileTypes
             // 
+            this.radDropDownListFileTypes.Dock = System.Windows.Forms.DockStyle.Top;
             this.radDropDownListFileTypes.DropDownAnimationEnabled = true;
             this.radDropDownListFileTypes.Location = new System.Drawing.Point(15, 32);
             this.radDropDownListFileTypes.Name = "radDropDownListFileTypes";
-            this.radDropDownListFileTypes.Size = new System.Drawing.Size(457, 20);
+            this.radDropDownListFileTypes.Size = new System.Drawing.Size(460, 20);
             this.radDropDownListFileTypes.TabIndex = 0;
             this.radDropDownListFileTypes.TextChanged += new System.EventHandler(this.RadDropDownListFileTypes_TextChanged);
             // 
@@ -195,15 +197,17 @@
             this.radGroupBoxText.HeaderText = "Text";
             this.radGroupBoxText.Location = new System.Drawing.Point(8, 8);
             this.radGroupBoxText.Name = "radGroupBoxText";
+            this.radGroupBoxText.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
             this.radGroupBoxText.Size = new System.Drawing.Size(490, 85);
             this.radGroupBoxText.TabIndex = 0;
             this.radGroupBoxText.Text = "Text";
             // 
             // radTextBoxText
             // 
+            this.radTextBoxText.Dock = System.Windows.Forms.DockStyle.Top;
             this.radTextBoxText.Location = new System.Drawing.Point(15, 32);
             this.radTextBoxText.Name = "radTextBoxText";
-            this.radTextBoxText.Size = new System.Drawing.Size(457, 20);
+            this.radTextBoxText.Size = new System.Drawing.Size(460, 20);
             this.radTextBoxText.TabIndex = 0;
             this.radTextBoxText.TextChanged += new System.EventHandler(this.RadTextBoxText_TextChanged);
             // 

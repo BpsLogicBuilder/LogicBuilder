@@ -98,8 +98,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            radDropDownListFind.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            radDropDownListReplace.Anchor = AnchorConstants.AnchorsLeftTopRight;
             _formInitializer.SetFormDefaults(this, 724);
 
             this.AcceptButton = radButtonFindNext;

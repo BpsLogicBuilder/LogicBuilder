@@ -31,6 +31,7 @@
             this.radPanelTop = new Telerik.WinControls.UI.RadPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBoxText = new Telerik.WinControls.UI.RadGroupBox();
+            this.radDropDownListText = new Telerik.WinControls.UI.RadDropDownList();
             this.radGroupBoxSearch = new Telerik.WinControls.UI.RadGroupBox();
             this.radRadioButtonAllPages = new Telerik.WinControls.UI.RadRadioButton();
             this.radRadioButtonCurrentPage = new Telerik.WinControls.UI.RadRadioButton();
@@ -45,12 +46,12 @@
             this.radPanelFil = new Telerik.WinControls.UI.RadPanel();
             this.radGroupBoxOccurrences = new Telerik.WinControls.UI.RadGroupBox();
             this.radListOccurrences = new Telerik.WinControls.UI.RadListControl();
-            this.radDropDownListText = new Telerik.WinControls.UI.RadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTop)).BeginInit();
             this.radPanelTop.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxText)).BeginInit();
             this.radGroupBoxText.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSearch)).BeginInit();
             this.radGroupBoxSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonAllPages)).BeginInit();
@@ -71,7 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOccurrences)).BeginInit();
             this.radGroupBoxOccurrences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radListOccurrences)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,9 +110,20 @@
             this.radGroupBoxText.HeaderText = "Text";
             this.radGroupBoxText.Location = new System.Drawing.Point(8, 8);
             this.radGroupBoxText.Name = "radGroupBoxText";
+            this.radGroupBoxText.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
             this.radGroupBoxText.Size = new System.Drawing.Size(490, 87);
             this.radGroupBoxText.TabIndex = 0;
             this.radGroupBoxText.Text = "Text";
+            // 
+            // radDropDownListText
+            // 
+            this.radDropDownListText.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radDropDownListText.DropDownAnimationEnabled = true;
+            this.radDropDownListText.Location = new System.Drawing.Point(15, 32);
+            this.radDropDownListText.Name = "radDropDownListText";
+            this.radDropDownListText.Size = new System.Drawing.Size(460, 20);
+            this.radDropDownListText.TabIndex = 0;
+            this.radDropDownListText.TextChanged += new System.EventHandler(this.RadDropDownListText_TextChanged);
             // 
             // radGroupBoxSearch
             // 
@@ -250,15 +261,6 @@
             this.radListOccurrences.Size = new System.Drawing.Size(492, 157);
             this.radListOccurrences.TabIndex = 0;
             // 
-            // radDropDownListText
-            // 
-            this.radDropDownListText.DropDownAnimationEnabled = true;
-            this.radDropDownListText.Location = new System.Drawing.Point(15, 32);
-            this.radDropDownListText.Name = "radDropDownListText";
-            this.radDropDownListText.Size = new System.Drawing.Size(457, 20);
-            this.radDropDownListText.TabIndex = 0;
-            this.radDropDownListText.TextChanged += new System.EventHandler(this.RadDropDownListText_TextChanged);
-            // 
             // FindConfiguredItemInShapeBase
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
@@ -281,6 +283,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxText)).EndInit();
             this.radGroupBoxText.ResumeLayout(false);
             this.radGroupBoxText.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSearch)).EndInit();
             this.radGroupBoxSearch.ResumeLayout(false);
             this.radGroupBoxSearch.PerformLayout();
@@ -303,7 +306,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOccurrences)).EndInit();
             this.radGroupBoxOccurrences.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radListOccurrences)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

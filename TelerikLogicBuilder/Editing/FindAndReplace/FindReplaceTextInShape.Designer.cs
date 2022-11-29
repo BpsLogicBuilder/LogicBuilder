@@ -175,15 +175,17 @@
             this.radGroupBoxReplace.HeaderText = "Replace With";
             this.radGroupBoxReplace.Location = new System.Drawing.Point(8, 101);
             this.radGroupBoxReplace.Name = "radGroupBoxReplace";
+            this.radGroupBoxReplace.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
             this.radGroupBoxReplace.Size = new System.Drawing.Size(490, 87);
             this.radGroupBoxReplace.TabIndex = 1;
             this.radGroupBoxReplace.Text = "Replace With";
             // 
             // radTextBoxReplace
             // 
+            this.radTextBoxReplace.Dock = System.Windows.Forms.DockStyle.Top;
             this.radTextBoxReplace.Location = new System.Drawing.Point(15, 32);
             this.radTextBoxReplace.Name = "radTextBoxReplace";
-            this.radTextBoxReplace.Size = new System.Drawing.Size(457, 20);
+            this.radTextBoxReplace.Size = new System.Drawing.Size(460, 20);
             this.radTextBoxReplace.TabIndex = 0;
             this.radTextBoxReplace.TextChanged += new System.EventHandler(this.RadTextBoxReplace_TextChanged);
             // 
@@ -191,18 +193,21 @@
             // 
             this.radGroupBoxFind.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBoxFind.Controls.Add(this.radTextBoxFind);
+            this.radGroupBoxFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBoxFind.HeaderText = "Find Text";
             this.radGroupBoxFind.Location = new System.Drawing.Point(8, 8);
             this.radGroupBoxFind.Name = "radGroupBoxFind";
-            this.radGroupBoxFind.Size = new System.Drawing.Size(486, 79);
+            this.radGroupBoxFind.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
+            this.radGroupBoxFind.Size = new System.Drawing.Size(490, 87);
             this.radGroupBoxFind.TabIndex = 0;
             this.radGroupBoxFind.Text = "Find Text";
             // 
             // radTextBoxFind
             // 
+            this.radTextBoxFind.Dock = System.Windows.Forms.DockStyle.Top;
             this.radTextBoxFind.Location = new System.Drawing.Point(15, 32);
             this.radTextBoxFind.Name = "radTextBoxFind";
-            this.radTextBoxFind.Size = new System.Drawing.Size(457, 20);
+            this.radTextBoxFind.Size = new System.Drawing.Size(460, 20);
             this.radTextBoxFind.TabIndex = 0;
             this.radTextBoxFind.TextChanged += new System.EventHandler(this.RadTextBoxFind_TextChanged);
             // 

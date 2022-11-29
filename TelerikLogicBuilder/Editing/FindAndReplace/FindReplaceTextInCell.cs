@@ -73,8 +73,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            radTextBoxFind.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            radTextBoxReplace.Anchor = AnchorConstants.AnchorsLeftTopRight;
             _formInitializer.SetFormDefaults(this, 724);
 
             this.AcceptButton = radButtonFindNext;

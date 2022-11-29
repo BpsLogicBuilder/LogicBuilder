@@ -84,8 +84,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         protected virtual void Initialize()
         {
-            radDropDownListText.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            radDropDownListFileTypes.Anchor = AnchorConstants.AnchorsLeftTopRight;
             _formInitializer.SetFormDefaults(this, 535);
 
             radRadioButtonAllDocuments.IsChecked = true;

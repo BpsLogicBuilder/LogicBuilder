@@ -155,15 +155,17 @@
             this.radGroupBoxText.HeaderText = "Text";
             this.radGroupBoxText.Location = new System.Drawing.Point(8, 8);
             this.radGroupBoxText.Name = "radGroupBoxText";
+            this.radGroupBoxText.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
             this.radGroupBoxText.Size = new System.Drawing.Size(490, 87);
             this.radGroupBoxText.TabIndex = 0;
             this.radGroupBoxText.Text = "Text";
             // 
             // radTextBoxText
             // 
+            this.radTextBoxText.Dock = System.Windows.Forms.DockStyle.Top;
             this.radTextBoxText.Location = new System.Drawing.Point(15, 32);
             this.radTextBoxText.Name = "radTextBoxText";
-            this.radTextBoxText.Size = new System.Drawing.Size(457, 20);
+            this.radTextBoxText.Size = new System.Drawing.Size(460, 20);
             this.radTextBoxText.TabIndex = 0;
             this.radTextBoxText.TextChanged += new System.EventHandler(this.RadTextBoxText_TextChanged);
             // 

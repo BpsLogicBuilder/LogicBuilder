@@ -120,16 +120,18 @@
             this.radGroupBoxReplace.HeaderText = "Replace With";
             this.radGroupBoxReplace.Location = new System.Drawing.Point(8, 101);
             this.radGroupBoxReplace.Name = "radGroupBoxReplace";
+            this.radGroupBoxReplace.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
             this.radGroupBoxReplace.Size = new System.Drawing.Size(490, 87);
             this.radGroupBoxReplace.TabIndex = 1;
             this.radGroupBoxReplace.Text = "Replace With";
             // 
             // radDropDownListReplace
             // 
+            this.radDropDownListReplace.Dock = System.Windows.Forms.DockStyle.Top;
             this.radDropDownListReplace.DropDownAnimationEnabled = true;
             this.radDropDownListReplace.Location = new System.Drawing.Point(15, 32);
             this.radDropDownListReplace.Name = "radDropDownListReplace";
-            this.radDropDownListReplace.Size = new System.Drawing.Size(457, 20);
+            this.radDropDownListReplace.Size = new System.Drawing.Size(460, 20);
             this.radDropDownListReplace.TabIndex = 1;
             this.radDropDownListReplace.TextChanged += new System.EventHandler(this.RadDropDownListReplace_TextChanged);
             // 
@@ -137,19 +139,22 @@
             // 
             this.radGroupBoxFind.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBoxFind.Controls.Add(this.radDropDownListFind);
+            this.radGroupBoxFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBoxFind.HeaderText = "Find Text";
             this.radGroupBoxFind.Location = new System.Drawing.Point(8, 8);
             this.radGroupBoxFind.Name = "radGroupBoxFind";
-            this.radGroupBoxFind.Size = new System.Drawing.Size(486, 79);
+            this.radGroupBoxFind.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
+            this.radGroupBoxFind.Size = new System.Drawing.Size(490, 87);
             this.radGroupBoxFind.TabIndex = 0;
             this.radGroupBoxFind.Text = "Find Text";
             // 
             // radDropDownListFind
             // 
+            this.radDropDownListFind.Dock = System.Windows.Forms.DockStyle.Top;
             this.radDropDownListFind.DropDownAnimationEnabled = true;
             this.radDropDownListFind.Location = new System.Drawing.Point(15, 32);
             this.radDropDownListFind.Name = "radDropDownListFind";
-            this.radDropDownListFind.Size = new System.Drawing.Size(457, 20);
+            this.radDropDownListFind.Size = new System.Drawing.Size(460, 20);
             this.radDropDownListFind.TabIndex = 1;
             this.radDropDownListFind.TextChanged += new System.EventHandler(this.RadDropDownListFind_TextChanged);
             // 
