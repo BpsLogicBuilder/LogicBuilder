@@ -16,7 +16,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
 {
-    internal partial class RadRuleSetDialog : RadForm
+    internal partial class RadRuleSetDialog : RadForm, IRadRuleSetDialog
     {
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;

@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddRulesExplorerCommands(this IServiceCollection services)
         {
             return services
-                .AddTransient<RadRuleSetDialog>()
+                .AddTransient<IRadRuleSetDialog, RadRuleSetDialog>()
                 .AddTransient<DeleteAllRulesCommand>()
                 .AddTransient<DeleteRulesExplorerFileCommand>()
                 .AddTransient<RefreshRulesExplorerCommand>()

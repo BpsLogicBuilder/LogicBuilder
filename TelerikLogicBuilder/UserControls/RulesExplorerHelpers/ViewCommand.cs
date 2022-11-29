@@ -156,8 +156,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
                         textViewer.ShowDialog(_mainWindow.Instance);
                     }
 
-                    using IScopedDisposableManager<RadRuleSetDialog> ruleSetDialogManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<RadRuleSetDialog>>();
-                    RadRuleSetDialog ruleSetDialog = ruleSetDialogManager.ScopedService;
+                    using IScopedDisposableManager<IRadRuleSetDialog> ruleSetDialogManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IRadRuleSetDialog>>();
+                    IRadRuleSetDialog ruleSetDialog = ruleSetDialogManager.ScopedService;
                     ruleSetDialog.Setup(applicationTypeInfo.ActivityType, ruleSet, applicationTypeInfo.AllAssemblies);
                     ruleSetDialog.ShowDialog(_mainWindow.Instance);
                 }
