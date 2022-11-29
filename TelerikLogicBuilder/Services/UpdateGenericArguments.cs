@@ -110,7 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private GenericConfigListResult UpdateGenericArgs(Type genericTypeDefinition, IList<string> genericArguments, IList<GenericConfigBase> genericArgs)
         {
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            ConfigureConstructorGenericArgumentsForm configureConstructorGenericArgumentsForm = disposableManager.GetConfigureConstructorGenericArgumentsForm
+            IConfigureGenericArgumentsForm configureConstructorGenericArgumentsForm = disposableManager.GetConfigureConstructorGenericArgumentsForm
             (
                 CreateXmlDocument(),//The type may not have a configured constructor so just create the document
                 genericArguments,

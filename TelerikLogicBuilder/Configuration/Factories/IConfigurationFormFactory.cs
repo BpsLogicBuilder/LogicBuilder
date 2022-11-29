@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     internal interface IConfigurationFormFactory : IDisposable
     {
         IConfigureConnectorObjectsForm GetConfigureConnectorObjectsForm(bool openedAsReadOnly);
-        ConfigureConstructorGenericArgumentsForm GetConfigureConstructorGenericArgumentsForm(XmlDocument xmlDocument,
+        IConfigureGenericArgumentsForm GetConfigureConstructorGenericArgumentsForm(XmlDocument xmlDocument,
             IList<string> configuredGenericArgumentNames,
             IList<ParameterBase> memberParameters,
             Type genericTypeDefinition);

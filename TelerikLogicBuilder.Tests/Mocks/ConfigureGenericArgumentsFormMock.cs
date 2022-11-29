@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -34,6 +35,8 @@ namespace TelerikLogicBuilder.Tests.Mocks
         public IList<ParameterBase> MemberParameters => throw new NotImplementedException();
 
         public DialogResult DialogResult => throw new NotImplementedException();
+
+        public IList<GenericConfigBase> GenericArguments => throw new NotImplementedException();
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
