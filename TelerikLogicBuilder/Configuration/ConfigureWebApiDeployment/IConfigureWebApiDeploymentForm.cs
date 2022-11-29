@@ -1,12 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 {
-    internal interface IConfigureWebApiDeploymentForm : IDisposable
+    internal interface IConfigureWebApiDeploymentForm : IForm
     {
-        DialogResult DialogResult { get; }
-        DialogResult ShowDialog(IWin32Window owner);
         WebApiDeployment WebApiDeployment { get; }
     }
 }
