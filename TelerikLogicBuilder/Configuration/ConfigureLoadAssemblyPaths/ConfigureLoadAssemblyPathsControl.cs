@@ -93,7 +93,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 
         private void Initialize()
         {
-            txtPath.Anchor = AnchorConstants.AnchorsLeftTopRight;
             CollapsePanelBorder(radPanelTxtPath);
             CollapsePanelBorder(radPanelAddButton);
 

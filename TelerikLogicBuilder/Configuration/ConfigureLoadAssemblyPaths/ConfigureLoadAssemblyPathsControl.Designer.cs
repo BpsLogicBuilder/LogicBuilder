@@ -80,10 +80,12 @@
             // txtPath
             // 
             this.txtPath.AutoSize = true;
-            this.txtPath.Location = new System.Drawing.Point(4, 3);
+            this.txtPath.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtPath.Location = new System.Drawing.Point(12, 3);
+            this.txtPath.Margin = new System.Windows.Forms.Padding(0);
             this.txtPath.Name = "txtPath";
             this.txtPath.ReadOnly = false;
-            this.txtPath.Size = new System.Drawing.Size(581, 24);
+            this.txtPath.Size = new System.Drawing.Size(567, 24);
             this.txtPath.TabIndex = 0;
             // 
             // radGroupBoxAddPath
@@ -105,6 +107,7 @@
             this.radPanelTxtPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelTxtPath.Location = new System.Drawing.Point(2, 18);
             this.radPanelTxtPath.Name = "radPanelTxtPath";
+            this.radPanelTxtPath.Padding = new System.Windows.Forms.Padding(12, 3, 12, 0);
             this.radPanelTxtPath.Size = new System.Drawing.Size(591, 35);
             this.radPanelTxtPath.TabIndex = 1;
             // 
@@ -126,13 +129,13 @@
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Update";
             // 
-            // LoadAssemblyPathsControl
+            // ConfigureLoadAssemblyPathsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radGroupBoxPaths);
             this.Controls.Add(this.radGroupBoxAddPath);
-            this.Name = "LoadAssemblyPathsControl";
+            this.Name = "ConfigureLoadAssemblyPathsControl";
             this.Size = new System.Drawing.Size(729, 237);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPaths)).EndInit();
             this.radGroupBoxPaths.ResumeLayout(false);
