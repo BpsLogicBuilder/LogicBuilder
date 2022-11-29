@@ -26,10 +26,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
         {
             this.Text = ApplicationProperties.Name;
             
-            //radPanelLabel.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            //radPanelProgressBar.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            //radButtonCancel.Anchor = AnchorConstants.AnchorsLeftTopRight;
-
             _formInitializer.SetProgressFormDefaults(this, 288);
         }
 
