@@ -78,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 Task ConfigureConnectorObjects(CancellationTokenSource cancellationTokenSource)
                 {
                     using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-                    ConfigureConnectorObjectsForm configureConnectorObjectsForm = disposableManager.GetConfigureConnectorObjectsForm(openedReadonly);
+                    IConfigureConnectorObjectsForm configureConnectorObjectsForm = disposableManager.GetConfigureConnectorObjectsForm(openedReadonly);
                     configureConnectorObjectsForm.ShowDialog(_mainWindow.Instance);
 
                     return Task.CompletedTask;

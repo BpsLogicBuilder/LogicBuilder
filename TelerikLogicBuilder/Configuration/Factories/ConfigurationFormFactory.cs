@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
     internal class ConfigurationFormFactory : IConfigurationFormFactory
     {
         private IDisposable? _scopedService;
-        private readonly Func<bool, ConfigureConnectorObjectsForm> _getConfigureConnectorObjectsForm;
+        private readonly Func<bool, IConfigureConnectorObjectsForm> _getConfigureConnectorObjectsForm;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> _getConfigureConstructorGenericArgumentsForm;
         private readonly Func<IList<string>, ConfigureExcludedModulesForm> _getConfigureExcludedModules;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
@@ -27,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
 
         public ConfigurationFormFactory(
             IServiceScopeFactory serviceScopeFactory,
-            Func<bool, ConfigureConnectorObjectsForm> getConfigureConnectorObjectsForm,
+            Func<bool, IConfigureConnectorObjectsForm> getConfigureConnectorObjectsForm,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> getConfigureConstructorGenericArgumentsForm,
             Func<IList<string>, ConfigureExcludedModulesForm> getConfigureExcludedModules,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> getConfigureFunctionGenericArgumentsForm,
@@ -45,10 +45,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             _getConfigureWebApiDeployment = getConfigureWebApiDeployment;
         }
 
-        public ConfigureConnectorObjectsForm GetConfigureConnectorObjectsForm(bool openedAsReadOnly)
+        public IConfigureConnectorObjectsForm GetConfigureConnectorObjectsForm(bool openedAsReadOnly)
         {
             _scopedService = _getConfigureConnectorObjectsForm(openedAsReadOnly);
-            return (ConfigureConnectorObjectsForm)_scopedService;
+            return (IConfigureConnectorObjectsForm)_scopedService;
         }
 
         public ConfigureConstructorGenericArgumentsForm GetConfigureConstructorGenericArgumentsForm(

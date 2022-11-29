@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<IConfigurationFormFactory, ConfigurationFormFactory>()
-                .AddTransient<Func<bool, ConfigureConnectorObjectsForm>>
+                .AddTransient<Func<bool, IConfigureConnectorObjectsForm>>
                 (
                     provider =>
                     openedAsReadOnly => new ConfigureConnectorObjectsForm
