@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<IList<string>, IConfigureExcludedModulesForm> _getConfigureExcludedModules;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
         //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
-        private readonly Func<IList<string>, ConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
+        private readonly Func<IList<string>, IConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
         private readonly Func<bool, ConfigureProjectPropertiesForm> _getConfigureProjectProperties;
         private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
         private readonly IServiceScope _scope;
@@ -31,10 +31,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Func<bool, IConfigureConnectorObjectsForm> getConfigureConnectorObjectsForm,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> getConfigureConstructorGenericArgumentsForm,
             //using the concrete type ConfigureConstructorGenericArgumentsForm here to be distinct from ConfigureFunctionGenericArgumentsForm
+
             Func<IList<string>, IConfigureExcludedModulesForm> getConfigureExcludedModules,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> getConfigureFunctionGenericArgumentsForm,
             //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
-            Func<IList<string>, ConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
+
+            Func<IList<string>, IConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
             Func<bool, ConfigureProjectPropertiesForm> getConfigureProjectProperties,
             Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
         {
@@ -76,10 +78,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             return (IConfigureGenericArgumentsForm)_scopedService;
         }
 
-        public ConfigureLoadAssemblyPathsForm GetConfigureLoadAssemblyPaths(IList<string> existingPaths)
+        public IConfigureLoadAssemblyPathsForm GetConfigureLoadAssemblyPaths(IList<string> existingPaths)
         {
             _scopedService = _getConfigureLoadAssemblyPaths(existingPaths);
-            return (ConfigureLoadAssemblyPathsForm)_scopedService;
+            return (IConfigureLoadAssemblyPathsForm)_scopedService;
         }
 
         public ConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly)

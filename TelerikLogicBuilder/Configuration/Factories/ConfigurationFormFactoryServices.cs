@@ -97,7 +97,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         genericTypeDefinition
                     )
                 )
-                .AddTransient<Func<IList<string>, ConfigureLoadAssemblyPathsForm>>
+                .AddTransient<Func<IList<string>, IConfigureLoadAssemblyPathsForm>>
                 (
                     provider =>
                     existingPaths => new ConfigureLoadAssemblyPathsForm

@@ -46,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
                 throw _exceptionHelper.CriticalException("{F51FEA03-D7DC-4514-93BC-61DCB915E8B4}");
 
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            ConfigureLoadAssemblyPathsForm configureLoadAssemblyPaths = disposableManager.GetConfigureLoadAssemblyPaths
+            IConfigureLoadAssemblyPathsForm configureLoadAssemblyPaths = disposableManager.GetConfigureLoadAssemblyPaths
             (
                 _xmlDocumentHelpers.GetChildElements
                 (
