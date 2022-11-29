@@ -128,6 +128,7 @@
             this.radPanelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelTop.Location = new System.Drawing.Point(0, 0);
             this.radPanelTop.Name = "radPanelTop";
+            this.radPanelTop.Padding = new System.Windows.Forms.Padding(10);
             this.radPanelTop.Size = new System.Drawing.Size(943, 498);
             this.radPanelTop.TabIndex = 2;
             // 
@@ -138,10 +139,10 @@
             this.radGroupBoxTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBoxTop.HeaderMargin = new System.Windows.Forms.Padding(1);
             this.radGroupBoxTop.HeaderText = "Select Documents";
-            this.radGroupBoxTop.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBoxTop.Location = new System.Drawing.Point(10, 10);
             this.radGroupBoxTop.Name = "radGroupBoxTop";
             this.radGroupBoxTop.Padding = new System.Windows.Forms.Padding(2, 21, 2, 2);
-            this.radGroupBoxTop.Size = new System.Drawing.Size(943, 498);
+            this.radGroupBoxTop.Size = new System.Drawing.Size(923, 478);
             this.radGroupBoxTop.TabIndex = 1;
             this.radGroupBoxTop.Text = "Select Documents";
             // 
@@ -150,12 +151,12 @@
             this.radTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTreeView.Location = new System.Drawing.Point(2, 21);
             this.radTreeView.Name = "radTreeView";
-            this.radTreeView.Size = new System.Drawing.Size(939, 475);
+            this.radTreeView.Size = new System.Drawing.Size(919, 455);
             this.radTreeView.SpacingBetweenNodes = -1;
             this.radTreeView.TabIndex = 0;
             this.radTreeView.NodeExpandedChanged += new Telerik.WinControls.UI.RadTreeView.TreeViewEventHandler(this.RadTreeView_NodeExpandedChanged);
             // 
-            // SelectDocumentsFormNew
+            // SelectDocumentsForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -163,7 +164,7 @@
             this.ClientSize = new System.Drawing.Size(943, 648);
             this.Controls.Add(this.radPanelTop);
             this.Controls.Add(this.radPanelBottom);
-            this.Name = "SelectDocumentsFormNew";
+            this.Name = "SelectDocumentsForm";
             // 
             // 
             // 
