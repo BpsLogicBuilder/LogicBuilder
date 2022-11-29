@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    internal interface IConfigureLoadAssemblyPathsForm : IForm, IDisposable
+    internal interface IConfigureLoadAssemblyPathsForm : IForm
     {
         IList<string> Paths { get; }
         void ClearMessage();

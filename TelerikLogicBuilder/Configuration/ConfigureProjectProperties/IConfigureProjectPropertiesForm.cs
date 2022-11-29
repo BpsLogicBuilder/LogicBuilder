@@ -1,9 +1,10 @@
-﻿using System.Xml;
+﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
+using System.Xml;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 {
-    internal interface IConfigureProjectPropertiesForm
+    internal interface IConfigureProjectPropertiesForm : IForm
     {
         RadTreeView TreeView { get; }
         XmlDocument XmlDocument { get; }

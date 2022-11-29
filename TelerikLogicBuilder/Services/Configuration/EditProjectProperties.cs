@@ -79,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 }
 
                 using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-                ConfigureProjectPropertiesForm configureProjectProperties = disposableManager.GetConfigureProjectProperties(openedReadonly);
+                IConfigureProjectPropertiesForm configureProjectProperties = disposableManager.GetConfigureProjectProperties(openedReadonly);
                 configureProjectProperties.ShowDialog(_mainWindow.Instance);
 
                 if (!openedReadonly && configureProjectProperties.DialogResult == DialogResult.OK)

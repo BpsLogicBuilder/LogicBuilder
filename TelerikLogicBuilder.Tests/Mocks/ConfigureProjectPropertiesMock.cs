@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
@@ -22,8 +23,15 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public XmlDocument XmlDocument { get; }
 
+        public DialogResult DialogResult => throw new System.NotImplementedException();
+
         public void ClearMessage()
         {
+        }
+
+        public void Dispose()
+        {
+            throw new System.NotImplementedException();
         }
 
         public void SetErrorMessage(string message)
@@ -32,6 +40,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public void SetMessage(string message, string title = "")
         {
+        }
+
+        public DialogResult ShowDialog(IWin32Window owner)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void ValidateXmlDocument()

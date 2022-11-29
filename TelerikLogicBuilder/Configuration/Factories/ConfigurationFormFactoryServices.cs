@@ -108,7 +108,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         existingPaths
                     )
                 )
-                .AddTransient<Func<bool, ConfigureProjectPropertiesForm>>
+                .AddTransient<Func<bool, IConfigureProjectPropertiesForm>>
                 (
                     provider =>
                     openedAsReadOnly => new ConfigureProjectPropertiesForm

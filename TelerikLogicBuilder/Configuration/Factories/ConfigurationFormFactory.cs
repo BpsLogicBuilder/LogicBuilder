@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
         //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
         private readonly Func<IList<string>, IConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
-        private readonly Func<bool, ConfigureProjectPropertiesForm> _getConfigureProjectProperties;
+        private readonly Func<bool, IConfigureProjectPropertiesForm> _getConfigureProjectProperties;
         private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
         private readonly IServiceScope _scope;
 
@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
 
             Func<IList<string>, IConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
-            Func<bool, ConfigureProjectPropertiesForm> getConfigureProjectProperties,
+            Func<bool, IConfigureProjectPropertiesForm> getConfigureProjectProperties,
             Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
         {
             _scope = serviceScopeFactory.CreateScope();
@@ -84,10 +84,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             return (IConfigureLoadAssemblyPathsForm)_scopedService;
         }
 
-        public ConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly)
+        public IConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly)
         {
             _scopedService = _getConfigureProjectProperties(openedAsReadOnly);
-            return (ConfigureProjectPropertiesForm)_scopedService;
+            return (IConfigureProjectPropertiesForm)_scopedService;
         }
 
         public IConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment)
