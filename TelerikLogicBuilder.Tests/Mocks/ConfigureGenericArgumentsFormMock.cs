@@ -2,10 +2,10 @@
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
@@ -33,9 +33,16 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public IList<ParameterBase> MemberParameters => throw new NotImplementedException();
 
+        public DialogResult DialogResult => throw new NotImplementedException();
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
         {
             throw new NotImplementedException();
         }
@@ -47,6 +54,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
         }
 
         public void SetMessage(string message, string title = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public DialogResult ShowDialog(IWin32Window owner)
         {
             throw new NotImplementedException();
         }
