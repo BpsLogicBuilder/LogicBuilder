@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         #region Variables
         private static MDIParent? mdiParent;
-        private static Form? splashScreen;
+        private static ISplashScreen? splashScreen;
         #endregion Variables
 
         public static IServiceProvider ServiceProvider { get; set; }
@@ -93,7 +93,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private static void ShowSplashScreen()
         {
-            splashScreen = ServiceProvider.GetRequiredService<SplashScreen>();
+            splashScreen = ServiceProvider.GetRequiredService<ISplashScreen>();
             splashScreen.Show();
         }
 

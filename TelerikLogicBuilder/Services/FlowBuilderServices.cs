@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IResultMessageBuilder, ResultMessageBuilder>()
                 .AddSingleton<IShapeDataCellManager, ShapeDataCellManager>()
                 .AddSingleton<IShapeXmlHelper, ShapeXmlHelper>()
-                .AddTransient<SplashScreen>()
+                .AddTransient<ISplashScreen, SplashScreen>()
                 .AddSingleton<IStringHelper, StringHelper>()
                 .AddSingleton<IThemeManager, ThemeManager>()
                 .AddSingleton<ITreeViewService, TreeViewService>()

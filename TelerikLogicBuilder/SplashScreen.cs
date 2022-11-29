@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder
 {
-    internal partial class SplashScreen : Telerik.WinControls.UI.RadForm
+    internal partial class SplashScreen : Telerik.WinControls.UI.RadForm, ISplashScreen
     {
         private readonly IFormInitializer _formInitializer;
         public SplashScreen(IFormInitializer formInitializer)
