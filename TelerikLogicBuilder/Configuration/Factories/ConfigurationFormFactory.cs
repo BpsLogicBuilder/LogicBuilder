@@ -70,10 +70,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             return (IConfigureExcludedModulesForm)_scopedService;
         }
 
-        public ConfigureFunctionGenericArgumentsForm GetConfigureFunctionGenericArgumentsForm(XmlDocument xmlDocument, IList<string> configuredGenericArgumentNames, IList<ParameterBase> memberParameters, Type genericTypeDefinition)
+        public IConfigureGenericArgumentsForm GetConfigureFunctionGenericArgumentsForm(XmlDocument xmlDocument, IList<string> configuredGenericArgumentNames, IList<ParameterBase> memberParameters, Type genericTypeDefinition)
         {
             _scopedService = _getConfigureFunctionGenericArgumentsForm(xmlDocument, configuredGenericArgumentNames, memberParameters, genericTypeDefinition);
-            return (ConfigureFunctionGenericArgumentsForm)_scopedService;
+            return (IConfigureGenericArgumentsForm)_scopedService;
         }
 
         public ConfigureLoadAssemblyPathsForm GetConfigureLoadAssemblyPaths(IList<string> existingPaths)
