@@ -3,11 +3,16 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
+using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
+using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 {
-    internal partial class SelectDocumentsForm : Telerik.WinControls.UI.RadForm, ISelectDocumentsForm
+    internal partial class SelectDocumentsForm : RadForm, ISelectDocumentsForm
     {
         private readonly IFormInitializer _formInitializer;
         private readonly IGetAllCheckedNodes _getAllCheckedNodeNames;
@@ -32,39 +37,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         public IList<string> SourceFiles => _getAllCheckedNodeNames.GetNames(radTreeView.Nodes[0]);
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
-            radButtonOk.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            radButtonCancel.Anchor = AnchorConstants.AnchorsLeftTopRight;
             _formInitializer.SetFormDefaults(this, 648);
             _selectDocunentsTreeViewBuilder.Build(radTreeView);
 
-            radButtonOk.DialogResult = DialogResult.OK;
-            radButtonCancel.DialogResult = DialogResult.Cancel;
+            btnOk.DialogResult = DialogResult.OK;
+            btnCancel.DialogResult = DialogResult.Cancel;
+            CollapsePanelBorder(radPanelBottom);
+            CollapsePanelBorder(radPanelButtons);
+            CollapsePanelBorder(radPanelMessages);
+            CollapsePanelBorder(radPanelTop);
         }
 
         private void InitializeDialogFormMessageControl()
         {
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerMain)).BeginInit();
-            this.radSplitContainerMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).BeginInit();
-            this.splitPanelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
+            ((ISupportInitialize)(this.radPanelMessages)).BeginInit();
             this.radPanelMessages.SuspendLayout();
-            this.SuspendLayout();
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
+            _dialogFormMessageControl.Location = new Point(0, 0);
             this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerMain)).EndInit();
-            this.radSplitContainerMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).EndInit();
-            this.splitPanelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
-            this.ResumeLayout(false);
+            ((ISupportInitialize)(this.radPanelMessages)).EndInit();
+            this.radPanelMessages.ResumeLayout(true);
         }
 
         private void RadTreeView_NodeExpandedChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
@@ -73,8 +73,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
                 || _treeViewService.IsFileNode(e.Node))/*NodeExpandedChanged runs for file nodes on double click*/
                 return;
 
-            e.Node.ImageIndex = e.Node.Expanded 
-                ? ImageIndexes.OPENEDFOLDERIMAGEINDEX 
+            e.Node.ImageIndex = e.Node.Expanded
+                ? ImageIndexes.OPENEDFOLDERIMAGEINDEX
                 : ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
         }
     }
