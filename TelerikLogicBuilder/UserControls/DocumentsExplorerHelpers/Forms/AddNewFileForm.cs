@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms
@@ -46,19 +48,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
                 if (!extentionsDictionary.TryGetValue(radListView1.SelectedItems[0].ImageIndex, out string? extension))
                     throw _exceptionHelper.CriticalException("{7CECE580-2566-4702-8C34-67315FC8836B}");
 
-                return radTextBoxFileName.Text.ToLowerInvariant().EndsWith(extension) 
-                        ? radTextBoxFileName.Text 
+                return radTextBoxFileName.Text.ToLowerInvariant().EndsWith(extension)
+                        ? radTextBoxFileName.Text
                         : $"{radTextBoxFileName.Text}{extension}";
             }
         }
+
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
 
-            radGroupBoxFileType.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
-            radLabelFileName.Anchor = AnchorConstants.AnchorsLeftBottom;
-            radTextBoxFileName.Anchor = AnchorConstants.AnchorsLeftRightBottom;
             _formInitializer.SetFormDefaults(this, 557);
 
             radTextBoxFileName.TextChanged += RadTextBoxFileName_TextChanged;
@@ -78,10 +80,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             radListView1.SelectedIndex = 0;
 
             this.ActiveControl = radTextBoxFileName;
-            this.AcceptButton = radButtonOk;
+            this.AcceptButton = btnOk;
 
-            this.radButtonOk.DialogResult = DialogResult.OK;
-            this.radButtonCancel.DialogResult = DialogResult.Cancel;
+            this.btnOk.DialogResult = DialogResult.OK;
+            this.btnCancel.DialogResult = DialogResult.Cancel;
+
+            CollapsePanelBorder(radPanelBottom);
+            CollapsePanelBorder(radPanelButtons);
+            CollapsePanelBorder(radPanelFill);
+            CollapsePanelBorder(radPanelMessages);
+            CollapsePanelBorder(radPanelTextBox);
 
             static ListViewDataItem GetListViewDataItem(string text, int imageIndex)
                 => new(text)
@@ -95,38 +103,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private void InitializeDialogFormMessageControl()
         {
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
             this.radPanelMessages.SuspendLayout();
-            this.SuspendLayout();
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new Point(0, 0);
             this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
-            this.ResumeLayout(false);
+            this.radPanelMessages.ResumeLayout(true);
         }
 
         private void RadTextBoxFileName_TextChanged(object? sender, EventArgs e)
         {
             if (radTextBoxFileName.Text.Trim().Length == 0)
             {
-                radButtonOk.Enabled = false;
+                btnOk.Enabled = false;
             }
             else if (!Regex.IsMatch(radTextBoxFileName.Text, RegularExpressions.FILENAME))
             {
                 _dialogFormMessageControl.SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.invalidFileNameMessageFormat, radLabelFileName.Text));
-                radButtonOk.Enabled = false;
+                btnOk.Enabled = false;
             }
             else
             {
                 _dialogFormMessageControl.ClearMessage();
-                radButtonOk.Enabled = true;
+                btnOk.Enabled = true;
             }
         }
 
