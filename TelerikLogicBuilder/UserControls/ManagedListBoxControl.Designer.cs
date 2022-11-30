@@ -132,15 +132,16 @@
             this.radPanelListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelListBox.Location = new System.Drawing.Point(0, 0);
             this.radPanelListBox.Name = "radPanelListBox";
+            this.radPanelListBox.Padding = new System.Windows.Forms.Padding(9, 9, 3, 9);
             this.radPanelListBox.Size = new System.Drawing.Size(576, 168);
             this.radPanelListBox.TabIndex = 5;
             // 
             // listBox
             // 
             this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox.Location = new System.Drawing.Point(0, 0);
+            this.listBox.Location = new System.Drawing.Point(9, 9);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(576, 168);
+            this.listBox.Size = new System.Drawing.Size(564, 150);
             this.listBox.TabIndex = 0;
             // 
             // ManagedListBoxControl
