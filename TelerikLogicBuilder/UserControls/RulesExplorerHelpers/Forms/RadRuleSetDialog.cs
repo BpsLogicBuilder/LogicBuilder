@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using LogicBuilder.Workflow.Activities.Rules;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -51,10 +52,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             InitializeFields(ruleSet);
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
         private void CollectValidationErrors(RuleSet ruleSet)
         {
             if (ruleValidation == null)
-                throw _exceptionHelper.CriticalException("{AF773FC1-C139-44C7-BA30-C7F894BE48F9}");
+                throw _exceptionHelper.CriticalException("{8E3A26B9-83B4-41AE-AA83-0F74408DCA43}");
 
             try
             {
@@ -82,15 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
         {
             InitializeDialogFormMessageControl();
 
-            radGroupBoxRuleSet.Anchor = AnchorConstants.AnchorsLeftTopRightBottom;
-            radGroupBoxRule.Anchor = AnchorConstants.AnchorsLeftRightBottom;
-            tableLayoutPanel1.Anchor = AnchorConstants.AnchorsLeftTop;
-            radTextBoxConditions.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            radTextBoxActions.Anchor = AnchorConstants.AnchorsLeftTopRight;
-            radButtonClose.Anchor = AnchorConstants.AnchorsRightBottom;
             _formInitializer.SetFormDefaults(this, 789);
-            ((BorderPrimitive)radPanelBottom.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
-            ((BorderPrimitive)radPanelBottomFill.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
             ((Control)_dialogFormMessageControl).Padding = new Padding(6, 0, 3, 0);
             radPanelBottomFill.Padding = new Padding(6, 0, 0, 0);
@@ -134,25 +130,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             radLabelName.Font = new Font(radLabelName.Font, FontStyle.Bold);
             radLabelPriority.Font = new Font(radLabelPriority.Font, FontStyle.Bold);
             radButtonClose.DialogResult = DialogResult.Cancel;
+
+            CollapsePanelBorder(radPanelBottom);
+            CollapsePanelBorder(radPanelBottomFill);
+            CollapsePanelBorder(radPanelCloseButton);
+            CollapsePanelBorder(radPanelFill);
+            CollapsePanelBorder(radPanelRuleFillLeft);
+            CollapsePanelBorder(radPanelRuleFillRight);
+            CollapsePanelBorder(radPanelRuleSetFill);
+            CollapsePanelBorder(radPanelRuleSetTop);
+            CollapsePanelBorder(radPanelRuleSetTopLeft);
+            CollapsePanelBorder(radPanelRuleSetTopFill);
         }
 
         private void InitializeDialogFormMessageControl()
         {
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottomFill)).BeginInit();
+            ((ISupportInitialize)(this.radPanelBottomFill)).BeginInit();
             this.radPanelBottomFill.SuspendLayout();
-            this.SuspendLayout();
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new Point(0, 0);
             this.radPanelBottomFill.Controls.Add((Control)_dialogFormMessageControl);
 
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottomFill)).EndInit();
-            this.radPanelBottomFill.ResumeLayout(false);
-            this.ResumeLayout(false);
+            ((ISupportInitialize)(this.radPanelBottomFill)).EndInit();
+            this.radPanelBottomFill.ResumeLayout(true);
         }
 
         private void InitializeFields(RuleSet ruleSet)
@@ -178,7 +179,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             if (ruleSet.Rules.Count > 0)
                 radListViewRuleSet.SelectedIndex = 0;
 
-            static string GetRulePreview(Rule rule) 
+            static string GetRulePreview(Rule rule)
                 => $"IF {rule.Condition} THEN {string.Join(" ", rule.ThenActions.Select(t => t.ToString()))}";
         }
 
@@ -228,7 +229,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
                                             .Replace(Environment.NewLine, "\n")
                                             .Replace("\n", Environment.NewLine) ?? string.Empty;
             radTextBoxActions.Text = string.Join(Environment.NewLine, rule.ThenActions.Select(t => t.ToString()));
-        } 
+        }
         #endregion Event Handlers
     }
 }
