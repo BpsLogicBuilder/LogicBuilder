@@ -22,22 +22,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
             ((ISupportInitialize)(this.radPanelMessages)).BeginInit();
             this.radPanelMessages.SuspendLayout();
-            this.SuspendLayout();
 
             _dialogFormMessageControl.Dock = DockStyle.Fill;
             _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
             this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
-            ((ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
             ((ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            this.radPanelMessages.ResumeLayout(true);
         }
 
         private string regularExpression = string.Empty;
