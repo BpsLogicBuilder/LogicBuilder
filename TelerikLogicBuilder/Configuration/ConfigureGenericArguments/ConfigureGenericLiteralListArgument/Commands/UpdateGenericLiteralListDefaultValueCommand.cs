@@ -13,15 +13,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 {
     internal class UpdateGenericLiteralListDefaultValueCommand : ClickCommandBase
     {
+        private readonly RadDropDownList cmbLpLiteralType;
         private readonly RadTreeView treeView;
-        private readonly HelperButtonTextBox txtListLpDefaultValue;
         private readonly XmlDocument xmlDocument;
 
         public UpdateGenericLiteralListDefaultValueCommand(
             IConfigureGenericLiteralListArgumentControl configureGenericLiteralListArgumentControl)
         {
+            cmbLpLiteralType = configureGenericLiteralListArgumentControl.CmbListLpLiteralType;
             treeView = configureGenericLiteralListArgumentControl.TreeView;
-            txtListLpDefaultValue = configureGenericLiteralListArgumentControl.TxtListLpDefaultValue;
             xmlDocument = configureGenericLiteralListArgumentControl.XmlDocument;
         }
 
