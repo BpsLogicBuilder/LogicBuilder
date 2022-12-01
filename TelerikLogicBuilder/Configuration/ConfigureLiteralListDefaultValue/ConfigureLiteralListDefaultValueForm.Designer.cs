@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue
 {
-    partial class ConfigureLiteralDomainForm
+    partial class ConfigureLiteralListDefaultValueForm
     {
         /// <summary>
         /// Required designer variable.
@@ -55,7 +55,7 @@
             this.radPanelBottom.Location = new System.Drawing.Point(0, 258);
             this.radPanelBottom.Name = "radPanelBottom";
             this.radPanelBottom.Size = new System.Drawing.Size(943, 150);
-            this.radPanelBottom.TabIndex = 2;
+            this.radPanelBottom.TabIndex = 3;
             // 
             // radPanelMessages
             // 
@@ -124,7 +124,7 @@
             this.radPanelFill.Size = new System.Drawing.Size(943, 258);
             this.radPanelFill.TabIndex = 0;
             // 
-            // ConfigureLiteralDomainForm
+            // ConfigureLiteralListDefaultValueForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -132,12 +132,12 @@
             this.ClientSize = new System.Drawing.Size(943, 408);
             this.Controls.Add(this.radPanelFill);
             this.Controls.Add(this.radPanelBottom);
-            this.Name = "ConfigureLiteralDomainForm";
+            this.Name = "ConfigureLiteralListDefaultValueForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Configure Literal Domain";
+            this.Text = "Configure Default Values";
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();

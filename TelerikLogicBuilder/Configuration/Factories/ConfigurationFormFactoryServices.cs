@@ -7,6 +7,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
@@ -108,6 +110,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         existingDomainItems, 
+                        type
+                    )
+                )
+                .AddTransient<Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm>>
+                (
+                    provider =>
+                    (existingDefaultValueItems, type) => new ConfigureLiteralListDefaultValueForm
+                    (
+                        provider.GetRequiredService<IConfigureLiteralListDefaultValueControlFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        existingDefaultValueItems,
                         type
                     )
                 )

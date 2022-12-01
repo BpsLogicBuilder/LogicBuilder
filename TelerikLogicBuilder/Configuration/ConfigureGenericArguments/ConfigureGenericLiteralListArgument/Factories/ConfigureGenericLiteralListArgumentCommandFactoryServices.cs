@@ -17,6 +17,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     literalListGenericArgumentControl => new UpdateGenericLiteralListDefaultValueCommand
                     (
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         literalListGenericArgumentControl
                     )
                 )

@@ -15,9 +15,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
 {
     internal partial class ConfigureLiteralDomainControl : UserControl, IListBoxHost<LiteralDomainItem>, IConfigureLiteralDomainControl
     {
-        private readonly ILiteralDomainItemFactory _literalDomainItemFactory;
         private readonly IConfigureLiteralDomainCommandFactory _configureLiteralDomainCommandFactory;
         private readonly IConfigureLiteralDomainForm _configureLiteralDomainForm;
+        private readonly ILiteralDomainItemFactory _literalDomainItemFactory;
         private readonly IRadListBoxManager<LiteralDomainItem> radListBoxManager;
 
         public ConfigureLiteralDomainControl(

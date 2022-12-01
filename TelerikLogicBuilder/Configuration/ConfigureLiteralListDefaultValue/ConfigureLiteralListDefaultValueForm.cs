@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
@@ -10,35 +10,34 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue
 {
-    internal partial class ConfigureLiteralDomainForm : RadForm, IConfigureLiteralDomainForm
+    internal partial class ConfigureLiteralListDefaultValueForm : RadForm, IConfigureLiteralListDefaultValueForm
     {
         private readonly IFormInitializer _formInitializer;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
-        private readonly IConfigureLiteralDomainControl _configureLiteralDomainControl;
+        private readonly IConfigureLiteralListDefaultValueControl _configureLiteralListDefaultValueControl;
+        private readonly IList<string> existingDefaultValueItems;
 
-        private readonly IList<string> existingDomainItems;
-
-        public ConfigureLiteralDomainForm(
-            IConfigureLiteralDomainControlFactory configureLiteralDomainControlFactory,
+        public ConfigureLiteralListDefaultValueForm(
+            IConfigureLiteralListDefaultValueControlFactory configureLiteralListDefaultValueControlFactory,
             IFormInitializer formInitializer,
             IDialogFormMessageControl dialogFormMessageControl,
-            IList<string> existingDomainItems,
+            IList<string> existingDefaultValueItems,
             Type type)
         {
             InitializeComponent();
             _formInitializer = formInitializer;
             _dialogFormMessageControl = dialogFormMessageControl;
-            this.existingDomainItems = existingDomainItems;
+            this.existingDefaultValueItems = existingDefaultValueItems;
             Type = type;
-            _configureLiteralDomainControl = configureLiteralDomainControlFactory.GetConfigureLiteralDomainControl(this);
+            _configureLiteralListDefaultValueControl = configureLiteralListDefaultValueControlFactory.GetConfigureLiteralListDefaultValueControl(this);
             Initialize();
         }
 
-        public IList<string> DomainItems => _configureLiteralDomainControl.GetDomainItems();
-
         public Type Type { get; }
+
+        public IList<string> DefaultValueItems => _configureLiteralListDefaultValueControl.GetDefaultValueItems();
 
         public void ClearMessage()
         {
@@ -89,12 +88,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
         private void InitializeControls()
         {
             InitializeControl(this.radPanelMessages, (Control)_dialogFormMessageControl);
-            InitializeControl(this.radPanelFill, (Control)_configureLiteralDomainControl);
+            InitializeControl(this.radPanelFill, (Control)_configureLiteralListDefaultValueControl);
         }
 
         private void LoadListBox()
         {
-            _configureLiteralDomainControl.SetDomainItems(existingDomainItems);
+            _configureLiteralListDefaultValueControl.SetDefaultValueItems(existingDefaultValueItems);
         }
     }
 }

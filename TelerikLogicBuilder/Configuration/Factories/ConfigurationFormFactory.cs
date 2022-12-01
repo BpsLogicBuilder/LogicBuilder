@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
@@ -23,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
         //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
         private readonly Func<IList<string>, Type, IConfigureLiteralDomainForm> _getConfigureLiteralDomainForm;
+        private readonly Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> _getConfigureLiteralListDefaultValueForm;
         private readonly Func<IList<string>, IConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
         private readonly Func<bool, IConfigureProjectPropertiesForm> _getConfigureProjectProperties;
         private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
@@ -39,6 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
 
             Func<IList<string>, Type, IConfigureLiteralDomainForm> getConfigureLiteralDomainForm,
+            Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> getConfigureLiteralListDefaultValueForm,
             Func<IList<string>, IConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
             Func<bool, IConfigureProjectPropertiesForm> getConfigureProjectProperties,
             Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
@@ -49,6 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             _getConfigureExcludedModules = getConfigureExcludedModules;
             _getConfigureFunctionGenericArgumentsForm= getConfigureFunctionGenericArgumentsForm;
             _getConfigureLiteralDomainForm = getConfigureLiteralDomainForm;
+            _getConfigureLiteralListDefaultValueForm = getConfigureLiteralListDefaultValueForm;
             _getConfigureLoadAssemblyPaths = getConfigureLoadAssemblyPaths;
             _getConfigureProjectProperties = getConfigureProjectProperties;
             _getConfigureWebApiDeployment = getConfigureWebApiDeployment;
@@ -80,6 +84,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         {
             _scopedService = _getConfigureFunctionGenericArgumentsForm(xmlDocument, configuredGenericArgumentNames, memberParameters, genericTypeDefinition);
             return (IConfigureGenericArgumentsForm)_scopedService;
+        }
+
+        public IConfigureLiteralListDefaultValueForm GetConfigureLiteralListDefaultValueForm(IList<string> existingDefaultValueItems, Type type)
+        {
+            _scopedService = _getConfigureLiteralListDefaultValueForm(existingDefaultValueItems, type);
+            return (IConfigureLiteralListDefaultValueForm)_scopedService;
         }
 
         public IConfigureLiteralDomainForm GetConfigureLiteralDomainForm(IList<string> existingDomainItems, Type type)
