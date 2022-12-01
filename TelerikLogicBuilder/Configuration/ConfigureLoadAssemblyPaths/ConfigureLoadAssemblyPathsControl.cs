@@ -61,7 +61,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
         public void ClearMessage() 
             => _configureLoadAssemblyPaths.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) { }
+        public void DisableControlsDuringEdit(bool disable) 
+            => _configureLoadAssemblyPaths.DisableControlsDuringEdit(disable);
 
         public IList<string> GetPaths() 
             => ListBox.Items

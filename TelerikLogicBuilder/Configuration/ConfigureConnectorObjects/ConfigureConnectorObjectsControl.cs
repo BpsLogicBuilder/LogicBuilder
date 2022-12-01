@@ -72,7 +72,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
         public void ClearMessage()
             => configureConnectorObjectsForm.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) { }
+        public void DisableControlsDuringEdit(bool disable) 
+            => configureConnectorObjectsForm.DisableControlsDuringEdit(disable);
 
         public IList<string> GetObjectTypes() 
             => ListBox.Items.Select(i => ((ConnectorObjectListBoxItem)i.Value).Text).ToArray();

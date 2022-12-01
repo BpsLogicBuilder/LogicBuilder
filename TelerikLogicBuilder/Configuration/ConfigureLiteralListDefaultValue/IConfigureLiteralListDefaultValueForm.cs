@@ -1,10 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue
 {
-    internal interface IConfigureLiteralListDefaultValueForm : IForm
+    internal interface IConfigureLiteralListDefaultValueForm : IForm, IListBoxHostForm
     {
         IList<string> DefaultValueItems { get; }
         Type Type { get; }

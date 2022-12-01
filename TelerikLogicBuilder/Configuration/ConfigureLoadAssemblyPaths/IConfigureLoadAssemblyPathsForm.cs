@@ -1,10 +1,10 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
-using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 {
-    internal interface IConfigureLoadAssemblyPathsForm : IForm
+    internal interface IConfigureLoadAssemblyPathsForm : IForm, IListBoxHostForm
     {
         IList<string> Paths { get; }
         void ClearMessage();

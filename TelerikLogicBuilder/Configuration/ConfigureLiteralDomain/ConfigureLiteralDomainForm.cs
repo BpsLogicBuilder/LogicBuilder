@@ -45,6 +45,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
             _dialogFormMessageControl.ClearMessage();
         }
 
+        public void DisableControlsDuringEdit(bool disable)
+        {
+            radPanelButtons.Enabled = !disable;
+        }
+
         public void SetErrorMessage(string message)
         {
             _dialogFormMessageControl.SetErrorMessage(message);

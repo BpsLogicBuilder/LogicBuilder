@@ -66,7 +66,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaul
         public void ClearMessage()
             => _configureLiteralListDefaultValueForm.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) { }
+        public void DisableControlsDuringEdit(bool disable) 
+            => _configureLiteralListDefaultValueForm.DisableControlsDuringEdit(disable);
 
         public IList<string> GetDefaultValueItems()
             => ListBox.Items

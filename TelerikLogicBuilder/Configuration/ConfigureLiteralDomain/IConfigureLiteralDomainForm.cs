@@ -1,10 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
 {
-    internal interface IConfigureLiteralDomainForm : IForm
+    internal interface IConfigureLiteralDomainForm : IForm, IListBoxHostForm
     {
         IList<string> DomainItems { get; }
         Type Type { get; }

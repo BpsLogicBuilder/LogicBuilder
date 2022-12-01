@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
@@ -65,7 +66,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
         public void ClearMessage()
             => _configureLiteralDomainForm.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) { }
+        public void DisableControlsDuringEdit(bool disable) 
+            => _configureLiteralDomainForm.DisableControlsDuringEdit(disable);
 
         public IList<string> GetDomainItems()
             => ListBox.Items
