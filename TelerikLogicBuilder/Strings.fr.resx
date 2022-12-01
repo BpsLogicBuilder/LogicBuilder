@@ -608,6 +608,9 @@
 	<data name="duplicateOutgoingConnector" xml:space="preserve">
     <value>Only one outgoing connector per application is valid.FR</value>
   </data>
+	<data name="emptyStringVisibleText" xml:space="preserve">
+    <value>Empty StringFR</value>
+  </data>
 	<data name="endShapeIncoming" xml:space="preserve">
     <value>End Flow, Module End and Terminate Shapes require at least one incoming connector.FR</value>
   </data>
@@ -1129,6 +1132,10 @@
   </data>
   <data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.FR</value>
+  </data>
+	<data name="notValidTypeFormat" xml:space="preserve">
+    <value>"{0}" is not a valid {1}.FR</value>
+    <comment>0=invalid value;1=TypeName.</comment>
   </data>
 	<data name="objectGenericArgDescription" xml:space="preserve">
     <value>ObjectFR</value>

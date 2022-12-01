@@ -45,6 +45,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigureGenericArgumentsCommandFactories()
                 .AddConfigureGenericArgumentsControlFactories()
                 .AddConfigureGenericLiteralArgumentCommandFactories()
+                .AddConfigureLiteralDomainCommandFactories()
+                .AddConfigureLiteralDomainControlFactories()
                 .AddConfigureGenericLiteralListArgumentCommandFactories()
                 .AddConfigureLoadAssemblyPathsCommandFactories()
                 .AddConfigureLoadAssemblyPathsControlFactories()
@@ -56,6 +58,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigurationFormFactories()
                 .AddConnectorObjectsItemFactories()
                 .AddFragmentItemFactories()
+                .AddLiteralDomainItemFactories()
                 .AddLoadAssemblyPathsItemFactories()
                 .AddProjectPropertiesItemFactories()
                 .AddWebApiDeploymentItemFactories();

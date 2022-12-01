@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralArgument;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralArgument.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.ConfigureGenericLiteralArgument.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -14,9 +15,13 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<Func<IConfigureGenericLiteralArgumentControl, UpdateGenericLiteralDomainCommand>>
                 (
                     provider =>
-                    literalGenericArhumentControl => new UpdateGenericLiteralDomainCommand
+                    literalGenericArgumentControl => new UpdateGenericLiteralDomainCommand
                     (
-                        literalGenericArhumentControl
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        literalGenericArgumentControl
                     )
                 );
         }

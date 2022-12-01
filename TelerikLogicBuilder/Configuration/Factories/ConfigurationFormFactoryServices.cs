@@ -5,6 +5,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
@@ -95,6 +97,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         configuredGenericArgumentNames,
                         memberParameters,
                         genericTypeDefinition
+                    )
+                )
+                .AddTransient<Func<IList<string>, Type, IConfigureLiteralDomainForm>>
+                (
+                    provider =>
+                    (existingDomainItems, type) => new ConfigureLiteralDomainForm
+                    (
+                        provider.GetRequiredService<IConfigureLiteralDomainControlFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        existingDomainItems, 
+                        type
                     )
                 )
                 .AddTransient<Func<IList<string>, IConfigureLoadAssemblyPathsForm>>

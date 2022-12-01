@@ -33,8 +33,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
             Initialize();
         }
 
-        public RadListControl ListBox => _loadAssemblyPathsControl.ListBox;
-
         public IList<string> Paths => _loadAssemblyPathsControl.GetPaths();
 
         public void ClearMessage()

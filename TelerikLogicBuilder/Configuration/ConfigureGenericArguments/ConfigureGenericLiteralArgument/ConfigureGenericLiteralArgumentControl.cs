@@ -71,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
         #region Properties
         public RadTreeView TreeView => configureGenericArgumentsForm.TreeView;
         public XmlDocument XmlDocument => configureGenericArgumentsForm.XmlDocument;
-        public HelperButtonTextBox TxtLpDomain => txtLpDomain;
+        public RadDropDownList CmbLpLiteralType => cmbLpLiteralType;
         #endregion Properties
 
         public void SetControlValues(RadTreeNode treeNode)

@@ -1654,6 +1654,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty String.
+        /// </summary>
+        internal static string emptyStringVisibleText {
+            get {
+                return ResourceManager.GetString("emptyStringVisibleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End Flow, Module End and Terminate Shapes require at least one incoming connector..
         /// </summary>
         internal static string endShapeIncoming {
@@ -4134,6 +4143,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string notImplementedMessageFormat {
             get {
                 return ResourceManager.GetString("notImplementedMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot; is not a valid {1}..
+        /// </summary>
+        internal static string notValidTypeFormat {
+            get {
+                return ResourceManager.GetString("notValidTypeFormat", resourceCulture);
             }
         }
         
