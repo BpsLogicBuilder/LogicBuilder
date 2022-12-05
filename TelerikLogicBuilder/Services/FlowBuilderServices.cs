@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<ICellXmlHelper, CellXmlHelper>()
                 .AddSingleton<ICheckSelectedApplication, CheckSelectedApplication>()
                 .AddSingleton<ICheckVisioConfiguration, CheckVisioConfiguration>()
+                .AddSingleton<ICompareImages, CompareImages>()
                 .AddSingleton<IConstructorTypeHelper, ConstructorTypeHelper>()
                 .AddSingleton<IDisplayResultMessages, DisplayResultMessages>()
                 .AddSingleton<IEncryption, Encryption>()

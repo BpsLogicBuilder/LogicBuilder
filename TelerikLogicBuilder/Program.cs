@@ -42,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
                         .AddIntellisense()
                         .AddReflection()
                         .AddRulesGenerator()
+                        .AddStateImageSetters()
                         .AddTreeViewBuiilders()
                         .AddTypeAutoCompleteCommandFactories()
                         .AddXmlTreeViewSynchronizers()
