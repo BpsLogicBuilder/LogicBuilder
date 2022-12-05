@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             configureGenericArgumentsForm.ValidateXmlDocument();
 
             RadTreeNode parentNode = existingTreeNode.Parent;
-            RadTreeNode newNode = _treeViewService.GetChildTreeNode
+            RadTreeNode newNode = _treeViewService.CreateChildTreeNode
             (
                 parentNode,
                 newXmlGenArgParameterNode.Name,

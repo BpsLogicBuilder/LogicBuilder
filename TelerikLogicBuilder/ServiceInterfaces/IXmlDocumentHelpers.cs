@@ -17,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         List<XmlElement> GetChildElements(XmlNode xmlNode, Func<XmlElement, bool>? filter = null, Func<IEnumerable<XmlElement>, IEnumerable<XmlElement>>? enumerableFunc = null);
         XmlElement GetDocumentElement(XmlDocument xmlDocument);
         string GetGenericArgumentTreeNodeDescription(XmlElement element);
+        string GetVariableTreeNodeDescription(XmlElement element);
         int GetImageIndex(XmlElement element);
         List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode);
         XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool>? filter = null);

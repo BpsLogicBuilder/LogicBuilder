@@ -255,7 +255,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void RadTreeView1_CreateNodeElement(object sender, CreateTreeNodeElementEventArgs e)
         {
-            e.NodeElement = new StateImageTreeNodeElement(_exceptionHelper);
+            e.NodeElement = new StateImageTreeNodeElement();
         }
 
         private void RadTreeView1_MouseDown(object? sender, MouseEventArgs e)

@@ -3,7 +3,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders
 {
-    internal interface IConfigureProjectPropertiesTreeViewBuilder
+    internal interface IConfigureVariablesTreeViewBuilder
     {
         void Build(RadTreeView treeView, XmlDocument xmlDocument);
     }

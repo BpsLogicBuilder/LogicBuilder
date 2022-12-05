@@ -23,7 +23,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         public void CanCreateConfigureProjectPropertiesTreeviewBuilder()
         {
             //arrange
-            IConfigureProjectPropertiesTreeviewBuilder service = serviceProvider.GetRequiredService<IConfigureProjectPropertiesTreeviewBuilder>();
+            IConfigureProjectPropertiesTreeViewBuilder service = serviceProvider.GetRequiredService<IConfigureProjectPropertiesTreeViewBuilder>();
 
             //assert
             Assert.NotNull(service);
@@ -33,7 +33,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         public void BuildTreeViewSucceeds()
         {
             //arrange
-            IConfigureProjectPropertiesTreeviewBuilder service = serviceProvider.GetRequiredService<IConfigureProjectPropertiesTreeviewBuilder>();
+            IConfigureProjectPropertiesTreeViewBuilder service = serviceProvider.GetRequiredService<IConfigureProjectPropertiesTreeViewBuilder>();
             RadTreeView radTreeView = new();
 
             //act

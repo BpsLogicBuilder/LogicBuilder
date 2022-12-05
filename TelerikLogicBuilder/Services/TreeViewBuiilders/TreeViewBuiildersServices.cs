@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IConfigurationExplorerTreeViewBuilder, ConfigurationExplorerTreeViewBuilder>()
                 .AddSingleton<IConfigureConstructorGenericArgumentsTreeViewBuilder, ConfigureConstructorGenericArgumentsTreeViewBuilder>()
                 .AddSingleton<IConfigureFunctionGenericArgumentsTreeViewBuilder, ConfigureFunctionGenericArgumentsTreeViewBuilder>()
-                .AddSingleton<IConfigureProjectPropertiesTreeviewBuilder, ConfigureProjectPropertiesTreeviewBuilder>()
+                .AddSingleton<IConfigureProjectPropertiesTreeViewBuilder, ConfigureProjectPropertiesTreeViewBuilder>()
                 .AddSingleton<IEmptyFolderRemover, EmptyFolderRemover>()
                 .AddSingleton<IExcludedModulesTreeViewBuilder, ExcludedModulesTreeViewBuilder>()
                 .AddSingleton<IGetAllCheckedNodes, GetAllCheckedNodes>()

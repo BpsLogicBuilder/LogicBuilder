@@ -1,17 +1,15 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using System;
 using System.Drawing;
+using System.Globalization;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Structures
 {
     internal class StateImageTreeNodeElement : TreeNodeElement
     {
-        private readonly IExceptionHelper _exceptionHelper;
-
-        public StateImageTreeNodeElement(IExceptionHelper exceptionHelper)
+        public StateImageTreeNodeElement()
         {
-            _exceptionHelper = exceptionHelper;
         }
 
         public Image? StateImage { get; set; }
@@ -28,13 +26,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
                 return this.Data.Image;
 
             int size = this.Data.Image.Width;
-
+            
             if (this.Data.Image.Height != size)
-                throw _exceptionHelper.CriticalException("{1A6B297D-640D-4F5B-A317-11A70333F1AE}");
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{1A6B297D-640D-4F5B-A317-11A70333F1AE}"));
             if (this.StateImage!.Width != size)
-                throw _exceptionHelper.CriticalException("{11E511D5-BC1A-454A-BF27-A3F92B6A1F59}");
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{11E511D5-BC1A-454A-BF27-A3F92B6A1F59}"));
             if (this.StateImage!.Height != size)
-                throw _exceptionHelper.CriticalException("{EB64AADD-4161-49D7-95EE-50FCA904922C}");
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{EB64AADD-4161-49D7-95EE-50FCA904922C}"));
 
             Bitmap bitmap = new(size * 2, size);
             Graphics graphics = Graphics.FromImage(bitmap);

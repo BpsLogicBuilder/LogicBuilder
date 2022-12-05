@@ -7,13 +7,13 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 {
-    internal class ConfigureProjectPropertiesTreeviewBuilder : IConfigureProjectPropertiesTreeviewBuilder
+    internal class ConfigureProjectPropertiesTreeViewBuilder : IConfigureProjectPropertiesTreeViewBuilder
     {
         private readonly IImageListService _imageListService;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ConfigureProjectPropertiesTreeviewBuilder(
+        public ConfigureProjectPropertiesTreeViewBuilder(
             IImageListService imageListService,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers)
@@ -50,9 +50,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         private void AddApplicationNodes(XmlElement applicationsElement, RadTreeNode rootNode)
         {
             _xmlDocumentHelpers
-                .GetChildElements(applicationsElement)
-                .OrderBy(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
-                .ToList()
+                .GetChildElements
+                (
+                    applicationsElement,
+                    null, 
+                    en => en.OrderBy(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                )
                 .ForEach
                 (
                     element =>

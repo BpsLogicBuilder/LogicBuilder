@@ -7,8 +7,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     internal interface ITreeViewService
     {
         RadTreeNode AddChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null);
+        TNode AddChildTreeNode<TNode>(TNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null) where TNode : RadTreeNode;
         bool CollectionIncludesNodeAndDescendant(IList<RadTreeNode> treeNodes);
-        RadTreeNode GetChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null);
+        RadTreeNode CreateChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null);
+        TNode CreateChildTreeNode<TNode>(TNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null) where TNode : RadTreeNode;
         RadTreeNode GetClosestNodeForSelectionAfterDelete(RadTreeNode treeNode);
         int GetInsertPosition(RadTreeNode[] treeNodeArray, RadTreeNode newNode, IComparer<RadTreeNode> treeNodeComparer);
         IList<RadTreeNode> GetSelectedNodes(RadTreeView treeView);

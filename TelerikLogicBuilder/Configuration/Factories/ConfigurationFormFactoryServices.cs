@@ -144,7 +144,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureProjectPropertiesControlFactory>(),
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IConfigureProjectPropertiesContextMenuCommandFactory>(),
-                        provider.GetRequiredService<IConfigureProjectPropertiesTreeviewBuilder>(),
+                        provider.GetRequiredService<IConfigureProjectPropertiesTreeViewBuilder>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IImageListService>(),

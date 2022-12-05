@@ -916,8 +916,14 @@
 	<data name="listOfLiteralsGenericArgDescription" xml:space="preserve">
     <value>List of LiteralsFR</value>
   </data>
+	<data name="listOfLiteralsVarNodeDescription" xml:space="preserve">
+    <value>List of Literals VariableFR</value>
+  </data>
 	<data name="listOfObjectsGenericArgDescription" xml:space="preserve">
     <value>List of ObjectsFR</value>
+  </data>
+	<data name="listOfObjectsVarNodeDescription" xml:space="preserve">
+    <value>List of Objects VariableFR</value>
   </data>
 	<data name="listParameterCountFormat" xml:space="preserve">
     <value>{0}: Count({1})FR</value>
@@ -950,6 +956,9 @@
 	<data name="literalParameterDescriptionFormat" xml:space="preserve">
     <value>{0}={1}FR</value>
     <comment>0=parameterName 1=parameterVisibleText</comment>
+  </data>
+	<data name="literalVarNodeDescription" xml:space="preserve">
+    <value>Literal VariableFR</value>
   </data>
 	<data name="loadingAssemblies" xml:space="preserve">
     <value>Reloading assemblies. Please wait.FR</value>
@@ -1139,6 +1148,9 @@
   </data>
 	<data name="objectGenericArgDescription" xml:space="preserve">
     <value>ObjectFR</value>
+  </data>
+	<data name="objectVarNodeDescription" xml:space="preserve">
+    <value>Object VariableFR</value>
   </data>
 	<data name="oneSearchOccurrence" xml:space="preserve">
     <value>1 found.FR</value>

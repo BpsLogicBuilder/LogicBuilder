@@ -3517,11 +3517,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of Literals Variable.
+        /// </summary>
+        internal static string listOfLiteralsVarNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfLiteralsVarNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of Objects.
         /// </summary>
         internal static string listOfObjectsGenericArgDescription {
             get {
                 return ResourceManager.GetString("listOfObjectsGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Objects Variable.
+        /// </summary>
+        internal static string listOfObjectsVarNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfObjectsVarNodeDescription", resourceCulture);
             }
         }
         
@@ -3594,6 +3612,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string literalParameterDescriptionFormat {
             get {
                 return ResourceManager.GetString("literalParameterDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal Variable.
+        /// </summary>
+        internal static string literalVarNodeDescription {
+            get {
+                return ResourceManager.GetString("literalVarNodeDescription", resourceCulture);
             }
         }
         
@@ -4161,6 +4188,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string objectGenericArgDescription {
             get {
                 return ResourceManager.GetString("objectGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object Variable.
+        /// </summary>
+        internal static string objectVarNodeDescription {
+            get {
+                return ResourceManager.GetString("objectVarNodeDescription", resourceCulture);
             }
         }
         

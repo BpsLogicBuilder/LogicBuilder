@@ -17,15 +17,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             _exceptionHelper = exceptionHelper;
         }
 
-        public RadTreeNode AddChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null)
+        public RadTreeNode AddChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null) 
+            => AddChildTreeNode<RadTreeNode>
+            (
+                parentTreeNode,
+                relativeXPath,
+                idAttributeName,
+                idAttributeValue,
+                imageIndex,
+                toolTipText,
+                nodeIndex
+            );
+
+        public TNode AddChildTreeNode<TNode>(TNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null) where TNode : RadTreeNode
         {
-            RadTreeNode treeNode = new()
-            {
-                ImageIndex = imageIndex,
-                Text = idAttributeValue,
-                Name = $"{parentTreeNode.Name}/{relativeXPath}[@{idAttributeName}=\"{idAttributeValue}\"]",
-                ToolTipText = toolTipText ?? string.Empty
-            };
+            TNode treeNode = (TNode?)Activator.CreateInstance(typeof(TNode)) ?? throw _exceptionHelper.CriticalException("{151235F6-4B13-4C57-AE1E-4BE798B8BC11}");
+            treeNode.Text = idAttributeValue;
+            treeNode.ImageIndex = imageIndex;
+            treeNode.Name = $"{parentTreeNode.Name}/{relativeXPath}[@{idAttributeName}=\"{idAttributeValue}\"]";
+            treeNode.ToolTipText = toolTipText ?? string.Empty;
 
             if (nodeIndex != null)
             {
@@ -50,15 +60,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return false;
         }
 
-        public RadTreeNode GetChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null)
+        public RadTreeNode CreateChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null) 
+            => CreateChildTreeNode<RadTreeNode>
+            (
+                parentTreeNode,
+                relativeXPath,
+                idAttributeName,
+                idAttributeValue,
+                imageIndex,
+                toolTipText
+            );
+
+        public TNode CreateChildTreeNode<TNode>(TNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null) where TNode : RadTreeNode
         {
-            return new()
-            {
-                ImageIndex = imageIndex,
-                Text = idAttributeValue,
-                Name = $"{parentTreeNode.Name}/{relativeXPath}[@{idAttributeName}=\"{idAttributeValue}\"]",
-                ToolTipText = toolTipText ?? string.Empty
-            };
+            TNode treeNode = (TNode?)Activator.CreateInstance(typeof(TNode)) ?? throw _exceptionHelper.CriticalException("{6384085A-F8DC-48FF-BB4D-83914C80CFEE}");
+            treeNode.Text = idAttributeValue;
+            treeNode.ImageIndex = imageIndex;
+            treeNode.Name = $"{parentTreeNode.Name}/{relativeXPath}[@{idAttributeName}=\"{idAttributeValue}\"]";
+            treeNode.ToolTipText = toolTipText ?? string.Empty;
+
+            return treeNode;
         }
 
         public RadTreeNode GetClosestNodeForSelectionAfterDelete(RadTreeNode treeNode)

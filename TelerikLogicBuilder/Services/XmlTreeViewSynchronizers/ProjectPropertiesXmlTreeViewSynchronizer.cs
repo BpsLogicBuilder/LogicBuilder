@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
 
             this.configureProjectProperties.ValidateXmlDocument();
 
-            RadTreeNode newTreeNode = _treeViewService.GetChildTreeNode
+            RadTreeNode newTreeNode = _treeViewService.CreateChildTreeNode
             (
                 destinationParentNode,
                 newXmlApplicationNode.Name,

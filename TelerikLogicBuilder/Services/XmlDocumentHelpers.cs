@@ -144,9 +144,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             Dictionary<string, int> indexTable = new()
             {
                 [XmlDataConstants.LITERALPARAMETERELEMENT]= ImageIndexes.LITERALPARAMETERIMAGEINDEX,
+                [XmlDataConstants.LITERALVARIABLEELEMENT] = ImageIndexes.LITERALPARAMETERIMAGEINDEX,
                 [XmlDataConstants.OBJECTPARAMETERELEMENT] = ImageIndexes.OBJECTPARAMETERIMAGEINDEX,
+                [XmlDataConstants.OBJECTVARIABLEELEMENT] = ImageIndexes.OBJECTPARAMETERIMAGEINDEX,
                 [XmlDataConstants.LITERALLISTPARAMETERELEMENT] = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX,
+                [XmlDataConstants.LITERALLISTVARIABLEELEMENT] = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX,
                 [XmlDataConstants.OBJECTLISTPARAMETERELEMENT] = ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX,
+                [XmlDataConstants.OBJECTLISTVARIABLEELEMENT] = ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX,
             };
 
             if (!indexTable.TryGetValue(element.Name, out int imageIndex))
@@ -200,6 +204,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
 
             return stringBuilder.ToString();
+        }
+
+        public string GetVariableTreeNodeDescription(XmlElement element)
+        {
+            Dictionary<string, string> descriptionTable = new()
+            {
+                [XmlDataConstants.LITERALVARIABLEELEMENT] = Strings.literalVarNodeDescription,
+                [XmlDataConstants.OBJECTVARIABLEELEMENT] = Strings.objectVarNodeDescription,
+                [XmlDataConstants.LITERALLISTVARIABLEELEMENT] = Strings.listOfLiteralsVarNodeDescription,
+                [XmlDataConstants.OBJECTLISTVARIABLEELEMENT] = Strings.listOfObjectsVarNodeDescription,
+            };
+
+            if (!descriptionTable.TryGetValue(element.Name, out string? description))
+                throw _exceptionHelper.CriticalException("{B194FB8C-8B0B-48D6-A4A2-5F17F45F3E16}");
+
+            return description;
         }
 
         public string GetVisibleText(XmlElement element)

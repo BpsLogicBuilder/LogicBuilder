@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
@@ -15,6 +17,18 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddTreeViewBuiilderFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IConfigureVariablesForm, IConfigureVariablesTreeViewBuilder>>
+                (
+                    provider =>
+                    configureVariablesForm => new ConfigureVariablesTreeViewBuilder
+                    (
+                        provider.GetRequiredService<IConfigureVariablesStateImageSetter>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        configureVariablesForm
+                    )
+                )
                 .AddTransient<Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder>>
                 (
                     provider =>

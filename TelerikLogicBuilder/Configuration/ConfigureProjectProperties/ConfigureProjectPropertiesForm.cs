@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         private readonly IConfigureProjectPropertiesControlFactory _configurationControlFactory;
         private readonly IConfigurationService _configurationService;
         private readonly IConfigureProjectPropertiesContextMenuCommandFactory _configureProjectPropertiesContextMenuCommandFactory;
-        private readonly IConfigureProjectPropertiesTreeviewBuilder _configureProjectPropertiesTreeviewBuilder;
+        private readonly IConfigureProjectPropertiesTreeViewBuilder _configureProjectPropertiesTreeviewBuilder;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IImageListService _imageListService;
@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             IConfigureProjectPropertiesControlFactory configurationControlFactory,
             IConfigurationService configurationService,
             IConfigureProjectPropertiesContextMenuCommandFactory configureProjectPropertiesContextMenuCommandFactory,
-            IConfigureProjectPropertiesTreeviewBuilder configureProjectPropertiesTreeviewBuilder,
+            IConfigureProjectPropertiesTreeViewBuilder configureProjectPropertiesTreeviewBuilder,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IImageListService imageListService,
