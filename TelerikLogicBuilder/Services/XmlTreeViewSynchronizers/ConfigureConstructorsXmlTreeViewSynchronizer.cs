@@ -6,7 +6,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -19,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         private readonly IConfigurationFormXmlTreeViewSynchronizer _configurationFormXmlTreeViewSynchronizer;
         private readonly IConfigureConstructorsStateImageSetter _configureConstructorsStateImageSetter;
         private readonly IConfigureParametersStateImageSetter _configureParametersStateImageSetter;
+        private readonly IConstructorsFormTreeNodeComparer _constructorsFormTreeNodeComparer;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -28,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         public ConfigureConstructorsXmlTreeViewSynchronizer(
             IConfigureConstructorsStateImageSetter configureConstructorsStateImageSetter,
             IConfigureParametersStateImageSetter configureParametersStateImageSetter,
+            IConstructorsFormTreeNodeComparer constructorsFormTreeNodeComparer,
             IExceptionHelper exceptionHelper,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -37,10 +38,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             _configurationFormXmlTreeViewSynchronizer = xmlTreeViewSynchronizerFactory.GetConfigurationFormXmlTreeViewSynchronizer
             (
                 configureConstructorsForm,
-                new ConstructorsFormTreeNodeComparer(treeViewService)
+                constructorsFormTreeNodeComparer
             );
             _configureConstructorsStateImageSetter = configureConstructorsStateImageSetter;
             _configureParametersStateImageSetter = configureParametersStateImageSetter;
+            _constructorsFormTreeNodeComparer = constructorsFormTreeNodeComparer;
             _exceptionHelper = exceptionHelper;
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -316,7 +318,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 (
                     destinationFolderTreeNode.Nodes.ToArray(),
                     newTreeNode,
-                    new ConstructorsFormTreeNodeComparer(_treeViewService)
+                    _constructorsFormTreeNodeComparer
                 ),
                 newTreeNode
             );
@@ -337,28 +339,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 treeNode,
                 configureConstructorsForm.Application
             );
-        }
-    }
-
-    class ConstructorsFormTreeNodeComparer : IComparer<RadTreeNode>
-    {
-        readonly ITreeViewService service;
-
-        public ConstructorsFormTreeNodeComparer(ITreeViewService service)
-        {
-            this.service = service;
-        }
-
-        public int Compare(RadTreeNode? treeNodeA, RadTreeNode? treeNodeB)
-        {
-            if (treeNodeA == null || treeNodeB == null)
-                throw new InvalidOperationException("{CF0F2F42-1C34-4EB4-9D06-EB902F9DEB3D}");
-
-            if ((treeNodeA.ImageIndex == treeNodeB.ImageIndex) || (service.IsFolderNode(treeNodeA) && service.IsFolderNode(treeNodeB)))
-                return string.Compare(treeNodeA.Text, treeNodeB.Text);
-            else
-                return service.IsConstructorNode(treeNodeA) ? -1 : 1;//Only Constructors and Folders exist at the same level for sorting purposes.
-                                                                     //Parameters may also have different indexes - however parameters will not be sorted.
         }
     }
 }

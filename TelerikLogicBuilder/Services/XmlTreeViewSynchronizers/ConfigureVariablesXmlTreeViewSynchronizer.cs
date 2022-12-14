@@ -6,7 +6,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -20,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         private readonly IConfigureVariablesStateImageSetter _configureVariablesStateImageSetter;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ITreeViewService _treeViewService;
+        private readonly IVariablesFormTreeNodeComparer _variablesFormTreeNodeComparer;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IConfigureVariablesForm configureVariablesForm;
@@ -28,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             IConfigureVariablesStateImageSetter configureVariablesStateImageSetter,
             IExceptionHelper exceptionHelper,
             ITreeViewService treeViewService,
+            IVariablesFormTreeNodeComparer variablesFormTreeNodeComparer,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlTreeViewSynchronizerFactory xmlTreeViewSynchronizerFactory,
             IConfigureVariablesForm configureVariablesForm)
@@ -35,11 +36,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             _configurationFormXmlTreeViewSynchronizer = xmlTreeViewSynchronizerFactory.GetConfigurationFormXmlTreeViewSynchronizer
             (
                 configureVariablesForm,
-                new VariablesFormTreeNodeComparer(treeViewService)
+                variablesFormTreeNodeComparer
             );
             _configureVariablesStateImageSetter = configureVariablesStateImageSetter;
             _exceptionHelper = exceptionHelper;
             _treeViewService = treeViewService;
+            _variablesFormTreeNodeComparer = variablesFormTreeNodeComparer;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.configureVariablesForm = configureVariablesForm;
         }
@@ -247,7 +249,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 (
                     destinationFolderTreeNode.Nodes.ToArray(),
                     newTreeNode,
-                    new VariablesFormTreeNodeComparer(_treeViewService)
+                    _variablesFormTreeNodeComparer
                 ),
                 newTreeNode
             );
@@ -261,27 +263,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 treeNode,
                 configureVariablesForm.Application
             );
-        }
-    }
-
-    class VariablesFormTreeNodeComparer : IComparer<RadTreeNode>
-    {
-        readonly ITreeViewService service;
-
-        public VariablesFormTreeNodeComparer(ITreeViewService service)
-        {
-            this.service = service;
-        }
-
-        public int Compare(RadTreeNode? treeNodeA, RadTreeNode? treeNodeB)
-        {
-            if (treeNodeA == null || treeNodeB == null)
-                throw new InvalidOperationException("{165AA5C2-5F5E-4F59-9286-9EBF73921786}");
-
-            if ((service.IsVariableTypeNode(treeNodeA) && service.IsVariableTypeNode(treeNodeB)) || (service.IsFolderNode(treeNodeA) && service.IsFolderNode(treeNodeB)))
-                return string.Compare(treeNodeA.Text, treeNodeB.Text);
-            else
-                return service.IsVariableTypeNode(treeNodeA) ? -1 : 1;
         }
     }
 }

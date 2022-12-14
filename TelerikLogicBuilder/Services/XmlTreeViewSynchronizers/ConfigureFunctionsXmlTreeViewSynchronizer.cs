@@ -6,7 +6,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -20,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         private readonly IConfigureFunctionsStateImageSetter _configureFunctionsStateImageSetter;
         private readonly IConfigureParametersStateImageSetter _configureParametersStateImageSetter;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFunctionsFormTreeNodeComparer _functionsFormTreeNodeComparer;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -29,6 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             IConfigureFunctionsStateImageSetter configureFunctionsStateImageSetter,
             IConfigureParametersStateImageSetter configureParametersStateImageSetter,
             IExceptionHelper exceptionHelper,
+            IFunctionsFormTreeNodeComparer functionsFormTreeNodeComparer,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlTreeViewSynchronizerFactory xmlTreeViewSynchronizerFactory,
@@ -37,11 +38,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             _configurationFormXmlTreeViewSynchronizer = xmlTreeViewSynchronizerFactory.GetConfigurationFormXmlTreeViewSynchronizer
             (
                 configureFunctionsForm,
-                new FunctionsFormTreeNodeComparer(treeViewService)
+                functionsFormTreeNodeComparer
             );
             _configureFunctionsStateImageSetter = configureFunctionsStateImageSetter;
             _configureParametersStateImageSetter = configureParametersStateImageSetter;
             _exceptionHelper = exceptionHelper;
+            _functionsFormTreeNodeComparer = functionsFormTreeNodeComparer;
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.configureFunctionsForm = configureFunctionsForm;
@@ -316,7 +318,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 (
                     destinationFolderTreeNode.Nodes.ToArray(),
                     newTreeNode,
-                    new FunctionsFormTreeNodeComparer(_treeViewService)
+                    _functionsFormTreeNodeComparer
                 ),
                 newTreeNode
             );
@@ -337,28 +339,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 treeNode,
                 configureFunctionsForm.Application
             );
-        }
-    }
-
-    class FunctionsFormTreeNodeComparer : IComparer<RadTreeNode>
-    {
-        readonly ITreeViewService service;
-
-        public FunctionsFormTreeNodeComparer(ITreeViewService service)
-        {
-            this.service = service;
-        }
-
-        public int Compare(RadTreeNode? treeNodeA, RadTreeNode? treeNodeB)
-        {
-            if (treeNodeA == null || treeNodeB == null)
-                throw new InvalidOperationException("{6622B506-9C1D-46CA-9C8A-9DD8143D80A2}");
-
-            if ((treeNodeA.ImageIndex == treeNodeB.ImageIndex) || (service.IsFolderNode(treeNodeA) && service.IsFolderNode(treeNodeB)))
-                return string.Compare(treeNodeA.Text, treeNodeB.Text);
-            else
-                return service.IsMethodNode(treeNodeA) ? -1 : 1;//Only Functions and Folders exist at the same level for sorting purposes.
-                                                                //Parameters may also have different indexes - however parameters will not be sorted.
         }
     }
 }

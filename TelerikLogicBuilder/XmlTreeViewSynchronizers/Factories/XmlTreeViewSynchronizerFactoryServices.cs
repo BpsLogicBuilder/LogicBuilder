@@ -43,6 +43,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IConfigureConstructorsStateImageSetter>(),
                         provider.GetRequiredService<IConfigureParametersStateImageSetter>(),
+                        provider.GetRequiredService<IConstructorsFormTreeNodeComparer>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -58,6 +59,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureFunctionsStateImageSetter>(),
                         provider.GetRequiredService<IConfigureParametersStateImageSetter>(),
                         provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFunctionsFormTreeNodeComparer>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
@@ -83,6 +85,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureVariablesStateImageSetter>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IVariablesFormTreeNodeComparer>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm

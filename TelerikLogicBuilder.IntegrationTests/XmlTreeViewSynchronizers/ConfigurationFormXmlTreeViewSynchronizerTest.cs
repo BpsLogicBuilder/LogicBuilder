@@ -301,7 +301,7 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlTreeViewSynchronizers
             return factory.GetConfigurationFormXmlTreeViewSynchronizer
             (
                 configureConstructorsForm,
-                new ConstructorsFormTreeNodeComparer(_fixture.ServiceProvider.GetRequiredService<ITreeViewService>())
+                _fixture.ServiceProvider.GetRequiredService<IConstructorsFormTreeNodeComparer>()
             );
         }
 
