@@ -123,6 +123,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return xmlDocument.DocumentElement;
         }
 
+        public string GetFunctionTreeNodeDescription(XmlElement element)
+        {
+            Dictionary<string, string> descriptionTable = new()
+            {
+                [XmlDataConstants.LITERALELEMENT] = Strings.literalFuncNodeDescription,
+                [XmlDataConstants.OBJECTELEMENT] = Strings.objectFuncNodeDescription,
+                [XmlDataConstants.GENERICELEMENT] = Strings.genericFuncNodeDescription,
+                [XmlDataConstants.LITERALLISTELEMENT] = Strings.listOfLiteralsFuncNodeDescription,
+                [XmlDataConstants.OBJECTLISTELEMENT] = Strings.listOfObjectsFuncNodeDescription,
+                [XmlDataConstants.GENERICLISTELEMENT] = Strings.listOfGenericsFuncNodeDescription,
+            };
+
+            if (!descriptionTable.TryGetValue(element.Name, out string? description))
+                throw _exceptionHelper.CriticalException("{D93963B9-4358-410B-A5AC-ED4239DF3716}");
+
+            return description;
+        }
+
         public string GetGenericArgumentTreeNodeDescription(XmlElement element)
         {
             Dictionary<string, string> descriptionTable = new()
@@ -147,16 +165,36 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 [XmlDataConstants.LITERALVARIABLEELEMENT] = ImageIndexes.LITERALPARAMETERIMAGEINDEX,
                 [XmlDataConstants.OBJECTPARAMETERELEMENT] = ImageIndexes.OBJECTPARAMETERIMAGEINDEX,
                 [XmlDataConstants.OBJECTVARIABLEELEMENT] = ImageIndexes.OBJECTPARAMETERIMAGEINDEX,
+                [XmlDataConstants.GENERICPARAMETERELEMENT] = ImageIndexes.GENERICPARAMETERIMAGEINDEX,
                 [XmlDataConstants.LITERALLISTPARAMETERELEMENT] = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX,
                 [XmlDataConstants.LITERALLISTVARIABLEELEMENT] = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX,
                 [XmlDataConstants.OBJECTLISTPARAMETERELEMENT] = ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX,
                 [XmlDataConstants.OBJECTLISTVARIABLEELEMENT] = ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX,
+                [XmlDataConstants.GENERICLISTPARAMETERELEMENT] = ImageIndexes.GENERICLISTPARAMETERIMAGEINDEX,
             };
 
             if (!indexTable.TryGetValue(element.Name, out int imageIndex))
                 throw _exceptionHelper.CriticalException("{658C52A4-5380-4D8C-BFA9-3133968249C0}");
 
             return imageIndex;
+        }
+
+        public string GetParameterTreeNodeDescription(XmlElement element)
+        {
+            Dictionary<string, string> descriptionTable = new()
+            {
+                [XmlDataConstants.LITERALPARAMETERELEMENT] = Strings.literalParamNodeDescription,
+                [XmlDataConstants.OBJECTPARAMETERELEMENT] = Strings.objectParamNodeDescription,
+                [XmlDataConstants.GENERICPARAMETERELEMENT] = Strings.genericParamNodeDescription,
+                [XmlDataConstants.LITERALLISTPARAMETERELEMENT] = Strings.listOfLiteralsParamNodeDescription,
+                [XmlDataConstants.OBJECTLISTPARAMETERELEMENT] = Strings.listOfObjectsParamNodeDescription,
+                [XmlDataConstants.GENERICLISTPARAMETERELEMENT] = Strings.listOfGenericsParamNodeDescription,
+            };
+
+            if (!descriptionTable.TryGetValue(element.Name, out string? description))
+                throw _exceptionHelper.CriticalException("{D6D3D0CC-BDBC-43A2-A985-A43707945DD4}");
+
+            return description;
         }
 
         public List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode)
@@ -332,6 +370,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 xmlDocumentFragment.InnerXml = innerXml;
 
             return xmlDocumentFragment;
+        }
+
+        public TResult Query<TResult>(XmlNode xmlNode, Func<XmlElement, bool> filter, Func<IEnumerable<XmlElement>, TResult> enumerableFunc)
+        {
+            return enumerableFunc(Filter());
+
+            IEnumerable<XmlElement> Filter()
+                => xmlNode.ChildNodes.OfType<XmlElement>().Where(filter);
         }
 
         public List<XmlElement> SelectElements(XmlDocument xmlDocument, string xPath) 

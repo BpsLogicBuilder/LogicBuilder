@@ -27,6 +27,7 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData(typeof(string), "String")]
         [InlineData(typeof(int?), "Nullable`1[Int32]")]
+        [InlineData(typeof(Nullable<>), "Nullable`1[T]")]
         [InlineData(typeof(List<string>), "List`1[String]")]
         [InlineData(typeof(List<int?>), "List`1[Nullable`1[Int32]]")]
         public void GetTypeDescriptionReturnsTheExpectedDescription(Type type, string expectedDescription)

@@ -6,23 +6,22 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
-using System.Linq;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.StateImageSetters
 {
     internal class ConfigureVariablesStateImageSetter : IConfigureVariablesStateImageSetter
     {
-        private readonly ICompareImages _compareImages;
+        private readonly IConfigurationFolderStateImageSetter _configurationFolderStateImageSetter;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariablesXmlParser _variablesXmlParser;
 
         public ConfigureVariablesStateImageSetter(
-            ICompareImages compareImages,
+            IConfigurationFolderStateImageSetter configurationFolderStateImageSetter,
             ITypeLoadHelper typeLoadHelper,
             IVariablesXmlParser variablesXmlParser)
         {
-            _compareImages = compareImages;
+            _configurationFolderStateImageSetter = configurationFolderStateImageSetter;
             _typeLoadHelper = typeLoadHelper;
             _variablesXmlParser = variablesXmlParser;
         }
@@ -33,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.StateImageSetters
                 return;
 
             SetStateImage(_variablesXmlParser.Parse(variableElement));
-            SetStateImageFromChildNodes((StateImageRadTreeNode)treeNode.Parent);
+            _configurationFolderStateImageSetter.SetImage((StateImageRadTreeNode)treeNode.Parent);
 
             void SetStateImage(VariableBase variable)
             {
@@ -55,20 +54,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.StateImageSetters
 
                 treeNode.StateImage = Properties.Resources.CheckMark;
             }
-        }
-
-        private void SetStateImageFromChildNodes(StateImageRadTreeNode? treeNode)
-        {
-            if (treeNode == null)
-                return;
-
-            treeNode.StateImage = treeNode.Nodes
-                .OfType<StateImageRadTreeNode>()
-                .Any(n => _compareImages.AreEqual(n.StateImage, Properties.Resources.Error))
-                    ? Properties.Resources.Error
-                    : Properties.Resources.CheckMark;
-
-            SetStateImageFromChildNodes((StateImageRadTreeNode)treeNode.Parent);
         }
     }
 }

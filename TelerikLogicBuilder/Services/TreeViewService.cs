@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Telerik.WinControls.UI;
-using WinRT;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
@@ -58,6 +57,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
 
             return false;
+        }
+
+        public RadTreeNode CreateChildFolderTreeNode(RadTreeNode parentTreeNode, string folderXmlElementName, int imageIndex, string xmlNameAttributeValue, string? toolTipText = null) 
+            => CreateChildFolderTreeNode<RadTreeNode>
+            (
+                parentTreeNode,
+                folderXmlElementName,
+                imageIndex,
+                xmlNameAttributeValue,
+                toolTipText
+            );
+
+        public TNode CreateChildFolderTreeNode<TNode>(TNode parentTreeNode, string folderXmlElementName, int imageIndex, string xmlNameAttributeValue, string? toolTipText = null) where TNode : RadTreeNode
+        {
+            TNode treeNode = (TNode?)Activator.CreateInstance(typeof(TNode)) ?? throw _exceptionHelper.CriticalException("{A144758D-EE5D-410B-977E-63A554BE7650}");
+            treeNode.Text = xmlNameAttributeValue;
+            treeNode.ImageIndex = imageIndex;
+            treeNode.Name = $"{parentTreeNode.Name}/{folderXmlElementName}[@{XmlDataConstants.NAMEATTRIBUTE}=\"{xmlNameAttributeValue}\"]";
+            treeNode.ToolTipText = toolTipText ?? string.Empty;
+            return treeNode;
         }
 
         public RadTreeNode CreateChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null) 
@@ -133,6 +152,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return treeNode.ImageIndex == ImageIndexes.APPLICATIONIMAGEINDEX;
         }
 
+        public bool IsConstructorNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{B79A04F8-70AC-4734-8B56-48BACBA55253}");
+
+            return treeNode.ImageIndex == ImageIndexes.CONSTRUCTORIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTCONSTRUCTORIMAGEINDEX;
+        }
+
         public bool IsFileNode(RadTreeNode treeNode)
         {
             if (treeNode == null)
@@ -169,6 +196,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || treeNode.ImageIndex == ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX;
         }
 
+        public bool IsGenericTypeNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{10CE0D92-21B2-4BDB-BE06-79A417363924}");
+
+            return treeNode.ImageIndex == ImageIndexes.GENERICPARAMETERIMAGEINDEX 
+                || treeNode.ImageIndex == ImageIndexes.CUTGENERICPARAMETERIMAGEINDEX;
+        }
+
+        public bool IsListOfGenericsTypeNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{B9AEC1D2-0986-4031-B92B-8124515DEEF7}");
+
+            return treeNode.ImageIndex == ImageIndexes.GENERICLISTPARAMETERIMAGEINDEX 
+                || treeNode.ImageIndex == ImageIndexes.CUTGENERICLISTPARAMETERIMAGEINDEX;
+        }
+
         public bool IsListOfLiteralsTypeNode(RadTreeNode treeNode)
         {
             if (treeNode == null)
@@ -198,7 +243,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             if (treeNode == null)
                 throw _exceptionHelper.CriticalException("{A0B43A22-1119-44E6-8B88-8C97210F6617}");
 
-            return treeNode.ImageIndex == ImageIndexes.METHODIMAGEINDEX;
+            return treeNode.ImageIndex == ImageIndexes.METHODIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTMETHODIMAGEINDEX;
         }
 
         public bool IsObjectTypeNode(RadTreeNode treeNode)
@@ -207,6 +252,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 throw _exceptionHelper.CriticalException("{7037291D-B25C-4401-B6EB-D03E897EB992}");
 
             return treeNode.ImageIndex == ImageIndexes.OBJECTPARAMETERIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTOBJECTPARAMETERIMAGEINDEX;
+        }
+
+        public bool IsParameterNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{CFDF8341-5B16-4AE5-9BDA-D072C1B78D57}");
+
+            return treeNode.ImageIndex == ImageIndexes.LITERALPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.OBJECTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.GENERICPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.GENERICLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTLITERALPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTOBJECTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTGENERICPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTLITERALLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTOBJECTLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTGENERICLISTPARAMETERIMAGEINDEX;
         }
 
         public bool IsProjectRootNode(RadTreeNode treeNode)
@@ -226,6 +290,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return treeNode.Parent == null;
         }
 
+        public bool IsVariableNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{F005F8A5-4883-4D8B-B867-E9D66B5CAB36}");
+
+            return treeNode.ImageIndex == ImageIndexes.VARIABLEIMAGEINDEX || treeNode.ImageIndex == ImageIndexes.CUTVARIABLEIMAGEINDEX;
+        }
+
+        public bool IsVariableTypeNode(RadTreeNode treeNode)
+        {
+            if (treeNode == null)
+                throw _exceptionHelper.CriticalException("{21CE133C-3B37-4E54-9AE4-D45CBAA58183}");
+
+            return treeNode.ImageIndex == ImageIndexes.LITERALPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.OBJECTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTLITERALPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTOBJECTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTLITERALLISTPARAMETERIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTOBJECTLISTPARAMETERIMAGEINDEX;
+        }
+
         public void MakeVisible(RadTreeNode treeNode)
         {
             if (treeNode == null)
@@ -239,6 +326,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             treeNode.EnsureVisible();
         }
+
+        public void RenameChildFolderTreeNode(RadTreeNode parentTreeNode, RadTreeNode childNode, string xmlNameAttributeValue)
+            => childNode.Name = $"{parentTreeNode.Name}/{XmlDataConstants.FOLDERELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}=\"{xmlNameAttributeValue}\"]";
+
+        public void RenameChildTreeNode(RadTreeNode parentTreeNode, RadTreeNode childNode, string relativeXPath, string idAttributeName, string idAttributeValue)
+            => childNode.Name = $"{parentTreeNode.Name}/{relativeXPath}[@{idAttributeName}=\"{idAttributeValue}\"]";
 
         public void ScrollToPreviousPosition(RadTreeView treeView, System.Drawing.Point point)
         {

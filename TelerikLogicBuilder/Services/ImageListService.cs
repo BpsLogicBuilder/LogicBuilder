@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.refresh,
                         Properties.Resources.Copy,
                         Properties.Resources.Edit,
-                        Properties.Resources.functionButtonImage,
+                        Properties.Resources.functionSelector,
                         Properties.Resources.Visio_Application_16xLGCut,
                         Properties.Resources.Visio_16Cut,
                         Properties.Resources.TABLECUT,
@@ -46,7 +46,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.CutLiteralParameter,
                         Properties.Resources.CutObjectParameter,
                         Properties.Resources.CutLiteralListParameter,
-                        Properties.Resources.CutObjectListParameter
+                        Properties.Resources.CutObjectListParameter,
+                        Properties.Resources.constructorButtonImage,
+                        Properties.Resources.CutConstructorButtonImage,
+                        Properties.Resources.CutFunctionSelector,
+                        Properties.Resources.VariableSelector,
+                        Properties.Resources.CutVariableSelector,
+                        Properties.Resources.Generic,
+                        Properties.Resources.GenericList,
+                        Properties.Resources.CutGeneric,
+                        Properties.Resources.CutGenericList,
                     }
                 };
 

@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Fac
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -16,6 +17,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
+using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -48,10 +50,10 @@ namespace TelerikLogicBuilder.IntegrationTests.TreeViewBuiilders
         {
             //arrange
             ITreeViewBuilderFactory factory = _fixture.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>();
-            RadTreeView radTreeView = new();
-            IConfigureVariablesForm configureVariablesForm = new ConfigureVariablesFormMock
+            IServiceFactory serviceFactory = _fixture.ServiceProvider.GetRequiredService<IServiceFactory>();
+            ITreeViewXmlDocumentHelper treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper
             (
-                _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name)
+                SchemaName.VariablesSchema
             );
             XmlDocument xmlDocument = GetXmlDocument(@"<folder name=""Decisions"">
                                                           <literalVariable name=""DecimalItem"">
@@ -93,6 +95,16 @@ namespace TelerikLogicBuilder.IntegrationTests.TreeViewBuiilders
 		                                                        </literalVariable>
 											                </folder>
                                                         </folder>");
+            RadTreeView radTreeView = new();
+            treeViewXmlDocumentHelper.LoadXmlDocument(xmlDocument.OuterXml);
+            IConfigureVariablesForm configureVariablesForm = new ConfigureVariablesFormMock
+            (
+                _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name), 
+                treeViewXmlDocumentHelper,
+                radTreeView,
+                treeViewXmlDocumentHelper.XmlTreeDocument,
+                _fixture.ServiceProvider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>()
+            );
 
             //act
             factory.GetConfigureVariablesTreeViewBuilder(configureVariablesForm).Build(radTreeView, xmlDocument);

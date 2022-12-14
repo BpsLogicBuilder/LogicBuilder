@@ -283,6 +283,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CutConstructorButtonImage {
+            get {
+                object obj = ResourceManager.GetObject("CutConstructorButtonImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CutFunctionSelector {
+            get {
+                object obj = ResourceManager.GetObject("CutFunctionSelector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CutGeneric {
             get {
                 object obj = ResourceManager.GetObject("CutGeneric", resourceCulture);
@@ -356,6 +376,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap CutVariable {
             get {
                 object obj = ResourceManager.GetObject("CutVariable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CutVariableSelector {
+            get {
+                object obj = ResourceManager.GetObject("CutVariableSelector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -446,6 +476,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap functionButtonImage {
             get {
                 object obj = ResourceManager.GetObject("functionButtonImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap functionSelector {
+            get {
+                object obj = ResourceManager.GetObject("functionSelector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1036,6 +1076,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap variableButtonImage {
             get {
                 object obj = ResourceManager.GetObject("variableButtonImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VariableSelector {
+            get {
+                object obj = ResourceManager.GetObject("VariableSelector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

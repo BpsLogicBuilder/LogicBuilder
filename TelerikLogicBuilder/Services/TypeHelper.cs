@@ -89,18 +89,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public string GetTypeDescription(Type type)
         {
-            if (type.IsGenericType && (type.GetGenericTypeDefinition().Equals(typeof(List<>))
-                || type.GetGenericTypeDefinition().Equals(typeof(IList<>))
-                || type.GetGenericTypeDefinition().Equals(typeof(Collection<>))
-                || type.GetGenericTypeDefinition().Equals(typeof(ICollection<>))
-                || type.GetGenericTypeDefinition().Equals(typeof(IEnumerable<>))))
-                return string.Format(CultureInfo.InvariantCulture, MiscellaneousConstants.GENERICTYPEFORMAT, type.Name, GetTypeDescription(type.GetGenericArguments()[0]));
-            else if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
-                return string.Format(CultureInfo.InvariantCulture, MiscellaneousConstants.GENERICTYPEFORMAT, type.Name, GetTypeDescription(Nullable.GetUnderlyingType(type)!/*Not null for nullables*/));
-            else if (type.IsGenericType)
-                return string.Format(CultureInfo.InvariantCulture, MiscellaneousConstants.GENERICTYPEFORMAT, type.Name, string.Join(MiscellaneousConstants.COMMA.ToString(), type.GetGenericArguments().Select(a => GetTypeDescription(a))));
-            else
-                return type.Name;
+            if (type.IsGenericType)
+            {
+                return string.Format
+                (
+                    CultureInfo.InvariantCulture,
+                    MiscellaneousConstants.GENERICTYPEFORMAT,
+                    type.Name,
+                    string.Join
+                    (
+                        MiscellaneousConstants.COMMA.ToString(),
+                        type.GetGenericArguments().Select(a => GetTypeDescription(a))
+                    )
+                );
+            }
+
+            return type.Name;
         }
 
         public Type GetUndelyingTypeForValidList(Type type)

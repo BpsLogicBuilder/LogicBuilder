@@ -140,7 +140,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         switch (xmlSchema)
                         {
                             case SchemaName.ConnectorDataSchema:
-
                                 return ActivatorUtilities.CreateInstance<ConnectorDataXmlValidator>(provider);
                             case SchemaName.ConstructorSchema:
                                 return ActivatorUtilities.CreateInstance<ConstructorsXmlValidator>(provider);

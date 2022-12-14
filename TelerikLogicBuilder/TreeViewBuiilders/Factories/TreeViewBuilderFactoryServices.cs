@@ -1,4 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -17,6 +19,32 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddTreeViewBuiilderFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IConfigureConstructorsForm, IConfigureConstructorsTreeViewBuilder>>
+                (
+                    provider =>
+                    configureConstructorsForm => new ConfigureConstructorsTreeViewBuilder
+                    (
+                        provider.GetRequiredService<IConfigureConstructorsStateImageSetter>(),
+                        provider.GetRequiredService<IConfigureParametersStateImageSetter>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        configureConstructorsForm
+                    )
+                )
+                .AddTransient<Func<IConfigureFunctionsForm, IConfigureFunctionsTreeViewBuilder>>
+                (
+                    provider =>
+                    configureFunctionsForm => new ConfigureFunctionsTreeViewBuilder
+                    (
+                        provider.GetRequiredService<IConfigureFunctionsStateImageSetter>(),
+                        provider.GetRequiredService<IConfigureParametersStateImageSetter>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        configureFunctionsForm
+                    )
+                )
                 .AddTransient<Func<IConfigureVariablesForm, IConfigureVariablesTreeViewBuilder>>
                 (
                     provider =>

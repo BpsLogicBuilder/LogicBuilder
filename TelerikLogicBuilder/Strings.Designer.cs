@@ -952,6 +952,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Constructor.
+        /// </summary>
+        internal static string constructorNodeDescription {
+            get {
+                return ResourceManager.GetString("constructorNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The constructor &quot;{0}&quot; must be assignable to &quot;{1}&quot;..
         /// </summary>
         internal static string constructorNotAssignableFormat {
@@ -3058,6 +3067,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Returns a generic type..
+        /// </summary>
+        internal static string genericFuncNodeDescription {
+            get {
+                return ResourceManager.GetString("genericFuncNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generic methods are not supported. Method name: &quot;{0}&quot;..
         /// </summary>
         internal static string genericMethodsNotSupportedFormat {
@@ -3072,6 +3090,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string genericParameterArgNameNotFoundFormat {
             get {
                 return ResourceManager.GetString("genericParameterArgNameNotFoundFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic Parameter.
+        /// </summary>
+        internal static string genericParamNodeDescription {
+            get {
+                return ResourceManager.GetString("genericParamNodeDescription", resourceCulture);
             }
         }
         
@@ -3508,11 +3535,47 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Returns a list of generics..
+        /// </summary>
+        internal static string listOfGenericsFuncNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfGenericsFuncNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Generics Parameter.
+        /// </summary>
+        internal static string listOfGenericsParamNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfGenericsParamNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returns a list of literals..
+        /// </summary>
+        internal static string listOfLiteralsFuncNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfLiteralsFuncNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of Literals.
         /// </summary>
         internal static string listOfLiteralsGenericArgDescription {
             get {
                 return ResourceManager.GetString("listOfLiteralsGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Literals Parameter.
+        /// </summary>
+        internal static string listOfLiteralsParamNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfLiteralsParamNodeDescription", resourceCulture);
             }
         }
         
@@ -3526,11 +3589,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Returns a list of objects..
+        /// </summary>
+        internal static string listOfObjectsFuncNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfObjectsFuncNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of Objects.
         /// </summary>
         internal static string listOfObjectsGenericArgDescription {
             get {
                 return ResourceManager.GetString("listOfObjectsGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Objects Parameter.
+        /// </summary>
+        internal static string listOfObjectsParamNodeDescription {
+            get {
+                return ResourceManager.GetString("listOfObjectsParamNodeDescription", resourceCulture);
             }
         }
         
@@ -3598,6 +3679,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Returns a literal type..
+        /// </summary>
+        internal static string literalFuncNodeDescription {
+            get {
+                return ResourceManager.GetString("literalFuncNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Literal.
         /// </summary>
         internal static string literalGenericArgDescription {
@@ -3612,6 +3702,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string literalParameterDescriptionFormat {
             get {
                 return ResourceManager.GetString("literalParameterDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal Parameter.
+        /// </summary>
+        internal static string literalParamNodeDescription {
+            get {
+                return ResourceManager.GetString("literalParamNodeDescription", resourceCulture);
             }
         }
         
@@ -4183,11 +4282,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Returns an object type..
+        /// </summary>
+        internal static string objectFuncNodeDescription {
+            get {
+                return ResourceManager.GetString("objectFuncNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Object.
         /// </summary>
         internal static string objectGenericArgDescription {
             get {
                 return ResourceManager.GetString("objectGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object Parameter.
+        /// </summary>
+        internal static string objectParamNodeDescription {
+            get {
+                return ResourceManager.GetString("objectParamNodeDescription", resourceCulture);
             }
         }
         

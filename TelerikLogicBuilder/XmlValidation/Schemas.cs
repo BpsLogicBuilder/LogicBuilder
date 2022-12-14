@@ -1766,6 +1766,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             XmlSchemaComplexType formType = CreateComplexType("formType",
                 new XmlSchemaElement[]
                 {
+                    CreateSchemaElement("constructor", "constructorType", 0, null, true),
                     CreateSchemaElement("folder", "folderType", 0, null, true, false, new XmlSchemaObject[] { CreateUniqueConstraint("folderNameKey", "./folder", "@name") })
                 },
                 null);

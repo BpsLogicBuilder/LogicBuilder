@@ -16,7 +16,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         XmlWriter CreateUnformattedXmlWriter(StringBuilder stringBuilder);
         List<XmlElement> GetChildElements(XmlNode xmlNode, Func<XmlElement, bool>? filter = null, Func<IEnumerable<XmlElement>, IEnumerable<XmlElement>>? enumerableFunc = null);
         XmlElement GetDocumentElement(XmlDocument xmlDocument);
+        string GetFunctionTreeNodeDescription(XmlElement element);
         string GetGenericArgumentTreeNodeDescription(XmlElement element);
+        string GetParameterTreeNodeDescription(XmlElement element);
         string GetVariableTreeNodeDescription(XmlElement element);
         int GetImageIndex(XmlElement element);
         List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode);
@@ -32,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         XmlAttribute MakeAttribute(XmlDocument xmlDocument, string name, string attributeValue);
         XmlElement MakeElement(XmlDocument xmlDocument, string name, string? innerXml = null, IDictionary<string, string>? attributes = null);
         XmlDocumentFragment MakeFragment(XmlDocument xmlDocument, string? innerXml = null);
+        TResult Query<TResult>(XmlNode xmlNode, Func<XmlElement, bool> filter, Func<IEnumerable<XmlElement>, TResult> enumerableFunc);
         List<XmlElement> SelectElements(XmlDocument xmlDocument, string xPath);
         XmlElement SelectSingleElement(XmlDocument xmlDocument, string xPath);
         XmlDocument ToXmlDocument(XmlNode xmlNode, bool preserveWhiteSpace = true);

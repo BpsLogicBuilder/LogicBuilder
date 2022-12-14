@@ -411,6 +411,9 @@
     <value>The configured constructor's type name  "{0}" must be a generic type definition matching the generic arguments "{1}".</value>
     <comment>0=constructor's type name;1= data's generic arguments</comment>
   </data>
+	<data name="constructorNodeDescription" xml:space="preserve">
+    <value>Constructor</value>
+  </data>
 	<data name="constructorNotAssignableFormat" xml:space="preserve">
     <value>The constructor "{0}" must be assignable to "{1}".</value>
     <comment>0=constructorName;1=objectType</comment>
@@ -765,6 +768,9 @@
     <value>The number of generic arguments {0}, does not match the type {1}.</value>
     <comment>0=Argument count; 1=Generic Type Definition Name</comment>
   </data>
+	<data name="genericFuncNodeDescription" xml:space="preserve">
+    <value>Returns a generic type.</value>
+  </data>
 	<data name="genericMethodsNotSupportedFormat" xml:space="preserve">
     <value>Generic methods are not supported. Method name: "{0}".</value>
     <comment>0=methodName</comment>
@@ -772,6 +778,9 @@
 	<data name="genericParameterArgNameNotFoundFormat" xml:space="preserve">
     <value>The generic argument name "{0}" for generic parameter "{1}" in constructor "{2}" is not one of the constructor's generic arguments: "{3}".</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName;3=listOfGenericArguments</comment>
+  </data>
+	<data name="genericParamNodeDescription" xml:space="preserve">
+    <value>Generic Parameter</value>
   </data>
 	<data name="inputFileNewFileNameCaption" xml:space="preserve">
     <value>New File Name</value>
@@ -913,14 +922,32 @@
     <value>Item is empty.</value>
     <comment>0=new item</comment>
   </data>
+	<data name="listOfGenericsFuncNodeDescription" xml:space="preserve">
+    <value>Returns a list of generics.</value>
+  </data>
+	<data name="listOfGenericsParamNodeDescription" xml:space="preserve">
+    <value>List of Generics Parameter</value>
+  </data>
+	<data name="listOfLiteralsFuncNodeDescription" xml:space="preserve">
+    <value>Returns a list of literals.</value>
+  </data>
 	<data name="listOfLiteralsGenericArgDescription" xml:space="preserve">
     <value>List of Literals</value>
+  </data>
+	<data name="listOfLiteralsParamNodeDescription" xml:space="preserve">
+    <value>List of Literals Parameter</value>
   </data>
 	<data name="listOfLiteralsVarNodeDescription" xml:space="preserve">
     <value>List of Literals Variable</value>
   </data>
+	<data name="listOfObjectsFuncNodeDescription" xml:space="preserve">
+    <value>Returns a list of objects.</value>
+  </data>
 	<data name="listOfObjectsGenericArgDescription" xml:space="preserve">
     <value>List of Objects</value>
+  </data>
+	<data name="listOfObjectsParamNodeDescription" xml:space="preserve">
+    <value>List of Objects Parameter</value>
   </data>
 	<data name="listOfObjectsVarNodeDescription" xml:space="preserve">
     <value>List of Objects Variable</value>
@@ -950,12 +977,18 @@
 	<data name="listViewTextVsdx" xml:space="preserve">
     <value>(*.VSDX)</value>
   </data>
+	<data name="literalFuncNodeDescription" xml:space="preserve">
+    <value>Returns a literal type.</value>
+  </data>
 	<data name="literalGenericArgDescription" xml:space="preserve">
     <value>Literal</value>
   </data>
 	<data name="literalParameterDescriptionFormat" xml:space="preserve">
     <value>{0}={1}</value>
     <comment>0=parameterName 1=parameterVisibleText</comment>
+  </data>
+	<data name="literalParamNodeDescription" xml:space="preserve">
+    <value>Literal Parameter</value>
   </data>
 	<data name="literalVarNodeDescription" xml:space="preserve">
     <value>Literal Variable</value>
@@ -1146,8 +1179,14 @@
     <value>"{0}" is not a valid {1}.</value>
     <comment>0=invalid value;1=TypeName.</comment>
   </data>
+	<data name="objectFuncNodeDescription" xml:space="preserve">
+    <value>Returns an object type.</value>
+  </data>
 	<data name="objectGenericArgDescription" xml:space="preserve">
     <value>Object</value>
+  </data>
+	<data name="objectParamNodeDescription" xml:space="preserve">
+    <value>Object Parameter</value>
   </data>
 	<data name="objectVarNodeDescription" xml:space="preserve">
     <value>Object Variable</value>

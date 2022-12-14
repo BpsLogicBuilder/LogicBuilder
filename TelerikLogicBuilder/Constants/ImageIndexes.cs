@@ -32,5 +32,14 @@
         internal const byte CUTOBJECTPARAMETERIMAGEINDEX = 27;
         internal const byte CUTLITERALLISTPARAMETERIMAGEINDEX = 28;
         internal const byte CUTOBJECTLISTPARAMETERIMAGEINDEX = 29;
+        internal const byte CONSTRUCTORIMAGEINDEX = 30;
+        internal const byte CUTCONSTRUCTORIMAGEINDEX = 31;
+        internal const byte CUTMETHODIMAGEINDEX = 32;
+        internal const byte VARIABLEIMAGEINDEX = 33;
+        internal const byte CUTVARIABLEIMAGEINDEX = 34;
+        internal const byte GENERICPARAMETERIMAGEINDEX = 35;
+        internal const byte GENERICLISTPARAMETERIMAGEINDEX = 36;
+        internal const byte CUTGENERICPARAMETERIMAGEINDEX = 37;
+        internal const byte CUTGENERICLISTPARAMETERIMAGEINDEX = 38;
     }
 }

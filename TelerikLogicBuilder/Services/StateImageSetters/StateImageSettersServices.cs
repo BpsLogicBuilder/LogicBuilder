@@ -8,6 +8,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddStateImageSetters(this IServiceCollection services)
         {
             return services
+                .AddSingleton<IConfigurationFolderStateImageSetter, ConfigurationFolderStateImageSetter>()
+                .AddSingleton<IConfigureConstructorsStateImageSetter, ConfigureConstructorsStateImageSetter>()
+                .AddSingleton<IConfigureFunctionsStateImageSetter, ConfigureFunctionsStateImageSetter>()
+                .AddSingleton<IConfigureParametersStateImageSetter, ConfigureParametersStateImageSetter>()
                 .AddSingleton<IConfigureVariablesStateImageSetter, ConfigureVariablesStateImageSetter>();
         }
     }

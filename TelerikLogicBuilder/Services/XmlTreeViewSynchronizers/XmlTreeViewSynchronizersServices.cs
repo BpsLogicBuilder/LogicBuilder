@@ -5,6 +5,7 @@
         internal static IServiceCollection AddXmlTreeViewSynchronizers(this IServiceCollection services)
         {
             return services
+                .AddConfigurationFormChildNodesRenamerFactories()
                 .AddXmlTreeViewSynchronizerFactories();
         }
     }

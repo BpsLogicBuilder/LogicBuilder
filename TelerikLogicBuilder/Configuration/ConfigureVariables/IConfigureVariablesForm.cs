@@ -1,10 +1,7 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
-using System.Collections.Generic;
-
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 {
-    internal interface IConfigureVariablesForm : IApplicationForm
+    internal interface IConfigureVariablesForm : IConfigurationForm
     {
-        IDictionary<string, string> ExpandedNodes { get; }
+        
     }
 }

@@ -1,5 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="constructors.xsd">
+	<constructor name="OperatorGroup!">
+		<typeName>LogicBuilder.Forms.Parameters.Grid.OperatorGroup</typeName>
+		<parameters>
+			<literalParameter name="typeName">
+				<literalType>String</literalType>
+				<control>SingleLineTextBox</control>
+				<optional>false</optional>
+				<useForEquality>true</useForEquality>
+				<useForHashCode>true</useForHashCode>
+				<useForToString>true</useForToString>
+				<propertySource />
+				<propertySourceParameter />
+				<defaultValue>string</defaultValue>
+				<domain>
+					<item>string</item>
+					<item>number</item>
+				</domain>
+				<comments></comments>
+			</literalParameter>
+			<objectListParameter name="Operators">
+				<objectType>Operator</objectType>
+				<listType>GenericList</listType>
+				<control>HashSetForm</control>
+				<optional>false</optional>
+				<comments></comments>
+			</objectListParameter>
+		</parameters>
+		<genericArguments />
+		<summary></summary>
+	</constructor>
   <folder name="Grid Classes1">
   </folder>
 	<folder name="Grid Classes">
