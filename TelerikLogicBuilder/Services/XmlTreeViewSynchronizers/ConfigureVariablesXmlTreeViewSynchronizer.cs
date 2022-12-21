@@ -49,14 +49,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         public StateImageRadTreeNode AddFolder(StateImageRadTreeNode destinationFolderTreeNode, string folderName)
         {
             StateImageRadTreeNode newFolderNode = _configurationFormXmlTreeViewSynchronizer.AddFolder(destinationFolderTreeNode, folderName);
-            configureVariablesForm.TreeView.SelectedNode = newFolderNode;
+            configureVariablesForm.SelectTreeNode(newFolderNode);
             return newFolderNode;
         }
 
         public StateImageRadTreeNode AddVariableNode(StateImageRadTreeNode destinationFolderTreeNode, XmlElement newXmlVariableNode)
         {
             StateImageRadTreeNode newVariableNode = AddVariable(destinationFolderTreeNode, newXmlVariableNode);
-            configureVariablesForm.TreeView.SelectedNode = newVariableNode;
+            configureVariablesForm.SelectTreeNode(newVariableNode);
             return newVariableNode;
         }
 
@@ -70,7 +70,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             catch (LogicBuilderException ex)
             {
                 ResetFormOnError(beforeXml, ex.Message);
-                _treeViewService.SelectTreeNode(configureVariablesForm.TreeView, destinationFolderTreeNode.Name);
+                configureVariablesForm.SelectTreeNode
+                (
+                    _treeViewService.GetTreeNodeByName
+                    (
+                        configureVariablesForm.TreeView,
+                        destinationFolderTreeNode.Name
+                    )
+                );
             }
 
             void AddVariables()
@@ -95,7 +102,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedFolderNode = _configurationFormXmlTreeViewSynchronizer.MoveFolderNode(destinationFolderTreeNode, movingTreeNode);
             if (movedFolderNode != null)
-                configureVariablesForm.TreeView.SelectedNode = movedFolderNode;
+                configureVariablesForm.SelectTreeNode(movedFolderNode);
 
             return movedFolderNode;
         }
@@ -155,6 +162,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 {
                     if (movedItem != null) movedItem.Selected = true;
                 }
+
+                StateImageRadTreeNode? firstItem = movedItems.FirstOrDefault(m => m != null);
+                if (firstItem != null)
+                    configureVariablesForm.SelectTreeNode(firstItem);
             }
         }
 
@@ -162,7 +173,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedVariableNode = _configurationFormXmlTreeViewSynchronizer.MoveConfiguredItem(destinationFolderTreeNode, movingTreeNode);
             if (movedVariableNode != null)
-                configureVariablesForm.TreeView.SelectedNode = movedVariableNode;
+                configureVariablesForm.SelectTreeNode(movedVariableNode);
 
             return movedVariableNode;
         }
@@ -194,12 +205,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             {
                 _configurationFormXmlTreeViewSynchronizer.DeleteFolderOrConfiguredItem(existingTreeNode);
                 StateImageRadTreeNode newVariableNode = AddVariable(parentNode, newXmlVariableNode);
-                configureVariablesForm.TreeView.SelectedNode = newVariableNode;
+                configureVariablesForm.SelectTreeNode(newVariableNode);
             }
             catch (LogicBuilderException ex)
             {
                 ResetFormOnError(beforeXml, ex.Message);
-                _treeViewService.SelectTreeNode(configureVariablesForm.TreeView, existingTreeNode.Name);
+                configureVariablesForm.SelectTreeNode
+                (
+                    _treeViewService.GetTreeNodeByName
+                    (
+                        configureVariablesForm.TreeView,
+                        existingTreeNode.Name
+                    )
+                );
             }
         }
 

@@ -13,6 +13,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
@@ -21,9 +23,12 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -154,6 +159,29 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IUpdateProjectProperties>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
+                        openedAsReadOnly
+                    )
+                )
+                .AddTransient<Func<bool, IConfigureVariablesForm>>
+                (
+                    provider =>
+                    openedAsReadOnly => new ConfigureVariablesForm
+                    (
+                        provider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                        provider.GetRequiredService<IConfigureVariablesCommandFactory>(),
+                        provider.GetRequiredService<IConfigureVariablesControlFactory>(),
+                        provider.GetRequiredService<IConfigureVariablesFactory>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILoadVariables>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITreeViewBuilderFactory>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IUpdateVariables>(),
+                        provider.GetRequiredService<IVariablesXmlParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         openedAsReadOnly
                     )
                 )

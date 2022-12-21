@@ -47,6 +47,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigureGenericLiteralArgumentCommandFactories()
                 .AddConfigureLiteralDomainCommandFactories()
                 .AddConfigureLiteralDomainControlFactories()
+                .AddConfigureLiteralListVariableCommandFactories()
+                .AddConfigureLiteralVariableCommandFactories()
                 .AddConfigureGenericLiteralListArgumentCommandFactories()
                 .AddConfigureLiteralListDefaultValueCommandFactories()
                 .AddConfigureLiteralListDefaultValueControlFactories()
@@ -57,6 +59,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigurationInitialization()
                 .AddConfigureExcludedModulesCommandFactories()
                 .AddConfigureProjectPropertiesContextMenuCommandFactories()
+                .AddConfigureVariablesCommandFactories()
+                .AddConfigureVariablesControlFactories()
+                .AddConfigureVariablesFactories()
                 .AddConfigurationFormFactories()
                 .AddConnectorObjectsItemFactories()
                 .AddFragmentItemFactories()
@@ -64,6 +69,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddLiteralListDefaultValueItemFactories()
                 .AddLoadAssemblyPathsItemFactories()
                 .AddProjectPropertiesItemFactories()
+                .AddVariableControlValidatorFactories()
                 .AddWebApiDeploymentItemFactories();
     }
 }

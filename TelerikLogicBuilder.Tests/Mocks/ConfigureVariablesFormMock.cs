@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
@@ -21,6 +22,12 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public DialogResult DialogResult => throw new NotImplementedException();
 
+        public IDictionary<string, VariableBase> VariablesDictionary => throw new NotImplementedException();
+
+        public HashSet<string> VariableNames => throw new NotImplementedException();
+
+        public bool CanExecuteImport => throw new NotImplementedException();
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage()
@@ -42,6 +49,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
         }
 
         public void RenameChildNodes(RadTreeNode treeNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SelectTreeNode(RadTreeNode treeNode)
         {
             throw new NotImplementedException();
         }

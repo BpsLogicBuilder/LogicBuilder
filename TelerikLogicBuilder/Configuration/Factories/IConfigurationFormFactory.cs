@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
@@ -29,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         IConfigureLiteralListDefaultValueForm GetConfigureLiteralListDefaultValueForm(IList<string> existingDefaultValueItems, Type type);
         IConfigureLoadAssemblyPathsForm GetConfigureLoadAssemblyPaths(IList<string> existingPaths);
         IConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly);
+        IConfigureVariablesForm GetConfigureVariablesForm(bool openedAsReadOnly);
         IConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment);
     }
 }

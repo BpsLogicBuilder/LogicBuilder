@@ -1,8 +1,8 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
 using FlowBuilder = ABIS.LogicBuilder.FlowBuilder;
 
@@ -108,6 +108,31 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.StartsWith("InstructorModel", result);
+        }
+
+        [Theory]
+        [InlineData("enumdescriptionthis", true)]
+        [InlineData("enumDescriptionThis", false)]
+        public void GetResoureStringReturnsTheExpectedResult(string key, bool ignorecase)
+        {
+            //arrange
+            IStringHelper helper = serviceProvider.GetRequiredService<IStringHelper>();
+
+            //act
+            var result = helper.GetResoureString(key, ignorecase);
+
+            //assert
+            Assert.Equal("This", result);
+        }
+
+        [Fact]
+        public void GetResoureStringThrowsForkeyNotFoubnd()
+        {
+            //arrange
+            IStringHelper helper = serviceProvider.GetRequiredService<IStringHelper>();
+
+            //act assert
+            Assert.Throws<CriticalLogicBuilderException>(() => helper.GetResoureString("enumdescriptionthis", false));
         }
     }
 }

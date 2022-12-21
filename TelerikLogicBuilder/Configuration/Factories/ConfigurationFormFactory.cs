@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> _getConfigureLiteralListDefaultValueForm;
         private readonly Func<IList<string>, IConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
         private readonly Func<bool, IConfigureProjectPropertiesForm> _getConfigureProjectProperties;
+        private readonly Func<bool, IConfigureVariablesForm> _getConfigureVariablesForm;
         private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
         private readonly IServiceScope _scope;
 
@@ -44,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> getConfigureLiteralListDefaultValueForm,
             Func<IList<string>, IConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
             Func<bool, IConfigureProjectPropertiesForm> getConfigureProjectProperties,
+            Func<bool, IConfigureVariablesForm> getConfigureVariablesForm,
             Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
         {
             _scope = serviceScopeFactory.CreateScope();
@@ -55,6 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             _getConfigureLiteralListDefaultValueForm = getConfigureLiteralListDefaultValueForm;
             _getConfigureLoadAssemblyPaths = getConfigureLoadAssemblyPaths;
             _getConfigureProjectProperties = getConfigureProjectProperties;
+            _getConfigureVariablesForm = getConfigureVariablesForm;
             _getConfigureWebApiDeployment = getConfigureWebApiDeployment;
         }
 
@@ -108,6 +112,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         {
             _scopedService = _getConfigureProjectProperties(openedAsReadOnly);
             return (IConfigureProjectPropertiesForm)_scopedService;
+        }
+
+        public IConfigureVariablesForm GetConfigureVariablesForm(bool openedAsReadOnly)
+        {
+            _scopedService = _getConfigureVariablesForm(openedAsReadOnly);
+            return (IConfigureVariablesForm)_scopedService;
         }
 
         public IConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment)

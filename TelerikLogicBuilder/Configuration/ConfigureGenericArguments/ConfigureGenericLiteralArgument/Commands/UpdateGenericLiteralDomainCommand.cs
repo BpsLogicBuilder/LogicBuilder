@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -77,7 +78,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             if (configureLiteralDomainForm.DialogResult != DialogResult.OK)
                 return;
 
-            domainElement.InnerXml = BuildDomainItemsXml();
+            try
+            {
+                domainElement.InnerXml = BuildDomainItemsXml();
+                this.configureGenericLiteralArgumentControl.ValidateXmlDocument();
+            }
+            catch (LogicBuilderException ex)
+            {
+                this.configureGenericLiteralArgumentControl.SetErrorMessage(ex.Message);
+            }
 
             string BuildDomainItemsXml()
             {

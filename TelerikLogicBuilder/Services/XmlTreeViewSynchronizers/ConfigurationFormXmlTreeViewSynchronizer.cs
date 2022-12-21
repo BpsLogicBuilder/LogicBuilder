@@ -183,6 +183,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 if (validate)
                     configurationForm.ValidateXmlDocument();
 
+                configurationForm.TreeView.SelectedNode = null;/*prevent selection of new node upon remove.*/
                 movingTreeNode.Remove();
                 if (currentParentTreeNode.Nodes.Count == 0)
                     currentParentTreeNode.Collapse();
@@ -235,6 +236,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 if (validate)
                     configurationForm.ValidateXmlDocument();
 
+                configurationForm.TreeView.SelectedNode = null;/*prevent selection of new node upon remove.*/
                 movingTreeNode.Remove();
                 if (currentParentTreeNode.Nodes.Count == 0)
                     currentParentTreeNode.Collapse();
@@ -294,8 +296,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 if (validate)
                     configurationForm.ValidateXmlDocument();
 
+                configurationForm.TreeView.SelectedNode = null;/*prevent selection of new node upon remove.*/
                 movingTreeNode.Remove();
-
                 _treeViewService.RenameChildTreeNode
                 (
                     destParentTreeNode,
@@ -336,6 +338,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 if (validate)
                     configurationForm.ValidateXmlDocument();
 
+                configurationForm.TreeView.SelectedNode = null;/*prevent selection of new node upon remove.*/
                 movingTreeNode.Remove();
                 _treeViewService.RenameChildTreeNode
                 (
@@ -374,7 +377,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             if (previousParent.Nodes.Count == 0)
                 previousParent.Collapse();
 
-            configurationForm.TreeView.SelectedNode = closestNode;
+            configurationForm.SelectTreeNode(closestNode);
         }
 
         private void InsertTreeNode(RadTreeNode destinationFolderTreeNode, RadTreeNode newTreeNode) 

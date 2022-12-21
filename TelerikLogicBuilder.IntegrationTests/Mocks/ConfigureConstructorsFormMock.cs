@@ -39,6 +39,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
 
         public DialogResult DialogResult => throw new NotImplementedException();
 
+        public bool CanExecuteImport => throw new NotImplementedException();
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage()
@@ -83,6 +85,11 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
         public void ValidateXmlDocument()
         {
             _treeViewXmlDocumentHelper.ValidateXmlDocument();
+        }
+
+        public void SelectTreeNode(RadTreeNode treeNode)
+        {
+            TreeView.SelectedNode = treeNode;
         }
     }
 }

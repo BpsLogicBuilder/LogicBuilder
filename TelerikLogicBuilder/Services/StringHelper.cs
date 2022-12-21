@@ -11,6 +11,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 {
     internal class StringHelper : IStringHelper
     {
+        private readonly IExceptionHelper _exceptionHelper;
+
+        public StringHelper(IExceptionHelper exceptionHelper)
+        {
+            _exceptionHelper = exceptionHelper;
+        }
+
         public string EnsureUniqueName(string nameString, HashSet<string> names)
         {
             if (!names.Contains(nameString))
@@ -34,6 +41,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     return EnsureUniqueName(nameString, names);
                 }
             }
+        }
+
+        public string GetResoureString(string key, bool ignoreCase)
+        {
+            bool original = Strings.ResourceManager.IgnoreCase;
+            Strings.ResourceManager.IgnoreCase = ignoreCase;
+            string result = Strings.ResourceManager.GetString(key) ?? throw _exceptionHelper.CriticalException("{BB22946E-A51B-464A-AEDA-A68F1458D47E}");
+            Strings.ResourceManager.IgnoreCase = original;
+
+            return result;
         }
 
         public string[] SplitWithQuoteQualifier(string argument, params string[] delimiters)

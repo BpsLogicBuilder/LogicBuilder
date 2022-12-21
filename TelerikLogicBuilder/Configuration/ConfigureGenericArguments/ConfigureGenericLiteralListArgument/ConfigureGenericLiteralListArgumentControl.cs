@@ -71,6 +71,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
         public RadDropDownList CmbListLpLiteralType => cmbListLpLiteralType;
         #endregion Properties
 
+        public void ClearMessage() => configureGenericArgumentsForm.ClearMessage();
+
         public void SetControlValues(RadTreeNode treeNode)
         {
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(this.XmlDocument, treeNode.Name);
@@ -84,6 +86,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             cmbListLpPropertySource.Text = elements[XmlDataConstants.PROPERTYSOURCEELEMENT].InnerText;
             cmbListLpPropertySourceParameter.Text = elements[XmlDataConstants.PROPERTYSOURCEPARAMETERELEMENT].InnerText;
         }
+
+        public void SetErrorMessage(string message) => configureGenericArgumentsForm.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => configureGenericArgumentsForm.SetMessage(message, title);
 
         public void UpdateXmlDocument(RadTreeNode treeNode)
         {
@@ -104,6 +110,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             elements[XmlDataConstants.PROPERTYSOURCEELEMENT].InnerText = cmbListLpPropertySource.Text.Trim();
             elements[XmlDataConstants.PROPERTYSOURCEPARAMETERELEMENT].InnerText = cmbListLpPropertySourceParameter.Text.Trim();
 
+            configureGenericArgumentsForm.ValidateXmlDocument();
+        }
+
+        public void ValidateXmlDocument()
+        {
             configureGenericArgumentsForm.ValidateXmlDocument();
         }
 
@@ -229,8 +240,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             _radDropDownListHelper.LoadComboItems<ListType>(cmbListLpListType);
             _radDropDownListHelper.LoadComboItems(cmbListLpControl, RadDropDownStyle.DropDownList, new ListParameterInputStyle[] { ListParameterInputStyle.Connectors });
             _radDropDownListHelper.LoadComboItems<LiteralParameterInputStyle>(cmbListLpElementControl);
-            if (configureGenericArgumentsForm.Application.AssemblyAvailable)
-                _radDropDownListHelper.LoadTextItems(cmbListLpPropertySource.RadDropDownList, configureGenericArgumentsForm.Application.AllTypesList, RadDropDownStyle.DropDown);
 
             _radDropDownListHelper.LoadTextItems
             (

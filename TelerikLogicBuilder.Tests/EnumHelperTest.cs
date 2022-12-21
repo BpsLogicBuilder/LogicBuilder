@@ -889,6 +889,45 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        public void ConvertVisibleDropDownValuesToEnumNamesWorksWithDefinedValues()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+            List<string> enumNames = new() { "property", "FIELD", "ArrayItem" };
+
+            //act
+            var enumList = enumHelper.ConvertVisibleDropDownValuesToEnumNames<ValidIndirectReference>(enumNames).ToList();
+
+            //assert
+            Assert.True(enumList.SequenceEqual(new List<string> { "Property", "Field", "ArrayIndexer" }));
+        }
+
+        [Fact]
+        public void ConvertVisibleDropDownValuesToEnumNamesWorksWithDefinedValuesForSatelliteCulture()
+        {
+            //arrange
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+            List<string> enumNames = new() { "propertyfr", "FIELDfr", "ArrayItemfr" };
+
+            //act
+            var enumList = enumHelper.ConvertVisibleDropDownValuesToEnumNames<ValidIndirectReference>(enumNames).ToList();
+
+            //assert
+            Assert.True(enumList.SequenceEqual(new List<string> { "Property", "Field", "ArrayIndexer" }));
+        }
+
+        [Fact]
+        public void ConvertVisibleDropDownValuesToEnumNamesThrowsCriticalExceptionForInvalidGenericType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.ConvertVisibleDropDownValuesToEnumNames<object>(new List<string>()));
+        }
+
+        [Fact]
         public void GetLiteralTypeThrowsCriticalExceptionForInvalidType()
         {
             //arrange
@@ -1111,6 +1150,33 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal("fieldfr", dictionary.Keys.First());
+        }
+
+        [Fact]
+        public void ToVisibleDropdownValuesReturnsCorrectDictionaryForDefaultCulture()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            IList<string> result = enumHelper.ToVisibleDropdownValues(new string[] { "Property", "Field", "ArrayIndexer" });
+
+            //assert
+            Assert.True(result.SequenceEqual(new List<string> { "Property", "Field", "ArrayItem" }));
+        }
+
+        [Fact]
+        public void ToVisibleDropdownValuesReturnsCorrectDictionaryForSatelliteCulture()
+        {
+            //arrange
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            IList<string> result = enumHelper.ToVisibleDropdownValues(new string[] { "Property", "Field", "ArrayIndexer" });
+
+            //assert
+            Assert.True(result.SequenceEqual(new List<string> { "PropertyFR", "FieldFR", "ArrayItemFR" }));
         }
 
         [Fact]

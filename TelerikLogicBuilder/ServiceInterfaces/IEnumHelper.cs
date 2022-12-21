@@ -10,6 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         bool CanBeInteger(LiteralVariableType variableType);
         IList<string> ConvertEnumListToStringList<T>(IList<T>? excludedItems = null);
         IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames);
+        IList<string> ConvertVisibleDropDownValuesToEnumNames<T>(ICollection<string> array);
         string GetEnumResourceString(string? enumName);
         GenericConfigCategory GetGenericConfigCategory(string elementName);
         ListType GetListType(Type memberType);
@@ -29,11 +30,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         Type GetSystemType(LiteralVariableType variableType);
         string GetTypeDescription(ListType listType, string elementType);
         VariableTypeCategory GetVariableTypeCategory(string elementName);
+        string GetValidIndirectReferencesList();
+        string GetValidCategoriesList();
         string GetVisibleEnumText<T>(T enumType);
         bool IsValidCodeBinaryOperator(string item);
         T ParseEnumText<T>(string text);
         IDictionary<string, ValidIndirectReference> ToValidIndirectReferenceDictionary();
-        string GetValidIndirectReferencesList();
-        string GetValidCategoriesList();
+        IList<string> ToVisibleDropdownValues(ICollection<string> array);
     }
 }

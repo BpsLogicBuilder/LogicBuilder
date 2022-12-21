@@ -3868,6 +3868,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Folder....
+        /// </summary>
+        internal static string mnuItemAddConfigurationFolderText {
+            get {
+                return ResourceManager.GetString("mnuItemAddConfigurationFolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Existing....
         /// </summary>
         internal static string mnuItemAddExistingFileText {
@@ -3882,6 +3891,51 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddFileText {
             get {
                 return ResourceManager.GetString("mnuItemAddFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Literals Variable.
+        /// </summary>
+        internal static string mnuItemAddImplementedListOfLiteralsVariableText {
+            get {
+                return ResourceManager.GetString("mnuItemAddImplementedListOfLiteralsVariableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Objects Variable.
+        /// </summary>
+        internal static string mnuItemAddImplementedListOfObjectsVariableText {
+            get {
+                return ResourceManager.GetString("mnuItemAddImplementedListOfObjectsVariableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal Variable.
+        /// </summary>
+        internal static string mnuItemAddImplementedLiteralVariableText {
+            get {
+                return ResourceManager.GetString("mnuItemAddImplementedLiteralVariableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object Variable.
+        /// </summary>
+        internal static string mnuItemAddImplementedObjectVariableText {
+            get {
+                return ResourceManager.GetString("mnuItemAddImplementedObjectVariableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class Members....
+        /// </summary>
+        internal static string mnuItemAddMembersText {
+            get {
+                return ResourceManager.GetString("mnuItemAddMembersText", resourceCulture);
             }
         }
         
@@ -3909,6 +3963,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddText {
             get {
                 return ResourceManager.GetString("mnuItemAddText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add....
+        /// </summary>
+        internal static string mnuItemAddTextWithEllipses {
+            get {
+                return ResourceManager.GetString("mnuItemAddTextWithEllipses", resourceCulture);
             }
         }
         
@@ -3963,6 +4026,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemCopyToClipboardText {
             get {
                 return ResourceManager.GetString("mnuItemCopyToClipboardText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy XML to Clipboard.
+        /// </summary>
+        internal static string mnuItemCopyXml {
+            get {
+                return ResourceManager.GetString("mnuItemCopyXml", resourceCulture);
             }
         }
         
@@ -5236,6 +5308,186 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Each segment (period delimited) contains a tile (~)(no cast required) or the fully qualified class name for the corresponding segment in the Reference Name when a cast is required for the segment..
+        /// </summary>
+        internal static string varConfigCastReferenceAsHelp {
+            get {
+                return ResourceManager.GetString("varConfigCastReferenceAsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fully qualified class name to cast the variable to when a cast is required..
+        /// </summary>
+        internal static string varConfigCastVariableAsHelp {
+            get {
+                return ResourceManager.GetString("varConfigCastVariableAsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summarizes the purpose of the variable..
+        /// </summary>
+        internal static string varConfigCommentsHelp {
+            get {
+                return ResourceManager.GetString("varConfigCommentsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify a default value for the argument..
+        /// </summary>
+        internal static string varConfigDefaultValueHelp {
+            get {
+                return ResourceManager.GetString("varConfigDefaultValueHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of choices for populating a literal..
+        /// </summary>
+        internal static string varConfigDomainHelp {
+            get {
+                return ResourceManager.GetString("varConfigDomainHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control used to update a list element value at design-time..
+        /// </summary>
+        internal static string varConfigElementControlHelp {
+            get {
+                return ResourceManager.GetString("varConfigElementControlHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control used for the list at design time. It can be a list form or hashset form..
+        /// </summary>
+        internal static string varConfigListControlHelp {
+            get {
+                return ResourceManager.GetString("varConfigListControlHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify a list of default values for the argument..
+        /// </summary>
+        internal static string varConfigListDefaultValueHelp {
+            get {
+                return ResourceManager.GetString("varConfigListDefaultValueHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Array, genric list or generic collection..
+        /// </summary>
+        internal static string varConfigListTypeHelp {
+            get {
+                return ResourceManager.GetString("varConfigListTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control used for a literal at design-time..
+        /// </summary>
+        internal static string varConfigLiteralControlHelp {
+            get {
+                return ResourceManager.GetString("varConfigLiteralControlHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal type..
+        /// </summary>
+        internal static string varConfigLiteralTypeHelp {
+            get {
+                return ResourceManager.GetString("varConfigLiteralTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique name for the variable used in the flow diagram..
+        /// </summary>
+        internal static string varConfigNameHelp {
+            get {
+                return ResourceManager.GetString("varConfigNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object Type..
+        /// </summary>
+        internal static string varConfigObjectTypeHelp {
+            get {
+                return ResourceManager.GetString("varConfigObjectTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify the fully qualified class as a source for a public properties domain when the {0} is &quot;{1}&quot;..
+        /// </summary>
+        internal static string varConfigPropertySourceHelpFormat {
+            get {
+                return ResourceManager.GetString("varConfigPropertySourceHelpFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defines the variable&apos;s membership as This, Type, Instance Reference, or Static Reference..
+        /// </summary>
+        internal static string varConfigReferenceCategoryHelp {
+            get {
+                return ResourceManager.GetString("varConfigReferenceCategoryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defines each segment (period delimited) of the Reference Name as a field, property or indexer..
+        /// </summary>
+        internal static string varConfigReferenceDefinitionHelp {
+            get {
+                return ResourceManager.GetString("varConfigReferenceDefinitionHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used when the Reference Category is a static or instance reference of the Activity Class..
+        /// </summary>
+        internal static string varConfigReferenceNameHelp {
+            get {
+                return ResourceManager.GetString("varConfigReferenceNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fully qualified class name when the Reference Category is a type or a static reference..
+        /// </summary>
+        internal static string varConfigTypeNameHelp {
+            get {
+                return ResourceManager.GetString("varConfigTypeNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates whether the variable is a field, property or indexer..
+        /// </summary>
+        internal static string varConfigVariableCategoryHelp {
+            get {
+                return ResourceManager.GetString("varConfigVariableCategoryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member name for the class field or property..
+        /// </summary>
+        internal static string varConfigVariableNameHelp {
+            get {
+                return ResourceManager.GetString("varConfigVariableNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0} must be a configured integer variable or positive integer..
         /// </summary>
         internal static string variableArrayIndexIsInvalidFormat {
@@ -5272,6 +5524,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reference Definition cannot be empty when the reference category is &quot;Static Reference&quot; or reference category is &quot;Instance Reference&quot;..
+        /// </summary>
+        internal static string variableBlankDefinition {
+            get {
+                return ResourceManager.GetString("variableBlankDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~.&quot;MyNameSpace.MyClass&quot; (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period)..
+        /// </summary>
+        internal static string variableCastRefAsAndDefinitionFormat2 {
+            get {
+                return ResourceManager.GetString("variableCastRefAsAndDefinitionFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Definition must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
+        /// </summary>
+        internal static string variableDefinitionNotEmpty {
+            get {
+                return ResourceManager.GetString("variableDefinitionNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A variable with the name &quot;{0}&quot; already exists..
+        /// </summary>
+        internal static string variableExistsFormat {
+            get {
+                return ResourceManager.GetString("variableExistsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The variable index in the Variable Name field, cannot be used to reference itself. Variable: &quot;{0}&quot;..
         /// </summary>
         internal static string variableIndexCannotBeSelfFormat {
@@ -5295,6 +5583,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableInvalidIndirectDefinitionFormat {
             get {
                 return ResourceManager.GetString("variableInvalidIndirectDefinitionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Definition has invalid section &quot;{0}&quot;. Valid sections for indirect references include:{1}{2}..
+        /// </summary>
+        internal static string variableInvalidIndirectDefinitionFormat2 {
+            get {
+                return ResourceManager.GetString("variableInvalidIndirectDefinitionFormat2", resourceCulture);
             }
         }
         
@@ -5335,6 +5632,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reference Name and Reference Definition must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Category = Field.Property.IntKeyValue.Field..
+        /// </summary>
+        internal static string variableNameAndDefinitionFormat2 {
+            get {
+                return ResourceManager.GetString("variableNameAndDefinitionFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Variable Name Field for variable &quot;{0}&quot; is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string variableNameIsInvalidFormat {
@@ -5353,7 +5659,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reference Definition field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot; or the evaluation is &quot;Automatic&quot;..
+        ///   Looks up a localized string similar to Reference Definition field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string variableReferenceDefinitionMustBeEmptyFormat {
             get {
@@ -5371,7 +5677,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reference Name field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot; or the evaluation is &quot;Automatic&quot;..
+        ///   Looks up a localized string similar to Reference Name field for variable {0} must be empty when the reference category is &quot;This&quot; or reference category is &quot;Type&quot;..
         /// </summary>
         internal static string variableReferenceMustBeEmptyFormat {
             get {
@@ -5385,6 +5691,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variablesRootNodeText {
             get {
                 return ResourceManager.GetString("variablesRootNodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Name field must be empty when the reference category is not &quot;Type&quot;or &quot;Static Reference&quot;..
+        /// </summary>
+        internal static string variableTypeNameMustBeEmpty {
+            get {
+                return ResourceManager.GetString("variableTypeNameMustBeEmpty", resourceCulture);
             }
         }
         

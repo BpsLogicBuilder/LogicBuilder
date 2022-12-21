@@ -213,7 +213,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public void AddVisioControl(IDocumentEditor documentEditor) 
             => AddDocumentEditorControl(documentEditor, true, false);
 
-        public void ChangeCursor(Cursor cursor) => this.Cursor = cursor;
+        public void ChangeCursor(Cursor cursor)
+        {
+            this.Cursor = cursor;
+            this.Refresh();
+        }
 
         public void CloseProject()
         {

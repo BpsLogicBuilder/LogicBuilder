@@ -19,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
+        private readonly ILoadProjectProperties _loadProjectProperties;
         private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly IUiNotificationService _uiNotificationService;
@@ -27,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
+            ILoadProjectProperties loadProjectProperties,
             IMainWindow mainWindow,
             IPathHelper pathHelper,
             IUiNotificationService uiNotificationService)
@@ -34,6 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
+            _loadProjectProperties = loadProjectProperties;
             _mainWindow = mainWindow;
             _pathHelper = pathHelper;
             _uiNotificationService = uiNotificationService;
@@ -73,24 +76,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     }
                 }
 
+                _mainWindow.MDIParent.ChangeCursor(Cursors.WaitCursor);
                 await _mainWindow.MDIParent.RunLoadContextAsync(ConfigureConnectorObjects);
+                _mainWindow.MDIParent.ChangeCursor(Cursors.Default);
 
                 Task ConfigureConnectorObjects(CancellationTokenSource cancellationTokenSource)
-                {
+                {//?Update Project Properties in memory
                     using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
                     IConfigureConnectorObjectsForm configureConnectorObjectsForm = disposableManager.GetConfigureConnectorObjectsForm(openedReadonly);
                     configureConnectorObjectsForm.ShowDialog(_mainWindow.Instance);
+                    if (!openedReadonly && configureConnectorObjectsForm.DialogResult == DialogResult.OK)
+                    {
+                        _configurationService.ProjectProperties = _loadProjectProperties.Load(projectFileFullName);
+                    }
 
                     return Task.CompletedTask;
                 }
-
             }
             catch (LogicBuilderException ex)
             {
                 _uiNotificationService.NotifyLogicBuilderException(ex);
-            }
-            finally
-            {
             }
         }
     }

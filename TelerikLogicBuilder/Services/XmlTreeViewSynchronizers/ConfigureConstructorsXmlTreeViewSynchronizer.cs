@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         public StateImageRadTreeNode AddConstructorNode(StateImageRadTreeNode destinationFolderTreeNode, XmlElement newXmlConstructorNode)
         {
             StateImageRadTreeNode newConstructorNode = AddConstructor(destinationFolderTreeNode, newXmlConstructorNode);
-            configureConstructorsForm.TreeView.SelectedNode = newConstructorNode;
+            configureConstructorsForm.SelectTreeNode(newConstructorNode);
             return newConstructorNode;
         }
 
@@ -66,7 +66,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             catch (LogicBuilderException ex)
             {
                 ResetFormOnError(beforeXml, ex.Message);
-                _treeViewService.SelectTreeNode(configureConstructorsForm.TreeView, destinationFolderTreeNode.Name);
+                configureConstructorsForm.SelectTreeNode
+                (
+                    _treeViewService.GetTreeNodeByName
+                    (
+                        configureConstructorsForm.TreeView, 
+                        destinationFolderTreeNode.Name
+                    )
+                );
             }
 
             void AddConstructors()
@@ -87,14 +94,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         public StateImageRadTreeNode AddFolder(StateImageRadTreeNode destinationFolderTreeNode, string folderName)
         {
             StateImageRadTreeNode newFolderNode = _configurationFormXmlTreeViewSynchronizer.AddFolder(destinationFolderTreeNode, folderName);
-            configureConstructorsForm.TreeView.SelectedNode = newFolderNode;
+            configureConstructorsForm.SelectTreeNode(newFolderNode);
             return newFolderNode;
         }
 
         public StateImageRadTreeNode AddParameterNode(StateImageRadTreeNode destinationConstructorTreeNode, XmlElement newXmlParameterNode)
         {
             StateImageRadTreeNode newParameterNode = _configurationFormXmlTreeViewSynchronizer.AddParameterNode(destinationConstructorTreeNode, newXmlParameterNode);
-            configureConstructorsForm.TreeView.SelectedNode = newParameterNode;
+            configureConstructorsForm.SelectTreeNode(newParameterNode);
             return newParameterNode;
         }
 
@@ -108,7 +115,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedConstructorNode = _configurationFormXmlTreeViewSynchronizer.MoveConfiguredItem(destinationFolderTreeNode, movingTreeNode);
             if (movedConstructorNode != null)
-                configureConstructorsForm.TreeView.SelectedNode = movedConstructorNode;
+                configureConstructorsForm.SelectTreeNode(movedConstructorNode);
 
             return movedConstructorNode;
         }
@@ -117,7 +124,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedFolderNode = _configurationFormXmlTreeViewSynchronizer.MoveFolderNode(destinationFolderTreeNode, movingTreeNode);
             if (movedFolderNode != null)
-                configureConstructorsForm.TreeView.SelectedNode = movedFolderNode;
+                configureConstructorsForm.SelectTreeNode(movedFolderNode);
 
             return movedFolderNode;
         }
@@ -207,6 +214,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 {
                     if (movedItem != null) movedItem.Selected = true;
                 }
+
+                StateImageRadTreeNode? firstItem = movedItems.FirstOrDefault(m => m != null);
+                if (firstItem != null)
+                    configureConstructorsForm.SelectTreeNode(firstItem);
             }
         }
 
@@ -214,7 +225,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedParameterNode = _configurationFormXmlTreeViewSynchronizer.MoveParameterBeforeParameter(destinationParameterTreeNode, movingTreeNode);
             if (movedParameterNode != null)
-                configureConstructorsForm.TreeView.SelectedNode = movedParameterNode;
+                configureConstructorsForm.SelectTreeNode(movedParameterNode);
 
             return movedParameterNode;
         }
@@ -223,7 +234,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedParameterNode = _configurationFormXmlTreeViewSynchronizer.MoveParameterToConfiguredItem(destinationTreeConstructorNode, movingTreeNode);
             if (movedParameterNode != null)
-                configureConstructorsForm.TreeView.SelectedNode = movedParameterNode;
+                configureConstructorsForm.SelectTreeNode(movedParameterNode);
 
             return movedParameterNode;
         }
@@ -245,12 +256,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             {
                 _configurationFormXmlTreeViewSynchronizer.DeleteFolderOrConfiguredItem(existingTreeNode);
                 StateImageRadTreeNode newVariableNode = AddConstructor(parentNode, newXmlConstructorNode);
-                configureConstructorsForm.TreeView.SelectedNode = newVariableNode;
+                configureConstructorsForm.SelectTreeNode(newVariableNode);
             }
             catch (LogicBuilderException ex)
             {
                 ResetFormOnError(beforeXml, ex.Message);
-                _treeViewService.SelectTreeNode(configureConstructorsForm.TreeView, existingTreeNode.Name);
+                configureConstructorsForm.SelectTreeNode
+                (
+                    _treeViewService.GetTreeNodeByName
+                    (
+                        configureConstructorsForm.TreeView,
+                        existingTreeNode.Name
+                    )
+                );
             }
         }
 

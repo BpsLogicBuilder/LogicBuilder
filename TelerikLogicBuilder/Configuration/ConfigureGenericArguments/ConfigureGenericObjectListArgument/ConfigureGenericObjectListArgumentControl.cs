@@ -118,9 +118,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
         private void LoadParameterDropDownLists()
         {
             _radDropDownListHelper.LoadTextItems(cmbListCpGenericArgumentName, configureGenericArgumentsForm.ConfiguredGenericArgumentNames);
-            if (configureGenericArgumentsForm.Application.AssemblyAvailable)
-                _radDropDownListHelper.LoadTextItems(cmbListCpObjectType.RadDropDownList, configureGenericArgumentsForm.Application.AllTypesList, RadDropDownStyle.DropDown);
-
             _radDropDownListHelper.LoadComboItems<ListType>(cmbListCpListType);
             _radDropDownListHelper.LoadComboItems(cmbListCpControl, RadDropDownStyle.DropDownList, new ListParameterInputStyle[] { ListParameterInputStyle.Connectors });
         }

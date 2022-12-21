@@ -21,6 +21,8 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public DialogResult DialogResult => throw new NotImplementedException();
 
+        public bool CanExecuteImport => throw new NotImplementedException();
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage()
@@ -42,6 +44,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
         }
 
         public void RenameChildNodes(RadTreeNode treeNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SelectTreeNode(RadTreeNode treeNode)
         {
             throw new NotImplementedException();
         }

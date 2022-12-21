@@ -1036,11 +1036,29 @@
     <value>The {0} element is required for dialog connectors.FR</value>
     <comment>0=connector category</comment>
   </data>
+	<data name="mnuItemAddConfigurationFolderText" xml:space="preserve">
+    <value>Folder...FR</value>
+  </data>
 	<data name="mnuItemAddExistingFileText" xml:space="preserve">
     <value>Existing...FR</value>
   </data>
 	<data name="mnuItemAddFileText" xml:space="preserve">
     <value>Add File...FR</value>
+  </data>
+	<data name="mnuItemAddImplementedListOfLiteralsVariableText" xml:space="preserve">
+    <value>List of Literals VariableFR</value>
+  </data>
+	<data name="mnuItemAddImplementedListOfObjectsVariableText" xml:space="preserve">
+    <value>List of Objects VariableFR</value>
+  </data>
+	<data name="mnuItemAddImplementedLiteralVariableText" xml:space="preserve">
+    <value>Literal VariableFR</value>
+  </data>
+	<data name="mnuItemAddImplementedObjectVariableText" xml:space="preserve">
+    <value>Object VariableFR</value>
+  </data>
+	<data name="mnuItemAddMembersText" xml:space="preserve">
+    <value>Class Members...FR</value>
   </data>
 	<data name="mnuItemAddNewFileText" xml:space="preserve">
     <value>New...FR</value>
@@ -1050,6 +1068,9 @@
   </data>
 	<data name="mnuItemAddText" xml:space="preserve">
     <value>AddFR</value>
+  </data>
+	<data name="mnuItemAddTextWithEllipses" xml:space="preserve">
+    <value>Add...FR</value>
   </data>
 	<data name="mnuItemAddUpdateGenericArguments" xml:space="preserve">
     <value>Add/Update Generic ArgumentsFR</value>
@@ -1068,6 +1089,9 @@
   </data>
 	<data name="mnuItemCopyToClipboardText" xml:space="preserve">
     <value>Copy to ClipboardFR</value>
+  </data>
+	<data name="mnuItemCopyXml" xml:space="preserve">
+    <value>Copy XML to ClipboardFR</value>
   </data>
 	<data name="mnuItemCreateDirectoryText" xml:space="preserve">
     <value>Create FolderFR</value>
@@ -1455,8 +1479,82 @@
 	<data name="validationSuccessful" xml:space="preserve">
     <value>Validation Successful!FR</value>
   </data>
+	<data name="varConfigCastReferenceAsHelp" xml:space="preserve">
+    <value>Each segment (period delimited) contains a tile (~)(no cast required) or the fully qualified class name for the corresponding segment in the Reference Name when a cast is required for the segment.FR</value>
+  </data>
+	<data name="varConfigCastVariableAsHelp" xml:space="preserve">
+    <value>Fully qualified class name to cast the variable to when a cast is required.FR</value>
+  </data>
+	<data name="varConfigCommentsHelp" xml:space="preserve">
+    <value>Summarizes the purpose of the variable.FR</value>
+  </data>
+	<data name="varConfigDefaultValueHelp" xml:space="preserve">
+    <value>Specify a default value for the argument.FR</value>
+  </data>
+	<data name="varConfigDomainHelp" xml:space="preserve">
+    <value>List of choices for populating a literal.FR</value>
+  </data>
+	<data name="varConfigElementControlHelp" xml:space="preserve">
+    <value>Control used to update a list element value at design-time.FR</value>
+  </data>
+	<data name="varConfigListControlHelp" xml:space="preserve">
+    <value>Control used for the list at design time. It can be a list form or hashset form.FR</value>
+  </data>
+	<data name="varConfigListDefaultValueHelp" xml:space="preserve">
+    <value>Specify a list of default values for the argument.FR</value>
+  </data>
+	<data name="varConfigListTypeHelp" xml:space="preserve">
+    <value>Array, genric list or generic collection.FR</value>
+  </data>
+	<data name="varConfigLiteralControlHelp" xml:space="preserve">
+    <value>Control used for a literal at design-time.FR</value>
+  </data>
+	<data name="varConfigLiteralTypeHelp" xml:space="preserve">
+    <value>Literal type.</value>
+  </data>
+	<data name="varConfigNameHelp" xml:space="preserve">
+    <value>Unique name for the variable used in the flow diagram.FR</value>
+  </data>
+	<data name="varConfigObjectTypeHelp" xml:space="preserve">
+    <value>Object Type.FR</value>
+  </data>
+	<data name="varConfigPropertySourceHelpFormat" xml:space="preserve">
+    <value>Specify the fully qualified class as a source for a public properties domain when the {0} is "{1}".FR</value>
+    <comment>0=control label for input type;1=string describing LiteralInputStyle.PropertyInput</comment>
+  </data>
+	<data name="varConfigReferenceCategoryHelp" xml:space="preserve">
+    <value>Defines the variable's membership as This, Type, Instance Reference, or Static Reference.FR</value>
+  </data>
+	<data name="varConfigReferenceDefinitionHelp" xml:space="preserve">
+    <value>Defines each segment (period delimited) of the Reference Name as a field, property or indexer.FR</value>
+  </data>
+	<data name="varConfigReferenceNameHelp" xml:space="preserve">
+    <value>Used when the Reference Category is a static or instance reference of the Activity Class.FR</value>
+  </data>
+	<data name="varConfigTypeNameHelp" xml:space="preserve">
+    <value>Fully qualified class name when the Reference Category is a type or a static reference.FR</value>
+  </data>
+	<data name="varConfigVariableCategoryHelp" xml:space="preserve">
+    <value>Indicates whether the variable is a field, property or indexer.FR</value>
+  </data>
+	<data name="varConfigVariableNameHelp" xml:space="preserve">
+    <value>Member name for the class field or property.FR</value>
+  </data>
 	<data name="variableBlankCategoryFormat" xml:space="preserve">
     <value>Reference Category for variable "{0}" cannot be empty.FR</value>
+    <comment>0=variableName</comment>
+  </data>
+	<data name="variableBlankDefinition" xml:space="preserve">
+    <value>Reference Definition cannot be empty when the reference category is "Static Reference" or reference category is "Instance Reference".FR</value>
+  </data>
+	<data name="variableCastRefAsAndDefinitionFormat2" xml:space="preserve">
+    <value>When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).FR</value>
+  </data>
+	<data name="variableDefinitionNotEmpty" xml:space="preserve">
+    <value>Reference Definition must be empty when the reference category is "This" or reference category is "Type".FR</value>
+  </data>
+	<data name="variableExistsFormat" xml:space="preserve">
+    <value>A variable with the name "{0}" already exists.FR</value>
     <comment>0=variableName</comment>
   </data>
 	<data name="variableIndexCannotBeSelfFormat" xml:space="preserve">
@@ -1471,16 +1569,23 @@
     <value>Variable "{0}" has invalid section "{1}" in its Reference Definition Field. Valid sections for indirect references include:{2}{3}.FR</value>
     <comment>0=variableName; 1=ReferenceDefinition; 2=Environment.Newline; 3=ValidDefinitionList</comment>
   </data>
+	<data name="variableInvalidIndirectDefinitionFormat2" xml:space="preserve">
+    <value>Reference Definition has invalid section "{0}". Valid sections for indirect references include:{1}{2}.FR</value>
+    <comment>0=ReferenceDefinition; 1=Environment.Newline; 2=ValidDefinitionList</comment>
+  </data>
 	<data name="variableNameAndDefinitionFormat" xml:space="preserve">
     <value>Variable "{0}". Reference Name and Reference Definition must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Category = Field.Property.IntKeyValue.Field.FR</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="variableNameAndDefinitionFormat2" xml:space="preserve">
+    <value>Reference Name and Reference Definition must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Category = Field.Property.IntKeyValue.Field.FR</value>
   </data>
 	<data name="variableNotAssignableFormat" xml:space="preserve">
     <value>The variable "{0}" must be assignable to "{1}".FR</value>
     <comment>0=variableName;1=objectType</comment>
   </data>
 	<data name="variableReferenceDefinitionMustBeEmptyFormat" xml:space="preserve">
-    <value>Reference Definition field for variable {0} must be empty when the reference category is "This" or reference category is "Type" or the evaluation is "Automatic".FR</value>
+    <value>Reference Definition field for variable {0} must be empty when the reference category is "This" or reference category is "Type".FR</value>
     <comment>0=VariableName</comment>
   </data>
 	<data name="variableReferenceInfoMustBePopulatedFormat" xml:space="preserve">
@@ -1488,11 +1593,14 @@
     <comment>0=VariableName</comment>
   </data>
 	<data name="variableReferenceMustBeEmptyFormat" xml:space="preserve">
-    <value>Reference Name field for variable {0} must be empty when the reference category is "This" or reference category is "Type" or the evaluation is "Automatic".FR</value>
+    <value>Reference Name field for variable {0} must be empty when the reference category is "This" or reference category is "Type".FR</value>
     <comment>0=VariableName</comment>
   </data>
 	<data name="variablesRootNodeText" xml:space="preserve">
     <value>VariablesFR</value>
+  </data>
+	<data name="variableTypeNameMustBeEmpty" xml:space="preserve">
+    <value>Type Name field must be empty when the reference category is not "Type"or "Static Reference".FR</value>
   </data>
 	<data name="variableTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for  variable {0} must be empty when the reference category is not "Type"or "Static Reference".FR</value>

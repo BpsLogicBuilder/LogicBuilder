@@ -16,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         RadTreeNode GetClosestNodeForSelectionAfterDelete(RadTreeNode treeNode);
         int GetInsertPosition(RadTreeNode[] treeNodeArray, RadTreeNode newNode, IComparer<RadTreeNode> treeNodeComparer);
         IList<RadTreeNode> GetSelectedNodes(RadTreeView treeView);
+        RadTreeNode GetTreeNodeByName(RadTreeView treeView, string nodeName);
         bool IsApplicationNode(RadTreeNode treeNode);
         bool IsConstructorNode(RadTreeNode treeNode);
         bool IsFileNode(RadTreeNode treeNode);

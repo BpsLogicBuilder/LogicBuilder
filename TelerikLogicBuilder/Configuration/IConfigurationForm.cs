@@ -7,6 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
 {
     internal interface IConfigurationForm : IApplicationForm
     {
+        bool CanExecuteImport { get; }
         IDictionary<string, string> ExpandedNodes { get; }
         RadTreeView TreeView { get; }
         XmlDocument XmlDocument { get; }
@@ -14,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
         void RebuildTreeView();
         void RenameChildNodes(RadTreeNode treeNode);
         void ReloadXmlDocument(string xmlString);
+        void SelectTreeNode(RadTreeNode treeNode);
         void ValidateXmlDocument();
     }
 }

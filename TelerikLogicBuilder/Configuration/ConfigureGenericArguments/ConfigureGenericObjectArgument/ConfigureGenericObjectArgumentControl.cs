@@ -119,9 +119,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
         private void LoadParameterDropDownLists()
         {
             _radDropDownListHelper.LoadTextItems(cmbCpGenericArgumentName, configureGenericArgumentsForm.ConfiguredGenericArgumentNames);
-            if (configureGenericArgumentsForm.Application.AssemblyAvailable)
-                _radDropDownListHelper.LoadTextItems(cmbCpObjectType.RadDropDownList, configureGenericArgumentsForm.Application.AllTypesList, RadDropDownStyle.DropDown);
-
             _radDropDownListHelper.LoadBooleans(cmbCpUseForEquality);
             _radDropDownListHelper.LoadBooleans(cmbCpUseForHashCode);
             _radDropDownListHelper.LoadBooleans(cmbCpUseForToString);

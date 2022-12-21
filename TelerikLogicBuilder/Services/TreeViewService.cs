@@ -144,6 +144,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
+        public RadTreeNode GetTreeNodeByName(RadTreeView treeView, string nodeName) 
+            => treeView.Find(n => n.Name == nodeName) ?? throw _exceptionHelper.CriticalException("{6465F43E-B56B-4797-A278-5520A2126661}");
+
         public bool IsApplicationNode(RadTreeNode treeNode)
         {
             if (treeNode == null)

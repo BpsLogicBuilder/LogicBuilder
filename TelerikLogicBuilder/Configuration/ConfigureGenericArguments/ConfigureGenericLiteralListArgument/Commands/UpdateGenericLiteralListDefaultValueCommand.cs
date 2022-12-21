@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultVal
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -77,7 +78,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             if (configureLiteralListDefaultValueForm.DialogResult != DialogResult.OK)
                 return;
 
-            defaultValueElement.InnerXml = BuildDefaultValueItemsXml();
+            try
+            {
+                defaultValueElement.InnerXml = BuildDefaultValueItemsXml();
+                configureGenericLiteralListArgumentControl.ValidateXmlDocument();
+            }
+            catch (LogicBuilderException ex)
+            {
+                configureGenericLiteralListArgumentControl.SetErrorMessage(ex.Message);
+            }
 
             string BuildDefaultValueItemsXml()
             {

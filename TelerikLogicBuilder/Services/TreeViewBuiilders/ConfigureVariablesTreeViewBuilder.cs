@@ -38,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         {
             treeView.ShowRootLines = false;
             treeView.ImageList = _imageListService.ImageList;
+            treeView.TreeViewElement.ShowNodeToolTips = true;
             treeView.Nodes.Clear();
 
             treeView.BeginUpdate();
@@ -57,7 +58,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 true
             );
 
-            treeView.BeginUpdate();
             treeView.EndUpdate();
         }
 
@@ -113,7 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                     AddChildNodes(childFolderElement, childFolderTreeNode);
                     if (root) _treeViewService.MakeVisible(childFolderTreeNode);
                     if (configureVariablesForm.ExpandedNodes.ContainsKey(childFolderTreeNode.Name))
-                        treeNode.Expand();
+                        childFolderTreeNode.Expand();
                 }
             );
         }

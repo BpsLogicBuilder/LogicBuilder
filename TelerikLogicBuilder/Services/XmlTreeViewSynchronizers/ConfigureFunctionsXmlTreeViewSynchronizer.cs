@@ -52,14 +52,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         public StateImageRadTreeNode AddFolder(StateImageRadTreeNode destinationFolderTreeNode, string folderName)
         {
             StateImageRadTreeNode newFolderNode = _configurationFormXmlTreeViewSynchronizer.AddFolder(destinationFolderTreeNode, folderName);
-            configureFunctionsForm.TreeView.SelectedNode = newFolderNode;
+            configureFunctionsForm.SelectTreeNode(newFolderNode);
             return newFolderNode;
         }
 
         public StateImageRadTreeNode AddFunctionNode(StateImageRadTreeNode destinationFolderTreeNode, XmlElement newXmlFunctionNode)
         {
             StateImageRadTreeNode newFunctionNode = AddFunction(destinationFolderTreeNode, newXmlFunctionNode);
-            configureFunctionsForm.TreeView.SelectedNode = newFunctionNode;
+            configureFunctionsForm.SelectTreeNode(newFunctionNode);
             return newFunctionNode;
         }
 
@@ -73,7 +73,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             catch (LogicBuilderException ex)
             {
                 ResetFormOnError(beforeXml, ex.Message);
-                _treeViewService.SelectTreeNode(configureFunctionsForm.TreeView, destinationFolderTreeNode.Name);
+                configureFunctionsForm.SelectTreeNode
+                (
+                    _treeViewService.GetTreeNodeByName
+                    (
+                        configureFunctionsForm.TreeView,
+                        destinationFolderTreeNode.Name
+                    )
+                );
             }
 
             void AddFunctions()
@@ -94,7 +101,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         public StateImageRadTreeNode AddParameterNode(StateImageRadTreeNode destinationFunctionTreeNode, XmlElement newXmlParameterNode)
         {
             StateImageRadTreeNode newParameterNode = _configurationFormXmlTreeViewSynchronizer.AddParameterNode(destinationFunctionTreeNode, newXmlParameterNode);
-            configureFunctionsForm.TreeView.SelectedNode = newParameterNode;
+            configureFunctionsForm.SelectTreeNode(newParameterNode);
             return newParameterNode;
         }
 
@@ -108,7 +115,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedFolderNode = _configurationFormXmlTreeViewSynchronizer.MoveFolderNode(destinationFolderTreeNode, movingTreeNode);
             if (movedFolderNode != null)
-                configureFunctionsForm.TreeView.SelectedNode = movedFolderNode;
+                configureFunctionsForm.SelectTreeNode(movedFolderNode);
 
             return movedFolderNode;
         }
@@ -198,6 +205,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 {
                     if (movedItem != null) movedItem.Selected = true;
                 }
+
+                StateImageRadTreeNode? firstItem = movedItems.FirstOrDefault(m => m != null);
+                if (firstItem != null)
+                    configureFunctionsForm.SelectTreeNode(firstItem);
             }
         }
 
@@ -205,7 +216,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedFunctionNode = _configurationFormXmlTreeViewSynchronizer.MoveConfiguredItem(destinationFolderTreeNode, movingTreeNode);
             if (movedFunctionNode != null)
-                configureFunctionsForm.TreeView.SelectedNode = movedFunctionNode;
+                configureFunctionsForm.SelectTreeNode(movedFunctionNode);
 
             return movedFunctionNode;
         }
@@ -214,7 +225,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedParameterNode = _configurationFormXmlTreeViewSynchronizer.MoveParameterBeforeParameter(destinationParameterTreeNode, movingTreeNode);
             if (movedParameterNode != null)
-                configureFunctionsForm.TreeView.SelectedNode = movedParameterNode;
+                configureFunctionsForm.SelectTreeNode(movedParameterNode);
 
             return movedParameterNode;
         }
@@ -223,7 +234,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
         {
             StateImageRadTreeNode? movedParameterNode = _configurationFormXmlTreeViewSynchronizer.MoveParameterToConfiguredItem(destinationTreeFunctionNode, movingTreeNode);
             if (movedParameterNode != null)
-                configureFunctionsForm.TreeView.SelectedNode = movedParameterNode;
+                configureFunctionsForm.SelectTreeNode(movedParameterNode);
 
             return movedParameterNode;
         }
@@ -245,12 +256,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             {
                 _configurationFormXmlTreeViewSynchronizer.DeleteFolderOrConfiguredItem(existingTreeNode);
                 StateImageRadTreeNode newVariableNode = AddFunction(parentNode, newXmlFunctionNode);
-                configureFunctionsForm.TreeView.SelectedNode = newVariableNode;
+                configureFunctionsForm.SelectTreeNode(newVariableNode);
             }
             catch (LogicBuilderException ex)
             {
                 ResetFormOnError(beforeXml, ex.Message);
-                _treeViewService.SelectTreeNode(configureFunctionsForm.TreeView, existingTreeNode.Name);
+                configureFunctionsForm.SelectTreeNode
+                (
+                    _treeViewService.GetTreeNodeByName
+                    (
+                        configureFunctionsForm.TreeView,
+                        existingTreeNode.Name
+                    )
+                );
             }
         }
 

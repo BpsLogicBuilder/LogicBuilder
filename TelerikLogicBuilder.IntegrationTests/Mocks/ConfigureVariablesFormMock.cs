@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
@@ -38,6 +39,12 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
         public ApplicationTypeInfo Application { get; }
 
         public DialogResult DialogResult => throw new NotImplementedException();
+
+        public IDictionary<string, VariableBase> VariablesDictionary => throw new NotImplementedException();
+
+        public HashSet<string> VariableNames => throw new NotImplementedException();
+
+        public bool CanExecuteImport => throw new NotImplementedException();
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
@@ -83,6 +90,11 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
         public void ValidateXmlDocument()
         {
             _treeViewXmlDocumentHelper.ValidateXmlDocument();
+        }
+
+        public void SelectTreeNode(RadTreeNode treeNode)
+        {
+            TreeView.SelectedNode = treeNode;
         }
     }
 }

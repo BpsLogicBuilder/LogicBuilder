@@ -74,6 +74,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
         public RadDropDownList CmbLpLiteralType => cmbLpLiteralType;
         #endregion Properties
 
+        public void ClearMessage() => configureGenericArgumentsForm.ClearMessage();
+
         public void SetControlValues(RadTreeNode treeNode)
         {
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(this.XmlDocument, treeNode.Name);
@@ -89,6 +91,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             cmbLpPropertySourceParameter.Text = elements[XmlDataConstants.PROPERTYSOURCEPARAMETERELEMENT].InnerText;
             txtLpDefaultValue.Text = elements[XmlDataConstants.DEFAULTVALUEELEMENT].InnerText;
         }
+
+        public void SetErrorMessage(string message) => configureGenericArgumentsForm.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => configureGenericArgumentsForm.SetMessage(message, title);
 
         public void UpdateXmlDocument(RadTreeNode treeNode)
         {
@@ -111,6 +117,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             elements[XmlDataConstants.PROPERTYSOURCEPARAMETERELEMENT].InnerText = cmbLpPropertySourceParameter.Text.Trim();
             elements[XmlDataConstants.DEFAULTVALUEELEMENT].InnerText = txtLpDefaultValue.Text.Trim();
 
+            configureGenericArgumentsForm.ValidateXmlDocument();
+        }
+
+        public void ValidateXmlDocument()
+        {
             configureGenericArgumentsForm.ValidateXmlDocument();
         }
 
@@ -180,8 +191,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             _radDropDownListHelper.LoadBooleans(cmbLpUseForEquality);
             _radDropDownListHelper.LoadBooleans(cmbLpUseForHashCode);
             _radDropDownListHelper.LoadBooleans(cmbLpUseForToString);
-            if (configureGenericArgumentsForm.Application.AssemblyAvailable)
-                _radDropDownListHelper.LoadTextItems(cmbLpPropertySource.RadDropDownList, configureGenericArgumentsForm.Application.AllTypesList, RadDropDownStyle.DropDown);
 
             _radDropDownListHelper.LoadTextItems
             (
