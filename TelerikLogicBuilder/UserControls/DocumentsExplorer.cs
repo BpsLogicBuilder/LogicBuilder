@@ -316,7 +316,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void RadTreeView1_NodeMouseClick(object sender, RadTreeViewEventArgs e)
         {
-            this.radTreeView1.SelectedNode = e.Node;
             SetContextMenuState(_treeViewService.GetSelectedNodes(TreeView));
         }
 

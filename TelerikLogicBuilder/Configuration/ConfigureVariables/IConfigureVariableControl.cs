@@ -5,7 +5,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 {
-    internal interface IConfigureVariableControl : IConfigurationXmlElementControl
+    internal interface IConfigureVariableControl : IConfigureVariablesTreeNodeControl
     {
         RadLabel LblName { get; }
         RadTextBox TxtName { get; }

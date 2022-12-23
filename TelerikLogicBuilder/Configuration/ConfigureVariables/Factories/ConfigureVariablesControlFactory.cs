@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureLi
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureObjectListVariable;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureObjectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesFolder;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesRootNode;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories
@@ -14,19 +15,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factori
         private readonly Func<IConfigureVariablesForm, IConfigureObjectListVariableControl> _getConfigureObjectListVariableControl;
         private readonly Func<IConfigureVariablesForm, IConfigureObjectVariableControl> _getConfigureObjectVariableControl;
         private readonly Func<IConfigureVariablesForm, IConfigureVariablesFolderControl> _getConfigureVariablesFolderControl;
+        private readonly IConfigureVariablesRootNodeControl _configureVariablesRootNodeControl;
 
         public ConfigureVariablesControlFactory(
             Func<IConfigureVariablesForm, IConfigureLiteralListVariableControl> getConfigureLiteralListVariableControl,
             Func<IConfigureVariablesForm, IConfigureLiteralVariableControl> getConfigureLiteralVariableControl,
             Func<IConfigureVariablesForm, IConfigureObjectListVariableControl> getConfigureObjectListVariableControl,
             Func<IConfigureVariablesForm, IConfigureObjectVariableControl> getConfigureObjectVariableControl,
-            Func<IConfigureVariablesForm, IConfigureVariablesFolderControl> getConfigureVariablesFolderControl)
+            Func<IConfigureVariablesForm, IConfigureVariablesFolderControl> getConfigureVariablesFolderControl,
+            IConfigureVariablesRootNodeControl configureVariablesRootNodeControl)
         {
             _getConfigureLiteralListVariableControl = getConfigureLiteralListVariableControl;
             _getConfigureLiteralVariableControl = getConfigureLiteralVariableControl;
             _getConfigureObjectListVariableControl = getConfigureObjectListVariableControl;
             _getConfigureObjectVariableControl = getConfigureObjectVariableControl;
             _getConfigureVariablesFolderControl = getConfigureVariablesFolderControl;
+            _configureVariablesRootNodeControl = configureVariablesRootNodeControl;
         }
 
         public IConfigureLiteralListVariableControl GetConfigureLiteralListVariableControl(IConfigureVariablesForm configureVariablesForm)
@@ -43,5 +47,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factori
 
         public IConfigureVariablesFolderControl GetConfigureVariablesFolderControl(IConfigureVariablesForm configureVariablesForm)
             => _getConfigureVariablesFolderControl(configureVariablesForm);
+
+        public IConfigureVariablesRootNodeControl GetConfigureVariablesRootNodeControl()
+            => _configureVariablesRootNodeControl;
     }
 }

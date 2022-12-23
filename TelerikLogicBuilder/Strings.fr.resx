@@ -342,6 +342,9 @@
 	<data name="conditionShapeDataRequired" xml:space="preserve">
     <value>Conditions Shape requires data.FR</value>
   </data>
+	<data name="configurationDataFile" xml:space="preserve">
+    <value>Config DataFR</value>
+  </data>
 	<data name="configurationFormIndicatorText" xml:space="preserve">
     <value>(Form)FR</value>
   </data>
@@ -490,6 +493,12 @@
 	<data name="defaultErrorMessage" xml:space="preserve">
     <value>An error has occurred.FR</value>
   </data>
+	<data name="defaultNewFolderName" xml:space="preserve">
+    <value>NewFolderFR</value>
+  </data>
+	<data name="defaultNewVariableName" xml:space="preserve">
+    <value>NewVariableFR</value>
+  </data>
 	<data name="defaultPostFileDataUrl" xml:space="preserve">
     <value>http://localhost:3677/api/transfer/PostFileData</value>
   </data>
@@ -522,6 +531,10 @@
 	<data name="deleteProjectQuestionFormat" xml:space="preserve">
     <value>Delete the project: {0}?FR</value>
     <comment>0=ProjectName</comment>
+  </data>
+	<data name="deleteVariableQuestionFormat" xml:space="preserve">
+    <value>Delete the variable: {0}?FR</value>
+    <comment>0=VariableName</comment>
   </data>
 	<data name="deletingRulesFormat" xml:space="preserve">
     <value>Deleting {0} RulesFR</value>
@@ -1340,6 +1353,9 @@
 	<data name="referenceNameAndCastReferenceAFormat" xml:space="preserve">
     <value>Variable "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).FR</value>
     <comment>0=VariableName</comment>
+  </data>
+	<data name="referenceNamePlaceHolder" xml:space="preserve">
+    <value>referenceNameHereFR</value>
   </data>
 	<data name="replaceConstructorFormText" xml:space="preserve">
     <value>Replace ConstructorFR</value>

@@ -1,6 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -15,6 +19,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new AddLiteralListVariableCommand
                     (
+                        provider.GetRequiredService<IStringHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IVariableFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )
@@ -23,6 +32,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new AddLiteralVariableCommand
                     (
+                        provider.GetRequiredService<IStringHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IVariableFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )
@@ -31,6 +45,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new AddObjectListVariableCommand
                     (
+                        provider.GetRequiredService<IStringHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IVariableFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )
@@ -39,6 +58,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new AddObjectVariableCommand
                     (
+                        provider.GetRequiredService<IStringHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IVariableFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )
@@ -47,6 +71,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesAddFolderCommand
                     (
+                        provider.GetRequiredService<IStringHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )
@@ -64,6 +92,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesCopyXmlCommand
                     (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureVariablesForm
                     )
                 )
@@ -72,6 +101,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesCutCommand
                     (
+                        provider.GetRequiredService<ITreeViewService>(),
                         configureVariablesForm
                     )
                 )
@@ -80,6 +110,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesDeleteCommand
                     (
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )
@@ -96,6 +128,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesImportCommand
                     (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<ILoadVariables>(),
+                        provider.GetRequiredService<IPathHelper>(),
                         configureVariablesForm
                     )
                 )
@@ -104,6 +139,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesPasteCommand
                     (
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 );

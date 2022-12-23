@@ -28,7 +28,14 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public bool CanExecuteImport => throw new NotImplementedException();
 
+        public IList<RadTreeNode> CutTreeNodes => throw new NotImplementedException();
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
+
+        public void CheckEnableImportButton()
+        {
+            throw new NotImplementedException();
+        }
 
         public void ClearMessage()
         {

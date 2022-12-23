@@ -25,6 +25,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
             if (this.StateImage == null)
                 return this.Data.Image;
 
+            if (this.Data.Image == null)
+                return this.StateImage;
+
             int size = this.Data.Image.Width;
             
             if (this.Data.Image.Height != size)
@@ -36,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
 
             Bitmap bitmap = new(size * 2, size);
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(this.StateImage!, 0, 0, size, size);
+            graphics.DrawImage(this.StateImage, 0, 0, size, size);
             graphics.DrawImage(this.Data.Image, size, 0, size, size);
 
             return bitmap;

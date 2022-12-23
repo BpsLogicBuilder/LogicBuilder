@@ -821,7 +821,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             this.splitPanelEdit.ControlRemoved += SplitPanelEdit_ControlRemoved;
             this.Disposed += MDIParent_Disposed;
 
-            //OpenProject(@"C:\Test\SomeProject1\SomeProject1.lbproj");
+            //OpenProject(@"C:\Test\NewProject\NewProject.lbproj");
             //OpenProject(@"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj");
         }
 

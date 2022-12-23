@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureLi
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureObjectListVariable;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureObjectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesFolder;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesRootNode;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories
 {
@@ -13,5 +14,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factori
         IConfigureObjectListVariableControl GetConfigureObjectListVariableControl(IConfigureVariablesForm configureVariablesForm);
         IConfigureObjectVariableControl GetConfigureObjectVariableControl(IConfigureVariablesForm configureVariablesForm);
         IConfigureVariablesFolderControl GetConfigureVariablesFolderControl(IConfigureVariablesForm configureVariablesForm);
+        IConfigureVariablesRootNodeControl GetConfigureVariablesRootNodeControl();
     }
 }

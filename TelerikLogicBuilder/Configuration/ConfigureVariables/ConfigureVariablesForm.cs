@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesRootNode;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
@@ -111,6 +110,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         }
 
         #region Properties
+
+        private IConfigureVariablesTreeNodeControl CurrentTreeNodeControl => (IConfigureVariablesTreeNodeControl)radPanelFields.Controls[0];
+
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{A5890E08-525D-404D-9A29-CA2633424503}");
 
         public IList<RadTreeNode> CutTreeNodes { get; } = new List<RadTreeNode>();
@@ -138,6 +140,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
+        public void CheckEnableImportButton() => btnImport.Enabled = CanExecuteImport;
+
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
 
         public void RebuildTreeView() => BuildTreeView();
@@ -155,27 +159,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         public void SelectTreeNode(RadTreeNode treeNode)
         {
-            try
-            {
-                if (treeNode == TreeView.SelectedNode)
-                    return;
-
-                if(TreeView.SelectedNode != null)
-                {
-                    UpdateXmlDocument(TreeView.SelectedNode);
-                }
-
-                TreeView.SelectedNode = treeNode;
-                SetControlValues(TreeView.SelectedNode);
-            }
-            catch (XmlException ex)
-            {
-                _dialogFormMessageControl.SetErrorMessage(ex.Message);
-            }
-            catch (LogicBuilderException ex)
-            {
-                _dialogFormMessageControl.SetErrorMessage(ex.Message);
-            }
+            TreeView.SelectedNode = treeNode;
         }
 
         public void ValidateXmlDocument()
@@ -206,7 +190,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             }
 
             _configureVariablesTreeViewBuilder.Build(TreeView, XmlDocument);
-            btnImport.Enabled = CanExecuteImport;
+            CheckEnableImportButton();
         }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
@@ -222,7 +206,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             AddContextMenuClickCommand(mnuItemAddFolder, _configureVariablesCommandFactory.GetConfigureVariablesAddFolderCommand(this));
             AddContextMenuClickCommand(mnuItemDelete, _configureVariablesCommandFactory.GetConfigureVariablesDeleteCommand(this));
             AddContextMenuClickCommand(mnuItemCut, _configureVariablesCommandFactory.GetConfigureVariablesCutCommand(this));
-            AddContextMenuClickCommand(mnuItemPaste, _configureVariablesCommandFactory.GetConfigureVariablesDeleteCommand(this));
+            AddContextMenuClickCommand(mnuItemPaste, _configureVariablesCommandFactory.GetConfigureVariablesPasteCommand(this));
             AddContextMenuClickCommand(mnuItemCopyXml, _configureVariablesCommandFactory.GetConfigureVariablesCopyXmlCommand(this));
 
             mnuItemAdd.Items.AddRange
@@ -380,7 +364,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             btnHelper.Enabled = !isFolderNode;
 
             if (_treeViewService.IsRootNode(treeNode))
-                Navigate(new ConfigureVariablesRootNodeControl());
+                Navigate((Control)_configureVariablesControlFactory.GetConfigureVariablesRootNodeControl());
             else if (isFolderNode)
                 Navigate((Control)_configureVariablesControlFactory.GetConfigureVariablesFolderControl(this));
             else if (_treeViewService.IsLiteralTypeNode(treeNode))
@@ -404,12 +388,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         private void SetControlValues(RadTreeNode treeNode)
         {
-            if (treeNode == null)
-                return;
-
             Navigate(treeNode);
-            IConfigurationXmlElementControl xmlElementControl = (IConfigurationXmlElementControl)radPanelFields.Controls[0];
-            xmlElementControl.SetControlValues(treeNode);
+            CurrentTreeNodeControl.SetControlValues(treeNode);
         }
 
         private void UpdateXmlDocument(RadTreeNode treeNode)
@@ -417,7 +397,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             if (radPanelFields.Controls.Count != 1)
                 throw _exceptionHelper.CriticalException("{1041E885-A931-4859-9B52-F60AF35DF852}");
 
-            if (radPanelFields.Controls[0] is not IConfigurationXmlElementControl xmlElementControl)
+            if (radPanelFields.Controls[0] is not IConfigureVariablesTreeNodeControl xmlElementControl)
                 throw _exceptionHelper.CriticalException("{93462F0F-B751-4B16-A133-D919182AAC69}");
 
             xmlElementControl.UpdateXmlDocument(treeNode);
@@ -463,8 +443,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
                 SetContextMenuState(_treeViewService.GetSelectedNodes(TreeView));
             }
             else if (treeNode != null && TreeView.SelectedNode != treeNode)
-            {//Commenting this out allows the user to expand without selecting the node
-                //SelectTreeNode(treeNode);
+            {
             }
         }
 
@@ -517,7 +496,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         private void RadTreeView1_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            if (e.Action == RadTreeViewAction.Unknown)
+            if (e.Node?.Selected != true)
                 return;
 
             SetControlValues(e.Node);
@@ -527,16 +506,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         {
             try
             {
-                if (e.Action == RadTreeViewAction.Unknown)
+                if (e.Node?.Selected == true)
                     return;
 
                 if (TreeView.SelectedNode == null
                     || e.Node == null)//Don't update if e.Node is null because
                     return;             //1) The selected node may have been deleted
                                         //2) There is no navigation (i.e. e.Node == null)
-
-                if (e.Node == TreeView.SelectedNode)
-                    return;//only happens when e.Action == RadTreeViewAction.Unknown.  Maybe remove?
 
                 _dialogFormMessageControl.ClearMessage();
                 UpdateXmlDocument(TreeView.SelectedNode);

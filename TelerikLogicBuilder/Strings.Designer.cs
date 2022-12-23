@@ -763,6 +763,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Config Data.
+        /// </summary>
+        internal static string configurationDataFile {
+            get {
+                return ResourceManager.GetString("configurationDataFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (Form).
         /// </summary>
         internal static string configurationFormIndicatorText {
@@ -1303,6 +1312,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NewFolder.
+        /// </summary>
+        internal static string defaultNewFolderName {
+            get {
+                return ResourceManager.GetString("defaultNewFolderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NewVariable.
+        /// </summary>
+        internal static string defaultNewVariableName {
+            get {
+                return ResourceManager.GetString("defaultNewVariableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://localhost:3677/api/transfer/PostFileData.
         /// </summary>
         internal static string defaultPostFileDataUrl {
@@ -1389,6 +1416,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string deleteProjectQuestionFormat {
             get {
                 return ResourceManager.GetString("deleteProjectQuestionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the variable: {0}?.
+        /// </summary>
+        internal static string deleteVariableQuestionFormat {
+            get {
+                return ResourceManager.GetString("deleteVariableQuestionFormat", resourceCulture);
             }
         }
         
@@ -4710,6 +4746,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string referenceNameAndCastReferenceAFormat {
             get {
                 return ResourceManager.GetString("referenceNameAndCastReferenceAFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to referenceNameHere.
+        /// </summary>
+        internal static string referenceNamePlaceHolder {
+            get {
+                return ResourceManager.GetString("referenceNamePlaceHolder", resourceCulture);
             }
         }
         

@@ -276,7 +276,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 
         private void RadTreeView1_NodeMouseClick(object sender, RadTreeViewEventArgs e)
         {
-            this.radTreeView1.SelectedNode = e.Node;
             SetContextMenuState(this.radTreeView1.SelectedNode);
         }
 

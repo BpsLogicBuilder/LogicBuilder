@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureLi
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureObjectListVariable;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureObjectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesFolder;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesRootNode;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Helpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -102,6 +103,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         configureVariablesForm
                     )
                 )
+                .AddTransient<IConfigureVariablesRootNodeControl, ConfigureVariablesRootNodeControl>()
                 .AddTransient<IConfigureVariablesControlFactory, ConfigureVariablesControlFactory>();
         }
     }
