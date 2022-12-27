@@ -1,11 +1,14 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using LogicBuilder.Forms.Parameters;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OData.Edm;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using TelerikLogicBuilder.Tests.AttributeSamples;
 using TelerikLogicBuilder.Tests.Structures;
 using Xunit;
@@ -77,6 +80,23 @@ namespace TelerikLogicBuilder.Tests
 
             //act
             var result = helper.IsLiteralType(type);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(string), true)]
+        [InlineData(typeof(int), true)]
+        [InlineData(typeof(void), false)]
+        [InlineData(typeof(List<int?>), false)]
+        public void IsValidIndexReturnsTheExpectedBoolean(Type type, bool expectedResult)
+        {
+            //arrange
+            ITypeHelper helper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var result = helper.IsValidIndex(type);
 
             //assert
             Assert.Equal(expectedResult, result);
@@ -498,6 +518,56 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(bool), typeof(object), "False")]
+        [InlineData(typeof(DateTimeOffset), typeof(object), "1/1/0001 12:00:00 AM +00:00")]
+        [InlineData(typeof(DateOnly), typeof(object), "1/1/0001")]
+        [InlineData(typeof(DateTime), typeof(object), "1/1/0001 12:00:00 AM")]
+        [InlineData(typeof(Date), typeof(object), "0001-01-01")]
+        [InlineData(typeof(TimeSpan), typeof(object), "00:00:00")]
+        [InlineData(typeof(TimeOnly), typeof(object), "12:00 AM")]
+        [InlineData(typeof(TimeOfDay), typeof(object), "00:00:00.0000000")]
+        [InlineData(typeof(Guid), typeof(object), "00000000-0000-0000-0000-000000000000")]
+        [InlineData(typeof(decimal), typeof(object), "0")]
+        [InlineData(typeof(byte), typeof(object), "0")]
+        [InlineData(typeof(short), typeof(object), "0")]
+        [InlineData(typeof(int), typeof(object), "0")]
+        [InlineData(typeof(long), typeof(object), "0")]
+        [InlineData(typeof(float), typeof(object), "0")]
+        [InlineData(typeof(double), typeof(object), "0")]
+        [InlineData(typeof(char), typeof(object), "0")]
+        [InlineData(typeof(sbyte), typeof(object), "0")]
+        [InlineData(typeof(ushort), typeof(object), "0")]
+        [InlineData(typeof(uint), typeof(object), "0")]
+        [InlineData(typeof(ulong), typeof(object), "0")]
+        [InlineData(typeof(string), typeof(object), "System.Object")]
+        internal void GetIndexReferenceDefaultReturnsTheExpectedString(Type type, Type memberType, string expectedString)
+        {
+            //arrange
+            ITypeHelper typeHelper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var literalType = typeHelper.GetIndexReferenceDefault(type, memberType);
+
+            //assert
+            Assert.Equal(expectedString, literalType);
+        }
+
+        [Fact]
+        public void GetIndexReferenceDefaultThrowsCriticalExceptionForInvalidType()
+        {
+            //arrange
+            ITypeHelper typeHelper = serviceProvider.GetRequiredService<ITypeHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => typeHelper.GetIndexReferenceDefault(typeof(void), typeof(object)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{1FF953EA-FB18-4B56-9E50-9DA54F705572}"),
+                exception.Message
+            );
         }
     }
 }

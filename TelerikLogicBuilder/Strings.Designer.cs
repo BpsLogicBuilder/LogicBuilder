@@ -3166,6 +3166,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} {1}.
+        /// </summary>
+        internal static string initialParameterTypeNameFormat {
+            get {
+                return ResourceManager.GetString("initialParameterTypeNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New File Name.
         /// </summary>
         internal static string inputFileNewFileNameCaption {
@@ -4489,6 +4498,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameters: {0}.
+        /// </summary>
+        internal static string parameterListFormat {
+            get {
+                return ResourceManager.GetString("parameterListFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The parameter &quot;{0}&quot; of type &quot;{1}&quot; is not a valid literal..
         /// </summary>
         internal static string parameterNotLiteralFormat {
@@ -5736,6 +5754,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variablesRootNodeText {
             get {
                 return ResourceManager.GetString("variablesRootNodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type: {0}.
+        /// </summary>
+        internal static string variableTypeFormat {
+            get {
+                return ResourceManager.GetString("variableTypeFormat", resourceCulture);
             }
         }
         

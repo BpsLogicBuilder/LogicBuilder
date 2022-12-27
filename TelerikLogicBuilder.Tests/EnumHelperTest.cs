@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -7,6 +8,7 @@ using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Xunit;
@@ -1331,6 +1333,216 @@ namespace TelerikLogicBuilder.Tests
 
             //act
             Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetGenericConfigCategory("xyz"));
+        }
+
+        [Theory]
+        [InlineData(typeof(bool), ValidIndirectReference.BooleanKeyIndexer)]
+        [InlineData(typeof(DateTimeOffset), ValidIndirectReference.DateTimeOffsetKeyIndexer)]
+        [InlineData(typeof(DateOnly), ValidIndirectReference.DateOnlyKeyIndexer)]
+        [InlineData(typeof(DateTime), ValidIndirectReference.DateTimeKeyIndexer)]
+        [InlineData(typeof(Date), ValidIndirectReference.DateKeyIndexer)]
+        [InlineData(typeof(TimeSpan), ValidIndirectReference.TimeSpanKeyIndexer)]
+        [InlineData(typeof(TimeOnly), ValidIndirectReference.TimeOnlyKeyIndexer)]
+        [InlineData(typeof(TimeOfDay), ValidIndirectReference.TimeOfDayKeyIndexer)]
+        [InlineData(typeof(Guid), ValidIndirectReference.GuidKeyIndexer)]
+        [InlineData(typeof(decimal), ValidIndirectReference.DecimalKeyIndexer)]
+        [InlineData(typeof(byte), ValidIndirectReference.ByteKeyIndexer)]
+        [InlineData(typeof(short), ValidIndirectReference.ShortKeyIndexer)]
+        [InlineData(typeof(int), ValidIndirectReference.IntegerKeyIndexer)]
+        [InlineData(typeof(long), ValidIndirectReference.LongKeyIndexer)]
+        [InlineData(typeof(float), ValidIndirectReference.FloatKeyIndexer)]
+        [InlineData(typeof(double), ValidIndirectReference.DoubleKeyIndexer)]
+        [InlineData(typeof(char), ValidIndirectReference.CharKeyIndexer)]
+        [InlineData(typeof(sbyte), ValidIndirectReference.SByteKeyIndexer)]
+        [InlineData(typeof(ushort), ValidIndirectReference.UShortKeyIndexer)]
+        [InlineData(typeof(uint), ValidIndirectReference.UIntegerKeyIndexer)]
+        [InlineData(typeof(ulong), ValidIndirectReference.ULongKeyIndexer)]
+        [InlineData(typeof(string), ValidIndirectReference.StringKeyIndexer)]
+        internal void GetIndexReferenceDefinitionReturnsTheExpectedEnumType(Type type, ValidIndirectReference expectedEnumType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var literalType = enumHelper.GetIndexReferenceDefinition(type);
+
+            //assert
+            Assert.Equal(expectedEnumType, literalType);
+        }
+
+        [Fact]
+        public void GetIndexReferenceDefinitionThrowsCriticalExceptionForInvalidType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetIndexReferenceDefinition(typeof(void)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{C0115382-3B85-4FCD-AF3A-15F9991D65E3}"),
+                exception.Message
+            );
+        }
+
+        [Theory]
+        [InlineData(typeof(bool), VariableCategory.BooleanKeyIndexer)]
+        [InlineData(typeof(DateTimeOffset), VariableCategory.DateTimeOffsetKeyIndexer)]
+        [InlineData(typeof(DateOnly), VariableCategory.DateOnlyKeyIndexer)]
+        [InlineData(typeof(DateTime), VariableCategory.DateTimeKeyIndexer)]
+        [InlineData(typeof(Date), VariableCategory.DateKeyIndexer)]
+        [InlineData(typeof(TimeSpan), VariableCategory.TimeSpanKeyIndexer)]
+        [InlineData(typeof(TimeOnly), VariableCategory.TimeOnlyKeyIndexer)]
+        [InlineData(typeof(TimeOfDay), VariableCategory.TimeOfDayKeyIndexer)]
+        [InlineData(typeof(Guid), VariableCategory.GuidKeyIndexer)]
+        [InlineData(typeof(decimal), VariableCategory.DecimalKeyIndexer)]
+        [InlineData(typeof(byte), VariableCategory.ByteKeyIndexer)]
+        [InlineData(typeof(short), VariableCategory.ShortKeyIndexer)]
+        [InlineData(typeof(int), VariableCategory.IntegerKeyIndexer)]
+        [InlineData(typeof(long), VariableCategory.LongKeyIndexer)]
+        [InlineData(typeof(float), VariableCategory.FloatKeyIndexer)]
+        [InlineData(typeof(double), VariableCategory.DoubleKeyIndexer)]
+        [InlineData(typeof(char), VariableCategory.CharKeyIndexer)]
+        [InlineData(typeof(sbyte), VariableCategory.SByteKeyIndexer)]
+        [InlineData(typeof(ushort), VariableCategory.UShortKeyIndexer)]
+        [InlineData(typeof(uint), VariableCategory.UIntegerKeyIndexer)]
+        [InlineData(typeof(ulong), VariableCategory.ULongKeyIndexer)]
+        [InlineData(typeof(string), VariableCategory.StringKeyIndexer)]
+        internal void GetIndexVariableCategoryReturnsTheExpectedEnumType(Type type, VariableCategory expectedEnumType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var literalType = enumHelper.GetIndexVariableCategory(type);
+
+            //assert
+            Assert.Equal(expectedEnumType, literalType);
+        }
+
+        [Fact]
+        public void GetIndexVariableCategoryThrowsCriticalExceptionForInvalidType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetIndexVariableCategory(typeof(void)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{DEDB5B31-31D0-4BB3-9D50-EA29A908D948}"),
+                exception.Message
+            );
+        }
+
+        [Theory]
+        [InlineData(VariableCategory.Field, ValidIndirectReference.Field)]
+        [InlineData(VariableCategory.Property, ValidIndirectReference.Property)]
+        [InlineData(VariableCategory.ArrayIndexer, ValidIndirectReference.ArrayIndexer)]
+        [InlineData(VariableCategory.VariableKeyIndexer, ValidIndirectReference.VariableKeyIndexer)]
+        [InlineData(VariableCategory.BooleanKeyIndexer, ValidIndirectReference.BooleanKeyIndexer)]
+        [InlineData(VariableCategory.VariableArrayIndexer, ValidIndirectReference.VariableArrayIndexer)]
+        [InlineData(VariableCategory.DateTimeOffsetKeyIndexer, ValidIndirectReference.DateTimeOffsetKeyIndexer)]
+        [InlineData(VariableCategory.DateOnlyKeyIndexer, ValidIndirectReference.DateOnlyKeyIndexer)]
+        [InlineData(VariableCategory.DateTimeKeyIndexer, ValidIndirectReference.DateTimeKeyIndexer)]
+        [InlineData(VariableCategory.DateKeyIndexer, ValidIndirectReference.DateKeyIndexer)]
+        [InlineData(VariableCategory.TimeSpanKeyIndexer, ValidIndirectReference.TimeSpanKeyIndexer)]
+        [InlineData(VariableCategory.TimeOnlyKeyIndexer, ValidIndirectReference.TimeOnlyKeyIndexer)]
+        [InlineData(VariableCategory.TimeOfDayKeyIndexer, ValidIndirectReference.TimeOfDayKeyIndexer)]
+        [InlineData(VariableCategory.GuidKeyIndexer, ValidIndirectReference.GuidKeyIndexer)]
+        [InlineData(VariableCategory.DecimalKeyIndexer, ValidIndirectReference.DecimalKeyIndexer)]
+        [InlineData(VariableCategory.ByteKeyIndexer, ValidIndirectReference.ByteKeyIndexer)]
+        [InlineData(VariableCategory.ShortKeyIndexer, ValidIndirectReference.ShortKeyIndexer)]
+        [InlineData(VariableCategory.IntegerKeyIndexer, ValidIndirectReference.IntegerKeyIndexer)]
+        [InlineData(VariableCategory.LongKeyIndexer, ValidIndirectReference.LongKeyIndexer)]
+        [InlineData(VariableCategory.FloatKeyIndexer, ValidIndirectReference.FloatKeyIndexer)]
+        [InlineData(VariableCategory.DoubleKeyIndexer, ValidIndirectReference.DoubleKeyIndexer)]
+        [InlineData(VariableCategory.CharKeyIndexer, ValidIndirectReference.CharKeyIndexer)]
+        [InlineData(VariableCategory.SByteKeyIndexer, ValidIndirectReference.SByteKeyIndexer)]
+        [InlineData(VariableCategory.UShortKeyIndexer, ValidIndirectReference.UShortKeyIndexer)]
+        [InlineData(VariableCategory.UIntegerKeyIndexer, ValidIndirectReference.UIntegerKeyIndexer)]
+        [InlineData(VariableCategory.ULongKeyIndexer, ValidIndirectReference.ULongKeyIndexer)]
+        [InlineData(VariableCategory.StringKeyIndexer, ValidIndirectReference.StringKeyIndexer)]
+        internal void GetValidIndirectReferenceReturnsTheExpectedEnumType(VariableCategory variableCategory, ValidIndirectReference expectedEnumType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetValidIndirectReference(variableCategory);
+
+            //assert
+            Assert.Equal(expectedEnumType, result);
+        }
+
+        [Fact]
+        public void GetValidIndirectReferenceThrowsCriticalExceptionForInvalidVariableCategory()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetValidIndirectReference((VariableCategory)(-1)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{48F6C59B-69D1-4658-B87B-6B2921538A8E}"),
+                exception.Message
+            );
+        }
+
+        [Theory]
+        [InlineData(ValidIndirectReference.Field, VariableCategory.Field)]
+        [InlineData(ValidIndirectReference.Property, VariableCategory.Property)]
+        [InlineData(ValidIndirectReference.ArrayIndexer, VariableCategory.ArrayIndexer)]
+        [InlineData(ValidIndirectReference.VariableKeyIndexer, VariableCategory.VariableKeyIndexer)]
+        [InlineData(ValidIndirectReference.BooleanKeyIndexer, VariableCategory.BooleanKeyIndexer)]
+        [InlineData(ValidIndirectReference.VariableArrayIndexer, VariableCategory.VariableArrayIndexer)]
+        [InlineData(ValidIndirectReference.DateTimeOffsetKeyIndexer, VariableCategory.DateTimeOffsetKeyIndexer)]
+        [InlineData(ValidIndirectReference.DateOnlyKeyIndexer, VariableCategory.DateOnlyKeyIndexer)]
+        [InlineData(ValidIndirectReference.DateTimeKeyIndexer, VariableCategory.DateTimeKeyIndexer)]
+        [InlineData(ValidIndirectReference.DateKeyIndexer, VariableCategory.DateKeyIndexer)]
+        [InlineData(ValidIndirectReference.TimeSpanKeyIndexer, VariableCategory.TimeSpanKeyIndexer)]
+        [InlineData(ValidIndirectReference.TimeOnlyKeyIndexer, VariableCategory.TimeOnlyKeyIndexer)]
+        [InlineData(ValidIndirectReference.TimeOfDayKeyIndexer, VariableCategory.TimeOfDayKeyIndexer)]
+        [InlineData(ValidIndirectReference.GuidKeyIndexer, VariableCategory.GuidKeyIndexer)]
+        [InlineData(ValidIndirectReference.DecimalKeyIndexer, VariableCategory.DecimalKeyIndexer)]
+        [InlineData(ValidIndirectReference.ByteKeyIndexer, VariableCategory.ByteKeyIndexer)]
+        [InlineData(ValidIndirectReference.ShortKeyIndexer, VariableCategory.ShortKeyIndexer)]
+        [InlineData(ValidIndirectReference.IntegerKeyIndexer, VariableCategory.IntegerKeyIndexer)]
+        [InlineData(ValidIndirectReference.LongKeyIndexer, VariableCategory.LongKeyIndexer)]
+        [InlineData(ValidIndirectReference.FloatKeyIndexer, VariableCategory.FloatKeyIndexer)]
+        [InlineData(ValidIndirectReference.DoubleKeyIndexer, VariableCategory.DoubleKeyIndexer)]
+        [InlineData(ValidIndirectReference.CharKeyIndexer, VariableCategory.CharKeyIndexer)]
+        [InlineData(ValidIndirectReference.SByteKeyIndexer, VariableCategory.SByteKeyIndexer)]
+        [InlineData(ValidIndirectReference.UShortKeyIndexer, VariableCategory.UShortKeyIndexer)]
+        [InlineData(ValidIndirectReference.UIntegerKeyIndexer, VariableCategory.UIntegerKeyIndexer)]
+        [InlineData(ValidIndirectReference.ULongKeyIndexer, VariableCategory.ULongKeyIndexer)]
+        [InlineData(ValidIndirectReference.StringKeyIndexer, VariableCategory.StringKeyIndexer)]
+        internal void GetVariableCategoryReturnsTheExpectedEnumType(ValidIndirectReference validIndirectReference, VariableCategory expectedEnumType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetVariableCategory(validIndirectReference);
+
+            //assert
+            Assert.Equal(expectedEnumType, result);
+        }
+
+        [Fact]
+        public void GetVariableCategoryThrowsCriticalExceptionForInvalidValidIndirectReference()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetVariableCategory((ValidIndirectReference)(-1)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{A23350F6-7EC0-402A-823C-DF83E79A161D}"),
+                exception.Message
+            );
         }
     }
 }

@@ -8,6 +8,7 @@
                 .AddIntellisenseFunctions()
                 .AddIntellisenseGenericArguments()
                 .AddIntellisenseParameters()
+                .AddIntellisenseTreeNodeFactories()
                 .AddIntellisenseVariables();
     }
 }

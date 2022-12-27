@@ -117,6 +117,74 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             };
         }
 
+        public ValidIndirectReference GetIndexReferenceDefinition(Type indexType)
+        {
+            Dictionary<Type, ValidIndirectReference> table = new()
+            {
+                [typeof(string)] = ValidIndirectReference.StringKeyIndexer,
+                [typeof(int)] = ValidIndirectReference.IntegerKeyIndexer,
+                [typeof(bool)] = ValidIndirectReference.BooleanKeyIndexer,
+                [typeof(DateTime)] = ValidIndirectReference.DateTimeKeyIndexer,
+                [typeof(DateTimeOffset)] = ValidIndirectReference.DateTimeOffsetKeyIndexer,
+                [typeof(DateOnly)] = ValidIndirectReference.DateOnlyKeyIndexer,
+                [typeof(Date)] = ValidIndirectReference.DateKeyIndexer,
+                [typeof(TimeSpan)] = ValidIndirectReference.TimeSpanKeyIndexer,
+                [typeof(TimeOnly)] = ValidIndirectReference.TimeOnlyKeyIndexer,
+                [typeof(TimeOfDay)] = ValidIndirectReference.TimeOfDayKeyIndexer,
+                [typeof(Guid)] = ValidIndirectReference.GuidKeyIndexer,
+                [typeof(byte)] = ValidIndirectReference.ByteKeyIndexer,
+                [typeof(short)] = ValidIndirectReference.ShortKeyIndexer,
+                [typeof(long)] = ValidIndirectReference.LongKeyIndexer,
+                [typeof(float)] = ValidIndirectReference.FloatKeyIndexer,
+                [typeof(double)] = ValidIndirectReference.DoubleKeyIndexer,
+                [typeof(decimal)] = ValidIndirectReference.DecimalKeyIndexer,
+                [typeof(char)] = ValidIndirectReference.CharKeyIndexer,
+                [typeof(sbyte)] = ValidIndirectReference.SByteKeyIndexer,
+                [typeof(ushort)] = ValidIndirectReference.UShortKeyIndexer,
+                [typeof(uint)] = ValidIndirectReference.UIntegerKeyIndexer,
+                [typeof(ulong)] = ValidIndirectReference.ULongKeyIndexer
+            };
+
+            if (table.TryGetValue(indexType, out var value))
+                return value;
+            else
+                throw _exceptionHelper.CriticalException("{C0115382-3B85-4FCD-AF3A-15F9991D65E3}");
+        }
+
+        public VariableCategory GetIndexVariableCategory(Type indexType)
+        {
+            Dictionary<Type, VariableCategory> table = new()
+            {
+                [typeof(string)] = VariableCategory.StringKeyIndexer,
+                [typeof(int)] = VariableCategory.IntegerKeyIndexer,
+                [typeof(bool)] = VariableCategory.BooleanKeyIndexer,
+                [typeof(DateTime)] = VariableCategory.DateTimeKeyIndexer,
+                [typeof(DateTimeOffset)] = VariableCategory.DateTimeOffsetKeyIndexer,
+                [typeof(DateOnly)] = VariableCategory.DateOnlyKeyIndexer,
+                [typeof(Date)] = VariableCategory.DateKeyIndexer,
+                [typeof(TimeSpan)] = VariableCategory.TimeSpanKeyIndexer,
+                [typeof(TimeOnly)] = VariableCategory.TimeOnlyKeyIndexer,
+                [typeof(TimeOfDay)] = VariableCategory.TimeOfDayKeyIndexer,
+                [typeof(Guid)] = VariableCategory.GuidKeyIndexer,
+                [typeof(byte)] = VariableCategory.ByteKeyIndexer,
+                [typeof(short)] = VariableCategory.ShortKeyIndexer,
+                [typeof(long)] = VariableCategory.LongKeyIndexer,
+                [typeof(float)] = VariableCategory.FloatKeyIndexer,
+                [typeof(double)] = VariableCategory.DoubleKeyIndexer,
+                [typeof(decimal)] = VariableCategory.DecimalKeyIndexer,
+                [typeof(char)] = VariableCategory.CharKeyIndexer,
+                [typeof(sbyte)] = VariableCategory.SByteKeyIndexer,
+                [typeof(ushort)] = VariableCategory.UShortKeyIndexer,
+                [typeof(uint)] = VariableCategory.UIntegerKeyIndexer,
+                [typeof(ulong)] = VariableCategory.ULongKeyIndexer
+            };
+
+            if (table.TryGetValue(indexType, out var value))
+                return value;
+            else
+                throw _exceptionHelper.CriticalException("{DEDB5B31-31D0-4BB3-9D50-EA29A908D948}");
+        }
+
         public ListType GetListType(Type memberType)
         {
             if (memberType.IsGenericType && memberType.GetGenericTypeDefinition().Equals(typeof(List<>)))
@@ -244,6 +312,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     )
             );
 
+        public ValidIndirectReference GetValidIndirectReference(VariableCategory variableCategory)
+        {
+            string? literalTypeString = Enum.GetName(typeof(VariableCategory), variableCategory);
+            if (!Enum.IsDefined(typeof(ValidIndirectReference), literalTypeString ?? ""))
+                throw _exceptionHelper.CriticalException("{48F6C59B-69D1-4658-B87B-6B2921538A8E}");
+
+            return ParseEnumText<ValidIndirectReference>(literalTypeString!);
+        }
+
         public string GetValidIndirectReferencesList()
             => string.Join
             (
@@ -255,6 +332,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         e => GetVisibleEnumText(e)
                     )
             );
+
+        public VariableCategory GetVariableCategory(ValidIndirectReference validIndirectReference)
+        {
+            string? literalTypeString = Enum.GetName(typeof(ValidIndirectReference), validIndirectReference);
+            if (!Enum.IsDefined(typeof(VariableCategory), literalTypeString ?? ""))
+                throw _exceptionHelper.CriticalException("{A23350F6-7EC0-402A-823C-DF83E79A161D}");
+
+            return ParseEnumText<VariableCategory>(literalTypeString!);
+        }
 
         public VariableTypeCategory GetVariableTypeCategory(string elementName) 
             => elementName switch

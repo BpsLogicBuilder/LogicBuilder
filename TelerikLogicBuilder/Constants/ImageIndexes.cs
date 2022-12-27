@@ -41,5 +41,9 @@
         internal const byte GENERICLISTPARAMETERIMAGEINDEX = 36;
         internal const byte CUTGENERICPARAMETERIMAGEINDEX = 37;
         internal const byte CUTGENERICLISTPARAMETERIMAGEINDEX = 38;
+        internal const byte FIELDIMAGEINDEX = 39;
+        internal const byte PROPERTYIMAGEINDEX = 40;
+        internal const byte INDEXERIMAGEINDEX = 41;
+        internal const byte METHODINTELLISENSEIMAGEINDEX = 42;
     }
 }

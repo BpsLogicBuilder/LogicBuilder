@@ -795,6 +795,9 @@
 	<data name="genericParamNodeDescription" xml:space="preserve">
     <value>Generic ParameterFR</value>
   </data>
+	<data name="initialParameterTypeNameFormat" xml:space="preserve">
+    <value>{0} {1}FR</value>
+  </data>
 	<data name="inputFileNewFileNameCaption" xml:space="preserve">
     <value>New File NameFR</value>
   </data>
@@ -1251,6 +1254,10 @@
     <value>=</value>
     <comment>Descr: value=HHH[Substring: start=0;finish=1;value=TTTTT][Concat desp: value=GG;desparg=HH]</comment>
   </data>
+	<data name="parameterListFormat" xml:space="preserve">
+    <value>Parameters: {0}FR</value>
+    <comment>0=parameters</comment>
+  </data>
 	<data name="parameterNotLiteralFormat" xml:space="preserve">
     <value>The parameter "{0}" of type "{1}" is not a valid literal.FR</value>
   </data>
@@ -1614,6 +1621,10 @@
   </data>
 	<data name="variablesRootNodeText" xml:space="preserve">
     <value>VariablesFR</value>
+  </data>
+	<data name="variableTypeFormat" xml:space="preserve">
+    <value>Type: {0}FR</value>
+    <comment>0=Type description</comment>
   </data>
 	<data name="variableTypeNameMustBeEmpty" xml:space="preserve">
     <value>Type Name field must be empty when the reference category is not "Type"or "Static Reference".FR</value>

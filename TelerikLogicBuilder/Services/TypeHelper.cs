@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using Microsoft.OData.Edm;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -87,6 +88,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     || to.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(MatchImplicitOperator);
         }
 
+        public string GetIndexReferenceDefault(Type indexType, Type memberType)
+        {
+            if(!MiscellaneousConstants.Literals.Contains(indexType))
+                throw _exceptionHelper.CriticalException("{1FF953EA-FB18-4B56-9E50-9DA54F705572}");
+
+            if (indexType == typeof(string))
+                return memberType.ToString();
+
+            if (indexType == typeof(bool))
+                return Activator.CreateInstance(indexType)!.ToString()!;
+
+            if (indexType == typeof(char))
+                return '0'.ToString(CultureInfo.CurrentCulture);
+
+            return Activator.CreateInstance(indexType)!.ToString()!;
+        }
+
         public string GetTypeDescription(Type type)
         {
             if (type.IsGenericType)
@@ -135,6 +153,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public bool IsValidConnectorList(Type type)
             => IsValidList(type) 
                 && ToId(GetUndelyingTypeForValidList(type)) == ConnectorWrapperClasses.CONNECTORCLASS;
+
+        public bool IsValidIndex(Type type) 
+            => MiscellaneousConstants.Literals.Contains(type);
 
         public bool IsValidList(Type type) 
             => (type.IsGenericType && (type.GetGenericTypeDefinition().Equals(typeof(List<>))

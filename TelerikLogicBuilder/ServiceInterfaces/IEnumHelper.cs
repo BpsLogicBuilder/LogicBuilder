@@ -13,6 +13,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         IList<string> ConvertVisibleDropDownValuesToEnumNames<T>(ICollection<string> array);
         string GetEnumResourceString(string? enumName);
         GenericConfigCategory GetGenericConfigCategory(string elementName);
+        ValidIndirectReference GetIndexReferenceDefinition(Type indexType);
+        VariableCategory GetIndexVariableCategory(Type indexType);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);
         LiteralListElementType GetLiteralListElementType(Type literalType);
@@ -29,6 +31,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         Type GetSystemType(LiteralType literalType);
         Type GetSystemType(LiteralVariableType variableType);
         string GetTypeDescription(ListType listType, string elementType);
+        ValidIndirectReference GetValidIndirectReference(VariableCategory variableCategory);
+        VariableCategory GetVariableCategory(ValidIndirectReference validIndirectReference);
         VariableTypeCategory GetVariableTypeCategory(string elementName);
         string GetValidIndirectReferencesList();
         string GetValidCategoriesList();

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense

@@ -56,6 +56,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.GenericList,
                         Properties.Resources.CutGeneric,
                         Properties.Resources.CutGenericList,
+                        Properties.Resources.Field,
+                        Properties.Resources.Property,
+                        Properties.Resources.Indexer,
+                        Properties.Resources.Method,
                     }
                 };
 
