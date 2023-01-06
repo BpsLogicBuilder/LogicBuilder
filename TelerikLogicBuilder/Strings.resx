@@ -158,6 +158,9 @@
     <value>Application {0} has not been excluded for module {1} and is not accounted for. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box.</value>
     <comment>0=ApplicationName 1=ModuleName</comment>
   </data>
+	<data name="arrayKeyIndexIsInvalid" xml:space="preserve">
+    <value>Given the variable category, each index in Member Name must be an integer greater than or equal to zero.</value>
+  </data>
 	<data name="assemblyUnavailableMessageFormat" xml:space="preserve">
     <value>The assembly "{0}", one of its dependencies or the class "{1}" could not be loaded.</value>
     <comment>0=assemblyFullPath; 1=FullyQulifiedClassName</comment>
@@ -1023,6 +1026,10 @@
     <value>Member Name Field for function {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=functionName</comment>
   </data>
+	<data name="memberNameIsInvalidForVariableCategoryFormat" xml:space="preserve">
+    <value>Member Name "{0}" is invalid for the Variable Category "{1}".</value>
+    <comment>0=functionName</comment>
+  </data>
 	<data name="memberParametersFormat" xml:space="preserve">
     <value>{0}: {1}</value>
     <comment>0=functionName;1=parametersList;</comment>
@@ -1563,6 +1570,9 @@
 	<data name="varConfigVariableNameHelp" xml:space="preserve">
     <value>Member name for the class field or property.</value>
   </data>
+	<data name="variableArrayIndexIsInvalid" xml:space="preserve">
+    <value>Given the variable category, each index in Member Name must be a configured integer variable or positive integer.</value>
+  </data>
 	<data name="variableBlankCategoryFormat" xml:space="preserve">
     <value>Reference Category for variable "{0}" cannot be empty.</value>
     <comment>0=variableName</comment>
@@ -1595,6 +1605,9 @@
 	<data name="variableInvalidIndirectDefinitionFormat2" xml:space="preserve">
     <value>Reference Definition has invalid section "{0}". Valid sections for indirect references include:{1}{2}.</value>
     <comment>0=ReferenceDefinition; 1=Environment.Newline; 2=ValidDefinitionList</comment>
+  </data>
+	<data name="variableKeyIndexIsInvalid" xml:space="preserve">
+    <value>Given the variable category, Member Name must be a configured variable.</value>
   </data>
 	<data name="variableNameAndDefinitionFormat" xml:space="preserve">
     <value>Variable "{0}". Reference Name and Reference Definition must have an equal number of sections when the variable is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Category = Field.Property.IntKeyValue.Field.</value>

@@ -200,6 +200,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             _configureVariablesStateImageSetter.SetImage(variableElement, (StateImageRadTreeNode)treeNode, Application);
         }
 
+        public void ValidateFields()
+        {
+            _literalListVariableControlsValidator.ValidateInputBoxes();
+        }
+
         public void ValidateXmlDocument()
         {
             configureVariablesForm.ValidateXmlDocument();

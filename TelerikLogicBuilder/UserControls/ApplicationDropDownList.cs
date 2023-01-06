@@ -22,6 +22,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private ApplicationTypeInfo _application;
         public ApplicationTypeInfo Application => _application;
 
+        public object SelectedValue
+        {
+            get => cmbApplication.SelectedValue; 
+            set => cmbApplication.SelectedValue = value;
+        }
+
         public ApplicationDropDownList(
             IApplicationTypeInfoManager applicationTypeInfoManager,
             IConfigurationService configurationService,

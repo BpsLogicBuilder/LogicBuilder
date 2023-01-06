@@ -21,9 +21,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public new event EventHandler? TextChanged;
 
+        public new event EventHandler? Validated;
+
         public new event MouseEventHandler? MouseDown;
 
         public RadDropDownList RadDropDownList => radDropDownList1;
+
+        public new bool Enabled
+        {
+            get => base.Enabled;
+            set
+            {
+                radDropDownList1.Enabled = value;
+                radButtonHelper.Enabled = value;
+            }
+        }
 
         public string SelectedText { get => radDropDownList1.SelectedText; set => radDropDownList1.SelectedText = value; }
 
@@ -69,6 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.radButtonHelper.MouseDown += RadButtonHelper_MouseDown;
             radDropDownList1.MouseDown += RadDropDownList1_MouseDown;
             radDropDownList1.TextChanged += RadDropDownList1_TextChanged;
+            radDropDownList1.Validated += RadDropDownList1_Validated;
             radDropDownList1.DropDownStyle = RadDropDownStyle.DropDown;
             radDropDownList1.AutoCompleteMode = AutoCompleteMode.None;
             radDropDownList1.DropDownListElement.AutoCompleteSuggest = new CustomAutoCompleteSuggestHelper(radDropDownList1.DropDownListElement);
@@ -95,6 +108,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void RadDropDownList1_TextChanged(object? sender, EventArgs e)
         {
             TextChanged?.Invoke(this, e);
+        }
+
+        private void RadDropDownList1_Validated(object? sender, EventArgs e)
+        {
+            Validated?.Invoke(this, e);
         }
     }
 }

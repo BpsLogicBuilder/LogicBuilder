@@ -11,7 +11,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
     {
         private readonly IEnumHelper _enumHelper;
         private readonly ITypeHelper _typeHelper;
-        private readonly Type indexType;
 
         public IndexerTreeNode(
             IEnumHelper enumHelper,
@@ -22,23 +21,38 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
             Type indexType,
             IApplicationForm applicationForm,
             CustomVariableConfiguration? customVariableConfiguration = null)
-            : base(pInfo.Name, parentNode, pInfo.PropertyType, applicationForm, customVariableConfiguration)
+            : base(typeLoadHelper, enumHelper.GetVisibleEnumText(enumHelper.GetIndexReferenceDefinition(indexType)), parentNode, pInfo.PropertyType, applicationForm, customVariableConfiguration)
         {
             _enumHelper = enumHelper;
             _typeHelper = typeHelper;
-            TypeLoadHelper = typeLoadHelper;
             ImageIndex = ImageIndexes.INDEXERIMAGEINDEX;
             MemberInfo = pInfo;
-            this.indexType = indexType;
+            this.IndexType = indexType;
         }
 
-        private bool HasCustomVariableCategory => customVariableConfiguration?.VariableCategory == VariableCategory.VariableKeyIndexer;
+        private bool HasCustomVariableCategory => CustomVariableConfiguration?.VariableCategory == VariableCategory.VariableKeyIndexer;
+
+        public Type IndexType { get; }
 
         public override MemberInfo MemberInfo { get; }
 
-        public override string MemberText => HasCustomMemberName
-                                                ? customVariableConfiguration!.MemberName
-                                                : _typeHelper.GetIndexReferenceDefault(indexType, MemberType);
+        public override string MemberText
+        {
+            get
+            {
+                if (HasCustomMemberName)
+                    return CustomVariableConfiguration!.MemberName;
+
+                if (VariableCategory == VariableCategory.StringKeyIndexer && _typeHelper.IsLiteralType(MemberType))
+                {
+                    return MemberInfo.DeclaringType != null 
+                        ? $"{MemberInfo.DeclaringType.Name}{MiscellaneousConstants.UNDERSCORE}{MemberInfo.Name}"
+                        : MemberInfo.Name;
+                }
+
+                return _typeHelper.GetIndexReferenceDefault(IndexType, MemberType);
+            }
+        }
 
         //Need path in addition to reference name to provide a consistent identifier that does not change with reference name or CastAs class name.
         public string Path
@@ -57,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
                 ValidIndirectReference GetValidIndirectReference()
                     => HasCustomVariableCategory
                     ? _enumHelper.GetValidIndirectReference(VariableCategory.VariableKeyIndexer)
-                    : _enumHelper.GetIndexReferenceDefinition(indexType);
+                    : _enumHelper.GetIndexReferenceDefinition(IndexType);
             }
         }
 
@@ -76,9 +90,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
             }
         }
 
-        public override VariableCategory VariableCategory => _enumHelper.GetIndexVariableCategory(indexType);
-
-        protected override ITypeLoadHelper TypeLoadHelper { get; }
+        public override VariableCategory VariableCategory => HasCustomVariableCategory 
+                                                                ? CustomVariableConfiguration!.VariableCategory!.Value
+                                                                : _enumHelper.GetIndexVariableCategory(IndexType);
 
         #region Methods
         public override bool Equals(object? obj)

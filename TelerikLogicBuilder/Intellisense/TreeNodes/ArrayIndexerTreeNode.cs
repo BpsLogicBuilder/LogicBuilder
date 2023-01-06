@@ -19,23 +19,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
             IVariableTreeNode? parentNode,
             IApplicationForm applicationForm,
             CustomVariableConfiguration? customVariableConfiguration = null) 
-            : base(enumHelper.GetVisibleEnumText(VariableCategory.ArrayIndexer), parentNode, getMethodInfo.ReturnType, applicationForm, customVariableConfiguration)
+            : base(typeLoadHelper, enumHelper.GetVisibleEnumText(VariableCategory.ArrayIndexer), parentNode, getMethodInfo.ReturnType, applicationForm, customVariableConfiguration)
         {
             _enumHelper = enumHelper;
-            TypeLoadHelper = typeLoadHelper;
             Rank = rank;
             MemberInfo = getMethodInfo;
             ImageIndex = ImageIndexes.INDEXERIMAGEINDEX;
         }
 
-        private bool HasCustomVariableCategory => customVariableConfiguration?.VariableCategory == VariableCategory.VariableArrayIndexer;
+        private bool HasCustomVariableCategory => CustomVariableConfiguration?.VariableCategory == VariableCategory.VariableArrayIndexer;
 
         public int Rank { get; }
 
         public override MemberInfo MemberInfo { get; }
 
         public override string MemberText => HasCustomMemberName
-                                                ? customVariableConfiguration!.MemberName
+                                                ? CustomVariableConfiguration!.MemberName
                                                 : string.Join
                                                 (
                                                     MiscellaneousConstants.COMMASTRING,
@@ -52,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
 
                 ValidIndirectReference GetValidIndirectReference()
                     => HasCustomVariableCategory
-                    ? _enumHelper.GetValidIndirectReference(VariableCategory.VariableArrayIndexer)
+                    ? ValidIndirectReference.VariableArrayIndexer
                     : ValidIndirectReference.ArrayIndexer;
             }
         }
@@ -61,8 +60,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
                         ? MemberText
                         : $"{ParentNode.ReferenceName}{MiscellaneousConstants.PERIODSTRING}{MemberText}";
 
-        public override VariableCategory VariableCategory => VariableCategory.ArrayIndexer;
-
-        protected override ITypeLoadHelper TypeLoadHelper { get; }
+        public override VariableCategory VariableCategory => HasCustomVariableCategory
+                                                                ? CustomVariableConfiguration!.VariableCategory!.Value
+                                                                : VariableCategory.ArrayIndexer;
     }
 }

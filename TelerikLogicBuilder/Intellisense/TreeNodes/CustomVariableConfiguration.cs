@@ -6,7 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
     internal class CustomVariableConfiguration
     {
         public CustomVariableConfiguration(
-            VariableCategory variableCategory,
+            VariableCategory? variableCategory,
             string castAs = MiscellaneousConstants.TILDE,
             string memberName = MiscellaneousConstants.TILDE)
         {
@@ -17,6 +17,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
 
         public string CastAs { get; }
         public string MemberName { get; }
-        public VariableCategory VariableCategory { get; }
+        public VariableCategory? VariableCategory { get; }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is not CustomVariableConfiguration customVariableConfiguration)
+                return false;
+
+            return customVariableConfiguration.CastAs == CastAs
+                && customVariableConfiguration.MemberName == MemberName
+                && customVariableConfiguration.VariableCategory == VariableCategory;
+        }
+
+        public override int GetHashCode()
+        {
+            return MemberName.GetHashCode();
+        }
     }
 }

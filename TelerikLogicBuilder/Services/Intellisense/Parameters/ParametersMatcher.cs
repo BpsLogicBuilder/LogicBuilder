@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters
             _exceptionHelper = exceptionHelper;
         }
 
-        public bool MatchParameters(List<ParameterNodeInfoBase> parameterInfos, List<ParameterBase> configuredParameters)
+        public bool MatchParameters(IList<ParameterNodeInfoBase> parameterInfos, IList<ParameterBase> configuredParameters)
         {
             if (configuredParameters.Count != parameterInfos.Count) return false;
 

@@ -5,6 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameter
 {
     internal interface IParametersMatcher
     {
-        bool MatchParameters(List<ParameterNodeInfoBase> parameterInfos, List<ParameterBase> configuredParameters);
+        bool MatchParameters(IList<ParameterNodeInfoBase> parameterInfos, IList<ParameterBase> configuredParameters);
     }
 }

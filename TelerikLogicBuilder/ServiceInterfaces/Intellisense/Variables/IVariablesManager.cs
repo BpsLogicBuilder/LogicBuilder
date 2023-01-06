@@ -7,8 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables
 {
     internal interface IVariablesManager
     {
-        VariableBase GetVariable(string name,
-                                string memberName,
+        VariableBase GetVariable(string memberName,
                                 VariableCategory variableCategory,
                                 string castVariableAs,
                                 string typeName,

@@ -5,6 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories
 {
     internal interface IChildConstructorFinderFactory
     {
-        IChildConstructorFinder GetChildConstructorFinder(Dictionary<string, Constructor> existingConstructors);
+        IChildConstructorFinder GetChildConstructorFinder(IDictionary<string, Constructor> existingConstructors);
     }
 }

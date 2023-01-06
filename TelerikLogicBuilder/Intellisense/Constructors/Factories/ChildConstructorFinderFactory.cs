@@ -6,14 +6,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories
 {
     internal class ChildConstructorFinderFactory : IChildConstructorFinderFactory
     {
-        private readonly Func<Dictionary<string, Constructor>, IChildConstructorFinder> _getChildConstructorFinder;
+        private readonly Func<IDictionary<string, Constructor>, IChildConstructorFinder> _getChildConstructorFinder;
 
-        public ChildConstructorFinderFactory(Func<Dictionary<string, Constructor>, IChildConstructorFinder> getChildConstructorFinder)
+        public ChildConstructorFinderFactory(Func<IDictionary<string, Constructor>, IChildConstructorFinder> getChildConstructorFinder)
         {
             _getChildConstructorFinder = getChildConstructorFinder;
         }
 
-        public IChildConstructorFinder GetChildConstructorFinder(Dictionary<string, Constructor> existingConstructors)
+        public IChildConstructorFinder GetChildConstructorFinder(IDictionary<string, Constructor> existingConstructors)
             => _getChildConstructorFinder(existingConstructors);
     }
 }

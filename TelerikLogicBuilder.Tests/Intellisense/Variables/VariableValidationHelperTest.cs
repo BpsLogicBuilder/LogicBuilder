@@ -122,7 +122,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variablesManager.GetVariable
                 (
                     indexKeyVariablePropertyInfo.Name,
-                    indexKeyVariablePropertyInfo.Name,
                     VariableCategory.Property,
                     string.Empty,
                     string.Empty,
@@ -140,7 +139,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     "MyProperty",
                     VariableCategory.Property,
                     string.Empty,
@@ -184,7 +182,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     "MyProperty",
                     VariableCategory.Property,
                     string.Empty,
@@ -232,7 +229,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     "MyProperty",
                     VariableCategory.Property,
                     string.Empty,
@@ -281,7 +277,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variablesManager.GetVariable
                 (
                     indexKeyVariablePropertyInfo.Name,
-                    indexKeyVariablePropertyInfo.Name,
                     VariableCategory.Property,
                     string.Empty,
                     string.Empty,
@@ -299,7 +294,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     "MyProperty",
                     VariableCategory.Property,
                     string.Empty,
@@ -343,7 +337,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     "MyProperty",
                     VariableCategory.Property,
                     string.Empty,
@@ -391,7 +384,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     "MyProperty",
                     VariableCategory.Property,
                     string.Empty,
@@ -441,7 +433,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variablesManager.GetVariable
                 (
                     indexKeyVariablePropertyInfo.Name,
-                    indexKeyVariablePropertyInfo.Name,
                     VariableCategory.Property,
                     string.Empty,
                     string.Empty,
@@ -459,7 +450,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     "MyProperty",
                     VariableCategory.Property,
                     string.Empty,
@@ -586,7 +576,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variablesManager.GetVariable
                 (
                     indexKeyVariablePropertyInfo.Name,
-                    indexKeyVariablePropertyInfo.Name,
                     VariableCategory.Property,
                     string.Empty,
                     string.Empty,
@@ -604,7 +593,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     indexKeyVariableName,
                     VariableCategory.VariableKeyIndexer,
                     string.Empty,
@@ -648,7 +636,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     indexKeyVariableName,
                     VariableCategory.VariableKeyIndexer,
                     string.Empty,
@@ -697,7 +684,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     indexKeyVariableName,
                     VariableCategory.VariableKeyIndexer,
                     string.Empty,
@@ -747,7 +733,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variablesManager.GetVariable
                 (
                     indexKeyVariablePropertyInfo.Name,
-                    indexKeyVariablePropertyInfo.Name,
                     VariableCategory.Property,
                     string.Empty,
                     string.Empty,
@@ -765,7 +750,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     indexKeyVariableName,
                     VariableCategory.VariableArrayIndexer,
                     string.Empty,
@@ -808,7 +792,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     indexKeyVariableName,
                     VariableCategory.VariableArrayIndexer,
                     string.Empty,
@@ -856,7 +839,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     indexKeyVariableName,
                     VariableCategory.VariableArrayIndexer,
                     string.Empty,
@@ -905,7 +887,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
                 variableName,
                 variablesManager.GetVariable
                 (
-                    variableName,
                     indexKeyVariableName,
                     VariableCategory.VariableArrayIndexer,
                     string.Empty,

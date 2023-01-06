@@ -120,6 +120,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesHelperCommand
                     (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )

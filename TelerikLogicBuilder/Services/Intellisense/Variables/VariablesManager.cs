@@ -15,10 +15,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
             _variablesNodeInfoManager = variablesNodeInfoManager;
         }
 
-        public VariableBase GetVariable(string name, string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, MemberInfo memberInfo, Type memberType) 
+        public VariableBase GetVariable(string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, MemberInfo memberInfo, Type memberType) 
             => _variablesNodeInfoManager.GetVariableNodeInfo(memberInfo, memberType).GetVariable
             (
-                name,
                 memberName,
                 variableCategory,
                 castVariableAs,

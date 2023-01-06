@@ -151,6 +151,40 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 throw _exceptionHelper.CriticalException("{C0115382-3B85-4FCD-AF3A-15F9991D65E3}");
         }
 
+        public Type GetVariableCategoryIndexType(VariableCategory variableCategory)
+        {
+            Dictionary<VariableCategory, Type> table = new()
+            {
+                [VariableCategory.StringKeyIndexer] = typeof(string),
+                [VariableCategory.IntegerKeyIndexer] = typeof(int),
+                [VariableCategory.BooleanKeyIndexer] = typeof(bool),
+                [VariableCategory.DateTimeKeyIndexer] = typeof(DateTime),
+                [VariableCategory.DateTimeOffsetKeyIndexer] = typeof(DateTimeOffset),
+                [VariableCategory.DateOnlyKeyIndexer] = typeof(DateOnly),
+                [VariableCategory.DateKeyIndexer] = typeof(Date),
+                [VariableCategory.TimeSpanKeyIndexer] = typeof(TimeSpan),
+                [VariableCategory.TimeOnlyKeyIndexer] = typeof(TimeOnly),
+                [VariableCategory.TimeOfDayKeyIndexer] = typeof(TimeOfDay),
+                [VariableCategory.GuidKeyIndexer] = typeof(Guid),
+                [VariableCategory.ByteKeyIndexer] = typeof(byte),
+                [VariableCategory.ShortKeyIndexer] = typeof(short),
+                [VariableCategory.LongKeyIndexer] = typeof(long),
+                [VariableCategory.FloatKeyIndexer] = typeof(float),
+                [VariableCategory.DoubleKeyIndexer] = typeof(double),
+                [VariableCategory.DecimalKeyIndexer] = typeof(decimal),
+                [VariableCategory.CharKeyIndexer] = typeof(char),
+                [VariableCategory.SByteKeyIndexer] = typeof(sbyte),
+                [VariableCategory.UShortKeyIndexer] = typeof(ushort),
+                [VariableCategory.UIntegerKeyIndexer] = typeof(uint),
+                [VariableCategory.ULongKeyIndexer] = typeof(ulong)
+            };
+
+            if (table.TryGetValue(variableCategory, out var value))
+                return value;
+            else
+                throw _exceptionHelper.CriticalException("{035AE1DA-4596-432B-8BFC-9DAB0DC94BCD}");
+        }
+
         public VariableCategory GetIndexVariableCategory(Type indexType)
         {
             Dictionary<Type, VariableCategory> table = new()

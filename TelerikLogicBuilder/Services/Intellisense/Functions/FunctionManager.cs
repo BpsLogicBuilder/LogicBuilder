@@ -15,11 +15,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
             _functionNodeInfoFactory = functionNodeInfoFactory;
         }
 
-        public Function? GetFunction(string name, string memberName, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout, MethodInfo methodInfo) 
+        public Function? GetFunction(string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout, MethodInfo methodInfo)
             => _functionNodeInfoFactory.GetFunctionNodeInfo(methodInfo).GetFunction
             (
-                name,
-                memberName,
                 typeName,
                 referenceName,
                 referenceDefinition,

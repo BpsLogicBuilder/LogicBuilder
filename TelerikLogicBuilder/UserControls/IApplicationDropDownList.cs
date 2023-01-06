@@ -13,5 +13,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         ApplicationTypeInfo Application { get; }
         Point Location { set; }
         DockStyle Dock { set; }
+        object SelectedValue { get; set; }
     }
 }

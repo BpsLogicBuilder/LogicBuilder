@@ -30,10 +30,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<bool, IConfigureProjectPropertiesForm> _getConfigureProjectProperties;
         private readonly Func<bool, IConfigureVariablesForm> _getConfigureVariablesForm;
         private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
-        private readonly IServiceScope _scope;
 
         public ConfigurationFormFactory(
-            IServiceScopeFactory serviceScopeFactory,
             Func<bool, IConfigureConnectorObjectsForm> getConfigureConnectorObjectsForm,
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> getConfigureConstructorGenericArgumentsForm,
             //using the concrete type ConfigureConstructorGenericArgumentsForm here to be distinct from ConfigureFunctionGenericArgumentsForm
@@ -49,7 +47,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Func<bool, IConfigureVariablesForm> getConfigureVariablesForm,
             Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
         {
-            _scope = serviceScopeFactory.CreateScope();
             _getConfigureConnectorObjectsForm = getConfigureConnectorObjectsForm;
             _getConfigureConstructorGenericArgumentsForm = getConfigureConstructorGenericArgumentsForm;
             _getConfigureExcludedModules = getConfigureExcludedModules;
@@ -131,7 +128,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             //The factory methods uses new() (outside the container) because of the parameter
             //so we have to dispose of the service manually (_scope.Dispose() will not dispose _scopedService).
             _scopedService?.Dispose();
-            _scope.Dispose();
         }
     }
 }

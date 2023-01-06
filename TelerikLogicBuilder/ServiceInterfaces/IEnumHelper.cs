@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         GenericConfigCategory GetGenericConfigCategory(string elementName);
         ValidIndirectReference GetIndexReferenceDefinition(Type indexType);
         VariableCategory GetIndexVariableCategory(Type indexType);
+        Type GetVariableCategoryIndexType(VariableCategory variableCategory);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);
         LiteralListElementType GetLiteralListElementType(Type literalType);

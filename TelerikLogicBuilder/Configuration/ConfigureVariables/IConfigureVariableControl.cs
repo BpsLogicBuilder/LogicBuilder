@@ -27,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         void ClearMessage();
         void SetErrorMessage(string message);
         void SetMessage(string message, string title = "");
+        void ValidateFields();
         void ValidateXmlDocument();
     }
 }

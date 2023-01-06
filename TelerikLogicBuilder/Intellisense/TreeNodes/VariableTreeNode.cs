@@ -12,28 +12,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
     {
         private readonly IApplicationForm applicationForm;
         private readonly bool isCastNode;
+        protected readonly ITypeLoadHelper _typeLoadHelper;
 
         protected VariableTreeNode(
+            ITypeLoadHelper typeLoadHelper,
             string text,
             IVariableTreeNode? parentNode,
             Type memberType,
             IApplicationForm applicationForm,
             CustomVariableConfiguration? customVariableConfiguration = null) : base(text, parentNode)
         {
-            this.customVariableConfiguration = customVariableConfiguration;
-            isCastNode = customVariableConfiguration?.CastAs != MiscellaneousConstants.TILDE;
+            _typeLoadHelper = typeLoadHelper;
+            this.CustomVariableConfiguration = customVariableConfiguration;
             this.CastAs = customVariableConfiguration?.CastAs ?? MiscellaneousConstants.TILDE;
+            isCastNode = this.CastAs != MiscellaneousConstants.TILDE;
             UnCastMemberType = memberType;
             this.applicationForm = applicationForm;
             ToolTipText = string.Format(CultureInfo.CurrentCulture, Strings.variableTypeFormat, MemberType.ToString());
         }
 
-        protected readonly CustomVariableConfiguration? customVariableConfiguration;
+        public CustomVariableConfiguration? CustomVariableConfiguration { get; }
 
-        protected bool HasCustomMemberName => !string.IsNullOrEmpty(customVariableConfiguration?.MemberName)
-                                && customVariableConfiguration.MemberName != MiscellaneousConstants.TILDE;
-
-        protected abstract ITypeLoadHelper TypeLoadHelper { get; }
+        protected bool HasCustomMemberName => !string.IsNullOrEmpty(CustomVariableConfiguration?.MemberName)
+                                && CustomVariableConfiguration.MemberName != MiscellaneousConstants.TILDE;
 
         public abstract MemberInfo MemberInfo { get; }
 
@@ -60,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
         public string CastVariableDefinition => isCastNode ? CastAs : string.Empty;
 
         public override string MemberText => HasCustomMemberName
-                                                ? customVariableConfiguration!.MemberName
+                                                ? CustomVariableConfiguration!.MemberName
                                                 : base.MemberText;
 
         public virtual string ReferenceName
@@ -71,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
         public Type UnCastMemberType { get; }
 
         public override Type MemberType
-            => isCastNode && TypeLoadHelper.TryGetSystemType(CastAs, applicationForm.Application, out Type? type)
+            => isCastNode && _typeLoadHelper.TryGetSystemType(CastAs, applicationForm.Application, out Type? type)
                 ? type
                 : UnCastMemberType;
 

@@ -49,7 +49,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
             IFunctionManager functionManager = serviceProvider.GetRequiredService<IFunctionManager>();
             MethodInfo methodInfo = typeof(TestMethodClass<>).GetMethod(methodName)!;
             IFunctionHelper helper = serviceProvider.GetRequiredService<IFunctionHelper>();
-            Function? function = functionManager.GetFunction(methodInfo.Name, methodInfo.Name, string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
+            Function? function = functionManager.GetFunction(string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
 
             //act
             var result = helper.IsBoolean(function!);
@@ -74,7 +74,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
             IFunctionManager functionManager = serviceProvider.GetRequiredService<IFunctionManager>();
             MethodInfo methodInfo = typeof(TestMethodClass<>).GetMethod(methodName)!;
             IFunctionHelper helper = serviceProvider.GetRequiredService<IFunctionHelper>();
-            Function? function = functionManager.GetFunction(methodInfo.Name, methodInfo.Name, string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
+            Function? function = functionManager.GetFunction(string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
 
             //act
             var result = helper.IsDialog(function!);
@@ -99,7 +99,7 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Functions
             IFunctionManager functionManager = serviceProvider.GetRequiredService<IFunctionManager>();
             MethodInfo methodInfo = typeof(TestMethodClass<>).GetMethod(methodName)!;
             IFunctionHelper helper = serviceProvider.GetRequiredService<IFunctionHelper>();
-            Function? function = functionManager.GetFunction(methodInfo.Name, methodInfo.Name, string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
+            Function? function = functionManager.GetFunction(string.Empty, string.Empty, string.Empty, string.Empty, ReferenceCategories.This, ParametersLayout.Sequential, methodInfo);
 
             //act
             var result = helper.IsVoid(function!);

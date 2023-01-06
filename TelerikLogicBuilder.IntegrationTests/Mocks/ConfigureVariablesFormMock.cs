@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -47,6 +48,10 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
         public bool CanExecuteImport => throw new NotImplementedException();
 
         public IList<RadTreeNode> CutTreeNodes => throw new NotImplementedException();
+
+        public IConfigureVariablesTreeNodeControl CurrentTreeNodeControl => throw new NotImplementedException();
+
+        public HelperStatus? HelperStatus => throw new NotImplementedException();
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 

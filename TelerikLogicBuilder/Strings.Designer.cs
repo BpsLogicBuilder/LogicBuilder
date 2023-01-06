@@ -178,6 +178,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, each index in Member Name must be an integer greater than or equal to zero..
+        /// </summary>
+        internal static string arrayKeyIndexIsInvalid {
+            get {
+                return ResourceManager.GetString("arrayKeyIndexIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0}, must be an integer greater than or equal to zero..
         /// </summary>
         internal static string arrayKeyIndexIsInvalidFormat {
@@ -3832,6 +3841,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Name &quot;{0}&quot; is invalid for the Variable Category &quot;{1}&quot;..
+        /// </summary>
+        internal static string memberNameIsInvalidForVariableCategoryFormat {
+            get {
+                return ResourceManager.GetString("memberNameIsInvalidForVariableCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}: {1}.
         /// </summary>
         internal static string memberParametersFormat {
@@ -5551,6 +5569,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, each index in Member Name must be a configured integer variable or positive integer..
+        /// </summary>
+        internal static string variableArrayIndexIsInvalid {
+            get {
+                return ResourceManager.GetString("variableArrayIndexIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, each index in Member Name for variable {0} must be a configured integer variable or positive integer..
         /// </summary>
         internal static string variableArrayIndexIsInvalidFormat {
@@ -5655,6 +5682,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableInvalidIndirectDefinitionFormat2 {
             get {
                 return ResourceManager.GetString("variableInvalidIndirectDefinitionFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given the variable category, Member Name must be a configured variable..
+        /// </summary>
+        internal static string variableKeyIndexIsInvalid {
+            get {
+                return ResourceManager.GetString("variableKeyIndexIsInvalid", resourceCulture);
             }
         }
         

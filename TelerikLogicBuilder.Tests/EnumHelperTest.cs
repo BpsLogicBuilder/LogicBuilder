@@ -1544,5 +1544,55 @@ namespace TelerikLogicBuilder.Tests
                 exception.Message
             );
         }
+
+        [Theory]
+        [InlineData(VariableCategory.BooleanKeyIndexer, typeof(bool))]
+        [InlineData(VariableCategory.DateTimeOffsetKeyIndexer, typeof(DateTimeOffset))]
+        [InlineData(VariableCategory.DateOnlyKeyIndexer, typeof(DateOnly))]
+        [InlineData(VariableCategory.DateTimeKeyIndexer, typeof(DateTime))]
+        [InlineData(VariableCategory.DateKeyIndexer, typeof(Date))]
+        [InlineData(VariableCategory.TimeSpanKeyIndexer, typeof(TimeSpan))]
+        [InlineData(VariableCategory.TimeOnlyKeyIndexer, typeof(TimeOnly))]
+        [InlineData(VariableCategory.TimeOfDayKeyIndexer, typeof(TimeOfDay))]
+        [InlineData(VariableCategory.GuidKeyIndexer, typeof(Guid))]
+        [InlineData(VariableCategory.DecimalKeyIndexer, typeof(decimal))]
+        [InlineData(VariableCategory.ByteKeyIndexer, typeof(byte))]
+        [InlineData(VariableCategory.ShortKeyIndexer, typeof(short))]
+        [InlineData(VariableCategory.IntegerKeyIndexer, typeof(int))]
+        [InlineData(VariableCategory.LongKeyIndexer, typeof(long))]
+        [InlineData(VariableCategory.FloatKeyIndexer, typeof(float))]
+        [InlineData(VariableCategory.DoubleKeyIndexer, typeof(double))]
+        [InlineData(VariableCategory.CharKeyIndexer, typeof(char))]
+        [InlineData(VariableCategory.SByteKeyIndexer, typeof(sbyte))]
+        [InlineData(VariableCategory.UShortKeyIndexer, typeof(ushort))]
+        [InlineData(VariableCategory.UIntegerKeyIndexer, typeof(uint))]
+        [InlineData(VariableCategory.ULongKeyIndexer, typeof(ulong))]
+        [InlineData(VariableCategory.StringKeyIndexer, typeof(string))]
+        internal void GetVariableCategoryIndexTypeReturnsTheExpectedType(VariableCategory variableCategory, Type expectedType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var literalType = enumHelper.GetVariableCategoryIndexType(variableCategory);
+
+            //assert
+            Assert.Equal(expectedType, literalType);
+        }
+
+        [Fact]
+        public void GetVariableCategoryIndexTypeThrowsCriticalExceptionForInvalidType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetVariableCategoryIndexType(VariableCategory.VariableArrayIndexer));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{035AE1DA-4596-432B-8BFC-9DAB0DC94BCD}"),
+                exception.Message
+            );
+        }
     }
 }

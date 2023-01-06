@@ -17,11 +17,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
             IVariableTreeNode? parentNode,
             IApplicationForm applicationForm,
             CustomVariableConfiguration? customVariableConfiguration = null)
-            : base(pInfo.Name, parentNode, pInfo.PropertyType, applicationForm, customVariableConfiguration)
+            : base(typeLoadHelper, pInfo.Name, parentNode, pInfo.PropertyType, applicationForm, customVariableConfiguration)
         {
             _enumHelper = enumHelper;
-            TypeLoadHelper = typeLoadHelper;
             MemberInfo = pInfo;
+            ImageIndex = ImageIndexes.PROPERTYIMAGEINDEX;
         }
 
         public override MemberInfo MemberInfo { get; }
@@ -30,8 +30,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
             => ParentNode == null
                 ? _enumHelper.GetVisibleEnumText(ValidIndirectReference.Property)
                 : $"{ParentNode.ReferenceDefinition}{MiscellaneousConstants.PERIODSTRING}{_enumHelper.GetVisibleEnumText(ValidIndirectReference.Property)}";
-
-        protected override ITypeLoadHelper TypeLoadHelper { get; }
 
         public override VariableCategory VariableCategory => VariableCategory.Property;
     }

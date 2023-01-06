@@ -19,6 +19,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -174,6 +175,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IHelperStatusBuilderFactory>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILoadVariables>(),
                         provider.GetRequiredService<IServiceFactory>(),

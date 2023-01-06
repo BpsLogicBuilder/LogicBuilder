@@ -40,9 +40,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         /// </summary>
         internal ListType ListType => _enumHelper.GetListType(this.MemberType);
 
-        internal override VariableBase GetVariable(string name, string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory)
+        internal override VariableBase GetVariable(string memberName, VariableCategory variableCategory, string castVariableAs, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory)
             => _variableFactory.GetListOfObjectsVariable
-            (   name,
+            (   
+                Name,
                 memberName,
                 variableCategory,
                 castVariableAs,

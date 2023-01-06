@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
         private readonly IStringHelper _stringHelper;
         private readonly IMemberAttributeReader _memberAttributeReader;
         private readonly Dictionary<Type, string> constructorNameMaps;
-        private readonly Dictionary<string, Constructor> existingConstructors;
+        private readonly IDictionary<string, Constructor> existingConstructors;
 
         public ChildConstructorFinder(
             IConstructorManager constructorManager,
@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
             ITypeHelper typeHelper,
             IStringHelper stringHelper,
             IMemberAttributeReader memberAttributeReader,
-            Dictionary<string, Constructor> existingConstructors)
+            IDictionary<string, Constructor> existingConstructors)
         {
             _constructorManager = constructorManager;
             _parametersManager = parametersManager;
@@ -106,7 +106,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
 
             string GetName(string alsoKnownAs)
                 => string.IsNullOrEmpty(alsoKnownAs)
-                    ? _typeHelper.GetTypeDescription(cInfo.DeclaringType!)//returns on line 92 if cInfo.DeclaringType == null
+                    ? _typeHelper.GetTypeDescription(cInfo.DeclaringType!)//returns on line 95 if cInfo.DeclaringType == null
                     : alsoKnownAs;
         }
     }

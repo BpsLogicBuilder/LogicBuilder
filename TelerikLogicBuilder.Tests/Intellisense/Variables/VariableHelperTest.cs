@@ -35,7 +35,6 @@ namespace TelerikLogicBuilder.Tests.Intellisense.Variables
             var variable = variablesManager.GetVariable
             (
                 propertyInfo.Name,
-                propertyInfo.Name,
                 VariableCategory.Property,
                 string.Empty,
                 string.Empty,

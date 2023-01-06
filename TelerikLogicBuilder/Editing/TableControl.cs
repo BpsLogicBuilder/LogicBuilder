@@ -969,7 +969,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             if (this.openedAsReadOnly)
             {
-                foreach (RadMenuItem item in mnuFunctions.Items)
+                foreach (RadMenuItem item in mnuFunctions.Items.Cast<RadMenuItem>())
                     item.Enabled = false;
 
                 return;

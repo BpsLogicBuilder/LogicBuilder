@@ -5,6 +5,9 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -45,6 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         private readonly ITreeViewService _treeViewService;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
         private readonly IUpdateVariables _updateVariables;
+        private readonly IVariableHelperStatusBuilder _variableHelperStatusBuilder;
         private readonly IVariablesXmlParser _variablesXmlParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -53,6 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         private readonly bool openedAsReadOnly;
         private ApplicationTypeInfo _application;
         private readonly ConfigureVariablesTreeView radTreeView1;
+        private HelperStatus? helperStatus;
 
         private readonly RadMenuItem mnuItemAdd = new(Strings.mnuItemAddTextWithEllipses);
         private readonly RadMenuItem mnuItemAddLiteralVariable = new(Strings.mnuItemAddImplementedLiteralVariableText);
@@ -74,6 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             IDialogFormMessageControl dialogFormMessageControl,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
+            IHelperStatusBuilderFactory helperStatusBuilderFactory,
             IImageListService imageListService,
             ILoadVariables loadVariables,
             IServiceFactory serviceFactory,
@@ -103,6 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
                 SchemaName.VariablesSchema
             );
             _updateVariables = updateVariables;
+            _variableHelperStatusBuilder = helperStatusBuilderFactory.GetVariableHelperStatusBuilder(this);
             _variablesXmlParser = variablesXmlParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.openedAsReadOnly = openedAsReadOnly;
@@ -111,13 +118,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         #region Properties
 
-        private IConfigureVariablesTreeNodeControl CurrentTreeNodeControl => (IConfigureVariablesTreeNodeControl)radPanelFields.Controls[0];
+        public IConfigureVariablesTreeNodeControl CurrentTreeNodeControl
+        {
+            get
+            {
+                if (radPanelFields.Controls.Count != 1)
+                    throw _exceptionHelper.CriticalException("{77B05C78-8A80-4160-BAE2-B91E8C5DC780}");
+
+                return (IConfigureVariablesTreeNodeControl)radPanelFields.Controls[0];
+            }
+        }
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{A5890E08-525D-404D-9A29-CA2633424503}");
 
         public IList<RadTreeNode> CutTreeNodes { get; } = new List<RadTreeNode>();
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
+
+        public HelperStatus? HelperStatus => helperStatus;
 
         public RadTreeView TreeView => radTreeView1;
 
@@ -390,6 +408,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         {
             Navigate(treeNode);
             CurrentTreeNodeControl.SetControlValues(treeNode);
+            if (CurrentTreeNodeControl is IConfigureVariableControl)
+            {
+                var status = _variableHelperStatusBuilder.Build();
+                if (status?.Path.Any() == true)
+                    this.helperStatus = status;
+            }
         }
 
         private void UpdateXmlDocument(RadTreeNode treeNode)

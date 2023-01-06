@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddIntellisenseConstructorFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<Dictionary<string, Constructor>, IChildConstructorFinder>>
+                .AddTransient<Func<IDictionary<string, Constructor>, IChildConstructorFinder>>
                 (
                     provider =>
                     existingConstructors => new ChildConstructorFinder

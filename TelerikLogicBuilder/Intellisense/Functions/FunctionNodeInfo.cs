@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
@@ -35,6 +36,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
 
         #region Properties
         internal MethodInfo MInfo { get; }
+        internal string AlsoKnownAs => _memberAttributeReader.GetAlsoKnownAs(MInfo);
+        internal string MemberName => MInfo.Name;
+        internal string Name => string.IsNullOrEmpty(AlsoKnownAs)
+                                        ? $"{MInfo.DeclaringType?.Name}{MiscellaneousConstants.UNDERSCORE}{MInfo.Name}"
+                                        : AlsoKnownAs;
         internal string Sumnmary => _memberAttributeReader.GetSummary(MInfo);
         internal FunctionCategories FunctionCategory
             => HasValidMultipleChoiceParameter
@@ -55,15 +61,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         #endregion Properties
 
         #region Methods
-        internal Function? GetFunction(string name, string memberName, string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout)
+        internal Function? GetFunction(string typeName, string referenceName, string referenceDefinition, string castReferenceAs, ReferenceCategories referenceCategory, ParametersLayout parametersLayout)
         {
             if (MInfo.DeclaringType == null)
                 return null;
 
             return _functionFactory.GetFunction
             (
-                name,
-                memberName,
+                Name,
+                MemberName,
                 FunctionCategory,
                 typeName,
                 referenceName,

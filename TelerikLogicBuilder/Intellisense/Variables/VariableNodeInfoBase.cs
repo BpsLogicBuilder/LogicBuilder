@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Reflection;
@@ -18,10 +19,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         #region Properties
         internal MemberInfo MInfo { get; }//Represents MemberInfo for the referenced field or property
         internal Type MemberType { get; }//Needed when member has been cast (CastVariableAs is not empty)
-        internal string Name => this.MInfo.Name;
+        internal string AlsoKnownAs => _memberAttributeReader.GetAlsoKnownAs(MInfo);
+        internal string Name => string.IsNullOrEmpty(AlsoKnownAs)
+                                        ? $"{MInfo.DeclaringType?.Name}{MiscellaneousConstants.UNDERSCORE}{MInfo.Name}"
+                                        : AlsoKnownAs;
         internal string Comments => _memberAttributeReader.GetVariableComments(MInfo);
-        abstract internal VariableBase GetVariable(string name,
-                                                string memberName,
+        abstract internal VariableBase GetVariable(string memberName,
                                                 VariableCategory variableCategory,
                                                 string castVariableAs, 
                                                 string typeName, 
