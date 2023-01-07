@@ -5569,6 +5569,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} was already configured..
+        /// </summary>
+        internal static string variableAlreadyConfiguredFormat {
+            get {
+                return ResourceManager.GetString("variableAlreadyConfiguredFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given the variable category, each index in Member Name must be a configured integer variable or positive integer..
         /// </summary>
         internal static string variableArrayIndexIsInvalid {

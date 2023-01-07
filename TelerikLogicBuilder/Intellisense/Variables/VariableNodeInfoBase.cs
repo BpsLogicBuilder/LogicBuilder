@@ -21,7 +21,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables
         internal Type MemberType { get; }//Needed when member has been cast (CastVariableAs is not empty)
         internal string AlsoKnownAs => _memberAttributeReader.GetAlsoKnownAs(MInfo);
         internal string Name => string.IsNullOrEmpty(AlsoKnownAs)
-                                        ? $"{MInfo.DeclaringType?.Name}{MiscellaneousConstants.UNDERSCORE}{MInfo.Name}"
+                                        ? MInfo.ReflectedType != null 
+                                            ? $"{MInfo.ReflectedType.Name}{MiscellaneousConstants.UNDERSCORE}{MInfo.Name}" 
+                                            : MInfo.Name
                                         : AlsoKnownAs;
         internal string Comments => _memberAttributeReader.GetVariableComments(MInfo);
         abstract internal VariableBase GetVariable(string memberName,

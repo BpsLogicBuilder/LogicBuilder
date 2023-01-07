@@ -1570,6 +1570,10 @@
 	<data name="varConfigVariableNameHelp" xml:space="preserve">
     <value>Member name for the class field or property.FR</value>
   </data>
+	<data name="variableAlreadyConfiguredFormat" xml:space="preserve">
+    <value>{0} was already configured.FR</value>
+    <comment>0=variable</comment>
+  </data>
 	<data name="variableArrayIndexIsInvalid" xml:space="preserve">
     <value>Given the variable category, each index in Member Name must be a configured integer variable or positive integer.FR</value>
   </data>

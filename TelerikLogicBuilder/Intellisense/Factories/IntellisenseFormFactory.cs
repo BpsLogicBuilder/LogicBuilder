@@ -11,13 +11,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories
     {
         private IDisposable? _scopedService;
 
+        private readonly Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm> _getConfigureClassVariablesHelperForm;
         private readonly Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm> _getConfigureFunctionsHelperForm;
         private readonly Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm> _getConfigureVariablesHelperForm;
 
         public IntellisenseFormFactory(
+            Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm> getConfigureClassVariablesHelperForm,
             Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm> getConfigureFunctionsHelperForm,
             Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm> getConfigureVariablesHelperForm)
         {
+            _getConfigureClassVariablesHelperForm = getConfigureClassVariablesHelperForm;
             _getConfigureFunctionsHelperForm = getConfigureFunctionsHelperForm;
             _getConfigureVariablesHelperForm = getConfigureVariablesHelperForm;
         }
@@ -27,15 +30,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories
             _scopedService?.Dispose();
         }
 
+        public IConfigureClassVariablesHelperForm GetConfigureClassVariablesHelperForm(IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus)
+        {
+            _scopedService = _getConfigureClassVariablesHelperForm(existingVariables, helperStatus);
+            return (IConfigureClassVariablesHelperForm)_scopedService;
+        }
+
         public IConfigureFunctionsHelperForm GetConfigureFunctionsHelperForm(IDictionary<string, Constructor> existingConstructors, IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus)
         {
             _scopedService = _getConfigureFunctionsHelperForm(existingConstructors, existingVariables, helperStatus);
             return (IConfigureFunctionsHelperForm)_scopedService;
         }
 
-        public IConfigureVariablesHelperForm GetConfigureVariablesHelperForm(IDictionary<string, VariableBase> existingVariable, HelperStatus? helperStatus)
+        public IConfigureVariablesHelperForm GetConfigureVariablesHelperForm(IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus)
         {
-            _scopedService = _getConfigureVariablesHelperForm(existingVariable, helperStatus);
+            _scopedService = _getConfigureVariablesHelperForm(existingVariables, helperStatus);
             return (IConfigureVariablesHelperForm)_scopedService;
         }
     }

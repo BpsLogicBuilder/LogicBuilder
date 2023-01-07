@@ -19,10 +19,11 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
+using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
 {
-    internal partial class ConfigureVariablesHelperForm : Telerik.WinControls.UI.RadForm, IConfigureVariablesHelperForm
+    internal partial class ConfigureClassVariablesHelperForm : Telerik.WinControls.UI.RadForm, IConfigureClassVariablesHelperForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
@@ -33,9 +34,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
         private readonly IVariablesManager _variablesManager;
 
         private ApplicationTypeInfo _application;
-        private VariableBase? selectedVariable;
+        private IList<VariableBase>? selectedVariables;
 
-        public ConfigureVariablesHelperForm(
+        public ConfigureClassVariablesHelperForm(
             IDialogFormMessageControl dialogFormMessageControl,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
@@ -56,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
             _intellisenseVariablesFormManager = intellisenseFactory.GetIntellisenseVariablesFormManager(this);
             _variablesManager = variablesManager;
             ExistingVariables = existingVariables;
-            
+
             Initialize();
 
             TreeView.NodeExpandedChanging -= TreeView_NodeExpandedChanging;
@@ -69,13 +70,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
             get
             {
                 if (radPanelFields.Controls.Count != 1)
-                    throw _exceptionHelper.CriticalException("{68B044DA-C4C0-48F9-AE68-AA33B1D8DC22}");
+                    throw _exceptionHelper.CriticalException("{B19D1412-2C57-428C-A5CB-EA8920BE6EFC}");
 
                 return (IIntellisenseConfigurationControl)radPanelFields.Controls[0];
             }
         }
 
-        public VariableBase Variable => selectedVariable ?? throw _exceptionHelper.CriticalException("{9EFAAA1D-ADFD-4F67-8886-0089732C4108}");
+        public IList<VariableBase> Variables => selectedVariables ?? throw _exceptionHelper.CriticalException("{7CC4F380-C1BD-4DEE-9AE5-67EFCEFE1F68}");
 
         public RadButton BtnOk => btnOk;
 
@@ -89,11 +90,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
 
         public ReferenceCategories ReferenceCategory => (ReferenceCategories)cmbReferenceCategory.SelectedValue;
 
-        public VariableTreeNode ReferenceTreeNode => (VariableTreeNode)((BaseTreeNode)TreeView.SelectedNode).ParentNode!;/*used only for instance and static references*/
+        public VariableTreeNode ReferenceTreeNode => (VariableTreeNode)TreeView.SelectedNode;/*used only for instance and static references*/
 
         public RadTreeView TreeView => radTreeView1;
 
-        public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{B78581C5-1DA1-4D0F-B89B-7FB681EC30B7}");
+        public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{453D7548-FA92-4768-9DCC-1F1D40F84AA5}");
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
@@ -126,15 +127,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
                 return;
             }
 
-            VariableTreeNode treeNode = (VariableTreeNode)TreeView.SelectedNode;
-            ReferenceCategories referenceCategory = ReferenceCategory;
-            if (treeNode.ParentNode == null && (referenceCategory == ReferenceCategories.InstanceReference || referenceCategory == ReferenceCategories.StaticReference))
-            {//Instance and static references must be references of somnething.
-             //Only This and Type references can be root nodes
-                btnOk.Enabled = false;
-                return;
-            }
-
             try
             {
                 CurrentTreeNodeControl.ValidateFields();
@@ -146,21 +138,40 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
                 return;
             }
 
-            this.selectedVariable = _variablesManager.GetVariable
+            IList<VariableTreeNode> childNodes = GetChildNodes();
+            if (childNodes.Count == 0)
+            {
+                btnOk.Enabled = false;
+                return;
+            }
+
+            selectedVariables = childNodes.Select
             (
-                treeNode.MemberText,
-                treeNode.VariableCategory,
-                treeNode.CastVariableDefinition,
-                _intellisenseVariablesFormManager.TypeName,
-                _intellisenseVariablesFormManager.ReferenceName,
-                _intellisenseVariablesFormManager.ReferenceDefinition,
-                _intellisenseVariablesFormManager.CastReferenceAs,
-                _intellisenseVariablesFormManager.ReferenceCategory,
-                treeNode.MemberInfo,
-                treeNode.MemberType
-            );
+                treeNode => _variablesManager.GetVariable
+                (
+                    treeNode.MemberText,
+                    treeNode.VariableCategory,
+                    treeNode.CastVariableDefinition,
+                    _intellisenseVariablesFormManager.TypeName,
+                    _intellisenseVariablesFormManager.ReferenceName,
+                    _intellisenseVariablesFormManager.ReferenceDefinition,
+                    _intellisenseVariablesFormManager.CastReferenceAs,
+                    _intellisenseVariablesFormManager.ReferenceCategory,
+                    treeNode.MemberInfo,
+                    treeNode.MemberType
+                )
+            ).ToArray();
 
             btnOk.Enabled = true;
+
+            IList<VariableTreeNode> GetChildNodes()
+            {
+                VariableTreeNode selectedNode = (VariableTreeNode)TreeView.SelectedNode;
+                ReferenceCategories referenceCategory = ReferenceCategory;
+                return (referenceCategory == ReferenceCategories.InstanceReference || referenceCategory == ReferenceCategories.StaticReference)
+                    ? selectedNode.Nodes.Cast<VariableTreeNode>().ToArray()
+                    : TreeView.Nodes.Cast<VariableTreeNode>().ToArray();
+            }
         }
 
         private void ClearFieldControls()

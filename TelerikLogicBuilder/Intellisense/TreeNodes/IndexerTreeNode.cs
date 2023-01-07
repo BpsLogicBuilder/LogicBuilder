@@ -45,8 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
 
                 if (VariableCategory == VariableCategory.StringKeyIndexer && _typeHelper.IsLiteralType(MemberType))
                 {
-                    return MemberInfo.DeclaringType != null 
-                        ? $"{MemberInfo.DeclaringType.Name}{MiscellaneousConstants.UNDERSCORE}{MemberInfo.Name}"
+                    return MemberInfo.ReflectedType != null 
+                        ? $"{MemberInfo.ReflectedType.Name}{MiscellaneousConstants.UNDERSCORE}{MemberInfo.Name}"
                         : MemberInfo.Name;
                 }
 

@@ -25,6 +25,22 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddIntellisenseFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm>>
+                (
+                    provider =>
+                    (existingVariables, helperStatus) => new ConfigureClassVariablesHelperForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
+                        provider.GetRequiredService<IIntellisenseFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IVariablesManager>(),
+                        existingVariables,
+                        helperStatus
+                    )
+                )
                 .AddTransient<Func< IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm>>
                 (
                     provider =>

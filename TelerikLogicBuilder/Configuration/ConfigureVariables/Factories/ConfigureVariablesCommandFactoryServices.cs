@@ -83,6 +83,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesAddMembersCommand
                     (
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm
                     )
                 )

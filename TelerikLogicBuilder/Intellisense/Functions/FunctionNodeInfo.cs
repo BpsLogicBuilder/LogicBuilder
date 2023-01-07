@@ -38,9 +38,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
         internal MethodInfo MInfo { get; }
         internal string AlsoKnownAs => _memberAttributeReader.GetAlsoKnownAs(MInfo);
         internal string MemberName => MInfo.Name;
-        internal string Name => string.IsNullOrEmpty(AlsoKnownAs)
-                                        ? $"{MInfo.DeclaringType?.Name}{MiscellaneousConstants.UNDERSCORE}{MInfo.Name}"
-                                        : AlsoKnownAs;
+        internal string Name 
+            => string.IsNullOrEmpty(AlsoKnownAs)
+                ? MInfo.ReflectedType != null
+                    ? $"{MInfo.ReflectedType.Name}{MiscellaneousConstants.UNDERSCORE}{MInfo.Name}"
+                    : MInfo.Name
+                : AlsoKnownAs;
+
         internal string Sumnmary => _memberAttributeReader.GetSummary(MInfo);
         internal FunctionCategories FunctionCategory
             => HasValidMultipleChoiceParameter

@@ -95,6 +95,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 {
                     if (newTreeNode != null) newTreeNode.Selected = true;
                 }
+
+                if (!destinationFolderTreeNode.Expanded && destinationFolderTreeNode.Nodes.Count > 0)
+                    destinationFolderTreeNode.Expand();
             }
         }
 

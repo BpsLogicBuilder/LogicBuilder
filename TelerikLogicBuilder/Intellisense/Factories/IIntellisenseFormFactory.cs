@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories
 {
     internal interface IIntellisenseFormFactory : IDisposable
     {
+        IConfigureClassVariablesHelperForm GetConfigureClassVariablesHelperForm(IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus);
         IConfigureFunctionsHelperForm GetConfigureFunctionsHelperForm(IDictionary<string, Constructor> existingConstructors, IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus);
         IConfigureVariablesHelperForm GetConfigureVariablesHelperForm(IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus);
     }
