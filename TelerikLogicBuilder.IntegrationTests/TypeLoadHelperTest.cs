@@ -121,7 +121,7 @@ namespace TelerikLogicBuilder.IntegrationTests
                             new List<string>(),
                             new List<string>()
                         ),
-                        "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
+                        "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {
@@ -240,7 +240,7 @@ namespace TelerikLogicBuilder.IntegrationTests
                             Array.Empty<char>(),
                             new List<string>()
                         ),
-                        "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
+                        "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {
@@ -359,7 +359,7 @@ namespace TelerikLogicBuilder.IntegrationTests
                             ListType.GenericList
                         ),
                         new List<GenericConfigBase>(),
-                        "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
+                        "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {
@@ -513,7 +513,7 @@ namespace TelerikLogicBuilder.IntegrationTests
                             new List<string>(),
                             new List<string>()
                         ),
-                        "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
+                        "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
                     },
                     new object[]
                     {

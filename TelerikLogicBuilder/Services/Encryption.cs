@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 if (string.IsNullOrEmpty(stringToDecrypt))
                     return string.Empty;
 
-                SymmetricAlgorithm myAlg = Aes.Create("AesManaged")!;/*AesManaged does not return null.*/
+                SymmetricAlgorithm myAlg = Aes.Create();
                 byte[] saltValueBytes = Encoding.Unicode.GetBytes("Zone 2 Tournament");
                 PasswordDeriveBytes passwordKey = new("TheNat10nsPr1de", saltValueBytes, "SHA1", 3);
                 myAlg.Key = passwordKey.GetBytes(myAlg.KeySize / 8);
@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public string Encrypt(string stringToEncrypt)
         {
-            SymmetricAlgorithm myAlg = Aes.Create("AesManaged")!;/*AesManaged does not return null.*/
+            SymmetricAlgorithm myAlg = Aes.Create();
 
             byte[] saltValueBytes = Encoding.Unicode.GetBytes("Zone 2 Tournament");
             PasswordDeriveBytes passwordKey = new("TheNat10nsPr1de", saltValueBytes, "SHA1", 3);

@@ -917,10 +917,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
             if (removeFormatting && Clipboard.GetDataObject() != null)
             {
-                bool dataPresent = Clipboard.GetDataObject().GetDataPresent(DataFormats.Text, true);
+                bool dataPresent = Clipboard.GetDataObject()?.GetDataPresent(DataFormats.Text, true) == true;
                 if (dataPresent)
                 {
-                    object dataObject = Clipboard.GetDataObject().GetData(DataFormats.Text, true);
+                    object dataObject = Clipboard.GetDataObject()!.GetData(DataFormats.Text, true)!;
                     Clipboard.SetDataObject(dataObject);
 
                     if (this.denySpecialCharacters)

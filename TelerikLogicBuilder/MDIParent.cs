@@ -823,6 +823,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             //OpenProject(@"C:\Test\NewProject\NewProject.lbproj");
             //OpenProject(@"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj");
+            //OpenProject(@"C:\TelerikLogicBuilder\FlowProjects\Contoso.Test\Contoso.Test.lbproj");
         }
 
         private async Task LoadAssembliesOnProjectOpen()
