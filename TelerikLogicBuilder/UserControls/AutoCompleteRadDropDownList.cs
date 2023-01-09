@@ -83,6 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radDropDownList1.TextChanged += RadDropDownList1_TextChanged;
             radDropDownList1.Validated += RadDropDownList1_Validated;
             radDropDownList1.DropDownStyle = RadDropDownStyle.DropDown;
+            //radDropDownList1.DropDownListElement.UseDefaultDisabledPaint = false;
             radDropDownList1.AutoCompleteMode = AutoCompleteMode.None;
             radDropDownList1.DropDownListElement.AutoCompleteSuggest = new CustomAutoCompleteSuggestHelper(radDropDownList1.DropDownListElement);
 
