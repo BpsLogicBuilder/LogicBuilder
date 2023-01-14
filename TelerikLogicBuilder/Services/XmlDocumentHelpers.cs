@@ -141,6 +141,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return description;
         }
 
+        public string[] GetGenericArguments(XmlDocument xmlDocument, string genericArgumentsXPath) 
+            => GetChildElements
+            (
+                SelectSingleElement(xmlDocument, genericArgumentsXPath)
+            )
+            .Select(e => e.InnerText)
+            .ToArray();
+
         public string GetGenericArgumentTreeNodeDescription(XmlElement element)
         {
             Dictionary<string, string> descriptionTable = new()
@@ -179,6 +187,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return imageIndex;
         }
 
+        public IList<XmlElement> GetParameterElements(XmlElement constructorOrFunctionElement)
+        {
+            if (constructorOrFunctionElement.Name != XmlDataConstants.CONSTRUCTORELEMENT
+                && constructorOrFunctionElement.Name != XmlDataConstants.FUNCTIONELEMENT)
+                throw _exceptionHelper.CriticalException("{AAAF9071-4DCE-4BD2-B70A-E307C31769FC}");
+
+            return GetElements();
+
+            IList<XmlElement> GetElements()
+                => GetChildElements
+                (
+                    GetSingleChildElement
+                    (
+                        constructorOrFunctionElement,
+                        e => e.Name == XmlDataConstants.PARAMETERSELEMENT
+                    )
+                )
+                .ToArray();
+        }
+
         public string GetParameterTreeNodeDescription(XmlElement element)
         {
             Dictionary<string, string> descriptionTable = new()
@@ -197,7 +225,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return description;
         }
 
-        public List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode)
+        public List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement)
         {
             switch (parameterElement.Name)
             {
@@ -208,20 +236,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     throw _exceptionHelper.CriticalException("{B52855E1-4F4B-4F7A-9667-773F9BCBAF26}");
             }
 
-            if (constructorOrFunctionNode.Name != XmlDataConstants.CONSTRUCTORELEMENT
-                && constructorOrFunctionNode.Name != XmlDataConstants.FUNCTIONELEMENT)
-                throw _exceptionHelper.CriticalException("{D3537A44-DA97-4393-A4F5-6683C0BA9981}");
-
             return GetElements(parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
 
             List<XmlElement> GetElements(string parameterName) 
                 => GetChildElements
                 (
-                    GetSingleChildElement
-                    (
-                        constructorOrFunctionNode,
-                        e => e.Name == XmlDataConstants.PARAMETERSELEMENT
-                    )
+                    parameterElement.ParentNode ?? throw _exceptionHelper.CriticalException("{5FE9F9BD-DEF5-475E-B6E8-D46088A4C631}")
                 )
                 .Where(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE) != parameterName)
                 .ToList();

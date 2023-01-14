@@ -58,7 +58,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
 
         private void Import(string fullPath)
         {
-            _loadVariables.Load(fullPath);
             configureVariablesForm.ReloadXmlDocument(_loadVariables.Load(fullPath).OuterXml);
             configureVariablesForm.RebuildTreeView();
         }

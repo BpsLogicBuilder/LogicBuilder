@@ -175,10 +175,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         public void SetMessage(string message, string title = "")
             => _dialogFormMessageControl.SetMessage(message, title);
 
-        public void SelectTreeNode(RadTreeNode treeNode)
-        {
-            TreeView.SelectedNode = treeNode;
-        }
+        public void SelectTreeNode(RadTreeNode treeNode) => TreeView.SelectedNode = treeNode;
 
         public void ValidateXmlDocument()
             => _treeViewXmlDocumentHelper.ValidateXmlDocument();
@@ -484,8 +481,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         private void RadTreeView1_NodeExpandedChanged(object sender, RadTreeViewEventArgs e)
         {
-            if (_treeViewService.IsRootNode(e.Node)
-                || _treeViewService.IsVariableNode(e.Node))/*NodeExpandedChanged runs for non-folder nodes on double click*/
+            if (_treeViewService.IsVariableNode(e.Node))/*NodeExpandedChanged runs for non-folder nodes on double click*/
                 return;
 
             if (e.Node.Expanded)

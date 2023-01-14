@@ -7,6 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddIntellisenseHelperStatusBuilderServices(this IServiceCollection services)
         {
             return services
+                .AddSingleton<IConstructorNodeBuilder, ConstructorNodeBuilder>()
                 .AddSingleton<IFunctionNodeBuilder, FunctionNodeBuilder>()
                 .AddSingleton<IReferenceInfoListBuilder, ReferenceInfoListBuilder>()
                 .AddHelperStatusBuilderFactories();

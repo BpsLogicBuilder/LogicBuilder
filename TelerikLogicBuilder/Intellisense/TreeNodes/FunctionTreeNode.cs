@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
         {
             MInfo = mInfo;
             Parameters = MInfo.GetParameters();
+            this.ToolTipText = ParametersList;
         }
 
         private string ReferenceName

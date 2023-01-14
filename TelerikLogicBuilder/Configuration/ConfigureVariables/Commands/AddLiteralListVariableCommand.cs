@@ -15,7 +15,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Commands
 {
-    internal class AddLiteralListVariableCommand : ClickCommandBase
+    internal partial class AddLiteralListVariableCommand : ClickCommandBase
     {
         private readonly IConfigureVariablesXmlTreeViewSynchronizer _configureVariablesXmlTreeViewSynchronizer;
         private readonly IStringHelper _stringHelper;
@@ -64,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
                         _variableFactory.GetListOfLiteralsVariable
                         (
                             variableName,
-                            $"{Regex.Replace(variableName[..1], RegularExpressions.REMOVENUMERICANDNONWORD, string.Empty)}{Regex.Replace(variableName[1..], RegularExpressions.REMOVENONWORD, string.Empty)}",
+                            $"{RemoveNumericAndNonWordRegex().Replace(variableName[..1], string.Empty)}{RemoveNonWordRegex().Replace(variableName[1..], string.Empty)}",
                             VariableCategory.Property,
                             string.Empty,
                             string.Empty,
@@ -92,5 +92,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
                 configureVariablesForm.SetErrorMessage(ex.Message);
             }
         }
+
+        [GeneratedRegex(RegularExpressions.REMOVENUMERICANDNONWORD)]
+        private static partial Regex RemoveNumericAndNonWordRegex();
+        [GeneratedRegex(RegularExpressions.REMOVENONWORD)]
+        private static partial Regex RemoveNonWordRegex();
     }
 }

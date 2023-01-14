@@ -1,0 +1,22 @@
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Commands;
+
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Factories
+{
+    internal interface IConfigureConstructorsCommandFactory
+    {
+        ConfigureConstructorsAddConstructorCommand GetConfigureConstructorsAddConstructorCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsAddFolderCommand GetConfigureConstructorsAddFolderCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsAddGenericParameterCommand GetConfigureConstructorsAddGenericParameterCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsAddListOfGenericsParameterCommand GetConfigureConstructorsAddListOfGenericsParameterCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsAddListOfLiteralsParameterCommand GetConfigureConstructorsAddListOfLiteralsParameterCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsAddListOfObjectsParameterCommand GetConfigureConstructorsAddListOfObjectsParameterCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsAddLiteralParameterCommand GetConfigureConstructorsAddLiteralParameterCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsAddObjectParameterCommand GetConfigureConstructorsAddObjectParameterCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsCopyXmlCommand GetConfigureConstructorsCopyXmlCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsCutCommand GetConfigureConstructorsCutCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsDeleteCommand GetConfigureConstructorsDeleteCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsHelperCommand GetConfigureConstructorsHelperCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsImportCommand GetConfigureConstructorsImportCommand(IConfigureConstructorsForm configureConstructorsForm);
+        ConfigureConstructorsPasteCommand GetConfigureConstructorsPasteCommand(IConfigureConstructorsForm configureConstructorsForm);
+    }
+}

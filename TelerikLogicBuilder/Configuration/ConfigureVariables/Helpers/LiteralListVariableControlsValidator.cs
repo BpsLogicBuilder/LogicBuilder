@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Helpers
 {
-    internal class LiteralListVariableControlsValidator : ILiteralListVariableControlsValidator
+    internal partial class LiteralListVariableControlsValidator : ILiteralListVariableControlsValidator
     {
         private readonly IVariableControlsValidator _variableControlsValidator;
         private readonly IConfigureLiteralListVariableControl configureLiteralListVariableControl;
@@ -90,12 +90,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Helpers
 
             static void ValidatePropertySource(string propertySource, string propertySourceLabel, LiteralVariableInputStyle inputStyle, string inputStyleLabel)
             {
-                if (inputStyle == LiteralVariableInputStyle.PropertyInput && !Regex.IsMatch(propertySource, RegularExpressions.FULLYQUALIFIEDCLASSNAME))
+                if (inputStyle == LiteralVariableInputStyle.PropertyInput && !FullyQulifiedClassNameMRegex().IsMatch(propertySource))
                     throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.invalidClassNameFormat, propertySourceLabel));
 
                 if (inputStyle != LiteralVariableInputStyle.PropertyInput && propertySource.Length > 0)
                     throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.fieldSourceMustBeEmptyFormat, propertySourceLabel, inputStyleLabel, Strings.dropdownTextPropertyInput));
             }
         }
+
+        [GeneratedRegex(RegularExpressions.FULLYQUALIFIEDCLASSNAME)]
+        private static partial Regex FullyQulifiedClassNameMRegex();
     }
 }

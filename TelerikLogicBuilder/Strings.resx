@@ -269,6 +269,10 @@
     <value>Cannot find the required property sourced parameter "{0}" for the parameter "{1}" in constructor "{2}". The property sourced parameter must be one of the sibling parameters {3} when the control is {4}.</value>
     <comment>0=sourceParameter; 1=parameter; 2=constructor;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
   </data>
+	<data name="cannotLoadPropertySourceParameterFormat2" xml:space="preserve">
+    <value>Cannot find the required {0} "{1}". {0} must be one of the sibling parameters "{2}" when {3} is "{4}".</value>
+    <comment>0=lblPropertySourceParameterText; 1=parametername;2=SiblingParameterList;3=lblliteralcontrolText;4=ProperyInputText</comment>
+  </data>
 	<data name="cannotLoadPropertySourceParameterFormat3" xml:space="preserve">
     <value>Cannot find the required {0} "{1}". {0} must be one of the member parameters "{2}" when {3} is "{4}".</value>
     <comment>0=lblPropertySourceParameterText; 1=parametername;2=MemberParameterList;3=lblliteralcontrolText;4=ProperyInputText</comment>
@@ -358,6 +362,15 @@
 	<data name="connectorRequires2Shapes" xml:space="preserve">
     <value>Connector must be connected to 2 shapes.</value>
   </data>
+	<data name="constrConfigCommentsHelp" xml:space="preserve">
+    <value>Comments describing the argument.</value>
+  </data>
+	<data name="constrConfigConstructorNameHelp1" xml:space="preserve">
+    <value>Unique name for the constructor.</value>
+  </data>
+	<data name="constrConfigConstructorTypeNameHelp" xml:space="preserve">
+    <value>Fully qualified type name of the constructor's class.</value>
+  </data>
 	<data name="constrConfigControlHelp" xml:space="preserve">
     <value>Specify the control used for updating the argument in the flow diagram shape.</value>
   </data>
@@ -372,6 +385,9 @@
   </data>
 	<data name="constrConfigGenericArgumentNameHelp" xml:space="preserve">
     <value>The name of the generic argument used by this parameter.</value>
+  </data>
+	<data name="constrConfigGenericArgumentsHelp" xml:space="preserve">
+    <value>Form for modifying generic arguments.</value>
   </data>
 	<data name="constrConfigListLiteralTypeHelp" xml:space="preserve">
     <value>The array's element type or the underlying generic type of the list or collection.</value>
@@ -388,6 +404,12 @@
 	<data name="constrConfigObjectTypeHelp" xml:space="preserve">
     <value>Type.FullName property for the object.</value>
   </data>
+	<data name="constrConfigOptionalHelp" xml:space="preserve">
+    <value>Specify whether or not the argument is optional.</value>
+  </data>
+	<data name="constrConfigParameterNameHelp" xml:space="preserve">
+    <value>The name for this constructor argument.</value>
+  </data>
 	<data name="constrConfigPropertySourceHelpFormat" xml:space="preserve">
     <value>Specify the fully qualified class as a source for a public properties domain when the {0} is "{1}".</value>
     <comment>0=control label for input type;1=string describing LiteralInputStyle.PropertyInput</comment>
@@ -395,6 +417,9 @@
 	<data name="constrConfigPropertySourceParameterHelpFormat" xml:space="preserve">
     <value>Specify the parameter whose value will return the  fully qualified class as a source for a public properties domain when the {0} is "{1}".</value>
     <comment>0=control label for input type;1=string describing LiteralInputStyle.ParameterSourcedPropertyInput</comment>
+  </data>
+	<data name="constrConfigSummaryHelp" xml:space="preserve">
+    <value>Comments describing the constructor.</value>
   </data>
 	<data name="constrConfigUseForEqualityHelp" xml:space="preserve">
     <value>Indicate whether or not this argument should be used calculate equality with another instance of this constructor.</value>
@@ -499,6 +524,9 @@
 	<data name="defaultNewFolderName" xml:space="preserve">
     <value>NewFolder</value>
   </data>
+	<data name="defaultNewParameterName" xml:space="preserve">
+    <value>newParameter</value>
+  </data>
 	<data name="defaultNewVariableName" xml:space="preserve">
     <value>NewVariable</value>
   </data>
@@ -523,6 +551,10 @@
 	<data name="deleteAllRulesQuestion" xml:space="preserve">
     <value>Delete All Rules?</value>
   </data>
+	<data name="deleteConstructorQuestionFormat" xml:space="preserve">
+    <value>Delete the constructor: {0}?</value>
+    <comment>0=ConstructorName</comment>
+  </data>
 	<data name="deleteFileQuestionFormat" xml:space="preserve">
     <value>Delete the file: {0}?</value>
     <comment>0=FileName</comment>
@@ -531,9 +563,16 @@
     <value>Delete the folder: {0}?</value>
     <comment>0=Foldername</comment>
   </data>
+	<data name="deleteParameterQuestionFormat" xml:space="preserve">
+    <value>Delete the parameter: {0}?</value>
+    <comment>0=ParameterName</comment>
+  </data>
 	<data name="deleteProjectQuestionFormat" xml:space="preserve">
     <value>Delete the project: {0}?</value>
     <comment>0=ProjectName</comment>
+  </data>
+	<data name="deleteSelectedItems" xml:space="preserve">
+    <value>Delete the selected items?</value>
   </data>
 	<data name="deleteVariableQuestionFormat" xml:space="preserve">
     <value>Delete the variable: {0}?</value>
@@ -780,6 +819,10 @@
     <value>]</value>
     <comment>Must be a string with length==1 i.e. character</comment>
   </data>
+	<data name="genericArgNameInvalidFormat" xml:space="preserve">
+    <value>{0}: "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
+    <comment>0=label;1=value</comment>
+  </data>
 	<data name="genericArgumentsCountMismatch" xml:space="preserve">
     <value>The number of generic arguments {0}, does not match the type {1}.</value>
     <comment>0=Argument count; 1=Generic Type Definition Name</comment>
@@ -833,6 +876,10 @@
 	</data>
 	<data name="invalidArgumentTextFormat" xml:space="preserve">
     <value>Invalid Argument {0}.</value>
+  </data>
+	<data name="invalidAttributeFormat" xml:space="preserve">
+    <value>{0} cannot include the following characters: " \</value>
+    <comment>0=Form label text</comment>
   </data>
 	<data name="invalidClassNameFormat" xml:space="preserve">
     <value>{0} is invalid.  Fully Qualified Class Names must start with an alpha character or underscore and can contain only alphanumeric characters, periods, plus (+) characters and underscores.</value>
@@ -1062,11 +1109,17 @@
 	<data name="mnuItemAddConfigurationFolderText" xml:space="preserve">
     <value>Folder...</value>
   </data>
+	<data name="mnuItemAddConstructorText" xml:space="preserve">
+    <value>Constructor...</value>
+  </data>
 	<data name="mnuItemAddExistingFileText" xml:space="preserve">
     <value>Existing...</value>
   </data>
 	<data name="mnuItemAddFileText" xml:space="preserve">
     <value>Add File...</value>
+  </data>
+	<data name="mnuItemAddGenericParameterText" xml:space="preserve">
+    <value>Generic Parameter...</value>
   </data>
 	<data name="mnuItemAddImplementedListOfLiteralsVariableText" xml:space="preserve">
     <value>List of Literals Variable</value>
@@ -1080,6 +1133,18 @@
 	<data name="mnuItemAddImplementedObjectVariableText" xml:space="preserve">
     <value>Object Variable</value>
   </data>
+	<data name="mnuItemAddListOfGenericsParameterText" xml:space="preserve">
+    <value>List of Generics Parameter...</value>
+  </data>
+	<data name="mnuItemAddListOfLiteralsParameterText" xml:space="preserve">
+    <value>List of Literals Parameter...</value>
+  </data>
+	<data name="mnuItemAddListOfObjectsParameterText" xml:space="preserve">
+    <value>List of Objects Parameter...</value>
+  </data>
+	<data name="mnuItemAddLiteralParameterText" xml:space="preserve">
+    <value>Literal Parameter...</value>
+  </data>
 	<data name="mnuItemAddMembersText" xml:space="preserve">
     <value>Class Members...</value>
   </data>
@@ -1088,6 +1153,9 @@
   </data>
 	<data name="mnuItemAddNewRowText" xml:space="preserve">
     <value>Add New Row</value>
+  </data>
+	<data name="mnuItemAddObjectParameterText" xml:space="preserve">
+    <value>Object Parameter...</value>
   </data>
 	<data name="mnuItemAddText" xml:space="preserve">
     <value>Add</value>

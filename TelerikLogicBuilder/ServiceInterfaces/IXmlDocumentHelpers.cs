@@ -17,11 +17,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         List<XmlElement> GetChildElements(XmlNode xmlNode, Func<XmlElement, bool>? filter = null, Func<IEnumerable<XmlElement>, IEnumerable<XmlElement>>? enumerableFunc = null);
         XmlElement GetDocumentElement(XmlDocument xmlDocument);
         string GetFunctionTreeNodeDescription(XmlElement element);
+        string[] GetGenericArguments(XmlDocument xmlDocument, string genericArgumentsXPath);
         string GetGenericArgumentTreeNodeDescription(XmlElement element);
         string GetParameterTreeNodeDescription(XmlElement element);
         string GetVariableTreeNodeDescription(XmlElement element);
         int GetImageIndex(XmlElement element);
-        List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement, XmlNode constructorOrFunctionNode);
+        IList<XmlElement> GetParameterElements(XmlElement constructorOrFunctionElement);
+        List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement);
         XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool>? filter = null);
         string GetUnformattedXmlString(XmlDocument xmlDocument);
         /// <summary>

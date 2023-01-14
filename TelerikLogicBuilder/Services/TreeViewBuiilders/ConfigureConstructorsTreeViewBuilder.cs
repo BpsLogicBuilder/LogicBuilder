@@ -58,8 +58,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 rootNode,
                 true
             );
-
-            treeView.BeginUpdate();
             treeView.EndUpdate();
         }
 

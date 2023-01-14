@@ -58,7 +58,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                     {
                         ValidateElements
                         (
-                            constructorNode,
                             constructorNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
                             _xmlDocumentHelpers
                                 .GetChildElements(constructorNode)
@@ -68,11 +67,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                 );
         }
 
-        private void ValidateElements(XmlElement constructorNode, string constructorName, Dictionary<string, XmlElement> elements)
+        private void ValidateElements(string constructorName, Dictionary<string, XmlElement> elements)
         {
             ValidateParameterSourcedProperty
             (
-                constructorNode,
                 constructorName,
                 elements[XmlDataConstants.PARAMETERSELEMENT],
                 XmlDataConstants.LITERALPARAMETERELEMENT,
@@ -81,7 +79,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
 
             ValidateParameterSourcedProperty
             (
-                constructorNode,
                 constructorName,
                 elements[XmlDataConstants.PARAMETERSELEMENT],
                 XmlDataConstants.LITERALLISTPARAMETERELEMENT,
@@ -100,7 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
             ValidateTypeName(constructorName, elements[XmlDataConstants.TYPENAMEELEMENT].InnerText.Trim());
         }
 
-        private void ValidateParameterSourcedProperty(XmlElement constructorNode, string constructorName, XmlElement paremtersElement, string parameterElementName, string controlElementName)
+        private void ValidateParameterSourcedProperty(string constructorName, XmlElement paremtersElement, string parameterElementName, string controlElementName)
         {
             _xmlDocumentHelpers.GetChildElements
             (
@@ -138,8 +135,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                         .InnerText.Trim(),
                         _xmlDocumentHelpers.GetSiblingParameterElements
                         (
-                            literalParameterNode,
-                            constructorNode
+                            literalParameterNode
                         )
                         .Where(e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT)
                         .Select(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))

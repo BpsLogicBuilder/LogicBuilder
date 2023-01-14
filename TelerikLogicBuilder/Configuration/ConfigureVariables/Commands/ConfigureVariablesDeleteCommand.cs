@@ -5,7 +5,8 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
-using System.Globalization;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -35,57 +36,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
         {
             try
             {
-                if (configureVariablesForm.TreeView.SelectedNode == null)
+                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(configureVariablesForm.TreeView);
+                if (selectedNodes.Count == 0
+                    || configureVariablesForm.TreeView.Nodes[0].Selected)
                     return;
 
-                RadTreeNode selectedNode = configureVariablesForm.TreeView.SelectedNode;
+                if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
+                    throw new ArgumentException($"{nameof(selectedNodes)}: {{DB1748D2-3EFD-4CA2-9205-DAF077A3C1B7}}");
 
-                if (_treeViewService.IsRootNode(selectedNode))
+                DialogResult dialogResult = DisplayMessage.ShowQuestion
+                (
+                    (Control)configureVariablesForm,
+                    Strings.deleteSelectedItems,
+                    ((Control)configureVariablesForm).RightToLeft,
+                    RadMessageIcon.Exclamation
+                );
+
+                if (dialogResult != DialogResult.OK)
                     return;
-                else if (_treeViewService.IsVariableTypeNode(selectedNode))
-                    DeleteVariable(selectedNode);
-                else if (_treeViewService.IsFolderNode(selectedNode))
-                    DeleteFolder(selectedNode);
+
+                foreach (RadTreeNode selectedNode in selectedNodes)
+                    _configureVariablesXmlTreeViewSynchronizer.DeleteNode((StateImageRadTreeNode)selectedNode);
+
+                configureVariablesForm.CheckEnableImportButton();
             }
             catch (LogicBuilderException ex)
             {
                 configureVariablesForm.SetErrorMessage(ex.Message);
             }
-        }
-
-        private void DeleteVariable(RadTreeNode selectedNode)
-        {
-            DeleteItem
-            (
-                selectedNode, 
-                string.Format(CultureInfo.CurrentCulture, Strings.deleteVariableQuestionFormat, selectedNode.Text)
-            );
-        }
-
-        private void DeleteFolder(RadTreeNode selectedNode)
-        {
-            DeleteItem
-            (
-                selectedNode,
-                string.Format(CultureInfo.CurrentCulture, Strings.deleteFolderQuestion, selectedNode.Text)
-            );
-        }
-
-        private void DeleteItem(RadTreeNode selectedNode, string deleteMessage)
-        {
-            DialogResult dialogResult = DisplayMessage.ShowQuestion
-            (
-                (Control)configureVariablesForm,
-                deleteMessage,
-                ((Control)configureVariablesForm).RightToLeft,
-                RadMessageIcon.Exclamation
-            );
-
-            if (dialogResult != DialogResult.OK)
-                return;
-
-            _configureVariablesXmlTreeViewSynchronizer.DeleteNode((StateImageRadTreeNode)selectedNode);
-            configureVariablesForm.CheckEnableImportButton();
         }
     }
 }

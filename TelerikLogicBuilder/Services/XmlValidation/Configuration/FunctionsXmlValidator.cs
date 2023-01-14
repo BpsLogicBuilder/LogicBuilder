@@ -127,9 +127,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
 
             ValidateReferenceCategoryCannotBeNone(functionName, functionCategory, referenceCategory);
 
-            ValidateLiteralParameterSourcedProperty(functionNode, functionName, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
+            ValidateLiteralParameterSourcedProperty(functionName, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
 
-            ValidateLiteralListParameterSourcedProperty(functionNode, functionName, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
+            ValidateLiteralListParameterSourcedProperty(functionName, _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]));
 
             ValidateGenericArguments
             (
@@ -346,7 +346,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
             }
         }
 
-        private void ValidateLiteralParameterSourcedProperty(XmlElement functionNode, string functionName, List<XmlElement> parameterNodeList)
+        private void ValidateLiteralParameterSourcedProperty(string functionName, List<XmlElement> parameterNodeList)
         {
             parameterNodeList.ForEach(parameterNode =>
             {
@@ -374,7 +374,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                     new HashSet<string>
                     (
                         _xmlDocumentHelpers
-                            .GetSiblingParameterElements(parameterNode, functionNode)
+                            .GetSiblingParameterElements(parameterNode)
                             .Where(e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT)
                             .Select(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
                     )
@@ -382,7 +382,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
             });
         }
 
-        private void ValidateLiteralListParameterSourcedProperty(XmlElement functionNode, string functionName, List<XmlElement> parameterNodeList)
+        private void ValidateLiteralListParameterSourcedProperty(string functionName, List<XmlElement> parameterNodeList)
         {
             parameterNodeList.ForEach(parameterNode =>
             {
@@ -410,7 +410,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                     new HashSet<string>
                     (
                         _xmlDocumentHelpers
-                            .GetSiblingParameterElements(parameterNode, functionNode)
+                            .GetSiblingParameterElements(parameterNode)
                             .Where(e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT)
                             .Select(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
                     )

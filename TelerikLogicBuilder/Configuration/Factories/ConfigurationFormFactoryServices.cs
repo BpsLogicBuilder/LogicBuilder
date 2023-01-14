@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
@@ -18,11 +20,13 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
@@ -30,6 +34,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidati
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
+using RadDropDownListDisabledIssue;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -81,6 +86,31 @@ namespace Microsoft.Extensions.DependencyInjection
                         configuredGenericArgumentNames,
                         memberParameters,
                         genericTypeDefinition
+                    )
+                )
+                .AddTransient<Func<bool, IConfigureConstructorsForm>>
+                (
+                    provider =>
+                    openedAsReadOnly => new ConfigureConstructorsForm
+                    (
+                        provider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                        provider.GetRequiredService<IConfigureConstructorsCommandFactory>(),
+                        provider.GetRequiredService<IConfigureConstructorsControlFactory>(),
+                        provider.GetRequiredService<IConfigureConstructorsFactory>(),
+                        provider.GetRequiredService<IConstructorXmlParser>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IHelperStatusBuilderFactory>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILoadConstructors>(),
+                        provider.GetRequiredService<IParametersControlFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITreeViewBuilderFactory>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IUpdateConstructors>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        openedAsReadOnly
                     )
                 )
                 .AddTransient<Func<IList<string>, IConfigureExcludedModulesForm>>

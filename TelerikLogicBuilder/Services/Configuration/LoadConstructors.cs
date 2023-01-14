@@ -47,6 +47,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 ConfigurationFiles.Constructors
             );
 
+            return LoadXmlDocument(fullPath);
+        }
+
+        public XmlDocument Load(string fullPath)
+        {
+            return LoadXmlDocument(fullPath);
+        }
+
+        private XmlDocument LoadXmlDocument(string fullPath)
+        {
+            
+
             try
             {
                 if (!File.Exists(fullPath))

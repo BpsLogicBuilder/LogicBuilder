@@ -556,6 +556,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find the required {0} &quot;{1}&quot;. {0} must be one of the sibling parameters &quot;{2}&quot; when {3} is &quot;{4}&quot;..
+        /// </summary>
+        internal static string cannotLoadPropertySourceParameterFormat2 {
+            get {
+                return ResourceManager.GetString("cannotLoadPropertySourceParameterFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot find the required {0} &quot;{1}&quot;. {0} must be one of the member parameters &quot;{2}&quot; when {3} is &quot;{4}&quot;..
         /// </summary>
         internal static string cannotLoadPropertySourceParameterFormat3 {
@@ -808,6 +817,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comments describing the argument..
+        /// </summary>
+        internal static string constrConfigCommentsHelp {
+            get {
+                return ResourceManager.GetString("constrConfigCommentsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique name for the constructor..
+        /// </summary>
+        internal static string constrConfigConstructorNameHelp1 {
+            get {
+                return ResourceManager.GetString("constrConfigConstructorNameHelp1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fully qualified type name of the constructor&apos;s class..
+        /// </summary>
+        internal static string constrConfigConstructorTypeNameHelp {
+            get {
+                return ResourceManager.GetString("constrConfigConstructorTypeNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specify the control used for updating the argument in the flow diagram shape..
         /// </summary>
         internal static string constrConfigControlHelp {
@@ -849,6 +885,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string constrConfigGenericArgumentNameHelp {
             get {
                 return ResourceManager.GetString("constrConfigGenericArgumentNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form for modifying generic arguments..
+        /// </summary>
+        internal static string constrConfigGenericArgumentsHelp {
+            get {
+                return ResourceManager.GetString("constrConfigGenericArgumentsHelp", resourceCulture);
             }
         }
         
@@ -898,6 +943,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specify whether or not the argument is optional..
+        /// </summary>
+        internal static string constrConfigOptionalHelp {
+            get {
+                return ResourceManager.GetString("constrConfigOptionalHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name for this constructor argument..
+        /// </summary>
+        internal static string constrConfigParameterNameHelp {
+            get {
+                return ResourceManager.GetString("constrConfigParameterNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specify the fully qualified class as a source for a public properties domain when the {0} is &quot;{1}&quot;..
         /// </summary>
         internal static string constrConfigPropertySourceHelpFormat {
@@ -912,6 +975,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string constrConfigPropertySourceParameterHelpFormat {
             get {
                 return ResourceManager.GetString("constrConfigPropertySourceParameterHelpFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments describing the constructor..
+        /// </summary>
+        internal static string constrConfigSummaryHelp {
+            get {
+                return ResourceManager.GetString("constrConfigSummaryHelp", resourceCulture);
             }
         }
         
@@ -1330,6 +1402,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to newParameter.
+        /// </summary>
+        internal static string defaultNewParameterName {
+            get {
+                return ResourceManager.GetString("defaultNewParameterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NewVariable.
         /// </summary>
         internal static string defaultNewVariableName {
@@ -1402,6 +1483,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete the constructor: {0}?.
+        /// </summary>
+        internal static string deleteConstructorQuestionFormat {
+            get {
+                return ResourceManager.GetString("deleteConstructorQuestionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete the file: {0}?.
         /// </summary>
         internal static string deleteFileQuestionFormat {
@@ -1420,11 +1510,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete the parameter: {0}?.
+        /// </summary>
+        internal static string deleteParameterQuestionFormat {
+            get {
+                return ResourceManager.GetString("deleteParameterQuestionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete the project: {0}?.
         /// </summary>
         internal static string deleteProjectQuestionFormat {
             get {
                 return ResourceManager.GetString("deleteProjectQuestionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete the selected items?.
+        /// </summary>
+        internal static string deleteSelectedItems {
+            get {
+                return ResourceManager.GetString("deleteSelectedItems", resourceCulture);
             }
         }
         
@@ -3103,6 +3211,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}: &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string genericArgNameInvalidFormat {
+            get {
+                return ResourceManager.GetString("genericArgNameInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of generic arguments {0}, does not match the type {1}..
         /// </summary>
         internal static string genericArgumentsCountMismatch {
@@ -3306,6 +3423,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidArgumentTextFormat {
             get {
                 return ResourceManager.GetString("invalidArgumentTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} cannot include the following characters: &quot; \.
+        /// </summary>
+        internal static string invalidAttributeFormat {
+            get {
+                return ResourceManager.GetString("invalidAttributeFormat", resourceCulture);
             }
         }
         
@@ -3940,6 +4066,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Constructor....
+        /// </summary>
+        internal static string mnuItemAddConstructorText {
+            get {
+                return ResourceManager.GetString("mnuItemAddConstructorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Existing....
         /// </summary>
         internal static string mnuItemAddExistingFileText {
@@ -3954,6 +4089,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddFileText {
             get {
                 return ResourceManager.GetString("mnuItemAddFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic Parameter....
+        /// </summary>
+        internal static string mnuItemAddGenericParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemAddGenericParameterText", resourceCulture);
             }
         }
         
@@ -3994,6 +4138,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of Generics Parameter....
+        /// </summary>
+        internal static string mnuItemAddListOfGenericsParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemAddListOfGenericsParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Literals Parameter....
+        /// </summary>
+        internal static string mnuItemAddListOfLiteralsParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemAddListOfLiteralsParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Objects Parameter....
+        /// </summary>
+        internal static string mnuItemAddListOfObjectsParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemAddListOfObjectsParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal Parameter....
+        /// </summary>
+        internal static string mnuItemAddLiteralParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemAddLiteralParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Class Members....
         /// </summary>
         internal static string mnuItemAddMembersText {
@@ -4017,6 +4197,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddNewRowText {
             get {
                 return ResourceManager.GetString("mnuItemAddNewRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object Parameter....
+        /// </summary>
+        internal static string mnuItemAddObjectParameterText {
+            get {
+                return ResourceManager.GetString("mnuItemAddObjectParameterText", resourceCulture);
             }
         }
         

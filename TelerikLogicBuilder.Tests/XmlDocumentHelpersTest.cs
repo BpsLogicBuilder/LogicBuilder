@@ -240,6 +240,156 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
+        public void GetGenericArgumentsWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlDocument xmlDocument = GetXmlDocument(@"<constructor name=""Grid.Pageable"">
+			                                                <typeName>LogicBuilder.Forms.Parameters.Grid.Pageable</typeName>
+			                                                <parameters>
+				                                                <literalParameter name=""Refresh"" >
+					                                                <literalType>Boolean</literalType>
+					                                                <control>SingleLineTextBox</control>
+					                                                <optional>false</optional>
+					                                                <useForEquality>true</useForEquality>
+					                                                <useForHashCode>true</useForHashCode>
+					                                                <useForToString>true</useForToString>
+					                                                <propertySource />
+					                                                <propertySourceParameter />
+					                                                <defaultValue>true</defaultValue>
+					                                                <domain>
+						                                                <item>true</item>
+						                                                <item>false</item>
+					                                                </domain>
+					                                                <comments></comments>
+				                                                </literalParameter>
+				                                                <literalListParameter name=""Page Sizes"" >
+					                                                <literalType>String</literalType>
+					                                                <listType>GenericList</listType>
+					                                                <control>HashSetForm</control>
+					                                                <elementControl>SingleLineTextBox</elementControl>
+					                                                <optional>false</optional>
+					                                                <propertySource />
+					                                                <propertySourceParameter />
+					                                                <defaultValue>
+						                                                <item>hi</item>
+						                                                <item>medium</item>
+					                                                </defaultValue>
+					                                                <domain>
+						                                                <item>hi</item>
+						                                                <item>medium</item>
+						                                                <item>lo</item>
+					                                                </domain>
+					                                                <comments></comments>
+				                                                </literalListParameter>
+				                                                <literalParameter name=""Button Count"" >
+					                                                <literalType>Boolean</literalType>
+					                                                <control>SingleLineTextBox</control>
+					                                                <optional>false</optional>
+					                                                <useForEquality>true</useForEquality>
+					                                                <useForHashCode>false</useForHashCode>
+					                                                <useForToString>true</useForToString>
+					                                                <propertySource />
+					                                                <propertySourceParameter />
+					                                                <defaultValue>5</defaultValue>
+					                                                <domain>
+						                                                <item>true</item>
+						                                                <item>false</item>
+					                                                </domain>
+					                                                <comments></comments>
+				                                                </literalParameter>
+			                                                </parameters>
+			                                                <genericArguments>
+						                                        <item>A</item>
+						                                        <item>B</item>
+                                                            </genericArguments>
+			                                                <summary></summary>
+		                                                </constructor>");
+
+            //act
+            var result = helper.GetGenericArguments(xmlDocument, "/constructor/genericArguments");
+
+            //assert
+            Assert.Equal(2, result.Length);
+            Assert.Equal("A", result[0]);
+            Assert.Equal("B", result[1]);
+        }
+
+        [Fact]
+        public void GetParameterElementsWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlElement xmlConstructorElement = GetXmlElement(@"<constructor name=""Grid.Pageable"">
+			                                                <typeName>LogicBuilder.Forms.Parameters.Grid.Pageable</typeName>
+			                                                <parameters>
+				                                                <literalParameter name=""Refresh"" >
+					                                                <literalType>Boolean</literalType>
+					                                                <control>SingleLineTextBox</control>
+					                                                <optional>false</optional>
+					                                                <useForEquality>true</useForEquality>
+					                                                <useForHashCode>true</useForHashCode>
+					                                                <useForToString>true</useForToString>
+					                                                <propertySource />
+					                                                <propertySourceParameter />
+					                                                <defaultValue>true</defaultValue>
+					                                                <domain>
+						                                                <item>true</item>
+						                                                <item>false</item>
+					                                                </domain>
+					                                                <comments></comments>
+				                                                </literalParameter>
+				                                                <literalListParameter name=""Page Sizes"" >
+					                                                <literalType>String</literalType>
+					                                                <listType>GenericList</listType>
+					                                                <control>HashSetForm</control>
+					                                                <elementControl>SingleLineTextBox</elementControl>
+					                                                <optional>false</optional>
+					                                                <propertySource />
+					                                                <propertySourceParameter />
+					                                                <defaultValue>
+						                                                <item>hi</item>
+						                                                <item>medium</item>
+					                                                </defaultValue>
+					                                                <domain>
+						                                                <item>hi</item>
+						                                                <item>medium</item>
+						                                                <item>lo</item>
+					                                                </domain>
+					                                                <comments></comments>
+				                                                </literalListParameter>
+				                                                <literalParameter name=""Button Count"" >
+					                                                <literalType>Boolean</literalType>
+					                                                <control>SingleLineTextBox</control>
+					                                                <optional>false</optional>
+					                                                <useForEquality>true</useForEquality>
+					                                                <useForHashCode>false</useForHashCode>
+					                                                <useForToString>true</useForToString>
+					                                                <propertySource />
+					                                                <propertySourceParameter />
+					                                                <defaultValue>5</defaultValue>
+					                                                <domain>
+						                                                <item>true</item>
+						                                                <item>false</item>
+					                                                </domain>
+					                                                <comments></comments>
+				                                                </literalParameter>
+			                                                </parameters>
+			                                                <genericArguments />
+			                                                <summary></summary>
+		                                                </constructor>");
+
+            //act
+            var result = helper.GetParameterElements(xmlConstructorElement);
+
+            //assert
+            Assert.Equal(3, result.Count);
+            Assert.Equal("Refresh", result[0].GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            Assert.Equal("Page Sizes", result[1].GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            Assert.Equal("Button Count", result[2].GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+        }
+
+        [Fact]
         public void GetSiblingParameterElementsWorks()
         {
             //arrange
@@ -312,7 +462,7 @@ namespace TelerikLogicBuilder.Tests
             );
 
             //act
-            var result = helper.GetSiblingParameterElements(refreshElement, xmlConstructorElement);
+            var result = helper.GetSiblingParameterElements(refreshElement);
 
             //assert
             Assert.Equal(2, result.Count);

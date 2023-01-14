@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders;
@@ -6,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders.Factor
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -15,6 +17,19 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddHelperStatusBuilderFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IConfigureConstructorsForm, IConstructorHelperStatusBuilder>>
+                (
+                    provider =>
+                    configureConstructorsForm => new ConstructorHelperStatusBuilder
+                    (
+                        provider.GetRequiredService<IConstructorNodeBuilder>(),
+                        provider.GetRequiredService<IParametersXmlParser>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        configureConstructorsForm
+                    )
+                )
                 .AddTransient<Func<IConfigureFunctionsForm, IFunctionHelperStatusBuilder>>
                 (
                     provider =>

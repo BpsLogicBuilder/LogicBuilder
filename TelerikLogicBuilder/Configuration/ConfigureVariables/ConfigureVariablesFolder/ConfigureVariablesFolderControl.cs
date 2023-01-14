@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -77,8 +76,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
         private void ValidateFolderName()
         {
             configureVariablesForm.ClearMessage();
-            if (!Regex.IsMatch(txtFolderName.Text, RegularExpressions.XMLATTRIBUTE))
-                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.invalidTxtNameTextFormat, lblFolderName.Text));
+            if (!XmlAttributeRegex().IsMatch(txtFolderName.Text))
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.invalidAttributeFormat, lblFolderName.Text));
         }
+
+        [GeneratedRegex(RegularExpressions.XMLATTRIBUTE)]
+        private static partial Regex XmlAttributeRegex();
     }
 }
