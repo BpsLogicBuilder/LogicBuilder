@@ -1024,6 +1024,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A constructor &quot;{0}&quot; already exists - {1}({2}) with the same signature..
+        /// </summary>
+        internal static string constructorExistsFormat {
+            get {
+                return ResourceManager.GetString("constructorExistsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The configured constructor&apos;s generic arguments &quot;{0}&quot; must match the data&apos;s generic arguments &quot;{1}&quot;..
         /// </summary>
         internal static string constructorGenericArgsMisMatchFormat {

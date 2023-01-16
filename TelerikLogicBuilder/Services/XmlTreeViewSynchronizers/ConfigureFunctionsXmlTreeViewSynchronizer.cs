@@ -81,6 +81,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                         destinationFolderTreeNode.Name
                     )
                 );
+
+                throw;
             }
 
             void AddFunctions()
@@ -145,6 +147,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     configureFunctionsForm.TreeView,
                     movingTreeNodes.Select(n => n.Name).ToArray()
                 );
+
+                throw;
             }
 
             List<StateImageRadTreeNode?> MoveItemsToFolder()
@@ -272,6 +276,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                         existingTreeNode.Name
                     )
                 );
+
+                throw;
             }
         }
 

@@ -33,8 +33,8 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(2, dictionary.Count);
-            Assert.Equal("John", dictionary[AttributeNames.DEFAULTVALUE]);
-            Assert.Equal(nameof(InstructorModel.FullName), dictionary[AttributeNames.PROPERTYSOURCE]);
+            Assert.Equal("John", dictionary[AttributeNames.DEFAULTVALUE.ToLower()]);
+            Assert.Equal(nameof(InstructorModel.FullName), dictionary[AttributeNames.PROPERTYSOURCE.ToLower()]);
         }
 
         [Fact]

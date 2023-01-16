@@ -134,13 +134,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
         {
             ClearMessage();
             listNewConstructors.Items.Clear();
-            if (TreeView.SelectedNode == null)
-            {
-                btnOk.Enabled = false;
-                return;
-            }
-
-            if (TreeView.SelectedNode.ImageIndex != ImageIndexes.METHODINTELLISENSEIMAGEINDEX)
+            if (TreeView.SelectedNode == null 
+                || TreeView.SelectedNode is not FunctionTreeNode)
             {
                 btnOk.Enabled = false;
                 return;
@@ -200,7 +195,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
                 treeNode.MInfo
             );
 
-            btnOk.Enabled = TreeView.SelectedNode != null && TreeView.SelectedNode.ImageIndex == ImageIndexes.METHODINTELLISENSEIMAGEINDEX;
+            btnOk.Enabled = true;
         }
 
         private void ClearFieldControls()

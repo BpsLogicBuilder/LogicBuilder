@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Factorie
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
 
@@ -152,6 +153,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureConstructorsForm => new ConfigureConstructorsHelperCommand
                     (
+                        provider.GetRequiredService<IConstructorXmlParser>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),

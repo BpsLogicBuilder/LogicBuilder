@@ -74,6 +74,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                         destinationFolderTreeNode.Name
                     )
                 );
+
+                throw;
             }
 
             void AddConstructors()
@@ -154,6 +156,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     configureConstructorsForm.TreeView,
                     movingTreeNodes.Select(n => n.Name).ToArray()
                 );
+
+                throw;
             }
 
             List<StateImageRadTreeNode?> MoveItemsToFolder() 
@@ -258,8 +262,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
             try
             {
                 _configurationFormXmlTreeViewSynchronizer.DeleteFolderOrConfiguredItem(existingTreeNode);
-                StateImageRadTreeNode newVariableNode = AddConstructor(parentNode, newXmlConstructorNode);
-                configureConstructorsForm.SelectTreeNode(newVariableNode);
+                StateImageRadTreeNode newConstructorNode = AddConstructor(parentNode, newXmlConstructorNode);
+                configureConstructorsForm.SelectTreeNode(newConstructorNode);
             }
             catch (LogicBuilderException ex)
             {
@@ -272,6 +276,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                         existingTreeNode.Name
                     )
                 );
+
+                throw;
             }
         }
 

@@ -33,7 +33,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace RadDropDownListDisabledIssue
+namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
 {
     internal partial class ConfigureConstructorsForm : Telerik.WinControls.UI.RadForm, IConfigureConstructorsForm
     {

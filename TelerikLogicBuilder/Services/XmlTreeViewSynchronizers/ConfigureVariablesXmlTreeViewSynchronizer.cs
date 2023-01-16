@@ -78,6 +78,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                         destinationFolderTreeNode.Name
                     )
                 );
+
+                throw;
             }
 
             void AddVariables()
@@ -128,6 +130,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     configureVariablesForm.TreeView,
                     movingTreeNodes.Select(n => n.Name).ToArray()
                 );
+
+                throw;
             }
 
 
@@ -221,6 +225,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                         existingTreeNode.Name
                     )
                 );
+
+                throw;
             }
         }
 

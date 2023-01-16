@@ -1,4 +1,4 @@
-﻿namespace RadDropDownListDisabledIssue
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
 {
     partial class ConfigureConstructorsForm
     {

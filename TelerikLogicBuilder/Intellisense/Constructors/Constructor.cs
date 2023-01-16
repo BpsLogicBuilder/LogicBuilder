@@ -67,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
                 this.TypeName,
                 string.Join
                 (
-                    string.Concat(MiscellaneousConstants.COMMASTRING, " "),
+                    Strings.itemsCommaSeparator,
                     this.Parameters.Select(p => p.ToString())
                 )
             );

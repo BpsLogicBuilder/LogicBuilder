@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.AttributeReaders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -73,7 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public Dictionary<string, string> GetNameValueTable(ParameterInfo parameter)
             => parameter.GetCustomAttributes(true).Aggregate
             (
-                new Dictionary<string, string>(),
+                new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase),
                 (dictionary, next) =>
                 {
                     if (next.GetType().FullName != AttributeConstants.NAMEVALUEATTRIBUTE)

@@ -204,7 +204,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions
                 CultureInfo.CurrentCulture, Strings.functionToStringFormat,
                 this.Name,
                 this.TypeName,
-                string.Join(", ", this.Parameters.Select(parameter => parameter.ToString()))
+                string.Join(Strings.itemsCommaSeparator, this.Parameters.Select(parameter => parameter.ToString()))
             );
         #endregion Methods
     }

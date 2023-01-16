@@ -434,6 +434,10 @@
     <value>The generic argument name "{0}" for constructor "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
   </data>
+	<data name="constructorExistsFormat" xml:space="preserve">
+    <value>A constructor "{0}" already exists - {1}({2}) with the same signature.</value>
+    <comment>0=constructorName 1=Type 2=parametersToString</comment>
+  </data>
 	<data name="constructorGenericArgsMisMatchFormat" xml:space="preserve">
     <value>The configured constructor's generic arguments "{0}" must match the data's generic arguments "{1}".</value>
     <comment>0=constructor's generic arguments;1= data's generic arguments</comment>

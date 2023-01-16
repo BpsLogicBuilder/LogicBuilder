@@ -36,8 +36,8 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(2, dictionary.Count);
-            Assert.Equal("field", dictionary[AttributeNames.DEFAULTVALUE]);
-            Assert.Equal("modelType", dictionary[AttributeNames.PROPERTYSOURCEPARAMETER]);
+            Assert.Equal("field", dictionary[AttributeNames.DEFAULTVALUE.ToLower()]);
+            Assert.Equal("modelType", dictionary[AttributeNames.PROPERTYSOURCEPARAMETER.ToLower()]);
         }
 
         [Fact]
