@@ -20,7 +20,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureConstructorsForm => new ConfigureConstructorsAddConstructorCommand
                     (
-                        provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),

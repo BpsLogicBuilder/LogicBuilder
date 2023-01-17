@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -93,11 +94,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
             if (configureConstructorsHelperForm.DialogResult != DialogResult.OK)
                 return;
 
-            AddChildConstructors(selectedNode, configureConstructorsHelperForm);
-            UpdateConstructor(selectedNode, configureConstructorsHelperForm);
+            AddChildConstructors(selectedNode, configureConstructorsHelperForm.ChildConstructors);
+            UpdateConstructor(selectedNode, configureConstructorsHelperForm.Constructor);
         }
 
-        private void UpdateConstructor(RadTreeNode selectedNode, IConfigureConstructorsHelperForm configureConstructorsHelperForm)
+        private void UpdateConstructor(RadTreeNode selectedNode, Constructor constructor)
         {
             _configureConstructorsXmlTreeViewSynchronizer.ReplaceConstructorNode
             (
@@ -105,18 +106,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
                 _xmlDocumentHelpers.AddElementToDoc
                 (
                     configureConstructorsForm.XmlDocument,
-                    _xmlDocumentHelpers.ToXmlElement(configureConstructorsHelperForm.Constructor.ToXml)
+                    _xmlDocumentHelpers.ToXmlElement(constructor.ToXml)
                 )
             );
         }
 
-        private void AddChildConstructors(RadTreeNode selectedNode, IConfigureConstructorsHelperForm configureConstructorsHelperForm)
+        private void AddChildConstructors(RadTreeNode selectedNode, ICollection<Constructor> childConstructors)
         {
             RadTreeNode parentTreeNode = selectedNode.Parent;
             _configureConstructorsXmlTreeViewSynchronizer.AddConstructorNodes
             (
                 (StateImageRadTreeNode)parentTreeNode,
-                configureConstructorsHelperForm.ChildConstructors.Select
+                childConstructors.Select
                 (
                     c => _xmlDocumentHelpers.AddElementToDoc
                     (

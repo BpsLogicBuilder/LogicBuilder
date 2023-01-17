@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Helpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -54,6 +55,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
 
+        public IDictionary<string, Constructor> ConstructorsDictionary => configureConstructorsForm.ConstructorsDictionary;
+        public IConfigureConstructorsForm Form => configureConstructorsForm;
+        public ConstructorHelperStatus? HelperStatus => configureConstructorsForm.HelperStatus;
         public RadLabel LblConstructorName => lblConstructorName;
         public RadTextBox TxtConstructorName => txtConstructorName;
         public RadTreeView TreeView => configureConstructorsForm.TreeView;

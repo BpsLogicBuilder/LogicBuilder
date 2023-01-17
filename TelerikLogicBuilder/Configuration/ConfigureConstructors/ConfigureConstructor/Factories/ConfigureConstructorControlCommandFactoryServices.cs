@@ -2,6 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.ConfigureConstructor.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.ConfigureConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -17,9 +19,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureConstructorControl => new EditConstructorTypeNameCommand
                     (
-                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IConstructorXmlParser>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureConstructorControl
                     )
                 )
