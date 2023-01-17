@@ -128,6 +128,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
             _constructorControlsValidator.ValidateInputBoxes();
         }
 
+        public void ValidateXmlDocument()
+        {
+            configureConstructorsForm.ValidateXmlDocument();
+        }
+
         private void AddEventHandlers()
         {
             txtConstructorName.TextChanged += TxtConstructorName_TextChanged;

@@ -823,8 +823,11 @@
     <value>]</value>
     <comment>Must be a string with length==1 i.e. character</comment>
   </data>
+	<data name="genericArgNameInvalid" xml:space="preserve">
+    <value>Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
+  </data>
 	<data name="genericArgNameInvalidFormat" xml:space="preserve">
-    <value>{0}: "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
+    <value>{0} "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>
     <comment>0=label;1=value</comment>
   </data>
 	<data name="genericArgumentsCountMismatch" xml:space="preserve">

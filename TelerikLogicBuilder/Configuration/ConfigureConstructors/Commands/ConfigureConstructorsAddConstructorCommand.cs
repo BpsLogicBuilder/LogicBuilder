@@ -71,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
             IConfigureConstructorsHelperForm configureConstructorsHelperForm = disposableManager.GetConfigureConstructorsHelperForm
             (
                 configureConstructorsForm.ConstructorsDictionary,
-                configureConstructorsForm.HelperStatus
+                null
             );
             configureConstructorsHelperForm.ShowDialog((Control)configureConstructorsForm);
             if (configureConstructorsHelperForm.DialogResult != DialogResult.OK)

@@ -162,7 +162,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureGeneri
 
         private void RemoveEventHandlers()
         {
-            txtGpName.TextChanged += TxtGpName_TextChanged;
+            txtGpName.TextChanged -= TxtGpName_TextChanged;
         }
 
         private void TxtGpName_TextChanged(object? sender, EventArgs e)

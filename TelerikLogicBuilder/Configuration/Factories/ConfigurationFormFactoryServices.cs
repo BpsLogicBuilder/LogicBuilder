@@ -19,6 +19,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -225,6 +227,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IWebApiDeploymentItemFactory>(),
                         webApiDeployment
+                    )
+                )
+                .AddTransient<Func<IList<string>, IEditGenericArgumentsForm>>
+                (
+                    provider =>
+                    existingArguments => new EditGenericArgumentsForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditGenericArgumentsControlFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        existingArguments
                     )
                 );
         }

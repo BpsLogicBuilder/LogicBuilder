@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
 
         private readonly Type type;
 
-        public string Item { get; private set; }
+        public string Item { get; }
 
         public IList<string> Errors
         {
@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
                 return false;
 
             if (obj is not LiteralDomainItem other) return false;
-            return this.Item.Equals(other.Item);
+            return this.Item == other.Item;
         }
 
         public override int GetHashCode()

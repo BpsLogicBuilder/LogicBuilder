@@ -71,6 +71,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigurationFormFactories()
                 .AddConnectorObjectsItemFactories()
                 .AddConstructorControlValidatorFactories()
+                .AddEditGenericArgumentsCommandFactories()
+                .AddEditGenericArgumentsControlFactories()
                 .AddFragmentItemFactories()
                 .AddLiteralDomainItemFactories()
                 .AddLiteralListDefaultValueItemFactories()

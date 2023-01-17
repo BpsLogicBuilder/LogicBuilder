@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<bool, IConfigureProjectPropertiesForm> _getConfigureProjectProperties;
         private readonly Func<bool, IConfigureVariablesForm> _getConfigureVariablesForm;
         private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
+        private readonly Func<IList<string>, IEditGenericArgumentsForm> _getEditGenericArgumentsForm;
 
         public ConfigurationFormFactory(
             Func<bool, IConfigureConnectorObjectsForm> getConfigureConnectorObjectsForm,
@@ -47,19 +49,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Func<IList<string>, IConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
             Func<bool, IConfigureProjectPropertiesForm> getConfigureProjectProperties,
             Func<bool, IConfigureVariablesForm> getConfigureVariablesForm,
-            Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment)
+            Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment,
+            Func<IList<string>, IEditGenericArgumentsForm> getEditGenericArgumentsForm)
         {
             _getConfigureConnectorObjectsForm = getConfigureConnectorObjectsForm;
             _getConfigureConstructorGenericArgumentsForm = getConfigureConstructorGenericArgumentsForm;
             _getConfigureConstructorsForm = getConfigureConstructorsForm;
             _getConfigureExcludedModules = getConfigureExcludedModules;
-            _getConfigureFunctionGenericArgumentsForm= getConfigureFunctionGenericArgumentsForm;
+            _getConfigureFunctionGenericArgumentsForm = getConfigureFunctionGenericArgumentsForm;
             _getConfigureLiteralDomainForm = getConfigureLiteralDomainForm;
             _getConfigureLiteralListDefaultValueForm = getConfigureLiteralListDefaultValueForm;
             _getConfigureLoadAssemblyPaths = getConfigureLoadAssemblyPaths;
             _getConfigureProjectProperties = getConfigureProjectProperties;
             _getConfigureVariablesForm = getConfigureVariablesForm;
             _getConfigureWebApiDeployment = getConfigureWebApiDeployment;
+            _getEditGenericArgumentsForm = getEditGenericArgumentsForm;
         }
 
         public IConfigureConnectorObjectsForm GetConfigureConnectorObjectsForm(bool openedAsReadOnly)
@@ -130,6 +134,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         {
             _scopedService = _getConfigureWebApiDeployment(webApiDeployment);
             return (IConfigureWebApiDeploymentForm)_scopedService;
+        }
+
+        public IEditGenericArgumentsForm GetEditGenericArgumentsForm(IList<string> existingArguments)
+        {
+            _scopedService = _getEditGenericArgumentsForm(existingArguments);
+            return (IEditGenericArgumentsForm)_scopedService;
         }
 
         public void Dispose()

@@ -3220,7 +3220,16 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}: &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        ///   Looks up a localized string similar to Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string genericArgNameInvalid {
+            get {
+                return ResourceManager.GetString("genericArgNameInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string genericArgNameInvalidFormat {
             get {

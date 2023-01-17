@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
 using System.Collections.Generic;
@@ -34,5 +35,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         IConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly);
         IConfigureVariablesForm GetConfigureVariablesForm(bool openedAsReadOnly);
         IConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment);
+        IEditGenericArgumentsForm GetEditGenericArgumentsForm(IList<string> existingArguments);
     }
 }

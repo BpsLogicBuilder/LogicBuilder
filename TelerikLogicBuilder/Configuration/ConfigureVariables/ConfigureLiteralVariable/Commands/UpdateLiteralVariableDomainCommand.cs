@@ -45,11 +45,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         public override void Execute()
         {
-            RadTreeNode selecteNode = treeView.SelectedNode;
-            if (selecteNode == null)
+            RadTreeNode selectedNode = treeView.SelectedNode;
+            if (selectedNode == null)
                 return;
 
-            if (!_treeViewService.IsLiteralTypeNode(selecteNode))
+            if (!_treeViewService.IsLiteralTypeNode(selectedNode))
                 throw _exceptionHelper.CriticalException("{86B3670C-7FEF-47ED-8CFC-A45BB7014073}");
 
             XmlElement domainElement = _xmlDocumentHelpers.GetSingleChildElement
@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
                 _xmlDocumentHelpers.SelectSingleElement
                 (
                     xmlDocument,
-                    selecteNode.Name
+                    selectedNode.Name
                 ),
                 e => e.Name == XmlDataConstants.DOMAINELEMENT
             );
