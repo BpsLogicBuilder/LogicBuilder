@@ -69,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
                             configureConstructorsForm.XmlDocument, destinationFolderTreeNode.Name
                         )
                     )
-                    .SelectNodes($"/{XmlDataConstants.FOLDERELEMENT}/{XmlDataConstants.FOLDERELEMENT}/@{XmlDataConstants.NAMEATTRIBUTE}")?.OfType<XmlAttribute>()
+                    .SelectNodes($"/{XmlDataConstants.FOLDERELEMENT}/{XmlDataConstants.FOLDERELEMENT}|/{XmlDataConstants.FORMELEMENT}/{XmlDataConstants.FOLDERELEMENT}/@{XmlDataConstants.NAMEATTRIBUTE}")?.OfType<XmlAttribute>()
                     .Select(a => a.Value)
                     .ToHashSet() ?? new HashSet<string>();
             }

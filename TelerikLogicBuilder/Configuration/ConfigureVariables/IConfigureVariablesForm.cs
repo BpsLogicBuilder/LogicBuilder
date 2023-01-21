@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
     internal interface IConfigureVariablesForm : IConfigurationForm
     {
         IConfigureVariablesTreeNodeControl CurrentTreeNodeControl { get; }
-        HelperStatus? HelperStatus { get; }
+        HelperStatus? HelperStatus { get; set; }
         IDictionary<string, VariableBase> VariablesDictionary { get; }
         HashSet<string> VariableNames { get; }
     }

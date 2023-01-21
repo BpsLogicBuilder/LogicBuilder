@@ -31,7 +31,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureConstructorControl => new EditGenericArgumentsCommand
                     (
-                        provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureConstructorControl

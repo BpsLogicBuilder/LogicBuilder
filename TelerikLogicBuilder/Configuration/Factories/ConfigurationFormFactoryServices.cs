@@ -5,6 +5,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
@@ -36,6 +38,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidati
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -136,6 +139,36 @@ namespace Microsoft.Extensions.DependencyInjection
                         configuredGenericArgumentNames,
                         memberParameters,
                         genericTypeDefinition
+                    )
+                )
+                .AddTransient<Func<bool, IConfigureFunctionsForm>>
+                (
+                    provider =>
+                    openedAsReadOnly => new ConfigureFunctionsForm
+                    (
+                        provider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                        provider.GetRequiredService<IConfigureFunctionsCommandFactory>(),
+                        provider.GetRequiredService<IConfigureFunctionsControlFactory>(),
+                        provider.GetRequiredService<IConfigureFunctionsFactory>(),
+                        provider.GetRequiredService<IConstructorXmlParser>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IHelperStatusBuilderFactory>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILoadConstructors>(),
+                        provider.GetRequiredService<ILoadFunctions>(),
+                        provider.GetRequiredService<ILoadVariables>(),
+                        provider.GetRequiredService<IParametersControlFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITreeViewBuilderFactory>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IUpdateConstructors>(),
+                        provider.GetRequiredService<IUpdateFunctions>(),
+                        provider.GetRequiredService<IVariablesXmlParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlValidatorFactory>(),
+                        openedAsReadOnly
                     )
                 )
                 .AddTransient<Func<IList<string>, Type, IConfigureLiteralDomainForm>>

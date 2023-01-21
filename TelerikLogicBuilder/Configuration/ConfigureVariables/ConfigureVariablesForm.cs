@@ -52,13 +52,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         private readonly IVariablesXmlParser _variablesXmlParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private static readonly string VARIABLENAMES_NODEXPATH = $"(.//{XmlDataConstants.LITERALVARIABLEELEMENT}|.//{XmlDataConstants.OBJECTVARIABLEELEMENT}|.//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|.//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT})/@{XmlDataConstants.NAMEATTRIBUTE}";
+        private static readonly string VARIABLENAMES_NODEXPATH = $"(//{XmlDataConstants.LITERALVARIABLEELEMENT}|//{XmlDataConstants.OBJECTVARIABLEELEMENT}|//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT})/@{XmlDataConstants.NAMEATTRIBUTE}";
 
         private readonly bool openedAsReadOnly;
         private ApplicationTypeInfo _application;
         private readonly ConfigureVariablesTreeView radTreeView1;
-        private HelperStatus? helperStatus;
-
         private readonly RadMenuItem mnuItemAdd = new(Strings.mnuItemAddTextWithEllipses);
         private readonly RadMenuItem mnuItemAddLiteralVariable = new(Strings.mnuItemAddImplementedLiteralVariableText);
         private readonly RadMenuItem mnuItemAddObjectVariable = new(Strings.mnuItemAddImplementedObjectVariableText);
@@ -135,7 +133,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-        public HelperStatus? HelperStatus => helperStatus;
+        public HelperStatus? HelperStatus { get; set; }
 
         public RadTreeView TreeView => radTreeView1;
 
@@ -144,7 +142,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             XmlDocument,
             $"//{XmlDataConstants.LITERALVARIABLEELEMENT}|//{XmlDataConstants.OBJECTVARIABLEELEMENT}|//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT}"
         )
-        .Select(e => _variablesXmlParser.Parse(e))
+        .Select(_variablesXmlParser.Parse)
         .ToDictionary(e => e.Name);
 
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
@@ -409,7 +407,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             {
                 var status = _variableHelperStatusBuilder.Build();
                 if (status?.Path.Any() == true)
-                    this.helperStatus = status;
+                    this.HelperStatus = status;
             }
         }
 

@@ -69,9 +69,9 @@
             this.radPanelBottom.Controls.Add(this.radPanelMessages);
             this.radPanelBottom.Controls.Add(this.radPanelButtons);
             this.radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanelBottom.Location = new System.Drawing.Point(0, 453);
+            this.radPanelBottom.Location = new System.Drawing.Point(0, 505);
             this.radPanelBottom.Name = "radPanelBottom";
-            this.radPanelBottom.Size = new System.Drawing.Size(973, 150);
+            this.radPanelBottom.Size = new System.Drawing.Size(955, 150);
             this.radPanelBottom.TabIndex = 3;
             // 
             // radPanelMessages
@@ -79,14 +79,14 @@
             this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelMessages.Location = new System.Drawing.Point(0, 0);
             this.radPanelMessages.Name = "radPanelMessages";
-            this.radPanelMessages.Size = new System.Drawing.Size(813, 150);
+            this.radPanelMessages.Size = new System.Drawing.Size(795, 150);
             this.radPanelMessages.TabIndex = 2;
             // 
             // radPanelButtons
             // 
             this.radPanelButtons.Controls.Add(this.tableLayoutPanelButtons);
             this.radPanelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelButtons.Location = new System.Drawing.Point(813, 0);
+            this.radPanelButtons.Location = new System.Drawing.Point(795, 0);
             this.radPanelButtons.Name = "radPanelButtons";
             this.radPanelButtons.Size = new System.Drawing.Size(160, 150);
             this.radPanelButtons.TabIndex = 2;
@@ -164,7 +164,7 @@
             // 
             // 
             this.radSplitContainerTop.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainerTop.Size = new System.Drawing.Size(973, 453);
+            this.radSplitContainerTop.Size = new System.Drawing.Size(955, 505);
             this.radSplitContainerTop.TabIndex = 4;
             this.radSplitContainerTop.TabStop = false;
             // 
@@ -176,7 +176,7 @@
             // 
             // 
             this.splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelLeft.Size = new System.Drawing.Size(280, 453);
+            this.splitPanelLeft.Size = new System.Drawing.Size(274, 505);
             this.splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2113951F, 0F);
             this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(-199, 0);
             this.splitPanelLeft.TabIndex = 0;
@@ -186,13 +186,13 @@
             // 
             this.splitPanelRight.Controls.Add(this.radPanelFields);
             this.splitPanelRight.Controls.Add(this.radPanelApplication);
-            this.splitPanelRight.Location = new System.Drawing.Point(284, 0);
+            this.splitPanelRight.Location = new System.Drawing.Point(278, 0);
             this.splitPanelRight.Name = "splitPanelRight";
             // 
             // 
             // 
             this.splitPanelRight.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelRight.Size = new System.Drawing.Size(689, 453);
+            this.splitPanelRight.Size = new System.Drawing.Size(677, 505);
             this.splitPanelRight.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2113951F, 0F);
             this.splitPanelRight.SizeInfo.SplitterCorrection = new System.Drawing.Size(199, 0);
             this.splitPanelRight.TabIndex = 1;
@@ -203,7 +203,7 @@
             this.radPanelFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelFields.Location = new System.Drawing.Point(0, 60);
             this.radPanelFields.Name = "radPanelFields";
-            this.radPanelFields.Size = new System.Drawing.Size(689, 393);
+            this.radPanelFields.Size = new System.Drawing.Size(677, 445);
             this.radPanelFields.TabIndex = 1;
             // 
             // radPanelApplication
@@ -212,7 +212,7 @@
             this.radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanelApplication.Location = new System.Drawing.Point(0, 0);
             this.radPanelApplication.Name = "radPanelApplication";
-            this.radPanelApplication.Size = new System.Drawing.Size(689, 60);
+            this.radPanelApplication.Size = new System.Drawing.Size(677, 60);
             this.radPanelApplication.TabIndex = 0;
             // 
             // radGroupBoxApplication
@@ -223,7 +223,7 @@
             this.radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
             this.radGroupBoxApplication.Name = "radGroupBoxApplication";
             this.radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            this.radGroupBoxApplication.Size = new System.Drawing.Size(689, 60);
+            this.radGroupBoxApplication.Size = new System.Drawing.Size(677, 60);
             this.radGroupBoxApplication.TabIndex = 0;
             this.radGroupBoxApplication.Text = "Application";
             // 
@@ -232,14 +232,10 @@
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 603);
+            this.ClientSize = new System.Drawing.Size(955, 655);
             this.Controls.Add(this.radSplitContainerTop);
             this.Controls.Add(this.radPanelBottom);
             this.Name = "ConfigureConstructorsForm";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
             this.Text = "Configure Constructors";
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);

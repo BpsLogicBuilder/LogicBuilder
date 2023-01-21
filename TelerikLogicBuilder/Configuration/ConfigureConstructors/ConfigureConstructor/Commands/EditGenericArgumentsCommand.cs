@@ -16,7 +16,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
 {
     internal class EditGenericArgumentsCommand : ClickCommandBase
     {
-        private readonly IExceptionHelper _exceptionHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -25,12 +24,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
         private readonly XmlDocument xmlDocument;
 
         public EditGenericArgumentsCommand(
-            IExceptionHelper exceptionHelper,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IConfigureConstructorControl configureConstructorControl)
         {
-            _exceptionHelper = exceptionHelper;
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             treeView = configureConstructorControl.TreeView;

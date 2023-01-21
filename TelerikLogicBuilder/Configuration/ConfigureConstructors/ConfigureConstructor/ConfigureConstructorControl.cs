@@ -202,9 +202,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
         {
             try
             {
-                _constructorControlsValidator.ValidateInputBoxes();
-                if (TreeView.SelectedNode != null)
-                    UpdateXmlDocument(TreeView.SelectedNode);
+                UpdateXmlDocument(TreeView.SelectedNode);
             }
             catch (XmlException ex)
             {

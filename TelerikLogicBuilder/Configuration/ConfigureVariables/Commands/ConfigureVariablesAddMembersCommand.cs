@@ -95,6 +95,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
 
             try
             {
+                configureVariablesForm.TreeView.BeginUpdate();
                 _configureVariablesXmlTreeViewSynchronizer.AddVariableNodes
                 (
                     (StateImageRadTreeNode)destinationTreeNode,
@@ -109,6 +110,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
             catch (LogicBuilderException ex)
             {
                 configureVariablesForm.SetErrorMessage(ex.Message);
+            }
+            finally
+            {
+                configureVariablesForm.TreeView.EndUpdate();
             }
         }
     }

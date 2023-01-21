@@ -46,10 +46,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             string fullPath = _pathHelper.CombinePaths
             (
-                _configurationService.ProjectProperties.ProjectPath, 
+                _configurationService.ProjectProperties.ProjectPath,
                 ConfigurationFiles.Functions
             );
 
+            return LoadXmlDocument(fullPath);
+        }
+
+        public XmlDocument Load(string fullPath)
+        {
+            return LoadXmlDocument(fullPath);
+        }
+
+        private XmlDocument LoadXmlDocument(string fullPath)
+        {
             try
             {
                 if (!File.Exists(fullPath))

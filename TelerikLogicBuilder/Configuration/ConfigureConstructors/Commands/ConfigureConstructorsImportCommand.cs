@@ -59,7 +59,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
 
         private void Import(string fullPath)
         {
-            _loadConstructors.Load(fullPath);
             configureConstructorsForm.ReloadXmlDocument(_loadConstructors.Load(fullPath).OuterXml);
             configureConstructorsForm.RebuildTreeView();
         }

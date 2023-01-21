@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense
         AutoCompleteRadDropDownList CmbClass { get; }
         RadDropDownList CmbReferenceCategory { get; }
         IDictionary<string, VariableBase> ExistingVariables { get; }
+        HelperStatus HelperStatus { get; }
         ReferenceCategories ReferenceCategory { get; }
         VariableTreeNode ReferenceTreeNode { get; }
         RadTreeView TreeView { get; }

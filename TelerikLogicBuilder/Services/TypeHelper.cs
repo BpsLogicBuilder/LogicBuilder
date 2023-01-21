@@ -186,10 +186,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                                                            //but AssemblyQualifiedName and FullName are null
                                                            //(AssemblyQualifiedName and FullName may be null if loaded from a different context)
 
-            if (fromAssemblySearch == null 
+            if (fromAssemblySearch == null
                 || fromAssemblySearch.AssemblyQualifiedName == null
                 || fromAssemblySearch.FullName == null)
-                throw _exceptionHelper.CriticalException("{62307BC9-5D79-4257-B7B7-C063D47A0091}");
+                return string.Empty;
 
             type = fromAssemblySearch;
 

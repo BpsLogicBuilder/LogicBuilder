@@ -439,6 +439,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to message.
+        /// </summary>
+        internal static string builtInParameterNameMessage {
+            get {
+                return ResourceManager.GetString("builtInParameterNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to value.
         /// </summary>
         internal static string builtInParameterNameValue {
@@ -1411,6 +1420,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NewFunction.
+        /// </summary>
+        internal static string defaultNewFunctionName {
+            get {
+                return ResourceManager.GetString("defaultNewFunctionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to newParameter.
         /// </summary>
         internal static string defaultNewParameterName {
@@ -1888,6 +1906,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Binary.
+        /// </summary>
+        internal static string enumDescriptionBinary {
+            get {
+                return ResourceManager.GetString("enumDescriptionBinary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Binary Operator.
+        /// </summary>
+        internal static string enumDescriptionBinaryOperator {
+            get {
+                return ResourceManager.GetString("enumDescriptionBinaryOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Boolean.
         /// </summary>
         internal static string enumDescriptionBoolean {
@@ -2037,6 +2073,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionDecimalKeyIndexer {
             get {
                 return ResourceManager.GetString("enumDescriptionDecimalKeyIndexer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dialog Form.
+        /// </summary>
+        internal static string enumDescriptionDialogForm {
+            get {
+                return ResourceManager.GetString("enumDescriptionDialogForm", resourceCulture);
             }
         }
         
@@ -2581,6 +2626,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sequential.
+        /// </summary>
+        internal static string enumDescriptionSequential {
+            get {
+                return ResourceManager.GetString("enumDescriptionSequential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Short.
         /// </summary>
         internal static string enumDescriptionShort {
@@ -2604,6 +2658,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionSingleLineTextBox {
             get {
                 return ResourceManager.GetString("enumDescriptionSingleLineTextBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        internal static string enumDescriptionStandard {
+            get {
+                return ResourceManager.GetString("enumDescriptionStandard", resourceCulture);
             }
         }
         
@@ -3040,6 +3103,114 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Each segment (period delimited) contains a tile (~)(no cast required) or the fully qualified class name for the corresponding segment in the Reference Name when a cast is required for the segment..
+        /// </summary>
+        internal static string funcConfigCastReferenceAsHelp {
+            get {
+                return ResourceManager.GetString("funcConfigCastReferenceAsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies a semantic grouping for the function describing its usage (does it display a dialog or does it simply run a routine)..
+        /// </summary>
+        internal static string funcConfigFunctionCategoryHelp {
+            get {
+                return ResourceManager.GetString("funcConfigFunctionCategoryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique name for the function used in the flow diagram..
+        /// </summary>
+        internal static string funcConfigFunctionNameHelp {
+            get {
+                return ResourceManager.GetString("funcConfigFunctionNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form for modifying generic arguments..
+        /// </summary>
+        internal static string funcConfigGenericArgumentsHelp {
+            get {
+                return ResourceManager.GetString("funcConfigGenericArgumentsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member name for the class field or property..
+        /// </summary>
+        internal static string funcConfigMemberNameHelp {
+            get {
+                return ResourceManager.GetString("funcConfigMemberNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In an edit form, parameter fields can be sequential or binary (either side of the function name)..
+        /// </summary>
+        internal static string funcConfigParametersLayoutHelp {
+            get {
+                return ResourceManager.GetString("funcConfigParametersLayoutHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defines the function&apos;s membership as This, Type, Instance Reference, or Static Reference..
+        /// </summary>
+        internal static string funcConfigReferenceCategoryHelp {
+            get {
+                return ResourceManager.GetString("funcConfigReferenceCategoryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defines each segment (period delimited) of the Reference Name as a field, property or indexer..
+        /// </summary>
+        internal static string funcConfigReferenceDefinitionHelp {
+            get {
+                return ResourceManager.GetString("funcConfigReferenceDefinitionHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used when the Reference Category is a static or instance reference of the Activity Class..
+        /// </summary>
+        internal static string funcConfigReferenceNameHelp {
+            get {
+                return ResourceManager.GetString("funcConfigReferenceNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form for modifying the return type..
+        /// </summary>
+        internal static string funcConfigReturnTypeHelp {
+            get {
+                return ResourceManager.GetString("funcConfigReturnTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments describing the function..
+        /// </summary>
+        internal static string funcConfigSummaryHelp {
+            get {
+                return ResourceManager.GetString("funcConfigSummaryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fully qualified class name when the Reference Category is a type or a static reference..
+        /// </summary>
+        internal static string funcConfigTypeNameHelp {
+            get {
+                return ResourceManager.GetString("funcConfigTypeNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The generic argument name &quot;{0}&quot; in function &quot;{1}&quot; is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
         /// </summary>
         internal static string funcGenericArgNameInvalidFormat {
@@ -3076,11 +3247,38 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} was already configured..
+        /// </summary>
+        internal static string functionAlreadyConfiguredFormat {
+            get {
+                return ResourceManager.GetString("functionAlreadyConfiguredFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference Category for function &quot;{0}&quot; cannot be empty..
         /// </summary>
         internal static string functionBlankCategoryFormat {
             get {
                 return ResourceManager.GetString("functionBlankCategoryFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Definition cannot be empty when the reference category is &quot;Static Reference&quot; or reference category is &quot;Instance Reference&quot;..
+        /// </summary>
+        internal static string functionBlankDefinition {
+            get {
+                return ResourceManager.GetString("functionBlankDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Definition must be empty when the reference category is &quot;This&quot;, &quot;Type&quot; or &quot;None&quot;..
+        /// </summary>
+        internal static string functionDefinitionNotEmpty {
+            get {
+                return ResourceManager.GetString("functionDefinitionNotEmpty", resourceCulture);
             }
         }
         
@@ -3121,6 +3319,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reference Definition has invalid section &quot;{0}&quot;. Valid sections for indirect references include:{1}{2}.
+        /// </summary>
+        internal static string functionInvalidIndirectDefinitionFormat2 {
+            get {
+                return ResourceManager.GetString("functionInvalidIndirectDefinitionFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function &quot;{0}&quot;. When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Cast Reference As = ~.~.~.&quot;MyNameSpace.MyClass&quot; (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period)..
         /// </summary>
         internal static string functionNameAndCastAsFormat {
@@ -3130,11 +3337,29 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~.&quot;MyNameSpace.MyClass&quot; (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period)..
+        /// </summary>
+        internal static string functionNameAndCastRefAsFormat2 {
+            get {
+                return ResourceManager.GetString("functionNameAndCastRefAsFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function &quot;{0}&quot;. Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Reference Definition = Field.Property.IntKeyValue.Field..
         /// </summary>
         internal static string functionNameAndDefinitionFormat {
             get {
                 return ResourceManager.GetString("functionNameAndDefinitionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Definition = Field.Property.IntKeyValue.Field.
+        /// </summary>
+        internal static string functionNameAndDefinitionFormat2 {
+            get {
+                return ResourceManager.GetString("functionNameAndDefinitionFormat2", resourceCulture);
             }
         }
         
@@ -3189,6 +3414,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string functionToStringFormat {
             get {
                 return ResourceManager.GetString("functionToStringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Name field must be empty when the reference category is not &quot;Type&quot;or &quot;Static Reference&quot;..
+        /// </summary>
+        internal static string functionTypeNameMustBeEmpty {
+            get {
+                return ResourceManager.GetString("functionTypeNameMustBeEmpty", resourceCulture);
             }
         }
         
@@ -3351,6 +3585,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string inputFileNewFolderNamePrompt {
             get {
                 return ResourceManager.GetString("inputFileNewFolderNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Function Name.
+        /// </summary>
+        internal static string inputNewActionNameCaption {
+            get {
+                return ResourceManager.GetString("inputNewActionNameCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter New Function Name.
+        /// </summary>
+        internal static string inputNewActionNamePrompt {
+            get {
+                return ResourceManager.GetString("inputNewActionNamePrompt", resourceCulture);
             }
         }
         
@@ -3616,7 +3868,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Name must be less than 50 characters long and cannot include the following characters: &quot; \.
+        ///   Looks up a localized string similar to {0} must be less than 50 characters long and cannot include the following characters: &quot; \.
         /// </summary>
         internal static string invalidTxtNameTextFormat {
             get {
@@ -3639,6 +3891,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidVariableElementFormat {
             get {
                 return ResourceManager.GetString("invalidVariableElementFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores..
+        /// </summary>
+        internal static string invalidVariableOrFunctionNameFormat {
+            get {
+                return ResourceManager.GetString("invalidVariableOrFunctionNameFormat", resourceCulture);
             }
         }
         
@@ -4075,6 +4336,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Binary Operator.
+        /// </summary>
+        internal static string mnuItemAddBinaryOperatorText {
+            get {
+                return ResourceManager.GetString("mnuItemAddBinaryOperatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder....
         /// </summary>
         internal static string mnuItemAddConfigurationFolderText {
@@ -4089,6 +4359,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddConstructorText {
             get {
                 return ResourceManager.GetString("mnuItemAddConstructorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dialog Function.
+        /// </summary>
+        internal static string mnuItemAddDialogFunctionText {
+            get {
+                return ResourceManager.GetString("mnuItemAddDialogFunctionText", resourceCulture);
             }
         }
         
@@ -4224,6 +4503,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddObjectParameterText {
             get {
                 return ResourceManager.GetString("mnuItemAddObjectParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard Function.
+        /// </summary>
+        internal static string mnuItemAddStandardFunctionText {
+            get {
+                return ResourceManager.GetString("mnuItemAddStandardFunctionText", resourceCulture);
             }
         }
         

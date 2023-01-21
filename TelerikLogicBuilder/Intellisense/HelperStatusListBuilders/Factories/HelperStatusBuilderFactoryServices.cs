@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders.Factor
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using System;
 
@@ -35,12 +36,16 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureFunctionsForm => new FunctionHelperStatusBuilder
                     (
+                        provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFunctionNodeBuilder>(),
+                        provider.GetRequiredService<IFunctionXmlParser>(),
                         provider.GetRequiredService<IHelperStatusBuilderFactory>(),
                         provider.GetRequiredService<IReferenceInfoListBuilder>(),
+                        provider.GetRequiredService<IStringHelper>(),
                         provider.GetRequiredService<ITypeHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureFunctionsForm
                     )
                 )

@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
@@ -86,7 +85,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
             TreeView.NodeExpandedChanging += TreeView_NodeExpandedChanging;
         }
 
-        private IIntellisenseConfigurationControl CurrentTreeNodeControl => (IIntellisenseConfigurationControl)radPanelFields.Controls[0];
+        private IIntellisenseConfigurationControl CurrentTreeNodeControl
+        {
+            get
+            {
+                if (radPanelFields.Controls.Count != 1)
+                    throw _exceptionHelper.CriticalException("{12F1A457-F2F1-4DA8-9226-A223A7B12466}");
+
+                return (IIntellisenseConfigurationControl)radPanelFields.Controls[0];
+            }
+        }
+
+        public Function Function => selectedFunction ?? throw _exceptionHelper.CriticalException("{619171E0-4371-4E81-96A3-3DBE8481A69E}");
+
+        public ICollection<Constructor> NewConstructors => listNewConstructors.Items.Select(i => (Constructor)i.Value).ToArray();
 
         public RadButton BtnOk => btnOk;
 
@@ -98,6 +110,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
         public IDictionary<string, VariableBase> ExistingVariables { get; }
 
+        public HelperStatus HelperStatus => _intellisenseFunctionsFormManager.HelperStatus;
+
         public ReferenceCategories ReferenceCategory => (ReferenceCategories)cmbReferenceCategory.SelectedValue;
 
         public VariableTreeNode ReferenceTreeNode => (VariableTreeNode)((BaseTreeNode)TreeView.SelectedNode).ParentNode!;/*used only for instance and static references*/
@@ -105,8 +119,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
         public RadTreeView TreeView => radTreeView1;
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{532AB4D1-25D4-4C15-8F8B-DDA12D21FA05}");
-
-        public Function Function => selectedFunction ?? throw _exceptionHelper.CriticalException("{619171E0-4371-4E81-96A3-3DBE8481A69E}");
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
@@ -154,7 +166,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
             FunctionTreeNode treeNode = (FunctionTreeNode)TreeView.SelectedNode;
 
-            if (_multipleChoiceParameterValidator.ValidateMultipleChoiceParameter(treeNode.MInfo))
+            if (!_multipleChoiceParameterValidator.ValidateMultipleChoiceParameter(treeNode.MInfo))
             {
                 SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.multipleChoiceParamNotLastFormat, treeNode.MInfo.Name));
                 btnOk.Enabled = false;

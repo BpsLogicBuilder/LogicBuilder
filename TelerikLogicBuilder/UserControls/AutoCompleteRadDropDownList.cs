@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Components.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -22,6 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public new event EventHandler? TextChanged;
 
         public new event EventHandler? Validated;
+
+        public new event CancelEventHandler? Validating;
 
         public new event MouseEventHandler? MouseDown;
 
@@ -82,6 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radDropDownList1.MouseDown += RadDropDownList1_MouseDown;
             radDropDownList1.TextChanged += RadDropDownList1_TextChanged;
             radDropDownList1.Validated += RadDropDownList1_Validated;
+            radDropDownList1.Validating += RadDropDownList1_Validating;
             radDropDownList1.DropDownStyle = RadDropDownStyle.DropDown;
             radDropDownList1.DropDownListElement.UseDefaultDisabledPaint = false;
             radDropDownList1.AutoCompleteMode = AutoCompleteMode.None;
@@ -114,6 +118,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void RadDropDownList1_Validated(object? sender, EventArgs e)
         {
             Validated?.Invoke(this, e);
+        }
+
+        private void RadDropDownList1_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validating?.Invoke(this, e);
         }
     }
 }

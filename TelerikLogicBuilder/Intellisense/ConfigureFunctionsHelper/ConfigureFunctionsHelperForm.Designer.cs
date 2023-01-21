@@ -374,10 +374,6 @@
             this.Controls.Add(this.radSplitContainerTop);
             this.Controls.Add(this.radPanelBottom);
             this.Name = "ConfigureFunctionsHelperForm";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
             this.Text = "Configure Functions Helper";
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);

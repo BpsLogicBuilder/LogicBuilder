@@ -1,5 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
@@ -26,7 +28,17 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public IList<RadTreeNode> CutTreeNodes => throw new NotImplementedException();
 
-        public HelperStatus? HelperStatus => throw new NotImplementedException();
+        public HelperStatus? HelperStatus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public IConfigureFunctionsTreeNodeControl CurrentTreeNodeControl => throw new NotImplementedException();
+
+        public HashSet<string> FunctionNames => throw new NotImplementedException();
+
+        public IDictionary<string, Constructor> ConstructorsDictionary => throw new NotImplementedException();
+
+        public IDictionary<string, VariableBase> VariablesDictionary => throw new NotImplementedException();
+
+        public XmlDocument ConstructorsDoc => throw new NotImplementedException();
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
@@ -75,6 +87,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
         }
 
         public DialogResult ShowDialog(IWin32Window owner)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateConstructorsConfiguration(ICollection<Constructor> constructors)
         {
             throw new NotImplementedException();
         }

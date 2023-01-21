@@ -27,6 +27,44 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddIntellisenseFactories(this IServiceCollection services)
         {
             return services
+                
+                .AddTransient<Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassFunctionsHelperForm>>
+                (
+                    provider =>
+                    (existingConstructors, existingVariables, helperStatus) => new ConfigureClassFunctionsHelperForm
+                    (
+                        provider.GetRequiredService<IChildConstructorFinderFactory>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IFunctionManager>(),
+                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
+                        provider.GetRequiredService<IIntellisenseFactory>(),
+                        provider.GetRequiredService<IMemberAttributeReader>(),
+                        provider.GetRequiredService<IMultipleChoiceParameterValidator>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        existingConstructors,
+                        existingVariables,
+                        helperStatus
+                    )
+                )
+                .AddTransient<Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm>>
+                (
+                    provider =>
+                    (existingVariables, helperStatus) => new ConfigureClassVariablesHelperForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
+                        provider.GetRequiredService<IIntellisenseFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IVariablesManager>(),
+                        existingVariables,
+                        helperStatus
+                    )
+                )
                 .AddTransient<Func<IDictionary<string, Constructor>, ConstructorHelperStatus?, string?, IConfigureConstructorsHelperForm>>
                 (
                     provider =>
@@ -45,22 +83,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         existingConstructors,
                         helperStatus,
                         constructorToUpdate
-                    )
-                )
-                .AddTransient<Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm>>
-                (
-                    provider =>
-                    (existingVariables, helperStatus) => new ConfigureClassVariablesHelperForm
-                    (
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
-                        provider.GetRequiredService<IIntellisenseFactory>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<IVariablesManager>(),
-                        existingVariables,
-                        helperStatus
                     )
                 )
                 .AddTransient<Func< IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm>>

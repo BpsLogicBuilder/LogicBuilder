@@ -1,6 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder;
-using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.ConfigureConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Helpers;
@@ -58,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
         private readonly bool openedAsReadOnly;
         private ApplicationTypeInfo _application;
         private readonly ConfigureConstructorsTreeView radTreeView1;
-        private ConstructorHelperStatus? helperStatus = null;
+        private ConstructorHelperStatus? helperStatus;
 
         private readonly RadMenuItem mnuItemAdd = new(Strings.mnuItemAddTextWithEllipses);
         private readonly RadMenuItem mnuItemAddConstructor = new(Strings.mnuItemAddConstructorText);
@@ -407,7 +405,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             mnuItemPaste.Enabled = CutTreeNodes.Count > 0 && selectedNodes.Count == 1;
             mnuItemCut.Enabled = selectedNodes.Count > 0 && TreeView.Nodes[0].Selected == false;
             mnuItemDelete.Enabled = selectedNodes.Count > 0 && TreeView.Nodes[0].Selected == false;
-            mnuItemAddFolder.Enabled = selectedNodes.Count == 1;
             mnuItemCopyXml.Enabled = selectedNodes.Count == 1;
 
             if (selectedNodes.Count != 1)
@@ -419,14 +416,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
                 mnuItemAddGenericParameter.Enabled = false;
                 mnuItemAddObjectParameter.Enabled = false;
                 mnuItemAddLiteralParameter.Enabled = false;
+                mnuItemAddFolder.Enabled = false;
             }
             else
             {
                 RadTreeNode selectedNode = selectedNodes[0];
-                bool isRootNode = _treeViewService.IsRootNode(selectedNode);
                 bool isConstructorNode = _treeViewService.IsConstructorNode(selectedNode);
                 bool isParameterNode = _treeViewService.IsParameterNode(selectedNode);
-                mnuItemAddConstructor.Enabled = !isRootNode && !isParameterNode;
+                mnuItemAddConstructor.Enabled = !isParameterNode;
+                mnuItemAddFolder.Enabled = !isParameterNode;
                 mnuItemAddListOfGenericsParameter.Enabled = isConstructorNode || isParameterNode;
                 mnuItemAddListOfObjectsParameter.Enabled = isConstructorNode || isParameterNode;
                 mnuItemAddListOfLiteralsParameter.Enabled = isConstructorNode || isParameterNode;

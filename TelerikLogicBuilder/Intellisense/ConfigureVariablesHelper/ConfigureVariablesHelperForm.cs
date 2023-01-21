@@ -87,6 +87,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
 
         public IDictionary<string, VariableBase> ExistingVariables { get; }
 
+        public HelperStatus HelperStatus => _intellisenseVariablesFormManager.HelperStatus;
+
         public ReferenceCategories ReferenceCategory => (ReferenceCategories)cmbReferenceCategory.SelectedValue;
 
         public VariableTreeNode ReferenceTreeNode => (VariableTreeNode)((BaseTreeNode)TreeView.SelectedNode).ParentNode!;/*used only for instance and static references*/

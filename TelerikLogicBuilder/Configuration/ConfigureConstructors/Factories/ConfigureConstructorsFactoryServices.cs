@@ -22,6 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         configureConstructorsForm
                     )
                 )
+                .AddTransient<IConfigureConstructorsFactory, ConfigureConstructorsFactory>()
                 .AddTransient<Func<IConfigureConstructorsForm, ConfigureConstructorsTreeView>>
                 (
                     provider =>
@@ -30,8 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureConstructorsFactory>(),
                         configureConstructorsForm
                     )
-                )
-                .AddTransient<IConfigureConstructorsFactory, ConfigureConstructorsFactory>();
+                );
         }
     }
 }

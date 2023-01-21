@@ -33,7 +33,7 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public IConfigureVariablesTreeNodeControl CurrentTreeNodeControl => throw new NotImplementedException();
 
-        public HelperStatus? HelperStatus => throw new NotImplementedException();
+        public HelperStatus? HelperStatus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 

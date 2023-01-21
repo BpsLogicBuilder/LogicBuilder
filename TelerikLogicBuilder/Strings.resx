@@ -233,6 +233,9 @@
 	<data name="builtInFunctionsRootFolderText" xml:space="preserve">
     <value>Built In Functions</value>
   </data>
+	<data name="builtInParameterNameMessage" xml:space="preserve">
+    <value>message</value>
+  </data>
 	<data name="builtInParameterNameValue" xml:space="preserve">
     <value>value</value>
   </data>
@@ -528,6 +531,9 @@
 	<data name="defaultNewFolderName" xml:space="preserve">
     <value>NewFolder</value>
   </data>
+	<data name="defaultNewFunctionName" xml:space="preserve">
+    <value>NewFunction</value>
+  </data>
 	<data name="defaultNewParameterName" xml:space="preserve">
     <value>newParameter</value>
   </data>
@@ -745,6 +751,42 @@
     <value>Cannot find the required property sourced parameter "{0}" for the parameter "{1}" in function "{2}". The property sourced parameter must be one of the sibling parameters {3} when the control is {4}.</value>
     <comment>0=sourceParameter; 1=parameter; 2=function;3=SiblingParameterList; 4=ParameterSourcedProperyInputText</comment>
   </data>
+	<data name="funcConfigCastReferenceAsHelp" xml:space="preserve">
+    <value>Each segment (period delimited) contains a tile (~)(no cast required) or the fully qualified class name for the corresponding segment in the Reference Name when a cast is required for the segment.</value>
+  </data>
+	<data name="funcConfigFunctionCategoryHelp" xml:space="preserve">
+    <value>Specifies a semantic grouping for the function describing its usage (does it display a dialog or does it simply run a routine).</value>
+  </data>
+	<data name="funcConfigFunctionNameHelp" xml:space="preserve">
+    <value>Unique name for the function used in the flow diagram.</value>
+  </data>
+	<data name="funcConfigGenericArgumentsHelp" xml:space="preserve">
+    <value>Form for modifying generic arguments.</value>
+  </data>
+	<data name="funcConfigMemberNameHelp" xml:space="preserve">
+    <value>Member name for the class field or property.</value>
+  </data>
+	<data name="funcConfigParametersLayoutHelp" xml:space="preserve">
+    <value>In an edit form, parameter fields can be sequential or binary (either side of the function name).</value>
+  </data>
+	<data name="funcConfigReferenceCategoryHelp" xml:space="preserve">
+    <value>Defines the function's membership as This, Type, Instance Reference, or Static Reference.</value>
+  </data>
+	<data name="funcConfigReferenceDefinitionHelp" xml:space="preserve">
+    <value>Defines each segment (period delimited) of the Reference Name as a field, property or indexer.</value>
+  </data>
+	<data name="funcConfigReferenceNameHelp" xml:space="preserve">
+    <value>Used when the Reference Category is a static or instance reference of the Activity Class.</value>
+  </data>
+	<data name="funcConfigReturnTypeHelp" xml:space="preserve">
+    <value>Form for modifying the return type.</value>
+  </data>
+	<data name="funcConfigSummaryHelp" xml:space="preserve">
+    <value>Comments describing the function.</value>
+  </data>
+	<data name="funcConfigTypeNameHelp" xml:space="preserve">
+    <value>Fully qualified class name when the Reference Category is a type or a static reference.</value>
+  </data>
 	<data name="funcGenericArgNameInvalidFormat" xml:space="preserve">
     <value>The generic argument name "{0}" in function "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=genericArgumentName;1=parameterName;2=functionName</comment>
@@ -761,9 +803,19 @@
     <value>The generic argument name "{0}" for the return type in function "{1}" is not one of the function's generic arguments: "{2}".</value>
     <comment>0=genericArgumentName;1=functionName;2=listOfGenericArguments</comment>
   </data>
+	<data name="functionAlreadyConfiguredFormat" xml:space="preserve">
+    <value>{0} was already configured.</value>
+    <comment>0=function</comment>
+  </data>
 	<data name="functionBlankCategoryFormat" xml:space="preserve">
     <value>Reference Category for function "{0}" cannot be empty.</value>
     <comment>0=functionName</comment>
+  </data>
+	<data name="functionBlankDefinition" xml:space="preserve">
+    <value>Reference Definition cannot be empty when the reference category is "Static Reference" or reference category is "Instance Reference".</value>
+  </data>
+	<data name="functionDefinitionNotEmpty" xml:space="preserve">
+    <value>Reference Definition must be empty when the reference category is "This", "Type" or "None".</value>
   </data>
 	<data name="functionGenericArgsMisMatchFormat" xml:space="preserve">
     <value>The configured function's generic arguments "{0}" must match the data's generic arguments "{1}".</value>
@@ -781,13 +833,23 @@
     <value>Function "{0}" has invalid section "{1}" in its Reference Definition Field. Valid sections for indirect references include:{2}{3}</value>
     <comment>0=functionName; 1=ReferenceDefinition; 2=Environment.Newline; 3=ValidDefinitionList</comment>
   </data>
+	<data name="functionInvalidIndirectDefinitionFormat2" xml:space="preserve">
+    <value>Reference Definition has invalid section "{0}". Valid sections for indirect references include:{1}{2}</value>
+    <comment>0=ReferenceDefinition; 1=Environment.Newline; 2=ValidDefinitionList</comment>
+  </data>
 	<data name="functionNameAndCastAsFormat" xml:space="preserve">
     <value>Function "{0}". When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).</value>
     <comment>0=functionName</comment>
   </data>
+	<data name="functionNameAndCastRefAsFormat2" xml:space="preserve">
+    <value>When it is not empty, Cast Reference As and Reference Name must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Cast Reference As = ~.~.~."MyNameSpace.MyClass" (Use a tilde (~) where a cast is not needed. Use quotes as a text qualifier when the fully qualified class name contains a period).</value>
+  </data>
 	<data name="functionNameAndDefinitionFormat" xml:space="preserve">
     <value>Function "{0}". Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.0.boz, Reference Definition = Field.Property.IntKeyValue.Field.</value>
     <comment>0=functionName</comment>
+  </data>
+	<data name="functionNameAndDefinitionFormat2" xml:space="preserve">
+    <value>Reference Name and Reference Definition must have an equal number of sections when the function is indirectly referenced by the Activity Class. e.g. Reference Name = foo.Bar.1.boz, Reference Definition = Field.Property.IntKeyValue.Field</value>
   </data>
 	<data name="functionNotAssignableFormat" xml:space="preserve">
     <value>The function "{0}" must be assignable to "{1}".</value>
@@ -810,6 +872,9 @@
 	<data name="functionToStringFormat" xml:space="preserve">
     <value>{0} - {1}({2})</value>
     <comment>0=functionName 1=Type 2=parametersToString</comment>
+  </data>
+	<data name="functionTypeNameMustBeEmpty" xml:space="preserve">
+    <value>Type Name field must be empty when the reference category is not "Type"or "Static Reference".</value>
   </data>
 	<data name="functionTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for function {0} must be empty when the reference category is not "Type"or "Static Reference".</value>
@@ -862,6 +927,12 @@
   </data>
 	<data name="inputFileNewFolderNamePrompt" xml:space="preserve">
     <value>Enter New Folder Name:</value>
+  </data>
+	<data name="inputNewActionNameCaption" xml:space="preserve">
+    <value>New Function Name</value>
+  </data>
+	<data name="inputNewActionNamePrompt" xml:space="preserve">
+    <value>Enter New Function Name</value>
   </data>
 	<data name="inputNewProjectNameCaption" xml:space="preserve">
     <value>New Project Name</value>
@@ -956,7 +1027,7 @@
     <value>Please use shapes form the specified Logic Builder Stencils only.</value>
   </data>
 	<data name="invalidTxtNameTextFormat" xml:space="preserve">
-    <value>{0} Name must be less than 50 characters long and cannot include the following characters: " \</value>
+    <value>{0} must be less than 50 characters long and cannot include the following characters: " \</value>
     <comment>0=Variable, Function or Folder Name</comment>
   </data>
 	<data name="invalidUrlInputFormat" xml:space="preserve">
@@ -965,6 +1036,10 @@
 	<data name="invalidVariableElementFormat" xml:space="preserve">
     <value>The variable "{0}" has an invalid value element for the category "{1}".</value>
     <comment>0=parameterName;1=parameterCategory;</comment>
+  </data>
+	<data name="invalidVariableOrFunctionNameFormat" xml:space="preserve">
+    <value>{0} is invalid. Variable or function names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
+    <comment>0=FieldName</comment>
   </data>
 	<data name="itemAlreadyListed" xml:space="preserve">
     <value>Item {0} is aready in in the list.</value>
@@ -1113,11 +1188,17 @@
     <value>The {0} element is required for dialog connectors.</value>
     <comment>0=connector category</comment>
   </data>
+	<data name="mnuItemAddBinaryOperatorText" xml:space="preserve">
+    <value>Binary Operator</value>
+  </data>
 	<data name="mnuItemAddConfigurationFolderText" xml:space="preserve">
     <value>Folder...</value>
   </data>
 	<data name="mnuItemAddConstructorText" xml:space="preserve">
     <value>Constructor...</value>
+  </data>
+	<data name="mnuItemAddDialogFunctionText" xml:space="preserve">
+    <value>Dialog Function</value>
   </data>
 	<data name="mnuItemAddExistingFileText" xml:space="preserve">
     <value>Existing...</value>
@@ -1163,6 +1244,9 @@
   </data>
 	<data name="mnuItemAddObjectParameterText" xml:space="preserve">
     <value>Object Parameter...</value>
+  </data>
+	<data name="mnuItemAddStandardFunctionText" xml:space="preserve">
+    <value>Standard Function</value>
   </data>
 	<data name="mnuItemAddText" xml:space="preserve">
     <value>Add</value>
@@ -2070,6 +2154,21 @@
   </data>
 	<data name="enumDescriptionXamarin" xml:space="preserve">
     <value>Xamarin (Android, iOS, OS X)</value>
+  </data>
+	<data name="enumDescriptionBinaryOperator" xml:space="preserve">
+    <value>Binary Operator</value>
+  </data>
+	<data name="enumDescriptionDialogForm" xml:space="preserve">
+    <value>Dialog Form</value>
+  </data>
+	<data name="enumDescriptionStandard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+	<data name="enumDescriptionBinary" xml:space="preserve">
+    <value>Binary</value>
+  </data>
+	<data name="enumDescriptionSequential" xml:space="preserve">
+    <value>Sequential</value>
   </data>
 	<data name="fieldPropertyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
