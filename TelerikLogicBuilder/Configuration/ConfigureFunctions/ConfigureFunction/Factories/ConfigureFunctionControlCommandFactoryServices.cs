@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.ConfigureFunction.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.ConfigureFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -17,6 +18,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureFunctionControl => new ConfigureFunctionReturnTypeCommand
                     (
+                        provider.GetRequiredService<IReturnTypeXmlParser>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureFunctionControl
                     )
                 )

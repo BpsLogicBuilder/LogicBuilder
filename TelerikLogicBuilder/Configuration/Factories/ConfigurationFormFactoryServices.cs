@@ -17,6 +17,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
@@ -26,6 +28,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments.Factories
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -37,6 +40,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
@@ -225,6 +229,21 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IUpdateProjectProperties>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         openedAsReadOnly
+                    )
+                )
+                .AddTransient<Func<IList<string>, ReturnTypeBase, IConfigureReturnTypeForm>>
+                (
+                    provider =>
+                    (genericArguments, returnType) => new ConfigureReturnTypeForm
+                    (
+                        provider.GetRequiredService<IConfigureReturnTypeControlFactory>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        genericArguments, 
+                        returnType
                     )
                 )
                 .AddTransient<Func<bool, IConfigureVariablesForm>>

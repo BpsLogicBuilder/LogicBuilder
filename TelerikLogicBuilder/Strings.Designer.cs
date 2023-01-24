@@ -5326,6 +5326,51 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The function&apos;s generic argument used in the return type..
+        /// </summary>
+        internal static string retTypeGenericArgumentHelp {
+            get {
+                return ResourceManager.GetString("retTypeGenericArgumentHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list type can be ab array, collection or list..
+        /// </summary>
+        internal static string retTypeListTypeHelp {
+            get {
+                return ResourceManager.GetString("retTypeListTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The type of the literal to return..
+        /// </summary>
+        internal static string retTypeLiteralTypeHelp {
+            get {
+                return ResourceManager.GetString("retTypeLiteralTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The objects&apos;s return type..
+        /// </summary>
+        internal static string retTypeObjectHelp {
+            get {
+                return ResourceManager.GetString("retTypeObjectHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be selected..
+        /// </summary>
+        internal static string returnTypeFieldNotSelectedFormat {
+            get {
+                return ResourceManager.GetString("returnTypeFieldNotSelectedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Row Index {0} is invalid..
         /// </summary>
         internal static string rowIndexIsInvalidFormat {

@@ -1542,6 +1542,22 @@
 	<data name="replaceVariableFormText" xml:space="preserve">
     <value>Replace VariableFR</value>
   </data>
+	<data name="retTypeGenericArgumentHelp" xml:space="preserve">
+    <value>The function's generic argument used in the return type.FR</value>
+  </data>
+	<data name="retTypeListTypeHelp" xml:space="preserve">
+    <value>The list type can be ab array, collection or list.FR</value>
+  </data>
+	<data name="retTypeLiteralTypeHelp" xml:space="preserve">
+    <value>The type of the literal to return.FR</value>
+  </data>
+	<data name="retTypeObjectHelp" xml:space="preserve">
+    <value>The objects's return type.FR</value>
+  </data>
+	<data name="returnTypeFieldNotSelectedFormat" xml:space="preserve">
+    <value>{0} must be selected.FR</value>
+    <comment>0=labelName or property name</comment>
+  </data>
 	<data name="rowIndexIsInvalidFormat" xml:space="preserve">
     <value>Row Index {0} is invalid.FR</value>
     <comment>0=1based Row Number</comment>
