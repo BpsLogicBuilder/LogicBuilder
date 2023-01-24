@@ -744,6 +744,9 @@
     <value>{0} [Read-Only]</value>
     <comment>0=FileName</comment>
   </data>
+	<data name="fragmentNodeDescription" xml:space="preserve">
+    <value>XML Data Fragment</value>
+  </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>Fragments</value>
   </data>

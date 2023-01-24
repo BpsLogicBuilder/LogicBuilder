@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
@@ -11,6 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
     internal class TreeViewBuilderFactory : ITreeViewBuilderFactory
     {
         private readonly Func<IConfigureConstructorsForm, IConfigureConstructorsTreeViewBuilder> _getConfigureConstructorsTreeViewBuilder;
+        private readonly Func<IConfigureFragmentsForm, IConfigureFragmentsTreeViewBuilder> _getConfigureFragmentsTreeViewBuilder;
         private readonly Func<IConfigureFunctionsForm, IConfigureFunctionsTreeViewBuilder> _getConfigureFunctionsTreeViewBuilder;
         private readonly Func<IConfigureVariablesForm, IConfigureVariablesTreeViewBuilder> _getConfigureVariablesTreeViewBuilder;
         private readonly Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> _getDocumentsExplorerTreeViewBuilder;
@@ -18,12 +20,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
 
         public TreeViewBuilderFactory(
             Func<IConfigureConstructorsForm, IConfigureConstructorsTreeViewBuilder> getConfigureConstructorsTreeViewBuilder,
+            Func<IConfigureFragmentsForm, IConfigureFragmentsTreeViewBuilder> getConfigureFragmentsTreeViewBuilder,
             Func<IConfigureFunctionsForm, IConfigureFunctionsTreeViewBuilder> getConfigureFunctionsTreeViewBuilder,
             Func<IConfigureVariablesForm, IConfigureVariablesTreeViewBuilder> getConfigureVariablesTreeViewBuilder,
             Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> getDocumentsExplorerTreeViewBuilder,
             Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder> getRulesExplorerTreeViewBuilder)
         {
             _getConfigureConstructorsTreeViewBuilder = getConfigureConstructorsTreeViewBuilder;
+            _getConfigureFragmentsTreeViewBuilder = getConfigureFragmentsTreeViewBuilder;
             _getConfigureFunctionsTreeViewBuilder = getConfigureFunctionsTreeViewBuilder;
             _getConfigureVariablesTreeViewBuilder = getConfigureVariablesTreeViewBuilder;
             _getDocumentsExplorerTreeViewBuilder = getDocumentsExplorerTreeViewBuilder;
@@ -32,6 +36,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
 
         public IConfigureConstructorsTreeViewBuilder GetConfigureConstructorsTreeViewBuilder(IConfigureConstructorsForm configureConstructorsForm)
             => _getConfigureConstructorsTreeViewBuilder(configureConstructorsForm);
+
+        public IConfigureFragmentsTreeViewBuilder GetConfigureFragmentsTreeViewBuilder(IConfigureFragmentsForm configureFragmentsForm)
+            => _getConfigureFragmentsTreeViewBuilder(configureFragmentsForm);
 
         public IConfigureFunctionsTreeViewBuilder GetConfigureFunctionsTreeViewBuilder(IConfigureFunctionsForm configureFunctionsForm)
             => _getConfigureFunctionsTreeViewBuilder(configureFunctionsForm);

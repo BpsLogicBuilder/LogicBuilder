@@ -3085,6 +3085,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to XML Data Fragment.
+        /// </summary>
+        internal static string fragmentNodeDescription {
+            get {
+                return ResourceManager.GetString("fragmentNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fragments.
         /// </summary>
         internal static string fragmentsRootNodeText {

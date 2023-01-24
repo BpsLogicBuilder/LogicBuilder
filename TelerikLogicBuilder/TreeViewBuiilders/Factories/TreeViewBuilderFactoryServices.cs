@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -30,6 +31,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureConstructorsForm
+                    )
+                )
+                .AddTransient<Func<IConfigureFragmentsForm, IConfigureFragmentsTreeViewBuilder>>
+                (
+                    provider =>
+                    configureFragmentsForm => new ConfigureFragmentsTreeViewBuilder
+                    (
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        configureFragmentsForm
                     )
                 )
                 .AddTransient<Func<IConfigureFunctionsForm, IConfigureFunctionsTreeViewBuilder>>
