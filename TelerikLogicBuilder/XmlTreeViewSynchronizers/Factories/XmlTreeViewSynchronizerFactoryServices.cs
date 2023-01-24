@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
@@ -49,6 +50,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureConstructorsForm
+                    )
+                )
+                .AddTransient<Func<IConfigureFragmentsForm, IConfigureFragmentsXmlTreeViewSynchronizer>>
+                (
+                    provider =>
+                    configureFragmentsForm => new ConfigureFragmentsXmlTreeViewSynchronizer
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFragmentsFormTreeNodeComparer>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        configureFragmentsForm
                     )
                 )
                 .AddTransient<Func<IConfigureFunctionsForm, IConfigureFunctionsXmlTreeViewSynchronizer>>

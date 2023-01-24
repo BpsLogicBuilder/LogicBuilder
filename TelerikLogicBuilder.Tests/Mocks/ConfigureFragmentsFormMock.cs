@@ -1,6 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
+using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -11,15 +14,35 @@ namespace TelerikLogicBuilder.Tests.Mocks
 {
     internal class ConfigureFragmentsFormMock : IConfigureFragmentsForm
     {
+        private readonly IConfigureFragmentsChildNodesRenamer _configureFragmentsChildNodesRenamer;
+        private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
+        public ConfigureFragmentsFormMock()
+        {
+            _configureFragmentsChildNodesRenamer = null!;
+            _treeViewXmlDocumentHelper = null!;
+            this.TreeView = null!;
+            this.XmlDocument = null!;
+        }
+        public ConfigureFragmentsFormMock(
+            ITreeViewXmlDocumentHelper treeViewXmlDocumentHelper,
+            RadTreeView treeView,
+            XmlDocument xmlDocument,
+            IConfigurationFormChildNodesRenamerFactory configurationFormChildNodesRenamerFactory)
+        {
+            _configureFragmentsChildNodesRenamer = configurationFormChildNodesRenamerFactory.GetConfigureFragmentsChildNodesRenamer(this);
+            _treeViewXmlDocumentHelper = treeViewXmlDocumentHelper;
+            this.TreeView = treeView;
+            this.XmlDocument = xmlDocument;
+        }
+
+        public RadTreeView TreeView { get; }
+        public XmlDocument XmlDocument { get; }
+
         public bool CanExecuteImport => throw new NotImplementedException();
 
         public IList<RadTreeNode> CutTreeNodes => throw new NotImplementedException();
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
-
-        public RadTreeView TreeView => throw new NotImplementedException();
-
-        public XmlDocument XmlDocument => throw new NotImplementedException();
 
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 
@@ -50,17 +73,17 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public void ReloadXmlDocument(string xmlString)
         {
-            throw new NotImplementedException();
+            _treeViewXmlDocumentHelper.LoadXmlDocument(xmlString);
         }
 
         public void RenameChildNodes(RadTreeNode treeNode)
         {
-            throw new NotImplementedException();
+            _configureFragmentsChildNodesRenamer.RenameChildNodes(treeNode);
         }
 
         public void SelectTreeNode(RadTreeNode treeNode)
         {
-            throw new NotImplementedException();
+            TreeView.SelectedNode = treeNode;
         }
 
         public void SetErrorMessage(string message)
@@ -80,7 +103,7 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public void ValidateXmlDocument()
         {
-            throw new NotImplementedException();
+            _treeViewXmlDocumentHelper.ValidateXmlDocument();
         }
     }
 }

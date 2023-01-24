@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -22,6 +23,16 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         configureConstructorsForm
+                    )
+                )
+                .AddTransient<Func<IConfigureFragmentsForm, IConfigureFragmentsChildNodesRenamer>>
+                (
+                    provider =>
+                    configureFunctionsForm => new ConfigureFragmentsChildNodesRenamer
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        configureFunctionsForm
                     )
                 )
                 .AddTransient<Func<IConfigureFunctionsForm, IConfigureFunctionsChildNodesRenamer>>

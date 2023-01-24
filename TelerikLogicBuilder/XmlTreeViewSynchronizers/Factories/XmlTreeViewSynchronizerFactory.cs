@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
@@ -15,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
     {
         private readonly Func<IConfigurationForm, IComparer<RadTreeNode>, IConfigurationFormXmlTreeViewSynchronizer> _getConfigurationFormXmlTreeViewSynchronizer;
         private readonly Func<IConfigureConstructorsForm, IConfigureConstructorsXmlTreeViewSynchronizer> _getConfigureConstructorsXmlTreeViewSynchronizer;
+        private readonly Func<IConfigureFragmentsForm, IConfigureFragmentsXmlTreeViewSynchronizer> _getConfigureFragmentsXmlTreeViewSynchronizer;
         private readonly Func<IConfigureFunctionsForm, IConfigureFunctionsXmlTreeViewSynchronizer> _getConfigureFunctionsXmlTreeViewSynchronizer;
         private readonly Func<IConfigureGenericArgumentsForm, IConfigureGenericArgumentsXmlTreeViewSynchronizer> _getConfigureGenericArgumentsXmlTreeViewSynchronizer;
         private readonly Func<IConfigureVariablesForm, IConfigureVariablesXmlTreeViewSynchronizer> _getConfigureVariablesXmlTreeViewSynchronizer;
@@ -23,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
         public XmlTreeViewSynchronizerFactory(
             Func<IConfigurationForm, IComparer<RadTreeNode>, IConfigurationFormXmlTreeViewSynchronizer> getConfigurationFormXmlTreeViewSynchronizer,
             Func<IConfigureConstructorsForm, IConfigureConstructorsXmlTreeViewSynchronizer> getConfigureConstructorsXmlTreeViewSynchronizer,
+            Func<IConfigureFragmentsForm, IConfigureFragmentsXmlTreeViewSynchronizer> getConfigureFragmentsXmlTreeViewSynchronizer,
             Func<IConfigureFunctionsForm, IConfigureFunctionsXmlTreeViewSynchronizer> getConfigureFunctionsXmlTreeViewSynchronizer,
             Func<IConfigureGenericArgumentsForm, IConfigureGenericArgumentsXmlTreeViewSynchronizer> getConfigureGenericArgumentsXmlTreeViewSynchronizer,
             Func<IConfigureVariablesForm, IConfigureVariablesXmlTreeViewSynchronizer> getConfigureVariablesXmlTreeViewSynchronizer,
@@ -30,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
         {
             _getConfigurationFormXmlTreeViewSynchronizer = getConfigurationFormXmlTreeViewSynchronizer;
             _getConfigureConstructorsXmlTreeViewSynchronizer = getConfigureConstructorsXmlTreeViewSynchronizer;
+            _getConfigureFragmentsXmlTreeViewSynchronizer = getConfigureFragmentsXmlTreeViewSynchronizer;
             _getConfigureFunctionsXmlTreeViewSynchronizer = getConfigureFunctionsXmlTreeViewSynchronizer;
             _getConfigureGenericArgumentsXmlTreeViewSynchronizer = getConfigureGenericArgumentsXmlTreeViewSynchronizer;
             _getConfigureVariablesXmlTreeViewSynchronizer = getConfigureVariablesXmlTreeViewSynchronizer;
@@ -41,6 +45,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
 
         public IConfigureConstructorsXmlTreeViewSynchronizer GetConfigureConstructorsXmlTreeViewSynchronizer(IConfigureConstructorsForm configureConstructorsForm)
             => _getConfigureConstructorsXmlTreeViewSynchronizer(configureConstructorsForm);
+
+        public IConfigureFragmentsXmlTreeViewSynchronizer GetConfigureFragmentsXmlTreeViewSynchronizer(IConfigureFragmentsForm configureFragmentsForm)
+            => _getConfigureFragmentsXmlTreeViewSynchronizer(configureFragmentsForm);
 
         public IConfigureFunctionsXmlTreeViewSynchronizer GetConfigureFunctionsXmlTreeViewSynchronizer(IConfigureFunctionsForm configureFunctionsForm)
             => _getConfigureFunctionsXmlTreeViewSynchronizer(configureFunctionsForm);

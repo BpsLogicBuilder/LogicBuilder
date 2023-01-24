@@ -9,6 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddSingleton<IConstructorsFormTreeNodeComparer, ConstructorsFormTreeNodeComparer>()
+                .AddSingleton<IFragmentsFormTreeNodeComparer, FragmentsFormTreeNodeComparer>()
                 .AddSingleton<IFunctionsFormTreeNodeComparer, FunctionsFormTreeNodeComparer>()
                 .AddSingleton<IVariablesFormTreeNodeComparer, VariablesFormTreeNodeComparer>()
                 .AddConfigurationFormChildNodesRenamerFactories()
