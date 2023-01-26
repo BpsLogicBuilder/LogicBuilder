@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox1 = new ABIS.LogicBuilder.FlowBuilder.Components.TextOnlyRichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,6 @@
         #endregion
 
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private ABIS.LogicBuilder.FlowBuilder.Components.TextOnlyRichTextBox richTextBox1;
     }
 }
