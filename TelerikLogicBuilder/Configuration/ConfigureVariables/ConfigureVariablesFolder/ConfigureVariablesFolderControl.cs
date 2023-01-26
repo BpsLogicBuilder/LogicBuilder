@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesFolder
@@ -28,7 +29,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.configureVariablesForm = configureVariablesForm;
+            Initialize();
         }
+
+        private readonly HelpProvider helpProvider = new();
+        private readonly RadToolTip toolTip = new();
 
         private RadTreeView TreeView => configureVariablesForm.TreeView;
         private XmlDocument XmlDocument => configureVariablesForm.XmlDocument;
@@ -39,10 +44,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
                 throw _exceptionHelper.CriticalException("{915BB041-435A-4C73-84A1-64B8D923E2A5}");
 
             XmlElement folderElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
-
+            RemoveEventHandlers();
             txtFolderName.Text = folderElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
             txtFolderName.Select();
             txtFolderName.SelectAll();
+            AddEventHandlers();
         }
 
         public void UpdateXmlDocument(RadTreeNode treeNode)
@@ -73,6 +79,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             configureVariablesForm.RenameChildNodes(treeNode);
         }
 
+        private void AddEventHandlers()
+        {
+            txtFolderName.TextChanged += TxtFolderName_TextChanged;
+        }
+
+        private void Initialize()
+        {
+            AddEventHandlers();
+            InitializeFolderControls();
+        }
+
+        private void InitializeFolderControls()
+        {
+            helpProvider.SetHelpString(txtFolderName, Strings.varConfigFolderNameHelp);
+            toolTip.SetToolTip(lblFolderName, Strings.varConfigFolderNameHelp);
+        }
+
+        private void RemoveEventHandlers()
+        {
+            txtFolderName.TextChanged -= TxtFolderName_TextChanged;
+        }
+
         private void ValidateFolderName()
         {
             configureVariablesForm.ClearMessage();
@@ -82,5 +110,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         [GeneratedRegex(RegularExpressions.XMLATTRIBUTE)]
         private static partial Regex XmlAttributeRegex();
+
+        private void TxtFolderName_TextChanged(object? sender, System.EventArgs e)
+        {
+            try
+            {
+                UpdateXmlDocument(TreeView.SelectedNode);
+            }
+            catch (XmlException ex)
+            {
+                configureVariablesForm.SetErrorMessage(ex.Message);
+            }
+            catch (LogicBuilderException ex)
+            {
+                configureVariablesForm.SetErrorMessage(ex.Message);
+            }
+        }
     }
 }

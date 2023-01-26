@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
@@ -9,14 +9,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
 {
     internal class ConfigureConstructorsCutCommand : ClickCommandBase
     {
+        private readonly IConfigureConstructorsCutImageHelper _configureConstructorsCutImageHelper;
         private readonly ITreeViewService _treeViewService;
 
         private readonly IConfigureConstructorsForm configureConstructorsForm;
 
         public ConfigureConstructorsCutCommand(
+            IConfigureConstructorsCutImageHelper configureConstructorsCutImageHelper,
             ITreeViewService treeViewService, 
             IConfigureConstructorsForm configureConstructorsForm)
         {
+            _configureConstructorsCutImageHelper = configureConstructorsCutImageHelper;
             _treeViewService = treeViewService;
             this.configureConstructorsForm = configureConstructorsForm;
         }
@@ -32,85 +35,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
                 throw new ArgumentException($"{nameof(selectedNodes)}: {{4499527F-BB0A-4D43-87BC-6A1C125DB52A}}");
 
             foreach (RadTreeNode node in configureConstructorsForm.CutTreeNodes)
-                SetNormalImage(node);
+                _configureConstructorsCutImageHelper.SetNormalImage(node);
 
             configureConstructorsForm.CutTreeNodes.Clear();
             foreach (RadTreeNode node in selectedNodes)
             {
                 configureConstructorsForm.CutTreeNodes.Add(node);
-                SetCutImage(node);
-            }
-        }
-
-        private void SetCutImage(RadTreeNode cutTreeNode)
-        {
-            if (_treeViewService.IsFolderNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX;
-            }
-            if (_treeViewService.IsConstructorNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTCONSTRUCTORIMAGEINDEX;
-            }
-            else if (_treeViewService.IsLiteralTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTLITERALPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsObjectTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTOBJECTPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsGenericTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTGENERICPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsListOfLiteralsTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTLITERALLISTPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsListOfObjectsTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTOBJECTLISTPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsListOfGenericsTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTGENERICLISTPARAMETERIMAGEINDEX;
-            }
-        }
-
-        private void SetNormalImage(RadTreeNode cutTreeNode)
-        {
-            if (_treeViewService.IsFolderNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
-            }
-            if (_treeViewService.IsConstructorNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CONSTRUCTORIMAGEINDEX;
-            }
-            else if (_treeViewService.IsLiteralTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.LITERALPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsObjectTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.OBJECTPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsGenericTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.GENERICPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsListOfLiteralsTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsListOfObjectsTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.OBJECTLISTPARAMETERIMAGEINDEX;
-            }
-            else if (_treeViewService.IsListOfGenericsTypeNode(cutTreeNode))
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.GENERICLISTPARAMETERIMAGEINDEX;
+                _configureConstructorsCutImageHelper.SetCutImage(node);
             }
         }
     }

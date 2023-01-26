@@ -60,6 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.Property,
                         Properties.Resources.Indexer,
                         Properties.Resources.Method,
+                        Properties.Resources.CutFile
                     }
                 };
 

@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
@@ -32,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             IList<string> configuredGenericArgumentNames,
             IList<ParameterBase> memberParameters,
             Type genericTypeDefinition);
+        IConfigureFragmentsForm GetConfigureFragmentsForm(bool openedAsReadOnly);
         IConfigureFunctionsForm GetConfigureFunctionsForm(bool openedAsReadOnly);
         IConfigureLiteralDomainForm GetConfigureLiteralDomainForm(IList<string> existingDomainItems, Type type);
         IConfigureLiteralListDefaultValueForm GetConfigureLiteralListDefaultValueForm(IList<string> existingDefaultValueItems, Type type);

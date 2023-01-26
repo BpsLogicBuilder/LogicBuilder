@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
@@ -13,16 +14,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
 {
     internal class ConfigureConstructorsPasteCommand : ClickCommandBase
     {
+        private readonly IConfigureConstructorsCutImageHelper _configureConstructorsCutImageHelper;
         private readonly IConfigureConstructorsXmlTreeViewSynchronizer _configureConstructorsXmlTreeViewSynchronizer;
         private readonly ITreeViewService _treeViewService;
 
         private readonly IConfigureConstructorsForm configureConstructorsForm;
 
         public ConfigureConstructorsPasteCommand(
+            IConfigureConstructorsCutImageHelper configureConstructorsCutImageHelper,
             ITreeViewService treeViewService,
             IXmlTreeViewSynchronizerFactory xmlTreeViewSynchronizerFactory,
             IConfigureConstructorsForm configureConstructorsForm)
         {
+            _configureConstructorsCutImageHelper = configureConstructorsCutImageHelper;
             _configureConstructorsXmlTreeViewSynchronizer = xmlTreeViewSynchronizerFactory.GetConfigureConstructorsXmlTreeViewSynchronizer
             (
                 configureConstructorsForm
@@ -61,6 +65,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
             catch (LogicBuilderException ex)
             {
                 configureConstructorsForm.SetErrorMessage(ex.Message);
+            }
+            finally
+            {
+                foreach (RadTreeNode node in configureConstructorsForm.CutTreeNodes)
+                    _configureConstructorsCutImageHelper.SetNormalImage(node);
             }
         }
     }

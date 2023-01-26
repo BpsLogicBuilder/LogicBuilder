@@ -47,6 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
         private readonly EditConnectorObjectTypesCommand _editConnectorObjectTypesCommand;
         private readonly EditConstructorsCommand _editConstructorsCommand;
+        private readonly EditFragmentsCommand _editFragmentsCommand;
         private readonly EditFunctionsCommand _editFunctionsCommand;
         private readonly EditProjectPropertiesCommand _editProjectPropertiesCommand;
         private readonly EditVariablesCommand _editVariablesCommand;
@@ -95,6 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
             EditConnectorObjectTypesCommand editConnectorObjectTypesCommand,
             EditConstructorsCommand editConstructorsCommand,
+            EditFragmentsCommand editFragmentsCommand,
             EditFunctionsCommand editFunctionsCommand,
             EditProjectPropertiesCommand editProjectPropertiesCommand,
             EditVariablesCommand editVariablesCommand,
@@ -138,6 +140,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _uiNotificationService = uiNotificationService;
             _editConnectorObjectTypesCommand = editConnectorObjectTypesCommand;
             _editConstructorsCommand = editConstructorsCommand;
+            _editFragmentsCommand = editFragmentsCommand;
             _editFunctionsCommand = editFunctionsCommand;
             _editProjectPropertiesCommand = editProjectPropertiesCommand;
             _editVariablesCommand = editVariablesCommand;
@@ -676,6 +679,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             (
                 this.radMenuItemConstructors,
                 _editConstructorsCommand
+            );
+            AddClickCommand
+            (
+                this.radMenuItemXMLFragments,
+                _editFragmentsCommand
             );
             AddClickCommand
             (

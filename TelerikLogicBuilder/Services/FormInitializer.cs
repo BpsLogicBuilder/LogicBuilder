@@ -67,6 +67,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             form.ControlBox = false;
         }
 
+        public void SetToConfigFragmentSize(Form form)
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return;
+
+            Rectangle area = NativeMethods.GetScreenArea();
+
+            form.Size = new Size(form.Width, area.Height - 100);
+        }
+
         public void SetToolTipDefaults(ToolTip toolTip)
         {
             toolTip.AutoPopDelay = 5000;

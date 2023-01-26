@@ -889,6 +889,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unique name for the folder..
+        /// </summary>
+        internal static string constrConfigFolderNameHelp {
+            get {
+                return ResourceManager.GetString("constrConfigFolderNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name of the generic argument used by this parameter..
         /// </summary>
         internal static string constrConfigGenericArgumentNameHelp {
@@ -1416,6 +1425,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string defaultNewFolderName {
             get {
                 return ResourceManager.GetString("defaultNewFolderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NewFragment.
+        /// </summary>
+        internal static string defaultNewFragmentName {
+            get {
+                return ResourceManager.GetString("defaultNewFragmentName", resourceCulture);
             }
         }
         
@@ -3085,6 +3103,42 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unique name for the folder..
+        /// </summary>
+        internal static string fragmentConfigFolderNameHelp {
+            get {
+                return ResourceManager.GetString("fragmentConfigFolderNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The XML fragment is invalid..
+        /// </summary>
+        internal static string fragmentConfigInvalidXmlFragment {
+            get {
+                return ResourceManager.GetString("fragmentConfigInvalidXmlFragment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique name for the XML data fragment..
+        /// </summary>
+        internal static string fragmentConfigNameHelp {
+            get {
+                return ResourceManager.GetString("fragmentConfigNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The XML data to be added during editing..
+        /// </summary>
+        internal static string fragmentConfigXmlNameHelp {
+            get {
+                return ResourceManager.GetString("fragmentConfigXmlNameHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XML Data Fragment.
         /// </summary>
         internal static string fragmentNodeDescription {
@@ -3117,6 +3171,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string funcConfigCastReferenceAsHelp {
             get {
                 return ResourceManager.GetString("funcConfigCastReferenceAsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique name for the folder..
+        /// </summary>
+        internal static string funcConfigFolderNameHelp {
+            get {
+                return ResourceManager.GetString("funcConfigFolderNameHelp", resourceCulture);
             }
         }
         
@@ -4399,6 +4462,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fragment.
+        /// </summary>
+        internal static string mnuItemAddFragmentText {
+            get {
+                return ResourceManager.GetString("mnuItemAddFragmentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generic Parameter....
         /// </summary>
         internal static string mnuItemAddGenericParameterText {
@@ -4773,6 +4845,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemReplaceWithObjectParameterText {
             get {
                 return ResourceManager.GetString("mnuItemReplaceWithObjectParameterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        internal static string mnuItemSelectAllText {
+            get {
+                return ResourceManager.GetString("mnuItemSelectAllText", resourceCulture);
             }
         }
         
@@ -5988,6 +6069,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string varConfigElementControlHelp {
             get {
                 return ResourceManager.GetString("varConfigElementControlHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique name for the folder..
+        /// </summary>
+        internal static string varConfigFolderNameHelp {
+            get {
+                return ResourceManager.GetString("varConfigFolderNameHelp", resourceCulture);
             }
         }
         

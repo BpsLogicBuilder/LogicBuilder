@@ -1,7 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Services.Configuration;
 
@@ -14,6 +18,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IApplicationXmlParser, ApplicationXmlParser>()
                 .AddSingleton<IBuiltInFunctionsLoader, BuiltInFunctionsLoader>()
                 .AddSingleton<IConfigurationService, ConfigurationService>()
+                .AddSingleton<IConfigureConstructorsCutImageHelper, ConfigureConstructorsCutImageHelper>()
+                .AddSingleton<IConfigureFragmentsCutImageHelper, ConfigureFragmentsCutImageHelper>()
+                .AddSingleton<IConfigureFunctionsCutImageHelper, ConfigureFunctionsCutImageHelper>()
+                .AddSingleton<IConfigureVariablesCutImageHelper, ConfigureVariablesCutImageHelper>()
                 .AddSingleton<ICreateConstructors, CreateConstructors>()
                 .AddSingleton<ICreateDefaultApplication, CreateDefaultApplication>()
                 .AddSingleton<ICreateFragments, CreateFragments>()
@@ -49,6 +57,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConfigureConstructorsControlFactories()
                 .AddConfigureConstructorsFactories()
                 .AddConfigureExcludedModulesCommandFactories()
+                .AddConfigureFragmentsCommandFactories()
+                .AddConfigureFragmentsControlFactories()
+                .AddConfigureFragmentsFactories()
                 .AddConfigureFunctionControlCommandFactories()
                 .AddConfigureFunctionsCommandFactories()
                 .AddConfigureFunctionsControlFactories()

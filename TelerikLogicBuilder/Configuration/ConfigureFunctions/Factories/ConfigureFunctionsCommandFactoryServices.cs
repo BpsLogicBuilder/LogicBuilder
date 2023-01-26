@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -178,6 +179,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureFunctionsForm => new ConfigureFunctionsCutCommand
                     (
+                        provider.GetRequiredService<IConfigureFunctionsCutImageHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         configureFunctionsForm
                     )
@@ -220,6 +222,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureFunctionsForm => new ConfigureFunctionsPasteCommand
                     (
+                        provider.GetRequiredService<IConfigureFunctionsCutImageHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureFunctionsForm

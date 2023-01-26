@@ -16,7 +16,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
-using ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;

@@ -129,7 +129,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 throw _exceptionHelper.CriticalException("{2ABA428B-5D2C-4546-989E-A0BE528BF909}");
             }
 
-            RadTreeNode? previousParent = (RadTreeNode?)treeNode.Parent;
+            RadTreeNode? previousParent = treeNode.Parent;
             if (previousParent == null)
                 throw _exceptionHelper.CriticalException("{60181DBC-07DC-40FB-99A7-D7FC503C05A7}");
 

@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
@@ -29,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         private readonly Func<IList<string>, IConfigureExcludedModulesForm> _getConfigureExcludedModules;
         private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
         //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
+        private readonly Func<bool, IConfigureFragmentsForm> _getConfigureFragmentsForm;
         private readonly Func<bool, IConfigureFunctionsForm> _getConfigureFunctionsForm;
         private readonly Func<IList<string>, Type, IConfigureLiteralDomainForm> _getConfigureLiteralDomainForm;
         private readonly Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> _getConfigureLiteralListDefaultValueForm;
@@ -49,6 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> getConfigureFunctionGenericArgumentsForm,
             //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
 
+            Func<bool, IConfigureFragmentsForm> getConfigureFragmentsForm,
             Func<bool, IConfigureFunctionsForm> getConfigureFunctionsForm,
             Func<IList<string>, Type, IConfigureLiteralDomainForm> getConfigureLiteralDomainForm,
             Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> getConfigureLiteralListDefaultValueForm,
@@ -64,6 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             _getConfigureConstructorsForm = getConfigureConstructorsForm;
             _getConfigureExcludedModules = getConfigureExcludedModules;
             _getConfigureFunctionGenericArgumentsForm = getConfigureFunctionGenericArgumentsForm;
+            _getConfigureFragmentsForm = getConfigureFragmentsForm;
             _getConfigureFunctionsForm = getConfigureFunctionsForm;
             _getConfigureLiteralDomainForm = getConfigureLiteralDomainForm;
             _getConfigureLiteralListDefaultValueForm = getConfigureLiteralListDefaultValueForm;
@@ -107,6 +111,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
         {
             _scopedService = _getConfigureFunctionGenericArgumentsForm(xmlDocument, configuredGenericArgumentNames, memberParameters, genericTypeDefinition);
             return (IConfigureGenericArgumentsForm)_scopedService;
+        }
+
+        public IConfigureFragmentsForm GetConfigureFragmentsForm(bool openedAsReadOnly)
+        {
+            _scopedService = _getConfigureFragmentsForm(openedAsReadOnly);
+            return (IConfigureFragmentsForm)_scopedService;
         }
 
         public IConfigureFunctionsForm GetConfigureFunctionsForm(bool openedAsReadOnly)

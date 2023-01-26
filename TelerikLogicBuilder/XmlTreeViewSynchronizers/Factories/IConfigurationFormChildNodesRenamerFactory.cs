@@ -12,6 +12,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories
         IConfigureFragmentsChildNodesRenamer GetConfigureFragmentsChildNodesRenamer(IConfigureFragmentsForm configureFragmentsForm);
         IConfigureFunctionsChildNodesRenamer GetConfigureFunctionsChildNodesRenamer(IConfigureFunctionsForm configureFunctionsForm);
         IConfigureVariablesChildNodesRenamer GetConfigureVariablesChildNodesRenamer(IConfigureVariablesForm configureVariablesForm);
-
     }
 }

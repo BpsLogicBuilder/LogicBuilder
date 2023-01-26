@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -104,6 +105,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesCutCommand
                     (
+                        provider.GetRequiredService<IConfigureVariablesCutImageHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         configureVariablesForm
                     )
@@ -146,6 +148,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     configureVariablesForm => new ConfigureVariablesPasteCommand
                     (
+                        provider.GetRequiredService<IConfigureVariablesCutImageHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlTreeViewSynchronizerFactory>(),
                         configureVariablesForm

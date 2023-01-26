@@ -66,6 +66,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 )
                 .AddTransient<EditConnectorObjectTypesCommand>()
                 .AddTransient<EditConstructorsCommand>()
+                .AddTransient<EditFragmentsCommand>()
                 .AddTransient<EditFunctionsCommand>()
                 .AddTransient<EditProjectPropertiesCommand>()
                 .AddTransient<EditVariablesCommand>()

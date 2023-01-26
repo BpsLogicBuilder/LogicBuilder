@@ -48,6 +48,8 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public DialogResult DialogResult => throw new NotImplementedException();
 
+        public HashSet<string> FragmentNames => throw new NotImplementedException();
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void CheckEnableImportButton()

@@ -56,13 +56,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             {
                 cutTreeNode.ImageIndex = ImageIndexes.CUTTABLEFILEIMAGEINDEX;
             }
-            else if (cutTreeNode.Expanded)
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTOPENEDFOLDERIMAGEINDEX;
-            }
             else if (_treeViewService.IsFolderNode(cutTreeNode))
             {
-                cutTreeNode.ImageIndex = ImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX;
+                cutTreeNode.ImageIndex = cutTreeNode.Expanded ? ImageIndexes.CUTOPENEDFOLDERIMAGEINDEX : ImageIndexes.CUTCLOSEDFOLDERIMAGEINDEX;
             }
         }
 
@@ -80,13 +76,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             {
                 cutTreeNode.ImageIndex = ImageIndexes.TABLEFILEIMAGEINDEX;
             }
-            else if (cutTreeNode.Expanded)
-            {
-                cutTreeNode.ImageIndex = ImageIndexes.OPENEDFOLDERIMAGEINDEX;
-            }
             else if (_treeViewService.IsFolderNode(cutTreeNode))
             {
-                cutTreeNode.ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
+                cutTreeNode.ImageIndex = cutTreeNode.Expanded ? ImageIndexes.OPENEDFOLDERIMAGEINDEX : ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
             }
         }
     }

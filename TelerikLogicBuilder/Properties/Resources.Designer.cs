@@ -293,6 +293,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CutFile {
+            get {
+                object obj = ResourceManager.GetObject("CutFile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CutFunctionSelector {
             get {
                 object obj = ResourceManager.GetObject("CutFunctionSelector", resourceCulture);

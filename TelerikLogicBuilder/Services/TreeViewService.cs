@@ -174,7 +174,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 || treeNode.ImageIndex == ImageIndexes.FILEIMAGEINDEX
                 || treeNode.ImageIndex == ImageIndexes.CUTVSDXFILEIMAGEINDEX
                 || treeNode.ImageIndex == ImageIndexes.CUTVISIOFILEIMAGEINDEX
-                || treeNode.ImageIndex == ImageIndexes.CUTTABLEFILEIMAGEINDEX;
+                || treeNode.ImageIndex == ImageIndexes.CUTTABLEFILEIMAGEINDEX
+                || treeNode.ImageIndex == ImageIndexes.CUTFILEIMAGEINDEX;
         }
 
         public bool IsFolderNode(RadTreeNode treeNode)

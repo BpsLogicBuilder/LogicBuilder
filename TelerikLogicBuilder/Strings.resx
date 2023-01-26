@@ -386,6 +386,9 @@
 	<data name="constrConfigElementControlHelp" xml:space="preserve">
     <value>Specify the control used for updating a list element in the flow diagram shape.</value>
   </data>
+	<data name="constrConfigFolderNameHelp" xml:space="preserve">
+    <value>Unique name for the folder.</value>
+  </data>
 	<data name="constrConfigGenericArgumentNameHelp" xml:space="preserve">
     <value>The name of the generic argument used by this parameter.</value>
   </data>
@@ -530,6 +533,9 @@
   </data>
 	<data name="defaultNewFolderName" xml:space="preserve">
     <value>NewFolder</value>
+  </data>
+	<data name="defaultNewFragmentName" xml:space="preserve">
+    <value>NewFragment</value>
   </data>
 	<data name="defaultNewFunctionName" xml:space="preserve">
     <value>NewFunction</value>
@@ -744,6 +750,18 @@
     <value>{0} [Read-Only]</value>
     <comment>0=FileName</comment>
   </data>
+	<data name="fragmentConfigFolderNameHelp" xml:space="preserve">
+    <value>Unique name for the folder.</value>
+  </data>
+	<data name="fragmentConfigInvalidXmlFragment" xml:space="preserve">
+    <value>The XML fragment is invalid.</value>
+  </data>
+	<data name="fragmentConfigNameHelp" xml:space="preserve">
+    <value>Unique name for the XML data fragment.</value>
+  </data>
+	<data name="fragmentConfigXmlNameHelp" xml:space="preserve">
+    <value>The XML data to be added during editing.</value>
+  </data>
 	<data name="fragmentNodeDescription" xml:space="preserve">
     <value>XML Data Fragment</value>
   </data>
@@ -756,6 +774,9 @@
   </data>
 	<data name="funcConfigCastReferenceAsHelp" xml:space="preserve">
     <value>Each segment (period delimited) contains a tile (~)(no cast required) or the fully qualified class name for the corresponding segment in the Reference Name when a cast is required for the segment.</value>
+  </data>
+	<data name="funcConfigFolderNameHelp" xml:space="preserve">
+    <value>Unique name for the folder.</value>
   </data>
 	<data name="funcConfigFunctionCategoryHelp" xml:space="preserve">
     <value>Specifies a semantic grouping for the function describing its usage (does it display a dialog or does it simply run a routine).</value>
@@ -1209,6 +1230,9 @@
 	<data name="mnuItemAddFileText" xml:space="preserve">
     <value>Add File...</value>
   </data>
+	<data name="mnuItemAddFragmentText" xml:space="preserve">
+    <value>Fragment</value>
+  </data>
 	<data name="mnuItemAddGenericParameterText" xml:space="preserve">
     <value>Generic Parameter...</value>
   </data>
@@ -1334,6 +1358,9 @@
   </data>
 	<data name="mnuItemReplaceWithObjectParameterText" xml:space="preserve">
     <value>Replace with Object Parameter</value>
+  </data>
+	<data name="mnuItemSelectAllText" xml:space="preserve">
+    <value>Select All</value>
   </data>
 	<data name="mnuItemToAssemblyQualifiedName" xml:space="preserve">
     <value>To Assembly Qualified Name</value>
@@ -1704,6 +1731,9 @@
   </data>
 	<data name="varConfigElementControlHelp" xml:space="preserve">
     <value>Control used to update a list element value at design-time.</value>
+  </data>
+	<data name="varConfigFolderNameHelp" xml:space="preserve">
+    <value>Unique name for the folder.</value>
   </data>
 	<data name="varConfigListControlHelp" xml:space="preserve">
     <value>Control used for the list at design time. It can be a list form or hashset form.</value>

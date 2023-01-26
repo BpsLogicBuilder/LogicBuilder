@@ -5,6 +5,8 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
@@ -143,6 +145,27 @@ namespace Microsoft.Extensions.DependencyInjection
                         configuredGenericArgumentNames,
                         memberParameters,
                         genericTypeDefinition
+                    )
+                )
+                .AddTransient<Func<bool, IConfigureFragmentsForm>>
+                (
+                    provider =>
+                    openedAsReadOnly => new ConfigureFragmentsForm
+                    (
+                        provider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                        provider.GetRequiredService<IConfigureFragmentsCommandFactory>(),
+                        provider.GetRequiredService<IConfigureFragmentsControlFactory>(),
+                        provider.GetRequiredService<IConfigureFragmentsFactory>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILoadFragments>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITreeViewBuilderFactory>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IUpdateFragments>(),
+                        openedAsReadOnly
                     )
                 )
                 .AddTransient<Func<bool, IConfigureFunctionsForm>>

@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         void SetCenterScreen(Form form);
         void SetFormDefaults(Form form, int minHeight);
         void SetProgressFormDefaults(Form form, int minHeight);
+        void SetToConfigFragmentSize(Form form);
         void SetToolTipDefaults(ToolTip toolTip);
     }
 }

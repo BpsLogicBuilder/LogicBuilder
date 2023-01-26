@@ -22,6 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         configureVariablesForm
                     )
                 )
+                .AddTransient<IConfigureVariablesFactory, ConfigureVariablesFactory>()
                 .AddTransient<Func<IConfigureVariablesForm, ConfigureVariablesTreeView>>
                 (
                     provider =>
@@ -30,8 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureVariablesFactory>(),
                         configureVariablesForm
                     )
-                )
-                .AddTransient<IConfigureVariablesFactory, ConfigureVariablesFactory>();
+                );
         }
     }
 }
