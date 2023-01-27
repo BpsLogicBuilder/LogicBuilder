@@ -36,34 +36,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
         {
             try
             {
-                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(configureVariablesForm.TreeView);
-                if (selectedNodes.Count == 0
-                    || configureVariablesForm.TreeView.Nodes[0].Selected)
-                    return;
-
-                if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
-                    throw new ArgumentException($"{nameof(selectedNodes)}: {{DB1748D2-3EFD-4CA2-9205-DAF077A3C1B7}}");
-
-                DialogResult dialogResult = DisplayMessage.ShowQuestion
-                (
-                    (Control)configureVariablesForm,
-                    Strings.deleteSelectedItems,
-                    ((Control)configureVariablesForm).RightToLeft,
-                    RadMessageIcon.Exclamation
-                );
-
-                if (dialogResult != DialogResult.OK)
-                    return;
-
-                foreach (RadTreeNode selectedNode in selectedNodes)
-                    _configureVariablesXmlTreeViewSynchronizer.DeleteNode((StateImageRadTreeNode)selectedNode);
-
-                configureVariablesForm.CheckEnableImportButton();
+                configureVariablesForm.TreeView.BeginUpdate();
+                Delete();
             }
             catch (LogicBuilderException ex)
             {
                 configureVariablesForm.SetErrorMessage(ex.Message);
             }
+            finally
+            {
+                configureVariablesForm.TreeView.EndUpdate();
+            }
+        }
+
+        private void Delete()
+        {
+            IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(configureVariablesForm.TreeView);
+            if (selectedNodes.Count == 0
+                || configureVariablesForm.TreeView.Nodes[0].Selected)
+                return;
+
+            if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
+                throw new ArgumentException($"{nameof(selectedNodes)}: {{DB1748D2-3EFD-4CA2-9205-DAF077A3C1B7}}");
+
+            DialogResult dialogResult = DisplayMessage.ShowQuestion
+            (
+                (Control)configureVariablesForm,
+                Strings.deleteSelectedItems,
+                ((Control)configureVariablesForm).RightToLeft,
+                RadMessageIcon.Exclamation
+            );
+
+            if (dialogResult != DialogResult.OK)
+                return;
+
+            foreach (RadTreeNode selectedNode in selectedNodes)
+                _configureVariablesXmlTreeViewSynchronizer.DeleteNode((StateImageRadTreeNode)selectedNode);
+
+            configureVariablesForm.CheckEnableImportButton();
         }
     }
 }

@@ -37,39 +37,49 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
         {
             try
             {
-                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(configureConstructorsForm.TreeView);
-                if (selectedNodes.Count == 0
-                    || configureConstructorsForm.TreeView.Nodes[0].Selected)
-                    return;
-
-                if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
-                    throw new ArgumentException($"{nameof(selectedNodes)}: {{428BE87F-4A55-4C7F-822F-4233941FD88A}}");
-
-                DialogResult dialogResult = DisplayMessage.ShowQuestion
-                (
-                    (Control)configureConstructorsForm,
-                    Strings.deleteSelectedItems,
-                    ((Control)configureConstructorsForm).RightToLeft,
-                    RadMessageIcon.Exclamation
-                );
-
-                if (dialogResult != DialogResult.OK)
-                    return;
-
-                foreach (RadTreeNode selectedNode in selectedNodes)
-                {
-                    if (_treeViewService.IsFolderNode(selectedNode) || _treeViewService.IsConstructorNode(selectedNode))
-                        _configureConstructorsXmlTreeViewSynchronizer.DeleteNode((StateImageRadTreeNode)selectedNode);
-                    else if (_treeViewService.IsParameterNode(selectedNode))
-                        _configureConstructorsXmlTreeViewSynchronizer.DeleteParameterNode((StateImageRadTreeNode)selectedNode);
-                }
-
-                configureConstructorsForm.CheckEnableImportButton();
+                configureConstructorsForm.TreeView.BeginUpdate();
+                Delete();
             }
             catch (LogicBuilderException ex)
             {
                 configureConstructorsForm.SetErrorMessage(ex.Message);
             }
+            finally
+            {
+                configureConstructorsForm.TreeView.EndUpdate();
+            }
+        }
+
+        private void Delete()
+        {
+            IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(configureConstructorsForm.TreeView);
+            if (selectedNodes.Count == 0
+                || configureConstructorsForm.TreeView.Nodes[0].Selected)
+                return;
+
+            if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
+                throw new ArgumentException($"{nameof(selectedNodes)}: {{428BE87F-4A55-4C7F-822F-4233941FD88A}}");
+
+            DialogResult dialogResult = DisplayMessage.ShowQuestion
+            (
+                (Control)configureConstructorsForm,
+                Strings.deleteSelectedItems,
+                ((Control)configureConstructorsForm).RightToLeft,
+                RadMessageIcon.Exclamation
+            );
+
+            if (dialogResult != DialogResult.OK)
+                return;
+
+            foreach (RadTreeNode selectedNode in selectedNodes)
+            {
+                if (_treeViewService.IsFolderNode(selectedNode) || _treeViewService.IsConstructorNode(selectedNode))
+                    _configureConstructorsXmlTreeViewSynchronizer.DeleteNode((StateImageRadTreeNode)selectedNode);
+                else if (_treeViewService.IsParameterNode(selectedNode))
+                    _configureConstructorsXmlTreeViewSynchronizer.DeleteParameterNode((StateImageRadTreeNode)selectedNode);
+            }
+
+            configureConstructorsForm.CheckEnableImportButton();
         }
     }
 }

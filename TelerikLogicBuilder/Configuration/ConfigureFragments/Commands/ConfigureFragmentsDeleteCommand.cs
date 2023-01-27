@@ -35,34 +35,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Command
         {
             try
             {
-                IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(configureFragmentsForm.TreeView);
-                if (selectedNodes.Count == 0
-                    || configureFragmentsForm.TreeView.Nodes[0].Selected)
-                    return;
-
-                if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
-                    throw new ArgumentException($"{nameof(selectedNodes)}: {{8CE9A4D5-FBDE-4A28-8043-C518506A7E71}}");
-
-                DialogResult dialogResult = DisplayMessage.ShowQuestion
-                (
-                    (Control)configureFragmentsForm,
-                    Strings.deleteSelectedItems,
-                    ((Control)configureFragmentsForm).RightToLeft,
-                    RadMessageIcon.Exclamation
-                );
-
-                if (dialogResult != DialogResult.OK)
-                    return;
-
-                foreach (RadTreeNode selectedNode in selectedNodes)
-                    _configureFragmentsXmlTreeViewSynchronizer.DeleteNode(selectedNode);
-
-                configureFragmentsForm.CheckEnableImportButton();
+                configureFragmentsForm.TreeView.BeginUpdate();
+                Delete();
             }
             catch (LogicBuilderException ex)
             {
                 configureFragmentsForm.SetErrorMessage(ex.Message);
             }
+            finally
+            {
+                configureFragmentsForm.TreeView.EndUpdate();
+            }
+        }
+
+        private void Delete()
+        {
+            IList<RadTreeNode> selectedNodes = _treeViewService.GetSelectedNodes(configureFragmentsForm.TreeView);
+            if (selectedNodes.Count == 0
+                || configureFragmentsForm.TreeView.Nodes[0].Selected)
+                return;
+
+            if (_treeViewService.CollectionIncludesNodeAndDescendant(selectedNodes))
+                throw new ArgumentException($"{nameof(selectedNodes)}: {{8CE9A4D5-FBDE-4A28-8043-C518506A7E71}}");
+
+            DialogResult dialogResult = DisplayMessage.ShowQuestion
+            (
+                (Control)configureFragmentsForm,
+                Strings.deleteSelectedItems,
+                ((Control)configureFragmentsForm).RightToLeft,
+                RadMessageIcon.Exclamation
+            );
+
+            if (dialogResult != DialogResult.OK)
+                return;
+
+            foreach (RadTreeNode selectedNode in selectedNodes)
+                _configureFragmentsXmlTreeViewSynchronizer.DeleteNode(selectedNode);
+
+            configureFragmentsForm.CheckEnableImportButton();
         }
     }
 }
