@@ -953,6 +953,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SortAscending_16x {
+            get {
+                object obj = ResourceManager.GetObject("SortAscending_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SychronizeList {
             get {
                 object obj = ResourceManager.GetObject("SychronizeList", resourceCulture);
@@ -1016,6 +1026,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Properties {
         internal static System.Drawing.Bitmap treeView {
             get {
                 object obj = ResourceManager.GetObject("treeView", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TreeView_16x {
+            get {
+                object obj = ResourceManager.GetObject("TreeView_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
