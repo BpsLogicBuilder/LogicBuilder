@@ -103,7 +103,7 @@
             this.tableLayoutPanel.Controls.Add(this.lblGpGenericArgumentName, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.lblGpOptional, 1, 5);
             this.tableLayoutPanel.Controls.Add(this.lblGpComments, 1, 7);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
