@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.radGroupBoxMessages = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelMessages = new Telerik.WinControls.UI.RadPanel();
+            this.radPanelMessages = new Telerik.WinControls.UI.RadScrollablePanel();
             this.radLabelMessages = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxMessages)).BeginInit();
             this.radGroupBoxMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
+            this.radPanelMessages.PanelContainer.SuspendLayout();
             this.radPanelMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelMessages)).BeginInit();
             this.SuspendLayout();
@@ -52,10 +53,14 @@
             // 
             // radPanelMessages
             // 
-            this.radPanelMessages.Controls.Add(this.radLabelMessages);
             this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelMessages.Location = new System.Drawing.Point(2, 18);
             this.radPanelMessages.Name = "radPanelMessages";
+            // 
+            // radPanelMessages.PanelContainer
+            // 
+            this.radPanelMessages.PanelContainer.Controls.Add(this.radLabelMessages);
+            this.radPanelMessages.PanelContainer.Size = new System.Drawing.Size(502, 171);
             this.radPanelMessages.Size = new System.Drawing.Size(504, 173);
             this.radPanelMessages.TabIndex = 0;
             // 
@@ -75,6 +80,7 @@
             this.Size = new System.Drawing.Size(508, 193);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxMessages)).EndInit();
             this.radGroupBoxMessages.ResumeLayout(false);
+            this.radPanelMessages.PanelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
             this.radPanelMessages.ResumeLayout(false);
             this.radPanelMessages.PerformLayout();
@@ -86,7 +92,7 @@
         #endregion
 
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxMessages;
-        private Telerik.WinControls.UI.RadPanel radPanelMessages;
+        private Telerik.WinControls.UI.RadScrollablePanel radPanelMessages;
         private Telerik.WinControls.UI.RadLabel radLabelMessages;
     }
 }
