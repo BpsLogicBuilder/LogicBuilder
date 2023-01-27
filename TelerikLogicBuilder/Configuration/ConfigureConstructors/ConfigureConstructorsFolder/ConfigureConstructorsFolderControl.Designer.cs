@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBoxFolder = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelFolder = new Telerik.WinControls.UI.RadPanel();
+            this.radPanelFolder = new Telerik.WinControls.UI.RadScrollablePanel();
             this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.lblFolderName = new Telerik.WinControls.UI.RadLabel();
@@ -37,6 +37,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxFolder)).BeginInit();
             this.groupBoxFolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelFolder)).BeginInit();
+            this.radPanelFolder.PanelContainer.SuspendLayout();
             this.radPanelFolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
             this.radPanelTableParent.SuspendLayout();
@@ -59,10 +60,14 @@
             // 
             // radPanelFolder
             // 
-            this.radPanelFolder.Controls.Add(this.radPanelTableParent);
             this.radPanelFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelFolder.Location = new System.Drawing.Point(2, 18);
             this.radPanelFolder.Name = "radPanelFolder";
+            // 
+            // radPanelFolder.PanelContainer
+            // 
+            this.radPanelFolder.PanelContainer.Controls.Add(this.radPanelTableParent);
+            this.radPanelFolder.PanelContainer.Size = new System.Drawing.Size(849, 278);
             this.radPanelFolder.Size = new System.Drawing.Size(851, 280);
             this.radPanelFolder.TabIndex = 0;
             // 
@@ -123,6 +128,7 @@
             this.Size = new System.Drawing.Size(855, 300);
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxFolder)).EndInit();
             this.groupBoxFolder.ResumeLayout(false);
+            this.radPanelFolder.PanelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelFolder)).EndInit();
             this.radPanelFolder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
@@ -138,7 +144,7 @@
         #endregion
 
         private Telerik.WinControls.UI.RadGroupBox groupBoxFolder;
-        private Telerik.WinControls.UI.RadPanel radPanelFolder;
+        private Telerik.WinControls.UI.RadScrollablePanel radPanelFolder;
         private Telerik.WinControls.UI.RadPanel radPanelTableParent;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private Telerik.WinControls.UI.RadLabel lblFolderName;

@@ -70,11 +70,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
             if (treeNode is not ArrayIndexerTreeNode arrayIndexerTreeNode)
                 throw _exceptionHelper.CriticalException("{0FCBEE2F-6FFA-46BF-88A3-ACE6492C7601}");
 
-            AddEventHandlers();
+            RemoveEventHandlers();
             txtMemberName.Text = arrayIndexerTreeNode.MemberText;
             cmbCastVariableAs.Text = arrayIndexerTreeNode.CastVariableDefinition;
             cmbVariableCategory.SelectedValue = arrayIndexerTreeNode.VariableCategory;
-            RemoveEventHandlers();
+            AddEventHandlers();
         }
 
         public void SetErrorMessage(string message)
@@ -106,6 +106,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         private void Initialize()
         {

@@ -73,11 +73,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
             if (treeNode is not IndexerTreeNode indexerTreeNode)
                 throw _exceptionHelper.CriticalException("{B6A4A71B-3C41-48AA-A758-B2961200B795}");
 
-            AddEventHandlers();
+            RemoveEventHandlers();
             txtMemberName.Text = indexerTreeNode.MemberText;
             cmbCastVariableAs.Text = indexerTreeNode.CastVariableDefinition;
             cmbVariableCategory.SelectedValue = indexerTreeNode.VariableCategory;
-            RemoveEventHandlers();
+            AddEventHandlers();
         }
 
         public void SetErrorMessage(string message) 
@@ -109,6 +109,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         private void Initialize()
         {

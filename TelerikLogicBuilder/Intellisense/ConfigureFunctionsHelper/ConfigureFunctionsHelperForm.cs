@@ -196,16 +196,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
             listNewConstructors.Items.AddRange(sortedDictionary.Values.Select(i => new RadListDataItem(i.ToString(), i)));
 
-            this.selectedFunction = _functionManager.GetFunction
-            (
-                _intellisenseFunctionsFormManager.TypeName,
-                _intellisenseFunctionsFormManager.ReferenceName,
-                _intellisenseFunctionsFormManager.ReferenceDefinition,
-                _intellisenseFunctionsFormManager.CastReferenceAs,
-                _intellisenseFunctionsFormManager.ReferenceCategory,
-                ParametersLayout.Sequential,
-                treeNode.MInfo
-            );
+            try
+            {
+                this.selectedFunction = _functionManager.GetFunction
+                (
+                    _intellisenseFunctionsFormManager.TypeName,
+                    _intellisenseFunctionsFormManager.ReferenceName,
+                    _intellisenseFunctionsFormManager.ReferenceDefinition,
+                    _intellisenseFunctionsFormManager.CastReferenceAs,
+                    _intellisenseFunctionsFormManager.ReferenceCategory,
+                    ParametersLayout.Sequential,
+                    treeNode.MInfo
+                );
+            }
+            catch (LogicBuilderException ex)
+            {
+                SetErrorMessage(ex.Message);
+                btnOk.Enabled = false;
+                return;
+            }
 
             btnOk.Enabled = true;
         }
@@ -220,6 +229,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         private void Initialize()
         {

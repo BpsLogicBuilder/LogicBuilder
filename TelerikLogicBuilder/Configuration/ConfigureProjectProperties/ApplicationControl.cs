@@ -104,6 +104,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             this.configureProjectProperties.ValidateXmlDocument();
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             txtName.ReadOnly = true;
@@ -114,9 +120,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             txtResourceFilesDeployment.Validating += TxtResourceFileDeployment_Validating;
             txtRulesDeployment.Validating += TxtRulesDeployment_Validating;
 
-            radPanelApplication.AutoScroll = true;
-
-            ((BorderPrimitive)radPanelApplication.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+            CollapsePanelBorder(radPanelApplication);
+            CollapsePanelBorder(radPanelTableParent);
 
             InitializeReadOnlyTextBox(txtLoadAssemblyPaths, Strings.collectionIndicatorText);
             InitializeReadOnlyTextBox(txtExcludedModules, Strings.collectionIndicatorText);

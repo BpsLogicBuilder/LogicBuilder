@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBoxProperty = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelProperty = new Telerik.WinControls.UI.RadPanel();
+            this.radPanelProperty = new Telerik.WinControls.UI.RadScrollablePanel();
             this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.lblCastVariableAs = new Telerik.WinControls.UI.RadLabel();
@@ -37,6 +37,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxProperty)).BeginInit();
             this.groupBoxProperty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelProperty)).BeginInit();
+            this.radPanelProperty.PanelContainer.SuspendLayout();
             this.radPanelProperty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
             this.radPanelTableParent.SuspendLayout();
@@ -58,10 +59,14 @@
             // 
             // radPanelProperty
             // 
-            this.radPanelProperty.Controls.Add(this.radPanelTableParent);
             this.radPanelProperty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelProperty.Location = new System.Drawing.Point(2, 18);
             this.radPanelProperty.Name = "radPanelProperty";
+            // 
+            // radPanelProperty.PanelContainer
+            // 
+            this.radPanelProperty.PanelContainer.Controls.Add(this.radPanelTableParent);
+            this.radPanelProperty.PanelContainer.Size = new System.Drawing.Size(849, 178);
             this.radPanelProperty.Size = new System.Drawing.Size(851, 180);
             this.radPanelProperty.TabIndex = 0;
             // 
@@ -128,6 +133,7 @@
             this.Size = new System.Drawing.Size(855, 200);
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxProperty)).EndInit();
             this.groupBoxProperty.ResumeLayout(false);
+            this.radPanelProperty.PanelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelProperty)).EndInit();
             this.radPanelProperty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
@@ -142,7 +148,7 @@
         #endregion
 
         private Telerik.WinControls.UI.RadGroupBox groupBoxProperty;
-        private Telerik.WinControls.UI.RadPanel radPanelProperty;
+        private Telerik.WinControls.UI.RadScrollablePanel radPanelProperty;
         private Telerik.WinControls.UI.RadPanel radPanelTableParent;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private Telerik.WinControls.UI.RadLabel lblCastVariableAs;

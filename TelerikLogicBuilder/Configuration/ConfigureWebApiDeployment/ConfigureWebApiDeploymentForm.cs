@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
+using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 {
@@ -37,6 +38,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 
         public WebApiDeployment WebApiDeployment { get; private set;  }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -44,8 +51,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
             this.FormClosing += ConfigureWebApiDeployment_FormClosing;
 
             radPanelUrls.AutoScroll = true;
-            ((BorderPrimitive)radPanelUrls.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
-            ((BorderPrimitive)radPanelTableParent.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+            CollapsePanelBorder(radPanelUrls);
+            CollapsePanelBorder(radPanelTableParent);
 
             _formInitializer.SetFormDefaults(this, 351);
 

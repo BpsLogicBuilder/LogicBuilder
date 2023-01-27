@@ -170,11 +170,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
                 errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.fieldSourceMustBeEmptyFormat, lblListLpPropertySourceParameter.Text, lblListLpElementControl.Text, Strings.dropdownTextParameterSourcedPropertyInput));
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             this.cmbListLpGenericArgumentName.ReadOnly = true;
             radPanelParameter.AutoScroll = true;
-            ((BorderPrimitive)radPanelParameter.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+            CollapsePanelBorder(radPanelParameter);
+            CollapsePanelBorder(radPanelTableParent);
             InitializeParameterControls();
             LoadParameterDropDownLists();
             InitializeClickCommands();

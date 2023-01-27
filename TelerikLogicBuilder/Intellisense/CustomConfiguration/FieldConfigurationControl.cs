@@ -6,7 +6,6 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
-using System;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -55,9 +54,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
             if (treeNode is not FieldTreeNode fieldTreeNode)
                 throw _exceptionHelper.CriticalException("{6DC2BD32-93C4-4BE4-8EA9-A2E4EA93CC4A}");
 
-            AddEventHandlers();
-            cmbCastVariableAs.Text = fieldTreeNode.CastVariableDefinition;
             RemoveEventHandlers();
+            cmbCastVariableAs.Text = fieldTreeNode.CastVariableDefinition;
+            AddEventHandlers();
         }
 
         public void SetErrorMessage(string message)
@@ -87,6 +86,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         private void Initialize()
         {

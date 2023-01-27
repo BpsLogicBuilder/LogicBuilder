@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.ConfigureVariablesFolder
@@ -84,10 +85,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             txtFolderName.TextChanged += TxtFolderName_TextChanged;
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             AddEventHandlers();
             InitializeFolderControls();
+            CollapsePanelBorder(radPanelFolder);
+            CollapsePanelBorder(radPanelTableParent);
         }
 
         private void InitializeFolderControls()

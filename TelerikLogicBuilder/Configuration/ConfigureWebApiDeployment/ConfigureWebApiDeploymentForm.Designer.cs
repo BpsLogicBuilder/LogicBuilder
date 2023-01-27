@@ -37,7 +37,7 @@
             this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBoxUrls = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelUrls = new Telerik.WinControls.UI.RadPanel();
+            this.radPanelUrls = new Telerik.WinControls.UI.RadScrollablePanel();
             this.lblPostFileDataUrl = new Telerik.WinControls.UI.RadLabel();
             this.lblDeleteRulesUrl = new Telerik.WinControls.UI.RadLabel();
             this.lblDeleteAllRulesUrl = new Telerik.WinControls.UI.RadLabel();
@@ -58,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxUrls)).BeginInit();
             this.radGroupBoxUrls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelUrls)).BeginInit();
+            this.radPanelUrls.PanelContainer.SuspendLayout();
             this.radPanelUrls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblPostFileDataUrl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblDeleteRulesUrl)).BeginInit();
@@ -188,10 +189,14 @@
             // 
             // radPanelUrls
             // 
-            this.radPanelUrls.Controls.Add(this.radPanelTableParent);
             this.radPanelUrls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelUrls.Location = new System.Drawing.Point(2, 18);
             this.radPanelUrls.Name = "radPanelUrls";
+            // 
+            // radPanelUrls.PanelContainer
+            // 
+            this.radPanelUrls.PanelContainer.Controls.Add(this.radPanelTableParent);
+            this.radPanelUrls.PanelContainer.Size = new System.Drawing.Size(937, 179);
             this.radPanelUrls.Size = new System.Drawing.Size(939, 181);
             this.radPanelUrls.TabIndex = 0;
             // 
@@ -274,6 +279,7 @@
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxUrls)).EndInit();
             this.radGroupBoxUrls.ResumeLayout(false);
+            this.radPanelUrls.PanelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelUrls)).EndInit();
             this.radPanelUrls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lblPostFileDataUrl)).EndInit();
@@ -298,7 +304,7 @@
         private Telerik.WinControls.UI.RadPanel radPanelTableParent;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxUrls;
-        private Telerik.WinControls.UI.RadPanel radPanelUrls;
+        private Telerik.WinControls.UI.RadScrollablePanel radPanelUrls;
         private Telerik.WinControls.UI.RadTextBox txtDeleteAllRulesUrl;
         private Telerik.WinControls.UI.RadTextBox txtDeleteRulesUrl;
         private Telerik.WinControls.UI.RadTextBox txtPostFileDataUrl;

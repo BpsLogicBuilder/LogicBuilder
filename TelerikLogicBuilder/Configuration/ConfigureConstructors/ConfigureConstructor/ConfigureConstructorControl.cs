@@ -141,6 +141,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             radPanelConstructor.AutoScroll = true;
