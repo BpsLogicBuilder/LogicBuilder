@@ -139,8 +139,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureObject
 
         private void Initialize()
         {
-            radPanelParameter.AutoScroll = true;
-            AddEventHandlers();
             CollapsePanelBorder(radPanelParameter);
             CollapsePanelBorder(radPanelTableParent);
             InitializeParameterControls();

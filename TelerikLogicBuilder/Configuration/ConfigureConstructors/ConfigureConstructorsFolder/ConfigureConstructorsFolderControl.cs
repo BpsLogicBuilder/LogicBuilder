@@ -93,7 +93,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
 
         private void Initialize()
         {
-            AddEventHandlers();
             InitializeFolderControls();
             CollapsePanelBorder(radPanelFolder);
             CollapsePanelBorder(radPanelTableParent);

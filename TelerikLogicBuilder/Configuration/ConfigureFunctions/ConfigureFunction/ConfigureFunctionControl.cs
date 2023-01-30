@@ -201,7 +201,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
 
         private void Initialize()
         {
-            AddEventHandlers();
+            //AddEventHandlers(); Causes exception at 125% scaling: CmbReferenceCategory.SelectedValue is still null in FunctionControlsValidator.ValidateTypeName().
+            //Event handlers shouldn't run until all contols have been populated in SetControlValues().
             CollapsePanelBorder(radScrollablePanelFunction);
             CollapsePanelBorder(radPanelTableParent);
             InitializeFunctionControls();

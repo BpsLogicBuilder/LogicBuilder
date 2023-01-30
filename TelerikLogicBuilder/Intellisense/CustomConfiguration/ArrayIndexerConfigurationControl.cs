@@ -112,9 +112,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
 
         private void Initialize()
         {
-            radPanelArrayItem.AutoScroll = true;
             configuredItemHelperForm.ApplicationChanged += ConfiguredItemHelperForm_ApplicationChanged;
-            AddEventHandlers();
             CollapsePanelBorder(radPanelArrayItem);
             CollapsePanelBorder(radPanelTableParent);
             InitializeVariableControls();

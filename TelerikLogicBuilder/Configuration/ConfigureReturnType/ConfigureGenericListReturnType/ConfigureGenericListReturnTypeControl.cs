@@ -66,7 +66,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType.Config
 
         private void Initialize()
         {
-            AddEventHandlers();
             CollapsePanelBorder(radScrollablePanelReturnType);
             CollapsePanelBorder(radPanelTableParent);
             InitializeReturnTypeControls();

@@ -146,8 +146,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
 
         private void Initialize()
         {
-            radPanelConstructor.AutoScroll = true;
-            AddEventHandlers();
             CollapsePanelBorder(radPanelConstructor);
             CollapsePanelBorder(radPanelTableParent);
             InitializeConstructorControls();

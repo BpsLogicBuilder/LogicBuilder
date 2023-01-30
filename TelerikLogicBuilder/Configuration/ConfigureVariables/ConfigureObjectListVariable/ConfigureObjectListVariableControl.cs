@@ -215,15 +215,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         private void Initialize()
         {
-            radPanelVariable.AutoScroll = true;
-            CmbReferenceDefinition.Validating += CmbReferenceDefinition_Validating;
-            TxtCastReferenceAs.Validating += TxtCastReferenceAs_Validating;
-            TxtCastVariableAs.Validating += TxtCastVariableAs_Validating;
-            TxtMemberName.Validating += TxtMemberName_Validating;
-            TxtName.TextChanged += TxtName_TextChanged;
-            TxtName.Validating += TxtName_Validating;
-            TxtReferenceName.Validating += TxtReferenceName_Validating;
-            TxtTypeName.Validating += TxtTypeName_Validating;
             CollapsePanelBorder(radPanelVariable);
             CollapsePanelBorder(radPanelTableParent);
             InitializeVariableControls();
