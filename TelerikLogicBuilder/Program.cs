@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Prompts;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -68,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
-            Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = Properties.Settings.Default.themeName;
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = ThemeCollections.ThemeNames.Contains(Properties.Settings.Default.themeName) ? Properties.Settings.Default.themeName : ThemeCollections.ControlDefault;
             ShowSplashScreen();
 
             mdiParent = ServiceProvider.GetRequiredService<IMDIParent>();
