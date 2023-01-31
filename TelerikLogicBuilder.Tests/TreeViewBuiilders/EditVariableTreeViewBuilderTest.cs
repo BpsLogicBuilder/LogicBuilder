@@ -2,65 +2,77 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using Telerik.WinControls.UI;
 using TelerikLogicBuilder.Tests.Constants;
+using TelerikLogicBuilder.Tests.Mocks;
 using Xunit;
 
 namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
 {
-    public class SelectDocunentsTreeViewBuilderTest : IClassFixture<SelectDocunentsTreeViewBuilderFixture>
+    public class EditVariableTreeViewBuilderTest : IClassFixture<EditVariableTreeViewBuilderFixture>
     {
-        private readonly SelectDocunentsTreeViewBuilderFixture _fixture;
+        private readonly EditVariableTreeViewBuilderFixture _fixture;
 
-        public SelectDocunentsTreeViewBuilderTest(SelectDocunentsTreeViewBuilderFixture fixture)
+        public EditVariableTreeViewBuilderTest(EditVariableTreeViewBuilderFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Fact]
-        public void CanCreateSelectDocunentsTreeViewBuilder()
+        public void CreateEditVariableTreeViewBuilderThrows()
         {
-            //arrange
-            ISelectDocunentsTreeViewBuilder service = _fixture.ServiceProvider.GetRequiredService<ISelectDocunentsTreeViewBuilder>();
-
             //assert
-            Assert.NotNull(service);
+            Assert.Throws<InvalidOperationException>(_fixture.ServiceProvider.GetRequiredService<IEditVariableTreeViewBuilder>);
         }
 
         [Fact]
         public void CanBuildTreeView()
         {
             //arrange
-            ISelectDocunentsTreeViewBuilder service = _fixture.ServiceProvider.GetRequiredService<ISelectDocunentsTreeViewBuilder>();
+            ITreeViewBuilderFactory factory = _fixture.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>();
             RadTreeView radTreeView = new();
+            Dictionary<string, string> expandedNodes = new();
 
             //act
-            service.Build(radTreeView);
-            
+            factory.GetEditVariableTreeViewBuilder
+            (
+                new EditVariableControlMock(expandedNodes)
+            ).Build(radTreeView);
+
             //assert
             Assert.NotNull(radTreeView.Nodes[0]);
             Assert.True(radTreeView.Nodes[0].Nodes.Count > 0);
         }
     }
 
-    public class SelectDocunentsTreeViewBuilderFixture : IDisposable
+    public class EditVariableTreeViewBuilderFixture : IDisposable
     {
         internal IServiceProvider ServiceProvider;
         internal IProjectPropertiesItemFactory ProjectPropertiesItemFactory;
-		internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
+        internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
+        internal IEnumHelper EnumHelper;
+        internal ITypeHelper TypeHelper;
+        internal IVariableFactory VariableFactory;
 
-        public SelectDocunentsTreeViewBuilderFixture()
+        public EditVariableTreeViewBuilderFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
-			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
+            WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
+            EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
+            TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
+            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
             ConfigurationService.ProjectProperties = ProjectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
@@ -109,7 +121,42 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                 new HashSet<string>()
             );
 
+            ConfigurationService.VariableList = new VariableList
+            (
+                new Dictionary<string, VariableBase>
+                {
+
+                },
+                new TreeFolder("root", new List<string>(), new List<TreeFolder>())
+            );
+
+            foreach (LiteralVariableType enumValue in Enum.GetValues<LiteralVariableType>())
+            {
+                string variableName = $"{Enum.GetName(typeof(LiteralVariableType), enumValue)}Item";
+                ConfigurationService.VariableList.Variables.Add(variableName, GetLiteralVariable(variableName, enumValue));
+                ConfigurationService.VariableList.VariablesTreeFolder.FileNames.Add(variableName);
+            }
         }
+
+        LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
+            => VariableFactory.GetLiteralVariable
+            (
+                name,
+                name,
+                VariableCategory.StringKeyIndexer,
+                TypeHelper.ToId(EnumHelper.GetSystemType(literalVariableType)),
+                "",
+                "flowManager.FlowDataCache.Items",
+                "Field.Property.Property",
+                "",
+                ReferenceCategories.InstanceReference,
+                "",
+                literalVariableType,
+                LiteralVariableInputStyle.SingleLineTextBox,
+                "",
+                "",
+                new List<string>()
+            );
 
         public void Dispose()
         {

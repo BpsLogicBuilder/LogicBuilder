@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -16,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
         private readonly Func<IConfigureFunctionsForm, IConfigureFunctionsTreeViewBuilder> _getConfigureFunctionsTreeViewBuilder;
         private readonly Func<IConfigureVariablesForm, IConfigureVariablesTreeViewBuilder> _getConfigureVariablesTreeViewBuilder;
         private readonly Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> _getDocumentsExplorerTreeViewBuilder;
+        private readonly Func<IEditVariableControl, IEditVariableTreeViewBuilder> _getEditVariableTreeViewBuilder;
         private readonly Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder> _getRulesExplorerTreeViewBuilder;
 
         public TreeViewBuilderFactory(
@@ -24,6 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
             Func<IConfigureFunctionsForm, IConfigureFunctionsTreeViewBuilder> getConfigureFunctionsTreeViewBuilder,
             Func<IConfigureVariablesForm, IConfigureVariablesTreeViewBuilder> getConfigureVariablesTreeViewBuilder,
             Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> getDocumentsExplorerTreeViewBuilder,
+            Func<IEditVariableControl, IEditVariableTreeViewBuilder> getEditVariableTreeViewBuilder,
             Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder> getRulesExplorerTreeViewBuilder)
         {
             _getConfigureConstructorsTreeViewBuilder = getConfigureConstructorsTreeViewBuilder;
@@ -31,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
             _getConfigureFunctionsTreeViewBuilder = getConfigureFunctionsTreeViewBuilder;
             _getConfigureVariablesTreeViewBuilder = getConfigureVariablesTreeViewBuilder;
             _getDocumentsExplorerTreeViewBuilder = getDocumentsExplorerTreeViewBuilder;
+            _getEditVariableTreeViewBuilder = getEditVariableTreeViewBuilder;
             _getRulesExplorerTreeViewBuilder = getRulesExplorerTreeViewBuilder;
         }
 
@@ -48,6 +52,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
 
         public IDocumentsExplorerTreeViewBuilder GetDocumentsExplorerTreeViewBuilder(IDictionary<string, string> documentNames, DocumentExplorerErrorsList documentProfileErrors, IDictionary<string, string> expandedNodes)
             => _getDocumentsExplorerTreeViewBuilder(documentNames, documentProfileErrors, expandedNodes);
+
+        public IEditVariableTreeViewBuilder GetEditVariableTreeViewBuilder(IEditVariableControl editVariableControl)
+            => _getEditVariableTreeViewBuilder(editVariableControl);
 
         public IRulesExplorerTreeViewBuilder GetRulesExplorerTreeViewBuilder(IDictionary<string, string> expandedNodes)
             => _getRulesExplorerTreeViewBuilder(expandedNodes);
