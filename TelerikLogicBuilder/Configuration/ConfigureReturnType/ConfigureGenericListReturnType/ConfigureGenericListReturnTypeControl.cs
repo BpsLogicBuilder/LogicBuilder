@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -66,6 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType.Config
 
         private void Initialize()
         {
+            InitializeTableLayoutPanel();
             CollapsePanelBorder(radScrollablePanelReturnType);
             CollapsePanelBorder(radPanelTableParent);
             InitializeReturnTypeControls();
@@ -80,6 +82,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType.Config
             helpProvider.SetHelpString(this.cmbGeLiListType, Strings.retTypeListTypeHelp);
             toolTip.SetToolTip(this.lblGeLiGenericArgument, Strings.retTypeGenericArgumentHelp);
             toolTip.SetToolTip(this.lblGeLiListType, Strings.retTypeListTypeHelp);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 112 * 100;
+            float size_30 = 30F / 112 * 100;
+            float size_6 = 6F / 112 * 100;
+
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
         }
 
         private void LoadDropDowns()

@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -146,6 +147,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
 
         private void Initialize()
         {
+            radPanelConstructor.VerticalScrollBarState = ScrollState.AlwaysShow;
+            InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelConstructor);
             CollapsePanelBorder(radPanelTableParent);
             InitializeConstructorControls();
@@ -192,6 +195,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
             helperButtonTextBox.ReadOnly = true;
             helperButtonTextBox.Text = text;
             helperButtonTextBox.SetPaddingType(HelperButtonTextBox.PaddingType.Bold);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 184 * 100;
+            float size_30 = 30F / 184 * 100;
+            float size_6 = 6F / 184 * 100;
+
+            ((ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+
+            tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
+            tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
+            tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
+            tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
+            tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_30);
+            tableLayoutPanel.RowStyles[8] = new RowStyle(SizeType.Percent, size_6);
+            tableLayoutPanel.RowStyles[9] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(true);
         }
 
         private void RemoveEventHandlers()

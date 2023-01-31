@@ -235,6 +235,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
         private void Initialize()
         {
+            InitializeTableLayoutPanel();
             InitializeDialogFormMessageControl();
             InitializeApplicationDropDownList();
 
@@ -286,6 +287,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
             ((ISupportInitialize)this.radPanelMessages).EndInit();
             this.radPanelMessages.ResumeLayout(true);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 148 * 100;
+            float size_30 = 30F / 148 * 100;
+            float size_6 = 6F / 148 * 100;
+
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
         }
 
         private void Navigate(Control newEditingControl)

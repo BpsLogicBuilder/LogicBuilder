@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -60,6 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType.Config
 
         private void Initialize()
         {
+            InitializeTableLayoutPanel();
             CollapsePanelBorder(radScrollablePanelReturnType);
             CollapsePanelBorder(radPanelTableParent);
             InitializeReturnTypeControls();
@@ -72,6 +74,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType.Config
         {
             helpProvider.SetHelpString(cmbCoObjectType, Strings.retTypeObjectHelp);
             toolTip.SetToolTip(lblCoObjectType, Strings.retTypeObjectHelp);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 76 * 100;
+            float size_30 = 30F / 76 * 100;
+            float size_6 = 6F / 76 * 100;
+
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
         }
 
         private static void LoadDropDowns()

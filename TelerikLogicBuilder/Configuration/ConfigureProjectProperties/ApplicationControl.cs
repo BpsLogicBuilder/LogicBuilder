@@ -70,7 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 
             XmlElement applicationElement = _xmlDocumentHelpers.SelectSingleElement(this.XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> appElements = _xmlDocumentHelpers.GetChildElements(applicationElement).ToDictionary(e => e.Name);
-
+            RemoveEventHandlers();
             txtName.Text = applicationElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
             txtNickname.Text = applicationElement.GetAttribute(XmlDataConstants.NICKNAMEATTRIBUTE);
             txtActivityAssembly.Text = appElements[XmlDataConstants.ACTIVITYASSEMBLYELEMENT].InnerText;
@@ -79,6 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             txtActivityClass.Text = appElements[XmlDataConstants.ACTIVITYCLASSELEMENT].InnerText;
             txtResourceFilesDeployment.Text = appElements[XmlDataConstants.RESOURCEFILEDEPLOYMENTPATHELEMENT].InnerText;
             txtRulesDeployment.Text = appElements[XmlDataConstants.RULESDEPLOYMENTPATHELEMENT].InnerText;
+            AddEventHandlers();
         }
 
         public void UpdateXmlDocument(RadTreeNode treeNode)
@@ -104,6 +105,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             this.configureProjectProperties.ValidateXmlDocument();
         }
 
+        private void AddEventHandlers()
+        {
+            txtNickname.Validating += TxtNickname_Validating;
+            txtActivityAssembly.Validating += TxtActivityAssembly_Validating;
+            txtActivityAssemblyPath.Validating += TxtActivityAssemblyPath_Validating;
+            txtActivityClass.Validating += TxtActivityClass_Validating;
+            txtResourceFilesDeployment.Validating += TxtResourceFileDeployment_Validating;
+            txtRulesDeployment.Validating += TxtRulesDeployment_Validating;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
@@ -112,14 +123,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 
         private void Initialize()
         {
+            radPanelApplication.VerticalScrollBarState = ScrollState.AlwaysShow;
+            InitializeTableLayoutPanel();
             txtName.ReadOnly = true;
-            txtNickname.Validating += TxtNickname_Validating;
-            txtActivityAssembly.Validating += TxtActivityAssembly_Validating;
-            txtActivityAssemblyPath.Validating += TxtActivityAssemblyPath_Validating;
-            txtActivityClass.Validating += TxtActivityClass_Validating;
-            txtResourceFilesDeployment.Validating += TxtResourceFileDeployment_Validating;
-            txtRulesDeployment.Validating += TxtRulesDeployment_Validating;
-
             CollapsePanelBorder(radPanelApplication);
             CollapsePanelBorder(radPanelTableParent);
 
@@ -183,9 +189,56 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             helperButtonTextBox.SetPaddingType(HelperButtonTextBox.PaddingType.Bold);
         }
 
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 436 * 100;
+            float size_30 = 30F / 436 * 100;
+            float size_6 = 6F / 436 * 100;
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[8] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[9] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[10] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[11] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[12] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[13] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[14] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[15] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[16] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[17] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[18] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[19] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[20] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[21] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[22] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[23] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
+        }
+
         private void LoadRuntimeComboBox()
         {
             _radDropDownListHelper.LoadComboItems<RuntimeType>(cmbRuntime);
+        }
+
+        private void RemoveEventHandlers()
+        {
+            txtNickname.Validating -= TxtNickname_Validating;
+            txtActivityAssembly.Validating -= TxtActivityAssembly_Validating;
+            txtActivityAssemblyPath.Validating -= TxtActivityAssemblyPath_Validating;
+            txtActivityClass.Validating -= TxtActivityClass_Validating;
+            txtResourceFilesDeployment.Validating -= TxtResourceFileDeployment_Validating;
+            txtRulesDeployment.Validating -= TxtRulesDeployment_Validating;
         }
 
         private void UpdateErrorControl(IList<string> errors, CancelEventArgs e)

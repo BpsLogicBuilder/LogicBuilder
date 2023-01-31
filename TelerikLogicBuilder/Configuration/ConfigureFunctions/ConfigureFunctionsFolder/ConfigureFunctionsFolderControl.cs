@@ -1,11 +1,13 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.ConfigureFunctionsFolder
@@ -84,9 +86,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
             txtFolderName.TextChanged += TxtFolderName_TextChanged;
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
-            AddEventHandlers();
+            radScrollablePanelFolder.VerticalScrollBarState = ScrollState.AlwaysShow;
+            InitializeTableLayoutPanel();
+            CollapsePanelBorder(radScrollablePanelFolder);
+            CollapsePanelBorder(radPanelTableParent);
             InitializeFolderControls();
         }
 
@@ -94,6 +105,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
         {
             helpProvider.SetHelpString(txtFolderName, Strings.funcConfigFolderNameHelp);
             toolTip.SetToolTip(lblFolderName, Strings.funcConfigFolderNameHelp);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 76 * 100;
+            float size_30 = 30F / 76 * 100;
+            float size_6 = 6F / 76 * 100;
+
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
         }
 
         private void RemoveEventHandlers()

@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -178,8 +179,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
         private void Initialize()
         {
+            radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
+            InitializeTableLayoutPanel();
             this.cmbListLpGenericArgumentName.ReadOnly = true;
-            radPanelParameter.AutoScroll = true;
             CollapsePanelBorder(radPanelParameter);
             CollapsePanelBorder(radPanelTableParent);
             InitializeParameterControls();
@@ -238,6 +240,40 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             helperButtonTextBox.ReadOnly = true;
             helperButtonTextBox.Text = text;
             helperButtonTextBox.SetPaddingType(HelperButtonTextBox.PaddingType.Bold);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 364 * 100;
+            float size_30 = 30F / 364 * 100;
+            float size_6 = 6F / 364 * 100;
+
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[8] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[9] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[10] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[11] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[12] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[13] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[14] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[15] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[16] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[17] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[18] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[19] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
         }
 
         private void LoadParameterDropDownLists()

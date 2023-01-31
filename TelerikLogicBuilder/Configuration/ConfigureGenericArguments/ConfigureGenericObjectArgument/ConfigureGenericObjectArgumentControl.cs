@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -100,6 +101,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
         private void Initialize()
         {
+            radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
+            InitializeTableLayoutPanel();
             this.cmbCpGenericArgumentName.ReadOnly = true;
             radPanelParameter.AutoScroll = true;
             CollapsePanelBorder(radPanelParameter);
@@ -121,6 +124,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             toolTip.SetToolTip(this.lblCpUseForEquality, Strings.constrConfigUseForEqualityHelp);
             toolTip.SetToolTip(this.lblCpUseForHashCode, Strings.constrConfigUseForHashCodeHelp);
             toolTip.SetToolTip(this.lblCpUseForToString, Strings.constrConfigUseForToStringHelp);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 220 * 100;
+            float size_30 = 30F / 220 * 100;
+            float size_6 = 6F / 220 * 100;
+
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[8] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[9] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[10] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[11] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
         }
 
         private void LoadParameterDropDownLists()

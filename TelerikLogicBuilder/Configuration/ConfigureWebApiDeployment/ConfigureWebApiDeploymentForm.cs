@@ -46,11 +46,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 
         private void Initialize()
         {
+            InitializeTableLayoutPanel();
             InitializeDialogFormMessageControl();
 
             this.FormClosing += ConfigureWebApiDeployment_FormClosing;
 
-            radPanelUrls.AutoScroll = true;
             CollapsePanelBorder(radPanelUrls);
             CollapsePanelBorder(radPanelTableParent);
 
@@ -82,6 +82,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
             this.radPanelMessages.ResumeLayout(false);
             ((ISupportInitialize)this).EndInit();
             this.ResumeLayout(false);
+        }
+
+        private void InitializeTableLayoutPanel()
+        {
+            float size_20 = 20F / 148 * 100;
+            float size_30 = 30F / 148 * 100;
+            float size_6 = 6F / 148 * 100;
+
+            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+
+            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
+            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
+            this.tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
+            this.tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_20);
+
+            ((ISupportInitialize)this.radPanelTableParent).EndInit();
+            this.radPanelTableParent.ResumeLayout(true);
         }
 
         private void SetControlValues()
