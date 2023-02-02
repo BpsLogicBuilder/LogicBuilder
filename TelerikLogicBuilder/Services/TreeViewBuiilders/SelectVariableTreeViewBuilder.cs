@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -9,18 +9,18 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 {
-    internal class EditVariableTreeViewBuilder : IEditVariableTreeViewBuilder
+    internal class SelectVariableTreeViewBuilder : ISelectVariableTreeViewBuilder
     {
         private readonly IConfigurationService _configurationService;
         private readonly IImageListService _imageListService;
         private readonly ITreeViewService _treeViewService;
-        private readonly IEditVariableControl editVariableControl;
+        private readonly ISelectVariableControl editVariableControl;
 
-        public EditVariableTreeViewBuilder(
+        public SelectVariableTreeViewBuilder(
             IConfigurationService configurationService,
             IImageListService imageListService,
             ITreeViewService treeViewService,
-            IEditVariableControl editVariableControl)
+            ISelectVariableControl editVariableControl)
         {
             _configurationService = configurationService;
             _imageListService = imageListService;

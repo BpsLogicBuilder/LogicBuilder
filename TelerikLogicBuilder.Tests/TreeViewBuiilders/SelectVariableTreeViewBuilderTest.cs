@@ -18,11 +18,11 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
 {
-    public class EditVariableTreeViewBuilderTest : IClassFixture<EditVariableTreeViewBuilderFixture>
+    public class SelectVariableTreeViewBuilderTest : IClassFixture<EditVariableTreeViewBuilderFixture>
     {
         private readonly EditVariableTreeViewBuilderFixture _fixture;
 
-        public EditVariableTreeViewBuilderTest(EditVariableTreeViewBuilderFixture fixture)
+        public SelectVariableTreeViewBuilderTest(EditVariableTreeViewBuilderFixture fixture)
         {
             _fixture = fixture;
         }
@@ -31,7 +31,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         public void CreateEditVariableTreeViewBuilderThrows()
         {
             //assert
-            Assert.Throws<InvalidOperationException>(_fixture.ServiceProvider.GetRequiredService<IEditVariableTreeViewBuilder>);
+            Assert.Throws<InvalidOperationException>(_fixture.ServiceProvider.GetRequiredService<ISelectVariableTreeViewBuilder>);
         }
 
         [Fact]
@@ -43,9 +43,9 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
             Dictionary<string, string> expandedNodes = new();
 
             //act
-            factory.GetEditVariableTreeViewBuilder
+            factory.GetSelectVariableTreeViewBuilder
             (
-                new EditVariableControlMock(expandedNodes)
+                new SelectVariableControlMock(expandedNodes)
             ).Build(radTreeView);
 
             //assert

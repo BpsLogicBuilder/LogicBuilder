@@ -3,7 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
@@ -87,15 +87,15 @@ namespace Microsoft.Extensions.DependencyInjection
                         expandedNodes
                     )
                 )
-                .AddTransient<Func<IEditVariableControl, IEditVariableTreeViewBuilder>>
+                .AddTransient<Func<ISelectVariableControl, ISelectVariableTreeViewBuilder>>
                 (
                     provider =>
-                    editVariableControl => new EditVariableTreeViewBuilder
+                    selectVariableControl => new SelectVariableTreeViewBuilder
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ITreeViewService>(),
-                        editVariableControl
+                        selectVariableControl
                     )
                 )
                 .AddTransient<Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder>>

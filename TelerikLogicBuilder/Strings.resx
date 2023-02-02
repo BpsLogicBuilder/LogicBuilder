@@ -513,6 +513,10 @@
 	<data name="decisionConnectorYesText" xml:space="preserve">
     <value>YES</value>
   </data>
+	<data name="decisionNotConfiguredFormat2" xml:space="preserve">
+    <value>Variable "{0}" is not configured.</value>
+    <comment>0=VariableName</comment>
+  </data>
 	<data name="decisionShapeDataRequired" xml:space="preserve">
     <value>Decision Shape requires data.</value>
   </data>

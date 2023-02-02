@@ -1366,6 +1366,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variable &quot;{0}&quot; is not configured..
+        /// </summary>
+        internal static string decisionNotConfiguredFormat2 {
+            get {
+                return ResourceManager.GetString("decisionNotConfiguredFormat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Decision Shape requires data..
         /// </summary>
         internal static string decisionShapeDataRequired {

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.Tests")]
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.IntegrationTests")]
+[assembly: InternalsVisibleTo("TelerikLogicBuilder.FormsPreviewer")]
 namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal static class Program
