@@ -2,7 +2,7 @@
 {
     internal interface ISelectVariableViewControlFactory
     {
-        ISelectVariableDropdownViewControl GetSelectVariableDropdownViewControl(ISelectVariableControl editVariableControl);
+        ISelectVariableDropDownViewControl GetSelectVariableDropdownViewControl(ISelectVariableControl editVariableControl);
         ISelectVariableListViewControl GetSelectVariableListViewControl(ISelectVariableControl editVariableControl);
         ISelectVariableTreeViewControl GetSelectVariableTreeViewControl(ISelectVariableControl editVariableControl);
     }

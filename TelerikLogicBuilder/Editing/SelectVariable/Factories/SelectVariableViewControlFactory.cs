@@ -4,12 +4,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories
 {
     internal class SelectVariableViewControlFactory : ISelectVariableViewControlFactory
     {
-        private readonly Func<ISelectVariableControl, ISelectVariableDropdownViewControl> _getSelectVariableDropdownViewControl;
+        private readonly Func<ISelectVariableControl, ISelectVariableDropDownViewControl> _getSelectVariableDropdownViewControl;
         private readonly Func<ISelectVariableControl, ISelectVariableListViewControl> _getSelectVariableListViewControl;
         private readonly Func<ISelectVariableControl, ISelectVariableTreeViewControl> _getSelectVariableTreeViewControl;
 
         public SelectVariableViewControlFactory(
-            Func<ISelectVariableControl, ISelectVariableDropdownViewControl> getSelectVariableDropdownViewControl,
+            Func<ISelectVariableControl, ISelectVariableDropDownViewControl> getSelectVariableDropdownViewControl,
             Func<ISelectVariableControl, ISelectVariableListViewControl> getSelectVariableListViewControl,
             Func<ISelectVariableControl, ISelectVariableTreeViewControl> getSelectVariableTreeViewControl)
         {
@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories
             _getSelectVariableTreeViewControl = getSelectVariableTreeViewControl;
         }
 
-        public ISelectVariableDropdownViewControl GetSelectVariableDropdownViewControl(ISelectVariableControl editVariableControl)
+        public ISelectVariableDropDownViewControl GetSelectVariableDropdownViewControl(ISelectVariableControl editVariableControl)
             => _getSelectVariableDropdownViewControl(editVariableControl);
 
         public ISelectVariableListViewControl GetSelectVariableListViewControl(ISelectVariableControl editVariableControl)

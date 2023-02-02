@@ -10,13 +10,13 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal partial class SelectVariableDropdownViewControl : UserControl, ISelectVariableDropdownViewControl
+    internal partial class SelectVariableDropDownViewControl : UserControl, ISelectVariableDropDownViewControl
     {
         private readonly IConfigurationService _configurationService;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly ISelectVariableControl editVariableControl;
 
-        public SelectVariableDropdownViewControl(
+        public SelectVariableDropDownViewControl(
             IConfigurationService configurationService,
             IRadDropDownListHelper radDropDownListHelper,
             ISelectVariableControl editVariableControl)

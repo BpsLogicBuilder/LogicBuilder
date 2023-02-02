@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal interface ISelectVariableDropdownViewControl : ISelectVariableViewControl
+    internal interface ISelectVariableDropDownViewControl : ISelectVariableViewControl
     {
     }
 }

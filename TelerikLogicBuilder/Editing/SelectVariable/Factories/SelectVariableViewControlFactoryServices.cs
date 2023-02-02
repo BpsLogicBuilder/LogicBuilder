@@ -14,10 +14,10 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<ISelectVariableViewControlFactory, SelectVariableViewControlFactory>()
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableDropdownViewControl>>
+                .AddTransient<Func<ISelectVariableControl, ISelectVariableDropDownViewControl>>
                 (
                     provider =>
-                    selectVariableControl => new SelectVariableDropdownViewControl
+                    selectVariableControl => new SelectVariableDropDownViewControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),

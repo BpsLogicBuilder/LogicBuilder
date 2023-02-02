@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    partial class SelectVariableDropdownViewControl
+    partial class SelectVariableDropDownViewControl
     {
         /// <summary> 
         /// Required designer variable.
