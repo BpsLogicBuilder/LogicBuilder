@@ -18,13 +18,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories
             _getSelectVariableTreeViewControl = getSelectVariableTreeViewControl;
         }
 
-        public ISelectVariableDropDownViewControl GetSelectVariableDropdownViewControl(ISelectVariableControl editVariableControl)
-            => _getSelectVariableDropdownViewControl(editVariableControl);
+        public ISelectVariableDropDownViewControl GetSelectVariableDropdownViewControl(ISelectVariableControl selectVariableControl)
+            => _getSelectVariableDropdownViewControl(selectVariableControl);
 
-        public ISelectVariableListViewControl GetSelectVariableListViewControl(ISelectVariableControl editVariableControl)
-            => _getSelectVariableListViewControl(editVariableControl);
+        public ISelectVariableListViewControl GetSelectVariableListViewControl(ISelectVariableControl selectVariableControl)
+            => _getSelectVariableListViewControl(selectVariableControl);
 
-        public ISelectVariableTreeViewControl GetSelectVariableTreeViewControl(ISelectVariableControl editVariableControl)
-            => _getSelectVariableTreeViewControl(editVariableControl);
+        public ISelectVariableTreeViewControl GetSelectVariableTreeViewControl(ISelectVariableControl selectVariableControl)
+            => _getSelectVariableTreeViewControl(selectVariableControl);
     }
 }

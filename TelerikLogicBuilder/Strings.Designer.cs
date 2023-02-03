@@ -1087,6 +1087,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Constructor &quot;{0}&quot; is not configured..
+        /// </summary>
+        internal static string constructorNotConfiguredFormat {
+            get {
+                return ResourceManager.GetString("constructorNotConfiguredFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no constructor configured for the object type &quot;{0}&quot;..
         /// </summary>
         internal static string constructorNotConfiguredForObjectTypeFormat {
@@ -6024,6 +6033,33 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string validationSuccessful {
             get {
                 return ResourceManager.GetString("validationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A valid constructor must be selected..
+        /// </summary>
+        internal static string validConstructorMustBeSelected {
+            get {
+                return ResourceManager.GetString("validConstructorMustBeSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A valid function must be selected..
+        /// </summary>
+        internal static string validFunctionMustBeSelected {
+            get {
+                return ResourceManager.GetString("validFunctionMustBeSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A valid variable must be selected..
+        /// </summary>
+        internal static string validVariableMustBeSelected {
+            get {
+                return ResourceManager.GetString("validVariableMustBeSelected", resourceCulture);
             }
         }
         

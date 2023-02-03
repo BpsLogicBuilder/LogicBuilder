@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -85,6 +86,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         documentNames,
                         documentProfileErrors,
                         expandedNodes
+                    )
+                )
+                .AddTransient<Func<ISelectConstructorControl, ISelectConstructorTreeViewBuilder>>
+                (
+                    provider =>
+                    selectConstructorControl => new SelectConstructorTreeViewBuilder
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        selectConstructorControl
                     )
                 )
                 .AddTransient<Func<ISelectVariableControl, ISelectVariableTreeViewBuilder>>

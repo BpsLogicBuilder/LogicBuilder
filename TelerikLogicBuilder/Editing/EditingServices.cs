@@ -39,8 +39,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddEditingFormFactories()
                 .AddDocumentEditorFactories()
                 .AddSearcherFactories()
+                .AddSelectConstructorViewControlFactories()
                 .AddSelectEditingControlFactories()
-                .AddSelectVariableControlFactories();
+                .AddSelectVariableViewControlFactories();
         }
     }
 }

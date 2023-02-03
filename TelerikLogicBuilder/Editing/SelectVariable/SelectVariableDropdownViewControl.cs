@@ -14,17 +14,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
     {
         private readonly IConfigurationService _configurationService;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
-        private readonly ISelectVariableControl editVariableControl;
+        private readonly ISelectVariableControl selectVariableControl;
 
         public SelectVariableDropDownViewControl(
             IConfigurationService configurationService,
             IRadDropDownListHelper radDropDownListHelper,
-            ISelectVariableControl editVariableControl)
+            ISelectVariableControl selectVariableControl)
         {
             InitializeComponent();
             _configurationService = configurationService;
             _radDropDownListHelper = radDropDownListHelper;
-            this.editVariableControl = editVariableControl;
+            this.selectVariableControl = selectVariableControl;
             Initialize();
         }
 
@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         {
             if (!_configurationService.VariableList.Variables.TryGetValue(variableName, out VariableBase? variable))
             {
-                editVariableControl.SetErrorMessage
+                selectVariableControl.SetErrorMessage
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, variableName)
                 );

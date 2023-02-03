@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 {
-    partial class SelectVariableDropDownViewControl
+    partial class SelectConstructorListViewControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
+            this.radListControl1 = new Telerik.WinControls.UI.RadListControl();
+            ((System.ComponentModel.ISupportInitialize)(this.radListControl1)).BeginInit();
             this.SuspendLayout();
             // 
-            // radDropDownList1
+            // radListControl1
             // 
-            this.radDropDownList1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radDropDownList1.DropDownAnimationEnabled = true;
-            this.radDropDownList1.Location = new System.Drawing.Point(0, 0);
-            this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(422, 20);
-            this.radDropDownList1.TabIndex = 0;
+            this.radListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radListControl1.Location = new System.Drawing.Point(0, 0);
+            this.radListControl1.Name = "radListControl1";
+            this.radListControl1.Size = new System.Drawing.Size(471, 259);
+            this.radListControl1.TabIndex = 1;
             // 
-            // SelectVariableDropdownControl
+            // SelectConstructorListViewControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radDropDownList1);
-            this.Name = "SelectVariableDropDownControl";
-            this.Size = new System.Drawing.Size(422, 193);
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
+            this.Controls.Add(this.radListControl1);
+            this.Name = "SelectConstructorListViewControl";
+            this.Size = new System.Drawing.Size(471, 259);
+            ((System.ComponentModel.ISupportInitialize)(this.radListControl1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
+        private Telerik.WinControls.UI.RadListControl radListControl1;
     }
 }

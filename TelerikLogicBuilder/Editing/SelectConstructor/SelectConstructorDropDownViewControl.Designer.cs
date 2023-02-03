@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 {
-    partial class SelectVariableDropDownViewControl
+    partial class SelectConstructorDropDownViewControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,14 +39,14 @@
             this.radDropDownList1.Location = new System.Drawing.Point(0, 0);
             this.radDropDownList1.Name = "radDropDownList1";
             this.radDropDownList1.Size = new System.Drawing.Size(422, 20);
-            this.radDropDownList1.TabIndex = 0;
+            this.radDropDownList1.TabIndex = 1;
             // 
-            // SelectVariableDropdownControl
+            // SelectConstructorDropDownViewControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radDropDownList1);
-            this.Name = "SelectVariableDropDownControl";
+            this.Name = "SelectConstructorDropDownViewControl";
             this.Size = new System.Drawing.Size(422, 193);
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
             this.ResumeLayout(false);

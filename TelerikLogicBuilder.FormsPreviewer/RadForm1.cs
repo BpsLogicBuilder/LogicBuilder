@@ -48,6 +48,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
         private void Initialize()
         {
             AddButtonClickCommand(btnSelectVariableForm, new SelectVariableFormCommand(this));
+            AddButtonClickCommand(btnSelectConstructorForm, new SelectConstructorFormCommand(this));
         }
 
         private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)

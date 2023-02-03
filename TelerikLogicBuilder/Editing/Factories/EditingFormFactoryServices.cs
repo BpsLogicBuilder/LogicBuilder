@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -13,6 +14,19 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()
+                .AddTransient<Func<Type, ISelectConstructorForm>>
+                (
+                    provider =>
+                    assignedTo => new SelectConstructorForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<ISelectEditingControlFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        assignedTo
+                    )
+                )
                 .AddTransient<Func<Type, ISelectVariableForm>>
                 (
                     provider =>

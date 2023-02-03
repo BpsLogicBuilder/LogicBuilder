@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 {
-    partial class SelectVariableForm
+    partial class SelectConstructorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,7 @@
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radPanelApplication = new Telerik.WinControls.UI.RadPanel();
             this.radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelVariable = new Telerik.WinControls.UI.RadPanel();
+            this.radPanelConstructor = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
             this.radPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
@@ -48,7 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).BeginInit();
             this.radPanelApplication.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelVariable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelConstructor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             this.radPanelBottom.Location = new System.Drawing.Point(0, 452);
             this.radPanelBottom.Name = "radPanelBottom";
             this.radPanelBottom.Size = new System.Drawing.Size(805, 150);
-            this.radPanelBottom.TabIndex = 2;
+            this.radPanelBottom.TabIndex = 3;
             // 
             // radPanelMessages
             // 
@@ -128,7 +128,7 @@
             this.radPanelApplication.Location = new System.Drawing.Point(0, 0);
             this.radPanelApplication.Name = "radPanelApplication";
             this.radPanelApplication.Size = new System.Drawing.Size(805, 60);
-            this.radPanelApplication.TabIndex = 0;
+            this.radPanelApplication.TabIndex = 4;
             // 
             // radGroupBoxApplication
             // 
@@ -143,25 +143,25 @@
             this.radGroupBoxApplication.TabIndex = 0;
             this.radGroupBoxApplication.Text = "Application";
             // 
-            // radPanelVariable
+            // radPanelConstructor
             // 
-            this.radPanelVariable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelVariable.Location = new System.Drawing.Point(0, 60);
-            this.radPanelVariable.Name = "radPanelVariable";
-            this.radPanelVariable.Size = new System.Drawing.Size(805, 392);
-            this.radPanelVariable.TabIndex = 1;
+            this.radPanelConstructor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanelConstructor.Location = new System.Drawing.Point(0, 60);
+            this.radPanelConstructor.Name = "radPanelConstructor";
+            this.radPanelConstructor.Size = new System.Drawing.Size(805, 392);
+            this.radPanelConstructor.TabIndex = 5;
             // 
-            // SelectVariableForm
+            // SelectConstructorForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 602);
-            this.Controls.Add(this.radPanelVariable);
+            this.Controls.Add(this.radPanelConstructor);
             this.Controls.Add(this.radPanelApplication);
             this.Controls.Add(this.radPanelBottom);
-            this.Name = "SelectVariableForm";
-            this.Text = "Select Variable";
+            this.Name = "SelectConstructorForm";
+            this.Text = "Select Constructor";
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
             this.radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
@@ -173,7 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).EndInit();
             this.radPanelApplication.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelVariable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelConstructor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -189,6 +189,6 @@
         private Telerik.WinControls.UI.RadButton btnOk;
         private Telerik.WinControls.UI.RadPanel radPanelApplication;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
-        private Telerik.WinControls.UI.RadPanel radPanelVariable;
+        private Telerik.WinControls.UI.RadPanel radPanelConstructor;
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 {
-    partial class SelectVariableDropDownViewControl
+    partial class SelectConstructorTreeViewControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
+            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // radDropDownList1
+            // radTreeView1
             // 
-            this.radDropDownList1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radDropDownList1.DropDownAnimationEnabled = true;
-            this.radDropDownList1.Location = new System.Drawing.Point(0, 0);
-            this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(422, 20);
-            this.radDropDownList1.TabIndex = 0;
+            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.Size = new System.Drawing.Size(481, 343);
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            this.radTreeView1.TabIndex = 1;
             // 
-            // SelectVariableDropdownControl
+            // SelectConstructorTreeViewControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radDropDownList1);
-            this.Name = "SelectVariableDropDownControl";
-            this.Size = new System.Drawing.Size(422, 193);
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
+            this.Controls.Add(this.radTreeView1);
+            this.Name = "SelectConstructorTreeViewControl";
+            this.Size = new System.Drawing.Size(481, 343);
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
+        private Telerik.WinControls.UI.RadTreeView radTreeView1;
     }
 }

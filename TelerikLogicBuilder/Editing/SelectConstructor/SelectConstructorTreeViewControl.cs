@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
@@ -8,47 +8,47 @@ using System;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 {
-    internal partial class SelectVariableTreeViewControl : UserControl, ISelectVariableTreeViewControl
+    internal partial class SelectConstructorTreeViewControl : UserControl, ISelectConstructorTreeViewControl
     {
         private readonly IConfigurationService _configurationService;
-        private readonly ISelectVariableTreeViewBuilder _selectVariableTreeViewBuilder;
+        private readonly ISelectConstructorTreeViewBuilder _selectConstructorTreeViewBuilder;
         private readonly ITreeViewService _treeViewService;
-        private readonly ISelectVariableControl selectVariableControl;
+        private readonly ISelectConstructorControl selectConstructorControl;
 
-        public SelectVariableTreeViewControl(
+        public SelectConstructorTreeViewControl(
             IConfigurationService configurationService,
             ITreeViewBuilderFactory treeViewBuilderFactory,
             ITreeViewService treeViewService,
-            ISelectVariableControl selectVariableControl)
+            ISelectConstructorControl selectConstructorControl)
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _selectVariableTreeViewBuilder = treeViewBuilderFactory.GetSelectVariableTreeViewBuilder(selectVariableControl);
+            _selectConstructorTreeViewBuilder = treeViewBuilderFactory.GetSelectConstructorTreeViewBuilder(selectConstructorControl);
             _treeViewService = treeViewService;
-            this.selectVariableControl = selectVariableControl;
+            this.selectConstructorControl = selectConstructorControl;
             Initialize();
         }
 
         public event EventHandler? Changed;
 
-        public string VariableName => radTreeView1.SelectedNode?.Text ?? string.Empty;
+        public string ConstructorName => radTreeView1.SelectedNode?.Text ?? string.Empty;
 
-        public bool ItemSelected => radTreeView1.SelectedNode != null && _treeViewService.IsVariableNode(radTreeView1.SelectedNode);
+        public bool ItemSelected => radTreeView1.SelectedNode != null && _treeViewService.IsConstructorNode(radTreeView1.SelectedNode);
 
-        public void SelectVariable(string variableName)
+        public void SelectConstructor(string constructorName)
         {
-            if (!_configurationService.VariableList.Variables.TryGetValue(variableName, out VariableBase? variable))
+            if (!_configurationService.ConstructorList.Constructors.TryGetValue(constructorName, out Constructor? constructor))
             {
-                selectVariableControl.SetErrorMessage
+                selectConstructorControl.SetErrorMessage
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, variableName)
+                    string.Format(CultureInfo.CurrentCulture, Strings.constructorNotConfiguredFormat, constructorName)
                 );
                 return;
             }
 
-            var node = radTreeView1.Find(n => n.Text == variable.Name);
+            var node = radTreeView1.Find(n => n.Text == constructor.Name);
             if (node != null)
                 radTreeView1.SelectedNode = node;
         }
@@ -65,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         private void LoadTreeview()
         {
-            _selectVariableTreeViewBuilder.Build(radTreeView1);
+            _selectConstructorTreeViewBuilder.Build(radTreeView1);
             if (radTreeView1.Nodes.Count > 0)
                 radTreeView1.SelectedNode ??= radTreeView1.Nodes[0];
         }
@@ -78,13 +78,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
             if (e.Node.Expanded)
             {
-                if (!selectVariableControl.ExpandedNodes.ContainsKey(e.Node.Name))
-                    selectVariableControl.ExpandedNodes.Add(e.Node.Name, e.Node.Text);
+                if (!selectConstructorControl.ExpandedNodes.ContainsKey(e.Node.Name))
+                    selectConstructorControl.ExpandedNodes.Add(e.Node.Name, e.Node.Text);
             }
             else
             {
-                if (selectVariableControl.ExpandedNodes.ContainsKey(e.Node.Name))
-                    selectVariableControl.ExpandedNodes.Remove(e.Node.Name);
+                if (selectConstructorControl.ExpandedNodes.ContainsKey(e.Node.Name))
+                    selectConstructorControl.ExpandedNodes.Remove(e.Node.Name);
             }
 
             e.Node.ImageIndex = e.Node.Expanded

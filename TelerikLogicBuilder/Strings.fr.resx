@@ -459,6 +459,10 @@
     <value>The constructor "{0}" must be assignable to "{1}".FR</value>
     <comment>0=constructorName;1=objectType</comment>
   </data>
+	<data name="constructorNotConfiguredFormat" xml:space="preserve">
+    <value>Constructor "{0}" is not configured.FR</value>
+    <comment>0=constructorName</comment>
+  </data>
 	<data name="constructorNotConfiguredForObjectTypeFormat" xml:space="preserve">
     <value>There is no constructor configured for the object type "{0}".FR</value>
     <comment>0=typeName</comment>
@@ -1717,6 +1721,15 @@
   </data>
 	<data name="validationSuccessful" xml:space="preserve">
     <value>Validation Successful!FR</value>
+  </data>
+	<data name="validConstructorMustBeSelected" xml:space="preserve">
+    <value>A valid constructor must be selected.FR</value>
+  </data>
+	<data name="validFunctionMustBeSelected" xml:space="preserve">
+    <value>A valid function must be selected.FR</value>
+  </data>
+	<data name="validVariableMustBeSelected" xml:space="preserve">
+    <value>A valid variable must be selected.FR</value>
   </data>
 	<data name="varConfigCastReferenceAsHelp" xml:space="preserve">
     <value>Each segment (period delimited) contains a tile (~)(no cast required) or the fully qualified class name for the corresponding segment in the Reference Name when a cast is required for the segment.FR</value>

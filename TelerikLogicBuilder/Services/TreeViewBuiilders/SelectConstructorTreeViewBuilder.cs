@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
@@ -9,23 +9,24 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 {
-    internal class SelectVariableTreeViewBuilder : ISelectVariableTreeViewBuilder
+    internal class SelectConstructorTreeViewBuilder : ISelectConstructorTreeViewBuilder
     {
         private readonly IConfigurationService _configurationService;
         private readonly IImageListService _imageListService;
         private readonly ITreeViewService _treeViewService;
-        private readonly ISelectVariableControl selectVariableControl;
 
-        public SelectVariableTreeViewBuilder(
+        private readonly ISelectConstructorControl selectConstructorControl;
+
+        public SelectConstructorTreeViewBuilder(
             IConfigurationService configurationService,
             IImageListService imageListService,
             ITreeViewService treeViewService,
-            ISelectVariableControl selectVariableControl)
+            ISelectConstructorControl selectConstructorControl)
         {
             _configurationService = configurationService;
             _imageListService = imageListService;
             _treeViewService = treeViewService;
-            this.selectVariableControl = selectVariableControl;
+            this.selectConstructorControl = selectConstructorControl;
         }
 
         public void Build(RadTreeView treeView)
@@ -33,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             treeView.BeginUpdate();
             treeView.ImageList = _imageListService.ImageList;
             treeView.Nodes.Clear();
-            TreeFolder treeFolder = _configurationService.VariableList.VariablesTreeFolder;
+            TreeFolder treeFolder = _configurationService.ConstructorList.ConstructorsTreeFolder;
             RadTreeNode rootNode = new()
             {
                 ImageIndex = ImageIndexes.CLOSEDFOLDERIMAGEINDEX,
@@ -50,15 +51,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         {
             foreach (string file in treeFolder.FileNames)
             {
-                VariableBase varaible = _configurationService.VariableList.Variables[file];
+                Constructor constructor = _configurationService.ConstructorList.Constructors[file];
                 RadTreeNode childTreeNode = new()
                 {
-                    ImageIndex = ImageIndexes.VARIABLEIMAGEINDEX,
+                    ImageIndex = ImageIndexes.CONSTRUCTORIMAGEINDEX,
                     Text = file,
                     Name = $"{treeNode.Name}/{file}"
                 };
                 treeNode.Nodes.Add(childTreeNode);
-                childTreeNode.ToolTipText = varaible.ObjectTypeString;
+                childTreeNode.ToolTipText = constructor.ToString();
                 if (root)
                     _treeViewService.MakeVisible(childTreeNode);
             }
@@ -75,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 if (root)
                     _treeViewService.MakeVisible(childFolderTreeNode);
                 GetFolderChildren(childFolder, childFolderTreeNode);
-                if (selectVariableControl.ExpandedNodes.ContainsKey(childFolderTreeNode.Name))
+                if (selectConstructorControl.ExpandedNodes.ContainsKey(childFolderTreeNode.Name))
                     childFolderTreeNode.Expand();
             }
         }

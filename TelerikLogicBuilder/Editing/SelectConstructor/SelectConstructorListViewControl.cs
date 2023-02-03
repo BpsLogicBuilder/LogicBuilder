@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System;
 using System.Collections.Generic;
@@ -8,41 +8,41 @@ using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 {
-    internal partial class SelectVariableListViewControl : UserControl, ISelectVariableListViewControl
+    internal partial class SelectConstructorListViewControl : UserControl, ISelectConstructorListViewControl
     {
         private readonly IConfigurationService _configurationService;
-        private readonly ISelectVariableControl selectVariableControl;
+        private readonly ISelectConstructorControl selectConstructorControl;
 
-        public SelectVariableListViewControl(
+        public SelectConstructorListViewControl(
             IConfigurationService configurationService,
-            ISelectVariableControl selectVariableControl)
+            ISelectConstructorControl selectConstructorControl)
         {
             InitializeComponent();
             _configurationService = configurationService;
-            this.selectVariableControl = selectVariableControl;
+            this.selectConstructorControl = selectConstructorControl;
             Initialize();
         }
 
         public event EventHandler? Changed;
 
-        public string VariableName => radListControl1.SelectedItem.Text;
+        public string ConstructorName => radListControl1.SelectedItem.Text;
 
         public bool ItemSelected => radListControl1.Items.Count != 0 && radListControl1.SelectedIndex != -1;
 
-        public void SelectVariable(string variableName)
+        public void SelectConstructor(string constructorName)
         {
-            if (!_configurationService.VariableList.Variables.TryGetValue(variableName, out VariableBase? variable))
+            if (!_configurationService.ConstructorList.Constructors.TryGetValue(constructorName, out Constructor? constructor))
             {
-                selectVariableControl.SetErrorMessage
+                selectConstructorControl.SetErrorMessage
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, variableName)
+                    string.Format(CultureInfo.CurrentCulture, Strings.constructorNotConfiguredFormat, constructorName)
                 );
                 return;
             }
 
-            radListControl1.SelectedValue = variable;
+            radListControl1.SelectedValue = constructor;
             radListControl1.ScrollToItem(radListControl1.SelectedItem);
         }
 
@@ -56,10 +56,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         private void LoadListBox()
         {
-            IList<VariableBase> variables = _configurationService.VariableList.Variables.Values.OrderBy(v => v.Name).ToArray();
-            if (variables.Count > 0)
+            IList<Constructor> constructors = _configurationService.ConstructorList.Constructors.Values.OrderBy(v => v.Name).ToArray();
+            if (constructors.Count > 0)
             {
-                radListControl1.Items.AddRange(variables.Select(d => new RadListDataItem(d.Name, d)).ToArray());
+                radListControl1.Items.AddRange(constructors.Select(d => new RadListDataItem(d.Name, d)).ToArray());
                 radListControl1.SelectedIndex = 0;
             }
         }
@@ -72,8 +72,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         private void RadListControl1_VisualItemFormatting(object sender, VisualItemFormattingEventArgs args)
         {
-            VariableBase dataItem = (VariableBase)args.VisualItem.Data.Value;
-            args.VisualItem.ToolTipText = dataItem.MemberName;
+            Constructor dataItem = (Constructor)args.VisualItem.Data.Value;
+            args.VisualItem.ToolTipText = dataItem.ToString();
         }
         #endregion Event Handlers
     }

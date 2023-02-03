@@ -1,5 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
-using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
@@ -8,40 +8,40 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class SelectVariableViewControlFactoryServices
+    internal static class SelectConstructorViewControlFactoryServices
     {
-        internal static IServiceCollection AddSelectVariableViewControlFactories(this IServiceCollection services)
+        internal static IServiceCollection AddSelectConstructorViewControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<ISelectVariableViewControlFactory, SelectVariableViewControlFactory>()
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableDropDownViewControl>>
+                .AddTransient<ISelectConstructorViewControlFactory, SelectConstructorViewControlFactory>()
+                .AddTransient<Func<ISelectConstructorControl, ISelectConstructorDropDownViewControl>>
                 (
                     provider =>
-                    selectVariableControl => new SelectVariableDropDownViewControl
+                    selectConstructorControl => new SelectConstructorDropDownViewControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
-                        selectVariableControl
+                        selectConstructorControl
                     )
                 )
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableListViewControl>>
+                .AddTransient<Func<ISelectConstructorControl, ISelectConstructorListViewControl>>
                 (
                     provider =>
-                    selectVariableControl => new SelectVariableListViewControl
+                    selectConstructorControl => new SelectConstructorListViewControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
-                        selectVariableControl
+                        selectConstructorControl
                     )
                 )
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableTreeViewControl>>
+                .AddTransient<Func<ISelectConstructorControl, ISelectConstructorTreeViewControl>>
                 (
                     provider =>
-                    selectVariableControl => new SelectVariableTreeViewControl
+                    selectConstructorControl => new SelectConstructorTreeViewControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<ITreeViewBuilderFactory>(),
                         provider.GetRequiredService<ITreeViewService>(),
-                        selectVariableControl
+                        selectConstructorControl
                     )
                 );
         }

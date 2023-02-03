@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -14,14 +14,14 @@ using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 {
-    internal partial class SelectVariableControl : UserControl, ISelectVariableControl
+    internal partial class SelectConstructorControl : UserControl, ISelectConstructorControl
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IImageListService _imageListService;
-        private readonly ISelectVariableViewControlFactory _selectVariableControlFactory;
+        private readonly ISelectConstructorViewControlFactory _selectConstructorControlFactory;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
@@ -38,11 +38,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             Dropdown
         }
 
-        public SelectVariableControl(
+        public SelectConstructorControl(
             IConfigurationService configurationService,
-            IExceptionHelper exceptionHelper, 
+            IExceptionHelper exceptionHelper,
             IImageListService imageListService,
-            ISelectVariableViewControlFactory selectVariableControlFactory,
+            ISelectConstructorViewControlFactory selectConstructorControlFactory,
             ITypeHelper typeHelper,
             ITypeLoadHelper typeLoadHelper,
             IEditingForm editingForm,
@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
             _imageListService = imageListService;
-            _selectVariableControlFactory = selectVariableControlFactory;
+            _selectConstructorControlFactory = selectConstructorControlFactory;
             _typeHelper = typeHelper;
             _typeLoadHelper = typeLoadHelper;
             toggleButtons = new CommandBarToggleButton[]
@@ -66,14 +66,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             Initialize();
         }
 
-        private ISelectVariableViewControl CurrentViewControl
+        private ISelectConstructorViewControl CurrentViewControl
         {
             get
             {
-                if (radPanelVariableView.Controls.Count != 1)
-                    throw _exceptionHelper.CriticalException("{1C0FDCBF-6D2A-4ADD-A394-7F5578D2144D}");
+                if (radPanelConstructorView.Controls.Count != 1)
+                    throw _exceptionHelper.CriticalException("{96A1BD22-3C26-4E02-A4BA-2A4317FDD0CE}");
 
-                return (ISelectVariableViewControl)radPanelVariableView.Controls[0];
+                return (ISelectConstructorViewControl)radPanelConstructorView.Controls[0];
             }
         }
 
@@ -81,11 +81,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
+        public bool IsValid => ValidateSelectedConstructor().Count == 0;
+
         public bool ItemSelected => CurrentViewControl.ItemSelected;
 
-        public string? VariableName => CurrentViewControl.VariableName;
-
-        public bool IsValid => ValidateSelectedVariable().Count == 0;
+        public string? ConstructorName => CurrentViewControl.ConstructorName;
 
         public void ClearMessage() => editingForm.ClearMessage();
 
@@ -106,12 +106,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         private void ChangeView(ViewType view)
         {
-            string? currentVariable = CurrentViewControl.ItemSelected
-                                            ? CurrentViewControl.VariableName
+            string? currentConstructor = CurrentViewControl.ItemSelected
+                                            ? CurrentViewControl.ConstructorName
                                             : null;
             Navigate(view);
-            if (currentVariable != null)
-                CurrentViewControl.SelectVariable(currentVariable);
+            if (currentConstructor != null)
+                CurrentViewControl.SelectConstructor(currentConstructor);
             else
             {
                 CheckForValidSelection();
@@ -124,7 +124,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         private void CheckForValidSelection()
         {
             ClearMessage();
-            IList<string> errors = ValidateSelectedVariable();
+            IList<string> errors = ValidateSelectedConstructor();
             if (errors.Count > 0)
                 SetErrorMessage(string.Join(Environment.NewLine, errors));
             Changed?.Invoke(this, EventArgs.Empty);
@@ -150,42 +150,42 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         private void Navigate(Control newControl)
         {
             Native.NativeMethods.LockWindowUpdate(this.Handle);
-            ((ISupportInitialize)radPanelVariableView).BeginInit();
-            radPanelVariableView.SuspendLayout();
+            ((ISupportInitialize)radPanelConstructorView).BeginInit();
+            radPanelConstructorView.SuspendLayout();
 
             ClearFieldControls();
             newControl.Dock = DockStyle.Fill;
             newControl.Location = new Point(0, 0);
-            radPanelVariableView.Controls.Add(newControl);
+            radPanelConstructorView.Controls.Add(newControl);
 
-            ((ISupportInitialize)radPanelVariableView).EndInit();
-            radPanelVariableView.ResumeLayout(true);
+            ((ISupportInitialize)radPanelConstructorView).EndInit();
+            radPanelConstructorView.ResumeLayout(true);
 
             Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
 
             void ClearFieldControls()
             {
-                foreach (Control control in radPanelVariableView.Controls)
+                foreach (Control control in radPanelConstructorView.Controls)
                     control.Visible = false;
 
-                radPanelVariableView.Controls.Clear();
+                radPanelConstructorView.Controls.Clear();
             }
         }
 
         private void Navigate(ViewType view)
         {
-            ISelectVariableViewControl selectVariableViewControl = GetControl();
-            selectVariableViewControl.Changed += SelectVariableViewControl_Changed;
-            Navigate((Control)selectVariableViewControl);
+            ISelectConstructorViewControl selectConstructorViewControl = GetControl();
+            selectConstructorViewControl.Changed += SelectConstructorViewControl_Changed;
+            Navigate((Control)selectConstructorViewControl);
 
-            ISelectVariableViewControl GetControl()
+            ISelectConstructorViewControl GetControl()
             {
                 return view switch
                 {
-                    ViewType.Dropdown => _selectVariableControlFactory.GetSelectVariableDropdownViewControl(this),
-                    ViewType.List => _selectVariableControlFactory.GetSelectVariableListViewControl(this),
-                    ViewType.Tree => _selectVariableControlFactory.GetSelectVariableTreeViewControl(this),
-                    _ => throw _exceptionHelper.CriticalException("{C5B0C5E4-B033-4A8F-88B5-9C621FDD4C27}"),
+                    ViewType.Dropdown => _selectConstructorControlFactory.GetSelectConstructorDropdownViewControl(this),
+                    ViewType.List => _selectConstructorControlFactory.GetSelectConstructorListViewControl(this),
+                    ViewType.Tree => _selectConstructorControlFactory.GetSelectConstructorTreeViewControl(this),
+                    _ => throw _exceptionHelper.CriticalException("{00109A96-18FD-437B-9E47-D7D65DC260EE}"),
                 };
             }
         }
@@ -222,30 +222,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             AddChangeEvents();
         }
 
-        private IList<string> ValidateSelectedVariable()
+        private IList<string> ValidateSelectedConstructor()
         {
             List<string> errors = new();
             if (!ItemSelected)
             {
-                errors.Add(Strings.validVariableMustBeSelected);
+                errors.Add(Strings.validConstructorMustBeSelected);
                 return errors;
             }
 
-            if (!_configurationService.VariableList.Variables.TryGetValue(this.VariableName!, out VariableBase? variable))
+            if (!_configurationService.ConstructorList.Constructors.TryGetValue(this.ConstructorName!, out Constructor? constructor))
             {
-                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, this.VariableName));
+                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.constructorNotConfiguredFormat, this.ConstructorName));
                 return errors;
             }
 
-            if (!_typeLoadHelper.TryGetSystemType(variable, Application, out Type? variableType))
+            if (!_typeLoadHelper.TryGetSystemType(constructor.TypeName, Application, out Type? constructorType))
             {
-                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeFormat2, variable.ObjectTypeString));
+                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeFormat2, constructor.TypeName));
                 return errors;
             }
 
-            if (!_typeHelper.AssignableFrom(assignedTo, variableType))
+            if (!_typeHelper.AssignableFrom(assignedTo, constructorType))
             {
-                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.typeNotAssignableFormat, variableType.ToString(), assignedTo.ToString()));
+                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.typeNotAssignableFormat, constructorType.ToString(), assignedTo.ToString()));
                 return errors;
             }
 
@@ -262,15 +262,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         private void CommandBarToggleButton_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {
             if (args.ToggleState == ToggleState.Off)
-                throw _exceptionHelper.CriticalException("{7001D968-43CE-4561-BF3C-D9099EA8CA86}");
+                throw _exceptionHelper.CriticalException("{EDD2D66A-A269-4961-AA64-25490F2E5296}");
             if (sender is not CommandBarToggleButton commandBarToggleButton)
-                throw _exceptionHelper.CriticalException("{07C4DEBC-5629-4222-B371-A2F026548C77}");
+                throw _exceptionHelper.CriticalException("{35F76E0A-ECE2-4DF0-910E-07B027426C4F}");
 
             SetOtherToggleStatesOff(commandBarToggleButton);
             ChangeView((ViewType)commandBarToggleButton.Tag);
         }
 
-        private void SelectVariableViewControl_Changed(object? sender, EventArgs e) => CheckForValidSelection();
+        private void SelectConstructorViewControl_Changed(object? sender, EventArgs e) => CheckForValidSelection();
         #endregion Event Handlers
     }
 }

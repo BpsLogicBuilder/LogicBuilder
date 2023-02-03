@@ -2,9 +2,10 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables.Factories;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
@@ -18,20 +19,20 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
 {
-    public class SelectVariableTreeViewBuilderTest : IClassFixture<SelectVariableTreeViewBuilderFixture>
+    public class SelectConstructorTreeViewBuilderTest : IClassFixture<SelectConstructorTreeViewBuilderFixture>
     {
-        private readonly SelectVariableTreeViewBuilderFixture _fixture;
+        private readonly SelectConstructorTreeViewBuilderFixture _fixture;
 
-        public SelectVariableTreeViewBuilderTest(SelectVariableTreeViewBuilderFixture fixture)
+        public SelectConstructorTreeViewBuilderTest(SelectConstructorTreeViewBuilderFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Fact]
-        public void CreateEditVariableTreeViewBuilderThrows()
+        public void CreateEditConstructorTreeViewBuilderThrows()
         {
             //assert
-            Assert.Throws<InvalidOperationException>(_fixture.ServiceProvider.GetRequiredService<ISelectVariableTreeViewBuilder>);
+            Assert.Throws<InvalidOperationException>(_fixture.ServiceProvider.GetRequiredService<ISelectConstructorTreeViewBuilder>);
         }
 
         [Fact]
@@ -43,9 +44,9 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
             Dictionary<string, string> expandedNodes = new();
 
             //act
-            factory.GetSelectVariableTreeViewBuilder
+            factory.GetSelectConstructorTreeViewBuilder
             (
-                new SelectVariableControlMock(expandedNodes)
+                new SelectConstructorControlMock(expandedNodes)
             ).Build(radTreeView);
 
             //assert
@@ -54,25 +55,23 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         }
     }
 
-    public class SelectVariableTreeViewBuilderFixture : IDisposable
+    public class SelectConstructorTreeViewBuilderFixture : IDisposable
     {
         internal IServiceProvider ServiceProvider;
         internal IProjectPropertiesItemFactory ProjectPropertiesItemFactory;
         internal IWebApiDeploymentItemFactory WebApiDeploymentItemFactory;
         internal IConfigurationService ConfigurationService;
-        internal IEnumHelper EnumHelper;
-        internal ITypeHelper TypeHelper;
-        internal IVariableFactory VariableFactory;
+        internal IConstructorFactory ConstructorFactory;
+        internal IParameterFactory ParameterFactory;
 
-        public SelectVariableTreeViewBuilderFixture()
+        public SelectConstructorTreeViewBuilderFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
             WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
-            EnumHelper = ServiceProvider.GetRequiredService<IEnumHelper>();
-            TypeHelper = ServiceProvider.GetRequiredService<ITypeHelper>();
-            VariableFactory = ServiceProvider.GetRequiredService<IVariableFactory>();
+            ConstructorFactory = ServiceProvider.GetRequiredService<IConstructorFactory>();
+            ParameterFactory = ServiceProvider.GetRequiredService<IParameterFactory>();
             ConfigurationService.ProjectProperties = ProjectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
@@ -121,42 +120,52 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                 new HashSet<string>()
             );
 
-            ConfigurationService.VariableList = new VariableList
+            ConfigurationService.ConstructorList = new ConstructorList
             (
-                new Dictionary<string, VariableBase>
+                new Dictionary<string, Constructor>
                 {
-
+                    ["TestResponseA"] = ConstructorFactory.GetConstructor
+                    (
+                        "TestResponseA",
+                        "Contoso.Test.Business.Responses.TestResponseA",
+                        new List<ParameterBase>
+                        {
+                            ParameterFactory.GetLiteralParameter
+                            (
+                                "stringProperty",
+                                false,
+                                "",
+                                LiteralParameterType.String,
+                                LiteralParameterInputStyle.SingleLineTextBox,
+                                true,
+                                false,
+                                true,
+                                "",
+                                "",
+                                "",
+                                new List<string>()
+                            )
+                        },
+                        new List<string>(),
+                        ""
+                    ),
+                    ["Object"] = ConstructorFactory.GetConstructor
+                    (
+                        "Object",
+                        "System.Object",
+                        new List<ParameterBase>
+                        {
+                        },
+                        new List<string>(),
+                        ""
+                    ),
                 },
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>())
             );
 
-            foreach (LiteralVariableType enumValue in Enum.GetValues<LiteralVariableType>())
-            {
-                string variableName = $"{Enum.GetName(typeof(LiteralVariableType), enumValue)}Item";
-                ConfigurationService.VariableList.Variables.Add(variableName, GetLiteralVariable(variableName, enumValue));
-                ConfigurationService.VariableList.VariablesTreeFolder.FileNames.Add(variableName);
-            }
+            foreach (string key in ConfigurationService.ConstructorList.Constructors.Keys)
+                ConfigurationService.ConstructorList.ConstructorsTreeFolder.FileNames.Add(key);
         }
-
-        LiteralVariable GetLiteralVariable(string name, LiteralVariableType literalVariableType)
-            => VariableFactory.GetLiteralVariable
-            (
-                name,
-                name,
-                VariableCategory.StringKeyIndexer,
-                TypeHelper.ToId(EnumHelper.GetSystemType(literalVariableType)),
-                "",
-                "flowManager.FlowDataCache.Items",
-                "Field.Property.Property",
-                "",
-                ReferenceCategories.InstanceReference,
-                "",
-                literalVariableType,
-                LiteralVariableInputStyle.SingleLineTextBox,
-                "",
-                "",
-                new List<string>()
-            );
 
         public void Dispose()
         {
