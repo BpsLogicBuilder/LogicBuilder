@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,9 +14,10 @@ namespace TelerikLogicBuilder.Tests.Mocks
 {
     internal class SelectFunctionControlMock : ISelectFunctionControl
     {
-        public SelectFunctionControlMock(IDictionary<string, string> expandedNodes, IList<TreeFolder> treeFolders)
+        public SelectFunctionControlMock(IDictionary<string, string> expandedNodes, IDictionary<string, Function> functionDictionary, IList<TreeFolder> treeFolders)
         {
             ExpandedNodes = expandedNodes;
+            FunctionDictionary = functionDictionary;
             TreeFolders = treeFolders;
         }
 
@@ -32,6 +34,8 @@ namespace TelerikLogicBuilder.Tests.Mocks
         public Point Location { set => throw new NotImplementedException(); }
 
         public IList<TreeFolder> TreeFolders { get; }
+
+        public IDictionary<string, Function> FunctionDictionary { get; }
 
         event EventHandler? ISelectFunctionControl.Changed
         {

@@ -79,13 +79,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
         private ApplicationTypeInfo Application => editingForm.Application;
 
+        public string? ConstructorName => CurrentViewControl.ConstructorName;
+
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
         public bool IsValid => ValidateSelectedConstructor().Count == 0;
 
         public bool ItemSelected => CurrentViewControl.ItemSelected;
-
-        public string? ConstructorName => CurrentViewControl.ConstructorName;
 
         public void ClearMessage() => editingForm.ClearMessage();
 

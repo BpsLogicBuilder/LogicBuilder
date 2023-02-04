@@ -32,7 +32,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         }
 
         [Fact]
-        public void CreateDiagramSearcherThroed()
+        public void CreateDiagramSearcherThrows()
         {
             //assert
             Assert.Throws<InvalidOperationException>(() => _fixture.ServiceProvider.GetRequiredService<IDiagramSearcher>());
@@ -353,6 +353,11 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
                         ""
                     )
                 },
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),

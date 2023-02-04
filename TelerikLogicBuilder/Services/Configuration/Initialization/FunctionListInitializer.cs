@@ -24,6 +24,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
             return new FunctionList
             (
                 _functionDictionaryBuilder.GetDictionary(xmlDocument),
+                _functionDictionaryBuilder.GetVoidFunctionDictionary(xmlDocument),
+                _functionDictionaryBuilder.GetBooleanFunctionDictionary(xmlDocument),
+                _functionDictionaryBuilder.GetValueFunctionDictionary(xmlDocument),
+                _functionDictionaryBuilder.GetDialogFunctionDictionary(xmlDocument),
+                _functionDictionaryBuilder.GetTableFunctionDictionary(xmlDocument),
                 _functionTreeFolderBuilder.GetVoidFunctionsTreeFolder(xmlDocument),
                 _functionTreeFolderBuilder.GetBooleanFunctionsTreeFolder(xmlDocument),
                 _functionTreeFolderBuilder.GetValueFunctionsTreeFolder(xmlDocument),

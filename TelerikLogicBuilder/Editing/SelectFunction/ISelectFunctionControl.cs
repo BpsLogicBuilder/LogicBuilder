@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
         bool IsValid { get; }
         bool ItemSelected { get; }
         Point Location { set; }
+        IDictionary<string, Function> FunctionDictionary { get; }
         IList<TreeFolder> TreeFolders { get; }
         void ClearMessage();
         void RequestDocumentUpdate();

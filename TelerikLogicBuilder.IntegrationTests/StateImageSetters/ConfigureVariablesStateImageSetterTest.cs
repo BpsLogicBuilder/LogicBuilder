@@ -217,6 +217,11 @@ namespace TelerikLogicBuilder.IntegrationTests.StateImageSetters
                 new Dictionary<string, Function>
                 {
                 },
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
                 new TreeFolder("root", new List<string>(), new List<TreeFolder>()),

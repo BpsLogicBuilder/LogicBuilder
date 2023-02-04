@@ -6,6 +6,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
     internal class FunctionList
     {
         public FunctionList(IDictionary<string, Function> functions,
+                            IDictionary<string, Function> voidFunctions,
+                            IDictionary<string, Function> booleanFunctions,
+                            IDictionary<string, Function> valueFunctions,
+                            IDictionary<string, Function> dialogFunctions,
+                            IDictionary<string, Function> tableFunctions,
                             TreeFolder voidFunctionsTreeFolder,
                             TreeFolder booleanFunctionsTreeFolder,
                             TreeFolder valueFunctionsTreeFolder,
@@ -18,6 +23,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
                             TreeFolder builtInTableFunctionsTreeFolder)
         {
             Functions = functions;
+            VoidFunctions = voidFunctions;
+            BooleanFunctions = booleanFunctions;
+            DialogFunctions = dialogFunctions;
+            ValueFunctions = valueFunctions;
+            TableFunctions = tableFunctions;
             VoidFunctionsTreeFolder = voidFunctionsTreeFolder;
             BooleanFunctionsTreeFolder = booleanFunctionsTreeFolder;
             ValueFunctionsTreeFolder = valueFunctionsTreeFolder;
@@ -31,6 +41,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration
         }
 
         internal IDictionary<string, Function> Functions { get; }
+        internal IDictionary<string, Function> VoidFunctions { get; }
+        internal IDictionary<string, Function> BooleanFunctions { get; }
+        internal IDictionary<string, Function> ValueFunctions { get; }
+        internal IDictionary<string, Function> DialogFunctions { get; }
+        internal IDictionary<string, Function> TableFunctions { get; }
 
         internal TreeFolder VoidFunctionsTreeFolder { get; }
         internal TreeFolder BooleanFunctionsTreeFolder { get; }

@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IFragmentTreeFolderBuilder, FragmentTreeFolderBuilder>()
                 .AddSingleton<IFunctionDictionaryBuilder, FunctionDictionaryBuilder>()
                 .AddSingleton<IFunctionListInitializer, FunctionListInitializer>()
+                .AddSingleton<IFunctionListMatcher, FunctionListMatcher>()
                 .AddSingleton<IFunctionTreeFolderBuilder, FunctionTreeFolderBuilder>()
                 .AddSingleton<IVariableDictionaryBuilder, VariableDictionaryBuilder>()
                 .AddSingleton<IVariableListInitializer, VariableListInitializer>()

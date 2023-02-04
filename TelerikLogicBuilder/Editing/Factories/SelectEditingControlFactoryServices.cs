@@ -1,7 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -31,6 +33,21 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<ISelectEditingControlFactory, SelectEditingControlFactory>()
+                .AddTransient<Func<ISelectFunctionForm, Type, ISelectFunctionControl>>
+                (
+                    provider =>
+                    (selectFunctionForm, assignedToType) => new SelectFunctionControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ISelectFunctionViewControlFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        selectFunctionForm,
+                        assignedToType
+                    )
+                )
                 .AddTransient<Func<IEditingForm, Type, ISelectVariableControl>>
                 (
                     provider =>

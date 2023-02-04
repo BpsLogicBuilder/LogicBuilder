@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
@@ -49,6 +50,56 @@ namespace TelerikLogicBuilder.FormsPreviewer
         {
             AddButtonClickCommand(btnSelectVariableForm, new SelectVariableFormCommand(this));
             AddButtonClickCommand(btnSelectConstructorForm, new SelectConstructorFormCommand(this));
+            AddButtonClickCommand
+            (
+                btnSelectBoolFunction, 
+                new SelectFunctionFormCommand
+                (
+                    this,
+                    _configurationService.FunctionList.BooleanFunctions, 
+                    new TreeFolder[] { _configurationService.FunctionList.BuiltInBooleanFunctionsTreeFolder, _configurationService.FunctionList.BooleanFunctionsTreeFolder }
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnSelectDialogFunction,
+                new SelectFunctionFormCommand
+                (
+                    this,
+                    _configurationService.FunctionList.DialogFunctions,
+                    new TreeFolder[] { _configurationService.FunctionList.BuiltInDialogFunctionsTreeFolder, _configurationService.FunctionList.DialogFunctionsTreeFolder }
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnSelectTableFunction,
+                new SelectFunctionFormCommand
+                (
+                    this,
+                    _configurationService.FunctionList.TableFunctions,
+                    new TreeFolder[] { _configurationService.FunctionList.BuiltInTableFunctionsTreeFolder, _configurationService.FunctionList.TableFunctionsTreeFolder }
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnSelectValueFunction,
+                new SelectFunctionFormCommand
+                (
+                    this,
+                    _configurationService.FunctionList.ValueFunctions,
+                    new TreeFolder[] { _configurationService.FunctionList.BuiltInValueFunctionsTreeFolder, _configurationService.FunctionList.ValueFunctionsTreeFolder }
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnSelectVoidFunction,
+                new SelectFunctionFormCommand
+                (
+                    this,
+                    _configurationService.FunctionList.VoidFunctions,
+                    new TreeFolder[] { _configurationService.FunctionList.BuiltInVoidFunctionsTreeFolder, _configurationService.FunctionList.VoidFunctionsTreeFolder }
+                )
+            );
         }
 
         private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)

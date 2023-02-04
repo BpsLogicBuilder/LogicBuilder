@@ -51,6 +51,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                 new SelectFunctionControlMock
                 (
                     expandedNodes,
+                    _fixture.ConfigurationService.FunctionList.BooleanFunctions,
                     new List<TreeFolder>
                     {
                         _fixture.ConfigurationService.FunctionList.BuiltInBooleanFunctionsTreeFolder,
@@ -396,6 +397,11 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
                         ""
                     ),
                 },
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
+                new Dictionary<string, Function>(),
                 new TreeFolder("Functions", new List<string>(), new List<TreeFolder>()),
                 new TreeFolder("Functions", new List<string>(), new List<TreeFolder>()),
                 new TreeFolder("Functions", new List<string>(), new List<TreeFolder>()),
