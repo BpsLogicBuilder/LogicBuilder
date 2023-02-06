@@ -28,29 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
+            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.PanelContainer.SuspendLayout();
             this.radPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // radPanel1
             // 
+            this.radPanel1.Controls.Add(this.richTextBox1);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel1.Location = new System.Drawing.Point(0, 0);
             this.radPanel1.Name = "radPanel1";
-            // 
-            // radPanel1.PanelContainer
-            // 
-            this.radPanel1.PanelContainer.Controls.Add(this.richTextBox1);
-            this.radPanel1.PanelContainer.Size = new System.Drawing.Size(679, 427);
             this.radPanel1.Size = new System.Drawing.Size(681, 429);
             this.radPanel1.TabIndex = 0;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(681, 429);
@@ -64,7 +59,6 @@
             this.Controls.Add(this.radPanel1);
             this.Name = "RichTextBoxViewerPanel";
             this.Size = new System.Drawing.Size(681, 429);
-            this.radPanel1.PanelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -73,7 +67,7 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadScrollablePanel radPanel1;
+        private Telerik.WinControls.UI.RadPanel radPanel1;
         private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
