@@ -109,6 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers
                                         (
                                             entry => $"{entry.Key}{Strings.equalSign}{_longStringManager.GetLongStringForText((string)entry.Value!, application.Runtime)}"
                                         )
+                                        .OrderBy(e => e)
                                         .ToArray();
 
                     using IScopedDisposableManager<ITextViewer> textViewerManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ITextViewer>>();

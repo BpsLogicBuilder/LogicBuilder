@@ -816,7 +816,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             radCommandBar1.Enabled = false;
             this.commandBarStripElement1.Grip.Visibility = ElementVisibility.Collapsed;
             this.commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
-            
+            this.commandBarStripElement1.BorderWidth = 0;
+
             _messages.Visible = false;
             _projectExplorer.Visible = false;
 

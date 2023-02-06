@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxPanelHelpers;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -69,11 +70,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             this.richTextBox1.WordWrap = false;
             this.richTextBox1.BorderStyle = BorderStyle.None;
-            this.richTextBox1.ScrollBars = RichTextBoxScrollBars.Both;
+            this.richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
             this.richTextBox1.Select(0, 0);
+            this.richTextBox1.ContentsResized += RichTextBox1_ContentsResized;
+            this.richTextBox1.MinimumSize = new Size(radPanel1.PanelContainer.ClientSize.Width, radPanel1.PanelContainer.ClientSize.Height);
 
             this.richTextBox1.BackColor = ForeColorUtility.GetTextBoxBackColor(ThemeResolutionService.ApplicationThemeName);
             this.richTextBox1.ForeColor = ForeColorUtility.GetTextBoxForeColor(ThemeResolutionService.ApplicationThemeName);
+
+            radPanel1.HorizontalScrollBarState = ScrollState.AlwaysShow;
+            radPanel1.VerticalScrollBarState = ScrollState.AlwaysShow;
+            radPanel1.ClientSizeChanged += RadPanel1_ClientSizeChanged;
 
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             this.Disposed += RichTextBoxPanel_Disposed;
@@ -90,6 +97,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             mnuItemCut.Enabled = !string.IsNullOrEmpty(richTextBox1.SelectedText);
             mnuItemCopy.Enabled = !string.IsNullOrEmpty(richTextBox1.SelectedText);
             mnuItemSelectAll.Enabled = richTextBox1.Enabled;
+        }
+
+        private void RadPanel1_ClientSizeChanged(object? sender, EventArgs e)
+        {
+            this.richTextBox1.MinimumSize = new Size(radPanel1.PanelContainer.ClientSize.Width, radPanel1.PanelContainer.ClientSize.Height);
+        }
+
+        private void RichTextBox1_ContentsResized(object? sender, ContentsResizedEventArgs e)
+        {
+            richTextBox1.Width = e.NewRectangle.Width;
+            richTextBox1.Height = e.NewRectangle.Height;
         }
 
         private void RichTextBox_MouseDown(object? sender, MouseEventArgs e)
