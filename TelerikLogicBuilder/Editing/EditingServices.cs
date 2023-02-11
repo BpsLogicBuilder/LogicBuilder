@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -38,6 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<ILayoutFieldControlButtons, LayoutFieldControlButtons>()
                 .AddSingleton<ISearchFunctions, SearchFunctions>()
                 .AddSingleton<ISearchSelectedDocuments, SearchSelectedDocuments>()
+                .AddSingleton<ITableLayoutPanelHelper, TableLayoutPanelHelper>()
                 .AddSingleton<IUpdateRichInputBoxXml, UpdateRichInputBoxXml>()
                 .AddEditingControlFactories()
                 .AddEditingControlHelperFactories()

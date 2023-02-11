@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using System;
 
@@ -16,6 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editingForm, constructor, assignedTo) => new EditConstructorControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
+                        provider.GetRequiredService<ITableLayoutPanelHelper>(),
                         editingForm,
                         constructor,
                         assignedTo
