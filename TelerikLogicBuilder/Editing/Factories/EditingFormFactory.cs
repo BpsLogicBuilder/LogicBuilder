@@ -11,18 +11,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal class EditingFormFactory : IEditingFormFactory
     {
         private IDisposable? _scopedService;
+        private readonly Func<Type, IEditConstructorForm> _getEditConstructorForm;
         private readonly Func<Type, ISelectConstructorForm> _getSelectConstructorForm;
         private readonly Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> _getSelectFunctionForm;
         private readonly Func<Type, ISelectVariableForm> _getSelectVariableForm;
 
         public EditingFormFactory(
+            Func<Type, IEditConstructorForm> getEditConstructorForm,
             Func<Type, ISelectConstructorForm> getSelectConstructorForm,
             Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> getSelectFunctionForm,
             Func<Type, ISelectVariableForm> getSelectVariableForm)
         {
+            _getEditConstructorForm = getEditConstructorForm;
             _getSelectConstructorForm = getSelectConstructorForm;
             _getSelectFunctionForm = getSelectFunctionForm;
             _getSelectVariableForm = getSelectVariableForm;
+        }
+
+        public IEditConstructorForm GetEditConstructorForm(Type assignedTo)
+        {
+            _scopedService = _getEditConstructorForm(assignedTo);
+            return (IEditConstructorForm)_scopedService;
         }
 
         public ISelectConstructorForm GetSelectConstructorForm(Type assignedTo)

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 
@@ -34,10 +35,17 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<IFindVariableInShape, FindVariableInShape>()
                 .AddSingleton<IFunctionsFormFieldSetHelper, FunctionsFormFieldSetHelper>()
                 .AddSingleton<IGetSourceFilesForDocumentSearch, GetSourceFilesForDocumentSearch>()
+                .AddSingleton<ILayoutFieldControlButtons, LayoutFieldControlButtons>()
                 .AddSingleton<ISearchFunctions, SearchFunctions>()
                 .AddSingleton<ISearchSelectedDocuments, SearchSelectedDocuments>()
+                .AddSingleton<IUpdateRichInputBoxXml, UpdateRichInputBoxXml>()
+                .AddEditingControlFactories()
+                .AddEditingControlHelperFactories()
                 .AddEditingFormFactories()
                 .AddDocumentEditorFactories()
+                .AddFieldControlCommandFactories()
+                .AddFieldControlFactories()
+                .AddFieldControlHelperFactories()
                 .AddSearcherFactories()
                 .AddSelectConstructorViewControlFactories()
                 .AddSelectEditingControlFactories()

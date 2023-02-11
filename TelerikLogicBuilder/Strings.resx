@@ -690,6 +690,9 @@
 	<data name="duplicateOutgoingConnector" xml:space="preserve">
     <value>Only one outgoing connector per application is valid.</value>
   </data>
+	<data name="editConstructorGroupBoxHeaderText" xml:space="preserve">
+    <value>Constructor</value>
+  </data>
 	<data name="emptyStringVisibleText" xml:space="preserve">
     <value>Empty String</value>
   </data>
@@ -1098,6 +1101,9 @@
 	<data name="jumpShapeUniqueTextForToShape" xml:space="preserve">
     <value>Duplicate Jump Shape. Text in a "To" Jump Shapes must be unique.</value>
   </data>
+	<data name="lblGenericArgumentsText" xml:space="preserve">
+    <value>Generic Arguments</value>
+  </data>
 	<data name="listItemIsEmpty" xml:space="preserve">
     <value>Item is empty.</value>
     <comment>0=new item</comment>
@@ -1292,6 +1298,9 @@
 	<data name="mnuItemAddUpdateGenericArguments" xml:space="preserve">
     <value>Add/Update Generic Arguments</value>
   </data>
+	<data name="mnuItemClearText" xml:space="preserve">
+    <value>Clear</value>
+  </data>
 	<data name="mnuItemCloseProjectText" xml:space="preserve">
     <value>Close Project</value>
   </data>
@@ -1328,11 +1337,23 @@
 	<data name="mnuItemEditText" xml:space="preserve">
     <value>Edit</value>
   </data>
+	<data name="mnuItemInsertText" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+	<data name="mnuItemInsertConstructorText" xml:space="preserve">
+    <value>Constructor</value>
+  </data>
 	<data name="mnuItemInsertCopiedRowText" xml:space="preserve">
     <value>Insert Copied Row</value>
   </data>
+	<data name="mnuItemInsertFunctionText" xml:space="preserve">
+    <value>Function</value>
+  </data>
 	<data name="mnuItemInsertNewRowText" xml:space="preserve">
     <value>Insert New Row</value>
+  </data>
+	<data name="mnuItemInsertVariableText" xml:space="preserve">
+    <value>Variable</value>
   </data>
 	<data name="mnuItemOpenFileText" xml:space="preserve">
     <value>Open File</value>
@@ -1372,6 +1393,9 @@
   </data>
 	<data name="mnuItemToAssemblyQualifiedName" xml:space="preserve">
     <value>To Assembly Qualified Name</value>
+  </data>
+	<data name="mnuItemToCamelCaseText" xml:space="preserve">
+    <value>To Camel Case</value>
   </data>
 	<data name="mnuItemValidateRulesText" xml:space="preserve">
     <value>Validate</value>

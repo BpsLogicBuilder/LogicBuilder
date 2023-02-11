@@ -95,6 +95,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
 
+        public void SetVariable(string variableName)
+        {
+            CurrentViewControl.SelectVariable(variableName);
+        }
+
         private void AddChangeEvents()
         {
             foreach (CommandBarToggleButton toggle in toggleButtons)

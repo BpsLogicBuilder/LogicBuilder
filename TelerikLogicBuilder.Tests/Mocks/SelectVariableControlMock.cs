@@ -59,5 +59,10 @@ namespace TelerikLogicBuilder.Tests.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public void SetVariable(string variableName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1879,6 +1879,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Constructor.
+        /// </summary>
+        internal static string editConstructorGroupBoxHeaderText {
+            get {
+                return ResourceManager.GetString("editConstructorGroupBoxHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty String.
         /// </summary>
         internal static string emptyStringVisibleText {
@@ -4066,6 +4075,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generic Arguments.
+        /// </summary>
+        internal static string lblGenericArgumentsText {
+            get {
+                return ResourceManager.GetString("lblGenericArgumentsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} Of {1}.
         /// </summary>
         internal static string listDescriptionFormat {
@@ -4642,6 +4660,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        internal static string mnuItemClearText {
+            get {
+                return ResourceManager.GetString("mnuItemClearText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close Project.
         /// </summary>
         internal static string mnuItemCloseProjectText {
@@ -4750,6 +4777,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Constructor.
+        /// </summary>
+        internal static string mnuItemInsertConstructorText {
+            get {
+                return ResourceManager.GetString("mnuItemInsertConstructorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Copied Row.
         /// </summary>
         internal static string mnuItemInsertCopiedRowText {
@@ -4759,11 +4795,38 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Function.
+        /// </summary>
+        internal static string mnuItemInsertFunctionText {
+            get {
+                return ResourceManager.GetString("mnuItemInsertFunctionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert New Row.
         /// </summary>
         internal static string mnuItemInsertNewRowText {
             get {
                 return ResourceManager.GetString("mnuItemInsertNewRowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert.
+        /// </summary>
+        internal static string mnuItemInsertText {
+            get {
+                return ResourceManager.GetString("mnuItemInsertText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable.
+        /// </summary>
+        internal static string mnuItemInsertVariableText {
+            get {
+                return ResourceManager.GetString("mnuItemInsertVariableText", resourceCulture);
             }
         }
         
@@ -4881,6 +4944,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemToAssemblyQualifiedName {
             get {
                 return ResourceManager.GetString("mnuItemToAssemblyQualifiedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Camel Case.
+        /// </summary>
+        internal static string mnuItemToCamelCaseText {
+            get {
+                return ResourceManager.GetString("mnuItemToCamelCaseText", resourceCulture);
             }
         }
         

@@ -10,6 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal interface IEditingFormFactory : IDisposable
     {
+        IEditConstructorForm GetEditConstructorForm(Type assignedTo);
         ISelectConstructorForm GetSelectConstructorForm(Type assignedTo);
         ISelectFunctionForm GetSelectFunctionForm(Type assignedTo, IDictionary<string, Function> functionDisctionary, IList<TreeFolder> treeFolders);
         ISelectVariableForm GetSelectVariableForm(Type assignedTo);

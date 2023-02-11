@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
@@ -6,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,20 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingFormFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<Type, IEditConstructorForm>>
+                (
+                    provider =>
+                    assignedTo => new EditConstructorForm
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditingControlFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        assignedTo
+                    )
+                )
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()
                 .AddTransient<Func<Type, ISelectConstructorForm>>
                 (

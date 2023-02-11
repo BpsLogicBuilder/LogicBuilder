@@ -35,6 +35,7 @@
             this.btnSelectValueFunction = new Telerik.WinControls.UI.RadButton();
             this.btnSelectTableFunction = new Telerik.WinControls.UI.RadButton();
             this.btnSelectVoidFunction = new Telerik.WinControls.UI.RadButton();
+            this.btnEditConstructorForm = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectVariableForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectConstructorForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectBoolFunction)).BeginInit();
@@ -42,6 +43,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectValueFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectTableFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectVoidFunction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditConstructorForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,12 +103,21 @@
             this.btnSelectVoidFunction.TabIndex = 6;
             this.btnSelectVoidFunction.Text = "Select Void Function Form";
             // 
+            // btnEditConstructorForm
+            // 
+            this.btnEditConstructorForm.Location = new System.Drawing.Point(278, 12);
+            this.btnEditConstructorForm.Name = "btnEditConstructorForm";
+            this.btnEditConstructorForm.Size = new System.Drawing.Size(179, 24);
+            this.btnEditConstructorForm.TabIndex = 7;
+            this.btnEditConstructorForm.Text = "Edit Constructor Form";
+            // 
             // RadForm1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 295);
+            this.ClientSize = new System.Drawing.Size(802, 352);
+            this.Controls.Add(this.btnEditConstructorForm);
             this.Controls.Add(this.btnSelectVoidFunction);
             this.Controls.Add(this.btnSelectTableFunction);
             this.Controls.Add(this.btnSelectValueFunction);
@@ -124,6 +135,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectValueFunction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectTableFunction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectVoidFunction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditConstructorForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -138,5 +150,6 @@
         private Telerik.WinControls.UI.RadButton btnSelectValueFunction;
         private Telerik.WinControls.UI.RadButton btnSelectTableFunction;
         private Telerik.WinControls.UI.RadButton btnSelectVoidFunction;
+        private Telerik.WinControls.UI.RadButton btnEditConstructorForm;
     }
 }
