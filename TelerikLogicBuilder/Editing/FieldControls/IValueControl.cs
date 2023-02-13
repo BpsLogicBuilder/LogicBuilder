@@ -16,12 +16,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         string VisibleText { get; }
 
         void Focus();
-        void InvokeChanged();
         void HideControls();
+        void InvokeChanged();
         void SetErrorBackColor();
-        void ShowControls();
         void SetNormalBackColor();
         void SetToolTipHelp(string toolTipText);
+        void ShowControls();
         void Update(XmlElement xmlElement);
     }
 }

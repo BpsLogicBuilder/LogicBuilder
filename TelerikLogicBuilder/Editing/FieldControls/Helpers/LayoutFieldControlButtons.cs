@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             TableLayoutPanel tableLayoutPanel = new();
             ((ISupportInitialize)panelButtons).BeginInit();
             panelButtons.SuspendLayout();
-            panelButtons.Size = new Size(3 * buttonWidth, panelButtons.Height);
+            panelButtons.Size = new Size(buttons.Count * buttonWidth, panelButtons.Height);
 
             tableLayoutPanel.SuspendLayout();
             tableLayoutPanel.Padding = new Padding(0);

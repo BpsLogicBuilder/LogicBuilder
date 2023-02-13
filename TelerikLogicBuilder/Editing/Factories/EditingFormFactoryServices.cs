@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -45,6 +46,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ISelectEditingControlFactory>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         assignedTo
+                    )
+                )
+                .AddTransient<Func<IList<string>, string, ISelectFromDomainForm>>
+                (
+                    provider =>
+                    (domain, comments) => new SelectFromDomainForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        domain, 
+                        comments
                     )
                 )
                 .AddTransient<Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm>>

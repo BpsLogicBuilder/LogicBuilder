@@ -62,7 +62,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.Method,
                         Properties.Resources.CutFile,
                         Properties.Resources.SortAscending_16x,
-                        Properties.Resources.TreeView_16x
+                        Properties.Resources.TreeView_16x,
+                        Properties.Resources.more
                     }
                 };
 

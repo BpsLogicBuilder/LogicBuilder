@@ -80,6 +80,14 @@ namespace Microsoft.Extensions.DependencyInjection
                         richInputBoxValueControl
                     )
                 )
+                .AddTransient<Func<ILiteralParameterDomainRichInputBoxControl, SelectDomainItemCommand>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new SelectDomainItemCommand
+                    (
+                        richInputBoxValueControl
+                    )
+                )
                 .AddTransient<Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand>>
                 (
                     provider =>

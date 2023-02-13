@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
@@ -33,9 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
 
-        private RadButton BtnConstructor => richInputBoxValueControl.BtnConstructor;
-        private RadButton BtnFunction => richInputBoxValueControl.BtnFunction;
-        private RadButton BtnVariable => richInputBoxValueControl.BtnVariable;
+        private IList<RadButton> CommandButtons => richInputBoxValueControl.CommandButtons;
 
         private RadMenuItem MnuItemInsertConstructor => richInputBoxValueControl.MnuItemInsertConstructor;
         private RadMenuItem MnuItemInsertFunction => richInputBoxValueControl.MnuItemInsertFunction;
@@ -75,9 +74,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             SetEnabled(RichInputBox.IsSelectionEligibleForLink());
             void SetEnabled(bool enable)
             {
-                BtnFunction.Enabled = enable;
-                BtnVariable.Enabled = enable;
-                BtnConstructor.Enabled = enable;
+                foreach (RadButton radButton in CommandButtons)
+                    radButton.Enabled = enable;
+
                 MnuItemInsertConstructor.Enabled = enable;
                 MnuItemInsertFunction.Enabled = enable;
                 MnuItemInsertVariable.Enabled = enable;

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -12,6 +13,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     {
         IEditConstructorForm GetEditConstructorForm(Type assignedTo);
         ISelectConstructorForm GetSelectConstructorForm(Type assignedTo);
+        ISelectFromDomainForm GetSelectFromDomainForm(IList<string> domain, string comments);
         ISelectFunctionForm GetSelectFunctionForm(Type assignedTo, IDictionary<string, Function> functionDisctionary, IList<TreeFolder> treeFolders);
         ISelectVariableForm GetSelectVariableForm(Type assignedTo);
     }

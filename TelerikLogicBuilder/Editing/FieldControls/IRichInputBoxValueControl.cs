@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using System;
+using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
@@ -7,9 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
     internal interface IRichInputBoxValueControl : IValueControl
     {
         Type AssignedTo { get; }
-        RadButton BtnConstructor { get; }
-        RadButton BtnFunction { get; }
-        RadButton BtnVariable { get; }
+        IList<RadButton> CommandButtons { get; }
         bool DenySpecialCharacters { get; set; }
         RadMenuItem MnuItemInsert { get; }
         RadMenuItem MnuItemInsertConstructor { get; }

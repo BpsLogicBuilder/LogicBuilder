@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -13,17 +14,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private IDisposable? _scopedService;
         private readonly Func<Type, IEditConstructorForm> _getEditConstructorForm;
         private readonly Func<Type, ISelectConstructorForm> _getSelectConstructorForm;
+        private readonly Func<IList<string>, string, ISelectFromDomainForm> _getSelectFromDomainForm;
         private readonly Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> _getSelectFunctionForm;
         private readonly Func<Type, ISelectVariableForm> _getSelectVariableForm;
 
         public EditingFormFactory(
             Func<Type, IEditConstructorForm> getEditConstructorForm,
             Func<Type, ISelectConstructorForm> getSelectConstructorForm,
+            Func<IList<string>, string, ISelectFromDomainForm> getSelectFromDomainForm,
             Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> getSelectFunctionForm,
             Func<Type, ISelectVariableForm> getSelectVariableForm)
         {
             _getEditConstructorForm = getEditConstructorForm;
             _getSelectConstructorForm = getSelectConstructorForm;
+            _getSelectFromDomainForm = getSelectFromDomainForm;
             _getSelectFunctionForm = getSelectFunctionForm;
             _getSelectVariableForm = getSelectVariableForm;
         }
@@ -38,6 +42,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = _getSelectConstructorForm(assignedTo);
             return (ISelectConstructorForm)_scopedService;
+        }
+
+        public ISelectFromDomainForm GetSelectFromDomainForm(IList<string> domain, string comments)
+        {
+            _scopedService = _getSelectFromDomainForm(domain, comments);
+            return (ISelectFromDomainForm)_scopedService;
         }
 
         public ISelectFunctionForm GetSelectFunctionForm(Type assignedTo, IDictionary<string, Function> functionDisctionary, IList<TreeFolder> treeFolders)

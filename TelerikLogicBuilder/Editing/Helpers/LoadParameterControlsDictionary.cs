@@ -5,6 +5,8 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
@@ -45,12 +47,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 return;
             }
 
+            RadToolTip toolTip = new();
             RadLabel label = new()
             {
                 Dock = System.Windows.Forms.DockStyle.Top,
                 Name = parameter.Name,
                 Image = GetLabelImage(parameter.ParameterCategory)
             };
+            if (parameter.Comments.Trim().Length > 0)
+                toolTip.SetToolTip(label, parameter.Comments);
 
             RadCheckBox radCheckBox = new()
             {
@@ -71,7 +76,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                         valueControl = _fieldControlFactory.GetLiteralParameterDropDownListControl(editingControl, literalParameter);
                         break;
                     case LiteralParameterInputStyle.SingleLineTextBox:
-                        valueControl = _fieldControlFactory.GetLiteralParameterRichInputBoxControl(editingControl, literalParameter);
+                        valueControl = literalParameter.Domain.Any()
+                                            ? _fieldControlFactory.GetLiteralParameterDomainRichInputBoxControl(editingControl, literalParameter)
+                                            : _fieldControlFactory.GetLiteralParameterRichInputBoxControl(editingControl, literalParameter);
                         break;
                     default:
                         break;

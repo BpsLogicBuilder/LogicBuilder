@@ -48,5 +48,6 @@
         internal const byte CUTFILEIMAGEINDEX = 43;
         internal const byte SORTIMAGEINDEX = 44;
         internal const byte TREEVIEWMAGEINDEX = 45;
+        internal const byte MOREWMAGEINDEX = 46;
     }
 }
