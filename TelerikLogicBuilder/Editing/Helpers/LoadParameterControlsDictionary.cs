@@ -37,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         {
             HashSet<LiteralParameterInputStyle> implemented = new()
             {
+                LiteralParameterInputStyle.DomainAutoComplete,
                 LiteralParameterInputStyle.DropDown,
                 LiteralParameterInputStyle.SingleLineTextBox
             };
@@ -72,6 +73,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             {
                 switch (literalParameter.Control)
                 {
+                    case LiteralParameterInputStyle.DomainAutoComplete:
+                        valueControl = _fieldControlFactory.GetLiteralParameterDomainAutoCompleteControl(editingControl, literalParameter);
+                        break;
                     case LiteralParameterInputStyle.DropDown:
                         valueControl = _fieldControlFactory.GetLiteralParameterDropDownListControl(editingControl, literalParameter);
                         break;

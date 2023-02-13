@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,8 +14,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         {
             HashSet<Enums.LiteralParameterInputStyle> implemented = new()
             {
-                Enums.LiteralParameterInputStyle.DropDown,
-                Enums.LiteralParameterInputStyle.SingleLineTextBox
+                LiteralParameterInputStyle.DomainAutoComplete,
+                LiteralParameterInputStyle.DropDown,
+                LiteralParameterInputStyle.SingleLineTextBox
             };
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
