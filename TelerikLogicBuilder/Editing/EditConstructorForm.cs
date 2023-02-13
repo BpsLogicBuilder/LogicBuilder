@@ -84,13 +84,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void RadButton2_Click(object? sender, EventArgs e)
         {
-            var constructor = _configurationService.ConstructorList.Constructors["DateTime_yy_mm_dd"];
+            //var constructorName = "DateTime_yy_mm_dd";
+            var constructorName = "ColumnSettingsParameters";
+            var constructor = _configurationService.ConstructorList.Constructors[constructorName];
             Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo));
         }
 
         private void RadButton1_Click(object? sender, EventArgs e)
         {
-            var constructor = _configurationService.ConstructorList.Constructors["DropDownItemBindingParameters"];
+            //var constructorName = "DropDownItemBindingParameters";
+            var constructorName = "CommandButtonParameters";
+            var constructor = _configurationService.ConstructorList.Constructors[constructorName];
             Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo));
         }
 

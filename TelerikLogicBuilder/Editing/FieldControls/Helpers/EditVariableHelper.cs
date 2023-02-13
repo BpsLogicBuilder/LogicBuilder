@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         public void Edit(Type assignedTo, VariableData? variableData = null)
         {
             using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectVariableForm selectVariableForm = disposableManager.GetSelectVariableForm(typeof(object));
+            ISelectVariableForm selectVariableForm = disposableManager.GetSelectVariableForm(assignedTo);
             if (variableData != null)
                 selectVariableForm.SetVariable(variableData.Name);
 

@@ -33,7 +33,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private void AddParameterControlSet(IDictionary<string, ParameterControlSet> editControlsSet, ParameterBase parameter)
         {
-            if (parameter is not LiteralParameter literalParamete || literalParamete.Control != LiteralParameterInputStyle.SingleLineTextBox)
+            HashSet<LiteralParameterInputStyle> implemented = new()
+            {
+                LiteralParameterInputStyle.DropDown,
+                LiteralParameterInputStyle.SingleLineTextBox
+            };
+
+            if (parameter is not LiteralParameter literalParamete 
+                || !implemented.Contains(literalParamete.Control))
             {
                 return;
             }
@@ -60,6 +67,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             {
                 switch (literalParameter.Control)
                 {
+                    case LiteralParameterInputStyle.DropDown:
+                        valueControl = _fieldControlFactory.GetLiteralParameterDropDownListControl(editingControl, literalParameter);
+                        break;
                     case LiteralParameterInputStyle.SingleLineTextBox:
                         valueControl = _fieldControlFactory.GetLiteralParameterRichInputBoxControl(editingControl, literalParameter);
                         break;

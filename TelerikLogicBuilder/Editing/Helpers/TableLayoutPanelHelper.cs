@@ -11,6 +11,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         public void SetUp(TableLayoutPanel tableLayoutPanel, RadPanel radPanelTableParent, IList<ParameterBase> parameters, bool hasGenericArguments)
         {
+            HashSet<Enums.LiteralParameterInputStyle> implemented = new()
+            {
+                Enums.LiteralParameterInputStyle.DropDown,
+                Enums.LiteralParameterInputStyle.SingleLineTextBox
+            };
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
 
@@ -22,7 +27,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter literalParameter || literalParameter.Control != Enums.LiteralParameterInputStyle.SingleLineTextBox)
+                if (parameter is not LiteralParameter literalParameter 
+                    || !implemented.Contains(literalParameter.Control))
                     continue;
 
                 rowCount += 2;
@@ -36,7 +42,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             float totalHeight = (2 * boundaryWidth) + singleLineHeight + separatorLineHeight; //top + bottom + constructorName rows;
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter literalParameter || literalParameter.Control != Enums.LiteralParameterInputStyle.SingleLineTextBox)
+                if (parameter is not LiteralParameter literalParameter 
+                    || !implemented.Contains(literalParameter.Control))
                     continue;
 
                 totalHeight += literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
@@ -97,7 +104,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter literalParameter || literalParameter.Control != Enums.LiteralParameterInputStyle.SingleLineTextBox)
+                if (parameter is not LiteralParameter literalParameter 
+                    || !implemented.Contains(literalParameter.Control))
                     continue;
 
                 float size = literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox

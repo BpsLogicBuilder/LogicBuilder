@@ -25,7 +25,9 @@ namespace TelerikLogicBuilder.FormsPreviewer
             _functionListInitializer = serviceProvider.GetRequiredService<IFunctionListInitializer>();
             _variableListInitializer = serviceProvider.GetRequiredService<IVariableListInitializer>();
             _loadContextSponsor = serviceProvider.GetRequiredService<ILoadContextSponsor>();
-            _configurationService.ProjectProperties = _loadProjectProperties.Load(@"C:\.github\BlaiseD\LogicBuilder.Samples\Xamarin\Contoso\FlowProjects\Contoso.XPlatform\Contoso.XPlatform.lbproj");
+            //C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj
+            //C:\.github\BlaiseD\LogicBuilder.Samples\Xamarin\Contoso\FlowProjects\Contoso.XPlatform\Contoso.XPlatform.lbproj
+            _configurationService.ProjectProperties = _loadProjectProperties.Load(@"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj");
             _configurationService.ConstructorList = _constructorListInitializer.InitializeList();
             _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
             _configurationService.FunctionList = _functionListInitializer.InitializeList();

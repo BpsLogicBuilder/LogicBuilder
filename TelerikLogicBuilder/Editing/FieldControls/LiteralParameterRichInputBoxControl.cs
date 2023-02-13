@@ -123,7 +123,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public RichInputBox RichInputBox => _richInputBox;
 
-        public Type AssignedTo => _assignedTo ??= _enumHelper.GetSystemType(literalParameter.LiteralType);
+        public Type AssignedTo
+        {
+            get
+            {
+                return _assignedTo ??= GetAssignedTo();
+
+                Type GetAssignedTo()
+                {
+                    Type type = _enumHelper.GetSystemType(literalParameter.LiteralType);
+
+                    //string types convert multiple items (mixed xml) of different types to a format string so accepts all types.
+                    //parent control field validation will handle single child cases.  Single items where type != typeof(string) are not valid.
+                    return type == typeof(string) ? typeof(object) : type;
+                }
+            }
+        }
 
         public bool IsEmpty => false;
 

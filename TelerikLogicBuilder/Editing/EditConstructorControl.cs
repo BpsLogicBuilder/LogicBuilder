@@ -26,7 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private readonly RadPanel radPanelTableParent;
         private readonly TableLayoutPanel tableLayoutPanel;
         private readonly RadLabel lblConstructor;
-        private RadLabel? lblGenericArguments;
+        private readonly RadLabel? lblGenericArguments;
 
         public bool IsValid => throw new NotImplementedException();
 

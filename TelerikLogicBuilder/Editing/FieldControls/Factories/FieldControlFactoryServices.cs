@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -15,6 +16,17 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<IFieldControlFactory, FieldControlFactory>()
+                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterDropDownListControl>>
+                (
+                    provider =>
+                    (editigControl, literalParameter) => new LiteralParameterDropDownListControl
+                    (
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editigControl,
+                        literalParameter
+                    )
+                )
                 .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl>>
                 (
                     provider =>
