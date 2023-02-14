@@ -82,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                         break;
                     case LiteralParameterInputStyle.MultipleLineTextBox:
                         valueControl = literalParameter.Domain.Any()
-                                            ? _fieldControlFactory.GetLiteralParameterDomainRichInputBoxControl(editingControl, literalParameter)
+                                            ? _fieldControlFactory.GetLiteralParameterDomainMultilineControl(editingControl, literalParameter)
                                             : _fieldControlFactory.GetLiteralParameterMultilineControl(editingControl, literalParameter);
                         break;
                     case LiteralParameterInputStyle.SingleLineTextBox:

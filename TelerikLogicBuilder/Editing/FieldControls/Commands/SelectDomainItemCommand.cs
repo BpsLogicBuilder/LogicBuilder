@@ -10,10 +10,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class SelectDomainItemCommand : ClickCommandBase
     {
-        private readonly ILiteralParameterDomainRichInputBoxControl richInputBoxValueControl;
+        private readonly IDomainRichInputBoxValueControl richInputBoxValueControl;
 
         public SelectDomainItemCommand(
-            ILiteralParameterDomainRichInputBoxControl literalParameterDomainRichInputBoxControl)
+            IDomainRichInputBoxValueControl literalParameterDomainRichInputBoxControl)
         {
             this.richInputBoxValueControl = literalParameterDomainRichInputBoxControl;
         }

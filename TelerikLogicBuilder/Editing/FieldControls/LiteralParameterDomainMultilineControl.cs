@@ -18,7 +18,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
-    internal partial class LiteralParameterDomainRichInputBoxControl : UserControl, ILiteralParameterDomainRichInputBoxControl
+    internal partial class LiteralParameterDomainMultilineControl : UserControl, ILiteralParameterDomainMultilineControl
     {
         private readonly RadButton btnDomain;
         private readonly RadButton btnVariable;
@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly LiteralParameter literalParameter;
         private Type? _assignedTo;
 
-        public LiteralParameterDomainRichInputBoxControl(
+        public LiteralParameterDomainMultilineControl(
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlContextMenuFactory,
@@ -203,10 +203,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             radButton.Click += (sender, args) => command.Execute();
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             InitializeRichInputBox();
             InitializeButtons();
+            CollapsePanelBorder(radPanelRight);
 
             AddButtonClickCommand(btnDomain, _fieldControlCommandFactory.GetSelectDomainItemCommand(this));
             AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this));
@@ -218,11 +222,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         }
 
         private void InitializeButtons()
-            => _layoutFieldControlButtons.Layout
+        {
+            int buttonWidth = 30;
+
+            ((ISupportInitialize)this.radPanelRight).BeginInit();
+            this.radPanelRight.SuspendLayout();
+
+            radPanelRight.Size = new Size(CommandButtons.Count * buttonWidth, radPanelRight.Height);
+            _layoutFieldControlButtons.Layout
             (
                 radPanelCommandBar,
-                CommandButtons
+                CommandButtons,
+                false,
+                buttonWidth
             );
+
+            ((ISupportInitialize)this.radPanelRight).EndInit();
+            this.radPanelRight.ResumeLayout(true);
+        }
 
         private void InitializeRichInputBox()
         {
@@ -237,7 +254,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _richInputBox.Location = new Point(0, 0);
             _richInputBox.DetectUrls = false;
             _richInputBox.HideSelection = false;
-            _richInputBox.Multiline = false;
+            _richInputBox.Multiline = true;
 
             this.radPanelRichInputBox.Controls.Add(_richInputBox);
             ((ISupportInitialize)this.radPanelRichInputBox).EndInit();

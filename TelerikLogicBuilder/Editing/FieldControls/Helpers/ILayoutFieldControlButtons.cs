@@ -5,6 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal interface ILayoutFieldControlButtons
     {
-        void Layout(RadPanel panelButtons, IList<RadButton> buttons);
+        void Layout(RadPanel panelButtons, IList<RadButton> buttons, bool performLayout = true, int buttonWidth = 30);
     }
 }

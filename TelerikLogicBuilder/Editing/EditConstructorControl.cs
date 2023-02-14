@@ -6,8 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
+using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing
@@ -173,6 +174,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
 
             this.ResumeLayout(false);
+
+            CollapsePanelBorder(radPanelTableParent);
+            CollapsePanelBorder(radPanelConstructor);
         }
 
         public void ClearMessage() => editingForm.ClearMessage();
@@ -182,6 +186,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
 
         public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
+
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         bool ValidateGenericArgs() => true;
     }

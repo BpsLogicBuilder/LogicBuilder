@@ -86,8 +86,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             //var constructorName = "DateTime_yy_mm_dd";
             //var constructorName = "ColumnSettingsParameters";
-            //var constructorName = "GridSettingsParameters";
-            var constructorName = "DetailFieldSettingParameters";
+            var constructorName = "GridSettingsParameters";
+            //var constructorName = "DetailFieldSettingParameters";
             var constructor = _configurationService.ConstructorList.Constructors[constructorName];
             Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo));
         }

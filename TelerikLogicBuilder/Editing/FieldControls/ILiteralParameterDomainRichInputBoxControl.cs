@@ -2,9 +2,8 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
-    internal interface ILiteralParameterDomainRichInputBoxControl : IRichInputBoxValueControl
+    internal interface ILiteralParameterDomainRichInputBoxControl : IDomainRichInputBoxValueControl
     {
-        string Comments { get; }
-        IList<string> Domain { get; }
+
     }
 }

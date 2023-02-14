@@ -13,7 +13,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> _getEditRichInputBoxFunctionCommand;
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> _getEditRichInputBoxVariableCommand;
         private readonly Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> _getPasteRichInputBoxTextCommand;
-        private readonly Func<ILiteralParameterDomainRichInputBoxControl, SelectDomainItemCommand> _getSelectDomainItemCommand;
+        private readonly Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> _getSelectDomainItemCommand;
         private readonly Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> _getToCamelCaseRichInputBoxCommand;
 
         public FieldControlCommandFactory(
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> getEditRichInputBoxFunctionCommand,
             Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> getEditRichInputBoxVariableCommand,
             Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> getPasteRichInputBoxTextCommand,
-            Func<ILiteralParameterDomainRichInputBoxControl, SelectDomainItemCommand> getSelectDomainItemCommand,
+            Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> getSelectDomainItemCommand,
             Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> getToCamelCaseRichInputBoxCommand)
         {
             _getClearRichInputBoxTextCommand = getClearRichInputBoxTextCommand;
@@ -64,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         public PasteRichInputBoxTextCommand GetPasteRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
             => _getPasteRichInputBoxTextCommand(richInputBoxValueControl);
 
-        public SelectDomainItemCommand GetSelectDomainItemCommand(ILiteralParameterDomainRichInputBoxControl richInputBoxValueControl)
+        public SelectDomainItemCommand GetSelectDomainItemCommand(IDomainRichInputBoxValueControl richInputBoxValueControl)
             => _getSelectDomainItemCommand(richInputBoxValueControl);
 
         public ToCamelCaseRichInputBoxCommand GetToCamelCaseRichInputBoxCommand(IRichInputBoxValueControl richInputBoxValueControl)

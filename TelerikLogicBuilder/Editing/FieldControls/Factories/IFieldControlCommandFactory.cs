@@ -12,7 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         EditRichInputBoxFunctionCommand GetEditRichInputBoxFunctionCommand(IRichInputBoxValueControl richInputBoxValueControl);
         EditRichInputBoxVariableCommand GetEditRichInputBoxVariableCommand(IRichInputBoxValueControl richInputBoxValueControl);
         PasteRichInputBoxTextCommand GetPasteRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl);
-        SelectDomainItemCommand GetSelectDomainItemCommand(ILiteralParameterDomainRichInputBoxControl richInputBoxValueControl);
+        SelectDomainItemCommand GetSelectDomainItemCommand(IDomainRichInputBoxValueControl richInputBoxValueControl);
         ToCamelCaseRichInputBoxCommand GetToCamelCaseRichInputBoxCommand(IRichInputBoxValueControl richInputBoxValueControl);
     }
 }
