@@ -39,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             {
                 LiteralParameterInputStyle.DomainAutoComplete,
                 LiteralParameterInputStyle.DropDown,
+                LiteralParameterInputStyle.MultipleLineTextBox,
                 LiteralParameterInputStyle.SingleLineTextBox
             };
 
@@ -78,6 +79,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                         break;
                     case LiteralParameterInputStyle.DropDown:
                         valueControl = _fieldControlFactory.GetLiteralParameterDropDownListControl(editingControl, literalParameter);
+                        break;
+                    case LiteralParameterInputStyle.MultipleLineTextBox:
+                        valueControl = literalParameter.Domain.Any()
+                                            ? _fieldControlFactory.GetLiteralParameterDomainRichInputBoxControl(editingControl, literalParameter)
+                                            : _fieldControlFactory.GetLiteralParameterMultilineControl(editingControl, literalParameter);
                         break;
                     case LiteralParameterInputStyle.SingleLineTextBox:
                         valueControl = literalParameter.Domain.Any()

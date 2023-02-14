@@ -8,17 +8,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl> _getLiteralParameterDomainAutoCompleteControl;
         private readonly Func<IEditingControl, LiteralParameter, ILiteralParameterDomainRichInputBoxControl> _getLiteralParameterDomainRichInputBoxControl;
         private readonly Func<IEditingControl, LiteralParameter, ILiteralParameterDropDownListControl> _getLiteralParameterDropDownListControl;
+        private readonly Func<IEditingControl, LiteralParameter, ILiteralParameterMultilineControl> _getLiteralParameterMultilineControl;
         private readonly Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl> _getLiteralParameterRichInputBoxControl;
 
         public FieldControlFactory(
             Func<IEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl> getLiteralParameterDomainAutoCompleteControl,
             Func<IEditingControl, LiteralParameter, ILiteralParameterDomainRichInputBoxControl> getLiteralParameterDomainRichInputBoxControl,
             Func<IEditingControl, LiteralParameter, ILiteralParameterDropDownListControl> getLiteralParameterDropDownListControl,
+            Func<IEditingControl, LiteralParameter, ILiteralParameterMultilineControl> getLiteralParameterMultilineControl,
             Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl> getLiteralParameterRichInputBoxControl)
         {
             _getLiteralParameterDomainAutoCompleteControl = getLiteralParameterDomainAutoCompleteControl;
             _getLiteralParameterDomainRichInputBoxControl = getLiteralParameterDomainRichInputBoxControl;
             _getLiteralParameterDropDownListControl = getLiteralParameterDropDownListControl;
+            _getLiteralParameterMultilineControl = getLiteralParameterMultilineControl;
             _getLiteralParameterRichInputBoxControl = getLiteralParameterRichInputBoxControl;
         }
 
@@ -30,6 +33,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 
         public ILiteralParameterDropDownListControl GetLiteralParameterDropDownListControl(IEditingControl editingControl, LiteralParameter literalParameter)
             => _getLiteralParameterDropDownListControl(editingControl, literalParameter);
+
+        public ILiteralParameterMultilineControl GetLiteralParameterMultilineControl(IEditingControl editingControl, LiteralParameter literalParameter)
+            => _getLiteralParameterMultilineControl(editingControl, literalParameter);
 
         public ILiteralParameterRichInputBoxControl GetLiteralParameterRichInputBoxControl(IEditingControl editingControl, LiteralParameter literalParameter)
             => _getLiteralParameterRichInputBoxControl(editingControl, literalParameter);

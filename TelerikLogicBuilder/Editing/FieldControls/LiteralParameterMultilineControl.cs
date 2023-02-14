@@ -18,14 +18,14 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
-    internal partial class LiteralParameterRichInputBoxControl : UserControl, ILiteralParameterRichInputBoxControl
+    internal partial class LiteralParameterMultilineControl : UserControl, ILiteralParameterMultilineControl
     {
         private readonly RadButton btnConstructor;
         private readonly RadButton btnFunction;
         private readonly RadButton btnVariable;
 
         private readonly IEnumHelper _enumHelper;
-        private readonly ICreateRichInputBoxContextMenu _createRichInputBoxContextMenu; 
+        private readonly ICreateRichInputBoxContextMenu _createRichInputBoxContextMenu;
         private readonly IFieldControlCommandFactory _fieldControlCommandFactory;
         private readonly IImageListService _imageListService;
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly LiteralParameter literalParameter;
         private Type? _assignedTo;
 
-        public LiteralParameterRichInputBoxControl(
+        public LiteralParameterMultilineControl(
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlContextMenuFactory,
@@ -89,6 +89,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
                 ImageIndex = ImageIndexes.CONSTRUCTORIMAGEINDEX,
                 Dock = DockStyle.Fill
             };
+
             Initialize();
         }
 
@@ -148,11 +149,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public string VisibleText => _richInputBox.GetVisibleText();
 
+        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+
+        void IValueControl.Focus() => _richInputBox.Select();
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
-
-        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
 
         public void SetErrorBackColor()
         {
@@ -179,17 +182,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void Update(XmlElement xmlElement) => _updateRichInputBoxXml.Update(xmlElement, _richInputBox);
 
-        void IValueControl.Focus() => _richInputBox.Select();
-
         private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
         {
             radButton.Click += (sender, args) => command.Execute();
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
         private void Initialize()
         {
             InitializeRichInputBox();
             InitializeButtons();
+            CollapsePanelBorder(radPanelRight);
 
             AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
             AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
@@ -199,7 +204,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _createRichInputBoxContextMenu.Create();
         }
 
-        private void InitializeButtons() 
+        private void InitializeButtons()
             => _layoutFieldControlButtons.Layout
             (
                 radPanelCommandBar,
@@ -219,7 +224,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _richInputBox.Location = new Point(0, 0);
             _richInputBox.DetectUrls = false;
             _richInputBox.HideSelection = false;
-            _richInputBox.Multiline = false;
+            _richInputBox.Multiline = true;
 
             this.radPanelRichInputBox.Controls.Add(_richInputBox);
             ((ISupportInitialize)this.radPanelRichInputBox).EndInit();

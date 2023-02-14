@@ -54,6 +54,22 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
+                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterMultilineControl>>
+                (
+                    provider =>
+                    (editigControl, literalParameter) => new LiteralParameterMultilineControl
+                    (
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                        provider.GetRequiredService<RichInputBox>(),
+                        editigControl,
+                        literalParameter
+                    )
+                )
                 .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl>>
                 (
                     provider =>

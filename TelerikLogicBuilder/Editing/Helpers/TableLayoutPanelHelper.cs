@@ -12,10 +12,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         public void SetUp(TableLayoutPanel tableLayoutPanel, RadPanel radPanelTableParent, IList<ParameterBase> parameters, bool hasGenericArguments)
         {
-            HashSet<Enums.LiteralParameterInputStyle> implemented = new()
+            HashSet<LiteralParameterInputStyle> implemented = new()
             {
                 LiteralParameterInputStyle.DomainAutoComplete,
                 LiteralParameterInputStyle.DropDown,
+                LiteralParameterInputStyle.MultipleLineTextBox,
                 LiteralParameterInputStyle.SingleLineTextBox
             };
             tableLayoutPanel.ColumnStyles.Clear();
