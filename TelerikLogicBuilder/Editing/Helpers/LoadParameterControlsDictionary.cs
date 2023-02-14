@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Collections.Generic;
@@ -15,16 +16,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFieldControlFactory _fieldControlFactory;
+        private readonly IServiceFactory _serviceFactory;
         private readonly IEditingControl editingControl;
+        private readonly IEditingForm editingForm;
 
         public LoadParameterControlsDictionary(
             IExceptionHelper exceptionHelper,
             IFieldControlFactory fieldControlFactory,
-            IEditingControl editingForm)
+            IServiceFactory serviceFactory,
+            IEditingControl editingControl,
+            IEditingForm editingForm)
         {
             _exceptionHelper = exceptionHelper;
             _fieldControlFactory = fieldControlFactory;
-            editingControl = editingForm;
+            _serviceFactory = serviceFactory;
+            
+            this.editingControl = editingControl;
+            this.editingForm = editingForm;
         }
 
         public void Load(IDictionary<string, ParameterControlSet> editControlsSet, IList<ParameterBase> parameters)
@@ -40,7 +48,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 LiteralParameterInputStyle.DomainAutoComplete,
                 LiteralParameterInputStyle.DropDown,
                 LiteralParameterInputStyle.MultipleLineTextBox,
-                LiteralParameterInputStyle.SingleLineTextBox
+                LiteralParameterInputStyle.SingleLineTextBox,
+                LiteralParameterInputStyle.TypeAutoComplete
             };
 
             if (parameter is not LiteralParameter literalParamete 
@@ -89,6 +98,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                         valueControl = literalParameter.Domain.Any()
                                             ? _fieldControlFactory.GetLiteralParameterDomainRichInputBoxControl(editingControl, literalParameter)
                                             : _fieldControlFactory.GetLiteralParameterRichInputBoxControl(editingControl, literalParameter);
+                        break;
+                    case LiteralParameterInputStyle.TypeAutoComplete:
+                        ILiteralParameterTypeAutoCompleteControl typeAutoCompleteControl = _fieldControlFactory.GetLiteralParameterTypeAutoCompleteControl(editingControl);
+                        ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(editingForm, typeAutoCompleteControl);
+                        typeAutoCompleteManager.Setup();
+                        valueControl = typeAutoCompleteControl;
                         break;
                     default:
                         break;

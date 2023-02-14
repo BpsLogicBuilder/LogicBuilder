@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             this.editingForm = editingForm;
             this.constructor = constructor;
             this.assignedTo = assignedTo;
-            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this);
+            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, editingForm);
 
             this.groupBoxConstructor = new RadGroupBox();
             this.radPanelConstructor = new RadScrollablePanel();

@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 
@@ -14,14 +15,16 @@ namespace Microsoft.Extensions.DependencyInjection
             return services
 
                 .AddTransient<IEditingControlHelperFactory, EditingControlHelperFactory>()
-                .AddTransient<Func<IEditingControl, ILoadParameterControlsDictionary>>
+                .AddTransient<Func<IEditingControl, IEditingForm, ILoadParameterControlsDictionary>>
                 (
                     provider =>
-                    editingControl => new LoadParameterControlsDictionary
+                    (editingControl, edifForm) => new LoadParameterControlsDictionary
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFieldControlFactory>(),
-                        editingControl
+                        provider.GetRequiredService<IServiceFactory>(),
+                        editingControl, 
+                        edifForm
                     )
                 );
         }

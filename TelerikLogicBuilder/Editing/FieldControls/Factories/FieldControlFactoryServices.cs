@@ -101,6 +101,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         editigControl, 
                         literalParameter
                     )
+                )
+                .AddTransient<Func<IEditingControl, ILiteralParameterTypeAutoCompleteControl>>
+                (
+                    provider =>
+                    editigControl => new LiteralParameterTypeAutoCompleteControl
+                    (
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editigControl
+                    )
                 );
         }
     }

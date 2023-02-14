@@ -90,6 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radDropDownList1.DropDownListElement.UseDefaultDisabledPaint = false;
             radDropDownList1.AutoCompleteMode = AutoCompleteMode.None;
             radDropDownList1.DropDownListElement.AutoCompleteSuggest = new CustomAutoCompleteSuggestHelper(radDropDownList1.DropDownListElement);
+            radDropDownList1.DropDownListElement.AutoCompleteSuggest.DropDownList.ListElement.VisualItemFormatting += RadDropDownList1_VisualListItemFormatting;
 
             CollapsePanelBorder(radPanelDropDownList);
             CollapsePanelBorder(radPanelButton);
@@ -123,6 +124,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void RadDropDownList1_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             Validating?.Invoke(this, e);
+        }
+
+        private void RadDropDownList1_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
+        {
+            args.VisualItem.TextWrap = false;
         }
     }
 }

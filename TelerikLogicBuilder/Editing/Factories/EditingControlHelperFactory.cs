@@ -5,15 +5,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal class EditingControlHelperFactory : IEditingControlHelperFactory
     {
-        private readonly Func<IEditingControl, ILoadParameterControlsDictionary> _getLoadParameterControlsDictionary;
+        private readonly Func<IEditingControl, IEditingForm, ILoadParameterControlsDictionary> _getLoadParameterControlsDictionary;
 
         public EditingControlHelperFactory(
-            Func<IEditingControl, ILoadParameterControlsDictionary> getLoadParameterControlsDictionary)
+            Func<IEditingControl, IEditingForm, ILoadParameterControlsDictionary> getLoadParameterControlsDictionary)
         {
             _getLoadParameterControlsDictionary = getLoadParameterControlsDictionary;
         }
 
-        public ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IEditingControl editingControl)
-            => _getLoadParameterControlsDictionary(editingControl);
+        public ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IEditingControl editingControl, IEditingForm editingForm)
+            => _getLoadParameterControlsDictionary(editingControl, editingForm);
     }
 }

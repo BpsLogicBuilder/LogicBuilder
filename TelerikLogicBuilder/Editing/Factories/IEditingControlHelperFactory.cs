@@ -4,6 +4,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal interface IEditingControlHelperFactory
     {
-        ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IEditingControl editingControl);
+        ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IEditingControl editingControl, IEditingForm editingForm);
     }
 }
