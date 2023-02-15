@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
+using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -87,6 +88,22 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
+                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterPropertyInputRichInputBoxControl>>
+                (
+                    provider =>
+                    (editigControl, literalParameter) => new LiteralParameterPropertyInputRichInputBoxControl
+                    (
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                        provider.GetRequiredService<RichInputBox>(),
+                        editigControl,
+                        literalParameter
+                    )
+                )
                 .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl>>
                 (
                     provider =>
@@ -101,6 +118,23 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<RichInputBox>(),
                         editigControl, 
                         literalParameter
+                    )
+                )
+                .AddTransient<Func<IEditingControl, LiteralParameter, IDictionary<string, ParameterControlSet>, ILiteralParameterSourcedPropertyRichInputBoxControl>>
+                (
+                    provider =>
+                    (editigControl, literalParameter, editControlsSet) => new LiteralParameterSourcedPropertyRichInputBoxControl
+                    (
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                        provider.GetRequiredService<RichInputBox>(),
+                        editigControl,
+                        literalParameter,
+                        editControlsSet
                     )
                 )
                 .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl>>

@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -85,6 +86,25 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     richInputBoxValueControl => new SelectDomainItemCommand
                     (
+                        richInputBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IPropertyInputRichInputBoxControl, SelectItemFromPropertyListCommand>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new SelectItemFromPropertyListCommand
+                    (
+                        provider.GetRequiredService<IIntellisenseHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        richInputBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IPropertyInputRichInputBoxControl, SelectItemFromReferencesTreeViewCommand>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new SelectItemFromReferencesTreeViewCommand
+                    (
+                        provider.GetRequiredService<ITypeLoadHelper>(),
                         richInputBoxValueControl
                     )
                 )

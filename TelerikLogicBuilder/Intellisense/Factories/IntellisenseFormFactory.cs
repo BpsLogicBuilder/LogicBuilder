@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using System;
 using System.Collections.Generic;
@@ -17,19 +18,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories
         private readonly Func<IDictionary<string, Constructor>, ConstructorHelperStatus?, string?, IConfigureConstructorsHelperForm> _getConfigureConstructorsHelperForm;
         private readonly Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm> _getConfigureFunctionsHelperForm;
         private readonly Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm> _getConfigureVariablesHelperForm;
+        private readonly Func<string, IIncludesHelperForm> _getIncludesHelperForm;
 
         public IntellisenseFormFactory(
             Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassFunctionsHelperForm> getConfigureClassFunctionsHelperForm,
             Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm> getConfigureClassVariablesHelperForm,
             Func<IDictionary<string, Constructor>, ConstructorHelperStatus?, string?, IConfigureConstructorsHelperForm> getConfigureConstructorsHelperForm,
             Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm> getConfigureFunctionsHelperForm,
-            Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm> getConfigureVariablesHelperForm)
+            Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm> getConfigureVariablesHelperForm,
+            Func<string, IIncludesHelperForm> getIncludesHelperForm)
         {
             _getConfigureClassFunctionsHelperForm = getConfigureClassFunctionsHelperForm;
             _getConfigureClassVariablesHelperForm = getConfigureClassVariablesHelperForm;
             _getConfigureConstructorsHelperForm = getConfigureConstructorsHelperForm;
             _getConfigureFunctionsHelperForm = getConfigureFunctionsHelperForm;
             _getConfigureVariablesHelperForm = getConfigureVariablesHelperForm;
+            _getIncludesHelperForm = getIncludesHelperForm;
         }
 
         public void Dispose()
@@ -65,6 +69,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories
         {
             _scopedService = _getConfigureVariablesHelperForm(existingVariables, helperStatus);
             return (IConfigureVariablesHelperForm)_scopedService;
+        }
+
+        public IIncludesHelperForm GetIncludesHelperForm(string className)
+        {
+            _scopedService = _getIncludesHelperForm(className);
+            return (IIncludesHelperForm)_scopedService;
         }
     }
 }

@@ -14,6 +14,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> _getEditRichInputBoxVariableCommand;
         private readonly Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> _getPasteRichInputBoxTextCommand;
         private readonly Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> _getSelectDomainItemCommand;
+        private readonly Func<IPropertyInputRichInputBoxControl, SelectItemFromPropertyListCommand> _getSelectItemFromPropertyListCommand;
+        private readonly Func<IPropertyInputRichInputBoxControl, SelectItemFromReferencesTreeViewCommand> _getSelectItemFromReferencesTreeViewCommand;
         private readonly Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> _getToCamelCaseRichInputBoxCommand;
 
         public FieldControlCommandFactory(
@@ -26,6 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> getEditRichInputBoxVariableCommand,
             Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> getPasteRichInputBoxTextCommand,
             Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> getSelectDomainItemCommand,
+            Func<IPropertyInputRichInputBoxControl, SelectItemFromPropertyListCommand> getSelectItemFromPropertyListCommand,
+            Func<IPropertyInputRichInputBoxControl, SelectItemFromReferencesTreeViewCommand> getSelectItemFromReferencesTreeViewCommand,
             Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> getToCamelCaseRichInputBoxCommand)
         {
             _getClearRichInputBoxTextCommand = getClearRichInputBoxTextCommand;
@@ -37,6 +41,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             _getEditRichInputBoxVariableCommand = getEditRichInputBoxVariableCommand;
             _getPasteRichInputBoxTextCommand = getPasteRichInputBoxTextCommand;
             _getSelectDomainItemCommand = getSelectDomainItemCommand;
+            _getSelectItemFromPropertyListCommand = getSelectItemFromPropertyListCommand;
+            _getSelectItemFromReferencesTreeViewCommand = getSelectItemFromReferencesTreeViewCommand;
             _getToCamelCaseRichInputBoxCommand = getToCamelCaseRichInputBoxCommand;
         }
 
@@ -66,6 +72,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 
         public SelectDomainItemCommand GetSelectDomainItemCommand(IDomainRichInputBoxValueControl richInputBoxValueControl)
             => _getSelectDomainItemCommand(richInputBoxValueControl);
+
+        public SelectItemFromPropertyListCommand GetSelectItemFromPropertyListCommand(IPropertyInputRichInputBoxControl propertyInputRichInputBoxControl)
+            => _getSelectItemFromPropertyListCommand(propertyInputRichInputBoxControl);
+
+        public SelectItemFromReferencesTreeViewCommand GetSelectItemFromReferencesTreeViewCommand(IPropertyInputRichInputBoxControl propertyInputRichInputBoxControl)
+            => _getSelectItemFromReferencesTreeViewCommand(propertyInputRichInputBoxControl);
 
         public ToCamelCaseRichInputBoxCommand GetToCamelCaseRichInputBoxCommand(IRichInputBoxValueControl richInputBoxValueControl)
             => _getToCamelCaseRichInputBoxCommand(richInputBoxValueControl);

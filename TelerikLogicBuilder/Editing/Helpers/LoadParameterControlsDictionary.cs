@@ -48,7 +48,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 LiteralParameterInputStyle.DomainAutoComplete,
                 LiteralParameterInputStyle.DropDown,
                 LiteralParameterInputStyle.MultipleLineTextBox,
+                LiteralParameterInputStyle.ParameterSourcedPropertyInput,
                 LiteralParameterInputStyle.ParameterSourceOnly,
+                LiteralParameterInputStyle.PropertyInput,
                 LiteralParameterInputStyle.SingleLineTextBox,
                 LiteralParameterInputStyle.TypeAutoComplete
             };
@@ -95,12 +97,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                                             ? _fieldControlFactory.GetLiteralParameterDomainMultilineControl(editingControl, literalParameter)
                                             : _fieldControlFactory.GetLiteralParameterMultilineControl(editingControl, literalParameter);
                         break;
+                    case LiteralParameterInputStyle.ParameterSourcedPropertyInput:
+                        valueControl = _fieldControlFactory.GetLiteralParameterSourcedPropertyRichInputBoxControl(editingControl, literalParameter, editControlsSet);
+                        break;
                     case LiteralParameterInputStyle.ParameterSourceOnly:
                     case LiteralParameterInputStyle.TypeAutoComplete:
                         ILiteralParameterTypeAutoCompleteControl typeAutoCompleteControl = _fieldControlFactory.GetLiteralParameterTypeAutoCompleteControl(editingControl, literalParameter);
                         ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(editingForm, typeAutoCompleteControl);
                         typeAutoCompleteManager.Setup();
                         valueControl = typeAutoCompleteControl;
+                        break;
+                    case LiteralParameterInputStyle.PropertyInput:
+                        valueControl = _fieldControlFactory.GetLiteralParameterPropertyInputRichInputBoxControl(editingControl, literalParameter);
                         break;
                     case LiteralParameterInputStyle.SingleLineTextBox:
                         valueControl = literalParameter.Domain.Any()

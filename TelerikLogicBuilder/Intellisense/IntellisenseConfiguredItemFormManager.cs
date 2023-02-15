@@ -18,7 +18,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense
 {
-    internal abstract class IntellisenseConfiguredItemFormManager
+    internal abstract partial class IntellisenseConfiguredItemFormManager
     {
         protected abstract IExceptionHelper ExceptionHelper { get; }
         protected abstract IImageListService ImageListService { get; }
@@ -238,7 +238,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense
             {
                 if (fInfo.Name.Contains(MiscellaneousConstants.PERIODSTRING))
                     continue;
-                if (!Regex.IsMatch(fInfo.Name, RegularExpressions.VARIABLEORFUNCTIONNAME))
+                if (!VariableOrFunctionNameRegex().IsMatch(fInfo.Name))
                     continue;
 
                 //Don't check for private members - we know this is the root.
@@ -253,7 +253,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense
             {
                 if (pInfo.Name.Contains(MiscellaneousConstants.PERIODSTRING))
                     continue;
-                if (!Regex.IsMatch(pInfo.Name, RegularExpressions.VARIABLEORFUNCTIONNAME))
+                if (!VariableOrFunctionNameRegex().IsMatch(pInfo.Name))
                     continue;
 
                 //Don't check for private members - we know this is the root.
@@ -468,5 +468,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense
 
             UpdateSelection(childTreeNode, linkedNode.Next);
         }
+
+        [GeneratedRegex(RegularExpressions.VARIABLEORFUNCTIONNAME)]
+        private static partial Regex VariableOrFunctionNameRegex();
     }
 }

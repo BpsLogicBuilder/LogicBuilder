@@ -88,7 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //var constructorName = "ColumnSettingsParameters";
             //var constructorName = "RequestDetailsParameters";
             //var constructorName = "DetailFieldSettingParameters";
-            var constructorName = "AggregateDefinitionParameters";
+            var constructorName = "EditFormSettingsParameters";
             var constructor = _configurationService.ConstructorList.Constructors[constructorName];
             Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo));
         }

@@ -49,5 +49,6 @@
         internal const byte SORTIMAGEINDEX = 44;
         internal const byte TREEVIEWMAGEINDEX = 45;
         internal const byte MOREWMAGEINDEX = 46;
+        internal const byte HELPFILEWMAGEINDEX = 47;
     }
 }

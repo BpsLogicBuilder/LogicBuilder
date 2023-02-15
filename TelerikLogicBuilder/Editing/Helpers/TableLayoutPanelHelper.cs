@@ -17,7 +17,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 LiteralParameterInputStyle.DomainAutoComplete,
                 LiteralParameterInputStyle.DropDown,
                 LiteralParameterInputStyle.MultipleLineTextBox,
+                LiteralParameterInputStyle.ParameterSourcedPropertyInput,
                 LiteralParameterInputStyle.ParameterSourceOnly,
+                LiteralParameterInputStyle.PropertyInput,
                 LiteralParameterInputStyle.SingleLineTextBox,
                 LiteralParameterInputStyle.TypeAutoComplete
             };

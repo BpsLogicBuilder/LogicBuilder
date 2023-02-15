@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             get
             {
                 StringBuilder stringBuilder = new();
-                using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+                using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateFragmentXmlWriter(stringBuilder))
                 {
                     xmlTextWriter.WriteString(radDropDownList.Text);
                     xmlTextWriter.Flush();

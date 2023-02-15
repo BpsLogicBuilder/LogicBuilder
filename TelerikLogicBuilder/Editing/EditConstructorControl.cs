@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private readonly RadLabel? lblGenericArguments;
 
         public bool IsValid => throw new NotImplementedException();
+
+        public ApplicationTypeInfo Application => editingForm.Application;
 
         public EditConstructorControl(
             IEditingControlHelperFactory editingControlFactory,

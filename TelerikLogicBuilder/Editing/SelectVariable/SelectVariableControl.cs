@@ -77,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             }
         }
 
-        private ApplicationTypeInfo Application => editingForm.Application;
+        public ApplicationTypeInfo Application => editingForm.Application;
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
@@ -86,6 +86,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         public string? VariableName => CurrentViewControl.VariableName;
 
         public bool IsValid => ValidateSelectedVariable().Count == 0;
+
+        public IEditingForm EditingForm => editingForm;
 
         public void ClearMessage() => editingForm.ClearMessage();
 

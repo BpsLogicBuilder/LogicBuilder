@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -121,6 +122,21 @@ namespace Microsoft.Extensions.DependencyInjection
                         helperStatus
                     )
                 )
+                .AddTransient<Func<string, IIncludesHelperForm>>
+                (
+                    provider =>
+                    className => new IncludesHelperForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IIntellisenseFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IStringHelper>(),
+                        className
+                    )
+                )
                 .AddTransient<Func<IConfigureConstructorsHelperForm, IIntellisenseConstructorsFormManager>>
                 (
                     provider =>
@@ -149,6 +165,20 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITypeHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         configuredItemHelperForm
+                    )
+                )
+                .AddTransient<Func<IIncludesHelperForm, IIntellisenseIncludesFormManager>>
+                (
+                    provider =>
+                    includesHelperForm => new IntellisenseIncludesFormManager
+                    (
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<IIntellisenseHelper>(),
+                        provider.GetRequiredService<IIntellisenseTreeNodeFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        includesHelperForm
                     )
                 )
                 .AddTransient<Func<IConfiguredItemHelperForm, IIntellisenseVariablesFormManager>>
