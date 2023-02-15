@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -22,23 +23,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private readonly IImageListService _imageListService;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
+        private readonly IUiNotificationService _uiNotificationService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IEditingControl editingControl;
+        private readonly LiteralParameter literalParameter;
         private RadDropDownList radDropDownList;
         private bool modified;
 
         public LiteralParameterTypeAutoCompleteControl(
             IImageListService imageListService,
             IRadDropDownListHelper radDropDownListHelper,
+            IUiNotificationService uiNotificationService,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingControl editingControl)
+            IEditingControl editingControl,
+            LiteralParameter literalParameter)
         {
             InitializeComponent();
             _imageListService = imageListService;
             _radDropDownListHelper = radDropDownListHelper;
+            _uiNotificationService = uiNotificationService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingControl = editingControl;
+            this.literalParameter = literalParameter;
 
             btnHelper = new()
             {
@@ -261,6 +268,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
             modified = false;
             editingControl.RequestDocumentUpdate();
+            _uiNotificationService.NotifyParameterChanged(this.literalParameter.Name);
         }
 
         private void RadDropDownList_Validating(object? sender, CancelEventArgs e)

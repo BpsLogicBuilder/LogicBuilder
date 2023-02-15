@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public Subject<int> DocumentExplorerErrorCountChangedSubject { get; } = new();
         public Subject<LogicBuilderException> LogicBuilderExceptionSubject { get; } = new();
         public Subject<bool> RulesExplorerRefreshSubject { get; } = new();
+        public Subject<string> ParameterChangedSubject { get; } = new();
         #endregion Properties
 
         public void NotifyDocumentExplorerErrorCountChanged(int errorCount)
@@ -19,6 +20,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public void NotifyLogicBuilderException(LogicBuilderException exception)
         {
             this.LogicBuilderExceptionSubject.OnNext(exception);
+        }
+
+        public void NotifyParameterChanged(string parameterName)
+        {
+            this.ParameterChangedSubject.OnNext(parameterName);
         }
 
         public void RequestRulesExplorerRefresh(bool refresh)

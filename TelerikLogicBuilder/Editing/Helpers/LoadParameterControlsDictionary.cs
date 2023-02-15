@@ -48,6 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 LiteralParameterInputStyle.DomainAutoComplete,
                 LiteralParameterInputStyle.DropDown,
                 LiteralParameterInputStyle.MultipleLineTextBox,
+                LiteralParameterInputStyle.ParameterSourceOnly,
                 LiteralParameterInputStyle.SingleLineTextBox,
                 LiteralParameterInputStyle.TypeAutoComplete
             };
@@ -94,16 +95,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                                             ? _fieldControlFactory.GetLiteralParameterDomainMultilineControl(editingControl, literalParameter)
                                             : _fieldControlFactory.GetLiteralParameterMultilineControl(editingControl, literalParameter);
                         break;
+                    case LiteralParameterInputStyle.ParameterSourceOnly:
+                    case LiteralParameterInputStyle.TypeAutoComplete:
+                        ILiteralParameterTypeAutoCompleteControl typeAutoCompleteControl = _fieldControlFactory.GetLiteralParameterTypeAutoCompleteControl(editingControl, literalParameter);
+                        ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(editingForm, typeAutoCompleteControl);
+                        typeAutoCompleteManager.Setup();
+                        valueControl = typeAutoCompleteControl;
+                        break;
                     case LiteralParameterInputStyle.SingleLineTextBox:
                         valueControl = literalParameter.Domain.Any()
                                             ? _fieldControlFactory.GetLiteralParameterDomainRichInputBoxControl(editingControl, literalParameter)
                                             : _fieldControlFactory.GetLiteralParameterRichInputBoxControl(editingControl, literalParameter);
-                        break;
-                    case LiteralParameterInputStyle.TypeAutoComplete:
-                        ILiteralParameterTypeAutoCompleteControl typeAutoCompleteControl = _fieldControlFactory.GetLiteralParameterTypeAutoCompleteControl(editingControl);
-                        ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(editingForm, typeAutoCompleteControl);
-                        typeAutoCompleteManager.Setup();
-                        valueControl = typeAutoCompleteControl;
                         break;
                     default:
                         break;

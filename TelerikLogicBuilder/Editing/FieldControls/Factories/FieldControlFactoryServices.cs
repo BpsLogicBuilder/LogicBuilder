@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -102,15 +103,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ILiteralParameterTypeAutoCompleteControl>>
+                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl>>
                 (
                     provider =>
-                    editigControl => new LiteralParameterTypeAutoCompleteControl
+                    (editigControl, literalParameter) => new LiteralParameterTypeAutoCompleteControl
                     (
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IUiNotificationService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editigControl
+                        editigControl, 
+                        literalParameter
                     )
                 );
         }

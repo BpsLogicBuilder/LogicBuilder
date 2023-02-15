@@ -7,10 +7,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
     {
         Subject<int> DocumentExplorerErrorCountChangedSubject { get; }
         Subject<LogicBuilderException> LogicBuilderExceptionSubject { get; }
+        Subject<string> ParameterChangedSubject { get; }
         Subject<bool> RulesExplorerRefreshSubject { get; }
 
         void NotifyDocumentExplorerErrorCountChanged(int errorCount);
         void NotifyLogicBuilderException(LogicBuilderException exception);
+        void NotifyParameterChanged(string parameterName);
         void RequestRulesExplorerRefresh(bool refresh);
     }
 }
