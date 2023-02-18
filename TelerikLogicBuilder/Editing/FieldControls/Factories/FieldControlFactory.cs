@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl> _getLiteralParameterRichInputBoxControl;
         private readonly Func<IEditingControl, LiteralParameter, IDictionary<string, ParameterControlSet>, ILiteralParameterSourcedPropertyRichInputBoxControl> _getLiteralParameterSourcedPropertyRichInputBoxControl;
         private readonly Func<IEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl> _getLiteralParameterTypeAutoCompleteControl;
+        private readonly Func<IEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl> _getObjectParameterRichTextBoxControl;
 
         public FieldControlFactory(
             Func<IEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl> getLiteralParameterDomainAutoCompleteControl,
@@ -25,7 +26,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IEditingControl, LiteralParameter, ILiteralParameterPropertyInputRichInputBoxControl> getLiteralParameterPropertyInputRichInputBoxControl,
             Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl> getLiteralParameterRichInputBoxControl,
             Func<IEditingControl, LiteralParameter, IDictionary<string, ParameterControlSet>, ILiteralParameterSourcedPropertyRichInputBoxControl> getLiteralParameterSourcedPropertyRichInputBoxControl,
-            Func<IEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl> getLiteralParameterTypeAutoCompleteControl)
+            Func<IEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl> getLiteralParameterTypeAutoCompleteControl,
+            Func<IEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl> getObjectParameterRichTextBoxControl)
         {
             _getLiteralParameterDomainAutoCompleteControl = getLiteralParameterDomainAutoCompleteControl;
             _getLiteralParameterDomainMultilineControl = getLiteralParameterDomainMultilineControl;
@@ -36,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             _getLiteralParameterRichInputBoxControl = getLiteralParameterRichInputBoxControl;
             _getLiteralParameterSourcedPropertyRichInputBoxControl = getLiteralParameterSourcedPropertyRichInputBoxControl;
             _getLiteralParameterTypeAutoCompleteControl = getLiteralParameterTypeAutoCompleteControl;
+            _getObjectParameterRichTextBoxControl = getObjectParameterRichTextBoxControl;
         }
 
         public ILiteralParameterDomainAutoCompleteControl GetLiteralParameterDomainAutoCompleteControl(IEditingControl editingControl, LiteralParameter literalParameter)
@@ -64,5 +67,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 
         public ILiteralParameterTypeAutoCompleteControl GetLiteralParameterTypeAutoCompleteControl(IEditingControl editingControl, LiteralParameter literalParameter)
             => _getLiteralParameterTypeAutoCompleteControl(editingControl, literalParameter);
+
+        public IObjectParameterRichTextBoxControl GetObjectParameterRichTextBoxControl(IEditingControl editingControl, ObjectParameter objectParameter)
+            => _getObjectParameterRichTextBoxControl(editingControl, objectParameter);
     }
 }

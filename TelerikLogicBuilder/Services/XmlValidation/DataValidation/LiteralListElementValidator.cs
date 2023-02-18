@@ -42,9 +42,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{5B0D0D9D-0DA3-4941-88E5-22989811F1D1}");
 
+            Validate(literalListElement, assignedTo, application, validationErrors, true);
+        }
+
+        public void ValidateTypeOnly(XmlElement literalListElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
+        {
+            if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
+                throw _exceptionHelper.CriticalException("{47F201BE-71CE-476A-9EFB-F4694DE5C2B7}");
+
+            Validate(literalListElement, assignedTo, application, validationErrors, false);
+        }
+
+        private void Validate(XmlElement literalListElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors, bool validateChildElements)
+        {
             Type elementType = _enumHelper.GetSystemType
             (
-                _enumHelper.ParseEnumText<LiteralListElementType>
+                _enumHelper.ParseEnumText<LiteralParameterType>
                 (
                     literalListElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
                 )
@@ -61,6 +74,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                 validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.typeNotAssignableFormat, listSystemType.ToString(), assignedTo.ToString()));
                 return;
             }
+
+            if (!validateChildElements)
+                return;//During editing we want to allow the user to fix changes in the UI i.e. if validateChildElements == false then only reset the control if the above validations fail.
 
             _xmlDocumentHelpers.GetChildElements(literalListElement).ForEach
             (

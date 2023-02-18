@@ -23,6 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDomainAutoCompleteControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl,
@@ -34,6 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDomainMultilineControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -50,6 +52,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDomainRichInputBoxControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -66,6 +69,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDropDownListControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl,
@@ -77,6 +81,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterMultilineControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -93,6 +98,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterPropertyInputRichInputBoxControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -109,6 +115,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterRichInputBoxControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -125,6 +132,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter, editControlsSet) => new LiteralParameterSourcedPropertyRichInputBoxControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -142,12 +150,30 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterTypeAutoCompleteControl
                     (
+                        provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IUiNotificationService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl, 
                         literalParameter
+                    )
+                )
+                .AddTransient<Func<IEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl>>
+                (
+                    provider =>
+                    (editigControl, objectParameter) => new ObjectParameterRichTextBoxControl
+                    (
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<ObjectRichTextBox>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editigControl,
+                        objectParameter
                     )
                 );
         }

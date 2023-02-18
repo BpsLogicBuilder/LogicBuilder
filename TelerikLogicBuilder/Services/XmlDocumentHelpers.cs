@@ -252,6 +252,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 ? xmlNode.ChildNodes.OfType<XmlElement>().Single(filter)
                 : xmlNode.ChildNodes.OfType<XmlElement>().Single();
 
+        public XmlElement? GetSingleOrDefaultChildElement(XmlNode xmlNode, Func<XmlElement, bool>? filter = null)
+            => filter != null
+                ? xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault(filter)
+                : xmlNode.ChildNodes.OfType<XmlElement>().SingleOrDefault();
+
         public string GetUnformattedXmlString(XmlDocument xmlDocument)
         {
             StringBuilder stringBuilder = new();

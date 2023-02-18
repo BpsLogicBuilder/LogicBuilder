@@ -11,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IFileSystemDragDropHandler, FileSystemDragDropHandler>()
                 .AddTransient<FileSystemTreeView>()
                 .AddTransient<IFileSystemDragDropHandler, FileSystemDragDropHandler>()
+                .AddTransient<ObjectRichTextBox>()
                 .AddTransient<RichInputBox>();
         }
     }

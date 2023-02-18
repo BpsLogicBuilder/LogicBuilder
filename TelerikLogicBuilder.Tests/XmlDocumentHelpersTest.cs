@@ -197,7 +197,7 @@ namespace TelerikLogicBuilder.Tests
         }
 
         [Fact]
-        public void GetSingleChildElementsWorks()
+        public void GetSingleChildElementWorks()
         {
             //arrange
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
@@ -210,6 +210,37 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal("genericArgumentName", result.Name);
+        }
+
+        [Fact]
+        public void GetSingleOrDefaultChildElementWorks()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlElement xmlElement = GetXmlElement(@"<genericParameter name=""Refresh"">
+					<genericArgumentName>T</genericArgumentName>
+				</genericParameter>");
+
+            //act
+            var result = helper.GetSingleOrDefaultChildElement(xmlElement);
+
+            //assert
+            Assert.Equal("genericArgumentName", result?.Name);
+        }
+
+        [Fact]
+        public void GetSingleOrDefaultChildElementReturnsNullIfNoChildElements()
+        {
+            //arrange
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            XmlElement xmlElement = GetXmlElement(@"<genericParameter name=""Refresh"">
+				</genericParameter>");
+
+            //act
+            var result = helper.GetSingleOrDefaultChildElement(xmlElement);
+
+            //assert
+            Assert.Null(result);
         }
 
         [Fact]

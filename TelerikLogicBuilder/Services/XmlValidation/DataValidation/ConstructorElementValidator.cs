@@ -58,7 +58,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             );
         }
 
-        private void Validate(ConstructorData constructorData, IDictionary<string, Constructor> constructors, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
+        public void ValidateTypeOnly(XmlElement constructorElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
+        {
+            Validate
+            (
+                _constructorDataParser.Parse(constructorElement),
+                _constructorTypeHelper.GetConstructors(assignedTo, application),
+                assignedTo,
+                application,
+                validationErrors,
+                false
+            );
+        }
+
+        private void Validate(ConstructorData constructorData, IDictionary<string, Constructor> constructors, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors, bool validateParameters = true)
         {
             if (constructors.Count == 0)
             {
@@ -132,7 +145,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
                 return;
             }
 
-            ParametersElementValidator.Validate(constructor.Parameters, constructorData.ParameterElementsList, application, validationErrors);
+            if (validateParameters)//During editing we want to allow the user to fix changes in the UI i.e. if validateParameters == false then only reset the control if the above validations fail.
+                ParametersElementValidator.Validate(constructor.Parameters, constructorData.ParameterElementsList, application, validationErrors);
         }
     }
 }

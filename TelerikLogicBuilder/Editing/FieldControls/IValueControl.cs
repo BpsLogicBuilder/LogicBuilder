@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         Point Location { set; }
         string MixedXml { get; }
         string VisibleText { get; }
+        XmlElement? XmlElement { get; }
 
         void Focus();
         void HideControls();

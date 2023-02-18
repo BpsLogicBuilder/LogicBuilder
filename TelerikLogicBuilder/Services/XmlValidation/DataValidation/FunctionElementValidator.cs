@@ -78,7 +78,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             );
         }
 
-        private void Validate(FunctionData functionData, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
+        public void ValidateTypeOnly(XmlElement functionElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors)
+        {
+            if (functionElement.Name != XmlDataConstants.NOTELEMENT && functionElement.Name != XmlDataConstants.FUNCTIONELEMENT)
+                throw _exceptionHelper.CriticalException("{C9CC1DD2-42A5-4740-8A08-D8FD9A88AE56}");
+
+            Validate
+            (
+                _functionDataParser.Parse(functionElement),
+                assignedTo,
+                application,
+                validationErrors,
+                false
+            );
+        }
+
+        private void Validate(FunctionData functionData, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors, bool validateParameters = true)
         {
             if (!_configurationService.FunctionList.Functions.TryGetValue(functionData.Name, out Function? function))
             {
@@ -137,6 +152,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
                 return;
             }
+
+            if (!validateParameters)
+                return;//During editing we want to allow the user to fix changes in the UI i.e. if validateParameters == false then only reset the control if the above validations fail.
 
             //validate the parameters.
             switch (function.FunctionCategory)

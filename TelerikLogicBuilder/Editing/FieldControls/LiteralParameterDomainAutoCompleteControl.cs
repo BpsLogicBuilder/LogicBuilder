@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -16,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
     internal partial class LiteralParameterDomainAutoCompleteControl : UserControl, ILiteralParameterDomainAutoCompleteControl
     {
+        private readonly ICreateLiteralParameterXmlElement _createLiteralParameterXmlElement;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -25,16 +27,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private bool modified;
 
         public LiteralParameterDomainAutoCompleteControl(
+            ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
             IRadDropDownListHelper radDropDownListHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingControl editingControl,
             LiteralParameter literalParameter)
         {
+            InitializeComponent();
+            _createLiteralParameterXmlElement = createLiteralParameterXmlElement;
             _radDropDownListHelper = radDropDownListHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingControl = editingControl;
             this.literalParameter = literalParameter;
-            InitializeComponent();
             Initialize();
         }
 
@@ -59,6 +63,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         }
 
         public string VisibleText => radDropDownList.Text;
+
+        public XmlElement? XmlElement => _createLiteralParameterXmlElement.Create(literalParameter, MixedXml);
 
         public event EventHandler? Changed;
 

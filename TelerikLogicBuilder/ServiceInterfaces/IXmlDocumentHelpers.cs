@@ -25,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         IList<XmlElement> GetParameterElements(XmlElement constructorOrFunctionElement);
         List<XmlElement> GetSiblingParameterElements(XmlElement parameterElement);
         XmlElement GetSingleChildElement(XmlNode xmlNode, Func<XmlElement, bool>? filter = null);
+        XmlElement? GetSingleOrDefaultChildElement(XmlNode xmlNode, Func<XmlElement, bool>? filter = null);
         string GetUnformattedXmlString(XmlDocument xmlDocument);
         /// <summary>
         /// Returns the visible text represention of the elements mixed XML child nodes

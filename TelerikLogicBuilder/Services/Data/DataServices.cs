@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
+﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.Services.Data;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -13,6 +14,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IGenericParametersHelper, GenericParametersHelper>()
                 .AddSingleton<IGenericReturnTypeHelper, GenericReturnTypeHelper>()
                 .AddSingleton<IGetValidConfigurationFromData, GetValidConfigurationFromData>()
+                .AddSingleton<ILiteralListElementInfoHelper, LiteralListElementInfoHelper>()
+                .AddSingleton<IObjectListElementInfoHelper, ObjectListElementInfoHelper>()
                 .AddSingleton<IRefreshVisibleTextHelper, RefreshVisibleTextHelper>()
                 .AddSingleton<IUpdateVisibleTextAttribute, UpdateVisibleTextAttribute>();
     }

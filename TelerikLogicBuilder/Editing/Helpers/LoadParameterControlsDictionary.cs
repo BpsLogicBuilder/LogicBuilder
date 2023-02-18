@@ -43,23 +43,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private void AddParameterControlSet(IDictionary<string, ParameterControlSet> editControlsSet, ParameterBase parameter)
         {
-            HashSet<LiteralParameterInputStyle> implemented = new()
-            {
-                LiteralParameterInputStyle.DomainAutoComplete,
-                LiteralParameterInputStyle.DropDown,
-                LiteralParameterInputStyle.MultipleLineTextBox,
-                LiteralParameterInputStyle.ParameterSourcedPropertyInput,
-                LiteralParameterInputStyle.ParameterSourceOnly,
-                LiteralParameterInputStyle.PropertyInput,
-                LiteralParameterInputStyle.SingleLineTextBox,
-                LiteralParameterInputStyle.TypeAutoComplete
-            };
-
-            if (parameter is not LiteralParameter literalParamete 
-                || !implemented.Contains(literalParamete.Control))
-            {
+            if (parameter is not LiteralParameter
+                    && parameter is not ObjectParameter)
                 return;
-            }
 
             RadToolTip toolTip = new();
             RadLabel label = new()
@@ -118,6 +104,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     default:
                         break;
                 }
+            }
+            else if (parameter is ObjectParameter objectParameter)
+            {
+                valueControl = _fieldControlFactory.GetObjectParameterRichTextBoxControl(editingControl, objectParameter);
             }
 
             if (valueControl != null)

@@ -65,12 +65,12 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
         }
 
         [Theory]
-        [InlineData(LiteralListElementType.String, ListType.GenericList, typeof(List<string>), true)]
-        [InlineData(LiteralListElementType.String, ListType.GenericList, typeof(IList<string>), true)]
-        [InlineData(LiteralListElementType.String, ListType.Array, typeof(IList<string>), true)]
-        [InlineData(LiteralListElementType.String, ListType.Array, typeof(List<string>), false)]
-        [InlineData(LiteralListElementType.Boolean, ListType.GenericList, typeof(IList<string>), false)]
-        internal void AssignableValidationReturnsTheExpectedResult(LiteralListElementType elementType, ListType listType, Type assignableTo, bool expectedResult)
+        [InlineData(LiteralParameterType.String, ListType.GenericList, typeof(List<string>), true)]
+        [InlineData(LiteralParameterType.String, ListType.GenericList, typeof(IList<string>), true)]
+        [InlineData(LiteralParameterType.String, ListType.Array, typeof(IList<string>), true)]
+        [InlineData(LiteralParameterType.String, ListType.Array, typeof(List<string>), false)]
+        [InlineData(LiteralParameterType.Boolean, ListType.GenericList, typeof(IList<string>), false)]
+        internal void AssignableValidationReturnsTheExpectedResult(LiteralParameterType elementType, ListType listType, Type assignableTo, bool expectedResult)
         {
             //arrange
             ILiteralListElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<ILiteralListElementValidator>();

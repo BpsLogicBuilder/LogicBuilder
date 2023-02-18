@@ -11,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControls(this IServiceCollection services)
         {
             return services
+                .AddSingleton<ICreateLiteralParameterXmlElement, CreateLiteralParameterXmlElement>()
                 .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
                 .AddTransient<IFindCell, FindCell>()
                 .AddTransient<IFindConstructorInCell, FindConstructorInCell>()
@@ -35,6 +36,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<IFindVariableInFiles, FindVariableInFiles>()
                 .AddTransient<IFindVariableInShape, FindVariableInShape>()
                 .AddSingleton<IFunctionsFormFieldSetHelper, FunctionsFormFieldSetHelper>()
+                .AddSingleton<IGetObjectRichTextBoxVisibleText, GetObjectRichTextBoxVisibleText>()
                 .AddSingleton<IGetSourceFilesForDocumentSearch, GetSourceFilesForDocumentSearch>()
                 .AddSingleton<ILayoutFieldControlButtons, LayoutFieldControlButtons>()
                 .AddSingleton<ISearchFunctions, SearchFunctions>()

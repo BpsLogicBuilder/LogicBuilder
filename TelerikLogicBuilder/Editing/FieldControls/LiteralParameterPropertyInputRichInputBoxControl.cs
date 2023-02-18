@@ -27,8 +27,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly RadButton btnFunction;
         private readonly RadButton btnConstructor;
 
-        private readonly IEnumHelper _enumHelper;
+        private readonly ICreateLiteralParameterXmlElement _createLiteralParameterXmlElement;
         private readonly ICreateRichInputBoxContextMenu _createRichInputBoxContextMenu;
+        private readonly IEnumHelper _enumHelper;
         private readonly IFieldControlCommandFactory _fieldControlCommandFactory;
         private readonly IImageListService _imageListService;
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
@@ -41,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private Type? _assignedTo;
 
         public LiteralParameterPropertyInputRichInputBoxControl(
+            ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlContextMenuFactory,
@@ -52,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             LiteralParameter literalParameter)
         {
             InitializeComponent();
+            _createLiteralParameterXmlElement = createLiteralParameterXmlElement;
             _enumHelper = enumHelper;
             _imageListService = imageListService;
             _fieldControlCommandFactory = fieldControlCommandFactory;
@@ -79,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
                 ImageAlignment = ContentAlignment.MiddleCenter,
                 Padding = new Padding(0),
                 Margin = new Padding(1, 0, 1, 0),
-                ImageIndex = ImageIndexes.MOREWMAGEINDEX,
+                ImageIndex = ImageIndexes.MOREIMAGEINDEX,
                 Dock = DockStyle.Fill
             };
             btnVariable = new()
@@ -177,6 +180,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         public string MixedXml => _richInputBox.GetMixedXml();
 
         public string VisibleText => _richInputBox.GetVisibleText();
+
+        public XmlElement? XmlElement => _createLiteralParameterXmlElement.Create(literalParameter, MixedXml);
 
         public void HideControls() => ShowControls(false);
 

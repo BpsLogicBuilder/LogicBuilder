@@ -138,7 +138,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
             radCommandBar1.ImageList = _imageListService.ImageList;
             commandBarToggleButtonDropDown.ImageIndex = ImageIndexes.EDITIMAGEINDEX;
             commandBarToggleButtonList.ImageIndex = ImageIndexes.SORTIMAGEINDEX;
-            commandBarToggleButtonTreeView.ImageIndex = ImageIndexes.TREEVIEWMAGEINDEX;
+            commandBarToggleButtonTreeView.ImageIndex = ImageIndexes.TREEVIEWIMAGEINDEX;
             commandBarToggleButtonDropDown.Tag = ViewType.Dropdown;
             commandBarToggleButtonList.Tag = ViewType.List;
             commandBarToggleButtonTreeView.Tag = ViewType.Tree;

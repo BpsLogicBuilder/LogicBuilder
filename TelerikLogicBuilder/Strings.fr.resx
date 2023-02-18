@@ -1519,6 +1519,9 @@
 	<data name="popupObjectListDescriptionFormat" xml:space="preserve">
     <value>({{{0}}})</value>
   </data>
+	<data name="popupObjectNullDescription" xml:space="preserve">
+    <value>{null}</value>
+  </data>
 	<data name="popupVariableDescriptionFormat" xml:space="preserve">
     <value>&lt;{0}&gt;</value>
     <comment>0=VariableName</comment>

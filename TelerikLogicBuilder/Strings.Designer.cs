@@ -5290,6 +5290,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {null}.
+        /// </summary>
+        internal static string popupObjectNullDescription {
+            get {
+                return ResourceManager.GetString("popupObjectNullDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;{0}&gt;.
         /// </summary>
         internal static string popupVariableDescriptionFormat {

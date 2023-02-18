@@ -25,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly RadButton btnVariable;
 
         private readonly IEnumHelper _enumHelper;
+        private readonly ICreateLiteralParameterXmlElement _createLiteralParameterXmlElement;
         private readonly ICreateRichInputBoxContextMenu _createRichInputBoxContextMenu;
         private readonly IFieldControlCommandFactory _fieldControlCommandFactory;
         private readonly IImageListService _imageListService;
@@ -38,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private Type? _assignedTo;
 
         public LiteralParameterMultilineControl(
+            ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlContextMenuFactory,
@@ -49,6 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             LiteralParameter literalParameter)
         {
             InitializeComponent();
+            _createLiteralParameterXmlElement = createLiteralParameterXmlElement;
             _enumHelper = enumHelper;
             _imageListService = imageListService;
             _fieldControlCommandFactory = fieldControlCommandFactory;
@@ -148,6 +151,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         public string MixedXml => _richInputBox.GetMixedXml();
 
         public string VisibleText => _richInputBox.GetVisibleText();
+
+        public XmlElement? XmlElement => _createLiteralParameterXmlElement.Create(literalParameter, MixedXml);
 
         public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
 

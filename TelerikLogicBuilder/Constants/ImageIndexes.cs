@@ -47,8 +47,10 @@
         internal const byte METHODINTELLISENSEIMAGEINDEX = 42;
         internal const byte CUTFILEIMAGEINDEX = 43;
         internal const byte SORTIMAGEINDEX = 44;
-        internal const byte TREEVIEWMAGEINDEX = 45;
-        internal const byte MOREWMAGEINDEX = 46;
+        internal const byte TREEVIEWIMAGEINDEX = 45;
+        internal const byte MOREIMAGEINDEX = 46;
         internal const byte HELPFILEWMAGEINDEX = 47;
+        internal const byte LITERALLISTCONSTRUCTORIMAGEINDEX = 48;
+        internal const byte OBJECTLISTCONSTRUCTORIMAGEINDEX = 49;
     }
 }

@@ -45,6 +45,50 @@ namespace Microsoft.Extensions.DependencyInjection
                         richInputBoxValueControl
                     )
                 )
+                .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxConstructorCommand>>
+                (
+                    provider =>
+                    objectRichTextBoxValueControl => new EditObjectRichTextBoxConstructorCommand
+                    (
+                        objectRichTextBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxFunctionCommand>>
+                (
+                    provider =>
+                    objectRichTextBoxValueControl => new EditObjectRichTextBoxFunctionCommand
+                    (
+                        objectRichTextBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxLiteralListCommand>>
+                (
+                    provider =>
+                    objectRichTextBoxValueControl => new EditObjectRichTextBoxLiteralListCommand
+                    (
+                        objectRichTextBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxObjectListCommand>>
+                (
+                    provider =>
+                    objectRichTextBoxValueControl => new EditObjectRichTextBoxObjectListCommand
+                    (
+                        objectRichTextBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxVariableCommand>>
+                (
+                    provider =>
+                    objectRichTextBoxValueControl => new EditObjectRichTextBoxVariableCommand
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        objectRichTextBoxValueControl
+                    )
+                )
                 .AddTransient<Func<IRichInputBoxValueControl, EditRichInputBoxConstructorCommand>>
                 (
                     provider =>

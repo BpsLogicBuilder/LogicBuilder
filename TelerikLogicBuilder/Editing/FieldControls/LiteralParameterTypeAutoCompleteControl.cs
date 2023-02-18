@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -21,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
     {
         private readonly RadButton btnHelper;
 
+        private readonly ICreateLiteralParameterXmlElement _createLiteralParameterXmlElement;
         private readonly IImageListService _imageListService;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IUiNotificationService _uiNotificationService;
@@ -32,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private bool modified;
 
         public LiteralParameterTypeAutoCompleteControl(
+            ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
             IImageListService imageListService,
             IRadDropDownListHelper radDropDownListHelper,
             IUiNotificationService uiNotificationService,
@@ -40,6 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             LiteralParameter literalParameter)
         {
             InitializeComponent();
+            _createLiteralParameterXmlElement = createLiteralParameterXmlElement;
             _imageListService = imageListService;
             _radDropDownListHelper = radDropDownListHelper;
             _uiNotificationService = uiNotificationService;
@@ -54,7 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
                 ImageAlignment = ContentAlignment.MiddleCenter,
                 Padding = new Padding(0),
                 Margin = new Padding(1, 0, 1, 0),
-                ImageIndex = ImageIndexes.MOREWMAGEINDEX,
+                ImageIndex = ImageIndexes.MOREIMAGEINDEX,
                 Dock = DockStyle.Fill
             };
 
@@ -100,6 +104,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         }
 
         public string VisibleText => radDropDownList.Text;
+
+        public XmlElement? XmlElement => _createLiteralParameterXmlElement.Create(literalParameter, MixedXml);
 
         public event EventHandler? Changed;
 

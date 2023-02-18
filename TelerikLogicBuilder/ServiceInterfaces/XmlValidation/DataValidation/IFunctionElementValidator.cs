@@ -8,5 +8,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataVali
     internal interface IFunctionElementValidator
     {
         void Validate(XmlElement functionElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors);
+        void ValidateTypeOnly(XmlElement functionElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors);
     }
 }

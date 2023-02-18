@@ -64,7 +64,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                         Properties.Resources.SortAscending_16x,
                         Properties.Resources.TreeView_16x,
                         Properties.Resources.more,
-                        Properties.Resources.HelpFile
+                        Properties.Resources.HelpFile,
+                        Properties.Resources.literalListConstructor,
+                        Properties.Resources.objectListConstructor
                     }
                 };
 

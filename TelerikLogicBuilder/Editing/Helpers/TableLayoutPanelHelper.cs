@@ -12,17 +12,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         public void SetUp(TableLayoutPanel tableLayoutPanel, RadPanel radPanelTableParent, IList<ParameterBase> parameters, bool hasGenericArguments)
         {
-            HashSet<LiteralParameterInputStyle> implemented = new()
-            {
-                LiteralParameterInputStyle.DomainAutoComplete,
-                LiteralParameterInputStyle.DropDown,
-                LiteralParameterInputStyle.MultipleLineTextBox,
-                LiteralParameterInputStyle.ParameterSourcedPropertyInput,
-                LiteralParameterInputStyle.ParameterSourceOnly,
-                LiteralParameterInputStyle.PropertyInput,
-                LiteralParameterInputStyle.SingleLineTextBox,
-                LiteralParameterInputStyle.TypeAutoComplete
-            };
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
 
@@ -34,8 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter literalParameter 
-                    || !implemented.Contains(literalParameter.Control))
+                if (parameter is not LiteralParameter
+                    && parameter is not ObjectParameter)
                     continue;
 
                 rowCount += 2;
@@ -49,11 +38,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             float totalHeight = (2 * boundaryWidth) + singleLineHeight + separatorLineHeight; //top + bottom + constructorName rows;
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter literalParameter 
-                    || !implemented.Contains(literalParameter.Control))
+                if (parameter is not LiteralParameter
+                    && parameter is not ObjectParameter)
                     continue;
 
-                totalHeight += literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
+                totalHeight += parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
                             ? multiLineHeight
                             : singleLineHeight;
 
@@ -111,11 +100,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter literalParameter 
-                    || !implemented.Contains(literalParameter.Control))
+                if (parameter is not LiteralParameter
+                    && parameter is not ObjectParameter)
                     continue;
 
-                float size = literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
+                float size = parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
                             ? size_MultiLine
                             : size_SingleLine;
 
