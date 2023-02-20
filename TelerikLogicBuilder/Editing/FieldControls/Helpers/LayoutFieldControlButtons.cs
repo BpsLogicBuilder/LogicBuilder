@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal class LayoutFieldControlButtons : ILayoutFieldControlButtons
     {
-        public void Layout(RadPanel panelButtons, IList<RadButton> buttons, bool performLayout = true, int buttonWidth = 30)
+        public void Layout(RadPanel panelButtons, IList<RadButton> buttons, bool performLayout = false, int buttonWidth = 30)
         {
             TableLayoutPanel tableLayoutPanel = new();
             ((ISupportInitialize)panelButtons).BeginInit();

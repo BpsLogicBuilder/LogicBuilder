@@ -22,14 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             int rowCount = 4;//top + bottom + constructorName rows;
 
             foreach (ParameterBase parameter in parameters)
-            {
-                if (parameter is not LiteralParameter
-                    && parameter is not ObjectParameter
-                    && parameter is not ListOfLiteralsParameter)
-                    continue;
-
                 rowCount += 2;
-            }
 
             if (hasGenericArguments)
             {
@@ -39,11 +32,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             float totalHeight = (2 * boundaryWidth) + singleLineHeight + separatorLineHeight; //top + bottom + constructorName rows;
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter
-                    && parameter is not ObjectParameter
-                    && parameter is not ListOfLiteralsParameter)
-                    continue;
-
                 totalHeight += parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
                             ? multiLineHeight
                             : singleLineHeight;
@@ -102,11 +90,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             foreach (ParameterBase parameter in parameters)
             {
-                if (parameter is not LiteralParameter
-                    && parameter is not ObjectParameter
-                    && parameter is not ListOfLiteralsParameter)
-                    continue;
-
                 float size = parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
                             ? size_MultiLine
                             : size_SingleLine;

@@ -177,6 +177,23 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
+                .AddTransient<Func<IEditingControl, ListOfObjectsParameter, IObjectListParameterRichTextBoxControl>>
+                (
+                    provider =>
+                    (editigControl, listOfObjectsParameter) => new ObjectListParameterRichTextBoxControl
+                    (
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<ObjectRichTextBox>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editigControl,
+                        listOfObjectsParameter
+                    )
+                )
                 .AddTransient<Func<IEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl>>
                 (
                     provider =>
