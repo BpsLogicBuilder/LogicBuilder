@@ -44,7 +44,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private void AddParameterControlSet(IDictionary<string, ParameterControlSet> editControlsSet, ParameterBase parameter)
         {
             if (parameter is not LiteralParameter
-                    && parameter is not ObjectParameter)
+                    && parameter is not ObjectParameter
+                    && parameter is not ListOfLiteralsParameter)
                 return;
 
             RadToolTip toolTip = new();
@@ -108,6 +109,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             else if (parameter is ObjectParameter objectParameter)
             {
                 valueControl = _fieldControlFactory.GetObjectParameterRichTextBoxControl(editingControl, objectParameter);
+            }
+            else if (parameter is ListOfLiteralsParameter listOfLiteralsParameter)
+            {
+                valueControl = _fieldControlFactory.GetiteralListParameterRichTextBoxControl(editingControl, listOfLiteralsParameter);
             }
 
             if (valueControl != null)

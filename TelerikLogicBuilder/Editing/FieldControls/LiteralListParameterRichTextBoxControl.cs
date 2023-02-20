@@ -20,7 +20,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
-    internal partial class ObjectParameterRichTextBoxControl : UserControl, IObjectParameterRichTextBoxControl
+    internal partial class LiteralListParameterRichTextBoxControl : UserControl, ILiteralListParameterRichTextBoxControl
     {
         private readonly RadButton btnVariable;
         private readonly RadButton btnFunction;
@@ -37,12 +37,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateObjectRichTextBoxXml _updateObjectRichTextBoxXml;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-
+        
         private readonly IEditingControl editingControl;
-        private readonly ObjectParameter objectParameter;
+        private readonly ListOfLiteralsParameter listOfLiteralsParameter;
         private Type? _assignedTo;
 
-        public ObjectParameterRichTextBoxControl(
+        public LiteralListParameterRichTextBoxControl(
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlHelperFactory,
             IGetObjectRichTextBoxVisibleText getObjectRichTextBoxVisibleText,
@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingControl editingControl,
-            ObjectParameter objectParameter)
+            ListOfLiteralsParameter listOfLiteralsParameter)
         {
             InitializeComponent();
             _fieldControlCommandFactory = fieldControlCommandFactory;
@@ -63,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingControl = editingControl;
-            this.objectParameter = objectParameter;
+            this.listOfLiteralsParameter = listOfLiteralsParameter;
             _objectRichTextBoxEventsHelper = fieldControlHelperFactory.GetObjectRichTextBoxEventsHelper(this);
             _updateObjectRichTextBoxXml = fieldControlHelperFactory.GetUpdateObjectRichTextBoxXml(this);
 
@@ -136,7 +136,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
                 Type? GetAssignedTo()
                 {
-                    _typeLoadHelper.TryGetSystemType(objectParameter, Application, out Type? type);
+                    _typeLoadHelper.TryGetSystemType(listOfLiteralsParameter, Application, out Type? type);
                     return type;
                 }
             }
@@ -144,15 +144,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public ObjectRichTextBox RichTextBox => _objectRichTextBox;
 
-        public XmlElement? XmlElement { get; private set; }
-
         public bool IsEmpty => XmlElement == null || _xmlDocumentHelpers.GetSingleOrDefaultChildElement(XmlElement) == null;
 
         public string MixedXml => XmlElement?.InnerXml ?? string.Empty;
 
         public string VisibleText => XmlElement?.InnerXml == null
-                                        ? string.Empty 
+                                        ? string.Empty
                                         : _getObjectRichTextBoxVisibleText.GetVisibleText(XmlElement.InnerXml, Application);
+
+        public XmlElement? XmlElement { get; private set; }
 
         public event EventHandler? Changed;
 
@@ -191,7 +191,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void ShowControls() => ShowControls(true);
 
-        public void Update(XmlElement xmlElement) 
+        public void Update(XmlElement xmlElement)
             => _updateObjectRichTextBoxXml.Update(xmlElement);
 
         public void UpdateXmlElement(string innerXml)
@@ -199,8 +199,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             StringBuilder stringBuilder = new();
             using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
             {
-                xmlTextWriter.WriteStartElement(XmlDataConstants.OBJECTPARAMETERELEMENT);
-                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, objectParameter.Name);
+                xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALLISTPARAMETERELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, listOfLiteralsParameter.Name);
                     xmlTextWriter.WriteRaw(innerXml);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();

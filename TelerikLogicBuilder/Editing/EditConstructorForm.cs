@@ -88,7 +88,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //var constructorName = "ColumnSettingsParameters";
             //var constructorName = "RequestDetailsParameters";
             //var constructorName = "DetailFieldSettingParameters";
-            var constructorName = "EditFormSettingsParameters";
+           // var constructorName = "EditFormSettingsParameters";//
+            var constructorName = "MultiSelectFormControlSettingsParameters";
             var constructor = _configurationService.ConstructorList.Constructors[constructorName];
             Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo));
         }
@@ -97,7 +98,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             //var constructorName = "DropDownItemBindingParameters";
             //var constructorName = "CommandButtonParameters";
-            var constructorName = "DirectiveDescriptionParameters";
+            //var constructorName = "DirectiveDescriptionParameters";
+            var constructorName = "FormGroupArraySettingsParameters";
             var constructor = _configurationService.ConstructorList.Constructors[constructorName];
             Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo));
         }

@@ -18,6 +18,23 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<IFieldControlFactory, FieldControlFactory>()
+                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, ILiteralListParameterRichTextBoxControl>>
+                (
+                    provider =>
+                    (editigControl, listOfLiteralsParameter) => new LiteralListParameterRichTextBoxControl
+                    (
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<ObjectRichTextBox>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editigControl,
+                        listOfLiteralsParameter
+                    )
+                )
                 .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl>>
                 (
                     provider =>
