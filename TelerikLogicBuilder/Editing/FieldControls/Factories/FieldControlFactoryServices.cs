@@ -169,6 +169,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                         provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IUiNotificationService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),

@@ -24,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private readonly ICreateLiteralParameterXmlElement _createLiteralParameterXmlElement;
         private readonly IImageListService _imageListService;
+        private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IUiNotificationService _uiNotificationService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -36,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         public LiteralParameterTypeAutoCompleteControl(
             ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
             IImageListService imageListService,
+            ILayoutFieldControlButtons layoutFieldControlButtons,
             IRadDropDownListHelper radDropDownListHelper,
             IUiNotificationService uiNotificationService,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -45,6 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             InitializeComponent();
             _createLiteralParameterXmlElement = createLiteralParameterXmlElement;
             _imageListService = imageListService;
+            _layoutFieldControlButtons = layoutFieldControlButtons;
             _radDropDownListHelper = radDropDownListHelper;
             _uiNotificationService = uiNotificationService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -165,7 +168,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void Update(XmlElement xmlElement)
         {
-            radDropDownList.SelectedValue = xmlElement.InnerText;
+            radDropDownList.Text = xmlElement.InnerText;
             modified = false;
         }
 
@@ -188,40 +191,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             radDropDownList.Validated += RadDropDownList_Validated;
             radDropDownList.Validating += RadDropDownList_Validating;
             radDropDownList.DropDownListElement.UseDefaultDisabledPaint = false;
-            this.radPanelDropDownList.Padding = new Padding(0, 0, 3, 0);
 
             CollapsePanelBorder(radPanelDropDownList);
-            CollapsePanelBorder(radPanelRight);
             CollapsePanelBorder(radPanelButton);
 
             _radDropDownListHelper.SetAutoCompleteSuggestHelper(radDropDownList);
             radDropDownList.DropDownListElement.AutoCompleteSuggest.DropDownList.ListElement.VisualItemFormatting += RadDropDownList_VisualListItemFormatting;
         }
 
-        private void RadDropDownList_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
-        {
-            args.VisualItem.TextWrap = false;
-        }
-
-        private void InitializeButton()
-        {
-            int buttonWidth = 30;
-
-            ((ISupportInitialize)this.radPanelRight).BeginInit();
-            this.radPanelRight.SuspendLayout();
-            ((ISupportInitialize)this.radPanelButton).BeginInit();
-            radPanelButton.SuspendLayout();
-
-            radPanelButton.Padding = new Padding(1);
-            radPanelRight.Size = new Size(buttonWidth, radPanelRight.Height);
-            radPanelButton.Controls.Clear();
-            radPanelButton.Controls.Add(btnHelper);
-
-            ((ISupportInitialize)this.radPanelButton).EndInit();
-            this.radPanelButton.ResumeLayout(false);
-            ((ISupportInitialize)this.radPanelRight).EndInit();
-            this.radPanelRight.ResumeLayout(true);
-        }
+        private void InitializeButton() 
+            => _layoutFieldControlButtons.Layout(radPanelButton, new RadButton[] { btnHelper });
 
         [MemberNotNull(nameof(radDropDownList))]
         private void InitializeDropDownList()
@@ -230,6 +209,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
             ((ISupportInitialize)this.radPanelDropDownList).BeginInit();
             this.radPanelDropDownList.SuspendLayout();
+            this.radPanelDropDownList.Padding = new Padding(0, 1, 3, 0);
 
             ((ISupportInitialize)this.radDropDownList).BeginInit();
             this.radDropDownList.Dock = DockStyle.Fill;
@@ -280,6 +260,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private void RadDropDownList_Validating(object? sender, CancelEventArgs e)
         {
             Validating?.Invoke(this, e);
+        }
+
+        private void RadDropDownList_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
+        {
+            args.VisualItem.TextWrap = false;
         }
 
         private void TextBoxControl_MouseDown(object? sender, MouseEventArgs e)
