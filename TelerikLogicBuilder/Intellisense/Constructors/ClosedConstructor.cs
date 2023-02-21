@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
 {
-    internal class ClosedGenericConstructor
+    internal class ClosedConstructor
     {
-        public ClosedGenericConstructor(Constructor constructor, List<GenericConfigBase> genericArguments)
+        public ClosedConstructor(Constructor constructor, List<GenericConfigBase> genericArguments)
         {
             Constructor = constructor;
             GenericArguments = genericArguments;
