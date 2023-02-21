@@ -127,6 +127,112 @@ namespace TelerikLogicBuilder.IntegrationTests
             Assert.NotNull(result);
             Assert.Single(result);
         }
+
+        [Fact]
+        public void CanLoadConstructorGivenConcreteTypeName()
+        {
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructor
+            (
+                "Contoso.Test.Business.Responses.TestResponseA",
+                _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name)
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Empty(result.GenericArguments);
+        }
+
+        [Fact]
+        public void CanLoadConstructorGivenConcreteType()
+        {
+            //arrange
+            var applicationTypeInfo = _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name);
+            _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.TestResponseA", applicationTypeInfo, out Type? type);
+
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructor
+            (
+                type!,
+                applicationTypeInfo
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Empty(result.GenericArguments);
+        }
+
+        [Fact]
+        public void CanLoadConstructorGivenBaseTypeName()
+        {
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructor
+            (
+                "Contoso.Test.Business.Responses.BaseResponse",
+                _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name)
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Empty(result.GenericArguments);
+            Assert.Equal("Contoso.Test.Business.Responses.GenericResponse`2", result.Constructor.TypeName);
+        }
+
+        [Fact]
+        public void CanLoadConstructorGivenBaseType()
+        {
+            //arrange
+            var applicationTypeInfo = _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name);
+            _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.BaseResponse", applicationTypeInfo, out Type? type);
+
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructor
+            (
+                type!,
+                applicationTypeInfo
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Empty(result.GenericArguments);
+            Assert.Equal("Contoso.Test.Business.Responses.GenericResponse`2", result.Constructor.TypeName);
+        }
+
+        [Fact]
+        public void GetConstructorReturnsConfiguredOpenGenericTypeGivenClosedGenericTypeName()
+        {
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructor
+            (
+                "Contoso.Test.Business.Responses.GenericResponse`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name)
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal("Contoso.Test.Business.Responses.GenericResponse`2", result.Constructor.TypeName);
+            Assert.Equal(2, result.GenericArguments.Count);
+        }
+
+        [Fact]
+        public void GetConstructorReturnsConfiguredOpenGenericTypeGivenClosedGenericType()
+        {
+            //arrange
+            var applicationTypeInfo = _constructorTypeHelperFixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_constructorTypeHelperFixture.ConfigurationService.GetSelectedApplication().Name);
+            _constructorTypeHelperFixture.TypeLoadHelper.TryGetSystemType("Contoso.Test.Business.Responses.GenericResponse`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Contoso.Test.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", applicationTypeInfo, out Type? type);
+
+            //act
+            var result = _constructorTypeHelperFixture.ConstructorTypeHelper.GetConstructor
+            (
+                type!,
+                applicationTypeInfo
+            );
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal("Contoso.Test.Business.Responses.GenericResponse`2", result.Constructor.TypeName);
+            Assert.Equal(2, result.GenericArguments.Count);
+        }
     }
 
     public class ConstructorTypeHelperFixture : IDisposable

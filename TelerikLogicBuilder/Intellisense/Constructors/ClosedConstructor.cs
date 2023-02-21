@@ -5,13 +5,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors
 {
     internal class ClosedConstructor
     {
-        public ClosedConstructor(Constructor constructor, List<GenericConfigBase> genericArguments)
+        public ClosedConstructor(Constructor constructor, IList<GenericConfigBase> genericArguments)
         {
             Constructor = constructor;
             GenericArguments = genericArguments;
         }
 
         public Constructor Constructor { get; set; }
-        public List<GenericConfigBase> GenericArguments { get; set; }
+        public IList<GenericConfigBase> GenericArguments { get; set; }
     }
 }
