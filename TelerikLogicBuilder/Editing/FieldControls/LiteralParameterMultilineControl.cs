@@ -242,9 +242,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private void ShowControls(bool show)
         {
             _richInputBox.Visible = show;
-            btnFunction.Visible = show;
-            btnVariable.Visible = show;
-            btnConstructor.Visible = show;
+            radPanelRichInputBox.Visible = show;
+            foreach (RadButton button in CommandButtons)
+                button.Visible = show;
         }
     }
 }

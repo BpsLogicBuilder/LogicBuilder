@@ -131,10 +131,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
             ((ISupportInitialize)this.radDropDownList).BeginInit();
             this.radDropDownList.Dock = DockStyle.Fill;
+            this.radDropDownList.AutoSize = false;
             this.radDropDownList.DropDownAnimationEnabled = true;
             this.radDropDownList.Location = new Point(0, 0);
             this.radDropDownList.Name = "radDropDownList";
-            this.radDropDownList.Size = new Size(350, 20);
+            this.radDropDownList.Size = new Size(350, 28);
             this.radDropDownList.TabIndex = 0;
             ((ISupportInitialize)this.radDropDownList).EndInit();
 

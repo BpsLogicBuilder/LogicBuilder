@@ -148,9 +148,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public string MixedXml => XmlElement?.InnerXml ?? string.Empty;
 
-        public string VisibleText => XmlElement?.InnerXml == null
-                                        ? string.Empty
-                                        : _getObjectRichTextBoxVisibleText.GetVisibleText(XmlElement.InnerXml, Application);
+        public string VisibleText
+        {
+            get
+            {
+                if (XmlElement?.InnerXml == null)
+                    return string.Empty;
+
+                XmlElement = _xmlDocumentHelpers.ToXmlElement
+                (
+                    _getObjectRichTextBoxVisibleText.RefreshVisibleTexts
+                    (
+                        XmlElement.OuterXml,//OuterXml element is objectListParameter
+                        Application
+                    )
+                );
+
+                return _getObjectRichTextBoxVisibleText.GetVisibleText
+                (
+                    XmlElement.InnerXml,
+                    Application
+                );
+            }
+        }
 
         public XmlElement? XmlElement { get; private set; }
 
@@ -264,6 +284,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private void ShowControls(bool show)
         {
             _objectRichTextBox.Visible = show;
+            radPanelRichTextBox.Visible = show;
             foreach (RadButton button in CommandButtons)
                 button.Visible = show;
         }

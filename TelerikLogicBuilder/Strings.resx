@@ -440,6 +440,10 @@
     <value>The generic argument name "{0}" for constructor "{1}" is invalid.  Generic argument names must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.</value>
     <comment>0=genericArgumentName;1=parameterName;2=constructorName</comment>
   </data>
+	<data name="constructorCannotLoadTypeForParameterFormat" xml:space="preserve">
+    <value>Cannot load the type {0} for the parameter {1}. Please update the constructor configuration for {2}.</value>
+    <comment>0=typeFullName;1=parameterName;2=constructorName</comment>
+  </data>
 	<data name="constructorExistsFormat" xml:space="preserve">
     <value>A constructor "{0}" already exists - {1}({2}) with the same signature.</value>
     <comment>0=constructorName 1=Type 2=parametersToString</comment>
@@ -1514,10 +1518,10 @@
     <comment>0=FunctionName</comment>
   </data>
 	<data name="popupLiteralListDescriptionFormat" xml:space="preserve">
-    <value>({0})</value>
+    <value>{0}</value>
   </data>
 	<data name="popupObjectListDescriptionFormat" xml:space="preserve">
-    <value>({{{0}}})</value>
+    <value>{0}</value>
   </data>
 	<data name="popupObjectNullDescription" xml:space="preserve">
     <value>{null}</value>

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -142,7 +143,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         }
         #endregion ITypeAutoCompleteTextControl
 
-        public void HideControls() => radDropDownList.Visible = false;
+        public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
@@ -164,7 +165,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             toolTip.SetToolTip(radPanelDropDownList, toolTipText);
         }
 
-        public void ShowControls() => radDropDownList.Visible = true;
+        public void ShowControls() => ShowControls(true);
 
         public void Update(XmlElement xmlElement)
         {
@@ -213,10 +214,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
             ((ISupportInitialize)this.radDropDownList).BeginInit();
             this.radDropDownList.Dock = DockStyle.Fill;
+            this.radDropDownList.AutoSize = false;
             this.radDropDownList.DropDownAnimationEnabled = true;
             this.radDropDownList.Location = new Point(0, 0);
             this.radDropDownList.Name = "radDropDownList";
-            this.radDropDownList.Size = new Size(350, 20);
+            this.radDropDownList.Size = new Size(350, 28);
             this.radDropDownList.TabIndex = 0;
             ((ISupportInitialize)this.radDropDownList).EndInit();
 
@@ -227,6 +229,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private void SetDropDownBorderForeColor(Color color)
             => ((BorderPrimitive)radDropDownList.DropDownListElement.Children[0]).ForeColor = color;
+
+        private void ShowControls(bool show)
+        {
+            radDropDownList.Visible = show;
+            btnHelper.Visible = show;
+        }
 
         #region Event Handlers
         private void BtnHelper_MouseDown(object? sender, MouseEventArgs e)

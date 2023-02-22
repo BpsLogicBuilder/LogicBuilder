@@ -1,13 +1,22 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
+using System.Xml;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
@@ -16,12 +25,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
     internal partial class EditConstructorControl : UserControl, IEditConstructorControl
     {
+        private readonly IConfigurationService _configurationService;
+        private readonly IConstructorDataParser _constructorDataParser;
+        private readonly IGenericConstructorHelper _genericConstructorHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
+        private readonly ITypeLoadHelper _typeLoadHelper;
+        private readonly IUpdateParameterControlValues _updateParameterControlValues;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEditingForm editingForm;
-        private readonly Constructor constructor;
+        
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
+        private readonly XmlDocument xmlDocument;
+        private readonly string? selectedParameter;
 
         private readonly RadGroupBox groupBoxConstructor;
         private readonly RadScrollablePanel radPanelConstructor;
@@ -30,22 +47,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private readonly RadLabel lblConstructor;
         private readonly RadLabel? lblGenericArguments;
 
-        public bool IsValid => throw new NotImplementedException();
-
-        public ApplicationTypeInfo Application => editingForm.Application;
-
         public EditConstructorControl(
+            IConfigurationService configurationService,
+            IConstructorDataParser constructorDataParser,
             IEditingControlHelperFactory editingControlFactory,
+            IGenericConstructorHelper genericConstructorHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
+            ITypeLoadHelper typeLoadHelper,
+            IUpdateParameterControlValues updateParameterControlValues,
+            IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
             Constructor constructor,
-            Type assignedTo)
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            string? selectedParameter = null)
         {
             InitializeComponent();
+            _configurationService = configurationService;
+            _constructorDataParser = constructorDataParser;
+            _genericConstructorHelper = genericConstructorHelper;
             _tableLayoutPanelHelper = tableLayoutPanelHelper;
+            _typeLoadHelper = typeLoadHelper;
+            _updateParameterControlValues = updateParameterControlValues;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingForm = editingForm;
             this.constructor = constructor;
+            this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
+            (
+                _xmlDocumentHelpers.SelectSingleElement(formDocument, treeNodeXPath)
+            );
+            this.constructorData = _constructorDataParser.Parse
+            (
+                _xmlDocumentHelpers.GetDocumentElement(this.xmlDocument)
+            );
+
             this.assignedTo = assignedTo;
+            this.selectedParameter = selectedParameter;
+
             _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, editingForm);
 
             this.groupBoxConstructor = new RadGroupBox();
@@ -66,6 +105,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             InitializeControls();
         }
+
+        private Constructor constructor;
+        private ConstructorData constructorData;
+
+        private static readonly string XmlParentXPath = string.Concat("/", XmlDataConstants.CONSTRUCTORELEMENT);
+        private static readonly string ParametersXPath = string.Concat(XmlParentXPath, "/", XmlDataConstants.PARAMETERSELEMENT);
+        private static readonly string GenericArgumentsXPath = string.Concat(XmlParentXPath, "/", XmlDataConstants.GENERICARGUMENTSELEMENT);
+
+        public bool IsValid => throw new NotImplementedException();
+
+        public ApplicationTypeInfo Application => editingForm.Application;
 
         private void InitializeControls()
         {
@@ -124,18 +174,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             if (ValidateGenericArgs())
             {
+                if (constructor.HasGenericArguments)
+                {//start with _configurationService.ConstructorList.Constructors to make sure we are starting with a generic type definition.
+                    constructor = _configurationService.ConstructorList.Constructors[constructor.Name];
+                    constructor = _genericConstructorHelper.ConvertGenericTypes(constructor, constructorData.GenericArguments, Application);
+                    //.ConvertGenericTypes(this.genericArgumentsPopup.GenericArguments, this.application);
+                }
+
                 _loadParameterControlsDictionary.Load(editControlsSet, constructor.Parameters);
                 foreach (ParameterBase parameter in constructor.Parameters)
                 {
-                    if (!editControlsSet.ContainsKey(parameter.Name))
-                    {
-                        continue;
-                    }
-
                     ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
                     this.tableLayoutPanel.Controls.Add(parameterControlSet.ImageLabel, 1, currentRow);
                     this.tableLayoutPanel.Controls.Add(parameterControlSet.ChkInclude, 2, currentRow);
                     this.tableLayoutPanel.Controls.Add(parameterControlSet.Control, 3, currentRow);
+                    ShowHideParameterControls(parameterControlSet.ChkInclude);
+                    parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
                     currentRow += 2;
                 }
             }
@@ -180,6 +234,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelConstructor);
+
+            UpdateParameterControls();
         }
 
         public void ClearMessage() => editingForm.ClearMessage();
@@ -196,6 +252,93 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
-        bool ValidateGenericArgs() => true;
+        private void ShowHideParameterControls(RadCheckBox chkSender)
+        {
+            if (chkSender.Checked)
+                editControlsSet[chkSender.Name].ValueControl.ShowControls();
+            else
+                editControlsSet[chkSender.Name].ValueControl.HideControls();
+        }
+
+        private void UpdateParameterControls()
+        {
+            ClearMessage();
+            if (!_configurationService.ConstructorList.Constructors.ContainsKey(constructorData.Name))
+            {
+                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.constructorNotConfiguredFormat, constructorData.Name));
+                return;
+            }
+
+            if (!ValidateGenericArgs())
+                return;
+
+            if (!ValidateParameters())
+            {
+                radPanelConstructor.Enabled = false;
+                return;
+            }
+
+            radPanelConstructor.Enabled = true;
+
+            bool newConstructor = constructorData.ParameterElementsList.Count == 0;
+            _updateParameterControlValues.PrepopulateRequiredFields
+            (
+                editControlsSet,
+                constructorData.ParameterElementsList.ToDictionary(p => p.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                constructor.Parameters.ToDictionary(p => p.Name),
+                this.xmlDocument,
+                ParametersXPath,
+                Application
+            );
+
+            //after updating parameter fields refresh constructorData - why?
+            constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.SelectSingleElement(xmlDocument, XmlParentXPath));
+
+            if (newConstructor)
+            {
+                _updateParameterControlValues.SetDefaultsForLiterals
+                (
+                    editControlsSet, 
+                    constructor.Parameters.ToDictionary(p => p.Name)
+                );//these are configured defaults for LiteralParameter and ListOfLiteralsParameter - different from prepopulating
+            }
+            else
+            {
+                _updateParameterControlValues.UpdateExistingFields
+                (
+                    constructorData.ParameterElementsList,
+                    editControlsSet,
+                    constructor.Parameters.ToDictionary(p => p.Name),
+                    selectedParameter
+                );
+            }
+        }
+
+        private bool ValidateGenericArgs() => true;
+
+        private bool ValidateParameters()
+        {
+            List<string> errors = new();
+            foreach(ParameterBase parameter in constructor.Parameters)
+            {
+                if (!_typeLoadHelper.TryGetSystemType(parameter, Application, out Type? _))
+                    errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.constructorCannotLoadTypeForParameterFormat, parameter.Description, parameter.Name, constructor.Name));
+            }
+
+            if (errors.Count > 0)
+                SetErrorMessage(string.Join(Environment.NewLine, errors));
+
+            return errors.Count == 0;
+        }
+
+        #region Event Handlers
+        private void ChkInclude_CheckStateChanged(object? sender, EventArgs e)
+        {
+            if (sender is not RadCheckBox radChackBox)
+                return;
+
+            ShowHideParameterControls(radChackBox);
+        }
+        #endregion Event Handlers
     }
 }

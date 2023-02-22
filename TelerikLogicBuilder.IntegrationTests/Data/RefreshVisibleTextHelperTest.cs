@@ -248,7 +248,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                 </literalListVariable>
                                             </variableValue>
                                           </assertFunction>"),
-                        "Set Variable: {<LiteralListVariable> Equals (Generic List Of String: Count(2))}"
+                        "Set Variable: {<LiteralListVariable> Equals Generic List Of String: Count(2)}"
                     },
                     new object[]
                     {
@@ -277,7 +277,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                 </objectListVariable>
                                             </variableValue>
                                           </assertFunction>"),
-                        "Set Variable: {<ObjectListVariable> Equals ({Generic List Of TestResponseA: Count(2)})}"
+                        "Set Variable: {<ObjectListVariable> Equals Generic List Of TestResponseA: Count(2)}"
                     }
                 };
             }
@@ -426,7 +426,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                 <literal>Field2</literal>
                                             </literalList>
                                         </literalListVariable>"),
-                        "(Generic List Of String: Count(2))"
+                        "Generic List Of String: Count(2)"
                     },
                     new object[]
                     {
@@ -436,7 +436,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                 <literal>Field2</literal>
                                             </literalList>
                                         </literalListParameter>"),
-                        "(courses: Count(2))"
+                        "courses: Count(2)"
                     },
                 };
             }
@@ -487,7 +487,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                 </object>
                                             </objectList>
                                         </objectListVariable>"),
-                        "({Generic List Of TestResponseA: Count(2)})"
+                        "Generic List Of TestResponseA: Count(2)"
                     },
                     new object[]
                     {
@@ -511,7 +511,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                                                 </object>
                                             </objectList>
                                         </objectListParameter>"),
-                        "({courses: Count(2)})"
+                        "courses: Count(2)"
                     },
                 };
             }

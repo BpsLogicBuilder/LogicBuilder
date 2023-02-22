@@ -30,8 +30,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
                 FontStyle fontStyle = this.Font.Style;
                 if (!this.Font.Underline)
                     fontStyle |= FontStyle.Underline;
-                if (!this.Font.Bold)
-                    fontStyle |= FontStyle.Bold;
 
                 return fontStyle;
             }
@@ -48,8 +46,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
                 FontStyle fontStyle = this.Font.Style;
                 if (this.Font.Underline)
                     fontStyle &= ~FontStyle.Underline;
-                if (this.Font.Bold)
-                    fontStyle &= ~FontStyle.Bold;
 
                 return fontStyle;
             }

@@ -1042,6 +1042,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot load the type {0} for the parameter {1}. Please update the constructor configuration for {2}..
+        /// </summary>
+        internal static string constructorCannotLoadTypeForParameterFormat {
+            get {
+                return ResourceManager.GetString("constructorCannotLoadTypeForParameterFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A constructor &quot;{0}&quot; already exists - {1}({2}) with the same signature..
         /// </summary>
         internal static string constructorExistsFormat {
@@ -5272,7 +5281,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ({0}).
+        ///   Looks up a localized string similar to {0}.
         /// </summary>
         internal static string popupLiteralListDescriptionFormat {
             get {
@@ -5281,7 +5290,7 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ({{{0}}}).
+        ///   Looks up a localized string similar to {0}.
         /// </summary>
         internal static string popupObjectListDescriptionFormat {
             get {
