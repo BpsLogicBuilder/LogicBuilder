@@ -2,8 +2,10 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -13,6 +15,19 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddFieldControlCommandFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IConstructorGenericParametersControl, AddUpdateConstructorGenericArgumentsCommand>>
+                (
+                    provider =>
+                    genericParametersControl => new AddUpdateConstructorGenericArgumentsCommand
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IConstructorDataParser>(),
+                        provider.GetRequiredService<IGenericConfigManager>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        genericParametersControl
+                    )
+                )
                 .AddTransient<Func<IRichInputBoxValueControl, ClearRichInputBoxTextCommand>>
                 (
                     provider =>

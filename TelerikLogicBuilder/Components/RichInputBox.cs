@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             Telerik.WinControls.ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             this.Disposed += RichInputBox_Disposed;
             //the font will be replaced (links erased) on theme changes if it hasn't been set
-            this.Font = new Font(this.Font, this.Font.Style);
+            this.Font = ForeColorUtility.GetDefaultFont(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
         }
 
         //12/2006 char array constant to distinguish between variables and functions

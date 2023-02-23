@@ -6,6 +6,9 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -17,6 +20,24 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddFieldControlFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IEditConstructorControl, IConstructorGenericParametersControl>>
+                (
+                    provider =>
+                    editigConstructorControl => new ConstructorGenericParametersControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IConstructorDataParser>(),
+                        provider.GetRequiredService<IConstructorGenericsConfigrationValidator>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<ObjectRichTextBox>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editigConstructorControl
+                    )
+                )
                 .AddTransient<IFieldControlFactory, FieldControlFactory>()
                 .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, ILiteralListParameterRichTextBoxControl>>
                 (

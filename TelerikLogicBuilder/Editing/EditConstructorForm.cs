@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -9,6 +10,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
@@ -91,9 +93,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //var constructorName = "RequestDetailsParameters";
             //var constructorName = "DetailFieldSettingParameters";
             // var constructorName = "EditFormSettingsParameters";//
-            var constructorName = "EditFormSettingsParameters";
+            //var constructorName = "EditFormSettingsParameters";
+            var constructorName = "CommandButtonParameters";
             var constructor = _configurationService.ConstructorList.Constructors[constructorName];
-            Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(buttom2Xml), "/constructor"));
+            Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(BuildConstructorXml(constructorName)), "/constructor"));
+            //Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(button2Xml), "/constructor"));
         }
 
         private void RadButton1_Click(object? sender, EventArgs e)
@@ -102,9 +106,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //var constructorName = "CommandButtonParameters";
             //var constructorName = "DirectiveDescriptionParameters";
             //var constructorName = "FormGroupArraySettingsParameters";
-            var constructorName = "MultiSelectFormControlSettingsParameters";
+            //var constructorName = "MultiSelectFormControlSettingsParameters";
+            var constructorName = "GenericResponse`2[A,B]";
             var constructor = _configurationService.ConstructorList.Constructors[constructorName];
-            Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(buttom1Xml), "/constructor"));
+            Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(BuildConstructorXml(constructorName)), "/constructor"));
+            //Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(button1Xml), "/constructor"));
+        }
+
+		private string BuildConstructorXml(string name)
+		{
+			_ = button1Xml + button2Xml;
+            //ThemeResolutionService.Fon
+
+            return new XmlDataHelper(_exceptionHelper, new Services.XmlDocumentHelpers(_exceptionHelper))
+				.BuildConstructorXml(name, name, "<genericArguments />", "<parameters />");
+
         }
 
         private static System.Xml.XmlDocument GetXmlDocument(string xmlString)
@@ -114,7 +130,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             return xmlDocument;
         }
 
-        string buttom2Xml = @"<constructor name=""EditFormSettingsParameters"" visibleText=""EditFormSettingsParameters: title=Course;displayField=title;RequestDetailsParameters: requestDetails;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingParameters: fieldSettings;FilterGroupParameters: filterGroup;modelType=Contoso.Domain.Entities.CourseModel"">
+        string button2Xml = @"<constructor name=""EditFormSettingsParameters"" visibleText=""EditFormSettingsParameters: title=Course;displayField=title;RequestDetailsParameters: requestDetails;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingParameters: fieldSettings;FilterGroupParameters: filterGroup;modelType=Contoso.Domain.Entities.CourseModel"">
 								<genericArguments />
 								<parameters>
 									<literalParameter name=""title"">Course</literalParameter>
@@ -653,7 +669,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 								</parameters>
 							</constructor>";
 
-        string buttom1Xml = @"<constructor name=""MultiSelectFormControlSettingsParameters"" visibleText=""MultiSelectFormControlSettingsParameters: GenericListOfString: keyFields;field=courses;domElementId=coursesId;title=Courses;placeHolder=Select Courses ...;type=text;MultiSelectTemplateParameters: multiSelectTemplate;modelType=Contoso.Domain.Entities.InstructorModel"">
+        string button1Xml = @"<constructor name=""MultiSelectFormControlSettingsParameters"" visibleText=""MultiSelectFormControlSettingsParameters: GenericListOfString: keyFields;field=courses;domElementId=coursesId;title=Courses;placeHolder=Select Courses ...;type=text;MultiSelectTemplateParameters: multiSelectTemplate;modelType=Contoso.Domain.Entities.InstructorModel"">
 	                            <genericArguments />
 	                            <parameters>
 		                            <literalListParameter name=""keyFields"">

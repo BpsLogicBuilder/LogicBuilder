@@ -5,6 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
     internal class FieldControlCommandFactory : IFieldControlCommandFactory
     {
+        private readonly Func<IConstructorGenericParametersControl, AddUpdateConstructorGenericArgumentsCommand> _getAddUpdateConstructorGenericArgumentsCommand;
         private readonly Func<IRichInputBoxValueControl, ClearRichInputBoxTextCommand> _getClearRichInputBoxTextCommand;
         private readonly Func<IRichInputBoxValueControl, CopyRichInputBoxTextCommand> _getCopyRichInputBoxTextCommand;
         private readonly Func<IRichInputBoxValueControl, CutRichInputBoxTextCommand> _getCutRichInputBoxTextCommand;
@@ -24,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> _getToCamelCaseRichInputBoxCommand;
 
         public FieldControlCommandFactory(
+            Func<IConstructorGenericParametersControl, AddUpdateConstructorGenericArgumentsCommand> getAddUpdateConstructorGenericArgumentsCommand,
             Func<IRichInputBoxValueControl, ClearRichInputBoxTextCommand> getClearRichInputBoxTextCommand,
             Func<IRichInputBoxValueControl, CopyRichInputBoxTextCommand> getCopyRichInputBoxTextCommand,
             Func<IRichInputBoxValueControl, CutRichInputBoxTextCommand> getCutRichInputBoxTextCommand,
@@ -42,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IPropertyInputRichInputBoxControl, SelectItemFromReferencesTreeViewCommand> getSelectItemFromReferencesTreeViewCommand,
             Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> getToCamelCaseRichInputBoxCommand)
         {
+            _getAddUpdateConstructorGenericArgumentsCommand = getAddUpdateConstructorGenericArgumentsCommand;
             _getClearRichInputBoxTextCommand = getClearRichInputBoxTextCommand;
             _getCopyRichInputBoxTextCommand = getCopyRichInputBoxTextCommand;
             _getCutRichInputBoxTextCommand = getCutRichInputBoxTextCommand;
@@ -60,6 +63,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             _getSelectItemFromReferencesTreeViewCommand = getSelectItemFromReferencesTreeViewCommand;
             _getToCamelCaseRichInputBoxCommand = getToCamelCaseRichInputBoxCommand;
         }
+
+        public AddUpdateConstructorGenericArgumentsCommand GetAddUpdateConstructorGenericArgumentsCommand(IConstructorGenericParametersControl constructorGenericParametersControl)
+            => _getAddUpdateConstructorGenericArgumentsCommand(constructorGenericParametersControl);
 
         public ClearRichInputBoxTextCommand GetClearRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
             => _getClearRichInputBoxTextCommand(richInputBoxValueControl);

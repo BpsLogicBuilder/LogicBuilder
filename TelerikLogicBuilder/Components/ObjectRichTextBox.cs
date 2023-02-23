@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             this.Disposed += ObjectRichTextBox_Disposed;
 
             //the font will be replaced (links erased) on theme changes if it hasn't been set
-            this.Font = new Font(this.Font, this.Font.Style);
+            this.Font = ForeColorUtility.GetDefaultFont(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
         }
 
         public void SetLinkFormat()

@@ -938,6 +938,9 @@
     <value>The number of generic arguments {0}, does not match the type {1}.FR</value>
     <comment>0=Argument count; 1=Generic Type Definition Name</comment>
   </data>
+	<data name="genericArgumentsNotConfigured" xml:space="preserve">
+    <value>Generic arguments have not been configured.FR</value>
+  </data>
 	<data name="genericFuncNodeDescription" xml:space="preserve">
     <value>Returns a generic type.FR</value>
   </data>
@@ -951,6 +954,10 @@
   </data>
 	<data name="genericParamNodeDescription" xml:space="preserve">
     <value>Generic ParameterFR</value>
+  </data>
+	<data name="genericTypeDescriptionFormat" xml:space="preserve">
+    <value>{0}&lt;{1}&gt;</value>
+    <comment>0=TypeName; 1=comma delimited list of genric arguments</comment>
   </data>
 	<data name="initialParameterTypeNameFormat" xml:space="preserve">
     <value>{0} {1}FR</value>

@@ -272,6 +272,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _objectRichTextBox.DetectUrls = false;
             _objectRichTextBox.HideSelection = false;
             _objectRichTextBox.Multiline = false;
+            _objectRichTextBox.ReadOnly = true;
 
             this.radPanelRichTextBox.Controls.Add(_objectRichTextBox);
             ((ISupportInitialize)this.radPanelRichTextBox).EndInit();

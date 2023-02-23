@@ -3589,6 +3589,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generic arguments have not been configured..
+        /// </summary>
+        internal static string genericArgumentsNotConfigured {
+            get {
+                return ResourceManager.GetString("genericArgumentsNotConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Returns a generic type..
         /// </summary>
         internal static string genericFuncNodeDescription {
@@ -3621,6 +3630,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string genericParamNodeDescription {
             get {
                 return ResourceManager.GetString("genericParamNodeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}&lt;{1}&gt;.
+        /// </summary>
+        internal static string genericTypeDescriptionFormat {
+            get {
+                return ResourceManager.GetString("genericTypeDescriptionFormat", resourceCulture);
             }
         }
         

@@ -5,6 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
     internal interface IFieldControlFactory
     {
+        IConstructorGenericParametersControl GetConstructorGenericParametersControl(IEditConstructorControl editConstructorControl);
         ILiteralListParameterRichTextBoxControl GetiteralListParameterRichTextBoxControl(IEditingControl editingControl, ListOfLiteralsParameter listOfLiteralsParameter);
         ILiteralParameterDomainAutoCompleteControl GetLiteralParameterDomainAutoCompleteControl(IEditingControl editingControl, LiteralParameter literalParameter);
         ILiteralParameterDomainMultilineControl GetLiteralParameterDomainMultilineControl(IEditingControl editingControl, LiteralParameter literalParameter);

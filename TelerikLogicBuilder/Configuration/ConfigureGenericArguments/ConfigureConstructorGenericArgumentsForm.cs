@@ -107,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
         (
             _xmlDocumentHelpers.SelectSingleElement(XmlDocument, rootNodeXPath)
         )
-        .Select(e => _genericConfigXmlParser.Parse(e))
+        .Select(_genericConfigXmlParser.Parse)
         .ToArray();
 
         public RadTreeView TreeView => radTreeView1;

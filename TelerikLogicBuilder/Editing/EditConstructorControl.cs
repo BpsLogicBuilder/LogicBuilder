@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -9,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +29,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     {
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorDataParser _constructorDataParser;
+        private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
+        private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericConstructorHelper _genericConstructorHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
@@ -50,7 +54,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         public EditConstructorControl(
             IConfigurationService configurationService,
             IConstructorDataParser constructorDataParser,
+            IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
             IEditingControlHelperFactory editingControlFactory,
+            IFieldControlFactory fieldControlFactory,
             IGenericConstructorHelper genericConstructorHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             ITypeLoadHelper typeLoadHelper,
@@ -66,6 +72,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             InitializeComponent();
             _configurationService = configurationService;
             _constructorDataParser = constructorDataParser;
+            _constructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
+            _fieldControlFactory = fieldControlFactory;
             _genericConstructorHelper = genericConstructorHelper;
             _tableLayoutPanelHelper = tableLayoutPanelHelper;
             _typeLoadHelper = typeLoadHelper;
@@ -76,10 +84,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
                 _xmlDocumentHelpers.SelectSingleElement(formDocument, treeNodeXPath)
-            );
-            this.constructorData = _constructorDataParser.Parse
-            (
-                _xmlDocumentHelpers.GetDocumentElement(this.xmlDocument)
             );
 
             this.assignedTo = assignedTo;
@@ -107,15 +111,39 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         }
 
         private Constructor constructor;
-        private ConstructorData constructorData;
 
-        private static readonly string XmlParentXPath = string.Concat("/", XmlDataConstants.CONSTRUCTORELEMENT);
-        private static readonly string ParametersXPath = string.Concat(XmlParentXPath, "/", XmlDataConstants.PARAMETERSELEMENT);
-        private static readonly string GenericArgumentsXPath = string.Concat(XmlParentXPath, "/", XmlDataConstants.GENERICARGUMENTSELEMENT);
+        private static readonly string XmlParentXPath = $"/{XmlDataConstants.CONSTRUCTORELEMENT}";
+        private static readonly string ParametersXPath = $"{XmlParentXPath}/{XmlDataConstants.PARAMETERSELEMENT}";
 
         public bool IsValid => throw new NotImplementedException();
 
         public ApplicationTypeInfo Application => editingForm.Application;
+
+        public Constructor Constructor => constructor;
+
+        public XmlDocument XmlDocument => xmlDocument;
+
+        public void ClearMessage() => editingForm.ClearMessage();
+
+        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
+
+        public void ResetControls()
+        {
+            Native.NativeMethods.LockWindowUpdate(this.Handle);
+            InitializeControls();
+            this.PerformLayout();
+            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
+        }
+
+        public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
+
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         private void InitializeControls()
         {
@@ -160,7 +188,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             this.radPanelConstructor.TabIndex = 0;
             //radPanelTableParent
             //tableLayoutPanel
-            _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, constructor.Parameters, constructor.HasGenericArguments);
+            editControlsSet.Clear();
+            tableLayoutPanel.Controls.Clear();
 
             int currentRow = 1;//constructor name row
             this.tableLayoutPanel.Controls.Add(this.lblConstructor, 3, currentRow);
@@ -168,19 +197,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             if (constructor.HasGenericArguments)
             {
+                Control genericConfigurationControl = (Control)_fieldControlFactory.GetConstructorGenericParametersControl(this);
+                genericConfigurationControl.Location = new Point(0, 0);
+                genericConfigurationControl.Dock = DockStyle.Fill;
                 this.tableLayoutPanel.Controls.Add(this.lblGenericArguments, 2, currentRow);
+                this.tableLayoutPanel.Controls.Add(genericConfigurationControl, 3, currentRow);
                 currentRow += 2;
             }
 
-            if (ValidateGenericArgs())
+            
+            if (constructor.HasGenericArguments)
             {
-                if (constructor.HasGenericArguments)
-                {//start with _configurationService.ConstructorList.Constructors to make sure we are starting with a generic type definition.
-                    constructor = _configurationService.ConstructorList.Constructors[constructor.Name];
-                    constructor = _genericConstructorHelper.ConvertGenericTypes(constructor, constructorData.GenericArguments, Application);
-                    //.ConvertGenericTypes(this.genericArgumentsPopup.GenericArguments, this.application);
+                if (ValidateGenericArgs())
+                {
+                    ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(this.xmlDocument));
+                    constructor = _genericConstructorHelper.ConvertGenericTypes
+                    (
+                        _configurationService.ConstructorList.Constructors[constructor.Name], //start with _configurationService.ConstructorList.Constructors to make sure we are starting with a generic type definition.
+                        constructorData.GenericArguments, Application
+                    );
+
+                    LoadParameterControls();
+                    UpdateParameterControls();
                 }
 
+                //We still need the layout for the genericConfigurationControl and lblConstructor
+                //If ValidateGenericArgs(), then this must run after converting any generic parameters
+                _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, constructor.Parameters, constructor.HasGenericArguments);
+                
+            }
+            else
+            {
+                LoadParameterControls();
+                UpdateParameterControls();
+                _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, constructor.Parameters, constructor.HasGenericArguments);
+            }
+
+            void LoadParameterControls()
+            {
                 _loadParameterControlsDictionary.Load(editControlsSet, constructor.Parameters);
                 foreach (ParameterBase parameter in constructor.Parameters)
                 {
@@ -234,23 +288,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelConstructor);
-
-            UpdateParameterControls();
         }
-
-        public void ClearMessage() => editingForm.ClearMessage();
-
-        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
-
-        public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
-
-        public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
-
-        private static void CollapsePanelBorder(RadPanel radPanel)
-            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
-
-        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
-            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         private void ShowHideParameterControls(RadCheckBox chkSender)
         {
@@ -263,18 +301,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private void UpdateParameterControls()
         {
             ClearMessage();
+
+            ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
             if (!_configurationService.ConstructorList.Constructors.ContainsKey(constructorData.Name))
             {
                 SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.constructorNotConfiguredFormat, constructorData.Name));
+                editControlsSet.Clear();
+                tableLayoutPanel.Controls.Clear();
                 return;
             }
 
-            if (!ValidateGenericArgs())
-                return;
-
             if (!ValidateParameters())
             {
-                radPanelConstructor.Enabled = false;
+                editControlsSet.Clear();
+                tableLayoutPanel.Controls.Clear();
                 return;
             }
 
@@ -291,7 +331,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 Application
             );
 
-            //after updating parameter fields refresh constructorData - why?
+            //after updating parameter fields refresh constructorData - we'll need the updated ParameterElementsList.
             constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.SelectSingleElement(xmlDocument, XmlParentXPath));
 
             if (newConstructor)
@@ -314,7 +354,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
         }
 
-        private bool ValidateGenericArgs() => true;
+        private bool ValidateGenericArgs()
+        {
+            if (!constructor.HasGenericArguments)
+            {
+                ClearMessage();
+                return true;
+            }
+
+            ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+
+            if (constructorData.GenericArguments.Count != constructor.GenericArguments.Count)
+            {
+                SetErrorMessage(Strings.genericArgumentsNotConfigured);
+                return false;
+            }
+
+            List<string> errors = new();
+            if (!_constructorGenericsConfigrationValidator.Validate(constructor, constructorData.GenericArguments, Application, errors))
+            {
+                SetErrorMessage(string.Join(Environment.NewLine, errors));
+                return false;
+            }
+
+            ClearMessage();
+            return true;
+        }
 
         private bool ValidateParameters()
         {

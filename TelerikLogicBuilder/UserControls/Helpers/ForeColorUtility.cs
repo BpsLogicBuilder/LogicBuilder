@@ -133,6 +133,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             [ThemeCollections.Office2019Light] = "MainBorder",
         };
 
+        private static Dictionary<string, string> DefaultFontTable => new()
+        {
+            [ThemeCollections.ControlDefault] = "SegoeUIDefaultText",
+            [ThemeCollections.Office2007Black] = "DefaultEditorFont",
+            [ThemeCollections.Office2007Silver] = "DefaultEditorFont",
+            [ThemeCollections.Office2010Black] = "FontSegoeUI8pt",
+            [ThemeCollections.Office2010Blue] = "FontSegoeUI8pt",
+            [ThemeCollections.Office2010Silver] = "SegoeUI8.25",
+            [ThemeCollections.Office2013Dark] = "FontSegoeUI9",
+            [ThemeCollections.Office2013Light] = "FontSegoeUI9",
+            [ThemeCollections.Office2019Dark] = "DefaultFont",
+            [ThemeCollections.Office2019Gray] = "DefaultFont",
+            [ThemeCollections.Office2019Light] = "DefaultFont",
+        };
+
+        public static Font GetDefaultFont(string themeName)
+        {
+            themeName ??= DefaultTheme;
+            if (!ThemeCollections.ThemeNames.Contains(themeName))
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{E49A3619-879C-4DCF-9575-E77F97F31E0E}"));
+
+            return GetFontFromRepository(themeName);
+        }
+
         public static Color GetErrorForeColor(string themeName)
         {
             themeName ??= DefaultTheme;
@@ -238,9 +262,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             return (Color)(styleForeColor.Value ?? styleForeColor.EndValue);
         }
 
+        private static Font GetFontFromRepository(string themeName)
+        {
+            var theme = ThemeResolutionService.GetTheme(themeName);
+            StyleRepository repositoryFromTheme = theme.FindRepository(DefaultFontTable[themeName]);
+            PropertySetting font = repositoryFromTheme.FindSetting(MessageSettings.FontSetting);
+
+            return (Font)(font.Value ?? font.EndValue ?? throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{6B0663F4-BF7C-4E30-8389-83567523B739}")));
+        }
+
         private struct MessageSettings
         {
             internal const string BackColorSetting = "BackColor";
+            internal const string FontSetting = "Font";
             internal const string ForeColorSetting = "ForeColor";
         }
     }
