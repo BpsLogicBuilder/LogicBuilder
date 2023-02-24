@@ -17,10 +17,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddSelectEditingControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditingForm, Type, ISelectConstructorControl>>
+                .AddTransient<Func<ISelectConstructorForm, Type, ISelectConstructorControl>>
                 (
                     provider =>
-                    (editingForm, assignedToType) => new SelectConstructorControl
+                    (selectConstructorForm, assignedToType) => new SelectConstructorControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IExceptionHelper>(),
@@ -28,7 +28,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ISelectConstructorViewControlFactory>(),
                         provider.GetRequiredService<ITypeHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
-                        editingForm,
+                        selectConstructorForm,
                         assignedToType
                     )
                 )

@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        private readonly IEditingForm editingForm;
+        private readonly ISelectConstructorForm selectConstructorForm;
         private readonly CommandBarToggleButton[] toggleButtons;
         private readonly Type assignedTo;
 
@@ -45,7 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
             ISelectConstructorViewControlFactory selectConstructorControlFactory,
             ITypeHelper typeHelper,
             ITypeLoadHelper typeLoadHelper,
-            IEditingForm editingForm,
+            ISelectConstructorForm selectConstructorFrom,
             Type assignedTo)
         {
             InitializeComponent();
@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
                 commandBarToggleButtonList,
                 commandBarToggleButtonTreeView
             };
-            this.editingForm = editingForm;
+            this.selectConstructorForm = selectConstructorFrom;
             this.assignedTo = assignedTo;
             Initialize();
         }
@@ -77,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
             }
         }
 
-        private ApplicationTypeInfo Application => editingForm.Application;
+        private ApplicationTypeInfo Application => selectConstructorForm.Application;
 
         public string? ConstructorName => CurrentViewControl.ConstructorName;
 
@@ -87,13 +87,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
         public bool ItemSelected => CurrentViewControl.ItemSelected;
 
-        public void ClearMessage() => editingForm.ClearMessage();
+        public void ClearMessage() => selectConstructorForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
+        public void SetErrorMessage(string message) => selectConstructorForm.SetErrorMessage(message);
 
-        public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
-
-        public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => selectConstructorForm.SetMessage(message, title);
 
         private void AddChangeEvents()
         {

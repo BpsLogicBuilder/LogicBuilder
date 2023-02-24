@@ -7,12 +7,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal class SelectEditingControlFactory : ISelectEditingControlFactory
     {
-        private readonly Func<IEditingForm, Type, ISelectConstructorControl> _getSelectConstructorControl;
+        private readonly Func<ISelectConstructorForm, Type, ISelectConstructorControl> _getSelectConstructorControl;
         private readonly Func<ISelectFunctionForm, Type, ISelectFunctionControl> _getSelectFunctionControl;
         private readonly Func<IEditingForm, Type, ISelectVariableControl> _getSelectVariableControl;
 
         public SelectEditingControlFactory(
-            Func<IEditingForm, Type, ISelectConstructorControl> getSelectConstructorControl,
+            Func<ISelectConstructorForm, Type, ISelectConstructorControl> getSelectConstructorControl,
             Func<ISelectFunctionForm, Type, ISelectFunctionControl> getSelectFunctionControl,
             Func<IEditingForm, Type, ISelectVariableControl> getSelectVariableControl)
         {
@@ -21,8 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getSelectVariableControl = getSelectVariableControl;
         }
 
-        public ISelectConstructorControl GetSelectConstructorControl(IEditingForm editingForm, Type assignedTo)
-            => _getSelectConstructorControl(editingForm, assignedTo);
+        public ISelectConstructorControl GetSelectConstructorControl(ISelectConstructorForm selectConstructorForm, Type assignedTo)
+            => _getSelectConstructorControl(selectConstructorForm, assignedTo);
 
         public ISelectFunctionControl GetSelectFunctionControl(ISelectFunctionForm selectFunctionForm, Type assignedTo)
             => _getSelectFunctionControl(selectFunctionForm, assignedTo);

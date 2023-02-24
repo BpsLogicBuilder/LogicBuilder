@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal interface ISelectEditingControlFactory
     {
-        ISelectConstructorControl GetSelectConstructorControl(IEditingForm editingForm, Type assignedTo);
+        ISelectConstructorControl GetSelectConstructorControl(ISelectConstructorForm selectConstructorForm, Type assignedTo);
         ISelectFunctionControl GetSelectFunctionControl(ISelectFunctionForm selectFunctionForm, Type assignedTo);
         ISelectVariableControl GetSelectVariableControl(IEditingForm editingForm, Type assignedTo);
     }

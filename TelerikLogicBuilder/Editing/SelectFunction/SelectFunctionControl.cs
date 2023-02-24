@@ -95,8 +95,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
         public void ClearMessage() => selectFunctionForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => selectFunctionForm.RequestDocumentUpdate();
-
         public void SetErrorMessage(string message) => selectFunctionForm.SetErrorMessage(message);
 
         public void SetMessage(string message, string title = "") => selectFunctionForm.SetMessage(message, title);

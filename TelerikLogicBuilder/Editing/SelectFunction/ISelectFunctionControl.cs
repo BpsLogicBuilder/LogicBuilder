@@ -19,7 +19,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
         IDictionary<string, Function> FunctionDictionary { get; }
         IList<TreeFolder> TreeFolders { get; }
         void ClearMessage();
-        void RequestDocumentUpdate();
         void SetErrorMessage(string message);
         void SetMessage(string message, string title = "");
     }
