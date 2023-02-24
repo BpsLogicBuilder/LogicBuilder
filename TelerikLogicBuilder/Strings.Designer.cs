@@ -1897,6 +1897,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Function.
+        /// </summary>
+        internal static string editFunctionGroupBoxHeaderText {
+            get {
+                return ResourceManager.GetString("editFunctionGroupBoxHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty String.
         /// </summary>
         internal static string emptyStringVisibleText {
@@ -3378,6 +3387,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string functionBlankDefinition {
             get {
                 return ResourceManager.GetString("functionBlankDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot load the type {0} for the parameter {1}. Please update the function configuration for {2}..
+        /// </summary>
+        internal static string functionCannotLoadTypeForParameterFormat {
+            get {
+                return ResourceManager.GetString("functionCannotLoadTypeForParameterFormat", resourceCulture);
             }
         }
         

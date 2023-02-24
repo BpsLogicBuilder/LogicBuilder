@@ -3,7 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -25,45 +25,45 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
-    internal partial class EditConstructorControl : UserControl, IEditConstructorControl
+    internal partial class EditStandardFunctionControl : UserControl, IEditStandardFunctionControl
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IConstructorDataParser _constructorDataParser;
-        private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
+        private readonly IFunctionDataParser _functionDataParser;
+        private readonly IFunctionGenericsConfigrationValidator _functionGenericsConfigrationValidator;
         private readonly IFieldControlFactory _fieldControlFactory;
-        private readonly IGenericConstructorHelper _genericConstructorHelper;
+        private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEditingForm editingForm;
-        
+
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
         private readonly XmlDocument xmlDocument;
         private readonly string? selectedParameter;
 
-        private readonly RadGroupBox groupBoxConstructor;
-        private readonly RadScrollablePanel radPanelConstructor;
+        private readonly RadGroupBox groupBoxFunction;
+        private readonly RadScrollablePanel radPanelFunction;
         private readonly RadPanel radPanelTableParent;
         private readonly TableLayoutPanel tableLayoutPanel;
-        private readonly RadLabel lblConstructor;
+        private readonly RadLabel lblFunction;
         private readonly RadLabel? lblGenericArguments;
 
-        public EditConstructorControl(
+        public EditStandardFunctionControl(
             IConfigurationService configurationService,
-            IConstructorDataParser constructorDataParser,
-            IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
+            IFunctionDataParser functionDataParser,
+            IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
             IEditingControlHelperFactory editingControlFactory,
             IFieldControlFactory fieldControlFactory,
-            IGenericConstructorHelper genericConstructorHelper,
+            IGenericFunctionHelper genericFunctionHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             ITypeLoadHelper typeLoadHelper,
             IUpdateParameterControlValues updateParameterControlValues,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
-            Constructor constructor,
+            Function function,
             Type assignedTo,
             XmlDocument formDocument,
             string treeNodeXPath,
@@ -71,16 +71,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _constructorDataParser = constructorDataParser;
-            _constructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
+            _functionDataParser = functionDataParser;
+            _functionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
             _fieldControlFactory = fieldControlFactory;
-            _genericConstructorHelper = genericConstructorHelper;
+            _genericFunctionHelper = genericFunctionHelper;
             _tableLayoutPanelHelper = tableLayoutPanelHelper;
             _typeLoadHelper = typeLoadHelper;
             _updateParameterControlValues = updateParameterControlValues;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingForm = editingForm;
-            this.constructor = constructor;
+            this.function = function;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
                 _xmlDocumentHelpers.SelectSingleElement(formDocument, treeNodeXPath)
@@ -91,12 +91,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, editingForm);
 
-            this.groupBoxConstructor = new RadGroupBox();
-            this.radPanelConstructor = new RadScrollablePanel();
+            this.groupBoxFunction = new RadGroupBox();
+            this.radPanelFunction = new RadScrollablePanel();
             this.radPanelTableParent = new RadPanel();
             this.tableLayoutPanel = new TableLayoutPanel();
-            this.lblConstructor = new RadLabel();
-            if (constructor.HasGenericArguments)
+            this.lblFunction = new RadLabel();
+            if (function.HasGenericArguments)
             {
                 lblGenericArguments = new()
                 {
@@ -110,18 +110,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             InitializeControls();
         }
 
-        private Constructor constructor;
+        private Function function;
 
-        private static readonly string XmlParentXPath = $"/{XmlDataConstants.CONSTRUCTORELEMENT}";
+        private static readonly string XmlParentXPath = $"/{XmlDataConstants.NOTELEMENT}|/{XmlDataConstants.FUNCTIONELEMENT}";
         private static readonly string ParametersXPath = $"{XmlParentXPath}/{XmlDataConstants.PARAMETERSELEMENT}";
 
-        public bool IsValid => throw new NotImplementedException();
+        public Function Function => function;
+
+        public XmlDocument XmlDocument => xmlDocument;
 
         public ApplicationTypeInfo Application => editingForm.Application;
 
-        public Constructor Constructor => constructor;
-
-        public XmlDocument XmlDocument => xmlDocument;
+        public bool IsValid => throw new NotImplementedException();
 
         public void ClearMessage() => editingForm.ClearMessage();
 
@@ -147,57 +147,57 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void InitializeControls()
         {
-            ((ISupportInitialize)(this.groupBoxConstructor)).BeginInit();
-            this.groupBoxConstructor.SuspendLayout();
-            ((ISupportInitialize)(this.radPanelConstructor)).BeginInit();
-            this.radPanelConstructor.PanelContainer.SuspendLayout();
-            this.radPanelConstructor.SuspendLayout();
+            ((ISupportInitialize)(this.groupBoxFunction)).BeginInit();
+            this.groupBoxFunction.SuspendLayout();
+            ((ISupportInitialize)(this.radPanelFunction)).BeginInit();
+            this.radPanelFunction.PanelContainer.SuspendLayout();
+            this.radPanelFunction.SuspendLayout();
             ((ISupportInitialize)(this.radPanelTableParent)).BeginInit();
             this.radPanelTableParent.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
-            ((ISupportInitialize)(this.lblConstructor)).BeginInit();
-            if (constructor.HasGenericArguments)
+            ((ISupportInitialize)(this.lblFunction)).BeginInit();
+            if (function.HasGenericArguments)
             {
                 ((ISupportInitialize)(this.lblGenericArguments!)).BeginInit();
             }
             // 
-            // groupBoxConstructor
+            // groupBoxFunction
             // 
-            this.groupBoxConstructor.AccessibleRole = AccessibleRole.Grouping;
-            this.groupBoxConstructor.Controls.Add(this.radPanelConstructor);
-            this.groupBoxConstructor.Dock = DockStyle.Fill;
-            this.groupBoxConstructor.HeaderText = Strings.editConstructorGroupBoxHeaderText;
-            this.groupBoxConstructor.Location = new Point(0, 0);
-            this.groupBoxConstructor.Name = "groupBoxConstructor";
-            this.groupBoxConstructor.Size = new Size(855, 300);
-            this.groupBoxConstructor.TabIndex = 0;
-            this.groupBoxConstructor.Text = Strings.editConstructorGroupBoxHeaderText;
+            this.groupBoxFunction.AccessibleRole = AccessibleRole.Grouping;
+            this.groupBoxFunction.Controls.Add(this.radPanelFunction);
+            this.groupBoxFunction.Dock = DockStyle.Fill;
+            this.groupBoxFunction.HeaderText = Strings.editFunctionGroupBoxHeaderText;
+            this.groupBoxFunction.Location = new Point(0, 0);
+            this.groupBoxFunction.Name = "groupBoxFunction";
+            this.groupBoxFunction.Size = new Size(855, 300);
+            this.groupBoxFunction.TabIndex = 0;
+            this.groupBoxFunction.Text = Strings.editFunctionGroupBoxHeaderText;
             // 
-            // radPanelConstructor
+            // radPanelFunction
             // 
-            this.radPanelConstructor.Dock = DockStyle.Fill;
-            this.radPanelConstructor.Location = new Point(2, 18);
-            this.radPanelConstructor.Name = "radPanelConstructor";
+            this.radPanelFunction.Dock = DockStyle.Fill;
+            this.radPanelFunction.Location = new Point(2, 18);
+            this.radPanelFunction.Name = "radPanelFunction";
             // 
-            // radPanelConstructor.PanelContainer
+            // radPanelFunction.PanelContainer
             // 
-            this.radPanelConstructor.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radPanelConstructor.PanelContainer.Size = new Size(849, 278);
-            this.radPanelConstructor.Size = new Size(851, 280);
-            this.radPanelConstructor.TabIndex = 0;
+            this.radPanelFunction.PanelContainer.Controls.Add(this.radPanelTableParent);
+            this.radPanelFunction.PanelContainer.Size = new Size(849, 278);
+            this.radPanelFunction.Size = new Size(851, 280);
+            this.radPanelFunction.TabIndex = 0;
             //radPanelTableParent
             //tableLayoutPanel
             editControlsSet.Clear();
             tableLayoutPanel.Controls.Clear();
 
-            int currentRow = 1;//constructor name row
-            this.tableLayoutPanel.Controls.Add(this.lblConstructor, 3, currentRow);
+            int currentRow = 1;//function name row
+            this.tableLayoutPanel.Controls.Add(this.lblFunction, 3, currentRow);
             currentRow += 2;
 
-            if (constructor.HasGenericArguments)
+            if (function.HasGenericArguments)
             {
-                Control genericConfigurationControl = (Control)_fieldControlFactory.GetConstructorGenericParametersControl(this);
+                Control genericConfigurationControl = (Control)_fieldControlFactory.GetFunctionGenericParametersControl(this);
                 genericConfigurationControl.Location = new Point(0, 0);
                 genericConfigurationControl.Dock = DockStyle.Fill;
                 this.tableLayoutPanel.Controls.Add(this.lblGenericArguments, 2, currentRow);
@@ -205,38 +205,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 currentRow += 2;
             }
 
-            
-            if (constructor.HasGenericArguments)
+            if (function.HasGenericArguments)
             {
                 if (ValidateGenericArgs())
                 {
-                    ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
-                    constructor = _genericConstructorHelper.ConvertGenericTypes
+                    FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+                    function = _genericFunctionHelper.ConvertGenericTypes
                     (
-                        _configurationService.ConstructorList.Constructors[constructor.Name], //start with _configurationService.ConstructorList.Constructors to make sure we are starting with a generic type definition.
-                        constructorData.GenericArguments, Application
+                        _configurationService.FunctionList.Functions[function.Name], //start with _configurationService.FunctionList.Functions to make sure we are starting with a generic type definition.
+                        functionData.GenericArguments, Application
                     );
 
                     LoadParameterControls();
                     UpdateParameterControls();
                 }
 
-                //We still need the layout for the genericConfigurationControl and lblConstructor
+                //We still need the layout for the genericConfigurationControl and lblFunction
                 //If ValidateGenericArgs(), then this must run after converting any generic parameters
-                _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, constructor.Parameters, constructor.HasGenericArguments);
-                
+                _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, function.Parameters, function.HasGenericArguments);
+
             }
             else
             {
                 LoadParameterControls();
                 UpdateParameterControls();
-                _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, constructor.Parameters, constructor.HasGenericArguments);
+                _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, function.Parameters, function.HasGenericArguments);
             }
 
             void LoadParameterControls()
             {
-                _loadParameterControlsDictionary.Load(editControlsSet, constructor.Parameters);
-                foreach (ParameterBase parameter in constructor.Parameters)
+                _loadParameterControlsDictionary.Load(editControlsSet, function.Parameters);
+                foreach (ParameterBase parameter in function.Parameters)
                 {
                     ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
                     this.tableLayoutPanel.Controls.Add(parameterControlSet.ImageLabel, 1, currentRow);
@@ -249,37 +248,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
 
             // 
-            // lblConstructorName
+            // lblFunctionName
             // 
-            this.lblConstructor.Dock = DockStyle.Fill;
-            this.lblConstructor.Location = new Point(0, 0);
-            this.lblConstructor.Name = "lblConstructor";
-            this.lblConstructor.Size = new Size(39, 18);
-            this.lblConstructor.TabIndex = 0;
-            this.lblConstructor.Text = constructor.Name;
-            lblConstructor.TextAlignment = ContentAlignment.MiddleLeft;
-            lblConstructor.Font = new Font(lblConstructor.Font, FontStyle.Bold);
+            this.lblFunction.Dock = DockStyle.Fill;
+            this.lblFunction.Location = new Point(0, 0);
+            this.lblFunction.Name = "lblFunction";
+            this.lblFunction.Size = new Size(39, 18);
+            this.lblFunction.TabIndex = 0;
+            this.lblFunction.Text = function.Name;
+            lblFunction.TextAlignment = ContentAlignment.MiddleLeft;
+            lblFunction.Font = new Font(lblFunction.Font, FontStyle.Bold);
 
             // 
-            // EditConstructorControl
+            // EditFunctionControl
             // 
             this.AutoScaleDimensions = new SizeF(9F, 21F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxConstructor);
-            this.Name = "ConfigureConstructorControl";
+            this.Controls.Add(this.groupBoxFunction);
+            this.Name = "ConfigureFunctionControl";
             this.Size = new Size(855, 300);
-            ((ISupportInitialize)(this.groupBoxConstructor)).EndInit();
-            this.groupBoxConstructor.ResumeLayout(false);
-            this.radPanelConstructor.PanelContainer.ResumeLayout(false);
-            ((ISupportInitialize)(this.radPanelConstructor)).EndInit();
-            this.radPanelConstructor.ResumeLayout(false);
+            ((ISupportInitialize)(this.groupBoxFunction)).EndInit();
+            this.groupBoxFunction.ResumeLayout(false);
+            this.radPanelFunction.PanelContainer.ResumeLayout(false);
+            ((ISupportInitialize)(this.radPanelFunction)).EndInit();
+            this.radPanelFunction.ResumeLayout(false);
             ((ISupportInitialize)(this.radPanelTableParent)).EndInit();
             this.radPanelTableParent.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
 
-            ((ISupportInitialize)(this.lblConstructor)).EndInit();
-            if (constructor.HasGenericArguments)
+            ((ISupportInitialize)(this.lblFunction)).EndInit();
+            if (function.HasGenericArguments)
             {
                 ((ISupportInitialize)(this.lblGenericArguments!)).EndInit();
             }
@@ -287,7 +286,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             this.ResumeLayout(false);
 
             CollapsePanelBorder(radPanelTableParent);
-            CollapsePanelBorder(radPanelConstructor);
+            CollapsePanelBorder(radPanelFunction);
         }
 
         private void ShowHideParameterControls(RadCheckBox chkSender)
@@ -302,10 +301,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             ClearMessage();
 
-            ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
-            if (!_configurationService.ConstructorList.Constructors.ContainsKey(constructorData.Name))
+            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+            if (!_configurationService.FunctionList.Functions.ContainsKey(functionData.Name))
             {
-                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.constructorNotConfiguredFormat, constructorData.Name));
+                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.functionNotConfiguredFormat, functionData.Name));
                 editControlsSet.Clear();
                 tableLayoutPanel.Controls.Clear();
                 return;
@@ -318,37 +317,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 return;
             }
 
-            radPanelConstructor.Enabled = true;
+            radPanelFunction.Enabled = true;
 
-            bool newConstructor = constructorData.ParameterElementsList.Count == 0;
+            bool newFunction = functionData.ParameterElementsList.Count == 0;
             _updateParameterControlValues.PrepopulateRequiredFields
             (
                 editControlsSet,
-                constructorData.ParameterElementsList.ToDictionary(p => p.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
-                constructor.Parameters.ToDictionary(p => p.Name),
+                functionData.ParameterElementsList.ToDictionary(p => p.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                function.Parameters.ToDictionary(p => p.Name),
                 this.xmlDocument,
                 ParametersXPath,
                 Application
             );
 
-            //after updating parameter fields refresh constructorData - we'll need the updated ParameterElementsList.
-            constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(xmlDocument));
+            //after updating parameter fields refresh functionData - we'll need the updated ParameterElementsList.
+            functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(xmlDocument));
 
-            if (newConstructor)
+            if (newFunction)
             {
                 _updateParameterControlValues.SetDefaultsForLiterals
                 (
-                    editControlsSet, 
-                    constructor.Parameters.ToDictionary(p => p.Name)
+                    editControlsSet,
+                    function.Parameters.ToDictionary(p => p.Name)
                 );//these are configured defaults for LiteralParameter and ListOfLiteralsParameter - different from prepopulating
             }
             else
             {
                 _updateParameterControlValues.UpdateExistingFields
                 (
-                    constructorData.ParameterElementsList,
+                    functionData.ParameterElementsList,
                     editControlsSet,
-                    constructor.Parameters.ToDictionary(p => p.Name),
+                    function.Parameters.ToDictionary(p => p.Name),
                     selectedParameter
                 );
             }
@@ -356,22 +355,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private bool ValidateGenericArgs()
         {
-            if (!constructor.HasGenericArguments)
+            if (!function.HasGenericArguments)
             {
                 ClearMessage();
                 return true;
             }
 
-            ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
 
-            if (constructorData.GenericArguments.Count != constructor.GenericArguments.Count)
+            if (functionData.GenericArguments.Count != function.GenericArguments.Count)
             {
                 SetErrorMessage(Strings.genericArgumentsNotConfigured);
                 return false;
             }
 
             List<string> errors = new();
-            if (!_constructorGenericsConfigrationValidator.Validate(constructor, constructorData.GenericArguments, Application, errors))
+            if (!_functionGenericsConfigrationValidator.Validate(function, functionData.GenericArguments, Application, errors))
             {
                 SetErrorMessage(string.Join(Environment.NewLine, errors));
                 return false;
@@ -384,10 +383,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private bool ValidateParameters()
         {
             List<string> errors = new();
-            foreach(ParameterBase parameter in constructor.Parameters)
+            foreach (ParameterBase parameter in function.Parameters)
             {
                 if (!_typeLoadHelper.TryGetSystemType(parameter, Application, out Type? _))
-                    errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.constructorCannotLoadTypeForParameterFormat, parameter.Description, parameter.Name, constructor.Name));
+                    errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionCannotLoadTypeForParameterFormat, parameter.Description, parameter.Name, function.Name));
             }
 
             if (errors.Count > 0)

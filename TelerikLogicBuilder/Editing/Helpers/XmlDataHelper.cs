@@ -56,6 +56,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             );
         }
 
+        public string BuildFunctionXml(string name, string visibleText, string genericArgumentsXml, string parametersXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.FUNCTIONELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, name);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
+                    xmlTextWriter.WriteRaw(genericArgumentsXml);
+                    xmlTextWriter.WriteRaw(parametersXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildGenericArgumentsParametersXml(IList<GenericConfigBase> genericArgs)
         {
             StringBuilder stringBuilder = new();

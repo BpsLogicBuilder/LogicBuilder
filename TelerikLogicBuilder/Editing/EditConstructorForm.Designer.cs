@@ -37,12 +37,13 @@
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainerTop = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanelLeft = new Telerik.WinControls.UI.SplitPanel();
+            this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.splitPanelRight = new Telerik.WinControls.UI.SplitPanel();
             this.radPanelFields = new Telerik.WinControls.UI.RadPanel();
             this.radPanelApplication = new Telerik.WinControls.UI.RadPanel();
             this.radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.radButton3 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
             this.radPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
@@ -56,6 +57,7 @@
             this.radSplitContainerTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).BeginInit();
             this.splitPanelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelRight)).BeginInit();
             this.splitPanelRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelFields)).BeginInit();
@@ -63,7 +65,7 @@
             this.radPanelApplication.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,6 +165,7 @@
             // 
             // splitPanelLeft
             // 
+            this.splitPanelLeft.Controls.Add(this.radButton3);
             this.splitPanelLeft.Controls.Add(this.radButton2);
             this.splitPanelLeft.Location = new System.Drawing.Point(0, 0);
             this.splitPanelLeft.Name = "splitPanelLeft";
@@ -175,6 +178,14 @@
             this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(-199, 0);
             this.splitPanelLeft.TabIndex = 0;
             this.splitPanelLeft.TabStop = false;
+            // 
+            // radButton2
+            // 
+            this.radButton2.Location = new System.Drawing.Point(35, 119);
+            this.radButton2.Name = "radButton2";
+            this.radButton2.Size = new System.Drawing.Size(110, 24);
+            this.radButton2.TabIndex = 7;
+            this.radButton2.Text = "radButton2";
             // 
             // splitPanelRight
             // 
@@ -229,13 +240,13 @@
             this.radButton1.TabIndex = 6;
             this.radButton1.Text = "radButton1";
             // 
-            // radButton2
+            // radButton3
             // 
-            this.radButton2.Location = new System.Drawing.Point(35, 119);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(110, 24);
-            this.radButton2.TabIndex = 7;
-            this.radButton2.Text = "radButton2";
+            this.radButton3.Location = new System.Drawing.Point(35, 149);
+            this.radButton3.Name = "radButton3";
+            this.radButton3.Size = new System.Drawing.Size(110, 24);
+            this.radButton3.TabIndex = 8;
+            this.radButton3.Text = "radButton3";
             // 
             // EditConstructorForm
             // 
@@ -261,6 +272,7 @@
             this.radSplitContainerTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).EndInit();
             this.splitPanelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelRight)).EndInit();
             this.splitPanelRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelFields)).EndInit();
@@ -268,7 +280,7 @@
             this.radPanelApplication.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -291,5 +303,6 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
         private Telerik.WinControls.UI.RadButton radButton2;
         private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton radButton3;
     }
 }

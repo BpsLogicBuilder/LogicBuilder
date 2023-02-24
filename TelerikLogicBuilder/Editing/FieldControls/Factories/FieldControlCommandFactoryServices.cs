@@ -28,6 +28,19 @@ namespace Microsoft.Extensions.DependencyInjection
                         genericParametersControl
                     )
                 )
+                .AddTransient<Func<IFunctionGenericParametersControl, AddUpdateFunctionGenericArgumentsCommand>>
+                (
+                    provider =>
+                    genericParametersControl => new AddUpdateFunctionGenericArgumentsCommand
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IGenericConfigManager>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        genericParametersControl
+                    )
+                )
                 .AddTransient<Func<IRichInputBoxValueControl, ClearRichInputBoxTextCommand>>
                 (
                     provider =>

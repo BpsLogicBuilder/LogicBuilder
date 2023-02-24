@@ -3,7 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -21,61 +21,61 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
-    internal class AddUpdateConstructorGenericArgumentsCommand : ClickCommandBase
+    internal class AddUpdateFunctionGenericArgumentsCommand : ClickCommandBase
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IConstructorDataParser _constructorDataParser;
+        private readonly IFunctionDataParser _functionDataParser;
         private readonly IGenericConfigManager _genericConfigManager;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IConstructorGenericParametersControl constructorGenericParametersControl;
+        private readonly IFunctionGenericParametersControl functionGenericParametersControl;
 
-        public AddUpdateConstructorGenericArgumentsCommand(
+        public AddUpdateFunctionGenericArgumentsCommand(
             IConfigurationService configurationService,
-            IConstructorDataParser constructorDataParser,
+            IFunctionDataParser functionDataParser,
             IGenericConfigManager genericConfigManager,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IConstructorGenericParametersControl constructorGenericParametersControl)
+            IFunctionGenericParametersControl functionGenericParametersControl)
         {
             _configurationService = configurationService;
-            _constructorDataParser = constructorDataParser;
+            _functionDataParser = functionDataParser;
             _genericConfigManager = genericConfigManager;
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.constructorGenericParametersControl = constructorGenericParametersControl;
+            this.functionGenericParametersControl = functionGenericParametersControl;
         }
 
-        private static readonly string XmlParentXPath = $"/{XmlDataConstants.CONSTRUCTORELEMENT}";
+        private static readonly string XmlParentXPath = $"/{XmlDataConstants.NOTELEMENT}|/{XmlDataConstants.FUNCTIONELEMENT}";
         private static readonly string GenericArgumentsXPath = $"{XmlParentXPath}/{XmlDataConstants.GENERICARGUMENTSELEMENT}";
 
-        private ApplicationTypeInfo Application => constructorGenericParametersControl.Application;
-        private Constructor Constructor => constructorGenericParametersControl.Constructor;
-        private XmlDocument XmlDocument => constructorGenericParametersControl.XmlDocument;
+        private ApplicationTypeInfo Application => functionGenericParametersControl.Application;
+        private Function Function => functionGenericParametersControl.Function;
+        private XmlDocument XmlDocument => functionGenericParametersControl.XmlDocument;
 
         public override void Execute()
         {
-            Constructor constructor = _configurationService.ConstructorList.Constructors[Constructor.Name];
-            if (!_typeLoadHelper.TryGetSystemType(constructor.TypeName, Application, out Type? constructorType))
+            Function function = _configurationService.FunctionList.Functions[Function.Name];
+            if (!_typeLoadHelper.TryGetSystemType(function.TypeName, Application, out Type? functionType))
             {
-                constructorGenericParametersControl.UpdateValidState();
+                functionGenericParametersControl.UpdateValidState();
                 return;
             }
 
-            if (!constructorType.IsGenericTypeDefinition)
+            if (!functionType.IsGenericTypeDefinition)
             {
-                constructorGenericParametersControl.UpdateValidState();
+                functionGenericParametersControl.UpdateValidState();
                 return;
             }
 
-            string[] genericArguments = constructorType.GetGenericArguments()
+            string[] genericArguments = functionType.GetGenericArguments()
                                                             .Select(a => a.Name)
                                                             .ToArray();
 
-            ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
-            IList<GenericConfigBase> configs = _genericConfigManager.ReconcileGenericArguments(genericArguments, constructorData.GenericArguments);
+            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument)); ;
+            IList<GenericConfigBase> configs = _genericConfigManager.ReconcileGenericArguments(genericArguments, functionData.GenericArguments);
 
-            GenericConfigListResult result = UpdateGenericArgs(constructorType, genericArguments, configs);
+            GenericConfigListResult result = UpdateGenericArgs(functionType, genericArguments, configs);
             if (result.DialogResult != DialogResult.OK)
                 return;
 
@@ -83,7 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                 .SelectSingleElement(XmlDocument, GenericArgumentsXPath)
                 .InnerXml = BuildGenericArgumentsXml(result.GenericConfigs);
 
-            constructorGenericParametersControl.ResetControls();
+            functionGenericParametersControl.ResetControls();
         }
 
         string BuildGenericArgumentsXml(IList<GenericConfigBase> cenericConfigs)
@@ -106,23 +106,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                 .InnerXml = BuildGenericArgumentsXml(genericArgs);
 
             using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IConfigureGenericArgumentsForm configureConstructorGenericArgumentsForm = disposableManager.GetConfigureConstructorGenericArgumentsForm
+            IConfigureGenericArgumentsForm configureFunctionGenericArgumentsForm = disposableManager.GetConfigureFunctionGenericArgumentsForm
             (
-                XmlDocument,
+                GetSourceDocument(_xmlDocumentHelpers.GetDocumentElement(XmlDocument)),
                 genericArguments,
-                Constructor.Parameters,
+                Function.Parameters,
                 genericTypeDefinition
             );
 
-            configureConstructorGenericArgumentsForm.ShowDialog((IWin32Window)constructorGenericParametersControl);
+            configureFunctionGenericArgumentsForm.ShowDialog((IWin32Window)functionGenericParametersControl);
 
             return new GenericConfigListResult
             (
-                configureConstructorGenericArgumentsForm.DialogResult,
-                configureConstructorGenericArgumentsForm.DialogResult == DialogResult.OK
-                    ? configureConstructorGenericArgumentsForm.GenericArguments
+                configureFunctionGenericArgumentsForm.DialogResult,
+                configureFunctionGenericArgumentsForm.DialogResult == DialogResult.OK
+                    ? configureFunctionGenericArgumentsForm.GenericArguments
                     : Array.Empty<GenericConfigBase>()
             );
+
+            XmlDocument GetSourceDocument(XmlElement documentElement)//ParametersDataSchema (used in ConfigureConstructorGenericArgumentsForm and ConfigureFunctionGenericArgumentsForm)
+                => documentElement.Name == XmlDataConstants.NOTELEMENT//does not support <not /> at the root.  <not /> is supported for ConditionsDataSchema and DecisionsDataSchema (ConditionsForm and DecisionsForm only)
+                        ? _xmlDocumentHelpers.ToXmlDocument(_xmlDocumentHelpers.GetSingleChildElement(documentElement))
+                        : XmlDocument;
         }
     }
 }

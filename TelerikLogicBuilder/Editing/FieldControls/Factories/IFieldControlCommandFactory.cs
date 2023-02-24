@@ -5,6 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
     internal interface IFieldControlCommandFactory
     {
         AddUpdateConstructorGenericArgumentsCommand GetAddUpdateConstructorGenericArgumentsCommand(IConstructorGenericParametersControl constructorGenericParametersControl);
+        AddUpdateFunctionGenericArgumentsCommand GetAddUpdateFunctionGenericArgumentsCommand(IFunctionGenericParametersControl functionGenericParametersControl);
         ClearRichInputBoxTextCommand GetClearRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl);
         CopyRichInputBoxTextCommand GetCopyRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl);
         CutRichInputBoxTextCommand GetCutRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl);

@@ -39,6 +39,25 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IFieldControlFactory, FieldControlFactory>()
+                .AddTransient<Func<IEditFunctionControl, IFunctionGenericParametersControl>>
+                (
+                    provider =>
+                    editigFunctionControl => new FunctionGenericParametersControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlCommandFactory>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<ObjectRichTextBox>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editigFunctionControl
+                    )
+                )
                 .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, ILiteralListParameterRichTextBoxControl>>
                 (
                     provider =>

@@ -141,6 +141,18 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (xmlDocument, configuredGenericArgumentNames, memberParameters, genericTypeDefinition) => new ConfigureFunctionGenericArgumentsForm
                     (
+                        provider.GetRequiredService<IConfigureFunctionGenericArgumentsTreeViewBuilder>(),
+                        provider.GetRequiredService<IConfigureGenericArgumentsCommandFactory>(),
+                        provider.GetRequiredService<IConfigureGenericArgumentsControlFactory>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IGenericConfigXmlParser>(),
+                        provider.GetRequiredService<IGenericsConfigrationValidator>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         xmlDocument,
                         configuredGenericArgumentNames,
                         memberParameters,

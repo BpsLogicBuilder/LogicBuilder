@@ -4,7 +4,8 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -26,13 +27,14 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
-    internal partial class ConstructorGenericParametersControl : UserControl, IConstructorGenericParametersControl
+    internal partial class FunctionGenericParametersControl : UserControl, IFunctionGenericParametersControl
     {
         private readonly RadButton btnHelper;
 
         private readonly IConfigurationService _configurationService;
-        private readonly IConstructorDataParser _constructorDataParser;
-        private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
+        private readonly IFunctionDataParser _functionDataParser;
+        private readonly IFunctionGenericsConfigrationValidator _functionGenericsConfigrationValidator;
+        private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFieldControlCommandFactory _fieldControlCommandFactory;
         private readonly IImageListService _imageListService;
@@ -41,12 +43,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditConstructorControl editConstructorControl;
+        private readonly IEditFunctionControl editFunctionControl;
 
-        public ConstructorGenericParametersControl(
+        public FunctionGenericParametersControl(
             IConfigurationService configurationService,
-            IConstructorDataParser constructorDataParser,
-            IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
+            IFunctionDataParser constructorDataParser,
+            IFunctionGenericsConfigrationValidator constructorGenericsConfigrationValidator,
+            IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IImageListService imageListService,
@@ -54,12 +57,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             ObjectRichTextBox objectRichTextBox,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditConstructorControl editConstructorControl)
+            IEditFunctionControl editFunctionControl)
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _constructorDataParser = constructorDataParser;
-            _constructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
+            _functionDataParser = constructorDataParser;
+            _functionGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
+            _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _fieldControlCommandFactory = fieldControlCommandFactory;
             _imageListService = imageListService;
@@ -68,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
 
-            this.editConstructorControl = editConstructorControl;
+            this.editFunctionControl = editFunctionControl;
 
             btnHelper = new()
             {
@@ -85,55 +89,53 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         }
 
-        public ApplicationTypeInfo Application => editConstructorControl.Application;
+        public ApplicationTypeInfo Application => editFunctionControl.Application;
 
-        public Constructor Constructor => editConstructorControl.Constructor;
+        public Function Function => editFunctionControl.Function;
 
-        public XmlDocument XmlDocument => editConstructorControl.XmlDocument;
+        public XmlDocument XmlDocument => editFunctionControl.XmlDocument;
 
-        public void ResetControls() 
-            => editConstructorControl.ResetControls();
+        public void ResetControls() => editFunctionControl.ResetControls();
 
         public void UpdateValidState()
         {
-            Constructor constructor = _configurationService.ConstructorList.Constructors[Constructor.Name];
-
-            if (!_typeLoadHelper.TryGetSystemType(constructor.TypeName, Application, out Type? constructorType))
+            Function function = _configurationService.FunctionList.Functions[Function.Name];
+            if (!_typeLoadHelper.TryGetSystemType(function.TypeName, Application, out Type? functionType))
             {
                 SetInvalid
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, constructor.TypeName, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)),
-                    string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeFormat2, constructor.TypeName)
+                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, function.TypeName, string.Join(Strings.itemsCommaSeparator, function.GenericArguments)),
+                    string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeFormat2, function.TypeName)
                 );
                 return;
             }
 
-            if (!constructorType.IsGenericTypeDefinition)
+            if (!functionType.IsGenericTypeDefinition)
             {
                 SetInvalid
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, constructor.TypeName, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)),
-                    string.Format(CultureInfo.CurrentCulture, Strings.constructorGenericArgsMisMatchFormat2, constructor.TypeName, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments))
+                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, function.TypeName, string.Join(Strings.itemsCommaSeparator, function.GenericArguments)),
+                    string.Format(CultureInfo.CurrentCulture, Strings.functionGenericArgsMisMatchFormat2, _enumHelper.GetVisibleEnumText(ReferenceCategories.Type), function.TypeName, string.Join(Strings.itemsCommaSeparator, function.GenericArguments))
                 );
                 return;
             }
 
-            ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
             List<string> errors = new();
-            if 
-            (  
-                !_constructorGenericsConfigrationValidator.Validate
+            if
+            (   
+                !_functionGenericsConfigrationValidator.Validate
                 (
-                    constructor,
-                    constructorData.GenericArguments,
-                    editConstructorControl.Application,
+                    function,
+                    functionData.GenericArguments,
+                    editFunctionControl.Application,
                     errors
                 )
             )
             {
                 SetInvalid
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, constructor.TypeName, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)),
+                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, function.TypeName, string.Join(Strings.itemsCommaSeparator, function.GenericArguments)),
                     string.Join(Strings.itemsCommaSeparator, errors)
                 );
                 return;
@@ -144,16 +146,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
                 string.Format
                 (
                     CultureInfo.CurrentCulture,
-                    Strings.genericTypeDescriptionFormat, constructorType.Name,
+                    Strings.genericTypeDescriptionFormat, functionType.Name,
                     string.Join
                     (
                         Strings.itemsCommaSeparator,
-                        constructorData.GenericArguments.Select
+                        functionData.GenericArguments.Select
                         (
                             ar =>
                             {
-                                if (!_typeLoadHelper.TryGetSystemType(ar, editConstructorControl.Application, out Type? type))
-                                    throw _exceptionHelper.CriticalException("{8853EBF9-9053-494E-80C5-60D6E984B35E}");
+                                if (!_typeLoadHelper.TryGetSystemType(ar, editFunctionControl.Application, out Type? type))
+                                    throw _exceptionHelper.CriticalException("{9FA50420-1C3E-48FF-9DB1-DAB8B03B8CCA}");
 
                                 return type.Name;
                             }
@@ -173,7 +175,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             InitializeRichTextBox();
             InitializeButton();
 
-            AddButtonClickCommand(btnHelper, _fieldControlCommandFactory.GetAddUpdateConstructorGenericArgumentsCommand(this));
+            AddButtonClickCommand(btnHelper, _fieldControlCommandFactory.GetAddUpdateFunctionGenericArgumentsCommand(this));
 
             UpdateValidState();
         }
@@ -211,7 +213,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private void SetInvalid(string text, string errors)
         {
             _objectRichTextBox.Text = text;
-            editConstructorControl.SetErrorMessage(errors);
+            editFunctionControl.SetErrorMessage(errors);
             SetErrorBorderColor();
         }
 
@@ -224,7 +226,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private void SetValid(string text)
         {
             _objectRichTextBox.Text = text;
-            editConstructorControl.ClearMessage();
+            editFunctionControl.ClearMessage();
             SetNormalBorderColor();
         }
 

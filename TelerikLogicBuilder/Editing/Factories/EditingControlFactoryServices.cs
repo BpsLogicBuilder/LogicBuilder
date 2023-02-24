@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
@@ -41,7 +42,30 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<IEditingControlFactory, EditingControlFactory>();
+                .AddTransient<IEditingControlFactory, EditingControlFactory>()
+                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl>>
+                (
+                    provider =>
+                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditStandardFunctionControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
+                        provider.GetRequiredService<IFieldControlFactory>(),
+                        provider.GetRequiredService<IGenericFunctionHelper>(),
+                        provider.GetRequiredService<ITableLayoutPanelHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IUpdateParameterControlValues>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editingForm,
+                        function,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
+                    )
+                );
         }
     }
 }

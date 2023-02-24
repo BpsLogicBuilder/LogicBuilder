@@ -697,6 +697,9 @@
 	<data name="editConstructorGroupBoxHeaderText" xml:space="preserve">
     <value>Constructor</value>
   </data>
+	<data name="editFunctionGroupBoxHeaderText" xml:space="preserve">
+    <value>Function</value>
+  </data>
 	<data name="emptyStringVisibleText" xml:space="preserve">
     <value>Empty String</value>
   </data>
@@ -852,6 +855,10 @@
   </data>
 	<data name="functionBlankDefinition" xml:space="preserve">
     <value>Reference Definition cannot be empty when the reference category is "Static Reference" or reference category is "Instance Reference".</value>
+  </data>
+	<data name="functionCannotLoadTypeForParameterFormat" xml:space="preserve">
+    <value>Cannot load the type {0} for the parameter {1}. Please update the function configuration for {2}.</value>
+    <comment>0=typeFullName;1=parameterName;2=functionName</comment>
   </data>
 	<data name="functionDefinitionNotEmpty" xml:space="preserve">
     <value>Reference Definition must be empty when the reference category is "This", "Type" or "None".</value>

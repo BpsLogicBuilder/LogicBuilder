@@ -76,6 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
             radButton1.Click += RadButton1_Click;
             radButton2.Click += RadButton2_Click;
+            radButton3.Click += RadButton3_Click;
             splitPanelLeft.Click += SplitPanelLeft_Click;
 
             _formInitializer.SetToEditSize(this);
@@ -84,6 +85,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private void SplitPanelLeft_Click(object? sender, EventArgs e)
         {
             radPanelFields.Controls.Clear();
+        }
+
+        private void RadButton1_Click(object? sender, EventArgs e)
+        {
+            //var constructorName = "DropDownItemBindingParameters";
+            //var constructorName = "CommandButtonParameters";
+            //var constructorName = "DirectiveDescriptionParameters";
+            //var constructorName = "FormGroupArraySettingsParameters";
+            //var constructorName = "MultiSelectFormControlSettingsParameters";
+            var constructorName = "GenericResponse`2[A,B]";
+            var constructor = _configurationService.ConstructorList.Constructors[constructorName];
+            Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(BuildConstructorXml(constructorName)), "/constructor"));
+            //Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(button1Xml), "/constructor"));
         }
 
         private void RadButton2_Click(object? sender, EventArgs e)
@@ -100,26 +114,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             //Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(button2Xml), "/constructor"));
         }
 
-        private void RadButton1_Click(object? sender, EventArgs e)
+        private void RadButton3_Click(object? sender, EventArgs e)
         {
-            //var constructorName = "DropDownItemBindingParameters";
-            //var constructorName = "CommandButtonParameters";
-            //var constructorName = "DirectiveDescriptionParameters";
-            //var constructorName = "FormGroupArraySettingsParameters";
-            //var constructorName = "MultiSelectFormControlSettingsParameters";
-            var constructorName = "GenericResponse`2[A,B]";
-            var constructor = _configurationService.ConstructorList.Constructors[constructorName];
-            Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(BuildConstructorXml(constructorName)), "/constructor"));
-            //Navigate((Control)_editingControlFactory.GetEditConstructorControl(this, constructor, assignedTo, GetXmlDocument(button1Xml), "/constructor"));
+			var functionName = "AddItem";
+            var function = _configurationService.FunctionList.Functions[functionName];
+            Navigate((Control)_editingControlFactory.GetEditStandardFunctionControl(this, function, assignedTo, GetXmlDocument(BuildFunctionXml(functionName)), "/function"));
         }
 
-		private string BuildConstructorXml(string name)
+        private string BuildConstructorXml(string name)
 		{
 			_ = button1Xml + button2Xml;
             //ThemeResolutionService.Fon
 
             return new XmlDataHelper(_exceptionHelper, new Services.XmlDocumentHelpers(_exceptionHelper))
 				.BuildConstructorXml(name, name, "<genericArguments />", "<parameters />");
+
+        }
+
+        private string BuildFunctionXml(string name)
+        {
+            _ = button1Xml + button2Xml;
+            //ThemeResolutionService.Fon
+
+            return new XmlDataHelper(_exceptionHelper, new Services.XmlDocumentHelpers(_exceptionHelper))
+                .BuildFunctionXml(name, name, "<genericArguments />", "<parameters />");
 
         }
 
