@@ -7,10 +7,10 @@ using System.Windows.Forms;
 
 namespace TelerikLogicBuilder.FormsPreviewer.Commands
 {
-    internal class SelectVariableFormCommand : ClickCommandBase
+    internal class EditVariableFormCommand : ClickCommandBase
     {
         private readonly RadForm1 radForm;
-        public SelectVariableFormCommand(RadForm1 radForm)
+        public EditVariableFormCommand(RadForm1 radForm)
         {
             this.radForm = radForm;
         }
@@ -18,7 +18,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
         public override void Execute()
         {
             using IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectVariableForm selectVariableForm = disposableManager.GetSelectVariableForm(typeof(object));
+            IEditVariableForm selectVariableForm = disposableManager.GetEditVariableForm(typeof(object));
             selectVariableForm.ShowDialog(radForm);
             if (selectVariableForm.DialogResult != DialogResult.OK)
                 return;

@@ -9,23 +9,23 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 {
-    internal class SelectVariableTreeViewBuilder : ISelectVariableTreeViewBuilder
+    internal class EditVariableTreeViewBuilder : IEditVariableTreeViewBuilder
     {
         private readonly IConfigurationService _configurationService;
         private readonly IImageListService _imageListService;
         private readonly ITreeViewService _treeViewService;
-        private readonly ISelectVariableControl selectVariableControl;
+        private readonly IEditVariableControl editVariableControl;
 
-        public SelectVariableTreeViewBuilder(
+        public EditVariableTreeViewBuilder(
             IConfigurationService configurationService,
             IImageListService imageListService,
             ITreeViewService treeViewService,
-            ISelectVariableControl selectVariableControl)
+            IEditVariableControl editVariableControl)
         {
             _configurationService = configurationService;
             _imageListService = imageListService;
             _treeViewService = treeViewService;
-            this.selectVariableControl = selectVariableControl;
+            this.editVariableControl = editVariableControl;
         }
 
         public void Build(RadTreeView treeView)
@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 if (root)
                     _treeViewService.MakeVisible(childFolderTreeNode);
                 GetFolderChildren(childFolder, childFolderTreeNode);
-                if (selectVariableControl.ExpandedNodes.ContainsKey(childFolderTreeNode.Name))
+                if (editVariableControl.ExpandedNodes.ContainsKey(childFolderTreeNode.Name))
                     childFolderTreeNode.Expand();
             }
         }

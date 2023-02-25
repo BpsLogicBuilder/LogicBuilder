@@ -10,21 +10,21 @@ using Telerik.WinControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal partial class SelectVariableDropDownViewControl : UserControl, ISelectVariableDropDownViewControl
+    internal partial class EditVariableDropdownViewControl : UserControl, IEditVariableDropdownViewControl
     {
         private readonly IConfigurationService _configurationService;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
-        private readonly ISelectVariableControl selectVariableControl;
+        private readonly IEditVariableControl editVariableControl;
 
-        public SelectVariableDropDownViewControl(
+        public EditVariableDropdownViewControl(
             IConfigurationService configurationService,
             IRadDropDownListHelper radDropDownListHelper,
-            ISelectVariableControl selectVariableControl)
+            IEditVariableControl editVariableControl)
         {
             InitializeComponent();
             _configurationService = configurationService;
             _radDropDownListHelper = radDropDownListHelper;
-            this.selectVariableControl = selectVariableControl;
+            this.editVariableControl = editVariableControl;
             Initialize();
         }
 
@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         {
             if (!_configurationService.VariableList.Variables.TryGetValue(variableName, out VariableBase? variable))
             {
-                selectVariableControl.SetErrorMessage
+                editVariableControl.SetErrorMessage
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, variableName)
                 );

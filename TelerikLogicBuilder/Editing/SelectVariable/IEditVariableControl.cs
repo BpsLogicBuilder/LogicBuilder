@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal interface ISelectVariableControl : IEditingControl
+    internal interface IEditVariableControl : IEditingControl
     {
         event EventHandler? Changed;
         IDictionary<string, string> ExpandedNodes { get; }

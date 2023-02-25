@@ -10,18 +10,18 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal partial class SelectVariableListViewControl : UserControl, ISelectVariableListViewControl
+    internal partial class EditVariableListViewControl : UserControl, IEditVariableListViewControl
     {
         private readonly IConfigurationService _configurationService;
-        private readonly ISelectVariableControl selectVariableControl;
+        private readonly IEditVariableControl editVariableControl;
 
-        public SelectVariableListViewControl(
+        public EditVariableListViewControl(
             IConfigurationService configurationService,
-            ISelectVariableControl selectVariableControl)
+            IEditVariableControl editVariableControl)
         {
             InitializeComponent();
             _configurationService = configurationService;
-            this.selectVariableControl = selectVariableControl;
+            this.editVariableControl = editVariableControl;
             Initialize();
         }
 
@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         {
             if (!_configurationService.VariableList.Variables.TryGetValue(variableName, out VariableBase? variable))
             {
-                selectVariableControl.SetErrorMessage
+                editVariableControl.SetErrorMessage
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, variableName)
                 );

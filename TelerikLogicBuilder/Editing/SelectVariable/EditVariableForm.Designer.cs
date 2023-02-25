@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    partial class SelectVariableForm
+    partial class EditVariableForm
     {
         /// <summary>
         /// Required designer variable.

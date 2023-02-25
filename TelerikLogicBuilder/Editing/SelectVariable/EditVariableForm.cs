@@ -14,7 +14,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal partial class SelectVariableForm : Telerik.WinControls.UI.RadForm, ISelectVariableForm
+    internal partial class EditVariableForm : Telerik.WinControls.UI.RadForm, IEditVariableForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         private readonly Type assignedTo;
         private ApplicationTypeInfo _application;
 
-        public SelectVariableForm(
+        public EditVariableForm(
             IDialogFormMessageControl dialogFormMessageControl,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
@@ -44,20 +44,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             Initialize();
         }
 
-        private ISelectVariableControl SelectVariableControl
+        private IEditVariableControl EditVariableControl
         {
             get
             {
                 if (radPanelVariable.Controls.Count != 1)
                     throw _exceptionHelper.CriticalException("{20D1696E-3FB1-45A3-8CAF-47C9D5CD236A}");
 
-                return (ISelectVariableControl)radPanelVariable.Controls[0];
+                return (IEditVariableControl)radPanelVariable.Controls[0];
             }
         }
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{7E9B95D2-1270-4D33-A41A-218242610278}");
 
-        public string VariableName => SelectVariableControl.VariableName ?? throw _exceptionHelper.CriticalException("{C4A56BA6-207D-48E4-8ABA-EE855FA4EB49}");
+        public string VariableName => EditVariableControl.VariableName ?? throw _exceptionHelper.CriticalException("{C4A56BA6-207D-48E4-8ABA-EE855FA4EB49}");
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
@@ -72,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         public void SetMessage(string message, string title = "") => _dialogFormMessageControl.SetMessage(message, title);
 
         public void SetVariable(string variableName) 
-            => SelectVariableControl.SetVariable(variableName);
+            => EditVariableControl.SetVariable(variableName);
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
@@ -126,11 +126,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         {
             ((ISupportInitialize)this.radPanelVariable).BeginInit();
             this.radPanelVariable.SuspendLayout();
-            ISelectVariableControl selectVariableControl = _selectEditingControlFactory.GetSelectVariableControl(this, assignedTo);
-            selectVariableControl.Dock = DockStyle.Fill;
-            selectVariableControl.Location = new Point(0, 0);
-            this.radPanelVariable.Controls.Add((Control)selectVariableControl);
-            selectVariableControl.Changed += SelectVariableControl_Changed;
+            IEditVariableControl editVariableControl = _selectEditingControlFactory.GetEditVariableControl(this, assignedTo);
+            editVariableControl.Dock = DockStyle.Fill;
+            editVariableControl.Location = new Point(0, 0);
+            this.radPanelVariable.Controls.Add((Control)editVariableControl);
+            editVariableControl.Changed += SelectVariableControl_Changed;
 
             ((ISupportInitialize)this.radPanelVariable).EndInit();
             this.radPanelVariable.ResumeLayout(true);
@@ -145,12 +145,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         private void SelectVariableControl_Changed(object? sender, EventArgs e)
         {
-            btnOk.Enabled = SelectVariableControl.IsValid;
+            btnOk.Enabled = EditVariableControl.IsValid;
         }
 
         private void SelectVariableForm_FormClosing(object? sender, FormClosingEventArgs e)
         {
-            if (this.DialogResult == DialogResult.OK && !SelectVariableControl.IsValid)
+            if (this.DialogResult == DialogResult.OK && !EditVariableControl.IsValid)
                 e.Cancel = true;
         }
         #endregion Event Handlers

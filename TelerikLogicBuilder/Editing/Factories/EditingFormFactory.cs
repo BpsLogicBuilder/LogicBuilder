@@ -16,26 +16,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<Type, ISelectConstructorForm> _getSelectConstructorForm;
         private readonly Func<IList<string>, string, ISelectFromDomainForm> _getSelectFromDomainForm;
         private readonly Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> _getSelectFunctionForm;
-        private readonly Func<Type, ISelectVariableForm> _getSelectVariableForm;
+        private readonly Func<Type, IEditVariableForm> _getEditVariableForm;
 
         public EditingFormFactory(
             Func<Type, IEditConstructorForm> getEditConstructorForm,
             Func<Type, ISelectConstructorForm> getSelectConstructorForm,
             Func<IList<string>, string, ISelectFromDomainForm> getSelectFromDomainForm,
             Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> getSelectFunctionForm,
-            Func<Type, ISelectVariableForm> getSelectVariableForm)
+            Func<Type, IEditVariableForm> getEditVariableForm)
         {
             _getEditConstructorForm = getEditConstructorForm;
             _getSelectConstructorForm = getSelectConstructorForm;
             _getSelectFromDomainForm = getSelectFromDomainForm;
             _getSelectFunctionForm = getSelectFunctionForm;
-            _getSelectVariableForm = getSelectVariableForm;
+            _getEditVariableForm = getEditVariableForm;
         }
 
         public IEditConstructorForm GetEditConstructorForm(Type assignedTo)
         {
             _scopedService = _getEditConstructorForm(assignedTo);
             return (IEditConstructorForm)_scopedService;
+        }
+
+        public IEditVariableForm GetEditVariableForm(Type assignedTo)
+        {
+            _scopedService = _getEditVariableForm(assignedTo);
+            return (IEditVariableForm)_scopedService;
         }
 
         public ISelectConstructorForm GetSelectConstructorForm(Type assignedTo)
@@ -54,12 +60,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = _getSelectFunctionForm(assignedTo, functionDisctionary, treeFolders);
             return (ISelectFunctionForm)_scopedService;
-        }
-
-        public ISelectVariableForm GetSelectVariableForm(Type assignedTo)
-        {
-            _scopedService = _getSelectVariableForm(assignedTo);
-            return (ISelectVariableForm)_scopedService;
         }
 
         public void Dispose()

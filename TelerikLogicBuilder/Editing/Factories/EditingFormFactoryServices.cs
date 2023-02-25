@@ -35,6 +35,19 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()
+                .AddTransient<Func<Type, IEditVariableForm>>
+                (
+                    provider =>
+                    assignedTo => new EditVariableForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<ISelectEditingControlFactory>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        assignedTo
+                    )
+                )
                 .AddTransient<Func<Type, ISelectConstructorForm>>
                 (
                     provider =>
@@ -72,19 +85,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo,
                         functionDeictionary,
                         treeFolders
-                    )
-                )
-                .AddTransient<Func<Type, ISelectVariableForm>>
-                (
-                    provider =>
-                    assignedTo => new SelectVariableForm
-                    (
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<ISelectEditingControlFactory>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        assignedTo
                     )
                 );
         }

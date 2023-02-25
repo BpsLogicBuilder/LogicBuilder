@@ -18,11 +18,11 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
 {
-    public class SelectVariableTreeViewBuilderTest : IClassFixture<SelectVariableTreeViewBuilderFixture>
+    public class EditVariableTreeViewBuilderTest : IClassFixture<EditVariableTreeViewBuilderFixture>
     {
-        private readonly SelectVariableTreeViewBuilderFixture _fixture;
+        private readonly EditVariableTreeViewBuilderFixture _fixture;
 
-        public SelectVariableTreeViewBuilderTest(SelectVariableTreeViewBuilderFixture fixture)
+        public EditVariableTreeViewBuilderTest(EditVariableTreeViewBuilderFixture fixture)
         {
             _fixture = fixture;
         }
@@ -31,7 +31,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         public void CreateEditVariableTreeViewBuilderThrows()
         {
             //assert
-            Assert.Throws<InvalidOperationException>(_fixture.ServiceProvider.GetRequiredService<ISelectVariableTreeViewBuilder>);
+            Assert.Throws<InvalidOperationException>(_fixture.ServiceProvider.GetRequiredService<IEditVariableTreeViewBuilder>);
         }
 
         [Fact]
@@ -43,9 +43,9 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
             Dictionary<string, string> expandedNodes = new();
 
             //act
-            factory.GetSelectVariableTreeViewBuilder
+            factory.GetEditVariableTreeViewBuilder
             (
-                new SelectVariableControlMock(expandedNodes)
+                new EditVariableControlMock(expandedNodes)
             ).Build(radTreeView);
 
             //assert
@@ -54,7 +54,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         }
     }
 
-    public class SelectVariableTreeViewBuilderFixture : IDisposable
+    public class EditVariableTreeViewBuilderFixture : IDisposable
     {
         internal IServiceProvider ServiceProvider;
         internal IProjectPropertiesItemFactory ProjectPropertiesItemFactory;
@@ -64,7 +64,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
         internal ITypeHelper TypeHelper;
         internal IVariableFactory VariableFactory;
 
-        public SelectVariableTreeViewBuilderFixture()
+        public EditVariableTreeViewBuilderFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
             ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();

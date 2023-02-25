@@ -9,6 +9,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     {
         ISelectConstructorControl GetSelectConstructorControl(ISelectConstructorForm selectConstructorForm, Type assignedTo);
         ISelectFunctionControl GetSelectFunctionControl(ISelectFunctionForm selectFunctionForm, Type assignedTo);
-        ISelectVariableControl GetSelectVariableControl(IEditingForm editingForm, Type assignedTo);
+        IEditVariableControl GetEditVariableControl(IEditingForm editingForm, Type assignedTo);
     }
 }

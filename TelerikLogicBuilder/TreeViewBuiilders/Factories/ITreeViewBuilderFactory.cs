@@ -25,11 +25,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
             DocumentExplorerErrorsList documentProfileErrors,
             IDictionary<string, string> expandedNodes);
 
+        IEditVariableTreeViewBuilder GetEditVariableTreeViewBuilder(IEditVariableControl editVariableControl);
+
         ISelectConstructorTreeViewBuilder GetSelectConstructorTreeViewBuilder(ISelectConstructorControl selectConstructorControl);
 
         ISelectFunctionTreeViewBuilder GetSelectFunctionTreeViewBuilder(ISelectFunctionControl selectFunctionControl);
-
-        ISelectVariableTreeViewBuilder GetSelectVariableTreeViewBuilder(ISelectVariableControl selectVariableControl);
 
         IRulesExplorerTreeViewBuilder GetRulesExplorerTreeViewBuilder(IDictionary<string, string> expandedNodes);
     }

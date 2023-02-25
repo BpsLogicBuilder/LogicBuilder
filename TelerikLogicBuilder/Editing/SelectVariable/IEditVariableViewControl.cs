@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal interface ISelectVariableViewControl
+    internal interface IEditVariableViewControl
     {
         event EventHandler? Changed;
         string VariableName { get; }

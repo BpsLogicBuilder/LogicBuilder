@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders
 {
-    internal interface ISelectVariableTreeViewBuilder
+    internal interface IEditVariableTreeViewBuilder
     {
         void Build(RadTreeView treeView);
     }

@@ -9,16 +9,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     {
         private readonly Func<ISelectConstructorForm, Type, ISelectConstructorControl> _getSelectConstructorControl;
         private readonly Func<ISelectFunctionForm, Type, ISelectFunctionControl> _getSelectFunctionControl;
-        private readonly Func<IEditingForm, Type, ISelectVariableControl> _getSelectVariableControl;
+        private readonly Func<IEditingForm, Type, IEditVariableControl> _getEditVariableControl;
 
         public SelectEditingControlFactory(
             Func<ISelectConstructorForm, Type, ISelectConstructorControl> getSelectConstructorControl,
             Func<ISelectFunctionForm, Type, ISelectFunctionControl> getSelectFunctionControl,
-            Func<IEditingForm, Type, ISelectVariableControl> getSelectVariableControl)
+            Func<IEditingForm, Type, IEditVariableControl> getEditVariableControl)
         {
             _getSelectConstructorControl = getSelectConstructorControl;
             _getSelectFunctionControl = getSelectFunctionControl;
-            _getSelectVariableControl = getSelectVariableControl;
+            _getEditVariableControl = getEditVariableControl;
         }
 
         public ISelectConstructorControl GetSelectConstructorControl(ISelectConstructorForm selectConstructorForm, Type assignedTo)
@@ -27,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         public ISelectFunctionControl GetSelectFunctionControl(ISelectFunctionForm selectFunctionForm, Type assignedTo)
             => _getSelectFunctionControl(selectFunctionForm, assignedTo);
 
-        public ISelectVariableControl GetSelectVariableControl(IEditingForm editingForm, Type assignedTo)
-            => _getSelectVariableControl(editingForm, assignedTo);
+        public IEditVariableControl GetEditVariableControl(IEditingForm editingForm, Type assignedTo)
+            => _getEditVariableControl(editingForm, assignedTo);
     }
 }

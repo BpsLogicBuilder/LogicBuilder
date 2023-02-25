@@ -10,24 +10,24 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal partial class SelectVariableTreeViewControl : UserControl, ISelectVariableTreeViewControl
+    internal partial class EditVariableTreeViewControl : UserControl, IEditVariableTreeViewControl
     {
         private readonly IConfigurationService _configurationService;
-        private readonly ISelectVariableTreeViewBuilder _selectVariableTreeViewBuilder;
+        private readonly IEditVariableTreeViewBuilder _selectVariableTreeViewBuilder;
         private readonly ITreeViewService _treeViewService;
-        private readonly ISelectVariableControl selectVariableControl;
+        private readonly IEditVariableControl editVariableControl;
 
-        public SelectVariableTreeViewControl(
+        public EditVariableTreeViewControl(
             IConfigurationService configurationService,
             ITreeViewBuilderFactory treeViewBuilderFactory,
             ITreeViewService treeViewService,
-            ISelectVariableControl selectVariableControl)
+            IEditVariableControl editVariableControl)
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _selectVariableTreeViewBuilder = treeViewBuilderFactory.GetSelectVariableTreeViewBuilder(selectVariableControl);
+            _selectVariableTreeViewBuilder = treeViewBuilderFactory.GetEditVariableTreeViewBuilder(editVariableControl);
             _treeViewService = treeViewService;
-            this.selectVariableControl = selectVariableControl;
+            this.editVariableControl = editVariableControl;
             Initialize();
         }
 
@@ -41,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         {
             if (!_configurationService.VariableList.Variables.TryGetValue(variableName, out VariableBase? variable))
             {
-                selectVariableControl.SetErrorMessage
+                editVariableControl.SetErrorMessage
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, variableName)
                 );
@@ -78,13 +78,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
             if (e.Node.Expanded)
             {
-                if (!selectVariableControl.ExpandedNodes.ContainsKey(e.Node.Name))
-                    selectVariableControl.ExpandedNodes.Add(e.Node.Name, e.Node.Text);
+                if (!editVariableControl.ExpandedNodes.ContainsKey(e.Node.Name))
+                    editVariableControl.ExpandedNodes.Add(e.Node.Name, e.Node.Text);
             }
             else
             {
-                if (selectVariableControl.ExpandedNodes.ContainsKey(e.Node.Name))
-                    selectVariableControl.ExpandedNodes.Remove(e.Node.Name);
+                if (editVariableControl.ExpandedNodes.ContainsKey(e.Node.Name))
+                    editVariableControl.ExpandedNodes.Remove(e.Node.Name);
             }
 
             e.Node.ImageIndex = e.Node.Expanded

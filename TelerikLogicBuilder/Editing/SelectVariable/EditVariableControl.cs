@@ -16,12 +16,12 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal partial class SelectVariableControl : UserControl, ISelectVariableControl
+    internal partial class EditVariableControl : UserControl, IEditVariableControl
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IImageListService _imageListService;
-        private readonly ISelectVariableViewControlFactory _selectVariableControlFactory;
+        private readonly IEditVariableViewControlFactory _selectVariableControlFactory;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
 
@@ -38,11 +38,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             Dropdown
         }
 
-        public SelectVariableControl(
+        public EditVariableControl(
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper, 
             IImageListService imageListService,
-            ISelectVariableViewControlFactory selectVariableControlFactory,
+            IEditVariableViewControlFactory selectVariableControlFactory,
             ITypeHelper typeHelper,
             ITypeLoadHelper typeLoadHelper,
             IEditingForm editingForm,
@@ -66,14 +66,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             Initialize();
         }
 
-        private ISelectVariableViewControl CurrentViewControl
+        private IEditVariableViewControl CurrentViewControl
         {
             get
             {
                 if (radPanelVariableView.Controls.Count != 1)
                     throw _exceptionHelper.CriticalException("{1C0FDCBF-6D2A-4ADD-A394-7F5578D2144D}");
 
-                return (ISelectVariableViewControl)radPanelVariableView.Controls[0];
+                return (IEditVariableViewControl)radPanelVariableView.Controls[0];
             }
         }
 
@@ -181,17 +181,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 
         private void Navigate(ViewType view)
         {
-            ISelectVariableViewControl selectVariableViewControl = GetControl();
+            IEditVariableViewControl selectVariableViewControl = GetControl();
             selectVariableViewControl.Changed += SelectVariableViewControl_Changed;
             Navigate((Control)selectVariableViewControl);
 
-            ISelectVariableViewControl GetControl()
+            IEditVariableViewControl GetControl()
             {
                 return view switch
                 {
-                    ViewType.Dropdown => _selectVariableControlFactory.GetSelectVariableDropdownViewControl(this),
-                    ViewType.List => _selectVariableControlFactory.GetSelectVariableListViewControl(this),
-                    ViewType.Tree => _selectVariableControlFactory.GetSelectVariableTreeViewControl(this),
+                    ViewType.Dropdown => _selectVariableControlFactory.GetEditVariableDropdownViewControl(this),
+                    ViewType.List => _selectVariableControlFactory.GetEditVariableListViewControl(this),
+                    ViewType.Tree => _selectVariableControlFactory.GetEditVariableTreeViewControl(this),
                     _ => throw _exceptionHelper.CriticalException("{C5B0C5E4-B033-4A8F-88B5-9C621FDD4C27}"),
                 };
             }

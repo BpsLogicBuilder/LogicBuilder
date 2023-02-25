@@ -89,6 +89,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         expandedNodes
                     )
                 )
+                .AddTransient<Func<IEditVariableControl, IEditVariableTreeViewBuilder>>
+                (
+                    provider =>
+                    editVariableControl => new EditVariableTreeViewBuilder
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        editVariableControl
+                    )
+                )
                 .AddTransient<Func<ISelectConstructorControl, ISelectConstructorTreeViewBuilder>>
                 (
                     provider =>
@@ -109,17 +120,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         selectFunctionControl
-                    )
-                )
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableTreeViewBuilder>>
-                (
-                    provider =>
-                    selectVariableControl => new SelectVariableTreeViewBuilder
-                    (
-                        provider.GetRequiredService<IConfigurationService>(),
-                        provider.GetRequiredService<IImageListService>(),
-                        provider.GetRequiredService<ITreeViewService>(),
-                        selectVariableControl
                     )
                 )
                 .AddTransient<Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder>>

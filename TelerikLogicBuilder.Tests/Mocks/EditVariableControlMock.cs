@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace TelerikLogicBuilder.Tests.Mocks
 {
-    internal class SelectVariableControlMock : ISelectVariableControl
+    internal class EditVariableControlMock : IEditVariableControl
     {
-        public SelectVariableControlMock(IDictionary<string, string> expandedNodes)
+        public EditVariableControlMock(IDictionary<string, string> expandedNodes)
         {
             ExpandedNodes = expandedNodes;
         }
@@ -27,7 +27,7 @@ namespace TelerikLogicBuilder.Tests.Mocks
         public DockStyle Dock { set => throw new NotImplementedException(); }
         public Point Location { set => throw new NotImplementedException(); }
 
-        event EventHandler? ISelectVariableControl.Changed
+        event EventHandler? IEditVariableControl.Changed
         {
             add
             {

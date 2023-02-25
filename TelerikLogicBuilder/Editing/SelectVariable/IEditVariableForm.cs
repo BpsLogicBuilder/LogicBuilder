@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
 {
-    internal interface ISelectVariableForm : IEditingForm
+    internal interface IEditVariableForm : IEditingForm
     {
         string VariableName { get; }
         void SetVariable(string variableName);

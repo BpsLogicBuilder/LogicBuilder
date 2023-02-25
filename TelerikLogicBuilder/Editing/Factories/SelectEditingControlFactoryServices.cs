@@ -48,15 +48,15 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedToType
                     )
                 )
-                .AddTransient<Func<IEditingForm, Type, ISelectVariableControl>>
+                .AddTransient<Func<IEditingForm, Type, IEditVariableControl>>
                 (
                     provider =>
-                    (editingForm, assignedToType) => new SelectVariableControl
+                    (editingForm, assignedToType) => new EditVariableControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IImageListService>(),
-                        provider.GetRequiredService<ISelectVariableViewControlFactory>(),
+                        provider.GetRequiredService<IEditVariableViewControlFactory>(),
                         provider.GetRequiredService<ITypeHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         editingForm, 

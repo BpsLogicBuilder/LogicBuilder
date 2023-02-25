@@ -31,15 +31,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         public void Edit(Type assignedTo, VariableData? variableData = null)
         {
             using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectVariableForm selectVariableForm = disposableManager.GetSelectVariableForm(assignedTo);
+            IEditVariableForm editVariableForm = disposableManager.GetEditVariableForm(assignedTo);
             if (variableData != null)
-                selectVariableForm.SetVariable(variableData.Name);
+                editVariableForm.SetVariable(variableData.Name);
 
-            selectVariableForm.ShowDialog(RichInputBox);
-            if (selectVariableForm.DialogResult != DialogResult.OK)
+            editVariableForm.ShowDialog(RichInputBox);
+            if (editVariableForm.DialogResult != DialogResult.OK)
                 return;
 
-            XmlElement variableElement = BuildXmlElement(selectVariableForm.VariableName);
+            XmlElement variableElement = BuildXmlElement(editVariableForm.VariableName);
             RichInputBox.SelectionProtected = false;
             RichInputBox.InsertLink
             (

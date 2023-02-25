@@ -8,40 +8,40 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class SelectVariableViewControlFactoryServices
+    internal static class EditVariableViewControlFactoryServices
     {
         internal static IServiceCollection AddSelectVariableViewControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<ISelectVariableViewControlFactory, SelectVariableViewControlFactory>()
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableDropDownViewControl>>
+                .AddTransient<IEditVariableViewControlFactory, EditVariableViewControlFactory>()
+                .AddTransient<Func<IEditVariableControl, IEditVariableDropdownViewControl>>
                 (
                     provider =>
-                    selectVariableControl => new SelectVariableDropDownViewControl
+                    editVariableControl => new EditVariableDropdownViewControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
-                        selectVariableControl
+                        editVariableControl
                     )
                 )
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableListViewControl>>
+                .AddTransient<Func<IEditVariableControl, IEditVariableListViewControl>>
                 (
                     provider =>
-                    selectVariableControl => new SelectVariableListViewControl
+                    editVariableControl => new EditVariableListViewControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
-                        selectVariableControl
+                        editVariableControl
                     )
                 )
-                .AddTransient<Func<ISelectVariableControl, ISelectVariableTreeViewControl>>
+                .AddTransient<Func<IEditVariableControl, IEditVariableTreeViewControl>>
                 (
                     provider =>
-                    selectVariableControl => new SelectVariableTreeViewControl
+                    editVariableControl => new EditVariableTreeViewControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<ITreeViewBuilderFactory>(),
                         provider.GetRequiredService<ITreeViewService>(),
-                        selectVariableControl
+                        editVariableControl
                     )
                 );
         }
