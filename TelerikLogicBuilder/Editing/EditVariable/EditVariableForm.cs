@@ -12,7 +12,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 {
     internal partial class EditVariableForm : Telerik.WinControls.UI.RadForm, IEditVariableForm
     {

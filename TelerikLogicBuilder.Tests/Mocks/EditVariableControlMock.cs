@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using System;
 using System.Collections.Generic;

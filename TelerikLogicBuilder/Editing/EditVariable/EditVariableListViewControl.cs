@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 {
     internal partial class EditVariableListViewControl : UserControl, IEditVariableListViewControl
     {

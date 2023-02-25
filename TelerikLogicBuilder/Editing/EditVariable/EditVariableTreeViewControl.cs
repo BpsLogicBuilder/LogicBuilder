@@ -8,7 +8,7 @@ using System;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 {
     internal partial class EditVariableTreeViewControl : UserControl, IEditVariableTreeViewControl
     {

@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 {
     internal interface IEditVariableTreeViewControl : IEditVariableViewControl
     {

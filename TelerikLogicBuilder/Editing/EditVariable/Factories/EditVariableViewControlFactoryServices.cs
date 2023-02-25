@@ -1,5 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
-using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;

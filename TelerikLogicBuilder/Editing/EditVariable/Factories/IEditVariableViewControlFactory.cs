@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories
 {
     internal interface IEditVariableViewControlFactory
     {
