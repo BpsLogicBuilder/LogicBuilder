@@ -9,7 +9,7 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class SelectEditingControlFactoryServices
+    internal static class ConfiguredItemControlFactoryServices
     {
         internal static IServiceCollection AddSelectEditingControlFactories(this IServiceCollection services)
         {
@@ -29,7 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedToType
                     )
                 )
-                .AddTransient<ISelectEditingControlFactory, SelectEditingControlFactory>()
+                .AddTransient<IConfiguredItemControlFactory, ConfiguredItemControlFactory>()
                 .AddTransient<Func<ISelectFunctionForm, Type, ISelectFunctionControl>>
                 (
                     provider =>

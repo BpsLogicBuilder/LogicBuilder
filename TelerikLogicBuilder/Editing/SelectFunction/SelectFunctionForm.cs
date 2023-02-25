@@ -20,31 +20,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
     internal partial class SelectFunctionForm : RadForm, ISelectFunctionForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
+        private readonly IConfiguredItemControlFactory _configuredItemControlFactory;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
-        private readonly ISelectEditingControlFactory _selectEditingControlFactory;
 
         private readonly Type assignedTo;
         private ApplicationTypeInfo _application;
 
         public SelectFunctionForm(
+            IConfiguredItemControlFactory configuredItemControlFactory,
             IDialogFormMessageControl dialogFormMessageControl,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            ISelectEditingControlFactory selectEditingControlFactory,
             IServiceFactory serviceFactory,
             Type assignedTo,
             IDictionary<string, Function> functionDictionary,
             IList<TreeFolder> treeFolders)
         {
             InitializeComponent();
+            _configuredItemControlFactory = configuredItemControlFactory;
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
-            _selectEditingControlFactory = selectEditingControlFactory;
             this.assignedTo = assignedTo;
             FunctionDictionary = functionDictionary;
             TreeFolders = treeFolders;
@@ -71,10 +71,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
-
-        public void RequestDocumentUpdate()
-        {
-        }
 
         public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
 
@@ -119,7 +115,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
         {
             ((ISupportInitialize)this.radPanelFunction).BeginInit();
             this.radPanelFunction.SuspendLayout();
-            ISelectFunctionControl selectFunctionControl = _selectEditingControlFactory.GetSelectFunctionControl(this, assignedTo);
+            ISelectFunctionControl selectFunctionControl = _configuredItemControlFactory.GetSelectFunctionControl(this, assignedTo);
             selectFunctionControl.Dock = DockStyle.Fill;
             selectFunctionControl.Location = new Point(0, 0);
             this.radPanelFunction.Controls.Add((Control)selectFunctionControl);

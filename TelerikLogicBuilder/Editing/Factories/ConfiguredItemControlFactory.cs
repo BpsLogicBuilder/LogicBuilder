@@ -5,12 +5,12 @@ using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
-    internal class SelectEditingControlFactory : ISelectEditingControlFactory
+    internal class ConfiguredItemControlFactory : IConfiguredItemControlFactory
     {
         private readonly Func<ISelectConstructorForm, Type, ISelectConstructorControl> _getSelectConstructorControl;
         private readonly Func<ISelectFunctionForm, Type, ISelectFunctionControl> _getSelectFunctionControl;
 
-        public SelectEditingControlFactory(
+        public ConfiguredItemControlFactory(
             Func<ISelectConstructorForm, Type, ISelectConstructorControl> getSelectConstructorControl,
             Func<ISelectFunctionForm, Type, ISelectFunctionControl> getSelectFunctionControl)
         {

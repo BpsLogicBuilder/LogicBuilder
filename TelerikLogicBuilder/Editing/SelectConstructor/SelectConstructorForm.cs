@@ -17,29 +17,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
     internal partial class SelectConstructorForm : Telerik.WinControls.UI.RadForm, ISelectConstructorForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
+        private readonly IConfiguredItemControlFactory _configuredItemControlFactory;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
-        private readonly ISelectEditingControlFactory _selectEditingControlFactory;
 
         private readonly Type assignedTo;
         private ApplicationTypeInfo _application;
 
         public SelectConstructorForm(
+            IConfiguredItemControlFactory configuredItemControlFactory,
             IDialogFormMessageControl dialogFormMessageControl,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            ISelectEditingControlFactory selectEditingControlFactory,
             IServiceFactory serviceFactory,
             Type assignedTo)
         {
             InitializeComponent();
+            _configuredItemControlFactory = configuredItemControlFactory;
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
-            _selectEditingControlFactory = selectEditingControlFactory;
             this.assignedTo = assignedTo;
             Initialize();
         }
@@ -60,10 +60,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
-
-        public void RequestDocumentUpdate()
-        {
-        }
 
         public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
 
@@ -108,7 +104,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
         {
             ((ISupportInitialize)this.radPanelConstructor).BeginInit();
             this.radPanelConstructor.SuspendLayout();
-            ISelectConstructorControl selectConstructorControl = _selectEditingControlFactory.GetSelectConstructorControl(this, assignedTo);
+            ISelectConstructorControl selectConstructorControl = _configuredItemControlFactory.GetSelectConstructorControl(this, assignedTo);
             selectConstructorControl.Dock = DockStyle.Fill;
             selectConstructorControl.Location = new Point(0, 0);
             this.radPanelConstructor.Controls.Add((Control)selectConstructorControl);

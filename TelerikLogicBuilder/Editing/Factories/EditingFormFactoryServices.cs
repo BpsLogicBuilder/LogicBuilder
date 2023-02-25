@@ -53,10 +53,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     assignedTo => new SelectConstructorForm
                     (
+                        provider.GetRequiredService<IConfiguredItemControlFactory>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<ISelectEditingControlFactory>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         assignedTo
                     )
@@ -77,10 +77,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (assignedTo, functionDeictionary, treeFolders) => new SelectFunctionForm
                     (
+                        provider.GetRequiredService<IConfiguredItemControlFactory>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<ISelectEditingControlFactory>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         assignedTo,
                         functionDeictionary,
