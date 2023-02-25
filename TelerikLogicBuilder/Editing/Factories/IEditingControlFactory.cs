@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using System;
 using System.Xml;
@@ -22,5 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             XmlDocument formDocument,
             string treeNodeXPath,
             string? selectedParameter = null);
+
+        IEditVariableControl GetEditVariableControl(IEditingForm editingForm, Type assignedTo);
     }
 }

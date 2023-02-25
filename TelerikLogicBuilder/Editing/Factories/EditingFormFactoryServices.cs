@@ -41,9 +41,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     assignedTo => new EditVariableForm
                     (
                         provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditingControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<ISelectEditingControlFactory>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         assignedTo
                     )

@@ -18,18 +18,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
+        private readonly IEditingControlFactory _editingControlFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
-        private readonly ISelectEditingControlFactory _selectEditingControlFactory;
 
         private readonly Type assignedTo;
         private ApplicationTypeInfo _application;
 
         public EditVariableForm(
             IDialogFormMessageControl dialogFormMessageControl,
+            IEditingControlFactory editingControlFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            ISelectEditingControlFactory selectEditingControlFactory,
             IServiceFactory serviceFactory,
             Type assignedTo)
         {
@@ -39,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
             _application = _applicationDropDownList.Application;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
-            _selectEditingControlFactory = selectEditingControlFactory;
+            _editingControlFactory = editingControlFactory;
             this.assignedTo = assignedTo;
             Initialize();
         }
@@ -126,7 +126,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable
         {
             ((ISupportInitialize)this.radPanelVariable).BeginInit();
             this.radPanelVariable.SuspendLayout();
-            IEditVariableControl editVariableControl = _selectEditingControlFactory.GetEditVariableControl(this, assignedTo);
+            IEditVariableControl editVariableControl = _editingControlFactory.GetEditVariableControl(this, assignedTo);
             editVariableControl.Dock = DockStyle.Fill;
             editVariableControl.Location = new Point(0, 0);
             this.radPanelVariable.Controls.Add((Control)editVariableControl);

@@ -2,6 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -64,6 +66,21 @@ namespace Microsoft.Extensions.DependencyInjection
                         formDocument,
                         treeNodeXPath,
                         selectedParameter
+                    )
+                )
+                .AddTransient<Func<IEditingForm, Type, IEditVariableControl>>
+                (
+                    provider =>
+                    (editingForm, assignedToType) => new EditVariableControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<IEditVariableViewControlFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        editingForm,
+                        assignedToType
                     )
                 );
         }
