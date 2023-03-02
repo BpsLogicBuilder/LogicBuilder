@@ -3,6 +3,8 @@ using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -96,6 +98,52 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editingForm,
                         objectListElementInfo,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
+                    )
+                )
+                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl>>
+                (
+                    provider =>
+                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueFunctionControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
+                        provider.GetRequiredService<IFieldControlFactory>(),
+                        provider.GetRequiredService<IGenericFunctionHelper>(),
+                        provider.GetRequiredService<ITableLayoutPanelHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IUpdateParameterControlValues>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editingForm,
+                        function,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
+                    )
+                )
+                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl>>
+                (
+                    provider =>
+                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueToNullFunctionControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
+                        provider.GetRequiredService<IFieldControlFactory>(),
+                        provider.GetRequiredService<IGenericFunctionHelper>(),
+                        provider.GetRequiredService<ITableLayoutPanelHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IUpdateParameterControlValues>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editingForm,
+                        function,
                         assignedTo,
                         formDocument,
                         treeNodeXPath,

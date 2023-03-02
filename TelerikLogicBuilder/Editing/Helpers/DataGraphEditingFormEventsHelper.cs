@@ -88,23 +88,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             }
         }
 
-        private EditFormFieldSet GetFieldSetForFunction(Function function)
-        {
-            switch (function.FunctionCategory)
+        private static EditFormFieldSet GetFieldSetForFunction(Function function) 
+            => function.FunctionCategory switch
             {
-                case FunctionCategories.Assert:
-                case FunctionCategories.DialogForm:
-                case FunctionCategories.Retract:
-                case FunctionCategories.RuleChainingUpdate:
-                    throw _exceptionHelper.CriticalException("{6DE5BBBE-615F-4911-BE0F-DC2902B38206}");
-                default:
-                    break;
-            }
-
-            return function.ParametersLayout == ParametersLayout.Binary
-                ? EditFormFieldSet.BinaryFunction
-                : EditFormFieldSet.StandardFunction;
-        }
+                FunctionCategories.Assert => EditFormFieldSet.SetValueFunction,
+                FunctionCategories.Retract => EditFormFieldSet.SetValueToNullFunction,
+                _ => function.ParametersLayout == ParametersLayout.Binary
+                                            ? EditFormFieldSet.BinaryFunction
+                                            : EditFormFieldSet.StandardFunction,
+            };
 
         private void Navigate(IEditingControl editingControl)
         {
@@ -146,6 +138,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     break;
                 case EditFormFieldSet.BinaryFunction:
                     Navigate(GetBinaryFunctionControl());
+                    break;
+                case EditFormFieldSet.SetValueFunction:
+                    Navigate(GetSetValueFunctionControl());
+                    break;
+                case EditFormFieldSet.SetValueToNullFunction:
+                    Navigate(GetSetValueToNullFunctionControl());
                     break;
                 case EditFormFieldSet.Variable:
                     Navigate(GetVariableControl());
@@ -228,6 +226,57 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 }
 
                 return _editingControlFactory.GetEditBinaryFunctionControl
+                (
+                    dataGraphEditingForm,
+                    _configurationService.FunctionList.Functions[functionTreeNodeNode.FunctionName],
+                    functionTreeNodeNode.AssignedToType,
+                    dataGraphEditingForm.XmlDocument,
+                    functionTreeNodeNode.Name,
+                    selectedParameter
+                );
+            }
+
+            IEditingControl GetSetValueFunctionControl()
+            {
+                FunctionElementTreeNode? functionTreeNodeNode;
+                string? selectedParameter;
+                if (selectedNode is IParameterElementTreeNode parameterNode)
+                {
+                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode.Parent;
+                    selectedParameter = parameterNode.ParameterName;
+                }
+                else
+                {
+                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode;
+                    selectedParameter = null;
+                }
+
+                return _editingControlFactory.GetEditSetValueFunctionControl
+                (
+                    dataGraphEditingForm,
+                    _configurationService.FunctionList.Functions[functionTreeNodeNode.FunctionName],
+                    functionTreeNodeNode.AssignedToType,
+                    dataGraphEditingForm.XmlDocument,
+                    functionTreeNodeNode.Name,
+                    selectedParameter
+                );
+            }
+            IEditingControl GetSetValueToNullFunctionControl()
+            {
+                FunctionElementTreeNode? functionTreeNodeNode;
+                string? selectedParameter;
+                if (selectedNode is IParameterElementTreeNode parameterNode)
+                {
+                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode.Parent;
+                    selectedParameter = parameterNode.ParameterName;
+                }
+                else
+                {
+                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode;
+                    selectedParameter = null;
+                }
+
+                return _editingControlFactory.GetEditSetValueToNullFunctionControl
                 (
                     dataGraphEditingForm,
                     _configurationService.FunctionList.Functions[functionTreeNodeNode.FunctionName],

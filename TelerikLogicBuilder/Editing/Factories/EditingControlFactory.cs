@@ -2,6 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -16,6 +18,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<IEditingForm, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl> _getEditConstructorControl;
         private readonly Func<IDataGraphEditingForm, LiteralListElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl> _getEditLiteralListControl;
         private readonly Func<IDataGraphEditingForm, ObjectListElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl> _getEditObjectListControl;
+        private readonly Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl> _getEditSetValueFunctionControl;
+        private readonly Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl> _getEditSetValueToNullFunctionControl;
         private readonly Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl> _getEditStandardFunctionControl;
         private readonly Func<IEditingForm, Type, IEditVariableControl> _getEditVariableControl;
 
@@ -24,6 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<IEditingForm, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl> getEditConstructorControl,
             Func<IDataGraphEditingForm, LiteralListElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl> getEditLiteralListControl,
             Func<IDataGraphEditingForm, ObjectListElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl> getEditObjectListControl,
+            Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl> getEditSetValueFunctionControl,
+            Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl> getEditSetValueToNullFunctionControl,
             Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl> getEditStandardFunctionControl,
             Func<IEditingForm, Type, IEditVariableControl> getEditVariableControl)
         {
@@ -31,6 +37,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getEditConstructorControl = getEditConstructorControl;
             _getEditLiteralListControl = getEditLiteralListControl;
             _getEditObjectListControl = getEditObjectListControl;
+            _getEditSetValueFunctionControl = getEditSetValueFunctionControl;
+            _getEditSetValueToNullFunctionControl = getEditSetValueToNullFunctionControl;
             _getEditStandardFunctionControl = getEditStandardFunctionControl;
             _getEditVariableControl = getEditVariableControl;
         }
@@ -46,6 +54,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 
         public IEditObjectListControl GetEditObjectListControl(IDataGraphEditingForm dataGraphEditingForm, ObjectListElementInfo objectListElementInfo, Type assignedTo, XmlDocument formDocument, string treeNodeXPath, int? selectedIndex)
             => _getEditObjectListControl(dataGraphEditingForm, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedIndex);
+
+        public IEditSetValueFunctionControl GetEditSetValueFunctionControl(IEditingForm editingForm, Function function, Type assignedTo, XmlDocument formDocument, string treeNodeXPath, string? selectedParameter = null)
+            => _getEditSetValueFunctionControl(editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter);
+
+        public IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(IEditingForm editingForm, Function function, Type assignedTo, XmlDocument formDocument, string treeNodeXPath, string? selectedParameter = null)
+            => _getEditSetValueToNullFunctionControl(editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter);
 
         public IEditStandardFunctionControl GetEditStandardFunctionControl(IEditingForm editingForm, Function function, Type assignedTo, XmlDocument formDocument, string treeNodeXPath, string? selectedParameter = null)
             => _getEditStandardFunctionControl(editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter);

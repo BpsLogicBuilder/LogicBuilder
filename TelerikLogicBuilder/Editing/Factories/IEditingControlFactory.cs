@@ -2,6 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -43,6 +45,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             XmlDocument formDocument,
             string treeNodeXPath,
             int? selectedIndex);
+
+        IEditSetValueFunctionControl GetEditSetValueFunctionControl(
+            IEditingForm editingForm,
+            Function function,
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            string? selectedParameter = null);
+
+        IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(
+            IEditingForm editingForm,
+            Function function,
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            string? selectedParameter = null);
 
         IEditStandardFunctionControl GetEditStandardFunctionControl(
             IEditingForm editingForm,

@@ -3,21 +3,26 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 {
-    internal partial class EditBinaryFunctionControl : UserControl, IEditBinaryFunctionControl
+    internal partial class EditSetValueFunctionControl : UserControl, IEditSetValueFunctionControl
     {
         private readonly IConfigurationService _configurationService;
         private readonly IFunctionDataParser _functionDataParser;
@@ -43,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly RadLabel lblFunction;
         private readonly RadLabel? lblGenericArguments;
 
-        public EditBinaryFunctionControl(
+        public EditSetValueFunctionControl(
             IConfigurationService configurationService,
             IFunctionDataParser functionDataParser,
             IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
