@@ -1187,6 +1187,10 @@
 	<data name="literalGenericArgDescription" xml:space="preserve">
     <value>Literal</value>
   </data>
+	<data name="literalListChildNodeTextFormat" xml:space="preserve">
+    <value>{0}[{1}]</value>
+    <comment>0=listname;1=item index</comment>
+  </data>
 	<data name="literalParameterDescriptionFormat" xml:space="preserve">
     <value>{0}={1}</value>
     <comment>0=parameterName 1=parameterVisibleText</comment>
@@ -1470,6 +1474,10 @@
   </data>
 	<data name="objectGenericArgDescription" xml:space="preserve">
     <value>Object</value>
+  </data>
+	<data name="objectListChildNodeTextFormat" xml:space="preserve">
+    <value>{0}[{1}]</value>
+    <comment>0=listname;1=item index</comment>
   </data>
 	<data name="objectParamNodeDescription" xml:space="preserve">
     <value>Object Parameter</value>

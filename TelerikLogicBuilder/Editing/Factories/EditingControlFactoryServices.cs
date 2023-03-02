@@ -1,4 +1,8 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
+﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -21,6 +25,29 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControlFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditBinaryFunctionControl>>
+                (
+                    provider =>
+                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditBinaryFunctionControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
+                        provider.GetRequiredService<IFieldControlFactory>(),
+                        provider.GetRequiredService<IGenericFunctionHelper>(),
+                        provider.GetRequiredService<ITableLayoutPanelHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IUpdateParameterControlValues>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editingForm,
+                        function,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
+                    )
+                )
                 .AddTransient<Func<IEditingForm, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl>>
                 (
                     provider =>
@@ -45,6 +72,36 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingControlFactory, EditingControlFactory>()
+                .AddTransient<Func<IDataGraphEditingForm, LiteralListElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl>>
+                (
+                    provider =>
+                    (editingForm, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditLiteralListControl
+                    (
+                        provider.GetRequiredService<ILiteralListDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editingForm,
+                        literalListElementInfo,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
+                    )
+                )
+                .AddTransient<Func<IDataGraphEditingForm, ObjectListElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl>>
+                (
+                    provider =>
+                    (editingForm, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditObjectListControl
+                    (
+                        provider.GetRequiredService<IObjectListDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editingForm,
+                        objectListElementInfo,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
+                    )
+                )
                 .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl>>
                 (
                     provider =>

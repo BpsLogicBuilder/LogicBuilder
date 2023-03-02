@@ -4309,6 +4309,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}[{1}].
+        /// </summary>
+        internal static string literalListChildNodeTextFormat {
+            get {
+                return ResourceManager.GetString("literalListChildNodeTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}={1}.
         /// </summary>
         internal static string literalParameterDescriptionFormat {
@@ -5151,6 +5160,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string objectGenericArgDescription {
             get {
                 return ResourceManager.GetString("objectGenericArgDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}[{1}].
+        /// </summary>
+        internal static string objectListChildNodeTextFormat {
+            get {
+                return ResourceManager.GetString("objectListChildNodeTextFormat", resourceCulture);
             }
         }
         

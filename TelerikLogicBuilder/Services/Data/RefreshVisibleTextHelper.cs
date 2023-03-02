@@ -19,6 +19,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
+        public XmlElement RefreshAllVisibleTexts(XmlElement xmlElement, ApplicationTypeInfo application)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshVariableVisibleTexts(shapeXmlDocument);
+            shapeXmlDocument = RefreshFunctionVisibleTexts(shapeXmlDocument, application);
+            shapeXmlDocument = RefreshConstructorVisibleTexts(shapeXmlDocument, application);
+            shapeXmlDocument = RefreshLiteralListVisibleTexts(shapeXmlDocument, application);
+            shapeXmlDocument = RefreshObjectListVisibleTexts(shapeXmlDocument, application);
+            shapeXmlDocument = RefreshDecisionVisibleTexts(shapeXmlDocument, application);
+            shapeXmlDocument = RefreshSetValueFunctionVisibleTexts(shapeXmlDocument, application);
+            shapeXmlDocument = RefreshSetValueToNullFunctionVisibleTexts(shapeXmlDocument);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
+        }
+
         public XmlDocument RefreshConstructorVisibleTexts(XmlDocument xmlDocument, ApplicationTypeInfo application)
         {
             _xmlDocumentHelpers
@@ -33,6 +47,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 );
 
             return xmlDocument;
+        }
+
+        public XmlElement RefreshConstructorVisibleTexts(XmlElement xmlElement, ApplicationTypeInfo application)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshConstructorVisibleTexts(shapeXmlDocument, application);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
         }
 
         public XmlDocument RefreshDecisionVisibleTexts(XmlDocument xmlDocument, ApplicationTypeInfo application)
@@ -51,6 +72,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return xmlDocument;
         }
 
+        public XmlElement RefreshDecisionVisibleTexts(XmlElement xmlElement, ApplicationTypeInfo application)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshDecisionVisibleTexts(shapeXmlDocument, application);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
+        }
+
         public XmlDocument RefreshFunctionVisibleTexts(XmlDocument xmlDocument, ApplicationTypeInfo application)
         {
             _xmlDocumentHelpers
@@ -65,6 +93,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 );
 
             return xmlDocument;
+        }
+
+        public XmlElement RefreshFunctionVisibleTexts(XmlElement xmlElement, ApplicationTypeInfo application)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshFunctionVisibleTexts(shapeXmlDocument, application);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
         }
 
         public XmlDocument RefreshLiteralListVisibleTexts(XmlDocument xmlDocument, ApplicationTypeInfo application)
@@ -86,6 +121,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return xmlDocument;
         }
 
+        public XmlElement RefreshLiteralListVisibleTexts(XmlElement xmlElement, ApplicationTypeInfo application)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshLiteralListVisibleTexts(shapeXmlDocument, application);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
+        }
+
         public XmlDocument RefreshObjectListVisibleTexts(XmlDocument xmlDocument, ApplicationTypeInfo application)
         {
             _xmlDocumentHelpers
@@ -105,6 +147,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return xmlDocument;
         }
 
+        public XmlElement RefreshObjectListVisibleTexts(XmlElement xmlElement, ApplicationTypeInfo application)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshObjectListVisibleTexts(shapeXmlDocument, application);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
+        }
+
         public XmlDocument RefreshSetValueFunctionVisibleTexts(XmlDocument xmlDocument, ApplicationTypeInfo application)
         {
             _xmlDocumentHelpers
@@ -121,19 +170,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             return xmlDocument;
         }
 
+        public XmlElement RefreshSetValueFunctionVisibleTexts(XmlElement xmlElement, ApplicationTypeInfo application)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshSetValueFunctionVisibleTexts(shapeXmlDocument, application);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
+        }
+
         public XmlDocument RefreshSetValueToNullFunctionVisibleTexts(XmlDocument xmlDocument)
         {
             _xmlDocumentHelpers
                 .SelectElements(xmlDocument, $"//{XmlDataConstants.RETRACTFUNCTIONELEMENT}")
                 .ForEach
                 (
-                    element => _updateVisibleTextAttribute.UpdateRetractFunctionVisibleText
-                    (
-                        element
-                    )
+                    _updateVisibleTextAttribute.UpdateRetractFunctionVisibleText
                 );
 
             return xmlDocument;
+        }
+
+        public XmlElement RefreshSetValueToNullFunctionVisibleTexts(XmlElement xmlElement)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshSetValueToNullFunctionVisibleTexts(shapeXmlDocument);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
         }
 
         public XmlDocument RefreshVariableVisibleTexts(XmlDocument xmlDocument)
@@ -142,10 +202,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 .SelectElements(xmlDocument, $"//{XmlDataConstants.VARIABLEELEMENT}")
                 .ForEach
                 (
-                    element => _updateVisibleTextAttribute.UpdateVariableVisibleText(element)
+                    _updateVisibleTextAttribute.UpdateVariableVisibleText
                 );
 
             return xmlDocument;
+        }
+
+        public XmlElement RefreshVariableVisibleTexts(XmlElement xmlElement)
+        {
+            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlElement.OuterXml);
+            shapeXmlDocument = RefreshVariableVisibleTexts(shapeXmlDocument);
+            return _xmlDocumentHelpers.GetDocumentElement(shapeXmlDocument);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IEditingControlFactory>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IServiceFactory>(),

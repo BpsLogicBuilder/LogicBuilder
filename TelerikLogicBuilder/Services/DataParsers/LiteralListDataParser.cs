@@ -1,8 +1,14 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
@@ -11,15 +17,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
     {
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly ILiteralListBoxItemFactory _literalListBoxItemFactory;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public LiteralListDataParser(
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
+            ILiteralListBoxItemFactory literalListBoxItemFactory,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
+            _literalListBoxItemFactory = literalListBoxItemFactory;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
@@ -42,6 +51,64 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                 _xmlDocumentHelpers.GetChildElements(xmlElement),
                 xmlElement
             );
+        }
+
+        public LiteralListData Parse(XmlElement xmlElement, LiteralListElementInfo listInfo, IApplicationForm applicationForm)
+        {
+            if (xmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
+                throw _exceptionHelper.CriticalException("{ADBBEEE2-6E59-47CC-9DC5-D78F349D57C7}");
+            
+            LiteralParameterType literalType = _enumHelper.ParseEnumText<LiteralParameterType>(xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE));
+            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE));
+            List<XmlElement> chileElements = GetUniqueChildElements
+            (
+                _enumHelper.GetSystemType(literalType),
+                _xmlDocumentHelpers.GetChildElements(xmlElement)
+            );
+
+            return new LiteralListData
+            (
+                _enumHelper.ParseEnumText<LiteralParameterType>
+                (
+                    xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
+                ),
+                listType,
+                string.Format
+                (
+                    CultureInfo.CurrentCulture,
+                    Strings.listParameterCountFormat,
+                    listInfo.HasParameter
+                        ? listInfo.Parameter.Name
+                        : _enumHelper.GetTypeDescription(listType, _enumHelper.GetVisibleEnumText(literalType)),
+                    chileElements.Count
+                ),
+                chileElements,
+                xmlElement
+            );
+
+            List<XmlElement> GetUniqueChildElements(Type literalType, List<XmlElement> allChileElements)
+            {
+                HashSet<ILiteralListBoxItem> listBoxItems = new();
+                List<XmlElement> elements = new();
+                foreach (XmlElement element in allChileElements)
+                {
+                    ILiteralListBoxItem literalListBoxItem = _literalListBoxItemFactory.GetParameterLiteralListBoxItem
+                    (
+                        _xmlDocumentHelpers.GetVisibleText(element),
+                        element.InnerXml,
+                        literalType,
+                        applicationForm,
+                        listInfo.ListControl
+                    );
+
+                    if (listBoxItems.Contains(literalListBoxItem))
+                        continue;
+
+                    elements.Add(element);
+                }
+
+                return elements;
+            }
         }
     }
 }

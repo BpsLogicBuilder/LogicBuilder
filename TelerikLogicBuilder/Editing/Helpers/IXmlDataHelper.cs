@@ -13,7 +13,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         string BuildFunctionXml(string name, string visibleText, string genericArgumentsXml, string parametersXml);
         string BuildGenericArgumentsParametersXml(IList<GenericConfigBase> genericArgs);
         string BuildLiteralListXml(LiteralParameterType literalType, ListType listType, string visibleText, string innerXml);
+        string BuildLiteralXml(string innerXml);
         string BuildObjectListXml(string objectType, ListType listType, string visibleText, string innerXml);
+        string BuildObjectXml(string innerXml);
         string BuildParameterXml(ParameterBase parameter, string innerXml);
         string GetElementName(ParameterCategory category);
     }

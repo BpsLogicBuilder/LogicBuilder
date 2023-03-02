@@ -1,35 +1,45 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
+using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Telerik.WinControls;
+using System.Xml;
+using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
-    internal partial class EditConstructorForm : Telerik.WinControls.UI.RadForm, IEditConstructorForm
+	internal partial class EditConstructorForm : Telerik.WinControls.UI.RadForm, IEditConstructorForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
         private readonly IConfigurationService _configurationService;
+		private readonly IDataGraphEditingFormEventsHelper _dataGraphEditingFormEventsHelper;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly IEditingControlFactory _editingControlFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
+		private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
 
         private ApplicationTypeInfo _application;
         private readonly Type assignedTo;
+		private readonly XmlDocument xmlDocument;
 
         public EditConstructorForm(
             IConfigurationService configurationService,
             IDialogFormMessageControl dialogFormMessageControl,
             IEditingControlFactory editingControlFactory,
+            IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IServiceFactory serviceFactory,
@@ -44,10 +54,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             this.assignedTo = assignedTo;
+            
+            xmlDocument = new XmlDocument();
+			xmlDocument.LoadXml(button2Xml);
+            _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
+            _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
             Initialize();
         }
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{0C223B16-511C-4019-A272-7AB8CEC6E297}");
+
+        public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
+
+		public RadPanel RadPanelFields => radPanelFields;
+
+        public RadTreeView TreeView => radTreeView1;
+
+        public XmlDocument XmlDocument => xmlDocument;
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
@@ -74,12 +97,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
 
-            radButton1.Click += RadButton1_Click;
-            radButton2.Click += RadButton2_Click;
-            radButton3.Click += RadButton3_Click;
+            //radButton1.Click += RadButton1_Click;
+            //radButton2.Click += RadButton2_Click;
+            //radButton3.Click += RadButton3_Click;
             splitPanelLeft.Click += SplitPanelLeft_Click;
 
             _formInitializer.SetToEditSize(this);
+
+            _dataGraphEditingFormEventsHelper.Setup();
+			LoadTreeview();
+        }
+
+        private void LoadTreeview()
+        {
+            _parametersDataTreeBuilder.CreateConstructorTreeProfile(TreeView, XmlDocument, typeof(object));
+            if (TreeView.SelectedNode == null)
+                TreeView.SelectedNode = TreeView.Nodes[0];
         }
 
         private void SplitPanelLeft_Click(object? sender, EventArgs e)

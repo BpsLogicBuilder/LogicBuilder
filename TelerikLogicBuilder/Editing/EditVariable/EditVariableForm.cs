@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -56,6 +57,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         }
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{7E9B95D2-1270-4D33-A41A-218242610278}");
+
+        public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
         public string VariableName => EditVariableControl.VariableName ?? throw _exceptionHelper.CriticalException("{C4A56BA6-207D-48E4-8ABA-EE855FA4EB49}");
 

@@ -1,4 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
@@ -12,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddSingleton<ICreateLiteralParameterXmlElement, CreateLiteralParameterXmlElement>()
+                .AddSingleton<IDataGraphTreeViewHelper, DataGraphTreeViewHelper>()
                 .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
                 .AddTransient<IFindCell, FindCell>()
                 .AddTransient<IFindConstructorInCell, FindConstructorInCell>()
@@ -39,6 +42,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IGetObjectRichTextBoxVisibleText, GetObjectRichTextBoxVisibleText>()
                 .AddSingleton<IGetSourceFilesForDocumentSearch, GetSourceFilesForDocumentSearch>()
                 .AddSingleton<ILayoutFieldControlButtons, LayoutFieldControlButtons>()
+                .AddSingleton<IObjectHashSetListBoxItemComparer , ObjectHashSetListBoxItemComparer>()
                 .AddSingleton<ISearchFunctions, SearchFunctions>()
                 .AddSingleton<ISearchSelectedDocuments, SearchSelectedDocuments>()
                 .AddSingleton<ITableLayoutPanelHelper, TableLayoutPanelHelper>()
@@ -48,10 +52,13 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddEditingControlFactories()
                 .AddEditingControlHelperFactories()
                 .AddEditingFormFactories()
+                .AddEditingFormHelperFactories()
                 .AddDocumentEditorFactories()
                 .AddFieldControlCommandFactories()
                 .AddFieldControlFactories()
                 .AddFieldControlHelperFactories()
+                .AddLiteralListBoxItemFactories()
+                .AddObjectListBoxItemFactories()
                 .AddSearcherFactories()
                 .AddSelectConstructorViewControlFactories()
                 .AddSelectEditingControlFactories()

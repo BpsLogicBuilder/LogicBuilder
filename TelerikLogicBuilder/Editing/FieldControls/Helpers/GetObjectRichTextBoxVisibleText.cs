@@ -43,13 +43,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 
         public string RefreshVisibleTexts(string xmlString, ApplicationTypeInfo application)
         {
-            XmlDocument shapeXmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlString);
-            shapeXmlDocument = _refreshVisibleTextHelper.RefreshVariableVisibleTexts(shapeXmlDocument);
-            shapeXmlDocument = _refreshVisibleTextHelper.RefreshFunctionVisibleTexts(shapeXmlDocument, application);
-            shapeXmlDocument = _refreshVisibleTextHelper.RefreshConstructorVisibleTexts(shapeXmlDocument, application);
-            shapeXmlDocument = _refreshVisibleTextHelper.RefreshLiteralListVisibleTexts(shapeXmlDocument, application);
-            shapeXmlDocument = _refreshVisibleTextHelper.RefreshObjectListVisibleTexts(shapeXmlDocument, application);
-            return shapeXmlDocument.OuterXml;
+            XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(xmlString);
+            xmlDocument = _refreshVisibleTextHelper.RefreshVariableVisibleTexts(xmlDocument);
+            xmlDocument = _refreshVisibleTextHelper.RefreshFunctionVisibleTexts(xmlDocument, application);
+            xmlDocument = _refreshVisibleTextHelper.RefreshConstructorVisibleTexts(xmlDocument, application);
+            xmlDocument = _refreshVisibleTextHelper.RefreshLiteralListVisibleTexts(xmlDocument, application);
+            xmlDocument = _refreshVisibleTextHelper.RefreshObjectListVisibleTexts(xmlDocument, application);
+            return xmlDocument.OuterXml;
         }
     }
 }

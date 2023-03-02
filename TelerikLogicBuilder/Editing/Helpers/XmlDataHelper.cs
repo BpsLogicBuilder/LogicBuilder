@@ -102,6 +102,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
+        public string BuildLiteralXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildObjectListXml(string objectType, ListType listType, string visibleText, string innerXml)
         {
             StringBuilder stringBuilder = new();
@@ -111,6 +124,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.OBJECTTYPEATTRIBUTE, objectType);
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.LISTTYPEATTRIBUTE, Enum.GetName(typeof(ListType), listType));
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
+        public string BuildObjectXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.OBJECTELEMENT);
                     xmlTextWriter.WriteRaw(innerXml);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();

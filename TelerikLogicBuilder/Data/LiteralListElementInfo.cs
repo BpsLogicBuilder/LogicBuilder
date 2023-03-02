@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
@@ -37,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         public List<string> DefaultValues { get; private set; }
         public string Comments { get; private set; }
         public ListOfLiteralsParameter? Parameter { get; }
+        [MemberNotNullWhen(true, nameof(Parameter))]
         public bool HasParameter => Parameter != null;
     }
 }

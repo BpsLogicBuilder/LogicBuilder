@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
@@ -27,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         public ListParameterInputStyle ListControl { get; }
         public string Comments { get; }
         public ListOfObjectsParameter? Parameter { get; }
+        [MemberNotNullWhen(true, nameof(Parameter))]
         public bool HasParameter => Parameter != null;
     }
 }

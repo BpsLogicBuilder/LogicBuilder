@@ -1,4 +1,8 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
+﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using System;
@@ -8,6 +12,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal interface IEditingControlFactory
     {
+        IEditBinaryFunctionControl GetEditBinaryFunctionControl(
+            IEditingForm editingForm,
+            Function function,
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            string? selectedParameter = null);
+
         IEditConstructorControl GetEditConstructorControl(
             IEditingForm editingForm,
             Constructor constructor,
@@ -15,6 +27,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             XmlDocument formDocument,
             string treeNodeXPath,
             string? selectedParameter = null);
+
+        IEditLiteralListControl GetEditLiteralListControl(
+            IDataGraphEditingForm dataGraphEditingForm,
+            LiteralListElementInfo literalListElementInfo,
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            int? selectedIndex);
+
+        IEditObjectListControl GetEditObjectListControl(
+            IDataGraphEditingForm dataGraphEditingForm,
+            ObjectListElementInfo objectListElementInfo,
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            int? selectedIndex);
 
         IEditStandardFunctionControl GetEditStandardFunctionControl(
             IEditingForm editingForm,
