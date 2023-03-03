@@ -5,17 +5,17 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
-    internal class ObjectListElementInfoHelper : IObjectListElementInfoHelper
+    internal class ObjectListParameterElementInfoHelper : IObjectListParameterElementInfoHelper
     {
         private readonly IEnumHelper _enumHelper;
 
-        public ObjectListElementInfoHelper(
+        public ObjectListParameterElementInfoHelper(
             IEnumHelper enumHelper)
         {
             _enumHelper = enumHelper;
         }
 
-        public ObjectListElementInfo GetDefaultObjectListElementInfo()
+        public ObjectListParameterElementInfo GetDefaultObjectListElementInfo()
             => new
             (
                 _enumHelper.GetTypeDescription
@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
                 string.Empty
             );
 
-        public ObjectListElementInfo GetObjectListElementInfo(ListOfObjectsParameter objectListParameter)
+        public ObjectListParameterElementInfo GetObjectListElementInfo(ListOfObjectsParameter objectListParameter)
             => new
             (
                 objectListParameter.Name,
@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
                 objectListParameter
             );
 
-        public ObjectListElementInfo GetObjectListElementInfo(ObjectListData listData)
+        public ObjectListParameterElementInfo GetObjectListElementInfo(ObjectListData listData)
             => new
             (
                 _enumHelper.GetTypeDescription

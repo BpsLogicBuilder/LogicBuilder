@@ -30,7 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private readonly ILiteralListDataParser _literalListDataParser;
         private readonly ILiteralListParameterElementInfoHelper _literalListElementInfoHelper;
         private readonly IObjectListDataParser _objectListDataParser;
-        private readonly IObjectListElementInfoHelper _objectListElementInfoHelper;
+        private readonly IObjectListParameterElementInfoHelper _objectListElementInfoHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
@@ -50,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             ILiteralListDataParser literalListDataParser,
             ILiteralListParameterElementInfoHelper literalListElementInfoHelper,
             IObjectListDataParser objectListDataParser,
-            IObjectListElementInfoHelper objectListElementInfoHelper,
+            IObjectListParameterElementInfoHelper objectListElementInfoHelper,
             ITreeViewService treeViewService,
             ITypeLoadHelper typeLoadHelper,
             IVariableDataParser variableDataParser,
@@ -160,7 +160,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.EndUpdate();
         }
 
-        public void CreateObjectListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, ObjectListElementInfo objectListInfo)
+        public void CreateObjectListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, ObjectListParameterElementInfo objectListInfo)
         {
             treeView.BeginUpdate();
             treeView.ImageList = _imageListService.ImageList;
@@ -338,7 +338,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
         }
 
-        private void AddObjectListNode(ParametersDataTreeNode parentTreeNode, XmlElement objectListElement, ObjectListElementInfo objectListElementInfo)
+        private void AddObjectListNode(ParametersDataTreeNode parentTreeNode, XmlElement objectListElement, ObjectListParameterElementInfo objectListElementInfo)
         {
             ObjectListData objectListData = _objectListDataParser.Parse(objectListElement, objectListElementInfo, editingForm);
 
@@ -534,7 +534,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
         }
 
-        private void GetObjectListParameterChildren(XmlElement parameterElement, ParametersDataTreeNode parameterTreeNode, ObjectListElementInfo objectListElementInfo)
+        private void GetObjectListParameterChildren(XmlElement parameterElement, ParametersDataTreeNode parameterTreeNode, ObjectListParameterElementInfo objectListElementInfo)
         {
             GetChildren(_xmlDocumentHelpers.GetSingleChildElement(parameterElement));
             void GetChildren(XmlElement childOfParameterElement)//constructor,function,variable,literalList,objectList

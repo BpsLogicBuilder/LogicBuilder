@@ -94,7 +94,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingForm, ObjectListElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl>>
+                .AddTransient<Func<IDataGraphEditingForm, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl>>
                 (
                     provider =>
                     (editingForm, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditObjectListControl

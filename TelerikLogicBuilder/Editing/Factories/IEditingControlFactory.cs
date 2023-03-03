@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 
         IEditObjectListControl GetEditObjectListControl(
             IDataGraphEditingForm dataGraphEditingForm,
-            ObjectListElementInfo objectListElementInfo,
+            ObjectListParameterElementInfo objectListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
             string treeNodeXPath,

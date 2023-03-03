@@ -11,7 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         void CreateConstructorTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType);
         void CreateFunctionTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType);
         void CreateLiteralListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, LiteralListParameterElementInfo literalListInfo);
-        void CreateObjectListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, ObjectListElementInfo objectListInfo);
+        void CreateObjectListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, ObjectListParameterElementInfo objectListInfo);
         void RefreshTreeNode(RadTreeView treeView, XmlDocument xmlDocument, ParametersDataTreeNode node);
     }
 }

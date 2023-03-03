@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             );
         }
 
-        public ObjectListData Parse(XmlElement xmlElement, ObjectListElementInfo listInfo, IApplicationForm applicationForm)
+        public ObjectListData Parse(XmlElement xmlElement, ObjectListParameterElementInfo listInfo, IApplicationForm applicationForm)
         {
             if (xmlElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{4B56236E-3BFC-41D6-A4E5-95F027CA3D1B}");

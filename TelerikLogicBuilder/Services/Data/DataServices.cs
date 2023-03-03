@@ -15,7 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IGenericReturnTypeHelper, GenericReturnTypeHelper>()
                 .AddSingleton<IGetValidConfigurationFromData, GetValidConfigurationFromData>()
                 .AddSingleton<ILiteralListParameterElementInfoHelper, LiteralListParameterElementInfoHelper>()
-                .AddSingleton<IObjectListElementInfoHelper, ObjectListElementInfoHelper>()
+                .AddSingleton<IObjectListParameterElementInfoHelper, ObjectListParameterElementInfoHelper>()
                 .AddSingleton<IRefreshVisibleTextHelper, RefreshVisibleTextHelper>()
                 .AddSingleton<IUpdateVisibleTextAttribute, UpdateVisibleTextAttribute>();
     }

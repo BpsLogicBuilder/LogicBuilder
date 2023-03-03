@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         private readonly IDataGraphEditingForm dataGraphEditingForm;
         private readonly Type assignedTo;
-        private readonly ObjectListElementInfo objectListElementInfo;
+        private readonly ObjectListParameterElementInfo objectListElementInfo;
         private readonly int? selectedIndex;
         private readonly XmlDocument xmlDocument;
 
@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             IObjectListDataParser objectListDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IDataGraphEditingForm dataGraphEditingForm,
-            ObjectListElementInfo objectListElementInfo,
+            ObjectListParameterElementInfo objectListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
             string treeNodeXPath,

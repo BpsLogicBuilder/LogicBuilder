@@ -4,9 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
-    internal class ObjectListElementInfo
+    internal class ObjectListParameterElementInfo
     {
-        public ObjectListElementInfo(
+        public ObjectListParameterElementInfo(
             string name,
             ListType listType,
             string objectType,
