@@ -39,6 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<IFindVariableInFiles, FindVariableInFiles>()
                 .AddTransient<IFindVariableInShape, FindVariableInShape>()
                 .AddSingleton<IFunctionsFormFieldSetHelper, FunctionsFormFieldSetHelper>()
+                .AddSingleton<IFunctionParameterControlSetValidator, FunctionParameterControlSetValidator>()
                 .AddSingleton<IGetObjectRichTextBoxVisibleText, GetObjectRichTextBoxVisibleText>()
                 .AddSingleton<IGetSourceFilesForDocumentSearch, GetSourceFilesForDocumentSearch>()
                 .AddSingleton<ILayoutFieldControlButtons, LayoutFieldControlButtons>()

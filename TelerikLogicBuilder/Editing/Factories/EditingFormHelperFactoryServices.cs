@@ -23,7 +23,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IEditingControlFactory>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         dataGraphEditingForm
                     )
                 )

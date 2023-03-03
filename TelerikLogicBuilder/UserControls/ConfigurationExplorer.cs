@@ -108,8 +108,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             RadTreeNode treeNode = this.radTreeView1.GetNodeAt(e.Location);
             if (treeNode == null && this.radTreeView1.Nodes.Count > 0)
             {
-                this.radTreeView1.SelectedNode = this.radTreeView1.Nodes[0];
-                SetContextMenuState(this.radTreeView1.SelectedNode);
+                //this.radTreeView1.SelectedNode = this.radTreeView1.Nodes[0];
+                //SetContextMenuState(this.radTreeView1.SelectedNode);
             }
         }
         #endregion Event Handlers

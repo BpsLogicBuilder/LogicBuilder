@@ -612,8 +612,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions
             RadTreeNode treeNode = this.TreeView.GetNodeAt(e.Location);
             if (treeNode == null && this.TreeView.Nodes.Count > 0)
             {
-                SelectTreeNode(this.TreeView.Nodes[0]);
-                SetContextMenuState(_treeViewService.GetSelectedNodes(TreeView));
+                //SelectTreeNode(this.TreeView.Nodes[0]);
+                //SetContextMenuState(_treeViewService.GetSelectedNodes(TreeView));
             }
             else if (treeNode != null && TreeView.SelectedNode != treeNode)
             {

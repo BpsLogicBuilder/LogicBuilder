@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Xml;
 using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
@@ -89,6 +90,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public IEditingForm EditingForm => editingForm;
 
+        public XmlElement XmlResult => throw new NotImplementedException();
+
         public void ClearMessage() => editingForm.ClearMessage();
 
         public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
@@ -100,6 +103,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         public void SetVariable(string variableName)
         {
             CurrentViewControl.SelectVariable(variableName);
+        }
+
+        public void ValidateFields()
+        {
         }
 
         private void AddChangeEvents()

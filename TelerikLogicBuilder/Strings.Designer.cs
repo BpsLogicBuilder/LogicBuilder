@@ -718,6 +718,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to the checked optional parameter &quot;{0}&quot; is empty. Unckeck the check box to leave an optional parameter unpopulated..
+        /// </summary>
+        internal static string checkedOptionalParameterIsEmptyFormat {
+            get {
+                return ResourceManager.GetString("checkedOptionalParameterIsEmptyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please close {0} before proceeding..
         /// </summary>
         internal static string closeFileWarningFormat {
@@ -5574,6 +5583,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string replaceVariableFormText {
             get {
                 return ResourceManager.GetString("replaceVariableFormText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The required parameter &quot;{0}&quot; is empty..
+        /// </summary>
+        internal static string requiredParameterIsEmptyFormat {
+            get {
+                return ResourceManager.GetString("requiredParameterIsEmptyFormat", resourceCulture);
             }
         }
         

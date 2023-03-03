@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -17,6 +18,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
@@ -29,13 +31,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     {
         private readonly IConfigurationService _configurationService;
         private readonly IFunctionDataParser _functionDataParser;
+        private readonly IFunctionElementValidator _functionElementValidator;
         private readonly IFunctionGenericsConfigrationValidator _functionGenericsConfigrationValidator;
+        private readonly IFunctionParameterControlSetValidator _functionParameterControlSetValidator;
         private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
+        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
+        private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEditingForm editingForm;
 
@@ -54,13 +60,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         public EditStandardFunctionControl(
             IConfigurationService configurationService,
             IFunctionDataParser functionDataParser,
+            IFunctionElementValidator functionElementValidator,
             IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
+            IFunctionParameterControlSetValidator functionParameterControlSetValidator,
             IEditingControlHelperFactory editingControlFactory,
             IFieldControlFactory fieldControlFactory,
             IGenericFunctionHelper genericFunctionHelper,
+            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             ITypeLoadHelper typeLoadHelper,
             IUpdateParameterControlValues updateParameterControlValues,
+            IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
             Function function,
@@ -72,12 +82,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             InitializeComponent();
             _configurationService = configurationService;
             _functionDataParser = functionDataParser;
+            _functionElementValidator = functionElementValidator;
             _functionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
+            _functionParameterControlSetValidator = functionParameterControlSetValidator;
             _fieldControlFactory = fieldControlFactory;
             _genericFunctionHelper = genericFunctionHelper;
+            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _tableLayoutPanelHelper = tableLayoutPanelHelper;
             _typeLoadHelper = typeLoadHelper;
             _updateParameterControlValues = updateParameterControlValues;
+            _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingForm = editingForm;
             this.function = function;
@@ -119,6 +133,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         public XmlDocument XmlDocument => xmlDocument;
 
+        public XmlElement XmlResult => GetXmlResult();
+
         public ApplicationTypeInfo Application => editingForm.Application;
 
         public bool IsValid => throw new NotImplementedException();
@@ -139,11 +155,60 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
 
+        public void ValidateFields()
+        {
+            List<string> errors = new();
+            errors.AddRange(ValidateControls());
+            if (errors.Count > 0)
+                throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
+
+            _functionElementValidator.Validate(XmlResult, assignedTo, Application, errors);
+            if (errors.Count > 0)
+                throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
+        private XmlElement GetXmlResult()
+        {
+            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+            string xmlString = _xmlDataHelper.BuildFunctionXml
+            (
+                function.Name,
+                functionData.VisibleText,
+                _xmlDataHelper.BuildGenericArgumentsXml(functionData.GenericArguments),
+                GetParametersXml()
+            );
+
+            return _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
+            (
+                _xmlDocumentHelpers.ToXmlElement(xmlString),
+                Application
+            );
+
+            string GetParametersXml()
+            {
+                StringBuilder stringBuilder = new();
+                using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+                {
+                    xmlTextWriter.WriteStartElement(XmlDataConstants.PARAMETERSELEMENT);
+                    foreach (ParameterBase parameter in function.Parameters)
+                    {
+                        if (!editControlsSet[parameter.Name].ChkInclude.Checked)
+                            continue;
+
+                        xmlTextWriter.WriteRaw(editControlsSet[parameter.Name].ValueControl.XmlElement!.OuterXml);
+                    }
+                    xmlTextWriter.WriteEndElement();
+                    xmlTextWriter.Flush();
+                }
+                return stringBuilder.ToString();
+            }
+        }
 
         private void InitializeControls()
         {
@@ -351,6 +416,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     selectedParameter
                 );
             }
+        }
+
+        private IList<string> ValidateControls()
+        {
+            List<string> errors = new();
+            _functionParameterControlSetValidator.Validate(editControlsSet, function, Application, errors);
+            return errors;
         }
 
         private bool ValidateGenericArgs()

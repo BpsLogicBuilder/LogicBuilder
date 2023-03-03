@@ -1,4 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
+using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -19,24 +21,65 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         private readonly IConfigurationService _configurationService;
         private readonly IEditingControlFactory _editingControlFactory;
+        private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly ITreeViewService _treeViewService;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IDataGraphEditingForm dataGraphEditingForm;
 
         public DataGraphEditingFormEventsHelper(
             IConfigurationService configurationService,
             IEditingControlFactory editingControlFactory,
+            IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
+            ITreeViewService treeViewService,
+            IXmlDocumentHelpers xmlDocumentHelpers,
             IDataGraphEditingForm dataGraphEditingForm)
         {
             _configurationService = configurationService;
             _editingControlFactory = editingControlFactory;
             _exceptionHelper = exceptionHelper;
+            _treeViewService = treeViewService;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(dataGraphEditingForm);
             this.dataGraphEditingForm = dataGraphEditingForm;
         }
 
         private RadPanel RadPanelFields => dataGraphEditingForm.RadPanelFields;
         private RadTreeView TreeView => dataGraphEditingForm.TreeView;
+        private IEditingControl CurrentEditingControl
+        {
+            get
+            {
+                if (RadPanelFields.Controls.Count != 1)
+                    throw _exceptionHelper.CriticalException("{65E38977-FF26-4D3A-B351-A46983E9C2AE}");
+
+                return (IEditingControl)RadPanelFields.Controls[0];
+            }
+        }
+        private XmlDocument XmlDocument => dataGraphEditingForm.XmlDocument;
+
+        public void RequestDocumentUpdate()
+        {
+            if (TreeView.SelectedNode == null)
+                return;
+
+            try
+            {
+                dataGraphEditingForm.ClearMessage();
+                UpdateXmlDocument(TreeView.SelectedNode);
+                RefreshTreeNode((ParametersDataTreeNode)TreeView.SelectedNode);
+            }
+            catch (XmlException ex)
+            {
+                dataGraphEditingForm.SetErrorMessage(ex.Message);
+            }
+            catch (LogicBuilderException ex)
+            {
+                dataGraphEditingForm.SetErrorMessage(ex.Message);
+            }
+        }
 
         public void Setup()
         {
@@ -48,6 +91,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             TreeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             TreeView.SelectedNodeChanging += TreeView_SelectedNodeChanging;
         }
+
+        private ParametersDataTreeNode GetControlXPathTreeNode(ParametersDataTreeNode selectedNode)
+            => GetEditFormFieldSet(selectedNode) switch
+            {
+                EditFormFieldSet.Constructor or EditFormFieldSet.StandardFunction or EditFormFieldSet.BinaryFunction or EditFormFieldSet.SetValueFunction or EditFormFieldSet.SetValueToNullFunction => selectedNode is IParameterElementTreeNode ? selectedNode.Parent : selectedNode,
+                EditFormFieldSet.Variable => selectedNode,
+                EditFormFieldSet.LiteralList => selectedNode is LiteralElementTreeNode ? selectedNode.Parent : selectedNode,
+                EditFormFieldSet.ObjectList => selectedNode is ObjectElementTreeNode ? selectedNode.Parent : selectedNode,
+                _ => throw _exceptionHelper.CriticalException("{21C63ED5-DAC3-49A1-9447-C99FD2DCAD1D}"),
+            };
 
         private EditFormFieldSet GetEditFormFieldSet(ParametersDataTreeNode selectedNode)
         {
@@ -122,6 +175,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     control.Visible = false;
 
                 RadPanelFields.Controls.Clear();
+            }
+        }
+
+        private void RefreshTreeNode(ParametersDataTreeNode selectedNode)
+        {
+            ParametersDataTreeNode xPathTreeNode = GetControlXPathTreeNode(selectedNode);
+            if (xPathTreeNode is VariableElementTreeNode variableElementTree)
+            {
+                RefreshVariableTreeNode(variableElementTree);
+                return;
+            }
+
+            _parametersDataTreeBuilder.RefreshTreeNode(TreeView, XmlDocument, xPathTreeNode);
+            if (object.ReferenceEquals(selectedNode, xPathTreeNode))
+                return;
+
+            TreeView.SelectedNodeChanged -= TreeView_SelectedNodeChanged;
+            _treeViewService.SelectTreeNode(TreeView, selectedNode.Name);
+            TreeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
+            if (TreeView.SelectedNode != null)
+                _treeViewService.MakeVisible(TreeView.SelectedNode);
+        }
+
+        private void RefreshVariableTreeNode(VariableElementTreeNode treeNode)
+        {
+            Refresh(CurrentEditingControl.XmlResult.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            void Refresh(string variableName)
+            {
+                treeNode.Name = $"{treeNode.Parent.Name}/{XmlDataConstants.VARIABLEELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}=\"{variableName}\"]";
+                treeNode.Text = variableName;
+                treeNode.ToolTipText = variableName;
             }
         }
 
@@ -261,6 +345,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     selectedParameter
                 );
             }
+
             IEditingControl GetSetValueToNullFunctionControl()
             {
                 FunctionElementTreeNode? functionTreeNodeNode;
@@ -356,6 +441,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private void UpdateXmlDocument(RadTreeNode selectedNode)
         {
+            CurrentEditingControl.ValidateFields();
+
+            _xmlDocumentHelpers.UpdateChildNodes
+            (
+                _xmlDocumentHelpers.SelectSingleElement
+                (
+                    XmlDocument,
+                    GetControlXPathTreeNode((ParametersDataTreeNode)selectedNode).Name
+                ),
+                CurrentEditingControl.XmlResult
+            );
+
+            dataGraphEditingForm.ValidateXmlDocument();
         }
 
         private void TreeView_MouseDown(object? sender, System.Windows.Forms.MouseEventArgs e)
@@ -363,7 +461,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             RadTreeNode treeNode = this.TreeView.GetNodeAt(e.Location);
             if (treeNode == null && this.TreeView.Nodes.Count > 0)
             {
-                TreeView.SelectedNode = TreeView.Nodes[0];
+                //TreeView.SelectedNode = TreeView.Nodes[0];
                 //SetContextMenuState
             }
         }

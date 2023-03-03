@@ -1,10 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
-using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -30,10 +28,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
 		private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
+        private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
 
         private ApplicationTypeInfo _application;
         private readonly Type assignedTo;
-		private readonly XmlDocument xmlDocument;
 
         public EditConstructorForm(
             IConfigurationService configurationService,
@@ -53,10 +51,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             _editingControlFactory = editingControlFactory;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
+			_treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             this.assignedTo = assignedTo;
             
-            xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(button2Xml);
+			_treeViewXmlDocumentHelper.LoadXmlDocument(button2Xml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
             Initialize();
@@ -70,19 +68,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         public RadTreeView TreeView => radTreeView1;
 
-        public XmlDocument XmlDocument => xmlDocument;
+        public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
 
-        public void RequestDocumentUpdate()
-        {
-        }
+        public void RequestDocumentUpdate() => _dataGraphEditingFormEventsHelper.RequestDocumentUpdate();
 
         public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
 
         public void SetMessage(string message, string title = "") => _dialogFormMessageControl.SetMessage(message, title);
+
+        public void ValidateXmlDocument() => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
         private void Initialize()
         {
@@ -110,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void LoadTreeview()
         {
-            _parametersDataTreeBuilder.CreateConstructorTreeProfile(TreeView, XmlDocument, typeof(object));
+            _parametersDataTreeBuilder.CreateConstructorTreeProfile(TreeView, XmlDocument, assignedTo);
             if (TreeView.SelectedNode == null)
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }

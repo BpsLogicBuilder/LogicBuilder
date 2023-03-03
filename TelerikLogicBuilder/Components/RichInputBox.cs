@@ -603,13 +603,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             IntPtr eventMask = this.SuspendEvents();
 
             StringBuilder mixedXmlBuilder = new();
-            using XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(mixedXmlBuilder);
+            using XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateFragmentXmlWriter(mixedXmlBuilder);
 
             List<LinkBoundaries> boundaries = GetBoundaryPositions();
             if (boundaries.Count == 0)
             {
                 this.ResumeEvents(eventMask);
                 xmlTextWriter.WriteString(this.Text);
+                xmlTextWriter.Flush();
+                xmlTextWriter.Close();
                 return mixedXmlBuilder.ToString();
             }
 
@@ -628,6 +630,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
             this.ResumeEvents(eventMask);
 
+            xmlTextWriter.Flush();
+            xmlTextWriter.Close();
             return mixedXmlBuilder.ToString();
         }
 

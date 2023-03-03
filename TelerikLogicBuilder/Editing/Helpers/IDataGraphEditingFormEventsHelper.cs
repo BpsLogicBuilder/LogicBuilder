@@ -2,6 +2,7 @@
 {
     internal interface IDataGraphEditingFormEventsHelper
     {
+        void RequestDocumentUpdate();
         void Setup();
     }
 }

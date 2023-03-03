@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -17,6 +18,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
@@ -29,13 +31,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     {
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorDataParser _constructorDataParser;
+        private readonly IConstructorElementValidator _constructorElementValidator;
         private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericConstructorHelper _genericConstructorHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
+        private readonly IParameterElementValidator _parameterElementValidator;
+        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
+        private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEditingForm editingForm;
         
@@ -54,13 +61,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         public EditConstructorControl(
             IConfigurationService configurationService,
             IConstructorDataParser constructorDataParser,
+            IConstructorElementValidator constructorElementValidator,
             IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
             IEditingControlHelperFactory editingControlFactory,
+            IExceptionHelper exceptionHelper,
             IFieldControlFactory fieldControlFactory,
             IGenericConstructorHelper genericConstructorHelper,
+            IParameterElementValidator parameterElementValidator,
+            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             ITypeLoadHelper typeLoadHelper,
             IUpdateParameterControlValues updateParameterControlValues,
+            IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
             Constructor constructor,
@@ -72,12 +84,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             InitializeComponent();
             _configurationService = configurationService;
             _constructorDataParser = constructorDataParser;
+            _constructorElementValidator = constructorElementValidator;
             _constructorGenericsConfigrationValidator = constructorGenericsConfigrationValidator;
+            _exceptionHelper = exceptionHelper;
             _fieldControlFactory = fieldControlFactory;
             _genericConstructorHelper = genericConstructorHelper;
+            _parameterElementValidator = parameterElementValidator;
+            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _tableLayoutPanelHelper = tableLayoutPanelHelper;
             _typeLoadHelper = typeLoadHelper;
             _updateParameterControlValues = updateParameterControlValues;
+            _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingForm = editingForm;
             this.constructor = constructor;
@@ -123,6 +140,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         public XmlDocument XmlDocument => xmlDocument;
 
+        public XmlElement XmlResult => GetXmlResult();
+
         public void ClearMessage() => editingForm.ClearMessage();
 
         public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
@@ -139,11 +158,60 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
 
+        public void ValidateFields()
+        {
+            List<string> errors = new();
+            errors.AddRange(ValidateControls());
+            if (errors.Count > 0)
+                throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
+
+            _constructorElementValidator.Validate(XmlResult, assignedTo, Application, errors);
+            if (errors.Count > 0)
+                throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
+        private XmlElement GetXmlResult()
+        {
+            ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+            string xmlString = _xmlDataHelper.BuildConstructorXml
+            (
+                constructor.Name,
+                constructorData.VisibleText,
+                _xmlDataHelper.BuildGenericArgumentsXml(constructorData.GenericArguments),
+                GetParametersXml()
+            );
+
+            return _refreshVisibleTextHelper.RefreshConstructorVisibleTexts
+            (
+                _xmlDocumentHelpers.ToXmlElement(xmlString),
+                Application
+            );
+
+            string GetParametersXml()
+            {
+                StringBuilder stringBuilder = new();
+                using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+                {
+                    xmlTextWriter.WriteStartElement(XmlDataConstants.PARAMETERSELEMENT);
+                    foreach (ParameterBase parameter in constructor.Parameters)
+                    {
+                        if (!editControlsSet[parameter.Name].ChkInclude.Checked)
+                            continue;
+
+                        xmlTextWriter.WriteRaw(editControlsSet[parameter.Name].ValueControl.XmlElement!.OuterXml);
+                    }
+                    xmlTextWriter.WriteEndElement();
+                    xmlTextWriter.Flush();
+                }
+                return stringBuilder.ToString();
+            }
+        }
 
         private void InitializeControls()
         {
@@ -352,6 +420,53 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                     selectedParameter
                 );
             }
+        }
+
+        private IList<string> ValidateControls()
+        {
+            List<string> errors = new();
+            foreach (ParameterBase parameter in constructor.Parameters)
+            {
+                if (!editControlsSet[parameter.Name].ChkInclude.Checked)
+                    continue;
+
+                if (editControlsSet[parameter.Name].ValueControl.IsEmpty)
+                {//Need to validate for IsEmpty parameters before using the XmlElement below.
+                    errors.Add
+                    (
+                        parameter.IsOptional
+                            ? string.Format(CultureInfo.CurrentCulture, Strings.checkedOptionalParameterIsEmptyFormat, parameter.Name)
+                            : string.Format(CultureInfo.CurrentCulture, Strings.requiredParameterIsEmptyFormat, parameter.Name)
+                    );
+
+                    editControlsSet[parameter.Name].ValueControl.SetErrorBackColor();
+                    continue;
+                }
+
+                if (editControlsSet[parameter.Name].ValueControl.XmlElement == null)
+                    throw _exceptionHelper.CriticalException("{240EE618-D74B-4F8F-BA94-BEFE45B781EF}");
+
+                List<string> parameterErrors = new();
+                _parameterElementValidator.Validate
+                (
+                    editControlsSet[parameter.Name].ValueControl.XmlElement!, 
+                    parameter, 
+                    editingForm.Application,
+                    parameterErrors
+                );
+
+                if (parameterErrors.Count > 0 )
+                {
+                    errors.AddRange(parameterErrors);
+                    editControlsSet[parameter.Name].ValueControl.SetErrorBackColor();
+                }
+                else
+                {
+                    editControlsSet[parameter.Name].ValueControl.SetNormalBackColor();
+                }
+            }
+
+            return errors;
         }
 
         private bool ValidateGenericArgs()

@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             (
                 closedConstructor.Constructor.Name,
                 closedConstructor.Constructor.Name,
-                BuildGenericArgumentsParametersXml(closedConstructor.GenericArguments),
+                BuildGenericArgumentsXml(closedConstructor.GenericArguments),
                 BuildDefaultParametersXml(closedConstructor.Constructor.Parameters, parameterDefaults)
             );
         }
@@ -72,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
-        public string BuildGenericArgumentsParametersXml(IList<GenericConfigBase> genericArgs)
+        public string BuildGenericArgumentsXml(IList<GenericConfigBase> genericArgs)
         {
             StringBuilder stringBuilder = new();
             using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))

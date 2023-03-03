@@ -272,17 +272,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (!_getValidConfigurationFromData.TryGetConstructor(constructorData, editingForm.Application, out Constructor? constructor))
                 return;
 
-            GetConstructorChildren
+            InitConstructorNode
             (
-                constructorElement,
                 _dataGraphTreeViewHelper.AddConstructorTreeNode
                 (
                     parentTreeNode,
                     constructorElement,
                     constructor.ToString()
-                ), 
-                false
+                )
             );
+
+            void InitConstructorNode(ConstructorElementTreeNode treeNode)
+            {
+                GetConstructorChildren(constructorElement, treeNode, false);
+                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                    treeNode.Expand();
+            }
         }
 
         private void AddFunctionNode(ParametersDataTreeNode parentTreeNode, XmlElement functionElement)
@@ -291,26 +296,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (!_getValidConfigurationFromData.TryGetFunction(functionData, editingForm.Application, out Function? function))
                 return;
 
-            GetFunctionChildren
+            InitFunctionNode
             (
-                functionElement,
                 _dataGraphTreeViewHelper.AddFunctionTreeNode
                 (
                     parentTreeNode,
                     functionElement,
                     function.ToString()
-                ),
-                false
+                )
             );
+
+            void InitFunctionNode(FunctionElementTreeNode treeNode)
+            {
+                GetFunctionChildren(functionElement, treeNode, false);
+                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                    treeNode.Expand();
+            }
         }
 
         private void AddLiteralListNode(ParametersDataTreeNode parentTreeNode, XmlElement literalListElement, LiteralListElementInfo literalListElementInfo)
         {
             LiteralListData literalListData = _literalListDataParser.Parse(literalListElement, literalListElementInfo, editingForm);
 
-            GetLiteralListChildren
+            InitLiteralListMode
             (
-                literalListElement,
                 _dataGraphTreeViewHelper.AddLiteralListTreeNode
                 (
                     parentTreeNode,
@@ -318,19 +327,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     literalListElementInfo,
                     literalListData.VisibleText,
                     literalListData.VisibleText
-                ),
-                literalListData,
-                false
+                )
             );
+
+            void InitLiteralListMode(LiteralListElementTreeNode treeNode)
+            {
+                GetLiteralListChildren(literalListElement, treeNode, literalListData, false);
+                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                    treeNode.Expand();
+            }
         }
 
         private void AddObjectListNode(ParametersDataTreeNode parentTreeNode, XmlElement objectListElement, ObjectListElementInfo objectListElementInfo)
         {
             ObjectListData objectListData = _objectListDataParser.Parse(objectListElement, objectListElementInfo, editingForm);
 
-            GetObjectListChildren
+            InitObjectListMode
             (
-                objectListElement,
                 _dataGraphTreeViewHelper.AddObjectListTreeNode
                 (
                     parentTreeNode,
@@ -338,10 +351,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     objectListElementInfo,
                     objectListData.VisibleText,
                     objectListData.VisibleText
-                ),
-                objectListData,
-                false
+                )
             );
+
+            void InitObjectListMode(ObjectListElementTreeNode treeNode)
+            {
+                GetObjectListChildren(objectListElement, treeNode, objectListData, false);
+                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                    treeNode.Expand();
+            }
         }
 
         private void AddVariableNode(ParametersDataTreeNode parentTreeNode, XmlElement variableElement)

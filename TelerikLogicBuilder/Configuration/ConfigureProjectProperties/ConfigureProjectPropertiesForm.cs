@@ -269,8 +269,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             RadTreeNode treeNode = this.radTreeView1.GetNodeAt(e.Location);
             if (treeNode == null && this.radTreeView1.Nodes.Count > 0)
             {
-                this.radTreeView1.SelectedNode = this.radTreeView1.Nodes[0];
-                SetContextMenuState(this.radTreeView1.SelectedNode);
+                //this.radTreeView1.SelectedNode = this.radTreeView1.Nodes[0];
+                //SetContextMenuState(this.radTreeView1.SelectedNode);
             }
         }
 

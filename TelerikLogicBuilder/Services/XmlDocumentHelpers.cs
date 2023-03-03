@@ -439,6 +439,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             return ToXmlDocument(xmlString, preserveWhiteSpace).DocumentElement!;
         }
+
+        public XmlElement UpdateChildNodes(XmlElement element, XmlElement source)
+        {
+            foreach(XmlAttribute xmlAttribute in source.Attributes)
+            {
+                XmlAttribute? destination = element.Attributes[xmlAttribute.Name];
+                if (destination == null)
+                    throw _exceptionHelper.CriticalException("{B5D7EF3D-D6A6-4F9A-B283-A3E8057E5825}");
+
+                destination.Value = xmlAttribute.Value;
+            }
+
+            element.InnerXml = source.InnerXml;
+            return element;
+        }
         #endregion Methods
     }
 }

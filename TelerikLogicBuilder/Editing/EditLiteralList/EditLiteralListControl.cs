@@ -56,6 +56,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public bool IsValid => throw new NotImplementedException();
 
+        public XmlElement XmlResult => throw new NotImplementedException();
+
         public void ClearMessage()
         {
             throw new NotImplementedException();
@@ -74,6 +76,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         public void SetMessage(string message, string title = "")
         {
             throw new NotImplementedException();
+        }
+
+        public void ValidateFields()
+        {
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace TelerikLogicBuilder.Tests.Mocks
 {
@@ -26,6 +27,8 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public DockStyle Dock { set => throw new NotImplementedException(); }
         public Point Location { set => throw new NotImplementedException(); }
+
+        public XmlElement XmlResult => throw new NotImplementedException();
 
         event EventHandler? IEditVariableControl.Changed
         {
@@ -61,6 +64,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
         }
 
         public void SetVariable(string variableName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ValidateFields()
         {
             throw new NotImplementedException();
         }

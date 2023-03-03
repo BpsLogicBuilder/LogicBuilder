@@ -113,6 +113,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
 
         public XmlDocument XmlDocument => throw new NotImplementedException();
 
+        public XmlElement XmlResult => throw new NotImplementedException();
+
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 
         public bool IsValid => throw new NotImplementedException();
@@ -140,6 +142,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
         public void SetMessage(string message, string title = "")
         {
             throw new NotImplementedException();
+        }
+
+        public void ValidateFields()
+        {
         }
 
         private void InitializeControls()

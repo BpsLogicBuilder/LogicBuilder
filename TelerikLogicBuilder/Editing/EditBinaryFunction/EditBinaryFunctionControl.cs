@@ -112,6 +112,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
         public bool IsValid => throw new NotImplementedException();
 
+        public XmlElement XmlResult => throw new NotImplementedException();
+
         public void ClearMessage()
         {
             throw new NotImplementedException();
@@ -135,6 +137,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         public void SetMessage(string message, string title = "")
         {
             throw new NotImplementedException();
+        }
+
+        public void ValidateFields()
+        {
         }
 
         private void InitializeControls()

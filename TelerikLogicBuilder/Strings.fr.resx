@@ -325,6 +325,10 @@
 	<data name="chainingUpdateValidationError" xml:space="preserve">
     <value>The field or property to be updated must be represented by a string and cannot include functions or variables.FR</value>
   </data>
+	<data name="checkedOptionalParameterIsEmptyFormat" xml:space="preserve">
+    <value>the checked optional parameter "{0}" is empty. Unckeck the check box to leave an optional parameter unpopulated.FR</value>
+    <comment>0=parameterName</comment>
+  </data>
 	<data name="closeFileWarningFormat" xml:space="preserve">
     <value>Please close {0} before proceeding.FR</value>
     <comment>0=FileName</comment>
@@ -1632,6 +1636,10 @@
   </data>
 	<data name="replaceVariableFormText" xml:space="preserve">
     <value>Replace VariableFR</value>
+  </data>
+	<data name="requiredParameterIsEmptyFormat" xml:space="preserve">
+    <value>The required parameter "{0}" is empty.FR</value>
+    <comment>0=parameterName</comment>
   </data>
 	<data name="retTypeGenericArgumentHelp" xml:space="preserve">
     <value>The function's generic argument used in the return type.FR</value>
