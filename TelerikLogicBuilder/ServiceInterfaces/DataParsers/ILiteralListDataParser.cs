@@ -15,6 +15,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers
         /// <param name="listInfo"></param>
         /// <param name="applicationForm"></param>
         /// <returns></returns>
-        LiteralListData Parse(XmlElement xmlElement, LiteralListElementInfo listInfo, IApplicationForm applicationForm);
+        LiteralListData Parse(XmlElement xmlElement, LiteralListParameterElementInfo listInfo, IApplicationForm applicationForm);
     }
 }

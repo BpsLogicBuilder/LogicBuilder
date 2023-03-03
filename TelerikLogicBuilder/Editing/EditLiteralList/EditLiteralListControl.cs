@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         private readonly IDataGraphEditingForm dataGraphEditingForm;
         private readonly Type assignedTo;
-        private readonly LiteralListElementInfo literalListElementInfo;
+        private readonly LiteralListParameterElementInfo literalListElementInfo;
         private readonly int? selectedIndex;
         private readonly XmlDocument xmlDocument;
 
@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             ILiteralListDataParser literalListDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IDataGraphEditingForm dataGraphEditingForm,
-            LiteralListElementInfo literalListElementInfo,
+            LiteralListParameterElementInfo literalListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
             string treeNodeXPath,

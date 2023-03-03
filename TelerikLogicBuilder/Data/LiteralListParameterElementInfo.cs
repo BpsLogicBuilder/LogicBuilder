@@ -5,9 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
-    internal class LiteralListElementInfo
+    internal class LiteralListParameterElementInfo
     {
-        public LiteralListElementInfo(
+        public LiteralListParameterElementInfo(
             string name,
             ListType listType,
             LiteralParameterType literalType,

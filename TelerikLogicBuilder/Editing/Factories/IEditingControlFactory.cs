@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 
         IEditLiteralListControl GetEditLiteralListControl(
             IDataGraphEditingForm dataGraphEditingForm,
-            LiteralListElementInfo literalListElementInfo,
+            LiteralListParameterElementInfo literalListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
             string treeNodeXPath,

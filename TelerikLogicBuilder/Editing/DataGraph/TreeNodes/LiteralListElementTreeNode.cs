@@ -7,14 +7,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes
 {
     internal class LiteralListElementTreeNode : ParametersDataTreeNode
     {
-        public LiteralListElementTreeNode(string text, string name, Type assignedToType, LiteralListElementInfo listInfo)
+        public LiteralListElementTreeNode(string text, string name, Type assignedToType, LiteralListParameterElementInfo listInfo)
             : base(text, name, assignedToType)
         {
             ImageIndex = ImageIndexes.LITERALLISTCONSTRUCTORIMAGEINDEX;
             ListInfo = listInfo;
         }
 
-        public LiteralListElementInfo ListInfo { get; set; }
+        public LiteralListParameterElementInfo ListInfo { get; set; }
 
         public override ParametersDataElementType XmlElementType => ParametersDataElementType.LiteralList;
     }

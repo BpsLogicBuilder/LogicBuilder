@@ -44,7 +44,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IGetValidConfigurationFromData>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILiteralListDataParser>(),
-                        provider.GetRequiredService<ILiteralListElementInfoHelper>(),
+                        provider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
                         provider.GetRequiredService<IObjectListDataParser>(),
                         provider.GetRequiredService<IObjectListElementInfoHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),

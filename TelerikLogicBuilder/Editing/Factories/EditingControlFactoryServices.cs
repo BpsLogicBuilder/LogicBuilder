@@ -79,7 +79,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingControlFactory, EditingControlFactory>()
-                .AddTransient<Func<IDataGraphEditingForm, LiteralListElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl>>
+                .AddTransient<Func<IDataGraphEditingForm, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl>>
                 (
                     provider =>
                     (editingForm, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditLiteralListControl

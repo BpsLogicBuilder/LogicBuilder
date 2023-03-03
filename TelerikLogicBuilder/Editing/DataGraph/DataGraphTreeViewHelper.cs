@@ -79,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public LiteralListElementTreeNode AddLiteralListTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListElement, LiteralListElementInfo listElementInfo, string text, string toolTipText)
+        public LiteralListElementTreeNode AddLiteralListTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListElement, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{7395E053-8D51-45A5-AE4C-68F460BBBA52}");
@@ -257,7 +257,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public LiteralListElementTreeNode AddRootLiteralListTreeNode(RadTreeView radTreeView, XmlElement literalListElement, Type rootAssignedToType, LiteralListElementInfo listElementInfo, string text, string toolTipText)
+        public LiteralListElementTreeNode AddRootLiteralListTreeNode(RadTreeView radTreeView, XmlElement literalListElement, Type rootAssignedToType, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{C83A731F-854D-475A-9BCB-1AA76D22DEB4}");

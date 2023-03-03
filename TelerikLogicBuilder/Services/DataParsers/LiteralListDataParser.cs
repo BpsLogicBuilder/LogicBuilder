@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             );
         }
 
-        public LiteralListData Parse(XmlElement xmlElement, LiteralListElementInfo listInfo, IApplicationForm applicationForm)
+        public LiteralListData Parse(XmlElement xmlElement, LiteralListParameterElementInfo listInfo, IApplicationForm applicationForm)
         {
             if (xmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{ADBBEEE2-6E59-47CC-9DC5-D78F349D57C7}");

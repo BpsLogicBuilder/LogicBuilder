@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
-    internal class LiteralListElementInfoHelper : ILiteralListElementInfoHelper
+    internal class LiteralListParameterElementInfoHelper : ILiteralListParameterElementInfoHelper
     {
         private readonly IEnumHelper _enumHelper;
 
-        public LiteralListElementInfoHelper(
+        public LiteralListParameterElementInfoHelper(
             IEnumHelper enumHelper)
         {
             _enumHelper = enumHelper;
         }
 
-        public LiteralListElementInfo GetDefaultLiteralListElementInfo()
+        public LiteralListParameterElementInfo GetDefaultLiteralListElementInfo()
             => new
             (
                 _enumHelper.GetTypeDescription
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
                 string.Empty
             );
 
-        public LiteralListElementInfo GetLiteralListElementInfo(ListOfLiteralsParameter literalListParameter)
+        public LiteralListParameterElementInfo GetLiteralListElementInfo(ListOfLiteralsParameter literalListParameter)
             => new
             (
                 literalListParameter.Name,
@@ -46,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
                 literalListParameter
             );
 
-        public LiteralListElementInfo GetLiteralListElementInfo(LiteralListData listData)
+        public LiteralListParameterElementInfo GetLiteralListElementInfo(LiteralListData listData)
             => new
             (
                 _enumHelper.GetTypeDescription

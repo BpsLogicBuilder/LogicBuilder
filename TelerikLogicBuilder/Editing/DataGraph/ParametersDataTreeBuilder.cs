@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private readonly IGetValidConfigurationFromData _getValidConfigurationFromData;
         private readonly IImageListService _imageListService;
         private readonly ILiteralListDataParser _literalListDataParser;
-        private readonly ILiteralListElementInfoHelper _literalListElementInfoHelper;
+        private readonly ILiteralListParameterElementInfoHelper _literalListElementInfoHelper;
         private readonly IObjectListDataParser _objectListDataParser;
         private readonly IObjectListElementInfoHelper _objectListElementInfoHelper;
         private readonly ITreeViewService _treeViewService;
@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             IGetValidConfigurationFromData getValidConfigurationFromData,
             IImageListService imageListService,
             ILiteralListDataParser literalListDataParser,
-            ILiteralListElementInfoHelper literalListElementInfoHelper,
+            ILiteralListParameterElementInfoHelper literalListElementInfoHelper,
             IObjectListDataParser objectListDataParser,
             IObjectListElementInfoHelper objectListElementInfoHelper,
             ITreeViewService treeViewService,
@@ -131,7 +131,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.EndUpdate();
         }
 
-        public void CreateLiteralListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, LiteralListElementInfo literalListInfo)
+        public void CreateLiteralListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, LiteralListParameterElementInfo literalListInfo)
         {
             treeView.BeginUpdate();
             treeView.ImageList = _imageListService.ImageList;
@@ -314,7 +314,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
         }
 
-        private void AddLiteralListNode(ParametersDataTreeNode parentTreeNode, XmlElement literalListElement, LiteralListElementInfo literalListElementInfo)
+        private void AddLiteralListNode(ParametersDataTreeNode parentTreeNode, XmlElement literalListElement, LiteralListParameterElementInfo literalListElementInfo)
         {
             LiteralListData literalListData = _literalListDataParser.Parse(literalListElement, literalListElementInfo, editingForm);
 
@@ -432,7 +432,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
         }
 
-        private void GetLiteralListParameterChildren(XmlElement parameterElement, ParametersDataTreeNode parameterTreeNode, LiteralListElementInfo literalListElementInfo)
+        private void GetLiteralListParameterChildren(XmlElement parameterElement, ParametersDataTreeNode parameterTreeNode, LiteralListParameterElementInfo literalListElementInfo)
         {
             GetChildren(_xmlDocumentHelpers.GetSingleChildElement(parameterElement));
             void GetChildren(XmlElement childOfParameterElement)//constructor,function,variable,literalList,objectList
