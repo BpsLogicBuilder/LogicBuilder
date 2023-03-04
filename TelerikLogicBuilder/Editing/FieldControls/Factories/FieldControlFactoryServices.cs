@@ -211,7 +211,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
-                        provider.GetRequiredService<IUiNotificationService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl, 
                         literalParameter

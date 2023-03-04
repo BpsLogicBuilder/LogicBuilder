@@ -53,6 +53,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             RichInputBox.Validated += RichInputBox_Validated;
         }
 
+        public void SetupForListItemEditor()
+        {
+            RichInputBox.KeyUp += RichInputBox_KeyUp;
+            RichInputBox.MouseClick += RichInputBox_MouseClick;
+            RichInputBox.MouseUp += RichInputBox_MouseUp;
+            RichInputBox.TextChanged += RichInputBox_TextChanged;
+        }
+
         private void EnableOrDisableCopyCutPaste()
         {
             if (RichInputBox.IsSelectionEligibleForLink() && !RichInputBox.LinkInSelection())

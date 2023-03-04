@@ -3,5 +3,6 @@
     internal interface IRichInputBoxEventsHelper
     {
         void Setup();
+        void SetupForListItemEditor();
     }
 }

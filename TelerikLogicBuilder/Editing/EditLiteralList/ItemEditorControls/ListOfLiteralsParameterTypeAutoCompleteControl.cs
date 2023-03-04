@@ -1,8 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -17,40 +17,33 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    internal partial class LiteralParameterTypeAutoCompleteControl : UserControl, ILiteralParameterTypeAutoCompleteControl
+    internal partial class ListOfLiteralsParameterTypeAutoCompleteControl : UserControl, IListOfLiteralsParameterTypeAutoCompleteControl
     {
         private readonly RadButton btnHelper;
 
-        private readonly ICreateLiteralParameterXmlElement _createLiteralParameterXmlElement;
         private readonly IImageListService _imageListService;
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
+        private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditingControl editingControl;
-        private readonly LiteralParameter literalParameter;
         private RadDropDownList radDropDownList;
-        private bool modified;
 
-        public LiteralParameterTypeAutoCompleteControl(
-            ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
+        public ListOfLiteralsParameterTypeAutoCompleteControl(
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
             IRadDropDownListHelper radDropDownListHelper,
-            IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingControl editingControl,
-            LiteralParameter literalParameter)
+            IXmlDataHelper xmlDataHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
             InitializeComponent();
-            _createLiteralParameterXmlElement = createLiteralParameterXmlElement;
             _imageListService = imageListService;
             _layoutFieldControlButtons = layoutFieldControlButtons;
             _radDropDownListHelper = radDropDownListHelper;
+            _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingControl = editingControl;
-            this.literalParameter = literalParameter;
 
             btnHelper = new()
             {
@@ -71,7 +64,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         #region ITypeAutoCompleteTextControl
         public new event EventHandler? TextChanged;
-        public new event EventHandler? Validated;
         public new event CancelEventHandler? Validating;
         public new event MouseEventHandler? MouseDown;
         public new bool Enabled
@@ -106,7 +98,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public string VisibleText => radDropDownList.Text;
 
-        public XmlElement? XmlElement => _createLiteralParameterXmlElement.Create(literalParameter, MixedXml);
+        public XmlElement? XmlElement => _xmlDocumentHelpers.ToXmlElement
+        (
+            _xmlDataHelper.BuildLiteralXml(MixedXml)
+        );
 
         public event EventHandler? Changed;
 
@@ -167,7 +162,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         public void Update(XmlElement xmlElement)
         {
             radDropDownList.Text = xmlElement.InnerText;
-            modified = false;
         }
 
         void IValueControl.Focus() => radDropDownList.Select();
@@ -186,7 +180,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             btnHelper.MouseDown += BtnHelper_MouseDown;
             radDropDownList.MouseDown += RadDropDownList_MouseDown;
             radDropDownList.TextChanged += RadDropDownList_TextChanged;
-            radDropDownList.Validated += RadDropDownList_Validated;
             radDropDownList.Validating += RadDropDownList_Validating;
             radDropDownList.DropDownListElement.UseDefaultDisabledPaint = false;
 
@@ -197,7 +190,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             radDropDownList.DropDownListElement.AutoCompleteSuggest.DropDownList.ListElement.VisualItemFormatting += RadDropDownList_VisualListItemFormatting;
         }
 
-        private void InitializeButton() 
+        private void InitializeButton()
             => _layoutFieldControlButtons.Layout(radPanelButton, new RadButton[] { btnHelper });
 
         [MemberNotNull(nameof(radDropDownList))]
@@ -246,19 +239,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private void RadDropDownList_TextChanged(object? sender, EventArgs e)
         {
-            modified = true;
             Changed?.Invoke(this, e);
             TextChanged?.Invoke(this, e);
-        }
-
-        private void RadDropDownList_Validated(object? sender, EventArgs e)
-        {
-            Validated?.Invoke(this, e);
-            if (!modified)
-                return;
-
-            modified = false;
-            editingControl.RequestDocumentUpdate();
         }
 
         private void RadDropDownList_Validating(object? sender, CancelEventArgs e)
