@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    partial class ListOfLiteralsParameterPropertyInputRichInputBoxControl
+    partial class ListOfLiteralsItemDomainMultilineControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             this.radPanelRichInputBox = new Telerik.WinControls.UI.RadPanel();
+            this.radPanelRight = new Telerik.WinControls.UI.RadPanel();
             this.radPanelCommandBar = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelRichInputBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelRight)).BeginInit();
+            this.radPanelRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,27 +43,39 @@
             this.radPanelRichInputBox.Location = new System.Drawing.Point(0, 0);
             this.radPanelRichInputBox.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelRichInputBox.Name = "radPanelRichInputBox";
-            this.radPanelRichInputBox.Size = new System.Drawing.Size(275, 28);
-            this.radPanelRichInputBox.TabIndex = 10;
+            this.radPanelRichInputBox.Size = new System.Drawing.Size(260, 95);
+            this.radPanelRichInputBox.TabIndex = 5;
+            // 
+            // radPanelRight
+            // 
+            this.radPanelRight.Controls.Add(this.radPanelCommandBar);
+            this.radPanelRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.radPanelRight.Location = new System.Drawing.Point(260, 0);
+            this.radPanelRight.Margin = new System.Windows.Forms.Padding(0);
+            this.radPanelRight.Name = "radPanelRight";
+            this.radPanelRight.Size = new System.Drawing.Size(90, 95);
+            this.radPanelRight.TabIndex = 4;
             // 
             // radPanelCommandBar
             // 
-            this.radPanelCommandBar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelCommandBar.Location = new System.Drawing.Point(275, 0);
+            this.radPanelCommandBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radPanelCommandBar.Location = new System.Drawing.Point(0, 0);
             this.radPanelCommandBar.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelCommandBar.Name = "radPanelCommandBar";
-            this.radPanelCommandBar.Size = new System.Drawing.Size(75, 28);
-            this.radPanelCommandBar.TabIndex = 9;
+            this.radPanelCommandBar.Size = new System.Drawing.Size(90, 28);
+            this.radPanelCommandBar.TabIndex = 2;
             // 
-            // ListOfLiteralsParameterPropertyInputRichInputBoxControl
+            // ListOfLiteralsParameterDomainMultilineControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanelRichInputBox);
-            this.Controls.Add(this.radPanelCommandBar);
-            this.Name = "ListOfLiteralsParameterPropertyInputRichInputBoxControl";
-            this.Size = new System.Drawing.Size(350, 28);
+            this.Controls.Add(this.radPanelRight);
+            this.Name = "ListOfLiteralsParameterDomainMultilineControl";
+            this.Size = new System.Drawing.Size(350, 95);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelRichInputBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanelRight)).EndInit();
+            this.radPanelRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandBar)).EndInit();
             this.ResumeLayout(false);
 
@@ -69,6 +84,7 @@
         #endregion
 
         private Telerik.WinControls.UI.RadPanel radPanelRichInputBox;
+        private Telerik.WinControls.UI.RadPanel radPanelRight;
         private Telerik.WinControls.UI.RadPanel radPanelCommandBar;
     }
 }

@@ -20,7 +20,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    internal partial class ListOfLiteralsParameterDomainRichInputBoxControl : UserControl, IListOfLiteralsParameterDomainRichInputBoxControl
+    internal partial class ListOfLiteralsItemDomainMultilineControl : UserControl, IListOfLiteralsItemDomainMultilineControl
     {
         private readonly RadButton btnDomain;
         private readonly RadButton btnVariable;
@@ -34,15 +34,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
         private readonly IRichInputBoxEventsHelper _richInputBoxEventsHelper;
         private readonly IUpdateRichInputBoxXml _updateRichInputBoxXml;
-        private readonly RichInputBox _richInputBox;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly RichInputBox _richInputBox;
 
         private readonly IEditingControl editingControl;
         private readonly ListOfLiteralsParameter literalListParameter;
         private Type? _assignedTo;
 
-        public ListOfLiteralsParameterDomainRichInputBoxControl(
+        public ListOfLiteralsItemDomainMultilineControl(
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlContextMenuFactory,
@@ -224,6 +224,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             radButton.Click += (sender, args) => command.Execute();
         }
 
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
         private void Enable(bool enable)
         {
             //Enable displays the wrong color.
@@ -238,6 +241,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         {
             InitializeRichInputBox();
             InitializeButtons();
+            CollapsePanelBorder(radPanelRight);
 
             AddButtonClickCommand(btnDomain, _fieldControlCommandFactory.GetSelectDomainItemCommand(this));
             AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this));
@@ -249,11 +253,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         }
 
         private void InitializeButtons()
-            => _layoutFieldControlButtons.Layout
+        {
+            int buttonWidth = 30;
+
+            ((ISupportInitialize)this.radPanelRight).BeginInit();
+            this.radPanelRight.SuspendLayout();
+
+            radPanelRight.Size = new Size(CommandButtons.Count * buttonWidth, radPanelRight.Height);
+            _layoutFieldControlButtons.Layout
             (
                 radPanelCommandBar,
-                CommandButtons
+                CommandButtons,
+                false,
+                buttonWidth
             );
+
+            ((ISupportInitialize)this.radPanelRight).EndInit();
+            this.radPanelRight.ResumeLayout(true);
+        }
 
         private void InitializeRichInputBox()
         {
@@ -268,7 +285,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             _richInputBox.Location = new Point(0, 0);
             _richInputBox.DetectUrls = false;
             _richInputBox.HideSelection = false;
-            _richInputBox.Multiline = false;
+            _richInputBox.Multiline = true;
 
             this.radPanelRichInputBox.Controls.Add(_richInputBox);
             ((ISupportInitialize)this.radPanelRichInputBox).EndInit();

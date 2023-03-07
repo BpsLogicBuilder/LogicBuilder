@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    internal interface IListOfLiteralsParameterPropertyInputRichInputBoxControl : IPropertyInputRichInputBoxControl, ILiteralListItemValueControl
+    internal interface IListOfLiteralsItemPropertyInputRichInputBoxControl : IPropertyInputRichInputBoxControl, ILiteralListItemValueControl
     {
     }
 }

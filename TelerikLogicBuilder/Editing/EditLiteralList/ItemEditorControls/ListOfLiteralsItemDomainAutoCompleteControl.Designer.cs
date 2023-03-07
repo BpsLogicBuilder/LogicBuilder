@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    partial class ListOfLiteralsParameterTypeAutoCompleteControl
+    partial class ListOfLiteralsItemDomainAutoCompleteControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.radPanelDropDownList = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelButton = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelDropDownList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelButton)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanelDropDownList
@@ -40,28 +38,17 @@
             this.radPanelDropDownList.Location = new System.Drawing.Point(0, 0);
             this.radPanelDropDownList.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelDropDownList.Name = "radPanelDropDownList";
-            this.radPanelDropDownList.Size = new System.Drawing.Size(320, 28);
+            this.radPanelDropDownList.Size = new System.Drawing.Size(350, 28);
             this.radPanelDropDownList.TabIndex = 2;
             // 
-            // radPanelButton
-            // 
-            this.radPanelButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelButton.Location = new System.Drawing.Point(320, 0);
-            this.radPanelButton.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelButton.Name = "radPanelButton";
-            this.radPanelButton.Size = new System.Drawing.Size(30, 28);
-            this.radPanelButton.TabIndex = 3;
-            // 
-            // ListOfLiteralsParameterTypeAutoCompleteControl
+            // ListOfLiteralsParameterDomainAutoCompleteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanelDropDownList);
-            this.Controls.Add(this.radPanelButton);
-            this.Name = "ListOfLiteralsParameterTypeAutoCompleteControl";
+            this.Name = "ListOfLiteralsParameterDomainAutoCompleteControl";
             this.Size = new System.Drawing.Size(350, 28);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelDropDownList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -69,6 +56,5 @@
         #endregion
 
         private Telerik.WinControls.UI.RadPanel radPanelDropDownList;
-        private Telerik.WinControls.UI.RadPanel radPanelButton;
     }
 }

@@ -19,10 +19,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddLiteralListItemEditorControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainAutoCompleteControl>>
+                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainAutoCompleteControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterDomainAutoCompleteControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsItemDomainAutoCompleteControl
                     (
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
@@ -31,10 +31,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainMultilineControl>>
+                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainMultilineControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterDomainMultilineControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsItemDomainMultilineControl
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -49,10 +49,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainRichInputBoxControl>>
+                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterDomainRichInputBoxControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsItemDomainRichInputBoxControl
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -67,10 +67,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDropDownListControl>>
+                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDropDownListControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterDropDownListControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsItemDropDownListControl
                     (
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
@@ -79,10 +79,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterMultilineControl>>
+                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemMultilineControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterMultilineControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsItemMultilineControl
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -97,10 +97,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterPropertyInputRichInputBoxControl>>
+                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemPropertyInputRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterPropertyInputRichInputBoxControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsItemPropertyInputRichInputBoxControl
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -115,10 +115,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterRichInputBoxControl>>
+                .AddTransient<Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, listInfo) => new ListOfLiteralsParameterRichInputBoxControl
+                    (editigControl, listInfo) => new ListOfLiteralsItemRichInputBoxControl
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -133,10 +133,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         listInfo
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterSourcedPropertyRichInputBoxControl>>
+                .AddTransient<Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, listInfo) => new ListOfLiteralsParameterSourcedPropertyRichInputBoxControl
+                    (editigControl, listInfo) => new ListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -151,7 +151,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         listInfo
                     )
                 )
-                .AddTransient<IListOfLiteralsParameterTypeAutoCompleteControl, ListOfLiteralsParameterTypeAutoCompleteControl>()
+                .AddTransient<IListOfLiteralsItemTypeAutoCompleteControl, ListOfLiteralsItemTypeAutoCompleteControl>()
                 .AddTransient<ILiteralListItemEditorControlFactory, LiteralListItemEditorControlFactory>();
         }
     }

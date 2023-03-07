@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    partial class ListOfLiteralsParameterDomainRichInputBoxControl
+    partial class ListOfLiteralsItemDomainRichInputBoxControl
     {
         /// <summary> 
         /// Required designer variable.

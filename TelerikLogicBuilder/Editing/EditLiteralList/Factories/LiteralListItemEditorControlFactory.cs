@@ -7,63 +7,63 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories
 {
     internal class LiteralListItemEditorControlFactory : ILiteralListItemEditorControlFactory
     {
-        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainAutoCompleteControl> _getListOfLiteralsParameterDomainAutoCompleteControl;
-        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainMultilineControl> _getListOfLiteralsParameterDomainMultilineControl;
-        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainRichInputBoxControl> _getListOfLiteralsParameterDomainRichInputBoxControl;
-        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDropDownListControl> _getListOfLiteralsParameterDropDownListControl;
-        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterMultilineControl> _getListOfLiteralsParameterMultilineControl;
-        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterPropertyInputRichInputBoxControl> _getListOfLiteralsParameterPropertyInputRichInputBoxControl;
-        private readonly Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterRichInputBoxControl> _getListOfLiteralsParameterRichInputBoxControl;
-        private readonly Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterSourcedPropertyRichInputBoxControl> _getListOfLiteralsParameterSourcedPropertyRichInputBoxControl;
-        private readonly IListOfLiteralsParameterTypeAutoCompleteControl _listOfLiteralsParameterTypeAutoCompleteControl;
+        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainAutoCompleteControl> _getListOfLiteralsItemDomainAutoCompleteControl;
+        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainMultilineControl> _getListOfLiteralsItemDomainMultilineControl;
+        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainRichInputBoxControl> _getListOfLiteralsItemDomainRichInputBoxControl;
+        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDropDownListControl> _getListOfLiteralsItemDropDownListControl;
+        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemMultilineControl> _getListOfLiteralsItemMultilineControl;
+        private readonly Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemPropertyInputRichInputBoxControl> _getListOfLiteralsItemPropertyInputRichInputBoxControl;
+        private readonly Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemRichInputBoxControl> _getListOfLiteralsItemRichInputBoxControl;
+        private readonly Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl> _getListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl;
+        private readonly IListOfLiteralsItemTypeAutoCompleteControl _listOfLiteralsParameterTypeAutoCompleteControl;
 
         public LiteralListItemEditorControlFactory(
-            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainAutoCompleteControl> getListOfLiteralsParameterDomainAutoCompleteControl,
-            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainMultilineControl> getListOfLiteralsParameterDomainMultilineControl,
-            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDomainRichInputBoxControl> getListOfLiteralsParameterDomainRichInputBoxControl,
-            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterDropDownListControl> getListOfLiteralsParameterDropDownListControl,
-            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterMultilineControl> getListOfLiteralsParameterMultilineControl,
-            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterPropertyInputRichInputBoxControl> getListOfLiteralsParameterPropertyInputRichInputBoxControl,
-            Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterRichInputBoxControl> getListOfLiteralsParameterRichInputBoxControl,
-            Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterSourcedPropertyRichInputBoxControl> getListOfLiteralsParameterSourcedPropertyRichInputBoxControl,
-            IListOfLiteralsParameterTypeAutoCompleteControl listOfLiteralsParameterTypeAutoCompleteControl)
+            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainAutoCompleteControl> getListOfLiteralsItemDomainAutoCompleteControl,
+            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainMultilineControl> getListOfLiteralsItemDomainMultilineControl,
+            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainRichInputBoxControl> getListOfLiteralsItemDomainRichInputBoxControl,
+            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDropDownListControl> getListOfLiteralsItemDropDownListControl,
+            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemMultilineControl> getListOfLiteralsItemMultilineControl,
+            Func<IEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemPropertyInputRichInputBoxControl> getListOfLiteralsItemPropertyInputRichInputBoxControl,
+            Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemRichInputBoxControl> getListOfLiteralsItemRichInputBoxControl,
+            Func<IEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl> getListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl,
+            IListOfLiteralsItemTypeAutoCompleteControl listOfLiteralsItemTypeAutoCompleteControl)
         {
-            _getListOfLiteralsParameterDomainAutoCompleteControl = getListOfLiteralsParameterDomainAutoCompleteControl;
-            _getListOfLiteralsParameterDomainMultilineControl = getListOfLiteralsParameterDomainMultilineControl;
-            _getListOfLiteralsParameterDomainRichInputBoxControl = getListOfLiteralsParameterDomainRichInputBoxControl;
-            _getListOfLiteralsParameterDropDownListControl = getListOfLiteralsParameterDropDownListControl;
-            _getListOfLiteralsParameterMultilineControl = getListOfLiteralsParameterMultilineControl;
-            _getListOfLiteralsParameterPropertyInputRichInputBoxControl = getListOfLiteralsParameterPropertyInputRichInputBoxControl;
-            _getListOfLiteralsParameterRichInputBoxControl = getListOfLiteralsParameterRichInputBoxControl;
-            _getListOfLiteralsParameterSourcedPropertyRichInputBoxControl = getListOfLiteralsParameterSourcedPropertyRichInputBoxControl;
-            _listOfLiteralsParameterTypeAutoCompleteControl = listOfLiteralsParameterTypeAutoCompleteControl;
+            _getListOfLiteralsItemDomainAutoCompleteControl = getListOfLiteralsItemDomainAutoCompleteControl;
+            _getListOfLiteralsItemDomainMultilineControl = getListOfLiteralsItemDomainMultilineControl;
+            _getListOfLiteralsItemDomainRichInputBoxControl = getListOfLiteralsItemDomainRichInputBoxControl;
+            _getListOfLiteralsItemDropDownListControl = getListOfLiteralsItemDropDownListControl;
+            _getListOfLiteralsItemMultilineControl = getListOfLiteralsItemMultilineControl;
+            _getListOfLiteralsItemPropertyInputRichInputBoxControl = getListOfLiteralsItemPropertyInputRichInputBoxControl;
+            _getListOfLiteralsItemRichInputBoxControl = getListOfLiteralsItemRichInputBoxControl;
+            _getListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl = getListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl;
+            _listOfLiteralsParameterTypeAutoCompleteControl = listOfLiteralsItemTypeAutoCompleteControl;
         }
 
-        public IListOfLiteralsParameterDomainAutoCompleteControl GetListOfLiteralsParameterDomainAutoCompleteControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
-            => _getListOfLiteralsParameterDomainAutoCompleteControl(editingControl, literalListParameter);
+        public IListOfLiteralsItemDomainAutoCompleteControl GetListOfLiteralsItemDomainAutoCompleteControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
+            => _getListOfLiteralsItemDomainAutoCompleteControl(editingControl, literalListParameter);
 
-        public IListOfLiteralsParameterDomainMultilineControl GetListOfLiteralsParameterDomainMultilineControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
-            => _getListOfLiteralsParameterDomainMultilineControl(editingControl, literalListParameter);
+        public IListOfLiteralsItemDomainMultilineControl GetListOfLiteralsItemDomainMultilineControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
+            => _getListOfLiteralsItemDomainMultilineControl(editingControl, literalListParameter);
 
-        public IListOfLiteralsParameterDomainRichInputBoxControl GetListOfLiteralsParameterDomainRichInputBoxControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
-            => _getListOfLiteralsParameterDomainRichInputBoxControl(editingControl, literalListParameter);
+        public IListOfLiteralsItemDomainRichInputBoxControl GetListOfLiteralsItemDomainRichInputBoxControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
+            => _getListOfLiteralsItemDomainRichInputBoxControl(editingControl, literalListParameter);
 
-        public IListOfLiteralsParameterDropDownListControl GetListOfLiteralsParameterDropDownListControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
-            => _getListOfLiteralsParameterDropDownListControl(editingControl, literalListParameter);
+        public IListOfLiteralsItemDropDownListControl GetListOfLiteralsItemDropDownListControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
+            => _getListOfLiteralsItemDropDownListControl(editingControl, literalListParameter);
 
-        public IListOfLiteralsParameterMultilineControl GetListOfLiteralsParameterMultilineControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
-            => _getListOfLiteralsParameterMultilineControl(editingControl, literalListParameter);
+        public IListOfLiteralsItemMultilineControl GetListOfLiteralsItemMultilineControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
+            => _getListOfLiteralsItemMultilineControl(editingControl, literalListParameter);
 
-        public IListOfLiteralsParameterPropertyInputRichInputBoxControl GetListOfLiteralsParameterPropertyInputRichInputBoxControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
-            => _getListOfLiteralsParameterPropertyInputRichInputBoxControl(editingControl, literalListParameter);
+        public IListOfLiteralsItemPropertyInputRichInputBoxControl GetListOfLiteralsItemPropertyInputRichInputBoxControl(IEditingControl editingControl, ListOfLiteralsParameter literalListParameter)
+            => _getListOfLiteralsItemPropertyInputRichInputBoxControl(editingControl, literalListParameter);
 
-        public IListOfLiteralsParameterRichInputBoxControl GetListOfLiteralsParameterRichInputBoxControl(IEditingControl editingControl, LiteralListParameterElementInfo listInfo)
-            => _getListOfLiteralsParameterRichInputBoxControl(editingControl, listInfo);
+        public IListOfLiteralsItemRichInputBoxControl GetListOfLiteralsItemRichInputBoxControl(IEditingControl editingControl, LiteralListParameterElementInfo listInfo)
+            => _getListOfLiteralsItemRichInputBoxControl(editingControl, listInfo);
 
-        public IListOfLiteralsParameterSourcedPropertyRichInputBoxControl GetListOfLiteralsParameterSourcedPropertyRichInputBoxControl(IEditingControl editingControl, LiteralListParameterElementInfo listInfo)
-            => _getListOfLiteralsParameterSourcedPropertyRichInputBoxControl(editingControl, listInfo);
+        public IListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl GetListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl(IEditingControl editingControl, LiteralListParameterElementInfo listInfo)
+            => _getListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl(editingControl, listInfo);
 
-        public IListOfLiteralsParameterTypeAutoCompleteControl GetListOfLiteralsParameterTypeAutoCompleteControl()
+        public IListOfLiteralsItemTypeAutoCompleteControl GetListOfLiteralsItemTypeAutoCompleteControl()
             => _listOfLiteralsParameterTypeAutoCompleteControl;
     }
 }
