@@ -118,5 +118,13 @@ namespace TelerikLogicBuilder.FormsPreviewer
         {
             radButton.Click += (sender, args) => command.Execute();
         }
+
+        private void radButtonReloadConfiguration_Click(object sender, EventArgs e)
+        {
+            _configurationService.ConstructorList = _constructorListInitializer.InitializeList();
+            _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
+            _configurationService.FunctionList = _functionListInitializer.InitializeList();
+            _configurationService.VariableList = _variableListInitializer.InitializeList();
+        }
     }
 }

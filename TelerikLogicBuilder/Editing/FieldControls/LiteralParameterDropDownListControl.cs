@@ -75,6 +75,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
 
+        public void ResetControl()
+        {
+            if (radDropDownList.Items.Count > 0)
+                radDropDownList.SelectedIndex = 0;
+        }
+
         public void SetErrorBackColor() 
             => SetDropDownBorderForeColor
             (
@@ -160,7 +166,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
                 return;
 
             modified = false;
-            editingControl.RequestDocumentUpdate();
+            RequestDocumentUpdate();
         }
         #endregion Event Handlers
     }

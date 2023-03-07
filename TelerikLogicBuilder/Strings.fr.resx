@@ -970,6 +970,9 @@
     <value>{0}&lt;{1}&gt;</value>
     <comment>0=TypeName; 1=comma delimited list of genric arguments</comment>
   </data>
+	<data name="hashSetFormGroupBoxTitle" xml:space="preserve">
+    <value>Hash SetFR</value>
+  </data>
 	<data name="initialParameterTypeNameFormat" xml:space="preserve">
     <value>{0} {1}FR</value>
   </data>
@@ -1125,6 +1128,9 @@
   </data>
 	<data name="lblGenericArgumentsText" xml:space="preserve">
     <value>Generic ArgumentsFR</value>
+  </data>
+	<data name="listFormGroupBoxTitle" xml:space="preserve">
+    <value>ListFR</value>
   </data>
 	<data name="listItemIsEmpty" xml:space="preserve">
     <value>Item is empty.FR</value>

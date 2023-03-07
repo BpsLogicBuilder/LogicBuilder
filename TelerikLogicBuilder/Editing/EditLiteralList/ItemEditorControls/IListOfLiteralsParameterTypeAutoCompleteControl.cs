@@ -3,7 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    internal interface IListOfLiteralsParameterTypeAutoCompleteControl : IValueControl, ITypeAutoCompleteTextControl
+    internal interface IListOfLiteralsParameterTypeAutoCompleteControl : ILiteralListItemValueControl, ITypeAutoCompleteTextControl
     {
     }
 }

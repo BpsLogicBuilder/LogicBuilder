@@ -10,7 +10,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         Type? AssignedTo { get; }
         ObjectRichTextBox RichTextBox { get; }
         void RequestDocumentUpdate();
-        void ResetControl();
         void UpdateXmlElement(string innerXml);
     }
 }

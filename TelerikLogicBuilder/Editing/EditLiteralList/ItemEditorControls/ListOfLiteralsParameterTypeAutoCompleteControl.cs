@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
@@ -135,9 +136,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         }
         #endregion ITypeAutoCompleteTextControl
 
+        public void DisableControls() => Enable(false);
+
+        public void EnableControls() => Enable(true);
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
+
+        public void ResetControl() => radDropDownList.Text = string.Empty;
+
+        public void SetAssignedToType(Type type) { }//no command bar or dialogs
 
         public void SetErrorBackColor()
             => SetDropDownBorderForeColor
@@ -165,6 +174,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         }
 
         void IValueControl.Focus() => radDropDownList.Select();
+
+        private void Enable(bool enable)
+        {
+            radDropDownList.Enabled = enable;
+            radPanelButton.Enabled = enable;//Use the radPanelButton instead of btnHelper -
+                                            //btnHelper.Enabled conflicts with ITypeAutoCompleteTextControl.EnableAddUpdateGenericArguments()
+        }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;

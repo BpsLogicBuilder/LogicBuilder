@@ -1,11 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -41,8 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private readonly RichInputBox _richInputBox;
 
         private readonly IEditingControl editingControl;
-        private readonly ListOfLiteralsParameter literalListParameter;
-        private readonly IDictionary<string, ParameterControlSet> editControlsSet;
+        private readonly LiteralListParameterElementInfo listInfo;
         private Type? _assignedTo;
 
         public ListOfLiteralsParameterSourcedPropertyRichInputBoxControl(
@@ -56,8 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingControl editingControl,
-            ListOfLiteralsParameter literalListParameter,
-            IDictionary<string, ParameterControlSet> editControlsSet)
+            LiteralListParameterElementInfo listInfo)
         {
             InitializeComponent();
             _enumHelper = enumHelper;
@@ -69,8 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingControl = editingControl;
-            this.literalListParameter = literalListParameter;
-            this.editControlsSet = editControlsSet;
+            this.listInfo = listInfo;
             _richInputBoxEventsHelper = fieldControlContextMenuFactory.GetRichInputBoxEventsHelper(this);
             _createRichInputBoxContextMenu = fieldControlContextMenuFactory.GetCreateRichInputBoxContextMenu(this);
             btnHelper = new()
@@ -145,18 +142,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public ApplicationTypeInfo Application => editingControl.Application;
 
-        public string Comments => literalListParameter.Comments;
+        public string Comments => listInfo.Parameter?.Comments ?? string.Empty;
 
-        public string? SourceClassName
-        {
-            get
-            {
-                if (!this.editControlsSet.TryGetValue(literalListParameter.PropertySourceParameter, out ParameterControlSet? controlSet))
-                    return null;
-
-                return controlSet.ValueControl.MixedXml;
-            }
-        }
+        public string? SourceClassName => this.listInfo.ParameterSourceClassName;
 
         public Type AssignedTo
         {
@@ -166,7 +154,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
                 Type GetAssignedTo()
                 {
-                    Type type = _enumHelper.GetSystemType(literalListParameter.LiteralType);
+                    Type type = _enumHelper.GetSystemType(listInfo.LiteralType);
 
                     //string types convert multiple items (mixed xml) of different types to a format string so accepts all types.
                     //parent control field validation will handle single child cases.  Single items where type != typeof(string) are not valid.
@@ -203,11 +191,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             _xmlDataHelper.BuildLiteralXml(MixedXml)
         );
 
+        public void DisableControls() => Enable(false);
+
+        public void EnableControls() => Enable(true);
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
         public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+
+        public void ResetControl() => _richInputBox.Clear();
+
+        //string types convert multiple items (mixed xml) of different types to a format string so accepts all types.
+        //parent control field validation will handle single child cases.  Single items where type != typeof(string) are not valid.
+        public void SetAssignedToType(Type type) => _assignedTo = type == typeof(string) ? typeof(object) : type;
 
         public void SetErrorBackColor()
         {
@@ -238,6 +236,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
         {
             radButton.Click += (sender, args) => command.Execute();
+        }
+
+        private void Enable(bool enable)
+        {
+            //Enable displays the wrong color.
+            _richInputBox.Visible = enable;//With ReadOnly CommandButtons become enabled on enter.
+            //The radPanelRichInputBox border remains visible so the appearance is about right.
+
+            foreach (RadButton button in CommandButtons)
+                button.Enabled = enable;
         }
 
         private void Initialize()

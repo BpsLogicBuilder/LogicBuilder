@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -144,6 +143,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
+        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+
+        public void ResetControl() => radDropDownList.Text = string.Empty;
+
         public void SetErrorBackColor()
             => SetDropDownBorderForeColor
             (
@@ -258,7 +261,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
                 return;
 
             modified = false;
-            editingControl.RequestDocumentUpdate();
+            RequestDocumentUpdate();
         }
 
         private void RadDropDownList_Validating(object? sender, CancelEventArgs e)

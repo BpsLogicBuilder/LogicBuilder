@@ -5,6 +5,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
+    /// <summary>
+    /// The parent element of literalList is not always literalListParameter. LiteralListParameterElementInfo captures
+    /// the relevant details for the LiteralListControl irrespective of the context.
+    /// </summary>
     internal class LiteralListParameterElementInfo
     {
         public LiteralListParameterElementInfo(
@@ -16,7 +20,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             List<string> domain,
             List<string> defaultValues,
             string comments,
-            ListOfLiteralsParameter? parameter = null)
+            ListOfLiteralsParameter? parameter = null,
+            string parameterSourceClassName = "")
         {
             Name = name;
             ListType = listType;
@@ -27,18 +32,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
             DefaultValues = defaultValues;
             Comments = comments;
             Parameter = parameter;
+            ParameterSourceClassName = parameterSourceClassName;
         }
 
-        public string Name { get; private set; }
-        public ListType ListType { get; private set; }
-        public LiteralParameterType LiteralType { get; private set; }
-        public ListParameterInputStyle ListControl { get; private set; }
-        public LiteralParameterInputStyle ElementControl { get; private set; }
-        public List<string> Domain { get; private set; }
-        public List<string> DefaultValues { get; private set; }
+        public string Name { get; }
+        public ListType ListType { get; }
+        public LiteralParameterType LiteralType { get; }
+        public ListParameterInputStyle ListControl { get; }
+        public LiteralParameterInputStyle ElementControl { get; }
+        public List<string> Domain { get; }
+        public List<string> DefaultValues { get;}
         public string Comments { get; private set; }
         public ListOfLiteralsParameter? Parameter { get; }
         [MemberNotNullWhen(true, nameof(Parameter))]
         public bool HasParameter => Parameter != null;
+        public string ParameterSourceClassName { get; }
     }
 }

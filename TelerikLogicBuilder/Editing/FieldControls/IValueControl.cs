@@ -19,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         void Focus();
         void HideControls();
         void InvokeChanged();
+        void ResetControl();
         void SetErrorBackColor();
         void SetNormalBackColor();
         void SetToolTipHelp(string toolTipText);

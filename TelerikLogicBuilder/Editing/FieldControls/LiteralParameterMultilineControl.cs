@@ -156,6 +156,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
 
+        public void ResetControl() => _richInputBox.Clear();
+
         void IValueControl.Focus() => _richInputBox.Select();
 
         public void HideControls() => ShowControls(false);

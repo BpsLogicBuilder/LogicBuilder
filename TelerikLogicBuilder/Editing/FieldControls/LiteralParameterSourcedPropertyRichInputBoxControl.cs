@@ -201,6 +201,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
 
+        public void ResetControl() => _richInputBox.Clear();
+
         public void SetErrorBackColor()
         {
             Color errorColor = ForeColorUtility.GetGroupBoxBorderErrorColor();

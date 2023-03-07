@@ -660,7 +660,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         GetObjectListParameterChildren(parameterElement, parameterTreeNode, _objectListElementInfoHelper.GetObjectListElementInfo(listOfObjectsParameter));
                         break;
                     case ListOfLiteralsParameter listOfLiteralsParameter:
-                        GetLiteralListParameterChildren(parameterElement, parameterTreeNode, _literalListElementInfoHelper.GetLiteralListElementInfo(listOfLiteralsParameter));
+                        parameterElements.TryGetValue(listOfLiteralsParameter.PropertySourceParameter, out XmlElement? parameterSourceElement);
+                        GetLiteralListParameterChildren
+                        (
+                            parameterElement, 
+                            parameterTreeNode, 
+                            _literalListElementInfoHelper.GetLiteralListElementInfo
+                            (
+                                listOfLiteralsParameter, 
+                                parameterSourceElement?.InnerText ?? string.Empty// The corresponding LiteralListControl (unlike LiteralListParameterRichTextBoxControl) will not 
+                            )                                       //have access to the other parameters (editControlsSet) therefore the parameterSourceClassName must
+                        );                                          //included here if applicable.
                         break;
                     default:
                         break;

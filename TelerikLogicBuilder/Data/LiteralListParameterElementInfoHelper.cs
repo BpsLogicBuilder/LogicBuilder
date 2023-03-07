@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
                 string.Empty
             );
 
-        public LiteralListParameterElementInfo GetLiteralListElementInfo(ListOfLiteralsParameter literalListParameter)
+        public LiteralListParameterElementInfo GetLiteralListElementInfo(ListOfLiteralsParameter literalListParameter, string parameterSourceClassName)
             => new
             (
                 literalListParameter.Name,
@@ -43,7 +43,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
                 literalListParameter.Domain,
                 literalListParameter.DefaultValues,
                 literalListParameter.Comments,
-                literalListParameter
+                literalListParameter,
+                parameterSourceClassName
             );
 
         public LiteralListParameterElementInfo GetLiteralListElementInfo(LiteralListData listData)

@@ -16,28 +16,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             Initialize();
         }
 
-        private void Initialize()
-        {
-            CollapsePanelBorder(radPanelListBox);
-            CollapsePanelBorder(radPanelUpDownButtons);
-            CollapsePanelBorder(radPanelEditButtons);
-        }
-
-        private static void CollapsePanelBorder(RadPanel radPanel)
-        {
-            ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
-        }
-
-        public void CreateCommands(IRadListBoxManager radListBoxManager)
-        {
-            InitializeHButtonCommand(btnCancel, new ListBoxManagerCancelCommand(radListBoxManager));
-            InitializeHButtonCommand(btnCopy, new ListBoxManagerCopyCommand(radListBoxManager));
-            InitializeHButtonCommand(btnEdit, new ListBoxManagerEditCommand(radListBoxManager));
-            InitializeHButtonCommand(btnRemove, new ListBoxManagerRemoveCommand(radListBoxManager));
-            InitializeHButtonCommand(btnUp, new ListBoxManagerMoveUpCommand(radListBoxManager));
-            InitializeHButtonCommand(btnDown, new ListBoxManagerMoveDownCommand(radListBoxManager));
-        }
-
         public RadButton BtnCancel => btnCancel;
 
         public RadButton BtnCopy => btnCopy;
@@ -51,6 +29,43 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public RadButton BtnDown => btnDown;
 
         public RadListControl ListBox => listBox;
+
+        public void CreateCommands(IRadListBoxManager radListBoxManager)
+        {
+            InitializeHButtonCommand(btnCancel, new ListBoxManagerCancelCommand(radListBoxManager));
+            InitializeHButtonCommand(btnCopy, new ListBoxManagerCopyCommand(radListBoxManager));
+            InitializeHButtonCommand(btnEdit, new ListBoxManagerEditCommand(radListBoxManager));
+            InitializeHButtonCommand(btnRemove, new ListBoxManagerRemoveCommand(radListBoxManager));
+            InitializeHButtonCommand(btnUp, new ListBoxManagerMoveUpCommand(radListBoxManager));
+            InitializeHButtonCommand(btnDown, new ListBoxManagerMoveDownCommand(radListBoxManager));
+        }
+
+        public void DisableControls() => Enable(false);
+
+        public void EnableControls() => Enable(true);
+
+        private static void CollapsePanelBorder(RadPanel radPanel)
+        {
+            ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+        }
+
+        private void Enable(bool enable)
+        {
+            ListBox.Enabled = enable;
+            btnCancel.Enabled = enable;
+            btnCopy.Enabled = enable;
+            btnDown.Enabled = enable;
+            btnEdit.Enabled = enable;
+            btnRemove.Enabled = enable;
+            btnUp.Enabled = enable;
+        }
+
+        private void Initialize()
+        {
+            CollapsePanelBorder(radPanelListBox);
+            CollapsePanelBorder(radPanelUpDownButtons);
+            CollapsePanelBorder(radPanelEditButtons);
+        }
 
         private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
         {

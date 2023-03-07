@@ -1,9 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
-
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    internal interface IListOfLiteralsParameterDropDownListControl : IValueControl
+    internal interface IListOfLiteralsParameterDropDownListControl : ILiteralListItemValueControl
     {
-        void RequestDocumentUpdate();
     }
 }

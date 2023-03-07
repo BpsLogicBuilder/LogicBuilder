@@ -4,6 +4,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
+    /// <summary>
+    /// The parent element of objectList is not always objectListParameter. ObjectListParameterElementInfo captures
+    /// the relevant details for the ObjectListControl irrespective of the context.
+    /// </summary>
     internal class ObjectListParameterElementInfo
     {
         public ObjectListParameterElementInfo(

@@ -3697,6 +3697,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hash Set.
+        /// </summary>
+        internal static string hashSetFormGroupBoxTitle {
+            get {
+                return ResourceManager.GetString("hashSetFormGroupBoxTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1}.
         /// </summary>
         internal static string initialParameterTypeNameFormat {
@@ -4143,6 +4152,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string listDescriptionFormat {
             get {
                 return ResourceManager.GetString("listDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List.
+        /// </summary>
+        internal static string listFormGroupBoxTitle {
+            get {
+                return ResourceManager.GetString("listFormGroupBoxTitle", resourceCulture);
             }
         }
         

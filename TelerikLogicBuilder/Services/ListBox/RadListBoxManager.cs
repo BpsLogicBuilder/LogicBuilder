@@ -28,6 +28,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
         private RadListControl ListBox => this.listBoxHost.ListBox;
 
         private bool _isUpdate;
+
+        public event EventHandler<EventArgs>? ListChanged;
+
         private bool IsUpdate
         {
             get { return _isUpdate; }
@@ -57,6 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             ListBox.Items.Add(new RadListDataItem(item.ToString(), item));
             ListBox.SelectedValue = item;
             listBoxHost.ClearInputControls();
+            ListChanged?.Invoke(this, EventArgs.Empty);
             return true;
         }
 
@@ -96,6 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             ListBox.Items.RemoveAt(ListBox.SelectedIndex);
             ListBox.Items.Insert(newIndex, moveItem);
             ListBox.SelectedItem = moveItem;
+            ListChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void MoveUp()
@@ -111,6 +116,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             ListBox.Items.RemoveAt(ListBox.SelectedIndex);
             ListBox.Items.Insert(newIndex, moveItem);
             ListBox.SelectedItem = moveItem;
+            ListChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public bool Remove()
@@ -126,6 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             else if (index == 0 && listBoxHost.ListBox.Items.Count > 0)
                 listBoxHost.ListBox.SelectedIndex = 0;
 
+            ListChanged?.Invoke(this, EventArgs.Empty);
             return true;
         }
 
@@ -159,6 +166,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             ListBox.SelectedValue = item;
 
             ResetControls();
+            ListChanged?.Invoke(this, EventArgs.Empty);
             return true;
 
             HashSet<T> GetUnSelectedItems()

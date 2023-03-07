@@ -72,11 +72,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public event EventHandler? Changed;
 
+        public void DisableControls() => radDropDownList.Enabled = false;
+
+        public void EnableControls() => radDropDownList.Enabled = true;
+
         public void HideControls() => radDropDownList.Visible = false;
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
-        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+        public void ResetControl()
+        {
+            if (radDropDownList.Items.Count > 0)
+                radDropDownList.SelectedIndex = 0;
+        }
+
+        public void SetAssignedToType(Type type) { }//no command bar or edit dialogs
 
         public void SetErrorBackColor()
             => SetDropDownBorderForeColor

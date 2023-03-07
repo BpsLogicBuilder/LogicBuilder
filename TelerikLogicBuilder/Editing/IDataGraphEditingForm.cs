@@ -8,6 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         RadPanel RadPanelFields { get; }
         RadTreeView TreeView { get; }
         XmlDocument XmlDocument { get; }
+        void DisableControlsDuringEdit(bool disable);
         void ValidateXmlDocument();
     }
 }

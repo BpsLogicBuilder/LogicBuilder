@@ -2,8 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls
 {
-    internal interface IListOfLiteralsParameterDomainAutoCompleteControl : IValueControl
+    internal interface IListOfLiteralsParameterDomainAutoCompleteControl : ILiteralListItemValueControl
     {
-        void RequestDocumentUpdate();
     }
 }

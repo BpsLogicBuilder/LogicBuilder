@@ -161,11 +161,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             _xmlDataHelper.BuildLiteralXml(MixedXml)
         );
 
+        public void DisableControls() => Enable(false);
+
+        public void EnableControls() => Enable(true);
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
         public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+
+        public void ResetControl() => _richInputBox.Clear();
+
+        //string types convert multiple items (mixed xml) of different types to a format string so accepts all types.
+        //parent control field validation will handle single child cases.  Single items where type != typeof(string) are not valid.
+        public void SetAssignedToType(Type type) => _assignedTo = type == typeof(string) ? typeof(object) : type;
 
         public void SetErrorBackColor()
         {
@@ -197,6 +207,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
         {
             radButton.Click += (sender, args) => command.Execute();
+        }
+
+        private void Enable(bool enable)
+        {
+            //Enable displays the wrong color.
+            _richInputBox.Visible = enable;//With ReadOnly CommandButtons become enabled on enter.
+            //The radPanelRichInputBox border remains visible so the appearance is about right.
+
+            foreach (RadButton button in CommandButtons)
+                button.Enabled = enable;
         }
 
         private void Initialize()

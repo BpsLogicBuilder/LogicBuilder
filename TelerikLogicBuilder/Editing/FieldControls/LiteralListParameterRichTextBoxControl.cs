@@ -40,6 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         
         private readonly IEditingControl editingControl;
         private readonly ListOfLiteralsParameter listOfLiteralsParameter;
+        private readonly IDictionary<string, ParameterControlSet> editControlsSet;
         private Type? _assignedTo;
 
         public LiteralListParameterRichTextBoxControl(
@@ -52,7 +53,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingControl editingControl,
-            ListOfLiteralsParameter listOfLiteralsParameter)
+            ListOfLiteralsParameter listOfLiteralsParameter,
+            IDictionary<string, ParameterControlSet> editControlsSet)
         {
             InitializeComponent();
             _fieldControlCommandFactory = fieldControlCommandFactory;
@@ -64,6 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingControl = editingControl;
             this.listOfLiteralsParameter = listOfLiteralsParameter;
+            this.editControlsSet = editControlsSet;
             _objectRichTextBoxEventsHelper = fieldControlHelperFactory.GetObjectRichTextBoxEventsHelper(this);
             _updateObjectRichTextBoxXml = fieldControlHelperFactory.GetUpdateObjectRichTextBoxXml(this);
 
@@ -173,6 +176,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         }
 
         public XmlElement? XmlElement { get; private set; }
+
+        public string? ParameterSourceClassName
+        {
+            get
+            {
+                if (!this.editControlsSet.TryGetValue(listOfLiteralsParameter.PropertySourceParameter, out ParameterControlSet? controlSet))
+                    return null;
+
+                return controlSet.ValueControl.MixedXml;
+            }
+        }
 
         public event EventHandler? Changed;
 

@@ -54,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 			_treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             this.assignedTo = assignedTo;
             
-			_treeViewXmlDocumentHelper.LoadXmlDocument(button2Xml);
+			_treeViewXmlDocumentHelper.LoadXmlDocument(button1Xml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
             Initialize();
@@ -73,6 +73,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
+
+        public void DisableControlsDuringEdit(bool disable)
+        {
+        }
 
         public void RequestDocumentUpdate() => _dataGraphEditingFormEventsHelper.RequestDocumentUpdate();
 

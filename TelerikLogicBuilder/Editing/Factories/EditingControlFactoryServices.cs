@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
@@ -10,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -17,6 +19,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Xml;
 
@@ -84,7 +87,16 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editingForm, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditLiteralListControl
                     (
+                        provider.GetRequiredService<IEditLiteralListCommandFactory>(),
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ILiteralListBoxItemFactory>(),
+                        provider.GetRequiredService<ILiteralListItemEditorControlFactory>(),
                         provider.GetRequiredService<ILiteralListDataParser>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editingForm,
                         literalListElementInfo,

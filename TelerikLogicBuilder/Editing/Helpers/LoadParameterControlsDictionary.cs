@@ -107,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             }
             else if (parameter is ListOfLiteralsParameter listOfLiteralsParameter)
             {
-                valueControl = _fieldControlFactory.GetiteralListParameterRichTextBoxControl(editingControl, listOfLiteralsParameter);
+                valueControl = _fieldControlFactory.GetiteralListParameterRichTextBoxControl(editingControl, listOfLiteralsParameter, editControlsSet);
             }
             else if (parameter is ListOfObjectsParameter listOfObjectsParameter)
             {
@@ -116,6 +116,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             if (valueControl != null)
             {
+                if (parameter.Comments.Trim().Length > 0)
+                    valueControl.SetToolTipHelp(parameter.Comments);
+
                 valueControl.Location= new Point(0, 0);
                 valueControl.Dock = System.Windows.Forms.DockStyle.Fill;
                 editControlsSet.Add(parameter.Name, new ParameterControlSet(label, radCheckBox, valueControl));

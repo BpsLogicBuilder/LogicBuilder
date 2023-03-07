@@ -4,5 +4,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
     internal interface ILiteralParameterTypeAutoCompleteControl : IValueControl, ITypeAutoCompleteTextControl
     {
+        void RequestDocumentUpdate();
     }
 }

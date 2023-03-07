@@ -1,4 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox
+﻿using System;
+
+namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox
 {
     internal interface IRadListBoxManager<T> : IRadListBoxManager
         where T : IListBoxManageable
@@ -9,6 +11,7 @@
 
     internal interface IRadListBoxManager
     {
+        event EventHandler<EventArgs>? ListChanged;
         void Cancel();
         void Copy();
         void Edit();

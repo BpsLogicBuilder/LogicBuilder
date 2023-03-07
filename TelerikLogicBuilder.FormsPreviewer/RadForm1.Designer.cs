@@ -36,6 +36,7 @@
             this.btnSelectTableFunction = new Telerik.WinControls.UI.RadButton();
             this.btnSelectVoidFunction = new Telerik.WinControls.UI.RadButton();
             this.btnEditConstructorForm = new Telerik.WinControls.UI.RadButton();
+            this.radButtonReloadConfiguration = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditVariableForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectConstructorForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectBoolFunction)).BeginInit();
@@ -44,10 +45,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectTableFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectVoidFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditConstructorForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonReloadConfiguration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnSelectVariableForm
+            // btnEditVariableForm
             // 
             this.btnEditVariableForm.Location = new System.Drawing.Point(39, 12);
             this.btnEditVariableForm.Name = "btnEditVariableForm";
@@ -111,12 +113,22 @@
             this.btnEditConstructorForm.TabIndex = 7;
             this.btnEditConstructorForm.Text = "Edit Constructor Form";
             // 
+            // radButtonReloadConfiguration
+            // 
+            this.radButtonReloadConfiguration.Location = new System.Drawing.Point(592, 192);
+            this.radButtonReloadConfiguration.Name = "radButtonReloadConfiguration";
+            this.radButtonReloadConfiguration.Size = new System.Drawing.Size(179, 24);
+            this.radButtonReloadConfiguration.TabIndex = 8;
+            this.radButtonReloadConfiguration.Text = "Reload Configuration";
+            this.radButtonReloadConfiguration.Click += new System.EventHandler(this.radButtonReloadConfiguration_Click);
+            // 
             // RadForm1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 352);
+            this.ClientSize = new System.Drawing.Size(820, 301);
+            this.Controls.Add(this.radButtonReloadConfiguration);
             this.Controls.Add(this.btnEditConstructorForm);
             this.Controls.Add(this.btnSelectVoidFunction);
             this.Controls.Add(this.btnSelectTableFunction);
@@ -136,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectTableFunction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectVoidFunction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditConstructorForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonReloadConfiguration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -151,5 +164,6 @@
         private Telerik.WinControls.UI.RadButton btnSelectTableFunction;
         private Telerik.WinControls.UI.RadButton btnSelectVoidFunction;
         private Telerik.WinControls.UI.RadButton btnEditConstructorForm;
+        private Telerik.WinControls.UI.RadButton radButtonReloadConfiguration;
     }
 }
