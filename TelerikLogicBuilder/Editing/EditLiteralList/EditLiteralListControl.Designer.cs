@@ -128,20 +128,22 @@
             // 
             // cmbLiteralType
             // 
-            this.cmbLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cmbLiteralType.AutoSize = false;
+            this.cmbLiteralType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbLiteralType.DropDownAnimationEnabled = true;
             this.cmbLiteralType.Location = new System.Drawing.Point(291, 59);
             this.cmbLiteralType.Name = "cmbLiteralType";
-            this.cmbLiteralType.Size = new System.Drawing.Size(528, 20);
+            this.cmbLiteralType.Size = new System.Drawing.Size(528, 24);
             this.cmbLiteralType.TabIndex = 3;
             // 
             // cmbListType
             // 
-            this.cmbListType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cmbListType.AutoSize = false;
+            this.cmbListType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbListType.DropDownAnimationEnabled = true;
             this.cmbListType.Location = new System.Drawing.Point(291, 23);
             this.cmbListType.Name = "cmbListType";
-            this.cmbListType.Size = new System.Drawing.Size(528, 20);
+            this.cmbListType.Size = new System.Drawing.Size(528, 24);
             this.cmbListType.TabIndex = 1;
             // 
             // lblLiteralType
@@ -149,7 +151,7 @@
             this.lblLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblLiteralType.Location = new System.Drawing.Point(28, 59);
             this.lblLiteralType.Name = "lblLiteralType";
-            this.lblLiteralType.Size = new System.Drawing.Size(66, 18);
+            this.lblLiteralType.Size = new System.Drawing.Size(257, 18);
             this.lblLiteralType.TabIndex = 2;
             this.lblLiteralType.Text = "Literal Type:";
             // 
@@ -158,7 +160,7 @@
             this.lblListType.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblListType.Location = new System.Drawing.Point(28, 23);
             this.lblListType.Name = "lblListType";
-            this.lblListType.Size = new System.Drawing.Size(52, 18);
+            this.lblListType.Size = new System.Drawing.Size(257, 18);
             this.lblListType.TabIndex = 0;
             this.lblListType.Text = "List Type:";
             // 
