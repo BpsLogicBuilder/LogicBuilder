@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -22,6 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     dataGraphEditingForm => new DataGraphEditingFormEventsHelper
                     (
                         provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IEditFormFieldSetHelper>(),
                         provider.GetRequiredService<IEditingControlFactory>(),
                         provider.GetRequiredService<IEditingFormHelperFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),

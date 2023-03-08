@@ -5,7 +5,6 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System;
@@ -22,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private readonly IConfigurationService _configurationService;
         private readonly IEditingControlFactory _editingControlFactory;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
+        private readonly IEditFormFieldSetHelper _editFormFieldSetHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -30,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         public DataGraphEditingFormEventsHelper(
             IConfigurationService configurationService,
+            IEditFormFieldSetHelper editFormFieldSetHelper,
             IEditingControlFactory editingControlFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
@@ -38,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             IDataGraphEditingForm dataGraphEditingForm)
         {
             _configurationService = configurationService;
+            _editFormFieldSetHelper = editFormFieldSetHelper;
             _editingControlFactory = editingControlFactory;
             _exceptionHelper = exceptionHelper;
             _treeViewService = treeViewService;
@@ -109,7 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 case ConstructorElementTreeNode:
                     return EditFormFieldSet.Constructor;
                 case FunctionElementTreeNode functionElementTreeNode:
-                    return GetFieldSetForFunction(_configurationService.FunctionList.Functions[functionElementTreeNode.Text]);
+                    return _editFormFieldSetHelper.GetFieldSetForFunction(_configurationService.FunctionList.Functions[functionElementTreeNode.Text]);
                 case LiteralElementTreeNode literalElementTreeNode:
                     if (literalElementTreeNode.Parent is LiteralListElementTreeNode)
                         return EditFormFieldSet.LiteralList;
@@ -124,7 +126,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     return selectedNode.Parent switch
                     {
                         ConstructorElementTreeNode => EditFormFieldSet.Constructor,
-                        FunctionElementTreeNode functionElementTreeNode => GetFieldSetForFunction(_configurationService.FunctionList.Functions[functionElementTreeNode.Text]),
+                        FunctionElementTreeNode functionElementTreeNode => _editFormFieldSetHelper.GetFieldSetForFunction(_configurationService.FunctionList.Functions[functionElementTreeNode.Text]),
                         _ => throw _exceptionHelper.CriticalException("{16317437-3740-43E2-8C12-C49612F081E2}"),
                     };
                 case ObjectElementTreeNode objectElementTreeNode:
@@ -140,16 +142,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     throw _exceptionHelper.CriticalException("{54AB80FD-B8CA-48A2-AD5E-56314EC35CBA}");
             }
         }
-
-        private static EditFormFieldSet GetFieldSetForFunction(Function function) 
-            => function.FunctionCategory switch
-            {
-                FunctionCategories.Assert => EditFormFieldSet.SetValueFunction,
-                FunctionCategories.Retract => EditFormFieldSet.SetValueToNullFunction,
-                _ => function.ParametersLayout == ParametersLayout.Binary
-                                            ? EditFormFieldSet.BinaryFunction
-                                            : EditFormFieldSet.StandardFunction,
-            };
 
         private void Navigate(IEditingControl editingControl)
         {

@@ -54,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 			_treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             this.assignedTo = assignedTo;
             
-			_treeViewXmlDocumentHelper.LoadXmlDocument(button1Xml);
+			_treeViewXmlDocumentHelper.LoadXmlDocument(button2Xml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
             Initialize();
@@ -183,269 +183,136 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             return xmlDocument;
         }
 
-        string button2Xml = @"<constructor name=""EditFormSettingsParameters"" visibleText=""EditFormSettingsParameters: title=Course;displayField=title;RequestDetailsParameters: requestDetails;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingParameters: fieldSettings;FilterGroupParameters: filterGroup;modelType=Contoso.Domain.Entities.CourseModel"">
+        string button2Xml = @"<constructor name=""DataFormSettingsParameters"" visibleText=""DataFormSettingsParameters: title=Edit Instructor;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingsParameters: fieldSettings;FormType: formType;Type: modelType;MultiBindingParameters: headerBindings;FormRequestDetailsParameters: requestDetails"">
 								<genericArguments />
 								<parameters>
-									<literalParameter name=""title"">Course</literalParameter>
-									<literalParameter name=""displayField"">title</literalParameter>
-									<objectParameter name=""requestDetails"">
-										<constructor name=""RequestDetailsParameters"" visibleText=""RequestDetailsParameters: modelType=Contoso.Domain.Entities.CourseModel;dataType=Contoso.Data.Entities.Course;dataSourceUrl=/api/Generic/GetData;getUrl=/api/Generic/GetSingle;addUrl=/api/Generic/Add;updateUrl=/api/Generic/Update;deleteUrl=/api/Generic/Delete"">
-											<genericArguments />
-											<parameters>
-												<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
-												<literalParameter name=""dataType"">Contoso.Data.Entities.Course</literalParameter>
-												<literalParameter name=""dataSourceUrl"">/api/Generic/GetData</literalParameter>
-												<literalParameter name=""getUrl"">/api/Generic/GetSingle</literalParameter>
-												<literalParameter name=""addUrl"">/api/Generic/Add</literalParameter>
-												<literalParameter name=""updateUrl"">/api/Generic/Update</literalParameter>
-												<literalParameter name=""deleteUrl"">/api/Generic/Delete</literalParameter>
-											</parameters>
-										</constructor>
-									</objectParameter>
+									<literalParameter name=""title"">Edit Instructor</literalParameter>
 									<objectListParameter name=""validationMessages"">
-										<objectList objectType=""Contoso.Forms.Parameters.Common.ValidationMessageParameters"" listType=""GenericList"" visibleText=""validationMessages: Count(3)"">
+										<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidationMessageParameters"" listType=""GenericList"" visibleText=""validationMessages: Count(3)"">
 											<object>
-												<constructor name=""ValidationMessageParameters"" visibleText=""ValidationMessageParameters: field=credits;GenericListOfValidationMethodParameters: methods;modelType=Contoso.Domain.Entities.CourseModel"">
+												<constructor name=""ValidationMessageParameters"" visibleText=""ValidationMessageParameters: field=FirstName;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
 													<genericArguments />
 													<parameters>
-														<literalParameter name=""field"">credits</literalParameter>
-														<objectListParameter name=""methods"">
-															<objectList objectType=""Contoso.Forms.Parameters.Common.ValidationMethodParameters"" listType=""GenericList"" visibleText=""methods: Count(4)"">
+														<literalParameter name=""field"">FirstName</literalParameter>
+														<objectListParameter name=""rules"">
+															<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidationRuleParameters"" listType=""GenericList"" visibleText=""rules: Count(1)"">
 																<object>
-																	<constructor name=""ValidationMethodParameters"" visibleText=""ValidationMethodParameters: method=required;message=Credits field is required."">
+																	<constructor name=""ValidationRuleParameters"" visibleText=""ValidationRuleParameters: className=RequiredRule;message=First Name is required."">
 																		<genericArguments />
 																		<parameters>
-																			<literalParameter name=""method"">required</literalParameter>
-																			<literalParameter name=""message"">Credits field is required.</literalParameter>
-																		</parameters>
-																	</constructor>
-																</object>
-																<object>
-																	<constructor name=""ValidationMethodParameters"" visibleText=""ValidationMethodParameters: method=mustBeANumber;message=Credits must be between 0 and 5 inclusive."">
-																		<genericArguments />
-																		<parameters>
-																			<literalParameter name=""method"">mustBeANumber</literalParameter>
-																			<literalParameter name=""message"">Credits must be between 0 and 5 inclusive.</literalParameter>
-																		</parameters>
-																	</constructor>
-																</object>
-																<object>
-																	<constructor name=""ValidationMethodParameters"" visibleText=""ValidationMethodParameters: method=max;message=Credits must be between 0 and 5 inclusive."">
-																		<genericArguments />
-																		<parameters>
-																			<literalParameter name=""method"">max</literalParameter>
-																			<literalParameter name=""message"">Credits must be between 0 and 5 inclusive.</literalParameter>
-																		</parameters>
-																	</constructor>
-																</object>
-																<object>
-																	<constructor name=""ValidationMethodParameters"" visibleText=""ValidationMethodParameters: method=min;message=Credits must be between 0 and 5 inclusive."">
-																		<genericArguments />
-																		<parameters>
-																			<literalParameter name=""method"">min</literalParameter>
-																			<literalParameter name=""message"">Credits must be between 0 and 5 inclusive.</literalParameter>
+																			<literalParameter name=""className"">RequiredRule</literalParameter>
+																			<literalParameter name=""message"">First Name is required.</literalParameter>
 																		</parameters>
 																	</constructor>
 																</object>
 															</objectList>
 														</objectListParameter>
-														<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
 													</parameters>
 												</constructor>
 											</object>
 											<object>
-												<constructor name=""ValidationMessageParameters"" visibleText=""ValidationMessageParameters: field=departmentID;GenericListOfValidationMethodParameters: methods;modelType=Contoso.Domain.Entities.CourseModel"">
+												<constructor name=""ValidationMessageParameters"" visibleText=""ValidationMessageParameters: field=LastName;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
 													<genericArguments />
 													<parameters>
-														<literalParameter name=""field"">departmentID</literalParameter>
-														<objectListParameter name=""methods"">
-															<objectList objectType=""Contoso.Forms.Parameters.Common.ValidationMethodParameters"" listType=""GenericList"" visibleText=""methods: Count(1)"">
+														<literalParameter name=""field"">LastName</literalParameter>
+														<objectListParameter name=""rules"">
+															<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidationRuleParameters"" listType=""GenericList"" visibleText=""rules: Count(1)"">
 																<object>
-																	<constructor name=""ValidationMethodParameters"" visibleText=""ValidationMethodParameters: method=required;message=Department is required."">
+																	<constructor name=""ValidationRuleParameters"" visibleText=""ValidationRuleParameters: className=RequiredRule;message=Last Name is required."">
 																		<genericArguments />
 																		<parameters>
-																			<literalParameter name=""method"">required</literalParameter>
-																			<literalParameter name=""message"">Department is required.</literalParameter>
+																			<literalParameter name=""className"">RequiredRule</literalParameter>
+																			<literalParameter name=""message"">Last Name is required.</literalParameter>
 																		</parameters>
 																	</constructor>
 																</object>
 															</objectList>
 														</objectListParameter>
-														<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
 													</parameters>
 												</constructor>
 											</object>
 											<object>
-												<constructor name=""ValidationMessageParameters"" visibleText=""ValidationMessageParameters: field=title;GenericListOfValidationMethodParameters: methods;modelType=Contoso.Domain.Entities.CourseModel"">
+												<constructor name=""ValidationMessageParameters"" visibleText=""ValidationMessageParameters: field=HireDate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
 													<genericArguments />
 													<parameters>
-														<literalParameter name=""field"">title</literalParameter>
-														<objectListParameter name=""methods"">
-															<objectList objectType=""Contoso.Forms.Parameters.Common.ValidationMethodParameters"" listType=""GenericList"" visibleText=""methods: Count(1)"">
+														<literalParameter name=""field"">HireDate</literalParameter>
+														<objectListParameter name=""rules"">
+															<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidationRuleParameters"" listType=""GenericList"" visibleText=""rules: Count(1)"">
 																<object>
-																	<constructor name=""ValidationMethodParameters"" visibleText=""ValidationMethodParameters: method=required;message=Title is required."">
+																	<constructor name=""ValidationRuleParameters"" visibleText=""ValidationRuleParameters: className=RequiredRule;message=Hire Date is required."">
 																		<genericArguments />
 																		<parameters>
-																			<literalParameter name=""method"">required</literalParameter>
-																			<literalParameter name=""message"">Title is required.</literalParameter>
+																			<literalParameter name=""className"">RequiredRule</literalParameter>
+																			<literalParameter name=""message"">Hire Date is required.</literalParameter>
 																		</parameters>
 																	</constructor>
 																</object>
 															</objectList>
 														</objectListParameter>
-														<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
 													</parameters>
 												</constructor>
 											</object>
 										</objectList>
 									</objectListParameter>
 									<objectListParameter name=""fieldSettings"">
-										<objectList objectType=""Contoso.Forms.Parameters.Common.FormItemSettingParameters"" listType=""GenericList"" visibleText=""fieldSettings: Count(4)"">
+										<objectList objectType=""Contoso.Forms.Parameters.DataForm.FormItemSettingsParameters"" listType=""GenericList"" visibleText=""fieldSettings: Count(5)"">
 											<object>
-												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=courseID;domElementId=courseIDid;title=Number;placeHolder=Number (required);type=numeric;TextFieldTemplateParameters: textTemplate;modelType=Contoso.Domain.Entities.CourseModel"">
+												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=FirstName;title=First Name;placeholder=First Name (required);stringFormat={0};Type: type;FieldValidationSettingsParameters: validationSetting;TextFieldTemplateParameters: textTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
 													<genericArguments />
 													<parameters>
-														<literalParameter name=""field"">courseID</literalParameter>
-														<literalParameter name=""domElementId"">courseIDid</literalParameter>
-														<literalParameter name=""title"">Number</literalParameter>
-														<literalParameter name=""placeHolder"">Number (required)</literalParameter>
-														<literalParameter name=""type"">numeric</literalParameter>
-														<objectParameter name=""textTemplate"">
-															<constructor name=""TextFieldTemplateParameters"" visibleText=""TextFieldTemplateParameters: templateName=labelTemplate"">
+														<literalParameter name=""field"">FirstName</literalParameter>
+														<literalParameter name=""title"">First Name</literalParameter>
+														<literalParameter name=""placeholder"">First Name (required)</literalParameter>
+														<literalParameter name=""stringFormat"">{0}</literalParameter>
+														<objectParameter name=""type"">
+															<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.String"">
 																<genericArguments />
 																<parameters>
-																	<literalParameter name=""templateName"">labelTemplate</literalParameter>
+																	<literalParameter name=""assemblyQualifiedTypeName"">System.String</literalParameter>
 																</parameters>
-															</constructor>
+															</function>
 														</objectParameter>
-														<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
-													</parameters>
-												</constructor>
-											</object>
-											<object>
-												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=credits;domElementId=creditsid;title=Credits;placeHolder=Credits (required);type=numeric;FormValidationSettingParameters: validationSetting;DropDownTemplateParameters: dropDownTemplate;modelType=Contoso.Domain.Entities.CourseModel"">
-													<genericArguments />
-													<parameters>
-														<literalParameter name=""field"">credits</literalParameter>
-														<literalParameter name=""domElementId"">creditsid</literalParameter>
-														<literalParameter name=""title"">Credits</literalParameter>
-														<literalParameter name=""placeHolder"">Credits (required)</literalParameter>
-														<literalParameter name=""type"">numeric</literalParameter>
 														<objectParameter name=""validationSetting"">
-															<constructor name=""FormValidationSettingParameters"" visibleText=""FormValidationSettingParameters: GenericListOfValidatorDescriptionParameters: validators"">
+															<constructor name=""FieldValidationSettingsParameters"" visibleText=""FieldValidationSettingsParameters: Object: defaultValue"">
 																<genericArguments />
 																<parameters>
+																	<objectParameter name=""defaultValue"">
+																		<function name=""Cast"" visibleText=""Cast: From="">
+																			<genericArguments>
+																				<literalParameter genericArgumentName=""From"">
+																					<literalType>String</literalType>
+																					<control>SingleLineTextBox</control>
+																					<useForEquality>true</useForEquality>
+																					<useForHashCode>false</useForHashCode>
+																					<useForToString>true</useForToString>
+																					<propertySource />
+																					<propertySourceParameter />
+																					<defaultValue />
+																					<domain />
+																				</literalParameter>
+																				<objectParameter genericArgumentName=""To"">
+																					<objectType>System.Object</objectType>
+																					<useForEquality>false</useForEquality>
+																					<useForHashCode>false</useForHashCode>
+																					<useForToString>true</useForToString>
+																				</objectParameter>
+																			</genericArguments>
+																			<parameters>
+																				<literalParameter name=""From"" />
+																			</parameters>
+																		</function>
+																	</objectParameter>
 																	<objectListParameter name=""validators"">
-																		<objectList objectType=""Contoso.Forms.Parameters.Common.ValidatorDescriptionParameters"" listType=""GenericList"" visibleText=""validators: Count(4)"">
+																		<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidatorDefinitionParameters"" listType=""GenericList"" visibleText=""validators: Count(1)"">
 																			<object>
-																				<constructor name=""ValidatorDescriptionParameters"" visibleText=""ValidatorDescriptionParameters: className=Validators;functionName=required"">
+																				<constructor name=""ValidatorDefinitionParameters"" visibleText=""ValidatorDefinitionParameters: className=RequiredRule;functionName=Check"">
 																					<genericArguments />
 																					<parameters>
-																						<literalParameter name=""className"">Validators</literalParameter>
-																						<literalParameter name=""functionName"">required</literalParameter>
-																					</parameters>
-																				</constructor>
-																			</object>
-																			<object>
-																				<constructor name=""ValidatorDescriptionParameters"" visibleText=""ValidatorDescriptionParameters: className=NumberValidators;functionName=mustBeANumber"">
-																					<genericArguments />
-																					<parameters>
-																						<literalParameter name=""className"">NumberValidators</literalParameter>
-																						<literalParameter name=""functionName"">mustBeANumber</literalParameter>
-																					</parameters>
-																				</constructor>
-																			</object>
-																			<object>
-																				<constructor name=""ValidatorDescriptionParameters"" visibleText=""ValidatorDescriptionParameters: className=Validators;functionName=max;GenericListOfValidatorArgumentParameters: arguments"">
-																					<genericArguments />
-																					<parameters>
-																						<literalParameter name=""className"">Validators</literalParameter>
-																						<literalParameter name=""functionName"">max</literalParameter>
-																						<objectListParameter name=""arguments"">
-																							<objectList objectType=""Contoso.Forms.Parameters.Common.ValidatorArgumentParameters"" listType=""GenericList"" visibleText=""arguments: Count(1)"">
-																								<object>
-																									<constructor name=""ValidatorArgumentParameters"" visibleText=""ValidatorArgumentParameters: name=max;Object: value"">
-																										<genericArguments />
-																										<parameters>
-																											<literalParameter name=""name"">max</literalParameter>
-																											<objectParameter name=""value"">
-																												<function name=""Cast"" visibleText=""Cast: From=5"">
-																													<genericArguments>
-																														<literalParameter genericArgumentName=""From"">
-																															<literalType>Integer</literalType>
-																															<control>SingleLineTextBox</control>
-																															<useForEquality>true</useForEquality>
-																															<useForHashCode>false</useForHashCode>
-																															<useForToString>true</useForToString>
-																															<propertySource />
-																															<propertySourceParameter />
-																															<defaultValue />
-																															<domain />
-																														</literalParameter>
-																														<objectParameter genericArgumentName=""To"">
-																															<objectType>System.Object</objectType>
-																															<useForEquality>false</useForEquality>
-																															<useForHashCode>false</useForHashCode>
-																															<useForToString>true</useForToString>
-																														</objectParameter>
-																													</genericArguments>
-																													<parameters>
-																														<literalParameter name=""From"">5</literalParameter>
-																													</parameters>
-																												</function>
-																											</objectParameter>
-																										</parameters>
-																									</constructor>
-																								</object>
-																							</objectList>
-																						</objectListParameter>
-																					</parameters>
-																				</constructor>
-																			</object>
-																			<object>
-																				<constructor name=""ValidatorDescriptionParameters"" visibleText=""ValidatorDescriptionParameters: className=Validators;functionName=min;GenericListOfValidatorArgumentParameters: arguments"">
-																					<genericArguments />
-																					<parameters>
-																						<literalParameter name=""className"">Validators</literalParameter>
-																						<literalParameter name=""functionName"">min</literalParameter>
-																						<objectListParameter name=""arguments"">
-																							<objectList objectType=""Contoso.Forms.Parameters.Common.ValidatorArgumentParameters"" listType=""GenericList"" visibleText=""arguments: Count(1)"">
-																								<object>
-																									<constructor name=""ValidatorArgumentParameters"" visibleText=""ValidatorArgumentParameters: name=max;Object: value"">
-																										<genericArguments />
-																										<parameters>
-																											<literalParameter name=""name"">max</literalParameter>
-																											<objectParameter name=""value"">
-																												<function name=""Cast"" visibleText=""Cast: From=0"">
-																													<genericArguments>
-																														<literalParameter genericArgumentName=""From"">
-																															<literalType>Integer</literalType>
-																															<control>SingleLineTextBox</control>
-																															<useForEquality>true</useForEquality>
-																															<useForHashCode>false</useForHashCode>
-																															<useForToString>true</useForToString>
-																															<propertySource />
-																															<propertySourceParameter />
-																															<defaultValue />
-																															<domain />
-																														</literalParameter>
-																														<objectParameter genericArgumentName=""To"">
-																															<objectType>System.Object</objectType>
-																															<useForEquality>false</useForEquality>
-																															<useForHashCode>false</useForHashCode>
-																															<useForToString>true</useForToString>
-																														</objectParameter>
-																													</genericArguments>
-																													<parameters>
-																														<literalParameter name=""From"">0</literalParameter>
-																													</parameters>
-																												</function>
-																											</objectParameter>
-																										</parameters>
-																									</constructor>
-																								</object>
-																							</objectList>
-																						</objectListParameter>
+																						<literalParameter name=""className"">RequiredRule</literalParameter>
+																						<literalParameter name=""functionName"">Check</literalParameter>
 																					</parameters>
 																				</constructor>
 																			</object>
@@ -454,346 +321,768 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<objectParameter name=""dropDownTemplate"">
-															<constructor name=""DropDownTemplateParameters"" visibleText=""DropDownTemplateParameters: templateName=dropDownTemplate;placeHolderText=Select One ...;textField=text;valueField=numericValue;RequestDetailsParameters: requestDetails;DataRequestStateParameters: state;modelType=Contoso.Domain.Entities.LookUpsModel"">
+														<objectParameter name=""textTemplate"">
+															<constructor name=""TextFieldTemplateParameters"" visibleText=""TextFieldTemplateParameters: templateName=TextTemplate"">
 																<genericArguments />
 																<parameters>
-																	<literalParameter name=""templateName"">dropDownTemplate</literalParameter>
-																	<literalParameter name=""placeHolderText"">Select One ...</literalParameter>
-																	<literalParameter name=""textField"">text</literalParameter>
-																	<literalParameter name=""valueField"">numericValue</literalParameter>
-																	<objectParameter name=""requestDetails"">
-																		<constructor name=""RequestDetailsParameters"" visibleText=""RequestDetailsParameters: modelType=Contoso.Domain.Entities.LookUpsModel;dataType=Contoso.Data.Entities.LookUps;dataSourceUrl=/api/Generic/GetFilterData;getUrl=/api/Generic/GetSingle;addUrl=/api/Generic/Add;updateUrl=/api/Generic/Update;deleteUrl=/api/Generic/Delete;GenericListOfSelectParameters: selects"">
-																			<genericArguments />
+																	<literalParameter name=""templateName"">TextTemplate</literalParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
+													</parameters>
+												</constructor>
+											</object>
+											<object>
+												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=LastName;title=Last Name;placeholder=Last Name (required);stringFormat={0};Type: type;FieldValidationSettingsParameters: validationSetting;TextFieldTemplateParameters: textTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+													<genericArguments />
+													<parameters>
+														<literalParameter name=""field"">LastName</literalParameter>
+														<literalParameter name=""title"">Last Name</literalParameter>
+														<literalParameter name=""placeholder"">Last Name (required)</literalParameter>
+														<literalParameter name=""stringFormat"">{0}</literalParameter>
+														<objectParameter name=""type"">
+															<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.String"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""assemblyQualifiedTypeName"">System.String</literalParameter>
+																</parameters>
+															</function>
+														</objectParameter>
+														<objectParameter name=""validationSetting"">
+															<constructor name=""FieldValidationSettingsParameters"" visibleText=""FieldValidationSettingsParameters: Object: defaultValue"">
+																<genericArguments />
+																<parameters>
+																	<objectParameter name=""defaultValue"">
+																		<function name=""Cast"" visibleText=""Cast: From="">
+																			<genericArguments>
+																				<literalParameter genericArgumentName=""From"">
+																					<literalType>String</literalType>
+																					<control>SingleLineTextBox</control>
+																					<useForEquality>true</useForEquality>
+																					<useForHashCode>false</useForHashCode>
+																					<useForToString>true</useForToString>
+																					<propertySource />
+																					<propertySourceParameter />
+																					<defaultValue />
+																					<domain />
+																				</literalParameter>
+																				<objectParameter genericArgumentName=""To"">
+																					<objectType>System.Object</objectType>
+																					<useForEquality>false</useForEquality>
+																					<useForHashCode>false</useForHashCode>
+																					<useForToString>true</useForToString>
+																				</objectParameter>
+																			</genericArguments>
 																			<parameters>
-																				<literalParameter name=""modelType"">Contoso.Domain.Entities.LookUpsModel</literalParameter>
-																				<literalParameter name=""dataType"">Contoso.Data.Entities.LookUps</literalParameter>
-																				<literalParameter name=""dataSourceUrl"">/api/Generic/GetFilterData</literalParameter>
-																				<literalParameter name=""getUrl"">/api/Generic/GetSingle</literalParameter>
-																				<literalParameter name=""addUrl"">/api/Generic/Add</literalParameter>
-																				<literalParameter name=""updateUrl"">/api/Generic/Update</literalParameter>
-																				<literalParameter name=""deleteUrl"">/api/Generic/Delete</literalParameter>
-																				<objectListParameter name=""selects"">
-																					<objectList objectType=""Contoso.Forms.Parameters.Common.SelectParameters"" listType=""GenericList"" visibleText=""selects: Count(3)"">
-																						<object>
-																							<constructor name=""SelectParameters"" visibleText=""SelectParameters: fieldName=numericValue;sourceMember=numericValue;modelType=Contoso.Domain.Entities.LookUpsModel"">
-																								<genericArguments />
-																								<parameters>
-																									<literalParameter name=""fieldName"">numericValue</literalParameter>
-																									<literalParameter name=""sourceMember"">numericValue</literalParameter>
-																									<literalParameter name=""modelType"">Contoso.Domain.Entities.LookUpsModel</literalParameter>
-																								</parameters>
-																							</constructor>
-																						</object>
-																						<object>
-																							<constructor name=""SelectParameters"" visibleText=""SelectParameters: fieldName=text;sourceMember=text;modelType=Contoso.Domain.Entities.LookUpsModel"">
-																								<genericArguments />
-																								<parameters>
-																									<literalParameter name=""fieldName"">text</literalParameter>
-																									<literalParameter name=""sourceMember"">text</literalParameter>
-																									<literalParameter name=""modelType"">Contoso.Domain.Entities.LookUpsModel</literalParameter>
-																								</parameters>
-																							</constructor>
-																						</object>
-																						<object>
-																							<constructor name=""SelectParameters"" visibleText=""SelectParameters: fieldName=listName;sourceMember=listName;modelType=Contoso.Domain.Entities.LookUpsModel"">
-																								<genericArguments />
-																								<parameters>
-																									<literalParameter name=""fieldName"">listName</literalParameter>
-																									<literalParameter name=""sourceMember"">listName</literalParameter>
-																									<literalParameter name=""modelType"">Contoso.Domain.Entities.LookUpsModel</literalParameter>
-																								</parameters>
-																							</constructor>
-																						</object>
-																					</objectList>
-																				</objectListParameter>
+																				<literalParameter name=""From"" />
 																			</parameters>
-																		</constructor>
+																		</function>
 																	</objectParameter>
-																	<objectParameter name=""state"">
-																		<constructor name=""DataRequestStateParameters"" visibleText=""DataRequestStateParameters: GenericListOfSortParameters: sort;FilterGroupParameters: filterGroup"">
-																			<genericArguments />
+																	<objectListParameter name=""validators"">
+																		<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidatorDefinitionParameters"" listType=""GenericList"" visibleText=""validators: Count(1)"">
+																			<object>
+																				<constructor name=""ValidatorDefinitionParameters"" visibleText=""ValidatorDefinitionParameters: className=RequiredRule;functionName=Check"">
+																					<genericArguments />
+																					<parameters>
+																						<literalParameter name=""className"">RequiredRule</literalParameter>
+																						<literalParameter name=""functionName"">Check</literalParameter>
+																					</parameters>
+																				</constructor>
+																			</object>
+																		</objectList>
+																	</objectListParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
+														<objectParameter name=""textTemplate"">
+															<constructor name=""TextFieldTemplateParameters"" visibleText=""TextFieldTemplateParameters: templateName=TextTemplate"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""templateName"">TextTemplate</literalParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
+													</parameters>
+												</constructor>
+											</object>
+											<object>
+												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=HireDate;title=Hire Date;placeholder=Hire Date (required);stringFormat={0};Type: type;FieldValidationSettingsParameters: validationSetting;TextFieldTemplateParameters: textTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+													<genericArguments />
+													<parameters>
+														<literalParameter name=""field"">HireDate</literalParameter>
+														<literalParameter name=""title"">Hire Date</literalParameter>
+														<literalParameter name=""placeholder"">Hire Date (required)</literalParameter>
+														<literalParameter name=""stringFormat"">{0}</literalParameter>
+														<objectParameter name=""type"">
+															<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.DateTime"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""assemblyQualifiedTypeName"">System.DateTime</literalParameter>
+																</parameters>
+															</function>
+														</objectParameter>
+														<objectParameter name=""validationSetting"">
+															<constructor name=""FieldValidationSettingsParameters"" visibleText=""FieldValidationSettingsParameters: Object: defaultValue"">
+																<genericArguments />
+																<parameters>
+																	<objectParameter name=""defaultValue"">
+																		<function name=""Cast"" visibleText=""Cast: From=DateTime_yy_mm_dd: year=1900;month=1;day=1"">
+																			<genericArguments>
+																				<literalParameter genericArgumentName=""From"">
+																					<literalType>DateTime</literalType>
+																					<control>SingleLineTextBox</control>
+																					<useForEquality>true</useForEquality>
+																					<useForHashCode>false</useForHashCode>
+																					<useForToString>true</useForToString>
+																					<propertySource />
+																					<propertySourceParameter />
+																					<defaultValue />
+																					<domain />
+																				</literalParameter>
+																				<objectParameter genericArgumentName=""To"">
+																					<objectType>System.Object</objectType>
+																					<useForEquality>false</useForEquality>
+																					<useForHashCode>false</useForHashCode>
+																					<useForToString>true</useForToString>
+																				</objectParameter>
+																			</genericArguments>
 																			<parameters>
-																				<objectListParameter name=""sort"">
-																					<objectList objectType=""Contoso.Forms.Parameters.Common.SortParameters"" listType=""GenericList"" visibleText=""sort: Count(1)"">
-																						<object>
-																							<constructor name=""SortParameters"" visibleText=""SortParameters: field=numericValue;dir=desc;modelType=Contoso.Domain.Entities.LookUpsModel"">
-																								<genericArguments />
-																								<parameters>
-																									<literalParameter name=""field"">numericValue</literalParameter>
-																									<literalParameter name=""dir"">desc</literalParameter>
-																									<literalParameter name=""modelType"">Contoso.Domain.Entities.LookUpsModel</literalParameter>
-																								</parameters>
-																							</constructor>
-																						</object>
-																					</objectList>
-																				</objectListParameter>
-																				<objectParameter name=""filterGroup"">
-																					<constructor name=""FilterGroupParameters"" visibleText=""FilterGroupParameters: logic=and;GenericListOfFilterDefinitionParameters: filters"">
+																				<literalParameter name=""From"">
+																					<constructor name=""DateTime_yy_mm_dd"" visibleText=""DateTime_yy_mm_dd: year=1900;month=1;day=1"">
 																						<genericArguments />
 																						<parameters>
-																							<literalParameter name=""logic"">and</literalParameter>
-																							<objectListParameter name=""filters"">
-																								<objectList objectType=""Contoso.Forms.Parameters.Common.FilterDefinitionParameters"" listType=""GenericList"" visibleText=""filters: Count(1)"">
-																									<object>
-																										<constructor name=""FilterDefinitionParameters"" visibleText=""FilterDefinitionParameters: field=listName;oper=eq;Object: value;modelType=Contoso.Domain.Entities.LookUpsModel"">
-																											<genericArguments />
-																											<parameters>
-																												<literalParameter name=""field"">listName</literalParameter>
-																												<literalParameter name=""oper"">eq</literalParameter>
-																												<objectParameter name=""value"">
-																													<function name=""Cast"" visibleText=""Cast: From=credits"">
-																														<genericArguments>
-																															<literalParameter genericArgumentName=""From"">
-																																<literalType>String</literalType>
-																																<control>SingleLineTextBox</control>
-																																<useForEquality>true</useForEquality>
-																																<useForHashCode>false</useForHashCode>
-																																<useForToString>true</useForToString>
-																																<propertySource />
-																																<propertySourceParameter />
-																																<defaultValue />
-																																<domain />
-																															</literalParameter>
-																															<objectParameter genericArgumentName=""To"">
-																																<objectType>System.Object</objectType>
-																																<useForEquality>false</useForEquality>
-																																<useForHashCode>false</useForHashCode>
-																																<useForToString>true</useForToString>
-																															</objectParameter>
-																														</genericArguments>
-																														<parameters>
-																															<literalParameter name=""From"">credits</literalParameter>
-																														</parameters>
-																													</function>
-																												</objectParameter>
-																												<literalParameter name=""modelType"">Contoso.Domain.Entities.LookUpsModel</literalParameter>
-																											</parameters>
-																										</constructor>
-																									</object>
-																								</objectList>
-																							</objectListParameter>
+																							<literalParameter name=""year"">1900</literalParameter>
+																							<literalParameter name=""month"">1</literalParameter>
+																							<literalParameter name=""day"">1</literalParameter>
 																						</parameters>
 																					</constructor>
+																				</literalParameter>
+																			</parameters>
+																		</function>
+																	</objectParameter>
+																	<objectListParameter name=""validators"">
+																		<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidatorDefinitionParameters"" listType=""GenericList"" visibleText=""validators: Count(1)"">
+																			<object>
+																				<constructor name=""ValidatorDefinitionParameters"" visibleText=""ValidatorDefinitionParameters: className=RequiredRule;functionName=Check"">
+																					<genericArguments />
+																					<parameters>
+																						<literalParameter name=""className"">RequiredRule</literalParameter>
+																						<literalParameter name=""functionName"">Check</literalParameter>
+																					</parameters>
+																				</constructor>
+																			</object>
+																		</objectList>
+																	</objectListParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
+														<objectParameter name=""textTemplate"">
+															<constructor name=""TextFieldTemplateParameters"" visibleText=""TextFieldTemplateParameters: templateName=DateTemplate"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""templateName"">DateTemplate</literalParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
+													</parameters>
+												</constructor>
+											</object>
+											<object>
+												<constructor name=""FormGroupSettingsParameters"" visibleText=""FormGroupSettingsParameters: field=OfficeAssignment;title=Title;validFormControlText=(OfficeAssignment);invalidFormControlText=(Invalid OfficeAssignment);placeholder=;Type: modelType;FormGroupTemplateParameters: formGroupTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+													<genericArguments />
+													<parameters>
+														<literalParameter name=""field"">OfficeAssignment</literalParameter>
+														<literalParameter name=""title"">Title</literalParameter>
+														<literalParameter name=""validFormControlText"">(OfficeAssignment)</literalParameter>
+														<literalParameter name=""invalidFormControlText"">(Invalid OfficeAssignment)</literalParameter>
+														<literalParameter name=""placeholder"" />
+														<objectParameter name=""modelType"">
+															<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.OfficeAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.OfficeAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																</parameters>
+															</function>
+														</objectParameter>
+														<objectParameter name=""formGroupTemplate"">
+															<constructor name=""FormGroupTemplateParameters"" visibleText=""FormGroupTemplateParameters: templateName=PopupFormGroupTemplate"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""templateName"">PopupFormGroupTemplate</literalParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
+														<objectListParameter name=""fieldSettings"">
+															<objectList objectType=""Contoso.Forms.Parameters.DataForm.FormItemSettingsParameters"" listType=""GenericList"" visibleText=""fieldSettings: Count(1)"">
+																<object>
+																	<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=Location;title=Location;placeholder=Location;stringFormat={0};Type: type;TextFieldTemplateParameters: textTemplate;fieldTypeSource=Contoso.Domain.Entities.OfficeAssignmentModel"">
+																		<genericArguments />
+																		<parameters>
+																			<literalParameter name=""field"">Location</literalParameter>
+																			<literalParameter name=""title"">Location</literalParameter>
+																			<literalParameter name=""placeholder"">Location</literalParameter>
+																			<literalParameter name=""stringFormat"">{0}</literalParameter>
+																			<objectParameter name=""type"">
+																				<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.String"">
+																					<genericArguments />
+																					<parameters>
+																						<literalParameter name=""assemblyQualifiedTypeName"">System.String</literalParameter>
+																					</parameters>
+																				</function>
+																			</objectParameter>
+																			<objectParameter name=""textTemplate"">
+																				<constructor name=""TextFieldTemplateParameters"" visibleText=""TextFieldTemplateParameters: templateName=TextTemplate"">
+																					<genericArguments />
+																					<parameters>
+																						<literalParameter name=""templateName"">TextTemplate</literalParameter>
+																					</parameters>
+																				</constructor>
+																			</objectParameter>
+																			<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.OfficeAssignmentModel</literalParameter>
+																		</parameters>
+																	</constructor>
+																</object>
+															</objectList>
+														</objectListParameter>
+														<objectListParameter name=""validationMessages"">
+															<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidationMessageParameters"" listType=""GenericList"" visibleText=""validationMessages: Count(0)"" />
+														</objectListParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
+													</parameters>
+												</constructor>
+											</object>
+											<object>
+												<constructor name=""MultiSelectFormControlSettingsParameters"" visibleText=""MultiSelectFormControlSettingsParameters: field=Courses;title=Courses;placeholder=(Courses);stringFormat={0};Type: type;MultiSelectTemplateParameters: multiSelectTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+													<genericArguments />
+													<parameters>
+														<literalParameter name=""field"">Courses</literalParameter>
+														<literalListParameter name=""keyFields"">
+															<literalList literalType=""String"" listType=""GenericList"" visibleText=""keyFields: Count(1)"">
+																<literal>CourseID</literal>
+															</literalList>
+														</literalListParameter>
+														<literalParameter name=""title"">Courses</literalParameter>
+														<literalParameter name=""placeholder"">(Courses)</literalParameter>
+														<literalParameter name=""stringFormat"">{0}</literalParameter>
+														<objectParameter name=""type"">
+															<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Collections.Generic.ICollection`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""assemblyQualifiedTypeName"">System.Collections.Generic.ICollection`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
+																</parameters>
+															</function>
+														</objectParameter>
+														<objectParameter name=""multiSelectTemplate"">
+															<constructor name=""MultiSelectTemplateParameters"" visibleText=""MultiSelectTemplateParameters: templateName=MultiSelectTemplate;placeholderText=(Courses);textField=CourseTitle;valueField=CourseID;Type: modelType;loadingIndicatorText=Loading ...;SelectorLambdaOperatorParameters: textAndValueSelector;RequestDetailsParameters: requestDetails;fieldTypeSource=Contoso.Domain.Entities.CourseAssignmentModel"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""templateName"">MultiSelectTemplate</literalParameter>
+																	<literalParameter name=""placeholderText"">(Courses)</literalParameter>
+																	<literalParameter name=""textField"">CourseTitle</literalParameter>
+																	<literalParameter name=""valueField"">CourseID</literalParameter>
+																	<objectParameter name=""modelType"">
+																		<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																			<genericArguments />
+																			<parameters>
+																				<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																			</parameters>
+																		</function>
+																	</objectParameter>
+																	<literalParameter name=""loadingIndicatorText"">Loading ...</literalParameter>
+																	<objectParameter name=""textAndValueSelector"">
+																		<constructor name=""SelectorLambdaOperatorParameters"" visibleText=""SelectorLambdaOperatorParameters: IExpressionParameter: selector;Type: sourceElementType;parameterName=$it;Type: bodyType"">
+																			<genericArguments />
+																			<parameters>
+																				<objectParameter name=""selector"">
+																					<constructor name=""SelectOperatorParameters"" visibleText=""SelectOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;selectorParameterName=s"">
+																						<genericArguments />
+																						<parameters>
+																							<objectParameter name=""sourceOperand"">
+																								<constructor name=""OrderByOperatorParameters"" visibleText=""OrderByOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;ListSortDirection: sortDirection;selectorParameterName=d"">
+																									<genericArguments />
+																									<parameters>
+																										<objectParameter name=""sourceOperand"">
+																											<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=$it"">
+																												<genericArguments />
+																												<parameters>
+																													<literalParameter name=""parameterName"">$it</literalParameter>
+																												</parameters>
+																											</constructor>
+																										</objectParameter>
+																										<objectParameter name=""selectorBody"">
+																											<constructor name=""MemberSelectorOperatorParameters"" visibleText=""MemberSelectorOperatorParameters: memberFullName=Title;IExpressionParameter: sourceOperand"">
+																												<genericArguments />
+																												<parameters>
+																													<literalParameter name=""memberFullName"">Title</literalParameter>
+																													<objectParameter name=""sourceOperand"">
+																														<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=d"">
+																															<genericArguments />
+																															<parameters>
+																																<literalParameter name=""parameterName"">d</literalParameter>
+																															</parameters>
+																														</constructor>
+																													</objectParameter>
+																												</parameters>
+																											</constructor>
+																										</objectParameter>
+																										<objectParameter name=""sortDirection"">
+																											<variable name=""ListSortDirection_Ascending"" visibleText=""ListSortDirection_Ascending"" />
+																										</objectParameter>
+																										<literalParameter name=""selectorParameterName"">d</literalParameter>
+																									</parameters>
+																								</constructor>
+																							</objectParameter>
+																							<objectParameter name=""selectorBody"">
+																								<constructor name=""MemberInitOperatorParameters"" visibleText=""MemberInitOperatorParameters: Type: newType"">
+																									<genericArguments />
+																									<parameters>
+																										<objectListParameter name=""memberBindings"">
+																											<objectList objectType=""Contoso.Parameters.Expressions.MemberBindingItem"" listType=""GenericList"" visibleText=""memberBindings: Count(2)"">
+																												<object>
+																													<constructor name=""MemberBindingItem"" visibleText=""MemberBindingItem: property=CourseID;IExpressionParameter: selector"">
+																														<genericArguments />
+																														<parameters>
+																															<literalParameter name=""property"">CourseID</literalParameter>
+																															<objectParameter name=""selector"">
+																																<constructor name=""MemberSelectorOperatorParameters"" visibleText=""MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand"">
+																																	<genericArguments />
+																																	<parameters>
+																																		<literalParameter name=""memberFullName"">CourseID</literalParameter>
+																																		<objectParameter name=""sourceOperand"">
+																																			<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=s"">
+																																				<genericArguments />
+																																				<parameters>
+																																					<literalParameter name=""parameterName"">s</literalParameter>
+																																				</parameters>
+																																			</constructor>
+																																		</objectParameter>
+																																	</parameters>
+																																</constructor>
+																															</objectParameter>
+																														</parameters>
+																													</constructor>
+																												</object>
+																												<object>
+																													<constructor name=""MemberBindingItem"" visibleText=""MemberBindingItem: property=CourseTitle;IExpressionParameter: selector"">
+																														<genericArguments />
+																														<parameters>
+																															<literalParameter name=""property"">CourseTitle</literalParameter>
+																															<objectParameter name=""selector"">
+																																<constructor name=""MemberSelectorOperatorParameters"" visibleText=""MemberSelectorOperatorParameters: memberFullName=Title;IExpressionParameter: sourceOperand"">
+																																	<genericArguments />
+																																	<parameters>
+																																		<literalParameter name=""memberFullName"">Title</literalParameter>
+																																		<objectParameter name=""sourceOperand"">
+																																			<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=s"">
+																																				<genericArguments />
+																																				<parameters>
+																																					<literalParameter name=""parameterName"">s</literalParameter>
+																																				</parameters>
+																																			</constructor>
+																																		</objectParameter>
+																																	</parameters>
+																																</constructor>
+																															</objectParameter>
+																														</parameters>
+																													</constructor>
+																												</object>
+																											</objectList>
+																										</objectListParameter>
+																										<objectParameter name=""newType"">
+																											<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																												<genericArguments />
+																												<parameters>
+																													<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																												</parameters>
+																											</function>
+																										</objectParameter>
+																									</parameters>
+																								</constructor>
+																							</objectParameter>
+																							<literalParameter name=""selectorParameterName"">s</literalParameter>
+																						</parameters>
+																					</constructor>
+																				</objectParameter>
+																				<objectParameter name=""sourceElementType"">
+																					<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																						<genericArguments />
+																						<parameters>
+																							<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																						</parameters>
+																					</function>
+																				</objectParameter>
+																				<literalParameter name=""parameterName"">$it</literalParameter>
+																				<objectParameter name=""bodyType"">
+																					<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																						<genericArguments />
+																						<parameters>
+																							<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																						</parameters>
+																					</function>
 																				</objectParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name=""modelType"">Contoso.Domain.Entities.LookUpsModel</literalParameter>
-																</parameters>
-															</constructor>
-														</objectParameter>
-														<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
-													</parameters>
-												</constructor>
-											</object>
-											<object>
-												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=departmentID;domElementId=departmentIDid;title=Department;placeHolder=Department (required);type=text;FormValidationSettingParameters: validationSetting;DropDownTemplateParameters: dropDownTemplate;modelType=Contoso.Domain.Entities.CourseModel"">
-													<genericArguments />
-													<parameters>
-														<literalParameter name=""field"">departmentID</literalParameter>
-														<literalParameter name=""domElementId"">departmentIDid</literalParameter>
-														<literalParameter name=""title"">Department</literalParameter>
-														<literalParameter name=""placeHolder"">Department (required)</literalParameter>
-														<literalParameter name=""type"">text</literalParameter>
-														<objectParameter name=""validationSetting"">
-															<constructor name=""FormValidationSettingParameters"" visibleText=""FormValidationSettingParameters: GenericListOfValidatorDescriptionParameters: validators"">
-																<genericArguments />
-																<parameters>
-																	<objectListParameter name=""validators"">
-																		<objectList objectType=""Contoso.Forms.Parameters.Common.ValidatorDescriptionParameters"" listType=""GenericList"" visibleText=""validators: Count(1)"">
-																			<object>
-																				<constructor name=""ValidatorDescriptionParameters"" visibleText=""ValidatorDescriptionParameters: className=Validators;functionName=required"">
-																					<genericArguments />
-																					<parameters>
-																						<literalParameter name=""className"">Validators</literalParameter>
-																						<literalParameter name=""functionName"">required</literalParameter>
-																					</parameters>
-																				</constructor>
-																			</object>
-																		</objectList>
-																	</objectListParameter>
-																</parameters>
-															</constructor>
-														</objectParameter>
-														<objectParameter name=""dropDownTemplate"">
-															<constructor name=""DropDownTemplateParameters"" visibleText=""DropDownTemplateParameters: templateName=dropDownTemplate;placeHolderText=Select One ...;textField=name;valueField=departmentID;RequestDetailsParameters: requestDetails;DataRequestStateParameters: state;modelType=Contoso.Domain.Entities.DepartmentModel"">
-																<genericArguments />
-																<parameters>
-																	<literalParameter name=""templateName"">dropDownTemplate</literalParameter>
-																	<literalParameter name=""placeHolderText"">Select One ...</literalParameter>
-																	<literalParameter name=""textField"">name</literalParameter>
-																	<literalParameter name=""valueField"">departmentID</literalParameter>
 																	<objectParameter name=""requestDetails"">
-																		<constructor name=""RequestDetailsParameters"" visibleText=""RequestDetailsParameters: modelType=Contoso.Domain.Entities.DepartmentModel;dataType=Contoso.Data.Entities.Department;dataSourceUrl=/api/Generic/GetFilterData;getUrl=/api/Generic/GetSingle;addUrl=/api/Generic/Add;updateUrl=/api/Generic/Update;deleteUrl=/api/Generic/Delete;GenericListOfSelectParameters: selects;distinct=true"">
+																		<constructor name=""RequestDetailsParameters"" visibleText=""RequestDetailsParameters: Type: modelType;Type: dataType;Type: modelReturnType;Type: dataReturnType;dataSourceUrl=api/List/GetList"">
 																			<genericArguments />
 																			<parameters>
-																				<literalParameter name=""modelType"">Contoso.Domain.Entities.DepartmentModel</literalParameter>
-																				<literalParameter name=""dataType"">Contoso.Data.Entities.Department</literalParameter>
-																				<literalParameter name=""dataSourceUrl"">/api/Generic/GetFilterData</literalParameter>
-																				<literalParameter name=""getUrl"">/api/Generic/GetSingle</literalParameter>
-																				<literalParameter name=""addUrl"">/api/Generic/Add</literalParameter>
-																				<literalParameter name=""updateUrl"">/api/Generic/Update</literalParameter>
-																				<literalParameter name=""deleteUrl"">/api/Generic/Delete</literalParameter>
-																				<objectListParameter name=""selects"">
-																					<objectList objectType=""Contoso.Forms.Parameters.Common.SelectParameters"" listType=""GenericList"" visibleText=""selects: Count(2)"">
-																						<object>
-																							<constructor name=""SelectParameters"" visibleText=""SelectParameters: fieldName=departmentID;sourceMember=departmentID;modelType=Contoso.Domain.Entities.DepartmentModel"">
-																								<genericArguments />
-																								<parameters>
-																									<literalParameter name=""fieldName"">departmentID</literalParameter>
-																									<literalParameter name=""sourceMember"">departmentID</literalParameter>
-																									<literalParameter name=""modelType"">Contoso.Domain.Entities.DepartmentModel</literalParameter>
-																								</parameters>
-																							</constructor>
-																						</object>
-																						<object>
-																							<constructor name=""SelectParameters"" visibleText=""SelectParameters: fieldName=name;sourceMember=name;modelType=Contoso.Domain.Entities.DepartmentModel"">
-																								<genericArguments />
-																								<parameters>
-																									<literalParameter name=""fieldName"">name</literalParameter>
-																									<literalParameter name=""sourceMember"">name</literalParameter>
-																									<literalParameter name=""modelType"">Contoso.Domain.Entities.DepartmentModel</literalParameter>
-																								</parameters>
-																							</constructor>
-																						</object>
-																					</objectList>
-																				</objectListParameter>
-																				<literalParameter name=""distinct"">true</literalParameter>
+																				<objectParameter name=""modelType"">
+																					<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																						<genericArguments />
+																						<parameters>
+																							<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																						</parameters>
+																					</function>
+																				</objectParameter>
+																				<objectParameter name=""dataType"">
+																					<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Data.Entities.Course, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																						<genericArguments />
+																						<parameters>
+																							<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Data.Entities.Course, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																						</parameters>
+																					</function>
+																				</objectParameter>
+																				<objectParameter name=""modelReturnType"">
+																					<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																						<genericArguments />
+																						<parameters>
+																							<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																						</parameters>
+																					</function>
+																				</objectParameter>
+																				<objectParameter name=""dataReturnType"">
+																					<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Data.Entities.CourseAssignment, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																						<genericArguments />
+																						<parameters>
+																							<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Data.Entities.CourseAssignment, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																						</parameters>
+																					</function>
+																				</objectParameter>
+																				<literalParameter name=""dataSourceUrl"">api/List/GetList</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<objectParameter name=""state"">
-																		<constructor name=""DataRequestStateParameters"" visibleText=""DataRequestStateParameters: GenericListOfSortParameters: sort"">
-																			<genericArguments />
-																			<parameters>
-																				<objectListParameter name=""sort"">
-																					<objectList objectType=""Contoso.Forms.Parameters.Common.SortParameters"" listType=""GenericList"" visibleText=""sort: Count(1)"">
-																						<object>
-																							<constructor name=""SortParameters"" visibleText=""SortParameters: field=name;dir=asc;modelType=Contoso.Domain.Entities.DepartmentModel"">
-																								<genericArguments />
-																								<parameters>
-																									<literalParameter name=""field"">name</literalParameter>
-																									<literalParameter name=""dir"">asc</literalParameter>
-																									<literalParameter name=""modelType"">Contoso.Domain.Entities.DepartmentModel</literalParameter>
-																								</parameters>
-																							</constructor>
-																						</object>
-																					</objectList>
-																				</objectListParameter>
-																			</parameters>
-																		</constructor>
-																	</objectParameter>
-																	<literalParameter name=""modelType"">Contoso.Domain.Entities.DepartmentModel</literalParameter>
+																	<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.CourseAssignmentModel</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
-													</parameters>
-												</constructor>
-											</object>
-											<object>
-												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=title;domElementId=titleid;title=Title;placeHolder=Title (required);type=text;TextFieldTemplateParameters: textTemplate;modelType=Contoso.Domain.Entities.CourseModel"">
-													<genericArguments />
-													<parameters>
-														<literalParameter name=""field"">title</literalParameter>
-														<literalParameter name=""domElementId"">titleid</literalParameter>
-														<literalParameter name=""title"">Title</literalParameter>
-														<literalParameter name=""placeHolder"">Title (required)</literalParameter>
-														<literalParameter name=""type"">text</literalParameter>
-														<objectParameter name=""textTemplate"">
-															<constructor name=""TextFieldTemplateParameters"" visibleText=""TextFieldTemplateParameters: templateName=textTemplate"">
-																<genericArguments />
-																<parameters>
-																	<literalParameter name=""templateName"">textTemplate</literalParameter>
-																</parameters>
-															</constructor>
-														</objectParameter>
-														<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
 													</parameters>
 												</constructor>
 											</object>
 										</objectList>
 									</objectListParameter>
-									<objectParameter name=""filterGroup"">
-										<variable name=""GridItemFilter"" visibleText=""GridItemFilter"" />
+									<objectParameter name=""formType"">
+										<variable name=""FormType_Update"" visibleText=""FormType_Update"" />
 									</objectParameter>
-									<literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
+									<objectParameter name=""modelType"">
+										<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+											<genericArguments />
+											<parameters>
+												<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+											</parameters>
+										</function>
+									</objectParameter>
+									<objectParameter name=""headerBindings"">
+										<constructor name=""MultiBindingParameters"" visibleText=""MultiBindingParameters: stringFormat={0} {1};fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+											<genericArguments />
+											<parameters>
+												<literalParameter name=""stringFormat"">{0} {1}</literalParameter>
+												<literalListParameter name=""fields"">
+													<literalList literalType=""String"" listType=""GenericList"" visibleText=""fields: Count(2)"">
+														<literal>FirstName</literal>
+														<literal>LastName</literal>
+													</literalList>
+												</literalListParameter>
+												<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
+											</parameters>
+										</constructor>
+									</objectParameter>
+									<objectParameter name=""requestDetails"">
+										<constructor name=""FormRequestDetailsParameters"" visibleText=""FormRequestDetailsParameters: getUrl=api/Entity/GetEntity;addUrl=api/Instructor/Save;updateUrl=api/Instructor/Save;deleteUrl=api/Instructor/Delete;Type: modelType;Type: dataType;FilterLambdaOperatorParameters: filter;SelectExpandDefinitionParameters: selectExpandDefinition"">
+											<genericArguments />
+											<parameters>
+												<literalParameter name=""getUrl"">api/Entity/GetEntity</literalParameter>
+												<literalParameter name=""addUrl"">api/Instructor/Save</literalParameter>
+												<literalParameter name=""updateUrl"">api/Instructor/Save</literalParameter>
+												<literalParameter name=""deleteUrl"">api/Instructor/Delete</literalParameter>
+												<objectParameter name=""modelType"">
+													<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+														<genericArguments />
+														<parameters>
+															<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+														</parameters>
+													</function>
+												</objectParameter>
+												<objectParameter name=""dataType"">
+													<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Data.Entities.Instructor, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+														<genericArguments />
+														<parameters>
+															<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Data.Entities.Instructor, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+														</parameters>
+													</function>
+												</objectParameter>
+												<objectParameter name=""filter"">
+													<variable name=""Item Filter"" visibleText=""Item Filter"" />
+												</objectParameter>
+												<objectParameter name=""selectExpandDefinition"">
+													<constructor name=""SelectExpandDefinitionParameters"" visibleText=""SelectExpandDefinitionParameters: "">
+														<genericArguments />
+														<parameters>
+															<literalListParameter name=""selects"">
+																<literalList literalType=""String"" listType=""GenericList"" visibleText=""selects: Count(0)"" />
+															</literalListParameter>
+															<objectListParameter name=""expandedItems"">
+																<objectList objectType=""Contoso.Parameters.Expansions.SelectExpandItemParameters"" listType=""GenericList"" visibleText=""expandedItems: Count(2)"">
+																	<object>
+																		<constructor name=""SelectExpandItemParameters"" visibleText=""SelectExpandItemParameters: memberName=Courses"">
+																			<genericArguments />
+																			<parameters>
+																				<literalParameter name=""memberName"">Courses</literalParameter>
+																			</parameters>
+																		</constructor>
+																	</object>
+																	<object>
+																		<constructor name=""SelectExpandItemParameters"" visibleText=""SelectExpandItemParameters: memberName=OfficeAssignment"">
+																			<genericArguments />
+																			<parameters>
+																				<literalParameter name=""memberName"">OfficeAssignment</literalParameter>
+																			</parameters>
+																		</constructor>
+																	</object>
+																</objectList>
+															</objectListParameter>
+														</parameters>
+													</constructor>
+												</objectParameter>
+											</parameters>
+										</constructor>
+									</objectParameter>
 								</parameters>
 							</constructor>";
 
-        string button1Xml = @"<constructor name=""MultiSelectFormControlSettingsParameters"" visibleText=""MultiSelectFormControlSettingsParameters: GenericListOfString: keyFields;field=courses;domElementId=coursesId;title=Courses;placeHolder=Select Courses ...;type=text;MultiSelectTemplateParameters: multiSelectTemplate;modelType=Contoso.Domain.Entities.InstructorModel"">
-	                            <genericArguments />
-	                            <parameters>
-		                            <literalListParameter name=""keyFields"">
-			                            <literalList literalType=""String"" listType=""GenericList"" visibleText=""keyFields: Count(1)"">
-				                            <literal>courseID</literal>
-			                            </literalList>
-		                            </literalListParameter>
-		                            <literalParameter name=""field"">courses</literalParameter>
-		                            <literalParameter name=""domElementId"">coursesId</literalParameter>
-		                            <literalParameter name=""title"">Courses</literalParameter>
-		                            <literalParameter name=""placeHolder"">Select Courses ...</literalParameter>
-		                            <literalParameter name=""type"">text</literalParameter>
-		                            <objectParameter name=""multiSelectTemplate"">
-			                            <constructor name=""MultiSelectTemplateParameters"" visibleText=""MultiSelectTemplateParameters: templateName=multiSelectTemplate;placeHolderText=Select One ...;textField=courseTitle;valueField=courseID;RequestDetailsParameters: requestDetails;DataRequestStateParameters: state;modelType=Contoso.Domain.Entities.CourseAssignmentModel"">
-				                            <genericArguments />
-				                            <parameters>
-					                            <literalParameter name=""templateName"">multiSelectTemplate</literalParameter>
-					                            <literalParameter name=""placeHolderText"">Select One ...</literalParameter>
-					                            <literalParameter name=""textField"">courseTitle</literalParameter>
-					                            <literalParameter name=""valueField"">courseID</literalParameter>
-					                            <objectParameter name=""requestDetails"">
-						                            <constructor name=""RequestDetailsParameters"" visibleText=""RequestDetailsParameters: modelType=Contoso.Domain.Entities.CourseModel;dataType=Contoso.Data.Entities.Course;dataSourceUrl=/api/Generic/GetFilterData;getUrl=/api/Generic/GetSingle;addUrl=/api/Generic/Add;updateUrl=/api/Generic/Update;deleteUrl=/api/Generic/Delete;GenericListOfSelectParameters: selects"">
-							                            <genericArguments />
-							                            <parameters>
-								                            <literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
-								                            <literalParameter name=""dataType"">Contoso.Data.Entities.Course</literalParameter>
-								                            <literalParameter name=""dataSourceUrl"">/api/Generic/GetFilterData</literalParameter>
-								                            <literalParameter name=""getUrl"">/api/Generic/GetSingle</literalParameter>
-								                            <literalParameter name=""addUrl"">/api/Generic/Add</literalParameter>
-								                            <literalParameter name=""updateUrl"">/api/Generic/Update</literalParameter>
-								                            <literalParameter name=""deleteUrl"">/api/Generic/Delete</literalParameter>
-								                            <objectListParameter name=""selects"">
-									                            <objectList objectType=""Contoso.Forms.Parameters.Common.SelectParameters"" listType=""GenericList"" visibleText=""selects: Count(2)"">
-										                            <object>
-											                            <constructor name=""SelectParameters"" visibleText=""SelectParameters: fieldName=courseID;sourceMember=courseID;modelType=Contoso.Domain.Entities.CourseModel"">
-												                            <genericArguments />
-												                            <parameters>
-													                            <literalParameter name=""fieldName"">courseID</literalParameter>
-													                            <literalParameter name=""sourceMember"">courseID</literalParameter>
-													                            <literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
-												                            </parameters>
-											                            </constructor>
-										                            </object>
-										                            <object>
-											                            <constructor name=""SelectParameters"" visibleText=""SelectParameters: fieldName=courseTitle;sourceMember=title;modelType=Contoso.Domain.Entities.CourseModel"">
-												                            <genericArguments />
-												                            <parameters>
-													                            <literalParameter name=""fieldName"">courseTitle</literalParameter>
-													                            <literalParameter name=""sourceMember"">title</literalParameter>
-													                            <literalParameter name=""modelType"">Contoso.Domain.Entities.CourseModel</literalParameter>
-												                            </parameters>
-											                            </constructor>
-										                            </object>
-									                            </objectList>
-								                            </objectListParameter>
-							                            </parameters>
-						                            </constructor>
-					                            </objectParameter>
-					                            <objectParameter name=""state"">
-						                            <constructor name=""DataRequestStateParameters"" visibleText=""DataRequestStateParameters"">
-							                            <genericArguments />
-							                            <parameters />
-						                            </constructor>
-					                            </objectParameter>
-					                            <literalParameter name=""modelType"">Contoso.Domain.Entities.CourseAssignmentModel</literalParameter>
-				                            </parameters>
-			                            </constructor>
-		                            </objectParameter>
-		                            <literalParameter name=""modelType"">Contoso.Domain.Entities.InstructorModel</literalParameter>
-	                            </parameters>
-                            </constructor>";
+        string button1Xml = @"<constructor name=""MultiSelectFormControlSettingsParameters"" visibleText=""MultiSelectFormControlSettingsParameters: field=Courses;GenericListOfString: keyFields;title=Courses;placeholder=(Courses);stringFormat={0};Type: type;MultiSelectTemplateParameters: multiSelectTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+								<genericArguments />
+								<parameters>
+									<literalParameter name=""field"">Courses</literalParameter>
+									<literalListParameter name=""keyFields"">
+										<literalList literalType=""String"" listType=""GenericList"" visibleText=""keyFields: Count(1)"">
+											<literal>CourseID</literal>
+										</literalList>
+									</literalListParameter>
+									<literalParameter name=""title"">Courses</literalParameter>
+									<literalParameter name=""placeholder"">(Courses)</literalParameter>
+									<literalParameter name=""stringFormat"">{0}</literalParameter>
+									<objectParameter name=""type"">
+										<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Collections.Generic.ICollection`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"">
+											<genericArguments />
+											<parameters>
+												<literalParameter name=""assemblyQualifiedTypeName"">System.Collections.Generic.ICollection`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
+											</parameters>
+										</function>
+									</objectParameter>
+									<objectParameter name=""multiSelectTemplate"">
+										<constructor name=""MultiSelectTemplateParameters"" visibleText=""MultiSelectTemplateParameters: templateName=MultiSelectTemplate;placeholderText=(Courses);textField=CourseTitle;valueField=CourseID;Type: modelType;loadingIndicatorText=Loading ...;SelectorLambdaOperatorParameters: textAndValueSelector;RequestDetailsParameters: requestDetails;fieldTypeSource=Contoso.Domain.Entities.CourseAssignmentModel"">
+											<genericArguments />
+											<parameters>
+												<literalParameter name=""templateName"">MultiSelectTemplate</literalParameter>
+												<literalParameter name=""placeholderText"">(Courses)</literalParameter>
+												<literalParameter name=""textField"">CourseTitle</literalParameter>
+												<literalParameter name=""valueField"">CourseID</literalParameter>
+												<objectParameter name=""modelType"">
+													<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+														<genericArguments />
+														<parameters>
+															<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+														</parameters>
+													</function>
+												</objectParameter>
+												<literalParameter name=""loadingIndicatorText"">Loading ...</literalParameter>
+												<objectParameter name=""textAndValueSelector"">
+													<constructor name=""SelectorLambdaOperatorParameters"" visibleText=""SelectorLambdaOperatorParameters: IExpressionParameter: selector;Type: sourceElementType;parameterName=$it;Type: bodyType"">
+														<genericArguments />
+														<parameters>
+															<objectParameter name=""selector"">
+																<constructor name=""SelectOperatorParameters"" visibleText=""SelectOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;selectorParameterName=s"">
+																	<genericArguments />
+																	<parameters>
+																		<objectParameter name=""sourceOperand"">
+																			<constructor name=""OrderByOperatorParameters"" visibleText=""OrderByOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;ListSortDirection: sortDirection;selectorParameterName=d"">
+																				<genericArguments />
+																				<parameters>
+																					<objectParameter name=""sourceOperand"">
+																						<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=$it"">
+																							<genericArguments />
+																							<parameters>
+																								<literalParameter name=""parameterName"">$it</literalParameter>
+																							</parameters>
+																						</constructor>
+																					</objectParameter>
+																					<objectParameter name=""selectorBody"">
+																						<constructor name=""MemberSelectorOperatorParameters"" visibleText=""MemberSelectorOperatorParameters: memberFullName=Title;IExpressionParameter: sourceOperand"">
+																							<genericArguments />
+																							<parameters>
+																								<literalParameter name=""memberFullName"">Title</literalParameter>
+																								<objectParameter name=""sourceOperand"">
+																									<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=d"">
+																										<genericArguments />
+																										<parameters>
+																											<literalParameter name=""parameterName"">d</literalParameter>
+																										</parameters>
+																									</constructor>
+																								</objectParameter>
+																							</parameters>
+																						</constructor>
+																					</objectParameter>
+																					<objectParameter name=""sortDirection"">
+																						<variable name=""ListSortDirection_Ascending"" visibleText=""ListSortDirection_Ascending"" />
+																					</objectParameter>
+																					<literalParameter name=""selectorParameterName"">d</literalParameter>
+																				</parameters>
+																			</constructor>
+																		</objectParameter>
+																		<objectParameter name=""selectorBody"">
+																			<constructor name=""MemberInitOperatorParameters"" visibleText=""MemberInitOperatorParameters: Type: newType"">
+																				<genericArguments />
+																				<parameters>
+																					<objectListParameter name=""memberBindings"">
+																						<objectList objectType=""Contoso.Parameters.Expressions.MemberBindingItem"" listType=""GenericList"" visibleText=""memberBindings: Count(2)"">
+																							<object>
+																								<constructor name=""MemberBindingItem"" visibleText=""MemberBindingItem: property=CourseID;IExpressionParameter: selector"">
+																									<genericArguments />
+																									<parameters>
+																										<literalParameter name=""property"">CourseID</literalParameter>
+																										<objectParameter name=""selector"">
+																											<constructor name=""MemberSelectorOperatorParameters"" visibleText=""MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand"">
+																												<genericArguments />
+																												<parameters>
+																													<literalParameter name=""memberFullName"">CourseID</literalParameter>
+																													<objectParameter name=""sourceOperand"">
+																														<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=s"">
+																															<genericArguments />
+																															<parameters>
+																																<literalParameter name=""parameterName"">s</literalParameter>
+																															</parameters>
+																														</constructor>
+																													</objectParameter>
+																												</parameters>
+																											</constructor>
+																										</objectParameter>
+																									</parameters>
+																								</constructor>
+																							</object>
+																							<object>
+																								<constructor name=""MemberBindingItem"" visibleText=""MemberBindingItem: property=CourseTitle;IExpressionParameter: selector"">
+																									<genericArguments />
+																									<parameters>
+																										<literalParameter name=""property"">CourseTitle</literalParameter>
+																										<objectParameter name=""selector"">
+																											<constructor name=""MemberSelectorOperatorParameters"" visibleText=""MemberSelectorOperatorParameters: memberFullName=Title;IExpressionParameter: sourceOperand"">
+																												<genericArguments />
+																												<parameters>
+																													<literalParameter name=""memberFullName"">Title</literalParameter>
+																													<objectParameter name=""sourceOperand"">
+																														<constructor name=""ParameterOperatorParameters"" visibleText=""ParameterOperatorParameters: parameterName=s"">
+																															<genericArguments />
+																															<parameters>
+																																<literalParameter name=""parameterName"">s</literalParameter>
+																															</parameters>
+																														</constructor>
+																													</objectParameter>
+																												</parameters>
+																											</constructor>
+																										</objectParameter>
+																									</parameters>
+																								</constructor>
+																							</object>
+																						</objectList>
+																					</objectListParameter>
+																					<objectParameter name=""newType"">
+																						<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																							<genericArguments />
+																							<parameters>
+																								<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																							</parameters>
+																						</function>
+																					</objectParameter>
+																				</parameters>
+																			</constructor>
+																		</objectParameter>
+																		<literalParameter name=""selectorParameterName"">s</literalParameter>
+																	</parameters>
+																</constructor>
+															</objectParameter>
+															<objectParameter name=""sourceElementType"">
+																<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																	<genericArguments />
+																	<parameters>
+																		<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																	</parameters>
+																</function>
+															</objectParameter>
+															<literalParameter name=""parameterName"">$it</literalParameter>
+															<objectParameter name=""bodyType"">
+																<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																	<genericArguments />
+																	<parameters>
+																		<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																	</parameters>
+																</function>
+															</objectParameter>
+														</parameters>
+													</constructor>
+												</objectParameter>
+												<objectParameter name=""requestDetails"">
+													<constructor name=""RequestDetailsParameters"" visibleText=""RequestDetailsParameters: Type: modelType;Type: dataType;Type: modelReturnType;Type: dataReturnType;dataSourceUrl=api/List/GetList"">
+														<genericArguments />
+														<parameters>
+															<objectParameter name=""modelType"">
+																<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																	<genericArguments />
+																	<parameters>
+																		<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																	</parameters>
+																</function>
+															</objectParameter>
+															<objectParameter name=""dataType"">
+																<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Data.Entities.Course, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+																	<genericArguments />
+																	<parameters>
+																		<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Data.Entities.Course, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+																	</parameters>
+																</function>
+															</objectParameter>
+															<objectParameter name=""modelReturnType"">
+																<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																	<genericArguments />
+																	<parameters>
+																		<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																	</parameters>
+																</function>
+															</objectParameter>
+															<objectParameter name=""dataReturnType"">
+																<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Data.Entities.CourseAssignment, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"">
+																	<genericArguments />
+																	<parameters>
+																		<literalParameter name=""assemblyQualifiedTypeName"">System.Linq.IQueryable`1[[Contoso.Data.Entities.CourseAssignment, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+																	</parameters>
+																</function>
+															</objectParameter>
+															<literalParameter name=""dataSourceUrl"">api/List/GetList</literalParameter>
+														</parameters>
+													</constructor>
+												</objectParameter>
+												<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.CourseAssignmentModel</literalParameter>
+											</parameters>
+										</constructor>
+									</objectParameter>
+									<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
+								</parameters>
+							</constructor>";
 
         private void InitializeApplicationDropDownList()
         {

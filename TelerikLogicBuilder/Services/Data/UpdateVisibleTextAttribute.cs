@@ -24,10 +24,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorDataParser _constructorDataParser;
         private readonly IDecisionDataParser _decisionDataParser;
+        private readonly IEditFormFieldSetHelper _editFormFieldSetHelper;
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFunctionDataParser _functionDataParser;
-        private readonly IFunctionsFormFieldSetHelper _functionsFormFieldSetHelper;
         private readonly IGetValidConfigurationFromData _getValidConfigurationFromData;
         private readonly ILiteralListDataParser _literalListDataParser;
         private readonly IObjectListDataParser _objectListDataParser;
@@ -42,10 +42,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             IConfigurationService configurationService,
             IConstructorDataParser constructorDataParser,
             IDecisionDataParser decisionDataParser,
+            IEditFormFieldSetHelper editFormFieldSetHelper,
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IFunctionDataParser functionDataParser,
-            IFunctionsFormFieldSetHelper functionsFormFieldSetHelper,
             IGetValidConfigurationFromData getValidConfigurationFromData,
             ILiteralListDataParser literalListDataParser,
             IObjectListDataParser objectListDataParser,
@@ -59,10 +59,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             _configurationService = configurationService;
             _constructorDataParser = constructorDataParser;
             _decisionDataParser = decisionDataParser;
+            _editFormFieldSetHelper = editFormFieldSetHelper;
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
-            _functionsFormFieldSetHelper = functionsFormFieldSetHelper;
             _getValidConfigurationFromData = getValidConfigurationFromData;
             _literalListDataParser = literalListDataParser;
             _objectListDataParser = objectListDataParser;
@@ -237,7 +237,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 return functionData.Name;
             }
 
-            if (_functionsFormFieldSetHelper.GetFunctionsFormFieldSet(function) == FunctionsFormFieldSet.BinaryLayout)
+            if (_editFormFieldSetHelper.GetFieldSetForFunction(function) == EditFormFieldSet.BinaryFunction)
             {
                 return GetBinaryFunctionVisibleText
                 (

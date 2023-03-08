@@ -15,6 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
             return services
                 .AddSingleton<ICreateLiteralParameterXmlElement, CreateLiteralParameterXmlElement>()
                 .AddSingleton<IDataGraphTreeViewHelper, DataGraphTreeViewHelper>()
+                .AddSingleton<IEditFormFieldSetHelper, EditFormFieldSetHelper>()
                 .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
                 .AddTransient<IFindCell, FindCell>()
                 .AddTransient<IFindConstructorInCell, FindConstructorInCell>()
@@ -38,7 +39,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<IFindVariableInCell, FindVariableInCell>()
                 .AddTransient<IFindVariableInFiles, FindVariableInFiles>()
                 .AddTransient<IFindVariableInShape, FindVariableInShape>()
-                .AddSingleton<IFunctionsFormFieldSetHelper, FunctionsFormFieldSetHelper>()
                 .AddSingleton<IFunctionParameterControlSetValidator, FunctionParameterControlSetValidator>()
                 .AddSingleton<IGetObjectRichTextBoxVisibleText, GetObjectRichTextBoxVisibleText>()
                 .AddSingleton<IGetSourceFilesForDocumentSearch, GetSourceFilesForDocumentSearch>()
