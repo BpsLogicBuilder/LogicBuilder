@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 {
     partial class EditConstructorControl
     {

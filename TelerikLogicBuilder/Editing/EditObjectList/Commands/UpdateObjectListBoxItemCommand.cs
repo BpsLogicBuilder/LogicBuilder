@@ -21,6 +21,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands
 
         public override void Execute()
         {
+            if (this.editObjectListControl.ValueControl.IsEmpty)
+                return;
+
             RadListBoxManager.Update
             (
                 _objectListBoxItemFactory.GetParameterObjectListBoxItem

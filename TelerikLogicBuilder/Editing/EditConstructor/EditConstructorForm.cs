@@ -16,7 +16,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 {
 	internal partial class EditConstructorForm : Telerik.WinControls.UI.RadForm, IEditConstructorForm
     {

@@ -25,7 +25,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 {
     internal partial class EditConstructorControl : UserControl, IEditConstructorControl
     {
