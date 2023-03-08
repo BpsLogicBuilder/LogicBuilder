@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -25,7 +26,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 {
     internal partial class EditStandardFunctionControl : UserControl, IEditStandardFunctionControl
     {

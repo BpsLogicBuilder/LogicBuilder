@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;

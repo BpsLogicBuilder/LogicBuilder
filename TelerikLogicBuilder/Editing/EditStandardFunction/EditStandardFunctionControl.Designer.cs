@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 {
     partial class EditStandardFunctionControl
     {

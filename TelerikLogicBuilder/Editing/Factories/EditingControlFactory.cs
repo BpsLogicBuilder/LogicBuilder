@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
