@@ -14,6 +14,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using MediaFoundation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,7 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             Initialize();
         }
 
-        private Type ListType
+        private Type ClosedListType
         {
             get
             {
@@ -106,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                 return _enumHelper.GetSystemType
                 (
                     (ListType)cmbListType.SelectedValue,
-                    _enumHelper.GetSystemType((LiteralParameterType)cmbLiteralType.SelectedValue)
+                    LiteralType
                 );
             }
         }
@@ -131,9 +132,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         {
             get
             {
-                if (!_typeHelper.AssignableFrom(assignedTo, ListType))
-                    return false;
-
                 foreach (ILiteralListBoxItem literalListBoxItem in ListBox.Items.Select(i => i.Value).OfType<ILiteralListBoxItem>())
                 {
                     if (literalListBoxItem.Errors.Count > 0)
@@ -195,7 +193,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                         foreach (string innerXml in ListBox.Items.Select(i => ((ILiteralListBoxItem)i.Value).HiddenText))
                         {
                             xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALELEMENT);
-                            xmlTextWriter.WriteRaw(innerXml);
+                                xmlTextWriter.WriteRaw(innerXml);
                             xmlTextWriter.WriteEndElement();
                         }
                         xmlTextWriter.Flush();
@@ -225,20 +223,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public void ValidateFields()
         {
-            if (!_typeHelper.AssignableFrom(assignedTo, ListType))
-            {
-                throw new LogicBuilderException
-                (
-                    string.Format
-                    (
-                        CultureInfo.CurrentCulture,
-                        Strings.typeNotAssignableFormat,
-                        ListType.ToString(),
-                        assignedTo.ToString()
-                    )
-                );
-            }
-
             foreach(ILiteralListBoxItem literalListBoxItem in ListBox.Items.Select(i => i.Value).OfType<ILiteralListBoxItem>())
             {
                 var itemErrors = literalListBoxItem.Errors;
@@ -258,28 +242,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private void CheckAssignability()
         {
             if (cmbLiteralType.SelectedIndex == -1 || cmbListType.SelectedIndex == -1)
-                return;
-
-            if (_typeHelper.AssignableFrom(assignedTo, ListType))
             {
-                EnableEditing(true);
-                ClearMessage();
+                EnableEditing(false);
+                return;
             }
-            else
+
+            if (!_typeHelper.AssignableFrom(assignedTo, ClosedListType))
             {
                 SetErrorMessage
                 (
                     string.Format
                     (
-                        CultureInfo.CurrentCulture, 
-                        Strings.typeNotAssignableFormat, 
-                        ListType.ToString(), 
+                        CultureInfo.CurrentCulture,
+                        Strings.typeNotAssignableFormat,
+                        ClosedListType.ToString(),
                         assignedTo.ToString()
                     )
                 );
 
                 EnableEditing(false);
+                return;
             }
+
+            EnableEditing(true);
+            ClearMessage();
         }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
@@ -463,7 +449,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private void UpdateListItems(LiteralListData literalListData)
         {
             ListBox.Items.Clear();
-            ListBox.SelectedIndex = this.selectedIndex ?? -1;
             cmbLiteralType.SelectedValue = literalListData.LiteralType;
             cmbListType.SelectedValue = literalListData.ListType;
             ListBox.Items.AddRange
@@ -474,22 +459,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
             IList<ILiteralListBoxItem> GetListBoxItems()
             {
-                if (!_typeHelper.AssignableFrom(this.assignedTo, ListType))
+                if (!_typeHelper.AssignableFrom(this.assignedTo, ClosedListType))
                     return Array.Empty<ILiteralListBoxItem>();
 
-                Type elementType = LiteralType;
-                return literalListData.ChildElements.Select
+                Type elementType = LiteralType;//only convert once
+                List<string> errors = new();
+                IList<ILiteralListBoxItem> literalListBoxItems = literalListData.ChildElements.Select
                 (
-                    e => _literalListBoxItemFactory.GetParameterLiteralListBoxItem
-                    (
-                        _xmlDocumentHelpers.GetVisibleText(e),
-                        e.InnerXml,
-                        elementType,
-                        dataGraphEditingForm,
-                        literalListElementInfo.ListControl
-                    )
+                    e =>
+                    {
+                        ILiteralListBoxItem literalListBoxItem = _literalListBoxItemFactory.GetParameterLiteralListBoxItem
+                        (
+                            _xmlDocumentHelpers.GetVisibleText(e),
+                            e.InnerXml,
+                            elementType,
+                            dataGraphEditingForm,
+                            literalListElementInfo.ListControl
+                        );
+                        errors.AddRange(literalListBoxItem.Errors);
+                        return literalListBoxItem;
+                    }
                 )
                 .ToArray();
+
+                if (errors.Count > 0)
+                    SetErrorMessage(string.Join(Environment.NewLine, errors));
+
+                return literalListBoxItems;
             }
         }
 
@@ -500,7 +496,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private void CmbLiteralType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (cmbLiteralType.SelectedIndex == -1)
+            {
+                EnableEditing(false);
                 return;
+            }
 
             ValueControl.SetAssignedToType(LiteralType);
             CheckAssignability();

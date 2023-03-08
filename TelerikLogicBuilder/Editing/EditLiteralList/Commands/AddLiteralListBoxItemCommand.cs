@@ -17,11 +17,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
             this.editLiteralListControl = editLiteralListControl;
         }
 
-        private IRadListBoxManager<ILiteralListBoxItem> radListBoxManager => editLiteralListControl.RadListBoxManager;
+        private IRadListBoxManager<ILiteralListBoxItem> RadListBoxManager => editLiteralListControl.RadListBoxManager;
 
         public override void Execute()
         {
-            radListBoxManager.Add
+            RadListBoxManager.Add
             (
                 _literalListBoxItemFactory.GetParameterLiteralListBoxItem
                 (

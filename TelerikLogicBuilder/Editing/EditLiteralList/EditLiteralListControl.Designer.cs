@@ -151,7 +151,7 @@
             this.lblLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblLiteralType.Location = new System.Drawing.Point(28, 59);
             this.lblLiteralType.Name = "lblLiteralType";
-            this.lblLiteralType.Size = new System.Drawing.Size(257, 18);
+            this.lblLiteralType.Size = new System.Drawing.Size(66, 18);
             this.lblLiteralType.TabIndex = 2;
             this.lblLiteralType.Text = "Literal Type:";
             // 
@@ -160,7 +160,7 @@
             this.lblListType.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblListType.Location = new System.Drawing.Point(28, 23);
             this.lblListType.Name = "lblListType";
-            this.lblListType.Size = new System.Drawing.Size(257, 18);
+            this.lblListType.Size = new System.Drawing.Size(52, 18);
             this.lblListType.TabIndex = 0;
             this.lblListType.Text = "List Type:";
             // 

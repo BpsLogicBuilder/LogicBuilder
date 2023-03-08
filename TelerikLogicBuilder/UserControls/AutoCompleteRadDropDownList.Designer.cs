@@ -44,22 +44,22 @@
             // 
             this.radPanelButton.Controls.Add(this.radButtonHelper);
             this.radPanelButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelButton.Location = new System.Drawing.Point(326, 0);
+            this.radPanelButton.Location = new System.Drawing.Point(320, 0);
             this.radPanelButton.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelButton.Name = "radPanelButton";
-            this.radPanelButton.Padding = new System.Windows.Forms.Padding(1, 0, 1, 2);
-            this.radPanelButton.Size = new System.Drawing.Size(24, 24);
+            this.radPanelButton.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.radPanelButton.Size = new System.Drawing.Size(30, 28);
             this.radPanelButton.TabIndex = 0;
             // 
             // radButtonHelper
             // 
-            this.radButtonHelper.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radButtonHelper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radButtonHelper.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.more;
             this.radButtonHelper.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.radButtonHelper.Location = new System.Drawing.Point(1, 0);
             this.radButtonHelper.Margin = new System.Windows.Forms.Padding(0);
             this.radButtonHelper.Name = "radButtonHelper";
-            this.radButtonHelper.Size = new System.Drawing.Size(22, 22);
+            this.radButtonHelper.Size = new System.Drawing.Size(28, 28);
             this.radButtonHelper.TabIndex = 0;
             // 
             // radPanelDropDownList
@@ -70,17 +70,18 @@
             this.radPanelDropDownList.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelDropDownList.Name = "radPanelDropDownList";
             this.radPanelDropDownList.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.radPanelDropDownList.Size = new System.Drawing.Size(326, 24);
+            this.radPanelDropDownList.Size = new System.Drawing.Size(320, 28);
             this.radPanelDropDownList.TabIndex = 1;
             // 
             // radDropDownList1
             // 
+            this.radDropDownList1.AutoSize = false;
             this.radDropDownList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radDropDownList1.DropDownAnimationEnabled = true;
             this.radDropDownList1.Location = new System.Drawing.Point(0, 0);
             this.radDropDownList1.Margin = new System.Windows.Forms.Padding(0);
             this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(324, 24);
+            this.radDropDownList1.Size = new System.Drawing.Size(318, 28);
             this.radDropDownList1.TabIndex = 0;
             // 
             // AutoCompleteRadDropDownList
@@ -91,13 +92,12 @@
             this.Controls.Add(this.radPanelButton);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AutoCompleteRadDropDownList";
-            this.Size = new System.Drawing.Size(350, 24);
+            this.Size = new System.Drawing.Size(350, 28);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelButton)).EndInit();
             this.radPanelButton.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButtonHelper)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelDropDownList)).EndInit();
             this.radPanelDropDownList.ResumeLayout(false);
-            this.radPanelDropDownList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
             this.ResumeLayout(false);
 

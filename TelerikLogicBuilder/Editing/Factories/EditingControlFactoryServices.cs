@@ -4,12 +4,14 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
@@ -111,7 +113,19 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editingForm, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditObjectListControl
                     (
+                        provider.GetRequiredService<IEditObjectListCommandFactory>(),
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                        provider.GetRequiredService<IObjectListBoxItemFactory>(),
+                        provider.GetRequiredService<IObjectListItemEditorControlFactory>(),
                         provider.GetRequiredService<IObjectListDataParser>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editingForm,
                         objectListElementInfo,
