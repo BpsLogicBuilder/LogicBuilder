@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControls(this IServiceCollection services)
         {
             return services
+                .AddSingleton<IBinaryFunctionTableLayoutPanelHelper, BinaryFunctionTableLayoutPanelHelper>()
                 .AddSingleton<ICreateLiteralParameterXmlElement, CreateLiteralParameterXmlElement>()
                 .AddSingleton<IDataGraphTreeViewHelper, DataGraphTreeViewHelper>()
                 .AddSingleton<IEditFormFieldSetHelper, EditFormFieldSetHelper>()

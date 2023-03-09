@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,10 +8,20 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 {
-    internal class TableLayoutPanelHelper : ITableLayoutPanelHelper
+    internal class BinaryFunctionTableLayoutPanelHelper : IBinaryFunctionTableLayoutPanelHelper
     {
+        private readonly IExceptionHelper _exceptionHelper;
+
+        public BinaryFunctionTableLayoutPanelHelper(IExceptionHelper exceptionHelper)
+        {
+            _exceptionHelper = exceptionHelper;
+        }
+
         public void SetUp(TableLayoutPanel tableLayoutPanel, RadPanel radPanelTableParent, IList<ParameterBase> parameters, bool hasGenericArguments)
         {
+            if (parameters.Count != 2)
+                throw _exceptionHelper.CriticalException("{54A3276D-273B-4A17-9698-202328DAB699}");
+
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
 
@@ -18,17 +29,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             const float singleLineHeight = 33F;
             const float multiLineHeight = 100F;
             const float separatorLineHeight = 3F;
-            int rowCount = 4;//top + bottom + constructorName rows;
-
-            foreach (ParameterBase parameter in parameters)
-                rowCount += 2;
+            int rowCount = 8;//top + bottom + functionName rows + parameter rows;
 
             if (hasGenericArguments)
-            {
                 rowCount += 2;
-            }
 
-            float totalHeight = (2 * boundaryWidth) + singleLineHeight + separatorLineHeight; //top + bottom + constructor/function name rows;
+            float totalHeight = (2 * boundaryWidth) + singleLineHeight + separatorLineHeight; //top + bottom + functionName rows;
+
             foreach (ParameterBase parameter in parameters)
             {
                 totalHeight += parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
@@ -78,28 +85,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             tableLayoutPanel.RowCount = rowCount;
 
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Boundary));//boundary row
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_SingleLine));//Constructor Name
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
-
             if (hasGenericArguments)
             {
                 tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_SingleLine));//Generic Arguments
                 tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
             }
 
-            foreach (ParameterBase parameter in parameters)
-            {
-                float size = parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
-                            ? size_MultiLine
-                            : size_SingleLine;
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, GetParameterRowHeight(parameters[0])));//First parameter
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
 
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size));//parameter
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
-            }
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_SingleLine));//function name
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));//boundary row
+
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, GetParameterRowHeight(parameters[1])));//Second parameter
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
 
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Boundary));//boundary row
             tableLayoutPanel.Size = new Size(851, totalTableLayoutHeight);
             tableLayoutPanel.TabIndex = 0;
+
+            float GetParameterRowHeight(ParameterBase parameter)
+            {
+                return parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
+                            ? size_MultiLine
+                            : size_SingleLine;
+            }
         }
     }
 }

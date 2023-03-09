@@ -28,32 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radTextBox1
-            // 
-            this.radTextBox1.Location = new System.Drawing.Point(30, 54);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(419, 20);
-            this.radTextBox1.TabIndex = 0;
             // 
             // EditBinaryFunctionControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radTextBox1);
             this.Name = "EditBinaryFunctionControl";
-            this.Size = new System.Drawing.Size(538, 150);
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
+            this.Size = new System.Drawing.Size(855, 531);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
     }
 }

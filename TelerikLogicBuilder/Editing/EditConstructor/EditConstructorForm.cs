@@ -183,10 +183,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             return xmlDocument;
         }
 
-        string button2Xml = @"<constructor name=""DataFormSettingsParameters"" visibleText=""DataFormSettingsParameters: title=Edit Instructor;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingsParameters: fieldSettings;FormType: formType;Type: modelType;MultiBindingParameters: headerBindings;FormRequestDetailsParameters: requestDetails"">
+        string button2Xml = @"<constructor name=""DataFormSettingsParameters"" visibleText=""DataFormSettingsParameters: title=Add Instructor;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingsParameters: fieldSettings;FormType: formType;Type: modelType;FormRequestDetailsParameters: requestDetails"">
 								<genericArguments />
 								<parameters>
-									<literalParameter name=""title"">Edit Instructor</literalParameter>
+									<literalParameter name=""title"">Add Instructor</literalParameter>
 									<objectListParameter name=""validationMessages"">
 										<objectList objectType=""Contoso.Forms.Parameters.Validation.ValidationMessageParameters"" listType=""GenericList"" visibleText=""validationMessages: Count(3)"">
 											<object>
@@ -258,7 +258,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 										</objectList>
 									</objectListParameter>
 									<objectListParameter name=""fieldSettings"">
-										<objectList objectType=""Contoso.Forms.Parameters.DataForm.FormItemSettingsParameters"" listType=""GenericList"" visibleText=""fieldSettings: Count(5)"">
+										<objectList objectType=""Contoso.Forms.Parameters.DataForm.FormItemSettingsParameters"" listType=""GenericList"" visibleText=""fieldSettings: Count(6)"">
 											<object>
 												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=FirstName;title=First Name;placeholder=First Name (required);stringFormat={0};Type: type;FieldValidationSettingsParameters: validationSetting;TextFieldTemplateParameters: textTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
 													<genericArguments />
@@ -491,7 +491,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 												</constructor>
 											</object>
 											<object>
-												<constructor name=""FormGroupSettingsParameters"" visibleText=""FormGroupSettingsParameters: field=OfficeAssignment;title=Title;validFormControlText=(OfficeAssignment);invalidFormControlText=(Invalid OfficeAssignment);placeholder=;Type: modelType;FormGroupTemplateParameters: formGroupTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+												<constructor name=""FormGroupSettingsParameters"" visibleText=""FormGroupSettingsParameters: field=OfficeAssignment;title=Title;validFormControlText=(OfficeAssignment);invalidFormControlText=(Invalid OfficeAssignment);placeholder=Empty String;Type: modelType;FormGroupTemplateParameters: formGroupTemplate;GenericListOfFormItemSettingsParameters: fieldSettings;GenericListOfValidationMessageParameters: validationMessages;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
 													<genericArguments />
 													<parameters>
 														<literalParameter name=""field"">OfficeAssignment</literalParameter>
@@ -555,7 +555,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 												</constructor>
 											</object>
 											<object>
-												<constructor name=""MultiSelectFormControlSettingsParameters"" visibleText=""MultiSelectFormControlSettingsParameters: field=Courses;title=Courses;placeholder=(Courses);stringFormat={0};Type: type;MultiSelectTemplateParameters: multiSelectTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+												<constructor name=""MultiSelectFormControlSettingsParameters"" visibleText=""MultiSelectFormControlSettingsParameters: field=Courses;GenericListOfString: keyFields;title=Courses;placeholder=(Courses);stringFormat={0};Type: type;MultiSelectTemplateParameters: multiSelectTemplate;FieldValidationSettingsParameters: validationSetting;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
 													<genericArguments />
 													<parameters>
 														<literalParameter name=""field"">Courses</literalParameter>
@@ -770,6 +770,50 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 																</parameters>
 															</constructor>
 														</objectParameter>
+														<objectParameter name=""validationSetting"">
+															<constructor name=""FieldValidationSettingsParameters"" visibleText=""FieldValidationSettingsParameters: Object: defaultValue"">
+																<genericArguments />
+																<parameters>
+																	<objectParameter name=""defaultValue"">
+																		<function name=""Add"" visibleText=""1 Add 1"">
+																			<genericArguments />
+																			<parameters>
+																				<literalParameter name=""value1"">1</literalParameter>
+																				<literalParameter name=""value2"">1</literalParameter>
+																			</parameters>
+																		</function>
+																	</objectParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
+														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
+													</parameters>
+												</constructor>
+											</object>
+											<object>
+												<constructor name=""FormControlSettingsParameters"" visibleText=""FormControlSettingsParameters: field=ID;title=Title;placeholder=(Title) required;stringFormat={0};Type: type;TextFieldTemplateParameters: textTemplate;fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
+													<genericArguments />
+													<parameters>
+														<literalParameter name=""field"">ID</literalParameter>
+														<literalParameter name=""title"">Title</literalParameter>
+														<literalParameter name=""placeholder"">(Title) required</literalParameter>
+														<literalParameter name=""stringFormat"">{0}</literalParameter>
+														<objectParameter name=""type"">
+															<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=System.Int32"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""assemblyQualifiedTypeName"">System.Int32</literalParameter>
+																</parameters>
+															</function>
+														</objectParameter>
+														<objectParameter name=""textTemplate"">
+															<constructor name=""TextFieldTemplateParameters"" visibleText=""TextFieldTemplateParameters: templateName=HiddenTemplate"">
+																<genericArguments />
+																<parameters>
+																	<literalParameter name=""templateName"">HiddenTemplate</literalParameter>
+																</parameters>
+															</constructor>
+														</objectParameter>
 														<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
 													</parameters>
 												</constructor>
@@ -777,7 +821,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 										</objectList>
 									</objectListParameter>
 									<objectParameter name=""formType"">
-										<variable name=""FormType_Update"" visibleText=""FormType_Update"" />
+										<variable name=""FormType_Add"" visibleText=""FormType_Add"" />
 									</objectParameter>
 									<objectParameter name=""modelType"">
 										<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
@@ -787,23 +831,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 											</parameters>
 										</function>
 									</objectParameter>
-									<objectParameter name=""headerBindings"">
-										<constructor name=""MultiBindingParameters"" visibleText=""MultiBindingParameters: stringFormat={0} {1};fieldTypeSource=Contoso.Domain.Entities.InstructorModel"">
-											<genericArguments />
-											<parameters>
-												<literalParameter name=""stringFormat"">{0} {1}</literalParameter>
-												<literalListParameter name=""fields"">
-													<literalList literalType=""String"" listType=""GenericList"" visibleText=""fields: Count(2)"">
-														<literal>FirstName</literal>
-														<literal>LastName</literal>
-													</literalList>
-												</literalListParameter>
-												<literalParameter name=""fieldTypeSource"">Contoso.Domain.Entities.InstructorModel</literalParameter>
-											</parameters>
-										</constructor>
-									</objectParameter>
 									<objectParameter name=""requestDetails"">
-										<constructor name=""FormRequestDetailsParameters"" visibleText=""FormRequestDetailsParameters: getUrl=api/Entity/GetEntity;addUrl=api/Instructor/Save;updateUrl=api/Instructor/Save;deleteUrl=api/Instructor/Delete;Type: modelType;Type: dataType;FilterLambdaOperatorParameters: filter;SelectExpandDefinitionParameters: selectExpandDefinition"">
+										<constructor name=""FormRequestDetailsParameters"" visibleText=""FormRequestDetailsParameters: getUrl=api/Entity/GetEntity;addUrl=api/Instructor/Save;updateUrl=api/Instructor/Save;deleteUrl=api/Instructor/Delete;Type: modelType;Type: dataType"">
 											<genericArguments />
 											<parameters>
 												<literalParameter name=""getUrl"">api/Entity/GetEntity</literalParameter>
@@ -825,39 +854,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 															<literalParameter name=""assemblyQualifiedTypeName"">Contoso.Data.Entities.Instructor, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 														</parameters>
 													</function>
-												</objectParameter>
-												<objectParameter name=""filter"">
-													<variable name=""Item Filter"" visibleText=""Item Filter"" />
-												</objectParameter>
-												<objectParameter name=""selectExpandDefinition"">
-													<constructor name=""SelectExpandDefinitionParameters"" visibleText=""SelectExpandDefinitionParameters: "">
-														<genericArguments />
-														<parameters>
-															<literalListParameter name=""selects"">
-																<literalList literalType=""String"" listType=""GenericList"" visibleText=""selects: Count(0)"" />
-															</literalListParameter>
-															<objectListParameter name=""expandedItems"">
-																<objectList objectType=""Contoso.Parameters.Expansions.SelectExpandItemParameters"" listType=""GenericList"" visibleText=""expandedItems: Count(2)"">
-																	<object>
-																		<constructor name=""SelectExpandItemParameters"" visibleText=""SelectExpandItemParameters: memberName=Courses"">
-																			<genericArguments />
-																			<parameters>
-																				<literalParameter name=""memberName"">Courses</literalParameter>
-																			</parameters>
-																		</constructor>
-																	</object>
-																	<object>
-																		<constructor name=""SelectExpandItemParameters"" visibleText=""SelectExpandItemParameters: memberName=OfficeAssignment"">
-																			<genericArguments />
-																			<parameters>
-																				<literalParameter name=""memberName"">OfficeAssignment</literalParameter>
-																			</parameters>
-																		</constructor>
-																	</object>
-																</objectList>
-															</objectListParameter>
-														</parameters>
-													</constructor>
 												</objectParameter>
 											</parameters>
 										</constructor>

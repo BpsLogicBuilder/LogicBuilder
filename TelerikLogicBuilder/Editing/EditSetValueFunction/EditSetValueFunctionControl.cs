@@ -119,6 +119,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 
         public bool IsValid => throw new NotImplementedException();
 
+        public string? SelectedParameter => selectedParameter;
+
         public void ClearMessage()
         {
             throw new NotImplementedException();

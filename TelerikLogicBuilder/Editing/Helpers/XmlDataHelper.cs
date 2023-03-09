@@ -115,6 +115,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
+        public string BuildNotXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.NOTELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildObjectListXml(string objectType, ListType listType, string visibleText, string innerXml)
         {
             StringBuilder stringBuilder = new();

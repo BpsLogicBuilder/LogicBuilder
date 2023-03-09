@@ -1,7 +1,10 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -10,24 +13,27 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
+using Telerik.WinControls;
+using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 {
     internal partial class EditBinaryFunctionControl : UserControl, IEditBinaryFunctionControl
     {
+        private readonly IBinaryFunctionTableLayoutPanelHelper _binaryFunctionTableLayoutPanelHelper;
         private readonly IConfigurationService _configurationService;
+        private readonly IEditFunctionControlHelper _editFunctionControlHelper;
         private readonly IFunctionDataParser _functionDataParser;
-        private readonly IFunctionGenericsConfigrationValidator _functionGenericsConfigrationValidator;
+        private readonly IFunctionElementValidator _functionElementValidator;
+        private readonly IFunctionParameterControlSetValidator _functionParameterControlSetValidator;
         private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
-        private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
-        private readonly ITypeLoadHelper _typeLoadHelper;
-        private readonly IUpdateParameterControlValues _updateParameterControlValues;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEditingForm editingForm;
 
@@ -44,15 +50,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly RadLabel? lblGenericArguments;
 
         public EditBinaryFunctionControl(
+            IBinaryFunctionTableLayoutPanelHelper binaryFunctionTableLayoutPanelHelper,
             IConfigurationService configurationService,
+            IExceptionHelper exceptionHelper,
             IFunctionDataParser functionDataParser,
-            IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
-            IEditingControlHelperFactory editingControlFactory,
+            IFunctionElementValidator functionElementValidator,
+            IFunctionParameterControlSetValidator functionParameterControlSetValidator,
+            IEditingControlHelperFactory editingControlHelperFactory,
             IFieldControlFactory fieldControlFactory,
             IGenericFunctionHelper genericFunctionHelper,
-            ITableLayoutPanelHelper tableLayoutPanelHelper,
-            ITypeLoadHelper typeLoadHelper,
-            IUpdateParameterControlValues updateParameterControlValues,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
             Function function,
@@ -62,14 +68,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             string? selectedParameter = null)
         {
             InitializeComponent();
+            if (function.Parameters.Count != 2)
+                throw exceptionHelper.CriticalException("{E14CB28A-5FCA-4CFD-92D3-33F263F89C1F}");
+
+            _binaryFunctionTableLayoutPanelHelper = binaryFunctionTableLayoutPanelHelper;
             _configurationService = configurationService;
             _functionDataParser = functionDataParser;
-            _functionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
+            _functionElementValidator = functionElementValidator;
+            _functionParameterControlSetValidator = functionParameterControlSetValidator;
             _fieldControlFactory = fieldControlFactory;
             _genericFunctionHelper = genericFunctionHelper;
-            _tableLayoutPanelHelper = tableLayoutPanelHelper;
-            _typeLoadHelper = typeLoadHelper;
-            _updateParameterControlValues = updateParameterControlValues;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingForm = editingForm;
             this.function = function;
@@ -81,13 +89,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             this.assignedTo = assignedTo;
             this.selectedParameter = selectedParameter;
 
-            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, editingForm);
+            _editFunctionControlHelper = editingControlHelperFactory.GetEditFunctionControlHelper(this);
+            _loadParameterControlsDictionary = editingControlHelperFactory.GetLoadParameterControlsDictionary(this, editingForm);
 
             this.groupBoxFunction = new RadGroupBox();
             this.radPanelFunction = new RadScrollablePanel();
             this.radPanelTableParent = new RadPanel();
             this.tableLayoutPanel = new TableLayoutPanel();
-            this.lblFunction = new RadLabel();
+            this.lblFunction = new RadLabel() { Margin = new Padding(0, 6, 0, 0) };
             if (function.HasGenericArguments)
             {
                 lblGenericArguments = new()
@@ -106,46 +115,211 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
         public Function Function => function;
 
-        public XmlDocument XmlDocument => throw new NotImplementedException();
+        public XmlDocument XmlDocument => xmlDocument;
 
-        public ApplicationTypeInfo Application => throw new NotImplementedException();
+        public ApplicationTypeInfo Application => editingForm.Application;
 
         public bool IsValid => throw new NotImplementedException();
 
-        public XmlElement XmlResult => throw new NotImplementedException();
+        public string? SelectedParameter => selectedParameter;
 
-        public void ClearMessage()
-        {
-            throw new NotImplementedException();
-        }
+        public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet);
 
-        public void RequestDocumentUpdate()
-        {
-            throw new NotImplementedException();
-        }
+        public void ClearMessage() => editingForm.ClearMessage();
+
+        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
 
         public void ResetControls()
         {
-            throw new NotImplementedException();
+            Native.NativeMethods.LockWindowUpdate(this.Handle);
+            InitializeControls();
+            this.PerformLayout();
+            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
         }
 
-        public void SetErrorMessage(string message)
-        {
-            throw new NotImplementedException();
-        }
+        public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "")
-        {
-            throw new NotImplementedException();
-        }
+        public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
 
         public void ValidateFields()
         {
+            List<string> errors = new();
+            _functionParameterControlSetValidator.Validate(editControlsSet, function, Application, errors);
+            if (errors.Count > 0)
+                throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
+
+            _functionElementValidator.Validate(XmlResult, assignedTo, Application, errors);
+            if (errors.Count > 0)
+                throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
         }
+
+        private static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        private static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
         private void InitializeControls()
         {
-            radTextBox1.Text = Function.Name;
+            ((ISupportInitialize)(this.groupBoxFunction)).BeginInit();
+            this.groupBoxFunction.SuspendLayout();
+            ((ISupportInitialize)(this.radPanelFunction)).BeginInit();
+            this.radPanelFunction.PanelContainer.SuspendLayout();
+            this.radPanelFunction.SuspendLayout();
+            ((ISupportInitialize)(this.radPanelTableParent)).BeginInit();
+            this.radPanelTableParent.SuspendLayout();
+            this.tableLayoutPanel.SuspendLayout();
+            this.SuspendLayout();
+            ((ISupportInitialize)(this.lblFunction)).BeginInit();
+            if (function.HasGenericArguments)
+            {
+                ((ISupportInitialize)(this.lblGenericArguments!)).BeginInit();
+            }
+            // 
+            // groupBoxFunction
+            // 
+            this.groupBoxFunction.AccessibleRole = AccessibleRole.Grouping;
+            this.groupBoxFunction.Controls.Add(this.radPanelFunction);
+            this.groupBoxFunction.Dock = DockStyle.Fill;
+            this.groupBoxFunction.HeaderText = Strings.editFunctionGroupBoxHeaderText;
+            this.groupBoxFunction.Location = new Point(0, 0);
+            this.groupBoxFunction.Name = "groupBoxFunction";
+            this.groupBoxFunction.Size = new Size(855, 300);
+            this.groupBoxFunction.TabIndex = 0;
+            this.groupBoxFunction.Text = Strings.editFunctionGroupBoxHeaderText;
+            // 
+            // radPanelFunction
+            // 
+            this.radPanelFunction.Dock = DockStyle.Fill;
+            this.radPanelFunction.Location = new Point(2, 18);
+            this.radPanelFunction.Name = "radPanelFunction";
+            // 
+            // radPanelFunction.PanelContainer
+            // 
+            this.radPanelFunction.PanelContainer.Controls.Add(this.radPanelTableParent);
+            this.radPanelFunction.PanelContainer.Size = new Size(849, 278);
+            this.radPanelFunction.Size = new Size(851, 280);
+            this.radPanelFunction.TabIndex = 0;
+            //radPanelTableParent
+            //tableLayoutPanel
+            editControlsSet.Clear();
+            tableLayoutPanel.Controls.Clear();
+
+            int currentRow = 1;//first parameter row or genericConfigurationControl row
+            if (function.HasGenericArguments)
+            {
+                Control genericConfigurationControl = (Control)_fieldControlFactory.GetFunctionGenericParametersControl(this);
+                genericConfigurationControl.Location = new Point(0, 0);
+                genericConfigurationControl.Dock = DockStyle.Fill;
+                this.tableLayoutPanel.Controls.Add(this.lblGenericArguments, 2, currentRow);
+                this.tableLayoutPanel.Controls.Add(genericConfigurationControl, 3, currentRow);
+                currentRow += 2;
+            }
+
+            if (function.HasGenericArguments)
+            {
+                if (_editFunctionControlHelper.ValidateGenericArgs())
+                {
+                    FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+                    function = _genericFunctionHelper.ConvertGenericTypes
+                    (
+                        _configurationService.FunctionList.Functions[function.Name], //start with _configurationService.FunctionList.Functions to make sure we are starting with a generic type definition.
+                        functionData.GenericArguments, Application
+                    );
+
+                    LoadFunctionControls();
+                    _editFunctionControlHelper.UpdateParameterControls(tableLayoutPanel, editControlsSet);
+                }
+                //We still need the layout for the genericConfigurationControl
+                //If ValidateGenericArgs(), then this must run after converting any generic parameters
+                _binaryFunctionTableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, function.Parameters, function.HasGenericArguments);
+            }
+            else
+            {
+                LoadFunctionControls();
+                _editFunctionControlHelper.UpdateParameterControls(tableLayoutPanel, editControlsSet);
+                _binaryFunctionTableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, function.Parameters, function.HasGenericArguments);
+            }
+
+            void LoadFunctionControls()
+            {
+                _loadParameterControlsDictionary.Load(editControlsSet, function.Parameters);
+                LoadParameterControl(function.Parameters[0]);//First parameter
+                currentRow += 2;
+                this.tableLayoutPanel.Controls.Add(this.lblFunction, 3, currentRow);
+                currentRow += 2;
+                LoadParameterControl(function.Parameters[1]);//Second parameter
+                currentRow += 2;
+            }
+
+            void LoadParameterControl(ParameterBase parameter)
+            {
+                ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
+                this.tableLayoutPanel.Controls.Add(parameterControlSet.ImageLabel, 1, currentRow);
+                this.tableLayoutPanel.Controls.Add(parameterControlSet.ChkInclude, 2, currentRow);
+                this.tableLayoutPanel.Controls.Add(parameterControlSet.Control, 3, currentRow);
+                ShowHideParameterControls(parameterControlSet.ChkInclude);
+                parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
+            }
+
+            // 
+            // lblFunctionName
+            // 
+            this.lblFunction.Dock = DockStyle.Fill;
+            this.lblFunction.Location = new Point(0, 0);
+            this.lblFunction.Name = "lblFunction";
+            this.lblFunction.Size = new Size(39, 18);
+            this.lblFunction.TabIndex = 0;
+            this.lblFunction.Text = function.Name;
+            lblFunction.TextAlignment = ContentAlignment.MiddleLeft;
+            lblFunction.Font = new Font(lblFunction.Font, FontStyle.Bold);
+
+            // 
+            // EditFunctionControl
+            // 
+            this.AutoScaleDimensions = new SizeF(9F, 21F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.Controls.Add(this.groupBoxFunction);
+            this.Name = "ConfigureFunctionControl";
+            this.Size = new Size(855, 300);
+            ((ISupportInitialize)(this.groupBoxFunction)).EndInit();
+            this.groupBoxFunction.ResumeLayout(false);
+            this.radPanelFunction.PanelContainer.ResumeLayout(false);
+            ((ISupportInitialize)(this.radPanelFunction)).EndInit();
+            this.radPanelFunction.ResumeLayout(false);
+            ((ISupportInitialize)(this.radPanelTableParent)).EndInit();
+            this.radPanelTableParent.ResumeLayout(false);
+            this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
+
+            ((ISupportInitialize)(this.lblFunction)).EndInit();
+            if (function.HasGenericArguments)
+            {
+                ((ISupportInitialize)(this.lblGenericArguments!)).EndInit();
+            }
+
+            this.ResumeLayout(false);
+
+            CollapsePanelBorder(radPanelTableParent);
+            CollapsePanelBorder(radPanelFunction);
         }
+
+        private void ShowHideParameterControls(RadCheckBox chkSender)
+        {
+            if (chkSender.Checked)
+                editControlsSet[chkSender.Name].ValueControl.ShowControls();
+            else
+                editControlsSet[chkSender.Name].ValueControl.HideControls();
+        }
+
+        #region Event Handlers
+        private void ChkInclude_CheckStateChanged(object? sender, EventArgs e)
+        {
+            if (sender is not RadCheckBox radChackBox)
+                return;
+
+            ShowHideParameterControls(radChackBox);
+        }
+        #endregion Event Handlers
     }
 }

@@ -1,6 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction;
+﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -17,9 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
@@ -31,18 +26,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
     internal partial class EditStandardFunctionControl : UserControl, IEditStandardFunctionControl
     {
         private readonly IConfigurationService _configurationService;
+        private readonly IEditFunctionControlHelper _editFunctionControlHelper;
         private readonly IFunctionDataParser _functionDataParser;
         private readonly IFunctionElementValidator _functionElementValidator;
-        private readonly IFunctionGenericsConfigrationValidator _functionGenericsConfigrationValidator;
         private readonly IFunctionParameterControlSetValidator _functionParameterControlSetValidator;
         private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
-        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
-        private readonly ITypeLoadHelper _typeLoadHelper;
-        private readonly IUpdateParameterControlValues _updateParameterControlValues;
-        private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEditingForm editingForm;
 
@@ -62,16 +53,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             IConfigurationService configurationService,
             IFunctionDataParser functionDataParser,
             IFunctionElementValidator functionElementValidator,
-            IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
             IFunctionParameterControlSetValidator functionParameterControlSetValidator,
-            IEditingControlHelperFactory editingControlFactory,
+            IEditingControlHelperFactory editingControlHelperFactory,
             IFieldControlFactory fieldControlFactory,
             IGenericFunctionHelper genericFunctionHelper,
-            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
-            ITypeLoadHelper typeLoadHelper,
-            IUpdateParameterControlValues updateParameterControlValues,
-            IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
             Function function,
@@ -84,15 +70,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             _configurationService = configurationService;
             _functionDataParser = functionDataParser;
             _functionElementValidator = functionElementValidator;
-            _functionGenericsConfigrationValidator = functionGenericsConfigrationValidator;
             _functionParameterControlSetValidator = functionParameterControlSetValidator;
             _fieldControlFactory = fieldControlFactory;
             _genericFunctionHelper = genericFunctionHelper;
-            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _tableLayoutPanelHelper = tableLayoutPanelHelper;
-            _typeLoadHelper = typeLoadHelper;
-            _updateParameterControlValues = updateParameterControlValues;
-            _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingForm = editingForm;
             this.function = function;
@@ -104,7 +85,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             this.assignedTo = assignedTo;
             this.selectedParameter = selectedParameter;
 
-            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, editingForm);
+            _editFunctionControlHelper = editingControlHelperFactory.GetEditFunctionControlHelper(this);
+            _loadParameterControlsDictionary = editingControlHelperFactory.GetLoadParameterControlsDictionary(this, editingForm);
 
             this.groupBoxFunction = new RadGroupBox();
             this.radPanelFunction = new RadScrollablePanel();
@@ -127,18 +109,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         private Function function;
 
-        private static readonly string XmlParentXPath = $"/{XmlDataConstants.NOTELEMENT}|/{XmlDataConstants.FUNCTIONELEMENT}";
-        private static readonly string ParametersXPath = $"{XmlParentXPath}/{XmlDataConstants.PARAMETERSELEMENT}";
-
         public Function Function => function;
 
         public XmlDocument XmlDocument => xmlDocument;
 
-        public XmlElement XmlResult => GetXmlResult();
+        public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet);
 
         public ApplicationTypeInfo Application => editingForm.Application;
 
         public bool IsValid => throw new NotImplementedException();
+
+        public string? SelectedParameter => selectedParameter;
 
         public void ClearMessage() => editingForm.ClearMessage();
 
@@ -159,7 +140,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
         public void ValidateFields()
         {
             List<string> errors = new();
-            errors.AddRange(ValidateControls());
+            _functionParameterControlSetValidator.Validate(editControlsSet, function, Application, errors);
             if (errors.Count > 0)
                 throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
 
@@ -173,43 +154,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
-
-        private XmlElement GetXmlResult()
-        {
-            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
-            string xmlString = _xmlDataHelper.BuildFunctionXml
-            (
-                function.Name,
-                functionData.VisibleText,
-                _xmlDataHelper.BuildGenericArgumentsXml(functionData.GenericArguments),
-                GetParametersXml()
-            );
-
-            return _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
-            (
-                _xmlDocumentHelpers.ToXmlElement(xmlString),
-                Application
-            );
-
-            string GetParametersXml()
-            {
-                StringBuilder stringBuilder = new();
-                using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
-                {
-                    xmlTextWriter.WriteStartElement(XmlDataConstants.PARAMETERSELEMENT);
-                    foreach (ParameterBase parameter in function.Parameters)
-                    {
-                        if (!editControlsSet[parameter.Name].ChkInclude.Checked)
-                            continue;
-
-                        xmlTextWriter.WriteRaw(editControlsSet[parameter.Name].ValueControl.XmlElement!.OuterXml);
-                    }
-                    xmlTextWriter.WriteEndElement();
-                    xmlTextWriter.Flush();
-                }
-                return stringBuilder.ToString();
-            }
-        }
 
         private void InitializeControls()
         {
@@ -273,7 +217,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
             if (function.HasGenericArguments)
             {
-                if (ValidateGenericArgs())
+                if (_editFunctionControlHelper.ValidateGenericArgs())
                 {
                     FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
                     function = _genericFunctionHelper.ConvertGenericTypes
@@ -283,7 +227,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
                     );
 
                     LoadParameterControls();
-                    UpdateParameterControls();
+                    _editFunctionControlHelper.UpdateParameterControls(tableLayoutPanel, editControlsSet);
                 }
 
                 //We still need the layout for the genericConfigurationControl and lblFunction
@@ -294,7 +238,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             else
             {
                 LoadParameterControls();
-                UpdateParameterControls();
+                _editFunctionControlHelper.UpdateParameterControls(tableLayoutPanel, editControlsSet);
                 _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, function.Parameters, function.HasGenericArguments);
             }
 
@@ -361,111 +305,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
                 editControlsSet[chkSender.Name].ValueControl.ShowControls();
             else
                 editControlsSet[chkSender.Name].ValueControl.HideControls();
-        }
-
-        private void UpdateParameterControls()
-        {
-            ClearMessage();
-
-            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
-            if (!_configurationService.FunctionList.Functions.ContainsKey(functionData.Name))
-            {
-                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.functionNotConfiguredFormat, functionData.Name));
-                editControlsSet.Clear();
-                tableLayoutPanel.Controls.Clear();
-                return;
-            }
-
-            if (!ValidateParameters())
-            {
-                editControlsSet.Clear();
-                tableLayoutPanel.Controls.Clear();
-                return;
-            }
-
-            radPanelFunction.Enabled = true;
-
-            bool newFunction = functionData.ParameterElementsList.Count == 0;
-            _updateParameterControlValues.PrepopulateRequiredFields
-            (
-                editControlsSet,
-                functionData.ParameterElementsList.ToDictionary(p => p.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
-                function.Parameters.ToDictionary(p => p.Name),
-                this.xmlDocument,
-                ParametersXPath,
-                Application
-            );
-
-            //after updating parameter fields refresh functionData - we'll need the updated ParameterElementsList.
-            functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(xmlDocument));
-
-            if (newFunction)
-            {
-                _updateParameterControlValues.SetDefaultsForLiterals
-                (
-                    editControlsSet,
-                    function.Parameters.ToDictionary(p => p.Name)
-                );//these are configured defaults for LiteralParameter and ListOfLiteralsParameter - different from prepopulating
-            }
-            else
-            {
-                _updateParameterControlValues.UpdateExistingFields
-                (
-                    functionData.ParameterElementsList,
-                    editControlsSet,
-                    function.Parameters.ToDictionary(p => p.Name),
-                    selectedParameter
-                );
-            }
-        }
-
-        private IList<string> ValidateControls()
-        {
-            List<string> errors = new();
-            _functionParameterControlSetValidator.Validate(editControlsSet, function, Application, errors);
-            return errors;
-        }
-
-        private bool ValidateGenericArgs()
-        {
-            if (!function.HasGenericArguments)
-            {
-                ClearMessage();
-                return true;
-            }
-
-            FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
-
-            if (functionData.GenericArguments.Count != function.GenericArguments.Count)
-            {
-                SetErrorMessage(Strings.genericArgumentsNotConfigured);
-                return false;
-            }
-
-            List<string> errors = new();
-            if (!_functionGenericsConfigrationValidator.Validate(function, functionData.GenericArguments, Application, errors))
-            {
-                SetErrorMessage(string.Join(Environment.NewLine, errors));
-                return false;
-            }
-
-            ClearMessage();
-            return true;
-        }
-
-        private bool ValidateParameters()
-        {
-            List<string> errors = new();
-            foreach (ParameterBase parameter in function.Parameters)
-            {
-                if (!_typeLoadHelper.TryGetSystemType(parameter, Application, out Type? _))
-                    errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionCannotLoadTypeForParameterFormat, parameter.Description, parameter.Name, function.Name));
-            }
-
-            if (errors.Count > 0)
-                SetErrorMessage(string.Join(Environment.NewLine, errors));
-
-            return errors.Count == 0;
         }
 
         #region Event Handlers
