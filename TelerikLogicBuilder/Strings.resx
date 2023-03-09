@@ -1475,6 +1475,9 @@
 	<data name="notImplementedMessageFormat" xml:space="preserve">
     <value>Method not implemented in {0}.</value>
   </data>
+	<data name="notString" xml:space="preserve">
+    <value>Not</value>
+  </data>
 	<data name="notValidTypeFormat" xml:space="preserve">
     <value>"{0}" is not a valid {1}.</value>
     <comment>0=invalid value;1=TypeName.</comment>

@@ -143,7 +143,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         public ApplicationTypeInfo Application => dataGraphEditingForm.Application;
 
-        public IApplicationForm ApplicationForm => dataGraphEditingForm;
+        public IApplicationForm ApplicationForm => dataGraphEditingForm; 
+        
+        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
+
+        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
 
         public bool IsValid
         {

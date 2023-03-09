@@ -62,6 +62,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{0C223B16-511C-4019-A272-7AB8CEC6E297}");
 
+        public bool DenySpecialCharacters => false;
+
+        public bool DisplayNotCheckBox => false;
+
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
 		public RadPanel RadPanelFields => radPanelFields;

@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -41,6 +42,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFieldControlFactory>(),
+                        provider.GetRequiredService<IRadCheckBoxHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         editingControl, 
                         edifForm

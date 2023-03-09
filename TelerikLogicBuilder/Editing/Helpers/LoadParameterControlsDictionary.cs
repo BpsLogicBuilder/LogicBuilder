@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFieldControlFactory _fieldControlFactory;
+        private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly IServiceFactory _serviceFactory;
         private readonly IEditingControl editingControl;
         private readonly IEditingForm editingForm;
@@ -23,12 +25,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         public LoadParameterControlsDictionary(
             IExceptionHelper exceptionHelper,
             IFieldControlFactory fieldControlFactory,
+            IRadCheckBoxHelper radCheckBoxHelper,
             IServiceFactory serviceFactory,
             IEditingControl editingControl,
             IEditingForm editingForm)
         {
             _exceptionHelper = exceptionHelper;
             _fieldControlFactory = fieldControlFactory;
+            _radCheckBoxHelper = radCheckBoxHelper;
             _serviceFactory = serviceFactory;
             
             this.editingControl = editingControl;
@@ -62,6 +66,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 Checked = !parameter.IsOptional,
                 Enabled = parameter.IsOptional
             };
+
+            _radCheckBoxHelper.SetLabelMargin(radCheckBox);
 
             IValueControl? valueControl = null;
             if (parameter is LiteralParameter literalParameter)

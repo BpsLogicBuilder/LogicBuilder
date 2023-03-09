@@ -5164,6 +5164,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not.
+        /// </summary>
+        internal static string notString {
+            get {
+                return ResourceManager.GetString("notString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;{0}&quot; is not a valid {1}..
         /// </summary>
         internal static string notValidTypeFormat {

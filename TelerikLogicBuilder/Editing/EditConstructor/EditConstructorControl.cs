@@ -138,6 +138,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public Constructor Constructor => constructor;
 
+        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
+
+        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
+
         public XmlDocument XmlDocument => xmlDocument;
 
         public XmlElement XmlResult => GetXmlResult();

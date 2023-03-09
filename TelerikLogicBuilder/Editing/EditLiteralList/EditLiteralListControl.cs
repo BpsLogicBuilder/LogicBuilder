@@ -128,6 +128,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public IApplicationForm ApplicationForm => dataGraphEditingForm;
 
+        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
+
+        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
+
         public bool IsValid
         {
             get

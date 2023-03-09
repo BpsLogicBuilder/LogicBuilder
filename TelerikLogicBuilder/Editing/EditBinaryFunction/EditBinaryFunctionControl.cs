@@ -10,7 +10,9 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,10 +32,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly IEditFunctionControlHelper _editFunctionControlHelper;
         private readonly IFunctionDataParser _functionDataParser;
         private readonly IFunctionElementValidator _functionElementValidator;
+        private readonly IFunctionHelper _functionHelper;
         private readonly IFunctionParameterControlSetValidator _functionParameterControlSetValidator;
         private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
+        private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IEditingForm editingForm;
 
@@ -46,6 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly RadScrollablePanel radPanelFunction;
         private readonly RadPanel radPanelTableParent;
         private readonly TableLayoutPanel tableLayoutPanel;
+        private readonly RadCheckBox radCheckBoxNot;
         private readonly RadLabel lblFunction;
         private readonly RadLabel? lblGenericArguments;
 
@@ -55,10 +60,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             IExceptionHelper exceptionHelper,
             IFunctionDataParser functionDataParser,
             IFunctionElementValidator functionElementValidator,
+            IFunctionHelper functionHelper,
             IFunctionParameterControlSetValidator functionParameterControlSetValidator,
             IEditingControlHelperFactory editingControlHelperFactory,
             IFieldControlFactory fieldControlFactory,
             IGenericFunctionHelper genericFunctionHelper,
+            IRadCheckBoxHelper radCheckBoxHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
             Function function,
@@ -75,9 +82,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             _configurationService = configurationService;
             _functionDataParser = functionDataParser;
             _functionElementValidator = functionElementValidator;
+            _functionHelper = functionHelper;
             _functionParameterControlSetValidator = functionParameterControlSetValidator;
             _fieldControlFactory = fieldControlFactory;
             _genericFunctionHelper = genericFunctionHelper;
+            _radCheckBoxHelper = radCheckBoxHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editingForm = editingForm;
             this.function = function;
@@ -97,6 +106,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             this.radPanelTableParent = new RadPanel();
             this.tableLayoutPanel = new TableLayoutPanel();
             this.lblFunction = new RadLabel() { Margin = new Padding(0, 6, 0, 0) };
+            this.radCheckBoxNot = new();
             if (function.HasGenericArguments)
             {
                 lblGenericArguments = new()
@@ -118,6 +128,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         public XmlDocument XmlDocument => xmlDocument;
 
         public ApplicationTypeInfo Application => editingForm.Application;
+
+        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
+
+        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
 
         public bool IsValid => throw new NotImplementedException();
 
@@ -246,6 +260,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
                 _loadParameterControlsDictionary.Load(editControlsSet, function.Parameters);
                 LoadParameterControl(function.Parameters[0]);//First parameter
                 currentRow += 2;
+                this.tableLayoutPanel.Controls.Add(this.radCheckBoxNot, 2, currentRow);
                 this.tableLayoutPanel.Controls.Add(this.lblFunction, 3, currentRow);
                 currentRow += 2;
                 LoadParameterControl(function.Parameters[1]);//Second parameter
@@ -261,6 +276,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
                 ShowHideParameterControls(parameterControlSet.ChkInclude);
                 parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
             }
+
+            //
+            //radCheckBoxNot
+            //
+            radCheckBoxNot.Dock = DockStyle.Top;
+            radCheckBoxNot.Name = "radCheckBoxNot";
+            radCheckBoxNot.Text = Strings.notString;
+            _radCheckBoxHelper.SetLabelMargin(radCheckBoxNot);
+            radCheckBoxNot.Visible = DisplayNotCheckBox && _functionHelper.IsBoolean(Function);
 
             // 
             // lblFunctionName

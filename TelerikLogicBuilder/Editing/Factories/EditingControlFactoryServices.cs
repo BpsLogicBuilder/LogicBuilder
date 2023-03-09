@@ -22,6 +22,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -44,10 +45,12 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFunctionDataParser>(),
                         provider.GetRequiredService<IFunctionElementValidator>(),
+                        provider.GetRequiredService<IFunctionHelper>(),
                         provider.GetRequiredService<IFunctionParameterControlSetValidator>(),
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IFieldControlFactory>(),
                         provider.GetRequiredService<IGenericFunctionHelper>(),
+                        provider.GetRequiredService<IRadCheckBoxHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editingForm,
                         function,
@@ -191,10 +194,12 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IFunctionDataParser>(),
                         provider.GetRequiredService<IFunctionElementValidator>(),
+                        provider.GetRequiredService<IFunctionHelper>(),
                         provider.GetRequiredService<IFunctionParameterControlSetValidator>(),
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IFieldControlFactory>(),
                         provider.GetRequiredService<IGenericFunctionHelper>(),
+                        provider.GetRequiredService<IRadCheckBoxHelper>(),
                         provider.GetRequiredService<ITableLayoutPanelHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editingForm,

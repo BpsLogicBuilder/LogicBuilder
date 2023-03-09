@@ -109,6 +109,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
 
         private Function function;
 
+        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
+
+        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
+
         public Function Function => function;
 
         public XmlDocument XmlDocument => throw new NotImplementedException();

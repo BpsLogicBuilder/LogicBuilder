@@ -111,6 +111,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 
         public Function Function => function;
 
+        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
+
+        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
+
         public XmlDocument XmlDocument => throw new NotImplementedException();
 
         public XmlElement XmlResult => throw new NotImplementedException();

@@ -30,6 +30,10 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public XmlElement XmlResult => throw new NotImplementedException();
 
+        public bool DenySpecialCharacters => throw new NotImplementedException();
+
+        public bool DisplayNotCheckBox => throw new NotImplementedException();
+
         event EventHandler? IEditVariableControl.Changed
         {
             add
