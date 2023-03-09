@@ -35,7 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditBinaryFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditBinaryFunctionControl>>
                 (
                     provider =>
                     (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditBinaryFunctionControl
@@ -60,7 +60,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IEditingForm, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl>>
+                .AddTransient<Func<IDataGraphEditingForm, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl>>
                 (
                     provider =>
                     (editingForm, constructor, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditConstructorControl
@@ -140,7 +140,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl>>
                 (
                     provider =>
                     (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueFunctionControl
@@ -163,7 +163,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl>>
                 (
                     provider =>
                     (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueToNullFunctionControl
@@ -186,7 +186,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IEditingForm, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl>>
                 (
                     provider =>
                     (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditStandardFunctionControl

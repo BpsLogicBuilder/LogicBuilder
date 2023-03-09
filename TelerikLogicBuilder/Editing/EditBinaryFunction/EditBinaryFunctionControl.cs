@@ -39,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
         private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEditingForm editingForm;
+        private readonly IDataGraphEditingForm dataGraphEditingForm;
 
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
@@ -67,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             IGenericFunctionHelper genericFunctionHelper,
             IRadCheckBoxHelper radCheckBoxHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingForm editingForm,
+            IDataGraphEditingForm dataGraphEditingForm,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -88,7 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             _genericFunctionHelper = genericFunctionHelper;
             _radCheckBoxHelper = radCheckBoxHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingForm = editingForm;
+            this.dataGraphEditingForm = dataGraphEditingForm;
             this.function = function;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
@@ -99,7 +99,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             this.selectedParameter = selectedParameter;
 
             _editFunctionControlHelper = editingControlHelperFactory.GetEditFunctionControlHelper(this);
-            _loadParameterControlsDictionary = editingControlHelperFactory.GetLoadParameterControlsDictionary(this, editingForm);
+            _loadParameterControlsDictionary = editingControlHelperFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingForm);
 
             this.groupBoxFunction = new RadGroupBox();
             this.radPanelFunction = new RadScrollablePanel();
@@ -127,11 +127,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
         public XmlDocument XmlDocument => xmlDocument;
 
-        public ApplicationTypeInfo Application => editingForm.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingForm.Application;
 
-        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
+        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
 
-        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
+        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
 
         public bool IsValid => throw new NotImplementedException();
 
@@ -139,9 +139,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
         public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet);
 
-        public void ClearMessage() => editingForm.ClearMessage();
+        public void ClearMessage() => dataGraphEditingForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate();
 
         public void ResetControls()
         {
@@ -151,9 +151,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
         }
 
-        public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => dataGraphEditingForm.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => dataGraphEditingForm.SetMessage(message, title);
 
         public void ValidateFields()
         {

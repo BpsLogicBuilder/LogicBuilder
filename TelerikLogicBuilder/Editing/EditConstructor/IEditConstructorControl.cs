@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 {
-    internal interface IEditConstructorControl : IEditingControl
+    internal interface IEditConstructorControl : IDataGraphEditingControl
     {
         Constructor Constructor { get; }
         XmlDocument XmlDocument { get; }

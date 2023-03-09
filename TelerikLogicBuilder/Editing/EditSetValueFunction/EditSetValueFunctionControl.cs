@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEditingForm editingForm;
+        private readonly IDataGraphEditingForm dataGraphEditingForm;
 
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
@@ -59,7 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             ITypeLoadHelper typeLoadHelper,
             IUpdateParameterControlValues updateParameterControlValues,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingForm editingForm,
+            IDataGraphEditingForm dataGraphEditingForm,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -76,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             _typeLoadHelper = typeLoadHelper;
             _updateParameterControlValues = updateParameterControlValues;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingForm = editingForm;
+            this.dataGraphEditingForm = dataGraphEditingForm;
             this.function = function;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
@@ -86,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             this.assignedTo = assignedTo;
             this.selectedParameter = selectedParameter;
 
-            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, editingForm);
+            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingForm);
 
             this.groupBoxFunction = new RadGroupBox();
             this.radPanelFunction = new RadScrollablePanel();
@@ -111,9 +111,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 
         public Function Function => function;
 
-        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
+        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
 
-        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
+        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
 
         public XmlDocument XmlDocument => throw new NotImplementedException();
 

@@ -44,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEditingForm editingForm;
+        private readonly IDataGraphEditingForm dataGraphEditingForm;
         
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
@@ -74,7 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             IUpdateParameterControlValues updateParameterControlValues,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingForm editingForm,
+            IDataGraphEditingForm dataGraphEditingForm,
             Constructor constructor,
             Type assignedTo,
             XmlDocument formDocument,
@@ -96,7 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _updateParameterControlValues = updateParameterControlValues;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingForm = editingForm;
+            this.dataGraphEditingForm = dataGraphEditingForm;
             this.constructor = constructor;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
@@ -106,7 +106,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.assignedTo = assignedTo;
             this.selectedParameter = selectedParameter;
 
-            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, editingForm);
+            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingForm);
 
             this.groupBoxConstructor = new RadGroupBox();
             this.radPanelConstructor = new RadScrollablePanel();
@@ -134,21 +134,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public bool IsValid => throw new NotImplementedException();
 
-        public ApplicationTypeInfo Application => editingForm.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingForm.Application;
 
         public Constructor Constructor => constructor;
 
-        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
+        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
 
-        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
+        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
 
         public XmlDocument XmlDocument => xmlDocument;
 
         public XmlElement XmlResult => GetXmlResult();
 
-        public void ClearMessage() => editingForm.ClearMessage();
+        public void ClearMessage() => dataGraphEditingForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate();
 
         public void ResetControls()
         {
@@ -158,9 +158,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
         }
 
-        public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => dataGraphEditingForm.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => dataGraphEditingForm.SetMessage(message, title);
 
         public void ValidateFields()
         {
@@ -455,7 +455,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                 (
                     editControlsSet[parameter.Name].ValueControl.XmlElement!, 
                     parameter, 
-                    editingForm.Application,
+                    dataGraphEditingForm.Application,
                     parameterErrors
                 );
 

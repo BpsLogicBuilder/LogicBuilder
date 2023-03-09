@@ -5,6 +5,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
     internal interface IDataGraphEditingForm : IEditingForm
     {
+        bool DenySpecialCharacters { get; }
+        bool DisplayNotCheckBox { get; }
         RadPanel RadPanelFields { get; }
         RadTreeView TreeView { get; }
         XmlDocument XmlDocument { get; }

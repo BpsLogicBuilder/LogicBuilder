@@ -8,8 +8,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     internal interface IEditingControl
     {
         ApplicationTypeInfo Application { get; }
-        bool DenySpecialCharacters { get; }
-        bool DisplayNotCheckBox { get; }
         DockStyle Dock { set; }
         XmlElement XmlResult { get; }
         bool IsValid { get; }

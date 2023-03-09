@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
-    internal interface IEditFunctionControl : IEditingControl
+    internal interface IEditFunctionControl : IDataGraphEditingControl
     {
         Function Function { get; }
         string? SelectedParameter { get; }

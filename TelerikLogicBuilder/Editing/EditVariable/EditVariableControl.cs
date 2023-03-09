@@ -79,10 +79,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         }
 
         public ApplicationTypeInfo Application => editingForm.Application;
-        
-        public bool DenySpecialCharacters => editingForm.DenySpecialCharacters;
-
-        public bool DisplayNotCheckBox => editingForm.DisplayNotCheckBox;
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 

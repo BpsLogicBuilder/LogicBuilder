@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal interface IEditingControlFactory
     {
         IEditBinaryFunctionControl GetEditBinaryFunctionControl(
-            IEditingForm editingForm,
+            IDataGraphEditingForm editingForm,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditConstructorControl GetEditConstructorControl(
-            IEditingForm editingForm,
+            IDataGraphEditingForm editingForm,
             Constructor constructor,
             Type assignedTo,
             XmlDocument formDocument,
@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             int? selectedIndex);
 
         IEditSetValueFunctionControl GetEditSetValueFunctionControl(
-            IEditingForm editingForm,
+            IDataGraphEditingForm editingForm,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(
-            IEditingForm editingForm,
+            IDataGraphEditingForm editingForm,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -65,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditStandardFunctionControl GetEditStandardFunctionControl(
-            IEditingForm editingForm,
+            IDataGraphEditingForm editingForm,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
