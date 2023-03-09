@@ -38,11 +38,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         XmlElement MakeElement(XmlDocument xmlDocument, string name, string? innerXml = null, IDictionary<string, string>? attributes = null);
         XmlDocumentFragment MakeFragment(XmlDocument xmlDocument, string? innerXml = null);
         TResult Query<TResult>(XmlNode xmlNode, Func<XmlElement, bool> filter, Func<IEnumerable<XmlElement>, TResult> enumerableFunc);
+        XmlElement ReplaceElement(XmlElement currentElement, XmlElement newElement);
         List<XmlElement> SelectElements(XmlDocument xmlDocument, string xPath);
         XmlElement SelectSingleElement(XmlDocument xmlDocument, string xPath);
         XmlDocument ToXmlDocument(XmlNode xmlNode, bool preserveWhiteSpace = true);
         XmlDocument ToXmlDocument(string xmlString, bool preserveWhiteSpace = true);
         XmlElement ToXmlElement(string xmlString, bool preserveWhiteSpace = true);
-        XmlElement UpdateChildNodes(XmlElement element, XmlElement source);
     }
 }

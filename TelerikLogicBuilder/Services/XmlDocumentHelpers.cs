@@ -405,6 +405,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 => xmlNode.ChildNodes.OfType<XmlElement>().Where(filter);
         }
 
+        public XmlElement ReplaceElement(XmlElement currentElement, XmlElement newElement)
+        {
+            if (currentElement.ParentNode == null)
+                throw _exceptionHelper.CriticalException("{DDFF7E3B-4A81-4E53-ADFC-0615338B5FDC}");
+
+            newElement = AddElementToDoc(currentElement.OwnerDocument, newElement);
+
+            return (XmlElement)currentElement.ParentNode.ReplaceChild(newElement, currentElement);
+        }
+
         public List<XmlElement> SelectElements(XmlDocument xmlDocument, string xPath) 
             => xmlDocument
                 .SelectNodes(xPath)!/*SelectNodes is never null when XmlNode is XmlDocument*/
@@ -438,21 +448,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 throw _exceptionHelper.CriticalException("{F125DCE9-91EB-4E14-8E25-7ABF51DA0DA2}");
 
             return ToXmlDocument(xmlString, preserveWhiteSpace).DocumentElement!;
-        }
-
-        public XmlElement UpdateChildNodes(XmlElement element, XmlElement source)
-        {
-            foreach(XmlAttribute xmlAttribute in source.Attributes)
-            {
-                XmlAttribute? destination = element.Attributes[xmlAttribute.Name];
-                if (destination == null)
-                    throw _exceptionHelper.CriticalException("{B5D7EF3D-D6A6-4F9A-B283-A3E8057E5825}");
-
-                destination.Value = xmlAttribute.Value;
-            }
-
-            element.InnerXml = source.InnerXml;
-            return element;
         }
         #endregion Methods
     }

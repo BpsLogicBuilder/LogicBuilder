@@ -435,7 +435,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         {
             CurrentEditingControl.ValidateFields();
 
-            _xmlDocumentHelpers.UpdateChildNodes
+            _xmlDocumentHelpers.ReplaceElement
             (
                 _xmlDocumentHelpers.SelectSingleElement
                 (
