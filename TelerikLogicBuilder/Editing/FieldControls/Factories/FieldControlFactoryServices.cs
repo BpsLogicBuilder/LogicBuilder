@@ -58,7 +58,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         editigFunctionControl
                     )
                 )
-                .AddTransient<Func<IEditingControl, ListOfLiteralsParameter, IDictionary<string, ParameterControlSet>, ILiteralListParameterRichTextBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IDictionary<string, ParameterControlSet>, ILiteralListParameterRichTextBoxControl>>
                 (
                     provider =>
                     (editigControl, listOfLiteralsParameter, editControlsSet) => new LiteralListParameterRichTextBoxControl
@@ -76,7 +76,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         editControlsSet
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDomainAutoCompleteControl
@@ -88,7 +88,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterDomainMultilineControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainMultilineControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDomainMultilineControl
@@ -105,7 +105,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterDomainRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainRichInputBoxControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDomainRichInputBoxControl
@@ -122,7 +122,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterDropDownListControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDropDownListControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterDropDownListControl
@@ -134,7 +134,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterMultilineControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterMultilineControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterMultilineControl
@@ -151,7 +151,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterPropertyInputRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterPropertyInputRichInputBoxControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterPropertyInputRichInputBoxControl
@@ -168,7 +168,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterRichInputBoxControl
@@ -185,7 +185,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, IDictionary<string, ParameterControlSet>, ILiteralParameterSourcedPropertyRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, IDictionary<string, ParameterControlSet>, ILiteralParameterSourcedPropertyRichInputBoxControl>>
                 (
                     provider =>
                     (editigControl, literalParameter, editControlsSet) => new LiteralParameterSourcedPropertyRichInputBoxControl
@@ -203,7 +203,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         editControlsSet
                     )
                 )
-                .AddTransient<Func<IEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl>>
                 (
                     provider =>
                     (editigControl, literalParameter) => new LiteralParameterTypeAutoCompleteControl
@@ -217,7 +217,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ListOfObjectsParameter, IObjectListParameterRichTextBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfObjectsParameter, IObjectListParameterRichTextBoxControl>>
                 (
                     provider =>
                     (editigControl, listOfObjectsParameter) => new ObjectListParameterRichTextBoxControl
@@ -234,7 +234,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         listOfObjectsParameter
                     )
                 )
-                .AddTransient<Func<IEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl>>
                 (
                     provider =>
                     (editigControl, objectParameter) => new ObjectParameterRichTextBoxControl

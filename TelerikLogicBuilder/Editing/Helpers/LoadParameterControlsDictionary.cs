@@ -19,7 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly IServiceFactory _serviceFactory;
-        private readonly IEditingControl editingControl;
+        private readonly IDataGraphEditingControl editingControl;
         private readonly IEditingForm editingForm;
 
         public LoadParameterControlsDictionary(
@@ -27,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             IFieldControlFactory fieldControlFactory,
             IRadCheckBoxHelper radCheckBoxHelper,
             IServiceFactory serviceFactory,
-            IEditingControl editingControl,
+            IDataGraphEditingControl editingControl,
             IEditingForm editingForm)
         {
             _exceptionHelper = exceptionHelper;

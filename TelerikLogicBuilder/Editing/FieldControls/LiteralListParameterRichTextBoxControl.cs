@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly IUpdateObjectRichTextBoxXml _updateObjectRichTextBoxXml;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         
-        private readonly IEditingControl editingControl;
+        private readonly IDataGraphEditingControl dataGraphEditingControl;
         private readonly ListOfLiteralsParameter listOfLiteralsParameter;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet;
         private Type? _assignedTo;
@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             ObjectRichTextBox objectRichTextBox,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingControl editingControl,
+            IDataGraphEditingControl dataGraphEditingControl,
             ListOfLiteralsParameter listOfLiteralsParameter,
             IDictionary<string, ParameterControlSet> editControlsSet)
         {
@@ -64,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _objectRichTextBox = objectRichTextBox;
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingControl = editingControl;
+            this.dataGraphEditingControl = dataGraphEditingControl;
             this.listOfLiteralsParameter = listOfLiteralsParameter;
             this.editControlsSet = editControlsSet;
             _objectRichTextBoxEventsHelper = fieldControlHelperFactory.GetObjectRichTextBoxEventsHelper(this);
@@ -129,7 +129,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private IList<RadButton> CommandButtons => new RadButton[] { btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList };
 
-        public ApplicationTypeInfo Application => editingControl.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
         public Type? AssignedTo
         {
@@ -194,7 +194,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
-        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingControl.RequestDocumentUpdate();
 
         public void ResetControl()
         {

@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -10,7 +12,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 {
     internal class RichInputBoxEventsHelper : IRichInputBoxEventsHelper
     {
@@ -43,23 +45,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private RadMenuItem MnuItemCut => richInputBoxValueControl.MnuItemCut;
         private RadMenuItem MnuItemPaste => richInputBoxValueControl.MnuItemPaste;
         private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
-
-        public void Setup()
-        {
-            RichInputBox.KeyUp += RichInputBox_KeyUp;
-            RichInputBox.MouseClick += RichInputBox_MouseClick;
-            RichInputBox.MouseUp += RichInputBox_MouseUp;
-            RichInputBox.TextChanged += RichInputBox_TextChanged;
-            RichInputBox.Validated += RichInputBox_Validated;
-        }
-
-        public void SetupForListItemEditor()
-        {
-            RichInputBox.KeyUp += RichInputBox_KeyUp;
-            RichInputBox.MouseClick += RichInputBox_MouseClick;
-            RichInputBox.MouseUp += RichInputBox_MouseUp;
-            RichInputBox.TextChanged += RichInputBox_TextChanged;
-        }
 
         private void EnableOrDisableCopyCutPaste()
         {
@@ -111,7 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         }
 
         #region Event Handlers
-        private void RichInputBox_KeyUp(object? sender, KeyEventArgs e)
+        public void RichInputBox_KeyUp(object? sender, KeyEventArgs e)
         {
             if (!(e.KeyCode == Keys.Right
                 || e.KeyCode == Keys.Down
@@ -125,7 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             EnableOrDisableLinkCreation();
         }
 
-        private void RichInputBox_MouseClick(object? sender, MouseEventArgs e)
+        public void RichInputBox_MouseClick(object? sender, MouseEventArgs e)
         {
             int charIndex = RichInputBox.GetCharIndexFromPosition(e.Location);
             LinkBoundaries? boundary = RichInputBox.GetBoundary(charIndex);
@@ -137,23 +122,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             }
         }
 
-        private void RichInputBox_MouseUp(object? sender, MouseEventArgs e)
+        public void RichInputBox_MouseUp(object? sender, MouseEventArgs e)
         {
             EnableOrDisableCopyCutPaste();
             EnableOrDisableLinkCreation();
         }
 
-        private void RichInputBox_TextChanged(object? sender, EventArgs e)
+        public void RichInputBox_TextChanged(object? sender, EventArgs e)
             => richInputBoxValueControl.InvokeChanged();
-
-        private void RichInputBox_Validated(object? sender, EventArgs e)
-        {
-            if (RichInputBox.Modified)
-            {
-                richInputBoxValueControl.RequestDocumentUpdate();
-                RichInputBox.Modified = false;
-            }
-        }
         #endregion Event Handlers
     }
 }

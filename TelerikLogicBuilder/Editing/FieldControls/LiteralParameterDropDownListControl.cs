@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditingControl editingControl;
+        private readonly IDataGraphEditingControl dataGraphEditingControl;
         private readonly LiteralParameter literalParameter;
         private RadDropDownList radDropDownList;
         private bool modified;
@@ -31,14 +31,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
             IRadDropDownListHelper radDropDownListHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingControl editingControl,
+            IDataGraphEditingControl dataGraphEditingControl,
             LiteralParameter literalParameter)
         {
             InitializeComponent();
             _createLiteralParameterXmlElement = createLiteralParameterXmlElement;
             _radDropDownListHelper = radDropDownListHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingControl = editingControl;
+            this.dataGraphEditingControl = dataGraphEditingControl;
             this.literalParameter = literalParameter;
             Initialize();
         }
@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
-        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingControl.RequestDocumentUpdate();
 
         public void ResetControl()
         {

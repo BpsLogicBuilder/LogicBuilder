@@ -303,9 +303,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             switch (literalListElementInfo.Parameter.ElementControl)
             {
                 case LiteralParameterInputStyle.DomainAutoComplete:
-                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemDomainAutoCompleteControl(this, literalListElementInfo.Parameter);
+                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemDomainAutoCompleteControl(literalListElementInfo.Parameter);
                 case LiteralParameterInputStyle.DropDown:
-                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemDropDownListControl(this, literalListElementInfo.Parameter);
+                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemDropDownListControl(literalListElementInfo.Parameter);
                 case LiteralParameterInputStyle.MultipleLineTextBox:
                     return literalListElementInfo.Parameter.Domain.Any()
                                         ? _literalListItemEditorControlFactory.GetListOfLiteralsItemDomainMultilineControl(this, literalListElementInfo.Parameter)

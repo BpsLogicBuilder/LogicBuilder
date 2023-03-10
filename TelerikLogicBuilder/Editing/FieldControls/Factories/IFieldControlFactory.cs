@@ -8,17 +8,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
     {
         IConstructorGenericParametersControl GetConstructorGenericParametersControl(IEditConstructorControl editConstructorControl);
         IFunctionGenericParametersControl GetFunctionGenericParametersControl(IEditFunctionControl editFunctionControl);
-        ILiteralListParameterRichTextBoxControl GetiteralListParameterRichTextBoxControl(IEditingControl editingControl, ListOfLiteralsParameter listOfLiteralsParameter, IDictionary<string, ParameterControlSet> editControlSet);
-        ILiteralParameterDomainAutoCompleteControl GetLiteralParameterDomainAutoCompleteControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        ILiteralParameterDomainMultilineControl GetLiteralParameterDomainMultilineControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        ILiteralParameterDomainRichInputBoxControl GetLiteralParameterDomainRichInputBoxControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        ILiteralParameterDropDownListControl GetLiteralParameterDropDownListControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        ILiteralParameterMultilineControl GetLiteralParameterMultilineControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        ILiteralParameterPropertyInputRichInputBoxControl GetLiteralParameterPropertyInputRichInputBoxControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        ILiteralParameterRichInputBoxControl GetLiteralParameterRichInputBoxControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        ILiteralParameterSourcedPropertyRichInputBoxControl GetLiteralParameterSourcedPropertyRichInputBoxControl(IEditingControl editingControl, LiteralParameter literalParameter, IDictionary<string, ParameterControlSet> editControlsSet);
-        ILiteralParameterTypeAutoCompleteControl GetLiteralParameterTypeAutoCompleteControl(IEditingControl editingControl, LiteralParameter literalParameter);
-        IObjectListParameterRichTextBoxControl GetObjectListParameterRichTextBoxControl(IEditingControl editingControl, ListOfObjectsParameter listOfObjectsParameter);
-        IObjectParameterRichTextBoxControl GetObjectParameterRichTextBoxControl(IEditingControl editingControl, ObjectParameter objectParameter);
+        ILiteralListParameterRichTextBoxControl GetiteralListParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfLiteralsParameter listOfLiteralsParameter, IDictionary<string, ParameterControlSet> editControlSet);
+        ILiteralParameterDomainAutoCompleteControl GetLiteralParameterDomainAutoCompleteControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        ILiteralParameterDomainMultilineControl GetLiteralParameterDomainMultilineControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        ILiteralParameterDomainRichInputBoxControl GetLiteralParameterDomainRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        ILiteralParameterDropDownListControl GetLiteralParameterDropDownListControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        ILiteralParameterMultilineControl GetLiteralParameterMultilineControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        ILiteralParameterPropertyInputRichInputBoxControl GetLiteralParameterPropertyInputRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        ILiteralParameterRichInputBoxControl GetLiteralParameterRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        ILiteralParameterSourcedPropertyRichInputBoxControl GetLiteralParameterSourcedPropertyRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter, IDictionary<string, ParameterControlSet> editControlsSet);
+        ILiteralParameterTypeAutoCompleteControl GetLiteralParameterTypeAutoCompleteControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter);
+        IObjectListParameterRichTextBoxControl GetObjectListParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfObjectsParameter listOfObjectsParameter);
+        IObjectParameterRichTextBoxControl GetObjectParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ObjectParameter objectParameter);
     }
 }

@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly IUpdateObjectRichTextBoxXml _updateObjectRichTextBoxXml;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditingControl editingControl;
+        private readonly IDataGraphEditingControl dataGraphEditingControl;
         private readonly ListOfObjectsParameter listOfObjectsParameter;
         private Type? _assignedTo;
 
@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             ObjectRichTextBox objectRichTextBox,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingControl editingControl,
+            IDataGraphEditingControl dataGraphEditingControl,
             ListOfObjectsParameter listOfObjectsParameter)
         {
             InitializeComponent();
@@ -62,7 +62,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _objectRichTextBox = objectRichTextBox;
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingControl = editingControl;
+            this.dataGraphEditingControl = dataGraphEditingControl;
             this.listOfObjectsParameter = listOfObjectsParameter;
             _objectRichTextBoxEventsHelper = fieldControlHelperFactory.GetObjectRichTextBoxEventsHelper(this);
             _updateObjectRichTextBoxXml = fieldControlHelperFactory.GetUpdateObjectRichTextBoxXml(this);
@@ -126,7 +126,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private IList<RadButton> CommandButtons => new RadButton[] { btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList };
 
-        public ApplicationTypeInfo Application => editingControl.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
         public Type? AssignedTo
         {
@@ -180,7 +180,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
-        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingControl.RequestDocumentUpdate();
 
         public void ResetControl()
         {

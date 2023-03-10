@@ -1,10 +1,10 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
-using ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -55,15 +55,12 @@ namespace Microsoft.Extensions.DependencyInjection
                         objectRichTextBoxValueControl
                     )
                 )
-                .AddTransient<Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper>>
+                .AddTransient<Func<IParameterRichInputBoxValueControl, IParameterRichInputBoxEventsHelper>>
                 (
                     provider =>
-                    richInputBoxValueControl => new RichInputBoxEventsHelper
+                    richInputBoxValueControl => new ParameterRichInputBoxEventsHelper
                     (
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
-                        provider.GetRequiredService<IVariableDataParser>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         richInputBoxValueControl
                     )
                 )

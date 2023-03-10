@@ -9,7 +9,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
     {
         Type AssignedTo { get; }
         IList<RadButton> CommandButtons { get; }
-        bool DenySpecialCharacters { get; set; }
         RadMenuItem MnuItemInsert { get; }
         RadMenuItem MnuItemInsertConstructor { get; }
         RadMenuItem MnuItemInsertFunction { get; }
@@ -21,7 +20,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         RadMenuItem MnuItemPaste { get; }
         RadMenuItem MnuItemToCamelCase { get; }
         RichInputBox RichInputBox { get; }
-
-        void RequestDocumentUpdate();
     }
 }

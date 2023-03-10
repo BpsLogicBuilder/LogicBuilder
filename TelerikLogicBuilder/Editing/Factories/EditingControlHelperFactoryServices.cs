@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -35,7 +37,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingControlHelperFactory, EditingControlHelperFactory>()
-                .AddTransient<Func<IEditingControl, IEditingForm, ILoadParameterControlsDictionary>>
+                .AddTransient<Func<IDataGraphEditingControl, IEditingForm, ILoadParameterControlsDictionary>>
                 (
                     provider =>
                     (editingControl, edifForm) => new LoadParameterControlsDictionary
@@ -46,6 +48,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IServiceFactory>(),
                         editingControl, 
                         edifForm
+                    )
+                )
+                .AddTransient<Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new RichInputBoxEventsHelper
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        richInputBoxValueControl
                     )
                 );
         }

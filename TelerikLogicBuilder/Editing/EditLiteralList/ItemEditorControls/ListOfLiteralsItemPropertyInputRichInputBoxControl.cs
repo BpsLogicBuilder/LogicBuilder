@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
@@ -34,27 +36,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private readonly IFieldControlCommandFactory _fieldControlCommandFactory;
         private readonly IImageListService _imageListService;
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
-        private readonly IRichInputBoxEventsHelper _richInputBoxEventsHelper;
+        private readonly ILiteralListItemRichInputBoxEventsHelper _richInputBoxEventsHelper;
         private readonly IUpdateRichInputBoxXml _updateRichInputBoxXml;
         private readonly RichInputBox _richInputBox;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditingControl editingControl;
+        private readonly IDataGraphEditingControl dataGraphEditingControl;
         private readonly ListOfLiteralsParameter literalListParameter;
         private Type? _assignedTo;
 
         public ListOfLiteralsItemPropertyInputRichInputBoxControl(
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
-            IFieldControlHelperFactory fieldControlContextMenuFactory,
+            IFieldControlHelperFactory fieldControlHelperFactory,
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
+            ILiteralListItemControlHelperFactory literalListItemControlHelperFactory,
             IUpdateRichInputBoxXml updateRichInputBoxXml,
             RichInputBox richInputBox,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingControl editingControl,
+            IDataGraphEditingControl dataGraphEditingControl,
             ListOfLiteralsParameter literalListParameter)
         {
             InitializeComponent();
@@ -66,10 +69,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             _richInputBox = richInputBox;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingControl = editingControl;
+            this.dataGraphEditingControl = dataGraphEditingControl;
             this.literalListParameter = literalListParameter;
-            _richInputBoxEventsHelper = fieldControlContextMenuFactory.GetRichInputBoxEventsHelper(this);
-            _createRichInputBoxContextMenu = fieldControlContextMenuFactory.GetCreateRichInputBoxContextMenu(this);
+            _richInputBoxEventsHelper = literalListItemControlHelperFactory.GetLiteralListItemRichInputBoxEventsHelper(this);
+            _createRichInputBoxContextMenu = fieldControlHelperFactory.GetCreateRichInputBoxContextMenu(this);
             btnHelper = new()
             {
                 Name = "btnHelper",
@@ -140,7 +143,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public event EventHandler? Changed;
 
-        public ApplicationTypeInfo Application => editingControl.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
         public string Comments => literalListParameter.Comments;
 
@@ -164,8 +167,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         }
 
         public IList<RadButton> CommandButtons => new RadButton[] { btnHelper, btnDomain, btnVariable, btnFunction, btnConstructor };
-
-        public bool DenySpecialCharacters { get => _richInputBox.DenySpecialCharacters; set => _richInputBox.DenySpecialCharacters = value; }
 
         public RadMenuItem MnuItemInsert => mnuItemInsert;
         public RadMenuItem MnuItemInsertConstructor => mnuItemInsertConstructor;
@@ -198,8 +199,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
-
-        public void RequestDocumentUpdate() => editingControl.RequestDocumentUpdate();
 
         public void ResetControl() => _richInputBox.Clear();
 
@@ -258,7 +257,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
             AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
 
-            _richInputBoxEventsHelper.SetupForListItemEditor();
+            _richInputBoxEventsHelper.Setup();
             _createRichInputBoxContextMenu.Create();
         }
 
@@ -283,6 +282,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             _richInputBox.DetectUrls = false;
             _richInputBox.HideSelection = false;
             _richInputBox.Multiline = false;
+            _richInputBox.DenySpecialCharacters = dataGraphEditingControl.DenySpecialCharacters;
 
             this.radPanelRichInputBox.Controls.Add(_richInputBox);
             ((ISupportInitialize)this.radPanelRichInputBox).EndInit();

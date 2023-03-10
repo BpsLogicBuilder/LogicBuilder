@@ -1,8 +1,7 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
-    internal interface IRichInputBoxEventsHelper
+    internal interface IParameterRichInputBoxEventsHelper
     {
         void Setup();
-        void SetupForListItemEditor();
     }
 }

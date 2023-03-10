@@ -22,7 +22,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditingControl editingControl;
         private readonly ListOfLiteralsParameter literalListParameter;
         private RadDropDownList radDropDownList;
 
@@ -30,14 +29,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             IRadDropDownListHelper radDropDownListHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingControl editingControl,
             ListOfLiteralsParameter literalListParameter)
         {
             InitializeComponent();
             _radDropDownListHelper = radDropDownListHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingControl = editingControl;
             this.literalListParameter = literalListParameter;
             Initialize();
         }

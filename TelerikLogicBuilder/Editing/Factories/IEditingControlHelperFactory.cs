@@ -1,10 +1,12 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal interface IEditingControlHelperFactory
     {
         IEditFunctionControlHelper GetEditFunctionControlHelper(IEditFunctionControl editFunctionControl);
-        ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IEditingControl editingControl, IEditingForm editingForm);
+        ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IDataGraphEditingControl editingControl, IEditingForm editingForm);
+        IRichInputBoxEventsHelper GetRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl);
     }
 }

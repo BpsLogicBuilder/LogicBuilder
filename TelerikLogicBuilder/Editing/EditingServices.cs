@@ -62,6 +62,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddFieldControlFactories()
                 .AddFieldControlHelperFactories()
                 .AddLiteralListBoxItemFactories()
+                .AddLiteralListItemControlHelperFactories()
                 .AddLiteralListItemEditorControlFactories()
                 .AddObjectListBoxItemFactories()
                 .AddObjectListItemEditorControlFactories()

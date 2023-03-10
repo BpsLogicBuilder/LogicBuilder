@@ -73,7 +73,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         //12/2006 new property
         internal bool DenySpecialCharacters
         {
-            get { return denySpecialCharacters; }
             set { denySpecialCharacters = value; }
         }
         #endregion Properties

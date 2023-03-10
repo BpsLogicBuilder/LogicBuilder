@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
-    internal interface ILiteralParameterRichInputBoxControl : IRichInputBoxValueControl
+    internal interface ILiteralParameterRichInputBoxControl : IRichInputBoxValueControl, IParameterRichInputBoxValueControl
     {
     }
 }
