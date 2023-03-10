@@ -37,7 +37,7 @@ namespace TelerikLogicBuilder.Tests.DataParsers
             var result = helper.Parse(xml);
 
             //assert
-            Assert.Equal(LiteralParameterType.String, result.LiteralType);
+            Assert.Equal(LiteralListElementType.String, result.LiteralType);
             Assert.Equal(ListType.GenericList, result.ListType);
             Assert.Equal("www", result.VisibleText);
             Assert.Equal(5, result.ChildElements.Count);

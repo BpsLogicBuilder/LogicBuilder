@@ -56,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
                     _enumHelper.GetVisibleEnumText(listData.LiteralType)
                 ),
                 listData.ListType,
-                listData.LiteralType,
+                _enumHelper.GetLiteralParameterType(listData.LiteralType),
                 ListParameterInputStyle.ListForm,
                 LiteralParameterInputStyle.SingleLineTextBox,
                 new List<string>(),

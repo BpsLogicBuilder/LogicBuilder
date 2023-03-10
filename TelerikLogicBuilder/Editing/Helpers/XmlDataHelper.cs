@@ -86,13 +86,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
-        public string BuildLiteralListXml(LiteralParameterType literalType, ListType listType, string visibleText, string innerXml)
+        public string BuildLiteralListXml(LiteralListElementType literalType, ListType listType, string visibleText, string innerXml)
         {
             StringBuilder stringBuilder = new();
             using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
             {
                 xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALLISTELEMENT);
-                    xmlTextWriter.WriteAttributeString(XmlDataConstants.LITERALTYPEATTRIBUTE, Enum.GetName(typeof(LiteralParameterType), literalType));
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.LITERALTYPEATTRIBUTE, Enum.GetName(typeof(LiteralListElementType), literalType));
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.LISTTYPEATTRIBUTE, Enum.GetName(typeof(ListType), listType));
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
                     xmlTextWriter.WriteRaw(innerXml);

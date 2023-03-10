@@ -166,7 +166,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             get
             {
                 ListType listType = (ListType)cmbListType.SelectedValue;
-                LiteralParameterType literalParameterType = (LiteralParameterType)cmbLiteralType.SelectedValue;
+                LiteralListElementType literalParameterType = (LiteralListElementType)cmbLiteralType.SelectedValue;
                 return _xmlDocumentHelpers.ToXmlElement
                 (
                     _xmlDataHelper.BuildLiteralListXml
@@ -437,7 +437,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         private void LoadDropDownLists()
         {
-            _radDropDownListHelper.LoadComboItems<LiteralParameterType>(this.cmbLiteralType, RadDropDownStyle.DropDownList);
+            _radDropDownListHelper.LoadComboItems<LiteralListElementType>(this.cmbLiteralType, RadDropDownStyle.DropDownList);
             _radDropDownListHelper.LoadComboItems(this.cmbListType, RadDropDownStyle.DropDownList, new ListType[] { Enums.ListType.IGenericEnumerable, Enums.ListType.IGenericCollection, Enums.ListType.IGenericList });
         }
 

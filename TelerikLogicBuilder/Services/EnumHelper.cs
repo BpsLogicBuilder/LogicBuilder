@@ -238,6 +238,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         public LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType)
             => GetLiteralEnumType<LiteralFunctionReturnType>(functionReturnType);
 
+        public LiteralListElementType GetLiteralListElementType(LiteralParameterType literalType)
+        {
+            string? literalTypeString = Enum.GetName(typeof(LiteralParameterType), literalType);
+            if (!Enum.IsDefined(typeof(LiteralListElementType), literalTypeString ?? ""))
+                throw _exceptionHelper.CriticalException("{D7EE5D3F-6594-46E0-B5EC-15202252F9D2}");
+
+            return ParseEnumText<LiteralListElementType>(literalTypeString!);//not null if defined
+        }
+
+        public LiteralListElementType GetLiteralListElementType(Type literalType)
+            => GetLiteralEnumType<LiteralListElementType>(literalType);
+
+        public LiteralParameterType GetLiteralParameterType(LiteralListElementType literalType)
+        {
+            string? literalTypeString = Enum.GetName(typeof(LiteralListElementType), literalType);
+            if (!Enum.IsDefined(typeof(LiteralParameterType), literalTypeString ?? ""))
+                throw _exceptionHelper.CriticalException("{408A8237-B73B-4156-B435-055A03F86F4B}");
+
+            return ParseEnumText<LiteralParameterType>(literalTypeString!);//not null if defined
+        }
+
         public LiteralParameterType GetLiteralParameterType(Type parameterType) 
             => GetLiteralEnumType<LiteralParameterType>(parameterType);
 
@@ -298,6 +319,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public Type GetSystemType(LiteralFunctionReturnType functionReturnType) 
             => GetSystemTypeFromEnum(functionReturnType);
+
+        public Type GetSystemType(LiteralListElementType literalType)
+        {
+            if (literalType == LiteralListElementType.Any)
+                return typeof(string);
+
+            return GetSystemTypeFromEnum(literalType);
+        }
 
         public Type GetSystemType(LiteralParameterType parameterType)
         {

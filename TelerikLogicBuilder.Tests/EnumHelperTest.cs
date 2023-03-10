@@ -34,6 +34,7 @@ namespace TelerikLogicBuilder.Tests
         [InlineData(typeof(ListType))]
         [InlineData(typeof(ListVariableInputStyle))]
         [InlineData(typeof(LiteralFunctionReturnType))]
+        [InlineData(typeof(LiteralListElementType))]
         [InlineData(typeof(LiteralParameterInputStyle))]
         [InlineData(typeof(LiteralParameterType))]
         [InlineData(typeof(LiteralType))]
@@ -111,6 +112,72 @@ namespace TelerikLogicBuilder.Tests
 
             //act
             Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetListType(typeof(string)));
+        }
+
+        [Theory]
+        [InlineData(typeof(bool), LiteralListElementType.Boolean)]
+        [InlineData(typeof(DateTimeOffset), LiteralListElementType.DateTimeOffset)]
+        [InlineData(typeof(DateOnly), LiteralListElementType.DateOnly)]
+        [InlineData(typeof(DateTime), LiteralListElementType.DateTime)]
+        [InlineData(typeof(Date), LiteralListElementType.Date)]
+        [InlineData(typeof(TimeSpan), LiteralListElementType.TimeSpan)]
+        [InlineData(typeof(TimeOnly), LiteralListElementType.TimeOnly)]
+        [InlineData(typeof(TimeOfDay), LiteralListElementType.TimeOfDay)]
+        [InlineData(typeof(Guid), LiteralListElementType.Guid)]
+        [InlineData(typeof(decimal), LiteralListElementType.Decimal)]
+        [InlineData(typeof(byte), LiteralListElementType.Byte)]
+        [InlineData(typeof(short), LiteralListElementType.Short)]
+        [InlineData(typeof(int), LiteralListElementType.Integer)]
+        [InlineData(typeof(long), LiteralListElementType.Long)]
+        [InlineData(typeof(float), LiteralListElementType.Float)]
+        [InlineData(typeof(double), LiteralListElementType.Double)]
+        [InlineData(typeof(char), LiteralListElementType.Char)]
+        [InlineData(typeof(sbyte), LiteralListElementType.SByte)]
+        [InlineData(typeof(ushort), LiteralListElementType.UShort)]
+        [InlineData(typeof(uint), LiteralListElementType.UInteger)]
+        [InlineData(typeof(ulong), LiteralListElementType.ULong)]
+        [InlineData(typeof(string), LiteralListElementType.String)]
+        [InlineData(typeof(bool?), LiteralListElementType.NullableBoolean)]
+        [InlineData(typeof(DateTimeOffset?), LiteralListElementType.NullableDateTimeOffset)]
+        [InlineData(typeof(DateOnly?), LiteralListElementType.NullableDateOnly)]
+        [InlineData(typeof(DateTime?), LiteralListElementType.NullableDateTime)]
+        [InlineData(typeof(Date?), LiteralListElementType.NullableDate)]
+        [InlineData(typeof(TimeSpan?), LiteralListElementType.NullableTimeSpan)]
+        [InlineData(typeof(TimeOnly?), LiteralListElementType.NullableTimeOnly)]
+        [InlineData(typeof(TimeOfDay?), LiteralListElementType.NullableTimeOfDay)]
+        [InlineData(typeof(Guid?), LiteralListElementType.NullableGuid)]
+        [InlineData(typeof(decimal?), LiteralListElementType.NullableDecimal)]
+        [InlineData(typeof(byte?), LiteralListElementType.NullableByte)]
+        [InlineData(typeof(short?), LiteralListElementType.NullableShort)]
+        [InlineData(typeof(int?), LiteralListElementType.NullableInteger)]
+        [InlineData(typeof(long?), LiteralListElementType.NullableLong)]
+        [InlineData(typeof(float?), LiteralListElementType.NullableFloat)]
+        [InlineData(typeof(double?), LiteralListElementType.NullableDouble)]
+        [InlineData(typeof(char?), LiteralListElementType.NullableChar)]
+        [InlineData(typeof(sbyte?), LiteralListElementType.NullableSByte)]
+        [InlineData(typeof(ushort?), LiteralListElementType.NullableUShort)]
+        [InlineData(typeof(uint?), LiteralListElementType.NullableUInteger)]
+        [InlineData(typeof(ulong?), LiteralListElementType.NullableULong)]
+        internal void GetLiteralListElementTypeReturnsTheExpectedEnumType(Type type, LiteralListElementType expectedParameterType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var listType = enumHelper.GetLiteralListElementType(type);
+
+            //assert
+            Assert.Equal(expectedParameterType, listType);
+        }
+
+        [Fact]
+        public void GetLiteralListElementTypeThrowsCriticalExceptionForInvalidType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetLiteralListElementType(typeof(void)));
         }
 
         [Theory]
@@ -453,6 +520,73 @@ namespace TelerikLogicBuilder.Tests
 
             //assert
             Assert.Equal(expectedType, result);
+        }
+
+        [Theory]
+        [InlineData(LiteralListElementType.Any, typeof(string))]
+        [InlineData(LiteralListElementType.Boolean, typeof(bool))]
+        [InlineData(LiteralListElementType.DateTimeOffset, typeof(DateTimeOffset))]
+        [InlineData(LiteralListElementType.DateOnly, typeof(DateOnly))]
+        [InlineData(LiteralListElementType.DateTime, typeof(DateTime))]
+        [InlineData(LiteralListElementType.Date, typeof(Date))]
+        [InlineData(LiteralListElementType.TimeSpan, typeof(TimeSpan))]
+        [InlineData(LiteralListElementType.TimeOnly, typeof(TimeOnly))]
+        [InlineData(LiteralListElementType.TimeOfDay, typeof(TimeOfDay))]
+        [InlineData(LiteralListElementType.Guid, typeof(Guid))]
+        [InlineData(LiteralListElementType.Decimal, typeof(decimal))]
+        [InlineData(LiteralListElementType.Byte, typeof(byte))]
+        [InlineData(LiteralListElementType.Short, typeof(short))]
+        [InlineData(LiteralListElementType.Integer, typeof(int))]
+        [InlineData(LiteralListElementType.Long, typeof(long))]
+        [InlineData(LiteralListElementType.Float, typeof(float))]
+        [InlineData(LiteralListElementType.Double, typeof(double))]
+        [InlineData(LiteralListElementType.Char, typeof(char))]
+        [InlineData(LiteralListElementType.SByte, typeof(sbyte))]
+        [InlineData(LiteralListElementType.UShort, typeof(ushort))]
+        [InlineData(LiteralListElementType.UInteger, typeof(uint))]
+        [InlineData(LiteralListElementType.ULong, typeof(ulong))]
+        [InlineData(LiteralListElementType.String, typeof(string))]
+        [InlineData(LiteralListElementType.NullableBoolean, typeof(bool?))]
+        [InlineData(LiteralListElementType.NullableDateTimeOffset, typeof(DateTimeOffset?))]
+        [InlineData(LiteralListElementType.NullableDateOnly, typeof(DateOnly?))]
+        [InlineData(LiteralListElementType.NullableDateTime, typeof(DateTime?))]
+        [InlineData(LiteralListElementType.NullableDate, typeof(Date?))]
+        [InlineData(LiteralListElementType.NullableTimeSpan, typeof(TimeSpan?))]
+        [InlineData(LiteralListElementType.NullableTimeOnly, typeof(TimeOnly?))]
+        [InlineData(LiteralListElementType.NullableTimeOfDay, typeof(TimeOfDay?))]
+        [InlineData(LiteralListElementType.NullableGuid, typeof(Guid?))]
+        [InlineData(LiteralListElementType.NullableDecimal, typeof(decimal?))]
+        [InlineData(LiteralListElementType.NullableByte, typeof(byte?))]
+        [InlineData(LiteralListElementType.NullableShort, typeof(short?))]
+        [InlineData(LiteralListElementType.NullableInteger, typeof(int?))]
+        [InlineData(LiteralListElementType.NullableLong, typeof(long?))]
+        [InlineData(LiteralListElementType.NullableFloat, typeof(float?))]
+        [InlineData(LiteralListElementType.NullableDouble, typeof(double?))]
+        [InlineData(LiteralListElementType.NullableChar, typeof(char?))]
+        [InlineData(LiteralListElementType.NullableSByte, typeof(sbyte?))]
+        [InlineData(LiteralListElementType.NullableUShort, typeof(ushort?))]
+        [InlineData(LiteralListElementType.NullableUInteger, typeof(uint?))]
+        [InlineData(LiteralListElementType.NullableULong, typeof(ulong?))]
+        internal void GetSystemTypeFromLiteralListElementTypeReturnsTheExpectedType(LiteralListElementType literalType, Type expectedType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetSystemType(literalType);
+
+            //assert
+            Assert.Equal(expectedType, result);
+        }
+
+        [Fact]
+        internal void GetSystemTypeFromLiteralListElementTypeThrowsForUndefinedEnum()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //assert
+            Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetSystemType((LiteralListElementType)(-1)));
         }
 
         [Theory]
@@ -1457,6 +1591,150 @@ namespace TelerikLogicBuilder.Tests
             Assert.Equal
             (
                 string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{035AE1DA-4596-432B-8BFC-9DAB0DC94BCD}"),
+                exception.Message
+            );
+        }
+
+        [Theory]
+        [InlineData(LiteralListElementType.Any, LiteralParameterType.Any)]
+        [InlineData(LiteralListElementType.Boolean, LiteralParameterType.Boolean)]
+        [InlineData(LiteralListElementType.DateTimeOffset, LiteralParameterType.DateTimeOffset)]
+        [InlineData(LiteralListElementType.DateOnly, LiteralParameterType.DateOnly)]
+        [InlineData(LiteralListElementType.DateTime, LiteralParameterType.DateTime)]
+        [InlineData(LiteralListElementType.Date, LiteralParameterType.Date)]
+        [InlineData(LiteralListElementType.TimeSpan, LiteralParameterType.TimeSpan)]
+        [InlineData(LiteralListElementType.TimeOnly, LiteralParameterType.TimeOnly)]
+        [InlineData(LiteralListElementType.TimeOfDay, LiteralParameterType.TimeOfDay)]
+        [InlineData(LiteralListElementType.Guid, LiteralParameterType.Guid)]
+        [InlineData(LiteralListElementType.Decimal, LiteralParameterType.Decimal)]
+        [InlineData(LiteralListElementType.Byte, LiteralParameterType.Byte)]
+        [InlineData(LiteralListElementType.Short, LiteralParameterType.Short)]
+        [InlineData(LiteralListElementType.Integer, LiteralParameterType.Integer)]
+        [InlineData(LiteralListElementType.Long, LiteralParameterType.Long)]
+        [InlineData(LiteralListElementType.Float, LiteralParameterType.Float)]
+        [InlineData(LiteralListElementType.Double, LiteralParameterType.Double)]
+        [InlineData(LiteralListElementType.Char, LiteralParameterType.Char)]
+        [InlineData(LiteralListElementType.SByte, LiteralParameterType.SByte)]
+        [InlineData(LiteralListElementType.UShort, LiteralParameterType.UShort)]
+        [InlineData(LiteralListElementType.UInteger, LiteralParameterType.UInteger)]
+        [InlineData(LiteralListElementType.ULong, LiteralParameterType.ULong)]
+        [InlineData(LiteralListElementType.String, LiteralParameterType.String)]
+        [InlineData(LiteralListElementType.NullableBoolean, LiteralParameterType.NullableBoolean)]
+        [InlineData(LiteralListElementType.NullableDateTimeOffset, LiteralParameterType.NullableDateTimeOffset)]
+        [InlineData(LiteralListElementType.NullableDateOnly, LiteralParameterType.NullableDateOnly)]
+        [InlineData(LiteralListElementType.NullableDateTime, LiteralParameterType.NullableDateTime)]
+        [InlineData(LiteralListElementType.NullableDate, LiteralParameterType.NullableDate)]
+        [InlineData(LiteralListElementType.NullableTimeSpan, LiteralParameterType.NullableTimeSpan)]
+        [InlineData(LiteralListElementType.NullableTimeOnly, LiteralParameterType.NullableTimeOnly)]
+        [InlineData(LiteralListElementType.NullableTimeOfDay, LiteralParameterType.NullableTimeOfDay)]
+        [InlineData(LiteralListElementType.NullableGuid, LiteralParameterType.NullableGuid)]
+        [InlineData(LiteralListElementType.NullableDecimal, LiteralParameterType.NullableDecimal)]
+        [InlineData(LiteralListElementType.NullableByte, LiteralParameterType.NullableByte)]
+        [InlineData(LiteralListElementType.NullableShort, LiteralParameterType.NullableShort)]
+        [InlineData(LiteralListElementType.NullableInteger, LiteralParameterType.NullableInteger)]
+        [InlineData(LiteralListElementType.NullableLong, LiteralParameterType.NullableLong)]
+        [InlineData(LiteralListElementType.NullableFloat, LiteralParameterType.NullableFloat)]
+        [InlineData(LiteralListElementType.NullableDouble, LiteralParameterType.NullableDouble)]
+        [InlineData(LiteralListElementType.NullableChar, LiteralParameterType.NullableChar)]
+        [InlineData(LiteralListElementType.NullableSByte, LiteralParameterType.NullableSByte)]
+        [InlineData(LiteralListElementType.NullableUShort, LiteralParameterType.NullableUShort)]
+        [InlineData(LiteralListElementType.NullableUInteger, LiteralParameterType.NullableUInteger)]
+        [InlineData(LiteralListElementType.NullableULong, LiteralParameterType.NullableULong)]
+        internal void GetLiteralParameterTypeFromLiteralListElementTypeReturnsTheExpectedEnumType(LiteralListElementType literalType, LiteralParameterType expectedType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetLiteralParameterType(literalType);
+
+            //assert
+            Assert.Equal(expectedType, result);
+        }
+
+        [Fact]
+        public void GetLiteralParameterTypeThrowsCriticalExceptionForInvalidLiteralListElementType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetLiteralParameterType((LiteralListElementType)(-1)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{408A8237-B73B-4156-B435-055A03F86F4B}"),
+                exception.Message
+            );
+        }
+
+        [Theory]
+        [InlineData(LiteralParameterType.Any, LiteralListElementType.Any)]
+        [InlineData(LiteralParameterType.Boolean, LiteralListElementType.Boolean)]
+        [InlineData(LiteralParameterType.DateTimeOffset, LiteralListElementType.DateTimeOffset)]
+        [InlineData(LiteralParameterType.DateOnly, LiteralListElementType.DateOnly)]
+        [InlineData(LiteralParameterType.DateTime, LiteralListElementType.DateTime)]
+        [InlineData(LiteralParameterType.Date, LiteralListElementType.Date)]
+        [InlineData(LiteralParameterType.TimeSpan, LiteralListElementType.TimeSpan)]
+        [InlineData(LiteralParameterType.TimeOnly, LiteralListElementType.TimeOnly)]
+        [InlineData(LiteralParameterType.TimeOfDay, LiteralListElementType.TimeOfDay)]
+        [InlineData(LiteralParameterType.Guid, LiteralListElementType.Guid)]
+        [InlineData(LiteralParameterType.Decimal, LiteralListElementType.Decimal)]
+        [InlineData(LiteralParameterType.Byte, LiteralListElementType.Byte)]
+        [InlineData(LiteralParameterType.Short, LiteralListElementType.Short)]
+        [InlineData(LiteralParameterType.Integer, LiteralListElementType.Integer)]
+        [InlineData(LiteralParameterType.Long, LiteralListElementType.Long)]
+        [InlineData(LiteralParameterType.Float, LiteralListElementType.Float)]
+        [InlineData(LiteralParameterType.Double, LiteralListElementType.Double)]
+        [InlineData(LiteralParameterType.Char, LiteralListElementType.Char)]
+        [InlineData(LiteralParameterType.SByte, LiteralListElementType.SByte)]
+        [InlineData(LiteralParameterType.UShort, LiteralListElementType.UShort)]
+        [InlineData(LiteralParameterType.UInteger, LiteralListElementType.UInteger)]
+        [InlineData(LiteralParameterType.ULong, LiteralListElementType.ULong)]
+        [InlineData(LiteralParameterType.String, LiteralListElementType.String)]
+        [InlineData(LiteralParameterType.NullableBoolean, LiteralListElementType.NullableBoolean)]
+        [InlineData(LiteralParameterType.NullableDateTimeOffset, LiteralListElementType.NullableDateTimeOffset)]
+        [InlineData(LiteralParameterType.NullableDateOnly, LiteralListElementType.NullableDateOnly)]
+        [InlineData(LiteralParameterType.NullableDateTime, LiteralListElementType.NullableDateTime)]
+        [InlineData(LiteralParameterType.NullableDate, LiteralListElementType.NullableDate)]
+        [InlineData(LiteralParameterType.NullableTimeSpan, LiteralListElementType.NullableTimeSpan)]
+        [InlineData(LiteralParameterType.NullableTimeOnly, LiteralListElementType.NullableTimeOnly)]
+        [InlineData(LiteralParameterType.NullableTimeOfDay, LiteralListElementType.NullableTimeOfDay)]
+        [InlineData(LiteralParameterType.NullableGuid, LiteralListElementType.NullableGuid)]
+        [InlineData(LiteralParameterType.NullableDecimal, LiteralListElementType.NullableDecimal)]
+        [InlineData(LiteralParameterType.NullableByte, LiteralListElementType.NullableByte)]
+        [InlineData(LiteralParameterType.NullableShort, LiteralListElementType.NullableShort)]
+        [InlineData(LiteralParameterType.NullableInteger, LiteralListElementType.NullableInteger)]
+        [InlineData(LiteralParameterType.NullableLong, LiteralListElementType.NullableLong)]
+        [InlineData(LiteralParameterType.NullableFloat, LiteralListElementType.NullableFloat)]
+        [InlineData(LiteralParameterType.NullableDouble, LiteralListElementType.NullableDouble)]
+        [InlineData(LiteralParameterType.NullableChar, LiteralListElementType.NullableChar)]
+        [InlineData(LiteralParameterType.NullableSByte, LiteralListElementType.NullableSByte)]
+        [InlineData(LiteralParameterType.NullableUShort, LiteralListElementType.NullableUShort)]
+        [InlineData(LiteralParameterType.NullableUInteger, LiteralListElementType.NullableUInteger)]
+        [InlineData(LiteralParameterType.NullableULong, LiteralListElementType.NullableULong)]
+        internal void GetLiteralListElementTypeFromLiteralParameterTypeReturnsTheExpectedEnumType(LiteralParameterType literalType, LiteralListElementType expectedType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetLiteralListElementType(literalType);
+
+            //assert
+            Assert.Equal(expectedType, result);
+        }
+
+        [Fact]
+        public void GetLiteralListElementTypeThrowsCriticalExceptionForInvalidLiteralParameterType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetLiteralListElementType((LiteralParameterType)(-1)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{D7EE5D3F-6594-46E0-B5EC-15202252F9D2}"),
                 exception.Message
             );
         }

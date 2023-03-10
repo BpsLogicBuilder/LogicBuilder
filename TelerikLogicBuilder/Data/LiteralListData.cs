@@ -6,7 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
 {
     internal class LiteralListData
     {
-        public LiteralListData(LiteralParameterType literalType, ListType listType, string visibleText, List<XmlElement> childElements, XmlElement literalListElement)
+        public LiteralListData(LiteralListElementType literalType, ListType listType, string visibleText, List<XmlElement> childElements, XmlElement literalListElement)
         {
             LiteralType = literalType;
             ListType = listType;
@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         /// <summary>
         /// Enum representing the literal type (literalType attribute)
         /// </summary>
-        internal LiteralParameterType LiteralType { get; }
+        internal LiteralListElementType LiteralType { get; }
 
         /// <summary>
         /// Enum representing the list type (listType attribute)

@@ -39,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new LiteralListData
             (
-                _enumHelper.ParseEnumText<LiteralParameterType>
+                _enumHelper.ParseEnumText<LiteralListElementType>
                 (
                     xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
                 ),
@@ -68,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new LiteralListData
             (
-                _enumHelper.ParseEnumText<LiteralParameterType>
+                _enumHelper.ParseEnumText<LiteralListElementType>
                 (
                     xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
                 ),

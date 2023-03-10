@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -14,17 +15,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     internal class UpdateParameterControlValues : IUpdateParameterControlValues
     {
         private readonly IConstructorTypeHelper _constructorTypeHelper;
+        private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public UpdateParameterControlValues(
             IConstructorTypeHelper constructorTypeHelper,
+            IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _constructorTypeHelper = constructorTypeHelper;
+            _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -87,7 +91,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                                 XmlDataConstants.LITERALLISTPARAMETERELEMENT,
                                 _xmlDataHelper.BuildLiteralListXml
                                 (
-                                    listOfLiteralsParameter.LiteralType,
+                                    _enumHelper.GetLiteralListElementType(listOfLiteralsParameter.LiteralType),
                                     listOfLiteralsParameter.ListType,
                                     string.Format(CultureInfo.CurrentCulture, Strings.listParameterCountFormat, listOfLiteralsParameter.Name, 0),
                                     string.Empty
@@ -173,7 +177,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                         (
                             _xmlDataHelper.BuildLiteralListXml
                             (
-                                parameter.LiteralType,
+                                _enumHelper.GetLiteralListElementType(parameter.LiteralType),
                                 parameter.ListType,
                                 string.Format(CultureInfo.CurrentCulture, Strings.listParameterCountFormat, parameter.Name, parameter.DefaultValues.Count),
                                 GetDefaultValuesXml()

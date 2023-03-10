@@ -18,6 +18,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         Type GetVariableCategoryIndexType(VariableCategory variableCategory);
         ListType GetListType(Type memberType);
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);
+        LiteralListElementType GetLiteralListElementType(LiteralParameterType literalType);
+        LiteralListElementType GetLiteralListElementType(Type literalType);
+        LiteralParameterType GetLiteralParameterType(LiteralListElementType literalType);
         LiteralParameterType GetLiteralParameterType(Type parameterType);
         LiteralType GetLiteralType(Type literalType);
         LiteralVariableType GetLiteralVariableType(Type variableType);
@@ -26,6 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         ReturnTypeCategory GetReturnTypeCategory(string elementName);
         Type GetSystemType(ListType listType, Type elementType);
         Type GetSystemType(LiteralFunctionReturnType functionReturnType);
+        Type GetSystemType(LiteralListElementType literalType);
         Type GetSystemType(LiteralParameterType parameterType);
         Type GetSystemType(LiteralType literalType);
         Type GetSystemType(LiteralVariableType variableType);

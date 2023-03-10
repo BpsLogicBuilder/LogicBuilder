@@ -12,7 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         string BuildDefaultConstructorXml(ClosedConstructor closedConstructor);
         string BuildFunctionXml(string name, string visibleText, string genericArgumentsXml, string parametersXml);
         string BuildGenericArgumentsXml(IList<GenericConfigBase> genericArgs);
-        string BuildLiteralListXml(LiteralParameterType literalType, ListType listType, string visibleText, string innerXml);
+        string BuildLiteralListXml(LiteralListElementType literalType, ListType listType, string visibleText, string innerXml);
         string BuildLiteralXml(string innerXml);
         string BuildNotXml(string innerXml);
         string BuildObjectListXml(string objectType, ListType listType, string visibleText, string innerXml);
