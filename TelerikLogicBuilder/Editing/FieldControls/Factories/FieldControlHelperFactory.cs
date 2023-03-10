@@ -5,7 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
     internal class FieldControlHelperFactory : IFieldControlHelperFactory
     {
-        private readonly Func<IRichInputBoxValueControl, ICreateRichInputBoxContextMenu> _getCreateRichInputBoxContextMenu;
         private readonly Func<IObjectRichTextBoxValueControl, IEditObjectVariableHelper> _getEditObjectVariableHelper;
         private readonly Func<IRichInputBoxValueControl, IEditVariableHelper> _getEditVariableHelper;
         private readonly Func<IObjectRichTextBoxValueControl, IObjectRichTextBoxEventsHelper> _getObjectRichTextBoxEventsHelper;
@@ -13,23 +12,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IObjectRichTextBoxValueControl, IUpdateObjectRichTextBoxXml> _getUpdateObjectRichTextBoxXml;
 
         public FieldControlHelperFactory(
-            Func<IRichInputBoxValueControl, ICreateRichInputBoxContextMenu> getCreateRichInputBoxContextMenu,
             Func<IObjectRichTextBoxValueControl, IEditObjectVariableHelper> getEditObjectVariableHelper,
             Func<IRichInputBoxValueControl, IEditVariableHelper> getEditVariableHelper,
             Func<IObjectRichTextBoxValueControl, IObjectRichTextBoxEventsHelper> getObjectRichTextBoxEventsHelper,
             Func<IParameterRichInputBoxValueControl, IParameterRichInputBoxEventsHelper> getParameterRichInputBoxEventsHelper,
             Func<IObjectRichTextBoxValueControl, IUpdateObjectRichTextBoxXml> getUpdateObjectRichTextBoxXml)
         {
-            _getCreateRichInputBoxContextMenu = getCreateRichInputBoxContextMenu;
             _getEditObjectVariableHelper = getEditObjectVariableHelper;
             _getEditVariableHelper = getEditVariableHelper;
             _getObjectRichTextBoxEventsHelper = getObjectRichTextBoxEventsHelper;
             _getParameterRichInputBoxEventsHelper = getParameterRichInputBoxEventsHelper;
             _getUpdateObjectRichTextBoxXml = getUpdateObjectRichTextBoxXml;
         }
-
-        public ICreateRichInputBoxContextMenu GetCreateRichInputBoxContextMenu(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getCreateRichInputBoxContextMenu(richInputBoxValueControl);
 
         public IEditObjectVariableHelper GetEditObjectVariableHelper(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
             => _getEditObjectVariableHelper(objectRichTextBoxValueControl);

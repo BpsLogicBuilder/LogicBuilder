@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
@@ -94,6 +95,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editigControl, literalParameter) => new LiteralParameterDomainMultilineControl
                     (
                         provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -111,6 +113,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editigControl, literalParameter) => new LiteralParameterDomainRichInputBoxControl
                     (
                         provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -140,6 +143,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editigControl, literalParameter) => new LiteralParameterMultilineControl
                     (
                         provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -157,6 +161,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editigControl, literalParameter) => new LiteralParameterPropertyInputRichInputBoxControl
                     (
                         provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -174,6 +179,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editigControl, literalParameter) => new LiteralParameterRichInputBoxControl
                     (
                         provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
@@ -191,6 +197,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editigControl, literalParameter, editControlsSet) => new LiteralParameterSourcedPropertyRichInputBoxControl
                     (
                         provider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),

@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -43,9 +44,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private Type? _assignedTo;
 
         public ListOfLiteralsItemMultilineControl(
+            IEditingControlHelperFactory editingControlHelperFactory,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
-            IFieldControlHelperFactory fieldControlHelperFactory,
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
             ILiteralListItemControlHelperFactory literalListItemControlHelperFactory,
@@ -68,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             this.dataGraphEditingControl = dataGraphEditingControl;
             this.literalListParameter = literalListParameter;
             _richInputBoxEventsHelper = literalListItemControlHelperFactory.GetLiteralListItemRichInputBoxEventsHelper(this);
-            _createRichInputBoxContextMenu = fieldControlHelperFactory.GetCreateRichInputBoxContextMenu(this);
+            _createRichInputBoxContextMenu = editingControlHelperFactory.GetCreateRichInputBoxContextMenu(this);
             btnVariable = new()
             {
                 Name = "btnVariable",

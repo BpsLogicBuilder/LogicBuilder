@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -44,6 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public LiteralParameterSourcedPropertyRichInputBoxControl(
             ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
+            IEditingControlHelperFactory editingControlHelperFactory,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlHelperFactory,
@@ -67,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             this.literalParameter = literalParameter;
             this.editControlsSet = editControlsSet;
             _richInputBoxEventsHelper = fieldControlHelperFactory.GetParameterRichInputBoxEventsHelper(this);
-            _createRichInputBoxContextMenu = fieldControlHelperFactory.GetCreateRichInputBoxContextMenu(this);
+            _createRichInputBoxContextMenu = editingControlHelperFactory.GetCreateRichInputBoxContextMenu(this);
             btnHelper = new()
             {
                 Name = "btnHelper",

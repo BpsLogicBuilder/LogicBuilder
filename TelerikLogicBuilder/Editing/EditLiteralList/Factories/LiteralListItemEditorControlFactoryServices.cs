@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -11,7 +12,6 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
-using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -36,9 +36,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalListParameter) => new ListOfLiteralsItemDomainMultilineControl
                     (
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<ILiteralListItemControlHelperFactory>(),
@@ -55,9 +55,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalListParameter) => new ListOfLiteralsItemDomainRichInputBoxControl
                     (
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<ILiteralListItemControlHelperFactory>(),
@@ -85,9 +85,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalListParameter) => new ListOfLiteralsItemMultilineControl
                     (
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<ILiteralListItemControlHelperFactory>(),
@@ -104,9 +104,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, literalListParameter) => new ListOfLiteralsItemPropertyInputRichInputBoxControl
                     (
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<ILiteralListItemControlHelperFactory>(),
@@ -123,9 +123,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, listInfo) => new ListOfLiteralsItemRichInputBoxControl
                     (
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<ILiteralListItemControlHelperFactory>(),
@@ -142,9 +142,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (editigControl, listInfo) => new ListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl
                     (
+                        provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
                         provider.GetRequiredService<ILiteralListItemControlHelperFactory>(),
