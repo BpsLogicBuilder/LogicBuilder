@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
+namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
     internal interface IRichInputBoxValueControl : IValueControl
     {

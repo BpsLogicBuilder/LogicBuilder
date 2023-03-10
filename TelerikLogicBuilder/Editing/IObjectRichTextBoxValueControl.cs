@@ -2,7 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
+namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
     internal interface IObjectRichTextBoxValueControl : IValueControl
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
+namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
     internal interface IDomainRichInputBoxValueControl : IRichInputBoxValueControl
     {

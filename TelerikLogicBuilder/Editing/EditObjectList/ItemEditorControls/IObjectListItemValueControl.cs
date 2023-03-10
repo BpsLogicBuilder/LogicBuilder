@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
-using System;
+﻿using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls
 {

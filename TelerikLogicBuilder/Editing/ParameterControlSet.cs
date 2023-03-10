@@ -1,5 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing
