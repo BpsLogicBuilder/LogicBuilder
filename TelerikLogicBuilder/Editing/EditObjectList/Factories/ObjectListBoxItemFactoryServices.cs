@@ -50,6 +50,38 @@ namespace Microsoft.Extensions.DependencyInjection
                         };
                     }
                 )
+                .AddTransient<Func<string, string, Type, IApplicationForm, ListVariableInputStyle, IObjectListBoxItem>>
+                (
+                    provider =>
+                    (visibleText, hiddenText, assignedTo, applicationForm, listControl) =>
+                    {
+                        return listControl switch
+                        {
+                            ListVariableInputStyle.HashSetForm => new ObjectHashSetFormListBoxItem
+                            (
+                                provider.GetRequiredService<IObjectElementValidator>(),
+                                provider.GetRequiredService<IObjectHashSetListBoxItemComparer>(),
+                                provider.GetRequiredService<IXmlDataHelper>(),
+                                provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                visibleText,
+                                hiddenText,
+                                assignedTo,
+                                applicationForm
+                            ),
+                            ListVariableInputStyle.ListForm => new ObjectListFormListBoxItem
+                            (
+                                provider.GetRequiredService<IObjectElementValidator>(),
+                                provider.GetRequiredService<IXmlDataHelper>(),
+                                provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                visibleText,
+                                hiddenText,
+                                assignedTo,
+                                applicationForm
+                            ),
+                            _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{700874A9-4298-4606-83F1-CC1662059F1C}")),
+                        };
+                    }
+                )
                 .AddTransient<IObjectListBoxItemFactory, ObjectListBoxItemFactory>();
         }
     }

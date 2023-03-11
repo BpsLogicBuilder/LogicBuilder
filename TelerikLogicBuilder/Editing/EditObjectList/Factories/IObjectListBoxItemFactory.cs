@@ -12,5 +12,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories
             Type assignedTo,
             IApplicationForm applicationForm,
             ListParameterInputStyle listControl);
+
+        IObjectListBoxItem GetVariableObjectListBoxItem(
+            string visibleText,
+            string hiddenText,
+            Type assignedTo,
+            IApplicationForm applicationForm,
+            ListVariableInputStyle listControl);
     }
 }
