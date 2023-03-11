@@ -30,6 +30,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public event EventHandler? Changed;
 
+        public new event EventHandler? Validated;
+
         public string VariableName => radDropDownList1.Text;
 
         public bool ItemSelected => _configurationService.VariableList.Variables.ContainsKey(radDropDownList1.Text);
@@ -51,6 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         private void Initialize()
         {
             radDropDownList1.TextChanged += RadDropDownList1_TextChanged;
+            radDropDownList1.Validated += RadDropDownList1_Validated;
             LoadDropdown();
         }
 
@@ -65,6 +68,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         private void RadDropDownList1_TextChanged(object? sender, EventArgs e)
         {
             Changed?.Invoke(this, e);
+        }
+
+        private void RadDropDownList1_Validated(object? sender, EventArgs e)
+        {
+            Validated?.Invoke(this, e);
         }
         #endregion Event Handlers
     }

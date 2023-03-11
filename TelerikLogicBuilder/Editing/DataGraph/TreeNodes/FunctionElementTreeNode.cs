@@ -10,10 +10,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes
             : base(functionName, name, assignedToType)
         {
             ImageIndex = ImageIndexes.METHODIMAGEINDEX;
-            FunctionName = functionName;
         }
 
-        public string FunctionName { get; }
+        public string FunctionName => Text;
 
         public override ParametersDataElementType XmlElementType => ParametersDataElementType.Function;
     }

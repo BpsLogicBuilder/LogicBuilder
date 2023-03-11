@@ -1,5 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -25,6 +27,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         private readonly IEditVariableViewControlFactory _selectVariableControlFactory;
         private readonly ITypeHelper _typeHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
+        private readonly IXmlDataHelper _xmlDataHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IEditingForm editingForm;
         private readonly CommandBarToggleButton[] toggleButtons;
@@ -46,6 +50,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
             IEditVariableViewControlFactory selectVariableControlFactory,
             ITypeHelper typeHelper,
             ITypeLoadHelper typeLoadHelper,
+            IXmlDataHelper xmlDataHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingForm editingForm,
             Type assignedTo)
         {
@@ -56,6 +62,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
             _selectVariableControlFactory = selectVariableControlFactory;
             _typeHelper = typeHelper;
             _typeLoadHelper = typeLoadHelper;
+            _xmlDataHelper = xmlDataHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             toggleButtons = new CommandBarToggleButton[]
             {
                 commandBarToggleButtonDropDown,
@@ -90,11 +98,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public IEditingForm EditingForm => editingForm;
 
-        public XmlElement XmlResult => throw new NotImplementedException();
+        public XmlElement XmlResult 
+            => _xmlDocumentHelpers.ToXmlElement
+            (
+                _xmlDataHelper.BuildVariableXml
+                (
+                    VariableName ?? throw _exceptionHelper.CriticalException("{59C89C66-631D-477A-B926-84581E6E992E}")
+                )
+            );
 
         public void ClearMessage() => editingForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate(this);
 
         public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
 
@@ -107,6 +122,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public void ValidateFields()
         {
+            List<string> errors = new();
+            errors.AddRange(ValidateSelectedVariable());
+            if (errors.Count > 0)
+                throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
         }
 
         private void AddChangeEvents()
@@ -142,6 +161,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
             if (errors.Count > 0)
                 SetErrorMessage(string.Join(Environment.NewLine, errors));
             Changed?.Invoke(this, EventArgs.Empty);
+            RequestDocumentUpdate();
         }
 
         private void Initialize()
@@ -190,6 +210,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         {
             IEditVariableViewControl selectVariableViewControl = GetControl();
             selectVariableViewControl.Changed += SelectVariableViewControl_Changed;
+            selectVariableViewControl.Validated += SelectVariableViewControl_Validated;
             Navigate((Control)selectVariableViewControl);
 
             IEditVariableViewControl GetControl()
@@ -285,6 +306,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         }
 
         private void SelectVariableViewControl_Changed(object? sender, EventArgs e) => CheckForValidSelection();
+
+        private void SelectVariableViewControl_Validated(object? sender, EventArgs e) => RequestDocumentUpdate();
         #endregion Event Handlers
     }
 }

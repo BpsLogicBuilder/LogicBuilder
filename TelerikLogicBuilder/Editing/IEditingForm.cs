@@ -6,6 +6,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     internal interface IEditingForm : IApplicationForm
     {
         IDictionary<string, string> ExpandedNodes { get; }
-        void RequestDocumentUpdate();
+        void RequestDocumentUpdate(IEditingControl editingControl);
     }
 }

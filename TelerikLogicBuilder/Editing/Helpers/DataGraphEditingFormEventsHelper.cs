@@ -62,10 +62,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         }
         private XmlDocument XmlDocument => dataGraphEditingForm.XmlDocument;
 
-        public void RequestDocumentUpdate()
+        public void RequestDocumentUpdate(IEditingControl editingControl)
         {
-            if (TreeView.SelectedNode == null)
-                return;
+            if (TreeView.SelectedNode == null 
+                || !object.ReferenceEquals(CurrentEditingControl, editingControl))//may need to use an event like changed (may run before the control is loaded/activated)
+                return;                                                             //instead of validated
 
             try
             {

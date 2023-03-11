@@ -10,10 +10,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes
             : base(constructorName, name, assignedToType)
         {
             ImageIndex = ImageIndexes.CONSTRUCTORIMAGEINDEX;
-            ConstructorName = constructorName;
         }
 
-        public string ConstructorName { get;}
+        public string ConstructorName => Text;
 
         public override ParametersDataElementType XmlElementType => ParametersDataElementType.Constructor;
     }

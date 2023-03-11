@@ -231,7 +231,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         public void DisableControlsDuringEdit(bool disable) => dataGraphEditingForm.DisableControlsDuringEdit(disable);
 
-        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate(this);
 
         public void SetErrorMessage(string message) => dataGraphEditingForm.SetErrorMessage(message);
 

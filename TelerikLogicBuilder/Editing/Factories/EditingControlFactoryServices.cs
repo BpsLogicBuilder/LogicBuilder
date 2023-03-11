@@ -221,6 +221,8 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IEditVariableViewControlFactory>(),
                         provider.GetRequiredService<ITypeHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editingForm,
                         assignedToType
                     )

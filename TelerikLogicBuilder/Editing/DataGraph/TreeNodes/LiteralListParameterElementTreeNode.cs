@@ -10,10 +10,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes
             : base(parameterName, name, assignedToType)
         {
             ImageIndex = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX;
-            ParameterName = parameterName;
         }
 
-        public string ParameterName { get; }
+        public string ParameterName => Text;
 
         public override ParametersDataElementType XmlElementType => ParametersDataElementType.LiteralListParameter;
     }

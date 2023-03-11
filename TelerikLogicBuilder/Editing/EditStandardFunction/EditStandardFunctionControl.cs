@@ -20,7 +20,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
-using Telerik.WinControls.Layouts;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
@@ -138,7 +137,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         public void ClearMessage() => dataGraphEditingForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate(this);
 
         public void ResetControls()
         {

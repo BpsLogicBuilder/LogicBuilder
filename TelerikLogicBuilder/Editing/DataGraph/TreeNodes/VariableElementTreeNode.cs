@@ -10,10 +10,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes
             : base(variableName, name, assignedToType)
         {
             ImageIndex = ImageIndexes.VARIABLEIMAGEINDEX;
-            VariableName = variableName;
         }
 
-        public string VariableName { get; }
+        public string VariableName => Text;
 
         public override ParametersDataElementType XmlElementType => ParametersDataElementType.Variable;
     }

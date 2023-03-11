@@ -82,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         {
         }
 
-        public void RequestDocumentUpdate() => _dataGraphEditingFormEventsHelper.RequestDocumentUpdate();
+        public void RequestDocumentUpdate(IEditingControl editingControl) => _dataGraphEditingFormEventsHelper.RequestDocumentUpdate(editingControl);
 
         public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
 

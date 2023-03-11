@@ -33,6 +33,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public event EventHandler? Changed;
 
+        public new event EventHandler? Validated;
+
         public string VariableName => radTreeView1.SelectedNode?.Text ?? string.Empty;
 
         public bool ItemSelected => radTreeView1.SelectedNode != null && _treeViewService.IsVariableNode(radTreeView1.SelectedNode);
@@ -57,6 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         {
             radTreeView1.NodeExpandedChanged += RadTreeView1_NodeExpandedChanged;
             radTreeView1.SelectedNodeChanged += RadTreeView1_SelectedNodeChanged;
+            radTreeView1.Validated += RadTreeView1_Validated;
             radTreeView1.TreeViewElement.ShowNodeToolTips = true;
             radTreeView1.ShowRootLines = false;
             radTreeView1.HideSelection = false;
@@ -95,6 +98,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         private void RadTreeView1_SelectedNodeChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
         {
             Changed?.Invoke(this, e);
+        }
+
+        private void RadTreeView1_Validated(object? sender, EventArgs e)
+        {
+            Validated?.Invoke(this, e);
         }
         #endregion Event Handlers
     }

@@ -148,7 +148,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public void ClearMessage() => dataGraphEditingForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate(this);
 
         public void ResetControls()
         {

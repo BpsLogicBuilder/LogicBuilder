@@ -27,6 +27,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public event EventHandler? Changed;
 
+        public new event EventHandler? Validated;
+
         public string VariableName => radListControl1.SelectedItem.Text;
 
         public bool ItemSelected => radListControl1.Items.Count != 0 && radListControl1.SelectedIndex != -1;
@@ -49,6 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         private void Initialize()
         {
             radListControl1.SelectedIndexChanged += RadListControl1_SelectedIndexChanged;
+            radListControl1.Validated += RadListControl1_Validated;
             radListControl1.VisualItemFormatting += RadListControl1_VisualItemFormatting;
             radListControl1.SelectionMode = SelectionMode.One;
             LoadListBox();
@@ -74,6 +77,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         {
             VariableBase dataItem = (VariableBase)args.VisualItem.Data.Value;
             args.VisualItem.ToolTipText = dataItem.MemberName;
+        }
+
+        private void RadListControl1_Validated(object? sender, EventArgs e)
+        {
+            Validated?.Invoke(this, e);
         }
         #endregion Event Handlers
     }

@@ -141,7 +141,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
         public void ClearMessage() => dataGraphEditingForm.ClearMessage();
 
-        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate();
+        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate(this);
 
         public void ResetControls()
         {
