@@ -1738,5 +1738,149 @@ namespace TelerikLogicBuilder.Tests
                 exception.Message
             );
         }
+
+        [Theory]
+        [InlineData(LiteralListElementType.Boolean, LiteralVariableType.Boolean)]
+        [InlineData(LiteralListElementType.DateTimeOffset, LiteralVariableType.DateTimeOffset)]
+        [InlineData(LiteralListElementType.DateOnly, LiteralVariableType.DateOnly)]
+        [InlineData(LiteralListElementType.DateTime, LiteralVariableType.DateTime)]
+        [InlineData(LiteralListElementType.Date, LiteralVariableType.Date)]
+        [InlineData(LiteralListElementType.TimeSpan, LiteralVariableType.TimeSpan)]
+        [InlineData(LiteralListElementType.TimeOnly, LiteralVariableType.TimeOnly)]
+        [InlineData(LiteralListElementType.TimeOfDay, LiteralVariableType.TimeOfDay)]
+        [InlineData(LiteralListElementType.Guid, LiteralVariableType.Guid)]
+        [InlineData(LiteralListElementType.Decimal, LiteralVariableType.Decimal)]
+        [InlineData(LiteralListElementType.Byte, LiteralVariableType.Byte)]
+        [InlineData(LiteralListElementType.Short, LiteralVariableType.Short)]
+        [InlineData(LiteralListElementType.Integer, LiteralVariableType.Integer)]
+        [InlineData(LiteralListElementType.Long, LiteralVariableType.Long)]
+        [InlineData(LiteralListElementType.Float, LiteralVariableType.Float)]
+        [InlineData(LiteralListElementType.Double, LiteralVariableType.Double)]
+        [InlineData(LiteralListElementType.Char, LiteralVariableType.Char)]
+        [InlineData(LiteralListElementType.SByte, LiteralVariableType.SByte)]
+        [InlineData(LiteralListElementType.UShort, LiteralVariableType.UShort)]
+        [InlineData(LiteralListElementType.UInteger, LiteralVariableType.UInteger)]
+        [InlineData(LiteralListElementType.ULong, LiteralVariableType.ULong)]
+        [InlineData(LiteralListElementType.String, LiteralVariableType.String)]
+        [InlineData(LiteralListElementType.NullableBoolean, LiteralVariableType.NullableBoolean)]
+        [InlineData(LiteralListElementType.NullableDateTimeOffset, LiteralVariableType.NullableDateTimeOffset)]
+        [InlineData(LiteralListElementType.NullableDateOnly, LiteralVariableType.NullableDateOnly)]
+        [InlineData(LiteralListElementType.NullableDateTime, LiteralVariableType.NullableDateTime)]
+        [InlineData(LiteralListElementType.NullableDate, LiteralVariableType.NullableDate)]
+        [InlineData(LiteralListElementType.NullableTimeSpan, LiteralVariableType.NullableTimeSpan)]
+        [InlineData(LiteralListElementType.NullableTimeOnly, LiteralVariableType.NullableTimeOnly)]
+        [InlineData(LiteralListElementType.NullableTimeOfDay, LiteralVariableType.NullableTimeOfDay)]
+        [InlineData(LiteralListElementType.NullableGuid, LiteralVariableType.NullableGuid)]
+        [InlineData(LiteralListElementType.NullableDecimal, LiteralVariableType.NullableDecimal)]
+        [InlineData(LiteralListElementType.NullableByte, LiteralVariableType.NullableByte)]
+        [InlineData(LiteralListElementType.NullableShort, LiteralVariableType.NullableShort)]
+        [InlineData(LiteralListElementType.NullableInteger, LiteralVariableType.NullableInteger)]
+        [InlineData(LiteralListElementType.NullableLong, LiteralVariableType.NullableLong)]
+        [InlineData(LiteralListElementType.NullableFloat, LiteralVariableType.NullableFloat)]
+        [InlineData(LiteralListElementType.NullableDouble, LiteralVariableType.NullableDouble)]
+        [InlineData(LiteralListElementType.NullableChar, LiteralVariableType.NullableChar)]
+        [InlineData(LiteralListElementType.NullableSByte, LiteralVariableType.NullableSByte)]
+        [InlineData(LiteralListElementType.NullableUShort, LiteralVariableType.NullableUShort)]
+        [InlineData(LiteralListElementType.NullableUInteger, LiteralVariableType.NullableUInteger)]
+        [InlineData(LiteralListElementType.NullableULong, LiteralVariableType.NullableULong)]
+        internal void GetLiteralVariableTypeFromLiteralListElementTypeReturnsTheExpectedEnumType(LiteralListElementType literalType, LiteralVariableType expectedType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetLiteralVariableType(literalType);
+
+            //assert
+            Assert.Equal(expectedType, result);
+        }
+
+        [Theory]
+        [InlineData(LiteralListElementType.Any)]
+        [InlineData((LiteralListElementType)(-1))]
+        internal void GetLiteralVariableTypeThrowsCriticalExceptionForInvalidLiteralListElementType(LiteralListElementType literalType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetLiteralVariableType(literalType));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{378118AF-037D-4B19-8C7D-6D265F5FD031}"),
+                exception.Message
+            );
+        }
+
+        [Theory]
+        [InlineData(LiteralVariableType.Boolean, LiteralListElementType.Boolean)]
+        [InlineData(LiteralVariableType.DateTimeOffset, LiteralListElementType.DateTimeOffset)]
+        [InlineData(LiteralVariableType.DateOnly, LiteralListElementType.DateOnly)]
+        [InlineData(LiteralVariableType.DateTime, LiteralListElementType.DateTime)]
+        [InlineData(LiteralVariableType.Date, LiteralListElementType.Date)]
+        [InlineData(LiteralVariableType.TimeSpan, LiteralListElementType.TimeSpan)]
+        [InlineData(LiteralVariableType.TimeOnly, LiteralListElementType.TimeOnly)]
+        [InlineData(LiteralVariableType.TimeOfDay, LiteralListElementType.TimeOfDay)]
+        [InlineData(LiteralVariableType.Guid, LiteralListElementType.Guid)]
+        [InlineData(LiteralVariableType.Decimal, LiteralListElementType.Decimal)]
+        [InlineData(LiteralVariableType.Byte, LiteralListElementType.Byte)]
+        [InlineData(LiteralVariableType.Short, LiteralListElementType.Short)]
+        [InlineData(LiteralVariableType.Integer, LiteralListElementType.Integer)]
+        [InlineData(LiteralVariableType.Long, LiteralListElementType.Long)]
+        [InlineData(LiteralVariableType.Float, LiteralListElementType.Float)]
+        [InlineData(LiteralVariableType.Double, LiteralListElementType.Double)]
+        [InlineData(LiteralVariableType.Char, LiteralListElementType.Char)]
+        [InlineData(LiteralVariableType.SByte, LiteralListElementType.SByte)]
+        [InlineData(LiteralVariableType.UShort, LiteralListElementType.UShort)]
+        [InlineData(LiteralVariableType.UInteger, LiteralListElementType.UInteger)]
+        [InlineData(LiteralVariableType.ULong, LiteralListElementType.ULong)]
+        [InlineData(LiteralVariableType.String, LiteralListElementType.String)]
+        [InlineData(LiteralVariableType.NullableBoolean, LiteralListElementType.NullableBoolean)]
+        [InlineData(LiteralVariableType.NullableDateTimeOffset, LiteralListElementType.NullableDateTimeOffset)]
+        [InlineData(LiteralVariableType.NullableDateOnly, LiteralListElementType.NullableDateOnly)]
+        [InlineData(LiteralVariableType.NullableDateTime, LiteralListElementType.NullableDateTime)]
+        [InlineData(LiteralVariableType.NullableDate, LiteralListElementType.NullableDate)]
+        [InlineData(LiteralVariableType.NullableTimeSpan, LiteralListElementType.NullableTimeSpan)]
+        [InlineData(LiteralVariableType.NullableTimeOnly, LiteralListElementType.NullableTimeOnly)]
+        [InlineData(LiteralVariableType.NullableTimeOfDay, LiteralListElementType.NullableTimeOfDay)]
+        [InlineData(LiteralVariableType.NullableGuid, LiteralListElementType.NullableGuid)]
+        [InlineData(LiteralVariableType.NullableDecimal, LiteralListElementType.NullableDecimal)]
+        [InlineData(LiteralVariableType.NullableByte, LiteralListElementType.NullableByte)]
+        [InlineData(LiteralVariableType.NullableShort, LiteralListElementType.NullableShort)]
+        [InlineData(LiteralVariableType.NullableInteger, LiteralListElementType.NullableInteger)]
+        [InlineData(LiteralVariableType.NullableLong, LiteralListElementType.NullableLong)]
+        [InlineData(LiteralVariableType.NullableFloat, LiteralListElementType.NullableFloat)]
+        [InlineData(LiteralVariableType.NullableDouble, LiteralListElementType.NullableDouble)]
+        [InlineData(LiteralVariableType.NullableChar, LiteralListElementType.NullableChar)]
+        [InlineData(LiteralVariableType.NullableSByte, LiteralListElementType.NullableSByte)]
+        [InlineData(LiteralVariableType.NullableUShort, LiteralListElementType.NullableUShort)]
+        [InlineData(LiteralVariableType.NullableUInteger, LiteralListElementType.NullableUInteger)]
+        [InlineData(LiteralVariableType.NullableULong, LiteralListElementType.NullableULong)]
+        internal void GetLiteralListElementTypeFromLiteralVariableTypeReturnsTheExpectedEnumType(LiteralVariableType literalType, LiteralListElementType expectedType)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetLiteralListElementType(literalType);
+
+            //assert
+            Assert.Equal(expectedType, result);
+        }
+
+        [Fact]
+        public void GetLiteralListElementTypeThrowsCriticalExceptionForInvalidLiteralVariableType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetLiteralListElementType((LiteralVariableType)(-1)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{170A44A8-03E1-4504-B5C1-D1A05F84A69D}"),
+                exception.Message
+            );
+        }
     }
 }

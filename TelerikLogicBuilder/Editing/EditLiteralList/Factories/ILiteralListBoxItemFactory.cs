@@ -12,5 +12,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories
             Type assignedTo,
             IApplicationForm applicationForm,
             ListParameterInputStyle listControl);
+
+        ILiteralListBoxItem GetVariableLiteralListBoxItem(
+            string visibleText,
+            string hiddenText,
+            Type assignedTo,
+            IApplicationForm applicationForm,
+            ListVariableInputStyle listControl);
     }
 }

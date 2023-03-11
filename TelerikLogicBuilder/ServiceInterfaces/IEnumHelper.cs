@@ -20,9 +20,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         LiteralFunctionReturnType GetLiteralFunctionReturnType(Type functionReturnType);
         LiteralListElementType GetLiteralListElementType(LiteralParameterType literalType);
         LiteralListElementType GetLiteralListElementType(Type literalType);
+        LiteralListElementType GetLiteralListElementType(LiteralVariableType literalType);
         LiteralParameterType GetLiteralParameterType(LiteralListElementType literalType);
         LiteralParameterType GetLiteralParameterType(Type parameterType);
         LiteralType GetLiteralType(Type literalType);
+        LiteralVariableType GetLiteralVariableType(LiteralListElementType literalType);
         LiteralVariableType GetLiteralVariableType(Type variableType);
         ObjectCategory GetObjectCategory(string elementName);
         ParameterCategory GetParameterCategory(string elementName);

@@ -110,5 +110,63 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                 return elements;
             }
         }
+
+        public LiteralListData Parse(XmlElement xmlElement, LiteralListVariableElementInfo listInfo, IApplicationForm applicationForm)
+        {
+            if (xmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
+                throw _exceptionHelper.CriticalException("{DDD61368-2FCD-4C0F-A847-FFEB97BFD8BE}");
+
+            LiteralVariableType literalType = _enumHelper.ParseEnumText<LiteralVariableType>(xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE));
+            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE));
+            List<XmlElement> chileElements = GetUniqueChildElements
+            (
+                _enumHelper.GetSystemType(literalType),
+                _xmlDocumentHelpers.GetChildElements(xmlElement)
+            );
+
+            return new LiteralListData
+            (
+                _enumHelper.ParseEnumText<LiteralListElementType>
+                (
+                    xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
+                ),
+                listType,
+                string.Format
+                (
+                    CultureInfo.CurrentCulture,
+                    Strings.listParameterCountFormat,
+                    listInfo.HasVariable
+                        ? listInfo.Variable.Name
+                        : _enumHelper.GetTypeDescription(listType, _enumHelper.GetVisibleEnumText(literalType)),
+                    chileElements.Count
+                ),
+                chileElements,
+                xmlElement
+            );
+
+            List<XmlElement> GetUniqueChildElements(Type literalType, List<XmlElement> allChileElements)
+            {
+                HashSet<ILiteralListBoxItem> listBoxItems = new();
+                List<XmlElement> elements = new();
+                foreach (XmlElement element in allChileElements)
+                {
+                    ILiteralListBoxItem literalListBoxItem = _literalListBoxItemFactory.GetVariableLiteralListBoxItem
+                    (
+                        _xmlDocumentHelpers.GetVisibleText(element),
+                        element.InnerXml,
+                        literalType,
+                        applicationForm,
+                        listInfo.ListControl
+                    );
+
+                    if (listBoxItems.Contains(literalListBoxItem))
+                        continue;
+
+                    elements.Add(element);
+                }
+
+                return elements;
+            }
+        }
     }
 }

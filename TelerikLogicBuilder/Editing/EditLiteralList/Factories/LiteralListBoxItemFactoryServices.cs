@@ -48,6 +48,37 @@ namespace Microsoft.Extensions.DependencyInjection
                         };
                     }
                 )
+                .AddTransient<Func<string, string, Type, IApplicationForm, ListVariableInputStyle, ILiteralListBoxItem>>
+                (
+                    provider =>
+                    (visibleText, hiddenText, assignedTo, applicationForm, listControl) =>
+                    {
+                        return listControl switch
+                        {
+                            ListVariableInputStyle.HashSetForm => new LiteralHashSetFormListBoxItem
+                            (
+                                provider.GetRequiredService<ILiteralElementValidator>(),
+                                provider.GetRequiredService<IXmlDataHelper>(),
+                                provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                visibleText,
+                                hiddenText,
+                                assignedTo,
+                                applicationForm
+                            ),
+                            ListVariableInputStyle.ListForm => new LiteralListFormListBoxItem
+                            (
+                                provider.GetRequiredService<ILiteralElementValidator>(),
+                                provider.GetRequiredService<IXmlDataHelper>(),
+                                provider.GetRequiredService<IXmlDocumentHelpers>(),
+                                visibleText,
+                                hiddenText,
+                                assignedTo,
+                                applicationForm
+                            ),
+                            _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{5CA2F358-2DC5-464D-BAC7-E08482A1CE26}")),
+                        };
+                    }
+                )
                 .AddTransient<ILiteralListBoxItemFactory, LiteralListBoxItemFactory>();
         }
     }

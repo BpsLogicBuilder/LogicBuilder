@@ -247,6 +247,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return ParseEnumText<LiteralListElementType>(literalTypeString!);//not null if defined
         }
 
+        public LiteralListElementType GetLiteralListElementType(LiteralVariableType literalType)
+        {
+            string? literalTypeString = Enum.GetName(typeof(LiteralVariableType), literalType);
+            if (!Enum.IsDefined(typeof(LiteralListElementType), literalTypeString ?? ""))
+                throw _exceptionHelper.CriticalException("{170A44A8-03E1-4504-B5C1-D1A05F84A69D}");
+
+            return ParseEnumText<LiteralListElementType>(literalTypeString!);//not null if defined
+        }
+
         public LiteralListElementType GetLiteralListElementType(Type literalType)
             => GetLiteralEnumType<LiteralListElementType>(literalType);
 
@@ -264,6 +273,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public LiteralType GetLiteralType(Type literalType)
             => GetLiteralEnumType<LiteralType>(literalType);
+
+        public LiteralVariableType GetLiteralVariableType(LiteralListElementType literalType)
+        {
+            string? literalTypeString = Enum.GetName(typeof(LiteralListElementType), literalType);
+            if (!Enum.IsDefined(typeof(LiteralVariableType), literalTypeString ?? ""))
+                throw _exceptionHelper.CriticalException("{378118AF-037D-4B19-8C7D-6D265F5FD031}");
+
+            return ParseEnumText<LiteralVariableType>(literalTypeString!);//not null if defined
+        }
 
         public LiteralVariableType GetLiteralVariableType(Type variableType)
             => GetLiteralEnumType<LiteralVariableType>(variableType);
