@@ -32,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly ICheckSelectedApplication _checkSelectedApplication;
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorListInitializer _constructorListInitializer;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IFragmentListInitializer _fragmentListInitializer;
         private readonly IFunctionListInitializer _functionListInitializer;
@@ -82,6 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ICheckSelectedApplication checkSelectedApplication,
             IConfigurationService configurationService,
             IConstructorListInitializer constructorListInitializer,
+            IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IFragmentListInitializer fragmentListInitializer,
             IFunctionListInitializer functionListInitializer,
@@ -128,6 +130,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _checkSelectedApplication = checkSelectedApplication;
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
+            _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _fragmentListInitializer = fragmentListInitializer;
             _functionListInitializer = functionListInitializer;
@@ -737,6 +740,29 @@ namespace ABIS.LogicBuilder.FlowBuilder
             {
                 AddClickCommand(radMenuItem, _applicationCommandsFactory.GetSetThemeCommand(themeMenuItem, (string)radMenuItem.Tag));
             }
+
+            foreach (RadMenuItem radMenuItem in radMenuItemColorTheme.Items.Cast<RadMenuItem>())
+            {
+                AddClickCommand(radMenuItem, _applicationCommandsFactory.GetSetColorThemeCommand(radMenuItemColorTheme, radMenuItemFontSize, (string)radMenuItem.Tag));
+            }
+
+            foreach (RadMenuItem radMenuItem in radMenuItemFontSize.Items.Cast<RadMenuItem>())
+            {
+                AddClickCommand
+                (
+                    radMenuItem, 
+                    _applicationCommandsFactory.GetSetFontSizeCommand
+                    (
+                        radMenuItemColorTheme, 
+                        radMenuItemFontSize, 
+                        int.Parse
+                        (
+                            radMenuItem.Tag?.ToString() ?? throw _exceptionHelper.CriticalException("{A31C4B29-E571-41AC-BB83-255B92CEA86F}"), 
+                            CultureInfo.InvariantCulture
+                        )
+                    )
+                );
+            }
         }
 
         private void ClearApplicationMenuItems()
@@ -824,6 +850,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             SetButtonStates(false);
             SetEditControlMenuStates(false, false);
             UpdateRecentProjectMenuItems();
+            _themeManager.CheckMenuItemsForCurrentSettings(this.radMenuItemColorTheme.Items, this.radMenuItemFontSize.Items);
             _themeManager.CheckMenuItemForCurrentTheme(this.radMenuItemTheme.Items);
 
             AddClickCommands();

@@ -118,6 +118,7 @@
             this.radMenuItemOffice2019Dark = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2019Gray = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOffice2019Light = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemControlDefault = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemHelp = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemContents = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem7 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
@@ -150,7 +151,17 @@
             this.office2019LightTheme1 = new Telerik.WinControls.Themes.Office2019LightTheme();
             this.office2013DarkTheme1 = new Telerik.WinControls.Themes.Office2013DarkTheme();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.radMenuItemControlDefault = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemPreferences = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemColorTheme = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemDark = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemGray = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemLight = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemFontSize = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemNine = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemTen = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemEleven = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemTwelve = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemFourteen = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).BeginInit();
             this.radSplitContainerBase.SuspendLayout();
@@ -719,6 +730,12 @@
             this.radMenuItemOffice2019Light.Tag = "Office2019Light";
             resources.ApplyResources(this.radMenuItemOffice2019Light, "radMenuItemOffice2019Light");
             // 
+            // radMenuItemControlDefault
+            // 
+            this.radMenuItemControlDefault.Name = "radMenuItemControlDefault";
+            this.radMenuItemControlDefault.Tag = "ControlDefault";
+            resources.ApplyResources(this.radMenuItemControlDefault, "radMenuItemControlDefault");
+            // 
             // radMenuItemHelp
             // 
             this.radMenuItemHelp.Items.AddRange(new Telerik.WinControls.RadItem[] {
@@ -925,15 +942,87 @@
             this.radMenuItemRules,
             this.radMenuItemTools,
             this.radMenuItemTheme,
+            this.radMenuItemPreferences,
             this.radMenuItemHelp});
             resources.ApplyResources(this.radMenu1, "radMenu1");
             this.radMenu1.Name = "radMenu1";
             // 
-            // radMenuItemControlDefault
+            // radMenuItemPreferences
             // 
-            this.radMenuItemControlDefault.Name = "radMenuItemControlDefault";
-            this.radMenuItemControlDefault.Tag = "ControlDefault";
-            resources.ApplyResources(this.radMenuItemControlDefault, "radMenuItemControlDefault");
+            this.radMenuItemPreferences.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemColorTheme,
+            this.radMenuItemFontSize});
+            this.radMenuItemPreferences.Name = "radMenuItemPreferences";
+            resources.ApplyResources(this.radMenuItemPreferences, "radMenuItemPreferences");
+            // 
+            // radMenuItemColorTheme
+            // 
+            this.radMenuItemColorTheme.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemDark,
+            this.radMenuItemGray,
+            this.radMenuItemLight});
+            this.radMenuItemColorTheme.Name = "radMenuItemColorTheme";
+            resources.ApplyResources(this.radMenuItemColorTheme, "radMenuItemColorTheme");
+            // 
+            // radMenuItemDark
+            // 
+            this.radMenuItemDark.Name = "radMenuItemDark";
+            this.radMenuItemDark.Tag = "Dark";
+            resources.ApplyResources(this.radMenuItemDark, "radMenuItemDark");
+            // 
+            // radMenuItemGray
+            // 
+            this.radMenuItemGray.Name = "radMenuItemGray";
+            this.radMenuItemGray.Tag = "Gray";
+            resources.ApplyResources(this.radMenuItemGray, "radMenuItemGray");
+            // 
+            // radMenuItemLight
+            // 
+            this.radMenuItemLight.Name = "radMenuItemLight";
+            this.radMenuItemLight.Tag = "Light";
+            resources.ApplyResources(this.radMenuItemLight, "radMenuItemLight");
+            // 
+            // radMenuItemFontSize
+            // 
+            this.radMenuItemFontSize.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemNine,
+            this.radMenuItemTen,
+            this.radMenuItemEleven,
+            this.radMenuItemTwelve,
+            this.radMenuItemFourteen});
+            this.radMenuItemFontSize.Name = "radMenuItemFontSize";
+            resources.ApplyResources(this.radMenuItemFontSize, "radMenuItemFontSize");
+            // 
+            // radMenuItemNine
+            // 
+            this.radMenuItemNine.AccessibleDescription = "radMenuItem6";
+            this.radMenuItemNine.Name = "radMenuItemNine";
+            this.radMenuItemNine.Tag = "9";
+            resources.ApplyResources(this.radMenuItemNine, "radMenuItemNine");
+            // 
+            // radMenuItemTen
+            // 
+            this.radMenuItemTen.Name = "radMenuItemTen";
+            this.radMenuItemTen.Tag = "10";
+            resources.ApplyResources(this.radMenuItemTen, "radMenuItemTen");
+            // 
+            // radMenuItemEleven
+            // 
+            this.radMenuItemEleven.Name = "radMenuItemEleven";
+            this.radMenuItemEleven.Tag = "11";
+            resources.ApplyResources(this.radMenuItemEleven, "radMenuItemEleven");
+            // 
+            // radMenuItemTwelve
+            // 
+            this.radMenuItemTwelve.Name = "radMenuItemTwelve";
+            this.radMenuItemTwelve.Tag = "12";
+            resources.ApplyResources(this.radMenuItemTwelve, "radMenuItemTwelve");
+            // 
+            // radMenuItemFourteen
+            // 
+            this.radMenuItemFourteen.Name = "radMenuItemFourteen";
+            this.radMenuItemFourteen.Tag = "14";
+            resources.ApplyResources(this.radMenuItemFourteen, "radMenuItemFourteen");
             // 
             // MDIParent
             // 
@@ -945,10 +1034,6 @@
             this.Controls.Add(this.radStatusStrip1);
             this.IsMdiContainer = true;
             this.Name = "MDIParent";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).EndInit();
@@ -1091,5 +1176,16 @@
         private Telerik.WinControls.UI.RadMenuSeparatorItem radMenuSeparatorItem7;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemAbout;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemControlDefault;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemPreferences;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemColorTheme;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemDark;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemGray;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemLight;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemFontSize;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemNine;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemTen;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemEleven;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemTwelve;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemFourteen;
     }
 }

@@ -32,6 +32,18 @@
 	<ItemGroup>
 	  <None Remove="fr\Stencils\Applications.vss" />
 	  <None Remove="fr\Stencils\Logic Builder.vss" />
+	  <None Remove="Office2019Dark10.tssp" />
+	  <None Remove="Office2019Dark11.tssp" />
+	  <None Remove="Office2019Dark12.tssp" />
+	  <None Remove="Office2019Dark14.tssp" />
+	  <None Remove="Office2019Gray10.tssp" />
+	  <None Remove="Office2019Gray11.tssp" />
+	  <None Remove="Office2019Gray12.tssp" />
+	  <None Remove="Office2019Gray14.tssp" />
+	  <None Remove="Office2019Light10.tssp" />
+	  <None Remove="Office2019Light11.tssp" />
+	  <None Remove="Office2019Light12.tssp" />
+	  <None Remove="Office2019Light14.tssp" />
 	  <None Remove="Stencils\Applications.vss" />
 	  <None Remove="Stencils\Logic Builder.vss" />
 	</ItemGroup>
@@ -50,6 +62,21 @@
     <Content Include="Stencils\Logic Builder.vss">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Office2019Dark10.tssp" />
+    <EmbeddedResource Include="Office2019Dark11.tssp" />
+    <EmbeddedResource Include="Office2019Dark12.tssp" />
+    <EmbeddedResource Include="Office2019Dark14.tssp" />
+    <EmbeddedResource Include="Office2019Gray10.tssp" />
+    <EmbeddedResource Include="Office2019Gray11.tssp" />
+    <EmbeddedResource Include="Office2019Gray12.tssp" />
+    <EmbeddedResource Include="Office2019Gray14.tssp" />
+    <EmbeddedResource Include="Office2019Light10.tssp" />
+    <EmbeddedResource Include="Office2019Light11.tssp" />
+    <EmbeddedResource Include="Office2019Light12.tssp" />
+    <EmbeddedResource Include="Office2019Light14.tssp" />
   </ItemGroup>
 
   <ItemGroup>

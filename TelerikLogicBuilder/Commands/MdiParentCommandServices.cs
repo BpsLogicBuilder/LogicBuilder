@@ -85,6 +85,28 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<FindTextInFilesCommand>()
                 .AddTransient<FindVariableCommand>()
                 .AddTransient<FindVariableInFilesCommand>()
+                .AddTransient<Func<RadMenuItem, RadMenuItem, string, SetColorThemeCommand>>
+                (
+                    provider =>
+                    (colorThemeMenuItem, fontSizeMenuItem, colorTheme) => new SetColorThemeCommand
+                    (
+                        provider.GetRequiredService<IThemeManager>(),
+                        colorThemeMenuItem,
+                        fontSizeMenuItem,
+                        colorTheme
+                    )
+                )
+                .AddTransient<Func<RadMenuItem, RadMenuItem, int, SetFontSizeCommand>>
+                (
+                    provider =>
+                    (colorThemeMenuItem, fontSizeMenuItem, fontSize) => new SetFontSizeCommand
+                    (
+                        provider.GetRequiredService<IThemeManager>(),
+                        colorThemeMenuItem,
+                        fontSizeMenuItem,
+                        fontSize
+                    )
+                )
                 .AddTransient<Func<RadMenuItem, string, SetSelectedApplicationCommand>>
                 (
                     provider =>

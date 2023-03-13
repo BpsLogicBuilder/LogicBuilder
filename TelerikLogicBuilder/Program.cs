@@ -6,6 +6,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
+using Telerik.WinControls;
 
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.Tests")]
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.IntegrationTests")]
@@ -70,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
-            Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = ThemeCollections.ThemeNames.Contains(Properties.Settings.Default.themeName) ? Properties.Settings.Default.themeName : ThemeCollections.ControlDefault;
+            SetTheme();
             ShowSplashScreen();
 
             mdiParent = ServiceProvider.GetRequiredService<IMDIParent>();
@@ -92,6 +93,18 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _ = new Telerik.WinControls.Themes.Office2019GrayTheme();
             _ = new Telerik.WinControls.Themes.Office2019LightTheme();
             _ = new Telerik.WinControls.Themes.Office2019DarkTheme();
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark10_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark11_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark14_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray10_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray11_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray14_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light10_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light11_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light14_PackageResource);
         }
 
         private static void ShowSplashScreen()
@@ -106,6 +119,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 return;
 
              splashScreen.Close();
+        }
+
+        private static void SetTheme()
+        {
+            ThemeResolutionService.ApplicationThemeName = ThemeCollections.SelectorToTheme.TryGetValue(new ThemeSelector(Properties.Settings.Default.colorTheme, Properties.Settings.Default.fontSize), out string? themeName)
+                ? themeName
+                : ThemeCollections.ControlDefault;
         }
 
         #region EventHandlers
