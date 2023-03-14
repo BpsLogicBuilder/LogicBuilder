@@ -17,13 +17,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             _exceptionHelper = exceptionHelper;
         }
 
-        public void CheckMenuItemForCurrentTheme(RadItemOwnerCollection themeMenuItems)
-        {
-            string currentTheme = ThemeResolutionService.ApplicationThemeName;
-            foreach (RadMenuItem menuItem in themeMenuItems.Cast<RadMenuItem>())
-                menuItem.IsChecked = (string)menuItem.Tag == currentTheme;
-        }
-
         public void CheckMenuItemsForCurrentSettings(RadItemOwnerCollection colorThemeMenuItems, RadItemOwnerCollection fontSizeMenuItems)
         {
             ThemeSelector selectorFromSettings = new(Properties.Settings.Default.colorTheme, Properties.Settings.Default.fontSize);
@@ -71,16 +64,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 : ThemeCollections.ControlDefault;
 
             Properties.Settings.Default.fontSize = fontSize;
-            Properties.Settings.Default.Save();
-        }
-
-        public void SetTheme(string themeName)
-        {
-            if (!ThemeCollections.ThemeNames.Contains(themeName))
-                throw _exceptionHelper.CriticalException("{22FDC293-A727-4845-AF68-A3275B239D4E}");
-
-            ThemeResolutionService.ApplicationThemeName = themeName;
-            Properties.Settings.Default.themeName = ThemeResolutionService.ApplicationThemeName;
             Properties.Settings.Default.Save();
         }
     }

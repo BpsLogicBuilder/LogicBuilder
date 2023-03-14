@@ -20,13 +20,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
         public static readonly string Office2019Light14_PackageResource = $"{defaultNamespace}.{Office2019Light14}.tssp";
 
         public const string ControlDefault = "ControlDefault";
-		public const string Office2007Black = "Office2007Black";
-		public const string Office2007Silver = "Office2007Silver";
-		public const string Office2010Black = "Office2010Black";
-		public const string Office2010Blue = "Office2010Blue";
-		public const string Office2010Silver = "Office2010Silver";
-		public const string Office2013Dark = "Office2013Dark";
-		public const string Office2013Light = "Office2013Light";
 		public const string Office2019Dark = "Office2019Dark";
         public const string Office2019Dark10 = "Office2019Dark10";
         public const string Office2019Dark11 = "Office2019Dark11";
@@ -74,13 +67,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 			new string[] 
 			{
 				ControlDefault,
-                Office2007Black,
-                Office2007Silver,
-                Office2010Black,
-                Office2010Blue,
-                Office2010Silver,
-                Office2013Dark,
-                Office2013Light,
                 Office2019Dark,
                 Office2019Dark10,
                 Office2019Dark11,

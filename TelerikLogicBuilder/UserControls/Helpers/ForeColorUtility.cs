@@ -14,15 +14,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> ErrorRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "CalculatorButtonForeColorHover",
-            [ThemeCollections.Office2007Black] = "ForeColor(0;50;208)",
-            [ThemeCollections.Office2007Silver] = "ForeColor(0;50;208)",
-            [ThemeCollections.Office2010Black] = "ForeColorWhite",
-            [ThemeCollections.Office2010Blue] = "RedBorder",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
-            [ThemeCollections.Office2010Silver] = "RedBorder",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
-            //[ThemeCollections.Office2010Blue] = "ForeColorOrange",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
-            //[ThemeCollections.Office2010Silver] = "ForeColor(214;121;3)",/*RedBorder (Use RedBorder if we make this dictionary the error dictionary and ErrorDcitionary the Ok dictionary.)*/
-            [ThemeCollections.Office2013Dark] = "ForeColor(0;114;198)",
-            [ThemeCollections.Office2013Light] = "ForeColor(0;114;198)",
             [ThemeCollections.Office2019Dark] = "AccentMouseOverBorderForeColor",
             [ThemeCollections.Office2019Dark10] = "AccentMouseOverBorderForeColor",
             [ThemeCollections.Office2019Dark11] = "AccentMouseOverBorderForeColor",
@@ -43,13 +34,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> GroupBoxBorderColorRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "EditorBorder",
-            [ThemeCollections.Office2007Black] = "GrayBorder",
-            [ThemeCollections.Office2007Silver] = "GrayBorder",
-            [ThemeCollections.Office2010Black] = "GroupBoxBorder",
-            [ThemeCollections.Office2010Blue] = "GroupBoxBorder",
-            [ThemeCollections.Office2010Silver] = "GroupBoxBorder",
-            [ThemeCollections.Office2013Dark] = "ForeColor(38;38;38)",
-            [ThemeCollections.Office2013Light] = "ForeColor(38;38;38)",
             [ThemeCollections.Office2019Dark] = "MainBorder",
             [ThemeCollections.Office2019Dark10] = "MainBorder",
             [ThemeCollections.Office2019Dark11] = "MainBorder",
@@ -70,13 +54,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> GroupBoxForeColorRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "BlackText",
-            [ThemeCollections.Office2007Black] = "BlackForeColor",
-            [ThemeCollections.Office2007Silver] = "BlackForeColor",
-            [ThemeCollections.Office2010Black] = "ForeColorBlack",
-            [ThemeCollections.Office2010Blue] = "ForeColorBlack",
-            [ThemeCollections.Office2010Silver] = "BlackText",
-            [ThemeCollections.Office2013Dark] = "BorderSolid(0;0;0)",
-            [ThemeCollections.Office2013Light] = "BorderSolid(0;0;0)",
             [ThemeCollections.Office2019Dark] = "MainForeColor",
             [ThemeCollections.Office2019Dark10] = "MainForeColor",
             [ThemeCollections.Office2019Dark11] = "MainForeColor",
@@ -97,13 +74,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> OkRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "NormalButtonForeColor",
-            [ThemeCollections.Office2007Black] = "BlackForeColor",
-            [ThemeCollections.Office2007Silver] = "BlackForeColor",
-            [ThemeCollections.Office2010Black] = "ForeColorBlack",
-            [ThemeCollections.Office2010Blue] = "ForeColorBlack",
-            [ThemeCollections.Office2010Silver] = "BlackText",
-            [ThemeCollections.Office2013Dark] = "ForeColor(0;0;0)",
-            [ThemeCollections.Office2013Light] = "ForeColor(0;0;0)",
             [ThemeCollections.Office2019Dark] = "MainForeColor",
             [ThemeCollections.Office2019Dark10] = "MainForeColor",
             [ThemeCollections.Office2019Dark11] = "MainForeColor",
@@ -124,13 +94,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> TextBoxForeColorRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "BlackText",
-            [ThemeCollections.Office2007Black] = "DefaultEditorFont",
-            [ThemeCollections.Office2007Silver] = "DefaultEditorFont",
-            [ThemeCollections.Office2010Black] = "ForeColorBlack",
-            [ThemeCollections.Office2010Blue] = "ForeColorBlack",
-            [ThemeCollections.Office2010Silver] = "BlackText",
-            [ThemeCollections.Office2013Dark] = "ForeColor(38;38;38)",
-            [ThemeCollections.Office2013Light] = "ForeColor(38;38;38)",
             [ThemeCollections.Office2019Dark] = "MainForeColor",
             [ThemeCollections.Office2019Dark10] = "MainForeColor",
             [ThemeCollections.Office2019Dark11] = "MainForeColor",
@@ -151,13 +114,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> TextBoxBackColorRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "EditorFill",
-            [ThemeCollections.Office2007Black] = "WhiteFill",
-            [ThemeCollections.Office2007Silver] = "WhiteFill",
-            [ThemeCollections.Office2010Black] = "ControlFill",
-            [ThemeCollections.Office2010Blue] = "WhiteFill",
-            [ThemeCollections.Office2010Silver] = "WhiteFill",
-            [ThemeCollections.Office2013Dark] = "FillSolid(255;255;255)",
-            [ThemeCollections.Office2013Light] = "FillSolid(255;255;255)",
             [ThemeCollections.Office2019Dark] = "MainFill",
             [ThemeCollections.Office2019Dark10] = "MainFill",
             [ThemeCollections.Office2019Dark11] = "MainFill",
@@ -178,13 +134,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> TextBoxBorderColorRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "EditorBorder",
-            [ThemeCollections.Office2007Black] = "GrayBorder",
-            [ThemeCollections.Office2007Silver] = "GrayBorder",
-            [ThemeCollections.Office2010Black] = "TextBoxNormalBorder",
-            [ThemeCollections.Office2010Blue] = "TextBoxNormalBorder",
-            [ThemeCollections.Office2010Silver] = "TextBoxNormalBorder",
-            [ThemeCollections.Office2013Dark] = "BorderSolid(171;171;171)",
-            [ThemeCollections.Office2013Light] = "BorderSolid(171;171;171)",
             [ThemeCollections.Office2019Dark] = "MainBorder",
             [ThemeCollections.Office2019Dark10] = "MainBorder",
             [ThemeCollections.Office2019Dark11] = "MainBorder",
@@ -205,13 +154,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> TreeViewNormalBorderColorRepositoryTable => new()
         {
             [ThemeCollections.ControlDefault] = "TreeViewControlBorder",
-            [ThemeCollections.Office2007Black] = "GrayBorder",
-            [ThemeCollections.Office2007Silver] = "GrayBorder",
-            [ThemeCollections.Office2010Black] = "TreeViewBorder",
-            [ThemeCollections.Office2010Blue] = "TreeViewBorder",
-            [ThemeCollections.Office2010Silver] = "TreeViewBorder",
-            [ThemeCollections.Office2013Dark] = "BorderSolid(171;171;171)",
-            [ThemeCollections.Office2013Light] = "BorderSolid(171;171;171)",
             [ThemeCollections.Office2019Dark] = "MainBorder",
             [ThemeCollections.Office2019Dark10] = "MainBorder",
             [ThemeCollections.Office2019Dark11] = "MainBorder",
@@ -232,13 +174,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         private static Dictionary<string, string> DefaultFontTable => new()
         {
             [ThemeCollections.ControlDefault] = "SegoeUIDefaultText",
-            [ThemeCollections.Office2007Black] = "DefaultEditorFont",
-            [ThemeCollections.Office2007Silver] = "DefaultEditorFont",
-            [ThemeCollections.Office2010Black] = "FontSegoeUI8pt",
-            [ThemeCollections.Office2010Blue] = "FontSegoeUI8pt",
-            [ThemeCollections.Office2010Silver] = "SegoeUI8.25",
-            [ThemeCollections.Office2013Dark] = "FontSegoeUI9",
-            [ThemeCollections.Office2013Light] = "FontSegoeUI9",
             [ThemeCollections.Office2019Dark] = "DefaultFont",
             [ThemeCollections.Office2019Dark10] = "DefaultFont",
             [ThemeCollections.Office2019Dark11] = "DefaultFont",

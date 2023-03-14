@@ -705,7 +705,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             );
             #endregion Project Menu
 
-            AddThemeMenuItemClickCommands(this.radMenuItemTheme);
+            AddPreferencesMenuItemClickCommands();
         }
 
         private void AddDocumentEditorControl(IDocumentEditor documentEditor, bool visioOpen, bool tableOpen)
@@ -734,13 +734,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             commandBarButtonValidate.Click += handler;
         }
 
-        private void AddThemeMenuItemClickCommands(RadMenuItem themeMenuItem)
+        private void AddPreferencesMenuItemClickCommands()
         {
-            foreach (RadMenuItem radMenuItem in themeMenuItem.Items.Cast<RadMenuItem>())
-            {
-                AddClickCommand(radMenuItem, _applicationCommandsFactory.GetSetThemeCommand(themeMenuItem, (string)radMenuItem.Tag));
-            }
-
             foreach (RadMenuItem radMenuItem in radMenuItemColorTheme.Items.Cast<RadMenuItem>())
             {
                 AddClickCommand(radMenuItem, _applicationCommandsFactory.GetSetColorThemeCommand(radMenuItemColorTheme, radMenuItemFontSize, (string)radMenuItem.Tag));
@@ -851,7 +846,6 @@ namespace ABIS.LogicBuilder.FlowBuilder
             SetEditControlMenuStates(false, false);
             UpdateRecentProjectMenuItems();
             _themeManager.CheckMenuItemsForCurrentSettings(this.radMenuItemColorTheme.Items, this.radMenuItemFontSize.Items);
-            _themeManager.CheckMenuItemForCurrentTheme(this.radMenuItemTheme.Items);
 
             AddClickCommands();
 

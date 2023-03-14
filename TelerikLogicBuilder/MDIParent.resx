@@ -322,42 +322,6 @@
   <data name="radMenuItemTools.Text" xml:space="preserve">
     <value>&amp;Tools</value>
   </data>
-  <data name="radMenuItemOffice2007Black.Text" xml:space="preserve">
-    <value>Office 2007 Black</value>
-  </data>
-  <data name="radMenuItemOffice2007Silver.Text" xml:space="preserve">
-    <value>Office 2007 Silver</value>
-  </data>
-  <data name="radMenuItemOffice2010Black.Text" xml:space="preserve">
-    <value>Office 2010 Black</value>
-  </data>
-  <data name="radMenuItemOffice2010Blue.Text" xml:space="preserve">
-    <value>Office 2010 Blue</value>
-  </data>
-  <data name="radMenuItemOffice2010Silver.Text" xml:space="preserve">
-    <value>Office 2010 Silver</value>
-  </data>
-  <data name="radMenuItemOffice2013Dark.Text" xml:space="preserve">
-    <value>Office 2013 Dark</value>
-  </data>
-  <data name="radMenuItemOffice2013Light.Text" xml:space="preserve">
-    <value>Office 2013 Light</value>
-  </data>
-  <data name="radMenuItemOffice2019Dark.Text" xml:space="preserve">
-    <value>Office 2019 Dark</value>
-  </data>
-  <data name="radMenuItemOffice2019Gray.Text" xml:space="preserve">
-    <value>Office 2019 Gray</value>
-  </data>
-  <data name="radMenuItemOffice2019Light.Text" xml:space="preserve">
-    <value>Office 2019 Light</value>
-  </data>
-  <data name="radMenuItemControlDefault.Text" xml:space="preserve">
-    <value>Control Default</value>
-  </data>
-  <data name="radMenuItemTheme.Text" xml:space="preserve">
-    <value>Theme</value>
-  </data>
   <data name="radMenuItemContents.Text" xml:space="preserve">
     <value>Contents</value>
   </data>
@@ -443,7 +407,7 @@
     <value>0, 20</value>
   </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1050, 30</value>
+    <value>1068, 30</value>
   </data>
   <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -464,7 +428,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>868, 330</value>
+    <value>883, 294</value>
   </data>
   <data name="splitPanelEdit.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -482,10 +446,10 @@
     <value>0</value>
   </data>
   <data name="splitPanelMessages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 338</value>
+    <value>0, 302</value>
   </data>
   <data name="splitPanelMessages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>868, 112</value>
+    <value>883, 100</value>
   </data>
   <data name="splitPanelMessages.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -512,7 +476,7 @@
     <value>Horizontal</value>
   </data>
   <data name="radSplitContainerLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>868, 450</value>
+    <value>883, 402</value>
   </data>
   <data name="radSplitContainerLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -533,7 +497,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>868, 450</value>
+    <value>883, 402</value>
   </data>
   <data name="splitPanelLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -554,10 +518,10 @@
     <value>0</value>
   </data>
   <data name="splitPanelExplorer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>876, 0</value>
+    <value>891, 0</value>
   </data>
   <data name="splitPanelExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 450</value>
+    <value>177, 402</value>
   </data>
   <data name="splitPanelExplorer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -584,7 +548,7 @@
     <value>0, 50</value>
   </data>
   <data name="radSplitContainerBase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1050, 450</value>
+    <value>1068, 402</value>
   </data>
   <data name="radSplitContainerBase.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -605,10 +569,10 @@
     <value />
   </data>
   <data name="radStatusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 500</value>
+    <value>0, 452</value>
   </data>
   <data name="radStatusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1050, 26</value>
+    <value>1068, 26</value>
   </data>
   <data name="radStatusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -692,7 +656,7 @@
     <value>0, 0</value>
   </data>
   <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1050, 20</value>
+    <value>1068, 20</value>
   </data>
   <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -722,7 +686,7 @@
     <value>9, 21</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1050, 526</value>
+    <value>1068, 478</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1199,78 +1163,6 @@
     <value>radMenuItemSelectApplication</value>
   </data>
   <data name="&gt;&gt;radMenuItemSelectApplication.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemTheme.Name" xml:space="preserve">
-    <value>radMenuItemTheme</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemTheme.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2007Black.Name" xml:space="preserve">
-    <value>radMenuItemOffice2007Black</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2007Black.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2007Silver.Name" xml:space="preserve">
-    <value>radMenuItemOffice2007Silver</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2007Silver.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2010Black.Name" xml:space="preserve">
-    <value>radMenuItemOffice2010Black</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2010Black.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2010Blue.Name" xml:space="preserve">
-    <value>radMenuItemOffice2010Blue</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2010Blue.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2010Silver.Name" xml:space="preserve">
-    <value>radMenuItemOffice2010Silver</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2010Silver.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2013Dark.Name" xml:space="preserve">
-    <value>radMenuItemOffice2013Dark</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2013Dark.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2013Light.Name" xml:space="preserve">
-    <value>radMenuItemOffice2013Light</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2013Light.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2019Dark.Name" xml:space="preserve">
-    <value>radMenuItemOffice2019Dark</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2019Dark.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2019Gray.Name" xml:space="preserve">
-    <value>radMenuItemOffice2019Gray</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2019Gray.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2019Light.Name" xml:space="preserve">
-    <value>radMenuItemOffice2019Light</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemOffice2019Light.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemControlDefault.Name" xml:space="preserve">
-    <value>radMenuItemControlDefault</value>
-  </data>
-  <data name="&gt;&gt;radMenuItemControlDefault.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radMenuItemHelp.Name" xml:space="preserve">

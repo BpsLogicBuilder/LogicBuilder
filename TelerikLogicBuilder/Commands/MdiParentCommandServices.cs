@@ -118,16 +118,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationName
                     )
                 )
-                .AddTransient<Func<RadMenuItem, string, SetThemeCommand>>
-                (
-                    provider =>
-                    (themeMenuItem, themeName) => new SetThemeCommand
-                    (
-                        provider.GetRequiredService<IThemeManager>(),
-                        themeMenuItem,
-                        themeName
-                    )
-                )
                 .AddTransient<ValidateSelectedDocumentsCommand>()
                 .AddTransient<ValidateActiveDocumentCommand>()
                 .AddTransient<Func<string, ValidateSelectedRulesCommand>>

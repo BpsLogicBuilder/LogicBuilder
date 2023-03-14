@@ -23,13 +23,6 @@ namespace TelerikLogicBuilder.Tests.UserControls.Helpers
                 return new List<object[]>
                 {
                     new object[] { ThemeCollections.ControlDefault, Color.FromArgb(255, 21, 66, 139) },
-                    new object[] { ThemeCollections.Office2007Black, Color.FromArgb(255, 0, 0, 0) },
-                    new object[] { ThemeCollections.Office2007Silver, Color.FromArgb(255, 0, 0, 0) },
-                    new object[] { ThemeCollections.Office2010Black, Color.FromArgb(255, 0, 0, 0) },
-                    new object[] { ThemeCollections.Office2010Blue, Color.FromArgb(255, 0, 0, 0) },
-                    new object[] { ThemeCollections.Office2010Silver, Color.FromArgb(255, 0, 0, 0) },
-                    new object[] { ThemeCollections.Office2013Dark, Color.FromArgb(255, 0, 0, 0) },
-                    new object[] { ThemeCollections.Office2013Light, Color.FromArgb(255, 0, 0, 0) },
                     new object[] { ThemeCollections.Office2019Dark, Color.FromArgb(255, 241, 241, 241) },
                     new object[] { ThemeCollections.Office2019Gray, Color.FromArgb(255, 0, 0, 0) },
                     new object[] { ThemeCollections.Office2019Light, Color.FromArgb(255, 0, 0, 0) }
@@ -44,15 +37,6 @@ namespace TelerikLogicBuilder.Tests.UserControls.Helpers
                 return new List<object[]>
                 {
                     new object[] { ThemeCollections.ControlDefault, Color.FromArgb(255, 0, 0, 0) },
-                    new object[] { ThemeCollections.Office2007Black, Color.FromArgb(255, 0, 50, 208) },
-                    new object[] { ThemeCollections.Office2007Silver, Color.FromArgb(255, 0, 50, 208) },
-                    new object[] { ThemeCollections.Office2010Black, Color.FromArgb(255, 255, 255, 255) },
-                    new object[] { ThemeCollections.Office2010Blue, Color.FromArgb(255, 255, 0, 0) },/*RedBorder*/
-                    new object[] { ThemeCollections.Office2010Silver, Color.FromArgb(255, 255, 0, 0) },/*RedBorder*/
-                    //new object[] { ThemeCollections.Office2010Blue, Color.FromArgb(255, 216, 80, 0) },/*ForeColorOrange*/
-                    //new object[] { ThemeCollections.Office2010Silver, Color.FromArgb(255, 214, 121, 3) },/*ForeColor(214;121;3)*/
-                    new object[] { ThemeCollections.Office2013Dark, Color.FromArgb(255, 0, 114, 198) },
-                    new object[] { ThemeCollections.Office2013Light, Color.FromArgb(255, 0, 114, 198) },
                     new object[] { ThemeCollections.Office2019Dark, Color.FromArgb(255, 47, 150, 237) },
                     new object[] { ThemeCollections.Office2019Gray, Color.FromArgb(255, 16, 110, 190) },
                     new object[] { ThemeCollections.Office2019Light, Color.FromArgb(255, 16, 110, 190) }

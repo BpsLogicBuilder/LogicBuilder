@@ -12,7 +12,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.Factories
         private readonly Func<RadMenuItem, RadMenuItem, string, SetColorThemeCommand> _getSetColorThemeCommand;
         private readonly Func<RadMenuItem, RadMenuItem, int, SetFontSizeCommand> _getSetFontSizeCommand;
         private readonly Func<RadMenuItem, string, SetSelectedApplicationCommand> _getSetSelectedApplicationCommand;
-        private readonly Func<RadMenuItem, string, SetThemeCommand> _getSetThemeCommand;
         private readonly Func<string, ValidateSelectedRulesCommand> _getValidateSelectedRulesCommand;
 
         public ApplicationCommandsFactory(
@@ -23,7 +22,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.Factories
             Func<RadMenuItem, RadMenuItem, string, SetColorThemeCommand> getSetColorThemeCommand,
             Func<RadMenuItem, RadMenuItem, int, SetFontSizeCommand> getSetFontSizeCommand,
             Func<RadMenuItem, string, SetSelectedApplicationCommand> getSetSelectedApplicationCommand,
-            Func<RadMenuItem, string, SetThemeCommand> getSetThemeCommand,
             Func<string, ValidateSelectedRulesCommand> getValidateSelectedRulesCommand)
         {
             _getDeleteSelectedFilesFromApiCommand = getDeleteSelectedFilesFromApiCommand;
@@ -33,7 +31,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.Factories
             _getSetColorThemeCommand = getSetColorThemeCommand;
             _getSetSelectedApplicationCommand = getSetSelectedApplicationCommand;
             _getSetFontSizeCommand = getSetFontSizeCommand;
-            _getSetThemeCommand = getSetThemeCommand;
             _getValidateSelectedRulesCommand = getValidateSelectedRulesCommand;
         }
 
@@ -57,9 +54,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.Factories
 
         public SetSelectedApplicationCommand GetSetSelectedApplicationCommand(RadMenuItem menuItem, string applicationName)
             => _getSetSelectedApplicationCommand(menuItem, applicationName);
-
-        public SetThemeCommand GetSetThemeCommand(RadMenuItem menuItem, string applicationName)
-            => _getSetThemeCommand(menuItem, applicationName);
 
         public ValidateSelectedRulesCommand GetValidateSelectedRulesCommand(string applicationName)
             => _getValidateSelectedRulesCommand(applicationName);
