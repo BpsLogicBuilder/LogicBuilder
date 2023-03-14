@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Telerik.WinControls.UI;
@@ -35,6 +36,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
             _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
             _configurationService.FunctionList = _functionListInitializer.InitializeList();
             _configurationService.VariableList = _variableListInitializer.InitializeList();
+            _themeManager = serviceProvider.GetRequiredService<IThemeManager>();
             serviceProvider.GetRequiredService<IMainWindow>().Instance = new MockMdiParent();
             _loadContextSponsor.LoadAssembiesIfNeeded();
             Initialize();
@@ -49,6 +51,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
         private readonly IVariableListInitializer _variableListInitializer;
         private readonly ILoadProjectProperties _loadProjectProperties;
         private readonly ILoadContextSponsor _loadContextSponsor;
+        private readonly IThemeManager _themeManager;
         #endregion Fields
 
         private void Initialize()
@@ -126,6 +129,31 @@ namespace TelerikLogicBuilder.FormsPreviewer
             _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
             _configurationService.FunctionList = _functionListInitializer.InitializeList();
             _configurationService.VariableList = _variableListInitializer.InitializeList();
+        }
+
+        private void RadButtonSetFontSize09_Click(object sender, EventArgs e)
+        {
+            _themeManager.SetFontSize(9);
+        }
+
+        private void RadButtonSetFontSize10_Click(object sender, EventArgs e)
+        {
+            _themeManager.SetFontSize(10);
+        }
+
+        private void RadButtonSetFontSize11_Click(object sender, EventArgs e)
+        {
+            _themeManager.SetFontSize(11);
+        }
+
+        private void RadButtonSetFontSize12_Click(object sender, EventArgs e)
+        {
+            _themeManager.SetFontSize(12);
+        }
+
+        private void RadButtonSetFontSize14_Click(object sender, EventArgs e)
+        {
+            _themeManager.SetFontSize(14);
         }
     }
 }

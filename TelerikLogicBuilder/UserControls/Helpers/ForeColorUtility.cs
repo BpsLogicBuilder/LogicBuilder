@@ -234,7 +234,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
         public static Color GetLinkBoundaryColor(string themeName)
         {
-            if (themeName == ThemeCollections.Office2019Dark)
+            if (ThemeCollections.DarkThemeNames.Contains(themeName))
                 return GetTextBoxForeColor(themeName);
 
             return Color.Blue;

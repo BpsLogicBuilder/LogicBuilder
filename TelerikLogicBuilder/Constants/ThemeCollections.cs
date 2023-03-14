@@ -62,6 +62,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
         public static readonly ThemeSelector Light12 = new(Light, TWELVE);
         public static readonly ThemeSelector Light14 = new(Light, FOURTEEN);
 
+        public static readonly HashSet<string> DarkThemeNames = new
+        (
+            new string[]
+            {
+                ControlDefault,
+                Office2019Dark,
+                Office2019Dark10,
+                Office2019Dark11,
+                Office2019Dark12,
+                Office2019Dark14
+            }
+        );
+
         public static readonly HashSet<string> ThemeNames = new
 		(
 			new string[] 
