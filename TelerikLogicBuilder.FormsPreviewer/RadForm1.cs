@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Properties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
@@ -40,6 +41,8 @@ namespace TelerikLogicBuilder.FormsPreviewer
             serviceProvider.GetRequiredService<IMainWindow>().Instance = new MockMdiParent();
             _loadContextSponsor.LoadAssembiesIfNeeded();
             Initialize();
+            Settings.Default.colorTheme = "Dark";
+            Settings.Default.Save();
         }
 
         #region Fields
@@ -149,6 +152,11 @@ namespace TelerikLogicBuilder.FormsPreviewer
         private void RadButtonSetFontSize12_Click(object sender, EventArgs e)
         {
             _themeManager.SetFontSize(12);
+        }
+
+        private void radButtonSetFontSize13_Click(object sender, EventArgs e)
+        {
+            _themeManager.SetFontSize(13);
         }
 
         private void RadButtonSetFontSize14_Click(object sender, EventArgs e)

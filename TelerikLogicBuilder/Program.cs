@@ -96,14 +96,17 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark10_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark11_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark13_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Dark14_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray10_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray11_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray13_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Gray14_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light10_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light11_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light13_PackageResource);
             ThemeResolutionService.LoadPackageResource(ThemeCollections.Office2019Light14_PackageResource);
         }
 

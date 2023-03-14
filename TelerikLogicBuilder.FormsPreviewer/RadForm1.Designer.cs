@@ -42,6 +42,7 @@
             this.radButtonSetFontSize11 = new Telerik.WinControls.UI.RadButton();
             this.radButtonSetFontSize12 = new Telerik.WinControls.UI.RadButton();
             this.radButtonSetFontSize14 = new Telerik.WinControls.UI.RadButton();
+            this.radButtonSetFontSize13 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditVariableForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectConstructorForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectBoolFunction)).BeginInit();
@@ -56,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -170,19 +172,29 @@
             // 
             // radButtonSetFontSize14
             // 
-            this.radButtonSetFontSize14.Location = new System.Drawing.Point(592, 132);
+            this.radButtonSetFontSize14.Location = new System.Drawing.Point(592, 162);
             this.radButtonSetFontSize14.Name = "radButtonSetFontSize14";
             this.radButtonSetFontSize14.Size = new System.Drawing.Size(179, 24);
             this.radButtonSetFontSize14.TabIndex = 10;
             this.radButtonSetFontSize14.Text = "Set Font Size 14";
             this.radButtonSetFontSize14.Click += new System.EventHandler(this.RadButtonSetFontSize14_Click);
             // 
+            // radButtonSetFontSize13
+            // 
+            this.radButtonSetFontSize13.Location = new System.Drawing.Point(592, 132);
+            this.radButtonSetFontSize13.Name = "radButtonSetFontSize13";
+            this.radButtonSetFontSize13.Size = new System.Drawing.Size(179, 24);
+            this.radButtonSetFontSize13.TabIndex = 11;
+            this.radButtonSetFontSize13.Text = "Set Font Size 13";
+            this.radButtonSetFontSize13.Click += new System.EventHandler(this.radButtonSetFontSize13_Click);
+            // 
             // RadForm1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 250);
+            this.ClientSize = new System.Drawing.Size(856, 202);
+            this.Controls.Add(this.radButtonSetFontSize13);
             this.Controls.Add(this.radButtonSetFontSize14);
             this.Controls.Add(this.radButtonSetFontSize12);
             this.Controls.Add(this.radButtonSetFontSize11);
@@ -214,6 +226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonSetFontSize13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -235,5 +248,6 @@
         private Telerik.WinControls.UI.RadButton radButtonSetFontSize11;
         private Telerik.WinControls.UI.RadButton radButtonSetFontSize12;
         private Telerik.WinControls.UI.RadButton radButtonSetFontSize14;
+        private Telerik.WinControls.UI.RadButton radButtonSetFontSize13;
     }
 }

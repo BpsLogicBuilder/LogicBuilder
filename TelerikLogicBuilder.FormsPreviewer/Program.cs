@@ -15,30 +15,36 @@ namespace TelerikLogicBuilder.FormsPreviewer
         public const string Office2019Dark10 = "Office2019Dark10";
         public const string Office2019Dark11 = "Office2019Dark11";
         public const string Office2019Dark12 = "Office2019Dark12";
+        public const string Office2019Dark13 = "Office2019Dark13";
         public const string Office2019Dark14 = "Office2019Dark14";
         public const string Office2019Gray = "Office2019Gray";
         public const string Office2019Gray10 = "Office2019Gray10";
         public const string Office2019Gray11 = "Office2019Gray11";
         public const string Office2019Gray12 = "Office2019Gray12";
+        public const string Office2019Gray13 = "Office2019Gray13";
         public const string Office2019Gray14 = "Office2019Gray14";
         public const string Office2019Light = "Office2019Light";
         public const string Office2019Light10 = "Office2019Light10";
         public const string Office2019Light11 = "Office2019Light11";
         public const string Office2019Light12 = "Office2019Light12";
+        public const string Office2019Light13 = "Office2019Light13";
         public const string Office2019Light14 = "Office2019Light14";
 
         private const string defaultNamespace = "TelerikLogicBuilder.FormsPreviewer";
         public static readonly string Office2019Dark10_PackageResource = $"{defaultNamespace}.{Office2019Dark10}.tssp";
         public static readonly string Office2019Dark11_PackageResource = $"{defaultNamespace}.{Office2019Dark11}.tssp";
         public static readonly string Office2019Dark12_PackageResource = $"{defaultNamespace}.{Office2019Dark12}.tssp";
+        public static readonly string Office2019Dark13_PackageResource = $"{defaultNamespace}.{Office2019Dark13}.tssp";
         public static readonly string Office2019Dark14_PackageResource = $"{defaultNamespace}.{Office2019Dark14}.tssp";
         public static readonly string Office2019Gray10_PackageResource = $"{defaultNamespace}.{Office2019Gray10}.tssp";
         public static readonly string Office2019Gray11_PackageResource = $"{defaultNamespace}.{Office2019Gray11}.tssp";
         public static readonly string Office2019Gray12_PackageResource = $"{defaultNamespace}.{Office2019Gray12}.tssp";
+        public static readonly string Office2019Gray13_PackageResource = $"{defaultNamespace}.{Office2019Gray13}.tssp";
         public static readonly string Office2019Gray14_PackageResource = $"{defaultNamespace}.{Office2019Gray14}.tssp";
         public static readonly string Office2019Light10_PackageResource = $"{defaultNamespace}.{Office2019Light10}.tssp";
         public static readonly string Office2019Light11_PackageResource = $"{defaultNamespace}.{Office2019Light11}.tssp";
         public static readonly string Office2019Light12_PackageResource = $"{defaultNamespace}.{Office2019Light12}.tssp";
+        public static readonly string Office2019Light13_PackageResource = $"{defaultNamespace}.{Office2019Light13}.tssp";
         public static readonly string Office2019Light14_PackageResource = $"{defaultNamespace}.{Office2019Light14}.tssp";
 
 
@@ -71,14 +77,17 @@ namespace TelerikLogicBuilder.FormsPreviewer
             ThemeResolutionService.LoadPackageResource(Program.Office2019Dark10_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Dark11_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Dark12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(Program.Office2019Dark13_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Dark14_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Gray10_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Gray11_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Gray12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(Program.Office2019Gray13_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Gray14_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Light10_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Light11_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Light12_PackageResource);
+            ThemeResolutionService.LoadPackageResource(Program.Office2019Light13_PackageResource);
             ThemeResolutionService.LoadPackageResource(Program.Office2019Light14_PackageResource);
         }
     }
