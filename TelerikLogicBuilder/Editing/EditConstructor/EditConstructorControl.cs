@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -245,6 +246,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.groupBoxConstructor.Size = new Size(855, 300);
             this.groupBoxConstructor.TabIndex = 0;
             this.groupBoxConstructor.Text = Strings.editConstructorGroupBoxHeaderText;
+            this.groupBoxConstructor.Padding = PerFontSizeConstants.GroupBoxPadding;
             // 
             // radPanelConstructor
             // 
@@ -330,7 +332,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.lblConstructor.TabIndex = 0;
             this.lblConstructor.Text = constructor.Name;
             lblConstructor.TextAlignment = ContentAlignment.MiddleLeft;
-            lblConstructor.Font = new Font(lblConstructor.Font, FontStyle.Bold);
+            lblConstructor.Font = new Font
+            (
+                ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName),
+                FontStyle.Bold
+            );
 
             // 
             // EditConstructorControl

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,8 +9,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal class LayoutFieldControlButtons : ILayoutFieldControlButtons
     {
-        public void Layout(RadPanel panelButtons, IList<RadButton> buttons, bool performLayout = false, int buttonWidth = 30)
+        public void Layout(RadPanel panelButtons, IList<RadButton> buttons, bool performLayout = true)
         {
+            int buttonWidth = PerFontSizeConstants.CommandButtonWidth;
             TableLayoutPanel tableLayoutPanel = new();
             ((ISupportInitialize)panelButtons).BeginInit();
             panelButtons.SuspendLayout();

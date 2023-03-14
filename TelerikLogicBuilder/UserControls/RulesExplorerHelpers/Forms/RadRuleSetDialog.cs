@@ -100,6 +100,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             _radDropDownListHelper.LoadComboItems<RuleChainingBehavior>(radDropDownListChaining);
 
             radGroupBoxRule.ShowItemToolTips = true;
+            radGroupBoxActions.Padding = PerFontSizeConstants.GroupBoxPadding;
+            radGroupBoxConditions.Padding = PerFontSizeConstants.GroupBoxPadding;
+            radGroupBoxRule.Padding = PerFontSizeConstants.GroupBoxPadding;
+            radGroupBoxRuleSet.Padding = PerFontSizeConstants.GroupBoxPadding;
 
             radListViewRuleSet.Columns.Add(RuleSetListViewColumnNames.Name, Strings.ruleSetListViewColumnHeaderTextName);
             radListViewRuleSet.Columns.Add(RuleSetListViewColumnNames.Priority, Strings.ruleSetListViewColumnHeaderTextPriority);
@@ -126,9 +130,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             radCheckBoxReevaluation.ReadOnly = true;
             radCheckBoxActive.ReadOnly = true;
 
-            radLabelChaining.Font = new Font(radLabelChaining.Font, FontStyle.Bold);
-            radLabelName.Font = new Font(radLabelName.Font, FontStyle.Bold);
-            radLabelPriority.Font = new Font(radLabelPriority.Font, FontStyle.Bold);
+            radLabelChaining.Font = new Font
+            (
+                ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName),
+                FontStyle.Bold
+            );
+            radLabelName.Font = new Font
+            (
+                ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName),
+                FontStyle.Bold
+            );
+            radLabelPriority.Font = new Font
+            (
+                ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName),
+                FontStyle.Bold
+            );
             radButtonClose.DialogResult = DialogResult.Cancel;
 
             CollapsePanelBorder(radPanelBottom);

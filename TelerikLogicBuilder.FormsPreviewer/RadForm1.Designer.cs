@@ -132,7 +132,7 @@
             this.radButtonReloadConfiguration.Size = new System.Drawing.Size(179, 24);
             this.radButtonReloadConfiguration.TabIndex = 8;
             this.radButtonReloadConfiguration.Text = "Reload Configuration";
-            this.radButtonReloadConfiguration.Click += new System.EventHandler(this.radButtonReloadConfiguration_Click);
+            this.radButtonReloadConfiguration.Click += new System.EventHandler(this.RadButtonReloadConfiguration_Click);
             // 
             // radButtonSetFontSize09
             // 

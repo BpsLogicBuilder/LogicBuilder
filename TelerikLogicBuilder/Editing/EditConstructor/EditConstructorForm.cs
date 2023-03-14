@@ -1130,7 +1130,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             void ClearFieldControls()
             {
                 foreach (Control control in radPanelFields.Controls)
+                {
                     control.Visible = false;
+					if (!control.IsDisposed)
+                        control.Dispose();
+                }
 
                 radPanelFields.Controls.Clear();
             }

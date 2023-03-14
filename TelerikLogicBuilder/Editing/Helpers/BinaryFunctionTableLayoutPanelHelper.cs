@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
 
-            const float boundaryWidth = 20F;
-            const float singleLineHeight = 33F;
-            const float multiLineHeight = 100F;
-            const float separatorLineHeight = 3F;
+            float boundaryWidth = PerFontSizeConstants.BoundarySize;
+            float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
+            float multiLineHeight = PerFontSizeConstants.MultiLineHeight;
+            float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
             int rowCount = 8;//top + bottom + functionName rows + parameter rows;
 
             if (hasGenericArguments)

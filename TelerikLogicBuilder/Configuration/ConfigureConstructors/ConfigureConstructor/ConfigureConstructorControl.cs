@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.StateImageSetters;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -191,7 +192,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
 
         private static void InitializeReadOnlyTextBox(HelperButtonTextBox helperButtonTextBox, string text)
         {
-            helperButtonTextBox.Font = new Font(helperButtonTextBox.Font, FontStyle.Bold);
+            helperButtonTextBox.Font = new Font
+            (
+                ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName),
+                FontStyle.Bold
+            );
             helperButtonTextBox.ReadOnly = true;
             helperButtonTextBox.Text = text;
             helperButtonTextBox.SetPaddingType(HelperButtonTextBox.PaddingType.Bold);

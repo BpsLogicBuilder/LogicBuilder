@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,10 +15,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
 
-            const float boundaryWidth = 20F;
-            const float singleLineHeight = 33F;
-            const float multiLineHeight = 100F;
-            const float separatorLineHeight = 3F;
+            float boundaryWidth = PerFontSizeConstants.BoundarySize;
+            float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
+            float multiLineHeight = PerFontSizeConstants.MultiLineHeight;
+            float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
             int rowCount = 4;//top + bottom + constructorName rows;
 
             foreach (ParameterBase parameter in parameters)

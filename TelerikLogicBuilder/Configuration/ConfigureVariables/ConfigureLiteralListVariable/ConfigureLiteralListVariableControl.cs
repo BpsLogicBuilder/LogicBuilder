@@ -262,7 +262,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         private static void InitializeReadOnlyTextBox(HelperButtonTextBox helperButtonTextBox, string text)
         {
-            helperButtonTextBox.Font = new Font(helperButtonTextBox.Font, FontStyle.Bold);
+            helperButtonTextBox.Font = new Font
+            (
+                ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName),
+                FontStyle.Bold
+            );
             helperButtonTextBox.ReadOnly = true;
             helperButtonTextBox.Text = text;
             helperButtonTextBox.SetPaddingType(HelperButtonTextBox.PaddingType.Bold);

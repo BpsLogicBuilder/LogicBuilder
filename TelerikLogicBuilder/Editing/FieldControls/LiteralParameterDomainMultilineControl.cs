@@ -228,7 +228,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private void InitializeButtons()
         {
-            int buttonWidth = 30;
+            int buttonWidth = PerFontSizeConstants.CommandButtonWidth;
 
             ((ISupportInitialize)this.radPanelRight).BeginInit();
             this.radPanelRight.SuspendLayout();
@@ -238,8 +238,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             (
                 radPanelCommandBar,
                 CommandButtons,
-                false,
-                buttonWidth
+                false
             );
 
             ((ISupportInitialize)this.radPanelRight).EndInit();

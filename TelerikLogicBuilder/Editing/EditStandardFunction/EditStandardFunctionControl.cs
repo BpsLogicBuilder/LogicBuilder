@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -197,6 +198,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             this.groupBoxFunction.Size = new Size(855, 300);
             this.groupBoxFunction.TabIndex = 0;
             this.groupBoxFunction.Text = Strings.editFunctionGroupBoxHeaderText;
+            this.groupBoxFunction.Padding = PerFontSizeConstants.GroupBoxPadding;
             // 
             // radPanelFunction
             // 
@@ -291,7 +293,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             this.lblFunction.TabIndex = 0;
             this.lblFunction.Text = function.Name;
             lblFunction.TextAlignment = ContentAlignment.MiddleLeft;
-            lblFunction.Font = new Font(lblFunction.Font, FontStyle.Bold);
+            lblFunction.Font = new Font
+            (
+                ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName),
+                FontStyle.Bold
+            );
 
             // 
             // EditFunctionControl

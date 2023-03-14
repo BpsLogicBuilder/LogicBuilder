@@ -253,7 +253,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         private void InitializeButtons()
         {
-            int buttonWidth = 30;
+            int buttonWidth = PerFontSizeConstants.CommandButtonWidth;
 
             ((ISupportInitialize)this.radPanelRight).BeginInit();
             this.radPanelRight.SuspendLayout();
@@ -263,8 +263,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             (
                 radPanelCommandBar,
                 CommandButtons,
-                false,
-                buttonWidth
+                false
             );
 
             ((ISupportInitialize)this.radPanelRight).EndInit();
