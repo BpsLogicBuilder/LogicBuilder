@@ -150,6 +150,7 @@
             this.radMenuItemEleven = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemTwelve = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemFourteen = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemThirteen = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).BeginInit();
             this.radSplitContainerBase.SuspendLayout();
@@ -893,6 +894,7 @@
             this.radMenuItemTen,
             this.radMenuItemEleven,
             this.radMenuItemTwelve,
+            this.radMenuItemThirteen,
             this.radMenuItemFourteen});
             this.radMenuItemFontSize.Name = "radMenuItemFontSize";
             resources.ApplyResources(this.radMenuItemFontSize, "radMenuItemFontSize");
@@ -927,6 +929,12 @@
             this.radMenuItemFourteen.Name = "radMenuItemFourteen";
             this.radMenuItemFourteen.Tag = "14";
             resources.ApplyResources(this.radMenuItemFourteen, "radMenuItemFourteen");
+            // 
+            // radMenuItemThirteen
+            // 
+            this.radMenuItemThirteen.Name = "radMenuItemThirteen";
+            this.radMenuItemThirteen.Tag = "13";
+            resources.ApplyResources(this.radMenuItemThirteen, "radMenuItemThirteen");
             // 
             // MDIParent
             // 
@@ -1079,5 +1087,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemEleven;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemTwelve;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemFourteen;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemThirteen;
     }
 }

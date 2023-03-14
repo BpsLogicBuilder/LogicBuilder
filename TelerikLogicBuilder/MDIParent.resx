@@ -407,7 +407,7 @@
     <value>0, 20</value>
   </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1068, 30</value>
+    <value>1080, 30</value>
   </data>
   <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -428,7 +428,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>883, 294</value>
+    <value>893, 270</value>
   </data>
   <data name="splitPanelEdit.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -446,10 +446,10 @@
     <value>0</value>
   </data>
   <data name="splitPanelMessages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 302</value>
+    <value>0, 278</value>
   </data>
   <data name="splitPanelMessages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>883, 100</value>
+    <value>893, 92</value>
   </data>
   <data name="splitPanelMessages.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -476,7 +476,7 @@
     <value>Horizontal</value>
   </data>
   <data name="radSplitContainerLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>883, 402</value>
+    <value>893, 370</value>
   </data>
   <data name="radSplitContainerLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -497,7 +497,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>883, 402</value>
+    <value>893, 370</value>
   </data>
   <data name="splitPanelLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -518,10 +518,10 @@
     <value>0</value>
   </data>
   <data name="splitPanelExplorer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>891, 0</value>
+    <value>901, 0</value>
   </data>
   <data name="splitPanelExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 402</value>
+    <value>179, 370</value>
   </data>
   <data name="splitPanelExplorer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -548,7 +548,7 @@
     <value>0, 50</value>
   </data>
   <data name="radSplitContainerBase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1068, 402</value>
+    <value>1080, 370</value>
   </data>
   <data name="radSplitContainerBase.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -569,10 +569,10 @@
     <value />
   </data>
   <data name="radStatusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 452</value>
+    <value>0, 420</value>
   </data>
   <data name="radStatusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1068, 26</value>
+    <value>1080, 26</value>
   </data>
   <data name="radStatusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -643,6 +643,9 @@
   <data name="radMenuItemTwelve.Text" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="radMenuItemThirteen.Text" xml:space="preserve">
+    <value>13</value>
+  </data>
   <data name="radMenuItemFourteen.Text" xml:space="preserve">
     <value>14</value>
   </data>
@@ -656,7 +659,7 @@
     <value>0, 0</value>
   </data>
   <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1068, 20</value>
+    <value>1080, 20</value>
   </data>
   <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -686,7 +689,7 @@
     <value>9, 21</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1068, 478</value>
+    <value>1080, 446</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1367,6 +1370,12 @@
     <value>radMenuItemFourteen</value>
   </data>
   <data name="&gt;&gt;radMenuItemFourteen.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemThirteen.Name" xml:space="preserve">
+    <value>radMenuItemThirteen</value>
+  </data>
+  <data name="&gt;&gt;radMenuItemThirteen.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

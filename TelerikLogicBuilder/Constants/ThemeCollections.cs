@@ -72,6 +72,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
         public static readonly ThemeSelector Light13 = new(Light, THIRTEEN);
         public static readonly ThemeSelector Light14 = new(Light, FOURTEEN);
 
+        public static readonly HashSet<int> FontSizes = new
+        (
+            new int[]
+            {
+                NINE,
+                TEN,
+                ELEVEN,
+                TWELVE,
+                THIRTEEN,
+                FOURTEEN
+            }
+        );
+
         public static readonly HashSet<string> DarkThemeNames = new
         (
             new string[]
