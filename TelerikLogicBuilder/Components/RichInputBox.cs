@@ -1030,6 +1030,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
             this.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
             this.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
+            this.Font = ForeColorUtility.GetDefaultFont(args.ThemeName);
             ResetNonLinkTextOnThemeChange();
         }
         #endregion EventHandlers

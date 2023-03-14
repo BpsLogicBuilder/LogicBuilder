@@ -7,6 +7,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
     {
         public TextOnlyRichTextBox()
         {
+            this.BackColor = ForeColorUtility.GetTextBoxBackColor(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
+            this.ForeColor = ForeColorUtility.GetTextBoxForeColor(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
+
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
+            this.Disposed += TextOnlyRichTextBox_Disposed;
+
             this.Font = ForeColorUtility.GetDefaultFont(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
         }
 
@@ -32,5 +38,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        #region EventHandlers
+        private void TextOnlyRichTextBox_Disposed(object? sender, System.EventArgs e)
+        {
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
+        }
+
+        private void ThemeResolutionService_ApplicationThemeChanged(object sender, Telerik.WinControls.ThemeChangedEventArgs args)
+        {
+            if (this.IsDisposed)
+                return;
+
+            this.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
+            this.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
+            this.Font = ForeColorUtility.GetDefaultFont(args.ThemeName);
+        }
+        #endregion EventHandlers
     }
 }
