@@ -168,7 +168,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
         private void ClearFieldControls()
         {
             foreach (Control control in radPanelFields.Controls)
+            {
                 control.Visible = false;
+                if (!control.IsDisposed)
+                    control.Dispose();
+            }
 
             radPanelFields.Controls.Clear();
         }

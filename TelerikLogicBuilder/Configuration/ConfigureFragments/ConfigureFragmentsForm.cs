@@ -13,6 +13,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
 using System.Collections.Generic;
@@ -295,27 +296,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
 
         private void Navigate(Control newEditingControl)
         {
-            Native.NativeMethods.LockWindowUpdate(this.Handle);
-            ((ISupportInitialize)radPanelFields).BeginInit();
-            radPanelFields.SuspendLayout();
-
-            ClearFieldControls();
-            newEditingControl.Dock = DockStyle.Fill;
-            newEditingControl.Location = new Point(0, 0);
-            radPanelFields.Controls.Add(newEditingControl);
-
-            ((ISupportInitialize)radPanelFields).EndInit();
-            radPanelFields.ResumeLayout(true);
-
-            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
-
-            void ClearFieldControls()
-            {
-                foreach (Control control in radPanelFields.Controls)
-                    control.Visible = false;
-
-                radPanelFields.Controls.Clear();
-            }
+            NavigationUtility.Navigate(this.Handle, radPanelFields, newEditingControl);
         }
 
         private void Navigate(RadTreeNode treeNode)

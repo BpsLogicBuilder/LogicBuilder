@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -183,27 +184,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         private void Navigate(Control newControl)
         {
-            Native.NativeMethods.LockWindowUpdate(this.Handle);
-            ((ISupportInitialize)radPanelVariableView).BeginInit();
-            radPanelVariableView.SuspendLayout();
-
-            ClearFieldControls();
-            newControl.Dock = DockStyle.Fill;
-            newControl.Location = new Point(0, 0);
-            radPanelVariableView.Controls.Add(newControl);
-
-            ((ISupportInitialize)radPanelVariableView).EndInit();
-            radPanelVariableView.ResumeLayout(true);
-
-            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
-
-            void ClearFieldControls()
-            {
-                foreach (Control control in radPanelVariableView.Controls)
-                    control.Visible = false;
-
-                radPanelVariableView.Controls.Clear();
-            }
+            NavigationUtility.Navigate(this.Handle, radPanelVariableView, newControl);
         }
 
         private void Navigate(ViewType view)

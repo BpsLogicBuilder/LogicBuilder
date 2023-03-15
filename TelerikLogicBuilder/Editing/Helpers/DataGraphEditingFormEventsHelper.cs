@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -146,29 +147,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private void Navigate(IEditingControl editingControl)
         {
-            Control newControl = (Control)editingControl;
-            Native.NativeMethods.LockWindowUpdate(((Control)dataGraphEditingForm).Handle);
-            ((ISupportInitialize)RadPanelFields).BeginInit();
-            RadPanelFields.SuspendLayout();
-
-            ClearFieldControls();
-            newControl.Dock = DockStyle.Fill;
-            newControl.Location = new Point(0, 0);
-            RadPanelFields.Controls.Add(newControl);
-
-            ((ISupportInitialize)RadPanelFields).EndInit();
-            RadPanelFields.ResumeLayout(false);
-            RadPanelFields.PerformLayout();
-
-            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
-
-            void ClearFieldControls()
-            {
-                foreach (Control control in RadPanelFields.Controls)
-                    control.Visible = false;
-
-                RadPanelFields.Controls.Clear();
-            }
+            NavigationUtility.Navigate(((Control)dataGraphEditingForm).Handle, RadPanelFields, (Control)editingControl);
         }
 
         private void RefreshTreeNode(ParametersDataTreeNode selectedNode)

@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1112,32 +1113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         private void Navigate(Control newControl)
         {
-            Native.NativeMethods.LockWindowUpdate(this.Handle);
-            ((ISupportInitialize)radPanelFields).BeginInit();
-            radPanelFields.SuspendLayout();
-
-            ClearFieldControls();
-            newControl.Dock = DockStyle.Fill;
-            newControl.Location = new Point(0, 0);
-            radPanelFields.Controls.Add(newControl);
-
-            ((ISupportInitialize)radPanelFields).EndInit();
-            radPanelFields.ResumeLayout(false);
-            radPanelFields.PerformLayout();
-
-            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
-
-            void ClearFieldControls()
-            {
-                foreach (Control control in radPanelFields.Controls)
-                {
-                    control.Visible = false;
-					if (!control.IsDisposed)
-                        control.Dispose();
-                }
-
-                radPanelFields.Controls.Clear();
-            }
+            NavigationUtility.Navigate(this.Handle, radPanelFields, newControl);
         }
 
         #region Event Handlers

@@ -132,27 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType
 
         private void Navigate(Control newEditingControl)
         {
-            Native.NativeMethods.LockWindowUpdate(this.Handle);
-            ((ISupportInitialize)radPanelFields).BeginInit();
-            radPanelFields.SuspendLayout();
-
-            ClearFieldControls();
-            newEditingControl.Dock = DockStyle.Fill;
-            newEditingControl.Location = new Point(0, 0);
-            radPanelFields.Controls.Add(newEditingControl);
-
-            ((ISupportInitialize)radPanelFields).EndInit();
-            radPanelFields.ResumeLayout(true);
-
-            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
-
-            void ClearFieldControls()
-            {
-                foreach (Control control in radPanelFields.Controls)
-                    control.Visible = false;
-
-                radPanelFields.Controls.Clear();
-            }
+            NavigationUtility.Navigate(this.Handle, radPanelFields, newEditingControl);
         }
 
         private void Navigate()

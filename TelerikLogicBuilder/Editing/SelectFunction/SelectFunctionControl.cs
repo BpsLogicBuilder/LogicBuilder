@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -153,27 +154,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
         private void Navigate(Control newControl)
         {
-            Native.NativeMethods.LockWindowUpdate(this.Handle);
-            ((ISupportInitialize)radPanelFunctionView).BeginInit();
-            radPanelFunctionView.SuspendLayout();
-
-            ClearFieldControls();
-            newControl.Dock = DockStyle.Fill;
-            newControl.Location = new Point(0, 0);
-            radPanelFunctionView.Controls.Add(newControl);
-
-            ((ISupportInitialize)radPanelFunctionView).EndInit();
-            radPanelFunctionView.ResumeLayout(true);
-
-            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
-
-            void ClearFieldControls()
-            {
-                foreach (Control control in radPanelFunctionView.Controls)
-                    control.Visible = false;
-
-                radPanelFunctionView.Controls.Clear();
-            }
+            NavigationUtility.Navigate(this.Handle, radPanelFunctionView, newControl);
         }
 
         private void Navigate(ViewType view)
