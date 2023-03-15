@@ -43,6 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             form.MinimumSize = new Size(GetMinWidth(), GetMinHeight());
             form.MaximizeBox = false;
             form.MinimizeBox = false;
+            form.Size = new Size(area.Width - 450, form.Height);
 
             int GetMinHeight() => minHeight < maxHeight ? minHeight : maxHeight;
             int GetMinWidth() => minWidth < maxWidth ? minWidth : maxWidth;

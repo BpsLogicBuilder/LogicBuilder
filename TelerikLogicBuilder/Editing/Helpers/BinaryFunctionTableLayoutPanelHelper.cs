@@ -56,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             float size_SingleLine = singleLineHeight / totalHeight * 100;
             float size_MultiLine = multiLineHeight / totalHeight * 100;
             float size_Separator = separatorLineHeight / totalHeight * 100;
-            int totalTableLayoutHeight = (int)Math.Ceiling(totalHeight);
+            int totalTableLayoutHeight = (int)Math.Round(totalHeight);//totalHeight height should always be a whole number
 
             // 
             // radPanelTableParent

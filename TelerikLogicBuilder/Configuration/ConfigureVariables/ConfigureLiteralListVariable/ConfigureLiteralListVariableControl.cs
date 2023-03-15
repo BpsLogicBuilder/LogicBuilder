@@ -274,52 +274,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         private void InitializeTableLayoutPanel()
         {
-            float size_20 = 20F / 652 * 100;
-            float size_30 = 30F / 652 * 100;
-            float size_6 = 6F / 652 * 100;
-
-            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-
-            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
-            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[8] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[9] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[10] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[11] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[12] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[13] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[14] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[15] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[16] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[17] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[18] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[19] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[20] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[21] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[22] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[23] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[24] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[25] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[26] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[27] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[28] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[29] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[30] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[31] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[32] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[33] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[34] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[35] = new RowStyle(SizeType.Percent, size_20);
-
-            ((ISupportInitialize)this.radPanelTableParent).EndInit();
-            this.radPanelTableParent.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutControls
+            (
+                groupBoxVariable,
+                radPanelVariable,
+                radPanelTableParent,
+                tableLayoutPanel,
+                17
+            );
         }
 
         private void InitializeVariableControls()

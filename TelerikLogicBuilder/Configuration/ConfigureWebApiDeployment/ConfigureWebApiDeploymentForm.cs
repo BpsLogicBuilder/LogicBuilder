@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,24 +87,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 
         private void InitializeTableLayoutPanel()
         {
-            float size_20 = 20F / 148 * 100;
-            float size_30 = 30F / 148 * 100;
-            float size_6 = 6F / 148 * 100;
-
-            ((ISupportInitialize)this.radPanelTableParent).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-
-            this.tableLayoutPanel.RowStyles[0] = new RowStyle(SizeType.Percent, size_20);
-            this.tableLayoutPanel.RowStyles[1] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[2] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[3] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[4] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[5] = new RowStyle(SizeType.Percent, size_30);
-            this.tableLayoutPanel.RowStyles[6] = new RowStyle(SizeType.Percent, size_6);
-            this.tableLayoutPanel.RowStyles[7] = new RowStyle(SizeType.Percent, size_20);
-
-            ((ISupportInitialize)this.radPanelTableParent).EndInit();
-            this.radPanelTableParent.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutControls
+            (
+                radGroupBoxUrls,
+                radPanelUrls,
+                radPanelTableParent,
+                tableLayoutPanel,
+                3
+            );
         }
 
         private void SetControlValues()
