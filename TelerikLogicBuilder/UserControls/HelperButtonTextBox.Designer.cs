@@ -56,7 +56,6 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            AutoSize = true;
             Controls.Add(radPanelTextBox);
             Controls.Add(radPanelButton);
             Margin = new System.Windows.Forms.Padding(0);

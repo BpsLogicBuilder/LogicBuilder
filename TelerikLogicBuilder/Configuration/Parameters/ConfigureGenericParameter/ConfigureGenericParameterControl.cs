@@ -164,7 +164,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureGeneri
             (
                 _xmlDocumentHelpers.GetGenericArguments
                 (
-                    XmlDocument, 
+                    XmlDocument,
                     $"{parameterTreeNode.Parent.Name}/{XmlDataConstants.GENERICARGUMENTSELEMENT}"
                 )
             );

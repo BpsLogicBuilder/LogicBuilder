@@ -28,255 +28,264 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxParameter = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelParameter = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.lblListCpName = new Telerik.WinControls.UI.RadLabel();
-            this.lblListCpObjectType = new Telerik.WinControls.UI.RadLabel();
-            this.lblListCpListType = new Telerik.WinControls.UI.RadLabel();
-            this.lblListCpControl = new Telerik.WinControls.UI.RadLabel();
-            this.lblListCpOptional = new Telerik.WinControls.UI.RadLabel();
-            this.lblListCpComments = new Telerik.WinControls.UI.RadLabel();
-            this.cmbListCpObjectType = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
-            this.txtListCpName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtListCpComments = new Telerik.WinControls.UI.RadTextBox();
-            this.cmbListCpListType = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbListCpControl = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbListCpOptional = new Telerik.WinControls.UI.RadDropDownList();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxParameter)).BeginInit();
-            this.groupBoxParameter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelParameter)).BeginInit();
-            this.radPanelParameter.PanelContainer.SuspendLayout();
-            this.radPanelParameter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpObjectType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpOptional)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtListCpName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtListCpComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListCpListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListCpControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListCpOptional)).BeginInit();
-            this.SuspendLayout();
+            groupBoxParameter = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelParameter = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            cmbListCpListType = new Telerik.WinControls.UI.RadDropDownList();
+            cmbListCpControl = new Telerik.WinControls.UI.RadDropDownList();
+            cmbListCpOptional = new Telerik.WinControls.UI.RadDropDownList();
+            txtListCpComments = new Telerik.WinControls.UI.RadTextBox();
+            lblListCpObjectType = new Telerik.WinControls.UI.RadLabel();
+            lblListCpListType = new Telerik.WinControls.UI.RadLabel();
+            lblListCpControl = new Telerik.WinControls.UI.RadLabel();
+            lblListCpOptional = new Telerik.WinControls.UI.RadLabel();
+            lblListCpComments = new Telerik.WinControls.UI.RadLabel();
+            lblListCpName = new Telerik.WinControls.UI.RadLabel();
+            cmbListCpObjectType = new UserControls.AutoCompleteRadDropDownList();
+            txtListCpName = new Telerik.WinControls.UI.RadTextBox();
+            ((System.ComponentModel.ISupportInitialize)groupBoxParameter).BeginInit();
+            groupBoxParameter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelParameter).BeginInit();
+            radPanelParameter.PanelContainer.SuspendLayout();
+            radPanelParameter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbListCpListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbListCpControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbListCpOptional).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtListCpComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpObjectType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpOptional).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtListCpName).BeginInit();
+            SuspendLayout();
             // 
             // groupBoxParameter
             // 
-            this.groupBoxParameter.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxParameter.Controls.Add(this.radPanelParameter);
-            this.groupBoxParameter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxParameter.HeaderText = "List of Objects Parameter";
-            this.groupBoxParameter.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxParameter.Name = "groupBoxParameter";
-            this.groupBoxParameter.Size = new System.Drawing.Size(855, 300);
-            this.groupBoxParameter.TabIndex = 0;
-            this.groupBoxParameter.Text = "List of Objects Parameter";
+            groupBoxParameter.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            groupBoxParameter.Controls.Add(radPanelParameter);
+            groupBoxParameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            groupBoxParameter.HeaderText = "List of Objects Parameter";
+            groupBoxParameter.Location = new System.Drawing.Point(0, 0);
+            groupBoxParameter.Name = "groupBoxParameter";
+            groupBoxParameter.Size = new System.Drawing.Size(855, 300);
+            groupBoxParameter.TabIndex = 0;
+            groupBoxParameter.Text = "List of Objects Parameter";
             // 
             // radPanelParameter
             // 
-            this.radPanelParameter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelParameter.Location = new System.Drawing.Point(2, 18);
-            this.radPanelParameter.Name = "radPanelParameter";
+            radPanelParameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelParameter.Location = new System.Drawing.Point(2, 18);
+            radPanelParameter.Name = "radPanelParameter";
             // 
             // radPanelParameter.PanelContainer
             // 
-            this.radPanelParameter.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radPanelParameter.PanelContainer.Size = new System.Drawing.Size(849, 278);
-            this.radPanelParameter.Size = new System.Drawing.Size(851, 280);
-            this.radPanelParameter.TabIndex = 0;
+            radPanelParameter.PanelContainer.Controls.Add(radPanelTableParent);
+            radPanelParameter.PanelContainer.Size = new System.Drawing.Size(849, 278);
+            radPanelParameter.Size = new System.Drawing.Size(851, 280);
+            radPanelParameter.TabIndex = 0;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(851, 256);
-            this.radPanelTableParent.TabIndex = 0;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 256);
+            radPanelTableParent.TabIndex = 0;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.cmbListCpListType, 2, 5);
-            this.tableLayoutPanel.Controls.Add(this.cmbListCpControl, 2, 7);
-            this.tableLayoutPanel.Controls.Add(this.cmbListCpOptional, 2, 9);
-            this.tableLayoutPanel.Controls.Add(this.txtListCpComments, 2, 11);
-            this.tableLayoutPanel.Controls.Add(this.lblListCpObjectType, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblListCpListType, 1, 5);
-            this.tableLayoutPanel.Controls.Add(this.lblListCpControl, 1, 7);
-            this.tableLayoutPanel.Controls.Add(this.lblListCpOptional, 1, 9);
-            this.tableLayoutPanel.Controls.Add(this.lblListCpComments, 1, 11);
-            this.tableLayoutPanel.Controls.Add(this.lblListCpName, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.cmbListCpObjectType, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.txtListCpName, 2, 1);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 14;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(851, 256);
-            this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // lblListCpName
-            // 
-            this.lblListCpName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblListCpName.Location = new System.Drawing.Point(28, 23);
-            this.lblListCpName.Name = "lblListCpName";
-            this.lblListCpName.Size = new System.Drawing.Size(39, 18);
-            this.lblListCpName.TabIndex = 0;
-            this.lblListCpName.Text = "Name:";
-            // 
-            // lblListCpObjectType
-            // 
-            this.lblListCpObjectType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblListCpObjectType.Location = new System.Drawing.Point(28, 59);
-            this.lblListCpObjectType.Name = "lblListCpObjectType";
-            this.lblListCpObjectType.Size = new System.Drawing.Size(69, 18);
-            this.lblListCpObjectType.TabIndex = 2;
-            this.lblListCpObjectType.Text = "Object Type:";
-            // 
-            // lblListCpListType
-            // 
-            this.lblListCpListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblListCpListType.Location = new System.Drawing.Point(28, 95);
-            this.lblListCpListType.Name = "lblListCpListType";
-            this.lblListCpListType.Size = new System.Drawing.Size(52, 18);
-            this.lblListCpListType.TabIndex = 4;
-            this.lblListCpListType.Text = "List Type:";
-            // 
-            // lblListCpControl
-            // 
-            this.lblListCpControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblListCpControl.Location = new System.Drawing.Point(28, 131);
-            this.lblListCpControl.Name = "lblListCpControl";
-            this.lblListCpControl.Size = new System.Drawing.Size(46, 18);
-            this.lblListCpControl.TabIndex = 6;
-            this.lblListCpControl.Text = "Control:";
-            // 
-            // lblListCpOptional
-            // 
-            this.lblListCpOptional.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblListCpOptional.Location = new System.Drawing.Point(28, 167);
-            this.lblListCpOptional.Name = "lblListCpOptional";
-            this.lblListCpOptional.Size = new System.Drawing.Size(52, 18);
-            this.lblListCpOptional.TabIndex = 8;
-            this.lblListCpOptional.Text = "Optional:";
-            // 
-            // lblListCpComments
-            // 
-            this.lblListCpComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblListCpComments.Location = new System.Drawing.Point(28, 203);
-            this.lblListCpComments.Name = "lblListCpComments";
-            this.lblListCpComments.Size = new System.Drawing.Size(63, 18);
-            this.lblListCpComments.TabIndex = 10;
-            this.lblListCpComments.Text = "Comments:";
-            // 
-            // cmbListCpObjectType
-            // 
-            this.cmbListCpObjectType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbListCpObjectType.Location = new System.Drawing.Point(288, 56);
-            this.cmbListCpObjectType.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbListCpObjectType.Name = "cmbListCpObjectType";
-            this.cmbListCpObjectType.SelectedText = "";
-            this.cmbListCpObjectType.Size = new System.Drawing.Size(536, 28);
-            this.cmbListCpObjectType.TabIndex = 3;
-            // 
-            // txtListCpName
-            // 
-            this.txtListCpName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtListCpName.Location = new System.Drawing.Point(291, 23);
-            this.txtListCpName.Name = "txtListCpName";
-            this.txtListCpName.Size = new System.Drawing.Size(530, 20);
-            this.txtListCpName.TabIndex = 1;
-            // 
-            // txtListCpComments
-            // 
-            this.txtListCpComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtListCpComments.Location = new System.Drawing.Point(291, 203);
-            this.txtListCpComments.Name = "txtListCpComments";
-            this.txtListCpComments.Size = new System.Drawing.Size(530, 20);
-            this.txtListCpComments.TabIndex = 11;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(cmbListCpListType, 2, 5);
+            tableLayoutPanel.Controls.Add(cmbListCpControl, 2, 7);
+            tableLayoutPanel.Controls.Add(cmbListCpOptional, 2, 9);
+            tableLayoutPanel.Controls.Add(txtListCpComments, 2, 11);
+            tableLayoutPanel.Controls.Add(lblListCpObjectType, 1, 3);
+            tableLayoutPanel.Controls.Add(lblListCpListType, 1, 5);
+            tableLayoutPanel.Controls.Add(lblListCpControl, 1, 7);
+            tableLayoutPanel.Controls.Add(lblListCpOptional, 1, 9);
+            tableLayoutPanel.Controls.Add(lblListCpComments, 1, 11);
+            tableLayoutPanel.Controls.Add(lblListCpName, 1, 1);
+            tableLayoutPanel.Controls.Add(cmbListCpObjectType, 2, 3);
+            tableLayoutPanel.Controls.Add(txtListCpName, 2, 1);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 14;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 256);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // cmbListCpListType
             // 
-            this.cmbListCpListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbListCpListType.DropDownAnimationEnabled = true;
-            this.cmbListCpListType.Location = new System.Drawing.Point(291, 95);
-            this.cmbListCpListType.Name = "cmbListCpListType";
-            this.cmbListCpListType.Size = new System.Drawing.Size(530, 20);
-            this.cmbListCpListType.TabIndex = 5;
+            cmbListCpListType.AutoSize = false;
+            cmbListCpListType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbListCpListType.DropDownAnimationEnabled = true;
+            cmbListCpListType.Location = new System.Drawing.Point(288, 92);
+            cmbListCpListType.Margin = new System.Windows.Forms.Padding(0);
+            cmbListCpListType.Name = "cmbListCpListType";
+            cmbListCpListType.Size = new System.Drawing.Size(534, 30);
+            cmbListCpListType.TabIndex = 5;
             // 
             // cmbListCpControl
             // 
-            this.cmbListCpControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbListCpControl.DropDownAnimationEnabled = true;
-            this.cmbListCpControl.Location = new System.Drawing.Point(291, 131);
-            this.cmbListCpControl.Name = "cmbListCpControl";
-            this.cmbListCpControl.Size = new System.Drawing.Size(530, 20);
-            this.cmbListCpControl.TabIndex = 7;
+            cmbListCpControl.AutoSize = false;
+            cmbListCpControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbListCpControl.DropDownAnimationEnabled = true;
+            cmbListCpControl.Location = new System.Drawing.Point(288, 128);
+            cmbListCpControl.Margin = new System.Windows.Forms.Padding(0);
+            cmbListCpControl.Name = "cmbListCpControl";
+            cmbListCpControl.Size = new System.Drawing.Size(534, 30);
+            cmbListCpControl.TabIndex = 7;
             // 
             // cmbListCpOptional
             // 
-            this.cmbListCpOptional.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbListCpOptional.DropDownAnimationEnabled = true;
-            this.cmbListCpOptional.Location = new System.Drawing.Point(291, 167);
-            this.cmbListCpOptional.Name = "cmbListCpOptional";
-            this.cmbListCpOptional.Size = new System.Drawing.Size(530, 20);
-            this.cmbListCpOptional.TabIndex = 9;
+            cmbListCpOptional.AutoSize = false;
+            cmbListCpOptional.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbListCpOptional.DropDownAnimationEnabled = true;
+            cmbListCpOptional.Location = new System.Drawing.Point(288, 164);
+            cmbListCpOptional.Margin = new System.Windows.Forms.Padding(0);
+            cmbListCpOptional.Name = "cmbListCpOptional";
+            cmbListCpOptional.Size = new System.Drawing.Size(534, 30);
+            cmbListCpOptional.TabIndex = 9;
+            // 
+            // txtListCpComments
+            // 
+            txtListCpComments.AutoSize = false;
+            txtListCpComments.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtListCpComments.Location = new System.Drawing.Point(288, 200);
+            txtListCpComments.Margin = new System.Windows.Forms.Padding(0);
+            txtListCpComments.Name = "txtListCpComments";
+            txtListCpComments.Size = new System.Drawing.Size(534, 30);
+            txtListCpComments.TabIndex = 11;
+            // 
+            // lblListCpObjectType
+            // 
+            lblListCpObjectType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblListCpObjectType.Location = new System.Drawing.Point(28, 59);
+            lblListCpObjectType.Name = "lblListCpObjectType";
+            lblListCpObjectType.Size = new System.Drawing.Size(69, 18);
+            lblListCpObjectType.TabIndex = 2;
+            lblListCpObjectType.Text = "Object Type:";
+            // 
+            // lblListCpListType
+            // 
+            lblListCpListType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblListCpListType.Location = new System.Drawing.Point(28, 95);
+            lblListCpListType.Name = "lblListCpListType";
+            lblListCpListType.Size = new System.Drawing.Size(52, 18);
+            lblListCpListType.TabIndex = 4;
+            lblListCpListType.Text = "List Type:";
+            // 
+            // lblListCpControl
+            // 
+            lblListCpControl.Dock = System.Windows.Forms.DockStyle.Top;
+            lblListCpControl.Location = new System.Drawing.Point(28, 131);
+            lblListCpControl.Name = "lblListCpControl";
+            lblListCpControl.Size = new System.Drawing.Size(46, 18);
+            lblListCpControl.TabIndex = 6;
+            lblListCpControl.Text = "Control:";
+            // 
+            // lblListCpOptional
+            // 
+            lblListCpOptional.Dock = System.Windows.Forms.DockStyle.Top;
+            lblListCpOptional.Location = new System.Drawing.Point(28, 167);
+            lblListCpOptional.Name = "lblListCpOptional";
+            lblListCpOptional.Size = new System.Drawing.Size(52, 18);
+            lblListCpOptional.TabIndex = 8;
+            lblListCpOptional.Text = "Optional:";
+            // 
+            // lblListCpComments
+            // 
+            lblListCpComments.Dock = System.Windows.Forms.DockStyle.Top;
+            lblListCpComments.Location = new System.Drawing.Point(28, 203);
+            lblListCpComments.Name = "lblListCpComments";
+            lblListCpComments.Size = new System.Drawing.Size(63, 18);
+            lblListCpComments.TabIndex = 10;
+            lblListCpComments.Text = "Comments:";
+            // 
+            // lblListCpName
+            // 
+            lblListCpName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblListCpName.Location = new System.Drawing.Point(28, 23);
+            lblListCpName.Name = "lblListCpName";
+            lblListCpName.Size = new System.Drawing.Size(39, 18);
+            lblListCpName.TabIndex = 0;
+            lblListCpName.Text = "Name:";
+            // 
+            // cmbListCpObjectType
+            // 
+            cmbListCpObjectType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbListCpObjectType.Location = new System.Drawing.Point(288, 56);
+            cmbListCpObjectType.Margin = new System.Windows.Forms.Padding(0);
+            cmbListCpObjectType.Name = "cmbListCpObjectType";
+            cmbListCpObjectType.SelectedText = "";
+            cmbListCpObjectType.Size = new System.Drawing.Size(534, 30);
+            cmbListCpObjectType.TabIndex = 3;
+            // 
+            // txtListCpName
+            // 
+            txtListCpName.AutoSize = false;
+            txtListCpName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtListCpName.Location = new System.Drawing.Point(288, 20);
+            txtListCpName.Margin = new System.Windows.Forms.Padding(0);
+            txtListCpName.Name = "txtListCpName";
+            txtListCpName.Size = new System.Drawing.Size(534, 30);
+            txtListCpName.TabIndex = 1;
             // 
             // ConfigureObjectListParameterControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxParameter);
-            this.Name = "ConfigureObjectListParameterControl";
-            this.Size = new System.Drawing.Size(855, 300);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxParameter)).EndInit();
-            this.groupBoxParameter.ResumeLayout(false);
-            this.radPanelParameter.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelParameter)).EndInit();
-            this.radPanelParameter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpObjectType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpOptional)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListCpComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtListCpName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtListCpComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListCpListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListCpControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListCpOptional)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(groupBoxParameter);
+            Name = "ConfigureObjectListParameterControl";
+            Size = new System.Drawing.Size(855, 300);
+            ((System.ComponentModel.ISupportInitialize)groupBoxParameter).EndInit();
+            groupBoxParameter.ResumeLayout(false);
+            radPanelParameter.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelParameter).EndInit();
+            radPanelParameter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbListCpListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbListCpControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbListCpOptional).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtListCpComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpObjectType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpOptional).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblListCpName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtListCpName).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ILiteralListParameterControlValidator _literalListParameterControlValidator;
-        private readonly IParametersXmlParser _parametersXmlParser; 
+        private readonly IParametersXmlParser _parametersXmlParser;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly ITreeViewService _treeViewService;
         private readonly ITypeAutoCompleteManager _cmbListLpPropertySourceTypeAutoCompleteManager;

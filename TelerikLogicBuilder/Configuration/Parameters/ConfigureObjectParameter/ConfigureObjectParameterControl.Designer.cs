@@ -28,283 +28,294 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxParameter = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelParameter = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCpName = new Telerik.WinControls.UI.RadLabel();
-            this.lblCpObjectType = new Telerik.WinControls.UI.RadLabel();
-            this.lblCpOptional = new Telerik.WinControls.UI.RadLabel();
-            this.lblCpUseForEquality = new Telerik.WinControls.UI.RadLabel();
-            this.lblCpUseForHashCode = new Telerik.WinControls.UI.RadLabel();
-            this.lblCpUseForToString = new Telerik.WinControls.UI.RadLabel();
-            this.lblCpComments = new Telerik.WinControls.UI.RadLabel();
-            this.cmbCpObjectType = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
-            this.txtCpName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtCpComments = new Telerik.WinControls.UI.RadTextBox();
-            this.cmbCpOptional = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCpUseForEquality = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCpUseForHashCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCpUseForToString = new Telerik.WinControls.UI.RadDropDownList();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxParameter)).BeginInit();
-            this.groupBoxParameter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelParameter)).BeginInit();
-            this.radPanelParameter.PanelContainer.SuspendLayout();
-            this.radPanelParameter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpObjectType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpOptional)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpUseForEquality)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpUseForHashCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpUseForToString)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCpName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCpComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpOptional)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpUseForEquality)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpUseForHashCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpUseForToString)).BeginInit();
-            this.SuspendLayout();
+            groupBoxParameter = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelParameter = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            cmbCpOptional = new Telerik.WinControls.UI.RadDropDownList();
+            cmbCpUseForEquality = new Telerik.WinControls.UI.RadDropDownList();
+            cmbCpUseForHashCode = new Telerik.WinControls.UI.RadDropDownList();
+            cmbCpUseForToString = new Telerik.WinControls.UI.RadDropDownList();
+            txtCpComments = new Telerik.WinControls.UI.RadTextBox();
+            lblCpObjectType = new Telerik.WinControls.UI.RadLabel();
+            lblCpOptional = new Telerik.WinControls.UI.RadLabel();
+            lblCpUseForEquality = new Telerik.WinControls.UI.RadLabel();
+            lblCpUseForHashCode = new Telerik.WinControls.UI.RadLabel();
+            lblCpUseForToString = new Telerik.WinControls.UI.RadLabel();
+            lblCpComments = new Telerik.WinControls.UI.RadLabel();
+            lblCpName = new Telerik.WinControls.UI.RadLabel();
+            cmbCpObjectType = new UserControls.AutoCompleteRadDropDownList();
+            txtCpName = new Telerik.WinControls.UI.RadTextBox();
+            ((System.ComponentModel.ISupportInitialize)groupBoxParameter).BeginInit();
+            groupBoxParameter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelParameter).BeginInit();
+            radPanelParameter.PanelContainer.SuspendLayout();
+            radPanelParameter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbCpOptional).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCpUseForEquality).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCpUseForHashCode).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCpUseForToString).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCpComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpObjectType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpOptional).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpUseForEquality).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpUseForHashCode).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpUseForToString).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCpName).BeginInit();
+            SuspendLayout();
             // 
             // groupBoxParameter
             // 
-            this.groupBoxParameter.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxParameter.Controls.Add(this.radPanelParameter);
-            this.groupBoxParameter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxParameter.HeaderText = "Object Parameter";
-            this.groupBoxParameter.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxParameter.Name = "groupBoxParameter";
-            this.groupBoxParameter.Size = new System.Drawing.Size(855, 350);
-            this.groupBoxParameter.TabIndex = 0;
-            this.groupBoxParameter.Text = "Object Parameter";
+            groupBoxParameter.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            groupBoxParameter.Controls.Add(radPanelParameter);
+            groupBoxParameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            groupBoxParameter.HeaderText = "Object Parameter";
+            groupBoxParameter.Location = new System.Drawing.Point(0, 0);
+            groupBoxParameter.Name = "groupBoxParameter";
+            groupBoxParameter.Size = new System.Drawing.Size(855, 350);
+            groupBoxParameter.TabIndex = 0;
+            groupBoxParameter.Text = "Object Parameter";
             // 
             // radPanelParameter
             // 
-            this.radPanelParameter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelParameter.Location = new System.Drawing.Point(2, 18);
-            this.radPanelParameter.Name = "radPanelParameter";
+            radPanelParameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelParameter.Location = new System.Drawing.Point(2, 18);
+            radPanelParameter.Name = "radPanelParameter";
             // 
             // radPanelParameter.PanelContainer
             // 
-            this.radPanelParameter.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radPanelParameter.PanelContainer.Size = new System.Drawing.Size(849, 328);
-            this.radPanelParameter.Size = new System.Drawing.Size(851, 330);
-            this.radPanelParameter.TabIndex = 0;
+            radPanelParameter.PanelContainer.Controls.Add(radPanelTableParent);
+            radPanelParameter.PanelContainer.Size = new System.Drawing.Size(849, 328);
+            radPanelParameter.Size = new System.Drawing.Size(851, 330);
+            radPanelParameter.TabIndex = 0;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(851, 292);
-            this.radPanelTableParent.TabIndex = 0;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 292);
+            radPanelTableParent.TabIndex = 0;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.cmbCpOptional, 2, 5);
-            this.tableLayoutPanel.Controls.Add(this.cmbCpUseForEquality, 2, 7);
-            this.tableLayoutPanel.Controls.Add(this.cmbCpUseForHashCode, 2, 9);
-            this.tableLayoutPanel.Controls.Add(this.cmbCpUseForToString, 2, 11);
-            this.tableLayoutPanel.Controls.Add(this.txtCpComments, 2, 13);
-            this.tableLayoutPanel.Controls.Add(this.lblCpObjectType, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblCpOptional, 1, 5);
-            this.tableLayoutPanel.Controls.Add(this.lblCpUseForEquality, 1, 7);
-            this.tableLayoutPanel.Controls.Add(this.lblCpUseForHashCode, 1, 9);
-            this.tableLayoutPanel.Controls.Add(this.lblCpUseForToString, 1, 11);
-            this.tableLayoutPanel.Controls.Add(this.lblCpComments, 1, 13);
-            this.tableLayoutPanel.Controls.Add(this.lblCpName, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.cmbCpObjectType, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.txtCpName, 2, 1);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 16;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(851, 292);
-            this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // lblCpName
-            // 
-            this.lblCpName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCpName.Location = new System.Drawing.Point(28, 23);
-            this.lblCpName.Name = "lblCpName";
-            this.lblCpName.Size = new System.Drawing.Size(39, 18);
-            this.lblCpName.TabIndex = 0;
-            this.lblCpName.Text = "Name:";
-            // 
-            // lblCpObjectType
-            // 
-            this.lblCpObjectType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCpObjectType.Location = new System.Drawing.Point(28, 59);
-            this.lblCpObjectType.Name = "lblCpObjectType";
-            this.lblCpObjectType.Size = new System.Drawing.Size(69, 18);
-            this.lblCpObjectType.TabIndex = 2;
-            this.lblCpObjectType.Text = "Object Type:";
-            // 
-            // lblCpOptional
-            // 
-            this.lblCpOptional.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCpOptional.Location = new System.Drawing.Point(28, 95);
-            this.lblCpOptional.Name = "lblCpOptional";
-            this.lblCpOptional.Size = new System.Drawing.Size(52, 18);
-            this.lblCpOptional.TabIndex = 4;
-            this.lblCpOptional.Text = "Optional:";
-            // 
-            // lblCpUseForEquality
-            // 
-            this.lblCpUseForEquality.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCpUseForEquality.Location = new System.Drawing.Point(28, 131);
-            this.lblCpUseForEquality.Name = "lblCpUseForEquality";
-            this.lblCpUseForEquality.Size = new System.Drawing.Size(89, 18);
-            this.lblCpUseForEquality.TabIndex = 6;
-            this.lblCpUseForEquality.Text = "Use For Equality:";
-            // 
-            // lblCpUseForHashCode
-            // 
-            this.lblCpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCpUseForHashCode.Location = new System.Drawing.Point(28, 167);
-            this.lblCpUseForHashCode.Name = "lblCpUseForHashCode";
-            this.lblCpUseForHashCode.Size = new System.Drawing.Size(104, 18);
-            this.lblCpUseForHashCode.TabIndex = 8;
-            this.lblCpUseForHashCode.Text = "Use For Hash Code:";
-            // 
-            // lblCpUseForToString
-            // 
-            this.lblCpUseForToString.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCpUseForToString.Location = new System.Drawing.Point(28, 203);
-            this.lblCpUseForToString.Name = "lblCpUseForToString";
-            this.lblCpUseForToString.Size = new System.Drawing.Size(92, 18);
-            this.lblCpUseForToString.TabIndex = 10;
-            this.lblCpUseForToString.Text = "Use For ToString:";
-            // 
-            // lblCpComments
-            // 
-            this.lblCpComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCpComments.Location = new System.Drawing.Point(28, 239);
-            this.lblCpComments.Name = "lblCpComments";
-            this.lblCpComments.Size = new System.Drawing.Size(63, 18);
-            this.lblCpComments.TabIndex = 12;
-            this.lblCpComments.Text = "Comments:";
-            // 
-            // cmbCpObjectType
-            // 
-            this.cmbCpObjectType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCpObjectType.Location = new System.Drawing.Point(288, 56);
-            this.cmbCpObjectType.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbCpObjectType.Name = "cmbCpObjectType";
-            this.cmbCpObjectType.SelectedText = "";
-            this.cmbCpObjectType.Size = new System.Drawing.Size(536, 28);
-            this.cmbCpObjectType.TabIndex = 3;
-            // 
-            // txtCpName
-            // 
-            this.txtCpName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCpName.Location = new System.Drawing.Point(291, 23);
-            this.txtCpName.Name = "txtCpName";
-            this.txtCpName.Size = new System.Drawing.Size(530, 20);
-            this.txtCpName.TabIndex = 1;
-            // 
-            // txtCpComments
-            // 
-            this.txtCpComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCpComments.Location = new System.Drawing.Point(291, 239);
-            this.txtCpComments.Name = "txtCpComments";
-            this.txtCpComments.Size = new System.Drawing.Size(530, 20);
-            this.txtCpComments.TabIndex = 13;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(cmbCpOptional, 2, 5);
+            tableLayoutPanel.Controls.Add(cmbCpUseForEquality, 2, 7);
+            tableLayoutPanel.Controls.Add(cmbCpUseForHashCode, 2, 9);
+            tableLayoutPanel.Controls.Add(cmbCpUseForToString, 2, 11);
+            tableLayoutPanel.Controls.Add(txtCpComments, 2, 13);
+            tableLayoutPanel.Controls.Add(lblCpObjectType, 1, 3);
+            tableLayoutPanel.Controls.Add(lblCpOptional, 1, 5);
+            tableLayoutPanel.Controls.Add(lblCpUseForEquality, 1, 7);
+            tableLayoutPanel.Controls.Add(lblCpUseForHashCode, 1, 9);
+            tableLayoutPanel.Controls.Add(lblCpUseForToString, 1, 11);
+            tableLayoutPanel.Controls.Add(lblCpComments, 1, 13);
+            tableLayoutPanel.Controls.Add(lblCpName, 1, 1);
+            tableLayoutPanel.Controls.Add(cmbCpObjectType, 2, 3);
+            tableLayoutPanel.Controls.Add(txtCpName, 2, 1);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 16;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 292);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // cmbCpOptional
             // 
-            this.cmbCpOptional.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCpOptional.DropDownAnimationEnabled = true;
-            this.cmbCpOptional.Location = new System.Drawing.Point(291, 95);
-            this.cmbCpOptional.Name = "cmbCpOptional";
-            this.cmbCpOptional.Size = new System.Drawing.Size(530, 20);
-            this.cmbCpOptional.TabIndex = 5;
+            cmbCpOptional.AutoSize = false;
+            cmbCpOptional.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCpOptional.DropDownAnimationEnabled = true;
+            cmbCpOptional.Location = new System.Drawing.Point(288, 92);
+            cmbCpOptional.Margin = new System.Windows.Forms.Padding(0);
+            cmbCpOptional.Name = "cmbCpOptional";
+            cmbCpOptional.Size = new System.Drawing.Size(534, 30);
+            cmbCpOptional.TabIndex = 5;
             // 
             // cmbCpUseForEquality
             // 
-            this.cmbCpUseForEquality.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCpUseForEquality.DropDownAnimationEnabled = true;
-            this.cmbCpUseForEquality.Location = new System.Drawing.Point(291, 131);
-            this.cmbCpUseForEquality.Name = "cmbCpUseForEquality";
-            this.cmbCpUseForEquality.Size = new System.Drawing.Size(530, 20);
-            this.cmbCpUseForEquality.TabIndex = 7;
+            cmbCpUseForEquality.AutoSize = false;
+            cmbCpUseForEquality.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCpUseForEquality.DropDownAnimationEnabled = true;
+            cmbCpUseForEquality.Location = new System.Drawing.Point(288, 128);
+            cmbCpUseForEquality.Margin = new System.Windows.Forms.Padding(0);
+            cmbCpUseForEquality.Name = "cmbCpUseForEquality";
+            cmbCpUseForEquality.Size = new System.Drawing.Size(534, 30);
+            cmbCpUseForEquality.TabIndex = 7;
             // 
             // cmbCpUseForHashCode
             // 
-            this.cmbCpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCpUseForHashCode.DropDownAnimationEnabled = true;
-            this.cmbCpUseForHashCode.Location = new System.Drawing.Point(291, 167);
-            this.cmbCpUseForHashCode.Name = "cmbCpUseForHashCode";
-            this.cmbCpUseForHashCode.Size = new System.Drawing.Size(530, 20);
-            this.cmbCpUseForHashCode.TabIndex = 9;
+            cmbCpUseForHashCode.AutoSize = false;
+            cmbCpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCpUseForHashCode.DropDownAnimationEnabled = true;
+            cmbCpUseForHashCode.Location = new System.Drawing.Point(288, 164);
+            cmbCpUseForHashCode.Margin = new System.Windows.Forms.Padding(0);
+            cmbCpUseForHashCode.Name = "cmbCpUseForHashCode";
+            cmbCpUseForHashCode.Size = new System.Drawing.Size(534, 30);
+            cmbCpUseForHashCode.TabIndex = 9;
             // 
             // cmbCpUseForToString
             // 
-            this.cmbCpUseForToString.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCpUseForToString.DropDownAnimationEnabled = true;
-            this.cmbCpUseForToString.Location = new System.Drawing.Point(291, 203);
-            this.cmbCpUseForToString.Name = "cmbCpUseForToString";
-            this.cmbCpUseForToString.Size = new System.Drawing.Size(530, 20);
-            this.cmbCpUseForToString.TabIndex = 11;
+            cmbCpUseForToString.AutoSize = false;
+            cmbCpUseForToString.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCpUseForToString.DropDownAnimationEnabled = true;
+            cmbCpUseForToString.Location = new System.Drawing.Point(288, 200);
+            cmbCpUseForToString.Margin = new System.Windows.Forms.Padding(0);
+            cmbCpUseForToString.Name = "cmbCpUseForToString";
+            cmbCpUseForToString.Size = new System.Drawing.Size(534, 30);
+            cmbCpUseForToString.TabIndex = 11;
+            // 
+            // txtCpComments
+            // 
+            txtCpComments.AutoSize = false;
+            txtCpComments.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCpComments.Location = new System.Drawing.Point(288, 236);
+            txtCpComments.Margin = new System.Windows.Forms.Padding(0);
+            txtCpComments.Name = "txtCpComments";
+            txtCpComments.Size = new System.Drawing.Size(534, 30);
+            txtCpComments.TabIndex = 13;
+            // 
+            // lblCpObjectType
+            // 
+            lblCpObjectType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCpObjectType.Location = new System.Drawing.Point(28, 59);
+            lblCpObjectType.Name = "lblCpObjectType";
+            lblCpObjectType.Size = new System.Drawing.Size(69, 18);
+            lblCpObjectType.TabIndex = 2;
+            lblCpObjectType.Text = "Object Type:";
+            // 
+            // lblCpOptional
+            // 
+            lblCpOptional.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCpOptional.Location = new System.Drawing.Point(28, 95);
+            lblCpOptional.Name = "lblCpOptional";
+            lblCpOptional.Size = new System.Drawing.Size(52, 18);
+            lblCpOptional.TabIndex = 4;
+            lblCpOptional.Text = "Optional:";
+            // 
+            // lblCpUseForEquality
+            // 
+            lblCpUseForEquality.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCpUseForEquality.Location = new System.Drawing.Point(28, 131);
+            lblCpUseForEquality.Name = "lblCpUseForEquality";
+            lblCpUseForEquality.Size = new System.Drawing.Size(89, 18);
+            lblCpUseForEquality.TabIndex = 6;
+            lblCpUseForEquality.Text = "Use For Equality:";
+            // 
+            // lblCpUseForHashCode
+            // 
+            lblCpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCpUseForHashCode.Location = new System.Drawing.Point(28, 167);
+            lblCpUseForHashCode.Name = "lblCpUseForHashCode";
+            lblCpUseForHashCode.Size = new System.Drawing.Size(104, 18);
+            lblCpUseForHashCode.TabIndex = 8;
+            lblCpUseForHashCode.Text = "Use For Hash Code:";
+            // 
+            // lblCpUseForToString
+            // 
+            lblCpUseForToString.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCpUseForToString.Location = new System.Drawing.Point(28, 203);
+            lblCpUseForToString.Name = "lblCpUseForToString";
+            lblCpUseForToString.Size = new System.Drawing.Size(92, 18);
+            lblCpUseForToString.TabIndex = 10;
+            lblCpUseForToString.Text = "Use For ToString:";
+            // 
+            // lblCpComments
+            // 
+            lblCpComments.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCpComments.Location = new System.Drawing.Point(28, 239);
+            lblCpComments.Name = "lblCpComments";
+            lblCpComments.Size = new System.Drawing.Size(63, 18);
+            lblCpComments.TabIndex = 12;
+            lblCpComments.Text = "Comments:";
+            // 
+            // lblCpName
+            // 
+            lblCpName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCpName.Location = new System.Drawing.Point(28, 23);
+            lblCpName.Name = "lblCpName";
+            lblCpName.Size = new System.Drawing.Size(39, 18);
+            lblCpName.TabIndex = 0;
+            lblCpName.Text = "Name:";
+            // 
+            // cmbCpObjectType
+            // 
+            cmbCpObjectType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCpObjectType.Location = new System.Drawing.Point(288, 56);
+            cmbCpObjectType.Margin = new System.Windows.Forms.Padding(0);
+            cmbCpObjectType.Name = "cmbCpObjectType";
+            cmbCpObjectType.SelectedText = "";
+            cmbCpObjectType.Size = new System.Drawing.Size(534, 30);
+            cmbCpObjectType.TabIndex = 3;
+            // 
+            // txtCpName
+            // 
+            txtCpName.AutoSize = false;
+            txtCpName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCpName.Location = new System.Drawing.Point(288, 20);
+            txtCpName.Margin = new System.Windows.Forms.Padding(0);
+            txtCpName.Name = "txtCpName";
+            txtCpName.Size = new System.Drawing.Size(534, 30);
+            txtCpName.TabIndex = 1;
             // 
             // ConfigureObjectParameterControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxParameter);
-            this.Name = "ConfigureObjectParameterControl";
-            this.Size = new System.Drawing.Size(855, 350);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxParameter)).EndInit();
-            this.groupBoxParameter.ResumeLayout(false);
-            this.radPanelParameter.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelParameter)).EndInit();
-            this.radPanelParameter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpObjectType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpOptional)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpUseForEquality)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpUseForHashCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpUseForToString)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCpComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCpName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCpComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpOptional)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpUseForEquality)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpUseForHashCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCpUseForToString)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(groupBoxParameter);
+            Name = "ConfigureObjectParameterControl";
+            Size = new System.Drawing.Size(855, 350);
+            ((System.ComponentModel.ISupportInitialize)groupBoxParameter).EndInit();
+            groupBoxParameter.ResumeLayout(false);
+            radPanelParameter.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelParameter).EndInit();
+            radPanelParameter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbCpOptional).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCpUseForEquality).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCpUseForHashCode).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCpUseForToString).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCpComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpObjectType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpOptional).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpUseForEquality).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpUseForHashCode).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpUseForToString).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCpName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCpName).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
