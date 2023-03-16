@@ -77,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
         {
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(this.XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(parameterElement).ToDictionary(e => e.Name);
-            
+
             cmbListLpGenericArgumentName.SelectedValue = parameterElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE);
             cmbListLpLiteralType.SelectedValue = _enumHelper.ParseEnumText<LiteralParameterType>(elements[XmlDataConstants.LITERALTYPEELEMENT].InnerText);
             cmbListLpListType.SelectedValue = _enumHelper.ParseEnumText<ListType>(elements[XmlDataConstants.LISTTYPEELEMENT].InnerText);
@@ -123,7 +123,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             List<string> errors = new();
             ValidateListLpPropertySource
             (
-                (LiteralParameterInputStyle)cmbListLpElementControl.SelectedValue, 
+                (LiteralParameterInputStyle)cmbListLpElementControl.SelectedValue,
                 errors
             );
 
@@ -140,7 +140,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
         private void ValidateListLpPropertySource(LiteralParameterInputStyle inputStyle, List<string> errors)
         {
-            if 
+            if
             (
                 inputStyle == LiteralParameterInputStyle.PropertyInput
                     && !_typeLoadHelper.TryGetSystemType(cmbListLpPropertySource.Text, configureGenericArgumentsForm.Application, out Type? _)
@@ -267,10 +267,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
             _radDropDownListHelper.LoadTextItems
             (
-                cmbListLpPropertySourceParameter, 
+                cmbListLpPropertySourceParameter,
                 configureGenericArgumentsForm.MemberParameters
                     .OrderBy(m => m.Name)
-                    .Select(m => m.Name), 
+                    .Select(m => m.Name),
                 RadDropDownStyle.DropDown
             );
         }

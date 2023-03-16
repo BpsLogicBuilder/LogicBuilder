@@ -28,377 +28,384 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxLiteralParameter = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelParameter = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbLpPropertySource = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
-            this.lblLpDomain = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpDefaultValue = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpPropertySourceParameter = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpUseForToString = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpUseForHashCode = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpUseForEquality = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpControl = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpGenericArgumentName = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpLiteralType = new Telerik.WinControls.UI.RadLabel();
-            this.lblLpPropertySource = new Telerik.WinControls.UI.RadLabel();
-            this.cmbLpUseForHashCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLpGenericArgumentName = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLpLiteralType = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLpControl = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLpUseForEquality = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLpUseForToString = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLpPropertySourceParameter = new Telerik.WinControls.UI.RadDropDownList();
-            this.txtLpDefaultValue = new Telerik.WinControls.UI.RadTextBox();
-            this.txtLpDomain = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxLiteralParameter)).BeginInit();
-            this.groupBoxLiteralParameter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelParameter)).BeginInit();
-            this.radPanelParameter.PanelContainer.SuspendLayout();
-            this.radPanelParameter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpDomain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpDefaultValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpPropertySourceParameter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpUseForToString)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpUseForHashCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpUseForEquality)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpGenericArgumentName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpLiteralType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpPropertySource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpUseForHashCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpGenericArgumentName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpLiteralType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpUseForEquality)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpUseForToString)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpPropertySourceParameter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLpDefaultValue)).BeginInit();
-            this.SuspendLayout();
+            groupBoxLiteralParameter = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelParameter = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            cmbLpPropertySource = new UserControls.AutoCompleteRadDropDownList();
+            lblLpDomain = new Telerik.WinControls.UI.RadLabel();
+            lblLpDefaultValue = new Telerik.WinControls.UI.RadLabel();
+            lblLpPropertySourceParameter = new Telerik.WinControls.UI.RadLabel();
+            lblLpUseForToString = new Telerik.WinControls.UI.RadLabel();
+            lblLpUseForHashCode = new Telerik.WinControls.UI.RadLabel();
+            lblLpUseForEquality = new Telerik.WinControls.UI.RadLabel();
+            lblLpControl = new Telerik.WinControls.UI.RadLabel();
+            lblLpGenericArgumentName = new Telerik.WinControls.UI.RadLabel();
+            lblLpLiteralType = new Telerik.WinControls.UI.RadLabel();
+            lblLpPropertySource = new Telerik.WinControls.UI.RadLabel();
+            cmbLpUseForHashCode = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLpGenericArgumentName = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLpLiteralType = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLpControl = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLpUseForEquality = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLpUseForToString = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLpPropertySourceParameter = new Telerik.WinControls.UI.RadDropDownList();
+            txtLpDefaultValue = new Telerik.WinControls.UI.RadTextBox();
+            txtLpDomain = new UserControls.HelperButtonTextBox();
+            ((System.ComponentModel.ISupportInitialize)groupBoxLiteralParameter).BeginInit();
+            groupBoxLiteralParameter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelParameter).BeginInit();
+            radPanelParameter.PanelContainer.SuspendLayout();
+            radPanelParameter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)lblLpDomain).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpDefaultValue).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpPropertySourceParameter).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpUseForToString).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpUseForHashCode).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpUseForEquality).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpGenericArgumentName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpLiteralType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpPropertySource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpUseForHashCode).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpGenericArgumentName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpLiteralType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpUseForEquality).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpUseForToString).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpPropertySourceParameter).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLpDefaultValue).BeginInit();
+            SuspendLayout();
             // 
             // groupBoxLiteralParameter
             // 
-            this.groupBoxLiteralParameter.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxLiteralParameter.Controls.Add(this.radPanelParameter);
-            this.groupBoxLiteralParameter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxLiteralParameter.HeaderMargin = new System.Windows.Forms.Padding(1);
-            this.groupBoxLiteralParameter.HeaderText = "Literal Parameter";
-            this.groupBoxLiteralParameter.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxLiteralParameter.Margin = new System.Windows.Forms.Padding(0);
-            this.groupBoxLiteralParameter.Name = "groupBoxLiteralParameter";
-            this.groupBoxLiteralParameter.Size = new System.Drawing.Size(855, 528);
-            this.groupBoxLiteralParameter.TabIndex = 0;
-            this.groupBoxLiteralParameter.Text = "Literal Parameter";
+            groupBoxLiteralParameter.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            groupBoxLiteralParameter.Controls.Add(radPanelParameter);
+            groupBoxLiteralParameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            groupBoxLiteralParameter.HeaderMargin = new System.Windows.Forms.Padding(1);
+            groupBoxLiteralParameter.HeaderText = "Literal Parameter";
+            groupBoxLiteralParameter.Location = new System.Drawing.Point(0, 0);
+            groupBoxLiteralParameter.Margin = new System.Windows.Forms.Padding(0);
+            groupBoxLiteralParameter.Name = "groupBoxLiteralParameter";
+            groupBoxLiteralParameter.Size = new System.Drawing.Size(855, 528);
+            groupBoxLiteralParameter.TabIndex = 0;
+            groupBoxLiteralParameter.Text = "Literal Parameter";
             // 
             // radPanelParameter
             // 
-            this.radPanelParameter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelParameter.Location = new System.Drawing.Point(2, 18);
-            this.radPanelParameter.Name = "radPanelParameter";
+            radPanelParameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelParameter.Location = new System.Drawing.Point(2, 18);
+            radPanelParameter.Name = "radPanelParameter";
             // 
             // radPanelParameter.PanelContainer
             // 
-            this.radPanelParameter.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radPanelParameter.PanelContainer.Size = new System.Drawing.Size(849, 506);
-            this.radPanelParameter.Size = new System.Drawing.Size(851, 508);
-            this.radPanelParameter.TabIndex = 1;
+            radPanelParameter.PanelContainer.Controls.Add(radPanelTableParent);
+            radPanelParameter.PanelContainer.Size = new System.Drawing.Size(849, 506);
+            radPanelParameter.Size = new System.Drawing.Size(851, 508);
+            radPanelParameter.TabIndex = 1;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(851, 400);
-            this.radPanelTableParent.TabIndex = 1;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 400);
+            radPanelTableParent.TabIndex = 1;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.cmbLpPropertySource, 2, 13);
-            this.tableLayoutPanel.Controls.Add(this.lblLpDomain, 1, 19);
-            this.tableLayoutPanel.Controls.Add(this.lblLpDefaultValue, 1, 17);
-            this.tableLayoutPanel.Controls.Add(this.lblLpPropertySourceParameter, 1, 15);
-            this.tableLayoutPanel.Controls.Add(this.lblLpUseForToString, 1, 11);
-            this.tableLayoutPanel.Controls.Add(this.lblLpUseForHashCode, 1, 9);
-            this.tableLayoutPanel.Controls.Add(this.lblLpUseForEquality, 1, 7);
-            this.tableLayoutPanel.Controls.Add(this.lblLpControl, 1, 5);
-            this.tableLayoutPanel.Controls.Add(this.lblLpGenericArgumentName, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.lblLpLiteralType, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblLpPropertySource, 1, 13);
-            this.tableLayoutPanel.Controls.Add(this.cmbLpUseForHashCode, 2, 9);
-            this.tableLayoutPanel.Controls.Add(this.cmbLpGenericArgumentName, 2, 1);
-            this.tableLayoutPanel.Controls.Add(this.cmbLpLiteralType, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.cmbLpControl, 2, 5);
-            this.tableLayoutPanel.Controls.Add(this.cmbLpUseForEquality, 2, 7);
-            this.tableLayoutPanel.Controls.Add(this.cmbLpUseForToString, 2, 11);
-            this.tableLayoutPanel.Controls.Add(this.cmbLpPropertySourceParameter, 2, 15);
-            this.tableLayoutPanel.Controls.Add(this.txtLpDefaultValue, 2, 17);
-            this.tableLayoutPanel.Controls.Add(this.txtLpDomain, 2, 19);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 22;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(851, 400);
-            this.tableLayoutPanel.TabIndex = 0;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(cmbLpPropertySource, 2, 13);
+            tableLayoutPanel.Controls.Add(lblLpDomain, 1, 19);
+            tableLayoutPanel.Controls.Add(lblLpDefaultValue, 1, 17);
+            tableLayoutPanel.Controls.Add(lblLpPropertySourceParameter, 1, 15);
+            tableLayoutPanel.Controls.Add(lblLpUseForToString, 1, 11);
+            tableLayoutPanel.Controls.Add(lblLpUseForHashCode, 1, 9);
+            tableLayoutPanel.Controls.Add(lblLpUseForEquality, 1, 7);
+            tableLayoutPanel.Controls.Add(lblLpControl, 1, 5);
+            tableLayoutPanel.Controls.Add(lblLpGenericArgumentName, 1, 1);
+            tableLayoutPanel.Controls.Add(lblLpLiteralType, 1, 3);
+            tableLayoutPanel.Controls.Add(lblLpPropertySource, 1, 13);
+            tableLayoutPanel.Controls.Add(cmbLpUseForHashCode, 2, 9);
+            tableLayoutPanel.Controls.Add(cmbLpGenericArgumentName, 2, 1);
+            tableLayoutPanel.Controls.Add(cmbLpLiteralType, 2, 3);
+            tableLayoutPanel.Controls.Add(cmbLpControl, 2, 5);
+            tableLayoutPanel.Controls.Add(cmbLpUseForEquality, 2, 7);
+            tableLayoutPanel.Controls.Add(cmbLpUseForToString, 2, 11);
+            tableLayoutPanel.Controls.Add(cmbLpPropertySourceParameter, 2, 15);
+            tableLayoutPanel.Controls.Add(txtLpDefaultValue, 2, 17);
+            tableLayoutPanel.Controls.Add(txtLpDomain, 2, 19);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 22;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 400);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // cmbLpPropertySource
             // 
-            this.cmbLpPropertySource.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpPropertySource.Location = new System.Drawing.Point(288, 236);
-            this.cmbLpPropertySource.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpPropertySource.Name = "cmbLpPropertySource";
-            this.cmbLpPropertySource.SelectedText = "";
-            this.cmbLpPropertySource.Size = new System.Drawing.Size(536, 24);
-            this.cmbLpPropertySource.TabIndex = 13;
+            cmbLpPropertySource.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpPropertySource.Location = new System.Drawing.Point(288, 236);
+            cmbLpPropertySource.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpPropertySource.Name = "cmbLpPropertySource";
+            cmbLpPropertySource.SelectedText = "";
+            cmbLpPropertySource.Size = new System.Drawing.Size(534, 30);
+            cmbLpPropertySource.TabIndex = 13;
             // 
             // lblLpDomain
             // 
-            this.lblLpDomain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpDomain.Location = new System.Drawing.Point(28, 347);
-            this.lblLpDomain.Name = "lblLpDomain";
-            this.lblLpDomain.Size = new System.Drawing.Size(48, 18);
-            this.lblLpDomain.TabIndex = 18;
-            this.lblLpDomain.Text = "Domain:";
+            lblLpDomain.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpDomain.Location = new System.Drawing.Point(28, 347);
+            lblLpDomain.Name = "lblLpDomain";
+            lblLpDomain.Size = new System.Drawing.Size(257, 18);
+            lblLpDomain.TabIndex = 18;
+            lblLpDomain.Text = "Domain:";
             // 
             // lblLpDefaultValue
             // 
-            this.lblLpDefaultValue.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpDefaultValue.Location = new System.Drawing.Point(28, 311);
-            this.lblLpDefaultValue.Name = "lblLpDefaultValue";
-            this.lblLpDefaultValue.Size = new System.Drawing.Size(76, 18);
-            this.lblLpDefaultValue.TabIndex = 16;
-            this.lblLpDefaultValue.Text = "Default Value:";
+            lblLpDefaultValue.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpDefaultValue.Location = new System.Drawing.Point(28, 311);
+            lblLpDefaultValue.Name = "lblLpDefaultValue";
+            lblLpDefaultValue.Size = new System.Drawing.Size(257, 18);
+            lblLpDefaultValue.TabIndex = 16;
+            lblLpDefaultValue.Text = "Default Value:";
             // 
             // lblLpPropertySourceParameter
             // 
-            this.lblLpPropertySourceParameter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpPropertySourceParameter.Location = new System.Drawing.Point(28, 275);
-            this.lblLpPropertySourceParameter.Name = "lblLpPropertySourceParameter";
-            this.lblLpPropertySourceParameter.Size = new System.Drawing.Size(143, 18);
-            this.lblLpPropertySourceParameter.TabIndex = 14;
-            this.lblLpPropertySourceParameter.Text = "Property Source Parameter:";
+            lblLpPropertySourceParameter.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpPropertySourceParameter.Location = new System.Drawing.Point(28, 275);
+            lblLpPropertySourceParameter.Name = "lblLpPropertySourceParameter";
+            lblLpPropertySourceParameter.Size = new System.Drawing.Size(257, 18);
+            lblLpPropertySourceParameter.TabIndex = 14;
+            lblLpPropertySourceParameter.Text = "Property Source Parameter:";
             // 
             // lblLpUseForToString
             // 
-            this.lblLpUseForToString.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpUseForToString.Location = new System.Drawing.Point(28, 203);
-            this.lblLpUseForToString.Name = "lblLpUseForToString";
-            this.lblLpUseForToString.Size = new System.Drawing.Size(92, 18);
-            this.lblLpUseForToString.TabIndex = 10;
-            this.lblLpUseForToString.Text = "Use For ToString:";
+            lblLpUseForToString.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpUseForToString.Location = new System.Drawing.Point(28, 203);
+            lblLpUseForToString.Name = "lblLpUseForToString";
+            lblLpUseForToString.Size = new System.Drawing.Size(257, 18);
+            lblLpUseForToString.TabIndex = 10;
+            lblLpUseForToString.Text = "Use For ToString:";
             // 
             // lblLpUseForHashCode
             // 
-            this.lblLpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpUseForHashCode.Location = new System.Drawing.Point(28, 167);
-            this.lblLpUseForHashCode.Name = "lblLpUseForHashCode";
-            this.lblLpUseForHashCode.Size = new System.Drawing.Size(104, 18);
-            this.lblLpUseForHashCode.TabIndex = 8;
-            this.lblLpUseForHashCode.Text = "Use For Hash Code:";
+            lblLpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpUseForHashCode.Location = new System.Drawing.Point(28, 167);
+            lblLpUseForHashCode.Name = "lblLpUseForHashCode";
+            lblLpUseForHashCode.Size = new System.Drawing.Size(257, 18);
+            lblLpUseForHashCode.TabIndex = 8;
+            lblLpUseForHashCode.Text = "Use For Hash Code:";
             // 
             // lblLpUseForEquality
             // 
-            this.lblLpUseForEquality.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpUseForEquality.Location = new System.Drawing.Point(28, 131);
-            this.lblLpUseForEquality.Name = "lblLpUseForEquality";
-            this.lblLpUseForEquality.Size = new System.Drawing.Size(89, 18);
-            this.lblLpUseForEquality.TabIndex = 6;
-            this.lblLpUseForEquality.Text = "Use For Equality:";
+            lblLpUseForEquality.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpUseForEquality.Location = new System.Drawing.Point(28, 131);
+            lblLpUseForEquality.Name = "lblLpUseForEquality";
+            lblLpUseForEquality.Size = new System.Drawing.Size(257, 18);
+            lblLpUseForEquality.TabIndex = 6;
+            lblLpUseForEquality.Text = "Use For Equality:";
             // 
             // lblLpControl
             // 
-            this.lblLpControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpControl.Location = new System.Drawing.Point(28, 95);
-            this.lblLpControl.Name = "lblLpControl";
-            this.lblLpControl.Size = new System.Drawing.Size(46, 18);
-            this.lblLpControl.TabIndex = 4;
-            this.lblLpControl.Text = "Control:";
+            lblLpControl.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpControl.Location = new System.Drawing.Point(28, 95);
+            lblLpControl.Name = "lblLpControl";
+            lblLpControl.Size = new System.Drawing.Size(257, 18);
+            lblLpControl.TabIndex = 4;
+            lblLpControl.Text = "Control:";
             // 
             // lblLpGenericArgumentName
             // 
-            this.lblLpGenericArgumentName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpGenericArgumentName.Location = new System.Drawing.Point(28, 23);
-            this.lblLpGenericArgumentName.Name = "lblLpGenericArgumentName";
-            this.lblLpGenericArgumentName.Size = new System.Drawing.Size(39, 18);
-            this.lblLpGenericArgumentName.TabIndex = 0;
-            this.lblLpGenericArgumentName.Text = "Name:";
+            lblLpGenericArgumentName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpGenericArgumentName.Location = new System.Drawing.Point(28, 23);
+            lblLpGenericArgumentName.Name = "lblLpGenericArgumentName";
+            lblLpGenericArgumentName.Size = new System.Drawing.Size(257, 18);
+            lblLpGenericArgumentName.TabIndex = 0;
+            lblLpGenericArgumentName.Text = "Name:";
             // 
             // lblLpLiteralType
             // 
-            this.lblLpLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpLiteralType.Location = new System.Drawing.Point(28, 59);
-            this.lblLpLiteralType.Name = "lblLpLiteralType";
-            this.lblLpLiteralType.Size = new System.Drawing.Size(66, 18);
-            this.lblLpLiteralType.TabIndex = 2;
-            this.lblLpLiteralType.Text = "Literal Type:";
+            lblLpLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpLiteralType.Location = new System.Drawing.Point(28, 59);
+            lblLpLiteralType.Name = "lblLpLiteralType";
+            lblLpLiteralType.Size = new System.Drawing.Size(257, 18);
+            lblLpLiteralType.TabIndex = 2;
+            lblLpLiteralType.Text = "Literal Type:";
             // 
             // lblLpPropertySource
             // 
-            this.lblLpPropertySource.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLpPropertySource.Location = new System.Drawing.Point(28, 239);
-            this.lblLpPropertySource.Name = "lblLpPropertySource";
-            this.lblLpPropertySource.Size = new System.Drawing.Size(89, 18);
-            this.lblLpPropertySource.TabIndex = 12;
-            this.lblLpPropertySource.Text = "Property Source:";
+            lblLpPropertySource.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLpPropertySource.Location = new System.Drawing.Point(28, 239);
+            lblLpPropertySource.Name = "lblLpPropertySource";
+            lblLpPropertySource.Size = new System.Drawing.Size(257, 18);
+            lblLpPropertySource.TabIndex = 12;
+            lblLpPropertySource.Text = "Property Source:";
             // 
             // cmbLpUseForHashCode
             // 
-            this.cmbLpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpUseForHashCode.DropDownAnimationEnabled = true;
-            this.cmbLpUseForHashCode.Location = new System.Drawing.Point(288, 164);
-            this.cmbLpUseForHashCode.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpUseForHashCode.Name = "cmbLpUseForHashCode";
-            this.cmbLpUseForHashCode.Size = new System.Drawing.Size(536, 20);
-            this.cmbLpUseForHashCode.TabIndex = 9;
+            cmbLpUseForHashCode.AutoSize = false;
+            cmbLpUseForHashCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpUseForHashCode.DropDownAnimationEnabled = true;
+            cmbLpUseForHashCode.Location = new System.Drawing.Point(288, 164);
+            cmbLpUseForHashCode.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpUseForHashCode.Name = "cmbLpUseForHashCode";
+            cmbLpUseForHashCode.Size = new System.Drawing.Size(534, 30);
+            cmbLpUseForHashCode.TabIndex = 9;
             // 
             // cmbLpGenericArgumentName
             // 
-            this.cmbLpGenericArgumentName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpGenericArgumentName.DropDownAnimationEnabled = true;
-            this.cmbLpGenericArgumentName.Location = new System.Drawing.Point(288, 20);
-            this.cmbLpGenericArgumentName.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpGenericArgumentName.Name = "cmbLpGenericArgumentName";
-            this.cmbLpGenericArgumentName.Size = new System.Drawing.Size(536, 20);
-            this.cmbLpGenericArgumentName.TabIndex = 1;
+            cmbLpGenericArgumentName.AutoSize = false;
+            cmbLpGenericArgumentName.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpGenericArgumentName.DropDownAnimationEnabled = true;
+            cmbLpGenericArgumentName.Location = new System.Drawing.Point(288, 20);
+            cmbLpGenericArgumentName.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpGenericArgumentName.Name = "cmbLpGenericArgumentName";
+            cmbLpGenericArgumentName.Size = new System.Drawing.Size(534, 30);
+            cmbLpGenericArgumentName.TabIndex = 1;
             // 
             // cmbLpLiteralType
             // 
-            this.cmbLpLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpLiteralType.DropDownAnimationEnabled = true;
-            this.cmbLpLiteralType.Location = new System.Drawing.Point(288, 56);
-            this.cmbLpLiteralType.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpLiteralType.Name = "cmbLpLiteralType";
-            this.cmbLpLiteralType.Size = new System.Drawing.Size(536, 20);
-            this.cmbLpLiteralType.TabIndex = 3;
+            cmbLpLiteralType.AutoSize = false;
+            cmbLpLiteralType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpLiteralType.DropDownAnimationEnabled = true;
+            cmbLpLiteralType.Location = new System.Drawing.Point(288, 56);
+            cmbLpLiteralType.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpLiteralType.Name = "cmbLpLiteralType";
+            cmbLpLiteralType.Size = new System.Drawing.Size(534, 30);
+            cmbLpLiteralType.TabIndex = 3;
             // 
             // cmbLpControl
             // 
-            this.cmbLpControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpControl.DropDownAnimationEnabled = true;
-            this.cmbLpControl.Location = new System.Drawing.Point(288, 92);
-            this.cmbLpControl.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpControl.Name = "cmbLpControl";
-            this.cmbLpControl.Size = new System.Drawing.Size(536, 20);
-            this.cmbLpControl.TabIndex = 5;
+            cmbLpControl.AutoSize = false;
+            cmbLpControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpControl.DropDownAnimationEnabled = true;
+            cmbLpControl.Location = new System.Drawing.Point(288, 92);
+            cmbLpControl.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpControl.Name = "cmbLpControl";
+            cmbLpControl.Size = new System.Drawing.Size(534, 30);
+            cmbLpControl.TabIndex = 5;
             // 
             // cmbLpUseForEquality
             // 
-            this.cmbLpUseForEquality.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpUseForEquality.DropDownAnimationEnabled = true;
-            this.cmbLpUseForEquality.Location = new System.Drawing.Point(288, 128);
-            this.cmbLpUseForEquality.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpUseForEquality.Name = "cmbLpUseForEquality";
-            this.cmbLpUseForEquality.Size = new System.Drawing.Size(536, 20);
-            this.cmbLpUseForEquality.TabIndex = 7;
+            cmbLpUseForEquality.AutoSize = false;
+            cmbLpUseForEquality.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpUseForEquality.DropDownAnimationEnabled = true;
+            cmbLpUseForEquality.Location = new System.Drawing.Point(288, 128);
+            cmbLpUseForEquality.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpUseForEquality.Name = "cmbLpUseForEquality";
+            cmbLpUseForEquality.Size = new System.Drawing.Size(534, 30);
+            cmbLpUseForEquality.TabIndex = 7;
             // 
             // cmbLpUseForToString
             // 
-            this.cmbLpUseForToString.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpUseForToString.DropDownAnimationEnabled = true;
-            this.cmbLpUseForToString.Location = new System.Drawing.Point(288, 200);
-            this.cmbLpUseForToString.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpUseForToString.Name = "cmbLpUseForToString";
-            this.cmbLpUseForToString.Size = new System.Drawing.Size(536, 20);
-            this.cmbLpUseForToString.TabIndex = 11;
+            cmbLpUseForToString.AutoSize = false;
+            cmbLpUseForToString.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpUseForToString.DropDownAnimationEnabled = true;
+            cmbLpUseForToString.Location = new System.Drawing.Point(288, 200);
+            cmbLpUseForToString.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpUseForToString.Name = "cmbLpUseForToString";
+            cmbLpUseForToString.Size = new System.Drawing.Size(534, 30);
+            cmbLpUseForToString.TabIndex = 11;
             // 
             // cmbLpPropertySourceParameter
             // 
-            this.cmbLpPropertySourceParameter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLpPropertySourceParameter.DropDownAnimationEnabled = true;
-            this.cmbLpPropertySourceParameter.Location = new System.Drawing.Point(288, 272);
-            this.cmbLpPropertySourceParameter.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLpPropertySourceParameter.Name = "cmbLpPropertySourceParameter";
-            this.cmbLpPropertySourceParameter.Size = new System.Drawing.Size(536, 20);
-            this.cmbLpPropertySourceParameter.TabIndex = 15;
+            cmbLpPropertySourceParameter.AutoSize = false;
+            cmbLpPropertySourceParameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLpPropertySourceParameter.DropDownAnimationEnabled = true;
+            cmbLpPropertySourceParameter.Location = new System.Drawing.Point(288, 272);
+            cmbLpPropertySourceParameter.Margin = new System.Windows.Forms.Padding(0);
+            cmbLpPropertySourceParameter.Name = "cmbLpPropertySourceParameter";
+            cmbLpPropertySourceParameter.Size = new System.Drawing.Size(534, 30);
+            cmbLpPropertySourceParameter.TabIndex = 15;
             // 
             // txtLpDefaultValue
             // 
-            this.txtLpDefaultValue.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLpDefaultValue.Location = new System.Drawing.Point(291, 311);
-            this.txtLpDefaultValue.Name = "txtLpDefaultValue";
-            this.txtLpDefaultValue.Size = new System.Drawing.Size(530, 20);
-            this.txtLpDefaultValue.TabIndex = 17;
+            txtLpDefaultValue.AutoSize = false;
+            txtLpDefaultValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLpDefaultValue.Location = new System.Drawing.Point(288, 308);
+            txtLpDefaultValue.Margin = new System.Windows.Forms.Padding(0);
+            txtLpDefaultValue.Name = "txtLpDefaultValue";
+            txtLpDefaultValue.Size = new System.Drawing.Size(534, 30);
+            txtLpDefaultValue.TabIndex = 17;
             // 
             // txtLpDomain
             // 
-            this.txtLpDomain.AutoSize = true;
-            this.txtLpDomain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLpDomain.Location = new System.Drawing.Point(288, 344);
-            this.txtLpDomain.Margin = new System.Windows.Forms.Padding(0);
-            this.txtLpDomain.Name = "txtLpDomain";
-            this.txtLpDomain.ReadOnly = false;
-            this.txtLpDomain.Size = new System.Drawing.Size(536, 24);
-            this.txtLpDomain.TabIndex = 19;
+            txtLpDomain.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLpDomain.Location = new System.Drawing.Point(288, 344);
+            txtLpDomain.Margin = new System.Windows.Forms.Padding(0);
+            txtLpDomain.Name = "txtLpDomain";
+            txtLpDomain.ReadOnly = false;
+            txtLpDomain.Size = new System.Drawing.Size(534, 30);
+            txtLpDomain.TabIndex = 19;
             // 
             // ConfigureGenericLiteralArgumentControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxLiteralParameter);
-            this.Name = "ConfigureGenericLiteralArgumentControl";
-            this.Size = new System.Drawing.Size(855, 528);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxLiteralParameter)).EndInit();
-            this.groupBoxLiteralParameter.ResumeLayout(false);
-            this.radPanelParameter.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelParameter)).EndInit();
-            this.radPanelParameter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpDomain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpDefaultValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpPropertySourceParameter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpUseForToString)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpUseForHashCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpUseForEquality)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpGenericArgumentName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpLiteralType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLpPropertySource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpUseForHashCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpGenericArgumentName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpLiteralType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpUseForEquality)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpUseForToString)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLpPropertySourceParameter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLpDefaultValue)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(groupBoxLiteralParameter);
+            Name = "ConfigureGenericLiteralArgumentControl";
+            Size = new System.Drawing.Size(855, 528);
+            ((System.ComponentModel.ISupportInitialize)groupBoxLiteralParameter).EndInit();
+            groupBoxLiteralParameter.ResumeLayout(false);
+            radPanelParameter.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelParameter).EndInit();
+            radPanelParameter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)lblLpDomain).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpDefaultValue).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpPropertySourceParameter).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpUseForToString).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpUseForHashCode).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpUseForEquality).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpGenericArgumentName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpLiteralType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLpPropertySource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpUseForHashCode).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpGenericArgumentName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpLiteralType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpUseForEquality).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpUseForToString).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLpPropertySourceParameter).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLpDefaultValue).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

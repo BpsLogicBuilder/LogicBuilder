@@ -218,10 +218,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
             _radDropDownListHelper.LoadTextItems
             (
-                cmbLpPropertySourceParameter, 
+                cmbLpPropertySourceParameter,
                 configureGenericArgumentsForm.MemberParameters
                     .OrderBy(m => m.Name)
-                    .Select(m => m.Name), 
+                    .Select(m => m.Name),
                 RadDropDownStyle.DropDown
             );
         }
@@ -262,7 +262,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
         private void ValidateLpPropertySource(LiteralParameterInputStyle inputStyle, List<string> errors)
         {
-            if 
+            if
             (
                 inputStyle == LiteralParameterInputStyle.PropertyInput
                     && !_typeLoadHelper.TryGetSystemType(cmbLpPropertySource.Text, configureGenericArgumentsForm.Application, out Type? _)
