@@ -28,146 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxReturnType = new Telerik.WinControls.UI.RadGroupBox();
-            this.radScrollablePanelReturnType = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.lblGeLiGenericArgument = new Telerik.WinControls.UI.RadLabel();
-            this.lblGeLiListType = new Telerik.WinControls.UI.RadLabel();
-            this.cmbGeLiGenericArgument = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbGeLiListType = new Telerik.WinControls.UI.RadDropDownList();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxReturnType)).BeginInit();
-            this.groupBoxReturnType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanelReturnType)).BeginInit();
-            this.radScrollablePanelReturnType.PanelContainer.SuspendLayout();
-            this.radScrollablePanelReturnType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblGeLiGenericArgument)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblGeLiListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbGeLiGenericArgument)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbGeLiListType)).BeginInit();
-            this.SuspendLayout();
+            groupBoxReturnType = new Telerik.WinControls.UI.RadGroupBox();
+            radScrollablePanelReturnType = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            cmbGeLiListType = new Telerik.WinControls.UI.RadDropDownList();
+            cmbGeLiGenericArgument = new Telerik.WinControls.UI.RadDropDownList();
+            lblGeLiListType = new Telerik.WinControls.UI.RadLabel();
+            lblGeLiGenericArgument = new Telerik.WinControls.UI.RadLabel();
+            ((System.ComponentModel.ISupportInitialize)groupBoxReturnType).BeginInit();
+            groupBoxReturnType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radScrollablePanelReturnType).BeginInit();
+            radScrollablePanelReturnType.PanelContainer.SuspendLayout();
+            radScrollablePanelReturnType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbGeLiListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbGeLiGenericArgument).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblGeLiListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblGeLiGenericArgument).BeginInit();
+            SuspendLayout();
             // 
             // groupBoxReturnType
             // 
-            this.groupBoxReturnType.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxReturnType.Controls.Add(this.radScrollablePanelReturnType);
-            this.groupBoxReturnType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxReturnType.HeaderText = "Generic List";
-            this.groupBoxReturnType.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxReturnType.Name = "groupBoxReturnType";
-            this.groupBoxReturnType.Size = new System.Drawing.Size(855, 150);
-            this.groupBoxReturnType.TabIndex = 0;
-            this.groupBoxReturnType.Text = "Generic List";
+            groupBoxReturnType.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            groupBoxReturnType.Controls.Add(radScrollablePanelReturnType);
+            groupBoxReturnType.Dock = System.Windows.Forms.DockStyle.Fill;
+            groupBoxReturnType.HeaderText = "Generic List";
+            groupBoxReturnType.Location = new System.Drawing.Point(0, 0);
+            groupBoxReturnType.Name = "groupBoxReturnType";
+            groupBoxReturnType.Size = new System.Drawing.Size(855, 150);
+            groupBoxReturnType.TabIndex = 0;
+            groupBoxReturnType.Text = "Generic List";
             // 
             // radScrollablePanelReturnType
             // 
-            this.radScrollablePanelReturnType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radScrollablePanelReturnType.Location = new System.Drawing.Point(2, 18);
-            this.radScrollablePanelReturnType.Name = "radScrollablePanelReturnType";
+            radScrollablePanelReturnType.Dock = System.Windows.Forms.DockStyle.Fill;
+            radScrollablePanelReturnType.Location = new System.Drawing.Point(2, 18);
+            radScrollablePanelReturnType.Name = "radScrollablePanelReturnType";
             // 
             // radScrollablePanelReturnType.PanelContainer
             // 
-            this.radScrollablePanelReturnType.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radScrollablePanelReturnType.PanelContainer.Size = new System.Drawing.Size(849, 128);
-            this.radScrollablePanelReturnType.Size = new System.Drawing.Size(851, 130);
-            this.radScrollablePanelReturnType.TabIndex = 0;
+            radScrollablePanelReturnType.PanelContainer.Controls.Add(radPanelTableParent);
+            radScrollablePanelReturnType.PanelContainer.Size = new System.Drawing.Size(849, 128);
+            radScrollablePanelReturnType.Size = new System.Drawing.Size(851, 130);
+            radScrollablePanelReturnType.TabIndex = 0;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(849, 112);
-            this.radPanelTableParent.TabIndex = 0;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 112);
+            radPanelTableParent.TabIndex = 0;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.cmbGeLiListType, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.cmbGeLiGenericArgument, 2, 1);
-            this.tableLayoutPanel.Controls.Add(this.lblGeLiListType, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblGeLiGenericArgument, 1, 1);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 6;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(849, 112);
-            this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // lblGeLiGenericArgument
-            // 
-            this.lblGeLiGenericArgument.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblGeLiGenericArgument.Location = new System.Drawing.Point(28, 23);
-            this.lblGeLiGenericArgument.Name = "lblGeLiGenericArgument";
-            this.lblGeLiGenericArgument.Size = new System.Drawing.Size(100, 18);
-            this.lblGeLiGenericArgument.TabIndex = 0;
-            this.lblGeLiGenericArgument.Text = "Generic Argument:";
-            // 
-            // lblGeLiListType
-            // 
-            this.lblGeLiListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblGeLiListType.Location = new System.Drawing.Point(28, 59);
-            this.lblGeLiListType.Name = "lblGeLiListType";
-            this.lblGeLiListType.Size = new System.Drawing.Size(52, 18);
-            this.lblGeLiListType.TabIndex = 2;
-            this.lblGeLiListType.Text = "List Type:";
-            // 
-            // cmbGeLiGenericArgument
-            // 
-            this.cmbGeLiGenericArgument.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbGeLiGenericArgument.DropDownAnimationEnabled = true;
-            this.cmbGeLiGenericArgument.Location = new System.Drawing.Point(291, 23);
-            this.cmbGeLiGenericArgument.Name = "cmbGeLiGenericArgument";
-            this.cmbGeLiGenericArgument.Size = new System.Drawing.Size(528, 20);
-            this.cmbGeLiGenericArgument.TabIndex = 1;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(cmbGeLiListType, 2, 3);
+            tableLayoutPanel.Controls.Add(cmbGeLiGenericArgument, 2, 1);
+            tableLayoutPanel.Controls.Add(lblGeLiListType, 1, 3);
+            tableLayoutPanel.Controls.Add(lblGeLiGenericArgument, 1, 1);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 6;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 112);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // cmbGeLiListType
             // 
-            this.cmbGeLiListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbGeLiListType.DropDownAnimationEnabled = true;
-            this.cmbGeLiListType.Location = new System.Drawing.Point(291, 59);
-            this.cmbGeLiListType.Name = "cmbGeLiListType";
-            this.cmbGeLiListType.Size = new System.Drawing.Size(528, 20);
-            this.cmbGeLiListType.TabIndex = 3;
+            cmbGeLiListType.AutoSize = false;
+            cmbGeLiListType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbGeLiListType.DropDownAnimationEnabled = true;
+            cmbGeLiListType.Location = new System.Drawing.Point(288, 56);
+            cmbGeLiListType.Margin = new System.Windows.Forms.Padding(0);
+            cmbGeLiListType.Name = "cmbGeLiListType";
+            cmbGeLiListType.Size = new System.Drawing.Size(534, 30);
+            cmbGeLiListType.TabIndex = 3;
+            // 
+            // cmbGeLiGenericArgument
+            // 
+            cmbGeLiGenericArgument.AutoSize = false;
+            cmbGeLiGenericArgument.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbGeLiGenericArgument.DropDownAnimationEnabled = true;
+            cmbGeLiGenericArgument.Location = new System.Drawing.Point(288, 20);
+            cmbGeLiGenericArgument.Margin = new System.Windows.Forms.Padding(0);
+            cmbGeLiGenericArgument.Name = "cmbGeLiGenericArgument";
+            cmbGeLiGenericArgument.Size = new System.Drawing.Size(534, 30);
+            cmbGeLiGenericArgument.TabIndex = 1;
+            // 
+            // lblGeLiListType
+            // 
+            lblGeLiListType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblGeLiListType.Location = new System.Drawing.Point(28, 59);
+            lblGeLiListType.Name = "lblGeLiListType";
+            lblGeLiListType.Size = new System.Drawing.Size(52, 18);
+            lblGeLiListType.TabIndex = 2;
+            lblGeLiListType.Text = "List Type:";
+            // 
+            // lblGeLiGenericArgument
+            // 
+            lblGeLiGenericArgument.Dock = System.Windows.Forms.DockStyle.Top;
+            lblGeLiGenericArgument.Location = new System.Drawing.Point(28, 23);
+            lblGeLiGenericArgument.Name = "lblGeLiGenericArgument";
+            lblGeLiGenericArgument.Size = new System.Drawing.Size(100, 18);
+            lblGeLiGenericArgument.TabIndex = 0;
+            lblGeLiGenericArgument.Text = "Generic Argument:";
             // 
             // ConfigureGenericListReturnTypeControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxReturnType);
-            this.Name = "ConfigureGenericListReturnTypeControl";
-            this.Size = new System.Drawing.Size(855, 150);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxReturnType)).EndInit();
-            this.groupBoxReturnType.ResumeLayout(false);
-            this.radScrollablePanelReturnType.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanelReturnType)).EndInit();
-            this.radScrollablePanelReturnType.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblGeLiGenericArgument)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblGeLiListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbGeLiGenericArgument)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbGeLiListType)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(groupBoxReturnType);
+            Name = "ConfigureGenericListReturnTypeControl";
+            Size = new System.Drawing.Size(855, 150);
+            ((System.ComponentModel.ISupportInitialize)groupBoxReturnType).EndInit();
+            groupBoxReturnType.ResumeLayout(false);
+            radScrollablePanelReturnType.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radScrollablePanelReturnType).EndInit();
+            radScrollablePanelReturnType.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbGeLiListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbGeLiGenericArgument).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblGeLiListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblGeLiGenericArgument).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
