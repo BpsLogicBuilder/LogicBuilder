@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
             IConfigureFunctionsForm configureFunctionsForm)
         {
             InitializeComponent();
-            
+
             _configureFunctionControlCommandFactory = configureFunctionControlCommandFactory;
             _configureFunctionsStateImageSetter = configureFunctionsStateImageSetter;
             _enumHelper = enumHelper;

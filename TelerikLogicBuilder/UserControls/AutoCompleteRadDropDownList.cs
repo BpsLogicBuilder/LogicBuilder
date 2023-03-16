@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -92,8 +93,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radDropDownList1.DropDownListElement.AutoCompleteSuggest = new CustomAutoCompleteSuggestHelper(radDropDownList1.DropDownListElement);
             radDropDownList1.DropDownListElement.AutoCompleteSuggest.DropDownList.ListElement.VisualItemFormatting += RadDropDownList1_VisualListItemFormatting;
 
+            ResetButtonPanel();
             CollapsePanelBorder(radPanelDropDownList);
             CollapsePanelBorder(radPanelButton);
+        }
+
+        private void ResetButtonPanel()
+        {
+            ((ISupportInitialize)this.radPanelButton).BeginInit();
+            this.radPanelButton.SuspendLayout();
+            SuspendLayout();
+            this.radPanelButton.Size = new Size(PerFontSizeConstants.CommandButtonWidth, this.radPanelButton.Height);
+            ((ISupportInitialize)this.radPanelButton).EndInit();
+            this.radPanelButton.ResumeLayout(false);
+            this.ResumeLayout(true);
         }
 
         private void TextBoxControl_MouseDown(object? sender, MouseEventArgs e)
