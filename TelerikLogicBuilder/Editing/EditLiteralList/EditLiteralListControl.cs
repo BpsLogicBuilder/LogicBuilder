@@ -176,8 +176,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                         (
                             CultureInfo.CurrentCulture,
                             Strings.listParameterCountFormat,
-                            literalListElementInfo.HasParameter 
-                                ? literalListElementInfo.Parameter.Name 
+                            literalListElementInfo.HasParameter
+                                ? literalListElementInfo.Parameter.Name
                                 : _enumHelper.GetTypeDescription(listType, _enumHelper.GetVisibleEnumText(literalParameterType)),
                             ListBox.Items.Count
                         ),
@@ -196,7 +196,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                         foreach (string innerXml in ListBox.Items.Select(i => ((ILiteralListBoxItem)i.Value).HiddenText))
                         {
                             xmlTextWriter.WriteStartElement(XmlDataConstants.LITERALELEMENT);
-                                xmlTextWriter.WriteRaw(innerXml);
+                            xmlTextWriter.WriteRaw(innerXml);
                             xmlTextWriter.WriteEndElement();
                         }
                         xmlTextWriter.Flush();
@@ -218,7 +218,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public void SetMessage(string message, string title = "") => dataGraphEditingForm.SetMessage(message, title);
 
-        public void UpdateInputControls(ILiteralListBoxItem item) 
+        public void UpdateInputControls(ILiteralListBoxItem item)
             => ValueControl.Update
             (
                 _xmlDocumentHelpers.ToXmlElement(_xmlDataHelper.BuildLiteralXml(item.HiddenText))
@@ -226,7 +226,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public void ValidateFields()
         {
-            foreach(ILiteralListBoxItem literalListBoxItem in ListBox.Items.Select(i => i.Value).OfType<ILiteralListBoxItem>())
+            foreach (ILiteralListBoxItem literalListBoxItem in ListBox.Items.Select(i => i.Value).OfType<ILiteralListBoxItem>())
             {
                 var itemErrors = literalListBoxItem.Errors;
                 if (itemErrors.Count > 0)
@@ -377,7 +377,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                 )
             );
 
-            string GetListTitle(ListParameterInputStyle listInputStyle) 
+            string GetListTitle(ListParameterInputStyle listInputStyle)
                 => listInputStyle switch
                 {
                     ListParameterInputStyle.HashSetForm => Strings.hashSetFormGroupBoxTitle,
@@ -485,7 +485,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         }
 
         #region Event Handlers
-        private void CmbListType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e) 
+        private void CmbListType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
             => CheckAssignability();
 
         private void CmbLiteralType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

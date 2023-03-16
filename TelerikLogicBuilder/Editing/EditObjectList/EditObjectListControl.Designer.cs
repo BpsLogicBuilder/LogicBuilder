@@ -28,241 +28,242 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radGroupBoxType = new Telerik.WinControls.UI.RadGroupBox();
-            this.radScrollablePanelType = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbListType = new Telerik.WinControls.UI.RadDropDownList();
-            this.lblObjectType = new Telerik.WinControls.UI.RadLabel();
-            this.lblListType = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBoxEdit = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelEdit = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
-            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
-            this.btnAdd = new Telerik.WinControls.UI.RadButton();
-            this.radGroupBoxList = new Telerik.WinControls.UI.RadGroupBox();
-            this.managedListBoxControl = new ABIS.LogicBuilder.FlowBuilder.UserControls.ManagedListBoxControl();
-            this.cmbObjectType = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxType)).BeginInit();
-            this.radGroupBoxType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanelType)).BeginInit();
-            this.radScrollablePanelType.PanelContainer.SuspendLayout();
-            this.radScrollablePanelType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblObjectType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxEdit)).BeginInit();
-            this.radGroupBoxEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelAddButton)).BeginInit();
-            this.radPanelAddButton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxList)).BeginInit();
-            this.radGroupBoxList.SuspendLayout();
-            this.SuspendLayout();
+            radGroupBoxType = new Telerik.WinControls.UI.RadGroupBox();
+            radScrollablePanelType = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            cmbListType = new Telerik.WinControls.UI.RadDropDownList();
+            lblObjectType = new Telerik.WinControls.UI.RadLabel();
+            lblListType = new Telerik.WinControls.UI.RadLabel();
+            cmbObjectType = new UserControls.AutoCompleteRadDropDownList();
+            radGroupBoxEdit = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelEdit = new Telerik.WinControls.UI.RadPanel();
+            radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
+            btnUpdate = new Telerik.WinControls.UI.RadButton();
+            btnAdd = new Telerik.WinControls.UI.RadButton();
+            radGroupBoxList = new Telerik.WinControls.UI.RadGroupBox();
+            managedListBoxControl = new UserControls.ManagedListBoxControl();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxType).BeginInit();
+            radGroupBoxType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radScrollablePanelType).BeginInit();
+            radScrollablePanelType.PanelContainer.SuspendLayout();
+            radScrollablePanelType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblObjectType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxEdit).BeginInit();
+            radGroupBoxEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelEdit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelAddButton).BeginInit();
+            radPanelAddButton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnAdd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxList).BeginInit();
+            radGroupBoxList.SuspendLayout();
+            SuspendLayout();
             // 
             // radGroupBoxType
             // 
-            this.radGroupBoxType.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxType.Controls.Add(this.radScrollablePanelType);
-            this.radGroupBoxType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radGroupBoxType.HeaderText = "Type";
-            this.radGroupBoxType.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBoxType.Name = "radGroupBoxType";
-            this.radGroupBoxType.Size = new System.Drawing.Size(855, 137);
-            this.radGroupBoxType.TabIndex = 0;
-            this.radGroupBoxType.Text = "Type";
+            radGroupBoxType.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxType.Controls.Add(radScrollablePanelType);
+            radGroupBoxType.Dock = System.Windows.Forms.DockStyle.Top;
+            radGroupBoxType.HeaderText = "Type";
+            radGroupBoxType.Location = new System.Drawing.Point(0, 0);
+            radGroupBoxType.Name = "radGroupBoxType";
+            radGroupBoxType.Size = new System.Drawing.Size(855, 137);
+            radGroupBoxType.TabIndex = 0;
+            radGroupBoxType.Text = "Type";
             // 
             // radScrollablePanelType
             // 
-            this.radScrollablePanelType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radScrollablePanelType.Location = new System.Drawing.Point(2, 18);
-            this.radScrollablePanelType.Name = "radScrollablePanelType";
+            radScrollablePanelType.Dock = System.Windows.Forms.DockStyle.Fill;
+            radScrollablePanelType.Location = new System.Drawing.Point(2, 18);
+            radScrollablePanelType.Name = "radScrollablePanelType";
             // 
             // radScrollablePanelType.PanelContainer
             // 
-            this.radScrollablePanelType.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radScrollablePanelType.PanelContainer.Size = new System.Drawing.Size(849, 115);
-            this.radScrollablePanelType.Size = new System.Drawing.Size(851, 117);
-            this.radScrollablePanelType.TabIndex = 0;
+            radScrollablePanelType.PanelContainer.Controls.Add(radPanelTableParent);
+            radScrollablePanelType.PanelContainer.Size = new System.Drawing.Size(849, 115);
+            radScrollablePanelType.Size = new System.Drawing.Size(851, 117);
+            radScrollablePanelType.TabIndex = 0;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(849, 112);
-            this.radPanelTableParent.TabIndex = 0;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 112);
+            radPanelTableParent.TabIndex = 0;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.cmbListType, 2, 1);
-            this.tableLayoutPanel.Controls.Add(this.lblObjectType, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblListType, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.cmbObjectType, 2, 3);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 6;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(849, 112);
-            this.tableLayoutPanel.TabIndex = 0;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(cmbListType, 2, 1);
+            tableLayoutPanel.Controls.Add(lblObjectType, 1, 3);
+            tableLayoutPanel.Controls.Add(lblListType, 1, 1);
+            tableLayoutPanel.Controls.Add(cmbObjectType, 2, 3);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 6;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 112);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // cmbListType
             // 
-            this.cmbListType.AutoSize = false;
-            this.cmbListType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbListType.DropDownAnimationEnabled = true;
-            this.cmbListType.Location = new System.Drawing.Point(291, 23);
-            this.cmbListType.Name = "cmbListType";
-            this.cmbListType.Size = new System.Drawing.Size(528, 24);
-            this.cmbListType.TabIndex = 1;
+            cmbListType.AutoSize = false;
+            cmbListType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbListType.DropDownAnimationEnabled = true;
+            cmbListType.Location = new System.Drawing.Point(288, 20);
+            cmbListType.Margin = new System.Windows.Forms.Padding(0);
+            cmbListType.Name = "cmbListType";
+            cmbListType.Size = new System.Drawing.Size(534, 30);
+            cmbListType.TabIndex = 1;
             // 
             // lblObjectType
             // 
-            this.lblObjectType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblObjectType.Location = new System.Drawing.Point(28, 59);
-            this.lblObjectType.Name = "lblObjectType";
-            this.lblObjectType.Size = new System.Drawing.Size(69, 18);
-            this.lblObjectType.TabIndex = 2;
-            this.lblObjectType.Text = "Object Type:";
+            lblObjectType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblObjectType.Location = new System.Drawing.Point(28, 59);
+            lblObjectType.Name = "lblObjectType";
+            lblObjectType.Size = new System.Drawing.Size(69, 18);
+            lblObjectType.TabIndex = 2;
+            lblObjectType.Text = "Object Type:";
             // 
             // lblListType
             // 
-            this.lblListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblListType.Location = new System.Drawing.Point(28, 23);
-            this.lblListType.Name = "lblListType";
-            this.lblListType.Size = new System.Drawing.Size(257, 18);
-            this.lblListType.TabIndex = 0;
-            this.lblListType.Text = "List Type:";
-            // 
-            // radGroupBoxEdit
-            // 
-            this.radGroupBoxEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxEdit.Controls.Add(this.radPanelEdit);
-            this.radGroupBoxEdit.Controls.Add(this.radPanelAddButton);
-            this.radGroupBoxEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radGroupBoxEdit.HeaderText = "Edit";
-            this.radGroupBoxEdit.Location = new System.Drawing.Point(0, 137);
-            this.radGroupBoxEdit.Name = "radGroupBoxEdit";
-            this.radGroupBoxEdit.Size = new System.Drawing.Size(855, 55);
-            this.radGroupBoxEdit.TabIndex = 1;
-            this.radGroupBoxEdit.Text = "Edit";
-            // 
-            // radPanelEdit
-            // 
-            this.radPanelEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelEdit.Location = new System.Drawing.Point(2, 18);
-            this.radPanelEdit.Name = "radPanelEdit";
-            this.radPanelEdit.Padding = new System.Windows.Forms.Padding(12, 3, 12, 6);
-            this.radPanelEdit.Size = new System.Drawing.Size(717, 35);
-            this.radPanelEdit.TabIndex = 0;
-            // 
-            // radPanelAddButton
-            // 
-            this.radPanelAddButton.Controls.Add(this.btnUpdate);
-            this.radPanelAddButton.Controls.Add(this.btnAdd);
-            this.radPanelAddButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelAddButton.Location = new System.Drawing.Point(719, 18);
-            this.radPanelAddButton.Name = "radPanelAddButton";
-            this.radPanelAddButton.Size = new System.Drawing.Size(134, 35);
-            this.radPanelAddButton.TabIndex = 0;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(12, 3);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
-            this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Update";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(110, 24);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "Add";
-            // 
-            // radGroupBoxList
-            // 
-            this.radGroupBoxList.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxList.Controls.Add(this.managedListBoxControl);
-            this.radGroupBoxList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxList.HeaderText = "List";
-            this.radGroupBoxList.Location = new System.Drawing.Point(0, 192);
-            this.radGroupBoxList.Name = "radGroupBoxList";
-            this.radGroupBoxList.Size = new System.Drawing.Size(855, 339);
-            this.radGroupBoxList.TabIndex = 2;
-            this.radGroupBoxList.Text = "List";
-            // 
-            // managedListBoxControl
-            // 
-            this.managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.managedListBoxControl.Location = new System.Drawing.Point(2, 18);
-            this.managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
-            this.managedListBoxControl.Name = "managedListBoxControl";
-            this.managedListBoxControl.Size = new System.Drawing.Size(851, 319);
-            this.managedListBoxControl.TabIndex = 0;
+            lblListType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblListType.Location = new System.Drawing.Point(28, 23);
+            lblListType.Name = "lblListType";
+            lblListType.Size = new System.Drawing.Size(52, 18);
+            lblListType.TabIndex = 0;
+            lblListType.Text = "List Type:";
             // 
             // cmbObjectType
             // 
-            this.cmbObjectType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbObjectType.Location = new System.Drawing.Point(291, 59);
-            this.cmbObjectType.Name = "cmbObjectType";
-            this.cmbObjectType.SelectedText = "";
-            this.cmbObjectType.Size = new System.Drawing.Size(528, 24);
-            this.cmbObjectType.TabIndex = 3;
+            cmbObjectType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbObjectType.Location = new System.Drawing.Point(288, 56);
+            cmbObjectType.Margin = new System.Windows.Forms.Padding(0);
+            cmbObjectType.Name = "cmbObjectType";
+            cmbObjectType.SelectedText = "";
+            cmbObjectType.Size = new System.Drawing.Size(534, 30);
+            cmbObjectType.TabIndex = 3;
+            // 
+            // radGroupBoxEdit
+            // 
+            radGroupBoxEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxEdit.Controls.Add(radPanelEdit);
+            radGroupBoxEdit.Controls.Add(radPanelAddButton);
+            radGroupBoxEdit.Dock = System.Windows.Forms.DockStyle.Top;
+            radGroupBoxEdit.HeaderText = "Edit";
+            radGroupBoxEdit.Location = new System.Drawing.Point(0, 137);
+            radGroupBoxEdit.Name = "radGroupBoxEdit";
+            radGroupBoxEdit.Size = new System.Drawing.Size(855, 55);
+            radGroupBoxEdit.TabIndex = 1;
+            radGroupBoxEdit.Text = "Edit";
+            // 
+            // radPanelEdit
+            // 
+            radPanelEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelEdit.Location = new System.Drawing.Point(2, 18);
+            radPanelEdit.Name = "radPanelEdit";
+            radPanelEdit.Padding = new System.Windows.Forms.Padding(12, 3, 12, 6);
+            radPanelEdit.Size = new System.Drawing.Size(717, 35);
+            radPanelEdit.TabIndex = 0;
+            // 
+            // radPanelAddButton
+            // 
+            radPanelAddButton.Controls.Add(btnUpdate);
+            radPanelAddButton.Controls.Add(btnAdd);
+            radPanelAddButton.Dock = System.Windows.Forms.DockStyle.Right;
+            radPanelAddButton.Location = new System.Drawing.Point(719, 18);
+            radPanelAddButton.Name = "radPanelAddButton";
+            radPanelAddButton.Size = new System.Drawing.Size(134, 35);
+            radPanelAddButton.TabIndex = 0;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new System.Drawing.Point(12, 3);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new System.Drawing.Size(110, 24);
+            btnUpdate.TabIndex = 2;
+            btnUpdate.Text = "Update";
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new System.Drawing.Point(12, 3);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(110, 24);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "Add";
+            // 
+            // radGroupBoxList
+            // 
+            radGroupBoxList.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxList.Controls.Add(managedListBoxControl);
+            radGroupBoxList.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxList.HeaderText = "List";
+            radGroupBoxList.Location = new System.Drawing.Point(0, 192);
+            radGroupBoxList.Name = "radGroupBoxList";
+            radGroupBoxList.Size = new System.Drawing.Size(855, 339);
+            radGroupBoxList.TabIndex = 2;
+            radGroupBoxList.Text = "List";
+            // 
+            // managedListBoxControl
+            // 
+            managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            managedListBoxControl.Location = new System.Drawing.Point(2, 18);
+            managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
+            managedListBoxControl.Name = "managedListBoxControl";
+            managedListBoxControl.Size = new System.Drawing.Size(851, 319);
+            managedListBoxControl.TabIndex = 0;
             // 
             // EditObjectListControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radGroupBoxList);
-            this.Controls.Add(this.radGroupBoxEdit);
-            this.Controls.Add(this.radGroupBoxType);
-            this.Name = "EditObjectListControl";
-            this.Size = new System.Drawing.Size(855, 531);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxType)).EndInit();
-            this.radGroupBoxType.ResumeLayout(false);
-            this.radScrollablePanelType.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanelType)).EndInit();
-            this.radScrollablePanelType.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblObjectType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxEdit)).EndInit();
-            this.radGroupBoxEdit.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelAddButton)).EndInit();
-            this.radPanelAddButton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxList)).EndInit();
-            this.radGroupBoxList.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(radGroupBoxList);
+            Controls.Add(radGroupBoxEdit);
+            Controls.Add(radGroupBoxType);
+            Name = "EditObjectListControl";
+            Size = new System.Drawing.Size(855, 531);
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxType).EndInit();
+            radGroupBoxType.ResumeLayout(false);
+            radScrollablePanelType.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radScrollablePanelType).EndInit();
+            radScrollablePanelType.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblObjectType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxEdit).EndInit();
+            radGroupBoxEdit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelEdit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelAddButton).EndInit();
+            radPanelAddButton.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnAdd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxList).EndInit();
+            radGroupBoxList.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
