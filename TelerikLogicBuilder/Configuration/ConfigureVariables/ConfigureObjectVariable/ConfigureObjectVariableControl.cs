@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             IXmlDocumentHelpers xmlDocumentHelpers,
             IConfigureVariablesForm configureVariablesForm)
         {
-            
+
             InitializeComponent();
             _configureVariablesStateImageSetter = configureVariablesStateImageSetter;
             _cmbCvObjectTypeTypeAutoCompleteManager = serviceFactory.GetTypeAutoCompleteManager

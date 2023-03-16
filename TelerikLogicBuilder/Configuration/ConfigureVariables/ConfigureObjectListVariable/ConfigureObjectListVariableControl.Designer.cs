@@ -28,446 +28,469 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxVariable = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelVariable = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCvListName = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListMemberName = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListVariableCategory = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListCastVariableAs = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListTypeName = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListReferenceName = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListReferenceDefinition = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListCastReferenceAs = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListReferenceCategory = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListComments = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListObjectType = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListListType = new Telerik.WinControls.UI.RadLabel();
-            this.lblCvListListControl = new Telerik.WinControls.UI.RadLabel();
-            this.txtCvListName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtCvListMemberName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtCvListCastVariableAs = new Telerik.WinControls.UI.RadTextBox();
-            this.txtCvListTypeName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtCvListReferenceName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtCvListCastReferenceAs = new Telerik.WinControls.UI.RadTextBox();
-            this.txtCvListComments = new Telerik.WinControls.UI.RadTextBox();
-            this.cmbCvListVariableCategory = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCvListReferenceDefinition = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCvListReferenceCategory = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCvListListType = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCvListListControl = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbCvListObjectType = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxVariable)).BeginInit();
-            this.groupBoxVariable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelVariable)).BeginInit();
-            this.radPanelVariable.PanelContainer.SuspendLayout();
-            this.radPanelVariable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListMemberName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListVariableCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListCastVariableAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListTypeName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListReferenceName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListReferenceDefinition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListCastReferenceAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListReferenceCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListObjectType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListListControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListMemberName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListCastVariableAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListTypeName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListReferenceName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListCastReferenceAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListVariableCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListReferenceDefinition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListReferenceCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListListControl)).BeginInit();
-            this.SuspendLayout();
+            groupBoxVariable = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelVariable = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            cmbCvListReferenceDefinition = new Telerik.WinControls.UI.RadDropDownList();
+            cmbCvListVariableCategory = new Telerik.WinControls.UI.RadDropDownList();
+            txtCvListName = new Telerik.WinControls.UI.RadTextBox();
+            lblCvListName = new Telerik.WinControls.UI.RadLabel();
+            lblCvListMemberName = new Telerik.WinControls.UI.RadLabel();
+            lblCvListVariableCategory = new Telerik.WinControls.UI.RadLabel();
+            lblCvListCastVariableAs = new Telerik.WinControls.UI.RadLabel();
+            lblCvListTypeName = new Telerik.WinControls.UI.RadLabel();
+            lblCvListReferenceName = new Telerik.WinControls.UI.RadLabel();
+            lblCvListReferenceDefinition = new Telerik.WinControls.UI.RadLabel();
+            lblCvListCastReferenceAs = new Telerik.WinControls.UI.RadLabel();
+            lblCvListReferenceCategory = new Telerik.WinControls.UI.RadLabel();
+            lblCvListComments = new Telerik.WinControls.UI.RadLabel();
+            lblCvListObjectType = new Telerik.WinControls.UI.RadLabel();
+            lblCvListListType = new Telerik.WinControls.UI.RadLabel();
+            lblCvListListControl = new Telerik.WinControls.UI.RadLabel();
+            txtCvListMemberName = new Telerik.WinControls.UI.RadTextBox();
+            txtCvListCastVariableAs = new Telerik.WinControls.UI.RadTextBox();
+            txtCvListTypeName = new Telerik.WinControls.UI.RadTextBox();
+            txtCvListReferenceName = new Telerik.WinControls.UI.RadTextBox();
+            txtCvListCastReferenceAs = new Telerik.WinControls.UI.RadTextBox();
+            txtCvListComments = new Telerik.WinControls.UI.RadTextBox();
+            cmbCvListReferenceCategory = new Telerik.WinControls.UI.RadDropDownList();
+            cmbCvListListType = new Telerik.WinControls.UI.RadDropDownList();
+            cmbCvListListControl = new Telerik.WinControls.UI.RadDropDownList();
+            cmbCvListObjectType = new UserControls.AutoCompleteRadDropDownList();
+            ((System.ComponentModel.ISupportInitialize)groupBoxVariable).BeginInit();
+            groupBoxVariable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelVariable).BeginInit();
+            radPanelVariable.PanelContainer.SuspendLayout();
+            radPanelVariable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListReferenceDefinition).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListVariableCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListMemberName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListVariableCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListCastVariableAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListTypeName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListReferenceName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListReferenceDefinition).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListCastReferenceAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListReferenceCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListObjectType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListListControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListMemberName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListCastVariableAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListTypeName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListReferenceName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListCastReferenceAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListReferenceCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListListControl).BeginInit();
+            SuspendLayout();
             // 
             // groupBoxVariable
             // 
-            this.groupBoxVariable.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxVariable.Controls.Add(this.radPanelVariable);
-            this.groupBoxVariable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxVariable.HeaderText = "Object List Variable";
-            this.groupBoxVariable.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxVariable.Name = "groupBoxVariable";
-            this.groupBoxVariable.Size = new System.Drawing.Size(855, 749);
-            this.groupBoxVariable.TabIndex = 0;
-            this.groupBoxVariable.Text = "Object List Variable";
+            groupBoxVariable.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            groupBoxVariable.Controls.Add(radPanelVariable);
+            groupBoxVariable.Dock = System.Windows.Forms.DockStyle.Fill;
+            groupBoxVariable.HeaderText = "Object List Variable";
+            groupBoxVariable.Location = new System.Drawing.Point(0, 0);
+            groupBoxVariable.Name = "groupBoxVariable";
+            groupBoxVariable.Size = new System.Drawing.Size(855, 749);
+            groupBoxVariable.TabIndex = 0;
+            groupBoxVariable.Text = "Object List Variable";
             // 
             // radPanelVariable
             // 
-            this.radPanelVariable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelVariable.Location = new System.Drawing.Point(2, 18);
-            this.radPanelVariable.Name = "radPanelVariable";
+            radPanelVariable.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelVariable.Location = new System.Drawing.Point(2, 18);
+            radPanelVariable.Name = "radPanelVariable";
             // 
             // radPanelVariable.PanelContainer
             // 
-            this.radPanelVariable.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radPanelVariable.PanelContainer.Size = new System.Drawing.Size(849, 727);
-            this.radPanelVariable.Size = new System.Drawing.Size(851, 729);
-            this.radPanelVariable.TabIndex = 0;
+            radPanelVariable.PanelContainer.Controls.Add(radPanelTableParent);
+            radPanelVariable.PanelContainer.Size = new System.Drawing.Size(849, 727);
+            radPanelVariable.Size = new System.Drawing.Size(851, 729);
+            radPanelVariable.TabIndex = 0;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(851, 508);
-            this.radPanelTableParent.TabIndex = 0;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 508);
+            radPanelTableParent.TabIndex = 0;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.cmbCvListReferenceDefinition, 2, 13);
-            this.tableLayoutPanel.Controls.Add(this.cmbCvListVariableCategory, 2, 5);
-            this.tableLayoutPanel.Controls.Add(this.txtCvListName, 2, 1);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListName, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListMemberName, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListVariableCategory, 1, 5);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListCastVariableAs, 1, 7);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListTypeName, 1, 9);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListReferenceName, 1, 11);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListReferenceDefinition, 1, 13);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListCastReferenceAs, 1, 15);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListReferenceCategory, 1, 17);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListComments, 1, 19);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListObjectType, 1, 21);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListListType, 1, 23);
-            this.tableLayoutPanel.Controls.Add(this.lblCvListListControl, 1, 25);
-            this.tableLayoutPanel.Controls.Add(this.txtCvListMemberName, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.txtCvListCastVariableAs, 2, 7);
-            this.tableLayoutPanel.Controls.Add(this.txtCvListTypeName, 2, 9);
-            this.tableLayoutPanel.Controls.Add(this.txtCvListReferenceName, 2, 11);
-            this.tableLayoutPanel.Controls.Add(this.txtCvListCastReferenceAs, 2, 15);
-            this.tableLayoutPanel.Controls.Add(this.txtCvListComments, 2, 19);
-            this.tableLayoutPanel.Controls.Add(this.cmbCvListReferenceCategory, 2, 17);
-            this.tableLayoutPanel.Controls.Add(this.cmbCvListListType, 2, 23);
-            this.tableLayoutPanel.Controls.Add(this.cmbCvListListControl, 2, 25);
-            this.tableLayoutPanel.Controls.Add(this.cmbCvListObjectType, 2, 21);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 28;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(851, 508);
-            this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // lblCvListName
-            // 
-            this.lblCvListName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListName.Location = new System.Drawing.Point(28, 23);
-            this.lblCvListName.Name = "lblCvListName";
-            this.lblCvListName.Size = new System.Drawing.Size(39, 18);
-            this.lblCvListName.TabIndex = 0;
-            this.lblCvListName.Text = "Name:";
-            // 
-            // lblCvListMemberName
-            // 
-            this.lblCvListMemberName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListMemberName.Location = new System.Drawing.Point(28, 59);
-            this.lblCvListMemberName.Name = "lblCvListMemberName";
-            this.lblCvListMemberName.Size = new System.Drawing.Size(84, 18);
-            this.lblCvListMemberName.TabIndex = 2;
-            this.lblCvListMemberName.Text = "Member Name:";
-            // 
-            // lblCvListVariableCategory
-            // 
-            this.lblCvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListVariableCategory.Location = new System.Drawing.Point(28, 95);
-            this.lblCvListVariableCategory.Name = "lblCvListVariableCategory";
-            this.lblCvListVariableCategory.Size = new System.Drawing.Size(98, 18);
-            this.lblCvListVariableCategory.TabIndex = 4;
-            this.lblCvListVariableCategory.Text = "Variable Category:";
-            // 
-            // lblCvListCastVariableAs
-            // 
-            this.lblCvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListCastVariableAs.Location = new System.Drawing.Point(28, 131);
-            this.lblCvListCastVariableAs.Name = "lblCvListCastVariableAs";
-            this.lblCvListCastVariableAs.Size = new System.Drawing.Size(89, 18);
-            this.lblCvListCastVariableAs.TabIndex = 6;
-            this.lblCvListCastVariableAs.Text = "Cast Variable As:";
-            // 
-            // lblCvListTypeName
-            // 
-            this.lblCvListTypeName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListTypeName.Location = new System.Drawing.Point(28, 167);
-            this.lblCvListTypeName.Name = "lblCvListTypeName";
-            this.lblCvListTypeName.Size = new System.Drawing.Size(66, 18);
-            this.lblCvListTypeName.TabIndex = 8;
-            this.lblCvListTypeName.Text = "Type Name:";
-            // 
-            // lblCvListReferenceName
-            // 
-            this.lblCvListReferenceName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListReferenceName.Location = new System.Drawing.Point(28, 203);
-            this.lblCvListReferenceName.Name = "lblCvListReferenceName";
-            this.lblCvListReferenceName.Size = new System.Drawing.Size(91, 18);
-            this.lblCvListReferenceName.TabIndex = 10;
-            this.lblCvListReferenceName.Text = "Reference Name:";
-            // 
-            // lblCvListReferenceDefinition
-            // 
-            this.lblCvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListReferenceDefinition.Location = new System.Drawing.Point(28, 239);
-            this.lblCvListReferenceDefinition.Name = "lblCvListReferenceDefinition";
-            this.lblCvListReferenceDefinition.Size = new System.Drawing.Size(110, 18);
-            this.lblCvListReferenceDefinition.TabIndex = 12;
-            this.lblCvListReferenceDefinition.Text = "Reference Definition:";
-            // 
-            // lblCvListCastReferenceAs
-            // 
-            this.lblCvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListCastReferenceAs.Location = new System.Drawing.Point(28, 275);
-            this.lblCvListCastReferenceAs.Name = "lblCvListCastReferenceAs";
-            this.lblCvListCastReferenceAs.Size = new System.Drawing.Size(98, 18);
-            this.lblCvListCastReferenceAs.TabIndex = 14;
-            this.lblCvListCastReferenceAs.Text = "Cast Reference As:";
-            // 
-            // lblCvListReferenceCategory
-            // 
-            this.lblCvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListReferenceCategory.Location = new System.Drawing.Point(28, 311);
-            this.lblCvListReferenceCategory.Name = "lblCvListReferenceCategory";
-            this.lblCvListReferenceCategory.Size = new System.Drawing.Size(107, 18);
-            this.lblCvListReferenceCategory.TabIndex = 16;
-            this.lblCvListReferenceCategory.Text = "Reference Category:";
-            // 
-            // lblCvListComments
-            // 
-            this.lblCvListComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListComments.Location = new System.Drawing.Point(28, 347);
-            this.lblCvListComments.Name = "lblCvListComments";
-            this.lblCvListComments.Size = new System.Drawing.Size(63, 18);
-            this.lblCvListComments.TabIndex = 18;
-            this.lblCvListComments.Text = "Comments:";
-            // 
-            // lblCvListObjectType
-            // 
-            this.lblCvListObjectType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListObjectType.Location = new System.Drawing.Point(28, 383);
-            this.lblCvListObjectType.Name = "lblCvListObjectType";
-            this.lblCvListObjectType.Size = new System.Drawing.Size(69, 18);
-            this.lblCvListObjectType.TabIndex = 20;
-            this.lblCvListObjectType.Text = "Object Type:";
-            // 
-            // lblCvListListType
-            // 
-            this.lblCvListListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListListType.Location = new System.Drawing.Point(28, 419);
-            this.lblCvListListType.Name = "lblCvListListType";
-            this.lblCvListListType.Size = new System.Drawing.Size(52, 18);
-            this.lblCvListListType.TabIndex = 22;
-            this.lblCvListListType.Text = "List Type:";
-            // 
-            // lblCvListListControl
-            // 
-            this.lblCvListListControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCvListListControl.Location = new System.Drawing.Point(28, 455);
-            this.lblCvListListControl.Name = "lblCvListListControl";
-            this.lblCvListListControl.Size = new System.Drawing.Size(130, 18);
-            this.lblCvListListControl.TabIndex = 24;
-            this.lblCvListListControl.Text = "Design-time List Control:";
-            // 
-            // txtCvListName
-            // 
-            this.txtCvListName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCvListName.Location = new System.Drawing.Point(291, 23);
-            this.txtCvListName.Name = "txtCvListName";
-            this.txtCvListName.Size = new System.Drawing.Size(530, 20);
-            this.txtCvListName.TabIndex = 1;
-            // 
-            // txtCvListMemberName
-            // 
-            this.txtCvListMemberName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCvListMemberName.Location = new System.Drawing.Point(291, 59);
-            this.txtCvListMemberName.Name = "txtCvListMemberName";
-            this.txtCvListMemberName.Size = new System.Drawing.Size(530, 20);
-            this.txtCvListMemberName.TabIndex = 3;
-            // 
-            // txtCvListCastVariableAs
-            // 
-            this.txtCvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCvListCastVariableAs.Location = new System.Drawing.Point(291, 131);
-            this.txtCvListCastVariableAs.Name = "txtCvListCastVariableAs";
-            this.txtCvListCastVariableAs.Size = new System.Drawing.Size(530, 20);
-            this.txtCvListCastVariableAs.TabIndex = 7;
-            // 
-            // txtCvListTypeName
-            // 
-            this.txtCvListTypeName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCvListTypeName.Location = new System.Drawing.Point(291, 167);
-            this.txtCvListTypeName.Name = "txtCvListTypeName";
-            this.txtCvListTypeName.Size = new System.Drawing.Size(530, 20);
-            this.txtCvListTypeName.TabIndex = 9;
-            // 
-            // txtCvListReferenceName
-            // 
-            this.txtCvListReferenceName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCvListReferenceName.Location = new System.Drawing.Point(291, 203);
-            this.txtCvListReferenceName.Name = "txtCvListReferenceName";
-            this.txtCvListReferenceName.Size = new System.Drawing.Size(530, 20);
-            this.txtCvListReferenceName.TabIndex = 11;
-            // 
-            // txtCvListCastReferenceAs
-            // 
-            this.txtCvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCvListCastReferenceAs.Location = new System.Drawing.Point(291, 275);
-            this.txtCvListCastReferenceAs.Name = "txtCvListCastReferenceAs";
-            this.txtCvListCastReferenceAs.Size = new System.Drawing.Size(530, 20);
-            this.txtCvListCastReferenceAs.TabIndex = 15;
-            // 
-            // txtCvListComments
-            // 
-            this.txtCvListComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtCvListComments.Location = new System.Drawing.Point(291, 347);
-            this.txtCvListComments.Name = "txtCvListComments";
-            this.txtCvListComments.Size = new System.Drawing.Size(530, 20);
-            this.txtCvListComments.TabIndex = 19;
-            // 
-            // cmbCvListVariableCategory
-            // 
-            this.cmbCvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCvListVariableCategory.DropDownAnimationEnabled = true;
-            this.cmbCvListVariableCategory.Location = new System.Drawing.Point(291, 95);
-            this.cmbCvListVariableCategory.Name = "cmbCvListVariableCategory";
-            this.cmbCvListVariableCategory.Size = new System.Drawing.Size(530, 20);
-            this.cmbCvListVariableCategory.TabIndex = 5;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(cmbCvListReferenceDefinition, 2, 13);
+            tableLayoutPanel.Controls.Add(cmbCvListVariableCategory, 2, 5);
+            tableLayoutPanel.Controls.Add(txtCvListName, 2, 1);
+            tableLayoutPanel.Controls.Add(lblCvListName, 1, 1);
+            tableLayoutPanel.Controls.Add(lblCvListMemberName, 1, 3);
+            tableLayoutPanel.Controls.Add(lblCvListVariableCategory, 1, 5);
+            tableLayoutPanel.Controls.Add(lblCvListCastVariableAs, 1, 7);
+            tableLayoutPanel.Controls.Add(lblCvListTypeName, 1, 9);
+            tableLayoutPanel.Controls.Add(lblCvListReferenceName, 1, 11);
+            tableLayoutPanel.Controls.Add(lblCvListReferenceDefinition, 1, 13);
+            tableLayoutPanel.Controls.Add(lblCvListCastReferenceAs, 1, 15);
+            tableLayoutPanel.Controls.Add(lblCvListReferenceCategory, 1, 17);
+            tableLayoutPanel.Controls.Add(lblCvListComments, 1, 19);
+            tableLayoutPanel.Controls.Add(lblCvListObjectType, 1, 21);
+            tableLayoutPanel.Controls.Add(lblCvListListType, 1, 23);
+            tableLayoutPanel.Controls.Add(lblCvListListControl, 1, 25);
+            tableLayoutPanel.Controls.Add(txtCvListMemberName, 2, 3);
+            tableLayoutPanel.Controls.Add(txtCvListCastVariableAs, 2, 7);
+            tableLayoutPanel.Controls.Add(txtCvListTypeName, 2, 9);
+            tableLayoutPanel.Controls.Add(txtCvListReferenceName, 2, 11);
+            tableLayoutPanel.Controls.Add(txtCvListCastReferenceAs, 2, 15);
+            tableLayoutPanel.Controls.Add(txtCvListComments, 2, 19);
+            tableLayoutPanel.Controls.Add(cmbCvListReferenceCategory, 2, 17);
+            tableLayoutPanel.Controls.Add(cmbCvListListType, 2, 23);
+            tableLayoutPanel.Controls.Add(cmbCvListListControl, 2, 25);
+            tableLayoutPanel.Controls.Add(cmbCvListObjectType, 2, 21);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 28;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 508);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // cmbCvListReferenceDefinition
             // 
-            this.cmbCvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCvListReferenceDefinition.DropDownAnimationEnabled = true;
-            this.cmbCvListReferenceDefinition.Location = new System.Drawing.Point(291, 239);
-            this.cmbCvListReferenceDefinition.Name = "cmbCvListReferenceDefinition";
-            this.cmbCvListReferenceDefinition.Size = new System.Drawing.Size(530, 20);
-            this.cmbCvListReferenceDefinition.TabIndex = 13;
+            cmbCvListReferenceDefinition.AutoSize = false;
+            cmbCvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCvListReferenceDefinition.DropDownAnimationEnabled = true;
+            cmbCvListReferenceDefinition.Location = new System.Drawing.Point(288, 236);
+            cmbCvListReferenceDefinition.Margin = new System.Windows.Forms.Padding(0);
+            cmbCvListReferenceDefinition.Name = "cmbCvListReferenceDefinition";
+            cmbCvListReferenceDefinition.Size = new System.Drawing.Size(534, 30);
+            cmbCvListReferenceDefinition.TabIndex = 13;
+            // 
+            // cmbCvListVariableCategory
+            // 
+            cmbCvListVariableCategory.AutoSize = false;
+            cmbCvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCvListVariableCategory.DropDownAnimationEnabled = true;
+            cmbCvListVariableCategory.Location = new System.Drawing.Point(288, 92);
+            cmbCvListVariableCategory.Margin = new System.Windows.Forms.Padding(0);
+            cmbCvListVariableCategory.Name = "cmbCvListVariableCategory";
+            cmbCvListVariableCategory.Size = new System.Drawing.Size(534, 30);
+            cmbCvListVariableCategory.TabIndex = 5;
+            // 
+            // txtCvListName
+            // 
+            txtCvListName.AutoSize = false;
+            txtCvListName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCvListName.Location = new System.Drawing.Point(288, 20);
+            txtCvListName.Margin = new System.Windows.Forms.Padding(0);
+            txtCvListName.Name = "txtCvListName";
+            txtCvListName.Size = new System.Drawing.Size(534, 30);
+            txtCvListName.TabIndex = 1;
+            // 
+            // lblCvListName
+            // 
+            lblCvListName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListName.Location = new System.Drawing.Point(28, 23);
+            lblCvListName.Name = "lblCvListName";
+            lblCvListName.Size = new System.Drawing.Size(39, 18);
+            lblCvListName.TabIndex = 0;
+            lblCvListName.Text = "Name:";
+            // 
+            // lblCvListMemberName
+            // 
+            lblCvListMemberName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListMemberName.Location = new System.Drawing.Point(28, 59);
+            lblCvListMemberName.Name = "lblCvListMemberName";
+            lblCvListMemberName.Size = new System.Drawing.Size(84, 18);
+            lblCvListMemberName.TabIndex = 2;
+            lblCvListMemberName.Text = "Member Name:";
+            // 
+            // lblCvListVariableCategory
+            // 
+            lblCvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListVariableCategory.Location = new System.Drawing.Point(28, 95);
+            lblCvListVariableCategory.Name = "lblCvListVariableCategory";
+            lblCvListVariableCategory.Size = new System.Drawing.Size(98, 18);
+            lblCvListVariableCategory.TabIndex = 4;
+            lblCvListVariableCategory.Text = "Variable Category:";
+            // 
+            // lblCvListCastVariableAs
+            // 
+            lblCvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListCastVariableAs.Location = new System.Drawing.Point(28, 131);
+            lblCvListCastVariableAs.Name = "lblCvListCastVariableAs";
+            lblCvListCastVariableAs.Size = new System.Drawing.Size(89, 18);
+            lblCvListCastVariableAs.TabIndex = 6;
+            lblCvListCastVariableAs.Text = "Cast Variable As:";
+            // 
+            // lblCvListTypeName
+            // 
+            lblCvListTypeName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListTypeName.Location = new System.Drawing.Point(28, 167);
+            lblCvListTypeName.Name = "lblCvListTypeName";
+            lblCvListTypeName.Size = new System.Drawing.Size(66, 18);
+            lblCvListTypeName.TabIndex = 8;
+            lblCvListTypeName.Text = "Type Name:";
+            // 
+            // lblCvListReferenceName
+            // 
+            lblCvListReferenceName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListReferenceName.Location = new System.Drawing.Point(28, 203);
+            lblCvListReferenceName.Name = "lblCvListReferenceName";
+            lblCvListReferenceName.Size = new System.Drawing.Size(91, 18);
+            lblCvListReferenceName.TabIndex = 10;
+            lblCvListReferenceName.Text = "Reference Name:";
+            // 
+            // lblCvListReferenceDefinition
+            // 
+            lblCvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListReferenceDefinition.Location = new System.Drawing.Point(28, 239);
+            lblCvListReferenceDefinition.Name = "lblCvListReferenceDefinition";
+            lblCvListReferenceDefinition.Size = new System.Drawing.Size(110, 18);
+            lblCvListReferenceDefinition.TabIndex = 12;
+            lblCvListReferenceDefinition.Text = "Reference Definition:";
+            // 
+            // lblCvListCastReferenceAs
+            // 
+            lblCvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListCastReferenceAs.Location = new System.Drawing.Point(28, 275);
+            lblCvListCastReferenceAs.Name = "lblCvListCastReferenceAs";
+            lblCvListCastReferenceAs.Size = new System.Drawing.Size(98, 18);
+            lblCvListCastReferenceAs.TabIndex = 14;
+            lblCvListCastReferenceAs.Text = "Cast Reference As:";
+            // 
+            // lblCvListReferenceCategory
+            // 
+            lblCvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListReferenceCategory.Location = new System.Drawing.Point(28, 311);
+            lblCvListReferenceCategory.Name = "lblCvListReferenceCategory";
+            lblCvListReferenceCategory.Size = new System.Drawing.Size(107, 18);
+            lblCvListReferenceCategory.TabIndex = 16;
+            lblCvListReferenceCategory.Text = "Reference Category:";
+            // 
+            // lblCvListComments
+            // 
+            lblCvListComments.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListComments.Location = new System.Drawing.Point(28, 347);
+            lblCvListComments.Name = "lblCvListComments";
+            lblCvListComments.Size = new System.Drawing.Size(63, 18);
+            lblCvListComments.TabIndex = 18;
+            lblCvListComments.Text = "Comments:";
+            // 
+            // lblCvListObjectType
+            // 
+            lblCvListObjectType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListObjectType.Location = new System.Drawing.Point(28, 383);
+            lblCvListObjectType.Name = "lblCvListObjectType";
+            lblCvListObjectType.Size = new System.Drawing.Size(69, 18);
+            lblCvListObjectType.TabIndex = 20;
+            lblCvListObjectType.Text = "Object Type:";
+            // 
+            // lblCvListListType
+            // 
+            lblCvListListType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListListType.Location = new System.Drawing.Point(28, 419);
+            lblCvListListType.Name = "lblCvListListType";
+            lblCvListListType.Size = new System.Drawing.Size(52, 18);
+            lblCvListListType.TabIndex = 22;
+            lblCvListListType.Text = "List Type:";
+            // 
+            // lblCvListListControl
+            // 
+            lblCvListListControl.Dock = System.Windows.Forms.DockStyle.Top;
+            lblCvListListControl.Location = new System.Drawing.Point(28, 455);
+            lblCvListListControl.Name = "lblCvListListControl";
+            lblCvListListControl.Size = new System.Drawing.Size(130, 18);
+            lblCvListListControl.TabIndex = 24;
+            lblCvListListControl.Text = "Design-time List Control:";
+            // 
+            // txtCvListMemberName
+            // 
+            txtCvListMemberName.AutoSize = false;
+            txtCvListMemberName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCvListMemberName.Location = new System.Drawing.Point(288, 56);
+            txtCvListMemberName.Margin = new System.Windows.Forms.Padding(0);
+            txtCvListMemberName.Name = "txtCvListMemberName";
+            txtCvListMemberName.Size = new System.Drawing.Size(534, 30);
+            txtCvListMemberName.TabIndex = 3;
+            // 
+            // txtCvListCastVariableAs
+            // 
+            txtCvListCastVariableAs.AutoSize = false;
+            txtCvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCvListCastVariableAs.Location = new System.Drawing.Point(288, 128);
+            txtCvListCastVariableAs.Margin = new System.Windows.Forms.Padding(0);
+            txtCvListCastVariableAs.Name = "txtCvListCastVariableAs";
+            txtCvListCastVariableAs.Size = new System.Drawing.Size(534, 30);
+            txtCvListCastVariableAs.TabIndex = 7;
+            // 
+            // txtCvListTypeName
+            // 
+            txtCvListTypeName.AutoSize = false;
+            txtCvListTypeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCvListTypeName.Location = new System.Drawing.Point(288, 164);
+            txtCvListTypeName.Margin = new System.Windows.Forms.Padding(0);
+            txtCvListTypeName.Name = "txtCvListTypeName";
+            txtCvListTypeName.Size = new System.Drawing.Size(534, 30);
+            txtCvListTypeName.TabIndex = 9;
+            // 
+            // txtCvListReferenceName
+            // 
+            txtCvListReferenceName.AutoSize = false;
+            txtCvListReferenceName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCvListReferenceName.Location = new System.Drawing.Point(288, 200);
+            txtCvListReferenceName.Margin = new System.Windows.Forms.Padding(0);
+            txtCvListReferenceName.Name = "txtCvListReferenceName";
+            txtCvListReferenceName.Size = new System.Drawing.Size(534, 30);
+            txtCvListReferenceName.TabIndex = 11;
+            // 
+            // txtCvListCastReferenceAs
+            // 
+            txtCvListCastReferenceAs.AutoSize = false;
+            txtCvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCvListCastReferenceAs.Location = new System.Drawing.Point(288, 272);
+            txtCvListCastReferenceAs.Margin = new System.Windows.Forms.Padding(0);
+            txtCvListCastReferenceAs.Name = "txtCvListCastReferenceAs";
+            txtCvListCastReferenceAs.Size = new System.Drawing.Size(534, 30);
+            txtCvListCastReferenceAs.TabIndex = 15;
+            // 
+            // txtCvListComments
+            // 
+            txtCvListComments.AutoSize = false;
+            txtCvListComments.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtCvListComments.Location = new System.Drawing.Point(288, 344);
+            txtCvListComments.Margin = new System.Windows.Forms.Padding(0);
+            txtCvListComments.Name = "txtCvListComments";
+            txtCvListComments.Size = new System.Drawing.Size(534, 30);
+            txtCvListComments.TabIndex = 19;
             // 
             // cmbCvListReferenceCategory
             // 
-            this.cmbCvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCvListReferenceCategory.DropDownAnimationEnabled = true;
-            this.cmbCvListReferenceCategory.Location = new System.Drawing.Point(291, 311);
-            this.cmbCvListReferenceCategory.Name = "cmbCvListReferenceCategory";
-            this.cmbCvListReferenceCategory.Size = new System.Drawing.Size(530, 20);
-            this.cmbCvListReferenceCategory.TabIndex = 17;
+            cmbCvListReferenceCategory.AutoSize = false;
+            cmbCvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCvListReferenceCategory.DropDownAnimationEnabled = true;
+            cmbCvListReferenceCategory.Location = new System.Drawing.Point(288, 308);
+            cmbCvListReferenceCategory.Margin = new System.Windows.Forms.Padding(0);
+            cmbCvListReferenceCategory.Name = "cmbCvListReferenceCategory";
+            cmbCvListReferenceCategory.Size = new System.Drawing.Size(534, 30);
+            cmbCvListReferenceCategory.TabIndex = 17;
             // 
             // cmbCvListListType
             // 
-            this.cmbCvListListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCvListListType.DropDownAnimationEnabled = true;
-            this.cmbCvListListType.Location = new System.Drawing.Point(291, 419);
-            this.cmbCvListListType.Name = "cmbCvListListType";
-            this.cmbCvListListType.Size = new System.Drawing.Size(530, 20);
-            this.cmbCvListListType.TabIndex = 23;
+            cmbCvListListType.AutoSize = false;
+            cmbCvListListType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCvListListType.DropDownAnimationEnabled = true;
+            cmbCvListListType.Location = new System.Drawing.Point(288, 416);
+            cmbCvListListType.Margin = new System.Windows.Forms.Padding(0);
+            cmbCvListListType.Name = "cmbCvListListType";
+            cmbCvListListType.Size = new System.Drawing.Size(534, 30);
+            cmbCvListListType.TabIndex = 23;
             // 
             // cmbCvListListControl
             // 
-            this.cmbCvListListControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCvListListControl.DropDownAnimationEnabled = true;
-            this.cmbCvListListControl.Location = new System.Drawing.Point(291, 455);
-            this.cmbCvListListControl.Name = "cmbCvListListControl";
-            this.cmbCvListListControl.Size = new System.Drawing.Size(530, 20);
-            this.cmbCvListListControl.TabIndex = 25;
+            cmbCvListListControl.AutoSize = false;
+            cmbCvListListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCvListListControl.DropDownAnimationEnabled = true;
+            cmbCvListListControl.Location = new System.Drawing.Point(288, 452);
+            cmbCvListListControl.Margin = new System.Windows.Forms.Padding(0);
+            cmbCvListListControl.Name = "cmbCvListListControl";
+            cmbCvListListControl.Size = new System.Drawing.Size(534, 30);
+            cmbCvListListControl.TabIndex = 25;
             // 
             // cmbCvListObjectType
             // 
-            this.cmbCvListObjectType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbCvListObjectType.Location = new System.Drawing.Point(288, 380);
-            this.cmbCvListObjectType.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbCvListObjectType.Name = "cmbCvListObjectType";
-            this.cmbCvListObjectType.SelectedText = "";
-            this.cmbCvListObjectType.Size = new System.Drawing.Size(536, 27);
-            this.cmbCvListObjectType.TabIndex = 21;
+            cmbCvListObjectType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbCvListObjectType.Location = new System.Drawing.Point(288, 380);
+            cmbCvListObjectType.Margin = new System.Windows.Forms.Padding(0);
+            cmbCvListObjectType.Name = "cmbCvListObjectType";
+            cmbCvListObjectType.SelectedText = "";
+            cmbCvListObjectType.Size = new System.Drawing.Size(534, 30);
+            cmbCvListObjectType.TabIndex = 21;
             // 
             // ConfigureObjectListVariableControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxVariable);
-            this.Name = "ConfigureObjectListVariableControl";
-            this.Size = new System.Drawing.Size(855, 749);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxVariable)).EndInit();
-            this.groupBoxVariable.ResumeLayout(false);
-            this.radPanelVariable.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelVariable)).EndInit();
-            this.radPanelVariable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListMemberName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListVariableCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListCastVariableAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListTypeName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListReferenceName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListReferenceDefinition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListCastReferenceAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListReferenceCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListObjectType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCvListListControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListMemberName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListCastVariableAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListTypeName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListReferenceName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListCastReferenceAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCvListComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListVariableCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListReferenceDefinition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListReferenceCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCvListListControl)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(groupBoxVariable);
+            Name = "ConfigureObjectListVariableControl";
+            Size = new System.Drawing.Size(855, 749);
+            ((System.ComponentModel.ISupportInitialize)groupBoxVariable).EndInit();
+            groupBoxVariable.ResumeLayout(false);
+            radPanelVariable.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelVariable).EndInit();
+            radPanelVariable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListReferenceDefinition).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListVariableCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListMemberName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListVariableCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListCastVariableAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListTypeName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListReferenceName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListReferenceDefinition).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListCastReferenceAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListReferenceCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListObjectType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblCvListListControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListMemberName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListCastVariableAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListTypeName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListReferenceName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListCastReferenceAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCvListComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListReferenceCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbCvListListControl).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

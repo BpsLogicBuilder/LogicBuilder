@@ -28,558 +28,583 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxVariable = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelVariable = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.lblLvListName = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListMemberName = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListVariableCategory = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListCastVariableAs = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListTypeName = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListReferenceName = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListReferenceDefinition = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListCastReferenceAs = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListReferenceCategory = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListComments = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListLiteralType = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListListType = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListListControl = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListElementControl = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListPropertySource = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListDefaultValue = new Telerik.WinControls.UI.RadLabel();
-            this.lblLvListDomain = new Telerik.WinControls.UI.RadLabel();
-            this.txtLvListName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtLvListMemberName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtLvListCastVariableAs = new Telerik.WinControls.UI.RadTextBox();
-            this.txtLvListTypeName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtLvListReferenceName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtLvListCastReferenceAs = new Telerik.WinControls.UI.RadTextBox();
-            this.txtLvListComments = new Telerik.WinControls.UI.RadTextBox();
-            this.cmbLvListVariableCategory = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLvListReferenceDefinition = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLvListReferenceCategory = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLvListLiteralType = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLvListListType = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLvListListControl = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLvListElementControl = new Telerik.WinControls.UI.RadDropDownList();
-            this.cmbLvListPropertySource = new ABIS.LogicBuilder.FlowBuilder.UserControls.AutoCompleteRadDropDownList();
-            this.txtLvListDefaultValue = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
-            this.txtLvListDomain = new ABIS.LogicBuilder.FlowBuilder.UserControls.HelperButtonTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxVariable)).BeginInit();
-            this.groupBoxVariable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelVariable)).BeginInit();
-            this.radPanelVariable.PanelContainer.SuspendLayout();
-            this.radPanelVariable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListMemberName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListVariableCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListCastVariableAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListTypeName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListReferenceName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListReferenceDefinition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListCastReferenceAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListReferenceCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListLiteralType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListListControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListElementControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListPropertySource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListDefaultValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListDomain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListMemberName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListCastVariableAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListTypeName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListReferenceName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListCastReferenceAs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListComments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListVariableCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListReferenceDefinition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListReferenceCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListLiteralType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListListType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListListControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListElementControl)).BeginInit();
-            this.SuspendLayout();
+            groupBoxVariable = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelVariable = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            cmbLvListReferenceDefinition = new Telerik.WinControls.UI.RadDropDownList();
+            lblLvListVariableCategory = new Telerik.WinControls.UI.RadLabel();
+            lblLvListName = new Telerik.WinControls.UI.RadLabel();
+            lblLvListMemberName = new Telerik.WinControls.UI.RadLabel();
+            lblLvListCastVariableAs = new Telerik.WinControls.UI.RadLabel();
+            lblLvListTypeName = new Telerik.WinControls.UI.RadLabel();
+            lblLvListReferenceName = new Telerik.WinControls.UI.RadLabel();
+            lblLvListReferenceDefinition = new Telerik.WinControls.UI.RadLabel();
+            lblLvListCastReferenceAs = new Telerik.WinControls.UI.RadLabel();
+            lblLvListReferenceCategory = new Telerik.WinControls.UI.RadLabel();
+            lblLvListComments = new Telerik.WinControls.UI.RadLabel();
+            lblLvListLiteralType = new Telerik.WinControls.UI.RadLabel();
+            lblLvListListType = new Telerik.WinControls.UI.RadLabel();
+            lblLvListListControl = new Telerik.WinControls.UI.RadLabel();
+            lblLvListElementControl = new Telerik.WinControls.UI.RadLabel();
+            lblLvListPropertySource = new Telerik.WinControls.UI.RadLabel();
+            lblLvListDefaultValue = new Telerik.WinControls.UI.RadLabel();
+            lblLvListDomain = new Telerik.WinControls.UI.RadLabel();
+            txtLvListName = new Telerik.WinControls.UI.RadTextBox();
+            txtLvListMemberName = new Telerik.WinControls.UI.RadTextBox();
+            txtLvListCastVariableAs = new Telerik.WinControls.UI.RadTextBox();
+            txtLvListTypeName = new Telerik.WinControls.UI.RadTextBox();
+            txtLvListReferenceName = new Telerik.WinControls.UI.RadTextBox();
+            txtLvListCastReferenceAs = new Telerik.WinControls.UI.RadTextBox();
+            txtLvListComments = new Telerik.WinControls.UI.RadTextBox();
+            cmbLvListVariableCategory = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLvListReferenceCategory = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLvListLiteralType = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLvListListType = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLvListListControl = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLvListElementControl = new Telerik.WinControls.UI.RadDropDownList();
+            cmbLvListPropertySource = new UserControls.AutoCompleteRadDropDownList();
+            txtLvListDefaultValue = new UserControls.HelperButtonTextBox();
+            txtLvListDomain = new UserControls.HelperButtonTextBox();
+            ((System.ComponentModel.ISupportInitialize)groupBoxVariable).BeginInit();
+            groupBoxVariable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelVariable).BeginInit();
+            radPanelVariable.PanelContainer.SuspendLayout();
+            radPanelVariable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListReferenceDefinition).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListVariableCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListMemberName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListCastVariableAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListTypeName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListReferenceName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListReferenceDefinition).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListCastReferenceAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListReferenceCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListLiteralType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListListControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListElementControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListPropertySource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListDefaultValue).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListDomain).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListMemberName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListCastVariableAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListTypeName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListReferenceName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListCastReferenceAs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListComments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListVariableCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListReferenceCategory).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListLiteralType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListListType).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListListControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListElementControl).BeginInit();
+            SuspendLayout();
             // 
             // groupBoxVariable
             // 
-            this.groupBoxVariable.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxVariable.Controls.Add(this.radPanelVariable);
-            this.groupBoxVariable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxVariable.HeaderText = "Literal List Variable";
-            this.groupBoxVariable.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxVariable.Name = "groupBoxVariable";
-            this.groupBoxVariable.Size = new System.Drawing.Size(855, 749);
-            this.groupBoxVariable.TabIndex = 0;
-            this.groupBoxVariable.Text = "Literal List Variable";
+            groupBoxVariable.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            groupBoxVariable.Controls.Add(radPanelVariable);
+            groupBoxVariable.Dock = System.Windows.Forms.DockStyle.Fill;
+            groupBoxVariable.HeaderText = "Literal List Variable";
+            groupBoxVariable.Location = new System.Drawing.Point(0, 0);
+            groupBoxVariable.Name = "groupBoxVariable";
+            groupBoxVariable.Size = new System.Drawing.Size(855, 749);
+            groupBoxVariable.TabIndex = 0;
+            groupBoxVariable.Text = "Literal List Variable";
             // 
             // radPanelVariable
             // 
-            this.radPanelVariable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelVariable.Location = new System.Drawing.Point(2, 18);
-            this.radPanelVariable.Name = "radPanelVariable";
+            radPanelVariable.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelVariable.Location = new System.Drawing.Point(2, 18);
+            radPanelVariable.Name = "radPanelVariable";
             // 
             // radPanelVariable.PanelContainer
             // 
-            this.radPanelVariable.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radPanelVariable.PanelContainer.Size = new System.Drawing.Size(849, 727);
-            this.radPanelVariable.Size = new System.Drawing.Size(851, 729);
-            this.radPanelVariable.TabIndex = 0;
+            radPanelVariable.PanelContainer.Controls.Add(radPanelTableParent);
+            radPanelVariable.PanelContainer.Size = new System.Drawing.Size(849, 727);
+            radPanelVariable.Size = new System.Drawing.Size(851, 729);
+            radPanelVariable.TabIndex = 0;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(851, 652);
-            this.radPanelTableParent.TabIndex = 0;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 652);
+            radPanelTableParent.TabIndex = 0;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListReferenceDefinition, 2, 13);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListVariableCategory, 1, 5);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListName, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListMemberName, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListCastVariableAs, 1, 7);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListTypeName, 1, 9);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListReferenceName, 1, 11);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListReferenceDefinition, 1, 13);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListCastReferenceAs, 1, 15);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListReferenceCategory, 1, 17);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListComments, 1, 19);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListLiteralType, 1, 21);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListListType, 1, 23);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListListControl, 1, 25);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListElementControl, 1, 27);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListPropertySource, 1, 29);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListDefaultValue, 1, 31);
-            this.tableLayoutPanel.Controls.Add(this.lblLvListDomain, 1, 33);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListName, 2, 1);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListMemberName, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListCastVariableAs, 2, 7);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListTypeName, 2, 9);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListReferenceName, 2, 11);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListCastReferenceAs, 2, 15);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListComments, 2, 19);
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListVariableCategory, 2, 5);
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListReferenceCategory, 2, 17);
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListLiteralType, 2, 21);
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListListType, 2, 23);
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListListControl, 2, 25);
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListElementControl, 2, 27);
-            this.tableLayoutPanel.Controls.Add(this.cmbLvListPropertySource, 2, 29);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListDefaultValue, 2, 31);
-            this.tableLayoutPanel.Controls.Add(this.txtLvListDomain, 2, 33);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 36;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(851, 652);
-            this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // lblLvListName
-            // 
-            this.lblLvListName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListName.Location = new System.Drawing.Point(28, 23);
-            this.lblLvListName.Name = "lblLvListName";
-            this.lblLvListName.Size = new System.Drawing.Size(39, 18);
-            this.lblLvListName.TabIndex = 0;
-            this.lblLvListName.Text = "Name:";
-            // 
-            // lblLvListMemberName
-            // 
-            this.lblLvListMemberName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListMemberName.Location = new System.Drawing.Point(28, 59);
-            this.lblLvListMemberName.Name = "lblLvListMemberName";
-            this.lblLvListMemberName.Size = new System.Drawing.Size(84, 18);
-            this.lblLvListMemberName.TabIndex = 2;
-            this.lblLvListMemberName.Text = "Member Name:";
-            // 
-            // lblLvListVariableCategory
-            // 
-            this.lblLvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListVariableCategory.Location = new System.Drawing.Point(28, 95);
-            this.lblLvListVariableCategory.Name = "lblLvListVariableCategory";
-            this.lblLvListVariableCategory.Size = new System.Drawing.Size(98, 18);
-            this.lblLvListVariableCategory.TabIndex = 4;
-            this.lblLvListVariableCategory.Text = "Variable Category:";
-            // 
-            // lblLvListCastVariableAs
-            // 
-            this.lblLvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListCastVariableAs.Location = new System.Drawing.Point(28, 131);
-            this.lblLvListCastVariableAs.Name = "lblLvListCastVariableAs";
-            this.lblLvListCastVariableAs.Size = new System.Drawing.Size(89, 18);
-            this.lblLvListCastVariableAs.TabIndex = 6;
-            this.lblLvListCastVariableAs.Text = "Cast Variable As:";
-            // 
-            // lblLvListTypeName
-            // 
-            this.lblLvListTypeName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListTypeName.Location = new System.Drawing.Point(28, 167);
-            this.lblLvListTypeName.Name = "lblLvListTypeName";
-            this.lblLvListTypeName.Size = new System.Drawing.Size(66, 18);
-            this.lblLvListTypeName.TabIndex = 8;
-            this.lblLvListTypeName.Text = "Type Name:";
-            // 
-            // lblLvListReferenceName
-            // 
-            this.lblLvListReferenceName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListReferenceName.Location = new System.Drawing.Point(28, 203);
-            this.lblLvListReferenceName.Name = "lblLvListReferenceName";
-            this.lblLvListReferenceName.Size = new System.Drawing.Size(91, 18);
-            this.lblLvListReferenceName.TabIndex = 10;
-            this.lblLvListReferenceName.Text = "Reference Name:";
-            // 
-            // lblLvListReferenceDefinition
-            // 
-            this.lblLvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListReferenceDefinition.Location = new System.Drawing.Point(28, 239);
-            this.lblLvListReferenceDefinition.Name = "lblLvListReferenceDefinition";
-            this.lblLvListReferenceDefinition.Size = new System.Drawing.Size(110, 18);
-            this.lblLvListReferenceDefinition.TabIndex = 12;
-            this.lblLvListReferenceDefinition.Text = "Reference Definition:";
-            // 
-            // lblLvListCastReferenceAs
-            // 
-            this.lblLvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListCastReferenceAs.Location = new System.Drawing.Point(28, 275);
-            this.lblLvListCastReferenceAs.Name = "lblLvListCastReferenceAs";
-            this.lblLvListCastReferenceAs.Size = new System.Drawing.Size(98, 18);
-            this.lblLvListCastReferenceAs.TabIndex = 14;
-            this.lblLvListCastReferenceAs.Text = "Cast Reference As:";
-            // 
-            // lblLvListReferenceCategory
-            // 
-            this.lblLvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListReferenceCategory.Location = new System.Drawing.Point(28, 311);
-            this.lblLvListReferenceCategory.Name = "lblLvListReferenceCategory";
-            this.lblLvListReferenceCategory.Size = new System.Drawing.Size(107, 18);
-            this.lblLvListReferenceCategory.TabIndex = 16;
-            this.lblLvListReferenceCategory.Text = "Reference Category:";
-            // 
-            // lblLvListComments
-            // 
-            this.lblLvListComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListComments.Location = new System.Drawing.Point(28, 347);
-            this.lblLvListComments.Name = "lblLvListComments";
-            this.lblLvListComments.Size = new System.Drawing.Size(63, 18);
-            this.lblLvListComments.TabIndex = 18;
-            this.lblLvListComments.Text = "Comments:";
-            // 
-            // lblLvListLiteralType
-            // 
-            this.lblLvListLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListLiteralType.Location = new System.Drawing.Point(28, 383);
-            this.lblLvListLiteralType.Name = "lblLvListLiteralType";
-            this.lblLvListLiteralType.Size = new System.Drawing.Size(66, 18);
-            this.lblLvListLiteralType.TabIndex = 20;
-            this.lblLvListLiteralType.Text = "Literal Type:";
-            // 
-            // lblLvListListType
-            // 
-            this.lblLvListListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListListType.Location = new System.Drawing.Point(28, 419);
-            this.lblLvListListType.Name = "lblLvListListType";
-            this.lblLvListListType.Size = new System.Drawing.Size(52, 18);
-            this.lblLvListListType.TabIndex = 22;
-            this.lblLvListListType.Text = "List Type:";
-            // 
-            // lblLvListListControl
-            // 
-            this.lblLvListListControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListListControl.Location = new System.Drawing.Point(28, 455);
-            this.lblLvListListControl.Name = "lblLvListListControl";
-            this.lblLvListListControl.Size = new System.Drawing.Size(130, 18);
-            this.lblLvListListControl.TabIndex = 24;
-            this.lblLvListListControl.Text = "Design-time List Control:";
-            // 
-            // lblLvListElementControl
-            // 
-            this.lblLvListElementControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListElementControl.Location = new System.Drawing.Point(28, 491);
-            this.lblLvListElementControl.Name = "lblLvListElementControl";
-            this.lblLvListElementControl.Size = new System.Drawing.Size(154, 18);
-            this.lblLvListElementControl.TabIndex = 26;
-            this.lblLvListElementControl.Text = "Design-time Element Control:";
-            // 
-            // lblLvListPropertySource
-            // 
-            this.lblLvListPropertySource.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListPropertySource.Location = new System.Drawing.Point(28, 527);
-            this.lblLvListPropertySource.Name = "lblLvListPropertySource";
-            this.lblLvListPropertySource.Size = new System.Drawing.Size(89, 18);
-            this.lblLvListPropertySource.TabIndex = 28;
-            this.lblLvListPropertySource.Text = "Property Source:";
-            // 
-            // lblLvListDefaultValue
-            // 
-            this.lblLvListDefaultValue.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListDefaultValue.Location = new System.Drawing.Point(28, 563);
-            this.lblLvListDefaultValue.Name = "lblLvListDefaultValue";
-            this.lblLvListDefaultValue.Size = new System.Drawing.Size(76, 18);
-            this.lblLvListDefaultValue.TabIndex = 30;
-            this.lblLvListDefaultValue.Text = "Default Value:";
-            // 
-            // lblLvListDomain
-            // 
-            this.lblLvListDomain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLvListDomain.Location = new System.Drawing.Point(28, 599);
-            this.lblLvListDomain.Name = "lblLvListDomain";
-            this.lblLvListDomain.Size = new System.Drawing.Size(48, 18);
-            this.lblLvListDomain.TabIndex = 32;
-            this.lblLvListDomain.Text = "Domain:";
-            // 
-            // txtLvListName
-            // 
-            this.txtLvListName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListName.Location = new System.Drawing.Point(291, 23);
-            this.txtLvListName.Name = "txtLvListName";
-            this.txtLvListName.Size = new System.Drawing.Size(530, 20);
-            this.txtLvListName.TabIndex = 1;
-            // 
-            // txtLvListMemberName
-            // 
-            this.txtLvListMemberName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListMemberName.Location = new System.Drawing.Point(291, 59);
-            this.txtLvListMemberName.Name = "txtLvListMemberName";
-            this.txtLvListMemberName.Size = new System.Drawing.Size(530, 20);
-            this.txtLvListMemberName.TabIndex = 3;
-            // 
-            // txtLvListCastVariableAs
-            // 
-            this.txtLvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListCastVariableAs.Location = new System.Drawing.Point(291, 131);
-            this.txtLvListCastVariableAs.Name = "txtLvListCastVariableAs";
-            this.txtLvListCastVariableAs.Size = new System.Drawing.Size(530, 20);
-            this.txtLvListCastVariableAs.TabIndex = 7;
-            // 
-            // txtLvListTypeName
-            // 
-            this.txtLvListTypeName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListTypeName.Location = new System.Drawing.Point(291, 167);
-            this.txtLvListTypeName.Name = "txtLvListTypeName";
-            this.txtLvListTypeName.Size = new System.Drawing.Size(530, 20);
-            this.txtLvListTypeName.TabIndex = 9;
-            // 
-            // txtLvListReferenceName
-            // 
-            this.txtLvListReferenceName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListReferenceName.Location = new System.Drawing.Point(291, 203);
-            this.txtLvListReferenceName.Name = "txtLvListReferenceName";
-            this.txtLvListReferenceName.Size = new System.Drawing.Size(530, 20);
-            this.txtLvListReferenceName.TabIndex = 11;
-            // 
-            // txtLvListCastReferenceAs
-            // 
-            this.txtLvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListCastReferenceAs.Location = new System.Drawing.Point(291, 275);
-            this.txtLvListCastReferenceAs.Name = "txtLvListCastReferenceAs";
-            this.txtLvListCastReferenceAs.Size = new System.Drawing.Size(530, 20);
-            this.txtLvListCastReferenceAs.TabIndex = 15;
-            // 
-            // txtLvListComments
-            // 
-            this.txtLvListComments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListComments.Location = new System.Drawing.Point(291, 347);
-            this.txtLvListComments.Name = "txtLvListComments";
-            this.txtLvListComments.Size = new System.Drawing.Size(530, 20);
-            this.txtLvListComments.TabIndex = 19;
-            // 
-            // cmbLvListVariableCategory
-            // 
-            this.cmbLvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListVariableCategory.DropDownAnimationEnabled = true;
-            this.cmbLvListVariableCategory.Location = new System.Drawing.Point(291, 95);
-            this.cmbLvListVariableCategory.Name = "cmbLvListVariableCategory";
-            this.cmbLvListVariableCategory.Size = new System.Drawing.Size(530, 20);
-            this.cmbLvListVariableCategory.TabIndex = 5;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(cmbLvListReferenceDefinition, 2, 13);
+            tableLayoutPanel.Controls.Add(lblLvListVariableCategory, 1, 5);
+            tableLayoutPanel.Controls.Add(lblLvListName, 1, 1);
+            tableLayoutPanel.Controls.Add(lblLvListMemberName, 1, 3);
+            tableLayoutPanel.Controls.Add(lblLvListCastVariableAs, 1, 7);
+            tableLayoutPanel.Controls.Add(lblLvListTypeName, 1, 9);
+            tableLayoutPanel.Controls.Add(lblLvListReferenceName, 1, 11);
+            tableLayoutPanel.Controls.Add(lblLvListReferenceDefinition, 1, 13);
+            tableLayoutPanel.Controls.Add(lblLvListCastReferenceAs, 1, 15);
+            tableLayoutPanel.Controls.Add(lblLvListReferenceCategory, 1, 17);
+            tableLayoutPanel.Controls.Add(lblLvListComments, 1, 19);
+            tableLayoutPanel.Controls.Add(lblLvListLiteralType, 1, 21);
+            tableLayoutPanel.Controls.Add(lblLvListListType, 1, 23);
+            tableLayoutPanel.Controls.Add(lblLvListListControl, 1, 25);
+            tableLayoutPanel.Controls.Add(lblLvListElementControl, 1, 27);
+            tableLayoutPanel.Controls.Add(lblLvListPropertySource, 1, 29);
+            tableLayoutPanel.Controls.Add(lblLvListDefaultValue, 1, 31);
+            tableLayoutPanel.Controls.Add(lblLvListDomain, 1, 33);
+            tableLayoutPanel.Controls.Add(txtLvListName, 2, 1);
+            tableLayoutPanel.Controls.Add(txtLvListMemberName, 2, 3);
+            tableLayoutPanel.Controls.Add(txtLvListCastVariableAs, 2, 7);
+            tableLayoutPanel.Controls.Add(txtLvListTypeName, 2, 9);
+            tableLayoutPanel.Controls.Add(txtLvListReferenceName, 2, 11);
+            tableLayoutPanel.Controls.Add(txtLvListCastReferenceAs, 2, 15);
+            tableLayoutPanel.Controls.Add(txtLvListComments, 2, 19);
+            tableLayoutPanel.Controls.Add(cmbLvListVariableCategory, 2, 5);
+            tableLayoutPanel.Controls.Add(cmbLvListReferenceCategory, 2, 17);
+            tableLayoutPanel.Controls.Add(cmbLvListLiteralType, 2, 21);
+            tableLayoutPanel.Controls.Add(cmbLvListListType, 2, 23);
+            tableLayoutPanel.Controls.Add(cmbLvListListControl, 2, 25);
+            tableLayoutPanel.Controls.Add(cmbLvListElementControl, 2, 27);
+            tableLayoutPanel.Controls.Add(cmbLvListPropertySource, 2, 29);
+            tableLayoutPanel.Controls.Add(txtLvListDefaultValue, 2, 31);
+            tableLayoutPanel.Controls.Add(txtLvListDomain, 2, 33);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 36;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 652);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // cmbLvListReferenceDefinition
             // 
-            this.cmbLvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListReferenceDefinition.DropDownAnimationEnabled = true;
-            this.cmbLvListReferenceDefinition.Location = new System.Drawing.Point(291, 239);
-            this.cmbLvListReferenceDefinition.Name = "cmbLvListReferenceDefinition";
-            this.cmbLvListReferenceDefinition.Size = new System.Drawing.Size(530, 20);
-            this.cmbLvListReferenceDefinition.TabIndex = 13;
+            cmbLvListReferenceDefinition.AutoSize = false;
+            cmbLvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListReferenceDefinition.DropDownAnimationEnabled = true;
+            cmbLvListReferenceDefinition.Location = new System.Drawing.Point(288, 236);
+            cmbLvListReferenceDefinition.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListReferenceDefinition.Name = "cmbLvListReferenceDefinition";
+            cmbLvListReferenceDefinition.Size = new System.Drawing.Size(534, 30);
+            cmbLvListReferenceDefinition.TabIndex = 13;
+            // 
+            // lblLvListVariableCategory
+            // 
+            lblLvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListVariableCategory.Location = new System.Drawing.Point(28, 95);
+            lblLvListVariableCategory.Name = "lblLvListVariableCategory";
+            lblLvListVariableCategory.Size = new System.Drawing.Size(98, 18);
+            lblLvListVariableCategory.TabIndex = 4;
+            lblLvListVariableCategory.Text = "Variable Category:";
+            // 
+            // lblLvListName
+            // 
+            lblLvListName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListName.Location = new System.Drawing.Point(28, 23);
+            lblLvListName.Name = "lblLvListName";
+            lblLvListName.Size = new System.Drawing.Size(39, 18);
+            lblLvListName.TabIndex = 0;
+            lblLvListName.Text = "Name:";
+            // 
+            // lblLvListMemberName
+            // 
+            lblLvListMemberName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListMemberName.Location = new System.Drawing.Point(28, 59);
+            lblLvListMemberName.Name = "lblLvListMemberName";
+            lblLvListMemberName.Size = new System.Drawing.Size(84, 18);
+            lblLvListMemberName.TabIndex = 2;
+            lblLvListMemberName.Text = "Member Name:";
+            // 
+            // lblLvListCastVariableAs
+            // 
+            lblLvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListCastVariableAs.Location = new System.Drawing.Point(28, 131);
+            lblLvListCastVariableAs.Name = "lblLvListCastVariableAs";
+            lblLvListCastVariableAs.Size = new System.Drawing.Size(89, 18);
+            lblLvListCastVariableAs.TabIndex = 6;
+            lblLvListCastVariableAs.Text = "Cast Variable As:";
+            // 
+            // lblLvListTypeName
+            // 
+            lblLvListTypeName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListTypeName.Location = new System.Drawing.Point(28, 167);
+            lblLvListTypeName.Name = "lblLvListTypeName";
+            lblLvListTypeName.Size = new System.Drawing.Size(66, 18);
+            lblLvListTypeName.TabIndex = 8;
+            lblLvListTypeName.Text = "Type Name:";
+            // 
+            // lblLvListReferenceName
+            // 
+            lblLvListReferenceName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListReferenceName.Location = new System.Drawing.Point(28, 203);
+            lblLvListReferenceName.Name = "lblLvListReferenceName";
+            lblLvListReferenceName.Size = new System.Drawing.Size(91, 18);
+            lblLvListReferenceName.TabIndex = 10;
+            lblLvListReferenceName.Text = "Reference Name:";
+            // 
+            // lblLvListReferenceDefinition
+            // 
+            lblLvListReferenceDefinition.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListReferenceDefinition.Location = new System.Drawing.Point(28, 239);
+            lblLvListReferenceDefinition.Name = "lblLvListReferenceDefinition";
+            lblLvListReferenceDefinition.Size = new System.Drawing.Size(110, 18);
+            lblLvListReferenceDefinition.TabIndex = 12;
+            lblLvListReferenceDefinition.Text = "Reference Definition:";
+            // 
+            // lblLvListCastReferenceAs
+            // 
+            lblLvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListCastReferenceAs.Location = new System.Drawing.Point(28, 275);
+            lblLvListCastReferenceAs.Name = "lblLvListCastReferenceAs";
+            lblLvListCastReferenceAs.Size = new System.Drawing.Size(98, 18);
+            lblLvListCastReferenceAs.TabIndex = 14;
+            lblLvListCastReferenceAs.Text = "Cast Reference As:";
+            // 
+            // lblLvListReferenceCategory
+            // 
+            lblLvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListReferenceCategory.Location = new System.Drawing.Point(28, 311);
+            lblLvListReferenceCategory.Name = "lblLvListReferenceCategory";
+            lblLvListReferenceCategory.Size = new System.Drawing.Size(107, 18);
+            lblLvListReferenceCategory.TabIndex = 16;
+            lblLvListReferenceCategory.Text = "Reference Category:";
+            // 
+            // lblLvListComments
+            // 
+            lblLvListComments.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListComments.Location = new System.Drawing.Point(28, 347);
+            lblLvListComments.Name = "lblLvListComments";
+            lblLvListComments.Size = new System.Drawing.Size(63, 18);
+            lblLvListComments.TabIndex = 18;
+            lblLvListComments.Text = "Comments:";
+            // 
+            // lblLvListLiteralType
+            // 
+            lblLvListLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListLiteralType.Location = new System.Drawing.Point(28, 383);
+            lblLvListLiteralType.Name = "lblLvListLiteralType";
+            lblLvListLiteralType.Size = new System.Drawing.Size(66, 18);
+            lblLvListLiteralType.TabIndex = 20;
+            lblLvListLiteralType.Text = "Literal Type:";
+            // 
+            // lblLvListListType
+            // 
+            lblLvListListType.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListListType.Location = new System.Drawing.Point(28, 419);
+            lblLvListListType.Name = "lblLvListListType";
+            lblLvListListType.Size = new System.Drawing.Size(52, 18);
+            lblLvListListType.TabIndex = 22;
+            lblLvListListType.Text = "List Type:";
+            // 
+            // lblLvListListControl
+            // 
+            lblLvListListControl.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListListControl.Location = new System.Drawing.Point(28, 455);
+            lblLvListListControl.Name = "lblLvListListControl";
+            lblLvListListControl.Size = new System.Drawing.Size(130, 18);
+            lblLvListListControl.TabIndex = 24;
+            lblLvListListControl.Text = "Design-time List Control:";
+            // 
+            // lblLvListElementControl
+            // 
+            lblLvListElementControl.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListElementControl.Location = new System.Drawing.Point(28, 491);
+            lblLvListElementControl.Name = "lblLvListElementControl";
+            lblLvListElementControl.Size = new System.Drawing.Size(154, 18);
+            lblLvListElementControl.TabIndex = 26;
+            lblLvListElementControl.Text = "Design-time Element Control:";
+            // 
+            // lblLvListPropertySource
+            // 
+            lblLvListPropertySource.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListPropertySource.Location = new System.Drawing.Point(28, 527);
+            lblLvListPropertySource.Name = "lblLvListPropertySource";
+            lblLvListPropertySource.Size = new System.Drawing.Size(89, 18);
+            lblLvListPropertySource.TabIndex = 28;
+            lblLvListPropertySource.Text = "Property Source:";
+            // 
+            // lblLvListDefaultValue
+            // 
+            lblLvListDefaultValue.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListDefaultValue.Location = new System.Drawing.Point(28, 563);
+            lblLvListDefaultValue.Name = "lblLvListDefaultValue";
+            lblLvListDefaultValue.Size = new System.Drawing.Size(76, 18);
+            lblLvListDefaultValue.TabIndex = 30;
+            lblLvListDefaultValue.Text = "Default Value:";
+            // 
+            // lblLvListDomain
+            // 
+            lblLvListDomain.Dock = System.Windows.Forms.DockStyle.Top;
+            lblLvListDomain.Location = new System.Drawing.Point(28, 599);
+            lblLvListDomain.Name = "lblLvListDomain";
+            lblLvListDomain.Size = new System.Drawing.Size(48, 18);
+            lblLvListDomain.TabIndex = 32;
+            lblLvListDomain.Text = "Domain:";
+            // 
+            // txtLvListName
+            // 
+            txtLvListName.AutoSize = false;
+            txtLvListName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListName.Location = new System.Drawing.Point(288, 20);
+            txtLvListName.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListName.Name = "txtLvListName";
+            txtLvListName.Size = new System.Drawing.Size(534, 30);
+            txtLvListName.TabIndex = 1;
+            // 
+            // txtLvListMemberName
+            // 
+            txtLvListMemberName.AutoSize = false;
+            txtLvListMemberName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListMemberName.Location = new System.Drawing.Point(288, 56);
+            txtLvListMemberName.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListMemberName.Name = "txtLvListMemberName";
+            txtLvListMemberName.Size = new System.Drawing.Size(534, 30);
+            txtLvListMemberName.TabIndex = 3;
+            // 
+            // txtLvListCastVariableAs
+            // 
+            txtLvListCastVariableAs.AutoSize = false;
+            txtLvListCastVariableAs.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListCastVariableAs.Location = new System.Drawing.Point(288, 128);
+            txtLvListCastVariableAs.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListCastVariableAs.Name = "txtLvListCastVariableAs";
+            txtLvListCastVariableAs.Size = new System.Drawing.Size(534, 30);
+            txtLvListCastVariableAs.TabIndex = 7;
+            // 
+            // txtLvListTypeName
+            // 
+            txtLvListTypeName.AutoSize = false;
+            txtLvListTypeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListTypeName.Location = new System.Drawing.Point(288, 164);
+            txtLvListTypeName.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListTypeName.Name = "txtLvListTypeName";
+            txtLvListTypeName.Size = new System.Drawing.Size(534, 30);
+            txtLvListTypeName.TabIndex = 9;
+            // 
+            // txtLvListReferenceName
+            // 
+            txtLvListReferenceName.AutoSize = false;
+            txtLvListReferenceName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListReferenceName.Location = new System.Drawing.Point(288, 200);
+            txtLvListReferenceName.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListReferenceName.Name = "txtLvListReferenceName";
+            txtLvListReferenceName.Size = new System.Drawing.Size(534, 30);
+            txtLvListReferenceName.TabIndex = 11;
+            // 
+            // txtLvListCastReferenceAs
+            // 
+            txtLvListCastReferenceAs.AutoSize = false;
+            txtLvListCastReferenceAs.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListCastReferenceAs.Location = new System.Drawing.Point(288, 272);
+            txtLvListCastReferenceAs.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListCastReferenceAs.Name = "txtLvListCastReferenceAs";
+            txtLvListCastReferenceAs.Size = new System.Drawing.Size(534, 30);
+            txtLvListCastReferenceAs.TabIndex = 15;
+            // 
+            // txtLvListComments
+            // 
+            txtLvListComments.AutoSize = false;
+            txtLvListComments.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListComments.Location = new System.Drawing.Point(288, 344);
+            txtLvListComments.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListComments.Name = "txtLvListComments";
+            txtLvListComments.Size = new System.Drawing.Size(534, 30);
+            txtLvListComments.TabIndex = 19;
+            // 
+            // cmbLvListVariableCategory
+            // 
+            cmbLvListVariableCategory.AutoSize = false;
+            cmbLvListVariableCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListVariableCategory.DropDownAnimationEnabled = true;
+            cmbLvListVariableCategory.Location = new System.Drawing.Point(288, 92);
+            cmbLvListVariableCategory.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListVariableCategory.Name = "cmbLvListVariableCategory";
+            cmbLvListVariableCategory.Size = new System.Drawing.Size(534, 30);
+            cmbLvListVariableCategory.TabIndex = 5;
             // 
             // cmbLvListReferenceCategory
             // 
-            this.cmbLvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListReferenceCategory.DropDownAnimationEnabled = true;
-            this.cmbLvListReferenceCategory.Location = new System.Drawing.Point(291, 311);
-            this.cmbLvListReferenceCategory.Name = "cmbLvListReferenceCategory";
-            this.cmbLvListReferenceCategory.Size = new System.Drawing.Size(530, 20);
-            this.cmbLvListReferenceCategory.TabIndex = 17;
+            cmbLvListReferenceCategory.AutoSize = false;
+            cmbLvListReferenceCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListReferenceCategory.DropDownAnimationEnabled = true;
+            cmbLvListReferenceCategory.Location = new System.Drawing.Point(288, 308);
+            cmbLvListReferenceCategory.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListReferenceCategory.Name = "cmbLvListReferenceCategory";
+            cmbLvListReferenceCategory.Size = new System.Drawing.Size(534, 30);
+            cmbLvListReferenceCategory.TabIndex = 17;
             // 
             // cmbLvListLiteralType
             // 
-            this.cmbLvListLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListLiteralType.DropDownAnimationEnabled = true;
-            this.cmbLvListLiteralType.Location = new System.Drawing.Point(291, 383);
-            this.cmbLvListLiteralType.Name = "cmbLvListLiteralType";
-            this.cmbLvListLiteralType.Size = new System.Drawing.Size(530, 20);
-            this.cmbLvListLiteralType.TabIndex = 21;
+            cmbLvListLiteralType.AutoSize = false;
+            cmbLvListLiteralType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListLiteralType.DropDownAnimationEnabled = true;
+            cmbLvListLiteralType.Location = new System.Drawing.Point(288, 380);
+            cmbLvListLiteralType.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListLiteralType.Name = "cmbLvListLiteralType";
+            cmbLvListLiteralType.Size = new System.Drawing.Size(534, 30);
+            cmbLvListLiteralType.TabIndex = 21;
             // 
             // cmbLvListListType
             // 
-            this.cmbLvListListType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListListType.DropDownAnimationEnabled = true;
-            this.cmbLvListListType.Location = new System.Drawing.Point(291, 419);
-            this.cmbLvListListType.Name = "cmbLvListListType";
-            this.cmbLvListListType.Size = new System.Drawing.Size(530, 20);
-            this.cmbLvListListType.TabIndex = 23;
+            cmbLvListListType.AutoSize = false;
+            cmbLvListListType.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListListType.DropDownAnimationEnabled = true;
+            cmbLvListListType.Location = new System.Drawing.Point(288, 416);
+            cmbLvListListType.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListListType.Name = "cmbLvListListType";
+            cmbLvListListType.Size = new System.Drawing.Size(534, 30);
+            cmbLvListListType.TabIndex = 23;
             // 
             // cmbLvListListControl
             // 
-            this.cmbLvListListControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListListControl.DropDownAnimationEnabled = true;
-            this.cmbLvListListControl.Location = new System.Drawing.Point(291, 455);
-            this.cmbLvListListControl.Name = "cmbLvListListControl";
-            this.cmbLvListListControl.Size = new System.Drawing.Size(530, 20);
-            this.cmbLvListListControl.TabIndex = 25;
+            cmbLvListListControl.AutoSize = false;
+            cmbLvListListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListListControl.DropDownAnimationEnabled = true;
+            cmbLvListListControl.Location = new System.Drawing.Point(288, 452);
+            cmbLvListListControl.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListListControl.Name = "cmbLvListListControl";
+            cmbLvListListControl.Size = new System.Drawing.Size(534, 30);
+            cmbLvListListControl.TabIndex = 25;
             // 
             // cmbLvListElementControl
             // 
-            this.cmbLvListElementControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListElementControl.DropDownAnimationEnabled = true;
-            this.cmbLvListElementControl.Location = new System.Drawing.Point(291, 491);
-            this.cmbLvListElementControl.Name = "cmbLvListElementControl";
-            this.cmbLvListElementControl.Size = new System.Drawing.Size(530, 20);
-            this.cmbLvListElementControl.TabIndex = 27;
+            cmbLvListElementControl.AutoSize = false;
+            cmbLvListElementControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListElementControl.DropDownAnimationEnabled = true;
+            cmbLvListElementControl.Location = new System.Drawing.Point(288, 488);
+            cmbLvListElementControl.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListElementControl.Name = "cmbLvListElementControl";
+            cmbLvListElementControl.Size = new System.Drawing.Size(534, 30);
+            cmbLvListElementControl.TabIndex = 27;
             // 
             // cmbLvListPropertySource
             // 
-            this.cmbLvListPropertySource.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbLvListPropertySource.Location = new System.Drawing.Point(288, 524);
-            this.cmbLvListPropertySource.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbLvListPropertySource.Name = "cmbLvListPropertySource";
-            this.cmbLvListPropertySource.SelectedText = "";
-            this.cmbLvListPropertySource.Size = new System.Drawing.Size(536, 27);
-            this.cmbLvListPropertySource.TabIndex = 29;
+            cmbLvListPropertySource.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbLvListPropertySource.Location = new System.Drawing.Point(288, 524);
+            cmbLvListPropertySource.Margin = new System.Windows.Forms.Padding(0);
+            cmbLvListPropertySource.Name = "cmbLvListPropertySource";
+            cmbLvListPropertySource.SelectedText = "";
+            cmbLvListPropertySource.Size = new System.Drawing.Size(534, 30);
+            cmbLvListPropertySource.TabIndex = 29;
             // 
             // txtLvListDefaultValue
             // 
-            this.txtLvListDefaultValue.AutoSize = true;
-            this.txtLvListDefaultValue.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListDefaultValue.Location = new System.Drawing.Point(288, 560);
-            this.txtLvListDefaultValue.Margin = new System.Windows.Forms.Padding(0);
-            this.txtLvListDefaultValue.Name = "txtLvListDefaultValue";
-            this.txtLvListDefaultValue.ReadOnly = false;
-            this.txtLvListDefaultValue.Size = new System.Drawing.Size(536, 24);
-            this.txtLvListDefaultValue.TabIndex = 31;
+            txtLvListDefaultValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListDefaultValue.Location = new System.Drawing.Point(288, 560);
+            txtLvListDefaultValue.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListDefaultValue.Name = "txtLvListDefaultValue";
+            txtLvListDefaultValue.ReadOnly = false;
+            txtLvListDefaultValue.Size = new System.Drawing.Size(534, 30);
+            txtLvListDefaultValue.TabIndex = 31;
             // 
             // txtLvListDomain
             // 
-            this.txtLvListDomain.AutoSize = true;
-            this.txtLvListDomain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtLvListDomain.Location = new System.Drawing.Point(288, 596);
-            this.txtLvListDomain.Margin = new System.Windows.Forms.Padding(0);
-            this.txtLvListDomain.Name = "txtLvListDomain";
-            this.txtLvListDomain.ReadOnly = false;
-            this.txtLvListDomain.Size = new System.Drawing.Size(536, 24);
-            this.txtLvListDomain.TabIndex = 33;
+            txtLvListDomain.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtLvListDomain.Location = new System.Drawing.Point(288, 596);
+            txtLvListDomain.Margin = new System.Windows.Forms.Padding(0);
+            txtLvListDomain.Name = "txtLvListDomain";
+            txtLvListDomain.ReadOnly = false;
+            txtLvListDomain.Size = new System.Drawing.Size(534, 30);
+            txtLvListDomain.TabIndex = 33;
             // 
             // ConfigureLiteralListVariableControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxVariable);
-            this.Name = "ConfigureLiteralListVariableControl";
-            this.Size = new System.Drawing.Size(855, 749);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxVariable)).EndInit();
-            this.groupBoxVariable.ResumeLayout(false);
-            this.radPanelVariable.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelVariable)).EndInit();
-            this.radPanelVariable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListMemberName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListVariableCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListCastVariableAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListTypeName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListReferenceName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListReferenceDefinition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListCastReferenceAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListReferenceCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListLiteralType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListListControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListElementControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListPropertySource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListDefaultValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLvListDomain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListMemberName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListCastVariableAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListTypeName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListReferenceName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListCastReferenceAs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLvListComments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListVariableCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListReferenceDefinition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListReferenceCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListLiteralType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListListType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListListControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLvListElementControl)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(groupBoxVariable);
+            Name = "ConfigureLiteralListVariableControl";
+            Size = new System.Drawing.Size(855, 749);
+            ((System.ComponentModel.ISupportInitialize)groupBoxVariable).EndInit();
+            groupBoxVariable.ResumeLayout(false);
+            radPanelVariable.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelVariable).EndInit();
+            radPanelVariable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListReferenceDefinition).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListVariableCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListMemberName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListCastVariableAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListTypeName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListReferenceName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListReferenceDefinition).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListCastReferenceAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListReferenceCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListLiteralType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListListControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListElementControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListPropertySource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListDefaultValue).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lblLvListDomain).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListMemberName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListCastVariableAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListTypeName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListReferenceName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListCastReferenceAs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtLvListComments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListVariableCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListReferenceCategory).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListLiteralType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListListType).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListListControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbLvListElementControl).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

@@ -42,18 +42,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         private readonly IConfigureVariablesForm configureVariablesForm;
 
-       public ConfigureLiteralListVariableControl(
-           IConfigureLiteralListVariableCommandFactory configureLiteralListVariableCommandFactory,
-           IConfigureVariablesStateImageSetter configureVariablesStateImageSetter,
-           IEnumHelper enumHelper,
-           IExceptionHelper exceptionHelper,
-           IRadDropDownListHelper radDropDownListHelper,
-           IServiceFactory serviceFactory,
-           IStringHelper stringHelper,
-           ITreeViewService treeViewService,
-           IVariableControlValidatorFactory variableControlValidatorFactory,
-           IXmlDocumentHelpers xmlDocumentHelpers,
-           IConfigureVariablesForm configureVariablesForm)
+        public ConfigureLiteralListVariableControl(
+            IConfigureLiteralListVariableCommandFactory configureLiteralListVariableCommandFactory,
+            IConfigureVariablesStateImageSetter configureVariablesStateImageSetter,
+            IEnumHelper enumHelper,
+            IExceptionHelper exceptionHelper,
+            IRadDropDownListHelper radDropDownListHelper,
+            IServiceFactory serviceFactory,
+            IStringHelper stringHelper,
+            ITreeViewService treeViewService,
+            IVariableControlValidatorFactory variableControlValidatorFactory,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IConfigureVariablesForm configureVariablesForm)
         {
             InitializeComponent();
             _configureVariablesStateImageSetter = configureVariablesStateImageSetter;

@@ -28,117 +28,118 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxFolder = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelFolder = new Telerik.WinControls.UI.RadScrollablePanel();
-            this.radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.lblFolderName = new Telerik.WinControls.UI.RadLabel();
-            this.txtFolderName = new Telerik.WinControls.UI.RadTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxFolder)).BeginInit();
-            this.groupBoxFolder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFolder)).BeginInit();
-            this.radPanelFolder.PanelContainer.SuspendLayout();
-            this.radPanelFolder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).BeginInit();
-            this.radPanelTableParent.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFolderName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFolderName)).BeginInit();
-            this.SuspendLayout();
+            groupBoxFolder = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelFolder = new Telerik.WinControls.UI.RadScrollablePanel();
+            radPanelTableParent = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            lblFolderName = new Telerik.WinControls.UI.RadLabel();
+            txtFolderName = new Telerik.WinControls.UI.RadTextBox();
+            ((System.ComponentModel.ISupportInitialize)groupBoxFolder).BeginInit();
+            groupBoxFolder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelFolder).BeginInit();
+            radPanelFolder.PanelContainer.SuspendLayout();
+            radPanelFolder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)lblFolderName).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtFolderName).BeginInit();
+            SuspendLayout();
             // 
             // groupBoxFolder
             // 
-            this.groupBoxFolder.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.groupBoxFolder.Controls.Add(this.radPanelFolder);
-            this.groupBoxFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxFolder.HeaderText = "Folder";
-            this.groupBoxFolder.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxFolder.Name = "groupBoxFolder";
-            this.groupBoxFolder.Size = new System.Drawing.Size(855, 749);
-            this.groupBoxFolder.TabIndex = 0;
-            this.groupBoxFolder.Text = "Folder";
+            groupBoxFolder.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            groupBoxFolder.Controls.Add(radPanelFolder);
+            groupBoxFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            groupBoxFolder.HeaderText = "Folder";
+            groupBoxFolder.Location = new System.Drawing.Point(0, 0);
+            groupBoxFolder.Name = "groupBoxFolder";
+            groupBoxFolder.Size = new System.Drawing.Size(855, 749);
+            groupBoxFolder.TabIndex = 0;
+            groupBoxFolder.Text = "Folder";
             // 
             // radPanelFolder
             // 
-            this.radPanelFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelFolder.Location = new System.Drawing.Point(2, 18);
-            this.radPanelFolder.Name = "radPanelFolder";
+            radPanelFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelFolder.Location = new System.Drawing.Point(2, 18);
+            radPanelFolder.Name = "radPanelFolder";
             // 
             // radPanelFolder.PanelContainer
             // 
-            this.radPanelFolder.PanelContainer.Controls.Add(this.radPanelTableParent);
-            this.radPanelFolder.PanelContainer.Size = new System.Drawing.Size(849, 727);
-            this.radPanelFolder.Size = new System.Drawing.Size(851, 729);
-            this.radPanelFolder.TabIndex = 0;
+            radPanelFolder.PanelContainer.Controls.Add(radPanelTableParent);
+            radPanelFolder.PanelContainer.Size = new System.Drawing.Size(849, 727);
+            radPanelFolder.Size = new System.Drawing.Size(851, 729);
+            radPanelFolder.TabIndex = 0;
             // 
             // radPanelTableParent
             // 
-            this.radPanelTableParent.Controls.Add(this.tableLayoutPanel);
-            this.radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTableParent.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanelTableParent.Name = "radPanelTableParent";
-            this.radPanelTableParent.Size = new System.Drawing.Size(851, 76);
-            this.radPanelTableParent.TabIndex = 0;
+            radPanelTableParent.Controls.Add(tableLayoutPanel);
+            radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTableParent.Location = new System.Drawing.Point(0, 0);
+            radPanelTableParent.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTableParent.Name = "radPanelTableParent";
+            radPanelTableParent.Size = new System.Drawing.Size(849, 76);
+            radPanelTableParent.TabIndex = 0;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel.Controls.Add(this.lblFolderName, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.txtFolderName, 2, 1);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 4;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(851, 76);
-            this.tableLayoutPanel.TabIndex = 0;
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            tableLayoutPanel.Controls.Add(lblFolderName, 1, 1);
+            tableLayoutPanel.Controls.Add(txtFolderName, 2, 1);
+            tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 4;
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new System.Drawing.Size(849, 76);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // lblFolderName
             // 
-            this.lblFolderName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblFolderName.Location = new System.Drawing.Point(28, 23);
-            this.lblFolderName.Name = "lblFolderName";
-            this.lblFolderName.Size = new System.Drawing.Size(39, 18);
-            this.lblFolderName.TabIndex = 0;
-            this.lblFolderName.Text = "Name:";
+            lblFolderName.Dock = System.Windows.Forms.DockStyle.Top;
+            lblFolderName.Location = new System.Drawing.Point(28, 23);
+            lblFolderName.Name = "lblFolderName";
+            lblFolderName.Size = new System.Drawing.Size(39, 18);
+            lblFolderName.TabIndex = 0;
+            lblFolderName.Text = "Name:";
             // 
             // txtFolderName
             // 
-            this.txtFolderName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtFolderName.Location = new System.Drawing.Point(291, 23);
-            this.txtFolderName.Name = "txtFolderName";
-            this.txtFolderName.Size = new System.Drawing.Size(530, 20);
-            this.txtFolderName.TabIndex = 1;
+            txtFolderName.AutoSize = false;
+            txtFolderName.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtFolderName.Location = new System.Drawing.Point(288, 20);
+            txtFolderName.Margin = new System.Windows.Forms.Padding(0);
+            txtFolderName.Name = "txtFolderName";
+            txtFolderName.Size = new System.Drawing.Size(534, 36);
+            txtFolderName.TabIndex = 1;
             // 
             // ConfigureVariablesFolderControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxFolder);
-            this.Name = "ConfigureVariablesFolderControl";
-            this.Size = new System.Drawing.Size(855, 749);
-            ((System.ComponentModel.ISupportInitialize)(this.groupBoxFolder)).EndInit();
-            this.groupBoxFolder.ResumeLayout(false);
-            this.radPanelFolder.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFolder)).EndInit();
-            this.radPanelFolder.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTableParent)).EndInit();
-            this.radPanelTableParent.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFolderName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFolderName)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(groupBoxFolder);
+            Name = "ConfigureVariablesFolderControl";
+            Size = new System.Drawing.Size(855, 749);
+            ((System.ComponentModel.ISupportInitialize)groupBoxFolder).EndInit();
+            groupBoxFolder.ResumeLayout(false);
+            radPanelFolder.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelFolder).EndInit();
+            radPanelFolder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)lblFolderName).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtFolderName).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

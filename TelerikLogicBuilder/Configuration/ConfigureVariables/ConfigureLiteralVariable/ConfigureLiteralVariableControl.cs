@@ -132,7 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
                 (
                     _stringHelper.SplitWithQuoteQualifier
                     (
-                        elements[XmlDataConstants.REFERENCEDEFINITIONELEMENT].InnerText, 
+                        elements[XmlDataConstants.REFERENCEDEFINITIONELEMENT].InnerText,
                         MiscellaneousConstants.PERIODSTRING
                     )
                 )
