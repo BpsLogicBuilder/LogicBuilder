@@ -5,6 +5,48 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 {
     internal static class PerFontSizeConstants
     {
+        public static Padding ApplicationGroupBoxPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(18, 24, 18, 4);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(18, 24, 18, 9),
+                    [ThemeCollections.TEN] = new Padding(18, 24, 18, 9),
+                    [ThemeCollections.ELEVEN] = new Padding(18, 24, 18, 9),
+                    [ThemeCollections.TWELVE] = new Padding(18, 26, 18, 11),
+                    [ThemeCollections.THIRTEEN] = new Padding(18, 30, 18, 11),
+                    [ThemeCollections.FOURTEEN] = new Padding(18, 30, 18, 11),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int ApplicationGroupBoxPanelHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 58;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 61,
+                    [ThemeCollections.TEN] = 63,
+                    [ThemeCollections.ELEVEN] = 66,
+                    [ThemeCollections.TWELVE] = 73,
+                    [ThemeCollections.THIRTEEN] = 79,
+                    [ThemeCollections.FOURTEEN] = 81,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static float BoundarySize
         {
             get

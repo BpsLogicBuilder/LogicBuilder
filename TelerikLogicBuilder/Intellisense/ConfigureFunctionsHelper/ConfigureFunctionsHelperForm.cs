@@ -270,15 +270,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
         private void InitializeApplicationDropDownList()
         {
-            ((ISupportInitialize)radPanelApplication).BeginInit();
-            radPanelApplication.SuspendLayout();
-
-            _applicationDropDownList.Dock = DockStyle.Fill;
-            _applicationDropDownList.Location = new Point(0, 0);
-            radPanelApplication.Controls.Add((Control)_applicationDropDownList);
-
-            ((ISupportInitialize)radPanelApplication).EndInit();
-            radPanelApplication.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutApplicationPanel(radPanelApplication, _applicationDropDownList);
         }
 
         private void InitializeDialogFormMessageControl()

@@ -47,6 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         [MemberNotNull(nameof(_application))]
         private void Initialize()
         {
+            cmbApplication.AutoSize = false;
             cmbApplication.SelectedIndexChanged += CmbApplication_SelectedIndexChanged;
             LoadApplicationsComboBox();
         }
@@ -63,10 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             );
             cmbApplication.SelectedIndex = 0;
 
-            Configuration.Application? application = _configurationService.GetApplication(cmbApplication.SelectedItem.Text);
-            if (application == null)
-                throw _exceptionHelper.CriticalException("{824AB5B6-7ED3-4265-905F-CD211033D7CE}");
-
+            Configuration.Application? application = _configurationService.GetApplication(cmbApplication.SelectedItem.Text) ?? throw _exceptionHelper.CriticalException("{824AB5B6-7ED3-4265-905F-CD211033D7CE}");
             _application = _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name);
             if (!_application.AssemblyAvailable)
             {

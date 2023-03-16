@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -89,15 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
         private void InitializeApplicationDropDownList()
         {
-            ((ISupportInitialize)this.radGroupBoxApplication).BeginInit();
-            this.radGroupBoxApplication.SuspendLayout();
-
-            _applicationDropDownList.Dock = DockStyle.Fill;
-            _applicationDropDownList.Location = new Point(0, 0);
-            this.radGroupBoxApplication.Controls.Add((Control)_applicationDropDownList);
-
-            ((ISupportInitialize)this.radGroupBoxApplication).EndInit();
-            this.radGroupBoxApplication.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutApplicationGroupBox(this, radPanelApplication, radGroupBoxApplication, _applicationDropDownList);
         }
 
         private void InitializeConstructorControl()

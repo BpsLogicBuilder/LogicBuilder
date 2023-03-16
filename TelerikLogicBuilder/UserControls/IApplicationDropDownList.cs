@@ -11,7 +11,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         ApplicationTypeInfo Application { get; }
+        bool AutoSize { set; }
         Point Location { set; }
+        Padding Margin { set; }
         DockStyle Dock { set; }
         object SelectedValue { get; set; }
     }

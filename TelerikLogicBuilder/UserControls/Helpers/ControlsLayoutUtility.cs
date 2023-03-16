@@ -9,6 +9,46 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 {
     internal static class ControlsLayoutUtility
     {
+        public static void LayoutApplicationGroupBox(Form applicationForm, RadPanel radPanelApplication, RadGroupBox radGroupBoxApplication, IApplicationDropDownList applicationDropDownList)
+        {
+            ((ISupportInitialize)radGroupBoxApplication).BeginInit();
+            radGroupBoxApplication.SuspendLayout();
+            ((ISupportInitialize)radPanelApplication).BeginInit();
+            radPanelApplication.SuspendLayout();
+            applicationForm.SuspendLayout();
+
+            radPanelApplication.Size = new Size(radPanelApplication.Width, PerFontSizeConstants.ApplicationGroupBoxPanelHeight);
+            radGroupBoxApplication.Margin = new Padding(0);
+            radGroupBoxApplication.Padding = PerFontSizeConstants.ApplicationGroupBoxPadding;
+
+            applicationDropDownList.AutoSize = false;
+            applicationDropDownList.Margin = new Padding(0);
+            applicationDropDownList.Dock = DockStyle.Fill;
+            applicationDropDownList.Location = new Point(0, 0);
+            radGroupBoxApplication.Controls.Add((Control)applicationDropDownList);
+
+            ((ISupportInitialize)radGroupBoxApplication).EndInit();
+            radGroupBoxApplication.ResumeLayout(false);
+            ((ISupportInitialize)radPanelApplication).EndInit();
+            radPanelApplication.ResumeLayout(false);
+            applicationForm.ResumeLayout(true);
+        }
+
+        public static void LayoutApplicationPanel(RadPanel radPanelApplication, IApplicationDropDownList applicationDropDownList)
+        {
+            ((ISupportInitialize)radPanelApplication).BeginInit();
+            radPanelApplication.SuspendLayout();
+
+            applicationDropDownList.AutoSize = false;
+            applicationDropDownList.Margin = new Padding(0);
+            applicationDropDownList.Dock = DockStyle.Fill;
+            applicationDropDownList.Location = new Point(0, 0);
+            radPanelApplication.Controls.Add((Control)applicationDropDownList);
+
+            ((ISupportInitialize)radPanelApplication).EndInit();
+            radPanelApplication.ResumeLayout(true);
+        }
+
         public static void LayoutControls(RadGroupBox groupBoxItem, RadScrollablePanel radScrollablePanelItem, RadPanel radPanelTableParent, TableLayoutPanel tableLayoutPanel, int controlsRowCount)
         {
             tableLayoutPanel.ColumnStyles.Clear();

@@ -318,15 +318,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         private void InitializeApplicationDropDownList()
         {
-            ((ISupportInitialize)this.radGroupBoxApplication).BeginInit();
-            this.radGroupBoxApplication.SuspendLayout();
-
-            _applicationDropDownList.Dock = DockStyle.Fill;
-            _applicationDropDownList.Location = new Point(0, 0);
-            this.radGroupBoxApplication.Controls.Add((Control)_applicationDropDownList);
-
-            ((ISupportInitialize)this.radGroupBoxApplication).EndInit();
-            this.radGroupBoxApplication.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutApplicationGroupBox(this, radPanelApplication, radGroupBoxApplication, _applicationDropDownList);
         }
 
         private void InitializeDialogFormMessageControl()
