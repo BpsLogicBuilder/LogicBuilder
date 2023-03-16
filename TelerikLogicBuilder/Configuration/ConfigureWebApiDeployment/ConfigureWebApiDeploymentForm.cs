@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
             Initialize();
         }
 
-        public WebApiDeployment WebApiDeployment { get; private set;  }
+        public WebApiDeployment WebApiDeployment { get; private set; }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
