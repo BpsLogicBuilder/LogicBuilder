@@ -98,8 +98,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 
                 Dictionary<int, float> sizes = new()
                 {
-                    [ThemeCollections.NINE] = 4F,
-                    [ThemeCollections.TEN] = 6F,
+                    [ThemeCollections.NINE] = 8F,
+                    [ThemeCollections.TEN] = 8F,
                     [ThemeCollections.ELEVEN] = 8F,
                     [ThemeCollections.TWELVE] = 10F,
                     [ThemeCollections.THIRTEEN] = 12F,

@@ -64,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
         public RadTreeView TreeView => configureConstructorsForm.TreeView;
         public XmlDocument XmlDocument => configureConstructorsForm.XmlDocument;
 
-        public void ClearMessage() 
+        public void ClearMessage()
             => configureConstructorsForm.ClearMessage();
 
         public void SetControlValues(RadTreeNode treeNode)
@@ -86,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
             AddEventHandlers();
         }
 
-        public void SetErrorMessage(string message) 
+        public void SetErrorMessage(string message)
             => configureConstructorsForm.SetErrorMessage(message);
 
         public void SetMessage(string message, string title = "")

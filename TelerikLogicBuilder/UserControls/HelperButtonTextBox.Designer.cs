@@ -28,48 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radButtonTextBox1 = new Telerik.WinControls.UI.RadButtonTextBox();
-            this.radButtonHelper = new Telerik.WinControls.UI.RadButtonElement();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonTextBox1)).BeginInit();
-            this.SuspendLayout();
+            radPanelTextBox = new Telerik.WinControls.UI.RadPanel();
+            radPanelButton = new Telerik.WinControls.UI.RadPanel();
+            ((System.ComponentModel.ISupportInitialize)radPanelTextBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelButton).BeginInit();
+            SuspendLayout();
             // 
-            // radButtonTextBox1
+            // radPanelTextBox
             // 
-            this.radButtonTextBox1.AutoSize = false;
-            this.radButtonTextBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radButtonTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.radButtonTextBox1.Name = "radButtonTextBox1";
-            this.radButtonTextBox1.RightButtonItems.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radButtonHelper});
-            this.radButtonTextBox1.Size = new System.Drawing.Size(350, 24);
-            this.radButtonTextBox1.TabIndex = 0;
+            radPanelTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelTextBox.Location = new System.Drawing.Point(0, 0);
+            radPanelTextBox.Margin = new System.Windows.Forms.Padding(0);
+            radPanelTextBox.Name = "radPanelTextBox";
+            radPanelTextBox.Size = new System.Drawing.Size(320, 28);
+            radPanelTextBox.TabIndex = 2;
             // 
-            // radButtonHelper
+            // radPanelButton
             // 
-            this.radButtonHelper.AutoSize = true;
-            this.radButtonHelper.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.more;
-            this.radButtonHelper.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.radButtonHelper.Name = "radButtonHelper";
-            this.radButtonHelper.Padding = new System.Windows.Forms.Padding(0);
-            this.radButtonHelper.Text = "";
+            radPanelButton.Dock = System.Windows.Forms.DockStyle.Right;
+            radPanelButton.Location = new System.Drawing.Point(320, 0);
+            radPanelButton.Margin = new System.Windows.Forms.Padding(0);
+            radPanelButton.Name = "radPanelButton";
+            radPanelButton.Size = new System.Drawing.Size(30, 28);
+            radPanelButton.TabIndex = 3;
             // 
             // HelperButtonTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.Controls.Add(this.radButtonTextBox1);
-            this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "HelperButtonTextBox";
-            this.Size = new System.Drawing.Size(350, 24);
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonTextBox1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
+            Controls.Add(radPanelTextBox);
+            Controls.Add(radPanelButton);
+            Margin = new System.Windows.Forms.Padding(0);
+            Name = "HelperButtonTextBox";
+            Size = new System.Drawing.Size(350, 28);
+            ((System.ComponentModel.ISupportInitialize)radPanelTextBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelButton).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private Telerik.WinControls.UI.RadButtonTextBox radButtonTextBox1;
-        private Telerik.WinControls.UI.RadButtonElement radButtonHelper;
+        private Telerik.WinControls.UI.RadPanel radPanelTextBox;
+        private Telerik.WinControls.UI.RadPanel radPanelButton;
     }
 }
