@@ -80,10 +80,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
             AddEventHandlers();
         }
 
-        public void SetErrorMessage(string message) 
+        public void SetErrorMessage(string message)
             => this.configuredItemHelperForm.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") 
+        public void SetMessage(string message, string title = "")
             => this.configuredItemHelperForm.SetMessage(message, title);
 
         public void ValidateFields()
@@ -226,16 +226,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
 
                 if (string.IsNullOrEmpty(memberName))
                     return;
-                
-                if(!_typeHelper.TryParse(memberName, treeNode.IndexType, out object? _))
+
+                if (!_typeHelper.TryParse(memberName, treeNode.IndexType, out object? _))
                 {
                     throw new LogicBuilderException
                     (
                         string.Format
                         (
-                            CultureInfo.CurrentCulture, 
-                            Strings.memberNameIsInvalidForVariableCategoryFormat, 
-                            memberName, 
+                            CultureInfo.CurrentCulture,
+                            Strings.memberNameIsInvalidForVariableCategoryFormat,
+                            memberName,
                             _enumHelper.GetEnumResourceString(Enum.GetName(variableCategory))
                         )
                     );
