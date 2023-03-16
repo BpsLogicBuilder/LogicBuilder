@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
             _intellisenseVariablesFormManager = intellisenseFactory.GetIntellisenseVariablesFormManager(this);
             _variablesManager = variablesManager;
             ExistingVariables = existingVariables;
-            
+
             Initialize();
 
             TreeView.NodeExpandedChanging -= TreeView_NodeExpandedChanging;

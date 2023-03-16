@@ -46,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
         private ApplicationTypeInfo _application;
         private readonly IDictionary<string, Constructor> originalConstructors;
-        
+
         private Function? selectedFunction;
 
         public ConfigureFunctionsHelperForm(
@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
         {
             InitializeComponent();
             this.originalConstructors = existingConstructors;
-            
+
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
@@ -147,7 +147,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
         {
             ClearMessage();
             listNewConstructors.Items.Clear();
-            if (TreeView.SelectedNode == null 
+            if (TreeView.SelectedNode == null
                 || TreeView.SelectedNode is not FunctionTreeNode)
             {
                 btnOk.Enabled = false;

@@ -189,7 +189,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper
             _intellisenseIncludesFormManager.ApplicationChanged();
         }
 
-        private void CmbClass_TextChanged(object? sender, EventArgs e) 
+        private void CmbClass_TextChanged(object? sender, EventArgs e)
             => _intellisenseIncludesFormManager.CmbClassTextChanged();
 
         private void TreeView_NodeExpandedChanging(object sender, RadTreeViewCancelEventArgs e)

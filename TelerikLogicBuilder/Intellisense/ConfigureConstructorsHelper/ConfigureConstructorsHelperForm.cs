@@ -126,7 +126,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
                 (
                     string.Format
                     (
-                        CultureInfo.CurrentCulture, 
+                        CultureInfo.CurrentCulture,
                         Strings.constructorExistsFormat,
                         constructor.Name,
                         constructor.TypeName,
