@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -82,7 +84,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
         private void Initialize()
         {
-            AddEventHandlers();
+            ResetGroupBoxes();
             InitializeFolderControls();
         }
 
@@ -90,6 +92,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         {
             helpProvider.SetHelpString(txtFolderName, Strings.fragmentConfigFolderNameHelp);
             toolTip.SetToolTip(groupBoxFolder, Strings.fragmentConfigFolderNameHelp);
+        }
+
+        private void ResetGroupBoxes()
+        {
+            ((ISupportInitialize)radGroupBoxName).BeginInit();
+            radGroupBoxName.SuspendLayout();
+            ((ISupportInitialize)radPanelContent).BeginInit();
+            radPanelContent.SuspendLayout();
+            ((ISupportInitialize)radPanelName).BeginInit();
+            radPanelName.SuspendLayout();
+            ((ISupportInitialize)groupBoxFolder).BeginInit();
+            groupBoxFolder.SuspendLayout();
+            SuspendLayout();
+
+            radPanelName.Size = new Size(radPanelName.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
+            radGroupBoxName.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
+            groupBoxFolder.Padding = PerFontSizeConstants.GroupBoxPadding;
+
+            ((ISupportInitialize)radGroupBoxName).EndInit();
+            radGroupBoxName.ResumeLayout(false);
+            ((ISupportInitialize)radPanelContent).EndInit();
+            radPanelContent.ResumeLayout(false);
+            ((ISupportInitialize)radPanelName).EndInit();
+            radPanelName.ResumeLayout(false);
+            ((ISupportInitialize)groupBoxFolder).EndInit();
+            groupBoxFolder.ResumeLayout(false);
+            ResumeLayout(true);
         }
 
         private void RemoveEventHandlers()
