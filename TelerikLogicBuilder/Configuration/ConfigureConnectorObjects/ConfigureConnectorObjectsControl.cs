@@ -1,11 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -72,10 +72,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
         public void ClearMessage()
             => configureConnectorObjectsForm.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) 
+        public void DisableControlsDuringEdit(bool disable)
             => configureConnectorObjectsForm.DisableControlsDuringEdit(disable);
 
-        public IList<string> GetObjectTypes() 
+        public IList<string> GetObjectTypes()
             => ListBox.Items.Select(i => ((ConnectorObjectListBoxItem)i.Value).Text).ToArray();
 
         public void SetObjectTypes(IList<string> typeNames)
@@ -102,6 +102,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
 
         private void Initialize()
         {
+            ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxAddType);
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxTypes);
+            ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             CollapsePanelBorder(radPanelTxtType);
             CollapsePanelBorder(radPanelAddButton);
 

@@ -5,33 +5,54 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 {
     internal static class PerFontSizeConstants
     {
-        public static Padding ApplicationGroupBoxPadding
+        public static int AddUpdateItemGroupBoxHeight
         {
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return new Padding(18, 24, 18, 4);
+                    return 61;
 
-                Dictionary<int, Padding> sizes = new()
+                Dictionary<int, int> sizes = new()
                 {
-                    [ThemeCollections.NINE] = new Padding(18, 24, 18, 9),
-                    [ThemeCollections.TEN] = new Padding(18, 24, 18, 9),
-                    [ThemeCollections.ELEVEN] = new Padding(18, 24, 18, 9),
-                    [ThemeCollections.TWELVE] = new Padding(18, 26, 18, 11),
-                    [ThemeCollections.THIRTEEN] = new Padding(18, 30, 18, 11),
-                    [ThemeCollections.FOURTEEN] = new Padding(18, 30, 18, 11),
+                    [ThemeCollections.NINE] = 63,
+                    [ThemeCollections.TEN] = 65,
+                    [ThemeCollections.ELEVEN] = 67,
+                    [ThemeCollections.TWELVE] = 75,
+                    [ThemeCollections.THIRTEEN] = 81,
+                    [ThemeCollections.FOURTEEN] = 83,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
             }
         }
 
-        public static int ApplicationGroupBoxPanelHeight
+        public static Padding AddUpdateItemGroupBoxPadding
         {
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 58;
+                    return new Padding(18, 24, 1, 12);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(18, 24, 1, 9),
+                    [ThemeCollections.TEN] = new Padding(18, 24, 1, 9),
+                    [ThemeCollections.ELEVEN] = new Padding(18, 24, 1, 9),
+                    [ThemeCollections.TWELVE] = new Padding(18, 26, 1, 12),
+                    [ThemeCollections.THIRTEEN] = new Padding(18, 30, 1, 12),
+                    [ThemeCollections.FOURTEEN] = new Padding(18, 30, 1, 12),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int ApplicationGroupBoxHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 61;
 
                 Dictionary<int, int> sizes = new()
                 {
@@ -41,6 +62,48 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.TWELVE] = 73,
                     [ThemeCollections.THIRTEEN] = 79,
                     [ThemeCollections.FOURTEEN] = 81,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static Padding ApplicationGroupBoxPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(18, 24, 18, 12);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(18, 24, 18, 12),
+                    [ThemeCollections.TEN] = new Padding(18, 24, 18, 12),
+                    [ThemeCollections.ELEVEN] = new Padding(18, 24, 18, 12),
+                    [ThemeCollections.TWELVE] = new Padding(18, 26, 18, 15),
+                    [ThemeCollections.THIRTEEN] = new Padding(18, 30, 18, 15),
+                    [ThemeCollections.FOURTEEN] = new Padding(18, 30, 18, 15),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int BottomPanelHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 160;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 150,
+                    [ThemeCollections.TEN] = 153,
+                    [ThemeCollections.ELEVEN] = 156,
+                    [ThemeCollections.TWELVE] = 166,
+                    [ThemeCollections.THIRTEEN] = 171,
+                    [ThemeCollections.FOURTEEN] = 175,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -125,6 +188,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.TWELVE] = 115F,
                     [ThemeCollections.THIRTEEN] = 120F,
                     [ThemeCollections.FOURTEEN] = 125F,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int OkCancelButtonPanelWidth
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 160;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 160,
+                    [ThemeCollections.TEN] = 163,
+                    [ThemeCollections.ELEVEN] = 166,
+                    [ThemeCollections.TWELVE] = 176,
+                    [ThemeCollections.THIRTEEN] = 181,
+                    [ThemeCollections.FOURTEEN] = 185,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];

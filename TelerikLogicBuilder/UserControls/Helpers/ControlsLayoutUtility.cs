@@ -9,6 +9,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 {
     internal static class ControlsLayoutUtility
     {
+        public static void LayoutAddUpdateButtonPanel(RadPanel radPanel, TableLayoutPanel tableLayoutPanelAddUpdate, bool performLayout = true)
+        {
+            ((ISupportInitialize)radPanel).BeginInit();
+            radPanel.SuspendLayout();
+            tableLayoutPanelAddUpdate.SuspendLayout();
+
+            tableLayoutPanelAddUpdate.Dock = DockStyle.Top;
+            tableLayoutPanelAddUpdate.Size = new Size(tableLayoutPanelAddUpdate.Width, PerFontSizeConstants.BottomPanelHeight / 5);//Keeps this height the same as a button on ManagedListBoxControl and bottom panel group.
+                                                                                                                                    //Button height on the bottom panel is 20 percent of the total.
+            radPanel.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanel.Height);
+
+            tableLayoutPanelAddUpdate.ResumeLayout(false);
+            ((ISupportInitialize)radPanel).EndInit();
+            radPanel.ResumeLayout(performLayout);
+        }
+
+        public static void LayoutAddUpdateItemGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
+        {
+            ((ISupportInitialize)radGroupBox).BeginInit();
+            radGroupBox.SuspendLayout();
+            groupBoxParent.SuspendLayout();
+
+            radGroupBox.Size = new Size(radGroupBox.Width, PerFontSizeConstants.AddUpdateItemGroupBoxHeight);
+            radGroupBox.Margin = new Padding(0);
+            radGroupBox.Padding = PerFontSizeConstants.AddUpdateItemGroupBoxPadding;
+
+            ((ISupportInitialize)radGroupBox).EndInit();
+            radGroupBox.ResumeLayout(false);
+            groupBoxParent.ResumeLayout(performLayout);
+        }
+
         public static void LayoutApplicationGroupBox(Form applicationForm, RadPanel radPanelApplication, RadGroupBox radGroupBoxApplication, IApplicationDropDownList applicationDropDownList)
         {
             ((ISupportInitialize)radGroupBoxApplication).BeginInit();
@@ -17,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             radPanelApplication.SuspendLayout();
             applicationForm.SuspendLayout();
 
-            radPanelApplication.Size = new Size(radPanelApplication.Width, PerFontSizeConstants.ApplicationGroupBoxPanelHeight);
+            radPanelApplication.Size = new Size(radPanelApplication.Width, PerFontSizeConstants.ApplicationGroupBoxHeight);
             radGroupBoxApplication.Margin = new Padding(0);
             radGroupBoxApplication.Padding = PerFontSizeConstants.ApplicationGroupBoxPadding;
 
@@ -47,6 +78,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
             ((ISupportInitialize)radPanelApplication).EndInit();
             radPanelApplication.ResumeLayout(true);
+        }
+
+        public static void LayoutBottomPanel(RadPanel radPanelBottom, RadPanel radPanelMessages, RadPanel radPanelButtons, IDialogFormMessageControl dialogFormMessageControl, bool performLayout = true)
+        {
+            ((ISupportInitialize)radPanelMessages).BeginInit();
+            radPanelMessages.SuspendLayout();
+            ((ISupportInitialize)radPanelButtons).BeginInit();
+            radPanelButtons.SuspendLayout();
+            ((ISupportInitialize)radPanelBottom).BeginInit();
+            radPanelBottom.SuspendLayout();
+
+            dialogFormMessageControl.Dock = DockStyle.Fill;
+            dialogFormMessageControl.Location = new Point(0, 0);
+            radPanelMessages.Controls.Add((Control)dialogFormMessageControl);
+
+            radPanelButtons.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanelButtons.Height);
+            radPanelBottom.Size = new Size(radPanelBottom.Width, PerFontSizeConstants.BottomPanelHeight);
+
+            ((ISupportInitialize)radPanelMessages).EndInit();
+            radPanelMessages.ResumeLayout(false);
+            ((ISupportInitialize)radPanelButtons).EndInit();
+            radPanelButtons.ResumeLayout(false);
+            ((ISupportInitialize)radPanelBottom).EndInit();
+            radPanelBottom.ResumeLayout(performLayout);
         }
 
         public static void LayoutControls(RadGroupBox groupBoxItem, RadScrollablePanel radScrollablePanelItem, RadPanel radPanelTableParent, TableLayoutPanel tableLayoutPanel, int controlsRowCount)
@@ -111,7 +166,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             tableLayoutPanel.Size = new Size(851, totalTableLayoutHeight);
 
             ((ISupportInitialize)groupBoxItem).EndInit();
-            //groupBoxItem.ResumeLayout(false);
             radScrollablePanelItem.PanelContainer.ResumeLayout(false);
             ((ISupportInitialize)radScrollablePanelItem).EndInit();
             radScrollablePanelItem.ResumeLayout(false);
@@ -120,6 +174,36 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();
             groupBoxItem.ResumeLayout(true);
+        }
+
+        public static void LayoutManagedListBoxEditButtons(RadPanel rightDockedPanel, RadPanel radPanelTableParent, bool performLayout = true)
+        {
+            ((ISupportInitialize)rightDockedPanel).BeginInit();
+            rightDockedPanel.SuspendLayout();
+            ((ISupportInitialize)radPanelTableParent).BeginInit();
+            radPanelTableParent.SuspendLayout();
+
+            radPanelTableParent.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, PerFontSizeConstants.BottomPanelHeight);
+            rightDockedPanel.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, rightDockedPanel.Height);
+
+            ((ISupportInitialize)radPanelTableParent).EndInit();
+            radPanelTableParent.ResumeLayout(false);
+            ((ISupportInitialize)rightDockedPanel).EndInit();
+            rightDockedPanel.ResumeLayout(performLayout);
+        }
+
+        public static void LayoutGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
+        {
+            ((ISupportInitialize)radGroupBox).BeginInit();
+            radGroupBox.SuspendLayout();
+            groupBoxParent.SuspendLayout();
+
+            radGroupBox.Margin = new Padding(0);
+            radGroupBox.Padding = PerFontSizeConstants.GroupBoxPadding;
+
+            ((ISupportInitialize)radGroupBox).EndInit();
+            radGroupBox.ResumeLayout(false);
+            groupBoxParent.ResumeLayout(performLayout);
         }
     }
 }

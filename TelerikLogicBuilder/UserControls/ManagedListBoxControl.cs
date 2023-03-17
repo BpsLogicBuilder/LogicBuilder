@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ListBox.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -62,9 +63,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void Initialize()
         {
+            ControlsLayoutUtility.LayoutManagedListBoxEditButtons(radPanelEditButtons, radPanelTableParent);
             CollapsePanelBorder(radPanelListBox);
             CollapsePanelBorder(radPanelUpDownButtons);
             CollapsePanelBorder(radPanelEditButtons);
+            CollapsePanelBorder(radPanelTableParent);
         }
 
         private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
