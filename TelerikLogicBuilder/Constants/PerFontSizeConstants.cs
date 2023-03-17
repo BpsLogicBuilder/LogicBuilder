@@ -256,5 +256,47 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                 return sizes[Properties.Settings.Default.fontSize];
             }
         }
+
+        public static int SingleRowGroupBoxHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 61;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 61,
+                    [ThemeCollections.TEN] = 63,
+                    [ThemeCollections.ELEVEN] = 66,
+                    [ThemeCollections.TWELVE] = 73,
+                    [ThemeCollections.THIRTEEN] = 79,
+                    [ThemeCollections.FOURTEEN] = 81,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static Padding SingleRowGroupBoxPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(18, 24, 18, 12);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(18, 24, 18, 12),
+                    [ThemeCollections.TEN] = new Padding(18, 24, 18, 12),
+                    [ThemeCollections.ELEVEN] = new Padding(18, 24, 18, 12),
+                    [ThemeCollections.TWELVE] = new Padding(18, 26, 18, 15),
+                    [ThemeCollections.THIRTEEN] = new Padding(18, 30, 18, 15),
+                    [ThemeCollections.FOURTEEN] = new Padding(18, 30, 18, 15),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
     }
 }

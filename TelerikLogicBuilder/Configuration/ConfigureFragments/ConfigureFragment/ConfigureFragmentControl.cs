@@ -107,6 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
         private void Initialize()
         {
+            ResetGroupBoxes();
             InitializeRichTextBoxPanelFragmentControl();
             //AddEventHandlers();
             //_richTextBoxPanelFragment.TextChanged runs when ConfigureFragmentControl (this control) is dynamically added
@@ -114,6 +115,38 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             CollapsePanelBorder(radPanelName);
             CollapsePanelBorder(radPanelContent);
             InitializeFragmentControls();
+        }
+
+        private void ResetGroupBoxes()
+        {
+            ((ISupportInitialize)radGroupBoxXml).BeginInit();
+            radGroupBoxXml.SuspendLayout();
+            ((ISupportInitialize)groupBoxName).BeginInit();
+            groupBoxName.SuspendLayout();
+            ((ISupportInitialize)radPanelContent).BeginInit();
+            radPanelContent.SuspendLayout();
+            ((ISupportInitialize)radPanelName).BeginInit();
+            radPanelName.SuspendLayout();
+            ((ISupportInitialize)groupBoxFragment).BeginInit();
+            groupBoxFragment.SuspendLayout();
+            SuspendLayout();
+
+            radPanelName.Size = new Size(radPanelName.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
+            groupBoxName.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
+            radGroupBoxXml.Padding = PerFontSizeConstants.GroupBoxPadding;
+            groupBoxFragment.Padding = PerFontSizeConstants.GroupBoxPadding;
+
+            ((ISupportInitialize)groupBoxName).EndInit();
+            groupBoxName.ResumeLayout(false);
+            ((ISupportInitialize)radGroupBoxXml).EndInit();
+            radGroupBoxXml.ResumeLayout(false);
+            ((ISupportInitialize)radPanelContent).EndInit();
+            radPanelContent.ResumeLayout(false);
+            ((ISupportInitialize)radPanelName).EndInit();
+            radPanelName.ResumeLayout(false);
+            ((ISupportInitialize)groupBoxFragment).EndInit();
+            groupBoxFragment.ResumeLayout(false);
+            ResumeLayout(true);
         }
 
         private void InitializeRichTextBoxPanelFragmentControl()
