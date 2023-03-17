@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultVal
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -66,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaul
         public void ClearMessage()
             => _configureLiteralListDefaultValueForm.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) 
+        public void DisableControlsDuringEdit(bool disable)
             => _configureLiteralListDefaultValueForm.DisableControlsDuringEdit(disable);
 
         public IList<string> GetDefaultValueItems()
@@ -98,6 +99,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaul
 
         private void Initialize()
         {
+            ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxAddDefaultValueItem);
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxDefaultValueItems);
+            ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             CollapsePanelBorder(radPanelTxtDefaultValueItem);
             CollapsePanelBorder(radPanelAddButton);
 
