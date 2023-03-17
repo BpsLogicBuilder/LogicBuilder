@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             RadTreeNode existingTreeNode = treeView.SelectedNode;
 
             if (!_treeViewService.IsGenericArgumentParameterNode(existingTreeNode))
-                throw _exceptionHelper.CriticalException("{DA23BD83-D733-49A9-998E-E065A4F122BC}");
+                return;
 
             XmlElement xmlElement = _xmlDocumentHelpers.SelectSingleElement
             (

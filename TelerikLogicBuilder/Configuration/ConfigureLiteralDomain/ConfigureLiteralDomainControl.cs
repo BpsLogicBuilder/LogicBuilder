@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factori
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
         public void ClearMessage()
             => _configureLiteralDomainForm.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) 
+        public void DisableControlsDuringEdit(bool disable)
             => _configureLiteralDomainForm.DisableControlsDuringEdit(disable);
 
         public IList<string> GetDomainItems()
@@ -98,6 +99,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
 
         private void Initialize()
         {
+            ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxAddDomainItem);
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxDomainItems);
+            ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             CollapsePanelBorder(radPanelTxtDomainItem);
             CollapsePanelBorder(radPanelAddButton);
 
