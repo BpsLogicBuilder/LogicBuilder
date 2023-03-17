@@ -161,12 +161,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 
                 Dictionary<int, Padding> sizes = new()
                 {
-                    [ThemeCollections.NINE] = new Padding(2, 18, 2, 2),
-                    [ThemeCollections.TEN] = new Padding(2, 18, 2, 2),
-                    [ThemeCollections.ELEVEN] = new Padding(2, 18, 2, 2),
-                    [ThemeCollections.TWELVE] = new Padding(2, 18, 2, 2),
-                    [ThemeCollections.THIRTEEN] = new Padding(2, 25, 2, 2),
-                    [ThemeCollections.FOURTEEN] = new Padding(2, 25, 2, 2),
+                    [ThemeCollections.NINE] = new Padding(2, 21, 2, 2),
+                    [ThemeCollections.TEN] = new Padding(2, 21, 2, 2),
+                    [ThemeCollections.ELEVEN] = new Padding(2, 21, 2, 2),
+                    [ThemeCollections.TWELVE] = new Padding(2, 22, 2, 2),
+                    [ThemeCollections.THIRTEEN] = new Padding(2, 29, 2, 2),
+                    [ThemeCollections.FOURTEEN] = new Padding(2, 29, 2, 2),
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];

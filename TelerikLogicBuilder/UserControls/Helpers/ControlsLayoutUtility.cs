@@ -104,6 +104,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             radPanelBottom.ResumeLayout(performLayout);
         }
 
+        public static void LayoutBottomPanel(RadPanel radPanelBottom, RadPanel radPanelMessages, RadPanel radPanelButtons, bool performLayout = true)
+        {
+            ((ISupportInitialize)radPanelMessages).BeginInit();
+            radPanelMessages.SuspendLayout();
+            ((ISupportInitialize)radPanelButtons).BeginInit();
+            radPanelButtons.SuspendLayout();
+            ((ISupportInitialize)radPanelBottom).BeginInit();
+            radPanelBottom.SuspendLayout();
+
+            radPanelButtons.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanelButtons.Height);
+            radPanelBottom.Size = new Size(radPanelBottom.Width, PerFontSizeConstants.BottomPanelHeight);
+
+            ((ISupportInitialize)radPanelMessages).EndInit();
+            radPanelMessages.ResumeLayout(false);
+            ((ISupportInitialize)radPanelButtons).EndInit();
+            radPanelButtons.ResumeLayout(false);
+            ((ISupportInitialize)radPanelBottom).EndInit();
+            radPanelBottom.ResumeLayout(performLayout);
+        }
+
         public static void LayoutControls(RadGroupBox groupBoxItem, RadScrollablePanel radScrollablePanelItem, RadPanel radPanelTableParent, TableLayoutPanel tableLayoutPanel, int controlsRowCount)
         {
             tableLayoutPanel.ColumnStyles.Clear();
