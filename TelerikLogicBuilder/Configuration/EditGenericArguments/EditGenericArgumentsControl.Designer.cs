@@ -28,127 +28,162 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radGroupBoxEditArgument = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelTxtArgument = new Telerik.WinControls.UI.RadPanel();
-            this.txtArgument = new Telerik.WinControls.UI.RadTextBox();
-            this.radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
-            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
-            this.btnAdd = new Telerik.WinControls.UI.RadButton();
-            this.radGroupBoxArguments = new Telerik.WinControls.UI.RadGroupBox();
-            this.managedListBoxControl = new ABIS.LogicBuilder.FlowBuilder.UserControls.ManagedListBoxControl();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxEditArgument)).BeginInit();
-            this.radGroupBoxEditArgument.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTxtArgument)).BeginInit();
-            this.radPanelTxtArgument.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtArgument)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelAddButton)).BeginInit();
-            this.radPanelAddButton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxArguments)).BeginInit();
-            this.radGroupBoxArguments.SuspendLayout();
-            this.SuspendLayout();
+            radGroupBoxEditArgument = new Telerik.WinControls.UI.RadGroupBox();
+            radPanelTxtArgument = new Telerik.WinControls.UI.RadPanel();
+            txtArgument = new Telerik.WinControls.UI.RadTextBox();
+            radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
+            btnUpdate = new Telerik.WinControls.UI.RadButton();
+            btnAdd = new Telerik.WinControls.UI.RadButton();
+            radGroupBoxArguments = new Telerik.WinControls.UI.RadGroupBox();
+            managedListBoxControl = new UserControls.ManagedListBoxControl();
+            tableLayoutPanelAddUpdate = new System.Windows.Forms.TableLayoutPanel();
+            radPanelAddUpdateButtonTableCell = new Telerik.WinControls.UI.RadPanel();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxEditArgument).BeginInit();
+            radGroupBoxEditArgument.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelTxtArgument).BeginInit();
+            radPanelTxtArgument.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtArgument).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelAddButton).BeginInit();
+            radPanelAddButton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnAdd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxArguments).BeginInit();
+            radGroupBoxArguments.SuspendLayout();
+            tableLayoutPanelAddUpdate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelAddUpdateButtonTableCell).BeginInit();
+            radPanelAddUpdateButtonTableCell.SuspendLayout();
+            SuspendLayout();
             // 
             // radGroupBoxEditArgument
             // 
-            this.radGroupBoxEditArgument.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxEditArgument.Controls.Add(this.radPanelTxtArgument);
-            this.radGroupBoxEditArgument.Controls.Add(this.radPanelAddButton);
-            this.radGroupBoxEditArgument.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radGroupBoxEditArgument.HeaderText = "Edit Argument";
-            this.radGroupBoxEditArgument.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBoxEditArgument.Name = "radGroupBoxEditArgument";
-            this.radGroupBoxEditArgument.Size = new System.Drawing.Size(729, 55);
-            this.radGroupBoxEditArgument.TabIndex = 2;
-            this.radGroupBoxEditArgument.Text = "Edit Argument";
+            radGroupBoxEditArgument.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxEditArgument.Controls.Add(radPanelTxtArgument);
+            radGroupBoxEditArgument.Controls.Add(radPanelAddButton);
+            radGroupBoxEditArgument.Dock = System.Windows.Forms.DockStyle.Top;
+            radGroupBoxEditArgument.HeaderText = "Edit Argument";
+            radGroupBoxEditArgument.Location = new System.Drawing.Point(0, 0);
+            radGroupBoxEditArgument.Name = "radGroupBoxEditArgument";
+            radGroupBoxEditArgument.Size = new System.Drawing.Size(729, 55);
+            radGroupBoxEditArgument.TabIndex = 2;
+            radGroupBoxEditArgument.Text = "Edit Argument";
             // 
-            // radPanelTxtDomainItem
+            // radPanelTxtArgument
             // 
-            this.radPanelTxtArgument.Controls.Add(this.txtArgument);
-            this.radPanelTxtArgument.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelTxtArgument.Location = new System.Drawing.Point(2, 18);
-            this.radPanelTxtArgument.Name = "radPanelTxtDomainItem";
-            this.radPanelTxtArgument.Padding = new System.Windows.Forms.Padding(12, 3, 12, 0);
-            this.radPanelTxtArgument.Size = new System.Drawing.Size(591, 35);
-            this.radPanelTxtArgument.TabIndex = 1;
+            radPanelTxtArgument.Controls.Add(txtArgument);
+            radPanelTxtArgument.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelTxtArgument.Location = new System.Drawing.Point(2, 18);
+            radPanelTxtArgument.Name = "radPanelTxtArgument";
+            radPanelTxtArgument.Padding = new System.Windows.Forms.Padding(12, 3, 12, 0);
+            radPanelTxtArgument.Size = new System.Drawing.Size(591, 35);
+            radPanelTxtArgument.TabIndex = 1;
             // 
-            // txtDomainItem
+            // txtArgument
             // 
-            this.txtArgument.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtArgument.Location = new System.Drawing.Point(12, 3);
-            this.txtArgument.Name = "txtDomainItem";
-            this.txtArgument.Size = new System.Drawing.Size(567, 20);
-            this.txtArgument.TabIndex = 0;
+            txtArgument.Dock = System.Windows.Forms.DockStyle.Top;
+            txtArgument.Location = new System.Drawing.Point(12, 3);
+            txtArgument.Name = "txtArgument";
+            txtArgument.Size = new System.Drawing.Size(567, 20);
+            txtArgument.TabIndex = 0;
             // 
             // radPanelAddButton
             // 
-            this.radPanelAddButton.Controls.Add(this.btnUpdate);
-            this.radPanelAddButton.Controls.Add(this.btnAdd);
-            this.radPanelAddButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelAddButton.Location = new System.Drawing.Point(593, 18);
-            this.radPanelAddButton.Name = "radPanelAddButton";
-            this.radPanelAddButton.Size = new System.Drawing.Size(134, 35);
-            this.radPanelAddButton.TabIndex = 0;
+            radPanelAddButton.Controls.Add(tableLayoutPanelAddUpdate);
+            radPanelAddButton.Dock = System.Windows.Forms.DockStyle.Right;
+            radPanelAddButton.Location = new System.Drawing.Point(593, 18);
+            radPanelAddButton.Name = "radPanelAddButton";
+            radPanelAddButton.Size = new System.Drawing.Size(134, 35);
+            radPanelAddButton.TabIndex = 0;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(12, 3);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
-            this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Update";
+            btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnUpdate.Location = new System.Drawing.Point(0, 0);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new System.Drawing.Size(93, 35);
+            btnUpdate.TabIndex = 2;
+            btnUpdate.Text = "Update";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(110, 24);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "Add";
+            btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnAdd.Location = new System.Drawing.Point(0, 0);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(93, 35);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "Add";
             // 
             // radGroupBoxArguments
             // 
-            this.radGroupBoxArguments.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxArguments.Controls.Add(this.managedListBoxControl);
-            this.radGroupBoxArguments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxArguments.HeaderText = "Arguments";
-            this.radGroupBoxArguments.Location = new System.Drawing.Point(0, 55);
-            this.radGroupBoxArguments.Name = "radGroupBoxArguments";
-            this.radGroupBoxArguments.Size = new System.Drawing.Size(729, 182);
-            this.radGroupBoxArguments.TabIndex = 3;
-            this.radGroupBoxArguments.Text = "Arguments";
+            radGroupBoxArguments.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxArguments.Controls.Add(managedListBoxControl);
+            radGroupBoxArguments.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxArguments.HeaderText = "Arguments";
+            radGroupBoxArguments.Location = new System.Drawing.Point(0, 55);
+            radGroupBoxArguments.Name = "radGroupBoxArguments";
+            radGroupBoxArguments.Size = new System.Drawing.Size(729, 182);
+            radGroupBoxArguments.TabIndex = 3;
+            radGroupBoxArguments.Text = "Arguments";
             // 
             // managedListBoxControl
             // 
-            this.managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.managedListBoxControl.Location = new System.Drawing.Point(2, 18);
-            this.managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
-            this.managedListBoxControl.Name = "managedListBoxControl";
-            this.managedListBoxControl.Size = new System.Drawing.Size(725, 162);
-            this.managedListBoxControl.TabIndex = 0;
+            managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            managedListBoxControl.Location = new System.Drawing.Point(2, 18);
+            managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
+            managedListBoxControl.Name = "managedListBoxControl";
+            managedListBoxControl.Size = new System.Drawing.Size(725, 162);
+            managedListBoxControl.TabIndex = 0;
+            // 
+            // tableLayoutPanelAddUpdate
+            // 
+            tableLayoutPanelAddUpdate.ColumnCount = 3;
+            tableLayoutPanelAddUpdate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelAddUpdate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            tableLayoutPanelAddUpdate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelAddUpdate.Controls.Add(radPanelAddUpdateButtonTableCell, 1, 0);
+            tableLayoutPanelAddUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelAddUpdate.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelAddUpdate.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanelAddUpdate.Name = "tableLayoutPanelAddUpdate";
+            tableLayoutPanelAddUpdate.RowCount = 1;
+            tableLayoutPanelAddUpdate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanelAddUpdate.Size = new System.Drawing.Size(134, 35);
+            tableLayoutPanelAddUpdate.TabIndex = 1;
+            // 
+            // radPanelAddUpdateButtonTableCell
+            // 
+            radPanelAddUpdateButtonTableCell.Controls.Add(btnAdd);
+            radPanelAddUpdateButtonTableCell.Controls.Add(btnUpdate);
+            radPanelAddUpdateButtonTableCell.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelAddUpdateButtonTableCell.Location = new System.Drawing.Point(20, 0);
+            radPanelAddUpdateButtonTableCell.Margin = new System.Windows.Forms.Padding(0);
+            radPanelAddUpdateButtonTableCell.Name = "radPanelAddUpdateButtonTableCell";
+            radPanelAddUpdateButtonTableCell.Size = new System.Drawing.Size(93, 35);
+            radPanelAddUpdateButtonTableCell.TabIndex = 0;
             // 
             // EditGenericArgumentsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radGroupBoxArguments);
-            this.Controls.Add(this.radGroupBoxEditArgument);
-            this.Name = "EditGenericArgumentsControl";
-            this.Size = new System.Drawing.Size(729, 237);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxEditArgument)).EndInit();
-            this.radGroupBoxEditArgument.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTxtArgument)).EndInit();
-            this.radPanelTxtArgument.ResumeLayout(false);
-            this.radPanelTxtArgument.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtArgument)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelAddButton)).EndInit();
-            this.radPanelAddButton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxArguments)).EndInit();
-            this.radGroupBoxArguments.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(radGroupBoxArguments);
+            Controls.Add(radGroupBoxEditArgument);
+            Name = "EditGenericArgumentsControl";
+            Size = new System.Drawing.Size(729, 237);
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxEditArgument).EndInit();
+            radGroupBoxEditArgument.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelTxtArgument).EndInit();
+            radPanelTxtArgument.ResumeLayout(false);
+            radPanelTxtArgument.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtArgument).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelAddButton).EndInit();
+            radPanelAddButton.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnAdd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxArguments).EndInit();
+            radGroupBoxArguments.ResumeLayout(false);
+            tableLayoutPanelAddUpdate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelAddUpdateButtonTableCell).EndInit();
+            radPanelAddUpdateButtonTableCell.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -161,5 +196,7 @@
         private Telerik.WinControls.UI.RadButton btnAdd;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxArguments;
         private UserControls.ManagedListBoxControl managedListBoxControl;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAddUpdate;
+        private Telerik.WinControls.UI.RadPanel radPanelAddUpdateButtonTableCell;
     }
 }

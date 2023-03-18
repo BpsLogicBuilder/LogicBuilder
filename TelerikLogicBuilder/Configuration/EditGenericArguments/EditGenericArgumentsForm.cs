@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -76,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
 
         private void InitializeControls()
         {
-            InitializeControl(this.radPanelMessages, (Control)_dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
             InitializeControl(this.radPanelFill, (Control)editGenericArgumentsControl);
         }
 

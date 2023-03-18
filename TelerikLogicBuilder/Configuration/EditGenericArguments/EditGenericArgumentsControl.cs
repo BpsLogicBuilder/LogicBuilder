@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
         public RadTextBox TxtArgument => txtArgument;
 
         public void ClearInputControls()
-            => txtArgument.Text= string.Empty;
+            => txtArgument.Text = string.Empty;
 
         public void ClearMessage() => editGenericArgumentsForm.ClearMessage();
 
@@ -85,6 +86,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
 
         private void Initialize()
         {
+            ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxEditArgument);
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxArguments);
+            ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             CollapsePanelBorder(radPanelTxtArgument);
             CollapsePanelBorder(radPanelAddButton);
 
