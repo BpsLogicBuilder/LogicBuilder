@@ -24,7 +24,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -323,15 +322,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
         }
 
         private void LoadXmlDocument()
