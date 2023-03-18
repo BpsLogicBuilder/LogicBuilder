@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -72,33 +73,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
 
         private void InitializeControls()
         {
-            ((ISupportInitialize)this.radPanelBottom).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            InitializeLoadAssemblyPathsControl();
+        }
+
+        private void InitializeLoadAssemblyPathsControl()
+        {
             ((ISupportInitialize)this.radPanelFill).BeginInit();
             this.radPanelFill.SuspendLayout();
-            ((ISupportInitialize)this).BeginInit();
-            this.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
 
             Control loadAssemblyPathsControl = (Control)_loadAssemblyPathsControl;
             loadAssemblyPathsControl.Dock = DockStyle.Fill;
             loadAssemblyPathsControl.Location = new Point(0, 0);
             this.radPanelFill.Controls.Add(loadAssemblyPathsControl);
 
-            ((ISupportInitialize)this.radPanelBottom).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
             ((ISupportInitialize)this.radPanelFill).EndInit();
-            this.radPanelFill.ResumeLayout(false);
-            ((ISupportInitialize)this).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            this.radPanelFill.ResumeLayout(true);
         }
 
         private void LoadListBox()

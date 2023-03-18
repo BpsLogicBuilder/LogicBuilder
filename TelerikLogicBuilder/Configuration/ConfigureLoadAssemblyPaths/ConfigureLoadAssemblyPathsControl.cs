@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Fac
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -55,24 +56,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
             Initialize();
         }
 
-        public void ClearInputControls() 
+        public void ClearInputControls()
             => txtPath.Text = string.Empty;
 
-        public void ClearMessage() 
+        public void ClearMessage()
             => _configureLoadAssemblyPaths.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) 
+        public void DisableControlsDuringEdit(bool disable)
             => _configureLoadAssemblyPaths.DisableControlsDuringEdit(disable);
 
-        public IList<string> GetPaths() 
+        public IList<string> GetPaths()
             => ListBox.Items
                     .Select(i => ((AssemblyPath)i.Value).Path)
                     .ToArray();
 
-        public void SetErrorMessage(string message) 
+        public void SetErrorMessage(string message)
             => _configureLoadAssemblyPaths.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") 
+        public void SetMessage(string message, string title = "")
             => _configureLoadAssemblyPaths.SetMessage(message, title);
 
         public void SetPaths(IList<string> paths)
@@ -85,14 +86,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
             );
         }
 
-        public void UpdateInputControls(AssemblyPath item) 
+        public void UpdateInputControls(AssemblyPath item)
             => txtPath.Text = item.Path;
 
-        private static void CollapsePanelBorder(RadPanel radPanel) 
+        private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private void Initialize()
         {
+            ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxAddPath);
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxPaths);
+            ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             CollapsePanelBorder(radPanelTxtPath);
             CollapsePanelBorder(radPanelAddButton);
 
