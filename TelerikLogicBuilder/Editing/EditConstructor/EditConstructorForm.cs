@@ -19,16 +19,16 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 {
-	internal partial class EditConstructorForm : Telerik.WinControls.UI.RadForm, IEditConstructorForm
+    internal partial class EditConstructorForm : Telerik.WinControls.UI.RadForm, IEditConstructorForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
         private readonly IConfigurationService _configurationService;
-		private readonly IDataGraphEditingFormEventsHelper _dataGraphEditingFormEventsHelper;
+        private readonly IDataGraphEditingFormEventsHelper _dataGraphEditingFormEventsHelper;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly IEditingControlFactory _editingControlFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
-		private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
+        private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
 
         private ApplicationTypeInfo _application;
@@ -52,10 +52,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _editingControlFactory = editingControlFactory;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
-			_treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
+            _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             this.assignedTo = assignedTo;
-            
-			_treeViewXmlDocumentHelper.LoadXmlDocument(button2Xml);
+
+            _treeViewXmlDocumentHelper.LoadXmlDocument(button2Xml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
             Initialize();
@@ -69,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-		public RadPanel RadPanelFields => radPanelFields;
+        public RadPanel RadPanelFields => radPanelFields;
 
         public RadTreeView TreeView => radTreeView1;
 
@@ -95,6 +95,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         {
             InitializeDialogFormMessageControl();
             InitializeApplicationDropDownList();
+			InitializeSelectConstructorDropDownList();
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
 
@@ -112,7 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _formInitializer.SetToEditSize(this);
 
             _dataGraphEditingFormEventsHelper.Setup();
-			LoadTreeview();
+            LoadTreeview();
         }
 
         private void LoadTreeview()
@@ -156,18 +157,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         private void RadButton3_Click(object? sender, EventArgs e)
         {
-			var functionName = "AddItem";
+            var functionName = "AddItem";
             var function = _configurationService.FunctionList.Functions[functionName];
             Navigate((Control)_editingControlFactory.GetEditStandardFunctionControl(this, function, assignedTo, GetXmlDocument(BuildFunctionXml(functionName)), "/function"));
         }
 
         private string BuildConstructorXml(string name)
-		{
-			_ = button1Xml + button2Xml;
+        {
+            _ = button1Xml + button2Xml;
             //ThemeResolutionService.Fon
 
             return new XmlDataHelper(_exceptionHelper, new Services.XmlDocumentHelpers(_exceptionHelper))
-				.BuildConstructorXml(name, name, "<genericArguments />", "<parameters />");
+                .BuildConstructorXml(name, name, "<genericArguments />", "<parameters />");
 
         }
 
@@ -1092,15 +1093,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+        }
 
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+        private void InitializeSelectConstructorDropDownList()
+        {
+            ControlsLayoutUtility.LayoutSelectConfiguredItemGroupBox(this, radPanelSelectConstructor, radGroupBoxSelectConstructor, cmbSelectConstructor);
         }
 
         private void Navigate(Control newControl)

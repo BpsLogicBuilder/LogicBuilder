@@ -226,6 +226,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             rightDockedPanel.ResumeLayout(performLayout);
         }
 
+        public static void LayoutSelectConfiguredItemGroupBox(Form editForm, RadPanel radPanelConfiguredItem, RadGroupBox radGroupBoxConfiguredItem, HelperButtonDropDownList helperButtonDropDownList)
+        {
+            ((ISupportInitialize)radGroupBoxConfiguredItem).BeginInit();
+            radGroupBoxConfiguredItem.SuspendLayout();
+            ((ISupportInitialize)radPanelConfiguredItem).BeginInit();
+            radPanelConfiguredItem.SuspendLayout();
+            editForm.SuspendLayout();
+
+            radPanelConfiguredItem.Size = new Size(radPanelConfiguredItem.Width, PerFontSizeConstants.ApplicationGroupBoxHeight);
+            radGroupBoxConfiguredItem.Margin = new Padding(0);
+            radGroupBoxConfiguredItem.Padding = PerFontSizeConstants.SelectConfiguredItemGroupBoxPadding;
+
+            helperButtonDropDownList.AutoSize = false;
+            helperButtonDropDownList.Margin = new Padding(0);
+            helperButtonDropDownList.Dock = DockStyle.Fill;
+            helperButtonDropDownList.Location = new Point(0, 0);
+            radGroupBoxConfiguredItem.Controls.Add(helperButtonDropDownList);
+
+            ((ISupportInitialize)radGroupBoxConfiguredItem).EndInit();
+            radGroupBoxConfiguredItem.ResumeLayout(false);
+            ((ISupportInitialize)radPanelConfiguredItem).EndInit();
+            radPanelConfiguredItem.ResumeLayout(false);
+            editForm.ResumeLayout(true);
+        }
+
         public static void LayoutSingleRowGroupBox(RadPanel radPanelGroupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
         {
             ((ISupportInitialize)radGroupBox).BeginInit();

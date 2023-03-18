@@ -28,269 +28,280 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanelBottom = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelMessages = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelButtons = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnPasteXml = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.btnOk = new Telerik.WinControls.UI.RadButton();
-            this.radSplitContainerTop = new Telerik.WinControls.UI.RadSplitContainer();
-            this.splitPanelLeft = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanelRight = new Telerik.WinControls.UI.SplitPanel();
-            this.radPanelFields = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelApplication = new Telerik.WinControls.UI.RadPanel();
-            this.radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
-            this.radPanelSelectConstructor = new Telerik.WinControls.UI.RadPanel();
-            this.radGroupBoxSelectConstructor = new Telerik.WinControls.UI.RadGroupBox();
-            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelButtons)).BeginInit();
-            this.radPanelButtons.SuspendLayout();
-            this.tableLayoutPanelButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPasteXml)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerTop)).BeginInit();
-            this.radSplitContainerTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).BeginInit();
-            this.splitPanelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelRight)).BeginInit();
-            this.splitPanelRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFields)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).BeginInit();
-            this.radPanelApplication.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelSelectConstructor)).BeginInit();
-            this.radPanelSelectConstructor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSelectConstructor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            this.SuspendLayout();
+            radPanelBottom = new Telerik.WinControls.UI.RadPanel();
+            radPanelMessages = new Telerik.WinControls.UI.RadPanel();
+            radPanelButtons = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
+            btnPasteXml = new Telerik.WinControls.UI.RadButton();
+            btnCancel = new Telerik.WinControls.UI.RadButton();
+            btnOk = new Telerik.WinControls.UI.RadButton();
+            radSplitContainerTop = new Telerik.WinControls.UI.RadSplitContainer();
+            splitPanelLeft = new Telerik.WinControls.UI.SplitPanel();
+            radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
+            radPanelSelectConstructor = new Telerik.WinControls.UI.RadPanel();
+            radGroupBoxSelectConstructor = new Telerik.WinControls.UI.RadGroupBox();
+            cmbSelectConstructor = new UserControls.HelperButtonDropDownList();
+            splitPanelRight = new Telerik.WinControls.UI.SplitPanel();
+            radPanelFields = new Telerik.WinControls.UI.RadPanel();
+            radPanelApplication = new Telerik.WinControls.UI.RadPanel();
+            radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).BeginInit();
+            radPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelButtons).BeginInit();
+            radPanelButtons.SuspendLayout();
+            tableLayoutPanelButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnPasteXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnCancel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnOk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radSplitContainerTop).BeginInit();
+            radSplitContainerTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitPanelLeft).BeginInit();
+            splitPanelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radTreeView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelSelectConstructor).BeginInit();
+            radPanelSelectConstructor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxSelectConstructor).BeginInit();
+            radGroupBoxSelectConstructor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitPanelRight).BeginInit();
+            splitPanelRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelFields).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelApplication).BeginInit();
+            radPanelApplication.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this).BeginInit();
+            SuspendLayout();
             // 
             // radPanelBottom
             // 
-            this.radPanelBottom.Controls.Add(this.radPanelMessages);
-            this.radPanelBottom.Controls.Add(this.radPanelButtons);
-            this.radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanelBottom.Location = new System.Drawing.Point(0, 473);
-            this.radPanelBottom.Name = "radPanelBottom";
-            this.radPanelBottom.Size = new System.Drawing.Size(973, 150);
-            this.radPanelBottom.TabIndex = 4;
+            radPanelBottom.Controls.Add(radPanelMessages);
+            radPanelBottom.Controls.Add(radPanelButtons);
+            radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radPanelBottom.Location = new System.Drawing.Point(0, 409);
+            radPanelBottom.Name = "radPanelBottom";
+            radPanelBottom.Size = new System.Drawing.Size(997, 150);
+            radPanelBottom.TabIndex = 4;
             // 
             // radPanelMessages
             // 
-            this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelMessages.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Name = "radPanelMessages";
-            this.radPanelMessages.Size = new System.Drawing.Size(813, 150);
-            this.radPanelMessages.TabIndex = 2;
+            radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelMessages.Location = new System.Drawing.Point(0, 0);
+            radPanelMessages.Name = "radPanelMessages";
+            radPanelMessages.Size = new System.Drawing.Size(837, 150);
+            radPanelMessages.TabIndex = 2;
             // 
             // radPanelButtons
             // 
-            this.radPanelButtons.Controls.Add(this.tableLayoutPanelButtons);
-            this.radPanelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelButtons.Location = new System.Drawing.Point(813, 0);
-            this.radPanelButtons.Name = "radPanelButtons";
-            this.radPanelButtons.Size = new System.Drawing.Size(160, 150);
-            this.radPanelButtons.TabIndex = 2;
+            radPanelButtons.Controls.Add(tableLayoutPanelButtons);
+            radPanelButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            radPanelButtons.Location = new System.Drawing.Point(837, 0);
+            radPanelButtons.Name = "radPanelButtons";
+            radPanelButtons.Size = new System.Drawing.Size(160, 150);
+            radPanelButtons.TabIndex = 2;
             // 
             // tableLayoutPanelButtons
             // 
-            this.tableLayoutPanelButtons.ColumnCount = 3;
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanelButtons.Controls.Add(this.btnPasteXml, 1, 1);
-            this.tableLayoutPanelButtons.Controls.Add(this.btnCancel, 1, 5);
-            this.tableLayoutPanelButtons.Controls.Add(this.btnOk, 1, 3);
-            this.tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
-            this.tableLayoutPanelButtons.RowCount = 9;
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.Size = new System.Drawing.Size(160, 150);
-            this.tableLayoutPanelButtons.TabIndex = 0;
+            tableLayoutPanelButtons.ColumnCount = 3;
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.Controls.Add(btnPasteXml, 1, 1);
+            tableLayoutPanelButtons.Controls.Add(btnCancel, 1, 5);
+            tableLayoutPanelButtons.Controls.Add(btnOk, 1, 3);
+            tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
+            tableLayoutPanelButtons.RowCount = 9;
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.Size = new System.Drawing.Size(160, 150);
+            tableLayoutPanelButtons.TabIndex = 0;
             // 
             // btnPasteXml
             // 
-            this.btnPasteXml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPasteXml.Location = new System.Drawing.Point(27, 9);
-            this.btnPasteXml.Name = "btnPasteXml";
-            this.btnPasteXml.Size = new System.Drawing.Size(106, 24);
-            this.btnPasteXml.TabIndex = 0;
-            this.btnPasteXml.Text = "Paste XML...";
+            btnPasteXml.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnPasteXml.Location = new System.Drawing.Point(27, 9);
+            btnPasteXml.Name = "btnPasteXml";
+            btnPasteXml.Size = new System.Drawing.Size(106, 24);
+            btnPasteXml.TabIndex = 0;
+            btnPasteXml.Text = "Paste XML...";
             // 
             // btnCancel
             // 
-            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCancel.Location = new System.Drawing.Point(27, 81);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(106, 24);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "&Cancel";
+            btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnCancel.Location = new System.Drawing.Point(27, 81);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(106, 24);
+            btnCancel.TabIndex = 2;
+            btnCancel.Text = "&Cancel";
             // 
             // btnOk
             // 
-            this.btnOk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOk.Location = new System.Drawing.Point(27, 45);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(106, 24);
-            this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "&Ok";
+            btnOk.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnOk.Location = new System.Drawing.Point(27, 45);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new System.Drawing.Size(106, 24);
+            btnOk.TabIndex = 1;
+            btnOk.Text = "&Ok";
             // 
             // radSplitContainerTop
             // 
-            this.radSplitContainerTop.Controls.Add(this.splitPanelLeft);
-            this.radSplitContainerTop.Controls.Add(this.splitPanelRight);
-            this.radSplitContainerTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainerTop.Location = new System.Drawing.Point(0, 0);
-            this.radSplitContainerTop.Name = "radSplitContainerTop";
+            radSplitContainerTop.Controls.Add(splitPanelLeft);
+            radSplitContainerTop.Controls.Add(splitPanelRight);
+            radSplitContainerTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            radSplitContainerTop.Location = new System.Drawing.Point(0, 0);
+            radSplitContainerTop.Name = "radSplitContainerTop";
             // 
             // 
             // 
-            this.radSplitContainerTop.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainerTop.Size = new System.Drawing.Size(973, 473);
-            this.radSplitContainerTop.TabIndex = 5;
-            this.radSplitContainerTop.TabStop = false;
+            radSplitContainerTop.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            radSplitContainerTop.Size = new System.Drawing.Size(997, 409);
+            radSplitContainerTop.TabIndex = 5;
+            radSplitContainerTop.TabStop = false;
             // 
             // splitPanelLeft
             // 
-            this.splitPanelLeft.Controls.Add(this.radTreeView1);
-            this.splitPanelLeft.Controls.Add(this.radPanelSelectConstructor);
-            this.splitPanelLeft.Location = new System.Drawing.Point(0, 0);
-            this.splitPanelLeft.Name = "splitPanelLeft";
+            splitPanelLeft.Controls.Add(radTreeView1);
+            splitPanelLeft.Controls.Add(radPanelSelectConstructor);
+            splitPanelLeft.Location = new System.Drawing.Point(0, 0);
+            splitPanelLeft.Name = "splitPanelLeft";
             // 
             // 
             // 
-            this.splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelLeft.Size = new System.Drawing.Size(280, 473);
-            this.splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2113951F, 0F);
-            this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(-199, 0);
-            this.splitPanelLeft.TabIndex = 0;
-            this.splitPanelLeft.TabStop = false;
-            // 
-            // splitPanelRight
-            // 
-            this.splitPanelRight.Controls.Add(this.radPanelFields);
-            this.splitPanelRight.Controls.Add(this.radPanelApplication);
-            this.splitPanelRight.Location = new System.Drawing.Point(284, 0);
-            this.splitPanelRight.Name = "splitPanelRight";
-            // 
-            // 
-            // 
-            this.splitPanelRight.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelRight.Size = new System.Drawing.Size(689, 473);
-            this.splitPanelRight.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2113951F, 0F);
-            this.splitPanelRight.SizeInfo.SplitterCorrection = new System.Drawing.Size(199, 0);
-            this.splitPanelRight.TabIndex = 1;
-            this.splitPanelRight.TabStop = false;
-            // 
-            // radPanelFields
-            // 
-            this.radPanelFields.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelFields.Location = new System.Drawing.Point(0, 60);
-            this.radPanelFields.Name = "radPanelFields";
-            this.radPanelFields.Size = new System.Drawing.Size(689, 413);
-            this.radPanelFields.TabIndex = 1;
-            // 
-            // radPanelApplication
-            // 
-            this.radPanelApplication.Controls.Add(this.radGroupBoxApplication);
-            this.radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelApplication.Location = new System.Drawing.Point(0, 0);
-            this.radPanelApplication.Name = "radPanelApplication";
-            this.radPanelApplication.Size = new System.Drawing.Size(689, 60);
-            this.radPanelApplication.TabIndex = 0;
-            // 
-            // radGroupBoxApplication
-            // 
-            this.radGroupBoxApplication.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxApplication.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxApplication.HeaderText = "Application";
-            this.radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBoxApplication.Name = "radGroupBoxApplication";
-            this.radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            this.radGroupBoxApplication.Size = new System.Drawing.Size(689, 60);
-            this.radGroupBoxApplication.TabIndex = 0;
-            this.radGroupBoxApplication.Text = "Application";
-            // 
-            // radPanelSelectConstructor
-            // 
-            this.radPanelSelectConstructor.Controls.Add(this.radGroupBoxSelectConstructor);
-            this.radPanelSelectConstructor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelSelectConstructor.Location = new System.Drawing.Point(0, 0);
-            this.radPanelSelectConstructor.Name = "radPanelSelectConstructor";
-            this.radPanelSelectConstructor.Size = new System.Drawing.Size(280, 60);
-            this.radPanelSelectConstructor.TabIndex = 9;
-            // 
-            // radGroupBoxSelectConstructor
-            // 
-            this.radGroupBoxSelectConstructor.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxSelectConstructor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxSelectConstructor.HeaderText = "Select Constructor";
-            this.radGroupBoxSelectConstructor.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBoxSelectConstructor.Name = "radGroupBoxSelectConstructor";
-            this.radGroupBoxSelectConstructor.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            this.radGroupBoxSelectConstructor.Size = new System.Drawing.Size(280, 60);
-            this.radGroupBoxSelectConstructor.TabIndex = 0;
-            this.radGroupBoxSelectConstructor.Text = "Select Constructor";
+            splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            splitPanelLeft.Size = new System.Drawing.Size(287, 409);
+            splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2113951F, 0F);
+            splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(-199, 0);
+            splitPanelLeft.TabIndex = 0;
+            splitPanelLeft.TabStop = false;
             // 
             // radTreeView1
             // 
-            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTreeView1.Location = new System.Drawing.Point(0, 60);
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.Size = new System.Drawing.Size(280, 413);
-            this.radTreeView1.SpacingBetweenNodes = -1;
-            this.radTreeView1.TabIndex = 10;
+            radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            radTreeView1.Location = new System.Drawing.Point(0, 60);
+            radTreeView1.Name = "radTreeView1";
+            radTreeView1.Size = new System.Drawing.Size(287, 349);
+            radTreeView1.SpacingBetweenNodes = -1;
+            radTreeView1.TabIndex = 10;
+            // 
+            // radPanelSelectConstructor
+            // 
+            radPanelSelectConstructor.Controls.Add(radGroupBoxSelectConstructor);
+            radPanelSelectConstructor.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelSelectConstructor.Location = new System.Drawing.Point(0, 0);
+            radPanelSelectConstructor.Name = "radPanelSelectConstructor";
+            radPanelSelectConstructor.Size = new System.Drawing.Size(287, 60);
+            radPanelSelectConstructor.TabIndex = 9;
+            // 
+            // radGroupBoxSelectConstructor
+            // 
+            radGroupBoxSelectConstructor.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxSelectConstructor.Controls.Add(cmbSelectConstructor);
+            radGroupBoxSelectConstructor.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxSelectConstructor.HeaderText = "Select Constructor";
+            radGroupBoxSelectConstructor.Location = new System.Drawing.Point(0, 0);
+            radGroupBoxSelectConstructor.Name = "radGroupBoxSelectConstructor";
+            radGroupBoxSelectConstructor.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
+            radGroupBoxSelectConstructor.Size = new System.Drawing.Size(287, 60);
+            radGroupBoxSelectConstructor.TabIndex = 0;
+            radGroupBoxSelectConstructor.Text = "Select Constructor";
+            // 
+            // cmbSelectConstructor
+            // 
+            cmbSelectConstructor.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmbSelectConstructor.Location = new System.Drawing.Point(18, 24);
+            cmbSelectConstructor.Name = "cmbSelectConstructor";
+            cmbSelectConstructor.Size = new System.Drawing.Size(251, 34);
+            cmbSelectConstructor.TabIndex = 0;
+            // 
+            // splitPanelRight
+            // 
+            splitPanelRight.Controls.Add(radPanelFields);
+            splitPanelRight.Controls.Add(radPanelApplication);
+            splitPanelRight.Location = new System.Drawing.Point(291, 0);
+            splitPanelRight.Name = "splitPanelRight";
+            // 
+            // 
+            // 
+            splitPanelRight.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            splitPanelRight.Size = new System.Drawing.Size(706, 409);
+            splitPanelRight.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2113951F, 0F);
+            splitPanelRight.SizeInfo.SplitterCorrection = new System.Drawing.Size(199, 0);
+            splitPanelRight.TabIndex = 1;
+            splitPanelRight.TabStop = false;
+            // 
+            // radPanelFields
+            // 
+            radPanelFields.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelFields.Location = new System.Drawing.Point(0, 60);
+            radPanelFields.Name = "radPanelFields";
+            radPanelFields.Size = new System.Drawing.Size(706, 349);
+            radPanelFields.TabIndex = 1;
+            // 
+            // radPanelApplication
+            // 
+            radPanelApplication.Controls.Add(radGroupBoxApplication);
+            radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelApplication.Location = new System.Drawing.Point(0, 0);
+            radPanelApplication.Name = "radPanelApplication";
+            radPanelApplication.Size = new System.Drawing.Size(706, 60);
+            radPanelApplication.TabIndex = 0;
+            // 
+            // radGroupBoxApplication
+            // 
+            radGroupBoxApplication.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxApplication.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxApplication.HeaderText = "Application";
+            radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
+            radGroupBoxApplication.Name = "radGroupBoxApplication";
+            radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
+            radGroupBoxApplication.Size = new System.Drawing.Size(706, 60);
+            radGroupBoxApplication.TabIndex = 0;
+            radGroupBoxApplication.Text = "Application";
             // 
             // EditConstructorForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 623);
-            this.Controls.Add(this.radSplitContainerTop);
-            this.Controls.Add(this.radPanelBottom);
-            this.Name = "EditConstructorForm";
-            this.Text = "Edit Constructor";
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelButtons)).EndInit();
-            this.radPanelButtons.ResumeLayout(false);
-            this.tableLayoutPanelButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnPasteXml)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerTop)).EndInit();
-            this.radSplitContainerTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).EndInit();
-            this.splitPanelLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelRight)).EndInit();
-            this.splitPanelRight.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFields)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelApplication)).EndInit();
-            this.radPanelApplication.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxApplication)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelSelectConstructor)).EndInit();
-            this.radPanelSelectConstructor.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSelectConstructor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleBaseSize = new System.Drawing.Size(9, 21);
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(997, 559);
+            Controls.Add(radSplitContainerTop);
+            Controls.Add(radPanelBottom);
+            Name = "EditConstructorForm";
+            Text = "Edit Constructor";
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
+            radPanelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelButtons).EndInit();
+            radPanelButtons.ResumeLayout(false);
+            tableLayoutPanelButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnPasteXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnCancel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnOk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radSplitContainerTop).EndInit();
+            radSplitContainerTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitPanelLeft).EndInit();
+            splitPanelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radTreeView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelSelectConstructor).EndInit();
+            radPanelSelectConstructor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxSelectConstructor).EndInit();
+            radGroupBoxSelectConstructor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitPanelRight).EndInit();
+            splitPanelRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelFields).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelApplication).EndInit();
+            radPanelApplication.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -311,5 +322,6 @@
         private Telerik.WinControls.UI.RadPanel radPanelSelectConstructor;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxSelectConstructor;
         private Telerik.WinControls.UI.RadTreeView radTreeView1;
+        private UserControls.HelperButtonDropDownList cmbSelectConstructor;
     }
 }
