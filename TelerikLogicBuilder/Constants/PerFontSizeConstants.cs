@@ -215,6 +215,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
+        public static Padding ParentGroupBoxPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(15, 18, 15, 2);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(15, 21, 15, 2),
+                    [ThemeCollections.TEN] = new Padding(15, 21, 15, 2),
+                    [ThemeCollections.ELEVEN] = new Padding(15, 21, 15, 2),
+                    [ThemeCollections.TWELVE] = new Padding(15, 22, 15, 2),
+                    [ThemeCollections.THIRTEEN] = new Padding(15, 29, 15, 2),
+                    [ThemeCollections.FOURTEEN] = new Padding(15, 29, 15, 2),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static float SeparatorLineHeight
         {
             get

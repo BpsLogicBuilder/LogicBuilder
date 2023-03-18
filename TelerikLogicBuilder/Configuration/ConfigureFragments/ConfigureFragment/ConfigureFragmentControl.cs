@@ -134,7 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             radPanelName.Size = new Size(radPanelName.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
             groupBoxName.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
             radGroupBoxXml.Padding = PerFontSizeConstants.GroupBoxPadding;
-            groupBoxFragment.Padding = PerFontSizeConstants.GroupBoxPadding;
+            groupBoxFragment.Padding = PerFontSizeConstants.ParentGroupBoxPadding;
 
             ((ISupportInitialize)groupBoxName).EndInit();
             groupBoxName.ResumeLayout(false);
@@ -146,7 +146,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             radPanelName.ResumeLayout(false);
             ((ISupportInitialize)groupBoxFragment).EndInit();
             groupBoxFragment.ResumeLayout(false);
-            ResumeLayout(true);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private void InitializeRichTextBoxPanelFragmentControl()

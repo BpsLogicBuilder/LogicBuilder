@@ -108,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
             radPanelName.Size = new Size(radPanelName.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
             radGroupBoxName.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
-            groupBoxFolder.Padding = PerFontSizeConstants.GroupBoxPadding;
+            groupBoxFolder.Padding = PerFontSizeConstants.ParentGroupBoxPadding;
 
             ((ISupportInitialize)radGroupBoxName).EndInit();
             radGroupBoxName.ResumeLayout(false);
