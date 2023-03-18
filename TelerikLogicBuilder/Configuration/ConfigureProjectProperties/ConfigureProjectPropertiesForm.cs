@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -173,23 +174,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelBottom).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-            ((ISupportInitialize)this).BeginInit();
-            this.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelBottom).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
-            ((ISupportInitialize)this).EndInit();
-            this.ResumeLayout(false);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
         }
 
         private void Navigate(Control newEditingControl)
@@ -220,7 +205,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             void ClearSplitPanelControls()
             {
                 foreach (Control control in splitPanelRight.Controls)
+                {
                     control.Visible = false;
+                    if (!control.IsDisposed)
+                        control.Dispose();
+                }
+
                 splitPanelRight.Controls.Clear();
             }
         }

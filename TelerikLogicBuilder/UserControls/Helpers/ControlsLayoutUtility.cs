@@ -196,6 +196,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             groupBoxItem.ResumeLayout(true);
         }
 
+        public static void LayoutGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
+        {
+            ((ISupportInitialize)radGroupBox).BeginInit();
+            radGroupBox.SuspendLayout();
+            groupBoxParent.SuspendLayout();
+
+            radGroupBox.Margin = new Padding(0);
+            radGroupBox.Padding = PerFontSizeConstants.GroupBoxPadding;
+
+            ((ISupportInitialize)radGroupBox).EndInit();
+            radGroupBox.ResumeLayout(false);
+            groupBoxParent.ResumeLayout(performLayout);
+        }
+
         public static void LayoutManagedListBoxEditButtons(RadPanel rightDockedPanel, RadPanel radPanelTableParent, bool performLayout = true)
         {
             ((ISupportInitialize)rightDockedPanel).BeginInit();
@@ -212,18 +226,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             rightDockedPanel.ResumeLayout(performLayout);
         }
 
-        public static void LayoutGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
+        public static void LayoutSingleRowGroupBox(RadPanel radPanelGroupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
         {
             ((ISupportInitialize)radGroupBox).BeginInit();
             radGroupBox.SuspendLayout();
-            groupBoxParent.SuspendLayout();
+            radPanelGroupBoxParent.SuspendLayout();
 
+            radPanelGroupBoxParent.Size = new Size(radGroupBox.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
+            radGroupBox.Size = new Size(radGroupBox.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
             radGroupBox.Margin = new Padding(0);
-            radGroupBox.Padding = PerFontSizeConstants.GroupBoxPadding;
+            radGroupBox.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
 
             ((ISupportInitialize)radGroupBox).EndInit();
             radGroupBox.ResumeLayout(false);
-            groupBoxParent.ResumeLayout(performLayout);
+            radPanelGroupBoxParent.ResumeLayout(performLayout);
         }
     }
 }
