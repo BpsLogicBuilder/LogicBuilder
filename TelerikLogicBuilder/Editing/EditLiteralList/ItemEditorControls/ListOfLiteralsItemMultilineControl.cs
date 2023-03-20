@@ -237,11 +237,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         }
 
         private void InitializeButtons()
-            => _layoutFieldControlButtons.Layout
+        {
+            int buttonWidth = PerFontSizeConstants.CommandButtonWidth;
+            int rightPanelWidth = CommandButtons.Count * buttonWidth;
+
+            ((ISupportInitialize)this.radPanelRight).BeginInit();
+            this.radPanelRight.SuspendLayout();
+
+            radPanelCommandBar.Size = new Size(rightPanelWidth, buttonWidth);
+            radPanelRight.Size = new Size(rightPanelWidth, radPanelRight.Height);
+            _layoutFieldControlButtons.Layout
             (
                 radPanelCommandBar,
-                CommandButtons
+                CommandButtons,
+                false
             );
+
+            ((ISupportInitialize)this.radPanelRight).EndInit();
+            this.radPanelRight.ResumeLayout(true);
+        }
 
         private void InitializeRichInputBox()
         {

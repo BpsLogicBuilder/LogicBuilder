@@ -282,7 +282,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             if (enable)
             {
                 ValueControl.EnableControls();
-                managedListBoxControl.EnableControls();
+                managedListBoxControl.EnableControls(radListBoxManager);
             }
             else
             {
@@ -346,6 +346,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                 return;
             }
 
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxList);
+            ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             InitializeValueControl();
             SetValueControlToolTip();
 
@@ -388,42 +390,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         private void InitializeTableLayoutPanel()
         {
+            this.SuspendLayout();
             ControlsLayoutUtility.LayoutControls
             (
                 radGroupBoxType,
                 radScrollablePanelType,
                 radPanelTableParent,
                 tableLayoutPanel,
-                2
+                2,
+                false
             );
+
+            //must adjust height because radGroupBoxType.Dock is not Fill.
+            ControlsLayoutUtility.LayoutTwoRowGroupBox(this, radGroupBoxType, false);
+            this.ResumeLayout(true);
         }
 
         private void InitializeValueControl()
         {
             valueControl = GetEditItemControl();
-
-            Control control = (Control)valueControl;
-            ((ISupportInitialize)this.radPanelEdit).BeginInit();
-            this.radPanelEdit.SuspendLayout();
-            ((ISupportInitialize)this.radGroupBoxEdit).BeginInit();
-            this.radGroupBoxEdit.SuspendLayout();
-            this.SuspendLayout();
-
-            radGroupBoxEdit.Size = literalListElementInfo.ElementControl == LiteralParameterInputStyle.MultipleLineTextBox
-                                    ? new Size(radGroupBoxEdit.Width, 120)
-                                    : new Size(radGroupBoxEdit.Width, 55);
-
-            control.Name = "valueControl";
-            control.Dock = DockStyle.Fill;
-            control.Margin = new Padding(0);
-            control.Location = new Point(0, 0);
-
-            this.radPanelEdit.Controls.Add(control);
-            ((ISupportInitialize)this.radPanelEdit).EndInit();
-            this.radPanelEdit.ResumeLayout(false);
-            ((ISupportInitialize)this.radGroupBoxEdit).EndInit();
-            this.radGroupBoxEdit.ResumeLayout(false);
-            this.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutLiteralListItemItemGroupBox
+            (
+                this,
+                radGroupBoxEdit,
+                radPanelEdit,
+                (Control)valueControl,
+                literalListElementInfo.ElementControl == LiteralParameterInputStyle.MultipleLineTextBox
+            );
         }
 
         private void LoadDropDownLists()

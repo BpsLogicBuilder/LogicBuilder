@@ -15,6 +15,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         void CreateCommands(IRadListBoxManager radListBoxManager);
         void DisableControls();
-        void EnableControls();
+        void EnableControls(IRadListBoxManager radListBoxManager);
     }
 }

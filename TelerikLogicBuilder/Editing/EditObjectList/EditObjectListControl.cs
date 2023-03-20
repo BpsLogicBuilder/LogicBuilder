@@ -308,7 +308,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             if (enable)
             {
                 ValueControl.EnableControls();
-                managedListBoxControl.EnableControls();
+                managedListBoxControl.EnableControls(radListBoxManager);
             }
             else
             {

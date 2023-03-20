@@ -19,5 +19,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox
         void MoveUp();
         bool Remove();
         void ResetControls();
+        void RestoreEnabledControls();
     }
 }

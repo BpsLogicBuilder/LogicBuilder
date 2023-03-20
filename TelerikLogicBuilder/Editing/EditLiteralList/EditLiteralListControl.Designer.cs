@@ -41,8 +41,10 @@
             radGroupBoxEdit = new Telerik.WinControls.UI.RadGroupBox();
             radPanelEdit = new Telerik.WinControls.UI.RadPanel();
             radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
-            btnUpdate = new Telerik.WinControls.UI.RadButton();
+            tableLayoutPanelAddUpdate = new System.Windows.Forms.TableLayoutPanel();
+            radPanelAddUpdateButtonTableCell = new Telerik.WinControls.UI.RadPanel();
             btnAdd = new Telerik.WinControls.UI.RadButton();
+            btnUpdate = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)radGroupBoxType).BeginInit();
             radGroupBoxType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)radScrollablePanelType).BeginInit();
@@ -62,8 +64,11 @@
             ((System.ComponentModel.ISupportInitialize)radPanelEdit).BeginInit();
             ((System.ComponentModel.ISupportInitialize)radPanelAddButton).BeginInit();
             radPanelAddButton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnUpdate).BeginInit();
+            tableLayoutPanelAddUpdate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelAddUpdateButtonTableCell).BeginInit();
+            radPanelAddUpdateButtonTableCell.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAdd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).BeginInit();
             SuspendLayout();
             // 
             // radGroupBoxType
@@ -205,35 +210,62 @@
             radPanelEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelEdit.Location = new System.Drawing.Point(2, 18);
             radPanelEdit.Name = "radPanelEdit";
-            radPanelEdit.Padding = new System.Windows.Forms.Padding(12, 3, 12, 6);
             radPanelEdit.Size = new System.Drawing.Size(717, 35);
             radPanelEdit.TabIndex = 1;
             // 
             // radPanelAddButton
             // 
-            radPanelAddButton.Controls.Add(btnUpdate);
-            radPanelAddButton.Controls.Add(btnAdd);
+            radPanelAddButton.Controls.Add(tableLayoutPanelAddUpdate);
             radPanelAddButton.Dock = System.Windows.Forms.DockStyle.Right;
             radPanelAddButton.Location = new System.Drawing.Point(719, 18);
             radPanelAddButton.Name = "radPanelAddButton";
             radPanelAddButton.Size = new System.Drawing.Size(134, 35);
             radPanelAddButton.TabIndex = 0;
             // 
-            // btnUpdate
+            // tableLayoutPanelAddUpdate
             // 
-            btnUpdate.Location = new System.Drawing.Point(12, 3);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new System.Drawing.Size(110, 24);
-            btnUpdate.TabIndex = 2;
-            btnUpdate.Text = "Update";
+            tableLayoutPanelAddUpdate.ColumnCount = 3;
+            tableLayoutPanelAddUpdate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelAddUpdate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            tableLayoutPanelAddUpdate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelAddUpdate.Controls.Add(radPanelAddUpdateButtonTableCell, 1, 0);
+            tableLayoutPanelAddUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelAddUpdate.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelAddUpdate.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanelAddUpdate.Name = "tableLayoutPanelAddUpdate";
+            tableLayoutPanelAddUpdate.RowCount = 1;
+            tableLayoutPanelAddUpdate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanelAddUpdate.Size = new System.Drawing.Size(134, 35);
+            tableLayoutPanelAddUpdate.TabIndex = 1;
+            // 
+            // radPanelAddUpdateButtonTableCell
+            // 
+            radPanelAddUpdateButtonTableCell.Controls.Add(btnAdd);
+            radPanelAddUpdateButtonTableCell.Controls.Add(btnUpdate);
+            radPanelAddUpdateButtonTableCell.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelAddUpdateButtonTableCell.Location = new System.Drawing.Point(20, 0);
+            radPanelAddUpdateButtonTableCell.Margin = new System.Windows.Forms.Padding(0);
+            radPanelAddUpdateButtonTableCell.Name = "radPanelAddUpdateButtonTableCell";
+            radPanelAddUpdateButtonTableCell.Size = new System.Drawing.Size(93, 35);
+            radPanelAddUpdateButtonTableCell.TabIndex = 0;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new System.Drawing.Point(12, 3);
+            btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnAdd.Location = new System.Drawing.Point(0, 0);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(110, 24);
+            btnAdd.Size = new System.Drawing.Size(93, 35);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "Add";
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnUpdate.Location = new System.Drawing.Point(0, 0);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new System.Drawing.Size(93, 35);
+            btnUpdate.TabIndex = 2;
+            btnUpdate.Text = "Update";
             // 
             // EditLiteralListControl
             // 
@@ -264,8 +296,11 @@
             ((System.ComponentModel.ISupportInitialize)radPanelEdit).EndInit();
             ((System.ComponentModel.ISupportInitialize)radPanelAddButton).EndInit();
             radPanelAddButton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)btnUpdate).EndInit();
+            tableLayoutPanelAddUpdate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelAddUpdateButtonTableCell).EndInit();
+            radPanelAddUpdateButtonTableCell.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btnAdd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).EndInit();
             ResumeLayout(false);
         }
 
@@ -286,5 +321,7 @@
         private Telerik.WinControls.UI.RadPanel radPanelAddButton;
         private Telerik.WinControls.UI.RadButton btnUpdate;
         private Telerik.WinControls.UI.RadButton btnAdd;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAddUpdate;
+        private Telerik.WinControls.UI.RadPanel radPanelAddUpdateButtonTableCell;
     }
 }

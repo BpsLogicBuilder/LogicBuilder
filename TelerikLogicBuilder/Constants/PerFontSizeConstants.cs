@@ -10,13 +10,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 61;
+                    return 63;
 
                 Dictionary<int, int> sizes = new()
                 {
                     [ThemeCollections.NINE] = 63,
-                    [ThemeCollections.TEN] = 65,
-                    [ThemeCollections.ELEVEN] = 67,
+                    [ThemeCollections.TEN] = 66,
+                    [ThemeCollections.ELEVEN] = 69,
                     [ThemeCollections.TWELVE] = 75,
                     [ThemeCollections.THIRTEEN] = 81,
                     [ThemeCollections.FOURTEEN] = 83,
@@ -52,16 +52,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 61;
+                    return 63;
 
                 Dictionary<int, int> sizes = new()
                 {
-                    [ThemeCollections.NINE] = 61,
-                    [ThemeCollections.TEN] = 63,
-                    [ThemeCollections.ELEVEN] = 66,
-                    [ThemeCollections.TWELVE] = 73,
-                    [ThemeCollections.THIRTEEN] = 79,
-                    [ThemeCollections.FOURTEEN] = 81,
+                    [ThemeCollections.NINE] = 63,
+                    [ThemeCollections.TEN] = 66,
+                    [ThemeCollections.ELEVEN] = 69,
+                    [ThemeCollections.TWELVE] = 75,
+                    [ThemeCollections.THIRTEEN] = 81,
+                    [ThemeCollections.FOURTEEN] = 83,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -136,16 +136,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 28;
+                    return 27;
 
                 Dictionary<int, int> sizes = new()
                 {
-                    [ThemeCollections.NINE] = 28,
+                    [ThemeCollections.NINE] = 27,
                     [ThemeCollections.TEN] = 30,
                     [ThemeCollections.ELEVEN] = 33,
                     [ThemeCollections.TWELVE] = 36,
-                    [ThemeCollections.THIRTEEN] = 38,
-                    [ThemeCollections.FOURTEEN] = 40,
+                    [ThemeCollections.THIRTEEN] = 39,
+                    [ThemeCollections.FOURTEEN] = 42,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -167,6 +167,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.TWELVE] = new Padding(2, 22, 2, 2),
                     [ThemeCollections.THIRTEEN] = new Padding(2, 29, 2, 2),
                     [ThemeCollections.FOURTEEN] = new Padding(2, 29, 2, 2),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int MultiLineAddUpdateItemGroupBoxHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 136;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 136,
+                    [ThemeCollections.TEN] = 141,
+                    [ThemeCollections.ELEVEN] = 146,
+                    [ThemeCollections.TWELVE] = 151,
+                    [ThemeCollections.THIRTEEN] = 156,
+                    [ThemeCollections.FOURTEEN] = 161,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -283,16 +304,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 28F;
+                    return 27F;
 
                 Dictionary<int, float> sizes = new()
                 {
-                    [ThemeCollections.NINE] = 28F,
+                    [ThemeCollections.NINE] = 27F,
                     [ThemeCollections.TEN] = 30F,
                     [ThemeCollections.ELEVEN] = 33F,
                     [ThemeCollections.TWELVE] = 36F,
-                    [ThemeCollections.THIRTEEN] = 38F,
-                    [ThemeCollections.FOURTEEN] = 40F,
+                    [ThemeCollections.THIRTEEN] = 39F,
+                    [ThemeCollections.FOURTEEN] = 42F,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -304,16 +325,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 61;
+                    return 63;
 
                 Dictionary<int, int> sizes = new()
                 {
-                    [ThemeCollections.NINE] = 61,
-                    [ThemeCollections.TEN] = 63,
-                    [ThemeCollections.ELEVEN] = 66,
-                    [ThemeCollections.TWELVE] = 73,
-                    [ThemeCollections.THIRTEEN] = 79,
-                    [ThemeCollections.FOURTEEN] = 81,
+                    [ThemeCollections.NINE] = 63,
+                    [ThemeCollections.TEN] = 66,
+                    [ThemeCollections.ELEVEN] = 69,
+                    [ThemeCollections.TWELVE] = 75,
+                    [ThemeCollections.THIRTEEN] = 81,
+                    [ThemeCollections.FOURTEEN] = 83,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -335,6 +356,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.TWELVE] = new Padding(18, 26, 18, 15),
                     [ThemeCollections.THIRTEEN] = new Padding(18, 30, 18, 15),
                     [ThemeCollections.FOURTEEN] = new Padding(18, 30, 18, 15),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int TwoRowGroupBoxHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 339;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 137,
+                    [ThemeCollections.TEN] = 143,
+                    [ThemeCollections.ELEVEN] = 149,
+                    [ThemeCollections.TWELVE] = 160,
+                    [ThemeCollections.THIRTEEN] = 175,
+                    [ThemeCollections.FOURTEEN] = 185,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];

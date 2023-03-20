@@ -143,6 +143,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             listBoxHost.ClearInputControls();
         }
 
+        public void RestoreEnabledControls()
+        {
+            SetButtonEnabledStates(IsUpdate);
+        }
+
         public bool Update(T item)
         {
             listBoxHost.ClearMessage();

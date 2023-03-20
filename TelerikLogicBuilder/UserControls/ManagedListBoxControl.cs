@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public void DisableControls() => Enable(false);
 
-        public void EnableControls() => Enable(true);
+        public void EnableControls(IRadListBoxManager radListBoxManager) => radListBoxManager.RestoreEnabledControls();
 
         private static void CollapsePanelBorder(RadPanel radPanel)
         {

@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
             tableLayoutPanelAddUpdate.Dock = DockStyle.Top;
             tableLayoutPanelAddUpdate.Size = new Size(tableLayoutPanelAddUpdate.Width, PerFontSizeConstants.BottomPanelHeight / 5);//Keeps this height the same as a button on ManagedListBoxControl and bottom panel group.
-                                                                                                                                    //Button height on the bottom panel is 20 percent of the total.
+                                                                                                                                   //Button height on the bottom panel is 20 percent of the total.
             radPanel.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanel.Height);
 
             tableLayoutPanelAddUpdate.ResumeLayout(false);
@@ -124,7 +124,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             radPanelBottom.ResumeLayout(performLayout);
         }
 
-        public static void LayoutControls(RadGroupBox groupBoxItem, RadScrollablePanel radScrollablePanelItem, RadPanel radPanelTableParent, TableLayoutPanel tableLayoutPanel, int controlsRowCount)
+        public static void LayoutControls(RadGroupBox groupBoxItem, RadScrollablePanel radScrollablePanelItem, RadPanel radPanelTableParent, TableLayoutPanel tableLayoutPanel, int controlsRowCount, bool performLayout = true)
         {
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
@@ -193,7 +193,35 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             radPanelTableParent.ResumeLayout(false);
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();
-            groupBoxItem.ResumeLayout(true);
+            groupBoxItem.ResumeLayout(performLayout);
+        }
+
+        public static void LayoutLiteralListItemItemGroupBox(Control groupBoxParent, RadGroupBox radGroupBoxEdit, RadPanel radPanelEdit, Control control, bool multiLine, bool performLayout = true)
+        {
+            ((ISupportInitialize)radPanelEdit).BeginInit();
+            radPanelEdit.SuspendLayout();
+            ((ISupportInitialize)radGroupBoxEdit).BeginInit();
+            radGroupBoxEdit.SuspendLayout();
+            groupBoxParent.SuspendLayout();
+
+            radPanelEdit.Margin = new Padding(0);
+            radPanelEdit.Padding = new Padding(0);
+            radGroupBoxEdit.Size = multiLine
+                                    ? new Size(radGroupBoxEdit.Width, PerFontSizeConstants.MultiLineAddUpdateItemGroupBoxHeight)
+                                    : new Size(radGroupBoxEdit.Width, PerFontSizeConstants.AddUpdateItemGroupBoxHeight);
+            radGroupBoxEdit.Padding = PerFontSizeConstants.AddUpdateItemGroupBoxPadding;
+
+            control.Name = "valueControl";
+            control.Dock = DockStyle.Fill;
+            control.Margin = new Padding(0);
+            control.Location = new Point(0, 0);
+
+            radPanelEdit.Controls.Add(control);
+            ((ISupportInitialize)radPanelEdit).EndInit();
+            radPanelEdit.ResumeLayout(false);
+            ((ISupportInitialize)radGroupBoxEdit).EndInit();
+            radGroupBoxEdit.ResumeLayout(false);
+            groupBoxParent.ResumeLayout(performLayout);
         }
 
         public static void LayoutGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
@@ -265,6 +293,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             ((ISupportInitialize)radGroupBox).EndInit();
             radGroupBox.ResumeLayout(false);
             radPanelGroupBoxParent.ResumeLayout(performLayout);
+        }
+
+        public static void LayoutTwoRowGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
+        {
+            ((ISupportInitialize)radGroupBox).BeginInit();
+            radGroupBox.SuspendLayout();
+            groupBoxParent.SuspendLayout();
+
+            radGroupBox.Margin = new Padding(0);
+            radGroupBox.Padding = PerFontSizeConstants.GroupBoxPadding;
+            radGroupBox.Size = new Size(radGroupBox.Width, PerFontSizeConstants.TwoRowGroupBoxHeight);
+
+            ((ISupportInitialize)radGroupBox).EndInit();
+            radGroupBox.ResumeLayout(false);
+            groupBoxParent.ResumeLayout(performLayout);
         }
     }
 }
