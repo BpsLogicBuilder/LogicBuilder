@@ -409,7 +409,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private void InitializeValueControl()
         {
             valueControl = GetEditItemControl();
-            ControlsLayoutUtility.LayoutLiteralListItemItemGroupBox
+            ControlsLayoutUtility.LayoutListItemItemGroupBox
             (
                 this,
                 radGroupBoxEdit,

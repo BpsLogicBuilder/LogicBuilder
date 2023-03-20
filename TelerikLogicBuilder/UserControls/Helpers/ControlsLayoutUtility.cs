@@ -196,7 +196,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             groupBoxItem.ResumeLayout(performLayout);
         }
 
-        public static void LayoutLiteralListItemItemGroupBox(Control groupBoxParent, RadGroupBox radGroupBoxEdit, RadPanel radPanelEdit, Control control, bool multiLine, bool performLayout = true)
+        public static void LayoutListItemItemGroupBox(Control groupBoxParent, RadGroupBox radGroupBoxEdit, RadPanel radPanelEdit, Control control, bool multiLine, bool performLayout = true)
         {
             ((ISupportInitialize)radPanelEdit).BeginInit();
             radPanelEdit.SuspendLayout();

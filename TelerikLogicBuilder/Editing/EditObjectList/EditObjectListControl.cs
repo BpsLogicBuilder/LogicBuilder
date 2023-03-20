@@ -341,6 +341,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
                 return;
             }
 
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxList);
+            ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             InitializeValueControl();
             SetValueControlToolTip();
 
@@ -384,38 +386,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         private void InitializeTableLayoutPanel()
         {
+            this.SuspendLayout();
             ControlsLayoutUtility.LayoutControls
             (
                 radGroupBoxType,
                 radScrollablePanelType,
                 radPanelTableParent,
                 tableLayoutPanel,
-                2
+                2,
+                false
             );
+
+            //must adjust height because radGroupBoxType.Dock is not Fill.
+            ControlsLayoutUtility.LayoutTwoRowGroupBox(this, radGroupBoxType, false);
+            this.ResumeLayout(true);
         }
 
         private void InitializeValueControl()
         {
             valueControl = GetEditItemControl();
 
-            Control control = (Control)valueControl;
-            ((ISupportInitialize)this.radPanelEdit).BeginInit();
-            this.radPanelEdit.SuspendLayout();
-            ((ISupportInitialize)this.radGroupBoxEdit).BeginInit();
-            this.radGroupBoxEdit.SuspendLayout();
-            this.SuspendLayout();
-
-            control.Name = "valueControl";
-            control.Dock = DockStyle.Fill;
-            control.Margin = new Padding(0);
-            control.Location = new Point(0, 0);
-
-            this.radPanelEdit.Controls.Add(control);
-            ((ISupportInitialize)this.radPanelEdit).EndInit();
-            this.radPanelEdit.ResumeLayout(false);
-            ((ISupportInitialize)this.radGroupBoxEdit).EndInit();
-            this.radGroupBoxEdit.ResumeLayout(false);
-            this.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutListItemItemGroupBox
+            (
+                this,
+                radGroupBoxEdit,
+                radPanelEdit,
+                (Control)valueControl,
+                false
+            );
         }
 
         private void LoadDropDownLists()
