@@ -134,9 +134,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
             int rowCount = 2 + (controlsRowCount * 2);/*boundary rows plus control rows with separator rows*/
             float totalHeight = (2 * boundaryWidth) + (controlsRowCount * (singleLineHeight + separatorLineHeight));
-            float size_Boundary = boundaryWidth / totalHeight * 100;
-            float size_SingleLine = singleLineHeight / totalHeight * 100;
-            float size_Separator = separatorLineHeight / totalHeight * 100;
             int totalTableLayoutHeight = (int)Math.Round(totalHeight);//totalHeight height should always be a whole number
 
             ((ISupportInitialize)groupBoxItem).BeginInit();
@@ -176,13 +173,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowCount = rowCount;
 
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Boundary));//boundary row
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, boundaryWidth));//boundary row
             for (int i = 0; i < controlsRowCount; i++)
             {
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_SingleLine));
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
+                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
             }
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Boundary));//boundary row
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, boundaryWidth));//boundary row
             tableLayoutPanel.Size = new Size(851, totalTableLayoutHeight);
 
             ((ISupportInitialize)groupBoxItem).EndInit();

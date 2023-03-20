@@ -56,6 +56,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            RadControl.EnableRadAutoScale = false;
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = "Office2019Dark";
             Application.Run(new RadForm1());

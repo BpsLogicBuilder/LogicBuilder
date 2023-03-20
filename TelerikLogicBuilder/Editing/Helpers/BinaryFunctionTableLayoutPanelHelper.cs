@@ -52,10 +52,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 totalHeight += separatorLineHeight;
             }
 
-            float size_Boundary = boundaryWidth / totalHeight * 100;
-            float size_SingleLine = singleLineHeight / totalHeight * 100;
-            float size_MultiLine = multiLineHeight / totalHeight * 100;
-            float size_Separator = separatorLineHeight / totalHeight * 100;
             int totalTableLayoutHeight = (int)Math.Round(totalHeight);//totalHeight height should always be a whole number
 
             // 
@@ -85,31 +81,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowCount = rowCount;
 
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Boundary));//boundary row
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, boundaryWidth));//boundary row
             if (hasGenericArguments)
             {
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_SingleLine));//Generic Arguments
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
+                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));//Generic Arguments
+                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
             }
 
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, GetParameterRowHeight(parameters[0])));//First parameter
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, GetParameterRowHeight(parameters[0])));//First parameter
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
 
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_SingleLine));//function name
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));//boundary row
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));//function name
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));//boundary row
 
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, GetParameterRowHeight(parameters[1])));//Second parameter
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Separator));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, GetParameterRowHeight(parameters[1])));//Second parameter
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
 
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, size_Boundary));//boundary row
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, boundaryWidth));//boundary row
             tableLayoutPanel.Size = new Size(851, totalTableLayoutHeight);
             tableLayoutPanel.TabIndex = 0;
 
             float GetParameterRowHeight(ParameterBase parameter)
             {
                 return parameter is LiteralParameter literalParameter && literalParameter.Control == Enums.LiteralParameterInputStyle.MultipleLineTextBox
-                            ? size_MultiLine
-                            : size_SingleLine;
+                            ? multiLineHeight
+                            : singleLineHeight;
             }
         }
     }

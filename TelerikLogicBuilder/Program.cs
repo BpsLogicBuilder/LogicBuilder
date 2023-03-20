@@ -70,6 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            RadControl.EnableRadAutoScale = false;
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             SetTheme();
             ShowSplashScreen();
