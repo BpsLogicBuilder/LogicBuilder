@@ -28,128 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanelBottom = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelMessages = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelButtons = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.btnOk = new Telerik.WinControls.UI.RadButton();
-            this.radPanelFill = new Telerik.WinControls.UI.RadPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelButtons)).BeginInit();
-            this.radPanelButtons.SuspendLayout();
-            this.tableLayoutPanelButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFill)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            this.SuspendLayout();
+            radPanelBottom = new Telerik.WinControls.UI.RadPanel();
+            radPanelMessages = new Telerik.WinControls.UI.RadPanel();
+            radPanelButtons = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
+            btnCancel = new Telerik.WinControls.UI.RadButton();
+            btnOk = new Telerik.WinControls.UI.RadButton();
+            radPanelFill = new Telerik.WinControls.UI.RadPanel();
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).BeginInit();
+            radPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelButtons).BeginInit();
+            radPanelButtons.SuspendLayout();
+            tableLayoutPanelButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnCancel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnOk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelFill).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this).BeginInit();
+            SuspendLayout();
             // 
             // radPanelBottom
             // 
-            this.radPanelBottom.Controls.Add(this.radPanelMessages);
-            this.radPanelBottom.Controls.Add(this.radPanelButtons);
-            this.radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanelBottom.Location = new System.Drawing.Point(0, 258);
-            this.radPanelBottom.Name = "radPanelBottom";
-            this.radPanelBottom.Size = new System.Drawing.Size(943, 150);
-            this.radPanelBottom.TabIndex = 3;
+            radPanelBottom.Controls.Add(radPanelMessages);
+            radPanelBottom.Controls.Add(radPanelButtons);
+            radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radPanelBottom.Location = new System.Drawing.Point(0, 210);
+            radPanelBottom.Name = "radPanelBottom";
+            radPanelBottom.Size = new System.Drawing.Size(961, 150);
+            radPanelBottom.TabIndex = 3;
             // 
             // radPanelMessages
             // 
-            this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelMessages.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Name = "radPanelMessages";
-            this.radPanelMessages.Size = new System.Drawing.Size(783, 150);
-            this.radPanelMessages.TabIndex = 0;
+            radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelMessages.Location = new System.Drawing.Point(0, 0);
+            radPanelMessages.Name = "radPanelMessages";
+            radPanelMessages.Size = new System.Drawing.Size(801, 150);
+            radPanelMessages.TabIndex = 0;
             // 
             // radPanelButtons
             // 
-            this.radPanelButtons.Controls.Add(this.tableLayoutPanelButtons);
-            this.radPanelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelButtons.Location = new System.Drawing.Point(783, 0);
-            this.radPanelButtons.Name = "radPanelButtons";
-            this.radPanelButtons.Size = new System.Drawing.Size(160, 150);
-            this.radPanelButtons.TabIndex = 2;
+            radPanelButtons.Controls.Add(tableLayoutPanelButtons);
+            radPanelButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            radPanelButtons.Location = new System.Drawing.Point(801, 0);
+            radPanelButtons.Name = "radPanelButtons";
+            radPanelButtons.Size = new System.Drawing.Size(160, 150);
+            radPanelButtons.TabIndex = 2;
             // 
             // tableLayoutPanelButtons
             // 
-            this.tableLayoutPanelButtons.ColumnCount = 3;
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanelButtons.Controls.Add(this.btnCancel, 1, 3);
-            this.tableLayoutPanelButtons.Controls.Add(this.btnOk, 1, 1);
-            this.tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
-            this.tableLayoutPanelButtons.RowCount = 9;
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanelButtons.Size = new System.Drawing.Size(160, 150);
-            this.tableLayoutPanelButtons.TabIndex = 0;
+            tableLayoutPanelButtons.ColumnCount = 3;
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.Controls.Add(btnCancel, 1, 3);
+            tableLayoutPanelButtons.Controls.Add(btnOk, 1, 1);
+            tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
+            tableLayoutPanelButtons.RowCount = 9;
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.Size = new System.Drawing.Size(160, 150);
+            tableLayoutPanelButtons.TabIndex = 0;
             // 
             // btnCancel
             // 
-            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCancel.Location = new System.Drawing.Point(27, 45);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(106, 24);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "&Cancel";
+            btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnCancel.Location = new System.Drawing.Point(24, 42);
+            btnCancel.Margin = new System.Windows.Forms.Padding(0);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(112, 30);
+            btnCancel.TabIndex = 1;
+            btnCancel.Text = "&Cancel";
             // 
             // btnOk
             // 
-            this.btnOk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOk.Location = new System.Drawing.Point(27, 9);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(106, 24);
-            this.btnOk.TabIndex = 0;
-            this.btnOk.Text = "&Ok";
+            btnOk.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnOk.Location = new System.Drawing.Point(24, 6);
+            btnOk.Margin = new System.Windows.Forms.Padding(0);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new System.Drawing.Size(112, 30);
+            btnOk.TabIndex = 0;
+            btnOk.Text = "&Ok";
             // 
             // radPanelFill
             // 
-            this.radPanelFill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelFill.Location = new System.Drawing.Point(0, 0);
-            this.radPanelFill.Name = "radPanelFill";
-            this.radPanelFill.Size = new System.Drawing.Size(943, 258);
-            this.radPanelFill.TabIndex = 0;
+            radPanelFill.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelFill.Location = new System.Drawing.Point(0, 0);
+            radPanelFill.Name = "radPanelFill";
+            radPanelFill.Size = new System.Drawing.Size(961, 210);
+            radPanelFill.TabIndex = 0;
             // 
             // ConfigureLiteralListDefaultValueForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 408);
-            this.Controls.Add(this.radPanelFill);
-            this.Controls.Add(this.radPanelBottom);
-            this.Name = "ConfigureLiteralListDefaultValueForm";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Configure Default Values";
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelButtons)).EndInit();
-            this.radPanelButtons.ResumeLayout(false);
-            this.tableLayoutPanelButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFill)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleBaseSize = new System.Drawing.Size(9, 21);
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(961, 360);
+            Controls.Add(radPanelFill);
+            Controls.Add(radPanelBottom);
+            Name = "ConfigureLiteralListDefaultValueForm";
+            Text = "Configure Default Values";
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
+            radPanelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelButtons).EndInit();
+            radPanelButtons.ResumeLayout(false);
+            tableLayoutPanelButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnCancel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnOk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelFill).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

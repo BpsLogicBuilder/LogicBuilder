@@ -85,13 +85,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         #region Methods
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
 
-        public void SetErrorMessage(string message) 
+        public void SetErrorMessage(string message)
             => _dialogFormMessageControl.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") 
+        public void SetMessage(string message, string title = "")
             => _dialogFormMessageControl.SetMessage(message, title);
 
-        public void ValidateXmlDocument() 
+        public void ValidateXmlDocument()
             => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
         private void BuildTreeView()
@@ -121,7 +121,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 
             InitializeContextMenuClickCommand
             (
-                mnuItemDelete, 
+                mnuItemDelete,
                 _configureProjectPropertiesContextMenuCommandFactory.GetDeleteApplicationCommand(this)
             );
 
@@ -174,7 +174,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 
         private void InitializeDialogFormMessageControl()
         {
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void Navigate(Control newEditingControl)
@@ -227,7 +227,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 
         private void SetContextMenuState(RadTreeNode selectedNode)
         {
-            mnuItemDelete.Enabled = selectedNode != radTreeView1.Nodes[0] 
+            mnuItemDelete.Enabled = selectedNode != radTreeView1.Nodes[0]
                                     && radTreeView1.Nodes[0].Nodes.Count > 1;
         }
 
@@ -273,7 +273,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         {
             try
             {
-                if (TreeView.SelectedNode == null 
+                if (TreeView.SelectedNode == null
                     || e.Node == null)//Don't update if e.Node is null because
                     return;             //1) The selected node may have been deleted
                                         //2) There is no navigation (i.e. e.Node == null)

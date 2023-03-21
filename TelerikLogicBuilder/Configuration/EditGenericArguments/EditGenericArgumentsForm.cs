@@ -77,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
 
         private void InitializeControls()
         {
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
             InitializeControl(this.radPanelFill, (Control)editGenericArgumentsControl);
         }
 

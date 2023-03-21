@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             Rectangle area = NativeMethods.GetScreenArea();
 
-            form.Size = new Size(form.Width, area.Height - 100);
+            form.Size = new Size(form.Width, area.Height - 200);
         }
 
         public void SetToEditSize(Form form)
@@ -85,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             Rectangle area = NativeMethods.GetScreenArea();
 
-            form.Size = new Size(area.Width - 450, area.Height - 100);
+            form.Size = new Size(area.Width - 450, area.Height - 200);
         }
 
         public void SetToolTipDefaults(ToolTip toolTip)

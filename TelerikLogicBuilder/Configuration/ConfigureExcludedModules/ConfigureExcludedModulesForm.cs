@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
         private void Initialize()
         {
             ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxMain);
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons);
             _formInitializer.SetFormDefaults(this, 685);
             InitializeNodeCheckedChangedCommand
             (

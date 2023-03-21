@@ -110,7 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType
 
         private void InitializeDialogFormMessageControl()
         {
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void Navigate(Control newEditingControl)

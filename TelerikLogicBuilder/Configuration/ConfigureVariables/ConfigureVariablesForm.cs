@@ -89,7 +89,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             bool openedAsReadOnly)
         {
             InitializeComponent();
-            _configureVariablesCommandFactory= configureVariablesCommandFactory;
+            _configureVariablesCommandFactory = configureVariablesCommandFactory;
             _configureVariablesControlFactory = configureVariablesControlFactory;
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
@@ -164,7 +164,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         public void ReloadXmlDocument(string xmlString) => _treeViewXmlDocumentHelper.LoadXmlDocument(xmlString);
 
-        public void RenameChildNodes(RadTreeNode treeNode) 
+        public void RenameChildNodes(RadTreeNode treeNode)
             => _configureVariablesChildNodesRenamer.RenameChildNodes(treeNode);
 
         public void SetErrorMessage(string message)
@@ -322,7 +322,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
 
         private void InitializeDialogFormMessageControl()
         {
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void LoadXmlDocument()

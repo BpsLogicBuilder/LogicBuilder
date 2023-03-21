@@ -122,7 +122,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
 
         public IDictionary<string, Constructor> ConstructorsDictionary => _xmlDocumentHelpers.SelectElements
         (
-            XmlDocument, 
+            XmlDocument,
             $"//{XmlDataConstants.CONSTRUCTORELEMENT}"
         )
         .Select(_constructorXmlParser.Parse)
@@ -294,7 +294,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             CollapsePanelBorder(radPanelButtons);
             CollapsePanelBorder(radPanelFields);
             CollapsePanelBorder(radPanelMessages);
-            
+
             AddButtonClickCommand(btnHelper, _configureConstructorsCommandFactory.GetConfigureConstructorsHelperCommand(this));
             AddButtonClickCommand(btnImport, _configureConstructorsCommandFactory.GetConfigureConstructorsImportCommand(this));
         }
@@ -325,7 +325,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
 
         private void InitializeDialogFormMessageControl()
         {
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void LoadXmlDocument()

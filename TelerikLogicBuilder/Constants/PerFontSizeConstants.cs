@@ -68,27 +68,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
-        public static int BottomPanelHeight
-        {
-            get
-            {
-                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 160;
-
-                Dictionary<int, int> sizes = new()
-                {
-                    [ThemeCollections.NINE] = 150,
-                    [ThemeCollections.TEN] = 153,
-                    [ThemeCollections.ELEVEN] = 156,
-                    [ThemeCollections.TWELVE] = 166,
-                    [ThemeCollections.THIRTEEN] = 171,
-                    [ThemeCollections.FOURTEEN] = 175,
-                };
-
-                return sizes[Properties.Settings.Default.fontSize];
-            }
-        }
-
         public static float BoundarySize
         {
             get
@@ -270,8 +249,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.TEN] = 8F,
                     [ThemeCollections.ELEVEN] = 8F,
                     [ThemeCollections.TWELVE] = 10F,
-                    [ThemeCollections.THIRTEEN] = 12F,
-                    [ThemeCollections.FOURTEEN] = 14F,
+                    [ThemeCollections.THIRTEEN] = 10F,
+                    [ThemeCollections.FOURTEEN] = 10F,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];

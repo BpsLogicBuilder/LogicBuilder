@@ -63,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void Initialize()
         {
-            ControlsLayoutUtility.LayoutManagedListBoxEditButtons(radPanelEditButtons, radPanelTableParent);
+            ControlsLayoutUtility.LayoutManagedListBoxEditButtons(radPanelEditButtons, radPanelTableParent, tableLayoutPanel);
             CollapsePanelBorder(radPanelListBox);
             CollapsePanelBorder(radPanelUpDownButtons);
             CollapsePanelBorder(radPanelEditButtons);

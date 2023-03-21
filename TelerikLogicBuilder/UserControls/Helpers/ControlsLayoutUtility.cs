@@ -9,20 +9,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 {
     internal static class ControlsLayoutUtility
     {
-        public static void LayoutAddUpdateButtonPanel(RadPanel radPanel, TableLayoutPanel tableLayoutPanelAddUpdate, bool performLayout = true)
+        public static void LayoutAddUpdateButtonPanel(RadPanel radPanelAddButton, TableLayoutPanel tableLayoutPanelAddUpdate, bool performLayout = true)
         {
-            ((ISupportInitialize)radPanel).BeginInit();
-            radPanel.SuspendLayout();
+            ((ISupportInitialize)radPanelAddButton).BeginInit();
+            radPanelAddButton.SuspendLayout();
             tableLayoutPanelAddUpdate.SuspendLayout();
 
             tableLayoutPanelAddUpdate.Dock = DockStyle.Top;
-            tableLayoutPanelAddUpdate.Size = new Size(tableLayoutPanelAddUpdate.Width, PerFontSizeConstants.BottomPanelHeight / 5);//Keeps this height the same as a button on ManagedListBoxControl and bottom panel group.
-                                                                                                                                   //Button height on the bottom panel is 20 percent of the total.
-            radPanel.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanel.Height);
+            tableLayoutPanelAddUpdate.Size = new Size(tableLayoutPanelAddUpdate.Width, (int)PerFontSizeConstants.SingleLineHeight);
+            radPanelAddButton.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanelAddButton.Height);
 
             tableLayoutPanelAddUpdate.ResumeLayout(false);
-            ((ISupportInitialize)radPanel).EndInit();
-            radPanel.ResumeLayout(performLayout);
+            ((ISupportInitialize)radPanelAddButton).EndInit();
+            radPanelAddButton.ResumeLayout(performLayout);
         }
 
         public static void LayoutAddUpdateItemGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
@@ -80,44 +79,100 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             radPanelApplication.ResumeLayout(true);
         }
 
-        public static void LayoutBottomPanel(RadPanel radPanelBottom, RadPanel radPanelMessages, RadPanel radPanelButtons, IDialogFormMessageControl dialogFormMessageControl, bool performLayout = true)
+        public static void LayoutBottomPanel(RadPanel radPanelBottom, RadPanel radPanelMessages, RadPanel radPanelButtons, TableLayoutPanel tableLayoutPanelButtons, IDialogFormMessageControl dialogFormMessageControl, bool performLayout = true)
         {
             ((ISupportInitialize)radPanelMessages).BeginInit();
             radPanelMessages.SuspendLayout();
             ((ISupportInitialize)radPanelButtons).BeginInit();
             radPanelButtons.SuspendLayout();
+            tableLayoutPanelButtons.SuspendLayout();
             ((ISupportInitialize)radPanelBottom).BeginInit();
             radPanelBottom.SuspendLayout();
+
+            float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
+            float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
+            float totalHeight = (5 * separatorLineHeight) + (4 * singleLineHeight);
+            int totalTableLayoutHeight = (int)Math.Round(totalHeight);
+
+            tableLayoutPanelButtons.ColumnStyles.Clear();
+            tableLayoutPanelButtons.RowStyles.Clear();
+
+            tableLayoutPanelButtons.ColumnCount = 3;
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+
+            tableLayoutPanelButtons.RowCount = 9;
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
 
             dialogFormMessageControl.Dock = DockStyle.Fill;
             dialogFormMessageControl.Location = new Point(0, 0);
             radPanelMessages.Controls.Add((Control)dialogFormMessageControl);
 
-            radPanelButtons.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanelButtons.Height);
-            radPanelBottom.Size = new Size(radPanelBottom.Width, PerFontSizeConstants.BottomPanelHeight);
+            tableLayoutPanelButtons.Margin = new Padding(0);
+            radPanelButtons.Margin = new Padding(0);
+            radPanelButtons.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, totalTableLayoutHeight);
+            radPanelBottom.Size = new Size(radPanelBottom.Width, totalTableLayoutHeight);
 
             ((ISupportInitialize)radPanelMessages).EndInit();
             radPanelMessages.ResumeLayout(false);
+            tableLayoutPanelButtons.ResumeLayout(false);
             ((ISupportInitialize)radPanelButtons).EndInit();
             radPanelButtons.ResumeLayout(false);
             ((ISupportInitialize)radPanelBottom).EndInit();
             radPanelBottom.ResumeLayout(performLayout);
         }
 
-        public static void LayoutBottomPanel(RadPanel radPanelBottom, RadPanel radPanelMessages, RadPanel radPanelButtons, bool performLayout = true)
+        public static void LayoutBottomPanel(RadPanel radPanelBottom, RadPanel radPanelMessages, RadPanel radPanelButtons, TableLayoutPanel tableLayoutPanelButtons, bool performLayout = true)
         {
             ((ISupportInitialize)radPanelMessages).BeginInit();
             radPanelMessages.SuspendLayout();
             ((ISupportInitialize)radPanelButtons).BeginInit();
             radPanelButtons.SuspendLayout();
+            tableLayoutPanelButtons.SuspendLayout();
             ((ISupportInitialize)radPanelBottom).BeginInit();
             radPanelBottom.SuspendLayout();
 
-            radPanelButtons.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, radPanelButtons.Height);
-            radPanelBottom.Size = new Size(radPanelBottom.Width, PerFontSizeConstants.BottomPanelHeight);
+            float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
+            float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
+            float totalHeight = (5 * separatorLineHeight) + (4 * singleLineHeight);
+            int totalTableLayoutHeight = (int)Math.Round(totalHeight);
+
+            tableLayoutPanelButtons.ColumnStyles.Clear();
+            tableLayoutPanelButtons.RowStyles.Clear();
+
+            tableLayoutPanelButtons.ColumnCount = 3;
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+
+            tableLayoutPanelButtons.RowCount = 9;
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+
+            tableLayoutPanelButtons.Margin = new Padding(0);
+            radPanelButtons.Margin = new Padding(0);
+            radPanelButtons.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, totalTableLayoutHeight);
+            radPanelBottom.Size = new Size(radPanelBottom.Width, totalTableLayoutHeight);
 
             ((ISupportInitialize)radPanelMessages).EndInit();
             radPanelMessages.ResumeLayout(false);
+            tableLayoutPanelButtons.ResumeLayout(false);
             ((ISupportInitialize)radPanelButtons).EndInit();
             radPanelButtons.ResumeLayout(false);
             ((ISupportInitialize)radPanelBottom).EndInit();
@@ -242,16 +297,43 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             groupBoxParent.ResumeLayout(performLayout);
         }
 
-        public static void LayoutManagedListBoxEditButtons(RadPanel rightDockedPanel, RadPanel radPanelTableParent, bool performLayout = true)
+        public static void LayoutManagedListBoxEditButtons(RadPanel rightDockedPanel, RadPanel radPanelTableParent, TableLayoutPanel tableLayoutPanel, bool performLayout = true)
         {
             ((ISupportInitialize)rightDockedPanel).BeginInit();
             rightDockedPanel.SuspendLayout();
             ((ISupportInitialize)radPanelTableParent).BeginInit();
             radPanelTableParent.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
 
-            radPanelTableParent.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, PerFontSizeConstants.BottomPanelHeight);
+            tableLayoutPanel.ColumnStyles.Clear();
+            tableLayoutPanel.RowStyles.Clear();
+
+            tableLayoutPanel.ColumnCount = 3;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+
+            float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
+            float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
+            float totalHeight = (5 * separatorLineHeight) + (4 * singleLineHeight);
+            int totalTableLayoutHeight = (int)Math.Round(totalHeight);
+            tableLayoutPanel.RowCount = 9;
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, singleLineHeight));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
+
+            tableLayoutPanel.Margin = new Padding(0);
+            radPanelTableParent.Margin = new Padding(0);
+            radPanelTableParent.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, totalTableLayoutHeight);
             rightDockedPanel.Size = new Size(PerFontSizeConstants.OkCancelButtonPanelWidth, rightDockedPanel.Height);
 
+            tableLayoutPanel.ResumeLayout(false);
             ((ISupportInitialize)radPanelTableParent).EndInit();
             radPanelTableParent.ResumeLayout(false);
             ((ISupportInitialize)rightDockedPanel).EndInit();

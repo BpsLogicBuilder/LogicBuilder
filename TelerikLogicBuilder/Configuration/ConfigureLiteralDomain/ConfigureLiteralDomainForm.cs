@@ -94,7 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
 
         private void InitializeControls()
         {
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
             InitializeControl(this.radPanelFill, (Control)_configureLiteralDomainControl);
         }
 

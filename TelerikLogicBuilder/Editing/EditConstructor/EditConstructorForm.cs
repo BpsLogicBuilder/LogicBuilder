@@ -95,7 +95,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         {
             InitializeDialogFormMessageControl();
             InitializeApplicationDropDownList();
-			InitializeSelectConstructorDropDownList();
+            InitializeSelectConstructorDropDownList();
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
 
@@ -1093,7 +1093,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         private void InitializeDialogFormMessageControl()
         {
-            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, _dialogFormMessageControl);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void InitializeSelectConstructorDropDownList()
