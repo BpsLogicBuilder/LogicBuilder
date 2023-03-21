@@ -12,6 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         DockStyle Dock { set; }
         bool IsEmpty { get; }
         Point Location { set; }
+        Padding Margin { set; }
         string MixedXml { get; }
         string VisibleText { get; }
         XmlElement? XmlElement { get; }

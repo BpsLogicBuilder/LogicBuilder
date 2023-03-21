@@ -5,27 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 {
     internal static class PerFontSizeConstants
     {
-        public static int AddUpdateItemGroupBoxHeight
-        {
-            get
-            {
-                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 63;
-
-                Dictionary<int, int> sizes = new()
-                {
-                    [ThemeCollections.NINE] = 63,
-                    [ThemeCollections.TEN] = 66,
-                    [ThemeCollections.ELEVEN] = 69,
-                    [ThemeCollections.TWELVE] = 75,
-                    [ThemeCollections.THIRTEEN] = 81,
-                    [ThemeCollections.FOURTEEN] = 83,
-                };
-
-                return sizes[Properties.Settings.Default.fontSize];
-            }
-        }
-
         public static Padding AddUpdateItemGroupBoxPadding
         {
             get
@@ -61,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.ELEVEN] = 69,
                     [ThemeCollections.TWELVE] = 75,
                     [ThemeCollections.THIRTEEN] = 81,
-                    [ThemeCollections.FOURTEEN] = 83,
+                    [ThemeCollections.FOURTEEN] = 87,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -184,10 +163,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                 {
                     [ThemeCollections.NINE] = 136,
                     [ThemeCollections.TEN] = 141,
-                    [ThemeCollections.ELEVEN] = 146,
-                    [ThemeCollections.TWELVE] = 151,
-                    [ThemeCollections.THIRTEEN] = 156,
-                    [ThemeCollections.FOURTEEN] = 161,
+                    [ThemeCollections.ELEVEN] = 148,
+                    [ThemeCollections.TWELVE] = 155,
+                    [ThemeCollections.THIRTEEN] = 165,
+                    [ThemeCollections.FOURTEEN] = 175,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];

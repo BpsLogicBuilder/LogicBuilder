@@ -406,13 +406,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
         {
             valueControl = GetEditItemControl();
 
-            ControlsLayoutUtility.LayoutListItemItemGroupBox
+            ControlsLayoutUtility.LayoutListItemGroupBox
             (
                 this,
                 radGroupBoxEdit,
                 radPanelEdit,
+                radPanelEditControl,
                 (Control)valueControl,
-                false
+                multiLine: false
             );
         }
 

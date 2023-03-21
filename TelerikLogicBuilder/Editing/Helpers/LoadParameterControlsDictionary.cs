@@ -127,6 +127,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
                 valueControl.Location= new Point(0, 0);
                 valueControl.Dock = System.Windows.Forms.DockStyle.Fill;
+                valueControl.Margin = new System.Windows.Forms.Padding(0);
                 editControlsSet.Add(parameter.Name, new ParameterControlSet(label, radCheckBox, valueControl));
             }
         }

@@ -38,13 +38,14 @@
             cmbObjectType = new UserControls.AutoCompleteRadDropDownList();
             radGroupBoxEdit = new Telerik.WinControls.UI.RadGroupBox();
             radPanelEdit = new Telerik.WinControls.UI.RadPanel();
+            radPanelEditControl = new Telerik.WinControls.UI.RadPanel();
             radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
-            btnUpdate = new Telerik.WinControls.UI.RadButton();
-            btnAdd = new Telerik.WinControls.UI.RadButton();
-            radGroupBoxList = new Telerik.WinControls.UI.RadGroupBox();
-            managedListBoxControl = new UserControls.ManagedListBoxControl();
             tableLayoutPanelAddUpdate = new System.Windows.Forms.TableLayoutPanel();
             radPanelAddUpdateButtonTableCell = new Telerik.WinControls.UI.RadPanel();
+            btnAdd = new Telerik.WinControls.UI.RadButton();
+            btnUpdate = new Telerik.WinControls.UI.RadButton();
+            radGroupBoxList = new Telerik.WinControls.UI.RadGroupBox();
+            managedListBoxControl = new UserControls.ManagedListBoxControl();
             ((System.ComponentModel.ISupportInitialize)radGroupBoxType).BeginInit();
             radGroupBoxType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)radScrollablePanelType).BeginInit();
@@ -59,15 +60,17 @@
             ((System.ComponentModel.ISupportInitialize)radGroupBoxEdit).BeginInit();
             radGroupBoxEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)radPanelEdit).BeginInit();
+            radPanelEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelEditControl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)radPanelAddButton).BeginInit();
             radPanelAddButton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnUpdate).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnAdd).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)radGroupBoxList).BeginInit();
-            radGroupBoxList.SuspendLayout();
             tableLayoutPanelAddUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)radPanelAddUpdateButtonTableCell).BeginInit();
             radPanelAddUpdateButtonTableCell.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnAdd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxList).BeginInit();
+            radGroupBoxList.SuspendLayout();
             SuspendLayout();
             // 
             // radGroupBoxType
@@ -146,7 +149,7 @@
             lblObjectType.Dock = System.Windows.Forms.DockStyle.Top;
             lblObjectType.Location = new System.Drawing.Point(28, 59);
             lblObjectType.Name = "lblObjectType";
-            lblObjectType.Size = new System.Drawing.Size(257, 18);
+            lblObjectType.Size = new System.Drawing.Size(69, 18);
             lblObjectType.TabIndex = 2;
             lblObjectType.Text = "Object Type:";
             // 
@@ -155,7 +158,7 @@
             lblListType.Dock = System.Windows.Forms.DockStyle.Top;
             lblListType.Location = new System.Drawing.Point(28, 23);
             lblListType.Name = "lblListType";
-            lblListType.Size = new System.Drawing.Size(257, 18);
+            lblListType.Size = new System.Drawing.Size(52, 18);
             lblListType.TabIndex = 0;
             lblListType.Text = "List Type:";
             // 
@@ -184,11 +187,22 @@
             // 
             // radPanelEdit
             // 
+            radPanelEdit.Controls.Add(radPanelEditControl);
             radPanelEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelEdit.Location = new System.Drawing.Point(2, 18);
+            radPanelEdit.Margin = new System.Windows.Forms.Padding(0);
             radPanelEdit.Name = "radPanelEdit";
             radPanelEdit.Size = new System.Drawing.Size(717, 35);
             radPanelEdit.TabIndex = 0;
+            // 
+            // radPanelEditControl
+            // 
+            radPanelEditControl.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelEditControl.Location = new System.Drawing.Point(0, 0);
+            radPanelEditControl.Margin = new System.Windows.Forms.Padding(0);
+            radPanelEditControl.Name = "radPanelEditControl";
+            radPanelEditControl.Size = new System.Drawing.Size(717, 35);
+            radPanelEditControl.TabIndex = 1;
             // 
             // radPanelAddButton
             // 
@@ -198,45 +212,6 @@
             radPanelAddButton.Name = "radPanelAddButton";
             radPanelAddButton.Size = new System.Drawing.Size(134, 35);
             radPanelAddButton.TabIndex = 0;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            btnUpdate.Location = new System.Drawing.Point(0, 0);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new System.Drawing.Size(93, 35);
-            btnUpdate.TabIndex = 2;
-            btnUpdate.Text = "Update";
-            // 
-            // btnAdd
-            // 
-            btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            btnAdd.Location = new System.Drawing.Point(0, 0);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(93, 35);
-            btnAdd.TabIndex = 1;
-            btnAdd.Text = "Add";
-            // 
-            // radGroupBoxList
-            // 
-            radGroupBoxList.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            radGroupBoxList.Controls.Add(managedListBoxControl);
-            radGroupBoxList.Dock = System.Windows.Forms.DockStyle.Fill;
-            radGroupBoxList.HeaderText = "List";
-            radGroupBoxList.Location = new System.Drawing.Point(0, 192);
-            radGroupBoxList.Name = "radGroupBoxList";
-            radGroupBoxList.Size = new System.Drawing.Size(855, 339);
-            radGroupBoxList.TabIndex = 2;
-            radGroupBoxList.Text = "List";
-            // 
-            // managedListBoxControl
-            // 
-            managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            managedListBoxControl.Location = new System.Drawing.Point(2, 18);
-            managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
-            managedListBoxControl.Name = "managedListBoxControl";
-            managedListBoxControl.Size = new System.Drawing.Size(851, 319);
-            managedListBoxControl.TabIndex = 0;
             // 
             // tableLayoutPanelAddUpdate
             // 
@@ -265,6 +240,45 @@
             radPanelAddUpdateButtonTableCell.Size = new System.Drawing.Size(93, 35);
             radPanelAddUpdateButtonTableCell.TabIndex = 0;
             // 
+            // btnAdd
+            // 
+            btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnAdd.Location = new System.Drawing.Point(0, 0);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(93, 35);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "Add";
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnUpdate.Location = new System.Drawing.Point(0, 0);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new System.Drawing.Size(93, 35);
+            btnUpdate.TabIndex = 2;
+            btnUpdate.Text = "Update";
+            // 
+            // radGroupBoxList
+            // 
+            radGroupBoxList.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxList.Controls.Add(managedListBoxControl);
+            radGroupBoxList.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxList.HeaderText = "List";
+            radGroupBoxList.Location = new System.Drawing.Point(0, 192);
+            radGroupBoxList.Name = "radGroupBoxList";
+            radGroupBoxList.Size = new System.Drawing.Size(855, 339);
+            radGroupBoxList.TabIndex = 2;
+            radGroupBoxList.Text = "List";
+            // 
+            // managedListBoxControl
+            // 
+            managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            managedListBoxControl.Location = new System.Drawing.Point(2, 18);
+            managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
+            managedListBoxControl.Name = "managedListBoxControl";
+            managedListBoxControl.Size = new System.Drawing.Size(851, 319);
+            managedListBoxControl.TabIndex = 0;
+            // 
             // EditObjectListControl
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -289,15 +303,17 @@
             ((System.ComponentModel.ISupportInitialize)radGroupBoxEdit).EndInit();
             radGroupBoxEdit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelEdit).EndInit();
+            radPanelEdit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelEditControl).EndInit();
             ((System.ComponentModel.ISupportInitialize)radPanelAddButton).EndInit();
             radPanelAddButton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)btnUpdate).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnAdd).EndInit();
-            ((System.ComponentModel.ISupportInitialize)radGroupBoxList).EndInit();
-            radGroupBoxList.ResumeLayout(false);
             tableLayoutPanelAddUpdate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelAddUpdateButtonTableCell).EndInit();
             radPanelAddUpdateButtonTableCell.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnAdd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnUpdate).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxList).EndInit();
+            radGroupBoxList.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -320,5 +336,6 @@
         private UserControls.AutoCompleteRadDropDownList cmbObjectType;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAddUpdate;
         private Telerik.WinControls.UI.RadPanel radPanelAddUpdateButtonTableCell;
+        private Telerik.WinControls.UI.RadPanel radPanelEditControl;
     }
 }

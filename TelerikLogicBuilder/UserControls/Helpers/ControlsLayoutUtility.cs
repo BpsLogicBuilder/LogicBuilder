@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             radGroupBox.SuspendLayout();
             groupBoxParent.SuspendLayout();
 
-            radGroupBox.Size = new Size(radGroupBox.Width, PerFontSizeConstants.AddUpdateItemGroupBoxHeight);
+            radGroupBox.Size = new Size(radGroupBox.Width, PerFontSizeConstants.ApplicationGroupBoxHeight);
             radGroupBox.Margin = new Padding(0);
             radGroupBox.Padding = PerFontSizeConstants.AddUpdateItemGroupBoxPadding;
 
@@ -193,19 +193,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             groupBoxItem.ResumeLayout(performLayout);
         }
 
-        public static void LayoutListItemItemGroupBox(Control groupBoxParent, RadGroupBox radGroupBoxEdit, RadPanel radPanelEdit, Control control, bool multiLine, bool performLayout = true)
+        public static void LayoutListItemGroupBox(Control groupBoxParent, RadGroupBox radGroupBoxEdit, RadPanel radPanelEdit, RadPanel radPanelEditControl, Control control, bool multiLine, bool performLayout = true)
         {
             ((ISupportInitialize)radPanelEdit).BeginInit();
             radPanelEdit.SuspendLayout();
+            ((ISupportInitialize)radPanelEditControl).BeginInit();
+            radPanelEditControl.SuspendLayout();
             ((ISupportInitialize)radGroupBoxEdit).BeginInit();
             radGroupBoxEdit.SuspendLayout();
             groupBoxParent.SuspendLayout();
 
+            radPanelEditControl.Margin = new Padding(0);
+            radPanelEditControl.Padding = new Padding(0);
+            radPanelEditControl.Dock = DockStyle.Top;
+            radPanelEditControl.Size = new Size(radPanelEditControl.Width, multiLine ? (int)PerFontSizeConstants.MultiLineHeight : (int)PerFontSizeConstants.SingleLineHeight);
             radPanelEdit.Margin = new Padding(0);
             radPanelEdit.Padding = new Padding(0);
-            radGroupBoxEdit.Size = multiLine
-                                    ? new Size(radGroupBoxEdit.Width, PerFontSizeConstants.MultiLineAddUpdateItemGroupBoxHeight)
-                                    : new Size(radGroupBoxEdit.Width, PerFontSizeConstants.AddUpdateItemGroupBoxHeight);
+            radPanelEdit.Dock = DockStyle.Fill;
+            radGroupBoxEdit.Size = new Size(radGroupBoxEdit.Width, multiLine ? PerFontSizeConstants.MultiLineAddUpdateItemGroupBoxHeight : PerFontSizeConstants.ApplicationGroupBoxHeight);
             radGroupBoxEdit.Padding = PerFontSizeConstants.AddUpdateItemGroupBoxPadding;
 
             control.Name = "valueControl";
@@ -213,7 +218,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             control.Margin = new Padding(0);
             control.Location = new Point(0, 0);
 
-            radPanelEdit.Controls.Add(control);
+            radPanelEditControl.Controls.Add(control);
+            ((ISupportInitialize)radPanelEditControl).EndInit();
+            radPanelEditControl.ResumeLayout(false);
             ((ISupportInitialize)radPanelEdit).EndInit();
             radPanelEdit.ResumeLayout(false);
             ((ISupportInitialize)radGroupBoxEdit).EndInit();

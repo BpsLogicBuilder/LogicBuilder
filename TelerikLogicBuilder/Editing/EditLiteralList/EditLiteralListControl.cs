@@ -409,13 +409,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private void InitializeValueControl()
         {
             valueControl = GetEditItemControl();
-            ControlsLayoutUtility.LayoutListItemItemGroupBox
+            ControlsLayoutUtility.LayoutListItemGroupBox
             (
                 this,
                 radGroupBoxEdit,
                 radPanelEdit,
+                radPanelEditControl,
                 (Control)valueControl,
-                literalListElementInfo.ElementControl == LiteralParameterInputStyle.MultipleLineTextBox
+                multiLine: literalListElementInfo.ElementControl == LiteralParameterInputStyle.MultipleLineTextBox
             );
         }
 

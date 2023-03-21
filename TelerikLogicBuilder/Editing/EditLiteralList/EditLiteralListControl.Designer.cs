@@ -40,6 +40,7 @@
             managedListBoxControl = new UserControls.ManagedListBoxControl();
             radGroupBoxEdit = new Telerik.WinControls.UI.RadGroupBox();
             radPanelEdit = new Telerik.WinControls.UI.RadPanel();
+            radPanelEditControl = new Telerik.WinControls.UI.RadPanel();
             radPanelAddButton = new Telerik.WinControls.UI.RadPanel();
             tableLayoutPanelAddUpdate = new System.Windows.Forms.TableLayoutPanel();
             radPanelAddUpdateButtonTableCell = new Telerik.WinControls.UI.RadPanel();
@@ -62,6 +63,8 @@
             ((System.ComponentModel.ISupportInitialize)radGroupBoxEdit).BeginInit();
             radGroupBoxEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)radPanelEdit).BeginInit();
+            radPanelEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelEditControl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)radPanelAddButton).BeginInit();
             radPanelAddButton.SuspendLayout();
             tableLayoutPanelAddUpdate.SuspendLayout();
@@ -158,7 +161,7 @@
             lblLiteralType.Dock = System.Windows.Forms.DockStyle.Top;
             lblLiteralType.Location = new System.Drawing.Point(28, 59);
             lblLiteralType.Name = "lblLiteralType";
-            lblLiteralType.Size = new System.Drawing.Size(66, 18);
+            lblLiteralType.Size = new System.Drawing.Size(257, 18);
             lblLiteralType.TabIndex = 2;
             lblLiteralType.Text = "Literal Type:";
             // 
@@ -167,7 +170,7 @@
             lblListType.Dock = System.Windows.Forms.DockStyle.Top;
             lblListType.Location = new System.Drawing.Point(28, 23);
             lblListType.Name = "lblListType";
-            lblListType.Size = new System.Drawing.Size(52, 18);
+            lblListType.Size = new System.Drawing.Size(257, 18);
             lblListType.TabIndex = 0;
             lblListType.Text = "List Type:";
             // 
@@ -207,11 +210,22 @@
             // 
             // radPanelEdit
             // 
+            radPanelEdit.Controls.Add(radPanelEditControl);
             radPanelEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelEdit.Location = new System.Drawing.Point(2, 18);
+            radPanelEdit.Margin = new System.Windows.Forms.Padding(0);
             radPanelEdit.Name = "radPanelEdit";
             radPanelEdit.Size = new System.Drawing.Size(717, 35);
             radPanelEdit.TabIndex = 1;
+            // 
+            // radPanelEditControl
+            // 
+            radPanelEditControl.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelEditControl.Location = new System.Drawing.Point(0, 0);
+            radPanelEditControl.Margin = new System.Windows.Forms.Padding(0);
+            radPanelEditControl.Name = "radPanelEditControl";
+            radPanelEditControl.Size = new System.Drawing.Size(717, 35);
+            radPanelEditControl.TabIndex = 0;
             // 
             // radPanelAddButton
             // 
@@ -294,6 +308,8 @@
             ((System.ComponentModel.ISupportInitialize)radGroupBoxEdit).EndInit();
             radGroupBoxEdit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelEdit).EndInit();
+            radPanelEdit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelEditControl).EndInit();
             ((System.ComponentModel.ISupportInitialize)radPanelAddButton).EndInit();
             radPanelAddButton.ResumeLayout(false);
             tableLayoutPanelAddUpdate.ResumeLayout(false);
@@ -323,5 +339,6 @@
         private Telerik.WinControls.UI.RadButton btnAdd;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAddUpdate;
         private Telerik.WinControls.UI.RadPanel radPanelAddUpdateButtonTableCell;
+        private Telerik.WinControls.UI.RadPanel radPanelEditControl;
     }
 }
