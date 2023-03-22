@@ -101,9 +101,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.NINE] = 27,
                     [ThemeCollections.TEN] = 30,
                     [ThemeCollections.ELEVEN] = 33,
-                    [ThemeCollections.TWELVE] = 36,
-                    [ThemeCollections.THIRTEEN] = 39,
-                    [ThemeCollections.FOURTEEN] = 42,
+                    [ThemeCollections.TWELVE] = 35,
+                    [ThemeCollections.THIRTEEN] = 37,
+                    [ThemeCollections.FOURTEEN] = 39,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -125,6 +125,90 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.TWELVE] = new Padding(2, 22, 2, 2),
                     [ThemeCollections.THIRTEEN] = new Padding(2, 29, 2, 2),
                     [ThemeCollections.FOURTEEN] = new Padding(2, 29, 2, 2),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int FindInFilesFormMinimumHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 545;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 545,
+                    [ThemeCollections.TEN] = 570,
+                    [ThemeCollections.ELEVEN] = 582,
+                    [ThemeCollections.TWELVE] = 610,
+                    [ThemeCollections.THIRTEEN] = 618,
+                    [ThemeCollections.FOURTEEN] = 626,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int FindInShapeOrCellFormMinimumHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 654;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 654,
+                    [ThemeCollections.TEN] = 666,
+                    [ThemeCollections.ELEVEN] = 678,
+                    [ThemeCollections.TWELVE] = 690,
+                    [ThemeCollections.THIRTEEN] = 690,
+                    [ThemeCollections.FOURTEEN] = 690,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int FindReplaceInShapeOrCellFormMinimumHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 754;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 754,
+                    [ThemeCollections.TEN] = 766,
+                    [ThemeCollections.ELEVEN] = 778,
+                    [ThemeCollections.TWELVE] = 790,
+                    [ThemeCollections.THIRTEEN] = 790,
+                    [ThemeCollections.FOURTEEN] = 790,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static int FindShapeOrCellFormMinimumHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 270;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 270,
+                    [ThemeCollections.TEN] = 300,
+                    [ThemeCollections.ELEVEN] = 330,
+                    [ThemeCollections.TWELVE] = 360,
+                    [ThemeCollections.THIRTEEN] = 390,
+                    [ThemeCollections.FOURTEEN] = 420,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
@@ -269,9 +353,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.NINE] = 27F,
                     [ThemeCollections.TEN] = 30F,
                     [ThemeCollections.ELEVEN] = 33F,
-                    [ThemeCollections.TWELVE] = 36F,
-                    [ThemeCollections.THIRTEEN] = 39F,
-                    [ThemeCollections.FOURTEEN] = 42F,
+                    [ThemeCollections.TWELVE] = 35F,
+                    [ThemeCollections.THIRTEEN] = 37F,
+                    [ThemeCollections.FOURTEEN] =39F,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];

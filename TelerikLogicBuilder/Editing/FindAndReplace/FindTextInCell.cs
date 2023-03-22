@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Properties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -55,9 +56,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            _formInitializer.SetFormDefaults(this, 624);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindInShapeOrCellFormMinimumHeight);
 
             this.AcceptButton = radButtonFindNext;
+
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonAllRows);
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonCurrentRow);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchCase);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchWholeWord);
+            radPanelCommandButtons.Padding = new Padding(1);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFil);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons);
+            ControlsLayoutUtility.LayoutGroupBox(radPanelFil, radGroupBoxOccurrences);
 
             radRadioButtonCurrentRow.IsChecked = true;
             /*We'll use the CurrentRows CheckStateChanged for ResetSearchIndexes() - only one is required*/

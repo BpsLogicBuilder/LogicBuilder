@@ -84,10 +84,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         protected virtual void Initialize()
         {
-            _formInitializer.SetFormDefaults(this, 535);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindInFilesFormMinimumHeight);
 
             radRadioButtonAllDocuments.IsChecked = true;
 
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonAllDocuments);
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonOpenDocument);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchCase);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchWholeWord);
+            radPanelCommandButtons.Padding = new Padding(1);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFill);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons);
             InitializeControls();
             GetSettings();
 

@@ -50,10 +50,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            _formInitializer.SetFormDefaults(this, 624);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindInShapeOrCellFormMinimumHeight);
 
             this.AcceptButton = radButtonFindNext;
 
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonAllPages);
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonCurrentPage);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchCase);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchWholeWord);
+            radPanelCommandButtons.Padding = new Padding(1);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFill);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons);
+            ControlsLayoutUtility.LayoutGroupBox(radPanelFill, radGroupBoxOccurrences);
             InitializeControls();
             GetSettings();
 

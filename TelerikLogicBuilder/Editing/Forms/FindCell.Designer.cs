@@ -28,193 +28,218 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanelBottom = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelMessages = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelCommandButtons = new Telerik.WinControls.UI.RadPanel();
-            this.radButtonCancel = new Telerik.WinControls.UI.RadButton();
-            this.radButtonFind = new Telerik.WinControls.UI.RadButton();
-            this.radPanelMain = new Telerik.WinControls.UI.RadPanel();
-            this.radGroupBoxCell = new Telerik.WinControls.UI.RadGroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabelRowIndex = new Telerik.WinControls.UI.RadLabel();
-            this.radLabelColumnIndex = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBoxRowIndex = new Telerik.WinControls.UI.RadTextBox();
-            this.radTextBoxColumnIndex = new Telerik.WinControls.UI.RadTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandButtons)).BeginInit();
-            this.radPanelCommandButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonFind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMain)).BeginInit();
-            this.radPanelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxCell)).BeginInit();
-            this.radGroupBoxCell.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelRowIndex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelColumnIndex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxRowIndex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxColumnIndex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            this.SuspendLayout();
+            radPanelBottom = new Telerik.WinControls.UI.RadPanel();
+            radPanelMessages = new Telerik.WinControls.UI.RadPanel();
+            radPanelCommandButtons = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
+            radButtonCancel = new Telerik.WinControls.UI.RadButton();
+            radButtonFind = new Telerik.WinControls.UI.RadButton();
+            radPanelMain = new Telerik.WinControls.UI.RadPanel();
+            radGroupBoxCell = new Telerik.WinControls.UI.RadGroupBox();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            radLabelRowIndex = new Telerik.WinControls.UI.RadLabel();
+            radLabelColumnIndex = new Telerik.WinControls.UI.RadLabel();
+            radTextBoxRowIndex = new Telerik.WinControls.UI.RadTextBox();
+            radTextBoxColumnIndex = new Telerik.WinControls.UI.RadTextBox();
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).BeginInit();
+            radPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelCommandButtons).BeginInit();
+            radPanelCommandButtons.SuspendLayout();
+            tableLayoutPanelButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radButtonCancel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radButtonFind).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelMain).BeginInit();
+            radPanelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxCell).BeginInit();
+            radGroupBoxCell.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radLabelRowIndex).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radLabelColumnIndex).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radTextBoxRowIndex).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radTextBoxColumnIndex).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this).BeginInit();
+            SuspendLayout();
             // 
             // radPanelBottom
             // 
-            this.radPanelBottom.Controls.Add(this.radPanelMessages);
-            this.radPanelBottom.Controls.Add(this.radPanelCommandButtons);
-            this.radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanelBottom.Location = new System.Drawing.Point(0, 123);
-            this.radPanelBottom.Name = "radPanelBottom";
-            this.radPanelBottom.Size = new System.Drawing.Size(671, 121);
-            this.radPanelBottom.TabIndex = 1;
+            radPanelBottom.Controls.Add(radPanelMessages);
+            radPanelBottom.Controls.Add(radPanelCommandButtons);
+            radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radPanelBottom.Location = new System.Drawing.Point(0, 115);
+            radPanelBottom.Name = "radPanelBottom";
+            radPanelBottom.Size = new System.Drawing.Size(713, 121);
+            radPanelBottom.TabIndex = 1;
             // 
             // radPanelMessages
             // 
-            this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelMessages.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Name = "radPanelMessages";
-            this.radPanelMessages.Size = new System.Drawing.Size(510, 121);
-            this.radPanelMessages.TabIndex = 2;
+            radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelMessages.Location = new System.Drawing.Point(0, 0);
+            radPanelMessages.Name = "radPanelMessages";
+            radPanelMessages.Size = new System.Drawing.Size(552, 121);
+            radPanelMessages.TabIndex = 2;
             // 
             // radPanelCommandButtons
             // 
-            this.radPanelCommandButtons.Controls.Add(this.radButtonCancel);
-            this.radPanelCommandButtons.Controls.Add(this.radButtonFind);
-            this.radPanelCommandButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelCommandButtons.Location = new System.Drawing.Point(510, 0);
-            this.radPanelCommandButtons.Name = "radPanelCommandButtons";
-            this.radPanelCommandButtons.Size = new System.Drawing.Size(161, 121);
-            this.radPanelCommandButtons.TabIndex = 1;
+            radPanelCommandButtons.Controls.Add(tableLayoutPanelButtons);
+            radPanelCommandButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            radPanelCommandButtons.Location = new System.Drawing.Point(552, 0);
+            radPanelCommandButtons.Name = "radPanelCommandButtons";
+            radPanelCommandButtons.Size = new System.Drawing.Size(161, 121);
+            radPanelCommandButtons.TabIndex = 1;
+            // 
+            // tableLayoutPanelButtons
+            // 
+            tableLayoutPanelButtons.ColumnCount = 3;
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.Controls.Add(radButtonCancel, 1, 3);
+            tableLayoutPanelButtons.Controls.Add(radButtonFind, 1, 1);
+            tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
+            tableLayoutPanelButtons.RowCount = 9;
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.Size = new System.Drawing.Size(161, 121);
+            tableLayoutPanelButtons.TabIndex = 3;
             // 
             // radButtonCancel
             // 
-            this.radButtonCancel.Location = new System.Drawing.Point(25, 61);
-            this.radButtonCancel.Name = "radButtonCancel";
-            this.radButtonCancel.Size = new System.Drawing.Size(110, 24);
-            this.radButtonCancel.TabIndex = 1;
-            this.radButtonCancel.Text = "&Cancel";
-            this.radButtonCancel.Click += new System.EventHandler(this.RadButtonCancel_Click);
+            radButtonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            radButtonCancel.Location = new System.Drawing.Point(24, 32);
+            radButtonCancel.Margin = new System.Windows.Forms.Padding(0);
+            radButtonCancel.Name = "radButtonCancel";
+            radButtonCancel.Size = new System.Drawing.Size(112, 24);
+            radButtonCancel.TabIndex = 1;
+            radButtonCancel.Text = "&Cancel";
+            radButtonCancel.Click += RadButtonCancel_Click;
             // 
             // radButtonFind
             // 
-            this.radButtonFind.Location = new System.Drawing.Point(25, 22);
-            this.radButtonFind.Name = "radButtonFind";
-            this.radButtonFind.Size = new System.Drawing.Size(110, 24);
-            this.radButtonFind.TabIndex = 0;
-            this.radButtonFind.Text = "&Find";
-            this.radButtonFind.Click += new System.EventHandler(this.RadButtonFind_Click);
+            radButtonFind.Dock = System.Windows.Forms.DockStyle.Fill;
+            radButtonFind.Location = new System.Drawing.Point(24, 4);
+            radButtonFind.Margin = new System.Windows.Forms.Padding(0);
+            radButtonFind.Name = "radButtonFind";
+            radButtonFind.Size = new System.Drawing.Size(112, 24);
+            radButtonFind.TabIndex = 0;
+            radButtonFind.Text = "&Find";
+            radButtonFind.Click += RadButtonFind_Click;
             // 
             // radPanelMain
             // 
-            this.radPanelMain.Controls.Add(this.radGroupBoxCell);
-            this.radPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMain.Name = "radPanelMain";
-            this.radPanelMain.Size = new System.Drawing.Size(671, 123);
-            this.radPanelMain.TabIndex = 2;
+            radPanelMain.Controls.Add(radGroupBoxCell);
+            radPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelMain.Location = new System.Drawing.Point(0, 0);
+            radPanelMain.Name = "radPanelMain";
+            radPanelMain.Size = new System.Drawing.Size(713, 115);
+            radPanelMain.TabIndex = 2;
             // 
             // radGroupBoxCell
             // 
-            this.radGroupBoxCell.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxCell.Controls.Add(this.tableLayoutPanel1);
-            this.radGroupBoxCell.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxCell.HeaderText = "Cell";
-            this.radGroupBoxCell.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBoxCell.Name = "radGroupBoxCell";
-            this.radGroupBoxCell.Padding = new System.Windows.Forms.Padding(20, 30, 20, 2);
-            this.radGroupBoxCell.Size = new System.Drawing.Size(671, 123);
-            this.radGroupBoxCell.TabIndex = 2;
-            this.radGroupBoxCell.Text = "Cell";
+            radGroupBoxCell.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxCell.Controls.Add(tableLayoutPanel1);
+            radGroupBoxCell.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxCell.HeaderText = "Cell";
+            radGroupBoxCell.Location = new System.Drawing.Point(0, 0);
+            radGroupBoxCell.Name = "radGroupBoxCell";
+            radGroupBoxCell.Padding = new System.Windows.Forms.Padding(20, 30, 20, 2);
+            radGroupBoxCell.Size = new System.Drawing.Size(713, 115);
+            radGroupBoxCell.TabIndex = 2;
+            radGroupBoxCell.Text = "Cell";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.radLabelRowIndex, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radLabelColumnIndex, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radTextBoxRowIndex, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radTextBoxColumnIndex, 1, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 30);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(631, 69);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(radLabelRowIndex, 0, 0);
+            tableLayoutPanel1.Controls.Add(radLabelColumnIndex, 0, 1);
+            tableLayoutPanel1.Controls.Add(radTextBoxRowIndex, 1, 0);
+            tableLayoutPanel1.Controls.Add(radTextBoxColumnIndex, 1, 1);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            tableLayoutPanel1.Location = new System.Drawing.Point(20, 30);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(673, 69);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabelRowIndex
             // 
-            this.radLabelRowIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radLabelRowIndex.Location = new System.Drawing.Point(3, 13);
-            this.radLabelRowIndex.Name = "radLabelRowIndex";
-            this.radLabelRowIndex.Size = new System.Drawing.Size(144, 18);
-            this.radLabelRowIndex.TabIndex = 0;
-            this.radLabelRowIndex.Text = "Row Index";
+            radLabelRowIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radLabelRowIndex.Location = new System.Drawing.Point(3, 13);
+            radLabelRowIndex.Name = "radLabelRowIndex";
+            radLabelRowIndex.Size = new System.Drawing.Size(58, 18);
+            radLabelRowIndex.TabIndex = 0;
+            radLabelRowIndex.Text = "Row Index";
             // 
             // radLabelColumnIndex
             // 
-            this.radLabelColumnIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radLabelColumnIndex.Location = new System.Drawing.Point(3, 48);
-            this.radLabelColumnIndex.Name = "radLabelColumnIndex";
-            this.radLabelColumnIndex.Size = new System.Drawing.Size(144, 18);
-            this.radLabelColumnIndex.TabIndex = 1;
-            this.radLabelColumnIndex.Text = "Column Index";
+            radLabelColumnIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radLabelColumnIndex.Location = new System.Drawing.Point(3, 48);
+            radLabelColumnIndex.Name = "radLabelColumnIndex";
+            radLabelColumnIndex.Size = new System.Drawing.Size(75, 18);
+            radLabelColumnIndex.TabIndex = 1;
+            radLabelColumnIndex.Text = "Column Index";
             // 
             // radTextBoxRowIndex
             // 
-            this.radTextBoxRowIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radTextBoxRowIndex.Location = new System.Drawing.Point(153, 11);
-            this.radTextBoxRowIndex.Name = "radTextBoxRowIndex";
-            this.radTextBoxRowIndex.Size = new System.Drawing.Size(475, 20);
-            this.radTextBoxRowIndex.TabIndex = 2;
-            this.radTextBoxRowIndex.TextChanged += new System.EventHandler(this.RadTextBoxRowIndex_TextChanged);
+            radTextBoxRowIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radTextBoxRowIndex.Location = new System.Drawing.Point(153, 11);
+            radTextBoxRowIndex.Name = "radTextBoxRowIndex";
+            radTextBoxRowIndex.Size = new System.Drawing.Size(517, 20);
+            radTextBoxRowIndex.TabIndex = 2;
+            radTextBoxRowIndex.TextChanged += RadTextBoxRowIndex_TextChanged;
             // 
             // radTextBoxColumnIndex
             // 
-            this.radTextBoxColumnIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radTextBoxColumnIndex.Location = new System.Drawing.Point(153, 46);
-            this.radTextBoxColumnIndex.Name = "radTextBoxColumnIndex";
-            this.radTextBoxColumnIndex.Size = new System.Drawing.Size(475, 20);
-            this.radTextBoxColumnIndex.TabIndex = 3;
-            this.radTextBoxColumnIndex.TextChanged += new System.EventHandler(this.RadTextBoxColumnIndex_TextChanged);
+            radTextBoxColumnIndex.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radTextBoxColumnIndex.Location = new System.Drawing.Point(153, 46);
+            radTextBoxColumnIndex.Name = "radTextBoxColumnIndex";
+            radTextBoxColumnIndex.Size = new System.Drawing.Size(517, 20);
+            radTextBoxColumnIndex.TabIndex = 3;
+            radTextBoxColumnIndex.TextChanged += RadTextBoxColumnIndex_TextChanged;
             // 
             // FindCell
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 244);
-            this.Controls.Add(this.radPanelMain);
-            this.Controls.Add(this.radPanelBottom);
-            this.Name = "FindCell";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Find Cell";
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandButtons)).EndInit();
-            this.radPanelCommandButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonFind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMain)).EndInit();
-            this.radPanelMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxCell)).EndInit();
-            this.radGroupBoxCell.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelRowIndex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelColumnIndex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxRowIndex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxColumnIndex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleBaseSize = new System.Drawing.Size(9, 21);
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(713, 236);
+            Controls.Add(radPanelMain);
+            Controls.Add(radPanelBottom);
+            Name = "FindCell";
+            Text = "Find Cell";
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
+            radPanelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelCommandButtons).EndInit();
+            radPanelCommandButtons.ResumeLayout(false);
+            tableLayoutPanelButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radButtonCancel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radButtonFind).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelMain).EndInit();
+            radPanelMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxCell).EndInit();
+            radGroupBoxCell.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)radLabelRowIndex).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radLabelColumnIndex).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radTextBoxRowIndex).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radTextBoxColumnIndex).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -231,5 +256,6 @@
         private Telerik.WinControls.UI.RadLabel radLabelColumnIndex;
         private Telerik.WinControls.UI.RadTextBox radTextBoxRowIndex;
         private Telerik.WinControls.UI.RadTextBox radTextBoxColumnIndex;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelButtons;
     }
 }

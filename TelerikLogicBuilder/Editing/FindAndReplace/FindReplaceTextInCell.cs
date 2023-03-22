@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Properties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -45,8 +46,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
         private int searchCellIndex;
         #endregion Variables
 
-        private bool CanReplace => radTextBoxFind.Text.Length > 0 
-                                    && radTextBoxReplace.Text.Length > 0 
+        private bool CanReplace => radTextBoxFind.Text.Length > 0
+                                    && radTextBoxReplace.Text.Length > 0
                                     && dataGridViewCell != null;
 
         #region Methods
@@ -73,10 +74,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            _formInitializer.SetFormDefaults(this, 724);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindReplaceInShapeOrCellFormMinimumHeight);
 
             this.AcceptButton = radButtonFindNext;
 
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonAllRows);
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonCurrentRow);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchCase);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchWholeWord);
+            radPanelCommandButtons.Padding = new Padding(1);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFill);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons);
+            ControlsLayoutUtility.LayoutGroupBox(radPanelFill, radGroupBoxOccurrences);
             this.Text = Strings.replaceTextFormText;
 
             radRadioButtonCurrentRow.IsChecked = true;

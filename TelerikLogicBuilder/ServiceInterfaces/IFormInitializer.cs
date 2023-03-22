@@ -10,6 +10,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         void SetFormDefaults(Form form, int minHeight);
         void SetProgressFormDefaults(Form form, int minHeight);
         void SetToConfigFragmentSize(Form form);
+        void SetToConfigSize(Form form);
         void SetToEditSize(Form form);
         void SetToolTipDefaults(ToolTip toolTip);
     }

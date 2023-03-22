@@ -85,10 +85,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            _formInitializer.SetFormDefaults(this, 535);
-            
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindInFilesFormMinimumHeight);
+
             radRadioButtonAllDocuments.IsChecked = true;
 
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonAllDocuments);
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonOpenDocument);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchCase);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchWholeWord);
+            radPanelCommandButtons.Padding = new Padding(1);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFil);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons);
             InitializeControls();
             GetSettings();
 
@@ -102,7 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             string[] patterns = radDropDownListFileTypes.Text.Split(new char[] { MiscellaneousConstants.SEMICOLONCHAR });
             foreach (string pattern in patterns)
             {
-                if (pattern.EndsWith(MiscellaneousConstants.DOUBLEPERIODSTRING) 
+                if (pattern.EndsWith(MiscellaneousConstants.DOUBLEPERIODSTRING)
                     || pattern.IndexOfAny(invalidPatternChars) != -1)
                 {
                     return false;
@@ -114,8 +121,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void ValidateOk()
         {
-            radButtonFindAll.Enabled = radTextBoxText.Text.Trim().Length > 0 
-                && radDropDownListFileTypes.Text.Trim().Length > 0 
+            radButtonFindAll.Enabled = radTextBoxText.Text.Trim().Length > 0
+                && radDropDownListFileTypes.Text.Trim().Length > 0
                 && IsPatternValid();
         }
 

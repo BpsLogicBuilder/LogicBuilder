@@ -98,10 +98,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            _formInitializer.SetFormDefaults(this, 724);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindReplaceInShapeOrCellFormMinimumHeight);
 
             this.AcceptButton = radButtonFindNext;
 
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonAllRows);
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonCurrentRow);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchCase);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchWholeWord);
+            radPanelCommandButtons.Padding = new Padding(1);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFill);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons);
+            ControlsLayoutUtility.LayoutGroupBox(radPanelFill, radGroupBoxOccurrences);
             InitializeControls();
             GetSettings();
 
@@ -168,13 +176,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             ResetSearchIndexes();
         }
 
-        private void RadButtonFindNext_Click(object sender, EventArgs e) 
+        private void RadButtonFindNext_Click(object sender, EventArgs e)
             => FindNext();
 
-        private void RadButtonReplace_Click(object sender, EventArgs e) 
+        private void RadButtonReplace_Click(object sender, EventArgs e)
             => Replace();
 
-        private void FindReplaceConfiguredItemInCellBase_FormClosing(object sender, FormClosingEventArgs e) 
+        private void FindReplaceConfiguredItemInCellBase_FormClosing(object sender, FormClosingEventArgs e)
             => SaveSettings();
         #endregion Event Handlers
     }

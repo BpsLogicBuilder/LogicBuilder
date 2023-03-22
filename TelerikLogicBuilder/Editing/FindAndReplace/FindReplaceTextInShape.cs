@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Properties;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.Windows.Forms;
@@ -69,10 +70,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private void Initialize()
         {
-            _formInitializer.SetFormDefaults(this, 724);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindReplaceInShapeOrCellFormMinimumHeight);
 
             this.AcceptButton = radButtonFindNext;
 
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonAllPages);
+            ControlsLayoutUtility.SetLabelMargin(radRadioButtonCurrentPage);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchCase);
+            ControlsLayoutUtility.SetLabelMargin(radCheckBoxMatchWholeWord);
+            radPanelCommandButtons.Padding = new Padding(1);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFill);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons);
+            ControlsLayoutUtility.LayoutGroupBox(radPanelFill, radGroupBoxOccurrences);
             this.Text = Strings.replaceTextFormText;
 
             radRadioButtonCurrentPage.IsChecked = true;

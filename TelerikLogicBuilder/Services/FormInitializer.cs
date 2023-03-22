@@ -43,7 +43,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             form.MinimumSize = new Size(GetMinWidth(), GetMinHeight());
             form.MaximizeBox = false;
             form.MinimizeBox = false;
-            form.Size = new Size(area.Width - 450, area.Height - 300);
 
             int GetMinHeight() => minHeight < maxHeight ? minHeight : maxHeight;
             int GetMinWidth() => minWidth < maxWidth ? minWidth : maxWidth;
@@ -75,7 +74,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             Rectangle area = NativeMethods.GetScreenArea();
 
-            form.Size = new Size(form.Width, area.Height - 200);
+            form.Size = new Size(form.Width - 450, area.Height - 200);
+        }
+
+        public void SetToConfigSize(Form form)
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return;
+
+            Rectangle area = NativeMethods.GetScreenArea();
+
+            form.Size = new Size(area.Width - 450, area.Height - 300);
         }
 
         public void SetToEditSize(Form form)

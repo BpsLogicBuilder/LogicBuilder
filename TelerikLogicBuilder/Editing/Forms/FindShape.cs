@@ -1,5 +1,7 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using Microsoft.Office.Interop.Visio;
 using System;
 using System.ComponentModel;
@@ -29,10 +31,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
         }
 
         #region Properties
-        internal int PageIndex 
+        internal int PageIndex
             => int.Parse(radTextBoxPageIndex.Text.Trim(), CultureInfo.CurrentCulture);
 
-        internal int ShapeIndex 
+        internal int ShapeIndex
             => int.Parse(radTextBoxShapeIndex.Text.Trim(), CultureInfo.CurrentCulture);
         #endregion Properties
 
@@ -58,28 +60,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
         private void Initialize()
         {
             this.AcceptButton = radButtonFind;
-            _formInitializer.SetFormDefaults(this, 276);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindShapeOrCellFormMinimumHeight);
             this.radButtonCancel.DialogResult = DialogResult.Cancel;
             ValidateOk();
         }
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            this.radPanelMessages.SuspendLayout();
             this.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
-            this.ResumeLayout(false);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons, _dialogFormMessageControl, false);
+            this.ResumeLayout(true);
         }
 
         private void ValidateOk()
@@ -130,7 +120,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
             }
         }
 
-        private static bool TryParse(string text, out int number) 
+        private static bool TryParse(string text, out int number)
             => int.TryParse(text.Trim(), NumberStyles.Integer, CultureInfo.CurrentCulture, out number);
         #endregion Methods
 

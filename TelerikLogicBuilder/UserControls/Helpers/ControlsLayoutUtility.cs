@@ -3,12 +3,21 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Telerik.WinControls;
+using Telerik.WinControls.Layouts;
+using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 {
     internal static class ControlsLayoutUtility
     {
+        public static void CollapsePanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+        public static void CollapsePanelBorder(RadScrollablePanel radPanel)
+            => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+
         public static void LayoutAddUpdateButtonPanel(RadPanel radPanelAddButton, TableLayoutPanel tableLayoutPanelAddUpdate, bool performLayout = true)
         {
             ((ISupportInitialize)radPanelAddButton).BeginInit();
@@ -394,6 +403,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             ((ISupportInitialize)radGroupBox).EndInit();
             radGroupBox.ResumeLayout(false);
             groupBoxParent.ResumeLayout(performLayout);
+        }
+
+        public static void SetLabelMargin(RadCheckBox radCheckBox, int left = 5, int top = 0, int right = 0, int bottom = 0)
+        {
+            ((ImageAndTextLayoutPanel)radCheckBox.RootElement.Children[0].Children[1].Children[0]).Margin = new Padding(left, top, right, bottom);
+        }
+
+        public static void SetLabelMargin(RadRadioButton radRadioButton, int left = 5, int top = 0, int right = 0, int bottom = 0)
+        {
+            ((ImageAndTextLayoutPanel)radRadioButton.RootElement.Children[0].Children[1].Children[0]).Margin = new Padding(left, top, right, bottom);
         }
     }
 }

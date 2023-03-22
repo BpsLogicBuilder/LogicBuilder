@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -30,10 +31,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
         }
 
         #region Properties
-        private int ColumnIndex 
+        private int ColumnIndex
             => int.Parse(radTextBoxColumnIndex.Text.Trim(), CultureInfo.CurrentCulture);
 
-        private int RowIndex 
+        private int RowIndex
             => int.Parse(radTextBoxRowIndex.Text.Trim(), CultureInfo.CurrentCulture);
         #endregion Properties
 
@@ -71,28 +72,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
         private void Initialize()
         {
             this.AcceptButton = radButtonFind;
-            _formInitializer.SetFormDefaults(this, 276);
+            _formInitializer.SetFormDefaults(this, PerFontSizeConstants.FindShapeOrCellFormMinimumHeight);
             this.radButtonCancel.DialogResult = DialogResult.Cancel;
             ValidateOk();
         }
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            this.radPanelMessages.SuspendLayout();
             this.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
-            this.ResumeLayout(false);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons, _dialogFormMessageControl, false);
+            this.ResumeLayout(true);
         }
 
         private void ValidateOk()
@@ -112,7 +101,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
                 _dialogFormMessageControl.ClearMessage();
                 radButtonFind.Enabled = true;
             }
-            else if(radTextBoxRowIndex.Text.Trim().Length == 0 || radTextBoxColumnIndex.Text.Trim().Length == 0)
+            else if (radTextBoxRowIndex.Text.Trim().Length == 0 || radTextBoxColumnIndex.Text.Trim().Length == 0)
             {
                 _dialogFormMessageControl.ClearMessage();
                 radButtonFind.Enabled = false;

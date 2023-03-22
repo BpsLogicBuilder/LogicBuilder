@@ -28,274 +28,297 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanelBottom = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelMessages = new Telerik.WinControls.UI.RadPanel();
-            this.radPanelCommandButtons = new Telerik.WinControls.UI.RadPanel();
-            this.radButtonFindAll = new Telerik.WinControls.UI.RadButton();
-            this.radPanelTop = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radGroupBoxSearch = new Telerik.WinControls.UI.RadGroupBox();
-            this.radRadioButtonAllDocuments = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButtonOpenDocument = new Telerik.WinControls.UI.RadRadioButton();
-            this.radGroupBoxText = new Telerik.WinControls.UI.RadGroupBox();
-            this.radDropDownListText = new Telerik.WinControls.UI.RadDropDownList();
-            this.radGroupBoxFileTypes = new Telerik.WinControls.UI.RadGroupBox();
-            this.radDropDownListFileTypes = new Telerik.WinControls.UI.RadDropDownList();
-            this.radGroupBoxOptions = new Telerik.WinControls.UI.RadGroupBox();
-            this.radCheckBoxMatchWholeWord = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBoxMatchCase = new Telerik.WinControls.UI.RadCheckBox();
-            this.radPanelFil = new Telerik.WinControls.UI.RadPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandButtons)).BeginInit();
-            this.radPanelCommandButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonFindAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTop)).BeginInit();
-            this.radPanelTop.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSearch)).BeginInit();
-            this.radGroupBoxSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonAllDocuments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonOpenDocument)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxText)).BeginInit();
-            this.radGroupBoxText.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxFileTypes)).BeginInit();
-            this.radGroupBoxFileTypes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListFileTypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOptions)).BeginInit();
-            this.radGroupBoxOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchWholeWord)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchCase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFil)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            this.SuspendLayout();
+            radPanelBottom = new Telerik.WinControls.UI.RadPanel();
+            radPanelMessages = new Telerik.WinControls.UI.RadPanel();
+            radPanelCommandButtons = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
+            radButtonFindAll = new Telerik.WinControls.UI.RadButton();
+            radPanelTop = new Telerik.WinControls.UI.RadPanel();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            radGroupBoxSearch = new Telerik.WinControls.UI.RadGroupBox();
+            radRadioButtonAllDocuments = new Telerik.WinControls.UI.RadRadioButton();
+            radRadioButtonOpenDocument = new Telerik.WinControls.UI.RadRadioButton();
+            radGroupBoxText = new Telerik.WinControls.UI.RadGroupBox();
+            radDropDownListText = new Telerik.WinControls.UI.RadDropDownList();
+            radGroupBoxFileTypes = new Telerik.WinControls.UI.RadGroupBox();
+            radDropDownListFileTypes = new Telerik.WinControls.UI.RadDropDownList();
+            radGroupBoxOptions = new Telerik.WinControls.UI.RadGroupBox();
+            radCheckBoxMatchWholeWord = new Telerik.WinControls.UI.RadCheckBox();
+            radCheckBoxMatchCase = new Telerik.WinControls.UI.RadCheckBox();
+            radPanelFill = new Telerik.WinControls.UI.RadPanel();
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).BeginInit();
+            radPanelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelCommandButtons).BeginInit();
+            radPanelCommandButtons.SuspendLayout();
+            tableLayoutPanelButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radButtonFindAll).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelTop).BeginInit();
+            radPanelTop.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxSearch).BeginInit();
+            radGroupBoxSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radRadioButtonAllDocuments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radRadioButtonOpenDocument).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxText).BeginInit();
+            radGroupBoxText.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radDropDownListText).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxFileTypes).BeginInit();
+            radGroupBoxFileTypes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radDropDownListFileTypes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxOptions).BeginInit();
+            radGroupBoxOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radCheckBoxMatchWholeWord).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radCheckBoxMatchCase).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelFill).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this).BeginInit();
+            SuspendLayout();
             // 
             // radPanelBottom
             // 
-            this.radPanelBottom.Controls.Add(this.radPanelMessages);
-            this.radPanelBottom.Controls.Add(this.radPanelCommandButtons);
-            this.radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanelBottom.Location = new System.Drawing.Point(0, 384);
-            this.radPanelBottom.Name = "radPanelBottom";
-            this.radPanelBottom.Size = new System.Drawing.Size(506, 121);
-            this.radPanelBottom.TabIndex = 3;
+            radPanelBottom.Controls.Add(radPanelMessages);
+            radPanelBottom.Controls.Add(radPanelCommandButtons);
+            radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            radPanelBottom.Location = new System.Drawing.Point(0, 324);
+            radPanelBottom.Name = "radPanelBottom";
+            radPanelBottom.Size = new System.Drawing.Size(812, 121);
+            radPanelBottom.TabIndex = 3;
             // 
             // radPanelMessages
             // 
-            this.radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelMessages.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Name = "radPanelMessages";
-            this.radPanelMessages.Size = new System.Drawing.Size(345, 121);
-            this.radPanelMessages.TabIndex = 2;
+            radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelMessages.Location = new System.Drawing.Point(0, 0);
+            radPanelMessages.Name = "radPanelMessages";
+            radPanelMessages.Size = new System.Drawing.Size(651, 121);
+            radPanelMessages.TabIndex = 2;
             // 
             // radPanelCommandButtons
             // 
-            this.radPanelCommandButtons.Controls.Add(this.radButtonFindAll);
-            this.radPanelCommandButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radPanelCommandButtons.Location = new System.Drawing.Point(345, 0);
-            this.radPanelCommandButtons.Name = "radPanelCommandButtons";
-            this.radPanelCommandButtons.Size = new System.Drawing.Size(161, 121);
-            this.radPanelCommandButtons.TabIndex = 1;
+            radPanelCommandButtons.Controls.Add(tableLayoutPanelButtons);
+            radPanelCommandButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            radPanelCommandButtons.Location = new System.Drawing.Point(651, 0);
+            radPanelCommandButtons.Name = "radPanelCommandButtons";
+            radPanelCommandButtons.Size = new System.Drawing.Size(161, 121);
+            radPanelCommandButtons.TabIndex = 1;
+            // 
+            // tableLayoutPanelButtons
+            // 
+            tableLayoutPanelButtons.ColumnCount = 3;
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            tableLayoutPanelButtons.Controls.Add(radButtonFindAll, 1, 1);
+            tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
+            tableLayoutPanelButtons.RowCount = 9;
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            tableLayoutPanelButtons.Size = new System.Drawing.Size(161, 121);
+            tableLayoutPanelButtons.TabIndex = 3;
             // 
             // radButtonFindAll
             // 
-            this.radButtonFindAll.Location = new System.Drawing.Point(25, 27);
-            this.radButtonFindAll.Name = "radButtonFindAll";
-            this.radButtonFindAll.Size = new System.Drawing.Size(110, 24);
-            this.radButtonFindAll.TabIndex = 0;
-            this.radButtonFindAll.Text = "&Find All";
+            radButtonFindAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            radButtonFindAll.Location = new System.Drawing.Point(24, 4);
+            radButtonFindAll.Margin = new System.Windows.Forms.Padding(0);
+            radButtonFindAll.Name = "radButtonFindAll";
+            radButtonFindAll.Size = new System.Drawing.Size(112, 24);
+            radButtonFindAll.TabIndex = 0;
+            radButtonFindAll.Text = "&Find All";
             // 
             // radPanelTop
             // 
-            this.radPanelTop.Controls.Add(this.tableLayoutPanel1);
-            this.radPanelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanelTop.Location = new System.Drawing.Point(0, 0);
-            this.radPanelTop.Name = "radPanelTop";
-            this.radPanelTop.Size = new System.Drawing.Size(506, 377);
-            this.radPanelTop.TabIndex = 4;
+            radPanelTop.Controls.Add(tableLayoutPanel1);
+            radPanelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelTop.Location = new System.Drawing.Point(0, 0);
+            radPanelTop.Name = "radPanelTop";
+            radPanelTop.Size = new System.Drawing.Size(812, 377);
+            radPanelTop.TabIndex = 4;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.radGroupBoxSearch, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radGroupBoxText, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radGroupBoxFileTypes, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.radGroupBoxOptions, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(506, 377);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(radGroupBoxSearch, 0, 1);
+            tableLayoutPanel1.Controls.Add(radGroupBoxText, 0, 0);
+            tableLayoutPanel1.Controls.Add(radGroupBoxFileTypes, 0, 3);
+            tableLayoutPanel1.Controls.Add(radGroupBoxOptions, 0, 2);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(812, 377);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // radGroupBoxSearch
             // 
-            this.radGroupBoxSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxSearch.Controls.Add(this.radRadioButtonAllDocuments);
-            this.radGroupBoxSearch.Controls.Add(this.radRadioButtonOpenDocument);
-            this.radGroupBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxSearch.HeaderText = "Search";
-            this.radGroupBoxSearch.Location = new System.Drawing.Point(8, 99);
-            this.radGroupBoxSearch.Name = "radGroupBoxSearch";
-            this.radGroupBoxSearch.Size = new System.Drawing.Size(490, 85);
-            this.radGroupBoxSearch.TabIndex = 3;
-            this.radGroupBoxSearch.Text = "Search";
+            radGroupBoxSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxSearch.Controls.Add(radRadioButtonAllDocuments);
+            radGroupBoxSearch.Controls.Add(radRadioButtonOpenDocument);
+            radGroupBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxSearch.HeaderText = "Search";
+            radGroupBoxSearch.Location = new System.Drawing.Point(8, 99);
+            radGroupBoxSearch.Name = "radGroupBoxSearch";
+            radGroupBoxSearch.Size = new System.Drawing.Size(796, 85);
+            radGroupBoxSearch.TabIndex = 3;
+            radGroupBoxSearch.Text = "Search";
             // 
             // radRadioButtonAllDocuments
             // 
-            this.radRadioButtonAllDocuments.Location = new System.Drawing.Point(155, 39);
-            this.radRadioButtonAllDocuments.Name = "radRadioButtonAllDocuments";
-            this.radRadioButtonAllDocuments.Size = new System.Drawing.Size(93, 18);
-            this.radRadioButtonAllDocuments.TabIndex = 6;
-            this.radRadioButtonAllDocuments.Text = "All Documents";
-            this.radRadioButtonAllDocuments.CheckStateChanged += new System.EventHandler(this.RadRadioButtonAllDocuments_CheckStateChanged);
+            radRadioButtonAllDocuments.Location = new System.Drawing.Point(220, 39);
+            radRadioButtonAllDocuments.Name = "radRadioButtonAllDocuments";
+            radRadioButtonAllDocuments.Size = new System.Drawing.Size(93, 18);
+            radRadioButtonAllDocuments.TabIndex = 6;
+            radRadioButtonAllDocuments.Text = "All Documents";
+            radRadioButtonAllDocuments.CheckStateChanged += RadRadioButtonAllDocuments_CheckStateChanged;
             // 
             // radRadioButtonOpenDocument
             // 
-            this.radRadioButtonOpenDocument.Location = new System.Drawing.Point(27, 39);
-            this.radRadioButtonOpenDocument.Name = "radRadioButtonOpenDocument";
-            this.radRadioButtonOpenDocument.Size = new System.Drawing.Size(103, 18);
-            this.radRadioButtonOpenDocument.TabIndex = 0;
-            this.radRadioButtonOpenDocument.Text = "Open Document";
+            radRadioButtonOpenDocument.Location = new System.Drawing.Point(27, 39);
+            radRadioButtonOpenDocument.Name = "radRadioButtonOpenDocument";
+            radRadioButtonOpenDocument.Size = new System.Drawing.Size(103, 18);
+            radRadioButtonOpenDocument.TabIndex = 0;
+            radRadioButtonOpenDocument.Text = "Open Document";
             // 
             // radGroupBoxText
             // 
-            this.radGroupBoxText.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxText.Controls.Add(this.radDropDownListText);
-            this.radGroupBoxText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxText.HeaderText = "Text";
-            this.radGroupBoxText.Location = new System.Drawing.Point(8, 8);
-            this.radGroupBoxText.Name = "radGroupBoxText";
-            this.radGroupBoxText.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
-            this.radGroupBoxText.Size = new System.Drawing.Size(490, 85);
-            this.radGroupBoxText.TabIndex = 0;
-            this.radGroupBoxText.Text = "Text";
+            radGroupBoxText.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxText.Controls.Add(radDropDownListText);
+            radGroupBoxText.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxText.HeaderText = "Text";
+            radGroupBoxText.Location = new System.Drawing.Point(8, 8);
+            radGroupBoxText.Name = "radGroupBoxText";
+            radGroupBoxText.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
+            radGroupBoxText.Size = new System.Drawing.Size(796, 85);
+            radGroupBoxText.TabIndex = 0;
+            radGroupBoxText.Text = "Text";
             // 
             // radDropDownListText
             // 
-            this.radDropDownListText.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radDropDownListText.DropDownAnimationEnabled = true;
-            this.radDropDownListText.Location = new System.Drawing.Point(15, 32);
-            this.radDropDownListText.Name = "radDropDownListText";
-            this.radDropDownListText.Size = new System.Drawing.Size(460, 20);
-            this.radDropDownListText.TabIndex = 1;
-            this.radDropDownListText.TextChanged += new System.EventHandler(this.RadDropDownListText_TextChanged);
+            radDropDownListText.Dock = System.Windows.Forms.DockStyle.Top;
+            radDropDownListText.DropDownAnimationEnabled = true;
+            radDropDownListText.Location = new System.Drawing.Point(15, 32);
+            radDropDownListText.Name = "radDropDownListText";
+            radDropDownListText.Size = new System.Drawing.Size(766, 20);
+            radDropDownListText.TabIndex = 1;
+            radDropDownListText.TextChanged += RadDropDownListText_TextChanged;
             // 
             // radGroupBoxFileTypes
             // 
-            this.radGroupBoxFileTypes.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxFileTypes.Controls.Add(this.radDropDownListFileTypes);
-            this.radGroupBoxFileTypes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxFileTypes.HeaderText = "File Types";
-            this.radGroupBoxFileTypes.Location = new System.Drawing.Point(8, 281);
-            this.radGroupBoxFileTypes.Name = "radGroupBoxFileTypes";
-            this.radGroupBoxFileTypes.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
-            this.radGroupBoxFileTypes.Size = new System.Drawing.Size(490, 88);
-            this.radGroupBoxFileTypes.TabIndex = 1;
-            this.radGroupBoxFileTypes.Text = "File Types";
+            radGroupBoxFileTypes.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxFileTypes.Controls.Add(radDropDownListFileTypes);
+            radGroupBoxFileTypes.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxFileTypes.HeaderText = "File Types";
+            radGroupBoxFileTypes.Location = new System.Drawing.Point(8, 281);
+            radGroupBoxFileTypes.Name = "radGroupBoxFileTypes";
+            radGroupBoxFileTypes.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
+            radGroupBoxFileTypes.Size = new System.Drawing.Size(796, 88);
+            radGroupBoxFileTypes.TabIndex = 1;
+            radGroupBoxFileTypes.Text = "File Types";
             // 
             // radDropDownListFileTypes
             // 
-            this.radDropDownListFileTypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radDropDownListFileTypes.DropDownAnimationEnabled = true;
-            this.radDropDownListFileTypes.Location = new System.Drawing.Point(15, 32);
-            this.radDropDownListFileTypes.Name = "radDropDownListFileTypes";
-            this.radDropDownListFileTypes.Size = new System.Drawing.Size(460, 20);
-            this.radDropDownListFileTypes.TabIndex = 0;
-            this.radDropDownListFileTypes.TextChanged += new System.EventHandler(this.RadDropDownListFileTypes_TextChanged);
+            radDropDownListFileTypes.Dock = System.Windows.Forms.DockStyle.Top;
+            radDropDownListFileTypes.DropDownAnimationEnabled = true;
+            radDropDownListFileTypes.Location = new System.Drawing.Point(15, 32);
+            radDropDownListFileTypes.Name = "radDropDownListFileTypes";
+            radDropDownListFileTypes.Size = new System.Drawing.Size(766, 20);
+            radDropDownListFileTypes.TabIndex = 0;
+            radDropDownListFileTypes.TextChanged += RadDropDownListFileTypes_TextChanged;
             // 
             // radGroupBoxOptions
             // 
-            this.radGroupBoxOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBoxOptions.Controls.Add(this.radCheckBoxMatchWholeWord);
-            this.radGroupBoxOptions.Controls.Add(this.radCheckBoxMatchCase);
-            this.radGroupBoxOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxOptions.HeaderText = "Options";
-            this.radGroupBoxOptions.Location = new System.Drawing.Point(8, 190);
-            this.radGroupBoxOptions.Name = "radGroupBoxOptions";
-            this.radGroupBoxOptions.Size = new System.Drawing.Size(490, 85);
-            this.radGroupBoxOptions.TabIndex = 2;
-            this.radGroupBoxOptions.Text = "Options";
+            radGroupBoxOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxOptions.Controls.Add(radCheckBoxMatchWholeWord);
+            radGroupBoxOptions.Controls.Add(radCheckBoxMatchCase);
+            radGroupBoxOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxOptions.HeaderText = "Options";
+            radGroupBoxOptions.Location = new System.Drawing.Point(8, 190);
+            radGroupBoxOptions.Name = "radGroupBoxOptions";
+            radGroupBoxOptions.Size = new System.Drawing.Size(796, 85);
+            radGroupBoxOptions.TabIndex = 2;
+            radGroupBoxOptions.Text = "Options";
             // 
             // radCheckBoxMatchWholeWord
             // 
-            this.radCheckBoxMatchWholeWord.Location = new System.Drawing.Point(155, 40);
-            this.radCheckBoxMatchWholeWord.Name = "radCheckBoxMatchWholeWord";
-            this.radCheckBoxMatchWholeWord.Size = new System.Drawing.Size(118, 18);
-            this.radCheckBoxMatchWholeWord.TabIndex = 1;
-            this.radCheckBoxMatchWholeWord.Text = "Match Whole Word";
+            radCheckBoxMatchWholeWord.Location = new System.Drawing.Point(220, 40);
+            radCheckBoxMatchWholeWord.Name = "radCheckBoxMatchWholeWord";
+            radCheckBoxMatchWholeWord.Size = new System.Drawing.Size(118, 18);
+            radCheckBoxMatchWholeWord.TabIndex = 1;
+            radCheckBoxMatchWholeWord.Text = "Match Whole Word";
             // 
             // radCheckBoxMatchCase
             // 
-            this.radCheckBoxMatchCase.Location = new System.Drawing.Point(27, 40);
-            this.radCheckBoxMatchCase.Name = "radCheckBoxMatchCase";
-            this.radCheckBoxMatchCase.Size = new System.Drawing.Size(78, 18);
-            this.radCheckBoxMatchCase.TabIndex = 0;
-            this.radCheckBoxMatchCase.Text = "Match Case";
+            radCheckBoxMatchCase.Location = new System.Drawing.Point(27, 40);
+            radCheckBoxMatchCase.Name = "radCheckBoxMatchCase";
+            radCheckBoxMatchCase.Size = new System.Drawing.Size(78, 18);
+            radCheckBoxMatchCase.TabIndex = 0;
+            radCheckBoxMatchCase.Text = "Match Case";
             // 
-            // radPanelFil
+            // radPanelFill
             // 
-            this.radPanelFil.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanelFil.Location = new System.Drawing.Point(0, 377);
-            this.radPanelFil.Name = "radPanelFil";
-            this.radPanelFil.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanelFil.Size = new System.Drawing.Size(506, 7);
-            this.radPanelFil.TabIndex = 5;
+            radPanelFill.Dock = System.Windows.Forms.DockStyle.Fill;
+            radPanelFill.Location = new System.Drawing.Point(0, 377);
+            radPanelFill.Name = "radPanelFill";
+            radPanelFill.Padding = new System.Windows.Forms.Padding(5);
+            radPanelFill.Size = new System.Drawing.Size(812, 0);
+            radPanelFill.TabIndex = 5;
             // 
             // FindConfiguredItemInFilesBase
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 505);
-            this.Controls.Add(this.radPanelFil);
-            this.Controls.Add(this.radPanelTop);
-            this.Controls.Add(this.radPanelBottom);
-            this.Name = "FindConfiguredItemInFilesBase";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Find InFiles";
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelBottom)).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandButtons)).EndInit();
-            this.radPanelCommandButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonFindAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelTop)).EndInit();
-            this.radPanelTop.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxSearch)).EndInit();
-            this.radGroupBoxSearch.ResumeLayout(false);
-            this.radGroupBoxSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonAllDocuments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButtonOpenDocument)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxText)).EndInit();
-            this.radGroupBoxText.ResumeLayout(false);
-            this.radGroupBoxText.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxFileTypes)).EndInit();
-            this.radGroupBoxFileTypes.ResumeLayout(false);
-            this.radGroupBoxFileTypes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListFileTypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxOptions)).EndInit();
-            this.radGroupBoxOptions.ResumeLayout(false);
-            this.radGroupBoxOptions.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchWholeWord)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBoxMatchCase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelFil)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleBaseSize = new System.Drawing.Size(9, 21);
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(812, 445);
+            Controls.Add(radPanelFill);
+            Controls.Add(radPanelTop);
+            Controls.Add(radPanelBottom);
+            Name = "FindConfiguredItemInFilesBase";
+            Text = "Find InFiles";
+            ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
+            radPanelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelCommandButtons).EndInit();
+            radPanelCommandButtons.ResumeLayout(false);
+            tableLayoutPanelButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radButtonFindAll).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelTop).EndInit();
+            radPanelTop.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxSearch).EndInit();
+            radGroupBoxSearch.ResumeLayout(false);
+            radGroupBoxSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)radRadioButtonAllDocuments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radRadioButtonOpenDocument).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxText).EndInit();
+            radGroupBoxText.ResumeLayout(false);
+            radGroupBoxText.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)radDropDownListText).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxFileTypes).EndInit();
+            radGroupBoxFileTypes.ResumeLayout(false);
+            radGroupBoxFileTypes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)radDropDownListFileTypes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxOptions).EndInit();
+            radGroupBoxOptions.ResumeLayout(false);
+            radGroupBoxOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)radCheckBoxMatchWholeWord).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radCheckBoxMatchCase).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelFill).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -312,10 +335,11 @@
         private Telerik.WinControls.UI.RadCheckBox radCheckBoxMatchCase;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxFileTypes;
         private Telerik.WinControls.UI.RadDropDownList radDropDownListFileTypes;
-        private Telerik.WinControls.UI.RadPanel radPanelFil;
+        private Telerik.WinControls.UI.RadPanel radPanelFill;
         protected Telerik.WinControls.UI.RadDropDownList radDropDownListText;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxSearch;
         private Telerik.WinControls.UI.RadRadioButton radRadioButtonAllDocuments;
         private Telerik.WinControls.UI.RadRadioButton radRadioButtonOpenDocument;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelButtons;
     }
 }
