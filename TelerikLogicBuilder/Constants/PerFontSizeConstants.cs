@@ -215,6 +215,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
+        public static Padding InputControlPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(4, 6, 0, 0);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(4, 7, 0, 0),
+                    [ThemeCollections.TEN] = new Padding(4, 7, 0, 0),
+                    [ThemeCollections.ELEVEN] = new Padding(4, 7, 0, 0),
+                    [ThemeCollections.TWELVE] = new Padding(6, 8, 0, 0),
+                    [ThemeCollections.THIRTEEN] = new Padding(6, 8, 0, 0),
+                    [ThemeCollections.FOURTEEN] = new Padding(6, 8, 0, 0),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static int MultiLineAddUpdateItemGroupBoxHeight
         {
             get

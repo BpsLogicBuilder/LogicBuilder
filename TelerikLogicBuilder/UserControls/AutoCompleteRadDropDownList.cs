@@ -81,6 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radButtonHelper.Image = Properties.Resources.more;
             radButtonHelper.ImageAlignment = ContentAlignment.MiddleCenter;
 
+            ControlsLayoutUtility.SetDropDownListPadding(RadDropDownList);
             this.RadDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown += TextBoxControl_MouseDown;
             this.radButtonHelper.MouseDown += RadButtonHelper_MouseDown;
             radDropDownList1.MouseDown += RadDropDownList1_MouseDown;

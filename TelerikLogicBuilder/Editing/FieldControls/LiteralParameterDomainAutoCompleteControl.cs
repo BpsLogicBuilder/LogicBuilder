@@ -127,6 +127,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             this.radPanelDropDownList.SuspendLayout();
 
             ((ISupportInitialize)this.radDropDownList).BeginInit();
+            ControlsLayoutUtility.SetDropDownListPadding(this.radDropDownList);
             this.radDropDownList.Dock = DockStyle.Fill;
             this.radDropDownList.AutoSize = false;
             this.radDropDownList.DropDownAnimationEnabled = true;

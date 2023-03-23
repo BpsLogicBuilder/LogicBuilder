@@ -405,6 +405,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             groupBoxParent.ResumeLayout(performLayout);
         }
 
+        public static void SetDropDownListPadding(RadDropDownList radDropDownList)
+        {
+            radDropDownList.DropDownListElement.EditableElement.Padding = PerFontSizeConstants.InputControlPadding;
+        }
+
         public static void SetLabelMargin(RadCheckBox radCheckBox, int left = 5, int top = 0, int right = 0, int bottom = 0)
         {
             ((ImageAndTextLayoutPanel)radCheckBox.RootElement.Children[0].Children[1].Children[0]).Margin = new Padding(left, top, right, bottom);
@@ -413,6 +418,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
         public static void SetLabelMargin(RadRadioButton radRadioButton, int left = 5, int top = 0, int right = 0, int bottom = 0)
         {
             ((ImageAndTextLayoutPanel)radRadioButton.RootElement.Children[0].Children[1].Children[0]).Margin = new Padding(left, top, right, bottom);
+        }
+
+        public static void SetRichTextBoxPadding(RadPanel parentRadPanel)
+        {
+            Padding padding = PerFontSizeConstants.InputControlPadding;
+            padding.Right = 1;
+            padding.Bottom = 1;
+            parentRadPanel.Padding = padding;
+        }
+
+        public static void SetTextBoxPadding(RadTextBox radTextBox)
+        {
+            radTextBox.Padding = PerFontSizeConstants.InputControlPadding;
         }
     }
 }

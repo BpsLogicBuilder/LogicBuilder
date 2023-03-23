@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -41,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             CollapsePanelBorder(radPanelDropDownList);
             CollapsePanelBorder(radPanelButton);
 
+            ControlsLayoutUtility.SetDropDownListPadding(radDropDownList);
             radButtonHelper.Click += RadButtonHelper_Click;
             radDropDownList.TextChanged += RadDropDownList_TextChanged;
         }

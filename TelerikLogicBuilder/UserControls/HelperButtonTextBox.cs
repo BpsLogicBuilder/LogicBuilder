@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -45,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             InitializeButton();
             InitializeTextBox();
 
+            ControlsLayoutUtility.SetTextBoxPadding(radTextBox1);
             radButtonHelper.Click += RadButtonHelper_Click;
 
             radTextBox1.Validating += TextBox_Validating;

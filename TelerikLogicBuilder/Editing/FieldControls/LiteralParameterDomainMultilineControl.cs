@@ -255,7 +255,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _richInputBox.Name = "richInputBox";
             _richInputBox.Dock = DockStyle.Fill;
             _richInputBox.BorderStyle = BorderStyle.None;
-            this.radPanelRichInputBox.Padding = new Padding(1);//shows the panel border instead
+            ControlsLayoutUtility.SetRichTextBoxPadding(this.radPanelRichInputBox);//shows the panel border instead
             _richInputBox.Margin = new Padding(0);
             _richInputBox.Location = new Point(0, 0);
             _richInputBox.DetectUrls = false;

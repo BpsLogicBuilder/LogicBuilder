@@ -191,12 +191,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             InitializeButton();
 
             radDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown += TextBoxControl_MouseDown;
-            //btnHelper.RootElement.UseDefaultDisabledPaint = true;
             btnHelper.MouseDown += BtnHelper_MouseDown;
             radDropDownList.MouseDown += RadDropDownList_MouseDown;
             radDropDownList.TextChanged += RadDropDownList_TextChanged;
             radDropDownList.Validating += RadDropDownList_Validating;
             radDropDownList.DropDownListElement.UseDefaultDisabledPaint = false;
+            ControlsLayoutUtility.SetDropDownListPadding(radDropDownList);
 
             CollapsePanelBorder(radPanelDropDownList);
             CollapsePanelBorder(radPanelButton);
