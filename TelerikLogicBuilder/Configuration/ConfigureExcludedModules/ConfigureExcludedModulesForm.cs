@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Facto
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
             ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxMain);
             ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons);
             _formInitializer.SetFormDefaults(this, 685);
+            _formInitializer.SetToConfigSize(this);
             InitializeNodeCheckedChangedCommand
             (
                 radTreeView1,

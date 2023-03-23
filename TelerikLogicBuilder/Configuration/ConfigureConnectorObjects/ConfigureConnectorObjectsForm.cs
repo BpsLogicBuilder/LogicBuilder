@@ -113,6 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
             this.FormClosing += ConfigureConnectorObjectsForm_FormClosing;
 
             _formInitializer.SetFormDefaults(this, 470);
+            _formInitializer.SetToConfigSize(this);
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;

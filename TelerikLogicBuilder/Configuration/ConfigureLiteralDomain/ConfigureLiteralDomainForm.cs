@@ -71,6 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
             CollapsePanelBorder(radPanelFill);
             InitializeControls();
             _formInitializer.SetFormDefaults(this, 408);
+            _formInitializer.SetToConfigSize(this);
 
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;

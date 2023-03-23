@@ -90,6 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType
             radDropDownListCategory.SelectedIndexChanged += RadDropDownListCategory_SelectedIndexChanged;
 
             _formInitializer.SetFormDefaults(this, 448);
+            _formInitializer.SetToConfigSize(this);
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;

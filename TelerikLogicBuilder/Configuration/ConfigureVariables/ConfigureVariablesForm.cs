@@ -273,7 +273,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
             TreeView.SelectedNodeChanging += RadTreeView1_SelectedNodeChanging;
             FormClosing += ConfigureVariablesForm_FormClosing;
 
-            _formInitializer.SetFormDefaults(this, 719);
+            _formInitializer.SetFormDefaults(this, 719); 
+            _formInitializer.SetToConfigSize(this);
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;

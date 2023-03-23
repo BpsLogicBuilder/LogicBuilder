@@ -253,6 +253,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
             _intellisenseFunctionsFormManager.Initialize();
 
             _formInitializer.SetFormDefaults(this, 717);
+            _formInitializer.SetToConfigSize(this);
 
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;
