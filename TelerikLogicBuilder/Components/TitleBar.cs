@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using System;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Components
@@ -23,8 +25,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
             ContextMenuStrip = null;
 
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             TitleBarElement.CloseButton.Click += new EventHandler(CloseButton_Click);
             this.Disposed += TitleBar_Disposed;
+
+            this.Font = ForeColorUtility.GetDefaultFont(Telerik.WinControls.ThemeResolutionService.ApplicationThemeName);
         }
 
         private readonly RadContextMenuManager radContextMenuManager;
@@ -39,13 +44,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             CanManageOwnerForm = false;
             TitleBarElement.MaximizeButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             TitleBarElement.MinimizeButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-
-            TitleBarElement.TitleBarFill.BackColor4 = System.Drawing.SystemColors.ActiveCaption;
-            TitleBarElement.TitlePrimitive.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Size = new System.Drawing.Size(this.Width, PerFontSizeConstants.TitleBarHeight);
             base.OnLoad(desiredSize);
         }
 
-        void CloseButton_Click(object? sender, EventArgs e)
+        #region Event Handlers
+        private void CloseButton_Click(object? sender, EventArgs e)
         {
             CloseClick?.Invoke();
         }
@@ -53,6 +57,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         private void TitleBar_Disposed(object? sender, EventArgs e)
         {
             radContextMenuManager.Dispose();
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
         }
+
+        private void ThemeResolutionService_ApplicationThemeChanged(object sender, Telerik.WinControls.ThemeChangedEventArgs args)
+        {
+            if (this.IsDisposed)
+                return;
+
+            this.Font = ForeColorUtility.GetDefaultFont(args.ThemeName);
+            this.Size = new System.Drawing.Size(this.Width, PerFontSizeConstants.TitleBarHeight);
+        }
+        #endregion Event Handlers
     }
 }

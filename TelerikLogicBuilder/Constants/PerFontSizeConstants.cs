@@ -404,6 +404,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
+        public static int TitleBarHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 24;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 24,
+                    [ThemeCollections.TEN] = 27,
+                    [ThemeCollections.ELEVEN] = 30,
+                    [ThemeCollections.TWELVE] = 32,
+                    [ThemeCollections.THIRTEEN] = 33,
+                    [ThemeCollections.FOURTEEN] = 33,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static int TwoRowGroupBoxHeight
         {
             get

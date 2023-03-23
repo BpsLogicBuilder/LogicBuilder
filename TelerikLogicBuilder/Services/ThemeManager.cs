@@ -49,22 +49,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public void SetColorTheme(string colorTheme)
         {
-            ThemeResolutionService.ApplicationThemeName = ThemeCollections.SelectorToTheme.TryGetValue(new ThemeSelector(colorTheme, Properties.Settings.Default.fontSize), out string? theme)
+            string themeName = ThemeCollections.SelectorToTheme.TryGetValue(new ThemeSelector(colorTheme, Properties.Settings.Default.fontSize), out string? theme)
                 ? theme 
                 : ThemeCollections.ControlDefault;
 
             Properties.Settings.Default.colorTheme = colorTheme;
             Properties.Settings.Default.Save();
+            ThemeResolutionService.ApplicationThemeName = themeName;
         }
 
         public void SetFontSize(int fontSize)
         {
-            ThemeResolutionService.ApplicationThemeName = ThemeCollections.SelectorToTheme.TryGetValue(new ThemeSelector(Properties.Settings.Default.colorTheme, fontSize), out string? theme)
+            string themeName = ThemeCollections.SelectorToTheme.TryGetValue(new ThemeSelector(Properties.Settings.Default.colorTheme, fontSize), out string? theme)
                 ? theme 
                 : ThemeCollections.ControlDefault;
 
             Properties.Settings.Default.fontSize = fontSize;
             Properties.Settings.Default.Save();
+            ThemeResolutionService.ApplicationThemeName = themeName;
         }
     }
 }

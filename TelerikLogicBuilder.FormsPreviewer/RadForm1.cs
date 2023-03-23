@@ -63,11 +63,11 @@ namespace TelerikLogicBuilder.FormsPreviewer
             AddButtonClickCommand(btnSelectConstructorForm, new SelectConstructorFormCommand(this));
             AddButtonClickCommand
             (
-                btnSelectBoolFunction, 
+                btnSelectBoolFunction,
                 new SelectFunctionFormCommand
                 (
                     this,
-                    _configurationService.FunctionList.BooleanFunctions, 
+                    _configurationService.FunctionList.BooleanFunctions,
                     new TreeFolder[] { _configurationService.FunctionList.BuiltInBooleanFunctionsTreeFolder, _configurationService.FunctionList.BooleanFunctionsTreeFolder }
                 )
             );
