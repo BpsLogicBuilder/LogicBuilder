@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
             CollapsePanelBorder(radPanelButtons);
             CollapsePanelBorder(radPanelFill);
             InitializeControls();
-            _formInitializer.SetFormDefaults(this, 408);
+            _formInitializer.SetFormDefaults(this, 608);
 
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;
