@@ -722,7 +722,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Control editControl = (Control)documentEditor;
             editControl.Dock = DockStyle.Fill;
             EditControl = documentEditor;
-            this.splitPanelEdit.Controls.Clear();
+            this.splitPanelEdit.Controls.Clear();//controls disposed in SplitPanelEdit_ControlRemoved
             this.splitPanelEdit.Controls.Add(editControl);
         }
 
