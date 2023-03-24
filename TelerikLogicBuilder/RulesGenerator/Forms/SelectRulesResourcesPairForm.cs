@@ -2,10 +2,9 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -54,6 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
+            ControlsLayoutUtility.LayoutGroupBox(radPanelTop, radGroupBoxTop);
             _formInitializer.SetFormDefaults(this, 648);
             _selectModulesForDeploymentTreeViewBuilder.Build(radTreeView, _applicationName);
 
@@ -68,15 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
     }
 }
