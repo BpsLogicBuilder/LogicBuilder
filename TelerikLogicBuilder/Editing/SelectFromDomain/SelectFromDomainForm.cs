@@ -1,9 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -36,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
+            ControlsLayoutUtility.LayoutGroupBox(radPanelFill, radGroupBoxDomainList);
 
             radListControlDomain.SelectedIndexChanged += RadListControlDomain_SelectedIndexChanged;
             radListControlDomain.SelectionMode = SelectionMode.One;
@@ -52,15 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void LoadListBox()
