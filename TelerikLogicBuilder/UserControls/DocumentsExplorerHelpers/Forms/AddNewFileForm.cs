@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -60,6 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
+            ControlsLayoutUtility.LayoutGroupBox(radPanelFill, radGroupBoxFileType);
 
             _formInitializer.SetFormDefaults(this, 557);
 
@@ -72,6 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             radListView1.ImageList = _imageListService.ImageList;
             radListView1.ViewType = ListViewType.IconsView;
             radListView1.ItemSpacing = 20;
+            radListView1.ItemSize = PerFontSizeConstants.AddNewFileIconSize;
 
             radListView1.Items.Add(GetListViewDataItem(Strings.listViewTextVsdx, ImageIndexes.VSDXFILEIMAGEINDEX));
             radListView1.Items.Add(GetListViewDataItem(Strings.listViewTextVsd, ImageIndexes.VISIOFILEIMAGEINDEX));
@@ -103,15 +106,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private void InitializeDialogFormMessageControl()
         {
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void RadTextBoxFileName_TextChanged(object? sender, EventArgs e)

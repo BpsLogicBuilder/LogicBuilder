@@ -1,10 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Constants
 {
     internal static class PerFontSizeConstants
     {
+        public static Size AddNewFileIconSize
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Size(76, 64);
+
+                Dictionary<int, Size> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Size(76, 64),
+                    [ThemeCollections.TEN] = new Size(76, 64),
+                    [ThemeCollections.ELEVEN] = new Size(76, 64),
+                    [ThemeCollections.TWELVE] = new Size(80, 67),
+                    [ThemeCollections.THIRTEEN] = new Size(95, 70),
+                    [ThemeCollections.FOURTEEN] = new Size(95, 70),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static Padding AddUpdateItemGroupBoxPadding
         {
             get
