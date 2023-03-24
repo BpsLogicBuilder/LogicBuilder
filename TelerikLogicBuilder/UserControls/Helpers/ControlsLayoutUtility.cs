@@ -390,6 +390,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             radPanelGroupBoxParent.ResumeLayout(performLayout);
         }
 
+        public static void LayoutThreeRowGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
+        {
+            ((ISupportInitialize)radGroupBox).BeginInit();
+            radGroupBox.SuspendLayout();
+            groupBoxParent.SuspendLayout();
+
+            radGroupBox.Margin = new Padding(0);
+            radGroupBox.Padding = PerFontSizeConstants.GroupBoxPadding;
+            radGroupBox.Size = new Size(radGroupBox.Width, PerFontSizeConstants.ThreeRowGroupBoxHeight);
+
+            ((ISupportInitialize)radGroupBox).EndInit();
+            radGroupBox.ResumeLayout(false);
+            groupBoxParent.ResumeLayout(performLayout);
+        }
+
         public static void LayoutTwoRowGroupBox(Control groupBoxParent, RadGroupBox radGroupBox, bool performLayout = true)
         {
             ((ISupportInitialize)radGroupBox).BeginInit();

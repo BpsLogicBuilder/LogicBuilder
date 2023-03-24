@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Enums;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
@@ -241,8 +242,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
         private void Initialize()
         {
             InitializeTableLayoutPanel();
+            InitializeFieldsPanel();
             InitializeDialogFormMessageControl();
             InitializeApplicationDropDownList();
+            ControlsLayoutUtility.LayoutGroupBox(radPanelNewConstructors, radGroupBoxNewConstructors);
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             CmbClass.TextChanged += CmbClass_TextChanged;
@@ -252,7 +255,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
             _intellisenseFunctionsFormManager.Initialize();
 
-            _formInitializer.SetFormDefaults(this, 717);
+            _formInitializer.SetFormDefaults(this, 870);
             _formInitializer.SetToConfigSize(this);
 
             btnCancel.CausesValidation = false;
@@ -276,44 +279,39 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
+        }
 
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+        private void InitializeFieldsPanel()
+        {
+            ((ISupportInitialize)splitPanelRight).BeginInit();
+            splitPanelRight.SuspendLayout();
+            radPanelFields.Size = new Size(radPanelFields.Width, PerFontSizeConstants.ThreeRowGroupBoxHeight);
+            ((ISupportInitialize)splitPanelRight).EndInit();
+            splitPanelRight.ResumeLayout(true);
         }
 
         private void InitializeTableLayoutPanel()
         {
+            this.SuspendLayout();
             ControlsLayoutUtility.LayoutControls
             (
                 radGroupBoxSource,
                 radPanelSource,
                 radPanelTableParent,
                 tableLayoutPanel,
-                3
+                3,
+                false
             );
+
+            //must adjust height because radGroupBoxSource.Dock is not Fill.
+            ControlsLayoutUtility.LayoutThreeRowGroupBox(this, radGroupBoxSource, false);
+            this.ResumeLayout(true);
         }
 
         private void Navigate(Control newEditingControl)
         {
-            Native.NativeMethods.LockWindowUpdate(this.Handle);
-            ((ISupportInitialize)radPanelFields).BeginInit();
-            radPanelFields.SuspendLayout();
-
-            ClearFieldControls();
-            newEditingControl.Dock = DockStyle.Fill;
-            newEditingControl.Location = new Point(0, 0);
-            radPanelFields.Controls.Add(newEditingControl);
-
-            ((ISupportInitialize)radPanelFields).EndInit();
-            radPanelFields.ResumeLayout(true);
-
-            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
+            NavigationUtility.Navigate(this.Handle, radPanelFields, newEditingControl);
         }
 
         private void Navigate(RadTreeNode treeNode)
