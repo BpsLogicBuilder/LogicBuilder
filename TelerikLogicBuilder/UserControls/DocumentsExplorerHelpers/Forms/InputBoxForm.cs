@@ -1,4 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
@@ -19,19 +21,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             Initialize();
         }
 
-        private void InitializeDialogFormMessageControl()
-        {
-            ((ISupportInitialize)(this.radPanelMessages)).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new System.Drawing.Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)(this.radPanelMessages)).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
-        }
-
         private string regularExpression = string.Empty;
 
         public string Input
@@ -50,8 +39,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
+            InitializeGroupBoxPrompt();
 
-            _formInitializer.SetFormDefaults(this, 264);
+            _formInitializer.SetFormDefaults
+            (
+                this,
+                this.Size.Height - this.ClientSize.Height
+                    + PerFontSizeConstants.SingleRowGroupBoxHeight
+                    + (int)(5 * PerFontSizeConstants.SeparatorLineHeight)
+                    + (int)(4 * PerFontSizeConstants.SingleLineHeight)
+            );
+
+            this.Size = new System.Drawing.Size(this.Width, this.MinimumSize.Height);
 
             radButtonOk.Enabled = false;
             radButtonOk.DialogResult = DialogResult.OK;
@@ -59,6 +58,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
             this.ActiveControl = radTextBoxInput;
             this.AcceptButton = radButtonOk;
+        }
+
+        private void InitializeDialogFormMessageControl()
+        {
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelCommandButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
+        }
+
+        private void InitializeGroupBoxPrompt()
+        {
+            ((ISupportInitialize)(this.radPanelFill)).BeginInit();
+            this.radPanelFill.SuspendLayout();
+            ((ISupportInitialize)radGroupBoxPrompt).BeginInit();
+            radGroupBoxPrompt.SuspendLayout();
+
+            radGroupBoxPrompt.Margin = new Padding(0);
+            radGroupBoxPrompt.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
+
+            ((ISupportInitialize)radGroupBoxPrompt).EndInit();
+            radGroupBoxPrompt.ResumeLayout(false);
+            ((ISupportInitialize)this.radPanelFill).EndInit();
+            this.radPanelFill.ResumeLayout(true);
         }
 
         private void RadTextBoxInput_TextChanged(object sender, EventArgs e)
