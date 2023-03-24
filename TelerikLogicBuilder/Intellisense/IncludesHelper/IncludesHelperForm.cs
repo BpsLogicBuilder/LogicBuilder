@@ -10,8 +10,6 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -149,27 +147,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void InitializeTableLayoutPanel()
         {
+            this.SuspendLayout();
             ControlsLayoutUtility.LayoutControls
             (
                 radGroupBoxSource,
                 radPanelSource,
                 radPanelTableParent,
                 tableLayoutPanel,
-                2
+                2,
+                false
             );
+
+            //must adjust height because radGroupBoxSource.Dock is not Fill.
+            ControlsLayoutUtility.LayoutTwoRowGroupBox(this, radGroupBoxSource, false);
+            this.ResumeLayout(true);
         }
 
         #region Event Handlers
