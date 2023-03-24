@@ -172,6 +172,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
             InitializeTableLayoutPanel();
             InitializeDialogFormMessageControl();
             InitializeApplicationDropDownList();
+            ControlsLayoutUtility.LayoutGroupBox(radPanelNewConstructors, radGroupBoxNewConstructors);
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             CmbClass.TextChanged += CmbClass_TextChanged;
@@ -202,27 +203,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void InitializeTableLayoutPanel()
         {
+            this.SuspendLayout();
             ControlsLayoutUtility.LayoutControls
             (
                 radGroupBoxSource,
                 radPanelSource,
                 radPanelTableParent,
                 tableLayoutPanel,
-                2
+                2,
+                false
             );
+
+            //must adjust height because radGroupBoxSource.Dock is not Fill.
+            ControlsLayoutUtility.LayoutTwoRowGroupBox(this, radGroupBoxSource, false);
+            this.ResumeLayout(true);
         }
 
         #region Event Handlers
