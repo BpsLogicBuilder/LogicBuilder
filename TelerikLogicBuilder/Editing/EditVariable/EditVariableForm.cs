@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public void SetMessage(string message, string title = "") => _dialogFormMessageControl.SetMessage(message, title);
 
-        public void SetVariable(string variableName) 
+        public void SetVariable(string variableName)
             => EditVariableControl.SetVariable(variableName);
 
         private static void CollapsePanelBorder(RadPanel radPanel)
