@@ -104,7 +104,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void Initialize()
         {
-            radGroupBoxMessages.Padding = PerFontSizeConstants.GroupBoxPadding;
+            ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxMessages);
             radPanelMessages.AutoScroll = true;
             ((BorderPrimitive)radPanelMessages.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
