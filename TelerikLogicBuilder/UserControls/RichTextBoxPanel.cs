@@ -75,6 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             this.richTextBox1.BackColor = ForeColorUtility.GetTextBoxBackColor(ThemeResolutionService.ApplicationThemeName);
             this.richTextBox1.ForeColor = ForeColorUtility.GetTextBoxForeColor(ThemeResolutionService.ApplicationThemeName);
+            this.richTextBox1.Font = ForeColorUtility.GetDefaultFont(ThemeResolutionService.ApplicationThemeName);
 
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             this.Disposed += RichTextBoxPanel_Disposed;
@@ -127,6 +128,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             this.richTextBox1.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
             this.richTextBox1.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
+            this.richTextBox1.Font = ForeColorUtility.GetDefaultFont(args.ThemeName);
         }
     }
 }

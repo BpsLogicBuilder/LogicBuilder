@@ -74,7 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
             Rectangle area = NativeMethods.GetScreenArea();
 
-            form.Size = new Size(form.Width - 450, area.Height - 200);
+            form.Size = new Size(area.Width - 450, area.Height - 200);
         }
 
         public void SetToConfigSize(Form form)
