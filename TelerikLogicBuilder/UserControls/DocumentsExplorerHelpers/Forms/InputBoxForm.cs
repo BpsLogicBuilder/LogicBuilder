@@ -2,7 +2,6 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
-using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -41,16 +40,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             InitializeDialogFormMessageControl();
             InitializeGroupBoxPrompt();
 
+            radPanelFill.Size = new System.Drawing.Size(radPanelFill.Width, 0);
+            radPanelFill.Margin = new Padding(0);
             _formInitializer.SetFormDefaults
             (
                 this,
                 this.Size.Height - this.ClientSize.Height
-                    + PerFontSizeConstants.SingleRowGroupBoxHeight
-                    + (int)(5 * PerFontSizeConstants.SeparatorLineHeight)
-                    + (int)(4 * PerFontSizeConstants.SingleLineHeight)
+                    + radPanelTop.Height
+                    + radPanelBottom.Height
             );
+            this.Size = new System.Drawing.Size(this.Width, 0);
 
-            this.Size = new System.Drawing.Size(this.Width, this.MinimumSize.Height);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelTop);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelFill);
+            ControlsLayoutUtility.CollapsePanelBorder(radPanelBottom);
 
             radButtonOk.Enabled = false;
             radButtonOk.DialogResult = DialogResult.OK;
@@ -67,18 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private void InitializeGroupBoxPrompt()
         {
-            ((ISupportInitialize)(this.radPanelFill)).BeginInit();
-            this.radPanelFill.SuspendLayout();
-            ((ISupportInitialize)radGroupBoxPrompt).BeginInit();
-            radGroupBoxPrompt.SuspendLayout();
-
-            radGroupBoxPrompt.Margin = new Padding(0);
-            radGroupBoxPrompt.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
-
-            ((ISupportInitialize)radGroupBoxPrompt).EndInit();
-            radGroupBoxPrompt.ResumeLayout(false);
-            ((ISupportInitialize)this.radPanelFill).EndInit();
-            this.radPanelFill.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutSingleRowGroupBox(radPanelTop, radGroupBoxPrompt);
         }
 
         private void RadTextBoxInput_TextChanged(object sender, EventArgs e)
