@@ -5,7 +5,6 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using LogicBuilder.Workflow.Activities.Rules;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -161,15 +160,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)(this.radPanelBottomFill)).BeginInit();
-            this.radPanelBottomFill.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelBottomFill.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)(this.radPanelBottomFill)).EndInit();
-            this.radPanelBottomFill.ResumeLayout(true);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelBottomFill, radPanelCloseButton, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void InitializeFields(RuleSet ruleSet)
