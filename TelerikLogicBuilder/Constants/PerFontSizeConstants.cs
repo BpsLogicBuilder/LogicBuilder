@@ -132,6 +132,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
+        public static Padding DropDownListControlPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(4, 5, 0, 0);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(4, 5, 0, 0),
+                    [ThemeCollections.TEN] = new Padding(4, 5, 0, 0),
+                    [ThemeCollections.ELEVEN] = new Padding(4, 5, 0, 0),
+                    [ThemeCollections.TWELVE] = new Padding(6, 6, 0, 0),
+                    [ThemeCollections.THIRTEEN] = new Padding(6, 6, 1, 1),
+                    [ThemeCollections.FOURTEEN] = new Padding(6, 6, 1, 1),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static Padding GroupBoxPadding
         {
             get

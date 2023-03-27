@@ -422,7 +422,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
         public static void SetDropDownListPadding(RadDropDownList radDropDownList)
         {
-            radDropDownList.DropDownListElement.EditableElement.Padding = PerFontSizeConstants.InputControlPadding;
+            radDropDownList.DropDownListElement.EditableElement.Padding = PerFontSizeConstants.DropDownListControlPadding;
         }
 
         public static void SetLabelMargin(RadCheckBox radCheckBox, int left = 5, int top = 0, int right = 0, int bottom = 0)

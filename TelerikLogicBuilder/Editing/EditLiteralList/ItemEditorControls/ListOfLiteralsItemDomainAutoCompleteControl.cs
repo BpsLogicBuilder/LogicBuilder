@@ -103,7 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public void Update(XmlElement xmlElement)
         {
-            radDropDownList.SelectedValue = xmlElement.InnerText;
+            radDropDownList.Text = xmlElement.InnerText;
         }
 
         void IValueControl.Focus() => radDropDownList.Select();

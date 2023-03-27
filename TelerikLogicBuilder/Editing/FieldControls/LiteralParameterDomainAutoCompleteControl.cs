@@ -98,7 +98,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public void Update(XmlElement xmlElement)
         {
-            radDropDownList.SelectedValue = xmlElement.InnerText;
+            radDropDownList.Text = xmlElement.InnerText;
             modified = false;
         }
 

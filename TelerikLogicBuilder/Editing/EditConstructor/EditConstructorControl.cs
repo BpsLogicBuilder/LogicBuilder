@@ -316,7 +316,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                     this.tableLayoutPanel.Controls.Add(parameterControlSet.ImageLabel, 1, currentRow);
                     this.tableLayoutPanel.Controls.Add(parameterControlSet.ChkInclude, 2, currentRow);
                     this.tableLayoutPanel.Controls.Add(parameterControlSet.Control, 3, currentRow);
-                    ShowHideParameterControls(parameterControlSet.ChkInclude);
+                    //ShowHideParameterControls(parameterControlSet.ChkInclude);
+                    //Incorrect layout fails for RadDropDownList if Visible set to false before
+                    //the call to this.tableLayoutPanel.PerformLayout();
+                    //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
+                    //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
                     parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
                     currentRow += 2;
                 }
@@ -355,6 +359,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.radPanelTableParent.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
+
+            foreach (ParameterBase parameter in constructor.Parameters)
+            {//Incorrect layout fails for RadDropDownList if Visible set to false before
+             //the call to this.tableLayoutPanel.PerformLayout();
+             //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
+             //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
+                ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
+                ShowHideParameterControls(parameterControlSet.ChkInclude);
+            }
 
             ((ISupportInitialize)(this.lblConstructor)).EndInit();
             if (constructor.HasGenericArguments)
