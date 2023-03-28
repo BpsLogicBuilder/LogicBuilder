@@ -1,11 +1,14 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Properties;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Services;
+using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Telerik.WinControls.UI;
@@ -13,7 +16,7 @@ using TelerikLogicBuilder.FormsPreviewer.Commands;
 
 namespace TelerikLogicBuilder.FormsPreviewer
 {
-    public partial class RadForm1 : Telerik.WinControls.UI.RadForm
+    internal partial class RadForm1 : Telerik.WinControls.UI.RadForm, IApplicationForm
     {
         public RadForm1()
         {
@@ -40,12 +43,26 @@ namespace TelerikLogicBuilder.FormsPreviewer
             _themeManager = serviceProvider.GetRequiredService<IThemeManager>();
             serviceProvider.GetRequiredService<IMainWindow>().Instance = new MockMdiParent();
             _loadContextSponsor.LoadAssembiesIfNeeded();
+            _applicationTypeInfoManager = serviceProvider.GetRequiredService<IApplicationTypeInfoManager>();
+            _application = _applicationTypeInfoManager.GetApplicationTypeInfo(_configurationService.GetSelectedApplication().Name);
             Initialize();
             Settings.Default.colorTheme = "Dark";
             Settings.Default.Save();
         }
 
+        event EventHandler<ApplicationChangedEventArgs>? IApplicationForm.ApplicationChanged
+        {
+            add
+            {
+            }
+
+            remove
+            {
+            }
+        }
+
         #region Fields
+        private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IServiceProvider serviceProvider;
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorListInitializer _constructorListInitializer;
@@ -55,6 +72,11 @@ namespace TelerikLogicBuilder.FormsPreviewer
         private readonly ILoadProjectProperties _loadProjectProperties;
         private readonly ILoadContextSponsor _loadContextSponsor;
         private readonly IThemeManager _themeManager;
+
+        private ApplicationTypeInfo _application;
+        public ApplicationTypeInfo Application => _application;
+
+        //public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
         #endregion Fields
 
         private void Initialize()
@@ -116,6 +138,8 @@ namespace TelerikLogicBuilder.FormsPreviewer
                 btnEditConstructorForm,
                 new EditConstructorFormCommand
                 (
+                    serviceProvider.GetRequiredService<IConstructorTypeHelper>(),
+                    serviceProvider.GetRequiredService<ITypeLoadHelper>(),
                     this
                 )
             );
@@ -162,6 +186,18 @@ namespace TelerikLogicBuilder.FormsPreviewer
         private void RadButtonSetFontSize14_Click(object sender, EventArgs e)
         {
             _themeManager.SetFontSize(14);
+        }
+
+        public void ClearMessage()
+        {
+        }
+
+        public void SetErrorMessage(string message)
+        {
+        }
+
+        public void SetMessage(string message, string title = "")
+        {
         }
     }
 }

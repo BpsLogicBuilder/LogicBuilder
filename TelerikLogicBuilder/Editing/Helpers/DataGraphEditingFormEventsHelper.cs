@@ -110,6 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             TreeView.NodeMouseDoubleClick += TreeView_NodeMouseDoubleClick;
             TreeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             TreeView.SelectedNodeChanging += TreeView_SelectedNodeChanging;
+            dataGraphEditingForm.FormClosing += DataGraphEditingForm_FormClosing;
             CreateContextMenus();
         }
 
@@ -474,6 +475,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             dataGraphEditingForm.ValidateXmlDocument();
         }
 
+        #region Event Handlers
+        private void DataGraphEditingForm_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (TreeView.SelectedNode != null 
+                    && dataGraphEditingForm.DialogResult == DialogResult.OK)
+                {
+                    dataGraphEditingForm.ClearMessage();
+                    UpdateXmlDocument(TreeView.SelectedNode);
+                }
+            }
+            catch (XmlException ex)
+            {
+                e.Cancel = true;
+                dataGraphEditingForm.SetErrorMessage(ex.Message);
+            }
+            catch (LogicBuilderException ex)
+            {
+                e.Cancel = true;
+                dataGraphEditingForm.SetErrorMessage(ex.Message);
+            }
+        }
+
         private void TreeView_MouseDown(object? sender, System.Windows.Forms.MouseEventArgs e)
         {
             RadTreeNode treeNode = this.TreeView.GetNodeAt(e.Location);
@@ -555,5 +580,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 dataGraphEditingForm.SetErrorMessage(ex.Message);
             }
         }
+        #endregion Event Handlers
     }
 }

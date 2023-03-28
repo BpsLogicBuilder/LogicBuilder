@@ -7,20 +7,21 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal class EditingFormFactory : IEditingFormFactory
     {
         private IDisposable? _scopedService;
-        private readonly Func<Type, IEditConstructorForm> _getEditConstructorForm;
+        private readonly Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> _getEditConstructorForm;
         private readonly Func<Type, ISelectConstructorForm> _getSelectConstructorForm;
         private readonly Func<IList<string>, string, ISelectFromDomainForm> _getSelectFromDomainForm;
         private readonly Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> _getSelectFunctionForm;
         private readonly Func<Type, IEditVariableForm> _getEditVariableForm;
 
         public EditingFormFactory(
-            Func<Type, IEditConstructorForm> getEditConstructorForm,
+            Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> getEditConstructorForm,
             Func<Type, ISelectConstructorForm> getSelectConstructorForm,
             Func<IList<string>, string, ISelectFromDomainForm> getSelectFromDomainForm,
             Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> getSelectFunctionForm,
@@ -33,9 +34,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getEditVariableForm = getEditVariableForm;
         }
 
-        public IEditConstructorForm GetEditConstructorForm(Type assignedTo)
+        public IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor)
         {
-            _scopedService = _getEditConstructorForm(assignedTo);
+            _scopedService = _getEditConstructorForm(assignedTo, constructorXmlDocument, constructorNames, selectedConstructor);
             return (IEditConstructorForm)_scopedService;
         }
 

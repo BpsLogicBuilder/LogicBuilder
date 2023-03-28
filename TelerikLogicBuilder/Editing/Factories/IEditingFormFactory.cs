@@ -7,12 +7,13 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal interface IEditingFormFactory : IDisposable
     {
-        IEditConstructorForm GetEditConstructorForm(Type assignedTo);
+        IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor);
         IEditVariableForm GetEditVariableForm(Type assignedTo);
         ISelectConstructorForm GetSelectConstructorForm(Type assignedTo);
         ISelectFromDomainForm GetSelectFromDomainForm(IList<string> domain, string comments);

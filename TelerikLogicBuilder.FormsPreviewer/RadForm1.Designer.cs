@@ -43,6 +43,8 @@
             radButtonSetFontSize12 = new Telerik.WinControls.UI.RadButton();
             radButtonSetFontSize14 = new Telerik.WinControls.UI.RadButton();
             radButtonSetFontSize13 = new Telerik.WinControls.UI.RadButton();
+            radPanelApplication = new Telerik.WinControls.UI.RadPanel();
+            radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
             ((System.ComponentModel.ISupportInitialize)btnEditVariableForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectConstructorForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectBoolFunction).BeginInit();
@@ -58,12 +60,15 @@
             ((System.ComponentModel.ISupportInitialize)radButtonSetFontSize12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)radButtonSetFontSize14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)radButtonSetFontSize13).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelApplication).BeginInit();
+            radPanelApplication.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this).BeginInit();
             SuspendLayout();
             // 
             // btnEditVariableForm
             // 
-            btnEditVariableForm.Location = new System.Drawing.Point(39, 12);
+            btnEditVariableForm.Location = new System.Drawing.Point(39, 88);
             btnEditVariableForm.Name = "btnEditVariableForm";
             btnEditVariableForm.Size = new System.Drawing.Size(179, 24);
             btnEditVariableForm.TabIndex = 0;
@@ -71,7 +76,7 @@
             // 
             // btnSelectConstructorForm
             // 
-            btnSelectConstructorForm.Location = new System.Drawing.Point(39, 42);
+            btnSelectConstructorForm.Location = new System.Drawing.Point(39, 118);
             btnSelectConstructorForm.Name = "btnSelectConstructorForm";
             btnSelectConstructorForm.Size = new System.Drawing.Size(179, 24);
             btnSelectConstructorForm.TabIndex = 1;
@@ -79,7 +84,7 @@
             // 
             // btnSelectBoolFunction
             // 
-            btnSelectBoolFunction.Location = new System.Drawing.Point(39, 72);
+            btnSelectBoolFunction.Location = new System.Drawing.Point(39, 148);
             btnSelectBoolFunction.Name = "btnSelectBoolFunction";
             btnSelectBoolFunction.Size = new System.Drawing.Size(179, 24);
             btnSelectBoolFunction.TabIndex = 2;
@@ -87,7 +92,7 @@
             // 
             // btnSelectDialogFunction
             // 
-            btnSelectDialogFunction.Location = new System.Drawing.Point(39, 102);
+            btnSelectDialogFunction.Location = new System.Drawing.Point(39, 178);
             btnSelectDialogFunction.Name = "btnSelectDialogFunction";
             btnSelectDialogFunction.Size = new System.Drawing.Size(179, 24);
             btnSelectDialogFunction.TabIndex = 3;
@@ -95,7 +100,7 @@
             // 
             // btnSelectValueFunction
             // 
-            btnSelectValueFunction.Location = new System.Drawing.Point(39, 162);
+            btnSelectValueFunction.Location = new System.Drawing.Point(39, 238);
             btnSelectValueFunction.Name = "btnSelectValueFunction";
             btnSelectValueFunction.Size = new System.Drawing.Size(179, 24);
             btnSelectValueFunction.TabIndex = 4;
@@ -103,7 +108,7 @@
             // 
             // btnSelectTableFunction
             // 
-            btnSelectTableFunction.Location = new System.Drawing.Point(39, 132);
+            btnSelectTableFunction.Location = new System.Drawing.Point(39, 208);
             btnSelectTableFunction.Name = "btnSelectTableFunction";
             btnSelectTableFunction.Size = new System.Drawing.Size(179, 24);
             btnSelectTableFunction.TabIndex = 5;
@@ -111,7 +116,7 @@
             // 
             // btnSelectVoidFunction
             // 
-            btnSelectVoidFunction.Location = new System.Drawing.Point(39, 192);
+            btnSelectVoidFunction.Location = new System.Drawing.Point(39, 268);
             btnSelectVoidFunction.Name = "btnSelectVoidFunction";
             btnSelectVoidFunction.Size = new System.Drawing.Size(179, 24);
             btnSelectVoidFunction.TabIndex = 6;
@@ -119,7 +124,7 @@
             // 
             // btnEditConstructorForm
             // 
-            btnEditConstructorForm.Location = new System.Drawing.Point(278, 12);
+            btnEditConstructorForm.Location = new System.Drawing.Point(278, 88);
             btnEditConstructorForm.Name = "btnEditConstructorForm";
             btnEditConstructorForm.Size = new System.Drawing.Size(179, 24);
             btnEditConstructorForm.TabIndex = 7;
@@ -127,7 +132,7 @@
             // 
             // radButtonReloadConfiguration
             // 
-            radButtonReloadConfiguration.Location = new System.Drawing.Point(592, 192);
+            radButtonReloadConfiguration.Location = new System.Drawing.Point(592, 268);
             radButtonReloadConfiguration.Name = "radButtonReloadConfiguration";
             radButtonReloadConfiguration.Size = new System.Drawing.Size(179, 24);
             radButtonReloadConfiguration.TabIndex = 8;
@@ -136,7 +141,7 @@
             // 
             // radButtonSetFontSize09
             // 
-            radButtonSetFontSize09.Location = new System.Drawing.Point(592, 12);
+            radButtonSetFontSize09.Location = new System.Drawing.Point(592, 88);
             radButtonSetFontSize09.Name = "radButtonSetFontSize09";
             radButtonSetFontSize09.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize09.TabIndex = 9;
@@ -145,7 +150,7 @@
             // 
             // radButtonSetFontSize10
             // 
-            radButtonSetFontSize10.Location = new System.Drawing.Point(592, 42);
+            radButtonSetFontSize10.Location = new System.Drawing.Point(592, 118);
             radButtonSetFontSize10.Name = "radButtonSetFontSize10";
             radButtonSetFontSize10.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize10.TabIndex = 10;
@@ -154,7 +159,7 @@
             // 
             // radButtonSetFontSize11
             // 
-            radButtonSetFontSize11.Location = new System.Drawing.Point(592, 72);
+            radButtonSetFontSize11.Location = new System.Drawing.Point(592, 148);
             radButtonSetFontSize11.Name = "radButtonSetFontSize11";
             radButtonSetFontSize11.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize11.TabIndex = 10;
@@ -163,7 +168,7 @@
             // 
             // radButtonSetFontSize12
             // 
-            radButtonSetFontSize12.Location = new System.Drawing.Point(592, 102);
+            radButtonSetFontSize12.Location = new System.Drawing.Point(592, 178);
             radButtonSetFontSize12.Name = "radButtonSetFontSize12";
             radButtonSetFontSize12.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize12.TabIndex = 10;
@@ -172,7 +177,7 @@
             // 
             // radButtonSetFontSize14
             // 
-            radButtonSetFontSize14.Location = new System.Drawing.Point(592, 162);
+            radButtonSetFontSize14.Location = new System.Drawing.Point(592, 238);
             radButtonSetFontSize14.Name = "radButtonSetFontSize14";
             radButtonSetFontSize14.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize14.TabIndex = 10;
@@ -181,19 +186,42 @@
             // 
             // radButtonSetFontSize13
             // 
-            radButtonSetFontSize13.Location = new System.Drawing.Point(592, 132);
+            radButtonSetFontSize13.Location = new System.Drawing.Point(592, 208);
             radButtonSetFontSize13.Name = "radButtonSetFontSize13";
             radButtonSetFontSize13.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize13.TabIndex = 11;
             radButtonSetFontSize13.Text = "Set Font Size 13";
             radButtonSetFontSize13.Click += radButtonSetFontSize13_Click;
             // 
+            // radPanelApplication
+            // 
+            radPanelApplication.Controls.Add(radGroupBoxApplication);
+            radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
+            radPanelApplication.Location = new System.Drawing.Point(0, 0);
+            radPanelApplication.Name = "radPanelApplication";
+            radPanelApplication.Size = new System.Drawing.Size(892, 60);
+            radPanelApplication.TabIndex = 12;
+            // 
+            // radGroupBoxApplication
+            // 
+            radGroupBoxApplication.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            radGroupBoxApplication.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxApplication.HeaderMargin = new System.Windows.Forms.Padding(1);
+            radGroupBoxApplication.HeaderText = "Application";
+            radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
+            radGroupBoxApplication.Name = "radGroupBoxApplication";
+            radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
+            radGroupBoxApplication.Size = new System.Drawing.Size(892, 60);
+            radGroupBoxApplication.TabIndex = 0;
+            radGroupBoxApplication.Text = "Application";
+            // 
             // RadForm1
             // 
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(874, 308);
+            ClientSize = new System.Drawing.Size(892, 431);
+            Controls.Add(radPanelApplication);
             Controls.Add(radButtonSetFontSize13);
             Controls.Add(radButtonSetFontSize14);
             Controls.Add(radButtonSetFontSize12);
@@ -227,6 +255,9 @@
             ((System.ComponentModel.ISupportInitialize)radButtonSetFontSize12).EndInit();
             ((System.ComponentModel.ISupportInitialize)radButtonSetFontSize14).EndInit();
             ((System.ComponentModel.ISupportInitialize)radButtonSetFontSize13).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radPanelApplication).EndInit();
+            radPanelApplication.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).EndInit();
             ((System.ComponentModel.ISupportInitialize)this).EndInit();
             ResumeLayout(false);
         }
@@ -248,5 +279,7 @@
         private Telerik.WinControls.UI.RadButton radButtonSetFontSize12;
         private Telerik.WinControls.UI.RadButton radButtonSetFontSize14;
         private Telerik.WinControls.UI.RadButton radButtonSetFontSize13;
+        private Telerik.WinControls.UI.RadPanel radPanelApplication;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
     }
 }

@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -20,10 +21,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingFormFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<Type, IEditConstructorForm>>
+                .AddTransient<Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm>>
                 (
                     provider =>
-                    assignedTo => new EditConstructorForm
+                    (assignedTo, constructorXmlDocument, constructorNames, selectedConstructor) => new EditConstructorForm
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
@@ -32,7 +33,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IServiceFactory>(),
-                        assignedTo
+                        assignedTo,
+                        constructorXmlDocument,
+                        constructorNames,
+                        selectedConstructor
                     )
                 )
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()
