@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
@@ -8,9 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
-using System;
-using System.ComponentModel;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
@@ -21,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         private readonly IConfigurationService _configurationService;
         private readonly IEditingControlFactory _editingControlFactory;
+        private readonly IEditingFormCommandFactory _editingFormCommandFactory;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IEditFormFieldSetHelper _editFormFieldSetHelper;
         private readonly IExceptionHelper _exceptionHelper;
@@ -29,10 +29,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private readonly IDataGraphEditingForm dataGraphEditingForm;
 
+        private readonly RadMenuItem mnuItemCopyXml = new(Strings.mnuItemCopyXml);
+        private readonly RadMenuItem mnuItemAddXmlToFragments = new(Strings.mnuItemAddXmlToFragments);
+
+        private static HashSet<ParametersDataElementType> eligibleForFragmentCopy = new HashSet<ParametersDataElementType>
+        {
+            ParametersDataElementType.Constructor,
+            ParametersDataElementType.AssertFunction,
+            ParametersDataElementType.Function,
+            ParametersDataElementType.LiteralList,
+            ParametersDataElementType.NotFunction,
+            ParametersDataElementType.ObjectList,
+            ParametersDataElementType.RetractFunction,
+        };
+
         public DataGraphEditingFormEventsHelper(
             IConfigurationService configurationService,
             IEditFormFieldSetHelper editFormFieldSetHelper,
             IEditingControlFactory editingControlFactory,
+            IEditingFormCommandFactory editingFormCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
             ITreeViewService treeViewService,
@@ -42,6 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             _configurationService = configurationService;
             _editFormFieldSetHelper = editFormFieldSetHelper;
             _editingControlFactory = editingControlFactory;
+            _editingFormCommandFactory = editingFormCommandFactory;
             _exceptionHelper = exceptionHelper;
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -94,6 +110,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             TreeView.NodeMouseDoubleClick += TreeView_NodeMouseDoubleClick;
             TreeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             TreeView.SelectedNodeChanging += TreeView_SelectedNodeChanging;
+            CreateContextMenus();
+        }
+
+        private static void AddContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        {
+            radMenuItem.Click += (sender, args) => command.Execute();
+        }
+
+        private void CreateContextMenus()
+        {
+            AddContextMenuClickCommand(mnuItemAddXmlToFragments, _editingFormCommandFactory.GetAddXMLToFragmentsConfigurationCommand(dataGraphEditingForm));
+            AddContextMenuClickCommand(mnuItemCopyXml, _editingFormCommandFactory.GetCopyXmlToClipboardCommand(dataGraphEditingForm));
+            dataGraphEditingForm.TreeView.RadContextMenu = new()
+            {
+                Items =
+                {
+                    new RadMenuSeparatorItem(),
+                    mnuItemCopyXml,
+                    new RadMenuSeparatorItem(),
+                    mnuItemAddXmlToFragments,
+                    new RadMenuSeparatorItem(),
+                }
+            };
         }
 
         private ParametersDataTreeNode GetControlXPathTreeNode(ParametersDataTreeNode selectedNode)
@@ -179,6 +218,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 treeNode.Text = variableName;
                 treeNode.ToolTipText = variableName;
             }
+        }
+
+        private void SetContextMenuState(ParametersDataTreeNode treeNode)
+        {
+            bool enabled = eligibleForFragmentCopy.Contains(treeNode.XmlElementType);
+            mnuItemAddXmlToFragments.Enabled = enabled;
+            mnuItemCopyXml.Enabled = enabled;
         }
 
         private void SetControlValues(ParametersDataTreeNode selectedNode)
@@ -463,7 +509,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private void TreeView_NodeMouseClick(object sender, RadTreeViewEventArgs e)
         {
-            //SetContextMenuState
+            //TreeView.SelectedNode = e.Node;
+            //Setting the selected node does not seem to make a difference for the RadTreeView
+            //Expanding without selection and right-click both show the same behavior irrespective of this statement (TreeView.SelectedNode = e.Node;)
+            SetContextMenuState((ParametersDataTreeNode)e.Node);
         }
 
         private void TreeView_NodeMouseDoubleClick(object sender, RadTreeViewEventArgs e)

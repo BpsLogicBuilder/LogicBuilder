@@ -3769,6 +3769,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Fragment Name.
+        /// </summary>
+        internal static string inputNewFragmentNameCaption {
+            get {
+                return ResourceManager.GetString("inputNewFragmentNameCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter New Fragment Name:.
+        /// </summary>
+        internal static string inputNewFragmentNamePrompt {
+            get {
+                return ResourceManager.GetString("inputNewFragmentNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Project Name.
         /// </summary>
         internal static string inputNewProjectNameCaption {
@@ -4737,6 +4755,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string mnuItemAddUpdateGenericArguments {
             get {
                 return ResourceManager.GetString("mnuItemAddUpdateGenericArguments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add XML to Fragments Configuration.
+        /// </summary>
+        internal static string mnuItemAddXmlToFragments {
+            get {
+                return ResourceManager.GetString("mnuItemAddXmlToFragments", resourceCulture);
             }
         }
         
@@ -5736,6 +5763,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string ruleSetListViewColumnHeaderTextRulePreview {
             get {
                 return ResourceManager.GetString("ruleSetListViewColumnHeaderTextRulePreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved fragment {0}..
+        /// </summary>
+        internal static string savedFragmentMessageFormat {
+            get {
+                return ResourceManager.GetString("savedFragmentMessageFormat", resourceCulture);
             }
         }
         

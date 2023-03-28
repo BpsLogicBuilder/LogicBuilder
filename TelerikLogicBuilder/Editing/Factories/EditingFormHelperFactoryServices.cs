@@ -25,6 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IEditFormFieldSetHelper>(),
                         provider.GetRequiredService<IEditingControlFactory>(),
+                        provider.GetRequiredService<IEditingFormCommandFactory>(),
                         provider.GetRequiredService<IEditingFormHelperFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),

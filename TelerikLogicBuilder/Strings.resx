@@ -997,6 +997,12 @@
 	<data name="inputNewProjectNameCaption" xml:space="preserve">
     <value>New Project Name</value>
   </data>
+	<data name="inputNewFragmentNameCaption" xml:space="preserve">
+    <value>New Fragment Name</value>
+  </data>
+	<data name="inputNewFragmentNamePrompt" xml:space="preserve">
+    <value>Enter New Fragment Name:</value>
+  </data>
 	<data name="inputNewProjectNamePrompt" xml:space="preserve">
     <value>Enter New Project Name:</value>
   </data>
@@ -1329,6 +1335,9 @@
   </data>
 	<data name="mnuItemAddUpdateGenericArguments" xml:space="preserve">
     <value>Add/Update Generic Arguments</value>
+  </data>
+	<data name="mnuItemAddXmlToFragments" xml:space="preserve">
+    <value>Add XML to Fragments Configuration</value>
   </data>
 	<data name="mnuItemClearText" xml:space="preserve">
     <value>Clear</value>
@@ -1691,6 +1700,10 @@
   </data>
 	<data name="ruleSetListViewColumnHeaderTextRulePreview" xml:space="preserve">
     <value>Rule Preview</value>
+  </data>
+	<data name="savedFragmentMessageFormat" xml:space="preserve">
+    <value>Saved fragment {0}.</value>
+    <comment>0=fragmentName</comment>
   </data>
 	<data name="saveFormQuestionFormat" xml:space="preserve">
     <value>Save {0}?</value>

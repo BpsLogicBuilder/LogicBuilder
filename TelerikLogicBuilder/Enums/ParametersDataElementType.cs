@@ -12,6 +12,9 @@
         Literal,
         Object,
         LiteralList,
-        ObjectList
+        ObjectList,
+        NotFunction,
+        AssertFunction,
+        RetractFunction
     }
 }
