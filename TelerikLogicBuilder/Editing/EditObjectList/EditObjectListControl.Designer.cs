@@ -45,6 +45,7 @@
             btnAdd = new Telerik.WinControls.UI.RadButton();
             btnUpdate = new Telerik.WinControls.UI.RadButton();
             radGroupBoxList = new Telerik.WinControls.UI.RadGroupBox();
+            radScrollablePanelList = new Telerik.WinControls.UI.RadScrollablePanel();
             managedListBoxControl = new UserControls.ManagedListBoxControl();
             ((System.ComponentModel.ISupportInitialize)radGroupBoxType).BeginInit();
             radGroupBoxType.SuspendLayout();
@@ -71,6 +72,9 @@
             ((System.ComponentModel.ISupportInitialize)btnUpdate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)radGroupBoxList).BeginInit();
             radGroupBoxList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radScrollablePanelList).BeginInit();
+            radScrollablePanelList.PanelContainer.SuspendLayout();
+            radScrollablePanelList.SuspendLayout();
             SuspendLayout();
             // 
             // radGroupBoxType
@@ -261,7 +265,7 @@
             // radGroupBoxList
             // 
             radGroupBoxList.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            radGroupBoxList.Controls.Add(managedListBoxControl);
+            radGroupBoxList.Controls.Add(radScrollablePanelList);
             radGroupBoxList.Dock = System.Windows.Forms.DockStyle.Fill;
             radGroupBoxList.HeaderText = "List";
             radGroupBoxList.Location = new System.Drawing.Point(0, 192);
@@ -270,13 +274,26 @@
             radGroupBoxList.TabIndex = 2;
             radGroupBoxList.Text = "List";
             // 
+            // radScrollablePanelList
+            // 
+            radScrollablePanelList.Dock = System.Windows.Forms.DockStyle.Fill;
+            radScrollablePanelList.Location = new System.Drawing.Point(2, 18);
+            radScrollablePanelList.Name = "radScrollablePanelList";
+            // 
+            // radScrollablePanelList.PanelContainer
+            // 
+            radScrollablePanelList.PanelContainer.Controls.Add(managedListBoxControl);
+            radScrollablePanelList.PanelContainer.Size = new System.Drawing.Size(849, 317);
+            radScrollablePanelList.Size = new System.Drawing.Size(851, 319);
+            radScrollablePanelList.TabIndex = 1;
+            // 
             // managedListBoxControl
             // 
-            managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            managedListBoxControl.Location = new System.Drawing.Point(2, 18);
+            managedListBoxControl.Dock = System.Windows.Forms.DockStyle.Top;
+            managedListBoxControl.Location = new System.Drawing.Point(0, 0);
             managedListBoxControl.Margin = new System.Windows.Forms.Padding(0);
             managedListBoxControl.Name = "managedListBoxControl";
-            managedListBoxControl.Size = new System.Drawing.Size(851, 319);
+            managedListBoxControl.Size = new System.Drawing.Size(849, 317);
             managedListBoxControl.TabIndex = 0;
             // 
             // EditObjectListControl
@@ -314,6 +331,9 @@
             ((System.ComponentModel.ISupportInitialize)btnUpdate).EndInit();
             ((System.ComponentModel.ISupportInitialize)radGroupBoxList).EndInit();
             radGroupBoxList.ResumeLayout(false);
+            radScrollablePanelList.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radScrollablePanelList).EndInit();
+            radScrollablePanelList.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -337,5 +357,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAddUpdate;
         private Telerik.WinControls.UI.RadPanel radPanelAddUpdateButtonTableCell;
         private Telerik.WinControls.UI.RadPanel radPanelEditControl;
+        private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanelList;
     }
 }

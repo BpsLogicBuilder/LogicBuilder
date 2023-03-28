@@ -90,6 +90,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
+        public static float BottomPanelHeight => (5 * SeparatorLineHeight) + (4 * SingleLineHeight);
+
         public static float BoundarySize
         {
             get

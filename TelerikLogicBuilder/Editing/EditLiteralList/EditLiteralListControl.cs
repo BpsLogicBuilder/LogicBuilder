@@ -16,7 +16,6 @@ using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -331,12 +330,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private void Initialize()
         {
             InitializeTableLayoutPanel();
+            CollapsePanelBorder(radScrollablePanelList);
             CollapsePanelBorder(radScrollablePanelType);
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelEdit);
             CollapsePanelBorder(radPanelAddButton);
             LoadDropDownLists();
 
+            managedListBoxControl.Size = new Size(managedListBoxControl.Width, Math.Max((int)PerFontSizeConstants.BottomPanelHeight, radScrollablePanelList.Height));
             radGroupBoxEdit.Text = literalListElementInfo.Name;
             radGroupBoxList.Text = GetListTitle(literalListElementInfo.ListControl);
 

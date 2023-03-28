@@ -100,7 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
             float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
             float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
-            float totalHeight = (5 * separatorLineHeight) + (4 * singleLineHeight);
+            float totalHeight = PerFontSizeConstants.BottomPanelHeight;
             int totalTableLayoutHeight = (int)Math.Round(totalHeight);
 
             tableLayoutPanelButtons.ColumnStyles.Clear();
@@ -152,7 +152,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
             float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
             float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
-            float totalHeight = (5 * separatorLineHeight) + (4 * singleLineHeight);
+            float totalHeight = PerFontSizeConstants.BottomPanelHeight;
             int totalTableLayoutHeight = (int)Math.Round(totalHeight);
 
             tableLayoutPanelButtons.ColumnStyles.Clear();
@@ -324,7 +324,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
             float separatorLineHeight = PerFontSizeConstants.SeparatorLineHeight;
             float singleLineHeight = PerFontSizeConstants.SingleLineHeight;
-            float totalHeight = (5 * separatorLineHeight) + (4 * singleLineHeight);
+            float totalHeight = PerFontSizeConstants.BottomPanelHeight;
             int totalTableLayoutHeight = (int)Math.Round(totalHeight);
             tableLayoutPanel.RowCount = 9;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, separatorLineHeight));
