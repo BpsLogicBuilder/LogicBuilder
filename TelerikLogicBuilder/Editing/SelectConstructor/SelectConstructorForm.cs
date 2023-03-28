@@ -58,9 +58,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{9A5B3D2D-8E16-422A-98E9-E28462FBDC9E}");
 
+        public string ConstructorName => SelectConstructorControl.ConstructorName ?? throw _exceptionHelper.CriticalException("{D227B1DB-D3AC-465A-864F-9988CAC4AFD4}");
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
+
+        public void SetConstructor(string constructorName) 
+            => SelectConstructorControl.SetConstructor(constructorName);
 
         public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
 

@@ -1,8 +1,11 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
+﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -13,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
@@ -23,11 +27,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly IConfigurationService _configurationService;
         private readonly IDataGraphEditingFormEventsHelper _dataGraphEditingFormEventsHelper;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
-        private readonly IEditingControlFactory _editingControlFactory;
+        private readonly IEditConstructorCommandFactory _editConstructorCommandFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
+        private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
+        private readonly IXmlDataHelper _xmlDataHelper;
 
         private ApplicationTypeInfo _application;
         private readonly Type assignedTo;
@@ -37,11 +43,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         public EditConstructorForm(
             IConfigurationService configurationService,
             IDialogFormMessageControl dialogFormMessageControl,
-            IEditingControlFactory editingControlFactory,
+            IEditConstructorCommandFactory editConstructorCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
+            IRadDropDownListHelper radDropDownListHelper,
             IServiceFactory serviceFactory,
+            IXmlDataHelper xmlDataHelper,
             Type assignedTo,
             XmlDocument constructorXmlDocument,
             HashSet<string> constructorNames,
@@ -52,10 +60,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
-            _editingControlFactory = editingControlFactory;
+            _editConstructorCommandFactory = editConstructorCommandFactory;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
+            _radDropDownListHelper = radDropDownListHelper;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
+            _xmlDataHelper = xmlDataHelper;
             this.assignedTo = assignedTo;
             this.constructorNames = constructorNames;
             this.selectedConstructor = selectedConstructor;
@@ -67,6 +77,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         }
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{0C223B16-511C-4019-A272-7AB8CEC6E297}");
+
+        public Type AssignedTo => assignedTo;
+
+        public HelperButtonDropDownList CmbSelectConstructor => cmbSelectConstructor;
 
         public bool DenySpecialCharacters => false;
 
@@ -96,6 +110,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public void ValidateXmlDocument() => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
+        private static void AddButtonClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
+        {
+            helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+        }
+
+        private void CmbSelectConstructorChanged()
+        {
+            if (!_configurationService.ConstructorList.Constructors.TryGetValue(cmbSelectConstructor.Text, out Constructor? constructor))
+                return;
+
+            this.selectedConstructor = constructor.Name;
+            _treeViewXmlDocumentHelper.LoadXmlDocument(_xmlDataHelper.BuildEmptyConstructorXml(constructor.Name, constructor.Name));
+            LoadTreeview();
+        }
+
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -112,7 +141,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _formInitializer.SetToEditSize(this);
 
             _dataGraphEditingFormEventsHelper.Setup();
+            SetUpSelectConstructorDropDownList();
             LoadTreeview();
+        }
+
+        private void SetUpSelectConstructorDropDownList()
+        {
+            _radDropDownListHelper.LoadTextItems(cmbSelectConstructor.DropDownList, this.constructorNames, RadDropDownStyle.DropDown);
+            AddButtonClickCommand(cmbSelectConstructor, _editConstructorCommandFactory.GetSelectConstructorCommand(this));
+            cmbSelectConstructor.Changed -= CmbSelectConstructor_Changed;
+            cmbSelectConstructor.Text = this.selectedConstructor;
+            cmbSelectConstructor.Changed += CmbSelectConstructor_Changed;
         }
 
         private void LoadTreeview()
@@ -143,6 +182,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _application = e.Application;
             ApplicationChanged?.Invoke(this, e);
         }
+
+        private void CmbSelectConstructor_Changed(object? sender, EventArgs e) => CmbSelectConstructorChanged();
         #endregion Event Handlers
     }
 }

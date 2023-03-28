@@ -38,7 +38,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 
             IEditConstructorForm selectConstructorForm = disposableManager.GetEditConstructorForm
 			(
-                type!,
+                typeof(object),
                 xmlDococument,
 				new HashSet<string>(constructors.Keys),
                 closedConstructor?.Constructor.Name!

@@ -1,7 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
@@ -10,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -28,11 +31,13 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
-                        provider.GetRequiredService<IEditingControlFactory>(),
+                        provider.GetRequiredService<IEditConstructorCommandFactory>(),
                         provider.GetRequiredService<IEditingFormHelperFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         assignedTo,
                         constructorXmlDocument,
                         constructorNames,

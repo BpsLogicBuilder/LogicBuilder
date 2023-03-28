@@ -57,5 +57,10 @@ namespace TelerikLogicBuilder.Tests.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public void SetConstructor(string constructorName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

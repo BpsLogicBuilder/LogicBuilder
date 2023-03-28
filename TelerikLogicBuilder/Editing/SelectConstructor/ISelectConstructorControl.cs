@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
         Point Location { set; }
         string? ConstructorName { get; }
         void ClearMessage();
+        void SetConstructor(string constructorName);
         void SetErrorMessage(string message);
         void SetMessage(string message, string title = "");
     }
