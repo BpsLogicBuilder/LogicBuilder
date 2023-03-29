@@ -72,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
-        public Type AssignedTo => throw new NotImplementedException();
+        public Type AssignedTo => assignedTo;
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 

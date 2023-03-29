@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -25,6 +26,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     editLiteralListControl => new EditLiteralListFormXmlCommand
                     (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editLiteralListControl
                     )
                 )

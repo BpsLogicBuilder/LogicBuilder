@@ -20,18 +20,16 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Xml;
-using Telerik.WinControls;
-using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
 {
-    internal partial class EditConstructorFormXml : Telerik.WinControls.UI.RadForm, IEditConstructorFormXml
+    internal partial class EditLiteralListFormXml : Telerik.WinControls.UI.RadForm, IEditLiteralListFormXml
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
-        private readonly IConstructorElementValidator _constructorElementValidator;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly IFormInitializer _formInitializer;
+        private readonly ILiteralListElementValidator _literalListElementValidator;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly RichTextBoxPanel _richTextBoxPanel;
         private readonly IValidateXmlTextHelper _validateXmlTextHelper;
@@ -41,11 +39,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
 
         private ApplicationTypeInfo _application;
 
-        public EditConstructorFormXml(
-            IConstructorElementValidator constructorElementValidator,
+        public EditLiteralListFormXml(
             IDialogFormMessageControl dialogFormMessageControl,
             IEditXmlHelperFactory editXmlHelperFactory,
             IFormInitializer formInitializer,
+            ILiteralListElementValidator literalListElementValidator,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             RichTextBoxPanel richTextBoxPanel,
             IServiceFactory serviceFactory,
@@ -58,8 +56,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
-            _constructorElementValidator = constructorElementValidator;
             _formInitializer = formInitializer;
+            _literalListElementValidator = literalListElementValidator;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _richTextBoxPanel = richTextBoxPanel;
             _validateXmlTextHelper = editXmlHelperFactory.GetValidateXmlTextHelper(this);
@@ -88,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
             false
         );
 
-        public string XmlResult 
+        public string XmlResult
             => _refreshVisibleTextHelper.RefreshAllVisibleTexts(UnFormattedXmlElement, Application).OuterXml;
 
         public ApplicationTypeInfo Application => _application;
@@ -105,11 +103,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
 
         public void ValidateElement()
         {
-            if (this.UnFormattedXmlElement.Name != XmlDataConstants.CONSTRUCTORELEMENT)
-                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.invalidXmlRootElementFormat, this.UnFormattedXmlElement.Name, XmlDataConstants.CONSTRUCTORELEMENT));
+            if (this.UnFormattedXmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
+                throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.invalidXmlRootElementFormat, this.UnFormattedXmlElement.Name, XmlDataConstants.LITERALLISTELEMENT));
 
             List<string> errors = new();
-            _constructorElementValidator.Validate
+            _literalListElementValidator.Validate
             (
                 UnFormattedXmlElement,
                 this.assignedTo,
@@ -140,7 +138,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
-            
+
             ControlsLayoutUtility.CollapsePanelBorder(radPanelApplication);
             ControlsLayoutUtility.CollapsePanelBorder(radPanelBottom);
             ControlsLayoutUtility.CollapsePanelBorder(radPanelButtons);
