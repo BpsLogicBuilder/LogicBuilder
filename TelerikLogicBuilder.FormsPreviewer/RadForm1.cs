@@ -1,10 +1,12 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Properties;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
@@ -140,6 +142,17 @@ namespace TelerikLogicBuilder.FormsPreviewer
                 (
                     serviceProvider.GetRequiredService<IConstructorTypeHelper>(),
                     serviceProvider.GetRequiredService<ITypeLoadHelper>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditLiteralListForm,
+                new EditLiteralListFormCommand
+                (
+                    _configurationService,
+                    serviceProvider.GetRequiredService<ILiteralListDataParser>(),
+                    serviceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
                     this
                 )
             );

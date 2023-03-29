@@ -20,6 +20,14 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditLiteralListCommandFactory, EditLiteralListCommandFactory>()
+                .AddTransient<Func<IEditLiteralListForm, EditLiteralListFormXmlCommand>>
+                (
+                    provider =>
+                    editLiteralListControl => new EditLiteralListFormXmlCommand
+                    (
+                        editLiteralListControl
+                    )
+                )
                 .AddTransient<Func<IEditLiteralListControl, UpdateLiteralListBoxItemCommand>>
                 (
                     provider =>

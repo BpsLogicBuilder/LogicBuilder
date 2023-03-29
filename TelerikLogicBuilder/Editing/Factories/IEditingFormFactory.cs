@@ -1,5 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
@@ -14,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal interface IEditingFormFactory : IDisposable
     {
         IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor);
+        IEditLiteralListForm GetEditLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);
         IEditVariableForm GetEditVariableForm(Type assignedTo);
         ISelectConstructorForm GetSelectConstructorForm(Type assignedTo);
         ISelectFromDomainForm GetSelectFromDomainForm(IList<string> domain, string comments);
