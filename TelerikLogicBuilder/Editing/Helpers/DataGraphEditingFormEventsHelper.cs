@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private readonly RadMenuItem mnuItemCopyXml = new(Strings.mnuItemCopyXml);
         private readonly RadMenuItem mnuItemAddXmlToFragments = new(Strings.mnuItemAddXmlToFragments);
 
-        private static HashSet<ParametersDataElementType> eligibleForFragmentCopy = new HashSet<ParametersDataElementType>
+        private static readonly HashSet<ParametersDataElementType> eligibleForFragmentCopy = new()
         {
             ParametersDataElementType.Constructor,
             ParametersDataElementType.AssertFunction,

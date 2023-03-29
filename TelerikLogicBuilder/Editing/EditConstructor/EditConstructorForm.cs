@@ -102,7 +102,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         {
         }
 
+        public void RebuildTreeView() => LoadTreeview();
+
+        public void ReloadXmlDocument(string xmlString) => _treeViewXmlDocumentHelper.LoadXmlDocument(xmlString);
+
         public void RequestDocumentUpdate(IEditingControl editingControl) => _dataGraphEditingFormEventsHelper.RequestDocumentUpdate(editingControl);
+
+        public void SetConstructorName(string constructorName)
+        {
+            cmbSelectConstructor.Changed -= CmbSelectConstructor_Changed;
+            cmbSelectConstructor.Text = constructorName;
+            cmbSelectConstructor.Changed += CmbSelectConstructor_Changed;
+        }
 
         public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
 
@@ -113,6 +124,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private static void AddButtonClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
         {
             helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+        }
+
+        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        {
+            radButton.Click += (sender, args) => command.Execute();
         }
 
         private void CmbSelectConstructorChanged()
@@ -142,16 +158,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
             _dataGraphEditingFormEventsHelper.Setup();
             SetUpSelectConstructorDropDownList();
+            AddButtonClickCommand(btnPasteXml, _editConstructorCommandFactory.GetEditFormXmlCommand(this));
+            AddButtonClickCommand(cmbSelectConstructor, _editConstructorCommandFactory.GetSelectConstructorCommand(this));
             LoadTreeview();
         }
 
         private void SetUpSelectConstructorDropDownList()
         {
             _radDropDownListHelper.LoadTextItems(cmbSelectConstructor.DropDownList, this.constructorNames, RadDropDownStyle.DropDown);
-            AddButtonClickCommand(cmbSelectConstructor, _editConstructorCommandFactory.GetSelectConstructorCommand(this));
-            cmbSelectConstructor.Changed -= CmbSelectConstructor_Changed;
-            cmbSelectConstructor.Text = this.selectedConstructor;
-            cmbSelectConstructor.Changed += CmbSelectConstructor_Changed;
+            SetConstructorName(this.selectedConstructor);
         }
 
         private void LoadTreeview()

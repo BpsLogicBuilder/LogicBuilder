@@ -704,6 +704,9 @@
 	<data name="editFunctionGroupBoxHeaderText" xml:space="preserve">
     <value>FunctionFR</value>
   </data>
+	<data name="editXmlOkLabelText" xml:space="preserve">
+    <value>OKFR</value>
+  </data>
 	<data name="emptyStringVisibleText" xml:space="preserve">
     <value>Empty StringFR</value>
   </data>
@@ -1084,6 +1087,10 @@
   </data>
 	<data name="invalidPriorityCellData" xml:space="preserve">
     <value>Priority must be an integer greater than zero.FR</value>
+  </data>
+	<data name="invalidXmlRootElementFormat" xml:space="preserve">
+    <value>Invalid root element "{0}". Expected "{1}".FR</value>
+    <comment>0=actualElement; 1=expected element</comment>
   </data>
 	<data name="invalidRuleSetFormat" xml:space="preserve">
     <value>The rule set file "{0}" is invalid.FR</value>

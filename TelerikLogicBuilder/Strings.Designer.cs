@@ -1915,6 +1915,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string editXmlOkLabelText {
+            get {
+                return ResourceManager.GetString("editXmlOkLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty String.
         /// </summary>
         internal static string emptyStringVisibleText {
@@ -4080,6 +4089,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string invalidVariableOrFunctionNameFormat {
             get {
                 return ResourceManager.GetString("invalidVariableOrFunctionNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid root element &quot;{0}&quot;. Expected &quot;{1}&quot;..
+        /// </summary>
+        internal static string invalidXmlRootElementFormat {
+            get {
+                return ResourceManager.GetString("invalidXmlRootElementFormat", resourceCulture);
             }
         }
         
