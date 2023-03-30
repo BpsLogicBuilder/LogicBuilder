@@ -4,6 +4,8 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -62,6 +64,22 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo,
                         literalListInfo,
                         literalListXmlDocument
+                    )
+                )
+                .AddTransient<Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm>>
+                (
+                    provider =>
+                    (assignedTo, literalListInfo, objectListXmlDocument) => new EditObjectListForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        provider.GetRequiredService<IEditObjectListCommandFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        assignedTo,
+                        literalListInfo,
+                        objectListXmlDocument
                     )
                 )
                 .AddTransient<Func<Type, IEditVariableForm>>

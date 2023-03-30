@@ -20,6 +20,14 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditObjectListCommandFactory, EditObjectListCommandFactory>()
+                .AddTransient<Func<IEditObjectListForm, EditObjectListFormXmlCommand>>
+                (
+                    provider =>
+                    editObjectListForm => new EditObjectListFormXmlCommand
+                    (
+                        editObjectListForm
+                    )
+                )
                 .AddTransient<Func<IEditObjectListControl, UpdateObjectListBoxItemCommand>>
                 (
                     provider =>

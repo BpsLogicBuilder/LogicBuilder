@@ -46,6 +46,7 @@
             radPanelApplication = new Telerik.WinControls.UI.RadPanel();
             radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
             btnEditLiteralListForm = new Telerik.WinControls.UI.RadButton();
+            btnEditObjectListForm = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)btnEditVariableForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectConstructorForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectBoolFunction).BeginInit();
@@ -65,6 +66,7 @@
             radPanelApplication.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnEditLiteralListForm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditObjectListForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this).BeginInit();
             SuspendLayout();
             // 
@@ -201,7 +203,7 @@
             radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelApplication.Location = new System.Drawing.Point(0, 0);
             radPanelApplication.Name = "radPanelApplication";
-            radPanelApplication.Size = new System.Drawing.Size(1000, 60);
+            radPanelApplication.Size = new System.Drawing.Size(1036, 60);
             radPanelApplication.TabIndex = 12;
             // 
             // radGroupBoxApplication
@@ -213,7 +215,7 @@
             radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
             radGroupBoxApplication.Name = "radGroupBoxApplication";
             radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            radGroupBoxApplication.Size = new System.Drawing.Size(1000, 60);
+            radGroupBoxApplication.Size = new System.Drawing.Size(1036, 60);
             radGroupBoxApplication.TabIndex = 0;
             radGroupBoxApplication.Text = "Application";
             // 
@@ -225,12 +227,21 @@
             btnEditLiteralListForm.TabIndex = 13;
             btnEditLiteralListForm.Text = "Edit Literal List Form";
             // 
+            // btnEditObjectListForm
+            // 
+            btnEditObjectListForm.Location = new System.Drawing.Point(278, 148);
+            btnEditObjectListForm.Name = "btnEditObjectListForm";
+            btnEditObjectListForm.Size = new System.Drawing.Size(179, 24);
+            btnEditObjectListForm.TabIndex = 14;
+            btnEditObjectListForm.Text = "Edit Object List Form";
+            // 
             // RadForm1
             // 
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1000, 347);
+            ClientSize = new System.Drawing.Size(1036, 279);
+            Controls.Add(btnEditObjectListForm);
             Controls.Add(btnEditLiteralListForm);
             Controls.Add(radPanelApplication);
             Controls.Add(radButtonSetFontSize13);
@@ -270,6 +281,7 @@
             radPanelApplication.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnEditLiteralListForm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditObjectListForm).EndInit();
             ((System.ComponentModel.ISupportInitialize)this).EndInit();
             ResumeLayout(false);
         }
@@ -294,5 +306,6 @@
         private Telerik.WinControls.UI.RadPanel radPanelApplication;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
         private Telerik.WinControls.UI.RadButton btnEditLiteralListForm;
+        private Telerik.WinControls.UI.RadButton btnEditObjectListForm;
     }
 }

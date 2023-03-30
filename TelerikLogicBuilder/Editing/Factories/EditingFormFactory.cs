@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
@@ -18,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private IDisposable? _scopedService;
         private readonly Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> _getEditConstructorForm;
         private readonly Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditLiteralListForm> _getEditLiteralListForm;
+        private readonly Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm> _getEditObjectListForm;
         private readonly Func<Type, IEditVariableForm> _getEditVariableForm;
         private readonly Func<Type, ISelectConstructorForm> _getSelectConstructorForm;
         private readonly Func<IList<string>, string, ISelectFromDomainForm> _getSelectFromDomainForm;
@@ -26,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         public EditingFormFactory(
             Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> getEditConstructorForm,
             Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditLiteralListForm> getEditLiteralListForm,
+            Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm> getEditObjectListForm,
             Func<Type, IEditVariableForm> getEditVariableForm,
             Func<Type, ISelectConstructorForm> getSelectConstructorForm,
             Func<IList<string>, string, ISelectFromDomainForm> getSelectFromDomainForm,
@@ -33,6 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _getEditConstructorForm = getEditConstructorForm;
             _getEditLiteralListForm = getEditLiteralListForm;
+            _getEditObjectListForm = getEditObjectListForm;
             _getSelectConstructorForm = getSelectConstructorForm;
             _getSelectFromDomainForm = getSelectFromDomainForm;
             _getSelectFunctionForm = getSelectFunctionForm;
@@ -49,6 +53,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = _getEditLiteralListForm(assignedTo, literalListInfo, literalListXmlDocument);
             return (IEditLiteralListForm)_scopedService;
+        }
+
+        public IEditObjectListForm GetEditObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument literalListXmlDocument)
+        {
+            _scopedService = _getEditObjectListForm(assignedTo, objectListInfo, literalListXmlDocument);
+            return (IEditObjectListForm)_scopedService;
         }
 
         public IEditVariableForm GetEditVariableForm(Type assignedTo)

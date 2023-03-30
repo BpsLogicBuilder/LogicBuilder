@@ -156,6 +156,18 @@ namespace TelerikLogicBuilder.FormsPreviewer
                     this
                 )
             );
+            AddButtonClickCommand
+            (
+                btnEditObjectListForm,
+                new EditObjectListFormCommand
+                (
+                    _configurationService,
+                    serviceProvider.GetRequiredService<IObjectListDataParser>(),
+                    serviceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
+                    serviceProvider.GetRequiredService<ITypeLoadHelper>(),
+                    this
+                )
+            );
         }
 
         private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
