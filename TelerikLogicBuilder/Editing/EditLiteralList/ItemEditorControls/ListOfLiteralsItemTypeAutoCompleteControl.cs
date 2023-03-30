@@ -113,9 +113,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public void ResetTypesList(IList<string>? items)
         {
+            string existingText = radDropDownList.Text;
             radDropDownList.Items.Clear();
             if (items != null)
+            {
                 radDropDownList.Items.AddRange(items);
+                radDropDownList.Text = new HashSet<string>(items).Contains(existingText) ? existingText : string.Empty;
+            }
         }
 
         public void SetAddUpdateGenericArgumentsCommand(IClickCommand command)

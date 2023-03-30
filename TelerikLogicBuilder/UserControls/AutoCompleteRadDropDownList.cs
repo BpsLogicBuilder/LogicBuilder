@@ -52,9 +52,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public void ResetTypesList(IList<string>? items)
         {
+            string existingText = radDropDownList1.Text;
             radDropDownList1.Items.Clear();
             if (items != null)
+            {
                 radDropDownList1.Items.AddRange(items);
+                radDropDownList1.Text = new HashSet<string>(items).Contains(existingText) ? existingText : string.Empty;
+            }
         }
 
         public void SetAddUpdateGenericArgumentsCommand(IClickCommand command)
