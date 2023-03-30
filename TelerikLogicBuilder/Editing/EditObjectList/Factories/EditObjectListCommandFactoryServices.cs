@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -25,6 +26,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     editObjectListForm => new EditObjectListFormXmlCommand
                     (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editObjectListForm
                     )
                 )

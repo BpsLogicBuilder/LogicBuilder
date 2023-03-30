@@ -6,5 +6,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
     {
         IEditConstructorFormXml GetEditConstructorFormXml(string xml, Type assignedTo);
         IEditLiteralListFormXml GetEditLiteralListFormXml(string xml, Type assignedTo);
+        IEditObjectListFormXml GetEditObjectListFormXml(string xml, Type assignedTo);
     }
 }

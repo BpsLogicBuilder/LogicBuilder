@@ -51,6 +51,24 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo
                     )
                 )
+                .AddTransient<Func<string, Type, IEditObjectListFormXml>>
+                (
+                    provider =>
+                    (xml, assignedTo) => new EditObjectListFormXml
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditXmlHelperFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IObjectListElementValidator>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<RichTextBoxPanel>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<IXmlValidatorFactory>(),
+                        xml,
+                        assignedTo
+                    )
+                )
                 .AddTransient<IEditXmlFormFactory, EditXmlFormFactory>();
         }
     }
