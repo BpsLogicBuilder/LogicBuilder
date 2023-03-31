@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using System.Windows.Forms;
 
-namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxPanelHelpers
+namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxPanelHelpers.Commands
 {
     internal class RichTextBoxCutSelectedTextCommand : ClickCommandBase
     {

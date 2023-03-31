@@ -4975,6 +4975,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert XML Fragment.
+        /// </summary>
+        internal static string mnuItemInsertXmlFragment {
+            get {
+                return ResourceManager.GetString("mnuItemInsertXmlFragment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open File.
         /// </summary>
         internal static string mnuItemOpenFileText {

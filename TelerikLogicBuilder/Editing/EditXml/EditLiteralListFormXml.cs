@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
         private readonly IFormInitializer _formInitializer;
         private readonly ILiteralListElementValidator _literalListElementValidator;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
-        private readonly RichTextBoxPanel _richTextBoxPanel;
+        private readonly EditXmlRichTextBoxPanel _richTextBoxPanel;
         private readonly IValidateXmlTextHelper _validateXmlTextHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
@@ -45,7 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
             IFormInitializer formInitializer,
             ILiteralListElementValidator literalListElementValidator,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
-            RichTextBoxPanel richTextBoxPanel,
+            EditXmlRichTextBoxPanel richTextBoxPanel,
             IServiceFactory serviceFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory,

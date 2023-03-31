@@ -11,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<ConfigurationExplorer>()
                 .AddTransient<IDialogFormMessageControl, DialogFormMessageControl>()
                 .AddTransient<DocumentsExplorer>()
+                .AddTransient<EditXmlRichTextBoxPanel>()
                 .AddTransient<IMessages, Messages>()
                 .AddTransient<IProjectExplorer, ProjectExplorer>()
                 .AddSingleton<IRadCheckBoxHelper, RadCheckBoxHelper>()
@@ -27,6 +28,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
                 //DocumentsExplorerHelpers
                 .AddDocumentsExplorerCommands()
+
+                .AddRichTextBoxPanelCommandFactories()
 
                 //RulesExplorerHelpers
                 .AddRulesExplorerCommands();

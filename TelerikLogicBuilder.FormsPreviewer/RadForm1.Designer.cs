@@ -227,7 +227,7 @@
             radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelApplication.Location = new System.Drawing.Point(0, 0);
             radPanelApplication.Name = "radPanelApplication";
-            radPanelApplication.Size = new System.Drawing.Size(1138, 60);
+            radPanelApplication.Size = new System.Drawing.Size(1068, 60);
             radPanelApplication.TabIndex = 12;
             // 
             // radGroupBoxApplication
@@ -239,7 +239,7 @@
             radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
             radGroupBoxApplication.Name = "radGroupBoxApplication";
             radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            radGroupBoxApplication.Size = new System.Drawing.Size(1138, 60);
+            radGroupBoxApplication.Size = new System.Drawing.Size(1068, 60);
             radGroupBoxApplication.TabIndex = 0;
             radGroupBoxApplication.Text = "Application";
             // 
@@ -360,7 +360,7 @@
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1138, 303);
+            ClientSize = new System.Drawing.Size(1068, 465);
             Controls.Add(btnSelectFragmentForm);
             Controls.Add(btnEditValueFunctionFormXml);
             Controls.Add(btnEditTableFunctionsFormXml);

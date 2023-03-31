@@ -1411,6 +1411,9 @@
 	<data name="mnuItemInsertVariableText" xml:space="preserve">
     <value>Variable</value>
   </data>
+	<data name="mnuItemInsertXmlFragment" xml:space="preserve">
+    <value>Insert XML Fragment</value>
+  </data>
 	<data name="mnuItemOpenFileText" xml:space="preserve">
     <value>Open File</value>
   </data>

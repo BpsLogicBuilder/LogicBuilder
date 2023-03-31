@@ -10,12 +10,12 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    internal partial class RichTextBoxPanel : UserControl
+    internal partial class EditXmlRichTextBoxPanel : UserControl
     {
         private readonly IImageListService _imageListService;
         private readonly IRichTextBoxPanelCommandFactory _richTextBoxPanelCommandFactory;
 
-        public RichTextBoxPanel(
+        public EditXmlRichTextBoxPanel(
             IImageListService imageListService,
             IRichTextBoxPanelCommandFactory richTextBoxPanelCommandFactory)
         {
@@ -30,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly RadMenuItem mnuItemCut = new(Strings.mnuItemCutText) { ImageIndex = ImageIndexes.CUTIMAGEINDEX };
         private readonly RadMenuItem mnuItemPaste = new(Strings.mnuItemPasteText);
         private readonly RadMenuItem mnuItemSelectAll = new(Strings.mnuItemSelectAllText);
+        private readonly RadMenuItem mnuItemInsertXmlFragment = new(Strings.mnuItemInsertXmlFragment);
         private readonly RadContextMenuManager radContextMenuManager;
 
         public new event EventHandler? TextChanged;
@@ -51,17 +52,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             AddClickCommand(mnuItemCut, _richTextBoxPanelCommandFactory.GetRichTextBoxCutSelectedTextCommand(richTextBox1));
             AddClickCommand(mnuItemPaste, _richTextBoxPanelCommandFactory.GetRichTextBoxPasteTextCommand(richTextBox1));
             AddClickCommand(mnuItemSelectAll, _richTextBoxPanelCommandFactory.GetRichTextBoxSelectAllCommand(richTextBox1));
+            AddClickCommand(mnuItemInsertXmlFragment, _richTextBoxPanelCommandFactory.GetSelectFragmentCommand(richTextBox1));
 
             RadContextMenu radContextMenu = new()
             {
                 ImageList = _imageListService.ImageList,
-                Items = 
+                Items =
                 {
                     mnuItemCopy,
                     mnuItemCut,
                     mnuItemPaste,
                     new RadMenuSeparatorItem(),
-                    mnuItemSelectAll
+                    mnuItemSelectAll,
+                    mnuItemInsertXmlFragment
                 }
             };
 
@@ -94,6 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             mnuItemCut.Enabled = !string.IsNullOrEmpty(richTextBox1.SelectedText);
             mnuItemCopy.Enabled = !string.IsNullOrEmpty(richTextBox1.SelectedText);
             mnuItemSelectAll.Enabled = richTextBox1.Enabled;
+            mnuItemInsertXmlFragment.Enabled = richTextBox1.Enabled;
         }
 
         private void RichTextBox_MouseDown(object? sender, MouseEventArgs e)
