@@ -8,13 +8,12 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.Services;
-using ABIS.LogicBuilder.FlowBuilder.Services.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Telerik.WinControls.UI;
 using TelerikLogicBuilder.FormsPreviewer.Commands;
+using TelerikLogicBuilder.FormsPreviewer.Commands.Xml;
 
 namespace TelerikLogicBuilder.FormsPreviewer
 {
@@ -165,6 +164,105 @@ namespace TelerikLogicBuilder.FormsPreviewer
                     serviceProvider.GetRequiredService<IObjectListDataParser>(),
                     serviceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
                     serviceProvider.GetRequiredService<ITypeLoadHelper>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditBooleanFunctionFormXml,
+                new EditBooleanFunctionFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditBuildDecisionFormXml,
+                new EditBuildDecisionFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditConditionsFormXml,
+                new EditConditionsFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditConstructorFormXml,
+                new EditConstructorFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditDecisionsFormXml,
+                new EditDecisionsFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditDialogFunctionFormXml,
+                new EditDialogFunctionFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditFunctionsFormXml,
+                new EditFunctionsFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditLiteralListFormXml,
+                new EditLiteralListFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditObjectListFormXml,
+                new EditObjectListFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditTableFunctionsFormXml,
+                new EditTableFunctionsFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
+                btnEditValueFunctionFormXml,
+                new EditValueFunctionFormXmlCommand
+                (
+                    serviceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                     this
                 )
             );

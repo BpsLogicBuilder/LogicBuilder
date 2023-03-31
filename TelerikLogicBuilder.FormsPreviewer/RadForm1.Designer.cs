@@ -47,6 +47,17 @@
             radGroupBoxApplication = new Telerik.WinControls.UI.RadGroupBox();
             btnEditLiteralListForm = new Telerik.WinControls.UI.RadButton();
             btnEditObjectListForm = new Telerik.WinControls.UI.RadButton();
+            btnEditBooleanFunctionFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditBuildDecisionFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditConditionsFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditConstructorFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditDecisionsFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditDialogFunctionFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditFunctionsFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditLiteralListFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditObjectListFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditTableFunctionsFormXml = new Telerik.WinControls.UI.RadButton();
+            btnEditValueFunctionFormXml = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)btnEditVariableForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectConstructorForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectBoolFunction).BeginInit();
@@ -67,6 +78,17 @@
             ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnEditLiteralListForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnEditObjectListForm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditBooleanFunctionFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditBuildDecisionFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditConditionsFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditConstructorFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditDecisionsFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditDialogFunctionFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditFunctionsFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditLiteralListFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditObjectListFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditTableFunctionsFormXml).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditValueFunctionFormXml).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this).BeginInit();
             SuspendLayout();
             // 
@@ -136,7 +158,7 @@
             // 
             // radButtonReloadConfiguration
             // 
-            radButtonReloadConfiguration.Location = new System.Drawing.Point(592, 268);
+            radButtonReloadConfiguration.Location = new System.Drawing.Point(827, 268);
             radButtonReloadConfiguration.Name = "radButtonReloadConfiguration";
             radButtonReloadConfiguration.Size = new System.Drawing.Size(179, 24);
             radButtonReloadConfiguration.TabIndex = 8;
@@ -145,7 +167,7 @@
             // 
             // radButtonSetFontSize09
             // 
-            radButtonSetFontSize09.Location = new System.Drawing.Point(592, 88);
+            radButtonSetFontSize09.Location = new System.Drawing.Point(827, 88);
             radButtonSetFontSize09.Name = "radButtonSetFontSize09";
             radButtonSetFontSize09.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize09.TabIndex = 9;
@@ -154,7 +176,7 @@
             // 
             // radButtonSetFontSize10
             // 
-            radButtonSetFontSize10.Location = new System.Drawing.Point(592, 118);
+            radButtonSetFontSize10.Location = new System.Drawing.Point(827, 118);
             radButtonSetFontSize10.Name = "radButtonSetFontSize10";
             radButtonSetFontSize10.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize10.TabIndex = 10;
@@ -163,7 +185,7 @@
             // 
             // radButtonSetFontSize11
             // 
-            radButtonSetFontSize11.Location = new System.Drawing.Point(592, 148);
+            radButtonSetFontSize11.Location = new System.Drawing.Point(827, 148);
             radButtonSetFontSize11.Name = "radButtonSetFontSize11";
             radButtonSetFontSize11.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize11.TabIndex = 10;
@@ -172,7 +194,7 @@
             // 
             // radButtonSetFontSize12
             // 
-            radButtonSetFontSize12.Location = new System.Drawing.Point(592, 178);
+            radButtonSetFontSize12.Location = new System.Drawing.Point(827, 178);
             radButtonSetFontSize12.Name = "radButtonSetFontSize12";
             radButtonSetFontSize12.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize12.TabIndex = 10;
@@ -181,7 +203,7 @@
             // 
             // radButtonSetFontSize14
             // 
-            radButtonSetFontSize14.Location = new System.Drawing.Point(592, 238);
+            radButtonSetFontSize14.Location = new System.Drawing.Point(827, 238);
             radButtonSetFontSize14.Name = "radButtonSetFontSize14";
             radButtonSetFontSize14.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize14.TabIndex = 10;
@@ -190,7 +212,7 @@
             // 
             // radButtonSetFontSize13
             // 
-            radButtonSetFontSize13.Location = new System.Drawing.Point(592, 208);
+            radButtonSetFontSize13.Location = new System.Drawing.Point(827, 208);
             radButtonSetFontSize13.Name = "radButtonSetFontSize13";
             radButtonSetFontSize13.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize13.TabIndex = 11;
@@ -203,7 +225,7 @@
             radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelApplication.Location = new System.Drawing.Point(0, 0);
             radPanelApplication.Name = "radPanelApplication";
-            radPanelApplication.Size = new System.Drawing.Size(1036, 60);
+            radPanelApplication.Size = new System.Drawing.Size(1066, 60);
             radPanelApplication.TabIndex = 12;
             // 
             // radGroupBoxApplication
@@ -215,7 +237,7 @@
             radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
             radGroupBoxApplication.Name = "radGroupBoxApplication";
             radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            radGroupBoxApplication.Size = new System.Drawing.Size(1036, 60);
+            radGroupBoxApplication.Size = new System.Drawing.Size(1066, 60);
             radGroupBoxApplication.TabIndex = 0;
             radGroupBoxApplication.Text = "Application";
             // 
@@ -235,12 +257,111 @@
             btnEditObjectListForm.TabIndex = 14;
             btnEditObjectListForm.Text = "Edit Object List Form";
             // 
+            // btnEditBooleanFunctionFormXml
+            // 
+            btnEditBooleanFunctionFormXml.Location = new System.Drawing.Point(513, 88);
+            btnEditBooleanFunctionFormXml.Name = "btnEditBooleanFunctionFormXml";
+            btnEditBooleanFunctionFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditBooleanFunctionFormXml.TabIndex = 15;
+            btnEditBooleanFunctionFormXml.Text = "Edit Boolean Function Form Xml";
+            // 
+            // btnEditBuildDecisionFormXml
+            // 
+            btnEditBuildDecisionFormXml.Location = new System.Drawing.Point(513, 118);
+            btnEditBuildDecisionFormXml.Name = "btnEditBuildDecisionFormXml";
+            btnEditBuildDecisionFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditBuildDecisionFormXml.TabIndex = 16;
+            btnEditBuildDecisionFormXml.Text = "Edit Build Decision Form Xml";
+            // 
+            // btnEditConditionsFormXml
+            // 
+            btnEditConditionsFormXml.Location = new System.Drawing.Point(513, 148);
+            btnEditConditionsFormXml.Name = "btnEditConditionsFormXml";
+            btnEditConditionsFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditConditionsFormXml.TabIndex = 17;
+            btnEditConditionsFormXml.Text = "Edit Conditions Form Xml";
+            // 
+            // btnEditConstructorFormXml
+            // 
+            btnEditConstructorFormXml.Location = new System.Drawing.Point(513, 178);
+            btnEditConstructorFormXml.Name = "btnEditConstructorFormXml";
+            btnEditConstructorFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditConstructorFormXml.TabIndex = 18;
+            btnEditConstructorFormXml.Text = "Edit Constructor Form Xml";
+            // 
+            // btnEditDecisionsFormXml
+            // 
+            btnEditDecisionsFormXml.Location = new System.Drawing.Point(513, 208);
+            btnEditDecisionsFormXml.Name = "btnEditDecisionsFormXml";
+            btnEditDecisionsFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditDecisionsFormXml.TabIndex = 19;
+            btnEditDecisionsFormXml.Text = "Edit Decisions Form Xml";
+            // 
+            // btnEditDialogFunctionFormXml
+            // 
+            btnEditDialogFunctionFormXml.Location = new System.Drawing.Point(513, 238);
+            btnEditDialogFunctionFormXml.Name = "btnEditDialogFunctionFormXml";
+            btnEditDialogFunctionFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditDialogFunctionFormXml.TabIndex = 20;
+            btnEditDialogFunctionFormXml.Text = "Edit Dialog Function Form Xml";
+            // 
+            // btnEditFunctionsFormXml
+            // 
+            btnEditFunctionsFormXml.Location = new System.Drawing.Point(513, 268);
+            btnEditFunctionsFormXml.Name = "btnEditFunctionsFormXml";
+            btnEditFunctionsFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditFunctionsFormXml.TabIndex = 21;
+            btnEditFunctionsFormXml.Text = "Edit Functions Form Xml";
+            // 
+            // btnEditLiteralListFormXml
+            // 
+            btnEditLiteralListFormXml.Location = new System.Drawing.Point(513, 298);
+            btnEditLiteralListFormXml.Name = "btnEditLiteralListFormXml";
+            btnEditLiteralListFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditLiteralListFormXml.TabIndex = 22;
+            btnEditLiteralListFormXml.Text = "Edit Literal List Form Xml";
+            // 
+            // btnEditObjectListFormXml
+            // 
+            btnEditObjectListFormXml.Location = new System.Drawing.Point(513, 328);
+            btnEditObjectListFormXml.Name = "btnEditObjectListFormXml";
+            btnEditObjectListFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditObjectListFormXml.TabIndex = 23;
+            btnEditObjectListFormXml.Text = "Edit Object List Form Xml";
+            // 
+            // btnEditTableFunctionsFormXml
+            // 
+            btnEditTableFunctionsFormXml.Location = new System.Drawing.Point(513, 358);
+            btnEditTableFunctionsFormXml.Name = "btnEditTableFunctionsFormXml";
+            btnEditTableFunctionsFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditTableFunctionsFormXml.TabIndex = 24;
+            btnEditTableFunctionsFormXml.Text = "Edit Table Functions Form Xml";
+            // 
+            // btnEditValueFunctionFormXml
+            // 
+            btnEditValueFunctionFormXml.Location = new System.Drawing.Point(513, 388);
+            btnEditValueFunctionFormXml.Name = "btnEditValueFunctionFormXml";
+            btnEditValueFunctionFormXml.Size = new System.Drawing.Size(237, 24);
+            btnEditValueFunctionFormXml.TabIndex = 25;
+            btnEditValueFunctionFormXml.Text = "Edit Value Function Form Xml";
+            // 
             // RadForm1
             // 
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1036, 279);
+            ClientSize = new System.Drawing.Size(1066, 504);
+            Controls.Add(btnEditValueFunctionFormXml);
+            Controls.Add(btnEditTableFunctionsFormXml);
+            Controls.Add(btnEditObjectListFormXml);
+            Controls.Add(btnEditLiteralListFormXml);
+            Controls.Add(btnEditFunctionsFormXml);
+            Controls.Add(btnEditDialogFunctionFormXml);
+            Controls.Add(btnEditDecisionsFormXml);
+            Controls.Add(btnEditConstructorFormXml);
+            Controls.Add(btnEditConditionsFormXml);
+            Controls.Add(btnEditBuildDecisionFormXml);
+            Controls.Add(btnEditBooleanFunctionFormXml);
             Controls.Add(btnEditObjectListForm);
             Controls.Add(btnEditLiteralListForm);
             Controls.Add(radPanelApplication);
@@ -282,6 +403,17 @@
             ((System.ComponentModel.ISupportInitialize)radGroupBoxApplication).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnEditLiteralListForm).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnEditObjectListForm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditBooleanFunctionFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditBuildDecisionFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditConditionsFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditConstructorFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditDecisionsFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditDialogFunctionFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditFunctionsFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditLiteralListFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditObjectListFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditTableFunctionsFormXml).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditValueFunctionFormXml).EndInit();
             ((System.ComponentModel.ISupportInitialize)this).EndInit();
             ResumeLayout(false);
         }
@@ -307,5 +439,16 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxApplication;
         private Telerik.WinControls.UI.RadButton btnEditLiteralListForm;
         private Telerik.WinControls.UI.RadButton btnEditObjectListForm;
+        private Telerik.WinControls.UI.RadButton btnEditBooleanFunctionFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditBuildDecisionFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditConditionsFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditConstructorFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditDecisionsFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditDialogFunctionFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditFunctionsFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditLiteralListFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditObjectListFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditTableFunctionsFormXml;
+        private Telerik.WinControls.UI.RadButton btnEditValueFunctionFormXml;
     }
 }

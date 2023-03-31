@@ -878,6 +878,10 @@
     <value>The configured function's reference category must be "{0}", and the type name "{1}" must be a generic type definition matching the generic arguments "{2}".FR</value>
     <comment>0reference category;1=function's type name;1= data's generic arguments</comment>
   </data>
+	<data name="functionIncorrectlyConfiguredFormat" xml:space="preserve">
+    <value>Function "{0}" is incorrectly configured for the current form.FR</value>
+    <comment>0=functionName</comment>
+  </data>
 	<data name="functionInvalidCategoryFormat" xml:space="preserve">
     <value>Function "{0}" has invalid Reference Category "{1}". Valid categories are:{2}{3}FR</value>
     <comment>0=functionName; 1=Referencecategory; 2=Environment.Newline; 3=ValidCategories</comment>

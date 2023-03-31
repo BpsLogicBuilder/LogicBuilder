@@ -3445,6 +3445,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Function &quot;{0}&quot; is incorrectly configured for the current form..
+        /// </summary>
+        internal static string functionIncorrectlyConfiguredFormat {
+            get {
+                return ResourceManager.GetString("functionIncorrectlyConfiguredFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function &quot;{0}&quot; has invalid Reference Category &quot;{1}&quot;. Valid categories are:{2}{3}.
         /// </summary>
         internal static string functionInvalidCategoryFormat {

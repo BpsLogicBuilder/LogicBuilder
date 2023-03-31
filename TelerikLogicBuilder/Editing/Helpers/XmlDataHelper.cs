@@ -41,6 +41,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
+        public string BuildDecisionsXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.DECISIONSELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildDefaultConstructorXml(ClosedConstructor closedConstructor)
         {
             IDictionary<string, string> parameterDefaults = closedConstructor.Constructor.Parameters.OfType<LiteralParameter>()
@@ -66,6 +79,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
                     xmlTextWriter.WriteElementString(XmlDataConstants.GENERICARGUMENTSELEMENT, string.Empty);
                     xmlTextWriter.WriteElementString(XmlDataConstants.PARAMETERSELEMENT, string.Empty);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
+        public string BuildFunctionsXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.FUNCTIONSELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();
             }
