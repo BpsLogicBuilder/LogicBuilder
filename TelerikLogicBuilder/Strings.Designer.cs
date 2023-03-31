@@ -3211,6 +3211,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fragment &quot;{0}&quot; is not configured..
+        /// </summary>
+        internal static string fragmentNotConfiguredFormat {
+            get {
+                return ResourceManager.GetString("fragmentNotConfiguredFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fragments.
         /// </summary>
         internal static string fragmentsRootNodeText {
@@ -6294,6 +6303,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string validConstructorMustBeSelected {
             get {
                 return ResourceManager.GetString("validConstructorMustBeSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A valid fragment must be selected..
+        /// </summary>
+        internal static string validFragmentMustBeSelected {
+            get {
+                return ResourceManager.GetString("validFragmentMustBeSelected", resourceCulture);
             }
         }
         

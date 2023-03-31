@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -28,6 +29,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
         IEditVariableTreeViewBuilder GetEditVariableTreeViewBuilder(IEditVariableControl editVariableControl);
 
         ISelectConstructorTreeViewBuilder GetSelectConstructorTreeViewBuilder(ISelectConstructorControl selectConstructorControl);
+
+        ISelectFragmentTreeViewBuilder GetSelectFragmentTreeViewBuilder(ISelectFragmentControl selectFragmentControl);
 
         ISelectFunctionTreeViewBuilder GetSelectFunctionTreeViewBuilder(ISelectFunctionControl selectFunctionControl);
 

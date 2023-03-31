@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -21,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
         private readonly Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> _getDocumentsExplorerTreeViewBuilder;
         private readonly Func<IEditVariableControl, IEditVariableTreeViewBuilder> _getEditVariableTreeViewBuilder;
         private readonly Func<ISelectConstructorControl, ISelectConstructorTreeViewBuilder> _getSelectConstructorTreeViewBuilder;
+        private readonly Func<ISelectFragmentControl, ISelectFragmentTreeViewBuilder> _getSelectFragmentTreeViewBuilder;
         private readonly Func<ISelectFunctionControl, ISelectFunctionTreeViewBuilder> _getSelectFunctionTreeViewBuilder;
         private readonly Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder> _getRulesExplorerTreeViewBuilder;
 
@@ -32,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
             Func<IDictionary<string, string>, DocumentExplorerErrorsList, IDictionary<string, string>, IDocumentsExplorerTreeViewBuilder> getDocumentsExplorerTreeViewBuilder,
             Func<IEditVariableControl, IEditVariableTreeViewBuilder> getEditVariableTreeViewBuilder,
             Func<ISelectConstructorControl, ISelectConstructorTreeViewBuilder> getSelectConstructorTreeViewBuilder,
+            Func<ISelectFragmentControl, ISelectFragmentTreeViewBuilder> getSelectFragmentTreeViewBuilder,
             Func<ISelectFunctionControl, ISelectFunctionTreeViewBuilder> getSelectFunctionTreeViewBuilder,
             Func<IDictionary<string, string>, IRulesExplorerTreeViewBuilder> getRulesExplorerTreeViewBuilder)
         {
@@ -41,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
             _getConfigureVariablesTreeViewBuilder = getConfigureVariablesTreeViewBuilder;
             _getDocumentsExplorerTreeViewBuilder = getDocumentsExplorerTreeViewBuilder;
             _getSelectConstructorTreeViewBuilder = getSelectConstructorTreeViewBuilder;
+            _getSelectFragmentTreeViewBuilder = getSelectFragmentTreeViewBuilder;
             _getSelectFunctionTreeViewBuilder = getSelectFunctionTreeViewBuilder;
             _getEditVariableTreeViewBuilder = getEditVariableTreeViewBuilder;
             _getRulesExplorerTreeViewBuilder = getRulesExplorerTreeViewBuilder;
@@ -66,6 +70,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories
 
         public ISelectConstructorTreeViewBuilder GetSelectConstructorTreeViewBuilder(ISelectConstructorControl selectConstructorControl)
             => _getSelectConstructorTreeViewBuilder(selectConstructorControl);
+
+        public ISelectFragmentTreeViewBuilder GetSelectFragmentTreeViewBuilder(ISelectFragmentControl selectFragmentControl)
+            => _getSelectFragmentTreeViewBuilder(selectFragmentControl);
 
         public ISelectFunctionTreeViewBuilder GetSelectFunctionTreeViewBuilder(ISelectFunctionControl selectFunctionControl)
             => _getSelectFunctionTreeViewBuilder(selectFunctionControl);

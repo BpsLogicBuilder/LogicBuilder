@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -22,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm> _getEditObjectListForm;
         private readonly Func<Type, IEditVariableForm> _getEditVariableForm;
         private readonly Func<Type, ISelectConstructorForm> _getSelectConstructorForm;
+        private readonly Func<ISelectFragmentForm> _getSelectFragmentForm;
         private readonly Func<IList<string>, string, ISelectFromDomainForm> _getSelectFromDomainForm;
         private readonly Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> _getSelectFunctionForm;
 
@@ -31,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm> getEditObjectListForm,
             Func<Type, IEditVariableForm> getEditVariableForm,
             Func<Type, ISelectConstructorForm> getSelectConstructorForm,
+            Func<ISelectFragmentForm> getSelectFragmentForm,
             Func<IList<string>, string, ISelectFromDomainForm> getSelectFromDomainForm,
             Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> getSelectFunctionForm)
         {
@@ -38,6 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getEditLiteralListForm = getEditLiteralListForm;
             _getEditObjectListForm = getEditObjectListForm;
             _getSelectConstructorForm = getSelectConstructorForm;
+            _getSelectFragmentForm = getSelectFragmentForm;
             _getSelectFromDomainForm = getSelectFromDomainForm;
             _getSelectFunctionForm = getSelectFunctionForm;
             _getEditVariableForm = getEditVariableForm;
@@ -71,6 +75,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = _getSelectConstructorForm(assignedTo);
             return (ISelectConstructorForm)_scopedService;
+        }
+
+        public ISelectFragmentForm GetSelectFragmentForm()
+        {
+            _scopedService = _getSelectFragmentForm();
+            return (ISelectFragmentForm)_scopedService;
         }
 
         public ISelectFromDomainForm GetSelectFromDomainForm(IList<string> domain, string comments)

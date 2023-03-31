@@ -790,6 +790,10 @@
 	<data name="fragmentNodeDescription" xml:space="preserve">
     <value>XML Data FragmentFR</value>
   </data>
+	<data name="fragmentNotConfiguredFormat" xml:space="preserve">
+    <value>Fragment "{0}" is not configured.FR</value>
+    <comment>0=fragmentName</comment>
+  </data>
 	<data name="fragmentsRootNodeText" xml:space="preserve">
     <value>FragmentsFR</value>
   </data>
@@ -1818,6 +1822,9 @@
   </data>
 	<data name="validConstructorMustBeSelected" xml:space="preserve">
     <value>A valid constructor must be selected.FR</value>
+  </data>
+	<data name="validFragmentMustBeSelected" xml:space="preserve">
+    <value>A valid fragment must be selected.FR</value>
   </data>
 	<data name="validFunctionMustBeSelected" xml:space="preserve">
     <value>A valid function must be selected.FR</value>

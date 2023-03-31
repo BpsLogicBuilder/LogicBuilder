@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
@@ -21,6 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditObjectListForm GetEditObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument literalListXmlDocument);
         IEditVariableForm GetEditVariableForm(Type assignedTo);
         ISelectConstructorForm GetSelectConstructorForm(Type assignedTo);
+        ISelectFragmentForm GetSelectFragmentForm();
         ISelectFromDomainForm GetSelectFromDomainForm(IList<string> domain, string comments);
         ISelectFunctionForm GetSelectFunctionForm(Type assignedTo, IDictionary<string, Function> functionDisctionary, IList<TreeFolder> treeFolders);
     }

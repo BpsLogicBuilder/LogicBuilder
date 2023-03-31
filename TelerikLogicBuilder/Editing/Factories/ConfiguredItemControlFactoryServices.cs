@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -14,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddSelectEditingControlFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<IConfiguredItemControlFactory, ConfiguredItemControlFactory>()
                 .AddTransient<Func<ISelectConstructorForm, Type, ISelectConstructorControl>>
                 (
                     provider =>
@@ -29,7 +32,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedToType
                     )
                 )
-                .AddTransient<IConfiguredItemControlFactory, ConfiguredItemControlFactory>()
+                .AddTransient<Func<ISelectFragmentForm, ISelectFragmentControl>>
+                (
+                    provider =>
+                    selectFragmentForm => new SelectFragmentControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ISelectFragmentViewControlFactory>(),
+                        selectFragmentForm
+                    )
+                )
                 .AddTransient<Func<ISelectFunctionForm, Type, ISelectFunctionControl>>
                 (
                     provider =>

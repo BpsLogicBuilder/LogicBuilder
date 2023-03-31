@@ -10,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -106,6 +107,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         assignedTo
+                    )
+                )
+                .AddTransient<Func<ISelectFragmentForm>>//the should not pass on the same injected instance if requested more than once
+                (
+                    provider =>
+                    () => new SelectFragmentForm
+                    (
+                        provider.GetRequiredService<IConfiguredItemControlFactory>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IServiceFactory>()
                     )
                 )
                 .AddTransient<Func<IList<string>, string, ISelectFromDomainForm>>

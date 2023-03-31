@@ -73,6 +73,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSearcherFactories()
                 .AddSelectConstructorViewControlFactories()
                 .AddSelectEditingControlFactories()
+                .AddSelectFragmentViewControlFactories()
                 .AddSelectFunctionViewControlFactories()
                 .AddSelectVariableViewControlFactories();
         }

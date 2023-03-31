@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -109,6 +110,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         selectConstructorControl
+                    )
+                )
+                .AddTransient<Func<ISelectFragmentControl, ISelectFragmentTreeViewBuilder>>
+                (
+                    provider =>
+                    selectFragmentControl => new SelectFragmentTreeViewBuilder
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        selectFragmentControl
                     )
                 )
                 .AddTransient<Func<ISelectFunctionControl, ISelectFunctionTreeViewBuilder>>

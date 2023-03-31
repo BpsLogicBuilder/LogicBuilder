@@ -84,6 +84,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
         {
             AddButtonClickCommand(btnEditVariableForm, new EditVariableFormCommand(this));
             AddButtonClickCommand(btnSelectConstructorForm, new SelectConstructorFormCommand(this));
+            AddButtonClickCommand(btnSelectFragmentForm, new SelectFragmentFormCommand(this));
             AddButtonClickCommand
             (
                 btnSelectBoolFunction,
