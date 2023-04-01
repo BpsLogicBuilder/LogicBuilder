@@ -6,6 +6,8 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -17,6 +19,8 @@ using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -81,6 +85,27 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo,
                         literalListInfo,
                         objectListXmlDocument
+                    )
+                )
+                .AddTransient<Func<Type, XmlDocument, IEditValueFunctionForm>>
+                (
+                    provider =>
+                    (assignedTo, functionXmlDocument) => new EditValueFunctionForm
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditValueFunctionCommandFactory>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionHelper>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        assignedTo,
+                        functionXmlDocument
                     )
                 )
                 .AddTransient<Func<Type, IEditVariableForm>>

@@ -8,6 +8,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
     internal interface ISelectFunctionForm : IApplicationForm
     {
         IDictionary<string, Function> FunctionDictionary { get; }
+        string FunctionName { get; }
         IList<TreeFolder> TreeFolders { get; }
+
+        void SetFunction(string functionName);
     }
 }

@@ -69,11 +69,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
         public IDictionary<string, Function> FunctionDictionary { get; }
 
+        public string FunctionName => SelectFunctionControl.FunctionName ?? throw _exceptionHelper.CriticalException("{B7181C60-6D6E-45FC-AE0A-895CE4B1414C}");
+
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
         public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
 
         public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
+
+        public void SetFunction(string functionName)
+        {
+            SelectFunctionControl.SetFunction(functionName);
+        }
 
         public void SetMessage(string message, string title = "") => _dialogFormMessageControl.SetMessage(message, title);
 

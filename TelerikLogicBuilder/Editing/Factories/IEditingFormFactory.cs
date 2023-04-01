@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment;
@@ -20,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor);
         IEditLiteralListForm GetEditLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);
         IEditObjectListForm GetEditObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument literalListXmlDocument);
+        IEditValueFunctionForm GetEditValueFunctionForm(Type assignedTo, XmlDocument functionXmlDocument);
         IEditVariableForm GetEditVariableForm(Type assignedTo);
         ISelectConstructorForm GetSelectConstructorForm(Type assignedTo);
         ISelectFragmentForm GetSelectFragmentForm();

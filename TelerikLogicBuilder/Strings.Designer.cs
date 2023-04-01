@@ -1726,6 +1726,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The function category &quot;Dialog Form&quot; is not valid for the boolean function &quot;{0}&quot;..
+        /// </summary>
+        internal static string dialogFunctionsInvalidForBooleanFunctionFormat {
+            get {
+                return ResourceManager.GetString("dialogFunctionsInvalidForBooleanFunctionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The function category &quot;Dialog Form&quot; is not valid for the value function &quot;{0}&quot;..
+        /// </summary>
+        internal static string dialogFunctionsInvalidForValueFunctionFormat {
+            get {
+                return ResourceManager.GetString("dialogFunctionsInvalidForValueFunctionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shape with multiple connectors has {0} invalid connector(s)..
         /// </summary>
         internal static string dialogInvalidConnectorsFormat {
@@ -6807,6 +6825,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableVisibleTextEnd {
             get {
                 return ResourceManager.GetString("variableVisibleTextEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The return type Void is not valid for the value function &quot;{0}&quot;..
+        /// </summary>
+        internal static string voidInvalidForValueFunctionFormat {
+            get {
+                return ResourceManager.GetString("voidInvalidForValueFunctionFormat", resourceCulture);
             }
         }
         

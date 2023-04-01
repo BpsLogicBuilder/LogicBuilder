@@ -59,6 +59,7 @@
             btnEditTableFunctionsFormXml = new Telerik.WinControls.UI.RadButton();
             btnEditValueFunctionFormXml = new Telerik.WinControls.UI.RadButton();
             btnSelectFragmentForm = new Telerik.WinControls.UI.RadButton();
+            btnEditValueFunctionForm = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)btnEditVariableForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectConstructorForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectBoolFunction).BeginInit();
@@ -91,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)btnEditTableFunctionsFormXml).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnEditValueFunctionFormXml).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectFragmentForm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditValueFunctionForm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this).BeginInit();
             SuspendLayout();
             // 
@@ -227,7 +229,7 @@
             radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelApplication.Location = new System.Drawing.Point(0, 0);
             radPanelApplication.Name = "radPanelApplication";
-            radPanelApplication.Size = new System.Drawing.Size(1068, 60);
+            radPanelApplication.Size = new System.Drawing.Size(1122, 60);
             radPanelApplication.TabIndex = 12;
             // 
             // radGroupBoxApplication
@@ -239,13 +241,13 @@
             radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
             radGroupBoxApplication.Name = "radGroupBoxApplication";
             radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            radGroupBoxApplication.Size = new System.Drawing.Size(1068, 60);
+            radGroupBoxApplication.Size = new System.Drawing.Size(1122, 60);
             radGroupBoxApplication.TabIndex = 0;
             radGroupBoxApplication.Text = "Application";
             // 
             // btnEditLiteralListForm
             // 
-            btnEditLiteralListForm.Location = new System.Drawing.Point(278, 118);
+            btnEditLiteralListForm.Location = new System.Drawing.Point(278, 148);
             btnEditLiteralListForm.Name = "btnEditLiteralListForm";
             btnEditLiteralListForm.Size = new System.Drawing.Size(179, 24);
             btnEditLiteralListForm.TabIndex = 13;
@@ -253,7 +255,7 @@
             // 
             // btnEditObjectListForm
             // 
-            btnEditObjectListForm.Location = new System.Drawing.Point(278, 148);
+            btnEditObjectListForm.Location = new System.Drawing.Point(278, 178);
             btnEditObjectListForm.Name = "btnEditObjectListForm";
             btnEditObjectListForm.Size = new System.Drawing.Size(179, 24);
             btnEditObjectListForm.TabIndex = 14;
@@ -355,12 +357,21 @@
             btnSelectFragmentForm.TabIndex = 26;
             btnSelectFragmentForm.Text = "Select Fragment Form";
             // 
+            // btnEditValueFunctionForm
+            // 
+            btnEditValueFunctionForm.Location = new System.Drawing.Point(278, 118);
+            btnEditValueFunctionForm.Name = "btnEditValueFunctionForm";
+            btnEditValueFunctionForm.Size = new System.Drawing.Size(179, 24);
+            btnEditValueFunctionForm.TabIndex = 27;
+            btnEditValueFunctionForm.Text = "Edit Value Function Form";
+            // 
             // RadForm1
             // 
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1068, 465);
+            ClientSize = new System.Drawing.Size(1122, 370);
+            Controls.Add(btnEditValueFunctionForm);
             Controls.Add(btnSelectFragmentForm);
             Controls.Add(btnEditValueFunctionFormXml);
             Controls.Add(btnEditTableFunctionsFormXml);
@@ -426,6 +437,7 @@
             ((System.ComponentModel.ISupportInitialize)btnEditTableFunctionsFormXml).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnEditValueFunctionFormXml).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnSelectFragmentForm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnEditValueFunctionForm).EndInit();
             ((System.ComponentModel.ISupportInitialize)this).EndInit();
             ResumeLayout(false);
         }
@@ -463,5 +475,6 @@
         private Telerik.WinControls.UI.RadButton btnEditTableFunctionsFormXml;
         private Telerik.WinControls.UI.RadButton btnEditValueFunctionFormXml;
         private Telerik.WinControls.UI.RadButton btnSelectFragmentForm;
+        private Telerik.WinControls.UI.RadButton btnEditValueFunctionForm;
     }
 }

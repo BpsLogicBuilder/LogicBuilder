@@ -65,6 +65,11 @@ namespace TelerikLogicBuilder.Tests.Mocks
             throw new NotImplementedException();
         }
 
+        public void SetFunction(string functionName)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetMessage(string message, string title = "")
         {
             throw new NotImplementedException();

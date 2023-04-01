@@ -98,6 +98,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
         public void SetErrorMessage(string message) => selectFunctionForm.SetErrorMessage(message);
 
+        public void SetFunction(string functionName)
+        {
+            CurrentViewControl.SelectFunction(functionName);
+        }
+
         public void SetMessage(string message, string title = "") => selectFunctionForm.SetMessage(message, title);
 
         private void AddChangeEvents()

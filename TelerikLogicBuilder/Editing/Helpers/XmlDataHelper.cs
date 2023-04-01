@@ -85,6 +85,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
+        public string BuildEmptyFunctionXml(string name, string visibleText)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.FUNCTIONELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, name);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
+                    xmlTextWriter.WriteElementString(XmlDataConstants.GENERICARGUMENTSELEMENT, string.Empty);
+                    xmlTextWriter.WriteElementString(XmlDataConstants.PARAMETERSELEMENT, string.Empty);
+                    xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildFunctionsXml(string innerXml)
         {
             StringBuilder stringBuilder = new();

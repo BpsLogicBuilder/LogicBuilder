@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
         IList<TreeFolder> TreeFolders { get; }
         void ClearMessage();
         void SetErrorMessage(string message);
+        void SetFunction(string functionName);
         void SetMessage(string message, string title = "");
     }
 }

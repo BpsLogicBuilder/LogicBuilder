@@ -4,7 +4,6 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditXml;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -27,8 +26,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Commands
             this.editConstructorForm = editConstructorForm;
         }
 
-        private HelperButtonDropDownList CmbSelectConstructor => editConstructorForm.CmbSelectConstructor;
-
         public override void Execute()
         {
             using IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
@@ -45,7 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Commands
             (
                 _xmlDocumentHelpers.ToXmlElement(editXmlForm.XmlResult)
             );
-            CmbSelectConstructor.Text = constructorData.Name;
+            editConstructorForm.SetConstructorName(constructorData.Name);
             editConstructorForm.ReloadXmlDocument(editXmlForm.XmlResult);
             editConstructorForm.RebuildTreeView();
         }

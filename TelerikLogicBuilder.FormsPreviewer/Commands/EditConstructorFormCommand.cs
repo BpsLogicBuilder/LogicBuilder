@@ -38,7 +38,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 
             IEditConstructorForm selectConstructorForm = disposableManager.GetEditConstructorForm
 			(
-                typeof(object),
+                type!,
                 xmlDococument,
 				new HashSet<string>(constructors.Keys),
                 closedConstructor?.Constructor.Name!
@@ -48,7 +48,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
                 return;
         }
 
-        string button2Xml = @"<constructor name=""DataFormSettingsParameters"" visibleText=""DataFormSettingsParameters: title=Add Instructor;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingsParameters: fieldSettings;FormType: formType;Type: modelType;FormRequestDetailsParameters: requestDetails"">
+        readonly string button2Xml = @"<constructor name=""DataFormSettingsParameters"" visibleText=""DataFormSettingsParameters: title=Add Instructor;GenericListOfValidationMessageParameters: validationMessages;GenericListOfFormItemSettingsParameters: fieldSettings;FormType: formType;Type: modelType;FormRequestDetailsParameters: requestDetails"">
 								<genericArguments />
 								<parameters>
 									<literalParameter name=""title"">Add Instructor</literalParameter>

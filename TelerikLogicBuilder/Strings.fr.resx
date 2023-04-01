@@ -648,6 +648,14 @@
 	<data name="dialogFunctionsInvalidConnector" xml:space="preserve">
     <value>Dialog Functions are invalid for Connectors.FR</value>
   </data>
+	<data name="dialogFunctionsInvalidForBooleanFunctionFormat" xml:space="preserve">
+    <value>The function category "Dialog Form" is not valid for the boolean function "{0}".FR</value>
+		<comment>0=function name</comment>
+  </data>
+	<data name="dialogFunctionsInvalidForValueFunctionFormat" xml:space="preserve">
+    <value>The function category "Dialog Form" is not valid for the value function "{0}".FR</value>
+		<comment>0=function name</comment>
+  </data>
 	<data name="dialogInvalidConnectorsFormat" xml:space="preserve">
     <value>Shape with multiple connectors has {0} invalid connector(s).FR</value>
     <comment>0=#OfInvalidConnectors</comment>
@@ -1985,6 +1993,10 @@
 	<data name="variableVisibleTextEnd" xml:space="preserve">
     <value>&gt;</value>
     <comment>Must be a string with length==1 i.e. character</comment>
+  </data>
+	<data name="voidInvalidForValueFunctionFormat" xml:space="preserve">
+    <value>The return type Void is not valid for the value function "{0}".FR</value>
+		<comment>0=function name</comment>
   </data>
 	<data name="waitConditionShapeDataRequired" xml:space="preserve">
     <value>Wait Condition Shape requires data.FR</value>

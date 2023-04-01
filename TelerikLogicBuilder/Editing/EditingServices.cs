@@ -59,6 +59,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddEditingFormHelperFactories()
                 .AddEditLiteralListCommandFactories()
                 .AddEditObjectListCommandFactories()
+                .AddEditValueFunctionCommandFactories()
                 .AddEditXmlFormFactories()
                 .AddEditXmlHelperFactories()
                 .AddDocumentEditorFactories()
