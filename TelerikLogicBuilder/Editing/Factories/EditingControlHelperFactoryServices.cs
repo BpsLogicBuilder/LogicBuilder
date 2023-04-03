@@ -66,7 +66,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
-                        provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
                     )

@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
 using System.Collections.Generic;
@@ -17,20 +16,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     {
         private readonly IEditVariableHelper _editVariableHelper;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IVariableDataParser _variableDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IRichInputBoxValueControl richInputBoxValueControl;
 
         public RichInputBoxEventsHelper(
             IExceptionHelper exceptionHelper,
             IFieldControlHelperFactory fieldControlHelperFactory,
-            IVariableDataParser variableDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IRichInputBoxValueControl richInputBoxValueControl)
         {
             _editVariableHelper = fieldControlHelperFactory.GetEditVariableHelper(richInputBoxValueControl);
             _exceptionHelper = exceptionHelper;
-            _variableDataParser = variableDataParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
@@ -81,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             switch (xmlElement.Name)
             {
                 case XmlDataConstants.VARIABLEELEMENT:
-                    _editVariableHelper.Edit(richInputBoxValueControl.AssignedTo, _variableDataParser.Parse(xmlElement));
+                    _editVariableHelper.Edit(richInputBoxValueControl.AssignedTo, xmlElement);
                     break;
                 case XmlDataConstants.FUNCTIONELEMENT:
                     //UpdateFunction(xmlString);

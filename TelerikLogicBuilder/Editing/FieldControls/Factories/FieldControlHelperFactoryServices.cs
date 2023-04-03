@@ -20,6 +20,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     richInputBoxValueControl => new EditObjectVariableHelper
                     (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
                     )
@@ -29,6 +31,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     richInputBoxValueControl => new EditVariableHelper
                     (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
                     )
@@ -41,7 +45,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),
-                        provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         objectRichTextBoxValueControl
                     )

@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
@@ -12,7 +11,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
     {
         private readonly IEditObjectVariableHelper _editObjectVariableHelper;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IVariableDataParser _variableDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IObjectRichTextBoxValueControl objectRichTextBoxValueControl;
@@ -20,13 +18,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
         public EditObjectRichTextBoxVariableCommand(
             IExceptionHelper exceptionHelper,
             IFieldControlHelperFactory fieldControlHelperFactory,
-            IVariableDataParser variableDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
         {
             _editObjectVariableHelper = fieldControlHelperFactory.GetEditObjectVariableHelper(objectRichTextBoxValueControl);
             _exceptionHelper = exceptionHelper;
-            _variableDataParser = variableDataParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.objectRichTextBoxValueControl = objectRichTextBoxValueControl;
         }
@@ -41,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             (
                 objectRichTextBoxValueControl.AssignedTo,
                 childElement?.Name == XmlDataConstants.VARIABLEELEMENT
-                    ? _variableDataParser.Parse(childElement)
+                    ? childElement
                     : null
             );
 

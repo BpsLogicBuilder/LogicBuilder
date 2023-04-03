@@ -4,7 +4,6 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System.Xml;
 
@@ -13,18 +12,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
     internal class EditRichInputBoxVariableCommand : ClickCommandBase
     {
         private readonly IEditVariableHelper _editVariableHelper;
-        private readonly IVariableDataParser _variableDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IRichInputBoxValueControl richInputBoxValueControl;
 
         public EditRichInputBoxVariableCommand(
             IFieldControlHelperFactory fieldControlHelperFactory,
-            IVariableDataParser variableDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IRichInputBoxValueControl richInputBoxValueControl)
         {
             _editVariableHelper = fieldControlHelperFactory.GetEditVariableHelper(richInputBoxValueControl);
-            _variableDataParser = variableDataParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
@@ -50,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                         _editVariableHelper.Edit
                         (
                             richInputBoxValueControl.AssignedTo,
-                            _variableDataParser.Parse(xmlElement)
+                            xmlElement
                         );
                         return;
                     }

@@ -2,7 +2,6 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
@@ -11,7 +10,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IEditObjectVariableHelper _editObjectVariableHelper;
-        private readonly IVariableDataParser _variableDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IObjectRichTextBoxValueControl objectRichTextBoxValueControl;
@@ -19,13 +17,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         public ObjectRichTextBoxEventsHelper(
             IExceptionHelper exceptionHelper,
             IFieldControlHelperFactory fieldControlHelperFactory,
-            IVariableDataParser variableDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
         {
             _editObjectVariableHelper = fieldControlHelperFactory.GetEditObjectVariableHelper(objectRichTextBoxValueControl);
             _exceptionHelper = exceptionHelper;
-            _variableDataParser = variableDataParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.objectRichTextBoxValueControl = objectRichTextBoxValueControl;
         }
@@ -58,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                     //EditFunction();
                     break;
                 case XmlDataConstants.VARIABLEELEMENT:
-                    _editObjectVariableHelper.Edit(objectRichTextBoxValueControl.AssignedTo, _variableDataParser.Parse(childElement));
+                    _editObjectVariableHelper.Edit(objectRichTextBoxValueControl.AssignedTo, childElement);
                     break;
                 case XmlDataConstants.LITERALLISTELEMENT:
                     //EditLiteralList();
