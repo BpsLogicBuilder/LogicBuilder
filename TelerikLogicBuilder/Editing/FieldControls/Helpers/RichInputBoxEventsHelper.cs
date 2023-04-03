@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
     internal class RichInputBoxEventsHelper : IRichInputBoxEventsHelper
     {
         private readonly IEditLiteralConstructorHelper _editLiteralConstructorHelper;
+        private readonly IEditLiteralFunctionHelper _editLiteralFunctionHelper;
         private readonly IEditLiteralVariableHelper _editLiteralVariableHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -26,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             IRichInputBoxValueControl richInputBoxValueControl)
         {
             _editLiteralConstructorHelper = fieldControlHelperFactory.GetEditLiteralConstructorHelper(richInputBoxValueControl);
+            _editLiteralFunctionHelper = fieldControlHelperFactory.GetEditLiteralFunctionHelper(richInputBoxValueControl); ;
             _editLiteralVariableHelper = fieldControlHelperFactory.GetEditLiteralVariableHelper(richInputBoxValueControl);
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -81,7 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                     _editLiteralVariableHelper.Edit(richInputBoxValueControl.AssignedTo, xmlElement);
                     break;
                 case XmlDataConstants.FUNCTIONELEMENT:
-                    //UpdateFunction(xmlString);
+                    _editLiteralFunctionHelper.Edit(richInputBoxValueControl.AssignedTo, xmlElement);
                     break;
                 case XmlDataConstants.CONSTRUCTORELEMENT:
                     _editLiteralConstructorHelper.Edit(richInputBoxValueControl.AssignedTo, xmlElement);

@@ -82,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 (
                     _xmlDocumentHelpers.GetDocumentElement(editConstructorForm.XmlDocument).OuterXml
                 ),
-                objectRichTextBoxValueControl.Application
+                Application
             );
 
             objectRichTextBoxValueControl.UpdateXmlElement(resultElement.OuterXml);

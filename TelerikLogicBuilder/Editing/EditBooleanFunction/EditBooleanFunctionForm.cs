@@ -158,6 +158,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction
             InitializeSelectFunctionDropDownList();
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
+            cmbSelectFunction.Changed += CmbSelectFunction_Changed;
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
