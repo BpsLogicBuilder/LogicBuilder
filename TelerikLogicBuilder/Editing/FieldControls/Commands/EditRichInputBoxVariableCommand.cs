@@ -11,7 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class EditRichInputBoxVariableCommand : ClickCommandBase
     {
-        private readonly IEditVariableHelper _editVariableHelper;
+        private readonly IEditLiteralVariableHelper _editLiteralVariableHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IRichInputBoxValueControl richInputBoxValueControl;
 
@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             IXmlDocumentHelpers xmlDocumentHelpers,
             IRichInputBoxValueControl richInputBoxValueControl)
         {
-            _editVariableHelper = fieldControlHelperFactory.GetEditVariableHelper(richInputBoxValueControl);
+            _editLiteralVariableHelper = fieldControlHelperFactory.GetEditLiteralVariableHelper(richInputBoxValueControl);
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                     XmlElement xmlElement = _xmlDocumentHelpers.ToXmlElement(xmlString);
                     if (xmlElement.Name == XmlDataConstants.VARIABLEELEMENT)
                     {
-                        _editVariableHelper.Edit
+                        _editLiteralVariableHelper.Edit
                         (
                             richInputBoxValueControl.AssignedTo,
                             xmlElement
@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                 }
             }
 
-            _editVariableHelper.Edit(richInputBoxValueControl.AssignedTo);
+            _editLiteralVariableHelper.Edit(richInputBoxValueControl.AssignedTo);
         }
     }
 }

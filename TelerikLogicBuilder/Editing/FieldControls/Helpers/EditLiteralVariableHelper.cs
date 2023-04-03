@@ -13,14 +13,14 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
-    internal class EditVariableHelper : IEditVariableHelper
+    internal class EditLiteralVariableHelper : IEditLiteralVariableHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IVariableDataParser _variableDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IRichInputBoxValueControl richInputBoxValueControl;
 
-        public EditVariableHelper(
+        public EditLiteralVariableHelper(
             IExceptionHelper exceptionHelper,
             IVariableDataParser variableDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,

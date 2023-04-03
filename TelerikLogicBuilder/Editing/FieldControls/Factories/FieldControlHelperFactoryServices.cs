@@ -25,10 +25,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         richInputBoxValueControl
                     )
                 )
-                .AddTransient<Func<IRichInputBoxValueControl, IEditVariableHelper>>
+                .AddTransient<Func<IRichInputBoxValueControl, IEditLiteralVariableHelper>>
                 (
                     provider =>
-                    richInputBoxValueControl => new EditVariableHelper
+                    richInputBoxValueControl => new EditLiteralVariableHelper
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IVariableDataParser>(),

@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
-    internal interface IEditVariableHelper
+    internal interface IEditLiteralVariableHelper
     {
         void Edit(Type assignedTo, XmlElement? variableElement = null);
     }
