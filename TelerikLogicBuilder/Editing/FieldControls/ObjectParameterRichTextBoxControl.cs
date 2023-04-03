@@ -176,6 +176,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public event EventHandler? Changed;
 
+        public void ClearMessage() => dataGraphEditingControl.ClearMessage();
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
@@ -194,6 +196,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             Color errorColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
             SetPanelBorderForeColor(radPanelRichTextBox, errorColor);
         }
+
+        public void SetErrorMessage(string message) => dataGraphEditingControl.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => dataGraphEditingControl.SetMessage(message, title);
 
         public void SetNormalBackColor()
         {

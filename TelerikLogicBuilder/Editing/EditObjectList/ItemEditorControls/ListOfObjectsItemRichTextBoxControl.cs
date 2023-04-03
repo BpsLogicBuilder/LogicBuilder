@@ -180,6 +180,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControl
 
         public void EnableControls() => Enable(true);
 
+        public void ClearMessage() => editingControl.ClearMessage();
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
@@ -200,6 +202,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControl
             Color errorColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
             SetPanelBorderForeColor(radPanelRichTextBox, errorColor);
         }
+
+        public void SetErrorMessage(string message) => editingControl.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => editingControl.SetMessage(message, title);
 
         public void SetNormalBackColor()
         {

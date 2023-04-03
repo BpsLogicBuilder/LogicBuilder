@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
     internal class ObjectRichTextBoxEventsHelper : IObjectRichTextBoxEventsHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IEditObjectConstructorHelper _editObjectConstructorHelper;
         private readonly IEditObjectVariableHelper _editObjectVariableHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -20,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             IXmlDocumentHelpers xmlDocumentHelpers,
             IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
         {
+            _editObjectConstructorHelper = fieldControlHelperFactory.GetEditObjectConstructorHelper(objectRichTextBoxValueControl);
             _editObjectVariableHelper = fieldControlHelperFactory.GetEditObjectVariableHelper(objectRichTextBoxValueControl);
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -48,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             switch (childElement.Name)
             {
                 case XmlDataConstants.CONSTRUCTORELEMENT:
-                    //EditConstructor();
+                    _editObjectConstructorHelper.Edit(objectRichTextBoxValueControl.AssignedTo, childElement);
                     break;
                 case XmlDataConstants.FUNCTIONELEMENT:
                     //EditFunction();

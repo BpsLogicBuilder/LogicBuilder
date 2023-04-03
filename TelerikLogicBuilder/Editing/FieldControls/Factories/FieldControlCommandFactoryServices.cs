@@ -79,6 +79,9 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     objectRichTextBoxValueControl => new EditObjectRichTextBoxConstructorCommand
                     (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         objectRichTextBoxValueControl
                     )
                 )
@@ -122,6 +125,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     richInputBoxValueControl => new EditRichInputBoxConstructorCommand
                     (
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
                     )
                 )

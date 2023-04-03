@@ -9,7 +9,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         ApplicationTypeInfo Application { get; }
         Type? AssignedTo { get; }
         ObjectRichTextBox RichTextBox { get; }
+
+        void ClearMessage();
         void RequestDocumentUpdate();
+        void SetErrorMessage(string message);
+        void SetMessage(string message, string title = "");
         void UpdateXmlElement(string innerXml);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using System;
 using System.Collections.Generic;
 using Telerik.WinControls.UI;
@@ -7,6 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
     internal interface IRichInputBoxValueControl : IValueControl
     {
+        ApplicationTypeInfo Application { get; }
         Type AssignedTo { get; }
         IList<RadButton> CommandButtons { get; }
         RadMenuItem MnuItemInsert { get; }
@@ -20,5 +22,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         RadMenuItem MnuItemPaste { get; }
         RadMenuItem MnuItemToCamelCase { get; }
         RichInputBox RichInputBox { get; }
+
+        void ClearMessage();
+        void SetErrorMessage(string message);
+        void SetMessage(string message, string title = "");
     }
 }

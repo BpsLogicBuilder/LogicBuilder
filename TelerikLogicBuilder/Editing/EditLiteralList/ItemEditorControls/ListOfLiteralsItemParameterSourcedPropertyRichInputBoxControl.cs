@@ -143,11 +143,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public event EventHandler? Changed;
 
-        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
-
         public string Comments => listInfo.Parameter?.Comments ?? string.Empty;
 
         public string? SourceClassName => this.listInfo.ParameterSourceClassName;
+
+        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
         public Type AssignedTo
         {
@@ -196,6 +196,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public void EnableControls() => Enable(true);
 
+        public void ClearMessage() => dataGraphEditingControl.ClearMessage();
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
@@ -211,6 +213,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
             Color errorColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
             SetPanelBorderForeColor(radPanelRichInputBox, errorColor);
         }
+
+        public void SetErrorMessage(string message) => dataGraphEditingControl.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => dataGraphEditingControl.SetMessage(message, title);
 
         public void SetNormalBackColor()
         {

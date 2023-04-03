@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                 }
                 else
                 {
-                    RichInputBox.Select(start, finish - start + 1);
+                    RichInputBox.Select(start, finish - start + 1);//GetBoundary may cause the selection to change
                 }
             }
 

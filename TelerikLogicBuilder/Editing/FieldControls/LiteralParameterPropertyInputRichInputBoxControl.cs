@@ -137,11 +137,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public event EventHandler? Changed;
 
-        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
-
         public string Comments => literalParameter.Comments;
 
         public string? SourceClassName => literalParameter.PropertySource;
+
+        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
         public Type AssignedTo
         {
@@ -183,6 +183,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public XmlElement? XmlElement => _createLiteralParameterXmlElement.Create(literalParameter, MixedXml);
 
+        public void ClearMessage() => dataGraphEditingControl.ClearMessage();
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
@@ -196,6 +198,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             Color errorColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
             SetPanelBorderForeColor(radPanelRichInputBox, errorColor);
         }
+
+        public void SetErrorMessage(string message) => dataGraphEditingControl.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => dataGraphEditingControl.SetMessage(message, title);
 
         public void SetNormalBackColor()
         {

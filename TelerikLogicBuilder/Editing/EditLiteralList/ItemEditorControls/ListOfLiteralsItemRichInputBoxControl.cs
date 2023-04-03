@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -134,6 +135,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public RichInputBox RichInputBox => _richInputBox;
 
+        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
+
         public Type AssignedTo
         {
             get
@@ -166,6 +169,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
 
         public void EnableControls() => Enable(true);
 
+        public void ClearMessage() => dataGraphEditingControl.ClearMessage();
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
@@ -175,6 +180,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         //string types convert multiple items (mixed xml) of different types to a format string so accepts all types.
         //parent control field validation will handle single child cases.  Single items where type != typeof(string) are not valid.
         public void SetAssignedToType(Type type) => _assignedTo = type == typeof(string) ? typeof(object) : type;
+
+        public void SetErrorMessage(string message) => dataGraphEditingControl.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => dataGraphEditingControl.SetMessage(message, title);
 
         public void SetErrorBackColor()
         {

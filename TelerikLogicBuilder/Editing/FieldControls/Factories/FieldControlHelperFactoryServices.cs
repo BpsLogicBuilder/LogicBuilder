@@ -2,7 +2,9 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using System;
@@ -14,13 +16,16 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddFieldControlHelperFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IObjectRichTextBoxValueControl, IEditObjectVariableHelper>>
+                .AddTransient<Func<IRichInputBoxValueControl, IEditLiteralConstructorHelper>>
                 (
                     provider =>
-                    richInputBoxValueControl => new EditObjectVariableHelper
+                    richInputBoxValueControl => new EditLiteralConstructorHelper
                     (
+                        provider.GetRequiredService<IConstructorDataParser>(),
+                        provider.GetRequiredService<IConstructorTypeHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IVariableDataParser>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
                     )
@@ -29,6 +34,31 @@ namespace Microsoft.Extensions.DependencyInjection
                 (
                     provider =>
                     richInputBoxValueControl => new EditLiteralVariableHelper
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IVariableDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        richInputBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IObjectRichTextBoxValueControl, IEditObjectConstructorHelper>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new EditObjectConstructorHelper
+                    (
+                        provider.GetRequiredService<IConstructorDataParser>(),
+                        provider.GetRequiredService<IConstructorTypeHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        richInputBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IObjectRichTextBoxValueControl, IEditObjectVariableHelper>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new EditObjectVariableHelper
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IVariableDataParser>(),

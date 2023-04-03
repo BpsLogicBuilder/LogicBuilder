@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -128,6 +129,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public RichInputBox RichInputBox => _richInputBox;
 
+        public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
+
         public Type AssignedTo
         {
             get
@@ -153,6 +156,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         public XmlElement? XmlElement => _createLiteralParameterXmlElement.Create(literalParameter, MixedXml);
 
+        public void ClearMessage() => dataGraphEditingControl.ClearMessage();
+
         public void HideControls() => ShowControls(false);
 
         public void InvokeChanged() => Changed?.Invoke(this, EventArgs.Empty);
@@ -166,6 +171,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             Color errorColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
             SetPanelBorderForeColor(radPanelRichInputBox, errorColor);
         }
+
+        public void SetErrorMessage(string message) => dataGraphEditingControl.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => dataGraphEditingControl.SetMessage(message, title);
 
         public void SetNormalBackColor()
         {
