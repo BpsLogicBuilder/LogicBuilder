@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction
 {
-    partial class EditValueFunctionForm
+    partial class EditBooleanFunctionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -80,7 +80,7 @@
             radPanelBottom.Location = new System.Drawing.Point(0, 356);
             radPanelBottom.Name = "radPanelBottom";
             radPanelBottom.Size = new System.Drawing.Size(1003, 150);
-            radPanelBottom.TabIndex = 5;
+            radPanelBottom.TabIndex = 6;
             // 
             // radPanelMessages
             // 
@@ -167,7 +167,7 @@
             radSplitContainerTop.RootElement.MinSize = new System.Drawing.Size(25, 25);
             radSplitContainerTop.Size = new System.Drawing.Size(1003, 356);
             radSplitContainerTop.SplitterWidth = 8;
-            radSplitContainerTop.TabIndex = 6;
+            radSplitContainerTop.TabIndex = 7;
             radSplitContainerTop.TabStop = false;
             // 
             // splitPanelLeft
@@ -275,7 +275,7 @@
             radGroupBoxApplication.TabIndex = 0;
             radGroupBoxApplication.Text = "Application";
             // 
-            // EditValueFunctionForm
+            // EditBooleanFunctionForm
             // 
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -283,8 +283,8 @@
             ClientSize = new System.Drawing.Size(1003, 506);
             Controls.Add(radSplitContainerTop);
             Controls.Add(radPanelBottom);
-            Name = "EditValueFunctionForm";
-            Text = "Edit Function ";
+            Name = "EditBooleanFunctionForm";
+            Text = "Edit Function";
             ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
             radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();

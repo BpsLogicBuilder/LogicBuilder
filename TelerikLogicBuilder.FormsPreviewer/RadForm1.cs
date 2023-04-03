@@ -147,6 +147,14 @@ namespace TelerikLogicBuilder.FormsPreviewer
             );
             AddButtonClickCommand
             (
+                btnEditBooleanFunctionForm,
+                new EditBooleanFunctionFormCommand
+                (
+                    this
+                )
+            );
+            AddButtonClickCommand
+            (
                 btnEditValueFunctionForm,
                 new EditValueFunctionFormCommand
                 (

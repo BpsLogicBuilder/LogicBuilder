@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -8,11 +8,11 @@ using System.Xml;
 
 namespace TelerikLogicBuilder.FormsPreviewer.Commands
 {
-    internal class EditValueFunctionFormCommand : ClickCommandBase
+    internal class EditBooleanFunctionFormCommand : ClickCommandBase
     {
         private readonly RadForm1 radForm;
 
-        public EditValueFunctionFormCommand(RadForm1 radForm)
+        public EditBooleanFunctionFormCommand(RadForm1 radForm)
         {
             this.radForm = radForm;
         }
@@ -23,23 +23,24 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
             XmlDocument xmlDococument = new();
             xmlDococument.LoadXml(xml);
 
-            IEditValueFunctionForm editValueFunctionForm = disposableManager.GetEditValueFunctionForm
+            IEditBooleanFunctionForm editBooleanFunctionForm = disposableManager.GetEditBooleanFunctionForm
             (
-                typeof(System.Type),
                 xmlDococument
             );
 
-            editValueFunctionForm.ShowDialog(radForm);
-            if (editValueFunctionForm.DialogResult != DialogResult.OK)
+            editBooleanFunctionForm.ShowDialog(radForm);
+            if (editBooleanFunctionForm.DialogResult != DialogResult.OK)
                 return;
         }
 
-        readonly string xml = @"<function name=""Get Type"" visibleText=""Get Type: assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"">
+        readonly string xml = @"<function name=""Equals"" visibleText=""&lt;SearchText&gt; Equals Green"">
 	                                <genericArguments />
 	                                <parameters>
-		                                <literalParameter name=""assemblyQualifiedTypeName"">Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+		                                <literalParameter name=""value1"">
+			                                <variable name=""SearchText"" visibleText=""SearchText"" />
+		                                </literalParameter>
+		                                <literalParameter name=""value2"">Green</literalParameter>
 	                                </parameters>
                                 </function>";
-
     }
 }

@@ -1,5 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
@@ -34,6 +36,26 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingFormFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<XmlDocument?, IEditBooleanFunctionForm>>
+                (
+                    provider =>
+                    functionXmlDocument => new EditBooleanFunctionForm
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditBooleanFunctionCommandFactory>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionHelper>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        functionXmlDocument
+                    )
+                )
                 .AddTransient<Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm>>
                 (
                     provider =>
@@ -87,7 +109,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         objectListXmlDocument
                     )
                 )
-                .AddTransient<Func<Type, XmlDocument, IEditValueFunctionForm>>
+                .AddTransient<Func<Type, XmlDocument?, IEditValueFunctionForm>>
                 (
                     provider =>
                     (assignedTo, functionXmlDocument) => new EditValueFunctionForm
@@ -134,7 +156,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo
                     )
                 )
-                .AddTransient<Func<ISelectFragmentForm>>//the should not pass on the same injected instance if requested more than once
+                .AddTransient<Func<ISelectFragmentForm>>//the factory should not pass on the same injected instance if requested more than once
                 (
                     provider =>
                     () => new SelectFragmentForm

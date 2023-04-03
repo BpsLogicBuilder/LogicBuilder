@@ -5758,6 +5758,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The return type must be Boolean for the function &quot;{0}&quot;..
+        /// </summary>
+        internal static string returnTypeMustBeBooleanFormat {
+            get {
+                return ResourceManager.GetString("returnTypeMustBeBooleanFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Row Index {0} is invalid..
         /// </summary>
         internal static string rowIndexIsInvalidFormat {

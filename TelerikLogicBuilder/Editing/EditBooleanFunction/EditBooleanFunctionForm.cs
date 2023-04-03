@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -24,15 +24,15 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction
 {
-    internal partial class EditValueFunctionForm : Telerik.WinControls.UI.RadForm, IEditValueFunctionForm
+    internal partial class EditBooleanFunctionForm : Telerik.WinControls.UI.RadForm, IEditBooleanFunctionForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
         private readonly IConfigurationService _configurationService;
         private readonly IDataGraphEditingFormEventsHelper _dataGraphEditingFormEventsHelper;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
-        private readonly IEditValueFunctionCommandFactory _editFunctionCommandFactory;
+        private readonly IEditBooleanFunctionCommandFactory _editFunctionCommandFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IFunctionDataParser _functionDataParser;
@@ -44,12 +44,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private ApplicationTypeInfo _application;
-        private readonly Type assignedTo;
 
-        public EditValueFunctionForm(
+        public EditBooleanFunctionForm(
             IConfigurationService configurationService,
             IDialogFormMessageControl dialogFormMessageControl,
-            IEditValueFunctionCommandFactory editFunctionCommandFactory,
+            IEditBooleanFunctionCommandFactory editFunctionCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
@@ -59,7 +58,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            Type assignedTo,
             XmlDocument? functionXmlDocument)
         {
             InitializeComponent();
@@ -76,7 +74,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.assignedTo = assignedTo;
 
             if (functionXmlDocument != null)
                 LoadXmlDocument(functionXmlDocument);
@@ -97,7 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
-        public Type AssignedTo => assignedTo;
+        public Type AssignedTo => typeof(bool);
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
@@ -130,8 +127,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
         public void ValidateXmlDocument()
         {
-            //ValueFunction specfic error checks (i.e. not configured, can't be void, can't be dialog) here should not be necessary
-            //New function selections are always checked against _configurationService.FunctionList.ValueFunctions
+            //BooleanFunction specfic error checks (i.e. not configured, must be boolean can't be dialog) here should not be necessary
+            //New function selections are always checked against _configurationService.FunctionList.BooleanFunctions
             _treeViewXmlDocumentHelper.ValidateXmlDocument();
         }
 
@@ -147,7 +144,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
         private void CmbSelectFunctionChanged()
         {
-            if (!_configurationService.FunctionList.ValueFunctions.TryGetValue(cmbSelectFunction.Text, out Function? function))
+            if (!_configurationService.FunctionList.BooleanFunctions.TryGetValue(cmbSelectFunction.Text, out Function? function))
                 return;
 
             _treeViewXmlDocumentHelper.LoadXmlDocument(_xmlDataHelper.BuildEmptyFunctionXml(function.Name, function.Name));
@@ -171,8 +168,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
             _dataGraphEditingFormEventsHelper.Setup();
             SetUpSelectFunctionDropDownList();
-            AddButtonClickCommand(btnPasteXml, _editFunctionCommandFactory.GetEditValueFunctionFormXmlCommand(this));
-            AddButtonClickCommand(cmbSelectFunction, _editFunctionCommandFactory.GetSelectValueFunctionCommand(this));
+            AddButtonClickCommand(btnPasteXml, _editFunctionCommandFactory.GetEditBooleanFunctionFormXmlCommand(this));
+            AddButtonClickCommand(cmbSelectFunction, _editFunctionCommandFactory.GetSelectBooleanFunctionCommand(this));
             LoadTreeview();
         }
 
@@ -196,7 +193,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             if (XmlDocument.DocumentElement == null)
                 return;
 
-            _parametersDataTreeBuilder.CreateFunctionTreeProfile(TreeView, XmlDocument, assignedTo);
+            _parametersDataTreeBuilder.CreateFunctionTreeProfile(TreeView, XmlDocument, AssignedTo);
             if (TreeView.SelectedNode == null)
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }
@@ -207,21 +204,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             (
                 _xmlDocumentHelpers.GetDocumentElement(functionXmlDocument)
             );
-            if (!_configurationService.FunctionList.ValueFunctions.TryGetValue(functionData.Name, out Function? function))
+            if (!_configurationService.FunctionList.BooleanFunctions.TryGetValue(functionData.Name, out Function? function))
             {
                 SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.functionNotConfiguredFormat, functionData.Name));
                 return;
             }
 
-            if (_functionHelper.IsVoid(function))
+            if (!_functionHelper.IsBoolean(function))
             {
-                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.voidInvalidForValueFunctionFormat, functionData.Name));
+                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.returnTypeMustBeBooleanFormat, functionData.Name));
                 return;
             }
 
             if (_functionHelper.IsDialog(function))
             {
-                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.dialogFunctionsInvalidForValueFunctionFormat, functionData.Name));
+                SetErrorMessage(string.Format(CultureInfo.CurrentCulture, Strings.dialogFunctionsInvalidForBooleanFunctionFormat, functionData.Name));
                 return;
             }
 
@@ -233,7 +230,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             _radDropDownListHelper.LoadTextItems
             (
                 cmbSelectFunction.DropDownList,
-                _configurationService.FunctionList.ValueFunctions.Select(f => f.Key).Order(),
+                _configurationService.FunctionList.BooleanFunctions.Select(f => f.Key).Order(),
                 Telerik.WinControls.RadDropDownStyle.DropDown
             );
 

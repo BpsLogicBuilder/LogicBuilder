@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
@@ -19,10 +20,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal class EditingFormFactory : IEditingFormFactory
     {
         private IDisposable? _scopedService;
+        private readonly Func<XmlDocument?, IEditBooleanFunctionForm> _getEditBooleanFunctionForm;
         private readonly Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> _getEditConstructorForm;
         private readonly Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditLiteralListForm> _getEditLiteralListForm;
         private readonly Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm> _getEditObjectListForm;
-        private readonly Func<Type, XmlDocument, IEditValueFunctionForm> _getEditValueFunctionForm;
+        private readonly Func<Type, XmlDocument?, IEditValueFunctionForm> _getEditValueFunctionForm;
         private readonly Func<Type, IEditVariableForm> _getEditVariableForm;
         private readonly Func<Type, ISelectConstructorForm> _getSelectConstructorForm;
         private readonly Func<ISelectFragmentForm> _getSelectFragmentForm;
@@ -30,16 +32,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> _getSelectFunctionForm;
 
         public EditingFormFactory(
+            Func<XmlDocument?, IEditBooleanFunctionForm> getEditBooleanFunctionForm,
             Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> getEditConstructorForm,
             Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditLiteralListForm> getEditLiteralListForm,
             Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm> getEditObjectListForm,
-            Func<Type, XmlDocument, IEditValueFunctionForm> getEditValueFunctionForm,
+            Func<Type, XmlDocument?, IEditValueFunctionForm> getEditValueFunctionForm,
             Func<Type, IEditVariableForm> getEditVariableForm,
             Func<Type, ISelectConstructorForm> getSelectConstructorForm,
             Func<ISelectFragmentForm> getSelectFragmentForm,
             Func<IList<string>, string, ISelectFromDomainForm> getSelectFromDomainForm,
             Func<Type, IDictionary<string, Function>, IList<TreeFolder>, ISelectFunctionForm> getSelectFunctionForm)
         {
+            _getEditBooleanFunctionForm = getEditBooleanFunctionForm;
             _getEditConstructorForm = getEditConstructorForm;
             _getEditLiteralListForm = getEditLiteralListForm;
             _getEditObjectListForm = getEditObjectListForm;
@@ -49,6 +53,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getSelectFragmentForm = getSelectFragmentForm;
             _getSelectFromDomainForm = getSelectFromDomainForm;
             _getSelectFunctionForm = getSelectFunctionForm;
+        }
+
+        public IEditBooleanFunctionForm GetEditBooleanFunctionForm(XmlDocument? functionXmlDocument)
+        {
+            _scopedService = _getEditBooleanFunctionForm(functionXmlDocument);
+            return (IEditBooleanFunctionForm)_scopedService;
         }
 
         public IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor)
@@ -69,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             return (IEditObjectListForm)_scopedService;
         }
 
-        public IEditValueFunctionForm GetEditValueFunctionForm(Type assignedTo, XmlDocument functionXmlDocument)
+        public IEditValueFunctionForm GetEditValueFunctionForm(Type assignedTo, XmlDocument? functionXmlDocument)
         {
             _scopedService = _getEditValueFunctionForm(assignedTo, functionXmlDocument);
             return (IEditValueFunctionForm)_scopedService;

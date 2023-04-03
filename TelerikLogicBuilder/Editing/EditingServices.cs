@@ -51,6 +51,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IUpdateParameterControlValues, UpdateParameterControlValues>()
                 .AddSingleton<IUpdateRichInputBoxXml, UpdateRichInputBoxXml>()
                 .AddSingleton<IXmlDataHelper, XmlDataHelper>()
+                .AddEditBooleanFunctionCommandFactories()
                 .AddEditConstructorCommandFactories()
                 .AddEditingControlFactories()
                 .AddEditingControlHelperFactories()
