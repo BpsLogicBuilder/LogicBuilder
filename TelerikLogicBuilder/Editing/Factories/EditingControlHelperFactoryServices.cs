@@ -58,17 +58,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         editingControl, 
                         edifForm
                     )
-                )
-                .AddTransient<Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper>>
-                (
-                    provider =>
-                    richInputBoxValueControl => new RichInputBoxEventsHelper
-                    (
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        richInputBoxValueControl
-                    )
                 );
         }
     }

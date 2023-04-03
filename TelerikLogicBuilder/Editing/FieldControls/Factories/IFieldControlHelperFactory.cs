@@ -8,6 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         IEditVariableHelper GetEditVariableHelper(IRichInputBoxValueControl richInputBoxValueControl);
         IObjectRichTextBoxEventsHelper GetObjectRichTextBoxEventsHelper(IObjectRichTextBoxValueControl objectRichTextBoxValueControl);
         IParameterRichInputBoxEventsHelper GetParameterRichInputBoxEventsHelper(IParameterRichInputBoxValueControl richInputBoxValueControl);
+        IRichInputBoxEventsHelper GetRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl);
         IUpdateObjectRichTextBoxXml GetUpdateObjectRichTextBoxXml(IObjectRichTextBoxValueControl objectRichTextBoxValueControl);
     }
 }

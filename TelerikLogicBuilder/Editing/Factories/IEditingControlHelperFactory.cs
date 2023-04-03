@@ -8,6 +8,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         ICreateRichInputBoxContextMenu GetCreateRichInputBoxContextMenu(IRichInputBoxValueControl richInputBoxValueControl);
         IEditFunctionControlHelper GetEditFunctionControlHelper(IEditFunctionControl editFunctionControl);
         ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IDataGraphEditingControl editingControl, IEditingForm editingForm);
-        IRichInputBoxEventsHelper GetRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
@@ -54,7 +53,19 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     richInputBoxValueControl => new ParameterRichInputBoxEventsHelper
                     (
-                        provider.GetRequiredService<IEditingControlHelperFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        richInputBoxValueControl
+                    )
+                )
+
+                .AddTransient<Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new RichInputBoxEventsHelper
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
                     )
                 )

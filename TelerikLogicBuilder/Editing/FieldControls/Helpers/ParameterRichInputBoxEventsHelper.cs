@@ -1,6 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
@@ -11,10 +10,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private readonly IParameterRichInputBoxValueControl richInputBoxValueControl;
 
         public ParameterRichInputBoxEventsHelper(
-            IEditingControlHelperFactory editingControlHelperFactory,
+            IFieldControlHelperFactory fieldControlHelperFactory,
             IParameterRichInputBoxValueControl richInputBoxValueControl)
         {
-            _richInputBoxEventsHelper = editingControlHelperFactory.GetRichInputBoxEventsHelper(richInputBoxValueControl);
+            _richInputBoxEventsHelper = fieldControlHelperFactory.GetRichInputBoxEventsHelper(richInputBoxValueControl);
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
 

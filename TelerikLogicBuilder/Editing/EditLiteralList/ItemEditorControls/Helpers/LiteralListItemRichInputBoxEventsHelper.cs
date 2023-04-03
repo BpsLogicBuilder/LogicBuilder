@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Helpers
 {
@@ -10,10 +10,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorContro
         private readonly IRichInputBoxValueControl richInputBoxValueControl;
 
         public LiteralListItemRichInputBoxEventsHelper(
-            IEditingControlHelperFactory editingControlHelperFactory,
+            IFieldControlHelperFactory fieldControlHelperFactory,
             IRichInputBoxValueControl richInputBoxValueControl)
         {
-            _richInputBoxEventsHelper = editingControlHelperFactory.GetRichInputBoxEventsHelper(richInputBoxValueControl);
+            _richInputBoxEventsHelper = fieldControlHelperFactory.GetRichInputBoxEventsHelper(richInputBoxValueControl);
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
 

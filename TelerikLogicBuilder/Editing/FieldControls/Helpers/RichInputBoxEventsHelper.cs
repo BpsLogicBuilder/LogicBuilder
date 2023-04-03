@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
@@ -10,7 +9,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal class RichInputBoxEventsHelper : IRichInputBoxEventsHelper
     {

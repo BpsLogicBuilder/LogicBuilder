@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     richInputBoxValueControl => new LiteralListItemRichInputBoxEventsHelper
                     (
-                        provider.GetRequiredService<IEditingControlHelperFactory>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
                         richInputBoxValueControl
                     )
                 );

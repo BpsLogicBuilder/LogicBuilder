@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal interface IRichInputBoxEventsHelper
     {

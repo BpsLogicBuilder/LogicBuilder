@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IRichInputBoxValueControl, IEditVariableHelper> _getEditVariableHelper;
         private readonly Func<IObjectRichTextBoxValueControl, IObjectRichTextBoxEventsHelper> _getObjectRichTextBoxEventsHelper;
         private readonly Func<IParameterRichInputBoxValueControl, IParameterRichInputBoxEventsHelper> _getParameterRichInputBoxEventsHelper;
+        private readonly Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper> _getRichInputBoxEventsHelper;
         private readonly Func<IObjectRichTextBoxValueControl, IUpdateObjectRichTextBoxXml> _getUpdateObjectRichTextBoxXml;
 
         public FieldControlHelperFactory(
@@ -16,12 +17,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IRichInputBoxValueControl, IEditVariableHelper> getEditVariableHelper,
             Func<IObjectRichTextBoxValueControl, IObjectRichTextBoxEventsHelper> getObjectRichTextBoxEventsHelper,
             Func<IParameterRichInputBoxValueControl, IParameterRichInputBoxEventsHelper> getParameterRichInputBoxEventsHelper,
+            Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper> getRichInputBoxEventsHelper,
             Func<IObjectRichTextBoxValueControl, IUpdateObjectRichTextBoxXml> getUpdateObjectRichTextBoxXml)
         {
             _getEditObjectVariableHelper = getEditObjectVariableHelper;
             _getEditVariableHelper = getEditVariableHelper;
             _getObjectRichTextBoxEventsHelper = getObjectRichTextBoxEventsHelper;
             _getParameterRichInputBoxEventsHelper = getParameterRichInputBoxEventsHelper;
+            _getRichInputBoxEventsHelper = getRichInputBoxEventsHelper;
             _getUpdateObjectRichTextBoxXml = getUpdateObjectRichTextBoxXml;
         }
 
@@ -36,6 +39,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 
         public IParameterRichInputBoxEventsHelper GetParameterRichInputBoxEventsHelper(IParameterRichInputBoxValueControl richInputBoxValueControl)
             => _getParameterRichInputBoxEventsHelper(richInputBoxValueControl);
+
+        public IRichInputBoxEventsHelper GetRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl)
+            => _getRichInputBoxEventsHelper(richInputBoxValueControl);
 
         public IUpdateObjectRichTextBoxXml GetUpdateObjectRichTextBoxXml(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
             => _getUpdateObjectRichTextBoxXml(objectRichTextBoxValueControl);

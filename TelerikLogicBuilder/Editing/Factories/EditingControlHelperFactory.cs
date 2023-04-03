@@ -9,18 +9,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<IRichInputBoxValueControl, ICreateRichInputBoxContextMenu> _getCreateRichInputBoxContextMenu;
         private readonly Func<IEditFunctionControl, IEditFunctionControlHelper> _getEditFunctionControlHelper;
         private readonly Func<IDataGraphEditingControl, IEditingForm, ILoadParameterControlsDictionary> _getLoadParameterControlsDictionary;
-        private readonly Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper> _getRichInputBoxEventsHelper;
 
         public EditingControlHelperFactory(
             Func<IRichInputBoxValueControl, ICreateRichInputBoxContextMenu> getCreateRichInputBoxContextMenu,
             Func<IEditFunctionControl, IEditFunctionControlHelper> getEditFunctionControlHelper,
-            Func<IDataGraphEditingControl, IEditingForm, ILoadParameterControlsDictionary> getLoadParameterControlsDictionary,
-            Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper> getRichInputBoxEventsHelper)
+            Func<IDataGraphEditingControl, IEditingForm, ILoadParameterControlsDictionary> getLoadParameterControlsDictionary)
         {
             _getCreateRichInputBoxContextMenu = getCreateRichInputBoxContextMenu;
             _getEditFunctionControlHelper = getEditFunctionControlHelper;
             _getLoadParameterControlsDictionary = getLoadParameterControlsDictionary;
-            _getRichInputBoxEventsHelper = getRichInputBoxEventsHelper;
         }
 
         public ICreateRichInputBoxContextMenu GetCreateRichInputBoxContextMenu(IRichInputBoxValueControl richInputBoxValueControl)
@@ -31,8 +28,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 
         public ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IDataGraphEditingControl editingControl, IEditingForm editingForm)
             => _getLoadParameterControlsDictionary(editingControl, editingForm);
-
-        public IRichInputBoxEventsHelper GetRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getRichInputBoxEventsHelper(richInputBoxValueControl);
     }
 }
