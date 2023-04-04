@@ -1,10 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using System;

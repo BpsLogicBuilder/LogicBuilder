@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor
 {
     internal interface IListOfObjectsItemRichTextBoxControl : IParameterRichTextBoxValueControl, IObjectListItemValueControl
     {

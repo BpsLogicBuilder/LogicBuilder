@@ -19,7 +19,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor
 {
     internal partial class ListOfObjectsItemRichTextBoxControl : UserControl, IListOfObjectsItemRichTextBoxControl
     {
