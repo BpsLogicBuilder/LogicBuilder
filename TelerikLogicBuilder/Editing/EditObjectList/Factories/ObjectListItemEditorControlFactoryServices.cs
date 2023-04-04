@@ -6,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -25,6 +26,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
+                        provider.GetRequiredService<ILiteralListDataParser>(),
+                        provider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
+                        provider.GetRequiredService<IObjectListDataParser>(),
+                        provider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
                         provider.GetRequiredService<ObjectRichTextBox>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),

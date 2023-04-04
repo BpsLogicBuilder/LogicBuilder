@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
-    internal interface IObjectListParameterRichTextBoxControl : IObjectRichTextBoxValueControl
+    internal interface IObjectListParameterRichTextBoxControl : IParameterRichTextBoxValueControl
     {
     }
 }

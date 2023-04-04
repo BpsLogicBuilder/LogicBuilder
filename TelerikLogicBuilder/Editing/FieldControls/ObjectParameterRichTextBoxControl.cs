@@ -1,11 +1,13 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly IGetObjectRichTextBoxVisibleText _getObjectRichTextBoxVisibleText;
         private readonly IImageListService _imageListService;
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
+        private readonly ILiteralListDataParser _literalListDataParser;
+        private readonly ILiteralListParameterElementInfoHelper _literalListParameterElementInfoHelper;
+        private readonly IObjectListDataParser _objectListDataParser;
+        private readonly IObjectListParameterElementInfoHelper _objectListParameterElementInfoHelper;
         private readonly ObjectRichTextBox _objectRichTextBox;
         private readonly IObjectRichTextBoxEventsHelper _objectRichTextBoxEventsHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
@@ -48,6 +54,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             IGetObjectRichTextBoxVisibleText getObjectRichTextBoxVisibleText,
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
+            ILiteralListDataParser literalListDataParser,
+            ILiteralListParameterElementInfoHelper literalListParameterElementInfoHelper,
+            IObjectListDataParser objectListDataParser,
+            IObjectListParameterElementInfoHelper objectListParameterElementInfoHelper,
             ObjectRichTextBox objectRichTextBox,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -59,6 +69,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _getObjectRichTextBoxVisibleText = getObjectRichTextBoxVisibleText;
             _imageListService = imageListService;
             _layoutFieldControlButtons = layoutFieldControlButtons;
+            _literalListDataParser = literalListDataParser;
+            _literalListParameterElementInfoHelper = literalListParameterElementInfoHelper;
+            _objectListDataParser = objectListDataParser;
+            _objectListParameterElementInfoHelper = objectListParameterElementInfoHelper;
             _objectRichTextBox = objectRichTextBox;
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -171,6 +185,40 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
                     XmlElement.InnerXml,
                     Application
                 );
+            }
+        }
+
+        public LiteralListParameterElementInfo LiteralListElementInfo
+        {
+            get
+            {
+                XmlElement? childElement = XmlElement == null ? null : _xmlDocumentHelpers.GetSingleOrDefaultChildElement(XmlElement);
+                if (childElement?.Name == XmlDataConstants.LITERALLISTELEMENT)
+                {
+                    return _literalListParameterElementInfoHelper.GetLiteralListElementInfo
+                    (
+                        _literalListDataParser.Parse(childElement)
+                    );
+                }
+
+                return _literalListParameterElementInfoHelper.GetDefaultLiteralListElementInfo();
+            }
+        }
+
+        public ObjectListParameterElementInfo ObjectListElementInfo
+        {
+            get
+            {
+                XmlElement? childElement = XmlElement == null ? null : _xmlDocumentHelpers.GetSingleOrDefaultChildElement(XmlElement);
+                if (childElement?.Name == XmlDataConstants.OBJECTLISTELEMENT)
+                {
+                    return _objectListParameterElementInfoHelper.GetObjectListElementInfo
+                    (
+                        _objectListDataParser.Parse(childElement)
+                    );
+                }
+
+                return _objectListParameterElementInfoHelper.GetDefaultObjectListElementInfo();
             }
         }
 

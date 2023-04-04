@@ -1,26 +1,52 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Prompts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class EditObjectRichTextBoxObjectListCommand : ClickCommandBase
     {
-        private readonly IObjectRichTextBoxValueControl objectRichTextBoxValueControl;
+        private readonly IEditObjectListHelper _editObjectListHelper;
+        private readonly IExceptionHelper _exceptionHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
+        private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
 
         public EditObjectRichTextBoxObjectListCommand(
-            IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
+            IExceptionHelper exceptionHelper,
+            IFieldControlHelperFactory fieldControlHelperFactory,
+            IXmlDocumentHelpers xmlDocumentHelpers,
+            IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
         {
-            this.objectRichTextBoxValueControl = objectRichTextBoxValueControl;
+            _editObjectListHelper = fieldControlHelperFactory.GetEditObjectListHelper(parameterRichTextBoxValueControl);
+            _exceptionHelper = exceptionHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
+            this.parameterRichTextBoxValueControl = parameterRichTextBoxValueControl;
         }
 
         public override void Execute()
         {
-            DisplayMessage.Show("EditObjectRichTextBoxObjectListCommand");
+            if (parameterRichTextBoxValueControl.AssignedTo == null)
+                throw _exceptionHelper.CriticalException("{F155C420-6A1C-4188-A629-92111EE64E42}");
+
+            XmlElement? childElement = GetChildElement();
+            _editObjectListHelper.Edit
+            (
+                parameterRichTextBoxValueControl.AssignedTo,
+                childElement?.Name == XmlDataConstants.OBJECTLISTELEMENT
+                    ? childElement
+                    : null
+            );
+
+            XmlElement? GetChildElement()
+            {
+                if (parameterRichTextBoxValueControl.XmlElement == null)
+                    return null;
+
+                return _xmlDocumentHelpers.GetSingleOrDefaultChildElement(parameterRichTextBoxValueControl.XmlElement);
+            }
         }
     }
 }

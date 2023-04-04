@@ -96,20 +96,26 @@ namespace Microsoft.Extensions.DependencyInjection
                         objectRichTextBoxValueControl
                     )
                 )
-                .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxLiteralListCommand>>
+                .AddTransient<Func<IParameterRichTextBoxValueControl, EditObjectRichTextBoxLiteralListCommand>>
                 (
                     provider =>
-                    objectRichTextBoxValueControl => new EditObjectRichTextBoxLiteralListCommand
+                    parameterRichTextBoxValueControl => new EditObjectRichTextBoxLiteralListCommand
                     (
-                        objectRichTextBoxValueControl
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        parameterRichTextBoxValueControl
                     )
                 )
-                .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxObjectListCommand>>
+                .AddTransient<Func<IParameterRichTextBoxValueControl, EditObjectRichTextBoxObjectListCommand>>
                 (
                     provider =>
-                    objectRichTextBoxValueControl => new EditObjectRichTextBoxObjectListCommand
+                    parameterRichTextBoxValueControl => new EditObjectRichTextBoxObjectListCommand
                     (
-                        objectRichTextBoxValueControl
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        parameterRichTextBoxValueControl
                     )
                 )
                 .AddTransient<Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxVariableCommand>>
