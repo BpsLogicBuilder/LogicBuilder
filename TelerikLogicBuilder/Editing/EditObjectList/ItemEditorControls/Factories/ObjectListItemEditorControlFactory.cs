@@ -1,8 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls;
 using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.ItemEditorControls.Factories
 {
     internal class ObjectListItemEditorControlFactory : IObjectListItemEditorControlFactory
     {

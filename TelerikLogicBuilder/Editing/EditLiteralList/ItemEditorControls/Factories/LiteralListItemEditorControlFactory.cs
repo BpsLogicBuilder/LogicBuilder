@@ -1,9 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.ItemEditorControls.Factories
 {
     internal class LiteralListItemEditorControlFactory : ILiteralListItemEditorControlFactory
     {
