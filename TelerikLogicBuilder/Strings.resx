@@ -879,6 +879,10 @@
     <value>Cannot load the type {0} for the parameter {1}. Please update the function configuration for {2}.</value>
     <comment>0=typeFullName;1=parameterName;2=functionName</comment>
   </data>
+	<data name="functionCategoryMustBeDialogFormFormat" xml:space="preserve">
+    <value>The Function Category for the function "{0}" must be Dialog Form.</value>
+		<comment>0=function name</comment>
+  </data>
 	<data name="functionDefinitionNotEmpty" xml:space="preserve">
     <value>Reference Definition must be empty when the reference category is "This", "Type" or "None".</value>
   </data>

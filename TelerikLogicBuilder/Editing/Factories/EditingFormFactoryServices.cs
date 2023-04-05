@@ -4,6 +4,8 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
@@ -74,6 +76,27 @@ namespace Microsoft.Extensions.DependencyInjection
                         constructorXmlDocument,
                         constructorNames,
                         selectedConstructor
+                    )
+                )
+                .AddTransient<Func<XmlDocument?, IEditDialogFunctionForm>>
+                (
+                    provider =>
+                    functionsXmlDocument => new EditDialogFunctionForm
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditDialogFunctionCommandFactory>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IFunctionHelper>(),
+                        provider.GetRequiredService<IFunctionsDataParser>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        functionsXmlDocument
                     )
                 )
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()

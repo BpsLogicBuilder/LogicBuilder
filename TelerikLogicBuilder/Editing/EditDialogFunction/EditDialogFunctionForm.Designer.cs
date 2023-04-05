@@ -1,6 +1,6 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
 {
-    partial class EditValueFunctionForm
+    partial class EditDialogFunctionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -77,24 +77,24 @@
             radPanelBottom.Controls.Add(radPanelMessages);
             radPanelBottom.Controls.Add(radPanelButtons);
             radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            radPanelBottom.Location = new System.Drawing.Point(0, 369);
+            radPanelBottom.Location = new System.Drawing.Point(0, 394);
             radPanelBottom.Name = "radPanelBottom";
-            radPanelBottom.Size = new System.Drawing.Size(1021, 150);
-            radPanelBottom.TabIndex = 5;
+            radPanelBottom.Size = new System.Drawing.Size(1039, 150);
+            radPanelBottom.TabIndex = 6;
             // 
             // radPanelMessages
             // 
             radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelMessages.Location = new System.Drawing.Point(0, 0);
             radPanelMessages.Name = "radPanelMessages";
-            radPanelMessages.Size = new System.Drawing.Size(861, 150);
+            radPanelMessages.Size = new System.Drawing.Size(879, 150);
             radPanelMessages.TabIndex = 2;
             // 
             // radPanelButtons
             // 
             radPanelButtons.Controls.Add(tableLayoutPanelButtons);
             radPanelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            radPanelButtons.Location = new System.Drawing.Point(861, 0);
+            radPanelButtons.Location = new System.Drawing.Point(879, 0);
             radPanelButtons.Name = "radPanelButtons";
             radPanelButtons.Size = new System.Drawing.Size(160, 150);
             radPanelButtons.TabIndex = 2;
@@ -165,9 +165,9 @@
             // 
             // 
             radSplitContainerTop.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            radSplitContainerTop.Size = new System.Drawing.Size(1021, 369);
+            radSplitContainerTop.Size = new System.Drawing.Size(1039, 394);
             radSplitContainerTop.SplitterWidth = 8;
-            radSplitContainerTop.TabIndex = 6;
+            radSplitContainerTop.TabIndex = 7;
             radSplitContainerTop.TabStop = false;
             // 
             // splitPanelLeft
@@ -180,7 +180,7 @@
             // 
             // 
             splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            splitPanelLeft.Size = new System.Drawing.Size(292, 369);
+            splitPanelLeft.Size = new System.Drawing.Size(298, 394);
             splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2113951F, 0F);
             splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(-199, 0);
             splitPanelLeft.TabIndex = 0;
@@ -194,7 +194,7 @@
             radTreeView1.LineStyle = Telerik.WinControls.UI.TreeLineStyle.Solid;
             radTreeView1.Location = new System.Drawing.Point(0, 60);
             radTreeView1.Name = "radTreeView1";
-            radTreeView1.Size = new System.Drawing.Size(292, 309);
+            radTreeView1.Size = new System.Drawing.Size(298, 334);
             radTreeView1.SpacingBetweenNodes = -1;
             radTreeView1.TabIndex = 10;
             // 
@@ -204,7 +204,7 @@
             radPanelSelectFunction.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelSelectFunction.Location = new System.Drawing.Point(0, 0);
             radPanelSelectFunction.Name = "radPanelSelectFunction";
-            radPanelSelectFunction.Size = new System.Drawing.Size(292, 60);
+            radPanelSelectFunction.Size = new System.Drawing.Size(298, 60);
             radPanelSelectFunction.TabIndex = 9;
             // 
             // radGroupBoxSelectFunction
@@ -217,7 +217,7 @@
             radGroupBoxSelectFunction.Location = new System.Drawing.Point(0, 0);
             radGroupBoxSelectFunction.Name = "radGroupBoxSelectFunction";
             radGroupBoxSelectFunction.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            radGroupBoxSelectFunction.Size = new System.Drawing.Size(292, 60);
+            radGroupBoxSelectFunction.Size = new System.Drawing.Size(298, 60);
             radGroupBoxSelectFunction.TabIndex = 0;
             radGroupBoxSelectFunction.Text = "Select Function";
             // 
@@ -226,20 +226,20 @@
             cmbSelectFunction.Dock = System.Windows.Forms.DockStyle.Fill;
             cmbSelectFunction.Location = new System.Drawing.Point(18, 24);
             cmbSelectFunction.Name = "cmbSelectFunction";
-            cmbSelectFunction.Size = new System.Drawing.Size(256, 34);
+            cmbSelectFunction.Size = new System.Drawing.Size(262, 34);
             cmbSelectFunction.TabIndex = 0;
             // 
             // splitPanelRight
             // 
             splitPanelRight.Controls.Add(radPanelFields);
             splitPanelRight.Controls.Add(radPanelApplication);
-            splitPanelRight.Location = new System.Drawing.Point(300, 0);
+            splitPanelRight.Location = new System.Drawing.Point(306, 0);
             splitPanelRight.Name = "splitPanelRight";
             // 
             // 
             // 
             splitPanelRight.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            splitPanelRight.Size = new System.Drawing.Size(721, 369);
+            splitPanelRight.Size = new System.Drawing.Size(733, 394);
             splitPanelRight.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2113951F, 0F);
             splitPanelRight.SizeInfo.SplitterCorrection = new System.Drawing.Size(199, 0);
             splitPanelRight.TabIndex = 1;
@@ -250,7 +250,7 @@
             radPanelFields.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelFields.Location = new System.Drawing.Point(0, 60);
             radPanelFields.Name = "radPanelFields";
-            radPanelFields.Size = new System.Drawing.Size(721, 309);
+            radPanelFields.Size = new System.Drawing.Size(733, 334);
             radPanelFields.TabIndex = 1;
             // 
             // radPanelApplication
@@ -259,7 +259,7 @@
             radPanelApplication.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelApplication.Location = new System.Drawing.Point(0, 0);
             radPanelApplication.Name = "radPanelApplication";
-            radPanelApplication.Size = new System.Drawing.Size(721, 60);
+            radPanelApplication.Size = new System.Drawing.Size(733, 60);
             radPanelApplication.TabIndex = 0;
             // 
             // radGroupBoxApplication
@@ -271,20 +271,20 @@
             radGroupBoxApplication.Location = new System.Drawing.Point(0, 0);
             radGroupBoxApplication.Name = "radGroupBoxApplication";
             radGroupBoxApplication.Padding = new System.Windows.Forms.Padding(18, 24, 18, 2);
-            radGroupBoxApplication.Size = new System.Drawing.Size(721, 60);
+            radGroupBoxApplication.Size = new System.Drawing.Size(733, 60);
             radGroupBoxApplication.TabIndex = 0;
             radGroupBoxApplication.Text = "Application";
             // 
-            // EditValueFunctionForm
+            // EditDialogFunctionForm
             // 
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1021, 519);
+            ClientSize = new System.Drawing.Size(1039, 544);
             Controls.Add(radSplitContainerTop);
             Controls.Add(radPanelBottom);
-            Name = "EditValueFunctionForm";
-            Text = "Edit Function ";
+            Name = "EditDialogFunctionForm";
+            Text = "Edit Function";
             ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
             radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();

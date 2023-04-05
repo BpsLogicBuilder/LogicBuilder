@@ -3445,6 +3445,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Function Category for the function &quot;{0}&quot; must be Dialog Form..
+        /// </summary>
+        internal static string functionCategoryMustBeDialogFormFormat {
+            get {
+                return ResourceManager.GetString("functionCategoryMustBeDialogFormFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference Definition must be empty when the reference category is &quot;This&quot;, &quot;Type&quot; or &quot;None&quot;..
         /// </summary>
         internal static string functionDefinitionNotEmpty {

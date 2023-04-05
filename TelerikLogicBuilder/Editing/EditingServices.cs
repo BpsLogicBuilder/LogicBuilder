@@ -54,6 +54,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IXmlDataHelper, XmlDataHelper>()
                 .AddEditBooleanFunctionCommandFactories()
                 .AddEditConstructorCommandFactories()
+                .AddEditDialogFunctionCommandFactories()
                 .AddEditingControlFactories()
                 .AddEditingControlHelperFactories()
                 .AddEditingFormCommandFactories()
