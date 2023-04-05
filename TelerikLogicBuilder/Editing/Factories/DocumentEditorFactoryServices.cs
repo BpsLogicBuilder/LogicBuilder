@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
@@ -32,6 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (visioSourceFile, openedAsReadOnly) => new VisioControl
                     (
+                        provider.GetRequiredService<IDiagramEditor>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IMainWindow>(),
                         provider.GetRequiredService<IPathHelper>(),

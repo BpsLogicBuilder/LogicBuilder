@@ -33,6 +33,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
         public void SelectFunction(string functionName)
         {
+            if (functionName.Trim().Length == 0)
+                return;
+
             if (!selectFunctionControl.FunctionDictionary.TryGetValue(functionName, out Function? function))
             {
                 selectFunctionControl.SetErrorMessage

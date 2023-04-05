@@ -23,6 +23,7 @@ using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
@@ -93,6 +94,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IFunctionHelper>(),
                         provider.GetRequiredService<IFunctionsDataParser>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),

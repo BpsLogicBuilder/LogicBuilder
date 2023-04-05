@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
@@ -22,12 +23,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
     internal partial class VisioControl : UserControl, IDocumentEditor, IDrawingControl
     {
+        private readonly IDiagramEditor _diagramEditor;
         private readonly IFormInitializer _formInitializer;
         private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
         private readonly IUiNotificationService _uiNotificationService;
 
         public VisioControl(
+            IDiagramEditor diagramEditor,
             IFormInitializer formInitializer, 
             IMainWindow mainWindow, 
             IPathHelper pathHelper, 
@@ -35,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             string visioSourceFile, 
             bool openedAsReadOnly)
         {
+            _diagramEditor = diagramEditor;
             _formInitializer = formInitializer;
             _mainWindow = mainWindow;
             _pathHelper = pathHelper;
@@ -237,6 +241,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 case UniversalMasterName.WAITCONDITIONOBJECT:
                     //shapeEditor = new ShapeEditor(selectedShape, this, parentForm);
                     //shapeEditor.EditShape();
+                    _diagramEditor.EditShape(selectedShape);
                     break;
                 case UniversalMasterName.BEGINFLOW:
                 case UniversalMasterName.ENDFLOW:

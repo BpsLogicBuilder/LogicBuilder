@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -41,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
         private readonly IFunctionsDataParser _functionsDataParser;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
+        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -58,6 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
             IFunctionHelper functionHelper,
             IFunctionsDataParser functionsDataParser,
             IRadDropDownListHelper radDropDownListHelper,
+            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -75,6 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
             _functionHelper = functionHelper;
             _functionsDataParser = functionsDataParser;
             _radDropDownListHelper = radDropDownListHelper;
+            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -104,10 +108,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
 
         public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{626F8319-3399-4587-B38E-6C29CEB0674D}");
 
-        public string XmlResult => _xmlDataHelper.BuildFunctionsXml
+        public string ShapeXml => _xmlDataHelper.BuildFunctionsXml
         (
             _xmlDocumentHelpers.GetDocumentElement(XmlDocument).OuterXml
         );
+
+        public string ShapeVisibleText 
+            => _xmlDocumentHelpers.GetDocumentElement
+            (
+                _refreshVisibleTextHelper.RefreshFunctionVisibleTexts(XmlDocument, Application)
+            )
+            .GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 

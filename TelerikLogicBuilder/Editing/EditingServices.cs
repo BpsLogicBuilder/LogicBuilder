@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
@@ -16,6 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             return services
                 .AddSingleton<IBinaryFunctionTableLayoutPanelHelper, BinaryFunctionTableLayoutPanelHelper>()
                 .AddSingleton<ICreateLiteralParameterXmlElement, CreateLiteralParameterXmlElement>()
+                .AddTransient<IDiagramEditor, DiagramEditor>()
                 .AddSingleton<IDataGraphTreeViewHelper, DataGraphTreeViewHelper>()
                 .AddSingleton<IEditFormFieldSetHelper, EditFormFieldSetHelper>()
                 .AddSingleton<IFindAndReplaceHelper, FindAndReplaceHelper>()
@@ -79,7 +81,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSelectEditingControlFactories()
                 .AddSelectFragmentViewControlFactories()
                 .AddSelectFunctionViewControlFactories()
-                .AddSelectVariableViewControlFactories();
+                .AddSelectVariableViewControlFactories()
+                .AddShapeEditorFactories();
         }
     }
 }

@@ -97,7 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
-            btnOk.Enabled = false;
+            btnOk.Enabled = EditVariableControl.IsValid;
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
         }

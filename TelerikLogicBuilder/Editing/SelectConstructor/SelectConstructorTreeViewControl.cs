@@ -39,6 +39,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
         public void SelectConstructor(string constructorName)
         {
+            if (constructorName.Trim().Length == 0)
+                return;
+
             if (!_configurationService.ConstructorList.Constructors.TryGetValue(constructorName, out Constructor? constructor))
             {
                 selectConstructorControl.SetErrorMessage

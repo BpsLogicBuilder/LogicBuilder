@@ -88,7 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
-            btnOk.Enabled = false;
+            btnOk.Enabled = SelectConstructorControl.IsValid;
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
         }

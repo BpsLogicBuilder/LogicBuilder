@@ -41,6 +41,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public void SelectVariable(string variableName)
         {
+            if (variableName.Trim().Length == 0)
+                return;
+
             if (!_configurationService.VariableList.Variables.TryGetValue(variableName, out VariableBase? variable))
             {
                 editVariableControl.SetErrorMessage

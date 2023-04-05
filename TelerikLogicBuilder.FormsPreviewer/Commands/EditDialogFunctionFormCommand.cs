@@ -32,7 +32,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
             if (editDialogFunctionForm.DialogResult != DialogResult.OK)
                 return;
 
-            string result = editDialogFunctionForm.XmlResult;
+            string result = editDialogFunctionForm.ShapeXml;
         }
 
         readonly string xml = @"<functions>
