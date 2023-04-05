@@ -867,6 +867,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             AddClickCommands();
 
+            ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             this.splitPanelEdit.ControlRemoved += SplitPanelEdit_ControlRemoved;
             this.Disposed += MDIParent_Disposed;
 
@@ -889,6 +890,27 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private void LogicBuilderExceptionOccurred(LogicBuilderException exception)
         {
             DisplayMessage.Show(this, exception.Message, _mainWindow.RightToLeft);
+        }
+
+        private void RefreshSize()
+        {//workaround for title bar not being resized on font change.
+            System.Drawing.Size originalSize = this.Size;
+
+            Native.NativeMethods.LockWindowUpdate(this.Handle);
+
+            //this.ElementTree.RootElement.ResumeLayout(true);
+            //this.ElementTree.PerformLayout();
+            //this.MaximumSize = new System.Drawing.Size(0, 0);
+            //this.FormElement.TitleBar.MaxSize = new System.Drawing.Size(0, 0);
+            //this.FormElement.TitleBar.MinSize = new System.Drawing.Size(0, 0);
+            //this.Scale(1.0000001f);
+            this.Scale(new System.Drawing.SizeF(1.0000001f, 1.0000001f));
+
+            //Native.NativeMethods.LockWindowUpdate(this.Handle);
+            //this.Size = new System.Drawing.Size(this.Size.Width, this.Size.Height);
+            //
+            this.Size = originalSize;
+            Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
         }
 
         private void SetSelectedApplication(string applicationName)
@@ -1007,6 +1029,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         #region Event Handlers
         private void MDIParent_Disposed(object? sender, EventArgs e)
         {
+            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
             Dispose(documentExplorerErrorCountChangedSubscription);
             Dispose(logicBuilderExceptionSubscription);
         }
@@ -1015,6 +1038,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
         {
             if (e.Control is ContainerControl control)
                 control.Dispose();
+        }
+
+        private void ThemeResolutionService_ApplicationThemeChanged(object sender, ThemeChangedEventArgs args)
+        {
+            if (this.IsDisposed)
+                return;
+
+            RefreshSize();
         }
         #endregion Event Handlers
     }
