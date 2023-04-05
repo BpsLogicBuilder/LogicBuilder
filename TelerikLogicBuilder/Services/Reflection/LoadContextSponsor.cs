@@ -90,7 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
             if (progress != null)
             {
                 mdiParent.ChangeCursor(Cursors.Default);
-                progress.Report(new ProgressMessage(0, Strings.statusBarReadyMessage));
+                mdiParent.ClearProgressBar();
             }
         }
 

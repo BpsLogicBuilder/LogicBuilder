@@ -225,6 +225,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             this.Refresh();
         }
 
+        public void ClearProgressBar()
+        {
+            TaskComplete(string.Empty);
+        }
+
         public void CloseProject()
         {
             this.EditControl?.Close();
@@ -332,6 +337,15 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         public async Task RunLoadContextAsync(Func<CancellationTokenSource, Task> task)
         {
+            var progress = new Progress<ProgressMessage>(percent =>
+            {
+                UpdateProgress
+                (
+                    percent.Progress,
+                    string.Format(CultureInfo.CurrentCulture, Strings.progressFormStatusMessageFormat2, percent.Message, percent.Progress)
+                );
+            });
+
             await _loadContextSponsor.RunAsync
             (
                 async () =>
@@ -340,13 +354,17 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     try
                     {
                         await task(cancellationTokenSource);
+                        await Task.Delay(40);
+                        TaskComplete(Strings.statusBarReadyMessage);
                     }
                     catch (LogicBuilderException ex)
                     {
+                        TaskComplete(ex.Message);
                         LogicBuilderExceptionOccurred(ex);
                     }
                     catch (OperationCanceledException ex)
                     {
+                        TaskComplete(ex.Message);
                         LogicBuilderExceptionOccurred(new LogicBuilderException(ex.Message, ex));
                     }
                     finally
@@ -354,7 +372,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
                         cancellationTokenSource.Dispose();
                     }
                 },
-                new Progress<ProgressMessage>(percent => {})
+                progress
             );
         }
 

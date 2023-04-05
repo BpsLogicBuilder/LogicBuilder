@@ -61,6 +61,10 @@ namespace TelerikLogicBuilder.FormsPreviewer
         {
         }
 
+        public void ClearProgressBar()
+        {
+        }
+
         public void CloseProject()
         {
             throw new NotImplementedException();

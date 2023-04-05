@@ -35,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         void AddTableControl(IDocumentEditor documentEditor);
         void AddVisioControl(IDocumentEditor documentEditor);
+        void ClearProgressBar();
         void Close();
         void CloseProject();
         void ChangeCursor(Cursor cursor);

@@ -61,6 +61,10 @@ namespace TelerikLogicBuilder.Tests.Mocks
         {
         }
 
+        public void ClearProgressBar()
+        {
+        }
+
         public void CloseProject()
         {
             throw new NotImplementedException();
