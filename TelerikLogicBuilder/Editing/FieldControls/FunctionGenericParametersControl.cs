@@ -191,7 +191,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _objectRichTextBox.Name = "objectRichTextBox";
             _objectRichTextBox.Dock = DockStyle.Fill;
             _objectRichTextBox.BorderStyle = BorderStyle.None;
-            this.radPanelRichTextBox.Padding = new Padding(1);//shows the panel border instead
+            ControlsLayoutUtility.SetRichTextBoxPadding(this.radPanelRichTextBox);//shows the panel border instead
             _objectRichTextBox.Margin = new Padding(0);
             _objectRichTextBox.Location = new Point(0, 0);
             _objectRichTextBox.DetectUrls = false;

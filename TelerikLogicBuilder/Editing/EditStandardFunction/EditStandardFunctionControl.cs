@@ -227,6 +227,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
                 Control genericConfigurationControl = (Control)_fieldControlFactory.GetFunctionGenericParametersControl(this);
                 genericConfigurationControl.Location = new Point(0, 0);
                 genericConfigurationControl.Dock = DockStyle.Fill;
+                genericConfigurationControl.Margin = new Padding(0);
                 this.tableLayoutPanel.Controls.Add(this.lblGenericArguments, 2, currentRow);
                 this.tableLayoutPanel.Controls.Add(genericConfigurationControl, 3, currentRow);
                 currentRow += 2;
