@@ -336,6 +336,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             managedListBoxControl.Size = new Size(managedListBoxControl.Width, Math.Max((int)PerFontSizeConstants.BottomPanelHeight, radScrollablePanelList.Height));
             radGroupBoxEdit.Text = objectListElementInfo.Name;
             radGroupBoxList.Text = GetListTitle(objectListElementInfo.ListControl);
+            radScrollablePanelList.VerticalScrollBarState = ScrollState.AlwaysShow;
 
             if (!dataGraphEditingForm.Application.AssemblyAvailable)
             {
@@ -356,6 +357,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             cmbListType.SelectedIndexChanged += CmbListType_SelectedIndexChanged;
             cmbObjectType.TextChanged += CmbObjectType_TextChanged;
             radListBoxManager.ListChanged += RadListBoxManager_ListChanged;
+            radScrollablePanelList.SizeChanged += RadScrollablePanelList_SizeChanged;
 
             AddButtonClickCommand
             (
@@ -503,6 +505,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
             ValueControl.SetAssignedToType(ObjectType);
             CheckAssignability();
+        }
+
+        private void RadScrollablePanelList_SizeChanged(object? sender, EventArgs e)
+        {
+            managedListBoxControl.Size = new Size(managedListBoxControl.Width, Math.Max((int)PerFontSizeConstants.BottomPanelHeight, radScrollablePanelList.Height));
         }
 
         private void RadListBoxManager_ListChanged(object? sender, EventArgs e) => RequestDocumentUpdate();

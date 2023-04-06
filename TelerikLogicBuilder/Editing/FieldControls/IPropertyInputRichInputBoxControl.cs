@@ -1,6 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Reflection;
-
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
     internal interface IPropertyInputRichInputBoxControl : IRichInputBoxValueControl
     {
