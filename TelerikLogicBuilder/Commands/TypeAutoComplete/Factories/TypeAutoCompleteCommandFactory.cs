@@ -6,18 +6,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete.Factories
 {
     internal class TypeAutoCompleteCommandFactory : ITypeAutoCompleteCommandFactory
     {
-        private readonly Func<IApplicationForm, ITypeAutoCompleteTextControl, AddUpdateGenericArgumentsCommand> _getAddUpdateGenericArgumentsCommand;
+        private readonly Func<IApplicationHostControl, ITypeAutoCompleteTextControl, AddUpdateGenericArgumentsCommand> _getAddUpdateGenericArgumentsCommand;
         private readonly Func<ITypeAutoCompleteTextControl, CopySelectedTextCommand> _getCopySelectedTextCommand;
         private readonly Func<ITypeAutoCompleteTextControl, CutSelectedTextCommand> _getCutSelectedTextCommand;
         private readonly Func<ITypeAutoCompleteTextControl, PasteTextCommand> _getPasteTextCommand;
-        private readonly Func<IApplicationForm, ITypeAutoCompleteTextControl, SetTextToAssemblyQualifiedNameCommand> _getSetTextToAssemblyQualifiedNameCommand;
+        private readonly Func<IApplicationControl, ITypeAutoCompleteTextControl, SetTextToAssemblyQualifiedNameCommand> _getSetTextToAssemblyQualifiedNameCommand;
 
         public TypeAutoCompleteCommandFactory(
-            Func<IApplicationForm, ITypeAutoCompleteTextControl, AddUpdateGenericArgumentsCommand> getAddUpdateGenericArgumentsCommand,
+            Func<IApplicationHostControl, ITypeAutoCompleteTextControl, AddUpdateGenericArgumentsCommand> getAddUpdateGenericArgumentsCommand,
             Func<ITypeAutoCompleteTextControl, CopySelectedTextCommand> getCopySelectedTextCommand,
             Func<ITypeAutoCompleteTextControl, CutSelectedTextCommand> getCutSelectedTextCommand,
             Func<ITypeAutoCompleteTextControl, PasteTextCommand> getPasteTextCommand,
-            Func<IApplicationForm, ITypeAutoCompleteTextControl, SetTextToAssemblyQualifiedNameCommand> getSetTextToAssemblyQualifiedNameCommand)
+            Func<IApplicationControl, ITypeAutoCompleteTextControl, SetTextToAssemblyQualifiedNameCommand> getSetTextToAssemblyQualifiedNameCommand)
         {
             _getAddUpdateGenericArgumentsCommand = getAddUpdateGenericArgumentsCommand;
             _getCopySelectedTextCommand = getCopySelectedTextCommand;
@@ -26,8 +26,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete.Factories
             _getSetTextToAssemblyQualifiedNameCommand = getSetTextToAssemblyQualifiedNameCommand;
         }
 
-        public AddUpdateGenericArgumentsCommand GetAddUpdateGenericArgumentsCommand(IApplicationForm applicationForm, ITypeAutoCompleteTextControl textControl)
-            => _getAddUpdateGenericArgumentsCommand(applicationForm, textControl);
+        public AddUpdateGenericArgumentsCommand GetAddUpdateGenericArgumentsCommand(IApplicationHostControl applicationHostControl, ITypeAutoCompleteTextControl textControl)
+            => _getAddUpdateGenericArgumentsCommand(applicationHostControl, textControl);
 
         public CopySelectedTextCommand GetCopySelectedTextCommand(ITypeAutoCompleteTextControl textControl)
             => _getCopySelectedTextCommand(textControl);
@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete.Factories
         public PasteTextCommand GetPasteTextCommand(ITypeAutoCompleteTextControl textControl)
             => _getPasteTextCommand(textControl);
 
-        public SetTextToAssemblyQualifiedNameCommand GetSetTextToAssemblyQualifiedNameCommand(IApplicationForm applicationForm, ITypeAutoCompleteTextControl textControl)
-            => _getSetTextToAssemblyQualifiedNameCommand(applicationForm, textControl);
+        public SetTextToAssemblyQualifiedNameCommand GetSetTextToAssemblyQualifiedNameCommand(IApplicationControl applicationControl, ITypeAutoCompleteTextControl textControl)
+            => _getSetTextToAssemblyQualifiedNameCommand(applicationControl, textControl);
     }
 }

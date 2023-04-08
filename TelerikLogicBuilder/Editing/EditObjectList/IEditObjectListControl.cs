@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 {
     internal interface IEditObjectListControl : IDataGraphEditingControl
     {
-        IApplicationForm ApplicationForm { get; }
+        IApplicationControl ApplicationControl { get; }
         ListParameterInputStyle ListControl { get; }
         Type ObjectType { get; }
         IRadListBoxManager<IObjectListBoxItem> RadListBoxManager { get; }

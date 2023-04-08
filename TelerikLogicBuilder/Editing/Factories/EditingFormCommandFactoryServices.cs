@@ -15,10 +15,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingFormCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IDataGraphEditingForm, AddXMLToFragmentsConfigurationCommand>>
+                .AddTransient<Func<IDataGraphEditingHost, AddXMLToFragmentsConfigurationCommand>>
                 (
                     provider =>
-                    dataGraphEditingForm => new AddXMLToFragmentsConfigurationCommand
+                    dataGraphEditingHost => new AddXMLToFragmentsConfigurationCommand
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IFragmentItemFactory>(),
@@ -28,16 +28,16 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IUpdateFragments>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<IXmlValidatorFactory>(),
-                        dataGraphEditingForm
+                        dataGraphEditingHost
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingForm, CopyXmlToClipboardCommand>>
+                .AddTransient<Func<IDataGraphEditingHost, CopyXmlToClipboardCommand>>
                 (
                     provider =>
-                    dataGraphEditingForm => new CopyXmlToClipboardCommand
+                    dataGraphEditingHost => new CopyXmlToClipboardCommand
                     (
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        dataGraphEditingForm
+                        dataGraphEditingHost
                     )
                 )
                 .AddTransient<IEditingFormCommandFactory, EditingFormCommandFactory>();

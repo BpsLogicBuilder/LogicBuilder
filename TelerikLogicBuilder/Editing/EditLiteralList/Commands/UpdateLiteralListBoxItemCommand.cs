@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
                     editLiteralListControl.ValueControl.VisibleText,
                     editLiteralListControl.ValueControl.MixedXml,
                     editLiteralListControl.LiteralType,
-                    editLiteralListControl.ApplicationForm,
+                    editLiteralListControl.ApplicationControl,
                     editLiteralListControl.ListControl
                 )
             );

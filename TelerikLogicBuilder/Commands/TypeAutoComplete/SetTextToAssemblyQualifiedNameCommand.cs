@@ -9,16 +9,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete
     {
         private readonly ITypeLoadHelper _typeLoadHelper;
 
-        private readonly IApplicationForm applicationForm;
+        private readonly IApplicationControl applicationControl;
         private readonly ITypeAutoCompleteTextControl textControl;
 
         public SetTextToAssemblyQualifiedNameCommand(
             ITypeLoadHelper typeLoadHelper,
-            IApplicationForm applicationForm,
+            IApplicationControl applicationControl,
             ITypeAutoCompleteTextControl textControl)
         {
             _typeLoadHelper = typeLoadHelper;
-            this.applicationForm = applicationForm;
+            this.applicationControl = applicationControl;
             this.textControl = textControl;
         }
 
@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete
                 _typeLoadHelper.TryGetSystemType
                 (
                     textControl.Text,
-                    applicationForm.Application,
+                    applicationControl.Application,
                     out Type? type
                 );
 

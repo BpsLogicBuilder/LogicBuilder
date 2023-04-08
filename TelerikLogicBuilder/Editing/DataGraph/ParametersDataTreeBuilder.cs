@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private readonly IVariableDataParser _variableDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditingForm editingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
 
         public ParametersDataTreeBuilder(
             IConfigurationService configurationService,
@@ -55,7 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             ITypeLoadHelper typeLoadHelper,
             IVariableDataParser variableDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingForm editingForm)
+            IDataGraphEditingHost dataGraphEditingHost)
         {
             _configurationService = configurationService;
             _constructorDataParser = constructorDataParser;
@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             _typeLoadHelper = typeLoadHelper;
             _variableDataParser = variableDataParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editingForm = editingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
         }
 
         private const string CONSTRUCTOR_ROOT_XPATH = $"/{XmlDataConstants.CONSTRUCTORELEMENT}";
@@ -140,7 +140,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.Nodes.Clear();
 
             XmlElement literalListElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, LITERALLIST_ROOT_XPATH);
-            LiteralListData literalListData = _literalListDataParser.Parse(literalListElement, literalListInfo, editingForm);
+            LiteralListData literalListData = _literalListDataParser.Parse(literalListElement, literalListInfo, dataGraphEditingHost);
             GetLiteralListChildren
             (
                 literalListElement,
@@ -169,7 +169,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.Nodes.Clear();
 
             XmlElement objectListElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, OBJECTLIST_ROOT_XPATH);
-            ObjectListData objectListData = _objectListDataParser.Parse(objectListElement, objectListInfo, editingForm);
+            ObjectListData objectListData = _objectListDataParser.Parse(objectListElement, objectListInfo, dataGraphEditingHost);
             GetObjectListChildren
             (
                 objectListElement,
@@ -225,7 +225,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     );
                     break;
                 case LiteralListElementTreeNode literalListElementTreeNode:
-                    LiteralListData literalListData = _literalListDataParser.Parse(xmlElement, literalListElementTreeNode.ListInfo, editingForm);
+                    LiteralListData literalListData = _literalListDataParser.Parse(xmlElement, literalListElementTreeNode.ListInfo, dataGraphEditingHost);
                     if (!literalListElementTreeNode.ListInfo.HasParameter)//if there's a parameter the ListInfo comes from the configured parameter.  Do not update.
                     {//Otherwise it is derived from the possibly updated LiteralListData
                         literalListElementTreeNode.ListInfo = _literalListElementInfoHelper.GetLiteralListElementInfo(literalListData);
@@ -242,7 +242,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     );
                     break;
                 case ObjectListElementTreeNode objectListElementTreeNode:
-                    ObjectListData objectListData = _objectListDataParser.Parse(xmlElement, objectListElementTreeNode.ListInfo, editingForm);
+                    ObjectListData objectListData = _objectListDataParser.Parse(xmlElement, objectListElementTreeNode.ListInfo, dataGraphEditingHost);
                     if (!objectListElementTreeNode.ListInfo.HasParameter)//if there's a parameter the ListInfo comes from the configured parameter.  Do not update.
                     {//Otherwise it is derived from the possibly updated ObjectListData
                         objectListElementTreeNode.ListInfo = _objectListElementInfoHelper.GetObjectListElementInfo(objectListData);
@@ -269,7 +269,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private void AddConstructorNode(ParametersDataTreeNode parentTreeNode, XmlElement constructorElement)
         {
             ConstructorData constructorData = _constructorDataParser.Parse(constructorElement);
-            if (!_getValidConfigurationFromData.TryGetConstructor(constructorData, editingForm.Application, out Constructor? constructor))
+            if (!_getValidConfigurationFromData.TryGetConstructor(constructorData, dataGraphEditingHost.Application, out Constructor? constructor))
                 return;
 
             InitConstructorNode
@@ -285,7 +285,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             void InitConstructorNode(ConstructorElementTreeNode treeNode)
             {
                 GetConstructorChildren(constructorElement, treeNode, false);
-                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                if (dataGraphEditingHost.ExpandedNodes.ContainsKey(treeNode.Name))
                     treeNode.Expand();
             }
         }
@@ -293,7 +293,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private void AddFunctionNode(ParametersDataTreeNode parentTreeNode, XmlElement functionElement)
         {
             FunctionData functionData = _functionDataParser.Parse(functionElement);
-            if (!_getValidConfigurationFromData.TryGetFunction(functionData, editingForm.Application, out Function? function))
+            if (!_getValidConfigurationFromData.TryGetFunction(functionData, dataGraphEditingHost.Application, out Function? function))
                 return;
 
             InitFunctionNode
@@ -309,14 +309,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             void InitFunctionNode(FunctionElementTreeNode treeNode)
             {
                 GetFunctionChildren(functionElement, treeNode, false);
-                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                if (dataGraphEditingHost.ExpandedNodes.ContainsKey(treeNode.Name))
                     treeNode.Expand();
             }
         }
 
         private void AddLiteralListNode(ParametersDataTreeNode parentTreeNode, XmlElement literalListElement, LiteralListParameterElementInfo literalListElementInfo)
         {
-            LiteralListData literalListData = _literalListDataParser.Parse(literalListElement, literalListElementInfo, editingForm);
+            LiteralListData literalListData = _literalListDataParser.Parse(literalListElement, literalListElementInfo, dataGraphEditingHost);
 
             InitLiteralListMode
             (
@@ -333,14 +333,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             void InitLiteralListMode(LiteralListElementTreeNode treeNode)
             {
                 GetLiteralListChildren(literalListElement, treeNode, literalListData, false);
-                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                if (dataGraphEditingHost.ExpandedNodes.ContainsKey(treeNode.Name))
                     treeNode.Expand();
             }
         }
 
         private void AddObjectListNode(ParametersDataTreeNode parentTreeNode, XmlElement objectListElement, ObjectListParameterElementInfo objectListElementInfo)
         {
-            ObjectListData objectListData = _objectListDataParser.Parse(objectListElement, objectListElementInfo, editingForm);
+            ObjectListData objectListData = _objectListDataParser.Parse(objectListElement, objectListElementInfo, dataGraphEditingHost);
 
             InitObjectListMode
             (
@@ -357,7 +357,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             void InitObjectListMode(ObjectListElementTreeNode treeNode)
             {
                 GetObjectListChildren(objectListElement, treeNode, objectListData, false);
-                if (editingForm.ExpandedNodes.ContainsKey(treeNode.Name))
+                if (dataGraphEditingHost.ExpandedNodes.ContainsKey(treeNode.Name))
                     treeNode.Expand();
             }
         }
@@ -365,7 +365,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private void AddVariableNode(ParametersDataTreeNode parentTreeNode, XmlElement variableElement)
         {
             VariableData variableData = _variableDataParser.Parse(variableElement);
-            if (!_getValidConfigurationFromData.TryGetVariable(variableData, editingForm.Application, out VariableBase? variable))
+            if (!_getValidConfigurationFromData.TryGetVariable(variableData, dataGraphEditingHost.Application, out VariableBase? variable))
                 return;
 
             _dataGraphTreeViewHelper.AddVariableTreeNode(parentTreeNode, variableElement, variable.Name);
@@ -374,7 +374,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private void GetConstructorChildren(XmlElement constructorElement, ConstructorElementTreeNode constructorElementTreeNode, bool root)
         {
             ConstructorData constructorData = _constructorDataParser.Parse(constructorElement);
-            if (!_getValidConfigurationFromData.TryGetConstructor(constructorData, editingForm.Application, out Constructor? constructor))
+            if (!_getValidConfigurationFromData.TryGetConstructor(constructorData, dataGraphEditingHost.Application, out Constructor? constructor))
                 return;
 
             GetParameters
@@ -393,7 +393,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private void GetFunctionChildren(XmlElement functionElement, FunctionElementTreeNode functionElementTreeNode, bool root)
         {
             FunctionData functionData = _functionDataParser.Parse(functionElement);
-            if (!_getValidConfigurationFromData.TryGetFunction(functionData, editingForm.Application, out Function? function))
+            if (!_getValidConfigurationFromData.TryGetFunction(functionData, dataGraphEditingHost.Application, out Function? function))
                 return;
 
             GetParameters
@@ -475,7 +475,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{43CFC2BC-9DCE-4DEA-97A0-9C0D638355A7}");
 
-            if (!_typeLoadHelper.TryGetSystemType(objectListData.ObjectType, editingForm.Application, out Type? objectType))
+            if (!_typeLoadHelper.TryGetSystemType(objectListData.ObjectType, dataGraphEditingHost.Application, out Type? objectType))
                 return;
 
             for (int i = 0; i < objectListData.ChildElements.Count; i++)
@@ -618,7 +618,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 if (!parameters.TryGetValue(parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out ParameterBase? parameter))
                     return;
 
-                if (!_typeLoadHelper.TryGetSystemType(parameter, editingForm.Application, out Type? parameterType))
+                if (!_typeLoadHelper.TryGetSystemType(parameter, dataGraphEditingHost.Application, out Type? parameterType))
                     return;
 
                 GetParameterChildren
@@ -676,7 +676,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         break;
                 }
 
-                if (editingForm.ExpandedNodes.ContainsKey(parameterTreeNode.Name))
+                if (dataGraphEditingHost.ExpandedNodes.ContainsKey(parameterTreeNode.Name))
                     parameterTreeNode.Expand();
             }
         }

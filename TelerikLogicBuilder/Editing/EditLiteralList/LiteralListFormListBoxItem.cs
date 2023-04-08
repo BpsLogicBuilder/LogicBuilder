@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             string visibleText,
             string hiddenText,
             Type assignedTo,
-            IApplicationForm applicationForm)
+            IApplicationControl applicationControl)
         {
             _literalElementValidator = literalElementValidator;
             _xmlDataHelper = xmlDataHelper;
@@ -28,11 +28,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             VisibleText = visibleText;
             HiddenText = hiddenText;
             this.assignedTo = assignedTo;
-            this.applicationForm = applicationForm;
+            this.applicationControl = applicationControl;
         }
 
         private readonly Type assignedTo;
-        private readonly IApplicationForm applicationForm;
+        private readonly IApplicationControl applicationControl;
 
         public string HiddenText { get; }
 
@@ -50,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                         _xmlDataHelper.BuildLiteralXml(HiddenText)
                     ),
                     assignedTo,
-                    applicationForm.Application,
+                    applicationControl.Application,
                     errors
                 );
                 return errors;

@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IDataGraphEditingForm dataGraphEditingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
         private readonly Type assignedTo;
         private readonly ObjectListParameterElementInfo objectListElementInfo;
         private readonly int? selectedIndex;
@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             ITypeLoadHelper typeLoadHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IDataGraphEditingForm dataGraphEditingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             ObjectListParameterElementInfo objectListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
@@ -83,7 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             InitializeComponent();
             _cmbObjectTypeAutoCompleteManager = serviceFactory.GetTypeAutoCompleteManager
             (
-                dataGraphEditingForm,
+                dataGraphEditingHost,
                 cmbObjectType
             );
             _editObjectListCommandFactory = editObjectListCommandFactory;
@@ -99,7 +99,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             _typeLoadHelper = typeLoadHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.dataGraphEditingForm = dataGraphEditingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
             this.objectListElementInfo = objectListElementInfo;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
@@ -141,13 +141,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         public IRadListBoxManager<IObjectListBoxItem> RadListBoxManager => radListBoxManager;
 
-        public ApplicationTypeInfo Application => dataGraphEditingForm.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 
-        public IApplicationForm ApplicationForm => dataGraphEditingForm;
+        public IApplicationControl ApplicationControl => dataGraphEditingHost;
 
-        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
+        public bool DenySpecialCharacters => dataGraphEditingHost.DenySpecialCharacters;
 
-        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
+        public bool DisplayNotCheckBox => dataGraphEditingHost.DisplayNotCheckBox;
 
         public bool IsValid
         {
@@ -227,15 +227,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         public void ClearInputControls() => ValueControl.ResetControl();
 
-        public void ClearMessage() => dataGraphEditingForm.ClearMessage();
+        public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) => dataGraphEditingForm.DisableControlsDuringEdit(disable);
+        public void DisableControlsDuringEdit(bool disable) => dataGraphEditingHost.DisableControlsDuringEdit(disable);
 
-        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate(this);
+        public void RequestDocumentUpdate() => dataGraphEditingHost.RequestDocumentUpdate(this);
 
-        public void SetErrorMessage(string message) => dataGraphEditingForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => dataGraphEditingHost.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") => dataGraphEditingForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => dataGraphEditingHost.SetMessage(message, title);
 
         public void UpdateInputControls(IObjectListBoxItem item)
             => ValueControl.Update
@@ -338,9 +338,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             radGroupBoxList.Text = GetListTitle(objectListElementInfo.ListControl);
             radScrollablePanelList.VerticalScrollBarState = ScrollState.AlwaysShow;
 
-            if (!dataGraphEditingForm.Application.AssemblyAvailable)
+            if (!dataGraphEditingHost.Application.AssemblyAvailable)
             {
-                SetErrorMessage(dataGraphEditingForm.Application.UnavailableMessage);
+                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
                 return;
             }
 
@@ -474,7 +474,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
                             ),
                             e.InnerXml,
                             elementType,
-                            dataGraphEditingForm,
+                            dataGraphEditingHost,
                             objectListElementInfo.ListControl
                         );
                         errors.AddRange(objectListBoxItem.Errors);

@@ -51,7 +51,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
             Settings.Default.Save();
         }
 
-        event EventHandler<ApplicationChangedEventArgs>? IApplicationForm.ApplicationChanged
+        event EventHandler<ApplicationChangedEventArgs>? IApplicationHostControl.ApplicationChanged
         {
             add
             {
@@ -74,7 +74,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
         private readonly ILoadContextSponsor _loadContextSponsor;
         private readonly IThemeManager _themeManager;
 
-        private ApplicationTypeInfo _application;
+        private readonly ApplicationTypeInfo _application;
         public ApplicationTypeInfo Application => _application;
 
         //public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
@@ -326,7 +326,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
             _themeManager.SetFontSize(12);
         }
 
-        private void radButtonSetFontSize13_Click(object sender, EventArgs e)
+        private void RadButtonSetFontSize13_Click(object sender, EventArgs e)
         {
             _themeManager.SetFontSize(13);
         }

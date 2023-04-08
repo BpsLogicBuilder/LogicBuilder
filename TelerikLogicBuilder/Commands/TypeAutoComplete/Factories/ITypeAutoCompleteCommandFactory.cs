@@ -5,12 +5,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete.Factories
 {
     internal interface ITypeAutoCompleteCommandFactory
     {
-        AddUpdateGenericArgumentsCommand GetAddUpdateGenericArgumentsCommand(IApplicationForm applicationForm,
+        AddUpdateGenericArgumentsCommand GetAddUpdateGenericArgumentsCommand(IApplicationHostControl applicationHostControl,
             ITypeAutoCompleteTextControl textControl);
         CopySelectedTextCommand GetCopySelectedTextCommand(ITypeAutoCompleteTextControl textControl);
         CutSelectedTextCommand GetCutSelectedTextCommand(ITypeAutoCompleteTextControl textControl);
         PasteTextCommand GetPasteTextCommand(ITypeAutoCompleteTextControl textControl);
-        SetTextToAssemblyQualifiedNameCommand GetSetTextToAssemblyQualifiedNameCommand(IApplicationForm applicationForm,
+        SetTextToAssemblyQualifiedNameCommand GetSetTextToAssemblyQualifiedNameCommand(IApplicationControl applicationControl,
             ITypeAutoCompleteTextControl textControl);
     }
 }

@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             );
         }
 
-        public LiteralListData Parse(XmlElement xmlElement, LiteralListParameterElementInfo listInfo, IApplicationForm applicationForm)
+        public LiteralListData Parse(XmlElement xmlElement, LiteralListParameterElementInfo listInfo, IApplicationControl applicationControl)
         {
             if (xmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{ADBBEEE2-6E59-47CC-9DC5-D78F349D57C7}");
@@ -97,7 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                         _xmlDocumentHelpers.GetVisibleText(element),
                         element.InnerXml,
                         literalType,
-                        applicationForm,
+                        applicationControl,
                         listInfo.ListControl
                     );
 
@@ -111,7 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             }
         }
 
-        public LiteralListData Parse(XmlElement xmlElement, LiteralListVariableElementInfo listInfo, IApplicationForm applicationForm)
+        public LiteralListData Parse(XmlElement xmlElement, LiteralListVariableElementInfo listInfo, IApplicationControl applicationForm)
         {
             if (xmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{DDD61368-2FCD-4C0F-A847-FFEB97BFD8BE}");

@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager;
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IApplicationForm applicationForm;
+        private readonly IApplicationHostControl applicationHostControl;
 
         private ApplicationTypeInfo _application;
         public ApplicationTypeInfo Application => _application;
@@ -32,13 +32,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IApplicationTypeInfoManager applicationTypeInfoManager,
             IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
-            IApplicationForm applicationForm)
+            IApplicationHostControl applicationHostControl)
         {
             InitializeComponent();
             _applicationTypeInfoManager = applicationTypeInfoManager;
             _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
-            this.applicationForm = applicationForm;
+            this.applicationHostControl = applicationHostControl;
             Initialize();
         }
 
@@ -68,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _application = _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name);
             if (!_application.AssemblyAvailable)
             {
-                applicationForm.SetErrorMessage(_application.UnavailableMessage);
+                applicationHostControl.SetErrorMessage(_application.UnavailableMessage);
             }
         }
 
@@ -78,12 +78,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             if (application == null)
                 throw _exceptionHelper.CriticalException("{E6CC4E1A-ECEE-4BA9-A2CE-5FFC515C8EE6}");
 
-            applicationForm.ClearMessage();
+            applicationHostControl.ClearMessage();
 
             _application = _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name);
             if (!_application.AssemblyAvailable)
             {
-                applicationForm.SetErrorMessage(_application.UnavailableMessage);
+                applicationHostControl.SetErrorMessage(_application.UnavailableMessage);
             }
             
             ApplicationChanged?.Invoke(this, new ApplicationChangedEventArgs(_application));

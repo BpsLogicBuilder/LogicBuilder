@@ -7,20 +7,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal class EditingFormHelperFactory : IEditingFormHelperFactory
     {
         private readonly Func<IDataGraphEditingForm, IDataGraphEditingFormEventsHelper> _getDataGraphEditingFormEventsHelper;
-        private readonly Func<IEditingForm, IParametersDataTreeBuilder> _getParametersDataTreeBuilder;
+        private readonly Func<IDataGraphEditingHost, IDataGraphEditingHostEventsHelper> _getDataGraphEditingHostEventsHelper;
+        private readonly Func<IDataGraphEditingHost, IDataGraphEditingManager> _getDataGraphEditingManager;
+        private readonly Func<IDataGraphEditingHost, IParametersDataTreeBuilder> _getParametersDataTreeBuilder;
 
         public EditingFormHelperFactory(
             Func<IDataGraphEditingForm, IDataGraphEditingFormEventsHelper> getDataGraphEditingFormEventsHelper,
-            Func<IEditingForm, IParametersDataTreeBuilder> getParametersDataTreeBuilder)
+            Func<IDataGraphEditingHost, IDataGraphEditingHostEventsHelper> getDataGraphEditingHostEventsHelper,
+            Func<IDataGraphEditingHost, IDataGraphEditingManager> getDataGraphEditingManager,
+            Func<IDataGraphEditingHost, IParametersDataTreeBuilder> getParametersDataTreeBuilder)
         {
             _getDataGraphEditingFormEventsHelper = getDataGraphEditingFormEventsHelper;
+            _getDataGraphEditingHostEventsHelper = getDataGraphEditingHostEventsHelper;
+            _getDataGraphEditingManager = getDataGraphEditingManager;
             _getParametersDataTreeBuilder = getParametersDataTreeBuilder;
         }
 
         public IDataGraphEditingFormEventsHelper GetDataGraphEditingFormEventsHelper(IDataGraphEditingForm dataGraphEditingForm)
             => _getDataGraphEditingFormEventsHelper(dataGraphEditingForm);
 
-        public IParametersDataTreeBuilder GetParametersDataTreeBuilder(IEditingForm editingForm)
-            => _getParametersDataTreeBuilder(editingForm);
+        public IDataGraphEditingHostEventsHelper GetDataGraphEditingHostEventsHelper(IDataGraphEditingHost dataGraphEditingHost)
+            => _getDataGraphEditingHostEventsHelper(dataGraphEditingHost);
+
+        public IDataGraphEditingManager GetDataGraphEditingManager(IDataGraphEditingHost dataGraphEditingHost)
+            => _getDataGraphEditingManager(dataGraphEditingHost);
+
+        public IParametersDataTreeBuilder GetParametersDataTreeBuilder(IDataGraphEditingHost dataGraphEditingHost)
+            => _getParametersDataTreeBuilder(dataGraphEditingHost);
     }
 }

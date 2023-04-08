@@ -225,7 +225,7 @@
             radButtonSetFontSize13.Size = new System.Drawing.Size(179, 24);
             radButtonSetFontSize13.TabIndex = 11;
             radButtonSetFontSize13.Text = "Set Font Size 13";
-            radButtonSetFontSize13.Click += radButtonSetFontSize13_Click;
+            radButtonSetFontSize13.Click += RadButtonSetFontSize13_Click;
             // 
             // radPanelApplication
             // 

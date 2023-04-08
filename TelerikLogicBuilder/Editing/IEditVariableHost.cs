@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing
 {
-    internal interface IEditingForm : IApplicationForm, IAssignedTo, IExpandedNodes, IRequestDocumentUpdate
+    internal interface IEditVariableHost : IApplicationControl, IRequestDocumentUpdate, ISetDialogMessages
     {
     }
 }

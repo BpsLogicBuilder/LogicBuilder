@@ -26,7 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IApplicationForm applicationForm;
+        private readonly IApplicationHostControl applicationHostControl;
 
         public UpdateGenericArguments(
             IExceptionHelper exceptionHelper,
@@ -34,19 +34,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             ITypeHelper typeHelper,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IApplicationForm applicationForm)
+            IApplicationHostControl applicationHostControl)
         {
             _exceptionHelper = exceptionHelper;
             _genericConfigManager = genericConfigManager;
             _typeHelper = typeHelper;
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.applicationForm = applicationForm;
+            this.applicationHostControl = applicationHostControl;
         }
 
         public void Update(ITypeAutoCompleteTextControl control)
         {
-            if (!_typeLoadHelper.TryGetSystemType(control.Text ?? "", this.applicationForm.Application, out Type? enteredType))
+            if (!_typeLoadHelper.TryGetSystemType(control.Text ?? "", this.applicationHostControl.Application, out Type? enteredType))
                 throw _exceptionHelper.CriticalException("{2A4CE382-6F35-4095-880E-17A9160CB341}");
 
             if (!enteredType.IsGenericType)
@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             if (result.DialogResult != DialogResult.OK)
                 return;
 
-            this.applicationForm.ClearMessage();
+            this.applicationHostControl.ClearMessage();
 
             try
             {
@@ -75,12 +75,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
             catch (ArgumentException ex)
             {
-                this.applicationForm.SetErrorMessage(ex.Message);
+                this.applicationHostControl.SetErrorMessage(ex.Message);
             }
 
             Type GetTypeFromConfig(GenericConfigBase config)
             {
-                if (!_typeLoadHelper.TryGetSystemType(config, this.applicationForm.Application, out Type? type))
+                if (!_typeLoadHelper.TryGetSystemType(config, this.applicationHostControl.Application, out Type? type))
                 {
                     throw new ArgumentException
                     (
@@ -118,7 +118,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 genericTypeDefinition
             );
 
-            configureConstructorGenericArgumentsForm.ShowDialog((IWin32Window)applicationForm);
+            configureConstructorGenericArgumentsForm.ShowDialog((IWin32Window)applicationHostControl);
 
             return new GenericConfigListResult
             (

@@ -8,12 +8,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     {
         private readonly Func<IRichInputBoxValueControl, ICreateRichInputBoxContextMenu> _getCreateRichInputBoxContextMenu;
         private readonly Func<IEditFunctionControl, IEditFunctionControlHelper> _getEditFunctionControlHelper;
-        private readonly Func<IDataGraphEditingControl, IEditingForm, ILoadParameterControlsDictionary> _getLoadParameterControlsDictionary;
+        private readonly Func<IDataGraphEditingControl, IDataGraphEditingHost, ILoadParameterControlsDictionary> _getLoadParameterControlsDictionary;
 
         public EditingControlHelperFactory(
             Func<IRichInputBoxValueControl, ICreateRichInputBoxContextMenu> getCreateRichInputBoxContextMenu,
             Func<IEditFunctionControl, IEditFunctionControlHelper> getEditFunctionControlHelper,
-            Func<IDataGraphEditingControl, IEditingForm, ILoadParameterControlsDictionary> getLoadParameterControlsDictionary)
+            Func<IDataGraphEditingControl, IDataGraphEditingHost, ILoadParameterControlsDictionary> getLoadParameterControlsDictionary)
         {
             _getCreateRichInputBoxContextMenu = getCreateRichInputBoxContextMenu;
             _getEditFunctionControlHelper = getEditFunctionControlHelper;
@@ -26,7 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         public IEditFunctionControlHelper GetEditFunctionControlHelper(IEditFunctionControl editFunctionControl)
             => _getEditFunctionControlHelper(editFunctionControl);
 
-        public ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IDataGraphEditingControl editingControl, IEditingForm editingForm)
-            => _getLoadParameterControlsDictionary(editingControl, editingForm);
+        public ILoadParameterControlsDictionary GetLoadParameterControlsDictionary(IDataGraphEditingControl editingControl, IDataGraphEditingHost dataGraphEditingHost)
+            => _getLoadParameterControlsDictionary(editingControl, dataGraphEditingHost);
     }
 }

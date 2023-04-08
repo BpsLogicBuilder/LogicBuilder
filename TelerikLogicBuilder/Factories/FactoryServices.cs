@@ -21,15 +21,15 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IApplicationForm, IApplicationDropDownList>>
+                .AddTransient<Func<IApplicationHostControl, IApplicationDropDownList>>
                 (
                     provider =>
-                    applicationForm => new ApplicationDropDownList
+                    applicationHostControl => new ApplicationDropDownList
                     (
                         provider.GetRequiredService<IApplicationTypeInfoManager>(),
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IExceptionHelper>(),
-                        applicationForm
+                        applicationHostControl
                     )
                 )
                 .AddTransient<Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm>>
@@ -52,29 +52,29 @@ namespace Microsoft.Extensions.DependencyInjection
                         schema
                     )
                 )
-                .AddTransient<Func<IApplicationForm, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager>>
+                .AddTransient<Func<IApplicationHostControl, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager>>
                 (
                     provider =>
-                    (applicationForm, textControl) => new TypeAutoCompleteManager
+                    (applicationHostControl, textControl) => new TypeAutoCompleteManager
                     (
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ITypeAutoCompleteCommandFactory>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
-                        applicationForm,
+                        applicationHostControl,
                         textControl
                     )
                 )
-                .AddTransient<Func<IApplicationForm, IUpdateGenericArguments>>
+                .AddTransient<Func<IApplicationHostControl, IUpdateGenericArguments>>
                 (
                     provider =>
-                    applicationForm => new UpdateGenericArguments
+                    applicationHostControl => new UpdateGenericArguments
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IGenericConfigManager>(),
                         provider.GetRequiredService<ITypeHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        applicationForm
+                        applicationHostControl
                     )
                 );
         }

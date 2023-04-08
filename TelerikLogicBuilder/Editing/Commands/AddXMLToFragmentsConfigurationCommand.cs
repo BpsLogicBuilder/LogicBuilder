@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
         private readonly IUpdateFragments _updateFragments;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
-        private readonly IDataGraphEditingForm dataGraphEditingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
 
         public AddXMLToFragmentsConfigurationCommand(
             IConfigurationService configurationService,
@@ -42,7 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
             IUpdateFragments updateFragments,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory,
-            IDataGraphEditingForm dataGraphEditingForm)
+            IDataGraphEditingHost dataGraphEditingHost)
         {
             _configurationService = configurationService;
             _fragmentItemFactory = fragmentItemFactory;
@@ -52,11 +52,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
             _updateFragments = updateFragments;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.FragmentsSchema);
-            this.dataGraphEditingForm = dataGraphEditingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
         }
 
         private static readonly string FRAGMENTNAMES_NODEXPATH = $"//{XmlDataConstants.FRAGMENTELEMENT}/@{XmlDataConstants.NAMEATTRIBUTE}";
-        private HashSet<string> FragmentNames => dataGraphEditingForm.XmlDocument.SelectNodes(FRAGMENTNAMES_NODEXPATH)?.OfType<XmlAttribute>()
+        private HashSet<string> FragmentNames => dataGraphEditingHost.XmlDocument.SelectNodes(FRAGMENTNAMES_NODEXPATH)?.OfType<XmlAttribute>()
                                                     .Select(a => a.Value)
                                                     .ToHashSet() ?? new HashSet<string>();
 
@@ -64,32 +64,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
         {
             try
             {
-                dataGraphEditingForm.ClearMessage();
+                dataGraphEditingHost.ClearMessage();
                 AddFragment();
             }
             catch (LogicBuilderException ex)
             {
-                dataGraphEditingForm.SetErrorMessage(ex.Message);
+                dataGraphEditingHost.SetErrorMessage(ex.Message);
             }
         }
 
         private void AddFragment()
         {
-            RadTreeNode? selectedNode = dataGraphEditingForm.TreeView.SelectedNode;
+            RadTreeNode? selectedNode = dataGraphEditingHost.TreeView.SelectedNode;
             if (selectedNode == null)
                 return;
 
             using IScopedDisposableManager<IInputBoxForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IInputBoxForm>>();
             IInputBoxForm inputBox = disposableManager.ScopedService;
             inputBox.SetTitles(RegularExpressions.XMLNAMEATTRIBUTE, Strings.inputNewFragmentNameCaption, Strings.inputNewFragmentNamePrompt);
-            inputBox.ShowDialog((IWin32Window)dataGraphEditingForm);
+            inputBox.ShowDialog((IWin32Window)dataGraphEditingHost);
 
             if (inputBox.DialogResult != DialogResult.OK)
                 return;
 
             XmlDocument dataDocument = _xmlDocumentHelpers.ToXmlDocument
             (
-                _xmlDocumentHelpers.SelectSingleElement(dataGraphEditingForm.XmlDocument, selectedNode.Name)
+                _xmlDocumentHelpers.SelectSingleElement(dataGraphEditingHost.XmlDocument, selectedNode.Name)
             );
             XmlDocument fragmentDocument = _loadFragments.Load();
             string newFragmentName = _stringHelper.EnsureUniqueName
@@ -121,11 +121,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
             {
                 _updateFragments.Update(fragmentDocument);
                 _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
-                dataGraphEditingForm.SetMessage(string.Format(CultureInfo.CurrentCulture, Strings.savedFragmentMessageFormat, newFragmentName));
+                dataGraphEditingHost.SetMessage(string.Format(CultureInfo.CurrentCulture, Strings.savedFragmentMessageFormat, newFragmentName));
             }
             else
             {
-                dataGraphEditingForm.SetErrorMessage(string.Join(Environment.NewLine, response.Errors));
+                dataGraphEditingHost.SetErrorMessage(string.Join(Environment.NewLine, response.Errors));
             }
         }
     }

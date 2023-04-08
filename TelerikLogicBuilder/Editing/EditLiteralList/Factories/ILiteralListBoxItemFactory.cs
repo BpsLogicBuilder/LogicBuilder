@@ -10,14 +10,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories
             string visibleText,
             string hiddenText,
             Type assignedTo,
-            IApplicationForm applicationForm,
+            IApplicationControl applicationControl,
             ListParameterInputStyle listControl);
 
         ILiteralListBoxItem GetVariableLiteralListBoxItem(
             string visibleText,
             string hiddenText,
             Type assignedTo,
-            IApplicationForm applicationForm,
+            IApplicationControl applicationControl,
             ListVariableInputStyle listControl);
     }
 }

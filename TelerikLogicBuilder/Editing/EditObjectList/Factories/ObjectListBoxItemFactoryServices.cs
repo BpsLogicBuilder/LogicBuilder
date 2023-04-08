@@ -18,10 +18,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddObjectListBoxItemFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<string, string, Type, IApplicationForm, ListParameterInputStyle, IObjectListBoxItem>>
+                .AddTransient<Func<string, string, Type, IApplicationControl, ListParameterInputStyle, IObjectListBoxItem>>
                 (
                     provider =>
-                    (visibleText, hiddenText, assignedTo, applicationForm, listControl) =>
+                    (visibleText, hiddenText, assignedTo, applicationControl, listControl) =>
                     {
                         return listControl switch
                         {
@@ -34,7 +34,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                 visibleText,
                                 hiddenText,
                                 assignedTo,
-                                applicationForm
+                                applicationControl
                             ),
                             ListParameterInputStyle.ListForm => new ObjectListFormListBoxItem
                             (
@@ -44,16 +44,16 @@ namespace Microsoft.Extensions.DependencyInjection
                                 visibleText,
                                 hiddenText,
                                 assignedTo,
-                                applicationForm
+                                applicationControl
                             ),
                             _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{1FBB18EC-AD29-4D87-A672-F8D52E2742B0}")),
                         };
                     }
                 )
-                .AddTransient<Func<string, string, Type, IApplicationForm, ListVariableInputStyle, IObjectListBoxItem>>
+                .AddTransient<Func<string, string, Type, IApplicationControl, ListVariableInputStyle, IObjectListBoxItem>>
                 (
                     provider =>
-                    (visibleText, hiddenText, assignedTo, applicationForm, listControl) =>
+                    (visibleText, hiddenText, assignedTo, applicationControl, listControl) =>
                     {
                         return listControl switch
                         {
@@ -66,7 +66,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                 visibleText,
                                 hiddenText,
                                 assignedTo,
-                                applicationForm
+                                applicationControl
                             ),
                             ListVariableInputStyle.ListForm => new ObjectListFormListBoxItem
                             (
@@ -76,7 +76,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                 visibleText,
                                 hiddenText,
                                 assignedTo,
-                                applicationForm
+                                applicationControl
                             ),
                             _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{700874A9-4298-4606-83F1-CC1662059F1C}")),
                         };

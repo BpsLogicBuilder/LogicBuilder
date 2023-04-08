@@ -17,7 +17,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal interface IEditingControlFactory
     {
         IEditBinaryFunctionControl GetEditBinaryFunctionControl(
-            IDataGraphEditingForm editingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditConstructorControl GetEditConstructorControl(
-            IDataGraphEditingForm editingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             Constructor constructor,
             Type assignedTo,
             XmlDocument formDocument,
@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditLiteralListControl GetEditLiteralListControl(
-            IDataGraphEditingForm dataGraphEditingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             LiteralListParameterElementInfo literalListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
@@ -41,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             int? selectedIndex);
 
         IEditObjectListControl GetEditObjectListControl(
-            IDataGraphEditingForm dataGraphEditingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             ObjectListParameterElementInfo objectListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             int? selectedIndex);
 
         IEditSetValueFunctionControl GetEditSetValueFunctionControl(
-            IDataGraphEditingForm editingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(
-            IDataGraphEditingForm editingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -65,13 +65,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditStandardFunctionControl GetEditStandardFunctionControl(
-            IDataGraphEditingForm editingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
             string treeNodeXPath,
             string? selectedParameter = null);
 
-        IEditVariableControl GetEditVariableControl(IEditingForm editingForm, Type assignedTo);
+        IEditVariableControl GetEditVariableControl(IEditVariableHost editVariableHost, Type assignedTo);
     }
 }

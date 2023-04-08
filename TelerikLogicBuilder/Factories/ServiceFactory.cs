@@ -11,18 +11,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
 {
     internal class ServiceFactory : IServiceFactory
     {
-        private readonly Func<IApplicationForm, IApplicationDropDownList> _getApplicationDropDownList;
+        private readonly Func<IApplicationHostControl, IApplicationDropDownList> _getApplicationDropDownList;
         private readonly Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm> _getProgressForm;
         private readonly Func<SchemaName, ITreeViewXmlDocumentHelper> _getTreeViewXmlDocumentHelper;
-        private readonly Func<IApplicationForm, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> _getTypeAutoCompleteManager;
-        private readonly Func<IApplicationForm, IUpdateGenericArguments> _getUpdateGenericArguments;
+        private readonly Func<IApplicationHostControl, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> _getTypeAutoCompleteManager;
+        private readonly Func<IApplicationHostControl, IUpdateGenericArguments> _getUpdateGenericArguments;
 
         public ServiceFactory(
-            Func<IApplicationForm, IApplicationDropDownList> getApplicationDropDownList,
+            Func<IApplicationHostControl, IApplicationDropDownList> getApplicationDropDownList,
             Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm> getProgressForm,
             Func<SchemaName, ITreeViewXmlDocumentHelper> getTreeViewXmlDocumentHelper,
-            Func<IApplicationForm, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> getTypeAutoCompleteManager,
-            Func<IApplicationForm, IUpdateGenericArguments> getUpdateGenericArguments)
+            Func<IApplicationHostControl, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> getTypeAutoCompleteManager,
+            Func<IApplicationHostControl, IUpdateGenericArguments> getUpdateGenericArguments)
         {
             _getApplicationDropDownList = getApplicationDropDownList;
             _getProgressForm = getProgressForm;
@@ -31,8 +31,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
             _getUpdateGenericArguments= getUpdateGenericArguments;
         }
 
-        public IApplicationDropDownList GetApplicationDropDownList(IApplicationForm applicationForm)
-            => _getApplicationDropDownList(applicationForm);
+        public IApplicationDropDownList GetApplicationDropDownList(IApplicationHostControl applicationHostControl)
+            => _getApplicationDropDownList(applicationHostControl);
 
         public IProgressForm GetProgressForm(Progress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
             => _getProgressForm(progress, cancellationTokenSource);
@@ -40,10 +40,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
         public ITreeViewXmlDocumentHelper GetTreeViewXmlDocumentHelper(SchemaName schema)
             => _getTreeViewXmlDocumentHelper(schema);
 
-        public ITypeAutoCompleteManager GetTypeAutoCompleteManager(IApplicationForm applicationForm, ITypeAutoCompleteTextControl textControl)
-            => _getTypeAutoCompleteManager(applicationForm, textControl);
+        public ITypeAutoCompleteManager GetTypeAutoCompleteManager(IApplicationHostControl applicationHostControl, ITypeAutoCompleteTextControl textControl)
+            => _getTypeAutoCompleteManager(applicationHostControl, textControl);
 
-        public IUpdateGenericArguments GetUpdateGenericArguments(IApplicationForm applicationForm)
-            => _getUpdateGenericArguments(applicationForm);
+        public IUpdateGenericArguments GetUpdateGenericArguments(IApplicationHostControl applicationHostControl)
+            => _getUpdateGenericArguments(applicationHostControl);
     }
 }

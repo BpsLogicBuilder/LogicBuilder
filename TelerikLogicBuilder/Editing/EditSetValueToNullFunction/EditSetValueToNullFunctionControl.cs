@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IDataGraphEditingForm dataGraphEditingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
 
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
@@ -59,7 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             ITypeLoadHelper typeLoadHelper,
             IUpdateParameterControlValues updateParameterControlValues,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IDataGraphEditingForm dataGraphEditingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
@@ -76,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             _typeLoadHelper = typeLoadHelper;
             _updateParameterControlValues = updateParameterControlValues;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.dataGraphEditingForm = dataGraphEditingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
             this.function = function;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
@@ -86,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             this.assignedTo = assignedTo;
             this.selectedParameter = selectedParameter;
 
-            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingForm);
+            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingHost);
 
             this.groupBoxFunction = new RadGroupBox();
             this.radPanelFunction = new RadScrollablePanel();
@@ -109,9 +109,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
 
         private Function function;
 
-        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
+        public bool DenySpecialCharacters => dataGraphEditingHost.DenySpecialCharacters;
 
-        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
+        public bool DisplayNotCheckBox => dataGraphEditingHost.DisplayNotCheckBox;
 
         public Function Function => function;
 

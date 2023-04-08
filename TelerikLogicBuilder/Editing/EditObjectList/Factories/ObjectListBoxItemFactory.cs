@@ -6,21 +6,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories
 {
     internal class ObjectListBoxItemFactory : IObjectListBoxItemFactory
     {
-        private readonly Func<string, string, Type, IApplicationForm, ListParameterInputStyle, IObjectListBoxItem> _getParameterObjectListBoxItem;
-        private readonly Func<string, string, Type, IApplicationForm, ListVariableInputStyle, IObjectListBoxItem> _getVariableObjectListBoxItem;
+        private readonly Func<string, string, Type, IApplicationControl, ListParameterInputStyle, IObjectListBoxItem> _getParameterObjectListBoxItem;
+        private readonly Func<string, string, Type, IApplicationControl, ListVariableInputStyle, IObjectListBoxItem> _getVariableObjectListBoxItem;
 
         public ObjectListBoxItemFactory(
-            Func<string, string, Type, IApplicationForm, ListParameterInputStyle, IObjectListBoxItem> getParameterObjectListBoxItem, 
-            Func<string, string, Type, IApplicationForm, ListVariableInputStyle, IObjectListBoxItem> getVariableObjectListBoxItem)
+            Func<string, string, Type, IApplicationControl, ListParameterInputStyle, IObjectListBoxItem> getParameterObjectListBoxItem, 
+            Func<string, string, Type, IApplicationControl, ListVariableInputStyle, IObjectListBoxItem> getVariableObjectListBoxItem)
         {
             _getParameterObjectListBoxItem = getParameterObjectListBoxItem;
             _getVariableObjectListBoxItem = getVariableObjectListBoxItem;
         }
 
-        public IObjectListBoxItem GetParameterObjectListBoxItem(string visibleText, string hiddenText, Type assignedTo, IApplicationForm applicationForm, ListParameterInputStyle listControl)
-            => _getParameterObjectListBoxItem(visibleText, hiddenText, assignedTo, applicationForm, listControl);
+        public IObjectListBoxItem GetParameterObjectListBoxItem(string visibleText, string hiddenText, Type assignedTo, IApplicationControl applicationControl, ListParameterInputStyle listControl)
+            => _getParameterObjectListBoxItem(visibleText, hiddenText, assignedTo, applicationControl, listControl);
 
-        public IObjectListBoxItem GetVariableObjectListBoxItem(string visibleText, string hiddenText, Type assignedTo, IApplicationForm applicationForm, ListVariableInputStyle listControl)
-            => _getVariableObjectListBoxItem(visibleText, hiddenText, assignedTo, applicationForm, listControl);
+        public IObjectListBoxItem GetVariableObjectListBoxItem(string visibleText, string hiddenText, Type assignedTo, IApplicationControl applicationControl, ListVariableInputStyle listControl)
+            => _getVariableObjectListBoxItem(visibleText, hiddenText, assignedTo, applicationControl, listControl);
     }
 }

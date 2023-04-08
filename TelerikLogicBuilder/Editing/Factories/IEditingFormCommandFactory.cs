@@ -4,7 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal interface IEditingFormCommandFactory
     {
-        AddXMLToFragmentsConfigurationCommand GetAddXMLToFragmentsConfigurationCommand(IDataGraphEditingForm dataGraphEditingForm);
-        CopyXmlToClipboardCommand GetCopyXmlToClipboardCommand(IDataGraphEditingForm dataGraphEditingForm);
+        AddXMLToFragmentsConfigurationCommand GetAddXMLToFragmentsConfigurationCommand(IDataGraphEditingHost dataGraphEditingHost);
+        CopyXmlToClipboardCommand GetCopyXmlToClipboardCommand(IDataGraphEditingHost dataGraphEditingHost);
     }
 }

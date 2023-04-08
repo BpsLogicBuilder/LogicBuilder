@@ -45,7 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IDataGraphEditingForm dataGraphEditingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
         
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             IUpdateParameterControlValues updateParameterControlValues,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IDataGraphEditingForm dataGraphEditingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             Constructor constructor,
             Type assignedTo,
             XmlDocument formDocument,
@@ -97,7 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _updateParameterControlValues = updateParameterControlValues;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.dataGraphEditingForm = dataGraphEditingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
             this.constructor = constructor;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
@@ -107,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.assignedTo = assignedTo;
             this.selectedParameter = selectedParameter;
 
-            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingForm);
+            _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingHost);
 
             this.groupBoxConstructor = new RadGroupBox();
             this.radPanelConstructor = new RadScrollablePanel();
@@ -135,21 +135,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public bool IsValid => throw new NotImplementedException();
 
-        public ApplicationTypeInfo Application => dataGraphEditingForm.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 
         public Constructor Constructor => constructor;
 
-        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
+        public bool DenySpecialCharacters => dataGraphEditingHost.DenySpecialCharacters;
 
-        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
+        public bool DisplayNotCheckBox => dataGraphEditingHost.DisplayNotCheckBox;
 
         public XmlDocument XmlDocument => xmlDocument;
 
         public XmlElement XmlResult => GetXmlResult();
 
-        public void ClearMessage() => dataGraphEditingForm.ClearMessage();
+        public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
-        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate(this);
+        public void RequestDocumentUpdate() => dataGraphEditingHost.RequestDocumentUpdate(this);
 
         public void ResetControls()
         {
@@ -159,9 +159,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
         }
 
-        public void SetErrorMessage(string message) => dataGraphEditingForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => dataGraphEditingHost.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") => dataGraphEditingForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => dataGraphEditingHost.SetMessage(message, title);
 
         public void ValidateFields()
         {
@@ -475,7 +475,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                 (
                     editControlsSet[parameter.Name].ValueControl.XmlElement!, 
                     parameter, 
-                    dataGraphEditingForm.Application,
+                    dataGraphEditingHost.Application,
                     parameterErrors
                 );
 

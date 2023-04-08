@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands
                     editObjectListControl.ValueControl.VisibleText,
                     editObjectListControl.ValueControl.MixedXml,
                     editObjectListControl.ObjectType,
-                    editObjectListControl.ApplicationForm,
+                    editObjectListControl.ApplicationControl,
                     editObjectListControl.ListControl
                 )
             );

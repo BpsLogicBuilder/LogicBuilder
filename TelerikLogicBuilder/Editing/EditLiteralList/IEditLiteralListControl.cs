@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 {
     internal interface IEditLiteralListControl : IDataGraphEditingControl
     {
-        IApplicationForm ApplicationForm { get; }
+        IApplicationControl ApplicationControl { get; }
         ListParameterInputStyle ListControl { get; }
         Type LiteralType { get; }
         IRadListBoxManager<ILiteralListBoxItem> RadListBoxManager { get; }

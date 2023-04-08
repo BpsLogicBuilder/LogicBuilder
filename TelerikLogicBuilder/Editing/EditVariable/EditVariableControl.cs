@@ -9,8 +9,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Xml;
@@ -31,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditingForm editingForm;
+        private readonly IEditVariableHost editVariableHost;
         private readonly CommandBarToggleButton[] toggleButtons;
         private readonly Type assignedTo;
 
@@ -53,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
             ITypeLoadHelper typeLoadHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditingForm editingForm,
+            IEditVariableHost editVariableHost,
             Type assignedTo)
         {
             InitializeComponent();
@@ -71,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
                 commandBarToggleButtonList,
                 commandBarToggleButtonTreeView
             };
-            this.editingForm = editingForm;
+            this.editVariableHost = editVariableHost;
             this.assignedTo = assignedTo;
             Initialize();
         }
@@ -87,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
             }
         }
 
-        public ApplicationTypeInfo Application => editingForm.Application;
+        public ApplicationTypeInfo Application => editVariableHost.Application;
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
@@ -97,7 +95,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         public bool IsValid => ValidateSelectedVariable().Count == 0;
 
-        public IEditingForm EditingForm => editingForm;
+        public IEditVariableHost EditingForm => editVariableHost;
 
         public XmlElement XmlResult 
             => _xmlDocumentHelpers.ToXmlElement
@@ -108,13 +106,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
                 )
             );
 
-        public void ClearMessage() => editingForm.ClearMessage();
+        public void ClearMessage() => editVariableHost.ClearMessage();
 
-        public void RequestDocumentUpdate() => editingForm.RequestDocumentUpdate(this);
+        public void RequestDocumentUpdate() => editVariableHost.RequestDocumentUpdate(this);
 
-        public void SetErrorMessage(string message) => editingForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => editVariableHost.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") => editingForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => editVariableHost.SetMessage(message, title);
 
         public void SetVariable(string variableName)
         {

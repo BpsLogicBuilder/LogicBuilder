@@ -120,7 +120,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
 
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 
-        event EventHandler<ApplicationChangedEventArgs>? IApplicationForm.ApplicationChanged
+        event EventHandler<ApplicationChangedEventArgs>? IApplicationHostControl.ApplicationChanged
         {
             add
             {

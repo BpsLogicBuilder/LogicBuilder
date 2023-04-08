@@ -44,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IDataGraphEditingForm dataGraphEditingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
         private readonly Type assignedTo;
         private readonly LiteralListParameterElementInfo literalListElementInfo;
         private readonly int? selectedIndex;
@@ -65,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             ITypeHelper typeHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IDataGraphEditingForm dataGraphEditingForm,
+            IDataGraphEditingHost dataGraphEditingHost,
             LiteralListParameterElementInfo literalListElementInfo,
             Type assignedTo,
             XmlDocument formDocument,
@@ -84,7 +84,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             _typeHelper = typeHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.dataGraphEditingForm = dataGraphEditingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
             this.literalListElementInfo = literalListElementInfo;
             this.xmlDocument = _xmlDocumentHelpers.ToXmlDocument
             (
@@ -123,13 +123,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public IRadListBoxManager<ILiteralListBoxItem> RadListBoxManager => radListBoxManager;
 
-        public ApplicationTypeInfo Application => dataGraphEditingForm.Application;
+        public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 
-        public IApplicationForm ApplicationForm => dataGraphEditingForm;
+        public IApplicationControl ApplicationControl => dataGraphEditingHost;
 
-        public bool DenySpecialCharacters => dataGraphEditingForm.DenySpecialCharacters;
+        public bool DenySpecialCharacters => dataGraphEditingHost.DenySpecialCharacters;
 
-        public bool DisplayNotCheckBox => dataGraphEditingForm.DisplayNotCheckBox;
+        public bool DisplayNotCheckBox => dataGraphEditingHost.DisplayNotCheckBox;
 
         public bool IsValid
         {
@@ -208,15 +208,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public void ClearInputControls() => ValueControl.ResetControl();
 
-        public void ClearMessage() => dataGraphEditingForm.ClearMessage();
+        public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
-        public void DisableControlsDuringEdit(bool disable) => dataGraphEditingForm.DisableControlsDuringEdit(disable);
+        public void DisableControlsDuringEdit(bool disable) => dataGraphEditingHost.DisableControlsDuringEdit(disable);
 
-        public void RequestDocumentUpdate() => dataGraphEditingForm.RequestDocumentUpdate(this);
+        public void RequestDocumentUpdate() => dataGraphEditingHost.RequestDocumentUpdate(this);
 
-        public void SetErrorMessage(string message) => dataGraphEditingForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => dataGraphEditingHost.SetErrorMessage(message);
 
-        public void SetMessage(string message, string title = "") => dataGraphEditingForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => dataGraphEditingHost.SetMessage(message, title);
 
         public void UpdateInputControls(ILiteralListBoxItem item)
             => ValueControl.Update
@@ -314,7 +314,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                 case LiteralParameterInputStyle.ParameterSourceOnly:
                 case LiteralParameterInputStyle.TypeAutoComplete:
                     IListOfLiteralsItemTypeAutoCompleteControl typeAutoCompleteControl = _literalListItemEditorControlFactory.GetListOfLiteralsItemTypeAutoCompleteControl();
-                    ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(dataGraphEditingForm, typeAutoCompleteControl);
+                    ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(dataGraphEditingHost, typeAutoCompleteControl);
                     typeAutoCompleteManager.Setup();
                     return typeAutoCompleteControl;
                 case LiteralParameterInputStyle.PropertyInput:
@@ -343,9 +343,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             radGroupBoxList.Text = GetListTitle(literalListElementInfo.ListControl);
             radScrollablePanelList.VerticalScrollBarState = ScrollState.AlwaysShow;
 
-            if (!dataGraphEditingForm.Application.AssemblyAvailable)
+            if (!dataGraphEditingHost.Application.AssemblyAvailable)
             {
-                SetErrorMessage(dataGraphEditingForm.Application.UnavailableMessage);
+                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
                 return;
             }
 
@@ -466,7 +466,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                             _xmlDocumentHelpers.GetVisibleText(e),
                             e.InnerXml,
                             elementType,
-                            dataGraphEditingForm,
+                            dataGraphEditingHost,
                             literalListElementInfo.ListControl
                         );
                         errors.AddRange(literalListBoxItem.Errors);

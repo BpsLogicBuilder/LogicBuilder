@@ -22,6 +22,24 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     dataGraphEditingForm => new DataGraphEditingFormEventsHelper
                     (
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        dataGraphEditingForm
+                    )
+                )
+                .AddTransient<Func<IDataGraphEditingHost, IDataGraphEditingHostEventsHelper>>
+                (
+                    provider =>
+                    dataGraphEditingHost => new DataGraphEditingHostEventsHelper
+                    (
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        dataGraphEditingHost
+                    )
+                )
+                .AddTransient<Func<IDataGraphEditingHost, IDataGraphEditingManager>>
+                (
+                    provider =>
+                    dataGraphEditingHost => new DataGraphEditingManager
+                    (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IEditFormFieldSetHelper>(),
                         provider.GetRequiredService<IEditingControlFactory>(),
@@ -30,13 +48,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        dataGraphEditingForm
+                        dataGraphEditingHost
                     )
                 )
-                .AddTransient<Func<IEditingForm, IParametersDataTreeBuilder>>
+                .AddTransient<Func<IDataGraphEditingHost, IParametersDataTreeBuilder>>
                 (
                     provider =>
-                    editingForm => new ParametersDataTreeBuilder
+                    dataGraphEditingHost => new ParametersDataTreeBuilder
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IConstructorDataParser>(),
@@ -54,7 +72,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IVariableDataParser>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm
+                        dataGraphEditingHost
                     )
                 )
                 .AddTransient<IEditingFormHelperFactory, EditingFormHelperFactory>();

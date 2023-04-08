@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly IServiceFactory _serviceFactory;
         private readonly IDataGraphEditingControl editingControl;
-        private readonly IEditingForm editingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
 
         public LoadParameterControlsDictionary(
             IExceptionHelper exceptionHelper,
@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             IRadCheckBoxHelper radCheckBoxHelper,
             IServiceFactory serviceFactory,
             IDataGraphEditingControl editingControl,
-            IEditingForm editingForm)
+            IDataGraphEditingHost dataGraphEditingHost)
         {
             _exceptionHelper = exceptionHelper;
             _fieldControlFactory = fieldControlFactory;
@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             _serviceFactory = serviceFactory;
             
             this.editingControl = editingControl;
-            this.editingForm = editingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
         }
 
         public void Load(IDictionary<string, ParameterControlSet> editControlsSet, IList<ParameterBase> parameters)
@@ -91,7 +91,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     case LiteralParameterInputStyle.ParameterSourceOnly:
                     case LiteralParameterInputStyle.TypeAutoComplete:
                         ILiteralParameterTypeAutoCompleteControl typeAutoCompleteControl = _fieldControlFactory.GetLiteralParameterTypeAutoCompleteControl(editingControl, literalParameter);
-                        ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(editingForm, typeAutoCompleteControl);
+                        ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(dataGraphEditingHost, typeAutoCompleteControl);
                         typeAutoCompleteManager.Setup();
                         valueControl = typeAutoCompleteControl;
                         break;

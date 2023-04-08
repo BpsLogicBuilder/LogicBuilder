@@ -13,15 +13,15 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddTypeAutoCompleteCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IApplicationForm, ITypeAutoCompleteTextControl, AddUpdateGenericArgumentsCommand>>
+                .AddTransient<Func<IApplicationHostControl, ITypeAutoCompleteTextControl, AddUpdateGenericArgumentsCommand>>
                 (
                     provider =>
-                    (applicationForm, textControl) => new AddUpdateGenericArgumentsCommand
+                    (applicationHostControl, textControl) => new AddUpdateGenericArgumentsCommand
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
-                        applicationForm, 
+                        applicationHostControl, 
                         textControl
                     )
                 )
@@ -49,13 +49,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         textControl
                     )
                 )
-                .AddTransient<Func<IApplicationForm, ITypeAutoCompleteTextControl, SetTextToAssemblyQualifiedNameCommand>>
+                .AddTransient<Func<IApplicationControl, ITypeAutoCompleteTextControl, SetTextToAssemblyQualifiedNameCommand>>
                 (
                     provider =>
-                    (applicationForm, textControl) => new SetTextToAssemblyQualifiedNameCommand
+                    (applicationControl, textControl) => new SetTextToAssemblyQualifiedNameCommand
                     (
                         provider.GetRequiredService<ITypeLoadHelper>(),
-                        applicationForm,
+                        applicationControl,
                         textControl
                     )
                 )

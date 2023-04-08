@@ -11,11 +11,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
 {
     internal interface IServiceFactory
     {
-        IApplicationDropDownList GetApplicationDropDownList(IApplicationForm applicationForm);
+        IApplicationDropDownList GetApplicationDropDownList(IApplicationHostControl applicationHostControl);
         IProgressForm GetProgressForm(Progress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource);
         ITreeViewXmlDocumentHelper GetTreeViewXmlDocumentHelper(SchemaName schema);
-        ITypeAutoCompleteManager GetTypeAutoCompleteManager(IApplicationForm applicationForm,
+        ITypeAutoCompleteManager GetTypeAutoCompleteManager(IApplicationHostControl applicationHostControl,
             ITypeAutoCompleteTextControl textControl);
-        IUpdateGenericArguments GetUpdateGenericArguments(IApplicationForm applicationForm);
+        IUpdateGenericArguments GetUpdateGenericArguments(IApplicationHostControl applicationHostControl);
     }
 }

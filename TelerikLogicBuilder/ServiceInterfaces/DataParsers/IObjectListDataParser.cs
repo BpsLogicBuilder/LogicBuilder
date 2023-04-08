@@ -13,8 +13,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers
         /// </summary>
         /// <param name="xmlElement"></param>
         /// <param name="listInfo"></param>
-        /// <param name="applicationForm"></param>
+        /// <param name="applicationControl"></param>
         /// <returns></returns>
-        ObjectListData Parse(XmlElement xmlElement, ObjectListParameterElementInfo listInfo, IApplicationForm applicationForm);
+        ObjectListData Parse(XmlElement xmlElement, ObjectListParameterElementInfo listInfo, IApplicationControl applicationControl);
     }
 }

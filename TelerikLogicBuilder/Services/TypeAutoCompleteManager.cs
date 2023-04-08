@@ -17,25 +17,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private readonly ITypeLoadHelper _typeLoadHelper;
 
         private readonly ITypeAutoCompleteTextControl textControl;
-        private readonly IApplicationForm applicationForm;
+        private readonly IApplicationHostControl applicationHostControl;
 
         public TypeAutoCompleteManager(
             IImageListService imageListService,
             ITypeAutoCompleteCommandFactory typeAutoCompleteCommandFactory,
             ITypeLoadHelper typeLoadHelper,
-            IApplicationForm applicationForm,
+            IApplicationHostControl applicationHostControl,
             ITypeAutoCompleteTextControl textControl)
         {
             _imageListService = imageListService;
             _typeAutoCompleteCommandFactory = typeAutoCompleteCommandFactory;
             _typeLoadHelper = typeLoadHelper;
             this.textControl = textControl;
-            this.applicationForm = applicationForm;
+            this.applicationHostControl = applicationHostControl;
             radContextMenuManager = new RadContextMenuManager();
             this.textControl.Disposed += Control_Disposed;
             this.textControl.MouseDown += Control_MouseDown;
             this.textControl.TextChanged += TextControl_TextChanged;
-            this.applicationForm.ApplicationChanged += ApplicationForm_ApplicationChanged;
+            this.applicationHostControl.ApplicationChanged += ApplicationForm_ApplicationChanged;
         }
 
         private readonly RadMenuItem mnuItemCopy = new(Strings.mnuItemCopyText) { ImageIndex = ImageIndexes.COPYIMAGEINDEX };
@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 _typeLoadHelper.TryGetSystemType
                 (
                     textControl.Text,
-                    applicationForm.Application,
+                    applicationHostControl.Application,
                     out Type? type
                 );
 
@@ -116,8 +116,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             this.textControl.ResetTypesList
             (
-                applicationForm.Application.AssemblyAvailable
-                    ? applicationForm.Application.AllTypesList
+                applicationHostControl.Application.AssemblyAvailable
+                    ? applicationHostControl.Application.AllTypesList
                     : null
             );
         }
@@ -130,10 +130,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             AddClickCommand
             (
                 mnuItemToAssemblyQualifiedName,
-                _typeAutoCompleteCommandFactory.GetSetTextToAssemblyQualifiedNameCommand(applicationForm, textControl)
+                _typeAutoCompleteCommandFactory.GetSetTextToAssemblyQualifiedNameCommand(applicationHostControl, textControl)
             );
 
-            IClickCommand addUpdateGenericArgumentsCommand = _typeAutoCompleteCommandFactory.GetAddUpdateGenericArgumentsCommand(applicationForm, textControl);
+            IClickCommand addUpdateGenericArgumentsCommand = _typeAutoCompleteCommandFactory.GetAddUpdateGenericArgumentsCommand(applicationHostControl, textControl);
             AddClickCommand
             (
                 mnuItemAddUpdateGenericArguments,

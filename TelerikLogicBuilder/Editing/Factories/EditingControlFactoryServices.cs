@@ -37,10 +37,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditBinaryFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditBinaryFunctionControl>>
                 (
                     provider =>
-                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditBinaryFunctionControl
+                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditBinaryFunctionControl
                     (
                         provider.GetRequiredService<IBinaryFunctionTableLayoutPanelHelper>(),
                         provider.GetRequiredService<IConfigurationService>(),
@@ -54,7 +54,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IGenericFunctionHelper>(),
                         provider.GetRequiredService<IRadCheckBoxHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        dataGraphEditingHost,
                         function,
                         assignedTo,
                         formDocument,
@@ -62,10 +62,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingForm, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl>>
                 (
                     provider =>
-                    (editingForm, constructor, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditConstructorControl
+                    (dataGraphEditingHost, constructor, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditConstructorControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IConstructorDataParser>(),
@@ -82,7 +82,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IUpdateParameterControlValues>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        dataGraphEditingHost,
                         constructor,
                         assignedTo, 
                         formDocument, 
@@ -91,10 +91,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingControlFactory, EditingControlFactory>()
-                .AddTransient<Func<IDataGraphEditingForm, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl>>
+                .AddTransient<Func<IDataGraphEditingHost, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl>>
                 (
                     provider =>
-                    (editingForm, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditLiteralListControl
+                    (dataGraphEditingHost, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditLiteralListControl
                     (
                         provider.GetRequiredService<IEditLiteralListCommandFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -107,7 +107,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITypeHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        dataGraphEditingHost,
                         literalListElementInfo,
                         assignedTo,
                         formDocument,
@@ -115,10 +115,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingForm, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl>>
+                .AddTransient<Func<IDataGraphEditingHost, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl>>
                 (
                     provider =>
-                    (editingForm, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditObjectListControl
+                    (dataGraphEditingHost, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditObjectListControl
                     (
                         provider.GetRequiredService<IEditObjectListCommandFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -134,7 +134,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        dataGraphEditingHost,
                         objectListElementInfo,
                         assignedTo,
                         formDocument,
@@ -142,10 +142,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl>>
                 (
                     provider =>
-                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueFunctionControl
+                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueFunctionControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IFunctionDataParser>(),
@@ -157,7 +157,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IUpdateParameterControlValues>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        dataGraphEditingHost,
                         function,
                         assignedTo,
                         formDocument,
@@ -165,10 +165,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl>>
                 (
                     provider =>
-                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueToNullFunctionControl
+                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueToNullFunctionControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IFunctionDataParser>(),
@@ -180,7 +180,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IUpdateParameterControlValues>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        dataGraphEditingHost,
                         function,
                         assignedTo,
                         formDocument,
@@ -188,10 +188,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingForm, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl>>
                 (
                     provider =>
-                    (editingForm, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditStandardFunctionControl
+                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditStandardFunctionControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IFunctionDataParser>(),
@@ -204,18 +204,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IRadCheckBoxHelper>(),
                         provider.GetRequiredService<ITableLayoutPanelHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        dataGraphEditingHost,
                         function,
                         assignedTo,
                         formDocument,
                         treeNodeXPath,
                         selectedParameter
                     )
-                )
-                .AddTransient<Func<IEditingForm, Type, IEditVariableControl>>
+            )
+                .AddTransient<Func<IEditVariableHost, Type, IEditVariableControl>>
                 (
                     provider =>
-                    (editingForm, assignedToType) => new EditVariableControl
+                    (editVariableHost, assignedToType) => new EditVariableControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IExceptionHelper>(),
@@ -225,7 +225,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingForm,
+                        editVariableHost,
                         assignedToType
                     )
                 );

@@ -8,19 +8,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
     internal class CopyXmlToClipboardCommand : ClickCommandBase
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IDataGraphEditingForm dataGraphEditingForm;
+        private readonly IDataGraphEditingHost dataGraphEditingHost;
 
         public CopyXmlToClipboardCommand(
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IDataGraphEditingForm dataGraphEditingForm)
+            IDataGraphEditingHost dataGraphEditingHost)
         {
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.dataGraphEditingForm = dataGraphEditingForm;
+            this.dataGraphEditingHost = dataGraphEditingHost;
         }
 
         public override void Execute()
         {
-            RadTreeNode? selectedNode = dataGraphEditingForm.TreeView.SelectedNode;
+            RadTreeNode? selectedNode = dataGraphEditingHost.TreeView.SelectedNode;
             if (selectedNode == null)
             {
                 Clipboard.Clear();
@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
                 (
                     _xmlDocumentHelpers.ToXmlDocument
                     (
-                        _xmlDocumentHelpers.SelectSingleElement(dataGraphEditingForm.XmlDocument, selectedNode.Name)
+                        _xmlDocumentHelpers.SelectSingleElement(dataGraphEditingHost.XmlDocument, selectedNode.Name)
                     )
                 )
             );

@@ -13,14 +13,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateGenericArguments _updateGenericArguments;
 
-        private readonly IApplicationForm applicationForm;
+        private readonly IApplicationHostControl applicationForm;
         private readonly ITypeAutoCompleteTextControl textControl;
 
         public AddUpdateGenericArgumentsCommand(
             IExceptionHelper exceptionHelper,
             IServiceFactory serviceFactory,
             ITypeLoadHelper typeLoadHelper,
-            IApplicationForm applicationForm,
+            IApplicationHostControl applicationForm,
             ITypeAutoCompleteTextControl textControl)
         {
             _exceptionHelper = exceptionHelper;

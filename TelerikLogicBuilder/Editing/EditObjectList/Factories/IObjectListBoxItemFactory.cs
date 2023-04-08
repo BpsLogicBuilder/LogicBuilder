@@ -10,14 +10,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories
             string visibleText,
             string hiddenText,
             Type assignedTo,
-            IApplicationForm applicationForm,
+            IApplicationControl applicationControl,
             ListParameterInputStyle listControl);
 
         IObjectListBoxItem GetVariableObjectListBoxItem(
             string visibleText,
             string hiddenText,
             Type assignedTo,
-            IApplicationForm applicationForm,
+            IApplicationControl applicationControl,
             ListVariableInputStyle listControl);
     }
 }

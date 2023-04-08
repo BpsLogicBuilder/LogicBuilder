@@ -46,17 +46,17 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingControlHelperFactory, EditingControlHelperFactory>()
-                .AddTransient<Func<IDataGraphEditingControl, IEditingForm, ILoadParameterControlsDictionary>>
+                .AddTransient<Func<IDataGraphEditingControl, IDataGraphEditingHost, ILoadParameterControlsDictionary>>
                 (
                     provider =>
-                    (editingControl, edifForm) => new LoadParameterControlsDictionary
+                    (editingControl, dataGraphEditingHost) => new LoadParameterControlsDictionary
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFieldControlFactory>(),
                         provider.GetRequiredService<IRadCheckBoxHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         editingControl, 
-                        edifForm
+                        dataGraphEditingHost
                     )
                 );
         }

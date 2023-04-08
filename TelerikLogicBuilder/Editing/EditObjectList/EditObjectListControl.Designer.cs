@@ -82,6 +82,7 @@
             radGroupBoxType.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             radGroupBoxType.Controls.Add(radScrollablePanelType);
             radGroupBoxType.Dock = System.Windows.Forms.DockStyle.Top;
+            radGroupBoxType.HeaderMargin = new System.Windows.Forms.Padding(1);
             radGroupBoxType.HeaderText = "Type";
             radGroupBoxType.Location = new System.Drawing.Point(0, 0);
             radGroupBoxType.Name = "radGroupBoxType";
@@ -182,6 +183,7 @@
             radGroupBoxEdit.Controls.Add(radPanelEdit);
             radGroupBoxEdit.Controls.Add(radPanelAddButton);
             radGroupBoxEdit.Dock = System.Windows.Forms.DockStyle.Top;
+            radGroupBoxEdit.HeaderMargin = new System.Windows.Forms.Padding(1);
             radGroupBoxEdit.HeaderText = "Edit";
             radGroupBoxEdit.Location = new System.Drawing.Point(0, 137);
             radGroupBoxEdit.Name = "radGroupBoxEdit";
@@ -267,6 +269,7 @@
             radGroupBoxList.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             radGroupBoxList.Controls.Add(radScrollablePanelList);
             radGroupBoxList.Dock = System.Windows.Forms.DockStyle.Fill;
+            radGroupBoxList.HeaderMargin = new System.Windows.Forms.Padding(1);
             radGroupBoxList.HeaderText = "List";
             radGroupBoxList.Location = new System.Drawing.Point(0, 192);
             radGroupBoxList.Name = "radGroupBoxList";

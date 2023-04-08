@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             );
         }
 
-        public ObjectListData Parse(XmlElement xmlElement, ObjectListParameterElementInfo listInfo, IApplicationForm applicationForm)
+        public ObjectListData Parse(XmlElement xmlElement, ObjectListParameterElementInfo listInfo, IApplicationControl applicationControl)
         {
             if (xmlElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{4B56236E-3BFC-41D6-A4E5-95F027CA3D1B}");
@@ -79,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             List<XmlElement> GetUniqueChildElements(List<XmlElement> allChileElements)
             {
-                if (!_typeLoadHelper.TryGetSystemType(objectTypeString, applicationForm.Application, out Type? objectType))
+                if (!_typeLoadHelper.TryGetSystemType(objectTypeString, applicationControl.Application, out Type? objectType))
                     return allChileElements;
 
                 HashSet<IObjectListBoxItem> listBoxItems = new();
@@ -94,7 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                         ).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
                         element.InnerXml,
                         objectType,
-                        applicationForm,
+                        applicationControl,
                         listInfo.ListControl
                     );
 
