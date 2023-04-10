@@ -7,6 +7,7 @@
         VariablesSchema,
         DecisionsDataSchema,
         ConditionsDataSchema,
+        FunctionDataSchema,
         FunctionsSchema,
         FunctionsDataSchema,
         ProjectPropertiesSchema,

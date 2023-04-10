@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddShapeEditorFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<IActionShapeEditor, ActionShapeEditor>()
                 .AddTransient<IDialogShapeEditor, DialogShapeEditor>()
                 .AddTransient<Func<string, IShapeEditor>>
                 (
@@ -21,6 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         return masterName switch
                         {
+                            UniversalMasterName.ACTION => provider.GetRequiredService<IActionShapeEditor>(),
                             UniversalMasterName.DIALOG => provider.GetRequiredService<IDialogShapeEditor>(),
                             _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{EB5FFEF4-2266-4569-A0DA-A2C6E30574B0}")),
                         };

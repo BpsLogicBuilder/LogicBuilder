@@ -154,6 +154,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                     [SchemaName.ShapeDataSchema] = Schemas.ShapeDataSchema,
                                     [SchemaName.DecisionsDataSchema] = Schemas.DecisionsDataSchema,
                                     [SchemaName.ConditionsDataSchema] = Schemas.ConditionsDataSchema,
+                                    [SchemaName.FunctionDataSchema] = Schemas.FunctionDataSchema,
                                     [SchemaName.FunctionsDataSchema] = Schemas.FunctionsDataSchema,
                                     [SchemaName.TableSchema] = Schemas.TableSchema,
                                     [SchemaName.ParametersDataSchema] = Schemas.ParametersDataSchema,

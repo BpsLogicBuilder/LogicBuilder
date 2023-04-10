@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
@@ -6,6 +7,8 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
@@ -98,6 +101,25 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IServiceFactory>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        functionsXmlDocument
+                    )
+                )
+                .AddTransient<Func<XmlDocument?, IEditFunctionsForm>>
+                (
+                    provider =>
+                    functionsXmlDocument => new EditFunctionsForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditFunctionsCommandFactory>(),
+                        provider.GetRequiredService<IEditFunctionsControlFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IFunctionListBoxItemFactory>(),
+                        provider.GetRequiredService<IFunctionsDataParser>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<ObjectRichTextBox>(),
                         functionsXmlDocument
                     )
                 )

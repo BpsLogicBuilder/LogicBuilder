@@ -18,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             variablesSchema = CreateVariablesSchema();
             decisionsDataSchema = CreateDecisionsDataSchema();
             conditionsDataSchema = CreateConditionsDataSchema();
+            functionDataSchema = CreateFunctionDataSchema();
             functionsSchema = CreateFunctionsSchema();
             functionsDataSchema = CreateFunctionsDataSchema();
             projectPropertiesSchema = CreateProjectPropertiesSchema();
@@ -32,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //WriteSchema("C:\\Test\\fragments.xsd", FragmentsSchema);
             //WriteSchema("C:\\Test\\conditionsData.xsd", ConditionsDataSchema);
             //WriteSchema("C:\\Test\\decisionsData.xsd", DecisionsDataSchema);
+            //WriteSchema("C:\\Test\\functionData.xsd", FunctionDataSchema);
             //WriteSchema("C:\\Test\\functionsData.xsd", FunctionsDataSchema);
             //WriteSchema(@"C:\Test\sourceTable.xsd", TableSchema);
             //WriteSchema("C:\\Test\\functions.xsd", FunctionsSchema);
@@ -46,6 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         private static readonly XmlSchema variablesSchema;
         private static readonly XmlSchema decisionsDataSchema;
         private static readonly XmlSchema conditionsDataSchema;
+        private static readonly XmlSchema functionDataSchema;
         private static readonly XmlSchema functionsSchema;
         private static readonly XmlSchema functionsDataSchema;
         private static readonly XmlSchema projectPropertiesSchema;
@@ -62,6 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         internal static XmlSchema VariablesSchema => variablesSchema;
         internal static XmlSchema DecisionsDataSchema => decisionsDataSchema;
         internal static XmlSchema ConditionsDataSchema => conditionsDataSchema;
+        internal static XmlSchema FunctionDataSchema => functionDataSchema;
         internal static XmlSchema FunctionsSchema => functionsSchema;
         internal static XmlSchema FunctionsDataSchema => functionsDataSchema;
         internal static XmlSchema ProjectPropertiesSchema => projectPropertiesSchema;
@@ -878,6 +882,67 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             });
 
             //WriteSchema("C:\\Test\\decisionsData.xsd", DecisionsDataSchema);
+        }
+
+        private static XmlSchema CreateFunctionDataSchema()
+        {
+            //function Element
+            XmlSchemaElement elementFunction = CreateSchemaElement("function", "functionType");
+
+            //assertFunction Element
+            XmlSchemaElement elementAssertFunction = CreateSchemaElement("assertFunction", "assertFunctionType");
+
+            //retractFunction Element
+            XmlSchemaElement elementRetractFunction = CreateSchemaElement("retractFunction", "retractFunctionType");
+
+            //retractFunctionType ComplexType
+            XmlSchemaComplexType retractFunctionType = CreateComplexType("retractFunctionType",
+                new XmlSchemaElement[]
+                {
+                    CreateSchemaElement("variable", "variableType", 1, 1)
+                },
+                new XmlSchemaAttribute[] { AttributeName, AttributeVisibleText });
+
+            return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
+            {
+                elementFunction,
+                elementAssertFunction,
+                elementRetractFunction,
+                ConstructorType,
+                FunctionType,
+                VariableType,
+                LiteralListItemType,
+                ObjectListItemType,
+                LiteralParameterType,
+                ObjectParameterType,
+                LiteralListParameterType,
+                ObjectListParameterType,
+                LiteralVariableType,
+                ObjectVariableType,
+                LiteralListVariableType,
+                ObjectListVariableType,
+                ObjectListType,
+                LiteralListType,
+                AssertFunctionType,
+                retractFunctionType,
+                VariableValueType,
+                ParametersType,
+                GenericArgumentsType,
+                LiteralGenericConfigType,
+                ObjectGenericConfigType,
+                LiteralListGenericConfigType,
+                ObjectListGenericConfigType,
+                DomainType,
+                LiteralType,
+                LiteralTypeExt,
+                ParameterArgumentType,
+                AssemblyQualifiedNameType,
+                LiteralInputStyle,
+                ListInputStyle,
+                ListType
+            });
+
+            //WriteSchema("C:\\Test\\functionsData.xsd", FunctionsDataSchema);
         }
 
         private static XmlSchema CreateFunctionsDataSchema()

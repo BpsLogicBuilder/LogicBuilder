@@ -263,6 +263,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         private void CheckAssignability()
         {
+            if (!dataGraphEditingHost.Application.AssemblyAvailable)
+            {
+                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
+                return;
+            }
+
             if (cmbListType.SelectedIndex == -1)
             {
                 EnableEditing(false);
@@ -337,12 +343,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             radGroupBoxEdit.Text = objectListElementInfo.Name;
             radGroupBoxList.Text = GetListTitle(objectListElementInfo.ListControl);
             radScrollablePanelList.VerticalScrollBarState = ScrollState.AlwaysShow;
-
-            if (!dataGraphEditingHost.Application.AssemblyAvailable)
-            {
-                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
-                return;
-            }
 
             ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxList);
             ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
@@ -438,6 +438,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         private void UpdateListItems(ObjectListData objectListData)
         {
+            if (!dataGraphEditingHost.Application.AssemblyAvailable)
+            {
+                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
+                return;
+            }
+
             cmbObjectType.Text = objectListData.ObjectType;
             cmbListType.SelectedValue = objectListData.ListType;
 

@@ -1709,6 +1709,10 @@
     <value>The return type must be Boolean for the function "{0}".FR</value>
 		<comment>0=function name</comment>
   </data>
+	<data name="returnTypeMustBeVoidFormat" xml:space="preserve">
+    <value>The return type for the function "{0}" must be "void".FR</value>
+		<comment>0=function name</comment>
+  </data>
 	<data name="rowIndexIsInvalidFormat" xml:space="preserve">
     <value>Row Index {0} is invalid.FR</value>
     <comment>0=1based Row Number</comment>

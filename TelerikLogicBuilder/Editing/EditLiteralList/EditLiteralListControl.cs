@@ -244,6 +244,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         private void CheckAssignability()
         {
+            if (!dataGraphEditingHost.Application.AssemblyAvailable)
+            {
+                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
+                return;
+            }
+
             if (cmbLiteralType.SelectedIndex == -1 || cmbListType.SelectedIndex == -1)
             {
                 EnableEditing(false);
@@ -343,12 +349,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             radGroupBoxList.Text = GetListTitle(literalListElementInfo.ListControl);
             radScrollablePanelList.VerticalScrollBarState = ScrollState.AlwaysShow;
 
-            if (!dataGraphEditingHost.Application.AssemblyAvailable)
-            {
-                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
-                return;
-            }
-
             ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxList);
             ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             InitializeValueControl();
@@ -441,6 +441,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         private void UpdateListItems(LiteralListData literalListData)
         {
+            if (!dataGraphEditingHost.Application.AssemblyAvailable)
+            {
+                SetErrorMessage(dataGraphEditingHost.Application.UnavailableMessage);
+                return;
+            }
+
             ListBox.Items.Clear();
             cmbLiteralType.SelectedValue = literalListData.LiteralType;
             cmbListType.SelectedValue = literalListData.ListType;

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<assertFunction name="set condition" visibleText="visibleText" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="functionData.xsd">
+	<variable name="LMOS TN" visibleText="LMOS TN" />
+	<variableValue>
+		<literalVariable>
+			<function name="substring" visibleText="visibleText">
+				<genericArguments />
+				<parameters>
+					<literalParameter name="value">
+						<variable name="ltn1" visibleText="visibleText" />
+					</literalParameter>
+					<literalParameter name="start">3</literalParameter>
+					<literalParameter name="finish">12</literalParameter>
+				</parameters>
+			</function>
+		</literalVariable>
+	</variableValue>
+</assertFunction>

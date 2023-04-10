@@ -132,7 +132,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 
-        public bool IsValid => throw new NotImplementedException();
+        public bool IsValid
+        {
+            get
+            {
+                List<string> errors = new();
+                _functionParameterControlSetValidator.Validate(editControlsSet, function, Application, errors);
+                if (errors.Count > 0)
+                    return false;
+
+                _functionElementValidator.Validate(XmlResult, assignedTo, Application, errors);
+                if (errors.Count > 0)
+                    return false;
+
+                return true;
+            }
+        }
 
         public string? SelectedParameter => selectedParameter;
 

@@ -5776,6 +5776,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The return type for the function &quot;{0}&quot; must be &quot;void&quot;..
+        /// </summary>
+        internal static string returnTypeMustBeVoidFormat {
+            get {
+                return ResourceManager.GetString("returnTypeMustBeVoidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Row Index {0} is invalid..
         /// </summary>
         internal static string rowIndexIsInvalidFormat {

@@ -92,7 +92,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
 
         public HelperButtonDropDownList CmbSelectFunction => cmbSelectFunction;
 
-        public bool DenySpecialCharacters => true;
+        public bool DenySpecialCharacters => false;
 
         public bool DisplayNotCheckBox => false;
 

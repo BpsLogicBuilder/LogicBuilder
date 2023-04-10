@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<retractFunction name="remove condition" visibleText="visibleText" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="functionData.xsd">
+	<variable name="ltn1" visibleText="visibleText" />
+</retractFunction>
