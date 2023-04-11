@@ -8,7 +8,7 @@
         SetValueFunction,
         SetValueToNullFunction,
         Variable,
-        LiteralList,
-        ObjectList
+        ParameterLiteralList,
+        ParameterObjectList
     }
 }

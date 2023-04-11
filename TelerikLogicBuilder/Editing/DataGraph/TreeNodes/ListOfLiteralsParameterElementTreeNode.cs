@@ -4,9 +4,9 @@ using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes
 {
-    internal class LiteralListParameterElementTreeNode : ParametersDataTreeNode, IParameterElementTreeNode
+    internal class ListOfLiteralsParameterElementTreeNode : ParametersDataTreeNode, IParameterElementTreeNode
     {
-        public LiteralListParameterElementTreeNode(string parameterName, string name, Type assignedToType)
+        public ListOfLiteralsParameterElementTreeNode(string parameterName, string name, Type assignedToType)
             : base(parameterName, name, assignedToType)
         {
             ImageIndex = ImageIndexes.LITERALLISTPARAMETERIMAGEINDEX;
@@ -14,6 +14,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes
 
         public string ParameterName => Text;
 
-        public override ParametersDataElementType XmlElementType => ParametersDataElementType.LiteralListParameter;
+        public override ParametersDataElementType XmlElementType => ParametersDataElementType.ListOfLiteralsParameter;
     }
 }

@@ -224,7 +224,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         root
                     );
                     break;
-                case LiteralListElementTreeNode literalListElementTreeNode:
+                case ParameterLiteralListElementTreeNode literalListElementTreeNode:
                     LiteralListData literalListData = _literalListDataParser.Parse(xmlElement, literalListElementTreeNode.ListInfo, dataGraphEditingHost);
                     if (!literalListElementTreeNode.ListInfo.HasParameter)//if there's a parameter the ListInfo comes from the configured parameter.  Do not update.
                     {//Otherwise it is derived from the possibly updated LiteralListData
@@ -241,7 +241,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         root
                     );
                     break;
-                case ObjectListElementTreeNode objectListElementTreeNode:
+                case ParameterObjectListElementTreeNode objectListElementTreeNode:
                     ObjectListData objectListData = _objectListDataParser.Parse(xmlElement, objectListElementTreeNode.ListInfo, dataGraphEditingHost);
                     if (!objectListElementTreeNode.ListInfo.HasParameter)//if there's a parameter the ListInfo comes from the configured parameter.  Do not update.
                     {//Otherwise it is derived from the possibly updated ObjectListData
@@ -330,7 +330,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 )
             );
 
-            void InitLiteralListMode(LiteralListElementTreeNode treeNode)
+            void InitLiteralListMode(ParameterLiteralListElementTreeNode treeNode)
             {
                 GetLiteralListChildren(literalListElement, treeNode, literalListData, false);
                 if (dataGraphEditingHost.ExpandedNodes.ContainsKey(treeNode.Name))
@@ -354,7 +354,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 )
             );
 
-            void InitObjectListMode(ObjectListElementTreeNode treeNode)
+            void InitObjectListMode(ParameterObjectListElementTreeNode treeNode)
             {
                 GetObjectListChildren(objectListElement, treeNode, objectListData, false);
                 if (dataGraphEditingHost.ExpandedNodes.ContainsKey(treeNode.Name))
@@ -409,7 +409,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             );
         }
 
-        private void GetLiteralListChildren(XmlElement literalListElement, LiteralListElementTreeNode literalListElementTreeNode, LiteralListData literalListData, bool root)
+        private void GetLiteralListChildren(XmlElement literalListElement, ParameterLiteralListElementTreeNode literalListElementTreeNode, LiteralListData literalListData, bool root)
         {
             if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{486E32CC-829C-45D5-9E9F-7D8A8FE4D9B9}");
@@ -470,7 +470,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
         }
 
-        private void GetObjectListChildren(XmlElement objectListElement, ObjectListElementTreeNode objectListElementTreeNode, ObjectListData objectListData, bool root)
+        private void GetObjectListChildren(XmlElement objectListElement, ParameterObjectListElementTreeNode objectListElementTreeNode, ObjectListData objectListData, bool root)
         {
             if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{43CFC2BC-9DCE-4DEA-97A0-9C0D638355A7}");
@@ -637,8 +637,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 {
                     LiteralParameter literalParameter => _dataGraphTreeViewHelper.AddLiteralParameterTreeNode(parentNode, parameterElement, parameterType, _xmlDocumentHelpers.GetVisibleText(parameterElement)),
                     ObjectParameter objectParameter => _dataGraphTreeViewHelper.AddObjectParameterTreeNode(parentNode, parameterElement, parameterType, GetVisibleTextForObjectType(parameterElement)),
-                    ListOfLiteralsParameter listOfLiteralsParameter => _dataGraphTreeViewHelper.AddLiteralListParameterTreeNode(parentNode, parameterElement, parameterType, GetVisibleTextForObjectType(parameterElement)),
-                    ListOfObjectsParameter listOfObjectsParameter => _dataGraphTreeViewHelper.AddObjectListParameterTreeNode(parentNode, parameterElement, parameterType, GetVisibleTextForObjectType(parameterElement)),
+                    ListOfLiteralsParameter listOfLiteralsParameter => _dataGraphTreeViewHelper.AddListOfLiteralsParameterTreeNode(parentNode, parameterElement, parameterType, GetVisibleTextForObjectType(parameterElement)),
+                    ListOfObjectsParameter listOfObjectsParameter => _dataGraphTreeViewHelper.AddListOfObjectsParameterTreeNode(parentNode, parameterElement, parameterType, GetVisibleTextForObjectType(parameterElement)),
                     _ => throw _exceptionHelper.CriticalException("{C3BC6CDB-E4CB-4AF2-A069-F8AB21DB5F2D}"),
                 };
             }

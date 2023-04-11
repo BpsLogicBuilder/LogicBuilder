@@ -37,9 +37,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             ParametersDataElementType.Constructor,
             ParametersDataElementType.AssertFunction,
             ParametersDataElementType.Function,
-            ParametersDataElementType.LiteralList,
+            ParametersDataElementType.ParameterLiteralList,
             ParametersDataElementType.NotFunction,
-            ParametersDataElementType.ObjectList,
+            ParametersDataElementType.ParameterObjectList,
             ParametersDataElementType.RetractFunction,
         };
 
@@ -148,10 +148,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 case EditFormFieldSet.Variable:
                     Navigate(GetVariableControl());
                     break;
-                case EditFormFieldSet.LiteralList:
+                case EditFormFieldSet.ParameterLiteralList:
                     Navigate(GetLiteralListControl());
                     break;
-                case EditFormFieldSet.ObjectList:
+                case EditFormFieldSet.ParameterObjectList:
                     Navigate(GetObjectListControl());
                     break;
                 default:
@@ -302,17 +302,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             IEditingControl GetLiteralListControl()
             {
-                LiteralListElementTreeNode? literalListElementTreeNode;
+                ParameterLiteralListElementTreeNode? literalListElementTreeNode;
                 int? selectedIndex;
 
                 if (selectedNode is LiteralElementTreeNode itemNode)
                 {
-                    literalListElementTreeNode = (LiteralListElementTreeNode)selectedNode.Parent;
+                    literalListElementTreeNode = (ParameterLiteralListElementTreeNode)selectedNode.Parent;
                     selectedIndex = itemNode.NodeIndex;
                 }
                 else
                 {
-                    literalListElementTreeNode = (LiteralListElementTreeNode)selectedNode;
+                    literalListElementTreeNode = (ParameterLiteralListElementTreeNode)selectedNode;
                     selectedIndex = null;
                 }
 
@@ -329,17 +329,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             IEditingControl GetObjectListControl()
             {
-                ObjectListElementTreeNode? objectListElementTreeNode;
+                ParameterObjectListElementTreeNode? objectListElementTreeNode;
                 int? selectedIndex;
 
                 if (selectedNode is ObjectElementTreeNode itemNode)
                 {
-                    objectListElementTreeNode = (ObjectListElementTreeNode)selectedNode.Parent;
+                    objectListElementTreeNode = (ParameterObjectListElementTreeNode)selectedNode.Parent;
                     selectedIndex = itemNode.NodeIndex;
                 }
                 else
                 {
-                    objectListElementTreeNode = (ObjectListElementTreeNode)selectedNode;
+                    objectListElementTreeNode = (ParameterObjectListElementTreeNode)selectedNode;
                     selectedIndex = null;
                 }
 
@@ -382,8 +382,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             {
                 EditFormFieldSet.Constructor or EditFormFieldSet.StandardFunction or EditFormFieldSet.BinaryFunction or EditFormFieldSet.SetValueFunction or EditFormFieldSet.SetValueToNullFunction => selectedNode is IParameterElementTreeNode ? selectedNode.Parent : selectedNode,
                 EditFormFieldSet.Variable => selectedNode,
-                EditFormFieldSet.LiteralList => selectedNode is LiteralElementTreeNode ? selectedNode.Parent : selectedNode,
-                EditFormFieldSet.ObjectList => selectedNode is ObjectElementTreeNode ? selectedNode.Parent : selectedNode,
+                EditFormFieldSet.ParameterLiteralList => selectedNode is LiteralElementTreeNode ? selectedNode.Parent : selectedNode,
+                EditFormFieldSet.ParameterObjectList => selectedNode is ObjectElementTreeNode ? selectedNode.Parent : selectedNode,
                 _ => throw _exceptionHelper.CriticalException("{21C63ED5-DAC3-49A1-9447-C99FD2DCAD1D}"),
             };
 
@@ -396,15 +396,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 case FunctionElementTreeNode functionElementTreeNode:
                     return _editFormFieldSetHelper.GetFieldSetForFunction(_configurationService.FunctionList.Functions[functionElementTreeNode.Text]);
                 case LiteralElementTreeNode literalElementTreeNode:
-                    if (literalElementTreeNode.Parent is LiteralListElementTreeNode)
-                        return EditFormFieldSet.LiteralList;
+                    if (literalElementTreeNode.Parent is ParameterLiteralListElementTreeNode)
+                        return EditFormFieldSet.ParameterLiteralList;
 
                     throw _exceptionHelper.CriticalException("{CF8A117A-81FB-4745-B17F-7CE0978C3C52}");
-                case LiteralListElementTreeNode:
-                    return EditFormFieldSet.LiteralList;
-                case LiteralListParameterElementTreeNode:
+                case ParameterLiteralListElementTreeNode:
+                    return EditFormFieldSet.ParameterLiteralList;
+                case ListOfLiteralsParameterElementTreeNode:
                 case LiteralParameterElementTreeNode:
-                case ObjectListParameterElementTreeNode:
+                case ListOfObjectsParameterElementTreeNode:
                 case ObjectParameterElementTreeNode:
                     return selectedNode.Parent switch
                     {
@@ -413,12 +413,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                         _ => throw _exceptionHelper.CriticalException("{16317437-3740-43E2-8C12-C49612F081E2}"),
                     };
                 case ObjectElementTreeNode objectElementTreeNode:
-                    if (objectElementTreeNode.Parent is ObjectListElementTreeNode)
-                        return EditFormFieldSet.ObjectList;
+                    if (objectElementTreeNode.Parent is ParameterObjectListElementTreeNode)
+                        return EditFormFieldSet.ParameterObjectList;
 
                     throw _exceptionHelper.CriticalException("{0CD15472-4879-4AED-B2C9-288328A11A94}");
-                case ObjectListElementTreeNode:
-                    return EditFormFieldSet.ObjectList;
+                case ParameterObjectListElementTreeNode:
+                    return EditFormFieldSet.ParameterObjectList;
                 case VariableElementTreeNode:
                     return EditFormFieldSet.Variable;
                 default:

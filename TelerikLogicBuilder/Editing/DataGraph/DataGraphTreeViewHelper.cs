@@ -59,13 +59,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public LiteralListParameterElementTreeNode AddLiteralListParameterTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListParameterElement, Type parameterType, string toolTipText)
+        public ListOfLiteralsParameterElementTreeNode AddListOfLiteralsParameterTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListParameterElement, Type parameterType, string toolTipText)
         {
             if (literalListParameterElement.Name != XmlDataConstants.LITERALLISTPARAMETERELEMENT)
                 throw _exceptionHelper.CriticalException("{7F702BA7-195F-48CE-901E-7BA71516C722}");
 
             string parameterName = literalListParameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
-            LiteralListParameterElementTreeNode newTreeNode = new
+            ListOfLiteralsParameterElementTreeNode newTreeNode = new
             (
                 parameterName,
                 $"{parentNode.Name}/{XmlDataConstants.PARAMETERSELEMENT}/{literalListParameterElement.Name}[@{XmlDataConstants.NAMEATTRIBUTE}=\"{parameterName}\"]",
@@ -79,12 +79,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public LiteralListElementTreeNode AddLiteralListTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListElement, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText)
+        public ListOfObjectsParameterElementTreeNode AddListOfObjectsParameterTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListParameterElement, Type parameterType, string toolTipText)
+        {
+            if (objectListParameterElement.Name != XmlDataConstants.OBJECTLISTPARAMETERELEMENT)
+                throw _exceptionHelper.CriticalException("{7A12A49D-7646-4C99-B2D7-4A0317A81454}");
+
+            string parameterName = objectListParameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            ListOfObjectsParameterElementTreeNode newTreeNode = new
+            (
+                parameterName,
+                $"{parentNode.Name}/{XmlDataConstants.PARAMETERSELEMENT}/{objectListParameterElement.Name}[@{XmlDataConstants.NAMEATTRIBUTE}=\"{parameterName}\"]",
+                parameterType
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public ParameterLiteralListElementTreeNode AddLiteralListTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListElement, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{7395E053-8D51-45A5-AE4C-68F460BBBA52}");
 
-            LiteralListElementTreeNode newTreeNode = new
+            ParameterLiteralListElementTreeNode newTreeNode = new
             (
                 text,
                 $"{parentNode.Name}/{XmlDataConstants.LITERALLISTELEMENT}",//always a single child and its child elements are unique by nodes index
@@ -119,7 +139,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public LiteralElementTreeNode AddLiteralTreeNode(LiteralListElementTreeNode parentNode, XmlElement literalElement, Type literalType, string toolTipText, int nodeIndex)
+        public LiteralElementTreeNode AddLiteralTreeNode(ParameterLiteralListElementTreeNode parentNode, XmlElement literalElement, Type literalType, string toolTipText, int nodeIndex)
         {
             if (literalElement.Name != XmlDataConstants.LITERALELEMENT)
                 throw _exceptionHelper.CriticalException("{9C9FA2A8-DCB9-4DC0-8406-D00F4C4C74BF}");
@@ -139,32 +159,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public ObjectListParameterElementTreeNode AddObjectListParameterTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListParameterElement, Type parameterType, string toolTipText)
-        {
-            if (objectListParameterElement.Name != XmlDataConstants.OBJECTLISTPARAMETERELEMENT)
-                throw _exceptionHelper.CriticalException("{7A12A49D-7646-4C99-B2D7-4A0317A81454}");
-
-            string parameterName = objectListParameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
-            ObjectListParameterElementTreeNode newTreeNode = new
-            (
-                parameterName,
-                $"{parentNode.Name}/{XmlDataConstants.PARAMETERSELEMENT}/{objectListParameterElement.Name}[@{XmlDataConstants.NAMEATTRIBUTE}=\"{parameterName}\"]",
-                parameterType
-            )
-            {
-                ToolTipText = toolTipText
-            };
-
-            parentNode.Nodes.Add(newTreeNode);
-            return newTreeNode;
-        }
-
-        public ObjectListElementTreeNode AddObjectListTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListElement, ObjectListParameterElementInfo listElementInfo, string text, string toolTipText)
+        public ParameterObjectListElementTreeNode AddObjectListTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListElement, ObjectListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{15132D22-190F-4FE8-8B84-4D5D49A8FD8C}");
 
-            ObjectListElementTreeNode newTreeNode = new
+            ParameterObjectListElementTreeNode newTreeNode = new
             (
                 text,
                 $"{parentNode.Name}/{XmlDataConstants.OBJECTLISTELEMENT}",//always a single child and its child elements are unique by nodes index
@@ -199,7 +199,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public ObjectElementTreeNode AddObjectTreeNode(ObjectListElementTreeNode parentNode, XmlElement objectElement, Type objectType, string toolTipText, int nodeIndex)
+        public ObjectElementTreeNode AddObjectTreeNode(ParameterObjectListElementTreeNode parentNode, XmlElement objectElement, Type objectType, string toolTipText, int nodeIndex)
         {
             if (objectElement.Name != XmlDataConstants.OBJECTELEMENT)
                 throw _exceptionHelper.CriticalException("{FB03B89A-CCEF-479D-8610-5365CF528B17}");
@@ -257,12 +257,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public LiteralListElementTreeNode AddRootLiteralListTreeNode(RadTreeView radTreeView, XmlElement literalListElement, Type rootAssignedToType, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText)
+        public ParameterLiteralListElementTreeNode AddRootLiteralListTreeNode(RadTreeView radTreeView, XmlElement literalListElement, Type rootAssignedToType, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{C83A731F-854D-475A-9BCB-1AA76D22DEB4}");
 
-            LiteralListElementTreeNode newTreeNode = new
+            ParameterLiteralListElementTreeNode newTreeNode = new
             (
                 text,
                 $"/{literalListElement.Name}",
@@ -277,12 +277,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
-        public ObjectListElementTreeNode AddRootObjectListTreeNode(RadTreeView radTreeView, XmlElement objectListElement, Type rootAssignedToType, ObjectListParameterElementInfo listElementInfo, string text, string toolTipText)
+        public ParameterObjectListElementTreeNode AddRootObjectListTreeNode(RadTreeView radTreeView, XmlElement objectListElement, Type rootAssignedToType, ObjectListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{242D94DC-EE27-48BF-9B32-3EDC5886F31F}");
 
-            ObjectListElementTreeNode newTreeNode = new
+            ParameterObjectListElementTreeNode newTreeNode = new
             (
                 text,
                 $"/{objectListElement.Name}",
