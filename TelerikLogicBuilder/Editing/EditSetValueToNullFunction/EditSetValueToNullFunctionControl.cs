@@ -117,11 +117,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
 
         public XmlDocument XmlDocument => throw new NotImplementedException();
 
-        public XmlElement XmlResult => throw new NotImplementedException();
+        public XmlElement XmlResult => this.xmlDocument.DocumentElement!;
 
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 
-        public bool IsValid => throw new NotImplementedException();
+        public bool IsValid => true;
 
         public string? SelectedParameter => selectedParameter;
 

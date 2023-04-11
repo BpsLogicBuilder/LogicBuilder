@@ -119,7 +119,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             GetAssertFunctionChildren
             (
                 functionElement,
-                _dataGraphTreeViewHelper.AddRootAssertFunctionTreeNode(treeView, functionElement, function.Name)
+                _dataGraphTreeViewHelper.AddRootAssertFunctionTreeNode(treeView, functionElement, functionElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE))
             );
 
             treeView.EndUpdate();
@@ -227,7 +227,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 
         public void CreateRetractFunctionTreeProfile(RadTreeView treeView, XmlDocument xmlDocument)
         {
-            throw new NotImplementedException();
+            treeView.BeginUpdate();
+            treeView.ImageList = _imageListService.ImageList;
+            treeView.TreeViewElement.ShowNodeToolTips = true;
+            treeView.ShowRootLines = true;
+            treeView.Nodes.Clear();
+            XmlElement functionElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, RETRACT_FUNCTION_ROOT_XPATH);
+            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? function))
+                return;
+
+            _dataGraphTreeViewHelper.AddRootRetractFunctionTreeNode(treeView, functionElement, functionElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE));
+
+            treeView.EndUpdate();
         }
 
         public void RefreshTreeNode(RadTreeView treeView, XmlDocument xmlDocument, ParametersDataTreeNode node)
@@ -243,7 +254,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? assertFunction))
                         return;
 
-                    node.ToolTipText = assertFunction.Name;
+                    node.ToolTipText = xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
 
                     GetAssertFunctionChildren
                     (
@@ -312,6 +323,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     );
                     break;
                 case RetractFunctionElementTreeNode:
+                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
+                        return;
+
+                    node.ToolTipText = xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
                     break;
                 case VariableLiteralListElementTreeNode variableLiteralListElementTreeNode:
                     LiteralListData variableLiteralListData = _literalListDataParser.Parse(xmlElement, variableLiteralListElementTreeNode.ListInfo, dataGraphEditingHost);
