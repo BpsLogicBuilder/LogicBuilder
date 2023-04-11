@@ -37,10 +37,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             ParametersDataElementType.Constructor,
             ParametersDataElementType.AssertFunction,
             ParametersDataElementType.Function,
-            ParametersDataElementType.ParameterLiteralList,
             ParametersDataElementType.NotFunction,
+            ParametersDataElementType.ParameterLiteralList,
             ParametersDataElementType.ParameterObjectList,
             ParametersDataElementType.RetractFunction,
+            ParametersDataElementType.VariableLiteralList,
+            ParametersDataElementType.VariableObjectList
         };
 
         public DataGraphEditingManager(
@@ -149,10 +151,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     Navigate(GetVariableControl());
                     break;
                 case EditFormFieldSet.ParameterLiteralList:
-                    Navigate(GetLiteralListControl());
+                    Navigate(GetParameterLiteralListControl());
                     break;
                 case EditFormFieldSet.ParameterObjectList:
-                    Navigate(GetObjectListControl());
+                    Navigate(GetParameterObjectListControl());
+                    break;
+                case EditFormFieldSet.VariableLiteralList:
+                    Navigate(GetVariableLiteralListControl());
+                    break;
+                case EditFormFieldSet.VariableObjectList:
+                    Navigate(GetVariableObjectListControl());
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{21C63ED5-DAC3-49A1-9447-C99FD2DCAD1D}");
@@ -238,17 +246,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
             IEditingControl GetSetValueFunctionControl()
             {
-                FunctionElementTreeNode? functionTreeNodeNode;
-                string? selectedParameter;
-                if (selectedNode is IParameterElementTreeNode parameterNode)
+                AssertFunctionElementTreeNode? functionTreeNodeNode;
+                if (selectedNode is IVariableElementTreeNode)
                 {
-                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode.Parent;
-                    selectedParameter = parameterNode.ParameterName;
+                    functionTreeNodeNode = (AssertFunctionElementTreeNode)selectedNode.Parent;
                 }
                 else
                 {
-                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode;
-                    selectedParameter = null;
+                    functionTreeNodeNode = (AssertFunctionElementTreeNode)selectedNode;
                 }
 
                 return _editingControlFactory.GetEditSetValueFunctionControl
@@ -258,24 +263,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     functionTreeNodeNode.AssignedToType,
                     dataGraphEditingHost.XmlDocument,
                     functionTreeNodeNode.Name,
-                    selectedParameter
+                    null
                 );
             }
 
             IEditingControl GetSetValueToNullFunctionControl()
             {
-                FunctionElementTreeNode? functionTreeNodeNode;
-                string? selectedParameter;
-                if (selectedNode is IParameterElementTreeNode parameterNode)
-                {
-                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode.Parent;
-                    selectedParameter = parameterNode.ParameterName;
-                }
-                else
-                {
-                    functionTreeNodeNode = (FunctionElementTreeNode)selectedNode;
-                    selectedParameter = null;
-                }
+                RetractFunctionElementTreeNode functionTreeNodeNode = (RetractFunctionElementTreeNode)selectedNode;
 
                 return _editingControlFactory.GetEditSetValueToNullFunctionControl
                 (
@@ -284,7 +278,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     functionTreeNodeNode.AssignedToType,
                     dataGraphEditingHost.XmlDocument,
                     functionTreeNodeNode.Name,
-                    selectedParameter
+                    null
                 );
             }
 
@@ -300,7 +294,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 return variableControl;
             }
 
-            IEditingControl GetLiteralListControl()
+            IEditingControl GetParameterLiteralListControl()
             {
                 ParameterLiteralListElementTreeNode? literalListElementTreeNode;
                 int? selectedIndex;
@@ -316,7 +310,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     selectedIndex = null;
                 }
 
-                return _editingControlFactory.GetEditLiteralListControl
+                return _editingControlFactory.GetEditParameterLiteralListControl
                 (
                     dataGraphEditingHost,
                     literalListElementTreeNode.ListInfo,
@@ -327,7 +321,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 );
             }
 
-            IEditingControl GetObjectListControl()
+            IEditingControl GetParameterObjectListControl()
             {
                 ParameterObjectListElementTreeNode? objectListElementTreeNode;
                 int? selectedIndex;
@@ -343,7 +337,61 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     selectedIndex = null;
                 }
 
-                return _editingControlFactory.GetEditObjectListControl
+                return _editingControlFactory.GetEditParameterObjectListControl
+                (
+                    dataGraphEditingHost,
+                    objectListElementTreeNode.ListInfo,
+                    objectListElementTreeNode.AssignedToType,
+                    dataGraphEditingHost.XmlDocument,
+                    objectListElementTreeNode.Name,
+                    selectedIndex
+                );
+            }
+
+            IEditingControl GetVariableLiteralListControl()
+            {
+                VariableLiteralListElementTreeNode? literalListElementTreeNode;
+                int? selectedIndex;
+
+                if (selectedNode is LiteralElementTreeNode itemNode)
+                {
+                    literalListElementTreeNode = (VariableLiteralListElementTreeNode)selectedNode.Parent;
+                    selectedIndex = itemNode.NodeIndex;
+                }
+                else
+                {
+                    literalListElementTreeNode = (VariableLiteralListElementTreeNode)selectedNode;
+                    selectedIndex = null;
+                }
+
+                return _editingControlFactory.GetEditVariableLiteralListControl
+                (
+                    dataGraphEditingHost,
+                    literalListElementTreeNode.ListInfo,
+                    literalListElementTreeNode.AssignedToType,
+                    dataGraphEditingHost.XmlDocument,
+                    literalListElementTreeNode.Name,
+                    selectedIndex
+                );
+            }
+
+            IEditingControl GetVariableObjectListControl()
+            {
+                VariableObjectListElementTreeNode? objectListElementTreeNode;
+                int? selectedIndex;
+
+                if (selectedNode is ObjectElementTreeNode itemNode)
+                {
+                    objectListElementTreeNode = (VariableObjectListElementTreeNode)selectedNode.Parent;
+                    selectedIndex = itemNode.NodeIndex;
+                }
+                else
+                {
+                    objectListElementTreeNode = (VariableObjectListElementTreeNode)selectedNode;
+                    selectedIndex = null;
+                }
+
+                return _editingControlFactory.GetEditVariableObjectListControl
                 (
                     dataGraphEditingHost,
                     objectListElementTreeNode.ListInfo,
@@ -380,10 +428,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private ParametersDataTreeNode GetControlXPathTreeNode(ParametersDataTreeNode selectedNode)
             => GetEditFormFieldSet(selectedNode) switch
             {
-                EditFormFieldSet.Constructor or EditFormFieldSet.StandardFunction or EditFormFieldSet.BinaryFunction or EditFormFieldSet.SetValueFunction or EditFormFieldSet.SetValueToNullFunction => selectedNode is IParameterElementTreeNode ? selectedNode.Parent : selectedNode,
+                EditFormFieldSet.Constructor 
+                    or EditFormFieldSet.StandardFunction 
+                    or EditFormFieldSet.BinaryFunction 
+                    or EditFormFieldSet.SetValueFunction 
+                    or EditFormFieldSet.SetValueToNullFunction 
+                    => selectedNode is IParameterElementTreeNode 
+                        || selectedNode is IVariableElementTreeNode 
+                        ? selectedNode.Parent 
+                        : selectedNode,
                 EditFormFieldSet.Variable => selectedNode,
                 EditFormFieldSet.ParameterLiteralList => selectedNode is LiteralElementTreeNode ? selectedNode.Parent : selectedNode,
                 EditFormFieldSet.ParameterObjectList => selectedNode is ObjectElementTreeNode ? selectedNode.Parent : selectedNode,
+                EditFormFieldSet.VariableLiteralList => selectedNode is LiteralElementTreeNode ? selectedNode.Parent : selectedNode,
+                EditFormFieldSet.VariableObjectList => selectedNode is ObjectElementTreeNode ? selectedNode.Parent : selectedNode,
                 _ => throw _exceptionHelper.CriticalException("{21C63ED5-DAC3-49A1-9447-C99FD2DCAD1D}"),
             };
 
@@ -391,6 +449,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         {
             switch (selectedNode)
             {
+                case AssertFunctionElementTreeNode:
+                    return EditFormFieldSet.SetValueFunction;
                 case ConstructorElementTreeNode:
                     return EditFormFieldSet.Constructor;
                 case FunctionElementTreeNode functionElementTreeNode:
@@ -398,10 +458,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 case LiteralElementTreeNode literalElementTreeNode:
                     if (literalElementTreeNode.Parent is ParameterLiteralListElementTreeNode)
                         return EditFormFieldSet.ParameterLiteralList;
+                    else if (literalElementTreeNode.Parent is VariableLiteralListElementTreeNode)
+                        return EditFormFieldSet.VariableLiteralList;
 
                     throw _exceptionHelper.CriticalException("{CF8A117A-81FB-4745-B17F-7CE0978C3C52}");
-                case ParameterLiteralListElementTreeNode:
-                    return EditFormFieldSet.ParameterLiteralList;
                 case ListOfLiteralsParameterElementTreeNode:
                 case LiteralParameterElementTreeNode:
                 case ListOfObjectsParameterElementTreeNode:
@@ -412,15 +472,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                         FunctionElementTreeNode functionElementTreeNode => _editFormFieldSetHelper.GetFieldSetForFunction(_configurationService.FunctionList.Functions[functionElementTreeNode.Text]),
                         _ => throw _exceptionHelper.CriticalException("{16317437-3740-43E2-8C12-C49612F081E2}"),
                     };
+                case ListOfLiteralsVariableElementTreeNode:
+                case LiteralVariableElementTreeNode:
+                case ListOfObjectsVariableElementTreeNode:
+                case ObjectVariableElementTreeNode:
+                    return selectedNode.Parent switch
+                    {
+                        AssertFunctionElementTreeNode => EditFormFieldSet.SetValueFunction,
+                        _ => throw _exceptionHelper.CriticalException("{16317437-3740-43E2-8C12-C49612F081E2}"),
+                    };
                 case ObjectElementTreeNode objectElementTreeNode:
                     if (objectElementTreeNode.Parent is ParameterObjectListElementTreeNode)
                         return EditFormFieldSet.ParameterObjectList;
+                    else if (objectElementTreeNode.Parent is VariableObjectListElementTreeNode)
+                        return EditFormFieldSet.VariableObjectList;
 
                     throw _exceptionHelper.CriticalException("{0CD15472-4879-4AED-B2C9-288328A11A94}");
+                case ParameterLiteralListElementTreeNode:
+                    return EditFormFieldSet.ParameterLiteralList;
                 case ParameterObjectListElementTreeNode:
                     return EditFormFieldSet.ParameterObjectList;
+                case RetractFunctionElementTreeNode:
+                    return EditFormFieldSet.SetValueToNullFunction;
                 case VariableElementTreeNode:
                     return EditFormFieldSet.Variable;
+                case VariableLiteralListElementTreeNode:
+                    return EditFormFieldSet.VariableLiteralList;
+                case VariableObjectListElementTreeNode:
+                    return EditFormFieldSet.VariableObjectList;
                 default:
                     throw _exceptionHelper.CriticalException("{54AB80FD-B8CA-48A2-AD5E-56314EC35CBA}");
             }

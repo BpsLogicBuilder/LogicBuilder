@@ -124,10 +124,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()
-                .AddTransient<Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditLiteralListForm>>
+                .AddTransient<Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm>>
                 (
                     provider =>
-                    (assignedTo, literalListInfo, literalListXmlDocument) => new EditLiteralListForm
+                    (assignedTo, literalListInfo, literalListXmlDocument) => new EditParameterLiteralListForm
                     (
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IEditingFormHelperFactory>(),
@@ -140,10 +140,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         literalListXmlDocument
                     )
                 )
-                .AddTransient<Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditObjectListForm>>
+                .AddTransient<Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditParameterObjectListForm>>
                 (
                     provider =>
-                    (assignedTo, literalListInfo, objectListXmlDocument) => new EditObjectListForm
+                    (assignedTo, literalListInfo, objectListXmlDocument) => new EditParameterObjectListForm
                     (
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IEditingFormHelperFactory>(),

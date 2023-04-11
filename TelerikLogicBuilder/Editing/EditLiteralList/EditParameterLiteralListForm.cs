@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -17,14 +17,14 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 {
-    internal partial class EditObjectListForm : Telerik.WinControls.UI.RadForm, IEditObjectListForm
+    internal partial class EditParameterLiteralListForm : Telerik.WinControls.UI.RadForm, IEditParameterLiteralListForm
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
         private readonly IDataGraphEditingFormEventsHelper _dataGraphEditingFormEventsHelper;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
-        private readonly IEditObjectListCommandFactory _editObjectListCommandFactory;
+        private readonly IEditLiteralListCommandFactory _editLiteralListCommandFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
@@ -32,29 +32,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         private ApplicationTypeInfo _application;
         private readonly Type assignedTo;
-        private readonly ObjectListParameterElementInfo objectListInfo;
+        private readonly LiteralListParameterElementInfo literalListInfo;
 
-        public EditObjectListForm(
+        public EditParameterLiteralListForm(
             IDialogFormMessageControl dialogFormMessageControl,
             IEditingFormHelperFactory editingFormHelperFactory,
-            IEditObjectListCommandFactory editObjectListCommandFactory,
+            IEditLiteralListCommandFactory editLiteralListCommandFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IServiceFactory serviceFactory,
             Type assignedTo,
-            ObjectListParameterElementInfo objectListInfo,
+            LiteralListParameterElementInfo literalListInfo,
             XmlDocument literalListXmlDocument)
         {
             InitializeComponent();
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
-            _editObjectListCommandFactory = editObjectListCommandFactory;
+            _editLiteralListCommandFactory = editLiteralListCommandFactory;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             this.assignedTo = assignedTo;
-            this.objectListInfo = objectListInfo;
+            this.literalListInfo = literalListInfo;
 
             _treeViewXmlDocumentHelper.LoadXmlDocument(literalListXmlDocument.OuterXml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
@@ -76,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-        public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{141C78F2-1BF5-4695-9388-D8AA825A3883}");
+        public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{78430B81-8E77-44CE-834C-D5EFC7AC92FF}");
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
@@ -118,7 +118,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             _formInitializer.SetToEditSize(this);
 
             _dataGraphEditingFormEventsHelper.Setup();
-            AddButtonClickCommand(btnPasteXml, _editObjectListCommandFactory.GetEditObjectListFormXmlCommand(this));
+            AddButtonClickCommand(btnPasteXml, _editLiteralListCommandFactory.GetEditLiteralListFormXmlCommand(this));
             LoadTreeview();
         }
 
@@ -134,7 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         private void LoadTreeview()
         {
-            _parametersDataTreeBuilder.CreateObjectListTreeProfile(TreeView, XmlDocument, assignedTo, objectListInfo);
+            _parametersDataTreeBuilder.CreateLiteralListTreeProfile(TreeView, XmlDocument, assignedTo, literalListInfo);
             if (TreeView.SelectedNode == null)
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }

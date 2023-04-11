@@ -6,7 +6,7 @@ using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 {
-    internal interface IEditLiteralListControl : IDataGraphEditingControl
+    internal interface IEditParameterLiteralListControl : IDataGraphEditingControl
     {
         IApplicationControl ApplicationControl { get; }
         ListParameterInputStyle ListControl { get; }

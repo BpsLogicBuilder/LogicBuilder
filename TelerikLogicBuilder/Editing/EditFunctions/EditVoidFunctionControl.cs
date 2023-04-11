@@ -1,6 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -12,7 +11,6 @@ using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -31,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private readonly IConfigurationService _configurationService;
         private readonly IDataGraphEditingHostEventsHelper _dataGraphEditingHostEventsHelper;
         private readonly IEditVoidFunctionCommandFactory _editVoidFunctionCommandFactory;
-        private readonly IFunctionDataParser _functionDataParser;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
@@ -45,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             IConfigurationService configurationService,
             IEditVoidFunctionCommandFactory editVoidFunctionCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
-            IFunctionDataParser functionDataParser,
+            IExceptionHelper exceptionHelper,
             IRadDropDownListHelper radDropDownListHelper,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
@@ -56,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             InitializeComponent();
             _configurationService = configurationService;
             _editVoidFunctionCommandFactory = editVoidFunctionCommandFactory;
-            _functionDataParser = functionDataParser;
+            _exceptionHelper = exceptionHelper;
             _radDropDownListHelper = radDropDownListHelper;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.FunctionDataSchema);
@@ -141,11 +139,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         {
             _treeViewXmlDocumentHelper.LoadXmlDocument(xmlString);
             LoadTreeview();
-            FunctionData functionData = _functionDataParser.Parse
+            SetFunctionName
             (
-                _xmlDocumentHelpers.GetDocumentElement(XmlDocument)
+                _xmlDocumentHelpers
+                    .GetDocumentElement(XmlDocument)
+                    .GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
             );
-            SetFunctionName(functionData.Name);
         }
 
         public void RebuildTreeView() => LoadTreeview();
@@ -213,7 +212,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             if (XmlDocument.DocumentElement == null)
                 return;
 
-            _parametersDataTreeBuilder.CreateFunctionTreeProfile(TreeView, XmlDocument, AssignedTo);
+            switch(XmlDocument.DocumentElement.Name)
+            {
+                case XmlDataConstants.ASSERTFUNCTIONELEMENT:
+                    _parametersDataTreeBuilder.CreateAssertFunctionTreeProfile(TreeView, XmlDocument);
+                    break;
+                case XmlDataConstants.FUNCTIONELEMENT:
+                    _parametersDataTreeBuilder.CreateFunctionTreeProfile(TreeView, XmlDocument, AssignedTo);
+                    break;
+                case XmlDataConstants.RETRACTFUNCTIONELEMENT:
+                    _parametersDataTreeBuilder.CreateRetractFunctionTreeProfile(TreeView, XmlDocument);
+                    break;
+                default:
+                    throw _exceptionHelper.CriticalException("{059A1C84-0535-426F-81FF-6829AEB49922}");
+            }
+            
             if (TreeView.SelectedNode == null)
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }
@@ -230,12 +243,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             if (XmlDocument.DocumentElement == null)
                 return;
 
-            FunctionData functionData = _functionDataParser.Parse
+            SetFunctionName
             (
-                _xmlDocumentHelpers.GetDocumentElement(XmlDocument)
+                _xmlDocumentHelpers
+                    .GetDocumentElement(XmlDocument)
+                    .GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
             );
-
-            SetFunctionName(functionData.Name);
         }
 
         #region Event Handlers

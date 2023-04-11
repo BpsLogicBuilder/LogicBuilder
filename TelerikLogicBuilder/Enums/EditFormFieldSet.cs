@@ -9,6 +9,8 @@
         SetValueToNullFunction,
         Variable,
         ParameterLiteralList,
-        ParameterObjectList
+        ParameterObjectList,
+        VariableLiteralList,
+        VariableObjectList
     }
 }

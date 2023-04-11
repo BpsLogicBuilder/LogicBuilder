@@ -4,8 +4,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories
 {
     internal interface IEditLiteralListCommandFactory
     {
-        AddLiteralListBoxItemCommand GetAddLiteralListBoxItemCommand(IEditLiteralListControl editLiteralListControl);
-        EditLiteralListFormXmlCommand GetEditLiteralListFormXmlCommand(IEditLiteralListForm editLiteralListForm);
-        UpdateLiteralListBoxItemCommand GetUpdateLiteralListBoxItemCommand(IEditLiteralListControl editLiteralListControl);
+        AddLiteralListBoxItemCommand GetAddLiteralListBoxItemCommand(IEditParameterLiteralListControl editLiteralListControl);
+        EditLiteralListFormXmlCommand GetEditLiteralListFormXmlCommand(IEditParameterLiteralListForm editLiteralListForm);
+        UpdateLiteralListBoxItemCommand GetUpdateLiteralListBoxItemCommand(IEditParameterLiteralListControl editLiteralListControl);
     }
 }

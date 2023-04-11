@@ -7,11 +7,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands
     internal class UpdateObjectListBoxItemCommand : ClickCommandBase
     {
         private readonly IObjectListBoxItemFactory _objectListBoxItemFactory;
-        private readonly IEditObjectListControl editObjectListControl;
+        private readonly IEditParameterObjectListControl editObjectListControl;
 
         public UpdateObjectListBoxItemCommand(
             IObjectListBoxItemFactory objectListBoxItemFactory,
-            IEditObjectListControl editObjectListControl)
+            IEditParameterObjectListControl editObjectListControl)
         {
             _objectListBoxItemFactory = objectListBoxItemFactory;
             this.editObjectListControl = editObjectListControl;

@@ -30,7 +30,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 {
-    internal partial class EditLiteralListControl : UserControl, IListBoxHost<ILiteralListBoxItem>, IEditLiteralListControl
+    internal partial class EditParameterLiteralListControl : UserControl, IListBoxHost<ILiteralListBoxItem>, IEditParameterLiteralListControl
     {
         private readonly IEditLiteralListCommandFactory _editLiteralListCommandFactory;
         private readonly IEnumHelper _enumHelper;
@@ -53,7 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         private ILiteralListItemValueControl? valueControl;
 
-        public EditLiteralListControl(
+        public EditParameterLiteralListControl(
             IEditLiteralListCommandFactory editLiteralListCommandFactory,
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,

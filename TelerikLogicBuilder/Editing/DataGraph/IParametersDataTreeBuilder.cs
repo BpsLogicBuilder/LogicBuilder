@@ -8,10 +8,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 {
     internal interface IParametersDataTreeBuilder
     {
+        void CreateAssertFunctionTreeProfile(RadTreeView treeView, XmlDocument xmlDocument);
         void CreateConstructorTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType);
         void CreateFunctionTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType);
         void CreateLiteralListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, LiteralListParameterElementInfo literalListInfo);
         void CreateObjectListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, ObjectListParameterElementInfo objectListInfo);
+        void CreateRetractFunctionTreeProfile(RadTreeView treeView, XmlDocument xmlDocument);
         void RefreshTreeNode(RadTreeView treeView, XmlDocument xmlDocument, ParametersDataTreeNode node);
     }
 }

@@ -6,10 +6,10 @@ using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 {
-    internal interface IEditObjectListControl : IDataGraphEditingControl
+    internal interface IEditVariableObjectListControl : IDataGraphEditingControl
     {
         IApplicationControl ApplicationControl { get; }
-        ListParameterInputStyle ListControl { get; }
+        ListVariableInputStyle ListControl { get; }
         Type ObjectType { get; }
         IRadListBoxManager<IObjectListBoxItem> RadListBoxManager { get; }
         IObjectListItemValueControl ValueControl { get; }

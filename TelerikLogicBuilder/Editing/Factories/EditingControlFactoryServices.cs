@@ -91,10 +91,10 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingControlFactory, EditingControlFactory>()
-                .AddTransient<Func<IDataGraphEditingHost, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditLiteralListControl>>
+                .AddTransient<Func<IDataGraphEditingHost, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterLiteralListControl>>
                 (
                     provider =>
-                    (dataGraphEditingHost, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditLiteralListControl
+                    (dataGraphEditingHost, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditParameterLiteralListControl
                     (
                         provider.GetRequiredService<IEditLiteralListCommandFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -115,10 +115,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingHost, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditObjectListControl>>
+                .AddTransient<Func<IDataGraphEditingHost, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterObjectListControl>>
                 (
                     provider =>
-                    (dataGraphEditingHost, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditObjectListControl
+                    (dataGraphEditingHost, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditParameterObjectListControl
                     (
                         provider.GetRequiredService<IEditObjectListCommandFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -156,6 +156,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<ITableLayoutPanelHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IUpdateParameterControlValues>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         dataGraphEditingHost,
                         function,
@@ -227,6 +228,34 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editVariableHost,
                         assignedToType
+                    )
+                )
+                .AddTransient<Func<IDataGraphEditingHost, LiteralListVariableElementInfo, Type, XmlDocument, string, int?, IEditVariableLiteralListControl>>
+                (
+                    provider =>
+                    (dataGraphEditingHost, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditVariableLiteralListControl
+                    (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        dataGraphEditingHost,
+                        literalListElementInfo,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
+                    )
+                )
+                .AddTransient<Func<IDataGraphEditingHost, ObjectListVariableElementInfo, Type, XmlDocument, string, int?, IEditVariableObjectListControl>>
+                (
+                    provider =>
+                    (dataGraphEditingHost, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditVariableObjectListControl
+                    (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        dataGraphEditingHost,
+                        objectListElementInfo,
+                        assignedTo,
+                        formDocument,
+                        treeNodeXPath,
+                        selectedParameter
                     )
                 );
         }

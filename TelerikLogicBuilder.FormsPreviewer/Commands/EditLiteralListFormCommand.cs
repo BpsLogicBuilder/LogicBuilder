@@ -42,7 +42,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
             var constructor = _configurationService.ConstructorList.Constructors["MultiSelectFormControlSettingsParameters"];
             ListOfLiteralsParameter parameter = (ListOfLiteralsParameter)constructor.Parameters.First(p => p.Name == "keyFields");
             //LiteralListData literalListData = _literalListDataParser.Parse(xmlDocument.DocumentElement!);
-            IEditLiteralListForm editLiteralListForm = disposableManager.GetEditLiteralListForm
+            IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditLiteralListForm
             (
                 typeof(List<string>),
                 _literalListParameterElementInfoHelper.GetLiteralListElementInfo(parameter, ""),

@@ -56,6 +56,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     dataGraphEditingHost => new ParametersDataTreeBuilder
                     (
+                        provider.GetRequiredService<IAssertFunctionDataParser>(),
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IConstructorDataParser>(),
                         provider.GetRequiredService<IDataGraphTreeViewHelper>(),
@@ -66,8 +67,11 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILiteralListDataParser>(),
                         provider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
+                        provider.GetRequiredService<ILiteralListVariableElementInfoHelper>(),
                         provider.GetRequiredService<IObjectListDataParser>(),
                         provider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
+                        provider.GetRequiredService<IObjectListVariableElementInfoHelper>(),
+                        provider.GetRequiredService<IRetractFunctionDataParser>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IVariableDataParser>(),

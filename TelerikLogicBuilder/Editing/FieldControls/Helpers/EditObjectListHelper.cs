@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         {
             ObjectListParameterElementInfo objectListElementInfo = parameterRichTextBoxValueControl.ObjectListElementInfo;
             using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditObjectListForm editObjectListForm = disposableManager.GetEditObjectListForm
+            IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditObjectListForm
             (
                 assignedTo,
                 objectListElementInfo,

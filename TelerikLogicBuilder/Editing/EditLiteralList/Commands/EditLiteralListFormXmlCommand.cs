@@ -11,11 +11,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
     internal class EditLiteralListFormXmlCommand : ClickCommandBase
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEditLiteralListForm editLiteralListForm;
+        private readonly IEditParameterLiteralListForm editLiteralListForm;
 
         public EditLiteralListFormXmlCommand(
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditLiteralListForm editLiteralListForm)
+            IEditParameterLiteralListForm editLiteralListForm)
         {
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editLiteralListForm = editLiteralListForm;

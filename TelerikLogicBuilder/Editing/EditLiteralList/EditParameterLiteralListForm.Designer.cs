@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 {
-    partial class EditLiteralListForm
+    partial class EditParameterLiteralListForm
     {
         /// <summary>
         /// Required designer variable.

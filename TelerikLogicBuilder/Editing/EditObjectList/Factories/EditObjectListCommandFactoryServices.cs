@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditObjectListCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditObjectListControl, AddObjectListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterObjectListControl, AddObjectListBoxItemCommand>>
                 (
                     provider =>
                     editObjectListControl => new AddObjectListBoxItemCommand
@@ -21,7 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditObjectListCommandFactory, EditObjectListCommandFactory>()
-                .AddTransient<Func<IEditObjectListForm, EditObjectListFormXmlCommand>>
+                .AddTransient<Func<IEditParameterObjectListForm, EditObjectListFormXmlCommand>>
                 (
                     provider =>
                     editObjectListForm => new EditObjectListFormXmlCommand
@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         editObjectListForm
                     )
                 )
-                .AddTransient<Func<IEditObjectListControl, UpdateObjectListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterObjectListControl, UpdateObjectListBoxItemCommand>>
                 (
                     provider =>
                     editObjectListControl => new UpdateObjectListBoxItemCommand

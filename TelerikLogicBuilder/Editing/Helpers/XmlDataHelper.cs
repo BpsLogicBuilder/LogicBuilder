@@ -25,6 +25,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
+        public string BuildAssertFunctionXml(string name, string visibleText, string variableName, string variableValueInnerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.ASSERTFUNCTIONELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, name);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
+                    xmlTextWriter.WriteRaw(BuildVariableXml(variableName));
+                    xmlTextWriter.WriteRaw(BuildVariableValueXml(variableValueInnerXml));
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildConstructorXml(string name, string visibleText, string genericArgumentsXml, string parametersXml)
         {
             StringBuilder stringBuilder = new();
@@ -229,6 +245,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
+        public string BuildRetractFunctionXml(string name, string visibleText, string variableName)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.RETRACTFUNCTIONELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, name);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
+                    xmlTextWriter.WriteRaw(BuildVariableXml(variableName));
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildVariableXml(string name)
         {
             StringBuilder stringBuilder = new();
@@ -273,6 +304,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     if (parameterDefaults.TryGetValue(parameter.Name, out string? innerXml))
                         xmlTextWriter.WriteRaw(BuildParameterXml(parameter, innerXml));
                 }
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
+        private string BuildVariableValueXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.VARIABLEVALUEELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();
             }

@@ -7,11 +7,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
     internal class AddLiteralListBoxItemCommand : ClickCommandBase
     {
         private readonly ILiteralListBoxItemFactory _literalListBoxItemFactory;
-        private readonly IEditLiteralListControl editLiteralListControl;
+        private readonly IEditParameterLiteralListControl editLiteralListControl;
 
         public AddLiteralListBoxItemCommand(
             ILiteralListBoxItemFactory literalListBoxItemFactory,
-            IEditLiteralListControl editLiteralListControl)
+            IEditParameterLiteralListControl editLiteralListControl)
         {
             _literalListBoxItemFactory = literalListBoxItemFactory;
             this.editLiteralListControl = editLiteralListControl;

@@ -8,6 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 {
     internal interface IXmlDataHelper
     {
+        string BuildAssertFunctionXml(string name, string visibleText, string variableName, string variableValueInnerXml);
         string BuildConstructorXml(string name, string visibleText, string genericArgumentsXml, string parametersXml);
         string BuildDecisionsXml(string innerXml);
         string BuildDefaultConstructorXml(ClosedConstructor closedConstructor);
@@ -22,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         string BuildObjectListXml(string objectType, ListType listType, string visibleText, string innerXml);
         string BuildObjectXml(string innerXml);
         string BuildParameterXml(ParameterBase parameter, string innerXml);
+        string BuildRetractFunctionXml(string name, string visibleText, string variableName);
         string BuildVariableXml(string innerXml);
         string GetElementName(ParameterCategory category);
     }

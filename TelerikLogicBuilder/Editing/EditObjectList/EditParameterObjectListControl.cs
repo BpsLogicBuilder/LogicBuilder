@@ -32,7 +32,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 {
-    internal partial class EditObjectListControl : UserControl, IListBoxHost<IObjectListBoxItem>, IEditObjectListControl
+    internal partial class EditParameterObjectListControl : UserControl, IListBoxHost<IObjectListBoxItem>, IEditParameterObjectListControl
     {
         private readonly ITypeAutoCompleteManager _cmbObjectTypeAutoCompleteManager;
         private readonly IEditObjectListCommandFactory _editObjectListCommandFactory;
@@ -58,7 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         private IObjectListItemValueControl? valueControl;
 
-        public EditObjectListControl(
+        public EditParameterObjectListControl(
             IEditObjectListCommandFactory editObjectListCommandFactory,
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,

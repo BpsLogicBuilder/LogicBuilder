@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditLiteralListCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditLiteralListControl, AddLiteralListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterLiteralListControl, AddLiteralListBoxItemCommand>>
                 (
                     provider =>
                     editLiteralListControl => new AddLiteralListBoxItemCommand
@@ -21,7 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditLiteralListCommandFactory, EditLiteralListCommandFactory>()
-                .AddTransient<Func<IEditLiteralListForm, EditLiteralListFormXmlCommand>>
+                .AddTransient<Func<IEditParameterLiteralListForm, EditLiteralListFormXmlCommand>>
                 (
                     provider =>
                     editLiteralListControl => new EditLiteralListFormXmlCommand
@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         editLiteralListControl
                     )
                 )
-                .AddTransient<Func<IEditLiteralListControl, UpdateLiteralListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterLiteralListControl, UpdateLiteralListBoxItemCommand>>
                 (
                     provider =>
                     editLiteralListControl => new UpdateLiteralListBoxItemCommand

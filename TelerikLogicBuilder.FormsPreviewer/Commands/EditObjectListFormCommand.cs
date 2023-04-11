@@ -46,7 +46,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
             ListOfObjectsParameter parameter = (ListOfObjectsParameter)constructor.Parameters.First(p => p.Name == "validationMessages");
 			ObjectListData objectListData = _objectListDataParser.Parse(xmlDocument.DocumentElement!);
             _typeLoadHelper.TryGetSystemType(parameter, radForm.Application, out Type? type);
-            IEditObjectListForm editObjectListForm = disposableManager.GetEditObjectListForm
+            IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditObjectListForm
             (
                 type!,
                 _objectListParameterElementInfoHelper.GetObjectListElementInfo(parameter),

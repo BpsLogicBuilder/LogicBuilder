@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string treeNodeXPath,
             string? selectedParameter = null);
 
-        IEditLiteralListControl GetEditLiteralListControl(
+        IEditParameterLiteralListControl GetEditParameterLiteralListControl(
             IDataGraphEditingHost dataGraphEditingHost,
             LiteralListParameterElementInfo literalListElementInfo,
             Type assignedTo,
@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string treeNodeXPath,
             int? selectedIndex);
 
-        IEditObjectListControl GetEditObjectListControl(
+        IEditParameterObjectListControl GetEditParameterObjectListControl(
             IDataGraphEditingHost dataGraphEditingHost,
             ObjectListParameterElementInfo objectListElementInfo,
             Type assignedTo,
@@ -73,5 +73,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             string? selectedParameter = null);
 
         IEditVariableControl GetEditVariableControl(IEditVariableHost editVariableHost, Type assignedTo);
+
+        IEditVariableLiteralListControl GetEditVariableLiteralListControl(
+            IDataGraphEditingHost dataGraphEditingHost,
+            LiteralListVariableElementInfo literalListElementInfo,
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            int? selectedIndex);
+
+        IEditVariableObjectListControl GetEditVariableObjectListControl(
+            IDataGraphEditingHost dataGraphEditingHost,
+            ObjectListVariableElementInfo objectListElementInfo,
+            Type assignedTo,
+            XmlDocument formDocument,
+            string treeNodeXPath,
+            int? selectedIndex);
     }
 }

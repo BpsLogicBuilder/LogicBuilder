@@ -11,11 +11,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands
     internal class EditObjectListFormXmlCommand : ClickCommandBase
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEditObjectListForm editObjectListForm;
+        private readonly IEditParameterObjectListForm editObjectListForm;
 
         public EditObjectListFormXmlCommand(
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditObjectListForm editObjectListForm)
+            IEditParameterObjectListForm editObjectListForm)
         {
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.editObjectListForm = editObjectListForm;

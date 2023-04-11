@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 {
-    partial class EditObjectListForm
+    partial class EditParameterObjectListForm
     {
         /// <summary>
         /// Required designer variable.

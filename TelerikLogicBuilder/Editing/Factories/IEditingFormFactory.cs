@@ -25,8 +25,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor);
         IEditDialogFunctionForm GetEditDialogFunctionForm(XmlDocument? functionsXmlDocument);
         IEditFunctionsForm GetEditFunctionsForm(XmlDocument? functionsXmlDocument);
-        IEditLiteralListForm GetEditLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);
-        IEditObjectListForm GetEditObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument literalListXmlDocument);
+        IEditParameterLiteralListForm GetEditLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);
+        IEditParameterObjectListForm GetEditObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument literalListXmlDocument);
         IEditValueFunctionForm GetEditValueFunctionForm(Type assignedTo, XmlDocument? functionXmlDocument);
         IEditVariableForm GetEditVariableForm(Type assignedTo);
         ISelectConstructorForm GetSelectConstructorForm(Type assignedTo);

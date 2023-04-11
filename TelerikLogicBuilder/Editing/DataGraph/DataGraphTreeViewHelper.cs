@@ -79,6 +79,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
+        public ListOfLiteralsVariableElementTreeNode AddListOfLiteralsVariableTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListVariableElement, string variableName, Type variableType, string toolTipText)
+        {
+            if (literalListVariableElement.Name != XmlDataConstants.LITERALLISTVARIABLEELEMENT)
+                throw _exceptionHelper.CriticalException("{8B176FC5-F8E7-47AA-BDBB-11CC7E851A0D}");
+
+            ListOfLiteralsVariableElementTreeNode newTreeNode = new
+            (
+                variableName,
+                $"{parentNode.Name}/{XmlDataConstants.VARIABLEVALUEELEMENT}/{literalListVariableElement.Name}",
+                variableType
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
         public ListOfObjectsParameterElementTreeNode AddListOfObjectsParameterTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListParameterElement, Type parameterType, string toolTipText)
         {
             if (objectListParameterElement.Name != XmlDataConstants.OBJECTLISTPARAMETERELEMENT)
@@ -99,12 +118,51 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
+        public ListOfObjectsVariableElementTreeNode AddListOfObjectsVariableTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListVariableElement, string variableName, Type variableType, string toolTipText)
+        {
+            if (objectListVariableElement.Name != XmlDataConstants.OBJECTLISTVARIABLEELEMENT)
+                throw _exceptionHelper.CriticalException("{1710089A-6600-4465-B362-7BFBE5125DA4}");
+
+            ListOfObjectsVariableElementTreeNode newTreeNode = new
+            (
+                variableName,
+                $"{parentNode.Name}/{XmlDataConstants.VARIABLEVALUEELEMENT}/{objectListVariableElement.Name}",
+                variableType
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
         public ParameterLiteralListElementTreeNode AddLiteralListTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListElement, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{7395E053-8D51-45A5-AE4C-68F460BBBA52}");
 
             ParameterLiteralListElementTreeNode newTreeNode = new
+            (
+                text,
+                $"{parentNode.Name}/{XmlDataConstants.LITERALLISTELEMENT}",//always a single child and its child elements are unique by nodes index
+                parentNode.AssignedToType,
+                listElementInfo
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public VariableLiteralListElementTreeNode AddLiteralListTreeNode(ParametersDataTreeNode parentNode, XmlElement literalListElement, LiteralListVariableElementInfo listElementInfo, string text, string toolTipText)
+        {
+            if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
+                throw _exceptionHelper.CriticalException("{224C9B3E-DA31-4867-AA7C-A9BF311303B4}");
+
+            VariableLiteralListElementTreeNode newTreeNode = new
             (
                 text,
                 $"{parentNode.Name}/{XmlDataConstants.LITERALLISTELEMENT}",//always a single child and its child elements are unique by nodes index
@@ -159,12 +217,71 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
+        public LiteralElementTreeNode AddLiteralTreeNode(VariableLiteralListElementTreeNode parentNode, XmlElement literalElement, Type literalType, string toolTipText, int nodeIndex)
+        {
+            if (literalElement.Name != XmlDataConstants.LITERALELEMENT)
+                throw _exceptionHelper.CriticalException("{C0CA25DD-5FE1-4A3B-9E6A-76D4A80E77B1}");
+
+            LiteralElementTreeNode newTreeNode = new
+            (
+                string.Format(CultureInfo.CurrentCulture, Strings.literalListChildNodeTextFormat, parentNode.ListInfo.Name, nodeIndex),
+                $"{parentNode.Name}/{literalElement.Name}[{nodeIndex + 1}]",
+                literalType,
+                nodeIndex
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public LiteralVariableElementTreeNode AddLiteralVariableTreeNode(ParametersDataTreeNode parentNode, XmlElement literalVariableElement, string variableName, Type variableType, string toolTipText)
+        {
+            if (literalVariableElement.Name != XmlDataConstants.LITERALVARIABLEELEMENT)
+                throw _exceptionHelper.CriticalException("{1544809B-3EF7-4834-AAE6-9C0A31488189}");
+
+            LiteralVariableElementTreeNode newTreeNode = new
+            (
+                variableName,
+                $"{parentNode.Name}/{XmlDataConstants.VARIABLEVALUEELEMENT}/{literalVariableElement.Name}",
+                variableType
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
         public ParameterObjectListElementTreeNode AddObjectListTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListElement, ObjectListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{15132D22-190F-4FE8-8B84-4D5D49A8FD8C}");
 
             ParameterObjectListElementTreeNode newTreeNode = new
+            (
+                text,
+                $"{parentNode.Name}/{XmlDataConstants.OBJECTLISTELEMENT}",//always a single child and its child elements are unique by nodes index
+                parentNode.AssignedToType,
+                listElementInfo
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public VariableObjectListElementTreeNode AddObjectListTreeNode(ParametersDataTreeNode parentNode, XmlElement objectListElement, ObjectListVariableElementInfo listElementInfo, string text, string toolTipText)
+        {
+            if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
+                throw _exceptionHelper.CriticalException("{FB44A70C-FBED-4F91-974B-F24AB0EED92A}");
+
+            VariableObjectListElementTreeNode newTreeNode = new
             (
                 text,
                 $"{parentNode.Name}/{XmlDataConstants.OBJECTLISTELEMENT}",//always a single child and its child elements are unique by nodes index
@@ -216,6 +333,63 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             };
 
             parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public ObjectElementTreeNode AddObjectTreeNode(VariableObjectListElementTreeNode parentNode, XmlElement objectElement, Type objectType, string toolTipText, int nodeIndex)
+        {
+            if (objectElement.Name != XmlDataConstants.OBJECTELEMENT)
+                throw _exceptionHelper.CriticalException("{2D2B8120-4D0B-4FB1-8252-BF62DE979C8D}");
+
+            ObjectElementTreeNode newTreeNode = new
+            (
+                string.Format(CultureInfo.CurrentCulture, Strings.objectListChildNodeTextFormat, parentNode.ListInfo.Name, nodeIndex),
+                $"{parentNode.Name}/{objectElement.Name}[{nodeIndex + 1}]",
+                objectType,
+                nodeIndex
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public ObjectVariableElementTreeNode AddObjectVariableTreeNode(ParametersDataTreeNode parentNode, XmlElement objectVariableElement, string variableName, Type variableType, string toolTipText)
+        {
+            if (objectVariableElement.Name != XmlDataConstants.OBJECTVARIABLEELEMENT)
+                throw _exceptionHelper.CriticalException("{471B39D3-3510-4227-A3FE-DC1EAFBF59A9}");
+
+            ObjectVariableElementTreeNode newTreeNode = new
+            (
+                variableName,
+                $"{parentNode.Name}/{XmlDataConstants.VARIABLEVALUEELEMENT}/{objectVariableElement.Name}",
+                variableType
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            parentNode.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public AssertFunctionElementTreeNode AddRootAssertFunctionTreeNode(RadTreeView radTreeView, XmlElement functionElement, string toolTipText)
+        {
+            if (functionElement.Name != XmlDataConstants.ASSERTFUNCTIONELEMENT)
+                throw _exceptionHelper.CriticalException("{9AF6A84A-83D7-48BC-956B-19C0164D2AC8}");
+
+            AssertFunctionElementTreeNode newTreeNode = new
+            (
+                functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                $"/{functionElement.Name}"
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            radTreeView.Nodes.Add(newTreeNode);
             return newTreeNode;
         }
 
@@ -288,6 +462,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 $"/{objectListElement.Name}",
                 rootAssignedToType,
                 listElementInfo
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            radTreeView.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public RetractFunctionElementTreeNode AddRootRetractFunctionTreeNode(RadTreeView radTreeView, XmlElement functionElement, string toolTipText)
+        {
+            if (functionElement.Name != XmlDataConstants.RETRACTFUNCTIONELEMENT)
+                throw _exceptionHelper.CriticalException("{F215A7B8-6F3A-44D8-A69A-C691BE6BBA06}");
+
+            RetractFunctionElementTreeNode newTreeNode = new
+            (
+                functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                $"/{functionElement.Name}"
             )
             {
                 ToolTipText = toolTipText

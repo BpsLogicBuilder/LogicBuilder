@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using Telerik.WinControls.Svg;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 {
@@ -33,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
+        private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IDataGraphEditingHost dataGraphEditingHost;
 
@@ -58,6 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             ITypeLoadHelper typeLoadHelper,
             IUpdateParameterControlValues updateParameterControlValues,
+            IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IDataGraphEditingHost dataGraphEditingHost,
             Function function,
@@ -75,6 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             _tableLayoutPanelHelper = tableLayoutPanelHelper;
             _typeLoadHelper = typeLoadHelper;
             _updateParameterControlValues = updateParameterControlValues;
+            _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.dataGraphEditingHost = dataGraphEditingHost;
             this.function = function;
@@ -117,11 +122,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 
         public XmlDocument XmlDocument => throw new NotImplementedException();
 
-        public XmlElement XmlResult => throw new NotImplementedException();
+        public XmlElement XmlResult
+        {
+            get
+            {
+                return this.xmlDocument.DocumentElement!;
+                //VariableBase variableBase = (LiteralVariable)_configurationService.VariableList.Variables.First(kvp => kvp.Value.VariableTypeCategory == Enums.VariableTypeCategory.Literal && ((LiteralVariable)kvp.Value).LiteralType == Enums.LiteralVariableType.Integer).Value;
+                //Function function = _configurationService.FunctionList.Functions.First(kvp => kvp.Value.FunctionCategory == Enums.FunctionCategories.Assert).Value;
+                //return _xmlDocumentHelpers.ToXmlElement
+                //(
+                //    _xmlDataHelper.BuildAssertFunctionXml
+                //    (
+                //        function.Name,
+                //        function.Name,
+                //        variableBase.Name,
+                //        "<literalVariable>2</literalVariable>"
+                //    )
+                //);
+            }
+        }
 
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 
-        public bool IsValid => throw new NotImplementedException();
+        public bool IsValid => true;
 
         public string? SelectedParameter => selectedParameter;
 
