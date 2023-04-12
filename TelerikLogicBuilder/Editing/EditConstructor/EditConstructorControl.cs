@@ -147,6 +147,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public XmlElement XmlResult => GetXmlResult();
 
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+
         public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
         public void RequestDocumentUpdate() => dataGraphEditingHost.RequestDocumentUpdate(this);

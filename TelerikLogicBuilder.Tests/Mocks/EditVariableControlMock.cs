@@ -34,6 +34,8 @@ namespace TelerikLogicBuilder.Tests.Mocks
 
         public bool DisplayNotCheckBox => throw new NotImplementedException();
 
+        public string VisibleText => throw new NotImplementedException();
+
         event EventHandler? IEditVariableControl.Changed
         {
             add

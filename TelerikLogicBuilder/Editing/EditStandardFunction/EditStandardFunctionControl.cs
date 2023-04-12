@@ -130,6 +130,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet);
 
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+
         public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 
         public bool IsValid

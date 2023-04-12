@@ -93,6 +93,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         public IEditingControl? CurrentEditingControl => editVoidFunctionControl.CurrentEditingControl;
 
+        public IEditVoidFunctionControl EditVoidFunctionControl => editVoidFunctionControl;
+
         public IRadListBoxManager<IFunctionListBoxItem> RadListBoxManager => radListBoxManager;
 
         public string ShapeXml
@@ -208,13 +210,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         public void UpdateInputControls(IFunctionListBoxItem item)
         {
             editVoidFunctionControl.UpdateInputControls(item.HiddenText);
-            if (CurrentEditingControl == null)
-            {
-                _objectRichTextBox.Text = string.Empty;
-                return;
-            }
 
-            if (CurrentEditingControl.IsValid)
+            if (CurrentEditingControl?.IsValid == true)
             {
                 _objectRichTextBox.Text = editVoidFunctionControl.VisibleText;
             }
@@ -351,7 +348,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             if (CurrentEditingControl == null)
                 return;
 
-            _objectRichTextBox.Text = CurrentEditingControl.XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+            _objectRichTextBox.Text = CurrentEditingControl.VisibleText;
         }
         #endregion Event Handlers
     }

@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands
                 (
                     _functionListBoxItemFactory.GetFunctionListBoxItem
                     (
-                        CurrentEditingControl.XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                        CurrentEditingControl.VisibleText,
                         CurrentEditingControl.XmlResult.OuterXml,
                         typeof(object),
                         editFunctionsForm

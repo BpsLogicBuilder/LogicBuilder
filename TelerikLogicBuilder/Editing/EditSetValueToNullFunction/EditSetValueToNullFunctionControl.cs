@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
 {
@@ -118,6 +119,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
         public XmlDocument XmlDocument => throw new NotImplementedException();
 
         public XmlElement XmlResult => this.xmlDocument.DocumentElement!;
+
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
 
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 

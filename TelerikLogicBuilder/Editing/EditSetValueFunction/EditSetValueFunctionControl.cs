@@ -1,26 +1,20 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
-using Telerik.WinControls.Svg;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 {
@@ -141,6 +135,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
                 //);
             }
         }
+
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
 
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 

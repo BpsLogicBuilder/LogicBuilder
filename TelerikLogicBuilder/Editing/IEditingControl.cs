@@ -9,9 +9,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     {
         ApplicationTypeInfo Application { get; }
         DockStyle Dock { set; }
-        XmlElement XmlResult { get; }
         bool IsValid { get; }
         Point Location { set; }
+        XmlElement XmlResult { get; }
+        string VisibleText { get; }
         void ClearMessage();
         void RequestDocumentUpdate();
         void SetErrorMessage(string message);

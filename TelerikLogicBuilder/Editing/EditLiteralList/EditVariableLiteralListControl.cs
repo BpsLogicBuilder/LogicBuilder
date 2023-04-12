@@ -69,6 +69,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public XmlElement XmlResult => throw new NotImplementedException();
 
+        public string VisibleText => throw new NotImplementedException();
+
         public bool IsValid => true;
 
         public void ClearMessage()

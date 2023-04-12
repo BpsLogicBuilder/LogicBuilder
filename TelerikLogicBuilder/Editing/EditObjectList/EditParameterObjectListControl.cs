@@ -225,6 +225,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             }
         }
 
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+
         public void ClearInputControls() => ValueControl.ResetControl();
 
         public void ClearMessage() => dataGraphEditingHost.ClearMessage();

@@ -140,6 +140,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
         public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet);
 
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+
         public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
         public void RequestDocumentUpdate() => dataGraphEditingHost.RequestDocumentUpdate(this);

@@ -77,6 +77,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         public XmlElement XmlResult => throw new NotImplementedException();
 
+        public string VisibleText => throw new NotImplementedException();
+
         public bool IsValid => true;
 
         public void ClearMessage()

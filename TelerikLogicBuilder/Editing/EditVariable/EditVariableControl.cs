@@ -106,6 +106,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
                 )
             );
 
+        public string VisibleText => VariableName ?? throw _exceptionHelper.CriticalException("{3645A8BB-4B13-42EB-871D-E1EF1978D65A}");
+
         public void ClearMessage() => editVariableHost.ClearMessage();
 
         public void RequestDocumentUpdate() => editVariableHost.RequestDocumentUpdate(this);
