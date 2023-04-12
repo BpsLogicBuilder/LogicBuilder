@@ -7,7 +7,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -71,7 +70,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IObjectListDataParser>(),
                         provider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
                         provider.GetRequiredService<IObjectListVariableElementInfoHelper>(),
-                        provider.GetRequiredService<IRetractFunctionDataParser>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
                         provider.GetRequiredService<IVariableDataParser>(),

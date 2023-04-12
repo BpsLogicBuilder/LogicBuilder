@@ -524,15 +524,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             if (configuredParameter.ParameterCategory == ParameterCategory.ObjectList) return string.Empty;
             if (configuredParameter.ParameterCategory == ParameterCategory.LiteralList) return string.Empty;
 
-            switch (configuredParameter.ParameterCategory)
+            return configuredParameter.ParameterCategory switch
             {
-                case ParameterCategory.Literal:
-                    return GetLiteralParameterValueVisibleText(dataElement, application);
-                case ParameterCategory.Object:
-                    return ((ObjectParameter)configuredParameter).ToString();
-                default:
-                    throw _exceptionHelper.CriticalException("{1906390C-8694-4B5D-959F-FAF76B481B29}");
-            }
+                ParameterCategory.Literal => GetLiteralParameterValueVisibleText(dataElement, application),
+                ParameterCategory.Object => ((ObjectParameter)configuredParameter).ToString(),
+                _ => throw _exceptionHelper.CriticalException("{1906390C-8694-4B5D-959F-FAF76B481B29}"),
+            };
         }
 
         private string GetRetractFunctionVisibleText(XmlElement functionElement)

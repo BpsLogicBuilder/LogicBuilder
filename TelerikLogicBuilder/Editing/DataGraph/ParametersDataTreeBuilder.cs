@@ -34,7 +34,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         private readonly IObjectListDataParser _objectListDataParser;
         private readonly IObjectListParameterElementInfoHelper _objectListParameterElementInfoHelper;
         private readonly IObjectListVariableElementInfoHelper _objectListVariableElementInfoHelper;
-        private readonly IRetractFunctionDataParser _retractFunctionDataParser;
         private readonly ITreeViewService _treeViewService;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IVariableDataParser _variableDataParser;
@@ -58,7 +57,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             IObjectListDataParser objectListDataParser,
             IObjectListParameterElementInfoHelper objectListParameterElementInfoHelper,
             IObjectListVariableElementInfoHelper objectListVariableElementInfoHelper,
-            IRetractFunctionDataParser retractFunctionDataParser,
             ITreeViewService treeViewService,
             ITypeLoadHelper typeLoadHelper,
             IVariableDataParser variableDataParser,
@@ -80,7 +78,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             _objectListDataParser = objectListDataParser;
             _objectListParameterElementInfoHelper = objectListParameterElementInfoHelper;
             _objectListVariableElementInfoHelper = objectListVariableElementInfoHelper;
-            _retractFunctionDataParser = retractFunctionDataParser;
             _treeViewService = treeViewService;
             _typeLoadHelper = typeLoadHelper;
             _variableDataParser = variableDataParser;
@@ -113,7 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.ShowRootLines = true;
             treeView.Nodes.Clear();
             XmlElement functionElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, ASSERT_FUNCTION_ROOT_XPATH);
-            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? function))
+            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
                 return;
 
             GetAssertFunctionChildren
@@ -233,7 +230,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.ShowRootLines = true;
             treeView.Nodes.Clear();
             XmlElement functionElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, RETRACT_FUNCTION_ROOT_XPATH);
-            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? function))
+            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
                 return;
 
             _dataGraphTreeViewHelper.AddRootRetractFunctionTreeNode(treeView, functionElement, functionElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE));
@@ -251,7 +248,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             switch (node)
             {
                 case AssertFunctionElementTreeNode assertFunctionElementTreeNode:
-                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? assertFunction))
+                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
                         return;
 
                     node.ToolTipText = xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
