@@ -109,6 +109,15 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IFieldControlHelperFactory, FieldControlHelperFactory>()
+                .AddTransient<Func<IRichInputBoxValueControl, ILiteralListItemRichInputBoxEventsHelper>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new LiteralListItemRichInputBoxEventsHelper
+                    (
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        richInputBoxValueControl
+                    )
+                )
                 .AddTransient<Func<IParameterRichTextBoxValueControl, IObjectRichTextBoxEventsHelper>>
                 (
                     provider =>

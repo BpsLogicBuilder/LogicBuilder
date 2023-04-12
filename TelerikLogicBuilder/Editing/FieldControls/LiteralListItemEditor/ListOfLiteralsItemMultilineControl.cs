@@ -4,8 +4,6 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -48,9 +46,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
             IEditingControlHelperFactory editingControlHelperFactory,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
+            IFieldControlHelperFactory fieldControlHelperFactory,
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
-            ILiteralListItemControlHelperFactory literalListItemControlHelperFactory,
             IUpdateRichInputBoxXml updateRichInputBoxXml,
             RichInputBox richInputBox,
             IXmlDataHelper xmlDataHelper,
@@ -69,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.dataGraphEditingControl = dataGraphEditingControl;
             this.literalListParameter = literalListParameter;
-            _richInputBoxEventsHelper = literalListItemControlHelperFactory.GetLiteralListItemRichInputBoxEventsHelper(this);
+            _richInputBoxEventsHelper = fieldControlHelperFactory.GetLiteralListItemRichInputBoxEventsHelper(this);
             _createRichInputBoxContextMenu = editingControlHelperFactory.GetCreateRichInputBoxContextMenu(this);
             btnVariable = new()
             {

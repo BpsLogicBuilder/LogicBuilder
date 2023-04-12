@@ -1,8 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Helpers
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal class LiteralListItemRichInputBoxEventsHelper : ILiteralListItemRichInputBoxEventsHelper
     {
