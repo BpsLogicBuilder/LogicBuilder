@@ -93,8 +93,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
         public XmlElement XmlResult
-            => _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
-            (
+            => _refreshVisibleTextHelper.RefreshAllVisibleTexts
+            (/*Need <assertFunction />, <retractFunction /> and <function /> hance RefreshAllVisibleTexts.*/
                 _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
                 Application
             );

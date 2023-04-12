@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
@@ -19,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands
             this.editFunctionsForm = editFunctionsForm;
         }
 
+        private IEditVoidFunctionControl EditVoidFunctionControl => editFunctionsForm.EditVoidFunctionControl;
         private IEditingControl? CurrentEditingControl => editFunctionsForm.CurrentEditingControl;
         private IRadListBoxManager<IFunctionListBoxItem> RadListBoxManager => editFunctionsForm.RadListBoxManager;
 
@@ -30,12 +30,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands
             try
             {
                 CurrentEditingControl.ValidateFields();
+                CurrentEditingControl.RequestDocumentUpdate();
+                EditVoidFunctionControl.ValidateXmlDocument();
                 RadListBoxManager.Update
                 (
                     _functionListBoxItemFactory.GetFunctionListBoxItem
                     (
-                        CurrentEditingControl.VisibleText,
-                        CurrentEditingControl.XmlResult.OuterXml,
+                        EditVoidFunctionControl.VisibleText,
+                        EditVoidFunctionControl.XmlResult.OuterXml,
                         typeof(object),
                         editFunctionsForm
                     )
