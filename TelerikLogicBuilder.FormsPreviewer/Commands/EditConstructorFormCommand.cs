@@ -41,7 +41,8 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
                 type!,
                 xmlDococument,
 				new HashSet<string>(constructors.Keys),
-                closedConstructor?.Constructor.Name!
+                closedConstructor?.Constructor.Name!,
+				false
             );
             selectConstructorForm.ShowDialog(radForm);
             if (selectConstructorForm.DialogResult != DialogResult.OK)

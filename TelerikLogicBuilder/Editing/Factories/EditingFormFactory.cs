@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     {
         private IDisposable? _scopedService;
         private readonly Func<XmlDocument?, IEditBooleanFunctionForm> _getEditBooleanFunctionForm;
-        private readonly Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> _getEditConstructorForm;
+        private readonly Func<Type, XmlDocument, HashSet<string>, string, bool, IEditConstructorForm> _getEditConstructorForm;
         private readonly Func<XmlDocument?, IEditDialogFunctionForm> _getEditDialogFunctionForm;
         private readonly Func<XmlDocument?, IEditFunctionsForm> _getEditFunctionsForm;
         private readonly Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> _getEditLiteralListForm;
@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 
         public EditingFormFactory(
             Func<XmlDocument?, IEditBooleanFunctionForm> getEditBooleanFunctionForm,
-            Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm> getEditConstructorForm,
+            Func<Type, XmlDocument, HashSet<string>, string, bool, IEditConstructorForm> getEditConstructorForm,
             Func<XmlDocument?, IEditDialogFunctionForm> getEditDialogFunctionForm,
             Func<XmlDocument?, IEditFunctionsForm> getEditFunctionsForm,
             Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> getEditLiteralListForm,
@@ -69,9 +69,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             return (IEditBooleanFunctionForm)_scopedService;
         }
 
-        public IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor)
+        public IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor, bool denySpecialCharacters)
         {
-            _scopedService = _getEditConstructorForm(assignedTo, constructorXmlDocument, constructorNames, selectedConstructor);
+            _scopedService = _getEditConstructorForm(assignedTo, constructorXmlDocument, constructorNames, selectedConstructor, denySpecialCharacters);
             return (IEditConstructorForm)_scopedService;
         }
 

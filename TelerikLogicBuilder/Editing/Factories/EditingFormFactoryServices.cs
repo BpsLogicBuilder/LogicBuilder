@@ -63,10 +63,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         functionXmlDocument
                     )
                 )
-                .AddTransient<Func<Type, XmlDocument, HashSet<string>, string, IEditConstructorForm>>
+                .AddTransient<Func<Type, XmlDocument, HashSet<string>, string, bool, IEditConstructorForm>>
                 (
                     provider =>
-                    (assignedTo, constructorXmlDocument, constructorNames, selectedConstructor) => new EditConstructorForm
+                    (assignedTo, constructorXmlDocument, constructorNames, selectedConstructor, denySpecialCharacters) => new EditConstructorForm
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
@@ -82,7 +82,8 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo,
                         constructorXmlDocument,
                         constructorNames,
-                        selectedConstructor
+                        selectedConstructor,
+                        denySpecialCharacters
                     )
                 )
                 .AddTransient<Func<XmlDocument?, IEditDialogFunctionForm>>

@@ -43,6 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly Type assignedTo;
         private readonly HashSet<string> constructorNames;
         private string selectedConstructor;
+        private readonly bool denySpecialCharacters;
 
         public EditConstructorForm(
             IConfigurationService configurationService,
@@ -59,7 +60,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             Type assignedTo,
             XmlDocument constructorXmlDocument,
             HashSet<string> constructorNames,
-            string selectedConstructor)
+            string selectedConstructor,
+            bool denySpecialCharacters)
         {
             InitializeComponent();
             _configurationService = configurationService;
@@ -77,6 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.assignedTo = assignedTo;
             this.constructorNames = constructorNames;
             this.selectedConstructor = selectedConstructor;
+            this.denySpecialCharacters = denySpecialCharacters;
 
             _treeViewXmlDocumentHelper.LoadXmlDocument(constructorXmlDocument.OuterXml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
@@ -90,7 +93,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public HelperButtonDropDownList CmbSelectConstructor => cmbSelectConstructor;
 
-        public bool DenySpecialCharacters => false;
+        public bool DenySpecialCharacters => denySpecialCharacters;
 
         public bool DisplayNotCheckBox => false;
 
