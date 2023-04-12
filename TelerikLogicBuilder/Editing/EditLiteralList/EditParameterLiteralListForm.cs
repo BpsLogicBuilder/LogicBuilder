@@ -118,7 +118,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             _formInitializer.SetToEditSize(this);
 
             _dataGraphEditingFormEventsHelper.Setup();
-            AddButtonClickCommand(btnPasteXml, _editLiteralListCommandFactory.GetEditLiteralListFormXmlCommand(this));
+            AddButtonClickCommand(btnPasteXml, _editLiteralListCommandFactory.GetEditParameterLiteralListFormXmlCommand(this));
             LoadTreeview();
         }
 

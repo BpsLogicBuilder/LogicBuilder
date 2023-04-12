@@ -366,12 +366,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             AddButtonClickCommand
             (
                 BtnAdd,
-                _editLiteralListCommandFactory.GetAddLiteralListBoxItemCommand(this)
+                _editLiteralListCommandFactory.GetAddParameterLiteralListBoxItemCommand(this)
             );
             AddButtonClickCommand
             (
                 BtnUpdate,
-                _editLiteralListCommandFactory.GetUpdateLiteralListBoxItemCommand(this)
+                _editLiteralListCommandFactory.GetUpdateParameterLiteralListBoxItemCommand(this)
             );
             managedListBoxControl.CreateCommands(radListBoxManager);
 

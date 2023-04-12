@@ -11,32 +11,32 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditObjectListCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditParameterObjectListControl, AddObjectListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterObjectListControl, AddParameterObjectListBoxItemCommand>>
                 (
                     provider =>
-                    editObjectListControl => new AddObjectListBoxItemCommand
+                    editParameterObjectListControl => new AddParameterObjectListBoxItemCommand
                     (
                         provider.GetRequiredService<IObjectListBoxItemFactory>(),
-                        editObjectListControl
+                        editParameterObjectListControl
                     )
                 )
                 .AddTransient<IEditObjectListCommandFactory, EditObjectListCommandFactory>()
-                .AddTransient<Func<IEditParameterObjectListForm, EditObjectListFormXmlCommand>>
+                .AddTransient<Func<IEditParameterObjectListForm, EditParameterObjectListFormXmlCommand>>
                 (
                     provider =>
-                    editObjectListForm => new EditObjectListFormXmlCommand
+                    editParameterObjectListForm => new EditParameterObjectListFormXmlCommand
                     (
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editObjectListForm
+                        editParameterObjectListForm
                     )
                 )
-                .AddTransient<Func<IEditParameterObjectListControl, UpdateObjectListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterObjectListControl, UpdateParameterObjectListBoxItemCommand>>
                 (
                     provider =>
-                    editObjectListControl => new UpdateObjectListBoxItemCommand
+                    editParameterObjectListControl => new UpdateParameterObjectListBoxItemCommand
                     (
                         provider.GetRequiredService<IObjectListBoxItemFactory>(),
-                        editObjectListControl
+                        editParameterObjectListControl
                     )
                 );
         }

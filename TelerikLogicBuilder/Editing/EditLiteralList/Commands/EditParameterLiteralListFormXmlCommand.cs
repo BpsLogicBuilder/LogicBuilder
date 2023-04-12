@@ -8,17 +8,17 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
 {
-    internal class EditLiteralListFormXmlCommand : ClickCommandBase
+    internal class EditParameterLiteralListFormXmlCommand : ClickCommandBase
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEditParameterLiteralListForm editLiteralListForm;
+        private readonly IEditParameterLiteralListForm editParameterLiteralListForm;
 
-        public EditLiteralListFormXmlCommand(
+        public EditParameterLiteralListFormXmlCommand(
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditParameterLiteralListForm editLiteralListForm)
+            IEditParameterLiteralListForm editParameterLiteralListForm)
         {
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editLiteralListForm = editLiteralListForm;
+            this.editParameterLiteralListForm = editParameterLiteralListForm;
         }
 
         public override void Execute()
@@ -26,15 +26,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
             using IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
             IEditLiteralListFormXml editXmlForm = disposableManager.GetEditLiteralListFormXml
             (
-                _xmlDocumentHelpers.GetXmlString(editLiteralListForm.XmlDocument),
-                editLiteralListForm.AssignedTo
+                _xmlDocumentHelpers.GetXmlString(editParameterLiteralListForm.XmlDocument),
+                editParameterLiteralListForm.AssignedTo
             );
-            editXmlForm.ShowDialog((IWin32Window)editLiteralListForm);
+            editXmlForm.ShowDialog((IWin32Window)editParameterLiteralListForm);
             if (editXmlForm.DialogResult != DialogResult.OK)
                 return;
 
-            editLiteralListForm.ReloadXmlDocument(editXmlForm.XmlResult);
-            editLiteralListForm.RebuildTreeView();
+            editParameterLiteralListForm.ReloadXmlDocument(editXmlForm.XmlResult);
+            editParameterLiteralListForm.RebuildTreeView();
         }
     }
 }

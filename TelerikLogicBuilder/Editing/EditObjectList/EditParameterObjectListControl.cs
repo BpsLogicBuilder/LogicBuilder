@@ -362,12 +362,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             AddButtonClickCommand
             (
                 BtnAdd,
-                _editObjectListCommandFactory.GetAddObjectListBoxItemCommand(this)
+                _editObjectListCommandFactory.GetAddParameterObjectListBoxItemCommand(this)
             );
             AddButtonClickCommand
             (
                 BtnUpdate,
-                _editObjectListCommandFactory.GetUpdateObjectListBoxItemCommand(this)
+                _editObjectListCommandFactory.GetUpdateParameterObjectListBoxItemCommand(this)
             );
             managedListBoxControl.CreateCommands(radListBoxManager);
 

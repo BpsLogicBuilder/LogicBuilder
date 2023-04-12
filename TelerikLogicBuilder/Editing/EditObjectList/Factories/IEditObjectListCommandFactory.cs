@@ -4,8 +4,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories
 {
     internal interface IEditObjectListCommandFactory
     {
-        AddObjectListBoxItemCommand GetAddObjectListBoxItemCommand(IEditParameterObjectListControl editObjectListControl);
-        EditObjectListFormXmlCommand GetEditObjectListFormXmlCommand(IEditParameterObjectListForm editObjectListForm);
-        UpdateObjectListBoxItemCommand GetUpdateObjectListBoxItemCommand(IEditParameterObjectListControl editObjectListControl);
+        AddParameterObjectListBoxItemCommand GetAddParameterObjectListBoxItemCommand(IEditParameterObjectListControl editParameterObjectListControl);
+        EditParameterObjectListFormXmlCommand GetEditParameterObjectListFormXmlCommand(IEditParameterObjectListForm editParameterObjectListForm);
+        UpdateParameterObjectListBoxItemCommand GetUpdateParameterObjectListBoxItemCommand(IEditParameterObjectListControl editParameterObjectListControl);
     }
 }

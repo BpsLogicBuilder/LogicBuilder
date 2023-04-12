@@ -11,32 +11,32 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditLiteralListCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditParameterLiteralListControl, AddLiteralListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterLiteralListControl, AddParameterLiteralListBoxItemCommand>>
                 (
                     provider =>
-                    editLiteralListControl => new AddLiteralListBoxItemCommand
+                    editParameterLiteralListControl => new AddParameterLiteralListBoxItemCommand
                     (
                         provider.GetRequiredService<ILiteralListBoxItemFactory>(),
-                        editLiteralListControl
+                        editParameterLiteralListControl
                     )
                 )
                 .AddTransient<IEditLiteralListCommandFactory, EditLiteralListCommandFactory>()
-                .AddTransient<Func<IEditParameterLiteralListForm, EditLiteralListFormXmlCommand>>
+                .AddTransient<Func<IEditParameterLiteralListForm, EditParameterLiteralListFormXmlCommand>>
                 (
                     provider =>
-                    editLiteralListControl => new EditLiteralListFormXmlCommand
+                    editParameterLiteralListForm => new EditParameterLiteralListFormXmlCommand
                     (
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editLiteralListControl
+                        editParameterLiteralListForm
                     )
                 )
-                .AddTransient<Func<IEditParameterLiteralListControl, UpdateLiteralListBoxItemCommand>>
+                .AddTransient<Func<IEditParameterLiteralListControl, UpdateParameterLiteralListBoxItemCommand>>
                 (
                     provider =>
-                    editLiteralListControl => new UpdateLiteralListBoxItemCommand
+                    editParameterLiteralListControl => new UpdateParameterLiteralListBoxItemCommand
                     (
                         provider.GetRequiredService<ILiteralListBoxItemFactory>(),
-                        editLiteralListControl
+                        editParameterLiteralListControl
                     )
                 );
         }

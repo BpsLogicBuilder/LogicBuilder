@@ -8,17 +8,17 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands
 {
-    internal class EditObjectListFormXmlCommand : ClickCommandBase
+    internal class EditParameterObjectListFormXmlCommand : ClickCommandBase
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IEditParameterObjectListForm editObjectListForm;
+        private readonly IEditParameterObjectListForm editParameterObjectListForm;
 
-        public EditObjectListFormXmlCommand(
+        public EditParameterObjectListFormXmlCommand(
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditParameterObjectListForm editObjectListForm)
+            IEditParameterObjectListForm editParameterObjectListForm)
         {
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.editObjectListForm = editObjectListForm;
+            this.editParameterObjectListForm = editParameterObjectListForm;
         }
 
         public override void Execute()
@@ -26,15 +26,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands
             using IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
             IEditObjectListFormXml editXmlForm = disposableManager.GetEditObjectListFormXml
             (
-                _xmlDocumentHelpers.GetXmlString(editObjectListForm.XmlDocument),
-                editObjectListForm.AssignedTo
+                _xmlDocumentHelpers.GetXmlString(editParameterObjectListForm.XmlDocument),
+                editParameterObjectListForm.AssignedTo
             );
-            editXmlForm.ShowDialog((IWin32Window)editObjectListForm);
+            editXmlForm.ShowDialog((IWin32Window)editParameterObjectListForm);
             if (editXmlForm.DialogResult != DialogResult.OK)
                 return;
 
-            editObjectListForm.ReloadXmlDocument(editXmlForm.XmlResult);
-            editObjectListForm.RebuildTreeView();
+            editParameterObjectListForm.ReloadXmlDocument(editXmlForm.XmlResult);
+            editParameterObjectListForm.RebuildTreeView();
         }
     }
 }

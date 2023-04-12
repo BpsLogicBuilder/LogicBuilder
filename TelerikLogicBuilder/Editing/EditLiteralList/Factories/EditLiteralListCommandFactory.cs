@@ -5,27 +5,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories
 {
     internal class EditLiteralListCommandFactory : IEditLiteralListCommandFactory
     {
-        private readonly Func<IEditParameterLiteralListControl, AddLiteralListBoxItemCommand> _getAddLiteralListBoxItemCommand;
-        private readonly Func<IEditParameterLiteralListForm, EditLiteralListFormXmlCommand> _getEditLiteralListFormXmlCommand;
-        private readonly Func<IEditParameterLiteralListControl, UpdateLiteralListBoxItemCommand> _getUpdateLiteralListBoxItemCommand;
+        private readonly Func<IEditParameterLiteralListControl, AddParameterLiteralListBoxItemCommand> _getAddLiteralListBoxItemCommand;
+        private readonly Func<IEditParameterLiteralListForm, EditParameterLiteralListFormXmlCommand> _getEditLiteralListFormXmlCommand;
+        private readonly Func<IEditParameterLiteralListControl, UpdateParameterLiteralListBoxItemCommand> _getUpdateLiteralListBoxItemCommand;
 
         public EditLiteralListCommandFactory(
-            Func<IEditParameterLiteralListControl, AddLiteralListBoxItemCommand> getAddLiteralListBoxItemCommand,
-            Func<IEditParameterLiteralListForm, EditLiteralListFormXmlCommand> getEditLiteralListFormXmlCommand,
-            Func<IEditParameterLiteralListControl, UpdateLiteralListBoxItemCommand> getUpdateLiteralListBoxItemCommand)
+            Func<IEditParameterLiteralListControl, AddParameterLiteralListBoxItemCommand> getAddLiteralListBoxItemCommand,
+            Func<IEditParameterLiteralListForm, EditParameterLiteralListFormXmlCommand> getEditLiteralListFormXmlCommand,
+            Func<IEditParameterLiteralListControl, UpdateParameterLiteralListBoxItemCommand> getUpdateLiteralListBoxItemCommand)
         {
             _getAddLiteralListBoxItemCommand = getAddLiteralListBoxItemCommand;
             _getEditLiteralListFormXmlCommand = getEditLiteralListFormXmlCommand;
             _getUpdateLiteralListBoxItemCommand = getUpdateLiteralListBoxItemCommand;
         }
 
-        public AddLiteralListBoxItemCommand GetAddLiteralListBoxItemCommand(IEditParameterLiteralListControl editLiteralListControl)
-            => _getAddLiteralListBoxItemCommand(editLiteralListControl);
+        public AddParameterLiteralListBoxItemCommand GetAddParameterLiteralListBoxItemCommand(IEditParameterLiteralListControl editParameterLiteralListControl)
+            => _getAddLiteralListBoxItemCommand(editParameterLiteralListControl);
 
-        public EditLiteralListFormXmlCommand GetEditLiteralListFormXmlCommand(IEditParameterLiteralListForm editLiteralListForm)
-            => _getEditLiteralListFormXmlCommand(editLiteralListForm);
+        public EditParameterLiteralListFormXmlCommand GetEditParameterLiteralListFormXmlCommand(IEditParameterLiteralListForm editParameterLiteralListForm)
+            => _getEditLiteralListFormXmlCommand(editParameterLiteralListForm);
 
-        public UpdateLiteralListBoxItemCommand GetUpdateLiteralListBoxItemCommand(IEditParameterLiteralListControl editLiteralListControl)
-            => _getUpdateLiteralListBoxItemCommand(editLiteralListControl);
+        public UpdateParameterLiteralListBoxItemCommand GetUpdateParameterLiteralListBoxItemCommand(IEditParameterLiteralListControl editParameterLiteralListControl)
+            => _getUpdateLiteralListBoxItemCommand(editParameterLiteralListControl);
     }
 }

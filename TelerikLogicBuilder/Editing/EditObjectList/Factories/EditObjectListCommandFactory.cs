@@ -5,27 +5,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories
 {
     internal class EditObjectListCommandFactory : IEditObjectListCommandFactory
     {
-        private readonly Func<IEditParameterObjectListControl, AddObjectListBoxItemCommand> _getAddObjectListBoxItemCommand;
-        private readonly Func<IEditParameterObjectListForm, EditObjectListFormXmlCommand> _getEditObjectListFormXmlCommand;
-        private readonly Func<IEditParameterObjectListControl, UpdateObjectListBoxItemCommand> _getUpdateObjectListBoxItemCommand;
+        private readonly Func<IEditParameterObjectListControl, AddParameterObjectListBoxItemCommand> _getAddObjectListBoxItemCommand;
+        private readonly Func<IEditParameterObjectListForm, EditParameterObjectListFormXmlCommand> _getEditObjectListFormXmlCommand;
+        private readonly Func<IEditParameterObjectListControl, UpdateParameterObjectListBoxItemCommand> _getUpdateObjectListBoxItemCommand;
 
         public EditObjectListCommandFactory(
-            Func<IEditParameterObjectListControl, AddObjectListBoxItemCommand> getAddObjectListBoxItemCommand,
-            Func<IEditParameterObjectListForm, EditObjectListFormXmlCommand> getEditObjectListFormXmlCommand,
-            Func<IEditParameterObjectListControl, UpdateObjectListBoxItemCommand> getUpdateObjectListBoxItemCommand)
+            Func<IEditParameterObjectListControl, AddParameterObjectListBoxItemCommand> getAddObjectListBoxItemCommand,
+            Func<IEditParameterObjectListForm, EditParameterObjectListFormXmlCommand> getEditObjectListFormXmlCommand,
+            Func<IEditParameterObjectListControl, UpdateParameterObjectListBoxItemCommand> getUpdateObjectListBoxItemCommand)
         {
             _getAddObjectListBoxItemCommand = getAddObjectListBoxItemCommand;
             _getEditObjectListFormXmlCommand = getEditObjectListFormXmlCommand;
             _getUpdateObjectListBoxItemCommand = getUpdateObjectListBoxItemCommand;
         }
 
-        public AddObjectListBoxItemCommand GetAddObjectListBoxItemCommand(IEditParameterObjectListControl editObjectListControl)
-            => _getAddObjectListBoxItemCommand(editObjectListControl);
+        public AddParameterObjectListBoxItemCommand GetAddParameterObjectListBoxItemCommand(IEditParameterObjectListControl editParameterObjectListControl)
+            => _getAddObjectListBoxItemCommand(editParameterObjectListControl);
 
-        public EditObjectListFormXmlCommand GetEditObjectListFormXmlCommand(IEditParameterObjectListForm editObjectListForm)
-            => _getEditObjectListFormXmlCommand(editObjectListForm);
+        public EditParameterObjectListFormXmlCommand GetEditParameterObjectListFormXmlCommand(IEditParameterObjectListForm editParameterObjectListForm)
+            => _getEditObjectListFormXmlCommand(editParameterObjectListForm);
 
-        public UpdateObjectListBoxItemCommand GetUpdateObjectListBoxItemCommand(IEditParameterObjectListControl editObjectListControl)
-            => _getUpdateObjectListBoxItemCommand(editObjectListControl);
+        public UpdateParameterObjectListBoxItemCommand GetUpdateParameterObjectListBoxItemCommand(IEditParameterObjectListControl editParameterObjectListControl)
+            => _getUpdateObjectListBoxItemCommand(editParameterObjectListControl);
     }
 }
