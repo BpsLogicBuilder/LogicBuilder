@@ -156,9 +156,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             (
                 CultureInfo.CurrentCulture,
                 Strings.binaryFunctionParametersFormat,
-                GetParameterDescription(parametersList[0].Value, dataElement1, application),
+                GetParameterDescriptionForBinaryOperation(parametersList[0].Value, dataElement1, application),
                 functionData.Name,
-                GetParameterDescription(parametersList[1].Value, dataElement2, application)
+                GetParameterDescriptionForBinaryOperation(parametersList[1].Value, dataElement2, application)
             );
         }
 
@@ -517,6 +517,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 ParameterCategory.ObjectList => ((ListOfObjectsParameter)configuredParameter).ToString(),
                 _ => throw _exceptionHelper.CriticalException("{22EACCB9-D8E5-446F-9856-49BECFE9E346}"),
             };
+        }
+
+        private string GetParameterDescriptionForBinaryOperation(ParameterBase configuredParameter, XmlElement dataElement, ApplicationTypeInfo application)
+        {
+            if (configuredParameter.ParameterCategory == ParameterCategory.ObjectList) return string.Empty;
+            if (configuredParameter.ParameterCategory == ParameterCategory.LiteralList) return string.Empty;
+
+            switch (configuredParameter.ParameterCategory)
+            {
+                case ParameterCategory.Literal:
+                    return GetLiteralParameterValueVisibleText(dataElement, application);
+                case ParameterCategory.Object:
+                    return ((ObjectParameter)configuredParameter).ToString();
+                default:
+                    throw _exceptionHelper.CriticalException("{1906390C-8694-4B5D-959F-FAF76B481B29}");
+            }
         }
 
         private string GetRetractFunctionVisibleText(XmlElement functionElement)
