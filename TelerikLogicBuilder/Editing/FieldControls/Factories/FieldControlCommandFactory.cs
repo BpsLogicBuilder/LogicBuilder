@@ -13,8 +13,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IRichInputBoxValueControl, DeleteRichInputBoxTextCommand> _getDeleteRichInputBoxTextCommand;
         private readonly Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxConstructorCommand> _getEditObjectRichTextBoxConstructorCommand;
         private readonly Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxFunctionCommand> _getEditObjectRichTextBoxFunctionCommand;
-        private readonly Func<IParameterRichTextBoxValueControl, EditObjectRichTextBoxLiteralListCommand> _getEditObjectRichTextBoxLiteralListCommand;
-        private readonly Func<IParameterRichTextBoxValueControl, EditObjectRichTextBoxObjectListCommand> _getEditObjectRichTextBoxObjectListCommand;
+        private readonly Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxLiteralListCommand> _getEditParameterObjectRichTextBoxLiteralListCommand;
+        private readonly Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxObjectListCommand> _getEditParameterObjectRichTextBoxObjectListCommand;
         private readonly Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxVariableCommand> _getEditObjectRichTextBoxVariableCommand;
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxConstructorCommand> _getEditRichInputBoxConstructorCommand;
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> _getEditRichInputBoxFunctionCommand;
@@ -34,8 +34,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IRichInputBoxValueControl, DeleteRichInputBoxTextCommand> getDeleteRichInputBoxTextCommand,
             Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxConstructorCommand> getEditObjectRichTextBoxConstructorCommand,
             Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxFunctionCommand> getEditObjectRichTextBoxFunctionCommand,
-            Func<IParameterRichTextBoxValueControl, EditObjectRichTextBoxLiteralListCommand> getEditObjectRichTextBoxLiteralListCommand,
-            Func<IParameterRichTextBoxValueControl, EditObjectRichTextBoxObjectListCommand> getEditObjectRichTextBoxObjectListCommand,
+            Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxLiteralListCommand> getEditParameterObjectRichTextBoxLiteralListCommand,
+            Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxObjectListCommand> getEditParameterObjectRichTextBoxObjectListCommand,
             Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxVariableCommand> getEditObjectRichTextBoxVariableCommand,
             Func<IRichInputBoxValueControl, EditRichInputBoxConstructorCommand> getEditRichInputBoxConstructorCommand,
             Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> getEditRichInputBoxFunctionCommand,
@@ -54,8 +54,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             _getDeleteRichInputBoxTextCommand = getDeleteRichInputBoxTextCommand;
             _getEditObjectRichTextBoxConstructorCommand = getEditObjectRichTextBoxConstructorCommand;
             _getEditObjectRichTextBoxFunctionCommand = getEditObjectRichTextBoxFunctionCommand;
-            _getEditObjectRichTextBoxLiteralListCommand = getEditObjectRichTextBoxLiteralListCommand;
-            _getEditObjectRichTextBoxObjectListCommand = getEditObjectRichTextBoxObjectListCommand;
+            _getEditParameterObjectRichTextBoxLiteralListCommand = getEditParameterObjectRichTextBoxLiteralListCommand;
+            _getEditParameterObjectRichTextBoxObjectListCommand = getEditParameterObjectRichTextBoxObjectListCommand;
             _getEditObjectRichTextBoxVariableCommand = getEditObjectRichTextBoxVariableCommand;
             _getEditRichInputBoxConstructorCommand = getEditRichInputBoxConstructorCommand;
             _getEditRichInputBoxFunctionCommand = getEditRichInputBoxFunctionCommand;
@@ -91,11 +91,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         public EditObjectRichTextBoxFunctionCommand GetEditObjectRichTextBoxFunctionCommand(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
             => _getEditObjectRichTextBoxFunctionCommand(objectRichTextBoxValueControl);
 
-        public EditObjectRichTextBoxLiteralListCommand GetEditObjectRichTextBoxLiteralListCommand(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
-            => _getEditObjectRichTextBoxLiteralListCommand(parameterRichTextBoxValueControl);
+        public EditParameterObjectRichTextBoxLiteralListCommand GetEditParameterObjectRichTextBoxLiteralListCommand(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
+            => _getEditParameterObjectRichTextBoxLiteralListCommand(parameterRichTextBoxValueControl);
 
-        public EditObjectRichTextBoxObjectListCommand GetEditObjectRichTextBoxObjectListCommand(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
-            => _getEditObjectRichTextBoxObjectListCommand(parameterRichTextBoxValueControl);
+        public EditParameterObjectRichTextBoxObjectListCommand GetEditParameterObjectRichTextBoxObjectListCommand(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
+            => _getEditParameterObjectRichTextBoxObjectListCommand(parameterRichTextBoxValueControl);
 
         public EditObjectRichTextBoxVariableCommand GetEditObjectRichTextBoxVariableCommand(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
             => _getEditObjectRichTextBoxVariableCommand(objectRichTextBoxValueControl);

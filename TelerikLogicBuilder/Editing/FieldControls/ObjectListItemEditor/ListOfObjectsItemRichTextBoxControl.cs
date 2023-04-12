@@ -313,8 +313,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEdit
             AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditObjectRichTextBoxVariableCommand(this));
             AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditObjectRichTextBoxFunctionCommand(this));
             AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditObjectRichTextBoxConstructorCommand(this));
-            AddButtonClickCommand(btnLiteralList, _fieldControlCommandFactory.GetEditObjectRichTextBoxLiteralListCommand(this));
-            AddButtonClickCommand(btnObjectList, _fieldControlCommandFactory.GetEditObjectRichTextBoxObjectListCommand(this));
+            AddButtonClickCommand(btnLiteralList, _fieldControlCommandFactory.GetEditParameterObjectRichTextBoxLiteralListCommand(this));
+            AddButtonClickCommand(btnObjectList, _fieldControlCommandFactory.GetEditParameterObjectRichTextBoxObjectListCommand(this));
 
             _objectRichTextBoxEventsHelper.Setup();
         }

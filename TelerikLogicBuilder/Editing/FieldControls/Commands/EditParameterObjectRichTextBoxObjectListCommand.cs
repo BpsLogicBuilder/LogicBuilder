@@ -7,14 +7,14 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
-    internal class EditObjectRichTextBoxObjectListCommand : ClickCommandBase
+    internal class EditParameterObjectRichTextBoxObjectListCommand : ClickCommandBase
     {
         private readonly IEditObjectListHelper _editObjectListHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
 
-        public EditObjectRichTextBoxObjectListCommand(
+        public EditParameterObjectRichTextBoxObjectListCommand(
             IExceptionHelper exceptionHelper,
             IFieldControlHelperFactory fieldControlHelperFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
