@@ -8,7 +8,6 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -25,7 +24,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private readonly IConstructorDataParser _constructorDataParser;
         private readonly IConstructorTypeHelper _constructorTypeHelper;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IRichInputBoxValueControl richInputBoxValueControl;
@@ -34,7 +32,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             IConstructorDataParser constructorDataParser,
             IConstructorTypeHelper constructorTypeHelper,
             IExceptionHelper exceptionHelper,
-            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IRichInputBoxValueControl richInputBoxValueControl)
@@ -42,7 +39,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             _exceptionHelper = exceptionHelper;
             _constructorDataParser = constructorDataParser;
             _constructorTypeHelper = constructorTypeHelper;
-            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.richInputBoxValueControl = richInputBoxValueControl;
@@ -76,19 +72,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             if (editConstructorForm.DialogResult != DialogResult.OK)
                 return;
 
-            XmlElement resultElement = _refreshVisibleTextHelper.RefreshConstructorVisibleTexts
-            (
-                _xmlDocumentHelpers.ToXmlElement
-                (
-                    _xmlDocumentHelpers.GetDocumentElement(editConstructorForm.XmlDocument).OuterXml
-                ),
-                richInputBoxValueControl.Application
-            );
             RichInputBox.SelectionProtected = false;
             RichInputBox.InsertLink
             (
-                resultElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
-                resultElement.OuterXml,
+                editConstructorForm.VisibleText,
+                editConstructorForm.XmlResult.OuterXml,
                 LinkType.Constructor
             );
 

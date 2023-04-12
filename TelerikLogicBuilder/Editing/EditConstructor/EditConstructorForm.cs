@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -9,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -32,8 +34,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly IFormInitializer _formInitializer;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
+        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private ApplicationTypeInfo _application;
         private readonly Type assignedTo;
@@ -48,8 +52,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IRadDropDownListHelper radDropDownListHelper,
+            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
             Type assignedTo,
             XmlDocument constructorXmlDocument,
             HashSet<string> constructorNames,
@@ -64,8 +70,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _radDropDownListHelper = radDropDownListHelper;
+            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             _xmlDataHelper = xmlDataHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             this.assignedTo = assignedTo;
             this.constructorNames = constructorNames;
             this.selectedConstructor = selectedConstructor;
@@ -92,7 +100,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public RadTreeView TreeView => radTreeView1;
 
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
+
+        public XmlElement XmlResult
+            => _refreshVisibleTextHelper.RefreshConstructorVisibleTexts
+            (
+                _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
+                Application
+            );
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 

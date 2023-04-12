@@ -24,7 +24,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConstructorDataParser>(),
                         provider.GetRequiredService<IConstructorTypeHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
@@ -36,7 +35,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     richInputBoxValueControl => new EditLiteralFunctionHelper
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         richInputBoxValueControl
                     )
@@ -48,7 +46,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         parameterRichTextBoxValueControl
@@ -73,7 +70,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConstructorDataParser>(),
                         provider.GetRequiredService<IConstructorTypeHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         objectRichTextBoxValueControl
@@ -85,7 +81,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     objectRichTextBoxValueControl => new EditObjectFunctionHelper
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         objectRichTextBoxValueControl
                     )
@@ -97,7 +92,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         parameterRichTextBoxValueControl

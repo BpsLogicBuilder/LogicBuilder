@@ -8,7 +8,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         event EventHandler? Changed;
         HelperButtonDropDownList CmbSelectFunction { get; }
         IEditingControl? CurrentEditingControl { get; }
-        string VisibleText { get; }
         void ClearInputControls();
         void UpdateInputControls(string xmlString);
         void SetFunctionName(string functionName);

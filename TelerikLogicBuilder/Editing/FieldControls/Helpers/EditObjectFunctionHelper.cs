@@ -14,24 +14,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
     internal class EditObjectFunctionHelper : IEditObjectFunctionHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IObjectRichTextBoxValueControl objectRichTextBoxValueControl;
 
         public EditObjectFunctionHelper(
             IExceptionHelper exceptionHelper,
-            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
         {
             _exceptionHelper = exceptionHelper;
-            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.objectRichTextBoxValueControl = objectRichTextBoxValueControl;
         }
 
-        private ApplicationTypeInfo Application => objectRichTextBoxValueControl.Application;
         private ObjectRichTextBox RichTextBox => objectRichTextBoxValueControl.RichTextBox;
 
         public void Edit(Type assignedTo, XmlElement? functionElement = null)
@@ -45,16 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             if (editingForm.DialogResult != DialogResult.OK)
                 return;
 
-            XmlElement resultElement = _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
-            (
-                _xmlDocumentHelpers.ToXmlElement
-                (
-                    _xmlDocumentHelpers.GetDocumentElement(editingForm.XmlDocument).OuterXml
-                ),
-                Application
-            );
-
-            objectRichTextBoxValueControl.UpdateXmlElement(resultElement.OuterXml);
+            objectRichTextBoxValueControl.UpdateXmlElement(editingForm.XmlResult.OuterXml);
             RichTextBox.SetLinkFormat();
             RichTextBox.Text = objectRichTextBoxValueControl.VisibleText;
             objectRichTextBoxValueControl.RequestDocumentUpdate();

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
@@ -8,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
@@ -28,7 +30,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
+        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private ApplicationTypeInfo _application;
         private readonly Type assignedTo;
@@ -40,7 +44,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             IEditLiteralListCommandFactory editLiteralListCommandFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
+            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
+            IXmlDocumentHelpers xmlDocumentHelpers,
             Type assignedTo,
             LiteralListParameterElementInfo literalListInfo,
             XmlDocument literalListXmlDocument)
@@ -52,7 +58,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             _editLiteralListCommandFactory = editLiteralListCommandFactory;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
+            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             this.assignedTo = assignedTo;
             this.literalListInfo = literalListInfo;
 
@@ -70,7 +78,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public RadTreeView TreeView => radTreeView1;
 
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
+
+        public XmlElement XmlResult 
+            => _refreshVisibleTextHelper.RefreshLiteralListVisibleTexts
+            (
+                _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
+                Application
+            );
 
         public Type AssignedTo => assignedTo;
 

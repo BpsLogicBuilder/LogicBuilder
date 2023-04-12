@@ -92,18 +92,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
+        public XmlElement XmlResult
+            => _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
+            (
+                _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
+                Application
+            );
+
         public Type AssignedTo => typeof(object);
 
         public ApplicationTypeInfo Application => editFunctionsForm.Application;
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-        public string VisibleText 
-            => _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
-            (
-                _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
-                Application
-            ).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
 
         public event EventHandler? Changed;
 

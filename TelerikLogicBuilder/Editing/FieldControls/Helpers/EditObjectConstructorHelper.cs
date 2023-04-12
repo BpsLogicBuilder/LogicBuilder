@@ -7,7 +7,6 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -24,7 +23,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private readonly IConstructorDataParser _constructorDataParser;
         private readonly IConstructorTypeHelper _constructorTypeHelper;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -34,7 +32,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             IConstructorDataParser constructorDataParser,
             IConstructorTypeHelper constructorTypeHelper,
             IExceptionHelper exceptionHelper,
-            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
@@ -42,7 +39,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             _constructorDataParser = constructorDataParser;
             _constructorTypeHelper = constructorTypeHelper;
             _exceptionHelper = exceptionHelper;
-            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.objectRichTextBoxValueControl = objectRichTextBoxValueControl;
@@ -76,16 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             if (editConstructorForm.DialogResult != DialogResult.OK)
                 return;
 
-            XmlElement resultElement = _refreshVisibleTextHelper.RefreshConstructorVisibleTexts
-            (
-                _xmlDocumentHelpers.ToXmlElement
-                (
-                    _xmlDocumentHelpers.GetDocumentElement(editConstructorForm.XmlDocument).OuterXml
-                ),
-                Application
-            );
-
-            objectRichTextBoxValueControl.UpdateXmlElement(resultElement.OuterXml);
+            objectRichTextBoxValueControl.UpdateXmlElement(editConstructorForm.XmlResult.OuterXml);
             RichTextBox.SetLinkFormat();
             RichTextBox.Text = objectRichTextBoxValueControl.VisibleText;
             objectRichTextBoxValueControl.RequestDocumentUpdate();

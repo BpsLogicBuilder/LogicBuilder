@@ -10,7 +10,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         bool DisplayNotCheckBox { get; }
         RadPanel RadPanelFields { get; }
         RadTreeView TreeView { get; }
+        string VisibleText { get; }
         XmlDocument XmlDocument { get; }
+        XmlElement XmlResult { get; }
         void DisableControlsDuringEdit(bool disable);
         void RebuildTreeView();
         void ReloadXmlDocument(string xmlString);

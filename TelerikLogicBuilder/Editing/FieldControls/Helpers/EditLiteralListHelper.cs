@@ -5,9 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
-using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
@@ -20,7 +18,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
     {
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
@@ -28,20 +25,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         public EditLiteralListHelper(
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
-            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
         {
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
-            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.parameterRichTextBoxValueControl = parameterRichTextBoxValueControl;
         }
 
-        private ApplicationTypeInfo Application => parameterRichTextBoxValueControl.Application;
         private ObjectRichTextBox RichTextBox => parameterRichTextBoxValueControl.RichTextBox;
 
         public void Edit(Type assignedTo, XmlElement? literalListElement = null)
@@ -59,16 +53,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             if (editLiteralListForm.DialogResult != DialogResult.OK)
                 return;
 
-            XmlElement resultElement = _refreshVisibleTextHelper.RefreshLiteralListVisibleTexts
-            (
-                _xmlDocumentHelpers.ToXmlElement
-                (
-                    _xmlDocumentHelpers.GetDocumentElement(editLiteralListForm.XmlDocument).OuterXml
-                ),
-                Application
-            );
-
-            parameterRichTextBoxValueControl.UpdateXmlElement(resultElement.OuterXml);
+            parameterRichTextBoxValueControl.UpdateXmlElement(editLiteralListForm.XmlResult.OuterXml);
             RichTextBox.SetLinkFormat();
             RichTextBox.Text = parameterRichTextBoxValueControl.VisibleText;
             parameterRichTextBoxValueControl.RequestDocumentUpdate();

@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction.Factories;
@@ -10,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -39,6 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
         private readonly IFunctionHelper _functionHelper;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
+        private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITreeViewXmlDocumentHelper _treeViewXmlDocumentHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -56,6 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             IFunctionDataParser functionDataParser,
             IFunctionHelper functionHelper,
             IRadDropDownListHelper radDropDownListHelper,
+            IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -73,6 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             _functionDataParser = functionDataParser;
             _functionHelper = functionHelper;
             _radDropDownListHelper = radDropDownListHelper;
+            _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -95,7 +100,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
         public RadTreeView TreeView => radTreeView1;
 
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
+
+        public XmlElement XmlResult
+            => _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
+            (
+                _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
+                Application
+            );
 
         public Type AssignedTo => assignedTo;
 
