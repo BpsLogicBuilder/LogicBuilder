@@ -329,7 +329,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
         }
 
         private IObjectListItemValueControl GetEditItemControl()
-            => _parameterObjectListItemEditorControlFactory.GetListOfObjectsItemRichTextBoxControl(this, objectListElementInfo);
+            => _parameterObjectListItemEditorControlFactory.GetListOfObjectsParameterItemRichTextBoxControl(this, objectListElementInfo);
 
         private void Initialize()
         {

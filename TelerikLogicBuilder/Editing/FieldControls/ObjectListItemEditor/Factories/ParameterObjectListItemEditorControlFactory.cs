@@ -5,15 +5,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEdit
 {
     internal class ParameterObjectListItemEditorControlFactory : IParameterObjectListItemEditorControlFactory
     {
-        private readonly Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsItemRichTextBoxControl> _getListOfObjectsItemRichTextBoxControl;
+        private readonly Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsParameterItemRichTextBoxControl> _getListOfObjectsParameterItemRichTextBoxControl;
 
         public ParameterObjectListItemEditorControlFactory(
-            Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsItemRichTextBoxControl> getListOfObjectsItemRichTextBoxControl)
+            Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsParameterItemRichTextBoxControl> getListOfObjectsParameterItemRichTextBoxControl)
         {
-            _getListOfObjectsItemRichTextBoxControl = getListOfObjectsItemRichTextBoxControl;
+            _getListOfObjectsParameterItemRichTextBoxControl = getListOfObjectsParameterItemRichTextBoxControl;
         }
 
-        public IListOfObjectsItemRichTextBoxControl GetListOfObjectsItemRichTextBoxControl(IEditingControl editingControl, ObjectListParameterElementInfo listInfo)
-            => _getListOfObjectsItemRichTextBoxControl(editingControl, listInfo);
+        public IListOfObjectsParameterItemRichTextBoxControl GetListOfObjectsParameterItemRichTextBoxControl(IEditingControl editingControl, ObjectListParameterElementInfo listInfo)
+            => _getListOfObjectsParameterItemRichTextBoxControl(editingControl, listInfo);
     }
 }

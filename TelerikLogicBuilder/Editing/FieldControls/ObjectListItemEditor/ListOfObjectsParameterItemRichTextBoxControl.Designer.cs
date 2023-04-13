@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor
 {
-    partial class ListOfObjectsItemRichTextBoxControl
+    partial class ListOfObjectsParameterItemRichTextBoxControl
     {
         /// <summary> 
         /// Required designer variable.

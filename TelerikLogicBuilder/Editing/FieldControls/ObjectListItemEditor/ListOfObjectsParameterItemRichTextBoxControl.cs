@@ -21,7 +21,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor
 {
-    internal partial class ListOfObjectsItemRichTextBoxControl : UserControl, IListOfObjectsItemRichTextBoxControl
+    internal partial class ListOfObjectsParameterItemRichTextBoxControl : UserControl, IListOfObjectsParameterItemRichTextBoxControl
     {
         private readonly RadButton btnVariable;
         private readonly RadButton btnFunction;
@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEdit
         private readonly ObjectListParameterElementInfo listInfo;
         private Type? _assignedTo;
 
-        public ListOfObjectsItemRichTextBoxControl(
+        public ListOfObjectsParameterItemRichTextBoxControl(
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlHelperFactory,
             IGetObjectRichTextBoxVisibleText getObjectRichTextBoxVisibleText,

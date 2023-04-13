@@ -16,10 +16,10 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddParameterObjectListItemEditorControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsItemRichTextBoxControl>>
+                .AddTransient<Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsParameterItemRichTextBoxControl>>
                 (
                     provider =>
-                    (editigControl, listInfo) => new ListOfObjectsItemRichTextBoxControl
+                    (editigControl, listInfo) => new ListOfObjectsParameterItemRichTextBoxControl
                     (
                         provider.GetRequiredService<IFieldControlCommandFactory>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),

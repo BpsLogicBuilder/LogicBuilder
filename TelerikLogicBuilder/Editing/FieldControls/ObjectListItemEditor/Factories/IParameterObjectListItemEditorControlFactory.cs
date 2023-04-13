@@ -4,7 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEdit
 {
     internal interface IParameterObjectListItemEditorControlFactory
     {
-        IListOfObjectsItemRichTextBoxControl GetListOfObjectsItemRichTextBoxControl(
+        IListOfObjectsParameterItemRichTextBoxControl GetListOfObjectsParameterItemRichTextBoxControl(
             IEditingControl editingControl,
             ObjectListParameterElementInfo listInfo);
     }
