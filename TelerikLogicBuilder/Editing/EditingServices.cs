@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;

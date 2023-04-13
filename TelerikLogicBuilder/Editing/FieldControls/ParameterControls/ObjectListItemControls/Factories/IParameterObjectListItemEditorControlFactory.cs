@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls.Factories
 {
     internal interface IParameterObjectListItemEditorControlFactory
     {

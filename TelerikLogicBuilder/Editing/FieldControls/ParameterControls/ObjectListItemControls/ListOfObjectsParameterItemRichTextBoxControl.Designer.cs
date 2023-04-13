@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls
 {
     partial class ListOfObjectsParameterItemRichTextBoxControl
     {

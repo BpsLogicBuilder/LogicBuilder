@@ -1,15 +1,13 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls.Factories
 {
     internal static class ParameterObjectListItemEditorControlFactoryServices
     {
