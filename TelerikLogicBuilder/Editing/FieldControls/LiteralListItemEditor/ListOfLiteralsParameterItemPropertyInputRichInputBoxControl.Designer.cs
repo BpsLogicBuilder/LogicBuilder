@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
 {
-    partial class ListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl
+    partial class ListOfLiteralsParameterItemPropertyInputRichInputBoxControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -41,7 +41,7 @@
             this.radPanelRichInputBox.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelRichInputBox.Name = "radPanelRichInputBox";
             this.radPanelRichInputBox.Size = new System.Drawing.Size(275, 28);
-            this.radPanelRichInputBox.TabIndex = 8;
+            this.radPanelRichInputBox.TabIndex = 10;
             // 
             // radPanelCommandBar
             // 
@@ -50,15 +50,15 @@
             this.radPanelCommandBar.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelCommandBar.Name = "radPanelCommandBar";
             this.radPanelCommandBar.Size = new System.Drawing.Size(75, 28);
-            this.radPanelCommandBar.TabIndex = 7;
+            this.radPanelCommandBar.TabIndex = 9;
             // 
-            // ListOfLiteralsParameterSourcedPropertyRichInputBoxControl
+            // ListOfLiteralsParameterPropertyInputRichInputBoxControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanelRichInputBox);
             this.Controls.Add(this.radPanelCommandBar);
-            this.Name = "ListOfLiteralsParameterSourcedPropertyRichInputBoxControl";
+            this.Name = "ListOfLiteralsParameterPropertyInputRichInputBoxControl";
             this.Size = new System.Drawing.Size(350, 28);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelRichInputBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelCommandBar)).EndInit();

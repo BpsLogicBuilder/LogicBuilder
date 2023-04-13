@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
 {
-    partial class ListOfLiteralsItemMultilineControl
+    partial class ListOfLiteralsParameterItemDomainMultilineControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -44,7 +44,7 @@
             this.radPanelRichInputBox.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelRichInputBox.Name = "radPanelRichInputBox";
             this.radPanelRichInputBox.Size = new System.Drawing.Size(260, 95);
-            this.radPanelRichInputBox.TabIndex = 3;
+            this.radPanelRichInputBox.TabIndex = 5;
             // 
             // radPanelRight
             // 
@@ -54,7 +54,7 @@
             this.radPanelRight.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelRight.Name = "radPanelRight";
             this.radPanelRight.Size = new System.Drawing.Size(90, 95);
-            this.radPanelRight.TabIndex = 2;
+            this.radPanelRight.TabIndex = 4;
             // 
             // radPanelCommandBar
             // 
@@ -65,13 +65,13 @@
             this.radPanelCommandBar.Size = new System.Drawing.Size(90, 28);
             this.radPanelCommandBar.TabIndex = 2;
             // 
-            // ListOfLiteralsParameterMultilineControl
+            // ListOfLiteralsParameterDomainMultilineControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanelRichInputBox);
             this.Controls.Add(this.radPanelRight);
-            this.Name = "ListOfLiteralsParameterMultilineControl";
+            this.Name = "ListOfLiteralsParameterDomainMultilineControl";
             this.Size = new System.Drawing.Size(350, 95);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelRichInputBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelRight)).EndInit();

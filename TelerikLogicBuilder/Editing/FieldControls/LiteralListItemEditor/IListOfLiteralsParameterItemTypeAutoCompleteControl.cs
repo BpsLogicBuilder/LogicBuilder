@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
 {
-    internal interface IListOfLiteralsItemTypeAutoCompleteControl : ILiteralListItemValueControl, ITypeAutoCompleteTextControl
+    internal interface IListOfLiteralsParameterItemTypeAutoCompleteControl : ILiteralListItemValueControl, ITypeAutoCompleteTextControl
     {
     }
 }

@@ -17,10 +17,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
         internal static IServiceCollection AddParameterLiteralListItemEditorControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<ListOfLiteralsParameter, IListOfLiteralsItemDomainAutoCompleteControl>>
+                .AddTransient<Func<ListOfLiteralsParameter, IListOfLiteralsParameterItemDomainAutoCompleteControl>>
                 (
                     provider =>
-                    literalListParameter => new ListOfLiteralsItemDomainAutoCompleteControl
+                    literalListParameter => new ListOfLiteralsParameterItemDomainAutoCompleteControl
                     (
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
@@ -28,10 +28,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainMultilineControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemDomainMultilineControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsItemDomainMultilineControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemDomainMultilineControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -47,10 +47,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemDomainRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsItemDomainRichInputBoxControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemDomainRichInputBoxControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -66,10 +66,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<ListOfLiteralsParameter, IListOfLiteralsItemDropDownListControl>>
+                .AddTransient<Func<ListOfLiteralsParameter, IListOfLiteralsParameterItemDropDownListControl>>
                 (
                     provider =>
-                    literalListParameter => new ListOfLiteralsItemDropDownListControl
+                    literalListParameter => new ListOfLiteralsParameterItemDropDownListControl
                     (
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
@@ -77,10 +77,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemMultilineControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemMultilineControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsItemMultilineControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemMultilineControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -96,10 +96,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemPropertyInputRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemPropertyInputRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsItemPropertyInputRichInputBoxControl
+                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemPropertyInputRichInputBoxControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -115,10 +115,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         literalListParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, listInfo) => new ListOfLiteralsItemRichInputBoxControl
+                    (editigControl, listInfo) => new ListOfLiteralsParameterItemRichInputBoxControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -134,10 +134,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         listInfo
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, listInfo) => new ListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl
+                    (editigControl, listInfo) => new ListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -153,7 +153,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                         listInfo
                     )
                 )
-                .AddTransient<IListOfLiteralsItemTypeAutoCompleteControl, ListOfLiteralsItemTypeAutoCompleteControl>()
+                .AddTransient<IListOfLiteralsParameterItemTypeAutoCompleteControl, ListOfLiteralsParameterItemTypeAutoCompleteControl>()
                 .AddTransient<IParameterLiteralListItemEditorControlFactory, ParameterLiteralListItemEditorControlFactory>();
         }
     }

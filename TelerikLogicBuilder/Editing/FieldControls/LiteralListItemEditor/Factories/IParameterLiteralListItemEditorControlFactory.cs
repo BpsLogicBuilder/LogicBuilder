@@ -5,36 +5,36 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
 {
     internal interface IParameterLiteralListItemEditorControlFactory
     {
-        IListOfLiteralsItemDomainAutoCompleteControl GetListOfLiteralsItemDomainAutoCompleteControl(
+        IListOfLiteralsParameterItemDomainAutoCompleteControl GetListOfLiteralsParameterItemDomainAutoCompleteControl(
             ListOfLiteralsParameter literalListParameter);
 
-        IListOfLiteralsItemDomainMultilineControl GetListOfLiteralsItemDomainMultilineControl(
+        IListOfLiteralsParameterItemDomainMultilineControl GetListOfLiteralsParameterItemDomainMultilineControl(
             IDataGraphEditingControl editingControl,
             ListOfLiteralsParameter literalListParameter);
 
-        IListOfLiteralsItemDomainRichInputBoxControl GetListOfLiteralsItemDomainRichInputBoxControl(
+        IListOfLiteralsParameterItemDomainRichInputBoxControl GetListOfLiteralsParameterItemDomainRichInputBoxControl(
             IDataGraphEditingControl editingControl,
             ListOfLiteralsParameter literalListParameter);
 
-        IListOfLiteralsItemDropDownListControl GetListOfLiteralsItemDropDownListControl(
+        IListOfLiteralsParameterItemDropDownListControl GetListOfLiteralsParameterItemDropDownListControl(
             ListOfLiteralsParameter literalListParameter);
 
-        IListOfLiteralsItemMultilineControl GetListOfLiteralsItemMultilineControl(
+        IListOfLiteralsParameterItemMultilineControl GetListOfLiteralsParameterItemMultilineControl(
             IDataGraphEditingControl editingControl,
             ListOfLiteralsParameter literalListParameter);
 
-        IListOfLiteralsItemPropertyInputRichInputBoxControl GetListOfLiteralsItemPropertyInputRichInputBoxControl(
+        IListOfLiteralsParameterItemPropertyInputRichInputBoxControl GetListOfLiteralsParameterItemPropertyInputRichInputBoxControl(
             IDataGraphEditingControl editingControl,
             ListOfLiteralsParameter literalListParameter);
 
-        IListOfLiteralsItemRichInputBoxControl GetListOfLiteralsItemRichInputBoxControl(
-            IDataGraphEditingControl editingControl,
-            LiteralListParameterElementInfo listInfo);
-
-        IListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl GetListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl(
+        IListOfLiteralsParameterItemRichInputBoxControl GetListOfLiteralsParameterItemRichInputBoxControl(
             IDataGraphEditingControl editingControl,
             LiteralListParameterElementInfo listInfo);
 
-        IListOfLiteralsItemTypeAutoCompleteControl GetListOfLiteralsItemTypeAutoCompleteControl();
+        IListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl GetListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl(
+            IDataGraphEditingControl editingControl,
+            LiteralListParameterElementInfo listInfo);
+
+        IListOfLiteralsParameterItemTypeAutoCompleteControl GetListOfLiteralsParameterItemTypeAutoCompleteControl();
     }
 }

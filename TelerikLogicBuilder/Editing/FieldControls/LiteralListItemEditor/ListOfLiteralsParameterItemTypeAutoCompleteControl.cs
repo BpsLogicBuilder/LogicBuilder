@@ -18,7 +18,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
 {
-    internal partial class ListOfLiteralsItemTypeAutoCompleteControl : UserControl, IListOfLiteralsItemTypeAutoCompleteControl
+    internal partial class ListOfLiteralsParameterItemTypeAutoCompleteControl : UserControl, IListOfLiteralsParameterItemTypeAutoCompleteControl
     {
         private readonly RadButton btnHelper;
 
@@ -30,7 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
 
         private RadDropDownList radDropDownList;
 
-        public ListOfLiteralsItemTypeAutoCompleteControl(
+        public ListOfLiteralsParameterItemTypeAutoCompleteControl(
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
             IRadDropDownListHelper radDropDownListHelper,

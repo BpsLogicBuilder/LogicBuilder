@@ -15,7 +15,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
 {
-    internal partial class ListOfLiteralsItemDomainAutoCompleteControl : UserControl, IListOfLiteralsItemDomainAutoCompleteControl
+    internal partial class ListOfLiteralsParameterItemDomainAutoCompleteControl : UserControl, IListOfLiteralsParameterItemDomainAutoCompleteControl
     {
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
         private readonly ListOfLiteralsParameter literalListParameter;
         private RadDropDownList radDropDownList;
 
-        public ListOfLiteralsItemDomainAutoCompleteControl(
+        public ListOfLiteralsParameterItemDomainAutoCompleteControl(
             IRadDropDownListHelper radDropDownListHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,

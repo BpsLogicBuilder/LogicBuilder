@@ -21,14 +21,16 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
 {
-    internal partial class ListOfLiteralsItemMultilineControl : UserControl, IListOfLiteralsItemMultilineControl
+    internal partial class ListOfLiteralsParameterItemPropertyInputRichInputBoxControl : UserControl, IListOfLiteralsParameterItemPropertyInputRichInputBoxControl
     {
-        private readonly RadButton btnConstructor;
-        private readonly RadButton btnFunction;
+        private readonly RadButton btnHelper;
+        private readonly RadButton btnDomain;
         private readonly RadButton btnVariable;
+        private readonly RadButton btnFunction;
+        private readonly RadButton btnConstructor;
 
-        private readonly IEnumHelper _enumHelper;
         private readonly ICreateRichInputBoxContextMenu _createRichInputBoxContextMenu;
+        private readonly IEnumHelper _enumHelper;
         private readonly IFieldControlCommandFactory _fieldControlCommandFactory;
         private readonly IImageListService _imageListService;
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
@@ -42,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
         private readonly ListOfLiteralsParameter literalListParameter;
         private Type? _assignedTo;
 
-        public ListOfLiteralsItemMultilineControl(
+        public ListOfLiteralsParameterItemPropertyInputRichInputBoxControl(
             IEditingControlHelperFactory editingControlHelperFactory,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
@@ -69,6 +71,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
             this.literalListParameter = literalListParameter;
             _richInputBoxEventsHelper = fieldControlHelperFactory.GetLiteralListItemRichInputBoxEventsHelper(this);
             _createRichInputBoxContextMenu = editingControlHelperFactory.GetCreateRichInputBoxContextMenu(this);
+            btnHelper = new()
+            {
+                Name = "btnHelper",
+                ImageList = _imageListService.ImageList,
+                ImageAlignment = ContentAlignment.MiddleCenter,
+                Padding = new Padding(0),
+                Margin = new Padding(1, 0, 1, 0),
+                ImageIndex = ImageIndexes.HELPFILEWMAGEINDEX,
+                Dock = DockStyle.Fill
+            };
+            btnDomain = new()
+            {
+                Name = "btnDomain",
+                ImageList = _imageListService.ImageList,
+                ImageAlignment = ContentAlignment.MiddleCenter,
+                Padding = new Padding(0),
+                Margin = new Padding(1, 0, 1, 0),
+                ImageIndex = ImageIndexes.MOREIMAGEINDEX,
+                Dock = DockStyle.Fill
+            };
             btnVariable = new()
             {
                 Name = "btnVariable",
@@ -119,20 +141,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
 
         public event EventHandler? Changed;
 
-        public IList<RadButton> CommandButtons => new RadButton[] { btnVariable, btnFunction, btnConstructor };
+        public string Comments => literalListParameter.Comments;
 
-        public RadMenuItem MnuItemInsert => mnuItemInsert;
-        public RadMenuItem MnuItemInsertConstructor => mnuItemInsertConstructor;
-        public RadMenuItem MnuItemInsertFunction => mnuItemInsertFunction;
-        public RadMenuItem MnuItemInsertVariable => mnuItemInsertVariable;
-        public RadMenuItem MnuItemDelete => mnuItemDelete;
-        public RadMenuItem MnuItemClear => mnuItemClear;
-        public RadMenuItem MnuItemCopy => mnuItemCopy;
-        public RadMenuItem MnuItemCut => mnuItemCut;
-        public RadMenuItem MnuItemPaste => mnuItemPaste;
-        public RadMenuItem MnuItemToCamelCase => mnuItemToCamelCase;
-
-        public RichInputBox RichInputBox => _richInputBox;
+        public string? SourceClassName => literalListParameter.PropertySource;
 
         public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
@@ -152,6 +163,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                 }
             }
         }
+
+        public IList<RadButton> CommandButtons => new RadButton[] { btnHelper, btnDomain, btnVariable, btnFunction, btnConstructor };
+
+        public RadMenuItem MnuItemInsert => mnuItemInsert;
+        public RadMenuItem MnuItemInsertConstructor => mnuItemInsertConstructor;
+        public RadMenuItem MnuItemInsertFunction => mnuItemInsertFunction;
+        public RadMenuItem MnuItemInsertVariable => mnuItemInsertVariable;
+        public RadMenuItem MnuItemDelete => mnuItemDelete;
+        public RadMenuItem MnuItemClear => mnuItemClear;
+        public RadMenuItem MnuItemCopy => mnuItemCopy;
+        public RadMenuItem MnuItemCut => mnuItemCut;
+        public RadMenuItem MnuItemPaste => mnuItemPaste;
+        public RadMenuItem MnuItemToCamelCase => mnuItemToCamelCase;
+
+        public RichInputBox RichInputBox => _richInputBox;
 
         public bool IsEmpty => false;
 
@@ -176,8 +202,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
 
         public void ResetControl() => _richInputBox.Clear();
 
-        void IValueControl.Focus() => _richInputBox.Select();
-
         //string types convert multiple items (mixed xml) of different types to a format string so accepts all types.
         //parent control field validation will handle single child cases.  Single items where type != typeof(string) are not valid.
         public void SetAssignedToType(Type type) => _assignedTo = type == typeof(string) ? typeof(object) : type;
@@ -201,23 +225,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
         public void SetToolTipHelp(string toolTipText)
         {
             helpProvider.SetHelpString(_richInputBox, toolTipText);
-            toolTip.SetToolTip(_richInputBox, toolTipText);
-            toolTip.SetToolTip(btnConstructor, toolTipText);
-            toolTip.SetToolTip(btnFunction, toolTipText);
-            toolTip.SetToolTip(btnVariable, toolTipText);
+            foreach (RadButton button in CommandButtons)
+                toolTip.SetToolTip(button, toolTipText);
         }
 
         public void ShowControls() => ShowControls(true);
 
         public void Update(XmlElement xmlElement) => _updateRichInputBoxXml.Update(xmlElement, _richInputBox);
 
+        void IValueControl.Focus() => _richInputBox.Select();
+
         private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
         {
             radButton.Click += (sender, args) => command.Execute();
         }
-
-        private static void CollapsePanelBorder(RadPanel radPanel)
-            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private void Enable(bool enable)
         {
@@ -233,36 +254,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
         {
             InitializeRichInputBox();
             InitializeButtons();
-            CollapsePanelBorder(radPanelRight);
 
-            AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
-            AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
+            AddButtonClickCommand(btnHelper, _fieldControlCommandFactory.GetSelectItemFromReferencesTreeViewCommand(this));
+            AddButtonClickCommand(btnDomain, _fieldControlCommandFactory.GetSelectItemFromPropertyListCommand(this));
             AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this));
+            AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
+            AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
 
             _richInputBoxEventsHelper.Setup();
             _createRichInputBoxContextMenu.Create();
         }
 
         private void InitializeButtons()
-        {
-            int buttonWidth = PerFontSizeConstants.CommandButtonWidth;
-            int rightPanelWidth = CommandButtons.Count * buttonWidth;
-
-            ((ISupportInitialize)this.radPanelRight).BeginInit();
-            this.radPanelRight.SuspendLayout();
-
-            radPanelCommandBar.Size = new Size(rightPanelWidth, buttonWidth);
-            radPanelRight.Size = new Size(rightPanelWidth, radPanelRight.Height);
-            _layoutFieldControlButtons.Layout
+            => _layoutFieldControlButtons.Layout
             (
                 radPanelCommandBar,
-                CommandButtons,
-                false
+                CommandButtons
             );
-
-            ((ISupportInitialize)this.radPanelRight).EndInit();
-            this.radPanelRight.ResumeLayout(true);
-        }
 
         private void InitializeRichInputBox()
         {
@@ -277,7 +285,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
             _richInputBox.Location = new Point(0, 0);
             _richInputBox.DetectUrls = false;
             _richInputBox.HideSelection = false;
-            _richInputBox.Multiline = true;
+            _richInputBox.Multiline = false;
             _richInputBox.DenySpecialCharacters = dataGraphEditingControl.DenySpecialCharacters;
 
             this.radPanelRichInputBox.Controls.Add(_richInputBox);

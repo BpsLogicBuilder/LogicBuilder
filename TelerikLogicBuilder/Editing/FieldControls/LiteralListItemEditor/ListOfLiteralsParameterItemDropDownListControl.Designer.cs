@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
 {
-    partial class ListOfLiteralsItemDomainAutoCompleteControl
+    partial class ListOfLiteralsParameterItemDropDownListControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,14 +39,14 @@
             this.radPanelDropDownList.Margin = new System.Windows.Forms.Padding(0);
             this.radPanelDropDownList.Name = "radPanelDropDownList";
             this.radPanelDropDownList.Size = new System.Drawing.Size(350, 28);
-            this.radPanelDropDownList.TabIndex = 2;
+            this.radPanelDropDownList.TabIndex = 1;
             // 
-            // ListOfLiteralsParameterDomainAutoCompleteControl
+            // ListOfLiteralsParameterDropDownListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanelDropDownList);
-            this.Name = "ListOfLiteralsParameterDomainAutoCompleteControl";
+            this.Name = "ListOfLiteralsParameterDropDownListControl";
             this.Size = new System.Drawing.Size(350, 28);
             ((System.ComponentModel.ISupportInitialize)(this.radPanelDropDownList)).EndInit();
             this.ResumeLayout(false);
