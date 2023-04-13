@@ -155,10 +155,6 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Editing\FieldControls\ParameterControls\LiteralListItemControls\" />
-  </ItemGroup>
-
   <ProjectExtensions><VisualStudio><UserProperties ShouldAddDPIScalingManifest="" /></VisualStudio></ProjectExtensions>
      
 

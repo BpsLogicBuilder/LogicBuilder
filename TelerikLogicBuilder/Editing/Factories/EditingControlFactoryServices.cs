@@ -14,7 +14,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.LiteralListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
