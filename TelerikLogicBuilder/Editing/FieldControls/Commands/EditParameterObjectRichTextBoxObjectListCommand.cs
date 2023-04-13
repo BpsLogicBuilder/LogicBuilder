@@ -9,7 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class EditParameterObjectRichTextBoxObjectListCommand : ClickCommandBase
     {
-        private readonly IEditObjectListHelper _editObjectListHelper;
+        private readonly IEditParameterObjectListHelper _editParameterObjectListHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             IXmlDocumentHelpers xmlDocumentHelpers,
             IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
         {
-            _editObjectListHelper = fieldControlHelperFactory.GetEditObjectListHelper(parameterRichTextBoxValueControl);
+            _editParameterObjectListHelper = fieldControlHelperFactory.GetEditParameterObjectListHelper(parameterRichTextBoxValueControl);
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.parameterRichTextBoxValueControl = parameterRichTextBoxValueControl;
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                 throw _exceptionHelper.CriticalException("{F155C420-6A1C-4188-A629-92111EE64E42}");
 
             XmlElement? childElement = GetChildElement();
-            _editObjectListHelper.Edit
+            _editParameterObjectListHelper.Edit
             (
                 parameterRichTextBoxValueControl.AssignedTo,
                 childElement?.Name == XmlDataConstants.OBJECTLISTELEMENT

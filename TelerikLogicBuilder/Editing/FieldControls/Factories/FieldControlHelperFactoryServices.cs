@@ -39,10 +39,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         richInputBoxValueControl
                     )
                 )
-                .AddTransient<Func<IParameterRichTextBoxValueControl, IEditLiteralListHelper>>
+                .AddTransient<Func<IParameterRichTextBoxValueControl, IEditParameterLiteralListHelper>>
                 (
                     provider =>
-                    parameterRichTextBoxValueControl => new EditLiteralListHelper
+                    parameterRichTextBoxValueControl => new EditParameterLiteralListHelper
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
@@ -85,10 +85,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         objectRichTextBoxValueControl
                     )
                 )
-                .AddTransient<Func<IParameterRichTextBoxValueControl, IEditObjectListHelper>>
+                .AddTransient<Func<IParameterRichTextBoxValueControl, IEditParameterObjectListHelper>>
                 (
                     provider =>
-                    parameterRichTextBoxValueControl => new EditObjectListHelper
+                    parameterRichTextBoxValueControl => new EditParameterObjectListHelper
                     (
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
@@ -118,10 +118,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         richInputBoxValueControl
                     )
                 )
-                .AddTransient<Func<IParameterRichTextBoxValueControl, IObjectRichTextBoxEventsHelper>>
+                .AddTransient<Func<IParameterRichTextBoxValueControl, IParameterObjectRichTextBoxEventsHelper>>
                 (
                     provider =>
-                    parameterRichTextBoxValueControl => new ObjectRichTextBoxEventsHelper
+                    parameterRichTextBoxValueControl => new ParameterObjectRichTextBoxEventsHelper
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFieldControlHelperFactory>(),

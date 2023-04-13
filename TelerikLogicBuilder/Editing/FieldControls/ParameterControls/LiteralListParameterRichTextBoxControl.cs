@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
         private readonly IObjectListDataParser _objectListDataParser;
         private readonly IObjectListParameterElementInfoHelper _objectListParameterElementInfoHelper;
         private readonly ObjectRichTextBox _objectRichTextBox;
-        private readonly IObjectRichTextBoxEventsHelper _objectRichTextBoxEventsHelper;
+        private readonly IParameterObjectRichTextBoxEventsHelper _objectRichTextBoxEventsHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateObjectRichTextBoxXml _updateObjectRichTextBoxXml;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;

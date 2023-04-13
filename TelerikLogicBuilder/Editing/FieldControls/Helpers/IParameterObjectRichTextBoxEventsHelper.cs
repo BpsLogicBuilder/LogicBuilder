@@ -1,6 +1,6 @@
 ﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
-    internal interface IObjectRichTextBoxEventsHelper
+    internal interface IParameterObjectRichTextBoxEventsHelper
     {
         void Setup();
     }

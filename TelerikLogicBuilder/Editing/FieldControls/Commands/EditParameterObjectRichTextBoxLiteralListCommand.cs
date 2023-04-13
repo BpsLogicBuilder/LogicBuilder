@@ -9,7 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class EditParameterObjectRichTextBoxLiteralListCommand : ClickCommandBase
     {
-        private readonly IEditLiteralListHelper _editLiteralListHelper;
+        private readonly IEditParameterLiteralListHelper _editParameterLiteralListHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             IXmlDocumentHelpers xmlDocumentHelpers,
             IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
         {
-            _editLiteralListHelper = fieldControlHelperFactory.GetEditLiteralListHelper(parameterRichTextBoxValueControl);
+            _editParameterLiteralListHelper = fieldControlHelperFactory.GetEditParameterLiteralListHelper(parameterRichTextBoxValueControl);
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.parameterRichTextBoxValueControl = parameterRichTextBoxValueControl;
@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                 throw _exceptionHelper.CriticalException("{B526A7AD-3656-408D-9179-CCBC131C2737}");
 
             XmlElement? childElement = GetChildElement();
-            _editLiteralListHelper.Edit
+            _editParameterLiteralListHelper.Edit
             (
                 parameterRichTextBoxValueControl.AssignedTo,
                 childElement?.Name == XmlDataConstants.LITERALLISTELEMENT

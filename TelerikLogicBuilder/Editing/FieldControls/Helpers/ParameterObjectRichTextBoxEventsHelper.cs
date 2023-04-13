@@ -6,28 +6,28 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
-    internal class ObjectRichTextBoxEventsHelper : IObjectRichTextBoxEventsHelper
+    internal class ParameterObjectRichTextBoxEventsHelper : IParameterObjectRichTextBoxEventsHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IEditLiteralListHelper _editLiteralListHelper;
+        private readonly IEditParameterLiteralListHelper _editLiteralListHelper;
         private readonly IEditObjectConstructorHelper _editObjectConstructorHelper;
         private readonly IEditObjectFunctionHelper _editObjectFunctionHelper;
-        private readonly IEditObjectListHelper _editObjectListHelper;
+        private readonly IEditParameterObjectListHelper _editObjectListHelper;
         private readonly IEditObjectVariableHelper _editObjectVariableHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
 
-        public ObjectRichTextBoxEventsHelper(
+        public ParameterObjectRichTextBoxEventsHelper(
             IExceptionHelper exceptionHelper,
             IFieldControlHelperFactory fieldControlHelperFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
         {
-            _editLiteralListHelper = fieldControlHelperFactory.GetEditLiteralListHelper(parameterRichTextBoxValueControl);
+            _editLiteralListHelper = fieldControlHelperFactory.GetEditParameterLiteralListHelper(parameterRichTextBoxValueControl);
             _editObjectConstructorHelper = fieldControlHelperFactory.GetEditObjectConstructorHelper(parameterRichTextBoxValueControl);
             _editObjectFunctionHelper = fieldControlHelperFactory.GetEditObjectFunctionHelper(parameterRichTextBoxValueControl);
-            _editObjectListHelper = fieldControlHelperFactory.GetEditObjectListHelper(parameterRichTextBoxValueControl);
+            _editObjectListHelper = fieldControlHelperFactory.GetEditParameterObjectListHelper(parameterRichTextBoxValueControl);
             _editObjectVariableHelper = fieldControlHelperFactory.GetEditObjectVariableHelper(parameterRichTextBoxValueControl);
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;

@@ -1,12 +1,11 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
@@ -15,7 +14,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
-    internal class EditObjectListHelper : IEditObjectListHelper
+    internal class EditParameterLiteralListHelper : IEditParameterLiteralListHelper
     {
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
@@ -23,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
 
-        public EditObjectListHelper(
+        public EditParameterLiteralListHelper(
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IXmlDataHelper xmlDataHelper,
@@ -39,49 +38,50 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 
         private ObjectRichTextBox RichTextBox => parameterRichTextBoxValueControl.RichTextBox;
 
-        public void Edit(Type assignedTo, XmlElement? objectListElement = null)
+        public void Edit(Type assignedTo, XmlElement? literalListElement = null)
         {
-            ObjectListParameterElementInfo objectListElementInfo = parameterRichTextBoxValueControl.ObjectListElementInfo;
+            LiteralListParameterElementInfo literalListElementInfo = parameterRichTextBoxValueControl.LiteralListElementInfo;
             using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditObjectListForm
+            IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditLiteralListForm
             (
                 assignedTo,
-                objectListElementInfo,
+                literalListElementInfo,
                 GetXmlDocument()
             );
 
-            editObjectListForm.ShowDialog(RichTextBox);
-            if (editObjectListForm.DialogResult != DialogResult.OK)
+            editLiteralListForm.ShowDialog(RichTextBox);
+            if (editLiteralListForm.DialogResult != DialogResult.OK)
                 return;
 
-            parameterRichTextBoxValueControl.UpdateXmlElement(editObjectListForm.XmlResult.OuterXml);
+            parameterRichTextBoxValueControl.UpdateXmlElement(editLiteralListForm.XmlResult.OuterXml);
             RichTextBox.SetLinkFormat();
             RichTextBox.Text = parameterRichTextBoxValueControl.VisibleText;
             parameterRichTextBoxValueControl.RequestDocumentUpdate();
 
             XmlDocument GetXmlDocument()
             {
-                if (objectListElement != null)
+                if (literalListElement != null)
                 {
-                    if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
-                        throw _exceptionHelper.CriticalException("{CD7F1F13-E777-433C-BC77-4B7268703D14}");
+                    if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
+                        throw _exceptionHelper.CriticalException("{6248B520-9866-41D5-A553-A596A9F2D530}");
 
-                    return _xmlDocumentHelpers.ToXmlDocument(objectListElement.OuterXml);
+                    return _xmlDocumentHelpers.ToXmlDocument(literalListElement.OuterXml);
                 }
 
+                LiteralListElementType literalParameterType = _enumHelper.GetLiteralListElementType(literalListElementInfo.LiteralType);
                 return _xmlDocumentHelpers.ToXmlDocument
                 (
-                    _xmlDataHelper.BuildObjectListXml
+                    _xmlDataHelper.BuildLiteralListXml
                     (
-                        objectListElementInfo.ObjectType,
-                        objectListElementInfo.ListType,
+                        literalParameterType,
+                        literalListElementInfo.ListType,
                         string.Format
                         (
                             CultureInfo.CurrentCulture,
                             Strings.listParameterCountFormat,
-                            objectListElementInfo.HasParameter
-                                ? objectListElementInfo.Parameter.Name
-                                : _enumHelper.GetTypeDescription(objectListElementInfo.ListType, objectListElementInfo.ObjectType),
+                            literalListElementInfo.HasParameter
+                                ? literalListElementInfo.Parameter.Name
+                                : _enumHelper.GetTypeDescription(literalListElementInfo.ListType, _enumHelper.GetVisibleEnumText(literalParameterType)),
                                 0
                         ),
                         string.Empty
