@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
@@ -260,6 +261,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
+        public string BuildVariableValueXml(VariableBase variable, string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(GetElementName(variable.VariableTypeCategory));
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildVariableXml(string name)
         {
             StringBuilder stringBuilder = new();
@@ -285,6 +299,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 ParameterCategory.ObjectList => XmlDataConstants.OBJECTLISTPARAMETERELEMENT,
                 ParameterCategory.GenericList => XmlDataConstants.GENERICLISTPARAMETERELEMENT,
                 _ => throw _exceptionHelper.CriticalException("{4FEA1202-E684-4BDB-96A4-1ED9EED477EB}"),
+            };
+        }
+
+        public string GetElementName(VariableTypeCategory category)
+        {
+            return category switch
+            {
+                VariableTypeCategory.Literal => XmlDataConstants.LITERALVARIABLEELEMENT,
+                VariableTypeCategory.Object => XmlDataConstants.OBJECTVARIABLEELEMENT,
+                VariableTypeCategory.LiteralList => XmlDataConstants.LITERALLISTVARIABLEELEMENT,
+                VariableTypeCategory.ObjectList => XmlDataConstants.OBJECTLISTVARIABLEELEMENT,
+                _ => throw _exceptionHelper.CriticalException("{B586FF04-C425-4ACE-9686-C78EAA0D7240}"),
             };
         }
 

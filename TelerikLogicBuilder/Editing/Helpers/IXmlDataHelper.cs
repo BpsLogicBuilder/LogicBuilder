@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
@@ -24,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         string BuildObjectXml(string innerXml);
         string BuildParameterXml(ParameterBase parameter, string innerXml);
         string BuildRetractFunctionXml(string name, string visibleText, string variableName);
+        string BuildVariableValueXml(VariableBase variable, string innerXml);
         string BuildVariableXml(string innerXml);
         string GetElementName(ParameterCategory category);
     }
