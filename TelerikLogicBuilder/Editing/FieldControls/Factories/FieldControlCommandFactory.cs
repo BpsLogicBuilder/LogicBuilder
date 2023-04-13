@@ -19,6 +19,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxConstructorCommand> _getEditRichInputBoxConstructorCommand;
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> _getEditRichInputBoxFunctionCommand;
         private readonly Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> _getEditRichInputBoxVariableCommand;
+        private readonly Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxLiteralListCommand> _getEditVariableObjectRichTextBoxLiteralListCommand;
+        private readonly Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxObjectListCommand> _getEditVariableObjectRichTextBoxObjectListCommand;
         private readonly Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> _getPasteRichInputBoxTextCommand;
         private readonly Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> _getSelectDomainItemCommand;
         private readonly Func<IPropertyInputRichInputBoxControl, SelectItemFromPropertyListCommand> _getSelectItemFromPropertyListCommand;
@@ -40,6 +42,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IRichInputBoxValueControl, EditRichInputBoxConstructorCommand> getEditRichInputBoxConstructorCommand,
             Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> getEditRichInputBoxFunctionCommand,
             Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> getEditRichInputBoxVariableCommand,
+            Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxLiteralListCommand> getEditVariableObjectRichTextBoxLiteralListCommand,
+            Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxObjectListCommand> getEditVariableObjectRichTextBoxObjectListCommand,
             Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> getPasteRichInputBoxTextCommand,
             Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> getSelectDomainItemCommand,
             Func<IPropertyInputRichInputBoxControl, SelectItemFromPropertyListCommand> getSelectItemFromPropertyListCommand,
@@ -60,6 +64,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             _getEditRichInputBoxConstructorCommand = getEditRichInputBoxConstructorCommand;
             _getEditRichInputBoxFunctionCommand = getEditRichInputBoxFunctionCommand;
             _getEditRichInputBoxVariableCommand = getEditRichInputBoxVariableCommand;
+            _getEditVariableObjectRichTextBoxLiteralListCommand = getEditVariableObjectRichTextBoxLiteralListCommand;
+            _getEditVariableObjectRichTextBoxObjectListCommand = getEditVariableObjectRichTextBoxObjectListCommand;
             _getPasteRichInputBoxTextCommand = getPasteRichInputBoxTextCommand;
             _getSelectDomainItemCommand = getSelectDomainItemCommand;
             _getSelectItemFromPropertyListCommand = getSelectItemFromPropertyListCommand;
@@ -108,6 +114,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 
         public EditRichInputBoxVariableCommand GetEditRichInputBoxVariableCommand(IRichInputBoxValueControl richInputBoxValueControl)
             => _getEditRichInputBoxVariableCommand(richInputBoxValueControl);
+
+        public EditVariableObjectRichTextBoxLiteralListCommand GetEditVariableObjectRichTextBoxLiteralListCommand(IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
+            => _getEditVariableObjectRichTextBoxLiteralListCommand(variableRichTextBoxValueControl);
+
+        public EditVariableObjectRichTextBoxObjectListCommand GetEditVariableObjectRichTextBoxObjectListCommand(IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
+            => _getEditVariableObjectRichTextBoxObjectListCommand(variableRichTextBoxValueControl);
 
         public PasteRichInputBoxTextCommand GetPasteRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
             => _getPasteRichInputBoxTextCommand(richInputBoxValueControl);

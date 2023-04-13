@@ -14,14 +14,14 @@ using System.Xml;
 
 namespace TelerikLogicBuilder.FormsPreviewer.Commands
 {
-    internal class EditLiteralListFormCommand : ClickCommandBase
+    internal class EditParameterLiteralListFormCommand : ClickCommandBase
     {
         private readonly IConfigurationService _configurationService;
         private readonly ILiteralListDataParser _literalListDataParser;
         private readonly ILiteralListParameterElementInfoHelper _literalListParameterElementInfoHelper;
         private readonly RadForm1 radForm;
 
-        public EditLiteralListFormCommand(
+        public EditParameterLiteralListFormCommand(
             IConfigurationService configurationService,
             ILiteralListDataParser literalListDataParser,
             ILiteralListParameterElementInfoHelper literalListParameterElementInfoHelper,
@@ -42,7 +42,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
             var constructor = _configurationService.ConstructorList.Constructors["MultiSelectFormControlSettingsParameters"];
             ListOfLiteralsParameter parameter = (ListOfLiteralsParameter)constructor.Parameters.First(p => p.Name == "keyFields");
             //LiteralListData literalListData = _literalListDataParser.Parse(xmlDocument.DocumentElement!);
-            IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditLiteralListForm
+            IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditParameterLiteralListForm
             (
                 typeof(List<string>),
                 _literalListParameterElementInfoHelper.GetLiteralListElementInfo(parameter, ""),

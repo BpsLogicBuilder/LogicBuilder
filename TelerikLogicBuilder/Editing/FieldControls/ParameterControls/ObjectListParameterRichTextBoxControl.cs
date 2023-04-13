@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
         private readonly ILiteralListParameterElementInfoHelper _literalListParameterElementInfoHelper;
         private readonly IObjectListParameterElementInfoHelper _objectListParameterElementInfoHelper;
         private readonly ObjectRichTextBox _objectRichTextBox;
-        private readonly IParameterObjectRichTextBoxEventsHelper _objectRichTextBoxEventsHelper;
+        private readonly IParameterObjectRichTextBoxEventsHelper _parameterObjectRichTextBoxEventsHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateObjectRichTextBoxXml _updateObjectRichTextBoxXml;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.dataGraphEditingControl = dataGraphEditingControl;
             this.listOfObjectsParameter = listOfObjectsParameter;
-            _objectRichTextBoxEventsHelper = fieldControlHelperFactory.GetObjectRichTextBoxEventsHelper(this);
+            _parameterObjectRichTextBoxEventsHelper = fieldControlHelperFactory.GetParameterObjectRichTextBoxEventsHelper(this);
             _updateObjectRichTextBoxXml = fieldControlHelperFactory.GetUpdateObjectRichTextBoxXml(this);
 
             btnVariable = new()
@@ -284,7 +284,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             AddButtonClickCommand(btnLiteralList, _fieldControlCommandFactory.GetEditParameterObjectRichTextBoxLiteralListCommand(this));
             AddButtonClickCommand(btnObjectList, _fieldControlCommandFactory.GetEditParameterObjectRichTextBoxObjectListCommand(this));
 
-            _objectRichTextBoxEventsHelper.Setup();
+            _parameterObjectRichTextBoxEventsHelper.Setup();
         }
 
         private void InitializeButtons()

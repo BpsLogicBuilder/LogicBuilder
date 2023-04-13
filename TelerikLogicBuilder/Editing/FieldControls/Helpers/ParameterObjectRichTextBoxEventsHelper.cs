@@ -9,10 +9,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
     internal class ParameterObjectRichTextBoxEventsHelper : IParameterObjectRichTextBoxEventsHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IEditParameterLiteralListHelper _editLiteralListHelper;
+        private readonly IEditParameterLiteralListHelper _editParameterLiteralListHelper;
         private readonly IEditObjectConstructorHelper _editObjectConstructorHelper;
         private readonly IEditObjectFunctionHelper _editObjectFunctionHelper;
-        private readonly IEditParameterObjectListHelper _editObjectListHelper;
+        private readonly IEditParameterObjectListHelper _editParameterObjectListHelper;
         private readonly IEditObjectVariableHelper _editObjectVariableHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -24,10 +24,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             IXmlDocumentHelpers xmlDocumentHelpers,
             IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
         {
-            _editLiteralListHelper = fieldControlHelperFactory.GetEditParameterLiteralListHelper(parameterRichTextBoxValueControl);
+            _editParameterLiteralListHelper = fieldControlHelperFactory.GetEditParameterLiteralListHelper(parameterRichTextBoxValueControl);
             _editObjectConstructorHelper = fieldControlHelperFactory.GetEditObjectConstructorHelper(parameterRichTextBoxValueControl);
             _editObjectFunctionHelper = fieldControlHelperFactory.GetEditObjectFunctionHelper(parameterRichTextBoxValueControl);
-            _editObjectListHelper = fieldControlHelperFactory.GetEditParameterObjectListHelper(parameterRichTextBoxValueControl);
+            _editParameterObjectListHelper = fieldControlHelperFactory.GetEditParameterObjectListHelper(parameterRichTextBoxValueControl);
             _editObjectVariableHelper = fieldControlHelperFactory.GetEditObjectVariableHelper(parameterRichTextBoxValueControl);
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -65,10 +65,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                     _editObjectVariableHelper.Edit(parameterRichTextBoxValueControl.AssignedTo, childElement);
                     break;
                 case XmlDataConstants.LITERALLISTELEMENT:
-                    _editLiteralListHelper.Edit(parameterRichTextBoxValueControl.AssignedTo, childElement);
+                    _editParameterLiteralListHelper.Edit(parameterRichTextBoxValueControl.AssignedTo, childElement);
                     break;
                 case XmlDataConstants.OBJECTLISTELEMENT:
-                    _editObjectListHelper.Edit(parameterRichTextBoxValueControl.AssignedTo, childElement);
+                    _editParameterObjectListHelper.Edit(parameterRichTextBoxValueControl.AssignedTo, childElement);
                     break;
                 default:
                     throw _exceptionHelper.CriticalException("{3EC201D0-50B8-4EE7-8580-4D8C0CAEC8F2}");

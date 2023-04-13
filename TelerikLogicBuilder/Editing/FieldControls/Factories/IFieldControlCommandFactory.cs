@@ -18,6 +18,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         EditRichInputBoxConstructorCommand GetEditRichInputBoxConstructorCommand(IRichInputBoxValueControl richInputBoxValueControl);
         EditRichInputBoxFunctionCommand GetEditRichInputBoxFunctionCommand(IRichInputBoxValueControl richInputBoxValueControl);
         EditRichInputBoxVariableCommand GetEditRichInputBoxVariableCommand(IRichInputBoxValueControl richInputBoxValueControl);
+        EditVariableObjectRichTextBoxLiteralListCommand GetEditVariableObjectRichTextBoxLiteralListCommand(IVariableRichTextBoxValueControl variableRichTextBoxValueControl);
+        EditVariableObjectRichTextBoxObjectListCommand GetEditVariableObjectRichTextBoxObjectListCommand(IVariableRichTextBoxValueControl variableRichTextBoxValueControl);
         PasteRichInputBoxTextCommand GetPasteRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl);
         SelectDomainItemCommand GetSelectDomainItemCommand(IDomainRichInputBoxValueControl richInputBoxValueControl);
         SelectItemFromPropertyListCommand GetSelectItemFromPropertyListCommand(IPropertyInputRichInputBoxControl propertyInputRichInputBoxControl);

@@ -159,6 +159,28 @@ namespace Microsoft.Extensions.DependencyInjection
                         richInputBoxValueControl
                     )
                 )
+                .AddTransient<Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxLiteralListCommand>>
+                (
+                    provider =>
+                    variableRichTextBoxValueControl => new EditVariableObjectRichTextBoxLiteralListCommand
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        variableRichTextBoxValueControl
+                    )
+                )
+                .AddTransient<Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxObjectListCommand>>
+                (
+                    provider =>
+                    variableRichTextBoxValueControl => new EditVariableObjectRichTextBoxObjectListCommand
+                    (
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        variableRichTextBoxValueControl
+                    )
+                )
                 .AddTransient<IFieldControlCommandFactory, FieldControlCommandFactory>()
                 .AddTransient<Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand>>
                 (

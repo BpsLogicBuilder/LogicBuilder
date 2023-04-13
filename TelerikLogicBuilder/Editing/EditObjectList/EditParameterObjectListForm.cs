@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             IXmlDocumentHelpers xmlDocumentHelpers,
             Type assignedTo,
             ObjectListParameterElementInfo objectListInfo,
-            XmlDocument literalListXmlDocument)
+            XmlDocument objectListXmlDocument)
         {
             InitializeComponent();
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
@@ -64,7 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             this.assignedTo = assignedTo;
             this.objectListInfo = objectListInfo;
 
-            _treeViewXmlDocumentHelper.LoadXmlDocument(literalListXmlDocument.OuterXml);
+            _treeViewXmlDocumentHelper.LoadXmlDocument(objectListXmlDocument.OuterXml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
             Initialize();

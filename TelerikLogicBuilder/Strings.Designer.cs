@@ -4363,6 +4363,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}: Count({1}).
+        /// </summary>
+        internal static string listVariableCountFormat {
+            get {
+                return ResourceManager.GetString("listVariableCountFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}Of{1}.
         /// </summary>
         internal static string listVariableTypeFormat {

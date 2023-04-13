@@ -13,35 +13,35 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
-    internal class EditParameterObjectListHelper : IEditParameterObjectListHelper
+    internal class EditVariableObjectListHelper : IEditVariableObjectListHelper
     {
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly IParameterRichTextBoxValueControl parameterRichTextBoxValueControl;
+        private readonly IVariableRichTextBoxValueControl variableRichTextBoxValueControl;
 
-        public EditParameterObjectListHelper(
+        public EditVariableObjectListHelper(
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
+            IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
         {
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            this.parameterRichTextBoxValueControl = parameterRichTextBoxValueControl;
+            this.variableRichTextBoxValueControl = variableRichTextBoxValueControl;
         }
 
-        private ObjectRichTextBox RichTextBox => parameterRichTextBoxValueControl.RichTextBox;
+        private ObjectRichTextBox RichTextBox => variableRichTextBoxValueControl.RichTextBox;
 
         public void Edit(Type assignedTo, XmlElement? objectListElement = null)
         {
-            ObjectListParameterElementInfo objectListElementInfo = parameterRichTextBoxValueControl.ObjectListElementInfo;
+            ObjectListVariableElementInfo objectListElementInfo = variableRichTextBoxValueControl.ObjectListElementInfo;
             using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditParameterObjectListForm
+            IEditVariableObjectListForm editObjectListForm = disposableManager.GetEditVariableObjectListForm
             (
                 assignedTo,
                 objectListElementInfo,
@@ -52,17 +52,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             if (editObjectListForm.DialogResult != DialogResult.OK)
                 return;
 
-            parameterRichTextBoxValueControl.UpdateXmlElement(editObjectListForm.XmlResult.OuterXml);
+            variableRichTextBoxValueControl.UpdateXmlElement(editObjectListForm.XmlResult.OuterXml);
             RichTextBox.SetLinkFormat();
-            RichTextBox.Text = parameterRichTextBoxValueControl.VisibleText;
-            parameterRichTextBoxValueControl.RequestDocumentUpdate();
+            RichTextBox.Text = variableRichTextBoxValueControl.VisibleText;
+            variableRichTextBoxValueControl.RequestDocumentUpdate();
 
             XmlDocument GetXmlDocument()
             {
                 if (objectListElement != null)
                 {
                     if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
-                        throw _exceptionHelper.CriticalException("{CD7F1F13-E777-433C-BC77-4B7268703D14}");
+                        throw _exceptionHelper.CriticalException("{901CA9D9-2D27-4B5E-807A-412F1A02D3C7}");
 
                     return _xmlDocumentHelpers.ToXmlDocument(objectListElement.OuterXml);
                 }
@@ -76,9 +76,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                         string.Format
                         (
                             CultureInfo.CurrentCulture,
-                            Strings.listParameterCountFormat,
-                            objectListElementInfo.HasParameter
-                                ? objectListElementInfo.Parameter.Name
+                            Strings.listVariableCountFormat,
+                            objectListElementInfo.HasVariable
+                                ? objectListElementInfo.Variable.Name
                                 : _enumHelper.GetTypeDescription(objectListElementInfo.ListType, objectListElementInfo.ObjectType),
                                 0
                         ),

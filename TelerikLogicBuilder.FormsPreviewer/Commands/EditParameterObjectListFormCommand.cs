@@ -14,7 +14,7 @@ using System.Xml;
 
 namespace TelerikLogicBuilder.FormsPreviewer.Commands
 {
-    internal class EditObjectListFormCommand : ClickCommandBase
+    internal class EditParameterObjectListFormCommand : ClickCommandBase
     {
         private readonly IConfigurationService _configurationService;
         private readonly IObjectListDataParser _objectListDataParser;
@@ -22,7 +22,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 		private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly RadForm1 radForm;
 
-        public EditObjectListFormCommand(
+        public EditParameterObjectListFormCommand(
             IConfigurationService configurationService,
             IObjectListDataParser objectListDataParser,
             IObjectListParameterElementInfoHelper objectListParameterElementInfoHelper,
@@ -46,7 +46,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
             ListOfObjectsParameter parameter = (ListOfObjectsParameter)constructor.Parameters.First(p => p.Name == "validationMessages");
 			ObjectListData objectListData = _objectListDataParser.Parse(xmlDocument.DocumentElement!);
             _typeLoadHelper.TryGetSystemType(parameter, radForm.Application, out Type? type);
-            IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditObjectListForm
+            IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditParameterObjectListForm
             (
                 type!,
                 _objectListParameterElementInfoHelper.GetObjectListElementInfo(parameter),

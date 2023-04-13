@@ -13,11 +13,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IObjectRichTextBoxValueControl, IEditObjectVariableHelper> _getEditObjectVariableHelper;
         private readonly Func<IParameterRichTextBoxValueControl, IEditParameterLiteralListHelper> _getEditParameterLiteralListHelper;
         private readonly Func<IParameterRichTextBoxValueControl, IEditParameterObjectListHelper> _getEditParameterObjectListHelper;
+        private readonly Func<IVariableRichTextBoxValueControl, IEditVariableLiteralListHelper> _getEditVariableLiteralListHelper;
+        private readonly Func<IVariableRichTextBoxValueControl, IEditVariableObjectListHelper> _getEditVariableObjectListHelper;
         private readonly Func<IRichInputBoxValueControl, ILiteralListItemRichInputBoxEventsHelper> _getLiteralListItemRichInputBoxEventsHelper;
-        private readonly Func<IParameterRichTextBoxValueControl, IParameterObjectRichTextBoxEventsHelper> _getObjectRichTextBoxEventsHelper;
+        private readonly Func<IParameterRichTextBoxValueControl, IParameterObjectRichTextBoxEventsHelper> _getParameterObjectRichTextBoxEventsHelper;
         private readonly Func<IParameterRichInputBoxValueControl, IParameterRichInputBoxEventsHelper> _getParameterRichInputBoxEventsHelper;
         private readonly Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper> _getRichInputBoxEventsHelper;
         private readonly Func<IObjectRichTextBoxValueControl, IUpdateObjectRichTextBoxXml> _getUpdateObjectRichTextBoxXml;
+        private readonly Func<IVariableRichTextBoxValueControl, IVariableObjectRichTextBoxEventsHelper> _getVariableObjectRichTextBoxEventsHelper;
+        private readonly Func<IVariableRichInputBoxValueControl, IVariableRichInputBoxEventsHelper> _getVariableRichInputBoxEventsHelper;
 
         public FieldControlHelperFactory(
             Func<IRichInputBoxValueControl, IEditLiteralConstructorHelper> getEditLiteralConstructorHelper,
@@ -28,11 +32,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IObjectRichTextBoxValueControl, IEditObjectVariableHelper> getEditObjectVariableHelper,
             Func<IParameterRichTextBoxValueControl, IEditParameterLiteralListHelper> getEditParameterLiteralListHelper,
             Func<IParameterRichTextBoxValueControl, IEditParameterObjectListHelper> getEditParameterObjectListHelper,
+            Func<IVariableRichTextBoxValueControl, IEditVariableLiteralListHelper> getEditVariableLiteralListHelper,
+            Func<IVariableRichTextBoxValueControl, IEditVariableObjectListHelper> getEditVariableObjectListHelper,
             Func<IRichInputBoxValueControl, ILiteralListItemRichInputBoxEventsHelper> getLiteralListItemRichInputBoxEventsHelper,
-            Func<IParameterRichTextBoxValueControl, IParameterObjectRichTextBoxEventsHelper> getObjectRichTextBoxEventsHelper,
+            Func<IParameterRichTextBoxValueControl, IParameterObjectRichTextBoxEventsHelper> getParameterObjectRichTextBoxEventsHelper,
             Func<IParameterRichInputBoxValueControl, IParameterRichInputBoxEventsHelper> getParameterRichInputBoxEventsHelper,
             Func<IRichInputBoxValueControl, IRichInputBoxEventsHelper> getRichInputBoxEventsHelper,
-            Func<IObjectRichTextBoxValueControl, IUpdateObjectRichTextBoxXml> getUpdateObjectRichTextBoxXml)
+            Func<IObjectRichTextBoxValueControl, IUpdateObjectRichTextBoxXml> getUpdateObjectRichTextBoxXml,
+            Func<IVariableRichTextBoxValueControl, IVariableObjectRichTextBoxEventsHelper> getVariableObjectRichTextBoxEventsHelper,
+            Func<IVariableRichInputBoxValueControl, IVariableRichInputBoxEventsHelper> getVariableRichInputBoxEventsHelper)
         {
             _getEditLiteralConstructorHelper = getEditLiteralConstructorHelper;
             _getEditLiteralFunctionHelper = getEditLiteralFunctionHelper;
@@ -42,11 +50,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             _getEditObjectVariableHelper = getEditObjectVariableHelper;
             _getEditParameterLiteralListHelper = getEditParameterLiteralListHelper;
             _getEditParameterObjectListHelper = getEditParameterObjectListHelper;
+            _getEditVariableLiteralListHelper = getEditVariableLiteralListHelper;
+            _getEditVariableObjectListHelper = getEditVariableObjectListHelper;
             _getLiteralListItemRichInputBoxEventsHelper = getLiteralListItemRichInputBoxEventsHelper;
-            _getObjectRichTextBoxEventsHelper = getObjectRichTextBoxEventsHelper;
+            _getParameterObjectRichTextBoxEventsHelper = getParameterObjectRichTextBoxEventsHelper;
             _getParameterRichInputBoxEventsHelper = getParameterRichInputBoxEventsHelper;
             _getRichInputBoxEventsHelper = getRichInputBoxEventsHelper;
             _getUpdateObjectRichTextBoxXml = getUpdateObjectRichTextBoxXml;
+            _getVariableObjectRichTextBoxEventsHelper = getVariableObjectRichTextBoxEventsHelper;
+            _getVariableRichInputBoxEventsHelper = getVariableRichInputBoxEventsHelper;
         }
 
         public IEditLiteralConstructorHelper GetEditLiteralConstructorHelper(IRichInputBoxValueControl richInputBoxValueControl)
@@ -73,11 +85,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         public IEditParameterObjectListHelper GetEditParameterObjectListHelper(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
             => _getEditParameterObjectListHelper(parameterRichTextBoxValueControl);
 
+        public IEditVariableLiteralListHelper GetEditVariableLiteralListHelper(IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
+            => _getEditVariableLiteralListHelper(variableRichTextBoxValueControl);
+
+        public IEditVariableObjectListHelper GetEditVariableObjectListHelper(IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
+            => _getEditVariableObjectListHelper(variableRichTextBoxValueControl);
+
         public ILiteralListItemRichInputBoxEventsHelper GetLiteralListItemRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl)
             => _getLiteralListItemRichInputBoxEventsHelper(richInputBoxValueControl);
 
-        public IParameterObjectRichTextBoxEventsHelper GetObjectRichTextBoxEventsHelper(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
-            => _getObjectRichTextBoxEventsHelper(parameterRichTextBoxValueControl);
+        public IParameterObjectRichTextBoxEventsHelper GetParameterObjectRichTextBoxEventsHelper(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
+            => _getParameterObjectRichTextBoxEventsHelper(parameterRichTextBoxValueControl);
 
         public IParameterRichInputBoxEventsHelper GetParameterRichInputBoxEventsHelper(IParameterRichInputBoxValueControl richInputBoxValueControl)
             => _getParameterRichInputBoxEventsHelper(richInputBoxValueControl);
@@ -87,5 +105,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 
         public IUpdateObjectRichTextBoxXml GetUpdateObjectRichTextBoxXml(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
             => _getUpdateObjectRichTextBoxXml(objectRichTextBoxValueControl);
+
+        public IVariableObjectRichTextBoxEventsHelper GetVariableObjectRichTextBoxEventsHelper(IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
+            => _getVariableObjectRichTextBoxEventsHelper(variableRichTextBoxValueControl);
+
+        public IVariableRichInputBoxEventsHelper GetVariableRichInputBoxEventsHelper(IVariableRichInputBoxValueControl variableRichInputBoxValueControl)
+            => _getVariableRichInputBoxEventsHelper(variableRichInputBoxValueControl);
     }
 }

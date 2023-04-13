@@ -172,7 +172,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
             AddButtonClickCommand
             (
                 btnEditLiteralListForm,
-                new EditLiteralListFormCommand
+                new EditParameterLiteralListFormCommand
                 (
                     _configurationService,
                     serviceProvider.GetRequiredService<ILiteralListDataParser>(),
@@ -183,7 +183,7 @@ namespace TelerikLogicBuilder.FormsPreviewer
             AddButtonClickCommand
             (
                 btnEditObjectListForm,
-                new EditObjectListFormCommand
+                new EditParameterObjectListFormCommand
                 (
                     _configurationService,
                     serviceProvider.GetRequiredService<IObjectListDataParser>(),

@@ -199,6 +199,42 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo
                     )
                 )
+                .AddTransient<Func<Type, LiteralListVariableElementInfo, XmlDocument, IEditVariableLiteralListForm>>
+                (
+                    provider =>
+                    (assignedTo, literalListInfo, literalListXmlDocument) => new EditVariableLiteralListForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        provider.GetRequiredService<IEditLiteralListCommandFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        assignedTo,
+                        literalListInfo,
+                        literalListXmlDocument
+                    )
+                )
+                .AddTransient<Func<Type, ObjectListVariableElementInfo, XmlDocument, IEditVariableObjectListForm>>
+                (
+                    provider =>
+                    (assignedTo, literalListInfo, objectListXmlDocument) => new EditVariableObjectListForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        provider.GetRequiredService<IEditObjectListCommandFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        assignedTo,
+                        literalListInfo,
+                        objectListXmlDocument
+                    )
+                )
                 .AddTransient<Func<Type, ISelectConstructorForm>>
                 (
                     provider =>

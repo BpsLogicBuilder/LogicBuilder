@@ -1211,6 +1211,10 @@
     <value>{0} Of {1}</value>
     <comment>0=listType 1=UnderlyingType</comment>
   </data>
+	<data name="listVariableCountFormat" xml:space="preserve">
+    <value>{0}: Count({1})</value>
+    <comment>0=variableName;1=itemCount;</comment>
+  </data>
 	<data name="listVariableTypeFormat" xml:space="preserve">
     <value>{0}Of{1}</value>
     <comment>0=listType 1=UnderlyingType</comment>
