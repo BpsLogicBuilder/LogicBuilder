@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor.Factories
 {
-    internal interface IObjectListItemEditorControlFactory
+    internal interface IParameterObjectListItemEditorControlFactory
     {
         IListOfObjectsItemRichTextBoxControl GetListOfObjectsItemRichTextBoxControl(
             IEditingControl editingControl,

@@ -4,7 +4,7 @@ using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Factories
 {
-    internal class LiteralListItemEditorControlFactory : ILiteralListItemEditorControlFactory
+    internal class ParameterLiteralListItemEditorControlFactory : IParameterLiteralListItemEditorControlFactory
     {
         private readonly Func<ListOfLiteralsParameter, IListOfLiteralsItemDomainAutoCompleteControl> _getListOfLiteralsItemDomainAutoCompleteControl;
         private readonly Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainMultilineControl> _getListOfLiteralsItemDomainMultilineControl;
@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
         private readonly Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl> _getListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl;
         private readonly IListOfLiteralsItemTypeAutoCompleteControl _listOfLiteralsParameterTypeAutoCompleteControl;
 
-        public LiteralListItemEditorControlFactory(
+        public ParameterLiteralListItemEditorControlFactory(
             Func<ListOfLiteralsParameter, IListOfLiteralsItemDomainAutoCompleteControl> getListOfLiteralsItemDomainAutoCompleteControl,
             Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainMultilineControl> getListOfLiteralsItemDomainMultilineControl,
             Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsItemDomainRichInputBoxControl> getListOfLiteralsItemDomainRichInputBoxControl,

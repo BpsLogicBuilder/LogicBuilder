@@ -40,8 +40,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IGetObjectRichTextBoxVisibleText _getObjectRichTextBoxVisibleText;
         private readonly IObjectListBoxItemFactory _objectListBoxItemFactory;
-        private readonly IObjectListItemEditorControlFactory _objectListItemEditorControlFactory;
         private readonly IObjectListDataParser _objectListDataParser;
+        private readonly IParameterObjectListItemEditorControlFactory _parameterObjectListItemEditorControlFactory;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly ITypeHelper _typeHelper;
@@ -64,8 +64,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             IExceptionHelper exceptionHelper,
             IGetObjectRichTextBoxVisibleText getObjectRichTextBoxVisibleText,
             IObjectListBoxItemFactory objectListBoxItemFactory,
-            IObjectListItemEditorControlFactory objectListItemEditorControlFactory,
             IObjectListDataParser objectListDataParser,
+            IParameterObjectListItemEditorControlFactory parameterObjectListItemEditorControlFactory,
             IRadDropDownListHelper radDropDownListHelper,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
@@ -91,7 +91,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             _exceptionHelper = exceptionHelper;
             _getObjectRichTextBoxVisibleText = getObjectRichTextBoxVisibleText;
             _objectListBoxItemFactory = objectListBoxItemFactory;
-            _objectListItemEditorControlFactory = objectListItemEditorControlFactory;
+            _parameterObjectListItemEditorControlFactory = parameterObjectListItemEditorControlFactory;
             _objectListDataParser = objectListDataParser;
             _radDropDownListHelper = radDropDownListHelper;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
@@ -329,7 +329,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
         }
 
         private IObjectListItemValueControl GetEditItemControl()
-            => _objectListItemEditorControlFactory.GetListOfObjectsItemRichTextBoxControl(this, objectListElementInfo);
+            => _parameterObjectListItemEditorControlFactory.GetListOfObjectsItemRichTextBoxControl(this, objectListElementInfo);
 
         private void Initialize()
         {

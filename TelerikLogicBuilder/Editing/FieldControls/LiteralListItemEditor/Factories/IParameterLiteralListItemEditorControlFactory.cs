@@ -3,7 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Factories
 {
-    internal interface ILiteralListItemEditorControlFactory
+    internal interface IParameterLiteralListItemEditorControlFactory
     {
         IListOfLiteralsItemDomainAutoCompleteControl GetListOfLiteralsItemDomainAutoCompleteControl(
             ListOfLiteralsParameter literalListParameter);

@@ -11,9 +11,9 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class ObjectListItemEditorControlFactoryServices
+    internal static class ParameterObjectListItemEditorControlFactoryServices
     {
-        internal static IServiceCollection AddObjectListItemEditorControlFactories(this IServiceCollection services)
+        internal static IServiceCollection AddParameterObjectListItemEditorControlFactories(this IServiceCollection services)
         {
             return services
                 .AddTransient<Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsItemRichTextBoxControl>>
@@ -37,7 +37,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         listInfo
                     )
                 )
-                .AddTransient<IObjectListItemEditorControlFactory, ObjectListItemEditorControlFactory>();
+                .AddTransient<IParameterObjectListItemEditorControlFactory, ParameterObjectListItemEditorControlFactory>();
         }
     }
 }

@@ -37,8 +37,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private readonly IEnumHelper _enumHelper;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly ILiteralListBoxItemFactory _literalListBoxItemFactory;
-        private readonly ILiteralListItemEditorControlFactory _literalListItemEditorControlFactory;
         private readonly ILiteralListDataParser _literalListDataParser;
+        private readonly IParameterLiteralListItemEditorControlFactory _parameterLiteralListItemEditorControlFactory;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IServiceFactory _serviceFactory;
         private readonly ITypeHelper _typeHelper;
@@ -59,8 +59,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             IEnumHelper enumHelper,
             IExceptionHelper exceptionHelper,
             ILiteralListBoxItemFactory literalListBoxItemFactory,
-            ILiteralListItemEditorControlFactory literalListItemEditorControlFactory,
             ILiteralListDataParser literalListDataParser,
+            IParameterLiteralListItemEditorControlFactory parameterLiteralListItemEditorControlFactory,
             IRadDropDownListHelper radDropDownListHelper,
             IServiceFactory serviceFactory,
             ITypeHelper typeHelper,
@@ -78,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _literalListBoxItemFactory = literalListBoxItemFactory;
-            _literalListItemEditorControlFactory = literalListItemEditorControlFactory;
+            _parameterLiteralListItemEditorControlFactory = parameterLiteralListItemEditorControlFactory;
             _literalListDataParser = literalListDataParser;
             _radDropDownListHelper = radDropDownListHelper;
             _serviceFactory = serviceFactory;
@@ -306,32 +306,32 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private ILiteralListItemValueControl GetEditItemControl()
         {
             if (!literalListElementInfo.HasParameter)
-                return _literalListItemEditorControlFactory.GetListOfLiteralsItemRichInputBoxControl(this, literalListElementInfo);
+                return _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemRichInputBoxControl(this, literalListElementInfo);
 
             switch (literalListElementInfo.Parameter.ElementControl)
             {
                 case LiteralParameterInputStyle.DomainAutoComplete:
-                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemDomainAutoCompleteControl(literalListElementInfo.Parameter);
+                    return _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemDomainAutoCompleteControl(literalListElementInfo.Parameter);
                 case LiteralParameterInputStyle.DropDown:
-                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemDropDownListControl(literalListElementInfo.Parameter);
+                    return _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemDropDownListControl(literalListElementInfo.Parameter);
                 case LiteralParameterInputStyle.MultipleLineTextBox:
                     return literalListElementInfo.Parameter.Domain.Any()
-                                        ? _literalListItemEditorControlFactory.GetListOfLiteralsItemDomainMultilineControl(this, literalListElementInfo.Parameter)
-                                        : _literalListItemEditorControlFactory.GetListOfLiteralsItemMultilineControl(this, literalListElementInfo.Parameter);
+                                        ? _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemDomainMultilineControl(this, literalListElementInfo.Parameter)
+                                        : _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemMultilineControl(this, literalListElementInfo.Parameter);
                 case LiteralParameterInputStyle.ParameterSourcedPropertyInput:
-                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl(this, literalListElementInfo);//needs ParameterSourceClassName
+                    return _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemParameterSourcedPropertyRichInputBoxControl(this, literalListElementInfo);//needs ParameterSourceClassName
                 case LiteralParameterInputStyle.ParameterSourceOnly:
                 case LiteralParameterInputStyle.TypeAutoComplete:
-                    IListOfLiteralsItemTypeAutoCompleteControl typeAutoCompleteControl = _literalListItemEditorControlFactory.GetListOfLiteralsItemTypeAutoCompleteControl();
+                    IListOfLiteralsItemTypeAutoCompleteControl typeAutoCompleteControl = _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemTypeAutoCompleteControl();
                     ITypeAutoCompleteManager typeAutoCompleteManager = _serviceFactory.GetTypeAutoCompleteManager(dataGraphEditingHost, typeAutoCompleteControl);
                     typeAutoCompleteManager.Setup();
                     return typeAutoCompleteControl;
                 case LiteralParameterInputStyle.PropertyInput:
-                    return _literalListItemEditorControlFactory.GetListOfLiteralsItemPropertyInputRichInputBoxControl(this, literalListElementInfo.Parameter);
+                    return _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemPropertyInputRichInputBoxControl(this, literalListElementInfo.Parameter);
                 case LiteralParameterInputStyle.SingleLineTextBox:
                     return literalListElementInfo.Parameter.Domain.Any()
-                                        ? _literalListItemEditorControlFactory.GetListOfLiteralsItemDomainRichInputBoxControl(this, literalListElementInfo.Parameter)
-                                        : _literalListItemEditorControlFactory.GetListOfLiteralsItemRichInputBoxControl(this, literalListElementInfo);
+                                        ? _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemDomainRichInputBoxControl(this, literalListElementInfo.Parameter)
+                                        : _parameterLiteralListItemEditorControlFactory.GetListOfLiteralsItemRichInputBoxControl(this, literalListElementInfo);
                 default:
                     throw _exceptionHelper.CriticalException("{2036C474-5E25-4F43-9A87-0D720BA4F40A}");
             }

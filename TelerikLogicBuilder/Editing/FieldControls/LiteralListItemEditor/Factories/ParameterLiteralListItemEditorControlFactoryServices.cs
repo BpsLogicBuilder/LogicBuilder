@@ -12,9 +12,9 @@ using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor.Factories
 {
-    internal static class LiteralListItemEditorControlFactoryServices
+    internal static class ParameterLiteralListItemEditorControlFactoryServices
     {
-        internal static IServiceCollection AddLiteralListItemEditorControlFactories(this IServiceCollection services)
+        internal static IServiceCollection AddParameterLiteralListItemEditorControlFactories(this IServiceCollection services)
         {
             return services
                 .AddTransient<Func<ListOfLiteralsParameter, IListOfLiteralsItemDomainAutoCompleteControl>>
@@ -154,7 +154,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEdi
                     )
                 )
                 .AddTransient<IListOfLiteralsItemTypeAutoCompleteControl, ListOfLiteralsItemTypeAutoCompleteControl>()
-                .AddTransient<ILiteralListItemEditorControlFactory, LiteralListItemEditorControlFactory>();
+                .AddTransient<IParameterLiteralListItemEditorControlFactory, ParameterLiteralListItemEditorControlFactory>();
         }
     }
 }

@@ -3,11 +3,11 @@ using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor.Factories
 {
-    internal class ObjectListItemEditorControlFactory : IObjectListItemEditorControlFactory
+    internal class ParameterObjectListItemEditorControlFactory : IParameterObjectListItemEditorControlFactory
     {
         private readonly Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsItemRichTextBoxControl> _getListOfObjectsItemRichTextBoxControl;
 
-        public ObjectListItemEditorControlFactory(
+        public ParameterObjectListItemEditorControlFactory(
             Func<IEditingControl, ObjectListParameterElementInfo, IListOfObjectsItemRichTextBoxControl> getListOfObjectsItemRichTextBoxControl)
         {
             _getListOfObjectsItemRichTextBoxControl = getListOfObjectsItemRichTextBoxControl;
