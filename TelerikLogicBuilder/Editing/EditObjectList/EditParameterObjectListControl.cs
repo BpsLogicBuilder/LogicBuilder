@@ -2,8 +2,8 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;

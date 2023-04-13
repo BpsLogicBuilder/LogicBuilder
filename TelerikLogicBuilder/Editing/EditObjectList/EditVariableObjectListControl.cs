@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -25,6 +24,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 {

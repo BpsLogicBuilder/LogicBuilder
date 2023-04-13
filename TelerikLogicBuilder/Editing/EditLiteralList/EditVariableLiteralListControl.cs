@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;

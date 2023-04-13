@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Structures;

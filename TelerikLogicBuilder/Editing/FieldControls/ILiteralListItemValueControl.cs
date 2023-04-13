@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.LiteralListItemEditor
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
     internal interface ILiteralListItemValueControl : IValueControl
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ObjectListItemEditor
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 {
     internal interface IObjectListItemValueControl : IValueControl
     {
