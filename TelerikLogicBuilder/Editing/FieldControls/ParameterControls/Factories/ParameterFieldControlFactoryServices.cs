@@ -42,7 +42,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         editigConstructorControl
                     )
                 )
-                .AddTransient<IParameterFieldControlFactory, ParameterFieldControlFactory>()
                 .AddTransient<Func<IEditFunctionControl, IFunctionGenericParametersControl>>
                 (
                     provider =>
@@ -270,7 +269,8 @@ namespace Microsoft.Extensions.DependencyInjection
                         editigControl,
                         objectParameter
                     )
-                );
+                )
+                .AddTransient<IParameterFieldControlFactory, ParameterFieldControlFactory>();
         }
     }
 }

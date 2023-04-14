@@ -86,7 +86,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSelectFragmentViewControlFactories()
                 .AddSelectFunctionViewControlFactories()
                 .AddSelectVariableViewControlFactories()
-                .AddShapeEditorFactories();
+                .AddShapeEditorFactories()
+                .AddVariableValueControlFactories();
         }
     }
 }
