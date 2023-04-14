@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         private readonly Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemPropertyInputRichInputBoxControl> _getListOfLiteralsParameterItemPropertyInputRichInputBoxControl;
         private readonly Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemRichInputBoxControl> _getListOfLiteralsParameterItemRichInputBoxControl;
         private readonly Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl> _getListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl;
-        private readonly IListOfLiteralsParameterItemTypeAutoCompleteControl _listOfLiteralsParameterItemTypeAutoCompleteControl;
+        private readonly Func<IListOfLiteralsParameterItemTypeAutoCompleteControl> _getListOfLiteralsParameterItemTypeAutoCompleteControl;
 
         public ParameterLiteralListItemEditorControlFactory(
             Func<ListOfLiteralsParameter, IListOfLiteralsParameterItemDomainAutoCompleteControl> getListOfLiteralsParameterItemDomainAutoCompleteControl,
@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemPropertyInputRichInputBoxControl> getListOfLiteralsParameterItemPropertyInputRichInputBoxControl,
             Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemRichInputBoxControl> getListOfLiteralsParameterItemRichInputBoxControl,
             Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl> getListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl,
-            IListOfLiteralsParameterItemTypeAutoCompleteControl listOfLiteralsParameterItemTypeAutoCompleteControl)
+            Func<IListOfLiteralsParameterItemTypeAutoCompleteControl> getListOfLiteralsParameterItemTypeAutoCompleteControl)
         {
             _getListOfLiteralsParameterItemDomainAutoCompleteControl = getListOfLiteralsParameterItemDomainAutoCompleteControl;
             _getListOfLiteralsParameterItemDomainMultilineControl = getListOfLiteralsParameterItemDomainMultilineControl;
@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             _getListOfLiteralsParameterItemPropertyInputRichInputBoxControl = getListOfLiteralsParameterItemPropertyInputRichInputBoxControl;
             _getListOfLiteralsParameterItemRichInputBoxControl = getListOfLiteralsParameterItemRichInputBoxControl;
             _getListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl = getListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl;
-            _listOfLiteralsParameterItemTypeAutoCompleteControl = listOfLiteralsParameterItemTypeAutoCompleteControl;
+            _getListOfLiteralsParameterItemTypeAutoCompleteControl = getListOfLiteralsParameterItemTypeAutoCompleteControl;
         }
 
         public IListOfLiteralsParameterItemDomainAutoCompleteControl GetListOfLiteralsParameterItemDomainAutoCompleteControl(ListOfLiteralsParameter literalListParameter)
@@ -63,6 +63,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             => _getListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl(editingControl, listInfo);
 
         public IListOfLiteralsParameterItemTypeAutoCompleteControl GetListOfLiteralsParameterItemTypeAutoCompleteControl()
-            => _listOfLiteralsParameterItemTypeAutoCompleteControl;
+            => _getListOfLiteralsParameterItemTypeAutoCompleteControl();
     }
 }

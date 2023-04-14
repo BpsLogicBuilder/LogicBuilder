@@ -4,36 +4,36 @@ using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.LiteralListItemControls;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.LiteralListItemControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.LiteralListItemControls;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.LiteralListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class ParameterLiteralListItemEditorControlFactoryServices
+    internal static class VariableLiteralListItemEditorControlFactoryServices
     {
-        internal static IServiceCollection AddParameterLiteralListItemEditorControlFactories(this IServiceCollection services)
+        internal static IServiceCollection AddVariableLiteralListItemEditorControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<ListOfLiteralsParameter, IListOfLiteralsParameterItemDomainAutoCompleteControl>>
+                .AddTransient<Func<ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainAutoCompleteControl>>
                 (
                     provider =>
-                    literalListParameter => new ListOfLiteralsParameterItemDomainAutoCompleteControl
+                    literalListVariable => new ListOfLiteralsVariableItemDomainAutoCompleteControl
                     (
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        literalListParameter
+                        literalListVariable
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemDomainMultilineControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainMultilineControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemDomainMultilineControl
+                    (editigControl, literalListVariable) => new ListOfLiteralsVariableItemDomainMultilineControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -46,13 +46,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl,
-                        literalListParameter
+                        literalListVariable
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemDomainRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemDomainRichInputBoxControl
+                    (editigControl, literalListVariable) => new ListOfLiteralsVariableItemDomainRichInputBoxControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -65,24 +65,24 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl,
-                        literalListParameter
+                        literalListVariable
                     )
                 )
-                .AddTransient<Func<ListOfLiteralsParameter, IListOfLiteralsParameterItemDropDownListControl>>
+                .AddTransient<Func<ListOfLiteralsVariable, IListOfLiteralsVariableItemDropDownListControl>>
                 (
                     provider =>
-                    literalListParameter => new ListOfLiteralsParameterItemDropDownListControl
+                    literalListVariable => new ListOfLiteralsVariableItemDropDownListControl
                     (
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        literalListParameter
+                        literalListVariable
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemMultilineControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemMultilineControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemMultilineControl
+                    (editigControl, literalListVariable) => new ListOfLiteralsVariableItemMultilineControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -95,13 +95,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl,
-                        literalListParameter
+                        literalListVariable
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsParameter, IListOfLiteralsParameterItemPropertyInputRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemPropertyInputRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, literalListParameter) => new ListOfLiteralsParameterItemPropertyInputRichInputBoxControl
+                    (editigControl, literalListVariable) => new ListOfLiteralsVariableItemPropertyInputRichInputBoxControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -114,13 +114,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         editigControl,
-                        literalListParameter
+                        literalListVariable
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemRichInputBoxControl>>
+                .AddTransient<Func<IDataGraphEditingControl, LiteralListVariableElementInfo, IListOfLiteralsVariableItemRichInputBoxControl>>
                 (
                     provider =>
-                    (editigControl, listInfo) => new ListOfLiteralsParameterItemRichInputBoxControl
+                    (editigControl, listInfo) => new ListOfLiteralsVariableItemRichInputBoxControl
                     (
                         provider.GetRequiredService<IEditingControlHelperFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
@@ -136,29 +136,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         listInfo
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingControl, LiteralListParameterElementInfo, IListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl>>
+                .AddTransient<Func<IListOfLiteralsVariableItemTypeAutoCompleteControl>>//factory should return a new one on every call
                 (
                     provider =>
-                    (editigControl, listInfo) => new ListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl
-                    (
-                        provider.GetRequiredService<IEditingControlHelperFactory>(),
-                        provider.GetRequiredService<IEnumHelper>(),
-                        provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IFieldControlHelperFactory>(),
-                        provider.GetRequiredService<IImageListService>(),
-                        provider.GetRequiredService<ILayoutFieldControlButtons>(),
-                        provider.GetRequiredService<IUpdateRichInputBoxXml>(),
-                        provider.GetRequiredService<RichInputBox>(),
-                        provider.GetRequiredService<IXmlDataHelper>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editigControl,
-                        listInfo
-                    )
-                )
-                .AddTransient<Func<IListOfLiteralsParameterItemTypeAutoCompleteControl>>//factory should return a new one on every call
-                (
-                    provider =>
-                    () => new ListOfLiteralsParameterItemTypeAutoCompleteControl
+                    () => new ListOfLiteralsVariableItemTypeAutoCompleteControl
                     (
                         provider.GetRequiredService<IImageListService>(),
                         provider.GetRequiredService<ILayoutFieldControlButtons>(),
@@ -167,7 +148,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDocumentHelpers>()
                     )
                 )
-                .AddTransient<IParameterLiteralListItemEditorControlFactory, ParameterLiteralListItemEditorControlFactory>();
+                .AddTransient<IVariableLiteralListItemEditorControlFactory, VariableLiteralListItemEditorControlFactory>();
         }
     }
 }

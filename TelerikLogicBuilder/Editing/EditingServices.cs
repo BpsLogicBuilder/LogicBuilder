@@ -85,6 +85,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSelectFunctionViewControlFactories()
                 .AddSelectVariableViewControlFactories()
                 .AddShapeEditorFactories()
+                .AddVariableLiteralListItemEditorControlFactories()
                 .AddVariableObjectListItemEditorControlFactories()
                 .AddVariableValueControlFactories();
         }
