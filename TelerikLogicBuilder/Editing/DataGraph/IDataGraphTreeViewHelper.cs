@@ -30,7 +30,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
         ConstructorElementTreeNode AddRootConstructorTreeNode(RadTreeView radTreeView, XmlElement constructorElement, Type rootAssignedToType, string toolTipText);
         FunctionElementTreeNode AddRootFunctionTreeNode(RadTreeView radTreeView, XmlElement functionElement, Type rootAssignedToType, string toolTipText);
         ParameterLiteralListElementTreeNode AddRootLiteralListTreeNode(RadTreeView radTreeView, XmlElement literalListElement, Type rootAssignedToType, LiteralListParameterElementInfo listElementInfo, string text, string toolTipText);
+        VariableLiteralListElementTreeNode AddRootLiteralListTreeNode(RadTreeView radTreeView, XmlElement literalListElement, Type rootAssignedToType, LiteralListVariableElementInfo listElementInfo, string text, string toolTipText);
         ParameterObjectListElementTreeNode AddRootObjectListTreeNode(RadTreeView radTreeView, XmlElement objectListElement, Type rootAssignedToType, ObjectListParameterElementInfo listElementInfo, string text, string toolTipText);
+        VariableObjectListElementTreeNode AddRootObjectListTreeNode(RadTreeView radTreeView, XmlElement objectListElement, Type rootAssignedToType, ObjectListVariableElementInfo listElementInfo, string text, string toolTipText);
         RetractFunctionElementTreeNode AddRootRetractFunctionTreeNode(RadTreeView radTreeView, XmlElement functionElement, string toolTipText);
         VariableElementTreeNode AddVariableTreeNode(ParametersDataTreeNode parentNode, XmlElement variableElement, string toolTipText);
     }

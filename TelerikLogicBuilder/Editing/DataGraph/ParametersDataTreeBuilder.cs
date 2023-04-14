@@ -193,7 +193,65 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.EndUpdate();
         }
 
+        public void CreateLiteralListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, LiteralListVariableElementInfo literalListInfo)
+        {
+            treeView.BeginUpdate();
+            treeView.ImageList = _imageListService.ImageList;
+            treeView.TreeViewElement.ShowNodeToolTips = true;
+            treeView.ShowRootLines = true;
+            treeView.Nodes.Clear();
+
+            XmlElement literalListElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, LITERALLIST_ROOT_XPATH);
+            LiteralListData literalListData = _literalListDataParser.Parse(literalListElement, literalListInfo, dataGraphEditingHost);
+            GetLiteralListChildren
+            (
+                literalListElement,
+                _dataGraphTreeViewHelper.AddRootLiteralListTreeNode
+                (
+                    treeView,
+                    literalListElement,
+                    rootAssignedToType,
+                    literalListInfo,
+                    literalListData.VisibleText,
+                    literalListData.VisibleText
+                ),
+                literalListData,
+                true
+            );
+
+            treeView.EndUpdate();
+        }
+
         public void CreateObjectListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, ObjectListParameterElementInfo objectListInfo)
+        {
+            treeView.BeginUpdate();
+            treeView.ImageList = _imageListService.ImageList;
+            treeView.TreeViewElement.ShowNodeToolTips = true;
+            treeView.ShowRootLines = true;
+            treeView.Nodes.Clear();
+
+            XmlElement objectListElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, OBJECTLIST_ROOT_XPATH);
+            ObjectListData objectListData = _objectListDataParser.Parse(objectListElement, objectListInfo, dataGraphEditingHost);
+            GetObjectListChildren
+            (
+                objectListElement,
+                _dataGraphTreeViewHelper.AddRootObjectListTreeNode
+                (
+                    treeView,
+                    objectListElement,
+                    rootAssignedToType,
+                    objectListInfo,
+                    objectListData.VisibleText,
+                    objectListData.VisibleText
+                ),
+                objectListData,
+                true
+            );
+
+            treeView.EndUpdate();
+        }
+
+        public void CreateObjectListTreeProfile(RadTreeView treeView, XmlDocument xmlDocument, Type rootAssignedToType, ObjectListVariableElementInfo objectListInfo)
         {
             treeView.BeginUpdate();
             treeView.ImageList = _imageListService.ImageList;

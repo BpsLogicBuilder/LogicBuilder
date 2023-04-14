@@ -451,12 +451,52 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             return newTreeNode;
         }
 
+        public VariableLiteralListElementTreeNode AddRootLiteralListTreeNode(RadTreeView radTreeView, XmlElement literalListElement, Type rootAssignedToType, LiteralListVariableElementInfo listElementInfo, string text, string toolTipText)
+        {
+            if (literalListElement.Name != XmlDataConstants.LITERALLISTELEMENT)
+                throw _exceptionHelper.CriticalException("{F5846795-ABB4-4E2C-A138-F8AFB550428B}");
+
+            VariableLiteralListElementTreeNode newTreeNode = new
+            (
+                text,
+                $"/{literalListElement.Name}",
+                rootAssignedToType,
+                listElementInfo
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            radTreeView.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
         public ParameterObjectListElementTreeNode AddRootObjectListTreeNode(RadTreeView radTreeView, XmlElement objectListElement, Type rootAssignedToType, ObjectListParameterElementInfo listElementInfo, string text, string toolTipText)
         {
             if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{242D94DC-EE27-48BF-9B32-3EDC5886F31F}");
 
             ParameterObjectListElementTreeNode newTreeNode = new
+            (
+                text,
+                $"/{objectListElement.Name}",
+                rootAssignedToType,
+                listElementInfo
+            )
+            {
+                ToolTipText = toolTipText
+            };
+
+            radTreeView.Nodes.Add(newTreeNode);
+            return newTreeNode;
+        }
+
+        public VariableObjectListElementTreeNode AddRootObjectListTreeNode(RadTreeView radTreeView, XmlElement objectListElement, Type rootAssignedToType, ObjectListVariableElementInfo listElementInfo, string text, string toolTipText)
+        {
+            if (objectListElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
+                throw _exceptionHelper.CriticalException("{8262F69D-3ED6-46EA-9080-3BAA8AED6105}");
+
+            VariableObjectListElementTreeNode newTreeNode = new
             (
                 text,
                 $"/{objectListElement.Name}",

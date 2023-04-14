@@ -16,6 +16,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.LiteralListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.LiteralListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
@@ -235,6 +236,16 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (dataGraphEditingHost, literalListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditVariableLiteralListControl
                     (
+                        provider.GetRequiredService<IEditLiteralListCommandFactory>(),
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<ILiteralListBoxItemFactory>(),
+                        provider.GetRequiredService<ILiteralListDataParser>(),
+                        provider.GetRequiredService<IVariableLiteralListItemEditorControlFactory>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         dataGraphEditingHost,
                         literalListElementInfo,
