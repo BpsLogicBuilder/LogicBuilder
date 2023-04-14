@@ -17,6 +17,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.Fact
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.LiteralListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.LiteralListItemControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.ObjectListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
@@ -260,6 +261,19 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (dataGraphEditingHost, objectListElementInfo, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditVariableObjectListControl
                     (
+                        provider.GetRequiredService<IEditObjectListCommandFactory>(),
+                        provider.GetRequiredService<IEnumHelper>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                        provider.GetRequiredService<IObjectListBoxItemFactory>(),
+                        provider.GetRequiredService<IObjectListDataParser>(),
+                        provider.GetRequiredService<IVariableObjectListItemEditorControlFactory>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeHelper>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         dataGraphEditingHost,
                         objectListElementInfo,

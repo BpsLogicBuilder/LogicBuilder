@@ -1,4 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -6,19 +8,15 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
@@ -69,70 +67,101 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             _treeViewXmlDocumentHelper.LoadXmlDocument(objectListXmlDocument.OuterXml);
             _dataGraphEditingFormEventsHelper = editingFormHelperFactory.GetDataGraphEditingFormEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
-            //Initialize();
+            Initialize();
         }
 
-        public bool DenySpecialCharacters => throw new NotImplementedException();
+        public bool DenySpecialCharacters => false;
 
-        public bool DisplayNotCheckBox => throw new NotImplementedException();
+        public bool DisplayNotCheckBox => false;
 
-        public RadPanel RadPanelFields => throw new NotImplementedException();
+        public RadPanel RadPanelFields => radPanelFields;
 
-        public RadTreeView TreeView => throw new NotImplementedException();
+        public RadTreeView TreeView => radTreeView1;
 
-        public string VisibleText => throw new NotImplementedException();
+        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
 
-        public XmlDocument XmlDocument => throw new NotImplementedException();
+        public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
-        public XmlElement XmlResult => throw new NotImplementedException();
+        public XmlElement XmlResult
+            => _refreshVisibleTextHelper.RefreshObjectListVisibleTexts
+            (
+                _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
+                Application
+            );
 
-        public ApplicationTypeInfo Application => throw new NotImplementedException();
+        public Type AssignedTo => assignedTo;
 
-        public Type AssignedTo => throw new NotImplementedException();
+        public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-        public IDictionary<string, string> ExpandedNodes => throw new NotImplementedException();
+        public ApplicationTypeInfo Application => _application ?? throw _exceptionHelper.CriticalException("{141C78F2-1BF5-4695-9388-D8AA825A3883}");
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 
-        public void ClearMessage()
-        {
-            ApplicationChanged?.Invoke(null, new ApplicationChangedEventArgs(Application));
-            throw new NotImplementedException();
-        }
+        public void ClearMessage() => _dialogFormMessageControl.ClearMessage();
 
         public void DisableControlsDuringEdit(bool disable)
         {
-            throw new NotImplementedException();
         }
 
-        public void RebuildTreeView()
+        public void RebuildTreeView() => LoadTreeview();
+
+        public void ReloadXmlDocument(string xmlString) => _treeViewXmlDocumentHelper.LoadXmlDocument(xmlString);
+
+        public void RequestDocumentUpdate(IEditingControl editingControl) => _dataGraphEditingFormEventsHelper.RequestDocumentUpdate(editingControl);
+
+        public void SetErrorMessage(string message) => _dialogFormMessageControl.SetErrorMessage(message);
+
+        public void SetMessage(string message, string title = "") => _dialogFormMessageControl.SetMessage(message, title);
+
+        public void ValidateXmlDocument() => _treeViewXmlDocumentHelper.ValidateXmlDocument();
+
+        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
         {
-            throw new NotImplementedException();
+            radButton.Click += (sender, args) => command.Execute();
         }
 
-        public void ReloadXmlDocument(string xmlString)
+        private void Initialize()
         {
-            throw new NotImplementedException();
+            InitializeDialogFormMessageControl();
+            InitializeApplicationDropDownList();
+
+            _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
+
+            _formInitializer.SetFormDefaults(this, 719);
+            btnCancel.CausesValidation = false;
+            btnOk.DialogResult = DialogResult.OK;
+            btnCancel.DialogResult = DialogResult.Cancel;
+
+            _formInitializer.SetToEditSize(this);
+
+            _dataGraphEditingFormEventsHelper.Setup();
+            AddButtonClickCommand(btnPasteXml, _editObjectListCommandFactory.GetEditVariableObjectListFormXmlCommand(this));
+            LoadTreeview();
         }
 
-        public void RequestDocumentUpdate(IEditingControl editingControl)
+        private void InitializeApplicationDropDownList()
         {
-            throw new NotImplementedException();
+            ControlsLayoutUtility.LayoutApplicationGroupBox(this, radPanelApplication, radGroupBoxApplication, _applicationDropDownList);
         }
 
-        public void SetErrorMessage(string message)
+        private void InitializeDialogFormMessageControl()
         {
-            throw new NotImplementedException();
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
-        public void SetMessage(string message, string title = "")
+        private void LoadTreeview()
         {
-            throw new NotImplementedException();
+            _parametersDataTreeBuilder.CreateObjectListTreeProfile(TreeView, XmlDocument, assignedTo, objectListInfo);
+            if (TreeView.SelectedNode == null)
+                TreeView.SelectedNode = TreeView.Nodes[0];
         }
 
-        public void ValidateXmlDocument()
+        #region Event Handlers
+        private void ApplicationDropDownList_ApplicationChanged(object? sender, ApplicationChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            _application = e.Application;
+            ApplicationChanged?.Invoke(this, e);
         }
+        #endregion Event Handlers
     }
 }

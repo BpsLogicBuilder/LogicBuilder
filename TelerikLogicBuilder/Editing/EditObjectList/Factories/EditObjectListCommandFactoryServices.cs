@@ -20,6 +20,15 @@ namespace Microsoft.Extensions.DependencyInjection
                         editParameterObjectListControl
                     )
                 )
+                .AddTransient<Func<IEditVariableObjectListControl, AddVariableObjectListBoxItemCommand>>
+                (
+                    provider =>
+                    editVariableObjectListControl => new AddVariableObjectListBoxItemCommand
+                    (
+                        provider.GetRequiredService<IObjectListBoxItemFactory>(),
+                        editVariableObjectListControl
+                    )
+                )
                 .AddTransient<IEditObjectListCommandFactory, EditObjectListCommandFactory>()
                 .AddTransient<Func<IEditParameterObjectListForm, EditParameterObjectListFormXmlCommand>>
                 (
@@ -30,6 +39,15 @@ namespace Microsoft.Extensions.DependencyInjection
                         editParameterObjectListForm
                     )
                 )
+                .AddTransient<Func<IEditVariableObjectListForm, EditVariableObjectListFormXmlCommand>>
+                (
+                    provider =>
+                    editVariableObjectListForm => new EditVariableObjectListFormXmlCommand
+                    (
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        editVariableObjectListForm
+                    )
+                )
                 .AddTransient<Func<IEditParameterObjectListControl, UpdateParameterObjectListBoxItemCommand>>
                 (
                     provider =>
@@ -37,6 +55,15 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IObjectListBoxItemFactory>(),
                         editParameterObjectListControl
+                    )
+                )
+                .AddTransient<Func<IEditVariableObjectListControl, UpdateVariableObjectListBoxItemCommand>>
+                (
+                    provider =>
+                    editVariableObjectListControl => new UpdateVariableObjectListBoxItemCommand
+                    (
+                        provider.GetRequiredService<IObjectListBoxItemFactory>(),
+                        editVariableObjectListControl
                     )
                 );
         }
