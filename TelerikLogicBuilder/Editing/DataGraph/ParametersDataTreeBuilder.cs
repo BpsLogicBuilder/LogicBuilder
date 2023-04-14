@@ -556,7 +556,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 switch (variable)
                 {
                     case ObjectVariable:
-                        GetObjectParameterChildren(variableElement, variableTreeNode);
+                        GetObjectVariableChildren(variableElement, variableTreeNode);
                         break;
                     case ListOfLiteralsVariable listOfLiteralsVariable:
                         GetLiteralListVariableChildren(variableElement, variableTreeNode, _literalListVariableElementInfoHelper.GetLiteralListElementInfo(listOfLiteralsVariable));
@@ -727,7 +727,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         (
                             variableTreeNode,
                             childOfParameterElement,
-                            _objectListParameterElementInfoHelper.GetObjectListElementInfo(_objectListDataParser.Parse(childOfParameterElement))
+                            _objectListVariableElementInfoHelper.GetObjectListElementInfo(_objectListDataParser.Parse(childOfParameterElement))
                         );
                         break;
                     default:
@@ -843,7 +843,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         (
                             objectTreeNode,
                             childElement,
-                            _literalListParameterElementInfoHelper.GetLiteralListElementInfo(_literalListDataParser.Parse(childElement))
+                            _literalListVariableElementInfoHelper.GetLiteralListElementInfo(_literalListDataParser.Parse(childElement))
                         );
                         break;
                     case XmlDataConstants.OBJECTLISTELEMENT:
@@ -852,7 +852,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                             objectTreeNode,
                             childElement,
                             //child of <object> is an objectList - can't use objectListElementTreeNode.ListInfo here (belongs to the parent of <object>)
-                            _objectListParameterElementInfoHelper.GetObjectListElementInfo(_objectListDataParser.Parse(childElement))
+                            _objectListVariableElementInfoHelper.GetObjectListElementInfo(_objectListDataParser.Parse(childElement))
                         );
                         break;
                     default:
@@ -923,7 +923,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         (
                             variableTreeNode,
                             childOfParameterElement,
-                            _literalListParameterElementInfoHelper.GetLiteralListElementInfo(_literalListDataParser.Parse(childOfParameterElement))
+                            _literalListVariableElementInfoHelper.GetLiteralListElementInfo(_literalListDataParser.Parse(childOfParameterElement))
                         );
                         break;
                     case XmlDataConstants.OBJECTLISTELEMENT:
@@ -974,6 +974,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                         break;
                     default:
                         throw _exceptionHelper.CriticalException("{5785F852-19B2-45AA-A78C-1DBCA779F73D}");
+                }
+            }
+        }
+
+        private void GetObjectVariableChildren(XmlElement parameterElement, ParametersDataTreeNode parameterTreeNode)
+        {
+            GetChildren(_xmlDocumentHelpers.GetSingleChildElement(parameterElement));
+            void GetChildren(XmlElement childOfParameterElement)//constructor,function,variable,literalList,objectList
+            {
+                switch (childOfParameterElement.Name)
+                {
+                    case XmlDataConstants.CONSTRUCTORELEMENT:
+                        AddConstructorNode(parameterTreeNode, childOfParameterElement);
+                        break;
+                    case XmlDataConstants.FUNCTIONELEMENT:
+                        AddFunctionNode(parameterTreeNode, childOfParameterElement);
+                        break;
+                    case XmlDataConstants.VARIABLEELEMENT:
+                        AddVariableNode(parameterTreeNode, childOfParameterElement);
+                        break;
+                    case XmlDataConstants.LITERALLISTELEMENT:
+                        AddLiteralListNode
+                        (
+                            parameterTreeNode,
+                            childOfParameterElement,
+                            _literalListVariableElementInfoHelper.GetLiteralListElementInfo(_literalListDataParser.Parse(childOfParameterElement))
+                        );
+                        break;
+                    case XmlDataConstants.OBJECTLISTELEMENT:
+                        AddObjectListNode
+                        (
+                            parameterTreeNode,
+                            childOfParameterElement,
+                            _objectListVariableElementInfoHelper.GetObjectListElementInfo(_objectListDataParser.Parse(childOfParameterElement))
+                        );
+                        break;
+                    default:
+                        throw _exceptionHelper.CriticalException("{E62598B3-FE33-4A5D-B7F5-F283DD807665}");
                 }
             }
         }
