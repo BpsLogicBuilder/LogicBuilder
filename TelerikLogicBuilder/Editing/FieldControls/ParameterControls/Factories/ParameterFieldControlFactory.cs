@@ -1,10 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
-using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using System;
 using System.Collections.Generic;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.Factories
 {
     internal class ParameterFieldControlFactory : IParameterFieldControlFactory
     {
