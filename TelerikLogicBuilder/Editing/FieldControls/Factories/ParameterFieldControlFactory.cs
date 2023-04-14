@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
-    internal class FieldControlFactory : IFieldControlFactory
+    internal class ParameterFieldControlFactory : IParameterFieldControlFactory
     {
         private readonly Func<IEditConstructorControl, IConstructorGenericParametersControl> _getConstructorGenericParametersControl;
         private readonly Func<IEditFunctionControl, IFunctionGenericParametersControl> _getFunctionGenericParametersControl;
@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IDataGraphEditingControl, ListOfObjectsParameter, IObjectListParameterRichTextBoxControl> _getObjectListParameterRichTextBoxControl;
         private readonly Func<IDataGraphEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl> _getObjectParameterRichTextBoxControl;
 
-        public FieldControlFactory(
+        public ParameterFieldControlFactory(
             Func<IEditConstructorControl, IConstructorGenericParametersControl> getConstructorGenericParametersControl,
             Func<IEditFunctionControl, IFunctionGenericParametersControl> getFunctionGenericParametersControl,
             Func<IDataGraphEditingControl, ListOfLiteralsParameter, IDictionary<string, ParameterControlSet>, ILiteralListParameterRichTextBoxControl> getLiteralListParameterRichTextBoxControl,

@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
     internal class LoadParameterControlsDictionary : ILoadParameterControlsDictionary
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IFieldControlFactory _fieldControlFactory;
+        private readonly IParameterFieldControlFactory _fieldControlFactory;
         private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly IServiceFactory _serviceFactory;
         private readonly IDataGraphEditingControl editingControl;
@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         public LoadParameterControlsDictionary(
             IExceptionHelper exceptionHelper,
-            IFieldControlFactory fieldControlFactory,
+            IParameterFieldControlFactory fieldControlFactory,
             IRadCheckBoxHelper radCheckBoxHelper,
             IServiceFactory serviceFactory,
             IDataGraphEditingControl editingControl,

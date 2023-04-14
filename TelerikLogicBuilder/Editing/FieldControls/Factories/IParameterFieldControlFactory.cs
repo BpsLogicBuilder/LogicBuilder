@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
-    internal interface IFieldControlFactory
+    internal interface IParameterFieldControlFactory
     {
         IConstructorGenericParametersControl GetConstructorGenericParametersControl(IEditConstructorControl editConstructorControl);
         IFunctionGenericParametersControl GetFunctionGenericParametersControl(IEditFunctionControl editFunctionControl);

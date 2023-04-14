@@ -34,9 +34,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
         private readonly IFunctionElementValidator _functionElementValidator;
         private readonly IFunctionHelper _functionHelper;
         private readonly IFunctionParameterControlSetValidator _functionParameterControlSetValidator;
-        private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
+        private readonly IParameterFieldControlFactory _fieldControlFactory;
         private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -62,8 +62,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             IFunctionHelper functionHelper,
             IFunctionParameterControlSetValidator functionParameterControlSetValidator,
             IEditingControlHelperFactory editingControlHelperFactory,
-            IFieldControlFactory fieldControlFactory,
             IGenericFunctionHelper genericFunctionHelper,
+            IParameterFieldControlFactory fieldControlFactory,
             IRadCheckBoxHelper radCheckBoxHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,

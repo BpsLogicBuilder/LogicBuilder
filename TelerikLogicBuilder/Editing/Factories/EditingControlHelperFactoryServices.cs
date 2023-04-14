@@ -52,7 +52,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (editingControl, dataGraphEditingHost) => new LoadParameterControlsDictionary
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFieldControlFactory>(),
+                        provider.GetRequiredService<IParameterFieldControlFactory>(),
                         provider.GetRequiredService<IRadCheckBoxHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         editingControl, 

@@ -35,9 +35,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly IFunctionElementValidator _functionElementValidator;
         private readonly IFunctionHelper _functionHelper;
         private readonly IFunctionParameterControlSetValidator _functionParameterControlSetValidator;
-        private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
+        private readonly IParameterFieldControlFactory _fieldControlFactory;
         private readonly IRadCheckBoxHelper _radCheckBoxHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IDataGraphEditingHost dataGraphEditingHost;
@@ -64,8 +64,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             IFunctionHelper functionHelper,
             IFunctionParameterControlSetValidator functionParameterControlSetValidator,
             IEditingControlHelperFactory editingControlHelperFactory,
-            IFieldControlFactory fieldControlFactory,
             IGenericFunctionHelper genericFunctionHelper,
+            IParameterFieldControlFactory fieldControlFactory,
             IRadCheckBoxHelper radCheckBoxHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IDataGraphEditingHost dataGraphEditingHost,

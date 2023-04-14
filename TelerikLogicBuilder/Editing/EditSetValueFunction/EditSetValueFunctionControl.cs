@@ -23,9 +23,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
         private readonly IConfigurationService _configurationService;
         private readonly IFunctionDataParser _functionDataParser;
         private readonly IFunctionGenericsConfigrationValidator _functionGenericsConfigrationValidator;
-        private readonly IFieldControlFactory _fieldControlFactory;
         private readonly IGenericFunctionHelper _genericFunctionHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
+        private readonly IParameterFieldControlFactory _fieldControlFactory;
         private readonly ITableLayoutPanelHelper _tableLayoutPanelHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateParameterControlValues _updateParameterControlValues;
@@ -50,8 +50,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             IFunctionDataParser functionDataParser,
             IFunctionGenericsConfigrationValidator functionGenericsConfigrationValidator,
             IEditingControlHelperFactory editingControlFactory,
-            IFieldControlFactory fieldControlFactory,
             IGenericFunctionHelper genericFunctionHelper,
+            IParameterFieldControlFactory fieldControlFactory,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             ITypeLoadHelper typeLoadHelper,
             IUpdateParameterControlValues updateParameterControlValues,

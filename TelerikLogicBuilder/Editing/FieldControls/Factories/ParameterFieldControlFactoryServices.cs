@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    internal static class FieldControlFactoryServices
+    internal static class ParameterFieldControlFactoryServices
     {
-        internal static IServiceCollection AddFieldControlFactories(this IServiceCollection services)
+        internal static IServiceCollection AddParameterFieldControlFactories(this IServiceCollection services)
         {
             return services
                 .AddTransient<Func<IEditConstructorControl, IConstructorGenericParametersControl>>
@@ -41,7 +41,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         editigConstructorControl
                     )
                 )
-                .AddTransient<IFieldControlFactory, FieldControlFactory>()
+                .AddTransient<IParameterFieldControlFactory, ParameterFieldControlFactory>()
                 .AddTransient<Func<IEditFunctionControl, IFunctionGenericParametersControl>>
                 (
                     provider =>

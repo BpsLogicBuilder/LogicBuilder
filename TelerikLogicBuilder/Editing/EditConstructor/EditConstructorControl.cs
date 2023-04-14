@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly IConstructorElementValidator _constructorElementValidator;
         private readonly IConstructorGenericsConfigrationValidator _constructorGenericsConfigrationValidator;
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly IFieldControlFactory _fieldControlFactory;
+        private readonly IParameterFieldControlFactory _fieldControlFactory;
         private readonly IGenericConstructorHelper _genericConstructorHelper;
         private readonly ILoadParameterControlsDictionary _loadParameterControlsDictionary;
         private readonly IParameterElementValidator _parameterElementValidator;
@@ -66,9 +66,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             IConstructorGenericsConfigrationValidator constructorGenericsConfigrationValidator,
             IEditingControlHelperFactory editingControlFactory,
             IExceptionHelper exceptionHelper,
-            IFieldControlFactory fieldControlFactory,
             IGenericConstructorHelper genericConstructorHelper,
             IParameterElementValidator parameterElementValidator,
+            IParameterFieldControlFactory fieldControlFactory,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             ITableLayoutPanelHelper tableLayoutPanelHelper,
             ITypeLoadHelper typeLoadHelper,
