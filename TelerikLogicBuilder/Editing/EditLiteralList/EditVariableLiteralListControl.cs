@@ -155,7 +155,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                 if (cmbLiteralType.SelectedIndex == -1)
                     throw _exceptionHelper.CriticalException("{00B68373-3617-43D6-A11A-DD606213E420}");
 
-                return _enumHelper.GetSystemType((LiteralVariableType)cmbLiteralType.SelectedValue);
+                return _enumHelper.GetSystemType((LiteralListElementType)cmbLiteralType.SelectedValue);
             }
         }
 
@@ -355,7 +355,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             SetValueControlToolTip();
 
             cmbLiteralType.SelectedValue = literalListElementInfo.LiteralType;
-            cmbListType.SelectedValue = literalListElementInfo.ListType;
+            cmbListType.SelectedValue = _enumHelper.GetConcreteListType(literalListElementInfo.ListType);
 
             CheckAssignability();
 
@@ -449,7 +449,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
             ListBox.Items.Clear();
             cmbLiteralType.SelectedValue = literalListData.LiteralType;
-            cmbListType.SelectedValue = literalListData.ListType;
+            cmbListType.SelectedValue = _enumHelper.GetConcreteListType(literalListData.ListType);
             ListBox.Items.AddRange
             (
                 GetListBoxItems().Select(lbi => new RadListDataItem(lbi.VisibleText, lbi))

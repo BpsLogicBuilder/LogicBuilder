@@ -2002,6 +2002,9 @@
 	<data name="variableTypeNameMustBeEmptyFormat" xml:space="preserve">
     <value>Type Name field for  variable {0} must be empty when the reference category is not "Type"or "Static Reference".</value>
   </data>
+	<data name="variableValueRequired" xml:space="preserve">
+    <value>A value must be set for the variable.</value>
+  </data>
 	<data name="variableVisibleTextBegin" xml:space="preserve">
     <value>&lt;</value>
     <comment>Must be a string with length==1 i.e. character</comment>

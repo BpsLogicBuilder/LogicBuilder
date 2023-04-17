@@ -223,7 +223,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             }
         }
 
-
         private void UpdateParameterField(XmlElement parameterElement, ParameterControlSet parameterControlSet, ParameterBase parameter, string parameterName, string? selectedParameter)
         {
             if (parameterElement.Name != _xmlDataHelper.GetElementName(parameter.ParameterCategory))

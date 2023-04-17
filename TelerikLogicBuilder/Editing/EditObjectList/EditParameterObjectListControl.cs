@@ -352,7 +352,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             SetValueControlToolTip();
 
             cmbObjectType.Text = objectListElementInfo.ObjectType;
-            cmbListType.SelectedValue = objectListElementInfo.ListType;
+            cmbListType.SelectedValue = _enumHelper.GetConcreteListType(objectListElementInfo.ListType);
 
             CheckAssignability();
 
@@ -447,7 +447,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             }
 
             cmbObjectType.Text = objectListData.ObjectType;
-            cmbListType.SelectedValue = objectListData.ListType;
+            cmbListType.SelectedValue = _enumHelper.GetConcreteListType(objectListData.ListType);
 
             if (!_typeLoadHelper.TryGetSystemType(cmbObjectType.Text, Application, out Type? type))
             {

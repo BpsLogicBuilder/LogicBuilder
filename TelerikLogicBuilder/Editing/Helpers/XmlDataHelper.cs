@@ -86,6 +86,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             );
         }
 
+        public string BuildEmptyAssertFunctionXml(string name)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.ASSERTFUNCTIONELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, name);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, name);
+                    xmlTextWriter.WriteRaw(BuildVariableXml(string.Empty));
+                    xmlTextWriter.WriteRaw(BuildVariableValueXml($"<{XmlDataConstants.LITERALVARIABLEELEMENT}></{XmlDataConstants.LITERALVARIABLEELEMENT}>"));
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildEmptyConstructorXml(string name, string visibleText)
         {
             StringBuilder stringBuilder = new();
@@ -113,6 +129,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     xmlTextWriter.WriteElementString(XmlDataConstants.GENERICARGUMENTSELEMENT, string.Empty);
                     xmlTextWriter.WriteElementString(XmlDataConstants.PARAMETERSELEMENT, string.Empty);
                     xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
+        public string BuildEmptyRetractFunctionXml(string name)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.RETRACTFUNCTIONELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, name);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, name);
+                    xmlTextWriter.WriteRaw(BuildVariableXml(string.Empty));
+                xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();
             }
             return stringBuilder.ToString();

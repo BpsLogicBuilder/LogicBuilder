@@ -90,16 +90,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return enumNames.Select(item => (T)Enum.Parse(typeof(T), item)).ToList();
         }
 
+        public ListType GetConcreteListType(ListType listType) 
+            => listType switch
+            {
+                ListType.IGenericCollection => ListType.GenericCollection,
+                ListType.IGenericEnumerable
+                    or ListType.IGenericList => ListType.GenericList,
+                ListType.Array
+                    or ListType.GenericList
+                    or ListType.GenericCollection => listType,
+                _ => throw _exceptionHelper.CriticalException("{BB8AF4B0-0765-4060-9BDD-F1530FC18246}"),
+            };
+
         public string GetEnumResourceString(string? enumName)
         {
             if (string.IsNullOrEmpty(enumName))
                 throw _exceptionHelper.CriticalException("{87C725C2-BEB3-4BDC-AFDD-E750642957D9}");
 
-            string? resourceValue = Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, enumName));
-
-            if (resourceValue == null)
-                throw _exceptionHelper.CriticalException("{5E5F427C-CA44-4D7F-99F1-18DE4680D629}");
-
+            string? resourceValue = Strings.ResourceManager.GetString(string.Concat(MiscellaneousConstants.ENUMDESCRIPTION, enumName)) ?? throw _exceptionHelper.CriticalException("{5E5F427C-CA44-4D7F-99F1-18DE4680D629}");
             return resourceValue;
         }
 

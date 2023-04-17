@@ -14,7 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Data
         }
 
         /// <summary>
-        /// Child element of <variableValue></variableValue> (literalVariable, objectVariable, literalListVariable, objectListVariable)
+        /// Child element of  variableValue <variableValue></variableValue> (literalVariable, objectVariable, literalListVariable, objectListVariable)
         /// </summary>
         internal XmlElement ChildElement { get; }
 

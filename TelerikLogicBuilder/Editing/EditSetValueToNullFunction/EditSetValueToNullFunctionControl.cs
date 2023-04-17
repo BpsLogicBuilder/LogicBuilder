@@ -40,7 +40,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
         private readonly Type assignedTo;
         private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
         private readonly XmlDocument xmlDocument;
-        private readonly string? selectedParameter;
 
         private readonly RadGroupBox groupBoxFunction;
         private readonly RadScrollablePanel radPanelFunction;
@@ -64,8 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
-            string treeNodeXPath,
-            string? selectedParameter = null)
+            string treeNodeXPath)
         {
             InitializeComponent();
             _configurationService = configurationService;
@@ -85,7 +83,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             );
 
             this.assignedTo = assignedTo;
-            this.selectedParameter = selectedParameter;
 
             _loadParameterControlsDictionary = editingControlFactory.GetLoadParameterControlsDictionary(this, dataGraphEditingHost);
 
@@ -125,8 +122,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
         public ApplicationTypeInfo Application => throw new NotImplementedException();
 
         public bool IsValid => true;
-
-        public string? SelectedParameter => selectedParameter;
 
         public void ClearMessage()
         {

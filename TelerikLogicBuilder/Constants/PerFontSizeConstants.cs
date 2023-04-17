@@ -260,6 +260,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
+        public static Padding ImageLabelPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(4, 6, 0, 0);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(4, 7, 0, 0),
+                    [ThemeCollections.TEN] = new Padding(4, 7, 0, 0),
+                    [ThemeCollections.ELEVEN] = new Padding(4, 7, 0, 0),
+                    [ThemeCollections.TWELVE] = new Padding(6, 8, 0, 0),
+                    [ThemeCollections.THIRTEEN] = new Padding(6, 8, 0, 0),
+                    [ThemeCollections.FOURTEEN] = new Padding(6, 8, 0, 0),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static Padding InputControlPadding
         {
             get
@@ -380,6 +401,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
                     [ThemeCollections.TWELVE] = new Padding(12, 26, 12, 15),
                     [ThemeCollections.THIRTEEN] = new Padding(12, 30, 12, 15),
                     [ThemeCollections.FOURTEEN] = new Padding(12, 30, 12, 15),
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
+        public static Padding SelectVariableCellPadding
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return new Padding(0, 0, 10, 0);
+
+                Dictionary<int, Padding> sizes = new()
+                {
+                    [ThemeCollections.NINE] = new Padding(0, 0, 10, 0),
+                    [ThemeCollections.TEN] = new Padding(0, 0, 10, 0),
+                    [ThemeCollections.ELEVEN] = new Padding(0, 0, 10, 0),
+                    [ThemeCollections.TWELVE] = new Padding(0, 0, 12, 0),
+                    [ThemeCollections.THIRTEEN] = new Padding(0, 0, 12, 0),
+                    [ThemeCollections.FOURTEEN] = new Padding(0, 0, 12, 0)
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];

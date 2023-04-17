@@ -1882,5 +1882,39 @@ namespace TelerikLogicBuilder.Tests
                 exception.Message
             );
         }
+
+        [Theory]
+        [InlineData(ListType.Array, ListType.Array)]
+        [InlineData(ListType.GenericCollection, ListType.GenericCollection)]
+        [InlineData(ListType.GenericList, ListType.GenericList)]
+        [InlineData(ListType.IGenericCollection, ListType.GenericCollection)]
+        [InlineData(ListType.IGenericEnumerable, ListType.GenericList)]
+        [InlineData(ListType.IGenericList, ListType.GenericList)]
+        internal void GetConcreteListTypeWorks(ListType listType, ListType expectedResult)
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var result = enumHelper.GetConcreteListType(listType);
+
+            //assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void GetConcreteListTypeThrowsForInvalidListType()
+        {
+            //arrange
+            IEnumHelper enumHelper = serviceProvider.GetRequiredService<IEnumHelper>();
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => enumHelper.GetConcreteListType((ListType)(-1)));
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{BB8AF4B0-0765-4060-9BDD-F1530FC18246}"),
+                exception.Message
+            );
+        }
     }
 }

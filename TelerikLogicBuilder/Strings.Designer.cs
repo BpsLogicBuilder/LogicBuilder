@@ -6847,6 +6847,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A value must be set for the variable..
+        /// </summary>
+        internal static string variableValueRequired {
+            get {
+                return ResourceManager.GetString("variableValueRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;.
         /// </summary>
         internal static string variableVisibleTextBegin {

@@ -260,10 +260,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 (
                     dataGraphEditingHost,
                     _configurationService.FunctionList.Functions[functionTreeNodeNode.FunctionName],
-                    functionTreeNodeNode.AssignedToType,
                     dataGraphEditingHost.XmlDocument,
-                    functionTreeNodeNode.Name,
-                    null
+                    functionTreeNodeNode.Name
                 );
             }
 
@@ -277,8 +275,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     _configurationService.FunctionList.Functions[functionTreeNodeNode.FunctionName],
                     functionTreeNodeNode.AssignedToType,
                     dataGraphEditingHost.XmlDocument,
-                    functionTreeNodeNode.Name,
-                    null
+                    functionTreeNodeNode.Name
                 );
             }
 

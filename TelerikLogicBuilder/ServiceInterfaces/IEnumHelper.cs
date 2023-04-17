@@ -11,6 +11,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         IList<string> ConvertEnumListToStringList<T>(IList<T>? excludedItems = null);
         IList<T> ConvertToEnumList<T>(IEnumerable<string> enumNames);
         IList<string> ConvertVisibleDropDownValuesToEnumNames<T>(ICollection<string> array);
+        ListType GetConcreteListType(ListType listType);
         string GetEnumResourceString(string? enumName);
         GenericConfigCategory GetGenericConfigCategory(string elementName);
         ValidIndirectReference GetIndexReferenceDefinition(Type indexType);

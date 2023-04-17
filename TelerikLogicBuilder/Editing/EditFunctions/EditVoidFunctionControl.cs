@@ -188,8 +188,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             if (!_configurationService.FunctionList.VoidFunctions.TryGetValue(cmbSelectFunction.Text, out Function? function))
                 return;
 
-            _treeViewXmlDocumentHelper.LoadXmlDocument(_xmlDataHelper.BuildEmptyFunctionXml(function.Name, function.Name));
+            _treeViewXmlDocumentHelper.LoadXmlDocument(GetEmptyFunctioXml());
             LoadTreeview();
+
+            string GetEmptyFunctioXml()
+            {
+                return function.FunctionCategory switch
+                {
+                    FunctionCategories.Assert => _xmlDataHelper.BuildEmptyAssertFunctionXml(function.Name),
+                    FunctionCategories.Standard or FunctionCategories.RuleChainingUpdate => _xmlDataHelper.BuildEmptyFunctionXml(function.Name, function.Name),
+                    FunctionCategories.Retract => _xmlDataHelper.BuildEmptyRetractFunctionXml(function.Name),
+                    _ => throw _exceptionHelper.CriticalException("{B213177A-C628-4979-8627-336B5F488163}"),
+                };
+            }
         }
 
         private void Initialize()

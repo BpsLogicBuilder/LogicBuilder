@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
@@ -16,6 +17,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.LiteralListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.ObjectListItemControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.LiteralListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.ObjectListItemControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
@@ -144,34 +146,34 @@ namespace Microsoft.Extensions.DependencyInjection
                         selectedParameter
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditSetValueFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Function, XmlDocument, string, IEditSetValueFunctionControl>>
                 (
                     provider =>
-                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueFunctionControl
+                    (dataGraphEditingHost, function, formDocument, treeNodeXPath) => new EditSetValueFunctionControl
                     (
+                        provider.GetRequiredService<IAssertFunctionDataParser>(),
+                        provider.GetRequiredService<IAssertFunctionElementValidator>(),
                         provider.GetRequiredService<IConfigurationService>(),
-                        provider.GetRequiredService<IFunctionDataParser>(),
-                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
-                        provider.GetRequiredService<IEditingControlHelperFactory>(),
-                        provider.GetRequiredService<IGenericFunctionHelper>(),
-                        provider.GetRequiredService<IParameterFieldControlFactory>(),
-                        provider.GetRequiredService<ITableLayoutPanelHelper>(),
-                        provider.GetRequiredService<ITypeLoadHelper>(),
-                        provider.GetRequiredService<IUpdateParameterControlValues>(),
+                        provider.GetRequiredService<IEditSetValueFunctionCommandFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<ISetValueFunctionTableLayoutPanelHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IVariableValueControlFactory>(),
+                        provider.GetRequiredService<IVariableValueDataParser>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         dataGraphEditingHost,
                         function,
-                        assignedTo,
                         formDocument,
-                        treeNodeXPath,
-                        selectedParameter
+                        treeNodeXPath
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditSetValueToNullFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, IEditSetValueToNullFunctionControl>>
                 (
                     provider =>
-                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter) => new EditSetValueToNullFunctionControl
+                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath) => new EditSetValueToNullFunctionControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IFunctionDataParser>(),
@@ -187,8 +189,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         function,
                         assignedTo,
                         formDocument,
-                        treeNodeXPath,
-                        selectedParameter
+                        treeNodeXPath
                     )
                 )
                 .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl>>

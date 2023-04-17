@@ -30,6 +30,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public event EventHandler? Changed;
 
+        public void SetErrorBackColor()
+        {
+            Color errorColor = ForeColorUtility.GetGroupBoxBorderErrorColor();
+            SetPanelBorderForeColor(radPanelButton, errorColor);
+            SetPanelBorderForeColor(radPanelDropDownList, errorColor);
+            ShowPanelBorder(radPanelDropDownList);
+            ShowPanelBorder(radPanelButton);
+        }
+
+        public void SetNormalBackColor()
+        {
+            Color normalColor = ForeColorUtility.GetGroupBoxBorderColor(ThemeResolutionService.ApplicationThemeName);
+            SetPanelBorderForeColor(radPanelButton, normalColor);
+            SetPanelBorderForeColor(radPanelDropDownList, normalColor);
+            CollapsePanelBorder(radPanelDropDownList);
+            CollapsePanelBorder(radPanelButton);
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
@@ -63,7 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             ((ISupportInitialize)this.radPanelButton).BeginInit();
             this.radPanelButton.SuspendLayout();
-            this.radPanelButton.Padding = new Padding(0, 1, 3, 0);
+            this.radPanelButton.Padding = new Padding(0, 1, 1, 1);
             this.radPanelButton.Size = new Size(PerFontSizeConstants.CommandButtonWidth, this.radPanelButton.Height);
 
             ((ISupportInitialize)radButtonHelper).BeginInit();
@@ -86,6 +104,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             ((ISupportInitialize)this.radPanelDropDownList).BeginInit();
             this.radPanelDropDownList.SuspendLayout();
+            this.radPanelDropDownList.Padding = new Padding(1, 1, 0, 1);
 
             ((ISupportInitialize)this.radDropDownList).BeginInit();
             this.radDropDownList.Dock = DockStyle.Fill;
@@ -101,6 +120,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             ((ISupportInitialize)this.radPanelDropDownList).EndInit();
             this.radPanelDropDownList.ResumeLayout(true);
         }
+
+        private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
+
+        private static void ShowPanelBorder(RadPanel radPanel)
+            => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Visible;
 
         #region Event Handlers
         private void RadButtonHelper_Click(object? sender, EventArgs e)

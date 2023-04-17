@@ -51,18 +51,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditSetValueFunctionControl GetEditSetValueFunctionControl(
             IDataGraphEditingHost dataGraphEditingHost,
             Function function,
-            Type assignedTo,
             XmlDocument formDocument,
-            string treeNodeXPath,
-            string? selectedParameter = null);
+            string treeNodeXPath);
 
         IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(
             IDataGraphEditingHost dataGraphEditingHost,
             Function function,
             Type assignedTo,
             XmlDocument formDocument,
-            string treeNodeXPath,
-            string? selectedParameter = null);
+            string treeNodeXPath);
 
         IEditStandardFunctionControl GetEditStandardFunctionControl(
             IDataGraphEditingHost dataGraphEditingHost,

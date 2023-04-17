@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
@@ -134,7 +135,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
         public bool DisplayNotCheckBox => dataGraphEditingHost.DisplayNotCheckBox;
 
-        public bool IsValid => throw new NotImplementedException();
+        public bool IsValid
+        {
+            get
+            {
+                List<string> errors = new();
+                _functionParameterControlSetValidator.Validate(editControlsSet, function, Application, errors);
+                if (errors.Count > 0)
+                    return false;
+
+                _functionElementValidator.Validate(XmlResult, assignedTo, Application, errors);
+                if (errors.Count > 0)
+                    return false;
+
+                return true;
+            }
+        }
 
         public string? SelectedParameter => selectedParameter;
 
@@ -220,6 +236,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             this.radPanelFunction.TabIndex = 0;
             //radPanelTableParent
             //tableLayoutPanel
+            foreach (ParameterControlSet controlSet in editControlsSet.Values)
+            {
+                Dispose(controlSet.ImageLabel);
+                Dispose(controlSet.ChkInclude);
+                Dispose(controlSet.Control);
+                void Dispose(Control control)
+                {
+                    if (!control.IsDisposed)
+                        control.Dispose();
+                }
+            }
             editControlsSet.Clear();
             tableLayoutPanel.Controls.Clear();
 
@@ -278,7 +305,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
                 this.tableLayoutPanel.Controls.Add(parameterControlSet.ImageLabel, 1, currentRow);
                 this.tableLayoutPanel.Controls.Add(parameterControlSet.ChkInclude, 2, currentRow);
                 this.tableLayoutPanel.Controls.Add(parameterControlSet.Control, 3, currentRow);
-                ShowHideParameterControls(parameterControlSet.ChkInclude);
+                //ShowHideParameterControls(parameterControlSet.ChkInclude);
+                //Incorrect layout fails for RadDropDownList if Visible set to false before
+                //the call to this.tableLayoutPanel.PerformLayout();
+                //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
+                //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
                 parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
             }
 
@@ -324,6 +355,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             this.radPanelTableParent.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
+
+            if (editControlsSet.Any())
+            {//editControlsSet could be empty here if HasGenericArguments %% ValidateGenericArgs() == false
+                foreach (ParameterBase parameter in function.Parameters)
+                {//Incorrect layout fails for RadDropDownList if Visible set to false before
+                 //the call to this.tableLayoutPanel.PerformLayout();
+                 //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
+                 //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
+                 //This code should otherwise run where commented above "//ShowHideParameterControls(parameterControlSet.ChkInclude);"
+                    ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
+                    ShowHideParameterControls(parameterControlSet.ChkInclude);
+                }
+            }
 
             ((ISupportInitialize)(this.lblFunction)).EndInit();
             if (function.HasGenericArguments)

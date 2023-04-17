@@ -133,7 +133,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private static readonly string XmlParentXPath = $"/{XmlDataConstants.CONSTRUCTORELEMENT}";
         private static readonly string ParametersXPath = $"{XmlParentXPath}/{XmlDataConstants.PARAMETERSELEMENT}";
 
-        public bool IsValid => throw new NotImplementedException();
+        public bool IsValid
+        {
+            get
+            {
+                List<string> errors = new();
+                errors.AddRange(ValidateControls());
+                if (errors.Count > 0)
+                    return false;
+
+                _constructorElementValidator.Validate(XmlResult, assignedTo, Application, errors);
+                if (errors.Count > 0)
+                    return false;
+
+                return true;
+            }
+        }
 
         public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 
@@ -264,6 +279,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.radPanelConstructor.TabIndex = 0;
             //radPanelTableParent
             //tableLayoutPanel
+            foreach (ParameterControlSet controlSet in editControlsSet.Values)
+            {
+                Dispose(controlSet.ImageLabel);
+                Dispose(controlSet.ChkInclude);
+                Dispose(controlSet.Control);
+                void Dispose(Control control)
+                {
+                    if (!control.IsDisposed)
+                        control.Dispose();
+                }
+            }
             editControlsSet.Clear();
             tableLayoutPanel.Controls.Clear();
 
@@ -363,13 +389,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
 
-            foreach (ParameterBase parameter in constructor.Parameters)
-            {//Incorrect layout fails for RadDropDownList if Visible set to false before
-             //the call to this.tableLayoutPanel.PerformLayout();
-             //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
-             //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
-                ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
-                ShowHideParameterControls(parameterControlSet.ChkInclude);
+            if (editControlsSet.Any())
+            {//editControlsSet could be empty here if HasGenericArguments %% ValidateGenericArgs() == false
+                foreach (ParameterBase parameter in constructor.Parameters)
+                {//Incorrect layout fails for RadDropDownList if Visible set to false before
+                 //the call to this.tableLayoutPanel.PerformLayout();
+                 //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
+                 //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
+                 //This code should otherwise run where commented above "//ShowHideParameterControls(parameterControlSet.ChkInclude);"
+                    ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
+                    ShowHideParameterControls(parameterControlSet.ChkInclude);
+                }
             }
 
             ((ISupportInitialize)(this.lblConstructor)).EndInit();
