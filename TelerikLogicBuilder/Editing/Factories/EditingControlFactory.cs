@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<IDataGraphEditingHost, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterLiteralListControl> _getEditParameterLiteralListControl;
         private readonly Func<IDataGraphEditingHost, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterObjectListControl> _getEditParameterObjectListControl;
         private readonly Func<IDataGraphEditingHost, Function, XmlDocument, string, IEditSetValueFunctionControl> _getEditSetValueFunctionControl;
-        private readonly Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, IEditSetValueToNullFunctionControl> _getEditSetValueToNullFunctionControl;
+        private readonly Func<IDataGraphEditingHost, Function, XmlDocument, string, IEditSetValueToNullFunctionControl> _getEditSetValueToNullFunctionControl;
         private readonly Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl> _getEditStandardFunctionControl;
         private readonly Func<IEditVariableHost, Type, IEditVariableControl> _getEditVariableControl;
         private readonly Func<IDataGraphEditingHost, LiteralListVariableElementInfo, Type, XmlDocument, string, int?, IEditVariableLiteralListControl> _getEditVariableLiteralListControl;
@@ -33,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<IDataGraphEditingHost, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterLiteralListControl> getEditParameterLiteralListControl,
             Func<IDataGraphEditingHost, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterObjectListControl> getEditParameterObjectListControl,
             Func<IDataGraphEditingHost, Function, XmlDocument, string, IEditSetValueFunctionControl> getEditSetValueFunctionControl,
-            Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, IEditSetValueToNullFunctionControl> getEditSetValueToNullFunctionControl,
+            Func<IDataGraphEditingHost, Function, XmlDocument, string, IEditSetValueToNullFunctionControl> getEditSetValueToNullFunctionControl,
             Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditStandardFunctionControl> getEditStandardFunctionControl,
             Func<IEditVariableHost, Type, IEditVariableControl> getEditVariableControl,
             Func<IDataGraphEditingHost, LiteralListVariableElementInfo, Type, XmlDocument, string, int?, IEditVariableLiteralListControl> getEditVariableLiteralListControl,
@@ -66,8 +66,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         public IEditSetValueFunctionControl GetEditSetValueFunctionControl(IDataGraphEditingHost dataGraphEditingHost, Function function, XmlDocument formDocument, string treeNodeXPath)
             => _getEditSetValueFunctionControl(dataGraphEditingHost, function, formDocument, treeNodeXPath);
 
-        public IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(IDataGraphEditingHost dataGraphEditingHost, Function function, Type assignedTo, XmlDocument formDocument, string treeNodeXPath)
-            => _getEditSetValueToNullFunctionControl(dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath);
+        public IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(IDataGraphEditingHost dataGraphEditingHost, Function function, XmlDocument formDocument, string treeNodeXPath)
+            => _getEditSetValueToNullFunctionControl(dataGraphEditingHost, function, formDocument, treeNodeXPath);
 
         public IEditStandardFunctionControl GetEditStandardFunctionControl(IDataGraphEditingHost dataGraphEditingHost, Function function, Type assignedTo, XmlDocument formDocument, string treeNodeXPath, string? selectedParameter = null)
             => _getEditStandardFunctionControl(dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter);

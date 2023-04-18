@@ -57,7 +57,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditSetValueToNullFunctionControl GetEditSetValueToNullFunctionControl(
             IDataGraphEditingHost dataGraphEditingHost,
             Function function,
-            Type assignedTo,
             XmlDocument formDocument,
             string treeNodeXPath);
 

@@ -22,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction.Commands
             using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
             IEditVariableForm editVariableForm = disposableManager.GetEditVariableForm(typeof(object));
 
-            editVariableForm.SetVariable(editVariableForm.VariableName);
+            editVariableForm.SetVariable(helperButtonDropDownList.Text);
             editVariableForm.ShowDialog(helperButtonDropDownList);
             if (editVariableForm.DialogResult != DialogResult.OK)
                 return;

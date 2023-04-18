@@ -170,24 +170,24 @@ namespace Microsoft.Extensions.DependencyInjection
                         treeNodeXPath
                     )
                 )
-                .AddTransient<Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, IEditSetValueToNullFunctionControl>>
+                .AddTransient<Func<IDataGraphEditingHost, Function, XmlDocument, string, IEditSetValueToNullFunctionControl>>
                 (
                     provider =>
-                    (dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath) => new EditSetValueToNullFunctionControl
+                    (dataGraphEditingHost, function, formDocument, treeNodeXPath) => new EditSetValueToNullFunctionControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
-                        provider.GetRequiredService<IFunctionDataParser>(),
-                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
-                        provider.GetRequiredService<IEditingControlHelperFactory>(),
-                        provider.GetRequiredService<IGenericFunctionHelper>(),
-                        provider.GetRequiredService<IParameterFieldControlFactory>(),
-                        provider.GetRequiredService<ITableLayoutPanelHelper>(),
+                        provider.GetRequiredService<IEditSetValueFunctionCommandFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IRetractFunctionDataParser>(),
+                        provider.GetRequiredService<IRetractFunctionElementValidator>(),
+                        provider.GetRequiredService<ISetValueFunctionTableLayoutPanelHelper>(),
                         provider.GetRequiredService<ITypeLoadHelper>(),
-                        provider.GetRequiredService<IUpdateParameterControlValues>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         dataGraphEditingHost,
                         function,
-                        assignedTo,
                         formDocument,
                         treeNodeXPath
                     )

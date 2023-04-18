@@ -171,40 +171,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
                 throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
         }
 
-        private IList<string> ValidateControls()
-        {
-            List<string> errors = new();
-            if (!_configurationService.VariableList.Variables.TryGetValue(cmbSelectVariable.Text, out variable))
-            {
-                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, cmbSelectVariable.Text));
-                cmbSelectVariable.SetErrorBackColor();
-                return errors;
-            }
-            cmbSelectVariable.SetNormalBackColor();
-
-            if (ValueControl.IsEmpty)
-            {
-                ValueControl.SetErrorBackColor();
-                errors.Add(Strings.variableValueRequired);
-                return errors;
-            }
-            ValueControl.SetNormalBackColor();
-
-            _assertFunctionElementValidator.Validate(XmlResult, Application, errors);
-            if (errors.Count > 0)
-            {
-                cmbSelectVariable.SetErrorBackColor();
-                ValueControl.SetErrorBackColor();
-            }
-            else
-            {
-                cmbSelectVariable.SetNormalBackColor();
-                ValueControl.SetNormalBackColor();
-            }
-
-            return errors;
-        }
-
         private static void AddClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
         {
             helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
@@ -319,7 +285,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
                 };
             }
         }
-
 
         private void Initialize()
         {
@@ -437,6 +402,40 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
                 return;
 
             ValueControl.Update(variableValueData.ChildElement);
+        }
+
+        private IList<string> ValidateControls()
+        {
+            List<string> errors = new();
+            if (!_configurationService.VariableList.Variables.TryGetValue(cmbSelectVariable.Text, out variable))
+            {
+                errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.decisionNotConfiguredFormat2, cmbSelectVariable.Text));
+                cmbSelectVariable.SetErrorBackColor();
+                return errors;
+            }
+            cmbSelectVariable.SetNormalBackColor();
+
+            if (ValueControl.IsEmpty)
+            {
+                ValueControl.SetErrorBackColor();
+                errors.Add(Strings.variableValueRequired);
+                return errors;
+            }
+            ValueControl.SetNormalBackColor();
+
+            _assertFunctionElementValidator.Validate(XmlResult, Application, errors);
+            if (errors.Count > 0)
+            {
+                cmbSelectVariable.SetErrorBackColor();
+                ValueControl.SetErrorBackColor();
+            }
+            else
+            {
+                cmbSelectVariable.SetNormalBackColor();
+                ValueControl.SetNormalBackColor();
+            }
+
+            return errors;
         }
 
         #region Event Handlers
