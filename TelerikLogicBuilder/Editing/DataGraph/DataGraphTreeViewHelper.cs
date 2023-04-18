@@ -414,13 +414,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 
         public FunctionElementTreeNode AddRootFunctionTreeNode(RadTreeView radTreeView, XmlElement functionElement, Type rootAssignedToType, string toolTipText)
         {
-            if (functionElement.Name != XmlDataConstants.FUNCTIONELEMENT)
+            if (functionElement.Name != XmlDataConstants.FUNCTIONELEMENT
+                && functionElement.Name != XmlDataConstants.NOTELEMENT)
                 throw _exceptionHelper.CriticalException("{15EF6982-67D9-4AD9-82E5-F1071FD752F1}");
 
             FunctionElementTreeNode newTreeNode = new
             (
                 functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                $"/{functionElement.Name}",
+                $"/{XmlDataConstants.NOTELEMENT}|/{functionElement.Name}",
                 rootAssignedToType
             )
             {

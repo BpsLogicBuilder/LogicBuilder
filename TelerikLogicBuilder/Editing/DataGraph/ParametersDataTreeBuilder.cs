@@ -87,7 +87,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 
         private const string ASSERT_FUNCTION_ROOT_XPATH = $"/{XmlDataConstants.ASSERTFUNCTIONELEMENT}";
         private const string CONSTRUCTOR_ROOT_XPATH = $"/{XmlDataConstants.CONSTRUCTORELEMENT}";
-        private const string FUNCTION_ROOT_XPATH = $"/{XmlDataConstants.FUNCTIONELEMENT}";
+        private const string FUNCTION_ROOT_XPATH = $"/{XmlDataConstants.NOTELEMENT}|/{XmlDataConstants.FUNCTIONELEMENT}";
         private const string LITERALLIST_ROOT_XPATH = $"/{XmlDataConstants.LITERALLISTELEMENT}";
         private const string OBJECTLIST_ROOT_XPATH = $"/{XmlDataConstants.OBJECTLISTELEMENT}";
         private const string RETRACT_FUNCTION_ROOT_XPATH = $"/{XmlDataConstants.RETRACTFUNCTIONELEMENT}";
