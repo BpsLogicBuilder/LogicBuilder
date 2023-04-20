@@ -110,7 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 destinationTreeNode,
                 $"{XmlDataConstants.PARAMETERSELEMENT}/{newXmlParameterNode.Name}",
                 XmlDataConstants.NAMEATTRIBUTE,
-                newXmlParameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                newXmlParameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetImageIndex(newXmlParameterNode),
                 _xmlDocumentHelpers.GetParameterTreeNodeDescription(newXmlParameterNode)
             );
@@ -194,7 +194,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     movingTreeNode,
                     movingXmlNode.Name,
                     XmlDataConstants.NAMEATTRIBUTE,
-                    movingXmlNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    movingXmlNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                 );
 
                 InsertTreeNode(destinationFolderTreeNode, movingTreeNode);
@@ -248,7 +248,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 (
                     destinationFolderTreeNode,
                     movingTreeNode,
-                    movingXmlNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    movingXmlNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                 );
 
                 if (movingTreeNode.Expanded)
@@ -304,7 +304,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     movingTreeNode,
                     $"{XmlDataConstants.PARAMETERSELEMENT}/{movingXmlParameterNode.Name}",
                     XmlDataConstants.NAMEATTRIBUTE,
-                    movingXmlParameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    movingXmlParameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                 );
 
                 destParentTreeNode.Nodes.Insert(destinationParameterTreeNode.Index, movingTreeNode);
@@ -346,7 +346,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     movingTreeNode,
                     $"{XmlDataConstants.PARAMETERSELEMENT}/{movingXmlParameterNode.Name}",
                     XmlDataConstants.NAMEATTRIBUTE,
-                    movingXmlParameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    movingXmlParameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                 );
                 destinationTreeNode.Nodes.Add(movingTreeNode);
                 _configureParametersStateImageSetter.SetImage(movingXmlParameterNode, movingTreeNode, configurationForm.Application);

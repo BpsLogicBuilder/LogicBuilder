@@ -102,7 +102,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(parameterElement).ToDictionary(e => e.Name);
 
-            txtLpName.Text = parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtLpName.Text = parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtLpName.Select();
             txtLpName.SelectAll();
             cmbLpLiteralType.SelectedValue = _enumHelper.ParseEnumText<LiteralParameterType>(elements[XmlDataConstants.LITERALTYPEELEMENT].InnerText);

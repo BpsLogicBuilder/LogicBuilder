@@ -61,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             (
                 folderElement,
                 e => e.Name == XmlDataConstants.FRAGMENTELEMENT,
-                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
@@ -72,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                         treeNode,
                         fragmentElement.Name,
                         XmlDataConstants.NAMEATTRIBUTE,
-                        fragmentElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        fragmentElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         ImageIndexes.FILEIMAGEINDEX,
                         Strings.fragmentNodeDescription
                     );
@@ -85,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             (
                 folderElement,
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
@@ -96,7 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                         treeNode,
                         childFolderElement.Name,
                         XmlDataConstants.NAMEATTRIBUTE,
-                        childFolderElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        childFolderElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     );
 

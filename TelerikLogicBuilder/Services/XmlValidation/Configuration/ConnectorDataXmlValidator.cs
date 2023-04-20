@@ -52,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
             XmlElement documentElement = _xmlDocumentHelpers.GetDocumentElement(xDoc);
             ValidateElements
             (
-                documentElement.GetAttribute(XmlDataConstants.CONNECTORCATEGORYATTRIBUTE),
+                documentElement.Attributes[XmlDataConstants.CONNECTORCATEGORYATTRIBUTE]!.Value,
                 _xmlDocumentHelpers
                     .GetChildElements(documentElement)
                     .ToDictionary(e => e.Name)

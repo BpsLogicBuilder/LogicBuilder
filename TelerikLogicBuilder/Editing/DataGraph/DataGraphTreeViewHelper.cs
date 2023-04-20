@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (constructorElement.Name != XmlDataConstants.CONSTRUCTORELEMENT)
                 throw _exceptionHelper.CriticalException("{C537E4D3-BB24-4F86-906C-243C54978C23}");
 
-            string constructorName = constructorElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string constructorName = constructorElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             ConstructorElementTreeNode newTreeNode = new
             (
                 constructorName,
@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (functionElement.Name != XmlDataConstants.FUNCTIONELEMENT)
                 throw _exceptionHelper.CriticalException("{5868845F-DF85-4284-AFF0-CEB64BE1A558}");
 
-            string functionName = functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string functionName = functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             FunctionElementTreeNode newTreeNode = new
             (
                 functionName,
@@ -68,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (literalListParameterElement.Name != XmlDataConstants.LITERALLISTPARAMETERELEMENT)
                 throw _exceptionHelper.CriticalException("{7F702BA7-195F-48CE-901E-7BA71516C722}");
 
-            string parameterName = literalListParameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string parameterName = literalListParameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             ListOfLiteralsParameterElementTreeNode newTreeNode = new
             (
                 parameterName,
@@ -107,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (objectListParameterElement.Name != XmlDataConstants.OBJECTLISTPARAMETERELEMENT)
                 throw _exceptionHelper.CriticalException("{7A12A49D-7646-4C99-B2D7-4A0317A81454}");
 
-            string parameterName = objectListParameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string parameterName = objectListParameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             ListOfObjectsParameterElementTreeNode newTreeNode = new
             (
                 parameterName,
@@ -186,7 +186,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (literalParameterElement.Name != XmlDataConstants.LITERALPARAMETERELEMENT)
                 throw _exceptionHelper.CriticalException("{5F5091BF-B786-4625-8D84-57463559A46F}");
 
-            string parameterName = literalParameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string parameterName = literalParameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             LiteralParameterElementTreeNode newTreeNode = new
             (
                 parameterName,
@@ -305,7 +305,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (objectParameterElement.Name != XmlDataConstants.OBJECTPARAMETERELEMENT)
                 throw _exceptionHelper.CriticalException("{D254B1A7-4724-4CDA-822C-BC13CC433EFD}");
 
-            string parameterName = objectParameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string parameterName = objectParameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             ObjectParameterElementTreeNode newTreeNode = new
             (
                 parameterName,
@@ -386,7 +386,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 
             AssertFunctionElementTreeNode newTreeNode = new
             (
-                functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 $"/{functionElement.Name}"
             )
             {
@@ -404,7 +404,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 
             ConstructorElementTreeNode newTreeNode = new
             (
-                constructorElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                constructorElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 $"/{constructorElement.Name}",
                 rootAssignedToType
             )
@@ -523,7 +523,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 
             RetractFunctionElementTreeNode newTreeNode = new
             (
-                functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 $"/{functionElement.Name}"
             )
             {
@@ -539,7 +539,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             if (variableElement.Name != XmlDataConstants.VARIABLEELEMENT)
                 throw _exceptionHelper.CriticalException("{EA9DE633-39F8-4EA9-9773-DECAF38D3C9F}");
 
-            string variableName = variableElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string variableName = variableElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             VariableElementTreeNode newTreeNode = new
             (
                 variableName,

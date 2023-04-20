@@ -168,7 +168,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             IList<CodeExpression> parameters = BuildParametersList
             (
                 function.Parameters,
-                functionData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                functionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             );
 
             if (function.FunctionCategory == FunctionCategories.DialogForm)
@@ -324,7 +324,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
                 BuildParametersList
                 (
                     constructor.Parameters,
-                    constructorData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                    constructorData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                 ).ToArray()
             );
         }
@@ -352,7 +352,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
                 BuildParametersList
                 (
                     function.Parameters,
-                    functionData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                    functionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                 ).ToArray()
             );
         }
@@ -483,7 +483,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
 
         private CodeExpression BuildParameter(XmlElement parameterNode, Function function)
         {
-            string parameterName = parameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string parameterName = parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             if (!function.Parameters.ToDictionary(p => p.Name).TryGetValue(parameterName, out ParameterBase? parameter))
                 throw _exceptionHelper.CriticalException("{A873C2A0-6E4B-4BC1-9DE9-FC2109C5D8D3}");
 
@@ -956,7 +956,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
                     switch (xmlElement.Name)
                     {
                         case XmlDataConstants.VARIABLEELEMENT:
-                            return BuildVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+                            return BuildVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
                         case XmlDataConstants.FUNCTIONELEMENT:
                             return GetFunction(_functionDataParser.Parse(xmlElement));
                             CodeExpression GetFunction(FunctionData functionData)

@@ -75,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                             rootNode,
                             element.Name,
                             XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE,
-                            element.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE),
+                            element.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value,
                             _xmlDocumentHelpers.GetImageIndex(element),
                             _xmlDocumentHelpers.GetGenericArgumentTreeNodeDescription(element)
                         );

@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
             )
             .ToDictionary
             (
-                e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 e => _fragmentXmlParser.Parse(e)
             );
     }

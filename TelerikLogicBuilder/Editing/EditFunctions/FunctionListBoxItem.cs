@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                 List<string> errors = new();
                 XmlElement functionElement = _xmlDocumentHelpers.ToXmlElement(HiddenText);
 
-                string functionName = functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+                string functionName = functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
                 if (!_configurationService.FunctionList.Functions.TryGetValue(functionName, out Function? function))
                 {
                     errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.functionNotConfiguredFormat, functionName));

@@ -147,7 +147,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
                     _conditionsDataParser
                         .Parse(_xmlDocumentHelpers.ToXmlElement(ShapeXml))
                         .FunctionElements
-                        .Select(e => e.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE))
+                        .Select(e => e.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value)
                 );
             }
         }
@@ -213,7 +213,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
                 (
                     e => _conditionFunctionListBoxItemFactory.GetConditionFunctionListBoxItem
                     (
-                        e.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                        e.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                         e.OuterXml,
                         this
                     )

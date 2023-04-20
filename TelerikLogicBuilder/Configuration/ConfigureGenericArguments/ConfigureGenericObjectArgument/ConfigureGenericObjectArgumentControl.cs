@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(this.XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(parameterElement).ToDictionary(e => e.Name);
 
-            cmbCpGenericArgumentName.SelectedValue = parameterElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE);
+            cmbCpGenericArgumentName.SelectedValue = parameterElement.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value;
             cmbCpObjectType.Text = elements[XmlDataConstants.OBJECTTYPEELEMENT].InnerText;
             cmbCpUseForEquality.SelectedValue = bool.Parse(elements[XmlDataConstants.USEFOREQUALITYELEMENT].InnerText);
             cmbCpUseForHashCode.SelectedValue = bool.Parse(elements[XmlDataConstants.USEFORHASHCODEELEMENT].InnerText);

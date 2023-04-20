@@ -108,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             XmlElement variableElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(variableElement).ToDictionary(e => e.Name);
 
-            txtCvName.Text = variableElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtCvName.Text = variableElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtCvName.Select();
             txtCvName.SelectAll();
             txtCvMemberName.Text = elements[XmlDataConstants.MEMBERNAMEELEMENT].InnerText;
@@ -157,7 +157,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
             XmlElement variableElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(variableElement).ToDictionary(e => e.Name);
-            string currentNameAttributeValue = variableElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            string currentNameAttributeValue = variableElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             string newNameAttributeValue = txtCvName.Text.Trim();
 
             _objectVariableControlsValidator.ValidateForExistingVariableName(currentNameAttributeValue);

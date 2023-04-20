@@ -54,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             RichInputBox.SelectionProtected = false;
             RichInputBox.InsertLink
             (
-                resultElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                resultElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 resultElement.OuterXml,
                 LinkType.Variable
             );

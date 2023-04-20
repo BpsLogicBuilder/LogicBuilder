@@ -43,22 +43,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
             (
                 xmlNode,
                 e => new HashSet<string> { XmlDataConstants.LITERALVARIABLEELEMENT, XmlDataConstants.OBJECTVARIABLEELEMENT, XmlDataConstants.LITERALLISTVARIABLEELEMENT, XmlDataConstants.OBJECTLISTVARIABLEELEMENT }.Contains(e.Name),
-                e => e.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
-                variableNode => treeFolder.FileNames.Add(variableNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                variableNode => treeFolder.FileNames.Add(variableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             );
 
             _xmlDocumentHelpers.GetChildElements
             (
                 xmlNode,
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach(folderNode =>
             {
-                TreeFolder childFolder = new(folderNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), new List<string>(), new List<TreeFolder>());
+                TreeFolder childFolder = new(folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, new List<string>(), new List<TreeFolder>());
                 treeFolder.FolderNames.Add(childFolder);
                 GetFolderChildren(folderNode, childFolder);
             });

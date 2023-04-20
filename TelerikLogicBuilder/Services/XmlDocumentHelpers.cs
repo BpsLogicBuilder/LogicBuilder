@@ -236,14 +236,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     throw _exceptionHelper.CriticalException("{B52855E1-4F4B-4F7A-9667-773F9BCBAF26}");
             }
 
-            return GetElements(parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            return GetElements(parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
 
             List<XmlElement> GetElements(string parameterName) 
                 => GetChildElements
                 (
                     parameterElement.ParentNode ?? throw _exceptionHelper.CriticalException("{5FE9F9BD-DEF5-475E-B6E8-D46088A4C631}")
                 )
-                .Where(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE) != parameterName)
+                .Where(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value != parameterName)
                 .ToList();
         }
 

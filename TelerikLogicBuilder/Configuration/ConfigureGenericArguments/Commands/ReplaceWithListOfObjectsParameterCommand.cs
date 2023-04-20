@@ -69,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
                         (
                             _genericConfigManager.GetDefaultObjectListGenericConfig
                             (
-                                xmlElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE)
+                                xmlElement.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value
                             ).ToXml
                         )
                     )

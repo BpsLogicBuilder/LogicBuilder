@@ -72,7 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                     (
                         functionNode,
                         elements,
-                        functionNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        functionNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         (FunctionCategories)Enum.Parse(typeof(FunctionCategories), elements[XmlDataConstants.FUNCTIONCATEGORYELEMENT].InnerText.Trim()),
                         (ParametersLayout)Enum.Parse(typeof(ParametersLayout), elements[XmlDataConstants.PARAMETERSLAYOUTELEMENT].InnerText.Trim()),
                         (ReferenceCategories)Enum.Parse(typeof(ReferenceCategories), elements[XmlDataConstants.REFERENCECATEGORYELEMENT].InnerText.Trim()),
@@ -356,7 +356,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                 ValidateParameterSourcedProperty
                 (
                     functionName,
-                    parameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                     (LiteralParameterInputStyle)Enum.Parse
                     (
                         typeof(LiteralParameterInputStyle),
@@ -376,7 +376,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                         _xmlDocumentHelpers
                             .GetSiblingParameterElements(parameterNode)
                             .Where(e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT)
-                            .Select(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                            .Select(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                     )
                 );
             });
@@ -392,7 +392,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                 ValidateParameterSourcedProperty
                 (
                     functionName,
-                    parameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                     (LiteralParameterInputStyle)Enum.Parse
                     (
                         typeof(LiteralParameterInputStyle),
@@ -412,7 +412,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                         _xmlDocumentHelpers
                             .GetSiblingParameterElements(parameterNode)
                             .Where(e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT)
-                            .Select(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                            .Select(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                     )
                 );
             });
@@ -474,7 +474,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
 
                 ValidateGenericArguments
                 (
-                    parameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                    parameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                     _xmlDocumentHelpers.GetSingleChildElement
                     (
                         parameterNode,

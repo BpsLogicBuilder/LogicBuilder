@@ -45,8 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             Application GetApplication(Dictionary<string, XmlElement> elements)
                 => _projectPropertiesItemFactory.GetApplication
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                    xmlElement.GetAttribute(XmlDataConstants.NICKNAMEATTRIBUTE),
+                    xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
+                    xmlElement.Attributes[XmlDataConstants.NICKNAMEATTRIBUTE]!.Value,
                     elements[XmlDataConstants.ACTIVITYASSEMBLYELEMENT].InnerText.Trim(),
                     elements[XmlDataConstants.ACTIVITYASSEMBLYPATHELEMENT].InnerText.Trim(),
                     _enumHelper.ParseEnumText<RuntimeType>(elements[XmlDataConstants.RUNTIMEELEMENT].InnerText.Trim()),

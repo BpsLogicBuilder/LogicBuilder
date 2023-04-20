@@ -43,24 +43,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
             (
                 xmlNode,
                 e => e.Name == XmlDataConstants.FRAGMENTELEMENT,
-                e => e.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
-                fragmentNode => treeFolder.FileNames.Add(fragmentNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                fragmentNode => treeFolder.FileNames.Add(fragmentNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             );
 
             _xmlDocumentHelpers.GetChildElements
             (
                 xmlNode,
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach(folderNode =>
             {
                 TreeFolder childFolder = new
                 (
-                    folderNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                    folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                     new List<string>(),
                     new List<TreeFolder>()
                 );

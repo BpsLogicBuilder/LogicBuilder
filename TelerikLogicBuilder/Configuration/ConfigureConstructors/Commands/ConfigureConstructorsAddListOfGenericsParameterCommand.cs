@@ -68,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
                     (
                         _xmlDocumentHelpers.SelectSingleElement(XmlDocument, selectedNode.Name)
                     )
-                    .Select(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                    .Select(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                     .ToHashSet()
                 );
 

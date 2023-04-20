@@ -59,13 +59,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             (
                 _enumHelper.ParseEnumText<LiteralParameterType>
                 (
-                    literalListElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
+                    literalListElement.Attributes[XmlDataConstants.LITERALTYPEATTRIBUTE]!.Value
                 )
             );
 
             ListType listType = _enumHelper.ParseEnumText<ListType>
             (
-                literalListElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE)
+                literalListElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value
             );
 
             Type listSystemType = _enumHelper.GetSystemType(listType, elementType);

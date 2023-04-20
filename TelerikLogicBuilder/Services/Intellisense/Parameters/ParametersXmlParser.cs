@@ -37,12 +37,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Parameters
 
             return parameterCategory switch
             {
-                ParameterCategory.Literal => GetLiteralParameter(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.Object => GetObjectParameter(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.Generic => GetGenericParameter(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.LiteralList => GetLiteralListParameter(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.ObjectList => GetObjectListParameter(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
-                ParameterCategory.GenericList => GetGenericListParameter(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.Literal => GetLiteralParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.Object => GetObjectParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.Generic => GetGenericParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.LiteralList => GetLiteralListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.ObjectList => GetObjectListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
+                ParameterCategory.GenericList => GetGenericListParameter(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)),
                 _ => throw _exceptionHelper.CriticalException("{A5B2C8CE-DAED-4D27-A7BA-0B90AFF23F25}"),
             };
         }

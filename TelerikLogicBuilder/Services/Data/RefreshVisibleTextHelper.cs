@@ -113,7 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                         element,
                         application,
                         element.ParentNode?.Name == XmlDataConstants.LITERALLISTPARAMETERELEMENT
-                            ? ((XmlElement)element.ParentNode).GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                            ? ((XmlElement)element.ParentNode).Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                             : null
                     )
                 );
@@ -139,7 +139,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                         element,
                         application,
                         element.ParentNode?.Name == XmlDataConstants.OBJECTLISTPARAMETERELEMENT
-                            ? ((XmlElement)element.ParentNode).GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                            ? ((XmlElement)element.ParentNode).Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                             : null
                     )
                 );

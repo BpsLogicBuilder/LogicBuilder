@@ -26,8 +26,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new RetractFunctionData
             (
-                xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
+                xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetSingleChildElement(xmlElement),
                 xmlElement
             );

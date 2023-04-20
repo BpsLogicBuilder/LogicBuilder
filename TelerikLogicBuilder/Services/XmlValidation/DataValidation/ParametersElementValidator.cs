@@ -31,7 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         public void Validate(IList<ParameterBase> parameters, IList<XmlElement> parameterElementsList, ApplicationTypeInfo application, List<string> validationErrors)
         {
-            Dictionary<string, XmlElement> elements = parameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            Dictionary<string, XmlElement> elements = parameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
 
             foreach (ParameterBase parameter in parameters)
                 ValidateParameter(parameter);

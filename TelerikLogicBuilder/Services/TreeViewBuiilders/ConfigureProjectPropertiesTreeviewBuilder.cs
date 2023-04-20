@@ -54,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                 (
                     applicationsElement,
                     null, 
-                    en => en.OrderBy(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                    en => en.OrderBy(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                 )
                 .ForEach
                 (
@@ -65,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                             rootNode,
                             element.Name,
                             XmlDataConstants.NAMEATTRIBUTE,
-                            element.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                            element.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                             ImageIndexes.APPLICATIONIMAGEINDEX
                         );
 

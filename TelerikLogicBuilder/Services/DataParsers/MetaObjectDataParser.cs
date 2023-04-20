@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new MetaObjectData
             (
-                xmlElement.GetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE),
+                xmlElement.Attributes[XmlDataConstants.OBJECTTYPEATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetSingleChildElement(xmlElement),
                 xmlElement,
                 _enumHelper

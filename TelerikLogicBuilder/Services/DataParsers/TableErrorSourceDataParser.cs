@@ -28,9 +28,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return _structuresFactory.GetTableErrorSourceData
             (
-                xmlElement.GetAttribute(XmlDataConstants.FILEFULLNAMEATTRIBUTE),
-                int.Parse(xmlElement.GetAttribute(XmlDataConstants.ROWINDEXATTRIBUTE), CultureInfo.InvariantCulture),
-                int.Parse(xmlElement.GetAttribute(XmlDataConstants.COLUMNINDEXATTRIBUTE), CultureInfo.InvariantCulture)
+                xmlElement.Attributes[XmlDataConstants.FILEFULLNAMEATTRIBUTE]!.Value,
+                int.Parse(xmlElement.Attributes[XmlDataConstants.ROWINDEXATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
+                int.Parse(xmlElement.Attributes[XmlDataConstants.COLUMNINDEXATTRIBUTE]!.Value, CultureInfo.InvariantCulture)
             );
         }
     }

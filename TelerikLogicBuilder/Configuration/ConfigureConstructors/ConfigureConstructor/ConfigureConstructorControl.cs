@@ -77,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
             XmlElement constructorElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(constructorElement).ToDictionary(e => e.Name);
 
-            txtConstructorName.Text = constructorElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtConstructorName.Text = constructorElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtConstructorName.Select();
             txtConstructorName.SelectAll();
             txtConstructorTypeName.Text = elements[XmlDataConstants.TYPENAMEELEMENT].InnerText;

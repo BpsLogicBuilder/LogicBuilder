@@ -63,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(this.XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(parameterElement).ToDictionary(e => e.Name);
 
-            cmbListCpGenericArgumentName.SelectedValue = parameterElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE);
+            cmbListCpGenericArgumentName.SelectedValue = parameterElement.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value;
             cmbListCpObjectType.Text = elements[XmlDataConstants.OBJECTTYPEELEMENT].InnerText;
             cmbListCpListType.SelectedValue = _enumHelper.ParseEnumText<ListType>(elements[XmlDataConstants.LISTTYPEELEMENT].InnerText);
             cmbListCpControl.SelectedValue = _enumHelper.ParseEnumText<ListParameterInputStyle>(elements[XmlDataConstants.CONTROLELEMENT].InnerText);

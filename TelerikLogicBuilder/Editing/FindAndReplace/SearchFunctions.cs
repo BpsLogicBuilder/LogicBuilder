@@ -108,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
             => _xmlDocumentHelpers
                     .SelectElements(xmlDocument, xPath)
                     .Where(n => NameAttributeMatches(n, searchString, matchCase, matchWholeWord))
-                    .Select(node => node.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE))
+                    .Select(node => node.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value)
                     .ToList();
 
         private IList<string> FindTextMatches(XmlDocument xmlDocument, string searchString, bool matchCase, bool matchWholeWord)
@@ -127,7 +127,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                         _xmlDocumentHelpers
                             .SelectElements(xmlDocument, $"//{XmlDataConstants.CONNECTORELEMENT}[@{XmlDataConstants.CONNECTORCATEGORYATTRIBUTE}={((int)ConnectorCategory.Dialog).ToString(CultureInfo.InvariantCulture)}]")
                             .Select(element => _xmlDocumentHelpers.GetSingleChildElement(element, e => e.Name == XmlDataConstants.METAOBJECTELEMENT))
-                            .Select(element => element.GetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE))
+                            .Select(element => element.Attributes[XmlDataConstants.OBJECTTYPEATTRIBUTE]!.Value)
                             .Where
                             (
                                 attributeValue => matchWholeWord
@@ -139,8 +139,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
 
         private static bool NameAttributeMatches(XmlElement element, string searchString, bool matchCase, bool matchWholeWord)
             => matchWholeWord
-                ? ContainsWord(element.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), searchString, matchCase)
-                : element.GetAttribute(XmlDataConstants.NAMEATTRIBUTE).Contains(searchString, matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase);
+                ? ContainsWord(element.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, searchString, matchCase)
+                : element.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value.Contains(searchString, matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase);
 
         private string ReplaceConfiguredItemMatches(XmlDocument xmlDocument, string xPath, string searchString, string replacement, bool matchCase, bool matchWholeWord)
         {
@@ -150,7 +150,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace
                 .ToList()
                 .ForEach
                 (
-                    node => node.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value = node.GetAttribute(XmlDataConstants.NAMEATTRIBUTE).Replace
+                    node => node.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value = node.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value.Replace
                     (
                         searchString, 
                         replacement, 

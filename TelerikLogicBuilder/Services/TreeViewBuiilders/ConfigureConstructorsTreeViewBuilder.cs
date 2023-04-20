@@ -78,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                         treeNode,
                         $"{XmlDataConstants.PARAMETERSELEMENT}/{parameterElement.Name}",
                         XmlDataConstants.NAMEATTRIBUTE,
-                        parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         _xmlDocumentHelpers.GetImageIndex(parameterElement),
                         _xmlDocumentHelpers.GetParameterTreeNodeDescription(parameterElement)
                     );
@@ -91,7 +91,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             (
                 parentElement,
                 e => e.Name == XmlDataConstants.CONSTRUCTORELEMENT,
-                en => en.OrderBy(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
@@ -102,7 +102,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                         treeNode,
                         constructorElement.Name,
                         XmlDataConstants.NAMEATTRIBUTE,
-                        constructorElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        constructorElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         ImageIndexes.CONSTRUCTORIMAGEINDEX,
                         Strings.constructorNodeDescription
                     );
@@ -119,7 +119,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             (
                 parentElement,
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                en => en.OrderBy(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
@@ -130,7 +130,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                         treeNode,
                         folderElement.Name,
                         ImageIndexes.CLOSEDFOLDERIMAGEINDEX,
-                        folderElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                        folderElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                     );
 
                     childTreeNode.StateImage = Properties.Resources.CheckMark;

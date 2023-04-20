@@ -105,7 +105,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
         public event EventHandler? Changed;
 
@@ -167,7 +167,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             (
                 _xmlDocumentHelpers
                     .GetDocumentElement(XmlDocument)
-                    .GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    .Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
             );
         }
 
@@ -260,7 +260,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             (
                 _xmlDocumentHelpers
                     .GetDocumentElement(XmlDocument)
-                    .GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    .Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
             );
         }
 

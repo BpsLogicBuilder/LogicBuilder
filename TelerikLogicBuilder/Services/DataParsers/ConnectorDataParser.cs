@@ -33,10 +33,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new ConnectorData
             (
-                short.Parse(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), CultureInfo.InvariantCulture),
+                short.Parse(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
                 childElements[XmlDataConstants.TEXTELEMENT],
                 metaObjectElement,
-                (ConnectorCategory)short.Parse(xmlElement.GetAttribute(XmlDataConstants.CONNECTORCATEGORYATTRIBUTE), CultureInfo.InvariantCulture),
+                (ConnectorCategory)short.Parse(xmlElement.Attributes[XmlDataConstants.CONNECTORCATEGORYATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
                  xmlElement
             );
         }

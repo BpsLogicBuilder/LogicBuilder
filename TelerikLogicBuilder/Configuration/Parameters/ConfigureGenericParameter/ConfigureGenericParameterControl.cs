@@ -68,7 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureGeneri
             LoadGenericArgumentsComboBox(treeNode);
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(parameterElement).ToDictionary(e => e.Name);
-            txtGpName.Text = parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtGpName.Text = parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtGpName.Select();
             txtGpName.SelectAll();
             cmbGpGenericArgumentName.SelectedValue = elements[XmlDataConstants.GENERICARGUMENTNAMEELEMENT].InnerText;

@@ -42,9 +42,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new ObjectListData
             (
-                xmlElement.GetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE),
-                _enumHelper.ParseEnumText<ListType>(xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE)),
-                xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                xmlElement.Attributes[XmlDataConstants.OBJECTTYPEATTRIBUTE]!.Value,
+                _enumHelper.ParseEnumText<ListType>(xmlElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value),
+                xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetChildElements(xmlElement),
                 xmlElement
             );
@@ -55,8 +55,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             if (xmlElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{4B56236E-3BFC-41D6-A4E5-95F027CA3D1B}");
 
-            string objectTypeString = xmlElement.GetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE);
-            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE));
+            string objectTypeString = xmlElement.Attributes[XmlDataConstants.OBJECTTYPEATTRIBUTE]!.Value;
+            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value);
             List<XmlElement> chileElements = GetUniqueChildElements(_xmlDocumentHelpers.GetChildElements(xmlElement));
             return new ObjectListData
             (
@@ -89,7 +89,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                         _xmlDocumentHelpers.GetSingleChildElement
                         (
                             element
-                        ).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                        ).Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                         element.InnerXml,
                         objectType,
                         applicationControl,
@@ -111,8 +111,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             if (xmlElement.Name != XmlDataConstants.OBJECTLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{BF8C2E9E-3316-4A5A-9E34-699990B74463}");
 
-            string objectTypeString = xmlElement.GetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE);
-            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE));
+            string objectTypeString = xmlElement.Attributes[XmlDataConstants.OBJECTTYPEATTRIBUTE]!.Value;
+            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value);
             List<XmlElement> chileElements = GetUniqueChildElements(_xmlDocumentHelpers.GetChildElements(xmlElement));
             return new ObjectListData
             (
@@ -145,7 +145,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                         _xmlDocumentHelpers.GetSingleChildElement
                         (
                             element
-                        ).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                        ).Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                         element.InnerXml,
                         objectType,
                         applicationControl,

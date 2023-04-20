@@ -71,8 +71,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             XmlElement applicationElement = _xmlDocumentHelpers.SelectSingleElement(this.XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> appElements = _xmlDocumentHelpers.GetChildElements(applicationElement).ToDictionary(e => e.Name);
             RemoveEventHandlers();
-            txtName.Text = applicationElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
-            txtNickname.Text = applicationElement.GetAttribute(XmlDataConstants.NICKNAMEATTRIBUTE);
+            txtName.Text = applicationElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
+            txtNickname.Text = applicationElement.Attributes[XmlDataConstants.NICKNAMEATTRIBUTE]!.Value;
             txtActivityAssembly.Text = appElements[XmlDataConstants.ACTIVITYASSEMBLYELEMENT].InnerText;
             txtActivityAssemblyPath.Text = appElements[XmlDataConstants.ACTIVITYASSEMBLYPATHELEMENT].InnerText;
             cmbRuntime.SelectedValue = _enumHelper.ParseEnumText<RuntimeType>(appElements[XmlDataConstants.RUNTIMEELEMENT].InnerText);

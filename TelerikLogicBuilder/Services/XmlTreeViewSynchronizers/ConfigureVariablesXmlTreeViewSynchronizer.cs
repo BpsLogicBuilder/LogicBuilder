@@ -244,7 +244,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 destinationFolderTreeNode,
                 newXmlVariableNode.Name,
                 XmlDataConstants.NAMEATTRIBUTE,
-                newXmlVariableNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                newXmlVariableNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetImageIndex(newXmlVariableNode),
                 _xmlDocumentHelpers.GetVariableTreeNodeDescription(newXmlVariableNode)
             );

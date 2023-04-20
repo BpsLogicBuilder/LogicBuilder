@@ -100,7 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
 
         public RadTreeView TreeView => radTreeView1;
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
@@ -123,7 +123,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
         );
 
         public string ShapeVisibleText 
-            => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+            => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
 

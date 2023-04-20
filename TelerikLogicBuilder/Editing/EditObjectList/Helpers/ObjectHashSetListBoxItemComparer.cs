@@ -91,8 +91,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers
             return CompareParameters
             (
                 constructor.Parameters.ToDictionary(p => p.Name),
-                firstConstructorData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
-                secondConstructorData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                firstConstructorData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
+                secondConstructorData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
                 application
             );
         }
@@ -120,8 +120,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers
             return CompareParameters
             (
                 function.Parameters.ToDictionary(p => p.Name),
-                firstFunctionData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
-                secondFunctionData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                firstFunctionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
+                secondFunctionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
                 application
             );
         }
@@ -243,6 +243,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers
         }
 
         private static bool CompareVariableElements(XmlElement first, XmlElement second) 
-            => first.GetAttribute(XmlDataConstants.NAMEATTRIBUTE) == second.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            => first.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value == second.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
     }
 }

@@ -121,7 +121,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
 
             foreach (XmlElement functionElement in functionsData.FunctionElements) 
             {
-                string functionName = functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+                string functionName = functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
                 if (!_configurationService.FunctionList.Functions.TryGetValue(functionName, out Function? function))
                     throw new LogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.functionNotConfiguredFormat, functionName));
 

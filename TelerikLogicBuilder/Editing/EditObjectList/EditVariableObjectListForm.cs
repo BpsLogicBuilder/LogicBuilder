@@ -78,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
 
         public RadTreeView TreeView => radTreeView1;
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 

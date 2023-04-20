@@ -58,7 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                     {
                         ValidateElements
                         (
-                            constructorNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                            constructorNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                             _xmlDocumentHelpers
                                 .GetChildElements(constructorNode)
                                 .ToDictionary(e => e.Name)
@@ -126,7 +126,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                     ValidateParameterSourcedProperty
                     (
                         constructorName,
-                        literalParameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        literalParameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         _xmlDocumentHelpers.GetSingleChildElement
                         (
                             literalParameterNode,
@@ -138,7 +138,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
                             literalParameterNode
                         )
                         .Where(e => e.Name == XmlDataConstants.LITERALPARAMETERELEMENT)
-                        .Select(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                        .Select(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                         .ToHashSet()
                     );
                 }
@@ -185,7 +185,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.Configuration
             (
                 genericParameterNode =>
                 {
-                    string parameterName = genericParameterNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+                    string parameterName = genericParameterNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
                     string genericArgName = _xmlDocumentHelpers.GetSingleChildElement
                     (
                         genericParameterNode, e => e.Name == XmlDataConstants.GENERICARGUMENTNAMEELEMENT

@@ -58,7 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
         private void Validate(XmlElement objectListElement, Type assignedTo, ApplicationTypeInfo application, List<string> validationErrors, bool validateChildElements)
         {
-            string objectElementTypeString = objectListElement.GetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE);
+            string objectElementTypeString = objectListElement.Attributes[XmlDataConstants.OBJECTTYPEATTRIBUTE]!.Value;
             if (!_typeLoadHelper.TryGetSystemType(objectElementTypeString, application, out Type? elementType))
             {
                 validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeFormat2, objectElementTypeString));
@@ -67,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 
             ListType listType = _enumHelper.ParseEnumText<ListType>
             (
-                objectListElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE)
+                objectListElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value
             );
 
             Type listSystemType = _enumHelper.GetSystemType(listType, elementType);

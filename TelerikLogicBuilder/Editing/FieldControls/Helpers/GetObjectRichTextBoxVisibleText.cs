@@ -26,7 +26,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         public string GetVisibleText(string xmlString, ApplicationTypeInfo application)
         {
             XmlElement documentElement = _xmlDocumentHelpers.ToXmlElement(xmlString);
-            return GetVisibleText(documentElement.Name, documentElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE));
+            return GetVisibleText(documentElement.Name, documentElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value);
 
             string GetVisibleText(string elementName, string visibleText)
             {

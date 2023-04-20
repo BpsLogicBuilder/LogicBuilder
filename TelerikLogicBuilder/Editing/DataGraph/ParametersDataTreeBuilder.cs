@@ -110,13 +110,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.ShowRootLines = true;
             treeView.Nodes.Clear();
             XmlElement functionElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, ASSERT_FUNCTION_ROOT_XPATH);
-            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
+            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, out Function? _))
                 return;
 
             GetAssertFunctionChildren
             (
                 functionElement,
-                _dataGraphTreeViewHelper.AddRootAssertFunctionTreeNode(treeView, functionElement, functionElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE))
+                _dataGraphTreeViewHelper.AddRootAssertFunctionTreeNode(treeView, functionElement, functionElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value)
             );
 
             treeView.EndUpdate();
@@ -130,7 +130,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.ShowRootLines = true;
             treeView.Nodes.Clear();
             XmlElement constructorElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, CONSTRUCTOR_ROOT_XPATH);
-            if (!_configurationService.ConstructorList.Constructors.TryGetValue(constructorElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Constructor? constructor))
+            if (!_configurationService.ConstructorList.Constructors.TryGetValue(constructorElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, out Constructor? constructor))
                 return;
 
             GetConstructorChildren
@@ -289,10 +289,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.ShowRootLines = true;
             treeView.Nodes.Clear();
             XmlElement functionElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, RETRACT_FUNCTION_ROOT_XPATH);
-            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
+            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, out Function? _))
                 return;
 
-            _dataGraphTreeViewHelper.AddRootRetractFunctionTreeNode(treeView, functionElement, functionElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE));
+            _dataGraphTreeViewHelper.AddRootRetractFunctionTreeNode(treeView, functionElement, functionElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value);
 
             treeView.EndUpdate();
         }
@@ -307,10 +307,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             switch (node)
             {
                 case AssertFunctionElementTreeNode assertFunctionElementTreeNode:
-                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
+                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, out Function? _))
                         return;
 
-                    node.ToolTipText = xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+                    node.ToolTipText = xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
                     GetAssertFunctionChildren
                     (
@@ -319,7 +319,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     );
                     break;
                 case ConstructorElementTreeNode constructorElementTreeNode:
-                    if (!_configurationService.ConstructorList.Constructors.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Constructor? constructor))
+                    if (!_configurationService.ConstructorList.Constructors.TryGetValue(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, out Constructor? constructor))
                         return;
 
                     node.ToolTipText = constructor.ToString();
@@ -380,10 +380,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     );
                     break;
                 case RetractFunctionElementTreeNode:
-                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? _))
+                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, out Function? _))
                         return;
 
-                    node.ToolTipText = xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+                    node.ToolTipText = xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
                     break;
                 case VariableLiteralListElementTreeNode variableLiteralListElementTreeNode:
                     LiteralListData variableLiteralListData = _literalListDataParser.Parse(xmlElement, variableLiteralListElementTreeNode.ListInfo, dataGraphEditingHost);
@@ -633,7 +633,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
 
             string GetVisibleTextForObjectType(XmlElement parameterElement)
-                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
         }
 
         private void GetConstructorChildren(XmlElement constructorElement, ConstructorElementTreeNode constructorElementTreeNode, bool root)
@@ -651,7 +651,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 (
                     _xmlDocumentHelpers.GetSingleChildElement(constructorElement, e => e.Name == XmlDataConstants.PARAMETERSELEMENT)
                 )
-                .ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                .ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             );
         }
 
@@ -668,7 +668,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 function.Parameters.ToDictionary(p => p.Name),
                 functionData
                     .ParameterElementsList
-                    .ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                    .ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             );
         }
 
@@ -855,7 +855,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
 
             string GetVisibleTextForObjectType(XmlElement parameterElement)
-                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
         }
 
         private void GetObjectListChildren(XmlElement objectListElement, VariableObjectListElementTreeNode objectListElementTreeNode, ObjectListData objectListData, bool root)
@@ -919,7 +919,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
 
             string GetVisibleTextForObjectType(XmlElement parameterElement)
-                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
         }
 
         private void GetObjectListParameterChildren(XmlElement parameterElement, ParametersDataTreeNode parameterTreeNode, ObjectListParameterElementInfo objectListElementInfo)
@@ -1079,7 +1079,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             foreach(var pair in parameterElements) 
             {
                 XmlElement parameterElement = pair.Value;
-                if (!parameters.TryGetValue(parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out ParameterBase? parameter))
+                if (!parameters.TryGetValue(parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, out ParameterBase? parameter))
                     return;
 
                 if (!_typeLoadHelper.TryGetSystemType(parameter, dataGraphEditingHost.Application, out Type? parameterType))
@@ -1108,7 +1108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             }
 
             string GetVisibleTextForObjectType(XmlElement parameterElement) 
-                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+                => _xmlDocumentHelpers.GetSingleChildElement(parameterElement).Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
             void GetParameterChildren(ParametersDataTreeNode parameterTreeNode, ParameterBase parameter, XmlElement parameterElement)
             {

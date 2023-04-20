@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
             XmlElement folderElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             RemoveEventHandlers();
-            txtFolderName.Text = folderElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtFolderName.Text = folderElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtFolderName.Select();
             txtFolderName.SelectAll();
             AddEventHandlers();

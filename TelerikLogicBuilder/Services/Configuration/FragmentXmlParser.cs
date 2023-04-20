@@ -30,7 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
             return _fragmentItemFactory.GetFragment
             (
-                xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetXmlString
                 (
                     _xmlDocumentHelpers.ToXmlDocument

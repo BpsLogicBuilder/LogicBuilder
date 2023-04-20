@@ -174,7 +174,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 (
                     destinationFolderTreeNode,
                     movingTreeNode,
-                    movingXmlNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    movingXmlNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                 );
 
                 if (movingTreeNode.Expanded)
@@ -291,7 +291,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                     movingTreeNode,
                     movingXmlNode.Name,
                     XmlDataConstants.NAMEATTRIBUTE,
-                    movingXmlNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                    movingXmlNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
                 );
 
                 InsertTreeNode(destinationFolderTreeNode, movingTreeNode);
@@ -346,7 +346,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 destinationFolderTreeNode,
                 newXmlFragmentNode.Name,
                 XmlDataConstants.NAMEATTRIBUTE,
-                newXmlFragmentNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                newXmlFragmentNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 ImageIndexes.FILEIMAGEINDEX,
                 Strings.fragmentNodeDescription
             );

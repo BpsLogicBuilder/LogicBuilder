@@ -288,7 +288,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 destinationFolderTreeNode,
                 newXmlConstructorNode.Name,
                 XmlDataConstants.NAMEATTRIBUTE,
-                newXmlConstructorNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                newXmlConstructorNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 ImageIndexes.CONSTRUCTORIMAGEINDEX,
                 Strings.constructorNodeDescription
             );
@@ -325,7 +325,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                         newTreeNode,
                         $"{XmlDataConstants.PARAMETERSELEMENT}/{parameterElement.Name}",
                         XmlDataConstants.NAMEATTRIBUTE,
-                        parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         _xmlDocumentHelpers.GetImageIndex(parameterElement),
                         _xmlDocumentHelpers.GetParameterTreeNodeDescription(parameterElement)
                     );

@@ -100,7 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             )
             .Select
             (
-                element => element.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                element => element.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value
             )
             .Aggregate
             (

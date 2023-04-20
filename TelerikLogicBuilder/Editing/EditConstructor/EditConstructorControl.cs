@@ -162,7 +162,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public XmlElement XmlResult => GetXmlResult();
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
         public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
@@ -448,7 +448,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _updateParameterControlValues.PrepopulateRequiredFields
             (
                 editControlsSet,
-                constructorData.ParameterElementsList.ToDictionary(p => p.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                constructorData.ParameterElementsList.ToDictionary(p => p.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
                 constructor.Parameters.ToDictionary(p => p.Name),
                 this.xmlDocument,
                 ParametersXPath,

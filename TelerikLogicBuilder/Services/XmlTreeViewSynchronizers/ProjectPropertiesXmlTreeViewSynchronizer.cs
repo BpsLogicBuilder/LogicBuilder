@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 destinationParentNode,
                 newXmlApplicationNode.Name,
                 XmlDataConstants.NAMEATTRIBUTE,
-                newXmlApplicationNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                newXmlApplicationNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 ImageIndexes.APPLICATIONIMAGEINDEX
             );
 

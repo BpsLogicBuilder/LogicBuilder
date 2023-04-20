@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
             )
             .ToDictionary
             (
-                e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 e => Parse(e)
             );
 
@@ -56,10 +56,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Variables
             VariableTypeCategory variableTypeCategory = _enumHelper.GetVariableTypeCategory(xmlElement.Name);
             return variableTypeCategory switch
             {
-                VariableTypeCategory.Literal => BuildLiteralVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
-                VariableTypeCategory.Object => BuildObjectVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
-                VariableTypeCategory.LiteralList => BuildLiteralListVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
-                VariableTypeCategory.ObjectList => BuildObjectListVariable(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.Literal => BuildLiteralVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.Object => BuildObjectVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.LiteralList => BuildLiteralListVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
+                VariableTypeCategory.ObjectList => BuildObjectListVariable(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, xmlElement.ChildNodes.OfType<XmlElement>().ToDictionary(e => e.Name)),
                 _ => throw _exceptionHelper.CriticalException("{1F294C7F-AC82-4020-8C3A-5007DD24E0E9}"),
             };
         }

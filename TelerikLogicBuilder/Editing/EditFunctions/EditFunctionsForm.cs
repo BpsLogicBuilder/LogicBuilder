@@ -136,7 +136,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                     _functionsDataParser
                         .Parse(_xmlDocumentHelpers.ToXmlElement(ShapeXml))
                         .FunctionElements
-                        .Select(e => e.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE))
+                        .Select(e => e.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value)
                 );
             }
         }
@@ -193,7 +193,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                 (
                     e => _functionListBoxItemFactory.GetFunctionListBoxItem
                     (
-                        e.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                        e.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                         e.OuterXml,
                         typeof(object),
                         this

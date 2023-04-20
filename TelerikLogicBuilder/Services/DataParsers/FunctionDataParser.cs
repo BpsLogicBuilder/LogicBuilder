@@ -41,8 +41,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             {
                 return new FunctionData
                 (
-                    functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                    functionElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                    functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
+                    functionElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                     _xmlDocumentHelpers.GetChildElements
                     (
                         _xmlDocumentHelpers.GetSingleChildElement

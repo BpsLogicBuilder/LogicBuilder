@@ -144,7 +144,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             }
         }
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
         public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
@@ -291,7 +291,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             AssertFunctionData assertFunctionData = _assertFunctionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(this.xmlDocument));
             _configurationService.VariableList.Variables.TryGetValue
             (
-                assertFunctionData.VariableElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                assertFunctionData.VariableElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 out variable
             );
 

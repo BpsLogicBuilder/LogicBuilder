@@ -19,13 +19,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                         switch (xmlElement.Name)
                         {
                             case XmlDataConstants.VARIABLEELEMENT:
-                                richInputBox.InsertLink(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), xmlElement.OuterXml, LinkType.Variable);
+                                richInputBox.InsertLink(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, xmlElement.OuterXml, LinkType.Variable);
                                 break;
                             case XmlDataConstants.FUNCTIONELEMENT:
-                                richInputBox.InsertLink(xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE), xmlElement.OuterXml, LinkType.Function);
+                                richInputBox.InsertLink(xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value, xmlElement.OuterXml, LinkType.Function);
                                 break;
                             case XmlDataConstants.CONSTRUCTORELEMENT:
-                                richInputBox.InsertLink(xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE), xmlElement.OuterXml, LinkType.Constructor);
+                                richInputBox.InsertLink(xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value, xmlElement.OuterXml, LinkType.Constructor);
                                 break;
                             default:
                                 break;

@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlTreeViewSynchronizers
                 parentNode,
                 newXmlGenArgParameterNode.Name,
                 XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE,
-                newXmlGenArgParameterNode.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE),
+                newXmlGenArgParameterNode.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetImageIndex(newXmlGenArgParameterNode),
                 _xmlDocumentHelpers.GetGenericArgumentTreeNodeDescription(newXmlGenArgParameterNode)
             );

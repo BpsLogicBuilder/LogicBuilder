@@ -38,22 +38,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.GenericArguments
             {
                 GenericConfigCategory.Literal => GetLiteralGenericConfig
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE),
+                    xmlElement.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value,
                     _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)
                 ),
                 GenericConfigCategory.Object => GetObjectGenericConfig
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE),
+                    xmlElement.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value,
                     _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)
                 ),
                 GenericConfigCategory.LiteralList => GetLiteralListGenericConfig
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE),
+                    xmlElement.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value,
                     _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)
                 ),
                 GenericConfigCategory.ObjectList => GetObjectListGenericConfig
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE),
+                    xmlElement.Attributes[XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE]!.Value,
                     _xmlDocumentHelpers.GetChildElements(xmlElement).ToDictionary(e => e.Name)
                 ),
                 _ => throw _exceptionHelper.CriticalException("{F8179AFE-CC33-4B89-97FA-725E59D4D530}"),

@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureGeneri
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(parameterElement).ToDictionary(e => e.Name);
 
-            txtListGpName.Text = parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtListGpName.Text = parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtListGpName.Select();
             txtListGpName.SelectAll();
             cmbListGpGenericArgumentName.SelectedValue = elements[XmlDataConstants.GENERICARGUMENTNAMEELEMENT].InnerText;

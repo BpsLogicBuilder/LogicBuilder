@@ -47,7 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Functions
             {
                 return _functionFactory.GetFunction
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                    xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                     elements[XmlDataConstants.MEMBERNAMEELEMENT].InnerText,
                     _enumHelper.ParseEnumText<FunctionCategories>(elements[XmlDataConstants.FUNCTIONCATEGORYELEMENT].InnerText),
                     elements[XmlDataConstants.TYPENAMEELEMENT].InnerText,

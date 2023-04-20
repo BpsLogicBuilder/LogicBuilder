@@ -57,7 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             XmlElement fragmentElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(fragmentElement).ToDictionary(e => e.Name);
 
-            txtFragmentName.Text = fragmentElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtFragmentName.Text = fragmentElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtFragmentName.Select();
             txtFragmentName.SelectAll();
             _richTextBoxPanelFragment.Lines = new string[]

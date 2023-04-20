@@ -101,7 +101,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
             XmlElement functionElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(functionElement).ToDictionary(e => e.Name);
 
-            txtFunctionName.Text = functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtFunctionName.Text = functionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtFunctionName.Select();
             txtFunctionName.SelectAll();
             txtMemberName.Text = elements[XmlDataConstants.MEMBERNAMEELEMENT].InnerText;

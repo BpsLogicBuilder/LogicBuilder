@@ -118,7 +118,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             _updateParameterControlValues.PrepopulateRequiredFields
             (
                 editControlsSet,
-                functionData.ParameterElementsList.ToDictionary(p => p.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                functionData.ParameterElementsList.ToDictionary(p => p.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
                 editFunctionControl.Function.Parameters.ToDictionary(p => p.Name),
                 editFunctionControl.XmlDocument,
                 ParametersXPath,

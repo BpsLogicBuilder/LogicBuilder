@@ -29,7 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new LiteralListParameterData
             (
-                xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetSingleChildElement(xmlElement),
                 xmlElement,
                 _enumHelper

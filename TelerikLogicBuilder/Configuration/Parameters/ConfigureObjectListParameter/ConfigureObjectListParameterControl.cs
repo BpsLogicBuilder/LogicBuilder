@@ -80,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureObject
             XmlElement parameterElement = _xmlDocumentHelpers.SelectSingleElement(XmlDocument, treeNode.Name);
             Dictionary<string, XmlElement> elements = _xmlDocumentHelpers.GetChildElements(parameterElement).ToDictionary(e => e.Name);
 
-            txtListCpName.Text = parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            txtListCpName.Text = parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtListCpName.Select();
             txtListCpName.SelectAll();
             cmbListCpObjectType.Text = elements[XmlDataConstants.OBJECTTYPEELEMENT].InnerText;

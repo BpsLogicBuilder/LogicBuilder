@@ -38,7 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Intellisense.Constructors
             Constructor GetConstructor(Dictionary<string, XmlElement> elements)
                 => _constructorFactory.GetConstructor
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                    xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                     elements[XmlDataConstants.TYPENAMEELEMENT].InnerText,
                     _xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.PARAMETERSELEMENT]).Select(e => _parametersXmlParser.Parse(e)).ToList(),
                     new List<string>(_xmlDocumentHelpers.GetChildElements(elements[XmlDataConstants.GENERICARGUMENTSELEMENT]).Select(e => e.InnerText)),

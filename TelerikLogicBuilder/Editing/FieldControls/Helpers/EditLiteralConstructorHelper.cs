@@ -65,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 constructors.Keys.Order().ToHashSet(),
                 _xmlDocumentHelpers
                     .GetDocumentElement(xmlDocument)
-                    .GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                    .Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 true
             );
 

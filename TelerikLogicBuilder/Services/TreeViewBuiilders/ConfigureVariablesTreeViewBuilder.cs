@@ -67,7 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             (
                 folderElement,
                 e => new HashSet<string> { XmlDataConstants.LITERALVARIABLEELEMENT, XmlDataConstants.OBJECTVARIABLEELEMENT, XmlDataConstants.LITERALLISTVARIABLEELEMENT, XmlDataConstants.OBJECTLISTVARIABLEELEMENT }.Contains(e.Name),
-                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
@@ -78,7 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                         treeNode,
                         variableElement.Name,
                         XmlDataConstants.NAMEATTRIBUTE,
-                        variableElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        variableElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         _xmlDocumentHelpers.GetImageIndex(variableElement),
                         _xmlDocumentHelpers.GetVariableTreeNodeDescription(variableElement)
                     );
@@ -93,7 +93,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             (
                 folderElement,
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
@@ -104,7 +104,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
                         treeNode,
                         childFolderElement.Name,
                         XmlDataConstants.NAMEATTRIBUTE,
-                        childFolderElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        childFolderElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         ImageIndexes.CLOSEDFOLDERIMAGEINDEX
                     );
 

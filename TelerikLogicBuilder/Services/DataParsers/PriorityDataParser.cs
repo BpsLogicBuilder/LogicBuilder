@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             if (xmlElement.Name != XmlDataConstants.SHAPEDATAELEMENT)
                 throw _exceptionHelper.CriticalException("{33F56766-7ACF-4CA6-A85F-C30B3E3B1072}");
 
-            if (xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE) != TableColumnName.PRIORITYCOLUMN)
+            if (xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value != TableColumnName.PRIORITYCOLUMN)
                 return null;
 
             return int.TryParse

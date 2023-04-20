@@ -79,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
                 (
                     xmlNode,
                     e => e.Name == XmlDataConstants.FUNCTIONELEMENT,
-                    en => en.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                    en => en.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
                 )
                 .Select(_functionXmlParser.Parse)
                 .Where(functionsFilter)
@@ -90,7 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
             (
                 xmlNode,
                 e => e.Name == XmlDataConstants.FOLDERELEMENT,
-                e => e.OrderBy(i => i.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                e => e.OrderBy(i => i.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
             )
             .ForEach
             (
@@ -98,7 +98,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration.Initialization
                 {
                     TreeFolder childFolder = new
                     (
-                        folderNode.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                        folderNode.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                         new List<string>(),
                         new List<TreeFolder>()
                     );

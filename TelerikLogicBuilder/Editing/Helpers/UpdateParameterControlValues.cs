@@ -208,7 +208,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         {
             foreach (XmlElement parameterElement in parameterElementsList)
             {
-                string parameterName = parameterElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+                string parameterName = parameterElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
                 if (!editControlsSet.TryGetValue(parameterName, out ParameterControlSet? parameterControlSet))
                     continue;
 

@@ -41,8 +41,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                 BuildPredicatesList(firstChild, list);
                 return new DecisionData
                 (
-                    decisionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                    decisionElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                    decisionElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
+                    decisionElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                     firstChild.Name,//or, and, not, function
                     list,
                     xmlElement,

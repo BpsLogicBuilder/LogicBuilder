@@ -41,13 +41,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             (
                 _enumHelper.ParseEnumText<LiteralListElementType>
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
+                    xmlElement.Attributes[XmlDataConstants.LITERALTYPEATTRIBUTE]!.Value
                 ),
                 _enumHelper.ParseEnumText<ListType>
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE)
+                    xmlElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value
                 ),
-                xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                 _xmlDocumentHelpers.GetChildElements(xmlElement),
                 xmlElement
             );
@@ -58,8 +58,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             if (xmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{ADBBEEE2-6E59-47CC-9DC5-D78F349D57C7}");
             
-            LiteralParameterType literalType = _enumHelper.ParseEnumText<LiteralParameterType>(xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE));
-            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE));
+            LiteralParameterType literalType = _enumHelper.ParseEnumText<LiteralParameterType>(xmlElement.Attributes[XmlDataConstants.LITERALTYPEATTRIBUTE]!.Value);
+            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value);
             List<XmlElement> chileElements = GetUniqueChildElements
             (
                 _enumHelper.GetSystemType(literalType),
@@ -70,7 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             (
                 _enumHelper.ParseEnumText<LiteralListElementType>
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
+                    xmlElement.Attributes[XmlDataConstants.LITERALTYPEATTRIBUTE]!.Value
                 ),
                 listType,
                 string.Format
@@ -116,8 +116,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             if (xmlElement.Name != XmlDataConstants.LITERALLISTELEMENT)
                 throw _exceptionHelper.CriticalException("{DDD61368-2FCD-4C0F-A847-FFEB97BFD8BE}");
 
-            LiteralVariableType literalType = _enumHelper.ParseEnumText<LiteralVariableType>(xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE));
-            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.GetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE));
+            LiteralVariableType literalType = _enumHelper.ParseEnumText<LiteralVariableType>(xmlElement.Attributes[XmlDataConstants.LITERALTYPEATTRIBUTE]!.Value);
+            ListType listType = _enumHelper.ParseEnumText<ListType>(xmlElement.Attributes[XmlDataConstants.LISTTYPEATTRIBUTE]!.Value);
             List<XmlElement> chileElements = GetUniqueChildElements
             (
                 _enumHelper.GetSystemType(literalType),
@@ -128,7 +128,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             (
                 _enumHelper.ParseEnumText<LiteralListElementType>
                 (
-                    xmlElement.GetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE)
+                    xmlElement.Attributes[XmlDataConstants.LITERALTYPEATTRIBUTE]!.Value
                 ),
                 listType,
                 string.Format

@@ -22,8 +22,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return new VariableData
             (
-                xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), 
-                xmlElement.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
+                xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, 
+                xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
                 xmlElement
             );
         }

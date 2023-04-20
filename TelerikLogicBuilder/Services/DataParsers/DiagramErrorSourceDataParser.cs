@@ -28,11 +28,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
 
             return _structuresFactory.GetDiagramErrorSourceData
             (
-                xmlElement.GetAttribute(XmlDataConstants.FILEFULLNAMEATTRIBUTE),
-                int.Parse(xmlElement.GetAttribute(XmlDataConstants.PAGEINDEXATTRIBUTE), CultureInfo.InvariantCulture),
-                int.Parse(xmlElement.GetAttribute(XmlDataConstants.SHAPEINDEXATTRIBUTE), CultureInfo.InvariantCulture),
-                int.Parse(xmlElement.GetAttribute(XmlDataConstants.PAGEIDATTRIBUTE), CultureInfo.InvariantCulture),
-                int.Parse(xmlElement.GetAttribute(XmlDataConstants.SHAPEIDATTRIBUTE), CultureInfo.InvariantCulture)
+                xmlElement.Attributes[XmlDataConstants.FILEFULLNAMEATTRIBUTE]!.Value,
+                int.Parse(xmlElement.Attributes[XmlDataConstants.PAGEINDEXATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
+                int.Parse(xmlElement.Attributes[XmlDataConstants.SHAPEINDEXATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
+                int.Parse(xmlElement.Attributes[XmlDataConstants.PAGEIDATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
+                int.Parse(xmlElement.Attributes[XmlDataConstants.SHAPEIDATTRIBUTE]!.Value, CultureInfo.InvariantCulture)
             );
         }
     }

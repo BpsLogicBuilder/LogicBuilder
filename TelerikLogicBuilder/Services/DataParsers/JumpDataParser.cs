@@ -23,7 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
             if (xmlElement.Name != XmlDataConstants.SHAPEDATAELEMENT)
                 throw _exceptionHelper.CriticalException("{61BBC8E3-D218-4775-87BA-E235797B994A}");
 
-            if (xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE) != UniversalMasterName.JUMPOBJECT)
+            if (xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value != UniversalMasterName.JUMPOBJECT)
                 return string.Empty;
                 
             return _xmlDocumentHelpers.GetSingleChildElement(xmlElement).InnerText;

@@ -182,7 +182,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 GetParametersDescription
                 (
                     constructor.Parameters.ToDictionary(p => p.Name),
-                    constructorData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                    constructorData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
                     application
                 )
             );
@@ -243,7 +243,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 (
                     functionData,
                     function.Parameters.ToDictionary(p => p.Name),
-                    functionData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                    functionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
                     application
                 );
             }
@@ -258,7 +258,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                     GetParametersDescription
                     (
                         function.Parameters.ToDictionary(p => p.Name),
-                        functionData.ParameterElementsList.ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE)),
+                        functionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
                         application
                     )
                 )
@@ -567,7 +567,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             if (variableElement.Name != XmlDataConstants.VARIABLEELEMENT)
                 throw _exceptionHelper.CriticalException("{EA2CFD1F-FEEF-45EB-B3B0-40FDAF9B38FB}");
 
-            return variableElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE);
+            return variableElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
         }
     }
 }

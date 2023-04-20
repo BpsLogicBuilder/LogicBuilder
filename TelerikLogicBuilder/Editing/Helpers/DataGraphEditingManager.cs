@@ -528,7 +528,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private void RefreshVariableTreeNode(VariableElementTreeNode treeNode)
         {
-            Refresh(CurrentEditingControl.XmlResult.GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+            Refresh(CurrentEditingControl.XmlResult.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value);
             void Refresh(string variableName)
             {
                 treeNode.Name = $"{treeNode.Parent.Name}/{XmlDataConstants.VARIABLEELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}=\"{variableName}\"]";

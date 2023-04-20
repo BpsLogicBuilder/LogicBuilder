@@ -128,7 +128,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             }
         }
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
         public void ClearMessage() => dataGraphEditingHost.ClearMessage();
 
@@ -214,7 +214,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             RetractFunctionData retractFunctionData = _retractFunctionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(this.xmlDocument));
             _configurationService.VariableList.Variables.TryGetValue
             (
-                retractFunctionData.VariableElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
+                retractFunctionData.VariableElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value,
                 out variable
             );
 
