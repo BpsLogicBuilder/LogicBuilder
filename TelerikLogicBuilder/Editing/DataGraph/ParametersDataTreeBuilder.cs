@@ -151,7 +151,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
             treeView.ShowRootLines = true;
             treeView.Nodes.Clear();
             XmlElement functionElement = _xmlDocumentHelpers.SelectSingleElement(xmlDocument, FUNCTION_ROOT_XPATH);
-            if (!_configurationService.FunctionList.Functions.TryGetValue(functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? function))
+            FunctionData functionData = _functionDataParser.Parse(functionElement);
+            if (!_configurationService.FunctionList.Functions.TryGetValue(functionData.Name, out Function? function))
                 return;
 
             GetFunctionChildren
@@ -331,7 +332,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                     );
                     break;
                 case FunctionElementTreeNode functionElementTreeNode:
-                    if (!_configurationService.FunctionList.Functions.TryGetValue(xmlElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE), out Function? function))
+                    FunctionData functionData = _functionDataParser.Parse(xmlElement);
+                    if (!_configurationService.FunctionList.Functions.TryGetValue(functionData.Name, out Function? function))
                         return;
 
                     node.ToolTipText = function.ToString();
@@ -664,11 +666,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
                 functionElementTreeNode,
                 root,
                 function.Parameters.ToDictionary(p => p.Name),
-                _xmlDocumentHelpers.GetChildElements
-                (
-                    _xmlDocumentHelpers.GetSingleChildElement(functionElement, e => e.Name == XmlDataConstants.PARAMETERSELEMENT)
-                )
-                .ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
+                functionData
+                    .ParameterElementsList
+                    .ToDictionary(e => e.GetAttribute(XmlDataConstants.NAMEATTRIBUTE))
             );
         }
 

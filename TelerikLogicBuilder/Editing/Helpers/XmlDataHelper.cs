@@ -26,6 +26,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
+        public string BuildAndXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.ANDELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildAssertFunctionXml(string name, string visibleText, string variableName, string variableValueInnerXml)
         {
             StringBuilder stringBuilder = new();
@@ -36,6 +49,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     xmlTextWriter.WriteAttributeString(XmlDataConstants.VISIBLETEXTATTRIBUTE, visibleText);
                     xmlTextWriter.WriteRaw(BuildVariableXml(variableName));
                     xmlTextWriter.WriteRaw(BuildVariableValueXml(variableValueInnerXml));
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
+        public string BuildConditionsXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.CONDITIONSELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();
             }
@@ -256,6 +282,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
             {
                 xmlTextWriter.WriteStartElement(XmlDataConstants.OBJECTELEMENT);
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
+        public string BuildOrXml(string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.ORELEMENT);
                     xmlTextWriter.WriteRaw(innerXml);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();

@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -129,9 +130,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         public XmlDocument XmlDocument => xmlDocument;
 
-        public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet);
+        public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet, radCheckBoxNot.Checked);
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText
+        {
+            get
+            {
+                FunctionData functionData = _functionDataParser.Parse(XmlResult);
+                if (!radCheckBoxNot.Checked)
+                    return functionData.VisibleText;
+
+                return string.Format
+                (
+                    CultureInfo.CurrentCulture, 
+                    Strings.notFromDecisionStringFormat, 
+                    radCheckBoxNot.Text, 
+                    Strings.notFromDecisionSeparator, 
+                    functionData.VisibleText
+                );
+            }
+        }
 
         public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 
@@ -275,6 +293,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
                     LoadParameterControls();
                     _editFunctionControlHelper.UpdateParameterControls(tableLayoutPanel, editControlsSet);
+                    SetCheckNotState(functionData.IsNotFunction);
                 }
 
                 //We still need the layout for the genericConfigurationControl and lblFunction
@@ -286,6 +305,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             {
                 LoadParameterControls();
                 _editFunctionControlHelper.UpdateParameterControls(tableLayoutPanel, editControlsSet);
+                FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(XmlDocument));
+                SetCheckNotState(functionData.IsNotFunction);
                 _tableLayoutPanelHelper.SetUp(tableLayoutPanel, radPanelTableParent, function.Parameters, function.HasGenericArguments);
             }
 
@@ -316,6 +337,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             radCheckBoxNot.Text = Strings.notString;
             _radCheckBoxHelper.SetLabelMargin(radCheckBoxNot);
             radCheckBoxNot.Visible = DisplayNotCheckBox && _functionHelper.IsBoolean(Function);
+            radCheckBoxNot.CheckStateChanged -= RadCheckBoxNot_CheckStateChanged;
+            radCheckBoxNot.CheckStateChanged += RadCheckBoxNot_CheckStateChanged;
 
             // 
             // lblFunctionName
@@ -391,6 +414,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
                 return;
 
             ShowHideParameterControls(radChackBox);
+        }
+
+        private void SetCheckNotState(bool isChecked)
+        {
+            radCheckBoxNot.CheckStateChanged -= RadCheckBoxNot_CheckStateChanged;
+            radCheckBoxNot.Checked = isChecked;
+            radCheckBoxNot.CheckStateChanged += RadCheckBoxNot_CheckStateChanged;
+        }
+
+        private void RadCheckBoxNot_CheckStateChanged(object? sender, EventArgs e)
+        {
+            RequestDocumentUpdate();
         }
         #endregion Event Handlers
     }

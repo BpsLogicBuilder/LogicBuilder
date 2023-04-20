@@ -895,6 +895,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             //retractFunction Element
             XmlSchemaElement elementRetractFunction = CreateSchemaElement("retractFunction", "retractFunctionType");
 
+            //not Element
+            XmlSchemaElement elementNot = CreateSchemaElement("not", "notType");
+
             //retractFunctionType ComplexType
             XmlSchemaComplexType retractFunctionType = CreateComplexType("retractFunctionType",
                 new XmlSchemaElement[]
@@ -903,13 +906,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                 },
                 new XmlSchemaAttribute[] { AttributeName, AttributeVisibleText });
 
+            //notType ComplexType
+            XmlSchemaComplexType notType = CreateComplexType("notType",
+                new XmlSchemaElement[]
+                {
+                    CreateSchemaElement("function", "functionType", 1, 1)
+                },
+                null);
+
             return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
             {
                 elementFunction,
                 elementAssertFunction,
                 elementRetractFunction,
+                elementNot,
                 ConstructorType,
                 FunctionType,
+                notType,
                 VariableType,
                 LiteralListItemType,
                 ObjectListItemType,

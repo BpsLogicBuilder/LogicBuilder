@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<IActionShapeEditor, ActionShapeEditor>()
+                .AddTransient<IConditionShapeEditor, ConditionShapeEditor>()
                 .AddTransient<IDialogShapeEditor, DialogShapeEditor>()
                 .AddTransient<Func<string, IShapeEditor>>
                 (
@@ -23,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         return masterName switch
                         {
                             UniversalMasterName.ACTION => provider.GetRequiredService<IActionShapeEditor>(),
+                            UniversalMasterName.CONDITIONOBJECT or UniversalMasterName.WAITCONDITIONOBJECT => provider.GetRequiredService<IConditionShapeEditor>(),
                             UniversalMasterName.DIALOG => provider.GetRequiredService<IDialogShapeEditor>(),
                             _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{EB5FFEF4-2266-4569-A0DA-A2C6E30574B0}")),
                         };

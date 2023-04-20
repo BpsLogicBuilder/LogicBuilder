@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph.TreeNodes;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using System;
 using System.Globalization;
 using System.Xml;
@@ -12,11 +13,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
     internal class DataGraphTreeViewHelper : IDataGraphTreeViewHelper
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFunctionDataParser _functionDataParser;
 
         public DataGraphTreeViewHelper(
-            IExceptionHelper exceptionHelper)
+            IExceptionHelper exceptionHelper,
+            IFunctionDataParser functionDataParser)
         {
             _exceptionHelper = exceptionHelper;
+            _functionDataParser = functionDataParser;
         }
 
         public ConstructorElementTreeNode AddConstructorTreeNode(ParametersDataTreeNode parentNode, XmlElement constructorElement, string toolTipText)
@@ -420,8 +424,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph
 
             FunctionElementTreeNode newTreeNode = new
             (
-                functionElement.GetAttribute(XmlDataConstants.NAMEATTRIBUTE),
-                $"/{XmlDataConstants.NOTELEMENT}|/{functionElement.Name}",
+                _functionDataParser.Parse(functionElement).Name,
+                $"/{XmlDataConstants.NOTELEMENT}|/{XmlDataConstants.FUNCTIONELEMENT}",
                 rootAssignedToType
             )
             {

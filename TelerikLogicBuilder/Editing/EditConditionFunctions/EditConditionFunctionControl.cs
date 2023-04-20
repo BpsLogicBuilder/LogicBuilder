@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -11,25 +11,28 @@ using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
 {
-    internal partial class EditVoidFunctionControl : UserControl, IEditVoidFunctionControl
+    internal partial class EditConditionFunctionControl : UserControl, IEditConditionFunctionControl
     {
         private readonly IConfigurationService _configurationService;
         private readonly IDataGraphEditingHostEventsHelper _dataGraphEditingHostEventsHelper;
-        private readonly IEditVoidFunctionCommandFactory _editVoidFunctionCommandFactory;
+        private readonly IEditConditionFunctionCommandFactory _editConditionFunctionCommandFactory;
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IFunctionDataParser _functionDataParser;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
@@ -37,24 +40,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditFunctionsForm editFunctionsForm;
+        private readonly IEditConditionFunctionsForm editConditionFunctionsForm;
 
-        public EditVoidFunctionControl(
+        public EditConditionFunctionControl(
             IConfigurationService configurationService,
-            IEditVoidFunctionCommandFactory editVoidFunctionCommandFactory,
+            IEditConditionFunctionCommandFactory editConditionFunctionCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
+            IFunctionDataParser functionDataParser,
             IRadDropDownListHelper radDropDownListHelper,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditFunctionsForm editFunctionsForm)
+            IEditConditionFunctionsForm editConditionFunctionsForm)
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _editVoidFunctionCommandFactory = editVoidFunctionCommandFactory;
+            _editConditionFunctionCommandFactory = editConditionFunctionCommandFactory;
             _exceptionHelper = exceptionHelper;
+            _functionDataParser = functionDataParser;
             _radDropDownListHelper = radDropDownListHelper;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.FunctionDataSchema);
@@ -64,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             _dataGraphEditingHostEventsHelper = editingFormHelperFactory.GetDataGraphEditingHostEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
 
-            this.editFunctionsForm = editFunctionsForm;
+            this.editConditionFunctionsForm = editConditionFunctionsForm;
 
             Initialize();
         }
@@ -84,7 +89,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         public bool DenySpecialCharacters => false;
 
-        public bool DisplayNotCheckBox => false;
+        public bool DisplayNotCheckBox => true;
 
         public RadPanel RadPanelFields => radPanelFields;
 
@@ -93,19 +98,36 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 
         public XmlElement XmlResult
-            => _refreshVisibleTextHelper.RefreshAllVisibleTexts
-            (/*Need <assertFunction />, <retractFunction /> and <function /> hance RefreshAllVisibleTexts.*/
+            => _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
+            (
                 _xmlDocumentHelpers.GetDocumentElement(XmlDocument),
                 Application
             );
 
-        public Type AssignedTo => typeof(object);
+        public Type AssignedTo => typeof(bool);
 
-        public ApplicationTypeInfo Application => editFunctionsForm.Application;
+        public ApplicationTypeInfo Application => editConditionFunctionsForm.Application;
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-        public string VisibleText => XmlResult.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE);
+        public string VisibleText
+        {
+            get
+            {
+                FunctionData functionData = _functionDataParser.Parse(XmlResult);
+                if (!functionData.IsNotFunction)
+                    return functionData.VisibleText;
+
+                return string.Format
+                (
+                    CultureInfo.CurrentCulture,
+                    Strings.notFromDecisionStringFormat,
+                    Strings.notString,
+                    Strings.notFromDecisionSeparator,
+                    functionData.VisibleText
+                );
+            }
+        }
 
         public event EventHandler? Changed;
 
@@ -131,7 +153,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             }
         }
 
-        public void ClearMessage() => editFunctionsForm.ClearMessage();
+        public void ClearMessage() => editConditionFunctionsForm.ClearMessage();
 
         public void DisableControlsDuringEdit(bool disable)
         {
@@ -148,7 +170,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                 Changed?.Invoke(this, EventArgs.Empty);
         }
 
-        public void SetErrorMessage(string message) => editFunctionsForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => editConditionFunctionsForm.SetErrorMessage(message);
 
         public void SetFunctionName(string functionName)
         {
@@ -157,24 +179,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             cmbSelectFunction.Changed += CmbSelectFunction_Changed;
         }
 
-        public void SetMessage(string message, string title = "") => editFunctionsForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => editConditionFunctionsForm.SetMessage(message, title);
 
         public void UpdateInputControls(string xmlString)
         {
             _treeViewXmlDocumentHelper.LoadXmlDocument(xmlString);
             LoadTreeview();
+
             SetFunctionName
             (
-                _xmlDocumentHelpers
-                    .GetDocumentElement(XmlDocument)
-                    .GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                _functionDataParser.Parse
+                (
+                    _xmlDocumentHelpers.ToXmlElement(xmlString)
+                ).Name
             );
         }
 
         public void ValidateXmlDocument()
         {
-            //VoidFunction specfic error checks (i.e. not configured, must be void) here should not be necessary
-            //New function selections are always checked against _configurationService.FunctionList.VoidFunctions
+            //BooleanFunction specfic error checks (i.e. not configured, must be bool) here should not be necessary
+            //New function selections are always checked against _configurationService.FunctionList.BooleanFunctions
             _treeViewXmlDocumentHelper.ValidateXmlDocument();
         }
 
@@ -185,34 +209,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         private void CmbSelectFunctionChanged()
         {
-            if (!_configurationService.FunctionList.VoidFunctions.TryGetValue(cmbSelectFunction.Text, out Function? function))
+            if (!_configurationService.FunctionList.BooleanFunctions.TryGetValue(cmbSelectFunction.Text, out Function? function))
                 return;
 
-            _treeViewXmlDocumentHelper.LoadXmlDocument(GetEmptyFunctioXml());
+            _treeViewXmlDocumentHelper.LoadXmlDocument(_xmlDataHelper.BuildEmptyFunctionXml(function.Name, function.Name));
             LoadTreeview();
-
-            string GetEmptyFunctioXml()
-            {
-                return function.FunctionCategory switch
-                {
-                    FunctionCategories.Assert => _xmlDataHelper.BuildEmptyAssertFunctionXml(function.Name),
-                    FunctionCategories.Standard or FunctionCategories.RuleChainingUpdate => _xmlDataHelper.BuildEmptyFunctionXml(function.Name, function.Name),
-                    FunctionCategories.Retract => _xmlDataHelper.BuildEmptyRetractFunctionXml(function.Name),
-                    _ => throw _exceptionHelper.CriticalException("{B213177A-C628-4979-8627-336B5F488163}"),
-                };
-            }
         }
 
         private void Initialize()
         {
             InitializeSelectFunctionDropDownList();
 
-            editFunctionsForm.ApplicationChanged += EditFunctionsForm_ApplicationChanged;
+            editConditionFunctionsForm.ApplicationChanged += EditConditionFunctionsForm_ApplicationChanged;
             cmbSelectFunction.Changed += CmbSelectFunction_Changed;
 
             _dataGraphEditingHostEventsHelper.Setup();
             SetUpSelectFunctionDropDownList();
-            AddButtonClickCommand(cmbSelectFunction, _editVoidFunctionCommandFactory.GetSelectVoidFunctionCommand(this));
+            AddButtonClickCommand(cmbSelectFunction, _editConditionFunctionCommandFactory.GetSelectConditionFunctionCommand(this));
         }
 
         private void InitializeSelectFunctionDropDownList()
@@ -225,21 +238,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             if (XmlDocument.DocumentElement == null)
                 return;
 
-            switch(XmlDocument.DocumentElement.Name)
-            {
-                case XmlDataConstants.ASSERTFUNCTIONELEMENT:
-                    _parametersDataTreeBuilder.CreateAssertFunctionTreeProfile(TreeView, XmlDocument);
-                    break;
-                case XmlDataConstants.FUNCTIONELEMENT:
-                    _parametersDataTreeBuilder.CreateFunctionTreeProfile(TreeView, XmlDocument, AssignedTo);
-                    break;
-                case XmlDataConstants.RETRACTFUNCTIONELEMENT:
-                    _parametersDataTreeBuilder.CreateRetractFunctionTreeProfile(TreeView, XmlDocument);
-                    break;
-                default:
-                    throw _exceptionHelper.CriticalException("{059A1C84-0535-426F-81FF-6829AEB49922}");
-            }
-            
+            _parametersDataTreeBuilder.CreateFunctionTreeProfile(TreeView, XmlDocument, AssignedTo);
+
             if (TreeView.SelectedNode == null)
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }
@@ -249,7 +249,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             _radDropDownListHelper.LoadTextItems
             (
                 cmbSelectFunction.DropDownList,
-                _configurationService.FunctionList.VoidFunctions.Select(f => f.Key).Order(),
+                _configurationService.FunctionList.BooleanFunctions.Select(f => f.Key).Order(),
                 Telerik.WinControls.RadDropDownStyle.DropDown
             );
 
@@ -258,14 +258,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
             SetFunctionName
             (
-                _xmlDocumentHelpers
-                    .GetDocumentElement(XmlDocument)
-                    .GetAttribute(XmlDataConstants.NAMEATTRIBUTE)
+                _functionDataParser.Parse
+                (
+                    _xmlDocumentHelpers.GetDocumentElement(XmlDocument)
+                ).Name
             );
         }
 
         #region Event Handlers
-        private void EditFunctionsForm_ApplicationChanged(object? sender, ApplicationChangedEventArgs e)
+        private void EditConditionFunctionsForm_ApplicationChanged(object? sender, ApplicationChangedEventArgs e)
         {
             ApplicationChanged?.Invoke(this, e);
         }

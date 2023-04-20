@@ -2,7 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -25,57 +25,56 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
 {
-    internal partial class EditFunctionsForm : Telerik.WinControls.UI.RadForm, IEditFunctionsForm, IListBoxHost<IFunctionListBoxItem>
+    internal partial class EditConditionFunctionsForm : Telerik.WinControls.UI.RadForm, IEditConditionFunctionsForm, IListBoxHost<IConditionFunctionListBoxItem>
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
+        private readonly IConditionFunctionListBoxItemFactory _conditionFunctionListBoxItemFactory;
+        private readonly IConditionsDataParser _conditionsDataParser;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
-        private readonly IEditFunctionsCommandFactory _editFunctionsCommandFactory;
+        private readonly IEditConditionFunctionsFormCommandFactory _editConditionFunctionsFormCommandFactory;
         private readonly IFormInitializer _formInitializer;
-        private readonly IFunctionListBoxItemFactory _functionListBoxItemFactory;
-        private readonly IFunctionsDataParser _functionsDataParser;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditVoidFunctionControl editVoidFunctionControl;
+        private readonly IEditConditionFunctionControl editConditionFunctionControl;
         private ApplicationTypeInfo _application;
         private readonly ObjectRichTextBox _objectRichTextBox;
-        private readonly IRadListBoxManager<IFunctionListBoxItem> radListBoxManager;
+        private readonly IRadListBoxManager<IConditionFunctionListBoxItem> radListBoxManager;
 
-        public EditFunctionsForm(
+        public EditConditionFunctionsForm(
             IDialogFormMessageControl dialogFormMessageControl,
-            IEditFunctionsCommandFactory editFunctionsCommandFactory,
-            IEditFunctionsControlFactory editFunctionsControlFactory,
+            IConditionFunctionListBoxItemFactory conditionFunctionListBoxItemFactory,
+            IConditionsDataParser conditionsDataParser,
+            IEditConditionFunctionsFormCommandFactory editConditionFunctionsFormCommandFactory,
+            IEditConditionFunctionsControlFactory editConditionFunctionsControlFactory,
             IFormInitializer formInitializer,
-            IFunctionListBoxItemFactory functionListBoxItemFactory,
-            IFunctionsDataParser functionsDataParser,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             ObjectRichTextBox objectRichTextBox,
-            XmlDocument? functionsXmlDocument)
+            XmlDocument? conditionsXmlDocument)
         {
             InitializeComponent();
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
-            _editFunctionsCommandFactory = editFunctionsCommandFactory;
+            _conditionsDataParser = conditionsDataParser;
+            _editConditionFunctionsFormCommandFactory = editConditionFunctionsFormCommandFactory;
             _formInitializer = formInitializer;
-            _functionListBoxItemFactory = functionListBoxItemFactory;
-            _functionsDataParser = functionsDataParser;
+            _conditionFunctionListBoxItemFactory = conditionFunctionListBoxItemFactory;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _objectRichTextBox = objectRichTextBox;
 
-            if (functionsXmlDocument?.DocumentElement != null)
-                UpdateFunctionsList(functionsXmlDocument.DocumentElement.OuterXml);
+            UpdateConditionsList(conditionsXmlDocument?.DocumentElement?.OuterXml);
 
-            radListBoxManager = new RadListBoxManager<IFunctionListBoxItem>(this);
-            this.editVoidFunctionControl = editFunctionsControlFactory.GetEditVoidFunctionControl(this);
+            radListBoxManager = new RadListBoxManager<IConditionFunctionListBoxItem>(this);
+            this.editConditionFunctionControl = editConditionFunctionsControlFactory.GetEditConditionFunctionControl(this);
             Initialize();
         }
 
@@ -91,11 +90,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         public RadButton BtnDown => managedListBoxControl.BtnDown;
         public RadListControl ListBox => managedListBoxControl.ListBox;
 
-        public IEditingControl? CurrentEditingControl => editVoidFunctionControl.CurrentEditingControl;
+        public IEditingControl? CurrentEditingControl => editConditionFunctionControl.CurrentEditingControl;
 
-        public IEditVoidFunctionControl EditVoidFunctionControl => editVoidFunctionControl;
+        public IEditConditionFunctionControl EditConditionFunctionControl => editConditionFunctionControl;
 
-        public IRadListBoxManager<IFunctionListBoxItem> RadListBoxManager => radListBoxManager;
+        public IRadListBoxManager<IConditionFunctionListBoxItem> RadListBoxManager => radListBoxManager;
 
         public string ShapeXml
         {
@@ -103,11 +102,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             {
                 return _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
                 (
-                    _xmlDocumentHelpers.ToXmlElement(_xmlDataHelper.BuildFunctionsXml(GetInnerXml())),
+                    _xmlDocumentHelpers.ToXmlElement(GetConditionsXml()),
                     Application
                 ).OuterXml;
 
-                string GetInnerXml()
+                string GetConditionsXml()
+                {
+                    if (ListBox.Items.Count < 2)
+                        return _xmlDataHelper.BuildConditionsXml(GetItemsFragment());
+
+                    return rdoOr.IsChecked
+                        ? _xmlDataHelper.BuildConditionsXml(_xmlDataHelper.BuildOrXml(GetItemsFragment()))
+                        : _xmlDataHelper.BuildConditionsXml(_xmlDataHelper.BuildAndXml(GetItemsFragment()));
+                }
+
+                string GetItemsFragment()
                 {
                     if (ListBox.Items.Count == 0)
                         return string.Empty;
@@ -115,12 +124,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                     StringBuilder stringBuilder = new();
                     using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateFragmentXmlWriter(stringBuilder))
                     {
-                        foreach (string innerXml in ListBox.Items.Select(i => ((IFunctionListBoxItem)i.Value).HiddenText))
+                        foreach (string innerXml in ListBox.Items.Select(i => ((IConditionFunctionListBoxItem)i.Value).HiddenText))
                         {
                             xmlTextWriter.WriteRaw(innerXml);
                         }
                         xmlTextWriter.Flush();
                     }
+
                     return stringBuilder.ToString();
                 }
             }
@@ -130,10 +140,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         {
             get
             {
+                string logic = rdoOr.IsChecked ? rdoOr.Text : rdoAnd.Text;
                 return string.Join
                 (
-                    Environment.NewLine,
-                    _functionsDataParser
+                    $"{Environment.NewLine}{logic}{Environment.NewLine}",
+                    _conditionsDataParser
                         .Parse(_xmlDocumentHelpers.ToXmlElement(ShapeXml))
                         .FunctionElements
                         .Select(e => e.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE))
@@ -147,7 +158,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         {
             Native.NativeMethods.LockWindowUpdate(this.Handle);
             _objectRichTextBox.Text = string.Empty;
-            editVoidFunctionControl.ClearInputControls();
+            editConditionFunctionControl.ClearInputControls();
             Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
         }
 
@@ -163,19 +174,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         public void SetMessage(string message, string title = "") => _dialogFormMessageControl.SetMessage(message, title);
 
-        public void UpdateFunctionsList(string xmlString)
+        public void UpdateConditionsList(string? xmlString)
         {
+            rdoAnd.IsChecked = true;
             ListBox.Items.Clear();
+
+            if (xmlString == null)
+                return;
+
             if (!Application.AssemblyAvailable)
             {
                 SetErrorMessage(Application.UnavailableMessage);
                 return;
             }
-            FunctionsData functionsData = _functionsDataParser.Parse(_xmlDocumentHelpers.ToXmlElement(xmlString));
-            if (functionsData.FunctionElements.Count == 0)
+
+            ConditionsData conditionsData = _conditionsDataParser.Parse(_xmlDocumentHelpers.ToXmlElement(xmlString));
+            if (conditionsData.FunctionElements.Count == 0)
                 return;
 
-            IList<IFunctionListBoxItem> listBoxItems = GetListBoxItems();
+            IList<IConditionFunctionListBoxItem> listBoxItems = GetListBoxItems();
             IList<string> errors = GetErrors();
             if (errors.Count > 0)
                 SetErrorMessage(string.Join(Environment.NewLine, errors));
@@ -186,16 +203,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                 listBoxItems.Select(item => new RadListDataItem(item.VisibleText, item))
             );
 
+            if (conditionsData.FirstChildElementName == XmlDataConstants.ORELEMENT)
+                rdoOr.IsChecked = true;
+
             ValidateOk();
 
-            IList<IFunctionListBoxItem> GetListBoxItems()
-                => functionsData.FunctionElements.Select
+            IList<IConditionFunctionListBoxItem> GetListBoxItems()
+                => conditionsData.FunctionElements.Select
                 (
-                    e => _functionListBoxItemFactory.GetFunctionListBoxItem
+                    e => _conditionFunctionListBoxItemFactory.GetConditionFunctionListBoxItem
                     (
                         e.GetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE),
                         e.OuterXml,
-                        typeof(object),
                         this
                     )
                 ).ToArray();
@@ -209,13 +228,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             }
         }
 
-        public void UpdateInputControls(IFunctionListBoxItem item)
+        public void UpdateInputControls(IConditionFunctionListBoxItem item)
         {
-            editVoidFunctionControl.UpdateInputControls(item.HiddenText);
+            editConditionFunctionControl.UpdateInputControls(item.HiddenText);
 
             if (CurrentEditingControl?.IsValid == true)
             {
-                _objectRichTextBox.Text = editVoidFunctionControl.VisibleText;
+                _objectRichTextBox.Text = editConditionFunctionControl.VisibleText;
             }
         }
 
@@ -235,28 +254,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             ControlsLayoutUtility.CollapsePanelBorder(radPanelFill);
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
-            editVoidFunctionControl.Changed += EditVoidFunctionControl_Changed;
+            editConditionFunctionControl.Changed += EditConditionFunctionControl_Changed;
             radListBoxManager.ListChanged += RadListBoxManager_ListChanged;
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
+            if (ListBox.Items.Count == 0)
+                rdoAnd.IsChecked = true;
 
             _formInitializer.SetToEditSize(this);
 
             LayoutGroupBoxList();
             ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
 
-            InitializeEditVoidFunctionControl();
+            InitializeEditConditionFunctionControl();
             InitializeEditControl();
 
-            AddButtonClickCommand(btnCopyXml, _editFunctionsCommandFactory.GetEditFFunctionsFormCopyXmlCommand(this));
-            AddButtonClickCommand(btnPasteXml, _editFunctionsCommandFactory.GetEditFunctionsFormXmlCommand(this));
+            AddButtonClickCommand(btnCopyXml, _editConditionFunctionsFormCommandFactory.GetEditConditionFunctionsFormCopyXmlCommand(this));
+            AddButtonClickCommand(btnPasteXml, _editConditionFunctionsFormCommandFactory.GetEditConditionFunctionsFormEditXmlCommand(this));
 
-            AddButtonClickCommand(btnAdd, _editFunctionsCommandFactory.GetAddFunctionListBoxItemCommand(this));
-            AddButtonClickCommand(btnUpdate, _editFunctionsCommandFactory.GetUpdateFunctionListBoxItemCommand(this));
+            AddButtonClickCommand(btnAdd, _editConditionFunctionsFormCommandFactory.GetAddConditionFunctionListBoxItemCommand(this));
+            AddButtonClickCommand(btnUpdate, _editConditionFunctionsFormCommandFactory.GetUpdateConditionFunctionListBoxItemCommand(this));
             managedListBoxControl.CreateCommands(radListBoxManager);
+
             ValidateOk();
         }
 
@@ -268,6 +290,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private void InitializeDialogFormMessageControl()
         {
             ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
+        }
+
+        private void InitializeEditConditionFunctionControl()
+        {
+            ((ISupportInitialize)radPanelFill).BeginInit();
+            radPanelFill.SuspendLayout();
+            ((ISupportInitialize)this).BeginInit();
+            this.SuspendLayout();
+
+            Control control = (Control)editConditionFunctionControl;
+            control.Dock = DockStyle.Fill;
+            radPanelFill.Controls.Add(control);
+
+            ((ISupportInitialize)radPanelFill).EndInit();
+            radPanelFill.ResumeLayout(false);
+            ((ISupportInitialize)this).EndInit();
+            this.ResumeLayout(true);
         }
 
         private void InitializeEditControl()
@@ -293,23 +332,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             );
         }
 
-        private void InitializeEditVoidFunctionControl()
-        {
-            ((ISupportInitialize)radPanelFill).BeginInit();
-            radPanelFill.SuspendLayout();
-            ((ISupportInitialize)this).BeginInit();
-            this.SuspendLayout();
-
-            Control control = (Control)editVoidFunctionControl;
-            control.Dock = DockStyle.Fill;
-            radPanelFill.Controls.Add(control);
-
-            ((ISupportInitialize)radPanelFill).EndInit();
-            radPanelFill.ResumeLayout(false);
-            ((ISupportInitialize)this).EndInit();
-            this.ResumeLayout(true);
-        }
-
         private void LayoutGroupBoxList()
         {
             ((ISupportInitialize)radGroupBoxList).BeginInit();
@@ -317,11 +339,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             ((ISupportInitialize)radScrollablePanelList).BeginInit();
             radScrollablePanelList.PanelContainer.SuspendLayout();
             radScrollablePanelList.SuspendLayout();
+            ((ISupportInitialize)radPanelRadioButtons).BeginInit();
+            radPanelRadioButtons.SuspendLayout();
 
             this.SuspendLayout();
 
             managedListBoxControl.Margin = new Padding(0);
             radScrollablePanelList.Margin = new Padding(0);
+            radPanelRadioButtons.Size = new Size(PerFontSizeConstants.ConditionsRadioButtonPanelWidth, radPanelRadioButtons.Height);
+            ControlsLayoutUtility.SetLabelMargin(rdoAnd);
+            ControlsLayoutUtility.SetLabelMargin(rdoOr);
             radGroupBoxList.Margin = new Padding(0);
             radGroupBoxList.Padding = PerFontSizeConstants.GroupBoxPadding;
             radGroupBoxList.Size = new Size
@@ -332,6 +359,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                     + radGroupBoxList.Padding.Bottom
             );
 
+            ((ISupportInitialize)radPanelRadioButtons).EndInit();
+            radPanelRadioButtons.ResumeLayout(false);
             ((ISupportInitialize)radGroupBoxList).EndInit();
             radGroupBoxList.ResumeLayout(false);
             radScrollablePanelList.PanelContainer.ResumeLayout(false);
@@ -354,7 +383,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             ApplicationChanged?.Invoke(this, e);
         }
 
-        private void EditVoidFunctionControl_Changed(object? sender, EventArgs e)
+        private void EditConditionFunctionControl_Changed(object? sender, EventArgs e)
         {
             if (CurrentEditingControl == null)
                 return;

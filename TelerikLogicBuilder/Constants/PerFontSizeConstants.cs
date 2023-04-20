@@ -134,6 +134,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             }
         }
 
+        public static int ConditionsRadioButtonPanelWidth
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 100;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 100,
+                    [ThemeCollections.TEN] = 100,
+                    [ThemeCollections.ELEVEN] = 100,
+                    [ThemeCollections.TWELVE] = 120,
+                    [ThemeCollections.THIRTEEN] = 120,
+                    [ThemeCollections.FOURTEEN] = 120,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
+
         public static Padding DropDownListControlPadding
         {
             get
@@ -342,7 +363,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 
                 return sizes[Properties.Settings.Default.fontSize];
             }
-        }
+        }     
 
         public static int OkCancelButtonPanelWidth
         {

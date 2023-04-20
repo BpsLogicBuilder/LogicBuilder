@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
@@ -22,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal interface IEditingFormFactory : IDisposable
     {
         IEditBooleanFunctionForm GetEditBooleanFunctionForm(XmlDocument? functionXmlDocument);
+        IEditConditionFunctionsForm GetEditConditionFunctionsForm(XmlDocument? conditionsXmlDocument);
         IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor, bool denySpecialCharacters);
         IEditDialogFunctionForm GetEditDialogFunctionForm(XmlDocument? functionsXmlDocument);
         IEditFunctionsForm GetEditFunctionsForm(XmlDocument? functionsXmlDocument);

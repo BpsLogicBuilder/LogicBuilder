@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<not xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="functionData.xsd">
+	<function name="equals" visibleText="visibleText">
+		<genericArguments />
+		<parameters>
+			<literalParameter name="val1">
+				<variable name="desc" visibleText="visibleText" />
+			</literalParameter>
+			<literalParameter name="val2">PHYI</literalParameter>
+		</parameters>
+	</function>
+</not>

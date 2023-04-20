@@ -54,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private static readonly string XmlParentXPath = $"/{XmlDataConstants.NOTELEMENT}|/{XmlDataConstants.FUNCTIONELEMENT}";
         private static readonly string ParametersXPath = $"{XmlParentXPath}/{XmlDataConstants.PARAMETERSELEMENT}";
 
-        public XmlElement GetXmlResult(IDictionary<string, ParameterControlSet> editControlsSet)
+        public XmlElement GetXmlResult(IDictionary<string, ParameterControlSet> editControlsSet, bool notChecked)
         {
             FunctionData functionData = _functionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(editFunctionControl.XmlDocument));
             string xmlString = _xmlDataHelper.BuildFunctionXml
@@ -64,6 +64,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 _xmlDataHelper.BuildGenericArgumentsXml(functionData.GenericArguments),
                 GetParametersXml()
             );
+
+            if (notChecked)
+                xmlString = _xmlDataHelper.BuildNotXml(xmlString);
 
             return _refreshVisibleTextHelper.RefreshFunctionVisibleTexts
             (
