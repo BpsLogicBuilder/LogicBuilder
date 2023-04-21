@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
 {
     internal class DecisionFunctionListBoxItem : IDecisionFunctionListBoxItem
     {
@@ -85,22 +85,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
 
         public string VisibleText { get; }
 
-        public override string ToString() => this.VisibleText;
+        public override string ToString() => VisibleText;
 
         public override bool Equals(object? item)
         {
             if (item == null)
                 return false;
-            if (this.GetType() != item.GetType())
+            if (GetType() != item.GetType())
                 return false;
 
             DecisionFunctionListBoxItem funcListBoxItem = (DecisionFunctionListBoxItem)item;
-            return this.HiddenText == funcListBoxItem.HiddenText && this.VisibleText == funcListBoxItem.VisibleText;
+            return HiddenText == funcListBoxItem.HiddenText && VisibleText == funcListBoxItem.VisibleText;
         }
 
         public override int GetHashCode()
         {
-            return this.VisibleText.GetHashCode();
+            return VisibleText.GetHashCode();
         }
     }
 }

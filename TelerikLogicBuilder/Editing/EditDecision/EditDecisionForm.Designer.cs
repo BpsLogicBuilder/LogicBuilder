@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
 {
     partial class EditDecisionForm
     {

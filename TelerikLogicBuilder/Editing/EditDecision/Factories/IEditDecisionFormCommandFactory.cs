@@ -1,6 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Commands;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Commands;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories
 {
     internal interface IEditDecisionFormCommandFactory
     {

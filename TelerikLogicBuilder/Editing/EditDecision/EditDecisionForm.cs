@@ -3,7 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -28,7 +28,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
 {
     internal partial class EditDecisionForm : Telerik.WinControls.UI.RadForm, IEditDecisionForm, IListBoxHost<IDecisionFunctionListBoxItem>
     {

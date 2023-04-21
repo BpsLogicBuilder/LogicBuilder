@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
 {
     internal interface IDecisionFunctionListBoxItem : IListBoxManageable
     {

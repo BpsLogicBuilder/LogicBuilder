@@ -1,6 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Structures;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories
 {
     internal interface IDecisionFunctionListBoxItemFactory
     {

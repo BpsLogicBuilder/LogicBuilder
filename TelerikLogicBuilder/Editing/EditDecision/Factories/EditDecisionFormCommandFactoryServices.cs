@@ -1,10 +1,9 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories
 {
     internal static class EditDecisionFormCommandFactoryServices
     {

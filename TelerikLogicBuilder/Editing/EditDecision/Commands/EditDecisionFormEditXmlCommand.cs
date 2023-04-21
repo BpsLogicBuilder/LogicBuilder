@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Commands
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Commands
 {
     internal class EditDecisionFormEditXmlCommand : ClickCommandBase
     {

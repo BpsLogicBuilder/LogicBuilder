@@ -2,7 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
 {
     internal interface IEditDecisionForm : IApplicationForm
     {

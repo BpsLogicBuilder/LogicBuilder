@@ -1,10 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Commands
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Commands
 {
     internal class UpdateDecisionFunctionListBoxItemCommand : ClickCommandBase
     {
