@@ -55,6 +55,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IUpdateRichInputBoxXml, UpdateRichInputBoxXml>()
                 .AddSingleton<IXmlDataHelper, XmlDataHelper>()
                 .AddConditionFunctionListBoxItemFactories()
+                .AddDecisionFunctionListBoxItemFactories()
+                .AddEditDecisionFormCommandFactories()
                 .AddEditBooleanFunctionCommandFactories()
                 .AddEditConditionFunctionCommandFactories()
                 .AddEditConditionFunctionsFormCommandFactories()

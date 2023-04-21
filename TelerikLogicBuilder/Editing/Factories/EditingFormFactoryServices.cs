@@ -7,6 +7,8 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
@@ -105,6 +107,26 @@ namespace Microsoft.Extensions.DependencyInjection
                         constructorNames,
                         selectedConstructor,
                         denySpecialCharacters
+                    )
+                )
+                .AddTransient<Func<XmlDocument?, IEditDecisionForm>>
+                (
+                    provider =>
+                    conditionsXmlDocument => new EditDecisionForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDecisionDataParser>(),
+                        provider.GetRequiredService<IDecisionFunctionListBoxItemFactory>(),
+                        provider.GetRequiredService<IEditDecisionFormCommandFactory>(),
+                        provider.GetRequiredService<IEditingControlFactory>(),
+                        provider.GetRequiredService<IExceptionHelper>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        provider.GetRequiredService<ObjectRichTextBox>(),
+                        conditionsXmlDocument
                     )
                 )
                 .AddTransient<Func<XmlDocument?, IEditDialogFunctionForm>>
