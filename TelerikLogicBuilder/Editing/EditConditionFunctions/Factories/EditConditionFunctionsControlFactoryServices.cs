@@ -26,7 +26,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IEditConditionFunctionCommandFactory>(),
                         provider.GetRequiredService<IEditingFormHelperFactory>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFunctionDataParser>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
                         provider.GetRequiredService<IRefreshVisibleTextHelper>(),

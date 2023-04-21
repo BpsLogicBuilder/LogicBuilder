@@ -31,7 +31,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
         private readonly IConfigurationService _configurationService;
         private readonly IDataGraphEditingHostEventsHelper _dataGraphEditingHostEventsHelper;
         private readonly IEditConditionFunctionCommandFactory _editConditionFunctionCommandFactory;
-        private readonly IExceptionHelper _exceptionHelper;
         private readonly IFunctionDataParser _functionDataParser;
         private readonly IParametersDataTreeBuilder _parametersDataTreeBuilder;
         private readonly IRadDropDownListHelper _radDropDownListHelper;
@@ -46,7 +45,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             IConfigurationService configurationService,
             IEditConditionFunctionCommandFactory editConditionFunctionCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
-            IExceptionHelper exceptionHelper,
             IFunctionDataParser functionDataParser,
             IRadDropDownListHelper radDropDownListHelper,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
@@ -58,7 +56,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             InitializeComponent();
             _configurationService = configurationService;
             _editConditionFunctionCommandFactory = editConditionFunctionCommandFactory;
-            _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
             _radDropDownListHelper = radDropDownListHelper;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
