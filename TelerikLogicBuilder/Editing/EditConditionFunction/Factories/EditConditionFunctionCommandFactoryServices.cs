@@ -1,6 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System;
 

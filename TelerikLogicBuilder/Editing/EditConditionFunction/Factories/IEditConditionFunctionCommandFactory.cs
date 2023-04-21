@@ -1,6 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Commands;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Commands;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories
 {
     internal interface IEditConditionFunctionCommandFactory
     {

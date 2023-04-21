@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
@@ -24,7 +24,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
 {
     internal partial class EditConditionFunctionControl : UserControl, IEditConditionFunctionControl
     {
@@ -39,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        private readonly IEditConditionFunctionsForm editConditionFunctionsForm;
+        private readonly IApplicationForm parentForm;
 
         public EditConditionFunctionControl(
             IConfigurationService configurationService,
@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            IEditConditionFunctionsForm editConditionFunctionsForm)
+            IApplicationForm parentForm)
         {
             InitializeComponent();
             _configurationService = configurationService;
@@ -66,7 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             _dataGraphEditingHostEventsHelper = editingFormHelperFactory.GetDataGraphEditingHostEventsHelper(this);
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(this);
 
-            this.editConditionFunctionsForm = editConditionFunctionsForm;
+            this.parentForm = parentForm;
 
             Initialize();
         }
@@ -103,7 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
 
         public Type AssignedTo => typeof(bool);
 
-        public ApplicationTypeInfo Application => editConditionFunctionsForm.Application;
+        public ApplicationTypeInfo Application => parentForm.Application;
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
@@ -150,7 +150,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             }
         }
 
-        public void ClearMessage() => editConditionFunctionsForm.ClearMessage();
+        public void ClearMessage() => parentForm.ClearMessage();
 
         public void DisableControlsDuringEdit(bool disable)
         {
@@ -167,7 +167,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
                 Changed?.Invoke(this, EventArgs.Empty);
         }
 
-        public void SetErrorMessage(string message) => editConditionFunctionsForm.SetErrorMessage(message);
+        public void SetErrorMessage(string message) => parentForm.SetErrorMessage(message);
 
         public void SetFunctionName(string functionName)
         {
@@ -176,7 +176,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             cmbSelectFunction.Changed += CmbSelectFunction_Changed;
         }
 
-        public void SetMessage(string message, string title = "") => editConditionFunctionsForm.SetMessage(message, title);
+        public void SetMessage(string message, string title = "") => parentForm.SetMessage(message, title);
 
         public void UpdateInputControls(string xmlString)
         {
@@ -217,7 +217,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
         {
             InitializeSelectFunctionDropDownList();
 
-            editConditionFunctionsForm.ApplicationChanged += EditConditionFunctionsForm_ApplicationChanged;
+            parentForm.ApplicationChanged += EditConditionFunctionsForm_ApplicationChanged;
             cmbSelectFunction.Changed += CmbSelectFunction_Changed;
 
             _dataGraphEditingHostEventsHelper.Setup();

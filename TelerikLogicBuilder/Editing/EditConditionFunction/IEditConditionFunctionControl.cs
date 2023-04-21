@@ -1,7 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
 {
     internal interface IEditConditionFunctionControl : IDataGraphEditingHost
     {

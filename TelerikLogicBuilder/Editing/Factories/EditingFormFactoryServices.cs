@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;

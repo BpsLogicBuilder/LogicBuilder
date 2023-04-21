@@ -1,5 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 
@@ -18,10 +19,10 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services
                 .AddTransient<IEditConditionFunctionsControlFactory, EditConditionFunctionsControlFactory>()
-                .AddTransient<Func<IEditConditionFunctionsForm, IEditConditionFunctionControl>>
+                .AddTransient<Func<IApplicationForm, IEditConditionFunctionControl>>
                 (
                     provider =>
-                    editConditionFunctionsForm => new EditConditionFunctionControl
+                    parentForm => new EditConditionFunctionControl
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IEditConditionFunctionCommandFactory>(),
@@ -32,7 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IServiceFactory>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editConditionFunctionsForm
+                        parentForm
                     )
                 );
         }

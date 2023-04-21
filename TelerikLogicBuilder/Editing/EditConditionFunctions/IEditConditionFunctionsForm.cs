@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions

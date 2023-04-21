@@ -1,4 +1,4 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
 {
     partial class EditConditionFunctionControl
     {

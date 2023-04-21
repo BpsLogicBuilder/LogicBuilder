@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Commands
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Commands
 {
     internal class SelectConditionFunctionCommand : ClickCommandBase
     {
