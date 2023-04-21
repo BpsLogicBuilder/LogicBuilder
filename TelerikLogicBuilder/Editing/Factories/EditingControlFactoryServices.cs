@@ -1,6 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
@@ -30,6 +32,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Xml;
@@ -64,6 +67,23 @@ namespace Microsoft.Extensions.DependencyInjection
                         formDocument,
                         treeNodeXPath,
                         selectedParameter
+                    )
+                )
+                .AddTransient<Func<IApplicationForm, IEditConditionFunctionControl>>
+                (
+                    provider =>
+                    parentForm => new EditConditionFunctionControl
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IEditConditionFunctionCommandFactory>(),
+                        provider.GetRequiredService<IEditingFormHelperFactory>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        parentForm
                     )
                 )
                 .AddTransient<Func<IDataGraphEditingHost, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl>>

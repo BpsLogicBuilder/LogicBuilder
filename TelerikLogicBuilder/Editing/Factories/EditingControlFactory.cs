@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
@@ -9,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
 using System.Xml;
 
@@ -17,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
     internal class EditingControlFactory : IEditingControlFactory
     {
         private readonly Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditBinaryFunctionControl> _getEditBinaryFunctionControl;
+        private readonly Func<IApplicationForm, IEditConditionFunctionControl> _getEditConditionFunctionControl;
         private readonly Func<IDataGraphEditingHost, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl> _getEditConstructorControl;
         private readonly Func<IDataGraphEditingHost, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterLiteralListControl> _getEditParameterLiteralListControl;
         private readonly Func<IDataGraphEditingHost, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterObjectListControl> _getEditParameterObjectListControl;
@@ -29,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 
         public EditingControlFactory(
             Func<IDataGraphEditingHost, Function, Type, XmlDocument, string, string?, IEditBinaryFunctionControl> getEditBinaryFunctionControl,
+            Func<IApplicationForm, IEditConditionFunctionControl> getEditConditionFunctionControl,
             Func<IDataGraphEditingHost, Constructor, Type, XmlDocument, string, string?, IEditConstructorControl> getEditConstructorControl,
             Func<IDataGraphEditingHost, LiteralListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterLiteralListControl> getEditParameterLiteralListControl,
             Func<IDataGraphEditingHost, ObjectListParameterElementInfo, Type, XmlDocument, string, int?, IEditParameterObjectListControl> getEditParameterObjectListControl,
@@ -40,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<IDataGraphEditingHost, ObjectListVariableElementInfo, Type, XmlDocument, string, int?, IEditVariableObjectListControl> getEditVariableObjectListControl)
         {
             _getEditBinaryFunctionControl = getEditBinaryFunctionControl;
+            _getEditConditionFunctionControl = getEditConditionFunctionControl;
             _getEditConstructorControl = getEditConstructorControl;
             _getEditParameterLiteralListControl = getEditParameterLiteralListControl;
             _getEditParameterObjectListControl = getEditParameterObjectListControl;
@@ -53,6 +58,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 
         public IEditBinaryFunctionControl GetEditBinaryFunctionControl(IDataGraphEditingHost dataGraphEditingHost, Function function, Type assignedTo, XmlDocument formDocument, string treeNodeXPath, string? selectedParameter = null)
             => _getEditBinaryFunctionControl(dataGraphEditingHost, function, assignedTo, formDocument, treeNodeXPath, selectedParameter);
+
+        public IEditConditionFunctionControl GetEditConditionFunctionControl(IApplicationForm parentForm)
+            => _getEditConditionFunctionControl(parentForm);
 
         public IEditConstructorControl GetEditConstructorControl(IDataGraphEditingHost dataGraphEditingHost, Constructor constructor, Type assignedTo, XmlDocument formDocument, string treeNodeXPath, string? selectedParameter = null)
             => _getEditConstructorControl(dataGraphEditingHost, constructor, assignedTo, formDocument, treeNodeXPath, selectedParameter);

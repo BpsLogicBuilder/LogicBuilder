@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
@@ -9,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Structures;
 using System;
 using System.Xml;
 
@@ -23,6 +25,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             XmlDocument formDocument,
             string treeNodeXPath,
             string? selectedParameter = null);
+
+        IEditConditionFunctionControl GetEditConditionFunctionControl(IApplicationForm parentForm);
 
         IEditConstructorControl GetEditConstructorControl(
             IDataGraphEditingHost dataGraphEditingHost,

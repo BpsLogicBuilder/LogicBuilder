@@ -57,7 +57,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddConditionFunctionListBoxItemFactories()
                 .AddEditBooleanFunctionCommandFactories()
                 .AddEditConditionFunctionCommandFactories()
-                .AddEditConditionFunctionsControlFactories()
                 .AddEditConditionFunctionsFormCommandFactories()
                 .AddEditConstructorCommandFactories()
                 .AddEditDialogFunctionCommandFactories()

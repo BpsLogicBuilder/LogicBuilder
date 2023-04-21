@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
@@ -75,7 +74,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConditionFunctionListBoxItemFactory>(),
                         provider.GetRequiredService<IConditionsDataParser>(),
                         provider.GetRequiredService<IEditConditionFunctionsFormCommandFactory>(),
-                        provider.GetRequiredService<IEditConditionFunctionsControlFactory>(),
+                        provider.GetRequiredService<IEditingControlFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),

@@ -3,8 +3,8 @@ using ABIS.LogicBuilder.FlowBuilder.Components;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             IConditionFunctionListBoxItemFactory conditionFunctionListBoxItemFactory,
             IConditionsDataParser conditionsDataParser,
             IEditConditionFunctionsFormCommandFactory editConditionFunctionsFormCommandFactory,
-            IEditConditionFunctionsControlFactory editConditionFunctionsControlFactory,
+            IEditingControlFactory editingControlFactory,
             IFormInitializer formInitializer,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
@@ -76,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
             UpdateConditionsList(conditionsXmlDocument?.DocumentElement?.OuterXml);
 
             radListBoxManager = new RadListBoxManager<IConditionFunctionListBoxItem>(this);
-            this.editConditionFunctionControl = editConditionFunctionsControlFactory.GetEditConditionFunctionControl(this);
+            this.editConditionFunctionControl = editingControlFactory.GetEditConditionFunctionControl(this);
             Initialize();
         }
 
