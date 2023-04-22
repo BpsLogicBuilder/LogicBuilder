@@ -132,24 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         public XmlElement XmlResult => _editFunctionControlHelper.GetXmlResult(editControlsSet, radCheckBoxNot.Checked);
 
-        public string VisibleText
-        {
-            get
-            {
-                FunctionData functionData = _functionDataParser.Parse(XmlResult);
-                if (!radCheckBoxNot.Checked)
-                    return functionData.VisibleText;
-
-                return string.Format
-                (
-                    CultureInfo.CurrentCulture, 
-                    Strings.notFromDecisionStringFormat, 
-                    radCheckBoxNot.Text, 
-                    Strings.notFromDecisionSeparator, 
-                    functionData.VisibleText
-                );
-            }
-        }
+        public string VisibleText => _functionDataParser.Parse(XmlResult).VisibleText;
 
         public ApplicationTypeInfo Application => dataGraphEditingHost.Application;
 

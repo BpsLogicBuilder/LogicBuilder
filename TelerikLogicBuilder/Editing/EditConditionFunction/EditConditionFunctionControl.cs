@@ -107,24 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
-        public string VisibleText
-        {
-            get
-            {
-                FunctionData functionData = _functionDataParser.Parse(XmlResult);
-                if (!functionData.IsNotFunction)
-                    return functionData.VisibleText;
-
-                return string.Format
-                (
-                    CultureInfo.CurrentCulture,
-                    Strings.notFromDecisionStringFormat,
-                    Strings.notString,
-                    Strings.notFromDecisionSeparator,
-                    functionData.VisibleText
-                );
-            }
-        }
+        public string VisibleText => _functionDataParser.Parse(XmlResult).VisibleText;
 
         public event EventHandler? Changed;
 

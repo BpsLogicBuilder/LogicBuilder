@@ -146,7 +146,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
             //assert
             Assert.Equal
             (
-                "<DoubleItem> Greater Than 10000 And <DoubleItem> Equals 0.11 And <DoubleItem> Less Than 99.99",
+                "(Not: <DoubleItem> Greater Than 10000) And <DoubleItem> Equals 0.11 And <DoubleItem> Less Than 99.99",
                 visibleTextAttribute
             );
         }

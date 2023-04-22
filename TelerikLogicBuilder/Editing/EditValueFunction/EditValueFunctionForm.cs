@@ -100,7 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
         public RadTreeView TreeView => radTreeView1;
 
-        public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
+        public string VisibleText => _functionDataParser.Parse(XmlResult).VisibleText;
 
         public XmlDocument XmlDocument => _treeViewXmlDocumentHelper.XmlTreeDocument;
 

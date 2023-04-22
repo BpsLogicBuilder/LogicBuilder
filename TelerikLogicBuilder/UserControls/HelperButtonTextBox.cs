@@ -27,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public bool ReadOnly { get => radTextBox1.ReadOnly; set => radTextBox1.ReadOnly = value; }
 
         public event EventHandler<EventArgs>? ButtonClick;
+        public event EventHandler<EventArgs>? TextClick;
 
         public new event CancelEventHandler? Validating;
 
@@ -48,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             ControlsLayoutUtility.SetTextBoxPadding(radTextBox1);
             radButtonHelper.Click += RadButtonHelper_Click;
+            radTextBox1.Click += RadTextBox1_Click;
 
             radTextBox1.Validating += TextBox_Validating;
             radTextBox1.SizeChanged += RadTextBox_SizeChanged;
@@ -123,6 +125,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void RadButtonHelper_Click(object? sender, EventArgs e)
         {
             ButtonClick?.Invoke(this, e);
+        }
+
+        private void RadTextBox1_Click(object? sender, EventArgs e)
+        {
+            TextClick?.Invoke(this, e);
         }
 
         internal enum PaddingType

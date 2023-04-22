@@ -9,6 +9,8 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
@@ -78,6 +80,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IEditConditionFunctionsFormCommandFactory>(),
                         provider.GetRequiredService<IEditingControlFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
                         provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
@@ -114,6 +117,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     conditionsXmlDocument => new EditDecisionForm
                     (
+                        provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IDecisionDataParser>(),
                         provider.GetRequiredService<IDecisionFunctionListBoxItemFactory>(),
@@ -121,12 +125,31 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IEditingControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IFunctionDataParser>(),
                         provider.GetRequiredService<IRefreshVisibleTextHelper>(),
                         provider.GetRequiredService<IServiceFactory>(),
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<ObjectRichTextBox>(),
                         conditionsXmlDocument
+                    )
+                )
+                .AddTransient<Func<XmlDocument?, IEditDecisionsForm>>
+                (
+                    provider =>
+                    decisionsXmlDocument => new EditDecisionsForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDecisionDataParser>(),
+                        provider.GetRequiredService<IDecisionsDataParser>(),
+                        provider.GetRequiredService<IDecisionListBoxItemFactory>(),
+                        provider.GetRequiredService<IEditDecisionsFormCommandFactory>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                        provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<IXmlDataHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        decisionsXmlDocument
                     )
                 )
                 .AddTransient<Func<XmlDocument?, IEditDialogFunctionForm>>

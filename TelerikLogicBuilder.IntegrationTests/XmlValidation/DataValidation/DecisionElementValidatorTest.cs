@@ -94,46 +94,47 @@ namespace TelerikLogicBuilder.IntegrationTests.XmlValidation.DataValidation
             Assert.Empty(errors);
         }
 
-        [Fact]
-        public void DecisionElementValidatorFailsForVariableNotFound()
-        {
-            //arrange
-            IDecisionElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IDecisionElementValidator>();
-            var application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
-            List<string> errors = new();
-            XmlElement conditionsElement = GetXmlElement($@"<decision name=""ItemNotFound"" visibleText=""visibleText"" >
-                                                              <and>
-                                                                <function name=""Equals"" visibleText=""visibleText"">
-                                                                    <genericArguments />
-                                                                    <parameters>
-                                                                        <literalParameter name=""val1"">
-                                                                            <variable name=""{Enum.GetName(typeof(LiteralVariableType), LiteralVariableType.Double)}Item"" visibleText=""visibleText"" />
-                                                                        </literalParameter>
-                                                                        <literalParameter name=""val2"">0.11</literalParameter>
-                                                                    </parameters>
-                                                                </function>
-                                                                <function name=""Less Than"" visibleText=""visibleText"">
-                                                                    <genericArguments />
-                                                                    <parameters>
-                                                                        <literalParameter name=""val1"">
-                                                                            <variable name=""{Enum.GetName(typeof(LiteralVariableType), LiteralVariableType.Double)}Item"" visibleText=""visibleText"" />
-                                                                        </literalParameter>
-                                                                        <literalParameter name=""val2"">99.99</literalParameter>
-                                                                    </parameters>
-                                                                </function>
-                                                              </and>
-                                                            </decision>");
+        //Decisions are no longer tied to variables.
+        //[Fact]
+        //public void DecisionElementValidatorFailsForVariableNotFound()
+        //{
+        //    //arrange
+        //    IDecisionElementValidator xmlValidator = _fixture.ServiceProvider.GetRequiredService<IDecisionElementValidator>();
+        //    var application = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+        //    List<string> errors = new();
+        //    XmlElement conditionsElement = GetXmlElement($@"<decision name=""ItemNotFound"" visibleText=""visibleText"" >
+        //                                                      <and>
+        //                                                        <function name=""Equals"" visibleText=""visibleText"">
+        //                                                            <genericArguments />
+        //                                                            <parameters>
+        //                                                                <literalParameter name=""val1"">
+        //                                                                    <variable name=""{Enum.GetName(typeof(LiteralVariableType), LiteralVariableType.Double)}Item"" visibleText=""visibleText"" />
+        //                                                                </literalParameter>
+        //                                                                <literalParameter name=""val2"">0.11</literalParameter>
+        //                                                            </parameters>
+        //                                                        </function>
+        //                                                        <function name=""Less Than"" visibleText=""visibleText"">
+        //                                                            <genericArguments />
+        //                                                            <parameters>
+        //                                                                <literalParameter name=""val1"">
+        //                                                                    <variable name=""{Enum.GetName(typeof(LiteralVariableType), LiteralVariableType.Double)}Item"" visibleText=""visibleText"" />
+        //                                                                </literalParameter>
+        //                                                                <literalParameter name=""val2"">99.99</literalParameter>
+        //                                                            </parameters>
+        //                                                        </function>
+        //                                                      </and>
+        //                                                    </decision>");
 
-            //act
-            xmlValidator.Validate(conditionsElement, application, errors);
+        //    //act
+        //    xmlValidator.Validate(conditionsElement, application, errors);
 
-            //assert
-            Assert.Equal
-            (
-                string.Format(CultureInfo.CurrentCulture, Strings.cannotEvaluateVariableFormat, "ItemNotFound"), 
-                errors.First()
-            );
-        }
+        //    //assert
+        //    Assert.Equal
+        //    (
+        //        string.Format(CultureInfo.CurrentCulture, Strings.cannotEvaluateVariableFormat, "ItemNotFound"), 
+        //        errors.First()
+        //    );
+        //}
 
         private static XmlElement GetXmlElement(string xmlString)
             => GetXmlDocument(xmlString).DocumentElement!;

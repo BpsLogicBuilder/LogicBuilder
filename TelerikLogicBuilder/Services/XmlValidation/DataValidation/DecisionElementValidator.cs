@@ -35,8 +35,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
             DecisionData decisionData = _decisionDataParser.Parse(decisionElement);
             if(!_configurationService.VariableList.Variables.TryGetValue(decisionData.Name, out var variable))
             {
-                validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.cannotEvaluateVariableFormat, decisionData.Name));
-                return;
+                //Decisions are no longer tied to variables.
+                //validationErrors.Add(string.Format(CultureInfo.CurrentCulture, Strings.cannotEvaluateVariableFormat, decisionData.Name));
+                //return;
             }
 
             decisionData.FunctionElements.ForEach

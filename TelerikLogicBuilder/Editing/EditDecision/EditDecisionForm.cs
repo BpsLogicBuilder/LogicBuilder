@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
@@ -33,12 +34,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
     internal partial class EditDecisionForm : Telerik.WinControls.UI.RadForm, IEditDecisionForm, IListBoxHost<IDecisionFunctionListBoxItem>
     {
         private readonly IApplicationDropDownList _applicationDropDownList;
+        private readonly IConfigurationService _configurationService;
         private readonly IDecisionDataParser _decisionDataParser;
         private readonly IDecisionFunctionListBoxItemFactory _decisionFunctionListBoxItemFactory;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly IEditDecisionFormCommandFactory _editDecisionFormCommandFactory;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
+        private readonly IFunctionDataParser _functionDataParser;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -49,6 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
         private readonly IRadListBoxManager<IDecisionFunctionListBoxItem> radListBoxManager;
 
         public EditDecisionForm(
+            IConfigurationService configurationService,
             IDialogFormMessageControl dialogFormMessageControl,
             IDecisionDataParser decisionDataParser,
             IDecisionFunctionListBoxItemFactory decisionFunctionListBoxItemFactory,
@@ -56,6 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             IEditingControlFactory editingControlFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
+            IFunctionDataParser functionDataParser,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
@@ -64,6 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             XmlDocument? decisionXmlDocument)
         {
             InitializeComponent();
+            _configurationService = configurationService;
             _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
@@ -72,6 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             _editDecisionFormCommandFactory = editDecisionFormCommandFactory;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
+            _functionDataParser = functionDataParser;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -121,15 +128,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
                     {
                         return chkNot.Checked
                             ? _xmlDataHelper.BuildNotXml(_xmlDataHelper.BuildDecisionXml(string.Empty, string.Empty, GetItemsFragment()))
-                            : _xmlDataHelper.BuildDecisionXml(string.Empty, string.Empty, GetItemsFragment());
+                            : _xmlDataHelper.BuildDecisionXml(GetVariableName(), string.Empty, GetItemsFragment());
                     }
 
                     string xml = rdoOr.IsChecked
-                            ? _xmlDataHelper.BuildDecisionXml(string.Empty, string.Empty, _xmlDataHelper.BuildOrXml(GetItemsFragment()))
-                            : _xmlDataHelper.BuildDecisionXml(string.Empty, string.Empty, _xmlDataHelper.BuildAndXml(GetItemsFragment()));
+                            ? _xmlDataHelper.BuildDecisionXml(GetVariableName(), string.Empty, _xmlDataHelper.BuildOrXml(GetItemsFragment()))
+                            : _xmlDataHelper.BuildDecisionXml(GetVariableName(), string.Empty, _xmlDataHelper.BuildAndXml(GetItemsFragment()));
 
                     return chkNot.Checked ? _xmlDataHelper.BuildNotXml(xml) : xml;
                 }
+
+                string GetVariableName()//variableName is no longer used for decisions.  Using the first variable name to allow validate and build using earlier versions. 
+                    => _configurationService.VariableList.Variables.Any() 
+                        ? _configurationService.VariableList.Variables.First().Key 
+                        : string.Empty;
 
                 string GetItemsFragment()
                 {
@@ -148,23 +160,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             }
         }
 
-        public string DecisionVisibleText
-        {
-            get
-            {
-                string logic = rdoOr.IsChecked ? rdoOr.Text : rdoAnd.Text;
-                string predicates = string.Join
-                (
-                    $" {logic} ",
-                    _decisionDataParser
-                        .Parse(_xmlDocumentHelpers.ToXmlElement(DecisionXml))
-                        .FunctionElements
-                        .Select(e => e.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value)
-                );
-
-                return chkNot.Checked ? string.Format(CultureInfo.CurrentCulture, Strings.notFromDecisionStringFormat, chkNot.Text, Strings.notFromDecisionSeparator, predicates) : predicates;
-            }
-        }
+        public string DecisionVisibleText 
+            => _decisionDataParser.Parse(_xmlDocumentHelpers.ToXmlElement(DecisionXml)).VisibleText;
 
         public ApplicationTypeInfo Application => _application;
 
@@ -220,7 +217,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
                 (
                     e => _decisionFunctionListBoxItemFactory.GetDecisionFunctionListBoxItem
                     (
-                        e.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value,
+                        _functionDataParser.Parse(e).VisibleText,
                         e.OuterXml,
                         this
                     )

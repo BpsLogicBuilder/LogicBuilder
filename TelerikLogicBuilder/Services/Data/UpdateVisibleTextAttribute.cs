@@ -193,7 +193,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
             if (decisionElement.Name != XmlDataConstants.DECISIONELEMENT)
                 throw _exceptionHelper.CriticalException("{E54D5D7B-5524-4E01-A863-CF440FF42AF4}");
 
-            DecisionData decisionData = _decisionDataParser.Parse(decisionElement);
+            DecisionData decisionData = decisionElement.ParentNode?.Name == XmlDataConstants.NOTELEMENT
+                                            ? _decisionDataParser.Parse((XmlElement)decisionElement.ParentNode)
+                                            : _decisionDataParser.Parse(decisionElement);
             return UpdateForNotDecision
             (
                 string.Join
@@ -229,7 +231,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
                 && functionElement.Name != XmlDataConstants.NOTELEMENT)
                 throw _exceptionHelper.CriticalException("{E7C621FD-8098-464F-AD73-F55169269B36}");
 
-            FunctionData functionData = _functionDataParser.Parse(functionElement);
+            
+            FunctionData functionData = functionElement.ParentNode?.Name == XmlDataConstants.NOTELEMENT
+                                        ? _functionDataParser.Parse((XmlElement)functionElement.ParentNode)
+                                        : _functionDataParser.Parse(functionElement);
 
             if (!application.AssemblyAvailable
                 || !_getValidConfigurationFromData.TryGetFunction(functionData, application, out Function? function))
@@ -239,12 +244,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 
             if (_editFormFieldSetHelper.GetFieldSetForFunction(function) == EditFormFieldSet.BinaryFunction)
             {
-                return GetBinaryFunctionVisibleText
+                return UpdateForNotFunction
                 (
-                    functionData,
-                    function.Parameters.ToDictionary(p => p.Name),
-                    functionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
-                    application
+                    GetBinaryFunctionVisibleText
+                    (
+                        functionData,
+                        function.Parameters.ToDictionary(p => p.Name),
+                        functionData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value),
+                        application
+                    )
                 );
             }
 
