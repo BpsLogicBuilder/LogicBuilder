@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision;
@@ -110,6 +111,20 @@ namespace Microsoft.Extensions.DependencyInjection
                         constructorNames,
                         selectedConstructor,
                         denySpecialCharacters
+                    )
+                )
+                .AddTransient<Func<short, XmlDocument?, IEditDecisionConnectorForm>>
+                (
+                    provider =>
+                    (connectorIndexToSelect, connectorXmlDocument) => new EditDecisionConnectorForm
+                    (
+                        provider.GetRequiredService<IConnectorDataParser>(),
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IRadDropDownListHelper>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        connectorIndexToSelect,
+                        connectorXmlDocument
                     )
                 )
                 .AddTransient<Func<XmlDocument?, IEditDecisionForm>>

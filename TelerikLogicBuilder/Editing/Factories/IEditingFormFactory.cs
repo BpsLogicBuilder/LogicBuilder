@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
@@ -27,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditBooleanFunctionForm GetEditBooleanFunctionForm(XmlDocument? functionXmlDocument);
         IEditConditionFunctionsForm GetEditConditionFunctionsForm(XmlDocument? conditionsXmlDocument);
         IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor, bool denySpecialCharacters);
+        IEditDecisionConnectorForm GetEditDecisionConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument);
         IEditDecisionForm GetEditDecisionForm(XmlDocument? decisionXmlDocument);
         IEditDecisionsForm GetEditDecisionsForm(XmlDocument? decisionsXmlDocument);
         IEditDialogFunctionForm GetEditDialogFunctionForm(XmlDocument? functionsXmlDocument);

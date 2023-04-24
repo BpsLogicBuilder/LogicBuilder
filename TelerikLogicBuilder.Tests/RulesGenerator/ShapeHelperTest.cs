@@ -969,6 +969,94 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
         }
 
         [Fact]
+        public void GetNextUnusedIndexReturnsNullIfAllConnextorsUsed()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetNextUnusedIndex)}\ReturnsNullIfAllConnextorsUsed.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var result = helper.GetNextUnusedIndex(shape, ConnectorCategory.Dialog);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetNextUnusedIndexReturnsNullForShapeWithNoConnextors()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetNextUnusedIndex)}\ReturnsNullForShapeWithNoConnextors.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var result = helper.GetNextUnusedIndex(shape, ConnectorCategory.Dialog);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetNextUnusedIndexReturnsThreeForIndexThreeUnused()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetNextUnusedIndex)}\ReturnsThreeForIndexThreeUnused.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.DIALOG, visioDocument);
+
+            //act
+            var result = helper.GetNextUnusedIndex(shape, ConnectorCategory.Dialog);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                (short)3,
+                result
+            );
+        }
+
+        [Fact]
+        public void GetNextUnusedIndexThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.GetNextUnusedIndex)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape(UniversalMasterName.BEGINFLOW, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.GetNextUnusedIndex(shape, ConnectorCategory.Dialog));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{08BBA0B3-0582-481D-B7E6-2A326373B70D}"),
+                exception.Message
+            );
+        }
+
+        [Fact]
         public void GetOtherApplicationsThrowsIfNotConnectedToMergeObject()
         {
             //arrange
@@ -1505,6 +1593,70 @@ namespace TelerikLogicBuilder.Tests.RulesGenerator
 
             //assert
             Assert.Equal(allConnectorsApplication, result);
+        }
+
+        [Fact]
+        public void HasFromShapeReturnsFalseIfNoFromShapeIsConnected()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.HasFromShape)}\ReturnsFalseIfNoFromShapeIsConnected.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape connector = GetOnlyShape(UniversalMasterName.CONNECTOBJECT, visioDocument);
+
+            //act
+            var result = helper.HasFromShape(connector);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void HasFromShapeReturnsTrueIfFromShapeConnected()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.HasFromShape)}\ReturnsTrueIfFromShapeConnected.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape connector = GetOnlyShape(UniversalMasterName.CONNECTOBJECT, visioDocument);
+
+            //act
+            var result = helper.HasFromShape(connector);
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void HasFromShapeThrowsForInvalidShape()
+        {
+            //arrange
+            IShapeHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeHelper>();
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\ShapeHelperTest\{nameof(IShapeHelper.HasFromShape)}\ThrowsForInvalidShape.vsdx"),
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape connector = GetOnlyShape(UniversalMasterName.BEGINFLOW, visioDocument);
+
+            //act
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => helper.HasFromShape(connector));
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Equal
+            (
+                string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{FDCFC1E5-62B5-44D6-BD75-76E94FEA6866}"),
+                exception.Message
+            );
         }
 
         [Theory]

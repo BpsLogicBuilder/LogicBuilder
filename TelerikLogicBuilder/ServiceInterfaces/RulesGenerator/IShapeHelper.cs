@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator;
 using Microsoft.Office.Interop.Visio;
 using System.Collections.Generic;
@@ -101,14 +102,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator
 		/// <returns></returns>
 		IList<ConnectorData> GetMultipleChoiceConnectorData(Shape fromShape);
 
-		/// <summary>
-		/// Returns a list of applicable applications for the "other applications" connector when
-		/// the arrow or the starting is connected to a Merge Object.
-		/// The applicable applications are all application specific connectors NOT attached to the Merge Object.
-		/// </summary>
-		/// <param name="connector"></param>
-		/// <returns></returns>
-		IList<string> GetOtherApplications(Shape connector);
+        /// <summary>
+        /// Returns the next unused connector index for a Dialog, Condition or Decision Object.
+        /// </summary>
+        /// <param name="fromShape"></param>
+        /// <param name="connectorCategory"></param>
+        /// <returns>Returns the next available index if unused connectors exist. Returns null if all connectors are used.</returns>
+        short? GetNextUnusedIndex(Shape fromShape, ConnectorCategory connectorCategory);
+
+        /// <summary>
+        /// Returns a list of applicable applications for the "other applications" connector when
+        /// the arrow or the starting is connected to a Merge Object.
+        /// The applicable applications are all application specific connectors NOT attached to the Merge Object.
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <returns></returns>
+        IList<string> GetOtherApplications(Shape connector);
 
 		/// <summary>
 		/// Returns list of relevant applications to be associated with the OtherConnectObject.
@@ -171,10 +180,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator
 		bool HasAllApplicationConnectors(Shape shape);
 
 		/// <summary>
-		/// Returns false if application specific connectors are attached or if there are no connectors attached - otherwise true
+		/// Returns true if the connector's starting end is connected to a shape otherwise false.
 		/// </summary>
-		/// <param name="shape"></param>
+		/// <param name="connector"></param>
 		/// <returns></returns>
-		bool HasAllNonApplicationConnectors(Shape shape);
+		bool HasFromShape(Shape connector);
+
+        /// <summary>
+        /// Returns false if application specific connectors are attached or if there are no connectors attached - otherwise true
+        /// </summary>
+        /// <param name="shape"></param>
+        /// <returns></returns>
+        bool HasAllNonApplicationConnectors(Shape shape);
 	}
 }

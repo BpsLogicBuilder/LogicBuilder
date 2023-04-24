@@ -38,6 +38,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
+
+            radTextBoxInput.AutoSize = false;
+            radTextBoxInput.Dock = DockStyle.Fill;
             InitializeGroupBoxPrompt();
 
             radPanelFill.Size = new System.Drawing.Size(radPanelFill.Width, 0);

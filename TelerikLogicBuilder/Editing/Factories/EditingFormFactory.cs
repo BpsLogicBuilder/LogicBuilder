@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
@@ -28,6 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<XmlDocument?, IEditBooleanFunctionForm> _getEditBooleanFunctionForm;
         private readonly Func<XmlDocument?, IEditConditionFunctionsForm> _getEditConditionFunctionsForm;
         private readonly Func<Type, XmlDocument, HashSet<string>, string, bool, IEditConstructorForm> _getEditConstructorForm;
+        private readonly Func<short, XmlDocument?, IEditDecisionConnectorForm> _getEditDecisionConnectorForm;
         private readonly Func<XmlDocument?, IEditDecisionForm> _getEditDecisionForm;
         private readonly Func<XmlDocument?, IEditDecisionsForm> _getEditDecisionsForm;
         private readonly Func<XmlDocument?, IEditDialogFunctionForm> _getEditDialogFunctionForm;
@@ -47,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<XmlDocument?, IEditBooleanFunctionForm> getEditBooleanFunctionForm,
             Func<XmlDocument?, IEditConditionFunctionsForm> getEditConditionFunctionsForm,
             Func<Type, XmlDocument, HashSet<string>, string, bool, IEditConstructorForm> getEditConstructorForm,
+            Func<short, XmlDocument?, IEditDecisionConnectorForm> getEditDecisionConnectorForm,
             Func<XmlDocument?, IEditDecisionForm> getEditDecisionForm,
             Func<XmlDocument?, IEditDecisionsForm> getEditDecisionsForm,
             Func<XmlDocument?, IEditDialogFunctionForm> getEditDialogFunctionForm,
@@ -65,6 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getEditBooleanFunctionForm = getEditBooleanFunctionForm;
             _getEditConditionFunctionsForm = getEditConditionFunctionsForm;
             _getEditConstructorForm = getEditConstructorForm;
+            _getEditDecisionConnectorForm = getEditDecisionConnectorForm;
             _getEditDecisionForm = getEditDecisionForm;
             _getEditDecisionsForm = getEditDecisionsForm;
             _getEditDialogFunctionForm = getEditDialogFunctionForm;
@@ -97,6 +101,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = _getEditConstructorForm(assignedTo, constructorXmlDocument, constructorNames, selectedConstructor, denySpecialCharacters);
             return (IEditConstructorForm)_scopedService;
+        }
+
+        public IEditDecisionConnectorForm GetEditDecisionConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument)
+        {
+            _scopedService = _getEditDecisionConnectorForm(connectorIndexToSelect, connectorXmlDocument);
+            return (IEditDecisionConnectorForm)_scopedService;
         }
 
         public IEditDecisionForm GetEditDecisionForm(XmlDocument? decisionXmlDocument)

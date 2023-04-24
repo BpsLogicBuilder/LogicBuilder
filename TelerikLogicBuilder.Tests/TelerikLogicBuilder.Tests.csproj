@@ -66,10 +66,31 @@
     <None Update="Diagrams\SearchSelectedDocumentsTest\VariableSearchWorks.vsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\ShapeHelperTest\GetNextUnusedIndex\ReturnsThreeForIndexThreeUnused.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetNextUnusedIndex\ReturnsNullIfAllConnextorsUsed.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetNextUnusedIndex\ReturnsNullForShapeWithNoConnextors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\GetNextUnusedIndex\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnectors\ThrowsForInvalidShape.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ShapeHelperTest\GetOutgoingBlankConnectors\ReturnsTheListOfBlankConnectors.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\HasFromShape\ReturnsTrueIfFromShapeConnected.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\HasFromShape\ThrowsForInvalidShape.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Diagrams\ShapeHelperTest\HasFromShape\ReturnsFalseIfNoFromShapeIsConnected.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\TableSearcherTest\Module.tbl">

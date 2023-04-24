@@ -369,6 +369,9 @@
 	<data name="connectorRequires2Shapes" xml:space="preserve">
     <value>Connector must be connected to 2 shapes.FR</value>
   </data>
+	<data name="connectToEditShapes" xml:space="preserve">
+    <value>Connect starting end to one of the following:&#10;&#13;&#10;&#13;Dialog&#10;&#13;Condition Object&#10;&#13;Decision ObjectFR</value>
+  </data>
 	<data name="constrConfigCommentsHelp" xml:space="preserve">
     <value>Comments describing the argument.FR</value>
   </data>
@@ -2370,6 +2373,12 @@
   </data>
 	<data name="enumDescriptionSequential" xml:space="preserve">
     <value>SequentialFR</value>
+  </data>
+	<data name="enumDescriptionYes" xml:space="preserve">
+    <value>YESFR</value>
+  </data>
+	<data name="enumDescriptionNo" xml:space="preserve">
+    <value>NOFR</value>
   </data>
 	<data name="fieldPropertyReferenceIsInvalidFormat2" xml:space="preserve">
     <value>Given the reference definition "{0}", Reference Name "{1}" for variable "{2}" must start with an alpha character or underscore and can contain only alphanumeric characters and underscores.FR</value>

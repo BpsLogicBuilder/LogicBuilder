@@ -322,6 +322,46 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             );
         }
 
+        public short? GetNextUnusedIndex(Shape fromShape, ConnectorCategory connectorCategory)
+        {
+            if (!ShapeCollections.EditConnectorShapes.ToHashSet().Contains(fromShape.Master.NameU))
+                throw _exceptionHelper.CriticalException("{08BBA0B3-0582-481D-B7E6-2A326373B70D}");
+
+            short outGoingCount = CountOutgoingConnectors(fromShape);
+            short? unusedIndex = null;
+            ConnectorData[] connectorDataArray = new ConnectorData[outGoingCount];
+
+            foreach (Connect shapeFromConnect in fromShape.FromConnects)
+            {
+                if (shapeFromConnect.FromPart == (short)VisFromParts.visBegin)
+                {
+                    Shape connector = shapeFromConnect.FromSheet;
+                    string shapeXml = _shapeXmlHelper.GetXmlString(connector);
+                    if (shapeXml.Length != 0)
+                    {
+                        ConnectorData connectorData = _connectorDataParser.Parse
+                        (
+                            _xmlDocumentHelpers.ToXmlElement(shapeXml)
+                        );
+                        int dataArrayIndex = connectorData.Index - 1;
+                        if (connectorCategory == connectorData.ConnectorCategory && dataArrayIndex < outGoingCount)
+                            connectorDataArray[dataArrayIndex] = connectorData;
+                    }
+                }
+            }
+
+            for (short i = 0; i < outGoingCount; i++)
+            {
+                if (connectorDataArray[i] == null)
+                {
+                    unusedIndex = (short)(i + 1);
+                    break;
+                }
+            }
+
+            return unusedIndex;
+        }
+
         public IList<string> GetOtherApplications(Shape connector)
         {
             HashSet<string> usedApplications = GetUsedApplications();
@@ -501,6 +541,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
             }
 
             return true;
+        }
+
+        public bool HasFromShape(Shape connector)
+        {
+            if (!ShapeCollections.Connectors.ToHashSet().Contains(connector.Master.NameU))
+                throw _exceptionHelper.CriticalException("{FDCFC1E5-62B5-44D6-BD75-76E94FEA6866}");
+
+            foreach (Connect connectorConnect in connector.Connects)
+            {
+                if (connectorConnect.FromPart == (short)VisFromParts.visBegin)
+                    return true;
+            }
+
+            return false;
         }
 
         public bool HasAllNonApplicationConnectors(Shape shape)

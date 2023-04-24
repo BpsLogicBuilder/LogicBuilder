@@ -835,6 +835,19 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect starting end to one of the following:
+        ///
+        ///        ///Dialog
+        ///        ///Condition Object
+        ///        ///Decision Object.
+        /// </summary>
+        internal static string connectToEditShapes {
+            get {
+                return ResourceManager.GetString("connectToEditShapes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comments describing the argument..
         /// </summary>
         internal static string constrConfigCommentsHelp {
@@ -2455,6 +2468,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NO.
+        /// </summary>
+        internal static string enumDescriptionNo {
+            get {
+                return ResourceManager.GetString("enumDescriptionNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         internal static string enumDescriptionNone {
@@ -2973,6 +2995,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string enumDescriptionXamarin {
             get {
                 return ResourceManager.GetString("enumDescriptionXamarin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YES.
+        /// </summary>
+        internal static string enumDescriptionYes {
+            get {
+                return ResourceManager.GetString("enumDescriptionYes", resourceCulture);
             }
         }
         

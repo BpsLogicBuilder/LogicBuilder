@@ -228,9 +228,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 case UniversalMasterName.OTHERSCONNECTOBJECT:
                     break;
                 case UniversalMasterName.CONNECTOBJECT:
-                    //shapeEditor = new ConnectorEditor(selectedShape, this, parentForm);
-                    //shapeEditor.EditShape();
-                    break;
                 case UniversalMasterName.ACTION:
                 case UniversalMasterName.DIALOG:
                 case UniversalMasterName.CONDITIONOBJECT:
@@ -239,8 +236,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 case UniversalMasterName.MODULE:
                 case UniversalMasterName.WAITDECISIONOBJECT:
                 case UniversalMasterName.WAITCONDITIONOBJECT:
-                    //shapeEditor = new ShapeEditor(selectedShape, this, parentForm);
-                    //shapeEditor.EditShape();
                     _diagramEditor.EditShape(selectedShape);
                     break;
                 case UniversalMasterName.BEGINFLOW:
