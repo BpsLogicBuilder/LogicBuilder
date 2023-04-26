@@ -248,6 +248,10 @@
 	<data name="builtInParameterNameVariable" xml:space="preserve">
     <value>Variable</value>
   </data>
+	<data name="cannotContainGenericParametersFormat" xml:space="preserve">
+    <value>The object type "{0}" cannot contain generic parameters.</value>
+    <comment>0=selected type</comment>
+  </data>
 	<data name="cannotEvaluateVariableFormat" xml:space="preserve">
     <value>Type cannot be evaluated. Variable "{0}" is not configured.</value>
     <comment>0=VariableName</comment>
@@ -365,6 +369,9 @@
 	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
     <value>The connector category {0} is undefined.</value>
     <comment>0=connector category</comment>
+  </data>
+	<data name="connectorObjectTypeRequired" xml:space="preserve">
+    <value>A connector object type is required. Select  "Connector Object Types" from the Project menu and add an object type.  Finally select "Constructors" from the Project menu and make sure that a constructor assignable to the object type has been added.</value>
   </data>
 	<data name="connectorRequires2Shapes" xml:space="preserve">
     <value>Connector must be connected to 2 shapes.</value>
@@ -634,6 +641,12 @@
 	<data name="dialogConnectorFormat" xml:space="preserve">
     <value>{0}:{1}</value>
     <comment>Must include {0} and {1} for index and text respectively</comment>
+  </data>
+	<data name="dialogConnectorObjectIsEmpty" xml:space="preserve">
+    <value>Connector Object is required.</value>
+  </data>
+	<data name="dialogConnectorTextIsEmpty" xml:space="preserve">
+    <value>Text is required.</value>
   </data>
 	<data name="dialogDuplicateChoiceFormat" xml:space="preserve">
     <value>Shape has two connectors with identical choices.  Connector number {0} is a duplicate.</value>

@@ -60,9 +60,9 @@
             radPanelBottom.Controls.Add(radPanelMessages);
             radPanelBottom.Controls.Add(radPanelCommandButtons);
             radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            radPanelBottom.Location = new System.Drawing.Point(0, 159);
+            radPanelBottom.Location = new System.Drawing.Point(0, 82);
             radPanelBottom.Name = "radPanelBottom";
-            radPanelBottom.Size = new System.Drawing.Size(1018, 137);
+            radPanelBottom.Size = new System.Drawing.Size(1048, 137);
             radPanelBottom.TabIndex = 2;
             // 
             // radPanelMessages
@@ -70,14 +70,14 @@
             radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelMessages.Location = new System.Drawing.Point(0, 0);
             radPanelMessages.Name = "radPanelMessages";
-            radPanelMessages.Size = new System.Drawing.Size(857, 137);
+            radPanelMessages.Size = new System.Drawing.Size(887, 137);
             radPanelMessages.TabIndex = 3;
             // 
             // radPanelCommandButtons
             // 
             radPanelCommandButtons.Controls.Add(tableLayoutPanelButtons);
             radPanelCommandButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            radPanelCommandButtons.Location = new System.Drawing.Point(857, 0);
+            radPanelCommandButtons.Location = new System.Drawing.Point(887, 0);
             radPanelCommandButtons.Name = "radPanelCommandButtons";
             radPanelCommandButtons.Size = new System.Drawing.Size(161, 137);
             radPanelCommandButtons.TabIndex = 2;
@@ -132,7 +132,7 @@
             radPanelTop.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelTop.Location = new System.Drawing.Point(0, 0);
             radPanelTop.Name = "radPanelTop";
-            radPanelTop.Size = new System.Drawing.Size(1018, 73);
+            radPanelTop.Size = new System.Drawing.Size(1048, 73);
             radPanelTop.TabIndex = 4;
             // 
             // radGroupBoxPrompt
@@ -144,7 +144,7 @@
             radGroupBoxPrompt.Location = new System.Drawing.Point(0, 0);
             radGroupBoxPrompt.Name = "radGroupBoxPrompt";
             radGroupBoxPrompt.Padding = new System.Windows.Forms.Padding(15, 32, 15, 2);
-            radGroupBoxPrompt.Size = new System.Drawing.Size(1018, 73);
+            radGroupBoxPrompt.Size = new System.Drawing.Size(1048, 73);
             radGroupBoxPrompt.TabIndex = 0;
             radGroupBoxPrompt.Text = "Update Connector";
             // 
@@ -155,7 +155,7 @@
             cmbIndex.DropDownAnimationEnabled = true;
             cmbIndex.Location = new System.Drawing.Point(15, 32);
             cmbIndex.Name = "cmbIndex";
-            cmbIndex.Size = new System.Drawing.Size(988, 39);
+            cmbIndex.Size = new System.Drawing.Size(1018, 39);
             cmbIndex.TabIndex = 0;
             // 
             // radPanelFill
@@ -163,7 +163,7 @@
             radPanelFill.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelFill.Location = new System.Drawing.Point(0, 73);
             radPanelFill.Name = "radPanelFill";
-            radPanelFill.Size = new System.Drawing.Size(1018, 86);
+            radPanelFill.Size = new System.Drawing.Size(1048, 9);
             radPanelFill.TabIndex = 5;
             // 
             // EditDecisionConnectorForm
@@ -171,12 +171,12 @@
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1018, 296);
+            ClientSize = new System.Drawing.Size(1048, 219);
             Controls.Add(radPanelFill);
             Controls.Add(radPanelTop);
             Controls.Add(radPanelBottom);
             Name = "EditDecisionConnectorForm";
-            Text = "EditDecisionConnectorForm";
+            Text = "Edit Connector";
             ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
             radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();

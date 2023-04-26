@@ -262,6 +262,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             return stringBuilder.ToString();
         }
 
+        public string BuildMetaObjectXml(string objectType, string innerXml)
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.METAOBJECTELEMENT);
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.OBJECTTYPEATTRIBUTE, objectType);
+                    xmlTextWriter.WriteRaw(innerXml);
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+            return stringBuilder.ToString();
+        }
+
         public string BuildNotXml(string innerXml)
         {
             StringBuilder stringBuilder = new();

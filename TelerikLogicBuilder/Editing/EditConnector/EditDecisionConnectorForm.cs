@@ -50,11 +50,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector
                 using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
                 {
                     xmlTextWriter.WriteStartElement(XmlDataConstants.CONNECTORELEMENT);
-                        xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, ((short)cmbIndex.SelectedValue).ToString(CultureInfo.InvariantCulture));
-                        xmlTextWriter.WriteAttributeString(XmlDataConstants.CONNECTORCATEGORYATTRIBUTE, ((short)ConnectorCategory.Decision).ToString(CultureInfo.InvariantCulture));
-                        xmlTextWriter.WriteStartElement(XmlDataConstants.TEXTELEMENT);
-                            xmlTextWriter.WriteRaw(cmbIndex.SelectedItem.Text);
-                        xmlTextWriter.WriteEndElement();
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.NAMEATTRIBUTE, ((short)cmbIndex.SelectedValue).ToString(CultureInfo.InvariantCulture));
+                    xmlTextWriter.WriteAttributeString(XmlDataConstants.CONNECTORCATEGORYATTRIBUTE, ((short)ConnectorCategory.Decision).ToString(CultureInfo.InvariantCulture));
+                    xmlTextWriter.WriteStartElement(XmlDataConstants.TEXTELEMENT);
+                    xmlTextWriter.WriteRaw(cmbIndex.SelectedItem.Text);
+                    xmlTextWriter.WriteEndElement();
                     xmlTextWriter.WriteEndElement();
                     xmlTextWriter.Flush();
                 }
@@ -112,8 +112,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector
 
         private void UpdateSelection(short connectorIndexToSelect, XmlDocument? connectorXmlDocument)
         {
-            cmbIndex.SelectedValue = Enum.IsDefined(typeof(DecisionOption), connectorIndexToSelect) 
-                    ? (DecisionOption)connectorIndexToSelect 
+            cmbIndex.SelectedValue = Enum.IsDefined(typeof(DecisionOption), connectorIndexToSelect)
+                    ? (DecisionOption)connectorIndexToSelect
                     : DecisionOption.Yes;
 
             if (connectorXmlDocument == null)

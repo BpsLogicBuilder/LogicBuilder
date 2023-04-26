@@ -511,6 +511,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The object type &quot;{0}&quot; cannot contain generic parameters..
+        /// </summary>
+        internal static string cannotContainGenericParametersFormat {
+            get {
+                return ResourceManager.GetString("cannotContainGenericParametersFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type cannot be evaluated. Variable &quot;{0}&quot; is not configured..
         /// </summary>
         internal static string cannotEvaluateVariableFormat {
@@ -822,6 +831,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string connectorCategoryUndefinedFormat {
             get {
                 return ResourceManager.GetString("connectorCategoryUndefinedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A connector object type is required. Select  &quot;Connector Object Types&quot; from the Project menu and add an object type.  Finally select &quot;Constructors&quot; from the Project menu and make sure that a constructor assignable to the object type has been added..
+        /// </summary>
+        internal static string connectorObjectTypeRequired {
+            get {
+                return ResourceManager.GetString("connectorObjectTypeRequired", resourceCulture);
             }
         }
         
@@ -1690,6 +1708,24 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string dialogConnectorFormat {
             get {
                 return ResourceManager.GetString("dialogConnectorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connector Object is required..
+        /// </summary>
+        internal static string dialogConnectorObjectIsEmpty {
+            get {
+                return ResourceManager.GetString("dialogConnectorObjectIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text is required..
+        /// </summary>
+        internal static string dialogConnectorTextIsEmpty {
+            get {
+                return ResourceManager.GetString("dialogConnectorTextIsEmpty", resourceCulture);
             }
         }
         

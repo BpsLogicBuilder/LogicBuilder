@@ -12,6 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
     internal class ServiceFactory : IServiceFactory
     {
         private readonly Func<IApplicationHostControl, IApplicationDropDownList> _getApplicationDropDownList;
+        private readonly Func<IApplicationHostControl, ITypeAutoCompleteTextControl, IConnectorObjectTypeAutoCompleteManager> _getConnectorObjectTypeAutoCompleteManager;
         private readonly Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm> _getProgressForm;
         private readonly Func<SchemaName, ITreeViewXmlDocumentHelper> _getTreeViewXmlDocumentHelper;
         private readonly Func<IApplicationHostControl, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> _getTypeAutoCompleteManager;
@@ -19,12 +20,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
 
         public ServiceFactory(
             Func<IApplicationHostControl, IApplicationDropDownList> getApplicationDropDownList,
+            Func<IApplicationHostControl, ITypeAutoCompleteTextControl, IConnectorObjectTypeAutoCompleteManager> getConnectorObjectTypeAutoCompleteManager,
             Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm> getProgressForm,
             Func<SchemaName, ITreeViewXmlDocumentHelper> getTreeViewXmlDocumentHelper,
             Func<IApplicationHostControl, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> getTypeAutoCompleteManager,
             Func<IApplicationHostControl, IUpdateGenericArguments> getUpdateGenericArguments)
         {
             _getApplicationDropDownList = getApplicationDropDownList;
+            _getConnectorObjectTypeAutoCompleteManager = getConnectorObjectTypeAutoCompleteManager;
             _getProgressForm = getProgressForm;
             _getTreeViewXmlDocumentHelper = getTreeViewXmlDocumentHelper;
             _getTypeAutoCompleteManager = getTypeAutoCompleteManager;
@@ -33,6 +36,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
 
         public IApplicationDropDownList GetApplicationDropDownList(IApplicationHostControl applicationHostControl)
             => _getApplicationDropDownList(applicationHostControl);
+
+        public IConnectorObjectTypeAutoCompleteManager GetConnectorObjectTypeAutoCompleteManager(IApplicationHostControl applicationHostControl, ITypeAutoCompleteTextControl textControl)
+            => _getConnectorObjectTypeAutoCompleteManager(applicationHostControl, textControl);
 
         public IProgressForm GetProgressForm(Progress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
             => _getProgressForm(progress, cancellationTokenSource);

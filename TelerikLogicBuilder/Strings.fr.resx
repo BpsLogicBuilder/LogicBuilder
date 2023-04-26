@@ -248,6 +248,10 @@
 	<data name="builtInParameterNameVariable" xml:space="preserve">
     <value>VariableFR</value>
   </data>
+	<data name="cannotContainGenericParametersFormat" xml:space="preserve">
+    <value>The object type "{0}" cannot contain generic parameters.FR</value>
+    <comment>0=selected type</comment>
+  </data>
 	<data name="cannotEvaluateVariableFormat" xml:space="preserve">
     <value>Type cannot be evaluated. Variable "{0}" is not configured.FR</value>
     <comment>0=VariableName</comment>
@@ -365,6 +369,9 @@
 	<data name="connectorCategoryUndefinedFormat" xml:space="preserve">
     <value>The connector category {0} is undefined.FR</value>
     <comment>0=connector category</comment>
+  </data>
+	<data name="connectorObjectTypeRequired" xml:space="preserve">
+    <value>A connector object type is required. Select  "Connector Object Types" from the Project menu and add an object type.  Finally select "Constructors" from the Project menu and make sure that a constructor assignable to the object type has been added.FR</value>
   </data>
 	<data name="connectorRequires2Shapes" xml:space="preserve">
     <value>Connector must be connected to 2 shapes.FR</value>
@@ -630,6 +637,12 @@
   </data>
 	<data name="dialogBoxOutgoingCount" xml:space="preserve">
     <value>Without a multiple choice dialog function or diverging application logic, only one connector can exit a Dialog Shape.FR</value>
+  </data>
+	<data name="dialogConnectorObjectIsEmpty" xml:space="preserve">
+    <value>Connector Object is required.FR</value>
+  </data>
+	<data name="dialogConnectorTextIsEmpty" xml:space="preserve">
+    <value>Text is required.FR</value>
   </data>
 	<data name="dialogConnectorFormat" xml:space="preserve">
     <value>{0}:{1}FR</value>

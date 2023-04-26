@@ -16,6 +16,15 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddFieldControlHelperFactories(this IServiceCollection services)
         {
             return services
+                .AddTransient<Func<IRichInputBoxValueControl, IConnectorTextRichInputBoxEventsHelper>>
+                (
+                    provider =>
+                    richInputBoxValueControl => new ConnectorTextRichInputBoxEventsHelper
+                    (
+                        provider.GetRequiredService<IFieldControlHelperFactory>(),
+                        richInputBoxValueControl
+                    )
+                )
                 .AddTransient<Func<IRichInputBoxValueControl, IEditLiteralConstructorHelper>>
                 (
                     provider =>

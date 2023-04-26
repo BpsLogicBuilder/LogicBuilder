@@ -12,6 +12,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
     internal interface IServiceFactory
     {
         IApplicationDropDownList GetApplicationDropDownList(IApplicationHostControl applicationHostControl);
+        IConnectorObjectTypeAutoCompleteManager GetConnectorObjectTypeAutoCompleteManager(IApplicationHostControl applicationHostControl,
+            ITypeAutoCompleteTextControl textControl);
         IProgressForm GetProgressForm(Progress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource);
         ITreeViewXmlDocumentHelper GetTreeViewXmlDocumentHelper(SchemaName schema);
         ITypeAutoCompleteManager GetTypeAutoCompleteManager(IApplicationHostControl applicationHostControl,

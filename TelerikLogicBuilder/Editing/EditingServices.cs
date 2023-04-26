@@ -64,6 +64,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddEditConditionFunctionCommandFactories()
                 .AddEditConditionFunctionsFormCommandFactories()
                 .AddEditConstructorCommandFactories()
+                .AddEditDialogConnectorControlFactories()
+                .AddEditDialogConnectorFieldControlFactories()
                 .AddEditDialogFunctionCommandFactories()
                 .AddEditFunctionsCommandFactories()
                 .AddEditFunctionsControlFactories()

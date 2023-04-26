@@ -32,6 +32,19 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationHostControl
                     )
                 )
+                .AddTransient<Func<IApplicationHostControl, ITypeAutoCompleteTextControl, IConnectorObjectTypeAutoCompleteManager>>
+                (
+                    provider =>
+                    (applicationHostControl, textControl) => new ConnectorObjectTypeAutoCompleteManager
+                    (
+                        provider.GetRequiredService<IConfigurationService>(),
+                        provider.GetRequiredService<IImageListService>(),
+                        provider.GetRequiredService<ITypeAutoCompleteCommandFactory>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
+                        applicationHostControl,
+                        textControl
+                    )
+                )
                 .AddTransient<Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm>>
                 (
                     provider =>

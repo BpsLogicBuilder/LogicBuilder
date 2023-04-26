@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnector;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
@@ -31,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditDecisionConnectorForm GetEditDecisionConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument);
         IEditDecisionForm GetEditDecisionForm(XmlDocument? decisionXmlDocument);
         IEditDecisionsForm GetEditDecisionsForm(XmlDocument? decisionsXmlDocument);
+        IEditDialogConnectorForm GetEditDialogConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument);
         IEditDialogFunctionForm GetEditDialogFunctionForm(XmlDocument? functionsXmlDocument);
         IEditFunctionsForm GetEditFunctionsForm(XmlDocument? functionsXmlDocument);
         IEditParameterLiteralListForm GetEditParameterLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);

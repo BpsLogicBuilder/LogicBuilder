@@ -5,6 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
     internal class FieldControlHelperFactory : IFieldControlHelperFactory
     {
+        private readonly Func<IRichInputBoxValueControl, IConnectorTextRichInputBoxEventsHelper> _getConnectorTextRichInputBoxEventsHelper;
         private readonly Func<IRichInputBoxValueControl, IEditLiteralConstructorHelper> _getEditLiteralConstructorHelper;
         private readonly Func<IRichInputBoxValueControl, IEditLiteralFunctionHelper> _getEditLiteralFunctionHelper;
         private readonly Func<IRichInputBoxValueControl, IEditLiteralVariableHelper> _getEditLiteralVariableHelper;
@@ -24,6 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
         private readonly Func<IVariableRichInputBoxValueControl, IVariableRichInputBoxEventsHelper> _getVariableRichInputBoxEventsHelper;
 
         public FieldControlHelperFactory(
+            Func<IRichInputBoxValueControl, IConnectorTextRichInputBoxEventsHelper> getConnectorTextRichInputBoxEventsHelper,
             Func<IRichInputBoxValueControl, IEditLiteralConstructorHelper> getEditLiteralConstructorHelper,
             Func<IRichInputBoxValueControl, IEditLiteralFunctionHelper> getEditLiteralFunctionHelper,
             Func<IRichInputBoxValueControl, IEditLiteralVariableHelper> getEditLiteralVariableHelper,
@@ -42,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             Func<IVariableRichTextBoxValueControl, IVariableObjectRichTextBoxEventsHelper> getVariableObjectRichTextBoxEventsHelper,
             Func<IVariableRichInputBoxValueControl, IVariableRichInputBoxEventsHelper> getVariableRichInputBoxEventsHelper)
         {
+            _getConnectorTextRichInputBoxEventsHelper = getConnectorTextRichInputBoxEventsHelper;
             _getEditLiteralConstructorHelper = getEditLiteralConstructorHelper;
             _getEditLiteralFunctionHelper = getEditLiteralFunctionHelper;
             _getEditLiteralVariableHelper = getEditLiteralVariableHelper;
@@ -60,6 +63,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
             _getVariableObjectRichTextBoxEventsHelper = getVariableObjectRichTextBoxEventsHelper;
             _getVariableRichInputBoxEventsHelper = getVariableRichInputBoxEventsHelper;
         }
+
+        public IConnectorTextRichInputBoxEventsHelper GetConnectorTextRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl)
+            => _getConnectorTextRichInputBoxEventsHelper(richInputBoxValueControl);
 
         public IEditLiteralConstructorHelper GetEditLiteralConstructorHelper(IRichInputBoxValueControl richInputBoxValueControl)
             => _getEditLiteralConstructorHelper(richInputBoxValueControl);

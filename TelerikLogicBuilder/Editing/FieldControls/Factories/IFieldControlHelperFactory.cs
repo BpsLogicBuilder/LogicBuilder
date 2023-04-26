@@ -4,6 +4,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
     internal interface IFieldControlHelperFactory
     {
+        IConnectorTextRichInputBoxEventsHelper GetConnectorTextRichInputBoxEventsHelper(IRichInputBoxValueControl richInputBoxValueControl);
         IEditLiteralConstructorHelper GetEditLiteralConstructorHelper(IRichInputBoxValueControl richInputBoxValueControl);
         IEditLiteralFunctionHelper GetEditLiteralFunctionHelper(IRichInputBoxValueControl richInputBoxValueControl);
         IEditLiteralVariableHelper GetEditLiteralVariableHelper(IRichInputBoxValueControl richInputBoxValueControl);
