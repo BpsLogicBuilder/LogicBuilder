@@ -207,10 +207,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         functionsXmlDocument
                     )
                 )
-                .AddTransient<Func<XmlDocument?, IEditFunctionsForm>>
+                .AddTransient<Func<IDictionary<string, Function>, IList<TreeFolder>, XmlDocument?, IEditFunctionsForm>>
                 (
                     provider =>
-                    functionsXmlDocument => new EditFunctionsForm
+                    (functionDictionary, treeFolders, functionsXmlDocument) => new EditFunctionsForm
                     (
                         provider.GetRequiredService<IDialogFormMessageControl>(),
                         provider.GetRequiredService<IEditFunctionsCommandFactory>(),
@@ -223,6 +223,8 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IXmlDataHelper>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         provider.GetRequiredService<ObjectRichTextBox>(),
+                        functionDictionary, 
+                        treeFolders, 
                         functionsXmlDocument
                     )
                 )

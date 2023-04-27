@@ -1,6 +1,8 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
 using System;
@@ -11,12 +13,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
 {
     internal class ActionShapeEditor : IActionShapeEditor
     {
+        private readonly IConfigurationService _configurationService;
         private readonly IMainWindow _mainWindow;
         private readonly IShapeXmlHelper _shapeXmlHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public ActionShapeEditor(IMainWindow mainWindow, IShapeXmlHelper shapeXmlHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public ActionShapeEditor(
+            IConfigurationService configurationService,
+            IMainWindow mainWindow,
+            IShapeXmlHelper shapeXmlHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers)
         {
+            _configurationService = configurationService;
             _mainWindow = mainWindow;
             _shapeXmlHelper = shapeXmlHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -27,6 +35,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
             using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
             IEditFunctionsForm editFunctionsForm = disposableManager.GetEditFunctionsForm
             (
+                _configurationService.FunctionList.VoidFunctions,
+                new TreeFolder[] { _configurationService.FunctionList.BuiltInVoidFunctionsTreeFolder, _configurationService.FunctionList.VoidFunctionsTreeFolder },
                 GetXmlDocument()
             );
 

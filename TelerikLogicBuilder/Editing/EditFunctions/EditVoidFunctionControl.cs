@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
@@ -107,6 +108,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         public string VisibleText => XmlResult.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
 
+        public IDictionary<string, Function> FunctionDictionary => editFunctionsForm.FunctionDictionary;
+
+        public IList<TreeFolder> TreeFolders => editFunctionsForm.TreeFolders;
+
         public event EventHandler? Changed;
 
         public event EventHandler<ApplicationChangedEventArgs>? ApplicationChanged;
@@ -185,7 +190,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 
         private void CmbSelectFunctionChanged()
         {
-            if (!_configurationService.FunctionList.VoidFunctions.TryGetValue(cmbSelectFunction.Text, out Function? function))
+            if (!FunctionDictionary.TryGetValue(cmbSelectFunction.Text, out Function? function))
                 return;
 
             _treeViewXmlDocumentHelper.LoadXmlDocument(GetEmptyFunctioXml());
@@ -249,7 +254,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             _radDropDownListHelper.LoadTextItems
             (
                 cmbSelectFunction.DropDownList,
-                _configurationService.FunctionList.VoidFunctions.Select(f => f.Key).Order(),
+                FunctionDictionary.Select(f => f.Key).Order(),
                 Telerik.WinControls.RadDropDownStyle.DropDown
             );
 

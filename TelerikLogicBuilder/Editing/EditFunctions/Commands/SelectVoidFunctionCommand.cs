@@ -29,8 +29,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands
             ISelectFunctionForm selectFunctionForm = disposableManager.GetSelectFunctionForm
             (
                 typeof(object),
-                _configurationService.FunctionList.VoidFunctions,
-                new TreeFolder[] { _configurationService.FunctionList.BuiltInVoidFunctionsTreeFolder, _configurationService.FunctionList.VoidFunctionsTreeFolder }
+                editVoidFunctionControl.FunctionDictionary,
+                editVoidFunctionControl.TreeFolders
             );
             selectFunctionForm.SetFunction(CmbSelectFunction.Text);
             selectFunctionForm.ShowDialog((IWin32Window)editVoidFunctionControl);

@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditDecisionsForm GetEditDecisionsForm(XmlDocument? decisionsXmlDocument);
         IEditDialogConnectorForm GetEditDialogConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument);
         IEditDialogFunctionForm GetEditDialogFunctionForm(XmlDocument? functionsXmlDocument);
-        IEditFunctionsForm GetEditFunctionsForm(XmlDocument? functionsXmlDocument);
+        IEditFunctionsForm GetEditFunctionsForm(IDictionary<string, Function> functionDictionary, IList<TreeFolder> treeFolders, XmlDocument? functionsXmlDocument);
         IEditJumpForm GetEditJumpForm(XmlDocument? jumpXmlDocument);
         IEditModuleShapeForm GetEditModuleShapeForm(XmlDocument? moduleXmlDocument);
         IEditParameterLiteralListForm GetEditParameterLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);

@@ -37,7 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<XmlDocument?, IEditDecisionsForm> _getEditDecisionsForm;
         private readonly Func<short, XmlDocument?, IEditDialogConnectorForm> _getEditDialogConnectorForm;
         private readonly Func<XmlDocument?, IEditDialogFunctionForm> _getEditDialogFunctionForm;
-        private readonly Func<XmlDocument?, IEditFunctionsForm> _getEditFunctionsForm;
+        private readonly Func<IDictionary<string, Function>, IList<TreeFolder>, XmlDocument?, IEditFunctionsForm> _getEditFunctionsForm;
         private readonly Func<XmlDocument?, IEditJumpForm> _getEditJumpForm;
         private readonly Func<XmlDocument?, IEditModuleShapeForm> _getEditModuleShapeForm;
         private readonly Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> _getEditParameterLiteralListForm;
@@ -60,7 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<XmlDocument?, IEditDecisionsForm> getEditDecisionsForm,
             Func<XmlDocument?, IEditDialogFunctionForm> getEditDialogFunctionForm,
             Func<short, XmlDocument?, IEditDialogConnectorForm> getEditDialogConnectorForm,
-            Func<XmlDocument?, IEditFunctionsForm> getEditFunctionsForm,
+            Func<IDictionary<string, Function>, IList<TreeFolder>, XmlDocument?, IEditFunctionsForm> getEditFunctionsForm,
             Func<XmlDocument?, IEditJumpForm> getEditJumpForm,
             Func<XmlDocument?, IEditModuleShapeForm> getEditModuleShapeForm,
             Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> getEditParameterLiteralListForm,
@@ -145,9 +145,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             return (IEditDialogFunctionForm)_scopedService;
         }
 
-        public IEditFunctionsForm GetEditFunctionsForm(XmlDocument? functionsXmlDocument)
+        public IEditFunctionsForm GetEditFunctionsForm(IDictionary<string, Function> functionDictionary, IList<TreeFolder> treeFolders, XmlDocument? functionsXmlDocument)
         {
-            _scopedService = _getEditFunctionsForm(functionsXmlDocument);
+            _scopedService = _getEditFunctionsForm(functionDictionary, treeFolders, functionsXmlDocument);
             return (IEditFunctionsForm)_scopedService;
         }
 

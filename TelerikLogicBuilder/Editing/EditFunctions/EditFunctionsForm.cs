@@ -1,10 +1,12 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
@@ -56,6 +58,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             ObjectRichTextBox objectRichTextBox,
+            IDictionary<string, Function> functionDictionary,
+            IList<TreeFolder> treeFolders,
             XmlDocument? functionsXmlDocument)
         {
             InitializeComponent();
@@ -70,6 +74,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _objectRichTextBox = objectRichTextBox;
+            FunctionDictionary = functionDictionary;
+            TreeFolders = treeFolders;
 
             if (functionsXmlDocument?.DocumentElement != null)
                 UpdateFunctionsList(functionsXmlDocument.DocumentElement.OuterXml);
@@ -142,6 +148,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         }
 
         public ApplicationTypeInfo Application => _application;
+
+        public IDictionary<string, Function> FunctionDictionary { get; }
+
+        public IList<TreeFolder> TreeFolders { get; }
 
         public void ClearInputControls()
         {
