@@ -77,6 +77,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.RadDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.ShortcutsEnabled = false;
         }
 
+        public void SetErrorBackColor()
+            => SetDropDownBorderForeColor
+            (
+                ForeColorUtility.GetGroupBoxBorderErrorColor()
+            );
+
+        public void SetNormalBackColor()
+            => SetDropDownBorderForeColor
+            (
+                ForeColorUtility.GetGroupBoxBorderColor(ThemeResolutionService.ApplicationThemeName)
+            );
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
@@ -114,6 +126,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.ResumeLayout(true);
         }
 
+        private void SetDropDownBorderForeColor(Color color)
+            => ((BorderPrimitive)radDropDownList1.DropDownListElement.Children[0]).ForeColor = color;
+
+        #region Event Handlers
         private void TextBoxControl_MouseDown(object? sender, MouseEventArgs e)
         {
             MouseDown?.Invoke(this, e);
@@ -147,6 +163,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void RadDropDownList1_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
         {
             args.VisualItem.TextWrap = false;
-        }
+        } 
+        #endregion Event Handlers
     }
 }

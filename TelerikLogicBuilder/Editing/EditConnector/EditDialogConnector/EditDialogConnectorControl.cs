@@ -90,7 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             get
             {
                 List<string> errors = new();
-                errors.AddRange(ValidateControls());
+                errors.AddRange(ValidateControls(false));
                 if (errors.Count > 0)
                     return false;
 
@@ -142,12 +142,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
 
         private void SetupConnectorObjectControl()
         {
+            ClearMessage();
+            connectorTextRichInputBoxControl.SetNormalBackColor();
+            connectorObjectRichTextBoxControl.SetNormalBackColor();
+            cmbConnectorObjectType.SetNormalBackColor();
+
             if (!_typeLoadHelper.TryGetSystemType(cmbConnectorObjectType.Text,Application,out Type? type))
             {
                 SetErrorMessage
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeFormat2, cmbConnectorObjectType.Text)
                 );
+                cmbConnectorObjectType.SetErrorBackColor();
                 connectorObjectRichTextBoxControl.DisableControls();
                 return;
             }
@@ -158,6 +164,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.cannotContainGenericParametersFormat, type.ToString())
                 );
+                cmbConnectorObjectType.SetErrorBackColor();
                 connectorObjectRichTextBoxControl.DisableControls();
                 return;
             }
@@ -169,13 +176,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
                 (
                     string.Format(CultureInfo.CurrentCulture,  Strings.constructorNotConfiguredForObjectTypeFormat, type.ToString())
                 );
+                cmbConnectorObjectType.SetErrorBackColor();
                 connectorObjectRichTextBoxControl.DisableControls();
                 return;
             }
 
             connectorObjectRichTextBoxControl.EnableControls();
             connectorObjectRichTextBoxControl.SetupDefaultElement(type);
-            ValidateOk();
         }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
@@ -203,7 +210,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
 
             SetCmbConnectorObjectType(_configurationService.ProjectProperties.ConnectorObjectTypes.First());
             SetupConnectorObjectControl();
-            ValidateOk();
+            ValidateOk(false);
         }
 
         [MemberNotNull(nameof(connectorObjectRichTextBoxControl))]
@@ -259,7 +266,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         private void UpdateSelection(short connectorIndexToSelect, XmlDocument? connectorXmlDocument)
         {
             UpdateFields();
-            ValidateOk();
+            ValidateOk(false);
 
             void UpdateFields()
             {
@@ -297,11 +304,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             cmbConnectorObjectType.TextChanged += CmbConnectorObjectType_TextChanged;
         }
 
-        private IList<string> ValidateControls()
+        private IList<string> ValidateControls(bool showErrors = true)
         {
+            connectorTextRichInputBoxControl.SetNormalBackColor();
+            connectorObjectRichTextBoxControl.SetNormalBackColor();
+            cmbConnectorObjectType.SetNormalBackColor();
+
             List<string> errors = new();
             if(connectorTextRichInputBoxControl.MixedXml.Trim().Length == 0)
             {
+                if (showErrors)
+                    connectorTextRichInputBoxControl.SetErrorBackColor();
                 errors.Add(Strings.dialogConnectorTextIsEmpty);
                 return errors;
             }
@@ -312,6 +325,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.cannotLoadTypeFormat2, cmbConnectorObjectType.Text)
                 );
+
+                if (showErrors)
+                    cmbConnectorObjectType.SetErrorBackColor();
                 connectorObjectRichTextBoxControl.DisableControls();
                 return errors;
             }
@@ -322,12 +338,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
                 (
                     string.Format(CultureInfo.CurrentCulture, Strings.cannotContainGenericParametersFormat, type.ToString())
                 );
+                if (showErrors)
+                    cmbConnectorObjectType.SetErrorBackColor();
                 connectorObjectRichTextBoxControl.DisableControls();
                 return errors;
             }
 
             if (connectorObjectRichTextBoxControl.IsEmpty)
             {
+                if (showErrors)
+                    connectorObjectRichTextBoxControl.SetErrorBackColor();
                 errors.Add(Strings.dialogConnectorObjectIsEmpty);
                 return errors;
             }
@@ -339,15 +359,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
                 errors
             );
 
+            if (showErrors && errors.Count > 0)
+            {
+                connectorObjectRichTextBoxControl.SetErrorBackColor();
+            }
+
             return errors;
         }
 
-        private void ValidateOk()
+        private void ValidateOk(bool showErrors = true)
         {
             ClearMessage();
+
             List<string> errors = new();
-            errors.AddRange(ValidateControls());
-            if (errors.Count > 0)
+            errors.AddRange(ValidateControls(showErrors));
+            if (showErrors && errors.Count > 0)
             {
                 SetErrorMessage(string.Join(Environment.NewLine, errors));
             }
@@ -359,6 +385,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         private void CmbConnectorObjectType_TextChanged(object? sender, EventArgs e)
         {
             SetupConnectorObjectControl();
+            ValidateOk();
         }
 
         private void ConnectorObjectRichTextBoxControl_Changed(object? sender, EventArgs e)
