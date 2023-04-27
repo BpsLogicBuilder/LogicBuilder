@@ -12,7 +12,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector
+namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDecisionConnector
 {
     internal partial class EditDecisionConnectorForm : Telerik.WinControls.UI.RadForm, IEditDecisionConnectorForm
     {

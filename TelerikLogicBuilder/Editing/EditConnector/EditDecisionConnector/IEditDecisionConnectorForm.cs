@@ -1,8 +1,8 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector
+﻿namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDecisionConnector
 {
     internal interface IEditDecisionConnectorForm : IEditConnectorForm
     {
     }
 }
 
- 
+

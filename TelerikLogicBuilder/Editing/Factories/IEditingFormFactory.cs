@@ -2,7 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDecisionConnector;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnector;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision;
