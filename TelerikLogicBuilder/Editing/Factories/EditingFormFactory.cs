@@ -10,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
@@ -36,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<short, XmlDocument?, IEditDialogConnectorForm> _getEditDialogConnectorForm;
         private readonly Func<XmlDocument?, IEditDialogFunctionForm> _getEditDialogFunctionForm;
         private readonly Func<XmlDocument?, IEditFunctionsForm> _getEditFunctionsForm;
+        private readonly Func<XmlDocument?, IEditModuleShapeForm> _getEditModuleShapeForm;
         private readonly Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> _getEditParameterLiteralListForm;
         private readonly Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditParameterObjectListForm> _getEditParameterObjectListForm;
         private readonly Func<Type, XmlDocument?, IEditValueFunctionForm> _getEditValueFunctionForm;
@@ -57,6 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<XmlDocument?, IEditDialogFunctionForm> getEditDialogFunctionForm,
             Func<short, XmlDocument?, IEditDialogConnectorForm> getEditDialogConnectorForm,
             Func<XmlDocument?, IEditFunctionsForm> getEditFunctionsForm,
+            Func<XmlDocument?, IEditModuleShapeForm> getEditModuleShapeForm,
             Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> getEditParameterLiteralListForm,
             Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditParameterObjectListForm> getEditParameterObjectListForm,
             Func<Type, XmlDocument?, IEditValueFunctionForm> getEditValueFunctionForm,
@@ -77,6 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getEditDialogConnectorForm = getEditDialogConnectorForm;
             _getEditDialogFunctionForm = getEditDialogFunctionForm;
             _getEditFunctionsForm = getEditFunctionsForm;
+            _getEditModuleShapeForm = getEditModuleShapeForm;
             _getEditParameterLiteralListForm = getEditParameterLiteralListForm;
             _getEditParameterObjectListForm = getEditParameterObjectListForm;
             _getEditValueFunctionForm = getEditValueFunctionForm;
@@ -141,6 +145,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = _getEditFunctionsForm(functionsXmlDocument);
             return (IEditFunctionsForm)_scopedService;
+        }
+
+        public IEditModuleShapeForm GetEditModuleShapeForm(XmlDocument? moduleXmlDocument)
+        {
+            _scopedService = _getEditModuleShapeForm(moduleXmlDocument);
+            return (IEditModuleShapeForm)_scopedService;
         }
 
         public IEditParameterLiteralListForm GetEditParameterLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument)

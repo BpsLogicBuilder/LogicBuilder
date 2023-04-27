@@ -20,6 +20,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
@@ -38,6 +39,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -224,6 +226,20 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()
+                .AddTransient<Func<XmlDocument?, IEditModuleShapeForm>>
+                (
+                    provider =>
+                    moduleXmlDocument => new EditModuleShapeForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IEditModuleShapeTreeViewBuilder>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IModuleDataParser>(),
+                        provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        moduleXmlDocument
+                    )
+                )
                 .AddTransient<Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm>>
                 (
                     provider =>

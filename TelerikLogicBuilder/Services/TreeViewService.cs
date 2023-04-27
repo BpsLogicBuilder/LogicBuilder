@@ -359,6 +359,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 treeView.SelectedNode = node;
         }
 
+        public void SelectTreeNode(RadTreeView treeView, Func<RadTreeNode, bool> predicate)
+        {
+            var node = treeView.Find(n => predicate(n));
+            if (node != null)
+                treeView.SelectedNode = node;
+        }
+
         public void SelectTreeNodes(RadTreeView treeView, IList<string> nodeNames)
         {
             foreach (string name in nodeNames)

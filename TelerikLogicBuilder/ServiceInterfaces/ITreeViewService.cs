@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using Telerik.WinControls.UI;
 
@@ -39,6 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         void RenameChildTreeNode(RadTreeNode parentTreeNode, RadTreeNode childNode, string relativeXPath, string idAttributeName, string idAttributeValue);
         void ScrollToPreviousPosition(RadTreeView treeView, Point point);
         void SelectTreeNode(RadTreeView treeView, string? nodeName);
+        void SelectTreeNode(RadTreeView treeView, Func<RadTreeNode, bool> predicate);
         void SelectTreeNodes(RadTreeView treeView, IList<string> nodeNames);
     }
 }

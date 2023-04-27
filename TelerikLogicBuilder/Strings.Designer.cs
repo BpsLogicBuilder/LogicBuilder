@@ -5249,6 +5249,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A module must be selected..
+        /// </summary>
+        internal static string moduleMustBeSelected {
+            get {
+                return ResourceManager.GetString("moduleMustBeSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module Shape requires data..
         /// </summary>
         internal static string moduleShapeDataRequired {

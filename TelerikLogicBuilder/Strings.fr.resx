@@ -1501,6 +1501,9 @@
     <value>Module {0} is excluded for application {1}. To configure excluded modules, select Project/Project Properties. In the Applications tab, select the relevant application.  Click on the button in the excluded modules text box.FR</value>
     <comment>0=ModuleName; 1=ApplicationName</comment>
   </data>
+	<data name="moduleMustBeSelected" xml:space="preserve">
+    <value>A module must be selected.FR</value>
+  </data>
 	<data name="moduleShapeDataRequired" xml:space="preserve">
     <value>Module Shape requires data.FR</value>
   </data>

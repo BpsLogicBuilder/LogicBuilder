@@ -5,14 +5,12 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 {
-    internal class ExcludedModulesTreeViewBuilder : IExcludedModulesTreeViewBuilder
+    internal class EditModuleShapeTreeViewBuilder : IEditModuleShapeTreeViewBuilder
     {
-        private readonly ICheckSelectedTreeNodes _checkSelectedTreeNodes;
         private readonly IConfigurationService _configurationService;
         private readonly IEmptyFolderRemover _emptyFolderRemover;
         private readonly IFileIOHelper _fileIOHelper;
@@ -21,8 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
         private readonly ITreeViewService _treeViewService;
         private readonly IUiNotificationService _uiNotificationService;
 
-        public ExcludedModulesTreeViewBuilder(
-            ICheckSelectedTreeNodes checkSelectedTreeNodes,
+        public EditModuleShapeTreeViewBuilder(
             IConfigurationService configurationService,
             IEmptyFolderRemover emptyFolderRemover,
             IFileIOHelper fileIOHelper,
@@ -31,7 +28,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             ITreeViewService treeViewService,
             IUiNotificationService uiNotificationService)
         {
-            _checkSelectedTreeNodes = checkSelectedTreeNodes;
             _configurationService = configurationService;
             _emptyFolderRemover = emptyFolderRemover;
             _fileIOHelper = fileIOHelper;
@@ -43,9 +39,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
 
         private readonly HashSet<string> moduleNames = new();
 
-        public void Build(RadTreeView treeView, IList<string> selectedModules)
+        public void Build(RadTreeView treeView)
         {
-            treeView.TriStateMode = true;
             treeView.ImageList = _imageListService.ImageList;
             treeView.Nodes.Clear();
             moduleNames.Clear();/*Must be cleared on every call in case build gets called more than once on the same instance.*/
@@ -72,8 +67,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.TreeViewBuiilders
             treeView.Nodes.Add(rootNode);
             AddModuleNodes(rootNode, documentPath, true);
             _emptyFolderRemover.RemoveEmptyFolders(rootNode);
-            _checkSelectedTreeNodes.CheckListedNodes(rootNode, selectedModules.ToHashSet());
-
             treeView.Refresh();
             treeView.EndUpdate();
         }
