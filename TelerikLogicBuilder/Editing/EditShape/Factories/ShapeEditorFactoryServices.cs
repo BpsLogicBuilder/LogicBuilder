@@ -18,6 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<IConnectorShapeEditor, ConnectorShapeEditor>()
                 .AddTransient<IDecisionShapeEditor, DecisionShapeEditor>()
                 .AddTransient<IDialogShapeEditor, DialogShapeEditor>()
+                .AddTransient<IJumpShapeEditor, JumpShapeEditor>()
                 .AddTransient<IModuleShapeEditor, ModuleShapeEditor>()
                 .AddTransient<Func<string, IShapeEditor>>
                 (
@@ -31,6 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
                             UniversalMasterName.CONNECTOBJECT => provider.GetRequiredService<IConnectorShapeEditor>(),
                             UniversalMasterName.DECISIONOBJECT or UniversalMasterName.WAITDECISIONOBJECT => provider.GetRequiredService<IDecisionShapeEditor>(),
                             UniversalMasterName.DIALOG => provider.GetRequiredService<IDialogShapeEditor>(),
+                            UniversalMasterName.JUMPOBJECT => provider.GetRequiredService<IJumpShapeEditor>(),
                             UniversalMasterName.MODULE => provider.GetRequiredService<IModuleShapeEditor>(),
                             _ => throw new CriticalLogicBuilderException(string.Format(CultureInfo.InvariantCulture, Strings.invalidArgumentTextFormat, "{EB5FFEF4-2266-4569-A0DA-A2C6E30574B0}")),
                         };

@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditJump;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
@@ -36,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditDialogConnectorForm GetEditDialogConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument);
         IEditDialogFunctionForm GetEditDialogFunctionForm(XmlDocument? functionsXmlDocument);
         IEditFunctionsForm GetEditFunctionsForm(XmlDocument? functionsXmlDocument);
+        IEditJumpForm GetEditJumpForm(XmlDocument? jumpXmlDocument);
         IEditModuleShapeForm GetEditModuleShapeForm(XmlDocument? moduleXmlDocument);
         IEditParameterLiteralListForm GetEditParameterLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);
         IEditParameterObjectListForm GetEditParameterObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument literalListXmlDocument);

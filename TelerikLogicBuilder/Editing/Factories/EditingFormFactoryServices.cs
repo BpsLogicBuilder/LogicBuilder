@@ -18,6 +18,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditJump;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape;
@@ -226,6 +227,18 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IEditingFormFactory, EditingFormFactory>()
+                .AddTransient<Func<XmlDocument?, IEditJumpForm>>
+                (
+                    provider =>
+                    jumpXmlDocument => new EditJumpForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IJumpDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        jumpXmlDocument
+                    )
+                )
                 .AddTransient<Func<XmlDocument?, IEditModuleShapeForm>>
                 (
                     provider =>
