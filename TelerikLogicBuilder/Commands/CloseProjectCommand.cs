@@ -1,7 +1,6 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 
-namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
+namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
     internal class CloseProjectCommand : ClickCommandBase
     {

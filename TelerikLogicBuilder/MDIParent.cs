@@ -46,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private readonly BuildActiveDocumentCommand _buildActiveDocumentCommand;
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
+        private readonly CloseProjectCommand _closeProjectCommand;
         private readonly DisplayIndexInformationCommand _displayIndexInformationCommand;
         private readonly EditConnectorObjectTypesCommand _editConnectorObjectTypesCommand;
         private readonly EditConstructorsCommand _editConstructorsCommand;
@@ -97,6 +98,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IUiNotificationService uiNotificationService,
             BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
+            CloseProjectCommand closeProjectCommand,
             DisplayIndexInformationCommand displayIndexInformationCommand,
             EditConnectorObjectTypesCommand editConnectorObjectTypesCommand,
             EditConstructorsCommand editConstructorsCommand,
@@ -144,6 +146,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _themeManager = themeManager;
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
+            _closeProjectCommand = closeProjectCommand;
             _editConnectorObjectTypesCommand = editConnectorObjectTypesCommand;
             _editConstructorsCommand = editConstructorsCommand;
             _editFragmentsCommand = editFragmentsCommand;
@@ -633,6 +636,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private void AddClickCommands()
         {
             #region File Menu
+            AddClickCommand(this.radMenuItemCloseProject, _closeProjectCommand);
             AddClickCommand(this.radMenuItemExit, _exitCommand);
             #endregion File Menu
 

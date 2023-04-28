@@ -10,7 +10,6 @@ namespace Microsoft.Extensions.DependencyInjection
             => services.AddTransient<IAddNewFileForm, AddNewFileForm>()
                 .AddTransient<AddExistingFileCommand>()
                 .AddTransient<AddNewFileCommand>()
-                .AddTransient<CloseProjectCommand>()
                 .AddTransient<CreateDirectoryCommand>()
                 .AddTransient<CutCommand>()
                 .AddTransient<DeleteCommand>()

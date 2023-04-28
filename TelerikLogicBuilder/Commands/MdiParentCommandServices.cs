@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<IApplicationCommandsFactory, ApplicationCommandsFactory>()
                 .AddTransient<BuildActiveDocumentCommand>()
                 .AddTransient<BuildSaveConsolidateSelectedDocumentsCommand>()
+                .AddTransient<CloseProjectCommand>()
                 .AddTransient<Func<string, DeleteSelectedFilesFromApiCommand>>
                 (
                     provider =>
