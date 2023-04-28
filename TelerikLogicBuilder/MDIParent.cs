@@ -69,6 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly FindTextInFilesCommand _findTextInFilesCommand;
         private readonly FindVariableCommand _findVariableCommand;
         private readonly FindVariableInFilesCommand _findVariableInFilesCommand;
+        private readonly OpenProjectCommand _openProjectCommand;
         private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
         private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
@@ -121,6 +122,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             FindTextInFilesCommand findTextInFilesCommand,
             FindVariableCommand findVariableCommand,
             FindVariableInFilesCommand findVariableInFilesCommand,
+            OpenProjectCommand openProjectCommand,
             ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
             ViewApplicationsStencilCommand viewApplicationsStencilCommand,
@@ -168,6 +170,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _findTextInFilesCommand = findTextInFilesCommand;
             _findVariableCommand = findVariableCommand;
             _findVariableInFilesCommand = findVariableInFilesCommand;
+            _openProjectCommand = openProjectCommand;
             _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
             _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
@@ -636,6 +639,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private void AddClickCommands()
         {
             #region File Menu
+            AddClickCommand(this.radMenuItemOpenProject, _openProjectCommand);
             AddClickCommand(this.radMenuItemCloseProject, _closeProjectCommand);
             AddClickCommand(this.radMenuItemExit, _exitCommand);
             #endregion File Menu

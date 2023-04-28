@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -32,11 +33,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Command
         {
             try
             {
+                ((Control)configureFragmentsForm).Cursor = Cursors.WaitCursor;
                 using RadOpenFileDialog openFileDialog = new();
                 openFileDialog.Filter = string.Concat(Strings.configurationDataFile, "|*", FileExtensions.CONFIGFILEEXTENSION);
                 openFileDialog.MultiSelect = false;
                 openFileDialog.InitialDirectory = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (openFileDialog.ShowDialog((IWin32Window)configureFragmentsForm) == DialogResult.OK)
                 {
                     configureFragmentsForm.ClearMessage();
                     Import(openFileDialog.FileName);
@@ -53,6 +55,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Command
             catch (LogicBuilderException ex)
             {
                 configureFragmentsForm.SetErrorMessage(ex.Message);
+            }
+            finally
+            {
+                ((Control)configureFragmentsForm).Cursor = Cursors.Default;
             }
         }
 

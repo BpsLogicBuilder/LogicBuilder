@@ -87,6 +87,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<FindTextInFilesCommand>()
                 .AddTransient<FindVariableCommand>()
                 .AddTransient<FindVariableInFilesCommand>()
+                .AddTransient<OpenProjectCommand>()
                 .AddTransient<Func<RadMenuItem, RadMenuItem, string, SetColorThemeCommand>>
                 (
                     provider =>

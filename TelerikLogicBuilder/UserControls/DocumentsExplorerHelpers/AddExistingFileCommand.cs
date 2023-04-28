@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -6,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
@@ -39,11 +41,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
         {
             try
             {
+                _mainWindow.Instance.Cursor = Cursors.WaitCursor;
                 using RadOpenFileDialog openFileDialog = new();
                 openFileDialog.Filter = "Visio|*.vsdx|Visio|*.vsd|Table|*.tbl";
                 openFileDialog.MultiSelect = true;
                 openFileDialog.InitialDirectory = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
-                openFileDialog.ShowDialog();
+                if (openFileDialog.ShowDialog(_mainWindow.Instance) != System.Windows.Forms.DialogResult.OK)
+                    return;
 
                 IEnumerable<string> files = openFileDialog.FileNames;
 
@@ -88,6 +92,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers
             catch (LogicBuilderException ex)
             {
                 _uiNotificationService.NotifyLogicBuilderException(ex);
+            }
+            finally
+            {
+                _mainWindow.Instance.Cursor = Cursors.Default;
             }
         }
     }

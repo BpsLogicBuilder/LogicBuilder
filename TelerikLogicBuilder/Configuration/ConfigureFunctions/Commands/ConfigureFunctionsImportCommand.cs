@@ -33,11 +33,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Command
         {
             try
             {
+                ((Control)configureFunctionsForm).Cursor = Cursors.WaitCursor;
                 using RadOpenFileDialog openFileDialog = new();
                 openFileDialog.Filter = string.Concat(Strings.configurationDataFile, "|*", FileExtensions.CONFIGFILEEXTENSION);
                 openFileDialog.MultiSelect = false;
                 openFileDialog.InitialDirectory = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (openFileDialog.ShowDialog((IWin32Window)configureFunctionsForm) == DialogResult.OK)
                 {
                     configureFunctionsForm.ClearMessage();
                     Import(openFileDialog.FileName);
@@ -54,6 +55,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Command
             catch (LogicBuilderException ex)
             {
                 configureFunctionsForm.SetErrorMessage(ex.Message);
+            }
+            finally
+            {
+                ((Control)configureFunctionsForm).Cursor = Cursors.Default;
             }
         }
 
