@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditCell;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
@@ -29,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         private readonly IFormInitializer _formInitializer;
         private readonly IMainWindow _mainWindow;
         private readonly IPathHelper _pathHelper;
+        private readonly ITableEditor _tableEditor;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IUiNotificationService _uiNotificationService;
 
@@ -37,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             IFormInitializer formInitializer,
             IMainWindow mainWindow,
             IPathHelper pathHelper,
+            ITableEditor tableEditor,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IUiNotificationService uiNotificationService,
             string tableSourceFile,
@@ -46,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             _formInitializer = formInitializer;
             _mainWindow = mainWindow;
             _pathHelper = pathHelper;
+            _tableEditor = tableEditor;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _uiNotificationService = uiNotificationService;
 
@@ -387,14 +391,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 return;
 
             this.Cursor = Cursors.WaitCursor;
-            //CellEditor cellEditor = new
-            //(
-            //    dataGridView1.CurrentRow.Cells[dataGridView1.CurrentColumn.Index],
-            //    this.dataSet,
-            //    this,
-            //    this.parentForm
-            //);
-            //cellEditor.EditCell();
+            _tableEditor.EditCell
+            (
+                this.dataSet, 
+                dataGridView1.CurrentCell.RowInfo.Cells[dataGridView1.CurrentCell.ColumnIndex]
+            );
             this.Cursor = Cursors.Default;
         }
 

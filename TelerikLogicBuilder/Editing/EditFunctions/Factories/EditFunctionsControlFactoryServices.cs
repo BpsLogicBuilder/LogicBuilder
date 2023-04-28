@@ -4,7 +4,6 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
@@ -22,7 +21,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     editFunctionsForm => new EditVoidFunctionControl
                     (
-                        provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IEditVoidFunctionCommandFactory>(),
                         provider.GetRequiredService<IEditingFormHelperFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),

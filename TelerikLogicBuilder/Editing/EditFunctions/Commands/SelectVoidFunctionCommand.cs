@@ -1,8 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -12,12 +10,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands
 {
     internal class SelectVoidFunctionCommand : ClickCommandBase
     {
-        private readonly IConfigurationService _configurationService;
         private readonly IEditVoidFunctionControl editVoidFunctionControl;
 
-        public SelectVoidFunctionCommand(IConfigurationService configurationService, IEditVoidFunctionControl editVoidFunctionControl)
+        public SelectVoidFunctionCommand(IEditVoidFunctionControl editVoidFunctionControl)
         {
-            _configurationService = configurationService;
             this.editVoidFunctionControl = editVoidFunctionControl;
         }
 

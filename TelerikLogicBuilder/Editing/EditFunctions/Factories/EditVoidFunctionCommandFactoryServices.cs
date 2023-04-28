@@ -1,7 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -17,7 +16,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     editVoidFunctionControl => new SelectVoidFunctionCommand
                     (
-                        provider.GetRequiredService<IConfigurationService>(),
                         editVoidFunctionControl
                     )
                 );

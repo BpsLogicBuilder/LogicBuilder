@@ -10,7 +10,6 @@ using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
@@ -27,7 +26,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
 {
     internal partial class EditVoidFunctionControl : UserControl, IEditVoidFunctionControl
     {
-        private readonly IConfigurationService _configurationService;
         private readonly IDataGraphEditingHostEventsHelper _dataGraphEditingHostEventsHelper;
         private readonly IEditVoidFunctionCommandFactory _editVoidFunctionCommandFactory;
         private readonly IExceptionHelper _exceptionHelper;
@@ -41,7 +39,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private readonly IEditFunctionsForm editFunctionsForm;
 
         public EditVoidFunctionControl(
-            IConfigurationService configurationService,
             IEditVoidFunctionCommandFactory editVoidFunctionCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
@@ -53,7 +50,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             IEditFunctionsForm editFunctionsForm)
         {
             InitializeComponent();
-            _configurationService = configurationService;
             _editVoidFunctionCommandFactory = editVoidFunctionCommandFactory;
             _exceptionHelper = exceptionHelper;
             _radDropDownListHelper = radDropDownListHelper;

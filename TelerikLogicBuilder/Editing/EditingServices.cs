@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditCell;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditShape;
@@ -51,10 +52,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<ISearchFunctions, SearchFunctions>()
                 .AddSingleton<ISearchSelectedDocuments, SearchSelectedDocuments>()
                 .AddSingleton<ISetValueFunctionTableLayoutPanelHelper,  SetValueFunctionTableLayoutPanelHelper>()
+                .AddTransient<ITableEditor, TableEditor>()
                 .AddSingleton<ITableLayoutPanelHelper, TableLayoutPanelHelper>()
                 .AddSingleton<IUpdateParameterControlValues, UpdateParameterControlValues>()
                 .AddSingleton<IUpdateRichInputBoxXml, UpdateRichInputBoxXml>()
                 .AddSingleton<IXmlDataHelper, XmlDataHelper>()
+                .AddCellEditorFactories()
                 .AddConditionFunctionListBoxItemFactories()
                 .AddDecisionFunctionListBoxItemFactories()
                 .AddDecisionListBoxItemFactories()
