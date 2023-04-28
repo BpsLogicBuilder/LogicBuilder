@@ -1627,6 +1627,9 @@
     <value>&lt;{0}&gt;</value>
     <comment>0=VariableName</comment>
   </data>
+	<data name="priorityMustBeGreaterThanZero" xml:space="preserve">
+    <value>Priority must be an integer greater than zero.</value>
+  </data>
 	<data name="progressFormOperationCancelled" xml:space="preserve">
     <value>Operation Cancelled</value>
   </data>

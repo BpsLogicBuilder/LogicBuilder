@@ -24,6 +24,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditPriority;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
@@ -289,6 +290,18 @@ namespace Microsoft.Extensions.DependencyInjection
                         assignedTo,
                         literalListInfo,
                         objectListXmlDocument
+                    )
+                )
+                .AddTransient<Func<XmlDocument?, IEditPriorityForm>>
+                (
+                    provider =>
+                    priorityXmlDocument => new EditPriorityForm
+                    (
+                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IFormInitializer>(),
+                        provider.GetRequiredService<IPriorityDataParser>(),
+                        provider.GetRequiredService<IXmlDocumentHelpers>(),
+                        priorityXmlDocument
                     )
                 )
                 .AddTransient<Func<Type, XmlDocument?, IEditValueFunctionForm>>

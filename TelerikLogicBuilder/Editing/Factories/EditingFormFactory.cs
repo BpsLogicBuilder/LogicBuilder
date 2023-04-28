@@ -13,6 +13,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditJump;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditPriority;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
@@ -42,6 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         private readonly Func<XmlDocument?, IEditModuleShapeForm> _getEditModuleShapeForm;
         private readonly Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> _getEditParameterLiteralListForm;
         private readonly Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditParameterObjectListForm> _getEditParameterObjectListForm;
+        private readonly Func<XmlDocument?, IEditPriorityForm> _getEditPriorityForm;
         private readonly Func<Type, XmlDocument?, IEditValueFunctionForm> _getEditValueFunctionForm;
         private readonly Func<Type, IEditVariableForm> _getEditVariableForm;
         private readonly Func<Type, LiteralListVariableElementInfo, XmlDocument, IEditVariableLiteralListForm> _getEditVariableLiteralListForm;
@@ -65,6 +67,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             Func<XmlDocument?, IEditModuleShapeForm> getEditModuleShapeForm,
             Func<Type, LiteralListParameterElementInfo, XmlDocument, IEditParameterLiteralListForm> getEditParameterLiteralListForm,
             Func<Type, ObjectListParameterElementInfo, XmlDocument, IEditParameterObjectListForm> getEditParameterObjectListForm,
+            Func<XmlDocument?, IEditPriorityForm> getEditPriorityForm,
             Func<Type, XmlDocument?, IEditValueFunctionForm> getEditValueFunctionForm,
             Func<Type, IEditVariableForm> getEditVariableForm,
             Func<Type, LiteralListVariableElementInfo, XmlDocument, IEditVariableLiteralListForm> getEditVariableLiteralListForm,
@@ -87,6 +90,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _getEditModuleShapeForm = getEditModuleShapeForm;
             _getEditParameterLiteralListForm = getEditParameterLiteralListForm;
             _getEditParameterObjectListForm = getEditParameterObjectListForm;
+            _getEditPriorityForm = getEditPriorityForm;
             _getEditValueFunctionForm = getEditValueFunctionForm;
             _getEditVariableForm = getEditVariableForm;
             _getEditVariableLiteralListForm = getEditVariableLiteralListForm;
@@ -173,6 +177,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = _getEditParameterObjectListForm(assignedTo, objectListInfo, literalListXmlDocument);
             return (IEditParameterObjectListForm)_scopedService;
+        }
+
+        public IEditPriorityForm GetEditPriorityForm(XmlDocument? priorityXmlDocument)
+        {
+            _scopedService = _getEditPriorityForm(priorityXmlDocument);
+            return (IEditPriorityForm)_scopedService;
         }
 
         public IEditValueFunctionForm GetEditValueFunctionForm(Type assignedTo, XmlDocument? functionXmlDocument)

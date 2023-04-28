@@ -5591,6 +5591,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Priority must be an integer greater than zero..
+        /// </summary>
+        internal static string priorityMustBeGreaterThanZero {
+            get {
+                return ResourceManager.GetString("priorityMustBeGreaterThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation Cancelled.
         /// </summary>
         internal static string progressFormOperationCancelled {

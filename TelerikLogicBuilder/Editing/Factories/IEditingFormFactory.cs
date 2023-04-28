@@ -13,6 +13,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.EditJump;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditPriority;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable;
 using ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor;
@@ -41,6 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         IEditModuleShapeForm GetEditModuleShapeForm(XmlDocument? moduleXmlDocument);
         IEditParameterLiteralListForm GetEditParameterLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument);
         IEditParameterObjectListForm GetEditParameterObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument literalListXmlDocument);
+        IEditPriorityForm GetEditPriorityForm(XmlDocument? priorityXmlDocument);
         IEditValueFunctionForm GetEditValueFunctionForm(Type assignedTo, XmlDocument? functionXmlDocument);
         IEditVariableForm GetEditVariableForm(Type assignedTo);
         IEditVariableLiteralListForm GetEditVariableLiteralListForm(Type assignedTo, LiteralListVariableElementInfo literalListInfo, XmlDocument literalListXmlDocument);
