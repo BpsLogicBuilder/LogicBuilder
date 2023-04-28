@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditShape;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
+using ABIS.LogicBuilder.FlowBuilder.Editing.IndexInformation;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -182,18 +183,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 axDrawingControl1.Window.Selection.Delete();
         }
 
-        private static void DisplayIndexInformation()
+        private void DisplayIndexInformation()
         {
-            //if (axDrawingControl1.Window.Selection.Count < 1)
-            //    return;
+            if (axDrawingControl1.Window.Selection.Count < 1)
+                return;
 
-            //Visio.Shape shape = (Visio.Shape)axDrawingControl1.Window.Selection[1];
-            //Visio.Page page = (Visio.Page)axDrawingControl1.Window.Page;
-            //using (IndexInformation indexInformation = new IndexInformation(page.Index, shape.Index))
-            //{
-            //    indexInformation.StartPosition = FormStartPosition.CenterParent;
-            //    indexInformation.ShowDialog();
-            //}
+            Visio.Shape shape = axDrawingControl1.Window.Selection[1];
+            Visio.Page page = (Visio.Page)axDrawingControl1.Window.Page;
+
+            using IScopedDisposableManager<IIndexInformationForm> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<IIndexInformationForm>>();
+            IIndexInformationForm indexInformation = disposableManager.ScopedService;
+            indexInformation.SetIndexes(page.Index, shape.Index);
+            indexInformation.ShowDialog(this.parentForm);
         }
 
         private void Edit()

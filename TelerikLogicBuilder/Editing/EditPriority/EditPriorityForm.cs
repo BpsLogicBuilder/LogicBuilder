@@ -99,7 +99,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditPriority
         private void SetPriorityText(int priority)
         {
             radTextBoxInput.TextChanged -= RadTextBoxInput_TextChanged;
-            radTextBoxInput.Text = string.Format(CultureInfo.CurrentCulture, "{0}", priority);
+            radTextBoxInput.Text = priority.ToString(CultureInfo.CurrentCulture);
             radTextBoxInput.TextChanged += RadTextBoxInput_TextChanged;
         }
 

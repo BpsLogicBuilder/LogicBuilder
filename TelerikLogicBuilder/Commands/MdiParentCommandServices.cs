@@ -64,6 +64,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationName
                     )
                 )
+                .AddTransient<DisplayIndexInformationCommand>()
                 .AddTransient<EditConnectorObjectTypesCommand>()
                 .AddTransient<EditConstructorsCommand>()
                 .AddTransient<EditFragmentsCommand>()

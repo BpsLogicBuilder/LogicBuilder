@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FindAndReplace;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Forms;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.IndexInformation;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -47,6 +48,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IFunctionParameterControlSetValidator, FunctionParameterControlSetValidator>()
                 .AddSingleton<IGetObjectRichTextBoxVisibleText, GetObjectRichTextBoxVisibleText>()
                 .AddSingleton<IGetSourceFilesForDocumentSearch, GetSourceFilesForDocumentSearch>()
+                .AddTransient<IIndexInformationForm, IndexInformationForm>()
                 .AddSingleton<ILayoutFieldControlButtons, LayoutFieldControlButtons>()
                 .AddSingleton<IObjectHashSetListBoxItemComparer , ObjectHashSetListBoxItemComparer>()
                 .AddSingleton<ISearchFunctions, SearchFunctions>()

@@ -46,6 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private readonly BuildActiveDocumentCommand _buildActiveDocumentCommand;
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
+        private readonly DisplayIndexInformationCommand _displayIndexInformationCommand;
         private readonly EditConnectorObjectTypesCommand _editConnectorObjectTypesCommand;
         private readonly EditConstructorsCommand _editConstructorsCommand;
         private readonly EditFragmentsCommand _editFragmentsCommand;
@@ -96,6 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IUiNotificationService uiNotificationService,
             BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
+            DisplayIndexInformationCommand displayIndexInformationCommand,
             EditConnectorObjectTypesCommand editConnectorObjectTypesCommand,
             EditConstructorsCommand editConstructorsCommand,
             EditFragmentsCommand editFragmentsCommand,
@@ -130,6 +132,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _checkSelectedApplication = checkSelectedApplication;
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
+            _displayIndexInformationCommand = displayIndexInformationCommand;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _fragmentListInitializer = fragmentListInitializer;
@@ -665,6 +668,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             AddClickCommand(this.radMenuItemFindInFilesConstructor, _findConstructorInFilesCommand);
             AddClickCommand(this.radMenuItemFindInFilesFunction, _findFunctionInFilesCommand);
             AddClickCommand(this.radMenuItemFindInFilesVariable, _findVariableInFilesCommand);
+
+            AddClickCommand(this.radMenuItemIndexInformation, _displayIndexInformationCommand);
             #endregion Edit/Find
 
             #region View Menu
