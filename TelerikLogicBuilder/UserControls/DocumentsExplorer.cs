@@ -250,7 +250,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void MainWindow_Activated(object? sender, EventArgs e)
         {
-            RefreshTreeView();
+            //RefreshTreeView(); causes exception if project is closed
         }
 
         private void RadTreeView1_CreateNodeElement(object sender, CreateTreeNodeElementEventArgs e)
