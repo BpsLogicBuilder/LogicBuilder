@@ -76,7 +76,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly NewProjectCommand _newProjectCommand;
         private readonly OpenProjectCommand _openProjectCommand;
         private readonly PageSetupCommand _pageSetupCommand;
+        private readonly RedoCommand _redoCommand;
         private readonly SaveActiveDocumentCommand _saveActiveDocumentCommand;
+        private readonly UndoCommand _undoCommand;
         private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
         private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
@@ -135,7 +137,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             NewProjectCommand newProjectCommand,
             OpenProjectCommand openProjectCommand,
             PageSetupCommand pageSetupCommand,
+            RedoCommand redoCommand,
             SaveActiveDocumentCommand saveActiveDocumentCommand,
+            UndoCommand undoCommand,
             ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
             ViewApplicationsStencilCommand viewApplicationsStencilCommand,
@@ -189,7 +193,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _newProjectCommand = newProjectCommand;
             _openProjectCommand = openProjectCommand;
             _pageSetupCommand = pageSetupCommand;
+            _redoCommand = redoCommand;
             _saveActiveDocumentCommand = saveActiveDocumentCommand;
+            _undoCommand = undoCommand;
             _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
             _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
@@ -711,6 +717,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
             #endregion Tools Menu
 
             #region Edit/Find
+            AddClickCommand(this.radMenuItemUndo, _undoCommand);
+            AddClickCommand(this.radMenuItemRedo, _redoCommand);
             AddClickCommand(this.radMenuItemDelete, _deleteSelectionCommand);
             AddClickCommand(this.radMenuItemFindConstructor, _findConstructorCommand);
             AddClickCommand(this.radMenuItemFindCell, _findCellCommand);

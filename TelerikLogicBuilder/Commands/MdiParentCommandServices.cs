@@ -92,6 +92,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<NewProjectCommand>()
                 .AddTransient<OpenProjectCommand>()
                 .AddTransient<PageSetupCommand>()
+                .AddTransient<RedoCommand>()
                 .AddTransient<SaveActiveDocumentCommand>()
                 .AddTransient<Func<RadMenuItem, RadMenuItem, string, SetColorThemeCommand>>
                 (
@@ -126,6 +127,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationName
                     )
                 )
+                .AddTransient<UndoCommand>()
                 .AddTransient<ValidateSelectedDocumentsCommand>()
                 .AddTransient<ValidateActiveDocumentCommand>()
                 .AddTransient<Func<string, ValidateSelectedRulesCommand>>
