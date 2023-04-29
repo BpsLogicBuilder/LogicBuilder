@@ -1607,6 +1607,10 @@
     <value>{0}: {1}</value>
     <comment>0=type 1=name</comment>
   </data>
+	<data name="pathRootIsInvalidFormat" xml:space="preserve">
+    <value>Path root for "{0}" is invalid.</value>
+    <comment>0=labelText</comment>
+  </data>
 	<data name="popupConstructorDescriptionFormat" xml:space="preserve">
     <value>{{{0}}}</value>
   </data>

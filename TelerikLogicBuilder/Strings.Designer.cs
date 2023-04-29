@@ -5537,6 +5537,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path root for &quot;{0}&quot; is invalid..
+        /// </summary>
+        internal static string pathRootIsInvalidFormat {
+            get {
+                return ResourceManager.GetString("pathRootIsInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {{{0}}}.
         /// </summary>
         internal static string popupConstructorDescriptionFormat {

@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -50,6 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
             FormClosing += NewProjectForm_FormClosing;
 
             Padding groupBoxPadding = PerFontSizeConstants.GroupBoxPadding;
+            this.Size = new System.Drawing.Size(this.Width, 0);
             _formInitializer.SetFormDefaults
             (
                 this,
@@ -113,6 +115,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
         {
             if (!FilePathRegex().IsMatch(txtProjectPath.Text))
                 return new string[] { string.Format(CultureInfo.CurrentCulture, Strings.invalidFilePathMessageFormat, lblFolder.Text) };
+
+            if (!Directory.Exists(Path.GetPathRoot(txtProjectPath.Text) ?? string.Empty))
+                return new string[] { string.Format(CultureInfo.CurrentCulture, Strings.pathRootIsInvalidFormat, lblFolder.Text) };
 
             return Array.Empty<string>();
         }
