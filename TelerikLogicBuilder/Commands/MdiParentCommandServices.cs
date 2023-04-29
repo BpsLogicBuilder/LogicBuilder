@@ -128,6 +128,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<ShowAboutCommand>()
+                .AddTransient<ShowHelpContentsCommand>()
                 .AddTransient<UndoCommand>()
                 .AddTransient<ValidateSelectedDocumentsCommand>()
                 .AddTransient<ValidateActiveDocumentCommand>()

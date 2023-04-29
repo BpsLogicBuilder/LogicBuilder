@@ -79,6 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly RedoCommand _redoCommand;
         private readonly SaveActiveDocumentCommand _saveActiveDocumentCommand;
         private readonly ShowAboutCommand _showAboutCommand;
+        private readonly ShowHelpContentsCommand _showHelpContentsCommand;
         private readonly UndoCommand _undoCommand;
         private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
@@ -142,6 +143,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             RedoCommand redoCommand,
             SaveActiveDocumentCommand saveActiveDocumentCommand,
             ShowAboutCommand showAboutCommand,
+            ShowHelpContentsCommand showHelpContentsCommand,
             UndoCommand undoCommand,
             ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
@@ -200,6 +202,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _redoCommand = redoCommand;
             _saveActiveDocumentCommand = saveActiveDocumentCommand;
             _showAboutCommand = showAboutCommand;
+            _showHelpContentsCommand = showHelpContentsCommand;
             _undoCommand = undoCommand;
             _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
@@ -808,6 +811,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             #endregion Project Menu
 
             #region Help Menu
+            AddClickCommand
+            (
+                this.radMenuItemContents,
+                _showHelpContentsCommand
+            );
             AddClickCommand
             (
                 this.radMenuItemAbout,
