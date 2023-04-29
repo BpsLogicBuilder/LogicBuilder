@@ -61,6 +61,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About {0}.
+        /// </summary>
+        internal static string aboutStringFormat {
+            get {
+                return ResourceManager.GetString("aboutStringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dialog Functions are invalid for Action Cell..
         /// </summary>
         internal static string actionCellDialogFunctionsInvalid {
@@ -6964,6 +6973,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         internal static string variableVisibleTextEnd {
             get {
                 return ResourceManager.GetString("variableVisibleTextEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        internal static string versionStringFormat {
+            get {
+                return ResourceManager.GetString("versionStringFormat", resourceCulture);
             }
         }
         

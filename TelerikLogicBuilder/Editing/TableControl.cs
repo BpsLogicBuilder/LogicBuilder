@@ -276,6 +276,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             copiedRow = CopyGridRow(dataGridView1.CurrentCell.RowInfo);
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [MemberNotNull(nameof(mnuFunctions),
             nameof(mnuItemCopyCell),
             nameof(mnuItemCopyRow),
@@ -285,6 +286,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             nameof(mnuItemInsertNewRow),
             nameof(mnuItemInsertCopiedRow),
             nameof(mnuItemDeleteRow))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenus()
         {
             mnuFunctions = new RadContextMenu();
@@ -608,6 +610,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         void IDocumentEditor.Save() => Save();
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [MemberNotNull(nameof(bindingSource1), 
             nameof(mnuFunctions),
             nameof(mnuItemCopyCell),
@@ -618,6 +621,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             nameof(mnuItemInsertNewRow),
             nameof(mnuItemInsertCopiedRow),
             nameof(mnuItemDeleteRow))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             parentForm.RadMenuItemIndexInformation.Enabled = false;

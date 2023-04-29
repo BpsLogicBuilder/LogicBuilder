@@ -45,8 +45,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
         #endregion Properties
 
         #region Methods
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [MemberNotNull(nameof(fileList),
             nameof(fileDisplayList))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         internal static void Refresh()
         {
             fileList = LoadIsolatedFileContents();

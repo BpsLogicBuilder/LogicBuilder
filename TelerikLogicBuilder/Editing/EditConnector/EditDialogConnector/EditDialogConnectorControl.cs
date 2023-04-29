@@ -191,7 +191,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [MemberNotNull(nameof(connectorObjectRichTextBoxControl), nameof(connectorTextRichInputBoxControl))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeObjectRichTextBoxControl();

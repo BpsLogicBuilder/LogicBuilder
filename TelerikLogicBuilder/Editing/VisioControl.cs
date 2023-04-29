@@ -479,7 +479,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         void IDrawingControl.Undo() => Undo();
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [MemberNotNull(nameof(_application), nameof(DocumentSaveAsEventHandler), nameof(ShapeAddedEventHandler), nameof(DocumentOpenedEventHandler), nameof(MarkerEventEventHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             parentForm.RadMenuItemIndexInformation.Enabled = false;
