@@ -29,940 +29,836 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIParent));
-            this.radMenuItemFile = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemNewProject = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemOpenProject = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItemPageSetup = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemPageSetup = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItem3 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemSave = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemCloseProject = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItem4 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemExit = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItem5 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemRecentProjects = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemEdit = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemUndo = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemRedo = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItemUpdate = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemUpdate = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemDelete = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItemFind = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemFind = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindShape = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindCell = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindText = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindConstructor = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindFunction = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindVariable = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemReplace = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemReplaceText = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemReplaceConstructor = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemReplaceFunction = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemReplaceVariable = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindinFiles = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindInFilesText = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindInFilesConstructor = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindInFilesFunction = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFindInFilesVariable = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItemIndexInformation = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemIndexInformation = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemView = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemProjectExplorer = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemMessagesList = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFlowDiagramStencil = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemApplicationsStencil = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemPanZoomWindow = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemProject = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemConstructors = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFunctions = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemVariables = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemConnectorObjectTypes = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemXMLFragments = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItem6 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemProjectProperties = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemRules = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemChaining = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFullChaining = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemNoneChaining = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemUpdateOnlyChaining = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemToggleReevaluateAll = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemToggleActivateAll = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemTools = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemBuildRules = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemBuildActiveDrawing = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemBuildActiveTable = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemBuildSelectedModules = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemValidateDocuments = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemValidateActiveDrawing = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemValidateActiveTable = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemValidateSelectedModules = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemValidateRules = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItem1 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemFileSystemDeployment = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFileSystemDeploy = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFileSystemDelete = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemWebApiDeployment = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemWebApiDeploy = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemWebApiDelete = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemSelectApplication = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemHelp = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemContents = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuSeparatorItem7 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
-            this.radMenuItemAbout = new Telerik.WinControls.UI.RadMenuItem();
-            this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
-            this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
-            this.commandBarButtonEdit = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarButtonSave = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarButtonSaveAll = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarButtonValidate = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarButtonBuild = new Telerik.WinControls.UI.CommandBarButton();
-            this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
-            this.radSplitContainerBase = new Telerik.WinControls.UI.RadSplitContainer();
-            this.splitPanelLeft = new Telerik.WinControls.UI.SplitPanel();
-            this.radSplitContainerLeft = new Telerik.WinControls.UI.RadSplitContainer();
-            this.splitPanelEdit = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanelMessages = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanelExplorer = new Telerik.WinControls.UI.SplitPanel();
-            this.radProgressBarElement1 = new Telerik.WinControls.UI.RadProgressBarElement();
-            this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
-            this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
-            this.office2007BlackTheme1 = new Telerik.WinControls.Themes.Office2007BlackTheme();
-            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.office2010BlackTheme1 = new Telerik.WinControls.Themes.Office2010BlackTheme();
-            this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
-            this.office2010SilverTheme1 = new Telerik.WinControls.Themes.Office2010SilverTheme();
-            this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.office2019DarkTheme1 = new Telerik.WinControls.Themes.Office2019DarkTheme();
-            this.office2019GrayTheme1 = new Telerik.WinControls.Themes.Office2019GrayTheme();
-            this.office2019LightTheme1 = new Telerik.WinControls.Themes.Office2019LightTheme();
-            this.office2013DarkTheme1 = new Telerik.WinControls.Themes.Office2013DarkTheme();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.radMenuItemPreferences = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemColorTheme = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemDark = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemGray = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemLight = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFontSize = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemNine = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemTen = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemEleven = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemTwelve = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemFourteen = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemThirteen = new Telerik.WinControls.UI.RadMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).BeginInit();
-            this.radSplitContainerBase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).BeginInit();
-            this.splitPanelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerLeft)).BeginInit();
-            this.radSplitContainerLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelMessages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            this.SuspendLayout();
+            radMenuItemFile = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemNewProject = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemOpenProject = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItemPageSetup = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemPageSetup = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItem3 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemSave = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemCloseProject = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItem4 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemExit = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItem5 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemRecentProjects = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemEdit = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemUndo = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemRedo = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItemUpdate = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemUpdate = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemDelete = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItemFind = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemFind = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindShape = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindCell = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindText = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindConstructor = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindFunction = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindVariable = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemReplace = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemReplaceText = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemReplaceConstructor = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemReplaceFunction = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemReplaceVariable = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindinFiles = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindInFilesText = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindInFilesConstructor = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindInFilesFunction = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFindInFilesVariable = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItemIndexInformation = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemIndexInformation = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemView = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemProjectExplorer = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemMessagesList = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFlowDiagramStencil = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemApplicationsStencil = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemPanZoomWindow = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemProject = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemConstructors = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFunctions = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemVariables = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemConnectorObjectTypes = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemXMLFragments = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItem6 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemProjectProperties = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemRules = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemChaining = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFullChaining = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemNoneChaining = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemUpdateOnlyChaining = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemToggleReevaluateAll = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemToggleActivateAll = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemTools = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemBuildRules = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemBuildActiveDrawing = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemBuildActiveTable = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemBuildSelectedModules = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemValidateDocuments = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemValidateActiveDrawing = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemValidateActiveTable = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemValidateSelectedModules = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemValidateRules = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItem1 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemFileSystemDeployment = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFileSystemDeploy = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFileSystemDelete = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemWebApiDeployment = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemWebApiDeploy = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemWebApiDelete = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemSelectApplication = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemHelp = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemContents = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuSeparatorItem7 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+            radMenuItemAbout = new Telerik.WinControls.UI.RadMenuItem();
+            commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
+            commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
+            commandBarButtonEdit = new Telerik.WinControls.UI.CommandBarButton();
+            commandBarButtonSave = new Telerik.WinControls.UI.CommandBarButton();
+            commandBarButtonSaveAll = new Telerik.WinControls.UI.CommandBarButton();
+            commandBarButtonValidate = new Telerik.WinControls.UI.CommandBarButton();
+            commandBarButtonBuild = new Telerik.WinControls.UI.CommandBarButton();
+            radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
+            radSplitContainerBase = new Telerik.WinControls.UI.RadSplitContainer();
+            splitPanelLeft = new Telerik.WinControls.UI.SplitPanel();
+            radSplitContainerLeft = new Telerik.WinControls.UI.RadSplitContainer();
+            splitPanelEdit = new Telerik.WinControls.UI.SplitPanel();
+            splitPanelMessages = new Telerik.WinControls.UI.SplitPanel();
+            splitPanelExplorer = new Telerik.WinControls.UI.SplitPanel();
+            radProgressBarElement1 = new Telerik.WinControls.UI.RadProgressBarElement();
+            radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
+            radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
+            office2007BlackTheme1 = new Telerik.WinControls.Themes.Office2007BlackTheme();
+            office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            office2010BlackTheme1 = new Telerik.WinControls.Themes.Office2010BlackTheme();
+            office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
+            office2010SilverTheme1 = new Telerik.WinControls.Themes.Office2010SilverTheme();
+            office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
+            office2019DarkTheme1 = new Telerik.WinControls.Themes.Office2019DarkTheme();
+            office2019GrayTheme1 = new Telerik.WinControls.Themes.Office2019GrayTheme();
+            office2019LightTheme1 = new Telerik.WinControls.Themes.Office2019LightTheme();
+            office2013DarkTheme1 = new Telerik.WinControls.Themes.Office2013DarkTheme();
+            radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            radMenuItemPreferences = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemColorTheme = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemDark = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemGray = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemLight = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFontSize = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemNine = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemTen = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemEleven = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemTwelve = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemThirteen = new Telerik.WinControls.UI.RadMenuItem();
+            radMenuItemFourteen = new Telerik.WinControls.UI.RadMenuItem();
+            ((System.ComponentModel.ISupportInitialize)radCommandBar1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radSplitContainerBase).BeginInit();
+            radSplitContainerBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitPanelLeft).BeginInit();
+            splitPanelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)radSplitContainerLeft).BeginInit();
+            radSplitContainerLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitPanelEdit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitPanelMessages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitPanelExplorer).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radStatusStrip1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radMenu1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this).BeginInit();
+            SuspendLayout();
             // 
             // radMenuItemFile
             // 
-            this.radMenuItemFile.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemNewProject,
-            this.radMenuItemOpenProject,
-            this.radMenuSeparatorItemPageSetup,
-            this.radMenuItemPageSetup,
-            this.radMenuSeparatorItem3,
-            this.radMenuItemSave,
-            this.radMenuItemCloseProject,
-            this.radMenuSeparatorItem4,
-            this.radMenuItemExit,
-            this.radMenuSeparatorItem5,
-            this.radMenuItemRecentProjects});
-            this.radMenuItemFile.Name = "radMenuItemFile";
-            resources.ApplyResources(this.radMenuItemFile, "radMenuItemFile");
+            radMenuItemFile.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemNewProject, radMenuItemOpenProject, radMenuSeparatorItemPageSetup, radMenuItemPageSetup, radMenuSeparatorItem3, radMenuItemSave, radMenuItemCloseProject, radMenuSeparatorItem4, radMenuItemExit, radMenuSeparatorItem5, radMenuItemRecentProjects });
+            radMenuItemFile.Name = "radMenuItemFile";
+            resources.ApplyResources(radMenuItemFile, "radMenuItemFile");
             // 
             // radMenuItemNewProject
             // 
-            this.radMenuItemNewProject.Name = "radMenuItemNewProject";
-            resources.ApplyResources(this.radMenuItemNewProject, "radMenuItemNewProject");
+            radMenuItemNewProject.Name = "radMenuItemNewProject";
+            resources.ApplyResources(radMenuItemNewProject, "radMenuItemNewProject");
             // 
             // radMenuItemOpenProject
             // 
-            this.radMenuItemOpenProject.Name = "radMenuItemOpenProject";
-            resources.ApplyResources(this.radMenuItemOpenProject, "radMenuItemOpenProject");
+            radMenuItemOpenProject.Name = "radMenuItemOpenProject";
+            resources.ApplyResources(radMenuItemOpenProject, "radMenuItemOpenProject");
             // 
             // radMenuSeparatorItemPageSetup
             // 
-            this.radMenuSeparatorItemPageSetup.Name = "radMenuSeparatorItemPageSetup";
-            resources.ApplyResources(this.radMenuSeparatorItemPageSetup, "radMenuSeparatorItemPageSetup");
+            radMenuSeparatorItemPageSetup.Name = "radMenuSeparatorItemPageSetup";
+            resources.ApplyResources(radMenuSeparatorItemPageSetup, "radMenuSeparatorItemPageSetup");
             // 
             // radMenuItemPageSetup
             // 
-            this.radMenuItemPageSetup.Name = "radMenuItemPageSetup";
-            resources.ApplyResources(this.radMenuItemPageSetup, "radMenuItemPageSetup");
+            radMenuItemPageSetup.Name = "radMenuItemPageSetup";
+            resources.ApplyResources(radMenuItemPageSetup, "radMenuItemPageSetup");
             // 
             // radMenuSeparatorItem3
             // 
-            this.radMenuSeparatorItem3.Name = "radMenuSeparatorItem3";
-            resources.ApplyResources(this.radMenuSeparatorItem3, "radMenuSeparatorItem3");
+            radMenuSeparatorItem3.Name = "radMenuSeparatorItem3";
+            resources.ApplyResources(radMenuSeparatorItem3, "radMenuSeparatorItem3");
             // 
             // radMenuItemSave
             // 
-            this.radMenuItemSave.Name = "radMenuItemSave";
-            resources.ApplyResources(this.radMenuItemSave, "radMenuItemSave");
+            radMenuItemSave.Name = "radMenuItemSave";
+            resources.ApplyResources(radMenuItemSave, "radMenuItemSave");
             // 
             // radMenuItemCloseProject
             // 
-            this.radMenuItemCloseProject.Name = "radMenuItemCloseProject";
-            resources.ApplyResources(this.radMenuItemCloseProject, "radMenuItemCloseProject");
+            radMenuItemCloseProject.Name = "radMenuItemCloseProject";
+            resources.ApplyResources(radMenuItemCloseProject, "radMenuItemCloseProject");
             // 
             // radMenuSeparatorItem4
             // 
-            this.radMenuSeparatorItem4.Name = "radMenuSeparatorItem4";
-            resources.ApplyResources(this.radMenuSeparatorItem4, "radMenuSeparatorItem4");
+            radMenuSeparatorItem4.Name = "radMenuSeparatorItem4";
+            resources.ApplyResources(radMenuSeparatorItem4, "radMenuSeparatorItem4");
             // 
             // radMenuItemExit
             // 
-            this.radMenuItemExit.Name = "radMenuItemExit";
-            resources.ApplyResources(this.radMenuItemExit, "radMenuItemExit");
+            radMenuItemExit.Name = "radMenuItemExit";
+            resources.ApplyResources(radMenuItemExit, "radMenuItemExit");
             // 
             // radMenuSeparatorItem5
             // 
-            this.radMenuSeparatorItem5.Name = "radMenuSeparatorItem5";
-            resources.ApplyResources(this.radMenuSeparatorItem5, "radMenuSeparatorItem5");
+            radMenuSeparatorItem5.Name = "radMenuSeparatorItem5";
+            resources.ApplyResources(radMenuSeparatorItem5, "radMenuSeparatorItem5");
             // 
             // radMenuItemRecentProjects
             // 
-            this.radMenuItemRecentProjects.Name = "radMenuItemRecentProjects";
-            resources.ApplyResources(this.radMenuItemRecentProjects, "radMenuItemRecentProjects");
+            radMenuItemRecentProjects.Name = "radMenuItemRecentProjects";
+            resources.ApplyResources(radMenuItemRecentProjects, "radMenuItemRecentProjects");
             // 
             // radMenuItemEdit
             // 
-            this.radMenuItemEdit.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemUndo,
-            this.radMenuItemRedo,
-            this.radMenuSeparatorItemUpdate,
-            this.radMenuItemUpdate,
-            this.radMenuItemDelete,
-            this.radMenuSeparatorItemFind,
-            this.radMenuItemFind,
-            this.radMenuItemReplace,
-            this.radMenuItemFindinFiles,
-            this.radMenuSeparatorItemIndexInformation,
-            this.radMenuItemIndexInformation});
-            this.radMenuItemEdit.Name = "radMenuItemEdit";
-            resources.ApplyResources(this.radMenuItemEdit, "radMenuItemEdit");
+            radMenuItemEdit.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemUndo, radMenuItemRedo, radMenuSeparatorItemUpdate, radMenuItemUpdate, radMenuItemDelete, radMenuSeparatorItemFind, radMenuItemFind, radMenuItemReplace, radMenuItemFindinFiles, radMenuSeparatorItemIndexInformation, radMenuItemIndexInformation });
+            radMenuItemEdit.Name = "radMenuItemEdit";
+            resources.ApplyResources(radMenuItemEdit, "radMenuItemEdit");
             // 
             // radMenuItemUndo
             // 
-            this.radMenuItemUndo.Name = "radMenuItemUndo";
-            resources.ApplyResources(this.radMenuItemUndo, "radMenuItemUndo");
+            radMenuItemUndo.Name = "radMenuItemUndo";
+            resources.ApplyResources(radMenuItemUndo, "radMenuItemUndo");
             // 
             // radMenuItemRedo
             // 
-            this.radMenuItemRedo.Name = "radMenuItemRedo";
-            resources.ApplyResources(this.radMenuItemRedo, "radMenuItemRedo");
+            radMenuItemRedo.Name = "radMenuItemRedo";
+            resources.ApplyResources(radMenuItemRedo, "radMenuItemRedo");
             // 
             // radMenuSeparatorItemUpdate
             // 
-            this.radMenuSeparatorItemUpdate.Name = "radMenuSeparatorItemUpdate";
-            resources.ApplyResources(this.radMenuSeparatorItemUpdate, "radMenuSeparatorItemUpdate");
+            radMenuSeparatorItemUpdate.Name = "radMenuSeparatorItemUpdate";
+            resources.ApplyResources(radMenuSeparatorItemUpdate, "radMenuSeparatorItemUpdate");
             // 
             // radMenuItemUpdate
             // 
-            this.radMenuItemUpdate.Name = "radMenuItemUpdate";
-            resources.ApplyResources(this.radMenuItemUpdate, "radMenuItemUpdate");
+            radMenuItemUpdate.Name = "radMenuItemUpdate";
+            resources.ApplyResources(radMenuItemUpdate, "radMenuItemUpdate");
             // 
             // radMenuItemDelete
             // 
-            this.radMenuItemDelete.Name = "radMenuItemDelete";
-            resources.ApplyResources(this.radMenuItemDelete, "radMenuItemDelete");
+            radMenuItemDelete.Name = "radMenuItemDelete";
+            resources.ApplyResources(radMenuItemDelete, "radMenuItemDelete");
             // 
             // radMenuSeparatorItemFind
             // 
-            this.radMenuSeparatorItemFind.Name = "radMenuSeparatorItemFind";
-            resources.ApplyResources(this.radMenuSeparatorItemFind, "radMenuSeparatorItemFind");
+            radMenuSeparatorItemFind.Name = "radMenuSeparatorItemFind";
+            resources.ApplyResources(radMenuSeparatorItemFind, "radMenuSeparatorItemFind");
             // 
             // radMenuItemFind
             // 
-            this.radMenuItemFind.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemFindShape,
-            this.radMenuItemFindCell,
-            this.radMenuItemFindText,
-            this.radMenuItemFindConstructor,
-            this.radMenuItemFindFunction,
-            this.radMenuItemFindVariable});
-            this.radMenuItemFind.Name = "radMenuItemFind";
-            resources.ApplyResources(this.radMenuItemFind, "radMenuItemFind");
+            radMenuItemFind.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemFindShape, radMenuItemFindCell, radMenuItemFindText, radMenuItemFindConstructor, radMenuItemFindFunction, radMenuItemFindVariable });
+            radMenuItemFind.Name = "radMenuItemFind";
+            resources.ApplyResources(radMenuItemFind, "radMenuItemFind");
             // 
             // radMenuItemFindShape
             // 
-            this.radMenuItemFindShape.Name = "radMenuItemFindShape";
-            resources.ApplyResources(this.radMenuItemFindShape, "radMenuItemFindShape");
+            radMenuItemFindShape.Name = "radMenuItemFindShape";
+            resources.ApplyResources(radMenuItemFindShape, "radMenuItemFindShape");
             // 
             // radMenuItemFindCell
             // 
-            this.radMenuItemFindCell.Name = "radMenuItemFindCell";
-            resources.ApplyResources(this.radMenuItemFindCell, "radMenuItemFindCell");
+            radMenuItemFindCell.Name = "radMenuItemFindCell";
+            resources.ApplyResources(radMenuItemFindCell, "radMenuItemFindCell");
             // 
             // radMenuItemFindText
             // 
-            this.radMenuItemFindText.Name = "radMenuItemFindText";
-            resources.ApplyResources(this.radMenuItemFindText, "radMenuItemFindText");
+            radMenuItemFindText.Name = "radMenuItemFindText";
+            resources.ApplyResources(radMenuItemFindText, "radMenuItemFindText");
             // 
             // radMenuItemFindConstructor
             // 
-            this.radMenuItemFindConstructor.Name = "radMenuItemFindConstructor";
-            resources.ApplyResources(this.radMenuItemFindConstructor, "radMenuItemFindConstructor");
+            radMenuItemFindConstructor.Name = "radMenuItemFindConstructor";
+            resources.ApplyResources(radMenuItemFindConstructor, "radMenuItemFindConstructor");
             // 
             // radMenuItemFindFunction
             // 
-            this.radMenuItemFindFunction.Name = "radMenuItemFindFunction";
-            resources.ApplyResources(this.radMenuItemFindFunction, "radMenuItemFindFunction");
+            radMenuItemFindFunction.Name = "radMenuItemFindFunction";
+            resources.ApplyResources(radMenuItemFindFunction, "radMenuItemFindFunction");
             // 
             // radMenuItemFindVariable
             // 
-            this.radMenuItemFindVariable.Name = "radMenuItemFindVariable";
-            resources.ApplyResources(this.radMenuItemFindVariable, "radMenuItemFindVariable");
+            radMenuItemFindVariable.Name = "radMenuItemFindVariable";
+            resources.ApplyResources(radMenuItemFindVariable, "radMenuItemFindVariable");
             // 
             // radMenuItemReplace
             // 
-            this.radMenuItemReplace.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemReplaceText,
-            this.radMenuItemReplaceConstructor,
-            this.radMenuItemReplaceFunction,
-            this.radMenuItemReplaceVariable});
-            this.radMenuItemReplace.Name = "radMenuItemReplace";
-            resources.ApplyResources(this.radMenuItemReplace, "radMenuItemReplace");
+            radMenuItemReplace.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemReplaceText, radMenuItemReplaceConstructor, radMenuItemReplaceFunction, radMenuItemReplaceVariable });
+            radMenuItemReplace.Name = "radMenuItemReplace";
+            resources.ApplyResources(radMenuItemReplace, "radMenuItemReplace");
             // 
             // radMenuItemReplaceText
             // 
-            this.radMenuItemReplaceText.Name = "radMenuItemReplaceText";
-            resources.ApplyResources(this.radMenuItemReplaceText, "radMenuItemReplaceText");
+            radMenuItemReplaceText.Name = "radMenuItemReplaceText";
+            resources.ApplyResources(radMenuItemReplaceText, "radMenuItemReplaceText");
             // 
             // radMenuItemReplaceConstructor
             // 
-            this.radMenuItemReplaceConstructor.Name = "radMenuItemReplaceConstructor";
-            resources.ApplyResources(this.radMenuItemReplaceConstructor, "radMenuItemReplaceConstructor");
+            radMenuItemReplaceConstructor.Name = "radMenuItemReplaceConstructor";
+            resources.ApplyResources(radMenuItemReplaceConstructor, "radMenuItemReplaceConstructor");
             // 
             // radMenuItemReplaceFunction
             // 
-            this.radMenuItemReplaceFunction.Name = "radMenuItemReplaceFunction";
-            resources.ApplyResources(this.radMenuItemReplaceFunction, "radMenuItemReplaceFunction");
+            radMenuItemReplaceFunction.Name = "radMenuItemReplaceFunction";
+            resources.ApplyResources(radMenuItemReplaceFunction, "radMenuItemReplaceFunction");
             // 
             // radMenuItemReplaceVariable
             // 
-            this.radMenuItemReplaceVariable.Name = "radMenuItemReplaceVariable";
-            resources.ApplyResources(this.radMenuItemReplaceVariable, "radMenuItemReplaceVariable");
+            radMenuItemReplaceVariable.Name = "radMenuItemReplaceVariable";
+            resources.ApplyResources(radMenuItemReplaceVariable, "radMenuItemReplaceVariable");
             // 
             // radMenuItemFindinFiles
             // 
-            this.radMenuItemFindinFiles.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemFindInFilesText,
-            this.radMenuItemFindInFilesConstructor,
-            this.radMenuItemFindInFilesFunction,
-            this.radMenuItemFindInFilesVariable});
-            this.radMenuItemFindinFiles.Name = "radMenuItemFindinFiles";
-            resources.ApplyResources(this.radMenuItemFindinFiles, "radMenuItemFindinFiles");
+            radMenuItemFindinFiles.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemFindInFilesText, radMenuItemFindInFilesConstructor, radMenuItemFindInFilesFunction, radMenuItemFindInFilesVariable });
+            radMenuItemFindinFiles.Name = "radMenuItemFindinFiles";
+            resources.ApplyResources(radMenuItemFindinFiles, "radMenuItemFindinFiles");
             // 
             // radMenuItemFindInFilesText
             // 
-            this.radMenuItemFindInFilesText.Name = "radMenuItemFindInFilesText";
-            resources.ApplyResources(this.radMenuItemFindInFilesText, "radMenuItemFindInFilesText");
+            radMenuItemFindInFilesText.Name = "radMenuItemFindInFilesText";
+            resources.ApplyResources(radMenuItemFindInFilesText, "radMenuItemFindInFilesText");
             // 
             // radMenuItemFindInFilesConstructor
             // 
-            this.radMenuItemFindInFilesConstructor.Name = "radMenuItemFindInFilesConstructor";
-            resources.ApplyResources(this.radMenuItemFindInFilesConstructor, "radMenuItemFindInFilesConstructor");
+            radMenuItemFindInFilesConstructor.Name = "radMenuItemFindInFilesConstructor";
+            resources.ApplyResources(radMenuItemFindInFilesConstructor, "radMenuItemFindInFilesConstructor");
             // 
             // radMenuItemFindInFilesFunction
             // 
-            this.radMenuItemFindInFilesFunction.Name = "radMenuItemFindInFilesFunction";
-            resources.ApplyResources(this.radMenuItemFindInFilesFunction, "radMenuItemFindInFilesFunction");
+            radMenuItemFindInFilesFunction.Name = "radMenuItemFindInFilesFunction";
+            resources.ApplyResources(radMenuItemFindInFilesFunction, "radMenuItemFindInFilesFunction");
             // 
             // radMenuItemFindInFilesVariable
             // 
-            this.radMenuItemFindInFilesVariable.Name = "radMenuItemFindInFilesVariable";
-            resources.ApplyResources(this.radMenuItemFindInFilesVariable, "radMenuItemFindInFilesVariable");
+            radMenuItemFindInFilesVariable.Name = "radMenuItemFindInFilesVariable";
+            resources.ApplyResources(radMenuItemFindInFilesVariable, "radMenuItemFindInFilesVariable");
             // 
             // radMenuSeparatorItemIndexInformation
             // 
-            this.radMenuSeparatorItemIndexInformation.Name = "radMenuSeparatorItemIndexInformation";
-            resources.ApplyResources(this.radMenuSeparatorItemIndexInformation, "radMenuSeparatorItemIndexInformation");
+            radMenuSeparatorItemIndexInformation.Name = "radMenuSeparatorItemIndexInformation";
+            resources.ApplyResources(radMenuSeparatorItemIndexInformation, "radMenuSeparatorItemIndexInformation");
             // 
             // radMenuItemIndexInformation
             // 
-            this.radMenuItemIndexInformation.Name = "radMenuItemIndexInformation";
-            resources.ApplyResources(this.radMenuItemIndexInformation, "radMenuItemIndexInformation");
+            radMenuItemIndexInformation.Name = "radMenuItemIndexInformation";
+            resources.ApplyResources(radMenuItemIndexInformation, "radMenuItemIndexInformation");
             // 
             // radMenuItemView
             // 
-            this.radMenuItemView.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemProjectExplorer,
-            this.radMenuItemMessagesList,
-            this.radMenuItemFlowDiagramStencil,
-            this.radMenuItemApplicationsStencil,
-            this.radMenuItemPanZoomWindow});
-            this.radMenuItemView.Name = "radMenuItemView";
-            resources.ApplyResources(this.radMenuItemView, "radMenuItemView");
+            radMenuItemView.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemProjectExplorer, radMenuItemMessagesList, radMenuItemFlowDiagramStencil, radMenuItemApplicationsStencil, radMenuItemPanZoomWindow });
+            radMenuItemView.Name = "radMenuItemView";
+            resources.ApplyResources(radMenuItemView, "radMenuItemView");
             // 
             // radMenuItemProjectExplorer
             // 
-            this.radMenuItemProjectExplorer.Name = "radMenuItemProjectExplorer";
-            resources.ApplyResources(this.radMenuItemProjectExplorer, "radMenuItemProjectExplorer");
+            radMenuItemProjectExplorer.Name = "radMenuItemProjectExplorer";
+            resources.ApplyResources(radMenuItemProjectExplorer, "radMenuItemProjectExplorer");
             // 
             // radMenuItemMessagesList
             // 
-            this.radMenuItemMessagesList.Name = "radMenuItemMessagesList";
-            resources.ApplyResources(this.radMenuItemMessagesList, "radMenuItemMessagesList");
+            radMenuItemMessagesList.Name = "radMenuItemMessagesList";
+            resources.ApplyResources(radMenuItemMessagesList, "radMenuItemMessagesList");
             // 
             // radMenuItemFlowDiagramStencil
             // 
-            this.radMenuItemFlowDiagramStencil.Name = "radMenuItemFlowDiagramStencil";
-            resources.ApplyResources(this.radMenuItemFlowDiagramStencil, "radMenuItemFlowDiagramStencil");
+            radMenuItemFlowDiagramStencil.Name = "radMenuItemFlowDiagramStencil";
+            resources.ApplyResources(radMenuItemFlowDiagramStencil, "radMenuItemFlowDiagramStencil");
             // 
             // radMenuItemApplicationsStencil
             // 
-            this.radMenuItemApplicationsStencil.Name = "radMenuItemApplicationsStencil";
-            resources.ApplyResources(this.radMenuItemApplicationsStencil, "radMenuItemApplicationsStencil");
+            radMenuItemApplicationsStencil.Name = "radMenuItemApplicationsStencil";
+            resources.ApplyResources(radMenuItemApplicationsStencil, "radMenuItemApplicationsStencil");
             // 
             // radMenuItemPanZoomWindow
             // 
-            this.radMenuItemPanZoomWindow.Name = "radMenuItemPanZoomWindow";
-            resources.ApplyResources(this.radMenuItemPanZoomWindow, "radMenuItemPanZoomWindow");
+            radMenuItemPanZoomWindow.Name = "radMenuItemPanZoomWindow";
+            resources.ApplyResources(radMenuItemPanZoomWindow, "radMenuItemPanZoomWindow");
             // 
             // radMenuItemProject
             // 
-            this.radMenuItemProject.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemConstructors,
-            this.radMenuItemFunctions,
-            this.radMenuItemVariables,
-            this.radMenuItemConnectorObjectTypes,
-            this.radMenuItemXMLFragments,
-            this.radMenuSeparatorItem6,
-            this.radMenuItemProjectProperties});
-            this.radMenuItemProject.Name = "radMenuItemProject";
-            resources.ApplyResources(this.radMenuItemProject, "radMenuItemProject");
+            radMenuItemProject.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemConstructors, radMenuItemFunctions, radMenuItemVariables, radMenuItemConnectorObjectTypes, radMenuItemXMLFragments, radMenuSeparatorItem6, radMenuItemProjectProperties });
+            radMenuItemProject.Name = "radMenuItemProject";
+            resources.ApplyResources(radMenuItemProject, "radMenuItemProject");
             // 
             // radMenuItemConstructors
             // 
-            this.radMenuItemConstructors.Name = "radMenuItemConstructors";
-            resources.ApplyResources(this.radMenuItemConstructors, "radMenuItemConstructors");
+            radMenuItemConstructors.Name = "radMenuItemConstructors";
+            resources.ApplyResources(radMenuItemConstructors, "radMenuItemConstructors");
             // 
             // radMenuItemFunctions
             // 
-            this.radMenuItemFunctions.Name = "radMenuItemFunctions";
-            resources.ApplyResources(this.radMenuItemFunctions, "radMenuItemFunctions");
+            radMenuItemFunctions.Name = "radMenuItemFunctions";
+            resources.ApplyResources(radMenuItemFunctions, "radMenuItemFunctions");
             // 
             // radMenuItemVariables
             // 
-            this.radMenuItemVariables.Name = "radMenuItemVariables";
-            resources.ApplyResources(this.radMenuItemVariables, "radMenuItemVariables");
+            radMenuItemVariables.Name = "radMenuItemVariables";
+            resources.ApplyResources(radMenuItemVariables, "radMenuItemVariables");
             // 
             // radMenuItemConnectorObjectTypes
             // 
-            this.radMenuItemConnectorObjectTypes.Name = "radMenuItemConnectorObjectTypes";
-            resources.ApplyResources(this.radMenuItemConnectorObjectTypes, "radMenuItemConnectorObjectTypes");
+            radMenuItemConnectorObjectTypes.Name = "radMenuItemConnectorObjectTypes";
+            resources.ApplyResources(radMenuItemConnectorObjectTypes, "radMenuItemConnectorObjectTypes");
             // 
             // radMenuItemXMLFragments
             // 
-            this.radMenuItemXMLFragments.Name = "radMenuItemXMLFragments";
-            resources.ApplyResources(this.radMenuItemXMLFragments, "radMenuItemXMLFragments");
+            radMenuItemXMLFragments.Name = "radMenuItemXMLFragments";
+            resources.ApplyResources(radMenuItemXMLFragments, "radMenuItemXMLFragments");
             // 
             // radMenuSeparatorItem6
             // 
-            this.radMenuSeparatorItem6.Name = "radMenuSeparatorItem6";
-            resources.ApplyResources(this.radMenuSeparatorItem6, "radMenuSeparatorItem6");
+            radMenuSeparatorItem6.Name = "radMenuSeparatorItem6";
+            resources.ApplyResources(radMenuSeparatorItem6, "radMenuSeparatorItem6");
             // 
             // radMenuItemProjectProperties
             // 
-            this.radMenuItemProjectProperties.Name = "radMenuItemProjectProperties";
-            resources.ApplyResources(this.radMenuItemProjectProperties, "radMenuItemProjectProperties");
+            radMenuItemProjectProperties.Name = "radMenuItemProjectProperties";
+            resources.ApplyResources(radMenuItemProjectProperties, "radMenuItemProjectProperties");
             // 
             // radMenuItemRules
             // 
-            this.radMenuItemRules.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemChaining,
-            this.radMenuItemToggleReevaluateAll,
-            this.radMenuItemToggleActivateAll});
-            this.radMenuItemRules.Name = "radMenuItemRules";
-            resources.ApplyResources(this.radMenuItemRules, "radMenuItemRules");
+            radMenuItemRules.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemChaining, radMenuItemToggleReevaluateAll, radMenuItemToggleActivateAll });
+            radMenuItemRules.Name = "radMenuItemRules";
+            resources.ApplyResources(radMenuItemRules, "radMenuItemRules");
             // 
             // radMenuItemChaining
             // 
-            this.radMenuItemChaining.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemFullChaining,
-            this.radMenuItemNoneChaining,
-            this.radMenuItemUpdateOnlyChaining});
-            this.radMenuItemChaining.Name = "radMenuItemChaining";
-            resources.ApplyResources(this.radMenuItemChaining, "radMenuItemChaining");
+            radMenuItemChaining.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemFullChaining, radMenuItemNoneChaining, radMenuItemUpdateOnlyChaining });
+            radMenuItemChaining.Name = "radMenuItemChaining";
+            resources.ApplyResources(radMenuItemChaining, "radMenuItemChaining");
             // 
             // radMenuItemFullChaining
             // 
-            this.radMenuItemFullChaining.Name = "radMenuItemFullChaining";
-            resources.ApplyResources(this.radMenuItemFullChaining, "radMenuItemFullChaining");
+            radMenuItemFullChaining.Name = "radMenuItemFullChaining";
+            resources.ApplyResources(radMenuItemFullChaining, "radMenuItemFullChaining");
             // 
             // radMenuItemNoneChaining
             // 
-            this.radMenuItemNoneChaining.Name = "radMenuItemNoneChaining";
-            resources.ApplyResources(this.radMenuItemNoneChaining, "radMenuItemNoneChaining");
+            radMenuItemNoneChaining.Name = "radMenuItemNoneChaining";
+            resources.ApplyResources(radMenuItemNoneChaining, "radMenuItemNoneChaining");
             // 
             // radMenuItemUpdateOnlyChaining
             // 
-            this.radMenuItemUpdateOnlyChaining.Name = "radMenuItemUpdateOnlyChaining";
-            resources.ApplyResources(this.radMenuItemUpdateOnlyChaining, "radMenuItemUpdateOnlyChaining");
+            radMenuItemUpdateOnlyChaining.Name = "radMenuItemUpdateOnlyChaining";
+            resources.ApplyResources(radMenuItemUpdateOnlyChaining, "radMenuItemUpdateOnlyChaining");
             // 
             // radMenuItemToggleReevaluateAll
             // 
-            this.radMenuItemToggleReevaluateAll.Name = "radMenuItemToggleReevaluateAll";
-            resources.ApplyResources(this.radMenuItemToggleReevaluateAll, "radMenuItemToggleReevaluateAll");
+            radMenuItemToggleReevaluateAll.Name = "radMenuItemToggleReevaluateAll";
+            resources.ApplyResources(radMenuItemToggleReevaluateAll, "radMenuItemToggleReevaluateAll");
             // 
             // radMenuItemToggleActivateAll
             // 
-            this.radMenuItemToggleActivateAll.Name = "radMenuItemToggleActivateAll";
-            resources.ApplyResources(this.radMenuItemToggleActivateAll, "radMenuItemToggleActivateAll");
+            radMenuItemToggleActivateAll.Name = "radMenuItemToggleActivateAll";
+            resources.ApplyResources(radMenuItemToggleActivateAll, "radMenuItemToggleActivateAll");
             // 
             // radMenuItemTools
             // 
-            this.radMenuItemTools.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemBuildRules,
-            this.radMenuItemValidateDocuments,
-            this.radMenuItemValidateRules,
-            this.radMenuSeparatorItem1,
-            this.radMenuItemFileSystemDeployment,
-            this.radMenuItemWebApiDeployment,
-            this.radMenuSeparatorItem2,
-            this.radMenuItemSelectApplication});
-            this.radMenuItemTools.Name = "radMenuItemTools";
-            resources.ApplyResources(this.radMenuItemTools, "radMenuItemTools");
+            radMenuItemTools.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemBuildRules, radMenuItemValidateDocuments, radMenuItemValidateRules, radMenuSeparatorItem1, radMenuItemFileSystemDeployment, radMenuItemWebApiDeployment, radMenuSeparatorItem2, radMenuItemSelectApplication });
+            radMenuItemTools.Name = "radMenuItemTools";
+            resources.ApplyResources(radMenuItemTools, "radMenuItemTools");
             // 
             // radMenuItemBuildRules
             // 
-            this.radMenuItemBuildRules.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemBuildActiveDrawing,
-            this.radMenuItemBuildActiveTable,
-            this.radMenuItemBuildSelectedModules});
-            this.radMenuItemBuildRules.Name = "radMenuItemBuildRules";
-            resources.ApplyResources(this.radMenuItemBuildRules, "radMenuItemBuildRules");
+            radMenuItemBuildRules.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemBuildActiveDrawing, radMenuItemBuildActiveTable, radMenuItemBuildSelectedModules });
+            radMenuItemBuildRules.Name = "radMenuItemBuildRules";
+            resources.ApplyResources(radMenuItemBuildRules, "radMenuItemBuildRules");
             // 
             // radMenuItemBuildActiveDrawing
             // 
-            this.radMenuItemBuildActiveDrawing.Name = "radMenuItemBuildActiveDrawing";
-            resources.ApplyResources(this.radMenuItemBuildActiveDrawing, "radMenuItemBuildActiveDrawing");
+            radMenuItemBuildActiveDrawing.Name = "radMenuItemBuildActiveDrawing";
+            resources.ApplyResources(radMenuItemBuildActiveDrawing, "radMenuItemBuildActiveDrawing");
             // 
             // radMenuItemBuildActiveTable
             // 
-            this.radMenuItemBuildActiveTable.Name = "radMenuItemBuildActiveTable";
-            resources.ApplyResources(this.radMenuItemBuildActiveTable, "radMenuItemBuildActiveTable");
+            radMenuItemBuildActiveTable.Name = "radMenuItemBuildActiveTable";
+            resources.ApplyResources(radMenuItemBuildActiveTable, "radMenuItemBuildActiveTable");
             // 
             // radMenuItemBuildSelectedModules
             // 
-            this.radMenuItemBuildSelectedModules.Name = "radMenuItemBuildSelectedModules";
-            resources.ApplyResources(this.radMenuItemBuildSelectedModules, "radMenuItemBuildSelectedModules");
+            radMenuItemBuildSelectedModules.Name = "radMenuItemBuildSelectedModules";
+            resources.ApplyResources(radMenuItemBuildSelectedModules, "radMenuItemBuildSelectedModules");
             // 
             // radMenuItemValidateDocuments
             // 
-            this.radMenuItemValidateDocuments.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemValidateActiveDrawing,
-            this.radMenuItemValidateActiveTable,
-            this.radMenuItemValidateSelectedModules});
-            this.radMenuItemValidateDocuments.Name = "radMenuItemValidateDocuments";
-            resources.ApplyResources(this.radMenuItemValidateDocuments, "radMenuItemValidateDocuments");
+            radMenuItemValidateDocuments.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemValidateActiveDrawing, radMenuItemValidateActiveTable, radMenuItemValidateSelectedModules });
+            radMenuItemValidateDocuments.Name = "radMenuItemValidateDocuments";
+            resources.ApplyResources(radMenuItemValidateDocuments, "radMenuItemValidateDocuments");
             // 
             // radMenuItemValidateActiveDrawing
             // 
-            this.radMenuItemValidateActiveDrawing.Name = "radMenuItemValidateActiveDrawing";
-            resources.ApplyResources(this.radMenuItemValidateActiveDrawing, "radMenuItemValidateActiveDrawing");
+            radMenuItemValidateActiveDrawing.Name = "radMenuItemValidateActiveDrawing";
+            resources.ApplyResources(radMenuItemValidateActiveDrawing, "radMenuItemValidateActiveDrawing");
             // 
             // radMenuItemValidateActiveTable
             // 
-            this.radMenuItemValidateActiveTable.Name = "radMenuItemValidateActiveTable";
-            resources.ApplyResources(this.radMenuItemValidateActiveTable, "radMenuItemValidateActiveTable");
+            radMenuItemValidateActiveTable.Name = "radMenuItemValidateActiveTable";
+            resources.ApplyResources(radMenuItemValidateActiveTable, "radMenuItemValidateActiveTable");
             // 
             // radMenuItemValidateSelectedModules
             // 
-            this.radMenuItemValidateSelectedModules.Name = "radMenuItemValidateSelectedModules";
-            resources.ApplyResources(this.radMenuItemValidateSelectedModules, "radMenuItemValidateSelectedModules");
+            radMenuItemValidateSelectedModules.Name = "radMenuItemValidateSelectedModules";
+            resources.ApplyResources(radMenuItemValidateSelectedModules, "radMenuItemValidateSelectedModules");
             // 
             // radMenuItemValidateRules
             // 
-            this.radMenuItemValidateRules.Name = "radMenuItemValidateRules";
-            resources.ApplyResources(this.radMenuItemValidateRules, "radMenuItemValidateRules");
+            radMenuItemValidateRules.Name = "radMenuItemValidateRules";
+            resources.ApplyResources(radMenuItemValidateRules, "radMenuItemValidateRules");
             // 
             // radMenuSeparatorItem1
             // 
-            this.radMenuSeparatorItem1.Name = "radMenuSeparatorItem1";
-            resources.ApplyResources(this.radMenuSeparatorItem1, "radMenuSeparatorItem1");
+            radMenuSeparatorItem1.Name = "radMenuSeparatorItem1";
+            resources.ApplyResources(radMenuSeparatorItem1, "radMenuSeparatorItem1");
             // 
             // radMenuItemFileSystemDeployment
             // 
-            this.radMenuItemFileSystemDeployment.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemFileSystemDeploy,
-            this.radMenuItemFileSystemDelete});
-            this.radMenuItemFileSystemDeployment.Name = "radMenuItemFileSystemDeployment";
-            resources.ApplyResources(this.radMenuItemFileSystemDeployment, "radMenuItemFileSystemDeployment");
+            radMenuItemFileSystemDeployment.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemFileSystemDeploy, radMenuItemFileSystemDelete });
+            radMenuItemFileSystemDeployment.Name = "radMenuItemFileSystemDeployment";
+            resources.ApplyResources(radMenuItemFileSystemDeployment, "radMenuItemFileSystemDeployment");
             // 
             // radMenuItemFileSystemDeploy
             // 
-            this.radMenuItemFileSystemDeploy.Name = "radMenuItemFileSystemDeploy";
-            resources.ApplyResources(this.radMenuItemFileSystemDeploy, "radMenuItemFileSystemDeploy");
+            radMenuItemFileSystemDeploy.Name = "radMenuItemFileSystemDeploy";
+            resources.ApplyResources(radMenuItemFileSystemDeploy, "radMenuItemFileSystemDeploy");
             // 
             // radMenuItemFileSystemDelete
             // 
-            this.radMenuItemFileSystemDelete.Name = "radMenuItemFileSystemDelete";
-            resources.ApplyResources(this.radMenuItemFileSystemDelete, "radMenuItemFileSystemDelete");
+            radMenuItemFileSystemDelete.Name = "radMenuItemFileSystemDelete";
+            resources.ApplyResources(radMenuItemFileSystemDelete, "radMenuItemFileSystemDelete");
             // 
             // radMenuItemWebApiDeployment
             // 
-            this.radMenuItemWebApiDeployment.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemWebApiDeploy,
-            this.radMenuItemWebApiDelete});
-            this.radMenuItemWebApiDeployment.Name = "radMenuItemWebApiDeployment";
-            resources.ApplyResources(this.radMenuItemWebApiDeployment, "radMenuItemWebApiDeployment");
+            radMenuItemWebApiDeployment.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemWebApiDeploy, radMenuItemWebApiDelete });
+            radMenuItemWebApiDeployment.Name = "radMenuItemWebApiDeployment";
+            resources.ApplyResources(radMenuItemWebApiDeployment, "radMenuItemWebApiDeployment");
             // 
             // radMenuItemWebApiDeploy
             // 
-            this.radMenuItemWebApiDeploy.Name = "radMenuItemWebApiDeploy";
-            resources.ApplyResources(this.radMenuItemWebApiDeploy, "radMenuItemWebApiDeploy");
+            radMenuItemWebApiDeploy.Name = "radMenuItemWebApiDeploy";
+            resources.ApplyResources(radMenuItemWebApiDeploy, "radMenuItemWebApiDeploy");
             // 
             // radMenuItemWebApiDelete
             // 
-            this.radMenuItemWebApiDelete.Name = "radMenuItemWebApiDelete";
-            resources.ApplyResources(this.radMenuItemWebApiDelete, "radMenuItemWebApiDelete");
+            radMenuItemWebApiDelete.Name = "radMenuItemWebApiDelete";
+            resources.ApplyResources(radMenuItemWebApiDelete, "radMenuItemWebApiDelete");
             // 
             // radMenuSeparatorItem2
             // 
-            this.radMenuSeparatorItem2.Name = "radMenuSeparatorItem2";
-            resources.ApplyResources(this.radMenuSeparatorItem2, "radMenuSeparatorItem2");
+            radMenuSeparatorItem2.Name = "radMenuSeparatorItem2";
+            resources.ApplyResources(radMenuSeparatorItem2, "radMenuSeparatorItem2");
             // 
             // radMenuItemSelectApplication
             // 
-            this.radMenuItemSelectApplication.Name = "radMenuItemSelectApplication";
-            resources.ApplyResources(this.radMenuItemSelectApplication, "radMenuItemSelectApplication");
+            radMenuItemSelectApplication.Name = "radMenuItemSelectApplication";
+            resources.ApplyResources(radMenuItemSelectApplication, "radMenuItemSelectApplication");
             // 
             // radMenuItemHelp
             // 
-            this.radMenuItemHelp.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemContents,
-            this.radMenuSeparatorItem7,
-            this.radMenuItemAbout});
-            this.radMenuItemHelp.Name = "radMenuItemHelp";
-            resources.ApplyResources(this.radMenuItemHelp, "radMenuItemHelp");
+            radMenuItemHelp.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemContents, radMenuSeparatorItem7, radMenuItemAbout });
+            radMenuItemHelp.Name = "radMenuItemHelp";
+            resources.ApplyResources(radMenuItemHelp, "radMenuItemHelp");
             // 
             // radMenuItemContents
             // 
-            this.radMenuItemContents.Name = "radMenuItemContents";
-            resources.ApplyResources(this.radMenuItemContents, "radMenuItemContents");
+            radMenuItemContents.Name = "radMenuItemContents";
+            resources.ApplyResources(radMenuItemContents, "radMenuItemContents");
             // 
             // radMenuSeparatorItem7
             // 
-            this.radMenuSeparatorItem7.Name = "radMenuSeparatorItem7";
-            resources.ApplyResources(this.radMenuSeparatorItem7, "radMenuSeparatorItem7");
+            radMenuSeparatorItem7.Name = "radMenuSeparatorItem7";
+            resources.ApplyResources(radMenuSeparatorItem7, "radMenuSeparatorItem7");
             // 
             // radMenuItemAbout
             // 
-            this.radMenuItemAbout.Name = "radMenuItemAbout";
-            resources.ApplyResources(this.radMenuItemAbout, "radMenuItemAbout");
+            radMenuItemAbout.Name = "radMenuItemAbout";
+            resources.ApplyResources(radMenuItemAbout, "radMenuItemAbout");
             // 
             // commandBarRowElement1
             // 
-            resources.ApplyResources(this.commandBarRowElement1, "commandBarRowElement1");
-            this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
-            this.commandBarRowElement1.Name = "commandBarRowElement1";
-            this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
-            this.commandBarStripElement1});
+            resources.ApplyResources(commandBarRowElement1, "commandBarRowElement1");
+            commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+            commandBarRowElement1.Name = "commandBarRowElement1";
+            commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] { commandBarStripElement1 });
             // 
             // commandBarStripElement1
             // 
-            resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
-            this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
-            this.commandBarButtonEdit,
-            this.commandBarButtonSave,
-            this.commandBarButtonSaveAll,
-            this.commandBarButtonValidate,
-            this.commandBarButtonBuild});
-            this.commandBarStripElement1.Name = "commandBarStripElement1";
+            resources.ApplyResources(commandBarStripElement1, "commandBarStripElement1");
+            commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] { commandBarButtonEdit, commandBarButtonSave, commandBarButtonSaveAll, commandBarButtonValidate, commandBarButtonBuild });
+            commandBarStripElement1.Name = "commandBarStripElement1";
             // 
             // commandBarButtonEdit
             // 
-            resources.ApplyResources(this.commandBarButtonEdit, "commandBarButtonEdit");
-            this.commandBarButtonEdit.ClipText = false;
-            this.commandBarButtonEdit.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.commandBarButtonEdit.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Edit;
-            this.commandBarButtonEdit.MinSize = new System.Drawing.Size(30, 0);
-            this.commandBarButtonEdit.Name = "commandBarButtonEdit";
-            this.commandBarButtonEdit.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.commandBarButtonEdit.UseCompatibleTextRendering = false;
+            resources.ApplyResources(commandBarButtonEdit, "commandBarButtonEdit");
+            commandBarButtonEdit.ClipText = false;
+            commandBarButtonEdit.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            commandBarButtonEdit.Image = Properties.Resources.Edit;
+            commandBarButtonEdit.MinSize = new System.Drawing.Size(30, 0);
+            commandBarButtonEdit.Name = "commandBarButtonEdit";
+            commandBarButtonEdit.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            commandBarButtonEdit.UseCompatibleTextRendering = false;
             // 
             // commandBarButtonSave
             // 
-            this.commandBarButtonSave.AccessibleName = "commandBarButton1";
-            resources.ApplyResources(this.commandBarButtonSave, "commandBarButtonSave");
-            this.commandBarButtonSave.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Save;
-            this.commandBarButtonSave.MinSize = new System.Drawing.Size(30, 0);
-            this.commandBarButtonSave.Name = "commandBarButtonSave";
+            commandBarButtonSave.AccessibleName = "commandBarButton1";
+            resources.ApplyResources(commandBarButtonSave, "commandBarButtonSave");
+            commandBarButtonSave.Image = Properties.Resources.Save;
+            commandBarButtonSave.MinSize = new System.Drawing.Size(30, 0);
+            commandBarButtonSave.Name = "commandBarButtonSave";
             // 
             // commandBarButtonSaveAll
             // 
-            this.commandBarButtonSaveAll.AccessibleName = "commandBarButton";
-            resources.ApplyResources(this.commandBarButtonSaveAll, "commandBarButtonSaveAll");
-            this.commandBarButtonSaveAll.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.SaveAll;
-            this.commandBarButtonSaveAll.MinSize = new System.Drawing.Size(30, 0);
-            this.commandBarButtonSaveAll.Name = "commandBarButtonSaveAll";
+            commandBarButtonSaveAll.AccessibleName = "commandBarButton";
+            resources.ApplyResources(commandBarButtonSaveAll, "commandBarButtonSaveAll");
+            commandBarButtonSaveAll.Image = Properties.Resources.SaveAll;
+            commandBarButtonSaveAll.MinSize = new System.Drawing.Size(30, 0);
+            commandBarButtonSaveAll.Name = "commandBarButtonSaveAll";
             // 
             // commandBarButtonValidate
             // 
-            resources.ApplyResources(this.commandBarButtonValidate, "commandBarButtonValidate");
-            this.commandBarButtonValidate.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Ok;
-            this.commandBarButtonValidate.MinSize = new System.Drawing.Size(30, 0);
-            this.commandBarButtonValidate.Name = "commandBarButtonValidate";
+            resources.ApplyResources(commandBarButtonValidate, "commandBarButtonValidate");
+            commandBarButtonValidate.Image = Properties.Resources.Ok;
+            commandBarButtonValidate.MinSize = new System.Drawing.Size(30, 0);
+            commandBarButtonValidate.Name = "commandBarButtonValidate";
             // 
             // commandBarButtonBuild
             // 
-            resources.ApplyResources(this.commandBarButtonBuild, "commandBarButtonBuild");
-            this.commandBarButtonBuild.Image = global::ABIS.LogicBuilder.FlowBuilder.Properties.Resources.Build;
-            this.commandBarButtonBuild.MinSize = new System.Drawing.Size(30, 0);
-            this.commandBarButtonBuild.Name = "commandBarButtonBuild";
+            resources.ApplyResources(commandBarButtonBuild, "commandBarButtonBuild");
+            commandBarButtonBuild.Image = Properties.Resources.Build;
+            commandBarButtonBuild.MinSize = new System.Drawing.Size(30, 0);
+            commandBarButtonBuild.Name = "commandBarButtonBuild";
             // 
             // radCommandBar1
             // 
-            resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
-            this.radCommandBar1.Name = "radCommandBar1";
-            this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
-            this.commandBarRowElement1});
+            resources.ApplyResources(radCommandBar1, "radCommandBar1");
+            radCommandBar1.Name = "radCommandBar1";
+            radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] { commandBarRowElement1 });
             // 
             // radSplitContainerBase
             // 
-            this.radSplitContainerBase.Controls.Add(this.splitPanelLeft);
-            this.radSplitContainerBase.Controls.Add(this.splitPanelExplorer);
-            resources.ApplyResources(this.radSplitContainerBase, "radSplitContainerBase");
-            this.radSplitContainerBase.Name = "radSplitContainerBase";
+            radSplitContainerBase.Controls.Add(splitPanelLeft);
+            radSplitContainerBase.Controls.Add(splitPanelExplorer);
+            resources.ApplyResources(radSplitContainerBase, "radSplitContainerBase");
+            radSplitContainerBase.Name = "radSplitContainerBase";
             // 
             // 
             // 
-            this.radSplitContainerBase.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainerBase.SplitterWidth = 8;
-            this.radSplitContainerBase.TabStop = false;
+            radSplitContainerBase.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            radSplitContainerBase.SplitterWidth = 8;
+            radSplitContainerBase.TabStop = false;
             // 
             // splitPanelLeft
             // 
-            this.splitPanelLeft.Controls.Add(this.radSplitContainerLeft);
-            resources.ApplyResources(this.splitPanelLeft, "splitPanelLeft");
-            this.splitPanelLeft.Name = "splitPanelLeft";
+            splitPanelLeft.Controls.Add(radSplitContainerLeft);
+            resources.ApplyResources(splitPanelLeft, "splitPanelLeft");
+            splitPanelLeft.Name = "splitPanelLeft";
             // 
             // 
             // 
-            this.splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.332996F, 0F);
-            this.splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(329, 0);
-            this.splitPanelLeft.TabStop = false;
+            splitPanelLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            splitPanelLeft.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.332996F, 0F);
+            splitPanelLeft.SizeInfo.SplitterCorrection = new System.Drawing.Size(329, 0);
+            splitPanelLeft.TabStop = false;
             // 
             // radSplitContainerLeft
             // 
-            this.radSplitContainerLeft.Controls.Add(this.splitPanelEdit);
-            this.radSplitContainerLeft.Controls.Add(this.splitPanelMessages);
-            resources.ApplyResources(this.radSplitContainerLeft, "radSplitContainerLeft");
-            this.radSplitContainerLeft.Name = "radSplitContainerLeft";
+            radSplitContainerLeft.Controls.Add(splitPanelEdit);
+            radSplitContainerLeft.Controls.Add(splitPanelMessages);
+            resources.ApplyResources(radSplitContainerLeft, "radSplitContainerLeft");
+            radSplitContainerLeft.Name = "radSplitContainerLeft";
             // 
             // 
             // 
-            this.radSplitContainerLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainerLeft.SplitterWidth = 8;
-            this.radSplitContainerLeft.TabStop = false;
+            radSplitContainerLeft.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            radSplitContainerLeft.SplitterWidth = 8;
+            radSplitContainerLeft.TabStop = false;
             // 
             // splitPanelEdit
             // 
-            resources.ApplyResources(this.splitPanelEdit, "splitPanelEdit");
-            this.splitPanelEdit.Name = "splitPanelEdit";
+            resources.ApplyResources(splitPanelEdit, "splitPanelEdit");
+            splitPanelEdit.Name = "splitPanelEdit";
             // 
             // 
             // 
-            this.splitPanelEdit.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelEdit.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.246732F);
-            this.splitPanelEdit.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 149);
-            this.splitPanelEdit.TabStop = false;
+            splitPanelEdit.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            splitPanelEdit.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.246732F);
+            splitPanelEdit.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 149);
+            splitPanelEdit.TabStop = false;
             // 
             // splitPanelMessages
             // 
-            resources.ApplyResources(this.splitPanelMessages, "splitPanelMessages");
-            this.splitPanelMessages.Name = "splitPanelMessages";
+            resources.ApplyResources(splitPanelMessages, "splitPanelMessages");
+            splitPanelMessages.Name = "splitPanelMessages";
             // 
             // 
             // 
-            this.splitPanelMessages.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelMessages.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.246732F);
-            this.splitPanelMessages.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -149);
-            this.splitPanelMessages.TabStop = false;
+            splitPanelMessages.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            splitPanelMessages.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.246732F);
+            splitPanelMessages.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -149);
+            splitPanelMessages.TabStop = false;
             // 
             // splitPanelExplorer
             // 
-            resources.ApplyResources(this.splitPanelExplorer, "splitPanelExplorer");
-            this.splitPanelExplorer.Name = "splitPanelExplorer";
+            resources.ApplyResources(splitPanelExplorer, "splitPanelExplorer");
+            splitPanelExplorer.Name = "splitPanelExplorer";
             // 
             // 
             // 
-            this.splitPanelExplorer.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.332996F, 0F);
-            this.splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-329, 0);
-            this.splitPanelExplorer.TabStop = false;
+            splitPanelExplorer.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.332996F, 0F);
+            splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-329, 0);
+            splitPanelExplorer.TabStop = false;
             // 
             // radProgressBarElement1
             // 
-            this.radProgressBarElement1.Name = "radProgressBarElement1";
-            this.radProgressBarElement1.SeparatorColor1 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorColor2 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorColor3 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorColor4 = System.Drawing.Color.White;
-            this.radProgressBarElement1.SeparatorGradientAngle = 0;
-            this.radProgressBarElement1.SeparatorGradientPercentage1 = 0.4F;
-            this.radProgressBarElement1.SeparatorGradientPercentage2 = 0.6F;
-            this.radProgressBarElement1.SeparatorNumberOfColors = 2;
-            this.radStatusStrip1.SetSpring(this.radProgressBarElement1, false);
-            this.radProgressBarElement1.StepWidth = 14;
-            this.radProgressBarElement1.SweepAngle = 90;
+            radProgressBarElement1.Name = "radProgressBarElement1";
+            radProgressBarElement1.SeparatorColor1 = System.Drawing.Color.White;
+            radProgressBarElement1.SeparatorColor2 = System.Drawing.Color.White;
+            radProgressBarElement1.SeparatorColor3 = System.Drawing.Color.White;
+            radProgressBarElement1.SeparatorColor4 = System.Drawing.Color.White;
+            radProgressBarElement1.SeparatorGradientAngle = 0;
+            radProgressBarElement1.SeparatorGradientPercentage1 = 0.4F;
+            radProgressBarElement1.SeparatorGradientPercentage2 = 0.6F;
+            radProgressBarElement1.SeparatorNumberOfColors = 2;
+            radStatusStrip1.SetSpring(radProgressBarElement1, false);
+            radProgressBarElement1.StepWidth = 14;
+            radProgressBarElement1.SweepAngle = 90;
             // 
             // radStatusStrip1
             // 
-            this.radStatusStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radProgressBarElement1,
-            this.radLabelElement1});
-            resources.ApplyResources(this.radStatusStrip1, "radStatusStrip1");
-            this.radStatusStrip1.Name = "radStatusStrip1";
+            radStatusStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] { radProgressBarElement1, radLabelElement1 });
+            resources.ApplyResources(radStatusStrip1, "radStatusStrip1");
+            radStatusStrip1.Name = "radStatusStrip1";
             // 
             // radLabelElement1
             // 
-            this.radLabelElement1.Name = "radLabelElement1";
-            this.radStatusStrip1.SetSpring(this.radLabelElement1, false);
-            resources.ApplyResources(this.radLabelElement1, "radLabelElement1");
-            this.radLabelElement1.TextWrap = true;
+            radLabelElement1.Name = "radLabelElement1";
+            radStatusStrip1.SetSpring(radLabelElement1, false);
+            resources.ApplyResources(radLabelElement1, "radLabelElement1");
+            radLabelElement1.TextWrap = true;
             // 
             // radMenu1
             // 
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemFile,
-            this.radMenuItemEdit,
-            this.radMenuItemView,
-            this.radMenuItemProject,
-            this.radMenuItemRules,
-            this.radMenuItemTools,
-            this.radMenuItemPreferences,
-            this.radMenuItemHelp});
-            resources.ApplyResources(this.radMenu1, "radMenu1");
-            this.radMenu1.Name = "radMenu1";
+            radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemFile, radMenuItemEdit, radMenuItemView, radMenuItemProject, radMenuItemRules, radMenuItemTools, radMenuItemPreferences, radMenuItemHelp });
+            resources.ApplyResources(radMenu1, "radMenu1");
+            radMenu1.Name = "radMenu1";
             // 
             // radMenuItemPreferences
             // 
-            this.radMenuItemPreferences.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemColorTheme,
-            this.radMenuItemFontSize});
-            this.radMenuItemPreferences.Name = "radMenuItemPreferences";
-            resources.ApplyResources(this.radMenuItemPreferences, "radMenuItemPreferences");
+            radMenuItemPreferences.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemColorTheme, radMenuItemFontSize });
+            radMenuItemPreferences.Name = "radMenuItemPreferences";
+            resources.ApplyResources(radMenuItemPreferences, "radMenuItemPreferences");
             // 
             // radMenuItemColorTheme
             // 
-            this.radMenuItemColorTheme.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemDark,
-            this.radMenuItemGray,
-            this.radMenuItemLight});
-            this.radMenuItemColorTheme.Name = "radMenuItemColorTheme";
-            resources.ApplyResources(this.radMenuItemColorTheme, "radMenuItemColorTheme");
+            radMenuItemColorTheme.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemDark, radMenuItemGray, radMenuItemLight });
+            radMenuItemColorTheme.Name = "radMenuItemColorTheme";
+            resources.ApplyResources(radMenuItemColorTheme, "radMenuItemColorTheme");
             // 
             // radMenuItemDark
             // 
-            this.radMenuItemDark.Name = "radMenuItemDark";
-            this.radMenuItemDark.Tag = "Dark";
-            resources.ApplyResources(this.radMenuItemDark, "radMenuItemDark");
+            radMenuItemDark.Name = "radMenuItemDark";
+            radMenuItemDark.Tag = "Dark";
+            resources.ApplyResources(radMenuItemDark, "radMenuItemDark");
             // 
             // radMenuItemGray
             // 
-            this.radMenuItemGray.Name = "radMenuItemGray";
-            this.radMenuItemGray.Tag = "Gray";
-            resources.ApplyResources(this.radMenuItemGray, "radMenuItemGray");
+            radMenuItemGray.Name = "radMenuItemGray";
+            radMenuItemGray.Tag = "Gray";
+            resources.ApplyResources(radMenuItemGray, "radMenuItemGray");
             // 
             // radMenuItemLight
             // 
-            this.radMenuItemLight.Name = "radMenuItemLight";
-            this.radMenuItemLight.Tag = "Light";
-            resources.ApplyResources(this.radMenuItemLight, "radMenuItemLight");
+            radMenuItemLight.Name = "radMenuItemLight";
+            radMenuItemLight.Tag = "Light";
+            resources.ApplyResources(radMenuItemLight, "radMenuItemLight");
             // 
             // radMenuItemFontSize
             // 
-            this.radMenuItemFontSize.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemNine,
-            this.radMenuItemTen,
-            this.radMenuItemEleven,
-            this.radMenuItemTwelve,
-            this.radMenuItemThirteen,
-            this.radMenuItemFourteen});
-            this.radMenuItemFontSize.Name = "radMenuItemFontSize";
-            resources.ApplyResources(this.radMenuItemFontSize, "radMenuItemFontSize");
+            radMenuItemFontSize.Items.AddRange(new Telerik.WinControls.RadItem[] { radMenuItemNine, radMenuItemTen, radMenuItemEleven, radMenuItemTwelve, radMenuItemThirteen, radMenuItemFourteen });
+            radMenuItemFontSize.Name = "radMenuItemFontSize";
+            resources.ApplyResources(radMenuItemFontSize, "radMenuItemFontSize");
             // 
             // radMenuItemNine
             // 
-            this.radMenuItemNine.AccessibleDescription = "radMenuItem6";
-            this.radMenuItemNine.Name = "radMenuItemNine";
-            this.radMenuItemNine.Tag = "9";
-            resources.ApplyResources(this.radMenuItemNine, "radMenuItemNine");
+            radMenuItemNine.AccessibleDescription = "radMenuItem6";
+            radMenuItemNine.Name = "radMenuItemNine";
+            radMenuItemNine.Tag = "9";
+            resources.ApplyResources(radMenuItemNine, "radMenuItemNine");
             // 
             // radMenuItemTen
             // 
-            this.radMenuItemTen.Name = "radMenuItemTen";
-            this.radMenuItemTen.Tag = "10";
-            resources.ApplyResources(this.radMenuItemTen, "radMenuItemTen");
+            radMenuItemTen.Name = "radMenuItemTen";
+            radMenuItemTen.Tag = "10";
+            resources.ApplyResources(radMenuItemTen, "radMenuItemTen");
             // 
             // radMenuItemEleven
             // 
-            this.radMenuItemEleven.Name = "radMenuItemEleven";
-            this.radMenuItemEleven.Tag = "11";
-            resources.ApplyResources(this.radMenuItemEleven, "radMenuItemEleven");
+            radMenuItemEleven.Name = "radMenuItemEleven";
+            radMenuItemEleven.Tag = "11";
+            resources.ApplyResources(radMenuItemEleven, "radMenuItemEleven");
             // 
             // radMenuItemTwelve
             // 
-            this.radMenuItemTwelve.Name = "radMenuItemTwelve";
-            this.radMenuItemTwelve.Tag = "12";
-            resources.ApplyResources(this.radMenuItemTwelve, "radMenuItemTwelve");
-            // 
-            // radMenuItemFourteen
-            // 
-            this.radMenuItemFourteen.Name = "radMenuItemFourteen";
-            this.radMenuItemFourteen.Tag = "14";
-            resources.ApplyResources(this.radMenuItemFourteen, "radMenuItemFourteen");
+            radMenuItemTwelve.Name = "radMenuItemTwelve";
+            radMenuItemTwelve.Tag = "12";
+            resources.ApplyResources(radMenuItemTwelve, "radMenuItemTwelve");
             // 
             // radMenuItemThirteen
             // 
-            this.radMenuItemThirteen.Name = "radMenuItemThirteen";
-            this.radMenuItemThirteen.Tag = "13";
-            resources.ApplyResources(this.radMenuItemThirteen, "radMenuItemThirteen");
+            radMenuItemThirteen.Name = "radMenuItemThirteen";
+            radMenuItemThirteen.Tag = "13";
+            resources.ApplyResources(radMenuItemThirteen, "radMenuItemThirteen");
+            // 
+            // radMenuItemFourteen
+            // 
+            radMenuItemFourteen.Name = "radMenuItemFourteen";
+            radMenuItemFourteen.Tag = "14";
+            resources.ApplyResources(radMenuItemFourteen, "radMenuItemFourteen");
             // 
             // MDIParent
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radSplitContainerBase);
-            this.Controls.Add(this.radCommandBar1);
-            this.Controls.Add(this.radMenu1);
-            this.Controls.Add(this.radStatusStrip1);
-            this.IsMdiContainer = true;
-            this.Name = "MDIParent";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerBase)).EndInit();
-            this.radSplitContainerBase.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelLeft)).EndInit();
-            this.splitPanelLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainerLeft)).EndInit();
-            this.radSplitContainerLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelMessages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanelExplorer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(radSplitContainerBase);
+            Controls.Add(radCommandBar1);
+            Controls.Add(radMenu1);
+            Controls.Add(radStatusStrip1);
+            IsMdiContainer = true;
+            Name = "MDIParent";
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)radCommandBar1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radSplitContainerBase).EndInit();
+            radSplitContainerBase.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitPanelLeft).EndInit();
+            splitPanelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)radSplitContainerLeft).EndInit();
+            radSplitContainerLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitPanelEdit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitPanelMessages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitPanelExplorer).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radStatusStrip1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radMenu1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

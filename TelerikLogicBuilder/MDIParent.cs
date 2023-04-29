@@ -229,10 +229,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public IProjectExplorer ProjectExplorer => _projectExplorer;
 
         #region Methods
-        public void AddTableControl(IDocumentEditor documentEditor) 
+        public void AddTableControl(IDocumentEditor documentEditor)
             => AddDocumentEditorControl(documentEditor, false, true);
 
-        public void AddVisioControl(IDocumentEditor documentEditor) 
+        public void AddVisioControl(IDocumentEditor documentEditor)
             => AddDocumentEditorControl(documentEditor, true, false);
 
         public void ChangeCursor(Cursor cursor)
@@ -812,14 +812,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
             {
                 AddClickCommand
                 (
-                    radMenuItem, 
+                    radMenuItem,
                     _applicationCommandsFactory.GetSetFontSizeCommand
                     (
-                        radMenuItemColorTheme, 
-                        radMenuItemFontSize, 
+                        radMenuItemColorTheme,
+                        radMenuItemFontSize,
                         int.Parse
                         (
-                            radMenuItem.Tag?.ToString() ?? throw _exceptionHelper.CriticalException("{A31C4B29-E571-41AC-BB83-255B92CEA86F}"), 
+                            radMenuItem.Tag?.ToString() ?? throw _exceptionHelper.CriticalException("{A31C4B29-E571-41AC-BB83-255B92CEA86F}"),
                             CultureInfo.InvariantCulture
                         )
                     )
@@ -931,7 +931,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             radLabelElement1.Text = Strings.loadingAssemblies2;
 
             await _loadContextSponsor.LoadAssembiesOnOpenProject();
-            
+
             radProgressBarElement1.Value1 = 0;
             radLabelElement1.Text = Strings.statusBarReadyMessage;
         }
