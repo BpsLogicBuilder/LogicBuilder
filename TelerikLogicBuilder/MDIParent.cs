@@ -50,6 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
         private readonly CloseProjectCommand _closeProjectCommand;
         private readonly DisplayIndexInformationCommand _displayIndexInformationCommand;
+        private readonly EditActiveDocumentCommand _editActiveDocumentCommand;
         private readonly EditConnectorObjectTypesCommand _editConnectorObjectTypesCommand;
         private readonly EditConstructorsCommand _editConstructorsCommand;
         private readonly EditFragmentsCommand _editFragmentsCommand;
@@ -73,6 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly FindVariableInFilesCommand _findVariableInFilesCommand;
         private readonly NewProjectCommand _newProjectCommand;
         private readonly OpenProjectCommand _openProjectCommand;
+        private readonly SaveActiveDocumentCommand _saveActiveDocumentCommand;
         private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
         private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
@@ -105,6 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
             CloseProjectCommand closeProjectCommand,
             DisplayIndexInformationCommand displayIndexInformationCommand,
+            EditActiveDocumentCommand editActiveDocumentCommand,
             EditConnectorObjectTypesCommand editConnectorObjectTypesCommand,
             EditConstructorsCommand editConstructorsCommand,
             EditFragmentsCommand editFragmentsCommand,
@@ -128,6 +131,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             FindVariableInFilesCommand findVariableInFilesCommand,
             NewProjectCommand newProjectCommand,
             OpenProjectCommand openProjectCommand,
+            SaveActiveDocumentCommand saveActiveDocumentCommand,
             ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
             ViewApplicationsStencilCommand viewApplicationsStencilCommand,
@@ -155,6 +159,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _variableListInitializer = variableListInitializer;
             _uiNotificationService = uiNotificationService;
             _closeProjectCommand = closeProjectCommand;
+            _editActiveDocumentCommand = editActiveDocumentCommand;
             _editConnectorObjectTypesCommand = editConnectorObjectTypesCommand;
             _editConstructorsCommand = editConstructorsCommand;
             _editFragmentsCommand = editFragmentsCommand;
@@ -178,6 +183,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _findVariableInFilesCommand = findVariableInFilesCommand;
             _newProjectCommand = newProjectCommand;
             _openProjectCommand = openProjectCommand;
+            _saveActiveDocumentCommand = saveActiveDocumentCommand;
             _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
             _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
@@ -692,6 +698,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 _validateSelectedDocumentsCommand
             );
             AddBuildActiveDocumentCommands();
+            AddEditActiveDocumentCommands();
+            AddSaveActiveDocumentCommands();
             AddValidateActiveDocumentCommands();
             #endregion Tools Menu
 
@@ -784,6 +792,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Native.NativeMethods.LockWindowUpdate(IntPtr.Zero);
         }
 
+        private void AddEditActiveDocumentCommands()
+        {
+            void handler(object? sender, EventArgs args) => _editActiveDocumentCommand.Execute();
+            radMenuItemUpdate.Click += handler;
+            commandBarButtonEdit.Click += handler;
+        }
+
         private void AddEditControl(IDocumentEditor documentEditor)
         {
             Control editControl = (Control)documentEditor;
@@ -825,6 +840,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     )
                 );
             }
+        }
+
+        private void AddSaveActiveDocumentCommands()
+        {
+            void handler(object? sender, EventArgs args) => _saveActiveDocumentCommand.Execute();
+            radMenuItemSave.Click += handler;
+            commandBarButtonSave.Click += handler;
         }
 
         private void ClearApplicationMenuItems()

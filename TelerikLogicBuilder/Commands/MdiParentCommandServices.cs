@@ -66,6 +66,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<DisplayIndexInformationCommand>()
+                .AddTransient<EditActiveDocumentCommand>()
                 .AddTransient<EditConnectorObjectTypesCommand>()
                 .AddTransient<EditConstructorsCommand>()
                 .AddTransient<EditFragmentsCommand>()
@@ -89,6 +90,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<FindVariableInFilesCommand>()
                 .AddTransient<NewProjectCommand>()
                 .AddTransient<OpenProjectCommand>()
+                .AddTransient<SaveActiveDocumentCommand>()
                 .AddTransient<Func<RadMenuItem, RadMenuItem, string, SetColorThemeCommand>>
                 (
                     provider =>
