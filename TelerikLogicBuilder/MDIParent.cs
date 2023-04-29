@@ -84,6 +84,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly ViewApplicationsStencilCommand _viewApplicationsStencilCommand;
         private readonly ViewFlowDiagramStencilCommand _viewFlowDiagramStencilCommand;
         private readonly ViewMessagesCommand _viewMessagesCommand;
+        private readonly ViewPanAndZoomWindowCommand _viewPanAndZoomWindowCommand;
         private readonly ViewProjectExplorerCommand _viewProjectExplorerCommand;
 
         //controls
@@ -145,6 +146,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ViewApplicationsStencilCommand viewApplicationsStencilCommand,
             ViewFlowDiagramStencilCommand viewFlowDiagramStencilCommand,
             ViewMessagesCommand viewMessagesCommand,
+            ViewPanAndZoomWindowCommand viewPanAndZoomWindowCommand,
             ViewProjectExplorerCommand viewProjectExplorerCommand,
             IMessages messages,
             IProjectExplorer projectExplorer)
@@ -201,6 +203,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _viewApplicationsStencilCommand = viewApplicationsStencilCommand;
             _viewFlowDiagramStencilCommand = viewFlowDiagramStencilCommand;
             _viewMessagesCommand = viewMessagesCommand;
+            _viewPanAndZoomWindowCommand = viewPanAndZoomWindowCommand;
             _viewProjectExplorerCommand = viewProjectExplorerCommand;
 
             _buildActiveDocumentCommand = buildActiveDocumentCommand;
@@ -760,6 +763,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             (
                 this.radMenuItemFlowDiagramStencil,
                 _viewFlowDiagramStencilCommand
+            );
+            AddClickCommand
+            (
+                this.radMenuItemPanZoomWindow,
+                _viewPanAndZoomWindowCommand
             );
             #endregion View Menu
 

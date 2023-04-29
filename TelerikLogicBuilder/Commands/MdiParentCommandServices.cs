@@ -145,6 +145,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<ViewApplicationsStencilCommand>()
                 .AddTransient<ViewFlowDiagramStencilCommand>()
                 .AddTransient<ViewMessagesCommand>()
+                .AddTransient<ViewPanAndZoomWindowCommand>()
                 .AddTransient<ViewProjectExplorerCommand>();
     }
 }
