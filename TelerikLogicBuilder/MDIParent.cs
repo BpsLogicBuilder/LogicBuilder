@@ -75,6 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly FindVariableInFilesCommand _findVariableInFilesCommand;
         private readonly NewProjectCommand _newProjectCommand;
         private readonly OpenProjectCommand _openProjectCommand;
+        private readonly PageSetupCommand _pageSetupCommand;
         private readonly SaveActiveDocumentCommand _saveActiveDocumentCommand;
         private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
@@ -133,6 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             FindVariableInFilesCommand findVariableInFilesCommand,
             NewProjectCommand newProjectCommand,
             OpenProjectCommand openProjectCommand,
+            PageSetupCommand pageSetupCommand,
             SaveActiveDocumentCommand saveActiveDocumentCommand,
             ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
@@ -186,6 +188,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _findVariableInFilesCommand = findVariableInFilesCommand;
             _newProjectCommand = newProjectCommand;
             _openProjectCommand = openProjectCommand;
+            _pageSetupCommand = pageSetupCommand;
             _saveActiveDocumentCommand = saveActiveDocumentCommand;
             _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
@@ -685,6 +688,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             #region File Menu
             AddClickCommand(this.radMenuItemNewProject, _newProjectCommand);
             AddClickCommand(this.radMenuItemOpenProject, _openProjectCommand);
+            AddClickCommand(this.radMenuItemPageSetup, _pageSetupCommand);
             AddClickCommand(this.radMenuItemCloseProject, _closeProjectCommand);
             AddClickCommand(this.radMenuItemExit, _exitCommand);
             #endregion File Menu
