@@ -57,6 +57,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="radMenuItemFile.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
   <data name="radMenuItemNewProject.Text" xml:space="preserve">
     <value>New Project...</value>
   </data>
@@ -103,8 +106,8 @@
   <data name="radMenuItemRecentProjects.Text" xml:space="preserve">
     <value>Recent Projects...</value>
   </data>
-  <data name="radMenuItemFile.Text" xml:space="preserve">
-    <value>&amp;File</value>
+  <data name="radMenuItemEdit.Text" xml:space="preserve">
+    <value>&amp;Edit</value>
   </data>
   <data name="radMenuItemUndo.Text" xml:space="preserve">
     <value>Undo</value>
@@ -130,6 +133,9 @@
   <data name="radMenuSeparatorItemFind.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
+  <data name="radMenuItemFind.Text" xml:space="preserve">
+    <value>Find...</value>
+  </data>
   <data name="radMenuItemFindShape.Text" xml:space="preserve">
     <value>Shape...</value>
   </data>
@@ -148,8 +154,8 @@
   <data name="radMenuItemFindVariable.Text" xml:space="preserve">
     <value>Variable...</value>
   </data>
-  <data name="radMenuItemFind.Text" xml:space="preserve">
-    <value>Find...</value>
+  <data name="radMenuItemReplace.Text" xml:space="preserve">
+    <value>Replace...</value>
   </data>
   <data name="radMenuItemReplaceText.Text" xml:space="preserve">
     <value>Text...</value>
@@ -163,8 +169,8 @@
   <data name="radMenuItemReplaceVariable.Text" xml:space="preserve">
     <value>Variable...</value>
   </data>
-  <data name="radMenuItemReplace.Text" xml:space="preserve">
-    <value>Replace...</value>
+  <data name="radMenuItemFindinFiles.Text" xml:space="preserve">
+    <value>Find in Files...</value>
   </data>
   <data name="radMenuItemFindInFilesText.Text" xml:space="preserve">
     <value>Text...</value>
@@ -178,9 +184,6 @@
   <data name="radMenuItemFindInFilesVariable.Text" xml:space="preserve">
     <value>Variable...</value>
   </data>
-  <data name="radMenuItemFindinFiles.Text" xml:space="preserve">
-    <value>Find in Files...</value>
-  </data>
   <data name="radMenuSeparatorItemIndexInformation.Text" xml:space="preserve">
     <value>radMenuSeparatorItem6</value>
   </data>
@@ -190,8 +193,8 @@
   <data name="radMenuItemIndexInformation.Text" xml:space="preserve">
     <value>Index Information...</value>
   </data>
-  <data name="radMenuItemEdit.Text" xml:space="preserve">
-    <value>&amp;Edit</value>
+  <data name="radMenuItemView.Text" xml:space="preserve">
+    <value>&amp;View</value>
   </data>
   <data name="radMenuItemProjectExplorer.Text" xml:space="preserve">
     <value>Project Explorer</value>
@@ -208,8 +211,8 @@
   <data name="radMenuItemPanZoomWindow.Text" xml:space="preserve">
     <value>Pan &amp;&amp; Zoom Window</value>
   </data>
-  <data name="radMenuItemView.Text" xml:space="preserve">
-    <value>&amp;View</value>
+  <data name="radMenuItemProject.Text" xml:space="preserve">
+    <value>&amp;Project</value>
   </data>
   <data name="radMenuItemConstructors.Text" xml:space="preserve">
     <value>Constructors</value>
@@ -235,8 +238,11 @@
   <data name="radMenuItemProjectProperties.Text" xml:space="preserve">
     <value>Project Properties</value>
   </data>
-  <data name="radMenuItemProject.Text" xml:space="preserve">
-    <value>&amp;Project</value>
+  <data name="radMenuItemRules.Text" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="radMenuItemChaining.Text" xml:space="preserve">
+    <value>Chaining...</value>
   </data>
   <data name="radMenuItemFullChaining.Text" xml:space="preserve">
     <value>Full</value>
@@ -247,17 +253,17 @@
   <data name="radMenuItemUpdateOnlyChaining.Text" xml:space="preserve">
     <value>Update Only</value>
   </data>
-  <data name="radMenuItemChaining.Text" xml:space="preserve">
-    <value>Chaining...</value>
-  </data>
   <data name="radMenuItemToggleReevaluateAll.Text" xml:space="preserve">
     <value>Toggle Reevaluate All</value>
   </data>
   <data name="radMenuItemToggleActivateAll.Text" xml:space="preserve">
     <value>Toggle Activate All</value>
   </data>
-  <data name="radMenuItemRules.Text" xml:space="preserve">
-    <value>Rules</value>
+  <data name="radMenuItemTools.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="radMenuItemBuildRules.Text" xml:space="preserve">
+    <value>Build Rules...</value>
   </data>
   <data name="radMenuItemBuildActiveDrawing.Text" xml:space="preserve">
     <value>Active Drawing</value>
@@ -268,8 +274,8 @@
   <data name="radMenuItemBuildSelectedModules.Text" xml:space="preserve">
     <value>Select Modules...</value>
   </data>
-  <data name="radMenuItemBuildRules.Text" xml:space="preserve">
-    <value>Build Rules...</value>
+  <data name="radMenuItemValidateDocuments.Text" xml:space="preserve">
+    <value>Validate Documents...</value>
   </data>
   <data name="radMenuItemValidateActiveDrawing.Text" xml:space="preserve">
     <value>Active Drawing</value>
@@ -280,9 +286,6 @@
   <data name="radMenuItemValidateSelectedModules.Text" xml:space="preserve">
     <value>Select Modules...</value>
   </data>
-  <data name="radMenuItemValidateDocuments.Text" xml:space="preserve">
-    <value>Validate Documents...</value>
-  </data>
   <data name="radMenuItemValidateRules.Text" xml:space="preserve">
     <value>Validate Rules...</value>
   </data>
@@ -292,23 +295,23 @@
   <data name="radMenuSeparatorItem1.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
+  <data name="radMenuItemFileSystemDeployment.Text" xml:space="preserve">
+    <value>File System Deployment...</value>
+  </data>
   <data name="radMenuItemFileSystemDeploy.Text" xml:space="preserve">
     <value>Deploy...</value>
   </data>
   <data name="radMenuItemFileSystemDelete.Text" xml:space="preserve">
     <value>Delete...</value>
   </data>
-  <data name="radMenuItemFileSystemDeployment.Text" xml:space="preserve">
-    <value>File System Deployment...</value>
+  <data name="radMenuItemWebApiDeployment.Text" xml:space="preserve">
+    <value>Web-API Deployment...</value>
   </data>
   <data name="radMenuItemWebApiDeploy.Text" xml:space="preserve">
     <value>Deploy...</value>
   </data>
   <data name="radMenuItemWebApiDelete.Text" xml:space="preserve">
     <value>Delete...</value>
-  </data>
-  <data name="radMenuItemWebApiDeployment.Text" xml:space="preserve">
-    <value>Web-API Deployment...</value>
   </data>
   <data name="radMenuSeparatorItem2.Text" xml:space="preserve">
     <value>radMenuSeparatorItem2</value>
@@ -319,8 +322,8 @@
   <data name="radMenuItemSelectApplication.Text" xml:space="preserve">
     <value>Select Application...</value>
   </data>
-  <data name="radMenuItemTools.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
+  <data name="radMenuItemHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="radMenuItemContents.Text" xml:space="preserve">
     <value>Contents</value>
@@ -333,9 +336,6 @@
   </data>
   <data name="radMenuItemAbout.Text" xml:space="preserve">
     <value>About...</value>
-  </data>
-  <data name="radMenuItemHelp.Text" xml:space="preserve">
-    <value>&amp;Help</value>
   </data>
   <data name="commandBarRowElement1.DisplayName" xml:space="preserve">
     <value>Command Bar</value>
@@ -382,12 +382,6 @@
   <data name="commandBarButtonSave.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="commandBarButtonSaveAll.DisplayName" xml:space="preserve">
-    <value>Save All</value>
-  </data>
-  <data name="commandBarButtonSaveAll.Text" xml:space="preserve">
-    <value />
-  </data>
   <data name="commandBarButtonValidate.DisplayName" xml:space="preserve">
     <value>Validate</value>
   </data>
@@ -407,7 +401,7 @@
     <value>0, 20</value>
   </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1098, 30</value>
+    <value>1116, 55</value>
   </data>
   <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -428,7 +422,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>908, 234</value>
+    <value>923, 180</value>
   </data>
   <data name="splitPanelEdit.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -446,10 +440,10 @@
     <value>0</value>
   </data>
   <data name="splitPanelMessages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 242</value>
+    <value>0, 188</value>
   </data>
   <data name="splitPanelMessages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>908, 80</value>
+    <value>923, 61</value>
   </data>
   <data name="splitPanelMessages.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -476,7 +470,7 @@
     <value>Horizontal</value>
   </data>
   <data name="radSplitContainerLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>908, 322</value>
+    <value>923, 249</value>
   </data>
   <data name="radSplitContainerLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -497,7 +491,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanelLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>908, 322</value>
+    <value>923, 249</value>
   </data>
   <data name="splitPanelLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -518,10 +512,10 @@
     <value>0</value>
   </data>
   <data name="splitPanelExplorer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>916, 0</value>
+    <value>931, 0</value>
   </data>
   <data name="splitPanelExplorer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 322</value>
+    <value>185, 249</value>
   </data>
   <data name="splitPanelExplorer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -545,10 +539,10 @@
     <value>Fill</value>
   </data>
   <data name="radSplitContainerBase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 50</value>
+    <value>0, 75</value>
   </data>
   <data name="radSplitContainerBase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1098, 322</value>
+    <value>1116, 249</value>
   </data>
   <data name="radSplitContainerBase.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -569,10 +563,10 @@
     <value />
   </data>
   <data name="radStatusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 372</value>
+    <value>0, 324</value>
   </data>
   <data name="radStatusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1098, 26</value>
+    <value>1116, 26</value>
   </data>
   <data name="radStatusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -619,6 +613,33 @@
   <metadata name="office2013DarkTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>779, 115</value>
   </metadata>
+  <data name="radMenuItemPreferences.Text" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="radMenu1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1116, 20</value>
+  </data>
+  <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Name" xml:space="preserve">
+    <value>radMenu1</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenu, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radMenuItemColorTheme.Text" xml:space="preserve">
+    <value>Color Theme</value>
+  </data>
   <data name="radMenuItemDark.Text" xml:space="preserve">
     <value>Dark</value>
   </data>
@@ -628,8 +649,8 @@
   <data name="radMenuItemLight.Text" xml:space="preserve">
     <value>Light</value>
   </data>
-  <data name="radMenuItemColorTheme.Text" xml:space="preserve">
-    <value>Color Theme</value>
+  <data name="radMenuItemFontSize.Text" xml:space="preserve">
+    <value>Font Size</value>
   </data>
   <data name="radMenuItemNine.Text" xml:space="preserve">
     <value>9</value>
@@ -649,33 +670,6 @@
   <data name="radMenuItemFourteen.Text" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="radMenuItemFontSize.Text" xml:space="preserve">
-    <value>Font Size</value>
-  </data>
-  <data name="radMenuItemPreferences.Text" xml:space="preserve">
-    <value>Preferences</value>
-  </data>
-  <data name="radMenu1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="radMenu1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1098, 20</value>
-  </data>
-  <data name="radMenu1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Name" xml:space="preserve">
-    <value>radMenu1</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenu, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -689,7 +683,7 @@
     <value>9, 21</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1098, 398</value>
+    <value>1116, 350</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1214,12 +1208,6 @@
     <value>commandBarButtonSave</value>
   </data>
   <data name="&gt;&gt;commandBarButtonSave.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;commandBarButtonSaveAll.Name" xml:space="preserve">
-    <value>commandBarButtonSaveAll</value>
-  </data>
-  <data name="&gt;&gt;commandBarButtonSaveAll.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarButtonValidate.Name" xml:space="preserve">

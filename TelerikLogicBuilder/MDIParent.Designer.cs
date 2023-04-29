@@ -115,7 +115,6 @@
             commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
             commandBarButtonEdit = new Telerik.WinControls.UI.CommandBarButton();
             commandBarButtonSave = new Telerik.WinControls.UI.CommandBarButton();
-            commandBarButtonSaveAll = new Telerik.WinControls.UI.CommandBarButton();
             commandBarButtonValidate = new Telerik.WinControls.UI.CommandBarButton();
             commandBarButtonBuild = new Telerik.WinControls.UI.CommandBarButton();
             radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
@@ -601,7 +600,7 @@
             // commandBarStripElement1
             // 
             resources.ApplyResources(commandBarStripElement1, "commandBarStripElement1");
-            commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] { commandBarButtonEdit, commandBarButtonSave, commandBarButtonSaveAll, commandBarButtonValidate, commandBarButtonBuild });
+            commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] { commandBarButtonEdit, commandBarButtonSave, commandBarButtonValidate, commandBarButtonBuild });
             commandBarStripElement1.Name = "commandBarStripElement1";
             // 
             // commandBarButtonEdit
@@ -622,14 +621,6 @@
             commandBarButtonSave.Image = Properties.Resources.Save;
             commandBarButtonSave.MinSize = new System.Drawing.Size(30, 0);
             commandBarButtonSave.Name = "commandBarButtonSave";
-            // 
-            // commandBarButtonSaveAll
-            // 
-            commandBarButtonSaveAll.AccessibleName = "commandBarButton";
-            resources.ApplyResources(commandBarButtonSaveAll, "commandBarButtonSaveAll");
-            commandBarButtonSaveAll.Image = Properties.Resources.SaveAll;
-            commandBarButtonSaveAll.MinSize = new System.Drawing.Size(30, 0);
-            commandBarButtonSaveAll.Name = "commandBarButtonSaveAll";
             // 
             // commandBarButtonValidate
             // 
@@ -725,21 +716,6 @@
             splitPanelExplorer.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.332996F, 0F);
             splitPanelExplorer.SizeInfo.SplitterCorrection = new System.Drawing.Size(-329, 0);
             splitPanelExplorer.TabStop = false;
-            // 
-            // radProgressBarElement1
-            // 
-            radProgressBarElement1.Name = "radProgressBarElement1";
-            radProgressBarElement1.SeparatorColor1 = System.Drawing.Color.White;
-            radProgressBarElement1.SeparatorColor2 = System.Drawing.Color.White;
-            radProgressBarElement1.SeparatorColor3 = System.Drawing.Color.White;
-            radProgressBarElement1.SeparatorColor4 = System.Drawing.Color.White;
-            radProgressBarElement1.SeparatorGradientAngle = 0;
-            radProgressBarElement1.SeparatorGradientPercentage1 = 0.4F;
-            radProgressBarElement1.SeparatorGradientPercentage2 = 0.6F;
-            radProgressBarElement1.SeparatorNumberOfColors = 2;
-            radStatusStrip1.SetSpring(radProgressBarElement1, false);
-            radProgressBarElement1.StepWidth = 14;
-            radProgressBarElement1.SweepAngle = 90;
             // 
             // radStatusStrip1
             // 
@@ -875,7 +851,6 @@
         private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement1;
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonEdit;
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonSave;
-        private Telerik.WinControls.UI.CommandBarButton commandBarButtonSaveAll;
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonValidate;
         private Telerik.WinControls.UI.CommandBarButton commandBarButtonBuild;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainerBase;
