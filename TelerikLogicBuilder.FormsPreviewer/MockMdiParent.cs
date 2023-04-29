@@ -70,6 +70,11 @@ namespace TelerikLogicBuilder.FormsPreviewer
             throw new NotImplementedException();
         }
 
+        public void CreateNewProject(string projectFileFullName)
+        {
+            throw new NotImplementedException();
+        }
+
         public void OpenProject(string projectFileFullname)
         {
             throw new NotImplementedException();

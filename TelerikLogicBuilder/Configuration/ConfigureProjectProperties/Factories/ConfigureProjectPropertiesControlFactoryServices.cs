@@ -1,9 +1,10 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories
+namespace Microsoft.Extensions.DependencyInjection
 {
     internal static class ConfigureProjectPropertiesControlFactoryServices
     {

@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly ICheckSelectedApplication _checkSelectedApplication;
         private readonly IConfigurationService _configurationService;
         private readonly IConstructorListInitializer _constructorListInitializer;
+        private readonly ICreateProjectProperties _createProjectProperties;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFormInitializer _formInitializer;
         private readonly IFragmentListInitializer _fragmentListInitializer;
@@ -69,6 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly FindTextInFilesCommand _findTextInFilesCommand;
         private readonly FindVariableCommand _findVariableCommand;
         private readonly FindVariableInFilesCommand _findVariableInFilesCommand;
+        private readonly NewProjectCommand _newProjectCommand;
         private readonly OpenProjectCommand _openProjectCommand;
         private readonly ValidateActiveDocumentCommand _validateActiveDocumentCommand;
         private readonly ValidateSelectedDocumentsCommand _validateSelectedDocumentsCommand;
@@ -86,6 +89,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ICheckSelectedApplication checkSelectedApplication,
             IConfigurationService configurationService,
             IConstructorListInitializer constructorListInitializer,
+            ICreateProjectProperties createProjectProperties,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IFragmentListInitializer fragmentListInitializer,
@@ -122,6 +126,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             FindTextInFilesCommand findTextInFilesCommand,
             FindVariableCommand findVariableCommand,
             FindVariableInFilesCommand findVariableInFilesCommand,
+            NewProjectCommand newProjectCommand,
             OpenProjectCommand openProjectCommand,
             ValidateActiveDocumentCommand validateActiveDocumentCommand,
             ValidateSelectedDocumentsCommand validateSelectedDocumentsCommand,
@@ -136,6 +141,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _checkSelectedApplication = checkSelectedApplication;
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
+            _createProjectProperties = createProjectProperties;
             _displayIndexInformationCommand = displayIndexInformationCommand;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
@@ -170,6 +176,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _findTextInFilesCommand = findTextInFilesCommand;
             _findVariableCommand = findVariableCommand;
             _findVariableInFilesCommand = findVariableInFilesCommand;
+            _newProjectCommand = newProjectCommand;
             _openProjectCommand = openProjectCommand;
             _validateActiveDocumentCommand = validateActiveDocumentCommand;
             _validateSelectedDocumentsCommand = validateSelectedDocumentsCommand;
@@ -258,6 +265,34 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _configurationService.ClearConfigurationData();
 
             this.Refresh();
+        }
+
+        public void CreateNewProject(string projectFileFullName)
+        {
+            if (File.Exists(projectFileFullName))
+            {
+                OpenProject(projectFileFullName);
+                return;
+            }
+
+            _createProjectProperties.Create(projectFileFullName);
+            _configurationService.ProjectProperties = _loadProjectProperties.Load(projectFileFullName);
+            UpdateApplicationMenuItems();
+            SetSelectedApplication
+            (
+                /*Gets the first one if none have been selected*/
+                _configurationService.GetSelectedApplication().Name
+            );
+
+            _configurationService.ConstructorList = _constructorListInitializer.InitializeList();
+            _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
+            _configurationService.FunctionList = _functionListInitializer.InitializeList();
+            _configurationService.VariableList = _variableListInitializer.InitializeList();
+
+            SetButtonStates(true);
+            _projectExplorer.CreateProfile();
+            _projectExplorer.Visible = true;
+            RecentFilesList.Add(projectFileFullName);
         }
 
         public async void OpenProject(string fullName)
@@ -639,6 +674,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private void AddClickCommands()
         {
             #region File Menu
+            AddClickCommand(this.radMenuItemNewProject, _newProjectCommand);
             AddClickCommand(this.radMenuItemOpenProject, _openProjectCommand);
             AddClickCommand(this.radMenuItemCloseProject, _closeProjectCommand);
             AddClickCommand(this.radMenuItemExit, _exitCommand);

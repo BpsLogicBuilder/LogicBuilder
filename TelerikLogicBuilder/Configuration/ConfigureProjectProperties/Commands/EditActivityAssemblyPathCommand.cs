@@ -8,15 +8,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
 {
     internal class EditActivityAssemblyPathCommand : ClickCommandBase
     {
+        private readonly IApplicationControl applicationControl;
         private readonly HelperButtonTextBox txtActivityAssemblyPath;
 
         public EditActivityAssemblyPathCommand(IApplicationControl applicationControl)
         {
             txtActivityAssemblyPath = applicationControl.TxtActivityAssemblyPath;
+            this.applicationControl = applicationControl;
         }
 
         public override void Execute()
         {
+            ((Control)applicationControl).Cursor = Cursors.WaitCursor;
             using RadOpenFolderDialog openFolderDialog = new();
             openFolderDialog.MultiSelect = false;
             openFolderDialog.InitialDirectory = Directory.Exists(txtActivityAssemblyPath.Text) ? txtActivityAssemblyPath.Text : string.Empty;
@@ -25,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             {
                 txtActivityAssemblyPath.Text = openFolderDialog.FileName;
             }
+            ((Control)applicationControl).Cursor = Cursors.Default;
         }
     }
 }

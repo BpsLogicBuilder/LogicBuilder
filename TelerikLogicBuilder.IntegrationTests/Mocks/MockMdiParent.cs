@@ -73,6 +73,11 @@ namespace TelerikLogicBuilder.IntegrationTests.Mocks
             throw new NotImplementedException();
         }
 
+        public void CreateNewProject(string projectFileFullName)
+        {
+            throw new NotImplementedException();
+        }
+
         public void OpenProject(string projectFileFullname)
         {
             throw new NotImplementedException();

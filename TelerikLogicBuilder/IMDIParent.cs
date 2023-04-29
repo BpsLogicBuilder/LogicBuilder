@@ -39,11 +39,12 @@ namespace ABIS.LogicBuilder.FlowBuilder
         void Close();
         void CloseProject();
         void ChangeCursor(Cursor cursor);
+        void CreateNewProject(string projectFileFullName);
         void RemoveEditControl();
         Task RunAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task);
         Task RunLoadContextAsync(Func<IProgress<ProgressMessage>, CancellationTokenSource, Task> task);
         Task RunLoadContextAsync(Func<CancellationTokenSource, Task> task);
-        void OpenProject(string projectFileFullname);
+        void OpenProject(string projectFileFullName);
         void SetButtonStates(bool projectOpen);
         void SetEditControlMenuStates(bool visioOpen, bool tableOpen);
         void UpdateApplicationMenuItems();

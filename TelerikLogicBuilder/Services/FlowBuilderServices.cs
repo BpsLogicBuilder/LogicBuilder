@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder;
+using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Services;
 
@@ -26,6 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
                 .AddSingleton<IMainWindow, MainWindow>()
                 .AddSingleton<IModuleNamesReader, ModuleNamesReader>()
+                .AddTransient<INewProjectForm, NewProjectForm>()
                 .AddSingleton<IParameterAttributeReader, ParameterAttributeReader>()
                 .AddSingleton<IPathHelper, PathHelper>()
                 .AddSingleton<IResultMessageBuilder, ResultMessageBuilder>()
@@ -42,6 +44,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient(typeof(IScopedDisposableManager<>), typeof(ScopedDisposableManager<>))
                 .AddAttributeReaderFactories()
                 .AddFactories()
+                .AddNewProjectFormCommandFactories()
                 .AddStructuresFactories();
     }
 }
