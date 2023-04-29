@@ -49,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private readonly BuildActiveDocumentCommand _buildActiveDocumentCommand;
         private readonly BuildSaveConsolidateSelectedDocumentsCommand _buildSaveConsolidateSelectedDocumentsCommand;
         private readonly CloseProjectCommand _closeProjectCommand;
+        private readonly DeleteSelectionCommand _deleteSelectionCommand;
         private readonly DisplayIndexInformationCommand _displayIndexInformationCommand;
         private readonly EditActiveDocumentCommand _editActiveDocumentCommand;
         private readonly EditConnectorObjectTypesCommand _editConnectorObjectTypesCommand;
@@ -106,6 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
             CloseProjectCommand closeProjectCommand,
+            DeleteSelectionCommand deleteSelectionCommand,
             DisplayIndexInformationCommand displayIndexInformationCommand,
             EditActiveDocumentCommand editActiveDocumentCommand,
             EditConnectorObjectTypesCommand editConnectorObjectTypesCommand,
@@ -146,6 +148,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             _configurationService = configurationService;
             _constructorListInitializer = constructorListInitializer;
             _createProjectProperties = createProjectProperties;
+            _deleteSelectionCommand = deleteSelectionCommand;
             _displayIndexInformationCommand = displayIndexInformationCommand;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
@@ -704,6 +707,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             #endregion Tools Menu
 
             #region Edit/Find
+            AddClickCommand(this.radMenuItemDelete, _deleteSelectionCommand);
             AddClickCommand(this.radMenuItemFindConstructor, _findConstructorCommand);
             AddClickCommand(this.radMenuItemFindCell, _findCellCommand);
             AddClickCommand(this.radMenuItemFindFunction, _findFunctionCommand);

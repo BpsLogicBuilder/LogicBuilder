@@ -65,6 +65,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         applicationName
                     )
                 )
+                .AddTransient<DeleteSelectionCommand>()
                 .AddTransient<DisplayIndexInformationCommand>()
                 .AddTransient<EditActiveDocumentCommand>()
                 .AddTransient<EditConnectorObjectTypesCommand>()
