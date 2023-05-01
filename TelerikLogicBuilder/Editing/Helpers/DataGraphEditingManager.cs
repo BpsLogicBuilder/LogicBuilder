@@ -37,7 +37,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             ParametersDataElementType.Constructor,
             ParametersDataElementType.AssertFunction,
             ParametersDataElementType.Function,
-            ParametersDataElementType.NotFunction,
             ParametersDataElementType.ParameterLiteralList,
             ParametersDataElementType.ParameterObjectList,
             ParametersDataElementType.RetractFunction,

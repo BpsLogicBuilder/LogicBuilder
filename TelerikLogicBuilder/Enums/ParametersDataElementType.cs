@@ -19,7 +19,6 @@
         ParameterObjectList,
         VariableLiteralList,
         VariableObjectList,
-        NotFunction,
         AssertFunction,
         RetractFunction
     }
