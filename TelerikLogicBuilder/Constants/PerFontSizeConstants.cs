@@ -118,16 +118,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
             get
             {
                 if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
-                    return 27;
+                    return 35;
 
                 Dictionary<int, int> sizes = new()
                 {
-                    [ThemeCollections.NINE] = 27,
-                    [ThemeCollections.TEN] = 30,
-                    [ThemeCollections.ELEVEN] = 33,
-                    [ThemeCollections.TWELVE] = 35,
-                    [ThemeCollections.THIRTEEN] = 37,
-                    [ThemeCollections.FOURTEEN] = 39,
+                    [ThemeCollections.NINE] = 35,
+                    [ThemeCollections.TEN] = 38,
+                    [ThemeCollections.ELEVEN] = 41,
+                    [ThemeCollections.TWELVE] = 43,
+                    [ThemeCollections.THIRTEEN] = 45,
+                    [ThemeCollections.FOURTEEN] = 47,
                 };
 
                 return sizes[Properties.Settings.Default.fontSize];
