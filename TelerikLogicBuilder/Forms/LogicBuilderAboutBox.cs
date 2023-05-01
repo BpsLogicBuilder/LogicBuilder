@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Reflection;
-using System.Globalization;
+﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System.Drawing;
+using System.Globalization;
+using System.Reflection;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Forms
 {
@@ -122,6 +119,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
         private void Initialize()
         {
             this.Icon = _formInitializer.GetLogicBuilderIcon();
+            okRadButton.Size = new Size(okRadButton.Width, (int)PerFontSizeConstants.SingleLineHeight);
         }
         #endregion Methods
     }
