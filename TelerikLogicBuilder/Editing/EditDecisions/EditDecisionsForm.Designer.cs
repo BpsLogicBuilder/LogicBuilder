@@ -414,7 +414,7 @@
             Controls.Add(radPanelApplication);
             Controls.Add(radPanelBottom);
             Name = "EditDecisionsForm";
-            Text = "EditDecisionsForm";
+            Text = "Edit Decisions";
             ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
             radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();

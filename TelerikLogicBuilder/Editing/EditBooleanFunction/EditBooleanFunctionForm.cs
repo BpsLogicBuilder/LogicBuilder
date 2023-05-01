@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Factories;
@@ -120,6 +119,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction
 
         public void DisableControlsDuringEdit(bool disable)
         {
+            btnOk.Enabled = !disable;
+            btnPasteXml.Enabled = !disable;
         }
 
         public void RebuildTreeView() => LoadTreeview();

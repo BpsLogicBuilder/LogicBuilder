@@ -131,6 +131,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction
 
         public void DisableControlsDuringEdit(bool disable)
         {
+            btnOk.Enabled = !disable;
+            btnPasteXml.Enabled = !disable;
         }
 
         public void RebuildTreeView() => LoadTreeview();

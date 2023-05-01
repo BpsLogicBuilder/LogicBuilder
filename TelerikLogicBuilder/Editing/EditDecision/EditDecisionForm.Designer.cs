@@ -412,7 +412,7 @@
             Controls.Add(radGroupBoxList);
             Controls.Add(radPanelBottom);
             Name = "EditDecisionForm";
-            Text = "Edit Decisions";
+            Text = "Edit Decision";
             ((System.ComponentModel.ISupportInitialize)radPanelBottom).EndInit();
             radPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)radPanelMessages).EndInit();

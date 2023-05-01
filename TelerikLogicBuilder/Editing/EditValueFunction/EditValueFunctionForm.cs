@@ -123,6 +123,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
         public void DisableControlsDuringEdit(bool disable)
         {
+            btnOk.Enabled = !disable;
+            btnPasteXml.Enabled = !disable;
         }
 
         public void RebuildTreeView() => LoadTreeview();

@@ -101,6 +101,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public void DisableControlsDuringEdit(bool disable)
         {
+            btnOk.Enabled = !disable;
+            btnPasteXml.Enabled = !disable;
         }
 
         public void RebuildTreeView() => LoadTreeview();
