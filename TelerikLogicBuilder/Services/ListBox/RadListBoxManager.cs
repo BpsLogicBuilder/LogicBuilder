@@ -200,7 +200,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
             BtnAdd.Visible = !isUpdate;
             BtnUpdate.Visible = isUpdate;
 
-            BtnCancel.Enabled = isUpdate;
+            BtnCancel.Enabled = true;
             BtnDown.Enabled = !isUpdate && itemSelected;
             BtnUp.Enabled = !isUpdate && itemSelected;
             BtnCopy.Enabled = !isUpdate && itemSelected;
