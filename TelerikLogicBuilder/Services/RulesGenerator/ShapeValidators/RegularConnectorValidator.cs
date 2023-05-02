@@ -76,7 +76,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 errors
             );
             if (errors.Count > 0)
+            {
+                errors.ForEach(error => _resultMessageHelper.AddValidationMessage(error));
                 return;
+            }
 
             int dialogFunctions = _shapeHelper.CountDialogFunctions(this.Shape);
             if (dialogFunctions > 0)

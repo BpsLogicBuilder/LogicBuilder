@@ -103,6 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         {
             txtMemberName.Validating += TxtMemberName_Validating;
             cmbVariableCategory.SelectedIndexChanged += CmbVariableCategory_SelectedIndexChanged;
+            cmbCastVariableAs.TextChanged += CmbCastVariableAs_TextChanged;
             cmbCastVariableAs.Validating += CmbCastVariableAs_Validating;
             tableLayoutPanel.Validating += TableLayoutPanel_Validating;
         }
@@ -175,6 +176,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         {
             txtMemberName.Validating -= TxtMemberName_Validating;
             cmbVariableCategory.SelectedIndexChanged -= CmbVariableCategory_SelectedIndexChanged;
+            cmbCastVariableAs.TextChanged -= CmbCastVariableAs_TextChanged;
             cmbCastVariableAs.Validating -= CmbCastVariableAs_Validating;
             tableLayoutPanel.Validating -= TableLayoutPanel_Validating;
         }
@@ -265,6 +267,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         private void CmbCastVariableAs_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             UpdateTreeNodeOnChange();
+        }
+
+        private void CmbCastVariableAs_TextChanged(object? sender, EventArgs e)
+        {
+            if (!_typeLoadHelper.TryGetSystemType(cmbCastVariableAs.Text, Application, out Type? type))
+                return;
+
+            if (configuredItemHelperForm.TreeView.SelectedNode is IndexerTreeNode indexerTreeNode
+                && indexerTreeNode.IndexType == typeof(string)
+                && indexerTreeNode.CastVariableDefinition != cmbCastVariableAs.Text)
+            {
+                txtMemberName.Text = cmbCastVariableAs.Text;
+            }
         }
 
         private void CmbVariableCategory_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

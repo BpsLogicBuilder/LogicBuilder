@@ -5,8 +5,6 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -55,7 +53,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
             CollapsePanelBorder(radPanelUrls);
             CollapsePanelBorder(radPanelTableParent);
 
-            _formInitializer.SetFormDefaults(this, 351);
+            Padding groupBoxPadding = PerFontSizeConstants.GroupBoxPadding;
+            _formInitializer.SetFormDefaults
+            (
+                this,
+                this.Size.Height - this.ClientSize.Height
+                    + groupBoxPadding.Top
+                    + groupBoxPadding.Bottom
+                    + (int)(2 * PerFontSizeConstants.BoundarySize)
+                    + (int)(3 * PerFontSizeConstants.SeparatorLineHeight)
+                    + (int)(3 * PerFontSizeConstants.SingleLineHeight)
+                    + (int)PerFontSizeConstants.BottomPanelHeight
+            );
 
             btnOk.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
@@ -66,23 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 
         private void InitializeDialogFormMessageControl()
         {
-            ((ISupportInitialize)this.radPanelBottom).BeginInit();
-            this.radPanelBottom.SuspendLayout();
-            ((ISupportInitialize)this.radPanelMessages).BeginInit();
-            this.radPanelMessages.SuspendLayout();
-            ((ISupportInitialize)this).BeginInit();
-            this.SuspendLayout();
-
-            _dialogFormMessageControl.Dock = DockStyle.Fill;
-            _dialogFormMessageControl.Location = new Point(0, 0);
-            this.radPanelMessages.Controls.Add((Control)_dialogFormMessageControl);
-
-            ((ISupportInitialize)this.radPanelBottom).EndInit();
-            this.radPanelBottom.ResumeLayout(false);
-            ((ISupportInitialize)this.radPanelMessages).EndInit();
-            this.radPanelMessages.ResumeLayout(false);
-            ((ISupportInitialize)this).EndInit();
-            this.ResumeLayout(false);
+            ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
         private void InitializeTableLayoutPanel()

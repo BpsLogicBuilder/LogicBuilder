@@ -74,9 +74,9 @@
             radPanelBottom.Controls.Add(radPanelMessages);
             radPanelBottom.Controls.Add(radPanelButtons);
             radPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            radPanelBottom.Location = new System.Drawing.Point(0, 188);
+            radPanelBottom.Location = new System.Drawing.Point(0, 140);
             radPanelBottom.Name = "radPanelBottom";
-            radPanelBottom.Size = new System.Drawing.Size(961, 150);
+            radPanelBottom.Size = new System.Drawing.Size(979, 150);
             radPanelBottom.TabIndex = 1;
             // 
             // radPanelMessages
@@ -84,14 +84,14 @@
             radPanelMessages.Dock = System.Windows.Forms.DockStyle.Fill;
             radPanelMessages.Location = new System.Drawing.Point(0, 0);
             radPanelMessages.Name = "radPanelMessages";
-            radPanelMessages.Size = new System.Drawing.Size(801, 150);
+            radPanelMessages.Size = new System.Drawing.Size(819, 150);
             radPanelMessages.TabIndex = 2;
             // 
             // radPanelButtons
             // 
             radPanelButtons.Controls.Add(tableLayoutPanelButtons);
             radPanelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            radPanelButtons.Location = new System.Drawing.Point(801, 0);
+            radPanelButtons.Location = new System.Drawing.Point(819, 0);
             radPanelButtons.Name = "radPanelButtons";
             radPanelButtons.Size = new System.Drawing.Size(160, 150);
             radPanelButtons.TabIndex = 2;
@@ -123,18 +123,20 @@
             // btnCancel
             // 
             btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            btnCancel.Location = new System.Drawing.Point(27, 45);
+            btnCancel.Location = new System.Drawing.Point(24, 42);
+            btnCancel.Margin = new System.Windows.Forms.Padding(0);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new System.Drawing.Size(106, 24);
+            btnCancel.Size = new System.Drawing.Size(112, 30);
             btnCancel.TabIndex = 1;
             btnCancel.Text = "&Cancel";
             // 
             // btnOk
             // 
             btnOk.Dock = System.Windows.Forms.DockStyle.Fill;
-            btnOk.Location = new System.Drawing.Point(27, 9);
+            btnOk.Location = new System.Drawing.Point(24, 6);
+            btnOk.Margin = new System.Windows.Forms.Padding(0);
             btnOk.Name = "btnOk";
-            btnOk.Size = new System.Drawing.Size(106, 24);
+            btnOk.Size = new System.Drawing.Size(112, 30);
             btnOk.TabIndex = 0;
             btnOk.Text = "&Ok";
             // 
@@ -144,7 +146,7 @@
             radPanelTableParent.Dock = System.Windows.Forms.DockStyle.Top;
             radPanelTableParent.Location = new System.Drawing.Point(0, 0);
             radPanelTableParent.Name = "radPanelTableParent";
-            radPanelTableParent.Size = new System.Drawing.Size(955, 148);
+            radPanelTableParent.Size = new System.Drawing.Size(956, 148);
             radPanelTableParent.TabIndex = 3;
             // 
             // tableLayoutPanel
@@ -172,7 +174,7 @@
             tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
             tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            tableLayoutPanel.Size = new System.Drawing.Size(955, 148);
+            tableLayoutPanel.Size = new System.Drawing.Size(956, 148);
             tableLayoutPanel.TabIndex = 0;
             // 
             // txtDeleteAllRulesUrl
@@ -182,7 +184,7 @@
             txtDeleteAllRulesUrl.Location = new System.Drawing.Point(324, 92);
             txtDeleteAllRulesUrl.Margin = new System.Windows.Forms.Padding(0);
             txtDeleteAllRulesUrl.Name = "txtDeleteAllRulesUrl";
-            txtDeleteAllRulesUrl.Size = new System.Drawing.Size(601, 30);
+            txtDeleteAllRulesUrl.Size = new System.Drawing.Size(602, 30);
             txtDeleteAllRulesUrl.TabIndex = 3;
             // 
             // txtDeleteRulesUrl
@@ -192,7 +194,7 @@
             txtDeleteRulesUrl.Location = new System.Drawing.Point(324, 56);
             txtDeleteRulesUrl.Margin = new System.Windows.Forms.Padding(0);
             txtDeleteRulesUrl.Name = "txtDeleteRulesUrl";
-            txtDeleteRulesUrl.Size = new System.Drawing.Size(601, 30);
+            txtDeleteRulesUrl.Size = new System.Drawing.Size(602, 30);
             txtDeleteRulesUrl.TabIndex = 3;
             // 
             // txtPostFileDataUrl
@@ -202,7 +204,7 @@
             txtPostFileDataUrl.Location = new System.Drawing.Point(324, 20);
             txtPostFileDataUrl.Margin = new System.Windows.Forms.Padding(0);
             txtPostFileDataUrl.Name = "txtPostFileDataUrl";
-            txtPostFileDataUrl.Size = new System.Drawing.Size(601, 30);
+            txtPostFileDataUrl.Size = new System.Drawing.Size(602, 30);
             txtPostFileDataUrl.TabIndex = 0;
             // 
             // lblDeleteAllRulesUrl
@@ -240,7 +242,7 @@
             radGroupBoxUrls.HeaderText = "Urls";
             radGroupBoxUrls.Location = new System.Drawing.Point(0, 0);
             radGroupBoxUrls.Name = "radGroupBoxUrls";
-            radGroupBoxUrls.Size = new System.Drawing.Size(961, 188);
+            radGroupBoxUrls.Size = new System.Drawing.Size(979, 140);
             radGroupBoxUrls.TabIndex = 2;
             radGroupBoxUrls.Text = "Urls";
             // 
@@ -253,8 +255,8 @@
             // radPanelUrls.PanelContainer
             // 
             radPanelUrls.PanelContainer.Controls.Add(radPanelTableParent);
-            radPanelUrls.PanelContainer.Size = new System.Drawing.Size(955, 166);
-            radPanelUrls.Size = new System.Drawing.Size(957, 168);
+            radPanelUrls.PanelContainer.Size = new System.Drawing.Size(956, 118);
+            radPanelUrls.Size = new System.Drawing.Size(975, 120);
             radPanelUrls.TabIndex = 0;
             // 
             // ConfigureWebApiDeploymentForm
@@ -262,7 +264,7 @@
             AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(961, 338);
+            ClientSize = new System.Drawing.Size(979, 290);
             Controls.Add(radGroupBoxUrls);
             Controls.Add(radPanelBottom);
             Name = "ConfigureWebApiDeploymentForm";
