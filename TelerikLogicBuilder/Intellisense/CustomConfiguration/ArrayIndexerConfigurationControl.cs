@@ -100,7 +100,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         {
             txtMemberName.Validating += TxtMemberName_Validating;
             cmbVariableCategory.SelectedIndexChanged += CmbVariableCategory_SelectedIndexChanged;
-            cmbCastVariableAs.Validating += CmbCastVariableAs_Validating;
+            cmbCastVariableAs.TextChanged += CmbCastVariableAs_TextChanged;
             tableLayoutPanel.Validating += TableLayoutPanel_Validating;
         }
 
@@ -172,7 +172,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         {
             txtMemberName.Validating -= TxtMemberName_Validating;
             cmbVariableCategory.SelectedIndexChanged -= CmbVariableCategory_SelectedIndexChanged;
-            cmbCastVariableAs.Validating -= CmbCastVariableAs_Validating;
+            cmbCastVariableAs.TextChanged -= CmbCastVariableAs_TextChanged;
             tableLayoutPanel.Validating -= TableLayoutPanel_Validating;
         }
 
@@ -260,8 +260,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         }
 
         #region Event Handlers
-        private void CmbCastVariableAs_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+        private void CmbCastVariableAs_TextChanged(object? sender, EventArgs e)
         {
+            if (!_typeLoadHelper.TryGetSystemType(cmbCastVariableAs.Text, Application, out Type? _))
+                return;
+
             UpdateTreeNodeOnChange();
         }
 

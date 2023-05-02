@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using System;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -19,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IIntellisenseVariableControlsValidator _intellisenseVariableControlsValidator;
         private readonly ITypeAutoCompleteManager _cmbCastVariableAsTypeAutoCompleteManager;
+        private readonly ITypeLoadHelper _typeLoadHelper;
 
         private readonly IConfiguredItemHelperForm configuredItemHelperForm;
 
@@ -26,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
             IExceptionHelper exceptionHelper,
             IIntellisenseCustomConfigurationValidatorFactory intellisenseCustomConfigurationValidatorFactory,
             IServiceFactory serviceFactory,
+            ITypeLoadHelper typeLoadHelper,
             IConfiguredItemHelperForm configuredItemHelperForm)
         {
             InitializeComponent();
@@ -36,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
                 configuredItemHelperForm,
                 cmbCastVariableAs
             );
+            _typeLoadHelper = typeLoadHelper;
             this.configuredItemHelperForm = configuredItemHelperForm;
             Initialize();
         }
@@ -81,7 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
 
         private void AddEventHandlers()
         {
-            cmbCastVariableAs.Validating += CmbCastVariableAs_Validating;
+            cmbCastVariableAs.TextChanged += CmbCastVariableAs_TextChanged;
             tableLayoutPanel.Validating += TableLayoutPanel_Validating;
         }
 
@@ -126,7 +130,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
 
         private void RemoveEventHandlers()
         {
-            cmbCastVariableAs.Validating -= CmbCastVariableAs_Validating;
+            cmbCastVariableAs.TextChanged -= CmbCastVariableAs_TextChanged;
             tableLayoutPanel.Validating -= TableLayoutPanel_Validating;
         }
 
@@ -165,8 +169,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration
         }
 
         #region Event Handlers
-        private void CmbCastVariableAs_Validating(object? sender, System.ComponentModel.CancelEventArgs e)
+        private void CmbCastVariableAs_TextChanged(object? sender, EventArgs e)
         {
+            if (!_typeLoadHelper.TryGetSystemType(cmbCastVariableAs.Text, Application, out Type? _))
+                return;
+
             UpdateTreeNodeOnChange();
         }
 

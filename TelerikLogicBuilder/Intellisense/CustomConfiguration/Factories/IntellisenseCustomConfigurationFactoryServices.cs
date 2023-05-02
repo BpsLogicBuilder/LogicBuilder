@@ -35,6 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IIntellisenseCustomConfigurationValidatorFactory>(),
                         provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
                         configuredItemHelperForm
                     )
                 )
@@ -74,6 +75,7 @@ namespace Microsoft.Extensions.DependencyInjection
                        provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IIntellisenseCustomConfigurationValidatorFactory>(),
                         provider.GetRequiredService<IServiceFactory>(),
+                        provider.GetRequiredService<ITypeLoadHelper>(),
                         configuredItemHelperForm
                     )
                 );
