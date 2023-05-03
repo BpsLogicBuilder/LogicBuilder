@@ -106,7 +106,7 @@ namespace TelerikLogicBuilder.Tests
             Assert.Equal("Visio Source Message", result.Message);
             Assert.Equal
             (
-                @"<diagramErrorSource fileFullName=""C:\folder\file.vsd"" pageIndex=""2"" shapeIndex=""3"" pageId=""21"" shapeId=""31"" />",
+                @"<diagramErrorSource fileFullName=""C:\folder\file.vsd"" pageIndex=""2"" shapeIndex=""3"" pageId=""21"" shapeId=""31"" shapeMasterName=""Action"" />",
                 result.LinkHiddenText
             );
             Assert.Equal
