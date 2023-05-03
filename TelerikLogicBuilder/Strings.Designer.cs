@@ -5375,6 +5375,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - Assign to {1}..
+        /// </summary>
+        internal static string objectFormsAssignToFormat {
+            get {
+                return ResourceManager.GetString("objectFormsAssignToFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Returns an object type..
         /// </summary>
         internal static string objectFuncNodeDescription {

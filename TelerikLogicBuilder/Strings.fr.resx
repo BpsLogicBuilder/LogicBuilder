@@ -1548,6 +1548,10 @@
     <value>"{0}" is not a valid {1}.FR</value>
     <comment>0=invalid value;1=TypeName.</comment>
   </data>
+	<data name="objectFormsAssignToFormat" xml:space="preserve">
+    <value>{0} - Assign to {1}.FR</value>
+    <comment>0=original form camption;1=type name;</comment>
+  </data>
 	<data name="objectFuncNodeDescription" xml:space="preserve">
     <value>Returns an object type.FR</value>
   </data>

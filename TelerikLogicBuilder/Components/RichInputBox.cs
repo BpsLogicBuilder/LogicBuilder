@@ -21,10 +21,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
     internal partial class RichInputBox : RichTextBox
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        public RichInputBox(IExceptionHelper exceptionHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        public RichInputBox(IExceptionHelper exceptionHelper, IPathHelper pathHelper, IXmlDocumentHelpers xmlDocumentHelpers)
         {
             _exceptionHelper = exceptionHelper;
+            _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             //12/2006 Calling component sets DetectUrls property
             InitializeComponent();
@@ -862,6 +864,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
                 this.Select(boundaries[i].Finish, 1);
                 SetSelectionAsLinkBoundary();
+                //this.Select(boundaries[i].Start + 1, boundaries[i].Finish - 1);
+               // this.SetSelectionLink(true);
             }
 
             this.ResumeEvents(eventMask);
@@ -1028,11 +1032,105 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             if (this.IsDisposed)
                 return;
 
+            XmlElement existingElement = GetElement();
             this.BackColor = ForeColorUtility.GetTextBoxBackColor(args.ThemeName);
             this.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
             this.Font = ForeColorUtility.GetDefaultFont(args.ThemeName);
-            ResetNonLinkTextOnThemeChange();
+
+            NativeMethods.LockWindowUpdate(this.Handle);
+            Update(existingElement, this);
+            //underline was getting erased when the new theme had a different font size.
+            //The solution was to clear the text box and reinsert the existing text on thene-changed.
+            NativeMethods.LockWindowUpdate(IntPtr.Zero);
+            //ResetNonLinkTextOnThemeChange();
         }
+
+        XmlElement GetElement()
+        {
+            StringBuilder stringBuilder = new();
+            using (XmlWriter xmlTextWriter = _xmlDocumentHelpers.CreateUnformattedXmlWriter(stringBuilder))
+            {
+                xmlTextWriter.WriteStartElement(XmlDataConstants.TEXTELEMENT);
+                    xmlTextWriter.WriteRaw(GetMixedXml());
+                xmlTextWriter.WriteEndElement();
+                xmlTextWriter.Flush();
+            }
+
+            return _xmlDocumentHelpers.ToXmlElement
+            (
+                stringBuilder.ToString()
+            );
+        }
+
+        void Update(XmlElement inputBoxXmlElement, RichInputBox richInputBox)
+        {
+            richInputBox.Clear();
+            foreach (XmlNode childNode in inputBoxXmlElement.ChildNodes)
+            {
+                switch (childNode.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        XmlElement xmlElement = (XmlElement)childNode;
+                        switch (xmlElement.Name)
+                        {
+                            case XmlDataConstants.VARIABLEELEMENT:
+                                richInputBox.InsertLink(xmlElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value, xmlElement.OuterXml, LinkType.Variable);
+                                break;
+                            case XmlDataConstants.FUNCTIONELEMENT:
+                                richInputBox.InsertLink(xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value, xmlElement.OuterXml, LinkType.Function);
+                                break;
+                            case XmlDataConstants.CONSTRUCTORELEMENT:
+                                richInputBox.InsertLink(xmlElement.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value, xmlElement.OuterXml, LinkType.Constructor);
+                                break;
+                            case XmlDataConstants.DIAGRAMERRORSOURCE:
+                                richInputBox.InsertLink
+                                (
+                                    string.Format
+                                    (
+                                        CultureInfo.CurrentCulture,
+                                        Strings.diagramVisibleLinkFormat,
+                                        _pathHelper.GetFileName(xmlElement.Attributes[XmlDataConstants.FILEFULLNAMEATTRIBUTE]!.Value),
+                                        xmlElement.Attributes[XmlDataConstants.PAGEINDEXATTRIBUTE]!.Value,
+                                        xmlElement.Attributes[XmlDataConstants.SHAPEMASTERNAMEATTRIBUTE]!.Value,
+                                        xmlElement.Attributes[XmlDataConstants.SHAPEINDEXATTRIBUTE]!.Value
+                                    ), 
+                                    xmlElement.OuterXml, 
+                                    LinkType.Function
+                                );
+                                break;
+                            case XmlDataConstants.TABLEERRORSOURCE:
+                                richInputBox.InsertLink
+                                (
+                                    string.Format
+                                    (
+                                        CultureInfo.CurrentCulture,
+                                        Strings.tableVisibleLinkFormat,
+                                        _pathHelper.GetFileName(xmlElement.Attributes[XmlDataConstants.FILEFULLNAMEATTRIBUTE]!.Value),
+                                        xmlElement.Attributes[XmlDataConstants.ROWINDEXATTRIBUTE]!.Value,
+                                        xmlElement.Attributes[XmlDataConstants.COLUMNINDEXATTRIBUTE]!.Value
+                                    ),
+                                    xmlElement.OuterXml,
+                                    LinkType.Function
+                                );
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    case XmlNodeType.Text:
+                        XmlText xmlText = (XmlText)childNode;
+                        richInputBox.InsertText(xmlText.Value!);//not null for XmlNodeType.Text.
+                        break;
+                    case XmlNodeType.Whitespace:
+                        XmlWhitespace xmlWhitespace = (XmlWhitespace)childNode;
+                        richInputBox.InsertText(xmlWhitespace.Value!);//not null for XmlNodeType.Whitespace.
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         #endregion EventHandlers
     }
 }

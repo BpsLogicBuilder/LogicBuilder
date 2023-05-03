@@ -15,6 +15,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
@@ -62,6 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.assignedTo = assignedTo;
+            this.Text = string.Format(CultureInfo.CurrentCulture, Strings.objectFormsAssignToFormat, this.Text, this.assignedTo.ToString());
             this.objectListInfo = objectListInfo;
 
             _treeViewXmlDocumentHelper.LoadXmlDocument(objectListXmlDocument.OuterXml);

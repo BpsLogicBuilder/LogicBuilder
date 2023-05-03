@@ -8,14 +8,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.StructuresFactories
 {
     internal class StructuresFactory : IStructuresFactory
     {
-        private readonly Func<string, int, int, int, int, DiagramErrorSourceData> _getDiagramErrorSourceData;
+        private readonly Func<string, int, int, int, int, string, DiagramErrorSourceData> _getDiagramErrorSourceData;
         private readonly Func<string, Page, Shape, List<ResultMessage>, IDiagramResultMessageHelper> _getResultMessageHelper;
         private readonly Func<string, int, int, TableErrorSourceData> _getTableErrorSourceData;
         private readonly Func<string, int, int, TableFileSource> _getTableFileSource;
         private readonly Func<string, int, short, string, int, int, VisioFileSource> _getVisioFileSource;
 
         public StructuresFactory(
-            Func<string, int, int, int, int, DiagramErrorSourceData> getDiagramErrorSourceData,
+            Func<string, int, int, int, int, string, DiagramErrorSourceData> getDiagramErrorSourceData,
             Func<string, Page, Shape, List<ResultMessage>, IDiagramResultMessageHelper> getResultMessageHelper,
             Func<string, int, int, TableErrorSourceData> getTableErrorSourceData,
             Func<string, int, int, TableFileSource> getTableFileSource,
@@ -28,8 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.StructuresFactories
             _getVisioFileSource = getVisioFileSource;
         }
 
-        public DiagramErrorSourceData GetDiagramErrorSourceData(string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId)
-            => _getDiagramErrorSourceData(fileFullName, pageIndex, shapeIndex, pageId, shapeId);
+        public DiagramErrorSourceData GetDiagramErrorSourceData(string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId, string shapeMasterName)
+            => _getDiagramErrorSourceData(fileFullName, pageIndex, shapeIndex, pageId, shapeId, shapeMasterName);
 
         public IDiagramResultMessageHelper GetDiagramResultMessageHelper(string sourceFile, Page page, Shape shape, List<ResultMessage> resultMessages)
             => _getResultMessageHelper(sourceFile, page, shape, resultMessages);

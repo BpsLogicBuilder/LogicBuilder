@@ -45,6 +45,7 @@
         internal const string SHAPEINDEXATTRIBUTE = "shapeIndex";
         internal const string PAGEIDATTRIBUTE = "pageId";
         internal const string SHAPEIDATTRIBUTE = "shapeId";
+        internal const string SHAPEMASTERNAMEATTRIBUTE = "shapeMasterName";
         internal const string ROWINDEXATTRIBUTE = "rowIndex";
         internal const string COLUMNINDEXATTRIBUTE = "columnIndex";
         internal const string ROOTELEMENT = "root";

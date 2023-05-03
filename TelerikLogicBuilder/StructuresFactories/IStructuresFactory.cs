@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.StructuresFactories
 {
     internal interface IStructuresFactory
     {
-        DiagramErrorSourceData GetDiagramErrorSourceData(string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId);
+        DiagramErrorSourceData GetDiagramErrorSourceData(string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId, string shapeMasterName);
 
         IDiagramResultMessageHelper GetDiagramResultMessageHelper(string sourceFile,
             Page page,

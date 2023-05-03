@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -43,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
             _formInitializer = formInitializer;
             _editingControlFactory = editingControlFactory;
             this.assignedTo = assignedTo;
+            this.Text = string.Format(CultureInfo.CurrentCulture, Strings.objectFormsAssignToFormat, this.Text, this.assignedTo.ToString());
             Initialize();
         }
 

@@ -78,6 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction
             _treeViewXmlDocumentHelper = serviceFactory.GetTreeViewXmlDocumentHelper(SchemaName.ParametersDataSchema);
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
+            this.Text = string.Format(CultureInfo.CurrentCulture, Strings.objectFormsAssignToFormat, this.Text, this.AssignedTo.ToString());
 
             if (functionXmlDocument != null)
                 LoadXmlDocument(functionXmlDocument);

@@ -16,6 +16,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls;
@@ -77,6 +78,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.assignedTo = assignedTo;
+            this.Text = string.Format(CultureInfo.CurrentCulture, Strings.objectFormsAssignToFormat, this.Text, this.assignedTo.ToString());
             this.constructorNames = constructorNames;
             this.selectedConstructor = selectedConstructor;
             this.denySpecialCharacters = denySpecialCharacters;

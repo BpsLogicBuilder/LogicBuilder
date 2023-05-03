@@ -23,7 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                     source.PageIndex,
                     source.ShapeIndex,
                     source.PageId,
-                    source.ShapeId
+                    source.ShapeId,
+                    source.ShapeMasterName
                 ).ToXml,
                 string.Format
                 (

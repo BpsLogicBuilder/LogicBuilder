@@ -32,7 +32,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.DataParsers
                 int.Parse(xmlElement.Attributes[XmlDataConstants.PAGEINDEXATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
                 int.Parse(xmlElement.Attributes[XmlDataConstants.SHAPEINDEXATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
                 int.Parse(xmlElement.Attributes[XmlDataConstants.PAGEIDATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
-                int.Parse(xmlElement.Attributes[XmlDataConstants.SHAPEIDATTRIBUTE]!.Value, CultureInfo.InvariantCulture)
+                int.Parse(xmlElement.Attributes[XmlDataConstants.SHAPEIDATTRIBUTE]!.Value, CultureInfo.InvariantCulture),
+                xmlElement.Attributes[XmlDataConstants.SHAPEMASTERNAMEATTRIBUTE]!.Value
             );
         }
     }

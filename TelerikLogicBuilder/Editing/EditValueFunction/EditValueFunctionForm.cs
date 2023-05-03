@@ -82,6 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.assignedTo = assignedTo;
+            this.Text = string.Format(CultureInfo.CurrentCulture, Strings.objectFormsAssignToFormat, this.Text, this.assignedTo.ToString());
 
             if (functionXmlDocument != null)
                 LoadXmlDocument(functionXmlDocument);

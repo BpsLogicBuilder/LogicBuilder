@@ -10,13 +10,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
     {
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
-        public DiagramErrorSourceData(IXmlDocumentHelpers xmlDocumentHelpers, string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId)
+        public DiagramErrorSourceData(IXmlDocumentHelpers xmlDocumentHelpers, string fileFullName, int pageIndex, int shapeIndex, int pageId, int shapeId, string shapeMasterName)
         {
             FileFullName = fileFullName;
             PageIndex = pageIndex;
             ShapeIndex = shapeIndex;
             PageId = pageId;
             ShapeId = shapeId;
+            ShapeMasterName = shapeMasterName;
             _xmlDocumentHelpers = xmlDocumentHelpers;
         }
 
@@ -46,6 +47,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
         /// </summary>
         internal int ShapeId { get; }
 
+        /// <summary>
+        /// shapeMasterName attribute of <diagramErrorSource /> element
+        /// </summary>
+        internal string ShapeMasterName { get; }
+
         internal string ToXml => BuildXml();
         #endregion Properties
 
@@ -60,6 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Structures
                 xmlTextWriter.WriteAttributeString(XmlDataConstants.SHAPEINDEXATTRIBUTE, ShapeIndex.ToString(CultureInfo.InvariantCulture));
                 xmlTextWriter.WriteAttributeString(XmlDataConstants.PAGEIDATTRIBUTE, PageId.ToString(CultureInfo.InvariantCulture));
                 xmlTextWriter.WriteAttributeString(XmlDataConstants.SHAPEIDATTRIBUTE, ShapeId.ToString(CultureInfo.InvariantCulture));
+                xmlTextWriter.WriteAttributeString(XmlDataConstants.SHAPEMASTERNAMEATTRIBUTE, ShapeMasterName);
                 xmlTextWriter.WriteEndElement();
                 xmlTextWriter.Flush();
                 xmlTextWriter.Close();
