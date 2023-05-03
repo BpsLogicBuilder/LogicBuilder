@@ -113,8 +113,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             {
                 SetInvalid
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, constructor.TypeName, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)),
-                    string.Format(CultureInfo.CurrentCulture, Strings.constructorGenericArgsMisMatchFormat2, constructor.TypeName, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments))
+                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, constructorType.Name, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)),
+                    string.Format(CultureInfo.CurrentCulture, Strings.constructorGenericArgsMisMatchFormat2, constructorType.Name, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments))
                 );
                 return;
             }
@@ -134,7 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             {
                 SetInvalid
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, constructor.TypeName, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)),
+                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, constructorType.Name, string.Join(Strings.itemsCommaSeparator, constructor.GenericArguments)),
                     string.Join(Strings.itemsCommaSeparator, errors)
                 );
                 return;

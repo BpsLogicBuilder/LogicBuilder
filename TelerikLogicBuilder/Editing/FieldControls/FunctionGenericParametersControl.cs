@@ -114,8 +114,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             {
                 SetInvalid
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, function.TypeName, string.Join(Strings.itemsCommaSeparator, function.GenericArguments)),
-                    string.Format(CultureInfo.CurrentCulture, Strings.functionGenericArgsMisMatchFormat2, _enumHelper.GetVisibleEnumText(ReferenceCategories.Type), function.TypeName, string.Join(Strings.itemsCommaSeparator, function.GenericArguments))
+                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, functionType.Name, string.Join(Strings.itemsCommaSeparator, function.GenericArguments)),
+                    string.Format(CultureInfo.CurrentCulture, Strings.functionGenericArgsMisMatchFormat2, _enumHelper.GetVisibleEnumText(ReferenceCategories.Type), functionType.Name, string.Join(Strings.itemsCommaSeparator, function.GenericArguments))
                 );
                 return;
             }
@@ -135,7 +135,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             {
                 SetInvalid
                 (
-                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, function.TypeName, string.Join(Strings.itemsCommaSeparator, function.GenericArguments)),
+                    string.Format(CultureInfo.CurrentCulture, Strings.genericTypeDescriptionFormat, functionType.Name, string.Join(Strings.itemsCommaSeparator, function.GenericArguments)),
                     string.Join(Strings.itemsCommaSeparator, errors)
                 );
                 return;
