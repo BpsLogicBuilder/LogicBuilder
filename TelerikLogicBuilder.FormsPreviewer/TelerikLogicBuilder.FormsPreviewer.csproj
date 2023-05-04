@@ -51,7 +51,7 @@
     </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="UI.for.WinForms.AllControls.Net70" Version="2022.3.1109" />
+    <PackageReference Include="UI.for.WinForms.AllControls.Net70" Version="2023.1.314" />
   </ItemGroup>
 
   <ItemGroup>
