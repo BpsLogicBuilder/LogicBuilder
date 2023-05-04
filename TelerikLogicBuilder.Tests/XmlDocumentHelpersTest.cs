@@ -571,9 +571,7 @@ namespace TelerikLogicBuilder.Tests
         {
             //arrange
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            XmlDocument xmlDocument = GetXmlDocument(@"<genericParameter name=""Refresh"">
-					<genericArgumentName>T</genericArgumentName>
-				</genericParameter>");
+            XmlDocument xmlDocument = GetXmlDocument(@"<genericParameter name=""Refresh""><genericArgumentName>T</genericArgumentName></genericParameter>");
 
             //act
             var result = helper.GetXmlString(xmlDocument);

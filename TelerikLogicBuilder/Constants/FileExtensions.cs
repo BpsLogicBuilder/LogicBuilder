@@ -12,6 +12,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
         internal const string RULESFILEEXTENSION = ".module";
         internal const string RESOURCEFILEEXTENSION = ".resources";
         internal const string RESOURCETEXTFILEEXTENSION = ".txt";
+        internal const string XMLFILEEXTENSION = ".xml";
 
         internal static readonly HashSet<string> DocumentExtensions = new
         (

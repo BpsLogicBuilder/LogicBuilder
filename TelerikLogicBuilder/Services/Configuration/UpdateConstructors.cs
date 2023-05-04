@@ -18,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
 
         public UpdateConstructors(
@@ -26,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
+            IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory)
         {
             _configurationService = configurationService;
@@ -33,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.ConstructorSchema);
         }
 
@@ -66,6 +69,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                         _fileIOHelper.CreateDirectory(_pathHelper.GetFilePath(fullPath));
 
                     _encryption.EncryptToFile(fullPath, xmlString);
+                    _fileIOHelper.SaveFile
+                    (
+                        $"{fullPath}{FileExtensions.XMLFILEEXTENSION}",
+                        _xmlDocumentHelpers.GetXmlString(xmlString)
+                    );
                 }
             }
             catch (XmlException ex)

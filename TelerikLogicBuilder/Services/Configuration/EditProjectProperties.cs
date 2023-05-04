@@ -88,7 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     _mainWindow.MDIParent.RunLoadContextAsync(PostConfiguration);
                 }
 
-                Task PostConfiguration(IProgress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
+                Task PostConfiguration(CancellationTokenSource cancellationTokenSource)
                 {
                     IMDIParent mdiParent = _mainWindow.MDIParent;
                     mdiParent.UpdateApplicationMenuItems();

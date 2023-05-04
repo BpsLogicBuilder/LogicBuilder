@@ -118,6 +118,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     string xmlToSave = _xmlDocumentHelpers.GetDocumentElement(saveDocument).OuterXml;
                     ValidateXml(xmlToSave);
                     _encryption.EncryptToFile(fullPath, xmlToSave);
+                    _fileIOHelper.SaveFile
+                    (
+                        $"{fullPath}{FileExtensions.XMLFILEEXTENSION}",
+                        _xmlDocumentHelpers.GetXmlString(xmlToSave)
+                    );
                 }
             }
             catch (XmlException ex)

@@ -80,6 +80,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                         _fileIOHelper.CreateDirectory(_pathHelper.GetFilePath(fullPath));
 
                     _encryption.EncryptToFile(fullPath, xmlString);
+                    _fileIOHelper.SaveFile
+                    (
+                        $"{fullPath}{FileExtensions.XMLFILEEXTENSION}",
+                        _xmlDocumentHelpers.GetXmlString(xmlString)
+                    );
                 }
             }
             catch (XmlException ex)

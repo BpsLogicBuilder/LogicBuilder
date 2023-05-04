@@ -34,6 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         /// <returns></returns>
         string GetVisibleText(XmlElement element);
         string GetXmlString(XmlDocument xmlDocument);
+        string GetXmlString(string xmlDocumentString);
         XmlAttribute MakeAttribute(XmlDocument xmlDocument, string name, string attributeValue);
         XmlElement MakeElement(XmlDocument xmlDocument, string name, string? innerXml = null, IDictionary<string, string>? attributes = null);
         XmlDocumentFragment MakeFragment(XmlDocument xmlDocument, string? innerXml = null);

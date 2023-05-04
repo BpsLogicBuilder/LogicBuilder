@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -20,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
+        private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
 
         public UpdateProjectProperties(
@@ -27,12 +29,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IProjectPropertiesItemFactory projectPropertiesItemFactory,
+            IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory)
         {
             _projectPropertiesItemFactory = projectPropertiesItemFactory;
             _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.ProjectPropertiesSchema);
         }
 
@@ -74,6 +78,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     _fileIOHelper.CreateDirectory(projectProperties.ProjectPath);
 
                 _encryption.EncryptToFile(projectProperties.ProjectFileFullName, xmlString);
+                _fileIOHelper.SaveFile
+                (
+                    $"{projectProperties.ProjectFileFullName}{FileExtensions.XMLFILEEXTENSION}",
+                    _xmlDocumentHelpers.GetXmlString(xmlString)
+                );
             }
             catch (XmlException ex)
             {

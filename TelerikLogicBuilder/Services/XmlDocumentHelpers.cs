@@ -365,6 +365,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
+        public string GetXmlString(string xmlDocumentString) 
+            => GetXmlString(ToXmlDocument(xmlDocumentString, false));//formatting with initial partial whitespace result in a not fully formatted doc.
+
         public XmlAttribute MakeAttribute(XmlDocument xmlDocument, string name, string attributeValue)
         {
             XmlAttribute attribute = xmlDocument.CreateAttribute(name);
