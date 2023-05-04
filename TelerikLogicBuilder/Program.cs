@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -60,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fr-FR");
             //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR");
@@ -76,9 +77,18 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ShowSplashScreen();
 
             mdiParent = ServiceProvider.GetRequiredService<IMDIParent>();
-
+            
             CloseSplashScreen();
+
+            if (ArgZeroIsProjectFile())
+                mdiParent.OpenProject(args[0]);
+
             Application.Run((Form)mdiParent);
+
+            bool ArgZeroIsProjectFile()
+                => args.Length > 0 
+                    && args[0].EndsWith(FileExtensions.PROJECTFILEEXTENSION, true, CultureInfo.InvariantCulture) 
+                    && System.IO.File.Exists(args[0]);
         }
 
         internal static void LoadThemes()
