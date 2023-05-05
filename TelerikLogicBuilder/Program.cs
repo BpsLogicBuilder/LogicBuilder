@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
@@ -73,6 +74,28 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Application.SetCompatibleTextRenderingDefault(false);
             RadControl.EnableRadAutoScale = false;
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+
+            //Prevent dotfuscator renaming enums called indirectly by GlobalFunctions.LoadComboItems<T>().
+            ViewEnumStrings(Enum.GetNames(typeof(DecisionsEvaluation)));
+            ViewEnumStrings(Enum.GetNames(typeof(FunctionCategories)));
+            ViewEnumStrings(Enum.GetNames(typeof(ListParameterInputStyle)));
+            ViewEnumStrings(Enum.GetNames(typeof(ListVariableInputStyle)));
+            ViewEnumStrings(Enum.GetNames(typeof(ListType)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralFunctionReturnType)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralParameterInputStyle)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableInputStyle)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralType)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableInputStyle)));
+            ViewEnumStrings(Enum.GetNames(typeof(ParametersLayout)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralParameterType)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableType)));
+            ViewEnumStrings(Enum.GetNames(typeof(ReferenceCategories)));
+            ViewEnumStrings(Enum.GetNames(typeof(ReturnTypeCategory)));
+            ViewEnumStrings(Enum.GetNames(typeof(RuntimeType)));
+            ViewEnumStrings(Enum.GetNames(typeof(VariableCategory)));
+            ViewEnumStrings(Enum.GetNames(typeof(ValidIndirectReference)));
+
+
             SetTheme();
             ShowSplashScreen();
 
@@ -140,6 +163,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ThemeResolutionService.ApplicationThemeName = ThemeCollections.SelectorToTheme.TryGetValue(new ThemeSelector(Properties.Settings.Default.colorTheme, Properties.Settings.Default.fontSize), out string? themeName)
                 ? themeName
                 : ThemeCollections.ControlDefault;
+        }
+
+        private static void ViewEnumStrings(string[] vs)
+        {
         }
 
         #region EventHandlers
