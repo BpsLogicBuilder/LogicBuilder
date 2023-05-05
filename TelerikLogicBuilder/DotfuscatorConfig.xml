@@ -78,14 +78,6 @@
     </removalreport>
     <referencerulelist />
   </removal>
-  <signing>
-    <resign>
-      <option>dontuseattributes</option>
-      <key>
-        <file dir="C:\LogicBuilderWindowsWF\FlowBuilder" name="LogicBuilder.snk" />
-      </key>
-    </resign>
-  </signing>
   <sos />
   <smartobfuscation>
     <smartobfuscationreport verbosity="all" overwrite="true">
