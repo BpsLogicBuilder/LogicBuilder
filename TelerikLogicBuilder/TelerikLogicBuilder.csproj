@@ -29,6 +29,20 @@
 		<PlatformTarget>x86</PlatformTarget>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<OutputPath>bin\Debugx64\</OutputPath>
+		<IntermediateOutputPath>obj\Debugx64\</IntermediateOutputPath>
+		<DefineConstants>TRACE;DEBUG;VERSION_2010</DefineConstants>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<OutputPath>bin\Releasex64\</OutputPath>
+		<IntermediateOutputPath>obj\Releasex64\</IntermediateOutputPath>
+		<DefineConstants>TRACE;VERSION_2010;VERSION_64</DefineConstants>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <None Remove="fr\Stencils\Applications.vss" />
 	  <None Remove="fr\Stencils\Logic Builder.vss" />

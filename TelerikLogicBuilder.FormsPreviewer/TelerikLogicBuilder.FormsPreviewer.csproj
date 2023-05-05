@@ -7,7 +7,7 @@
     <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-			<Platforms>AnyCPU;x86</Platforms>
+			<Platforms>AnyCPU;x86;x64</Platforms>
 			<Nullable>enable</Nullable>
 			<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
