@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         public async override void Execute()
         {
             _mainWindow.MDIParent.ChangeCursor(Cursors.WaitCursor);
-            Uri uri = new($"help://ads?adFree={bool.TrueString}");
+            Uri uri = new($"logicbuilderhelp://ads?adFree={bool.TrueString}");
             await Windows.System.Launcher.LaunchUriAsync(uri, new Windows.System.LauncherOptions { });
             _mainWindow.MDIParent.ChangeCursor(Cursors.Default);
         }
