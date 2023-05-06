@@ -44,8 +44,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             );
         }
 
-        public void LoadComboItems<T>(RadDropDownList dropDownList, RadDropDownStyle dropDownStyle = RadDropDownStyle.DropDownList, T[]? excludedItems = null) where T : struct, Enum
-        {
+        public void LoadComboItems<T>(RadDropDownList dropDownList, RadDropDownStyle dropDownStyle = RadDropDownStyle.DropDownList, T[]? excludedItems = null)
+        {// where T : struct, Enum causes exception in Dotfuscator Community
+            //System.Security.VerificationException: Method System.Enum.GetValues: type argument 'a' violates the constraint of type parameter 'TEnum'.
             if (!typeof(Enum).IsAssignableFrom(typeof(T)))
                 throw _exceptionHelper.CriticalException("{AFB58CEB-D1A8-4ADC-A49F-6E9C46D03AA6}");
 
@@ -58,13 +59,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             dropDownList.Items.Clear();
             dropDownList.Items.AddRange
             (
-                Enum.GetValues<T>()
+                Enum.GetValues(typeof(T))
+                    .OfType<T>()
                     .Where(v => !excludedItemsSet.Contains(v))
                     .Select
                     (
                         v => new RadListDataItem
                         (
-                            _enumHelper.GetEnumResourceString(Enum.GetName(typeof(T), v)),
+                            _enumHelper.GetEnumResourceString(Enum.GetName(typeof(T), v!)),
                             v
                         )
                     )

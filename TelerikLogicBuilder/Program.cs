@@ -75,25 +75,36 @@ namespace ABIS.LogicBuilder.FlowBuilder
             RadControl.EnableRadAutoScale = false;
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
 
-            //Prevent dotfuscator renaming enums called indirectly by GlobalFunctions.LoadComboItems<T>().
-            ViewEnumStrings(Enum.GetNames(typeof(DecisionsEvaluation)));
+            //Prevent dotfuscator renaming enums called indirectly by GlobalFunctions.LoadComboItems<T>() (Enums used in Strings.resx with enumDescription<Enum>).
+            //ViewEnumStrings(Enum.GetNames(typeof(BindingFlagCategory)));
+            //ViewEnumStrings(Enum.GetNames(typeof(ConnectorCategory)));
+            //ViewEnumStrings(Enum.GetNames(typeof(DecisionOption)));
+            //ViewEnumStrings(Enum.GetNames(typeof(DecisionsEvaluation)));
+            //ViewEnumStrings(Enum.GetNames(typeof(EditFormFieldSet)));
             ViewEnumStrings(Enum.GetNames(typeof(FunctionCategories)));
+            //ViewEnumStrings(Enum.GetNames(typeof(FunctionsFormFieldSet)));
+            ViewEnumStrings(Enum.GetNames(typeof(GenericConfigCategory)));
+            //ViewEnumStrings(Enum.GetNames(typeof(LinkType)));
             ViewEnumStrings(Enum.GetNames(typeof(ListParameterInputStyle)));
-            ViewEnumStrings(Enum.GetNames(typeof(ListVariableInputStyle)));
             ViewEnumStrings(Enum.GetNames(typeof(ListType)));
+            ViewEnumStrings(Enum.GetNames(typeof(ListVariableInputStyle)));
             ViewEnumStrings(Enum.GetNames(typeof(LiteralFunctionReturnType)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralListElementType)));
             ViewEnumStrings(Enum.GetNames(typeof(LiteralParameterInputStyle)));
-            ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableInputStyle)));
+            ViewEnumStrings(Enum.GetNames(typeof(LiteralParameterType)));
             ViewEnumStrings(Enum.GetNames(typeof(LiteralType)));
             ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableInputStyle)));
-            ViewEnumStrings(Enum.GetNames(typeof(ParametersLayout)));
-            ViewEnumStrings(Enum.GetNames(typeof(LiteralParameterType)));
             ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableType)));
+            //ViewEnumStrings(Enum.GetNames(typeof(MessageTab)));
+            ViewEnumStrings(Enum.GetNames(typeof(ParametersLayout)));
             ViewEnumStrings(Enum.GetNames(typeof(ReferenceCategories)));
             ViewEnumStrings(Enum.GetNames(typeof(ReturnTypeCategory)));
             ViewEnumStrings(Enum.GetNames(typeof(RuntimeType)));
-            ViewEnumStrings(Enum.GetNames(typeof(VariableCategory)));
+            //ViewEnumStrings(Enum.GetNames(typeof(SchemaName)));
+            ViewEnumStrings(Enum.GetNames(typeof(SearchOptions)));
             ViewEnumStrings(Enum.GetNames(typeof(ValidIndirectReference)));
+            ViewEnumStrings(Enum.GetNames(typeof(VariableCategory)));
+            ViewEnumStrings(Enum.GetNames(typeof(VariableTypeCategory)));
 
 
             SetTheme();
