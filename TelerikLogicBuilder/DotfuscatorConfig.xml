@@ -21,7 +21,7 @@
         <option>honoroas</option>
         <option>stripoa</option>
         <option>transformxaml</option>
-        <file dir="${configdir}\obj\${configuration}${platform}\${targetframework}" name="FlowBuilder.dll" />
+        <file dir="C:\LB\obj\${configuration}${platform}\${targetframework}" name="FlowBuilder.dll" />
       </inputassembly>
     </asmlist>
   </input>
