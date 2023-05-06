@@ -78,15 +78,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     }
                 }
 
-                _mainWindow.MDIParent.ChangeCursor(Cursors.WaitCursor);
                 await _mainWindow.MDIParent.RunLoadContextAsync(Configure);
-                _mainWindow.MDIParent.ChangeCursor(Cursors.Default);
 
                 Task Configure(CancellationTokenSource cancellationTokenSource)
                 {
+                    _mainWindow.MDIParent.ChangeCursor(Cursors.WaitCursor);
                     using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
                     IConfigureVariablesForm configureVariablesForm = disposableManager.GetConfigureVariablesForm(openedReadonly);
                     configureVariablesForm.ShowDialog(_mainWindow.Instance);
+                    _mainWindow.MDIParent.ChangeCursor(Cursors.Default);
 
                     if (!openedReadonly && configureVariablesForm.DialogResult == DialogResult.OK)
                         _configurationService.VariableList = _variableListInitializer.InitializeList();
