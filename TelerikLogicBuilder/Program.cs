@@ -10,9 +10,11 @@ using System.Threading;
 using System.Windows.Forms;
 using Telerik.WinControls;
 
+#if (DEBUG)
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.Tests")]
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.IntegrationTests")]
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.FormsPreviewer")]
+#endif
 namespace ABIS.LogicBuilder.FlowBuilder
 {
     internal static class Program
