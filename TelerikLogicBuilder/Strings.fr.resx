@@ -803,6 +803,9 @@
     <value>{0} [Read-Only]FR</value>
     <comment>0=FileName</comment>
   </data>
+	<data name="fragmentConfigDescriptionHelp" xml:space="preserve">
+    <value>Some helpful text describing the purpose of the XML data fragment.FR</value>
+  </data>
 	<data name="fragmentConfigFolderNameHelp" xml:space="preserve">
     <value>Unique name for the folder.FR</value>
   </data>

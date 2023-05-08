@@ -101,7 +101,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment
                                             : null;
             Navigate(view);
             if (currentFragment != null)
+            {
                 CurrentViewControl.SelectFragment(currentFragment);
+                DisplayFragmentDescription(currentFragment);
+            }
             else
             {
                 CheckForValidSelection();
@@ -117,7 +120,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment
             IList<string> errors = ValidateSelectedFragment();
             if (errors.Count > 0)
                 SetErrorMessage(string.Join(Environment.NewLine, errors));
+            else
+                DisplayFragmentDescription(this.FragmentName!);
+
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void DisplayFragmentDescription(string fragmentName)
+        {
+            if (!_configurationService.FragmentList.Fragments.TryGetValue(fragmentName, out Fragment? fragment))
+                throw _exceptionHelper.CriticalException("{5B0F7919-2079-4AD2-AC3C-4CCCB9C8F2E1}");
+
+            SetMessage(fragment.Description);
         }
 
         private void Initialize()
@@ -135,6 +149,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFragment
 
             SetToggleStateOn(commandBarToggleButtonList);
             Navigate(ViewType.List);
+            if (ItemSelected)
+            {
+                DisplayFragmentDescription(this.FragmentName!);
+            }
         }
 
         private void Navigate(Control newControl)

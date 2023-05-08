@@ -60,6 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             txtFragmentName.Text = fragmentElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtFragmentName.Select();
             txtFragmentName.SelectAll();
+            txtFragmentDescription.Text = fragmentElement.GetAttribute(XmlDataConstants.DESCRIPTIONATTRIBUTE);//may be null hence GetAttribute
             _richTextBoxPanelFragment.Lines = new string[]
             {
                 _xmlDocumentHelpers.GetXmlString
@@ -88,6 +89,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             string newNameAttributeValue = txtFragmentName.Text.Trim();
 
             fragmentElement.InnerXml = string.Join(Environment.NewLine, _richTextBoxPanelFragment.Lines);
+            if (fragmentElement.Attributes[XmlDataConstants.DESCRIPTIONATTRIBUTE] == null)
+                fragmentElement.Attributes.Append(_xmlDocumentHelpers.MakeAttribute(XmlDocument, XmlDataConstants.DESCRIPTIONATTRIBUTE, txtFragmentDescription.Text));
+            else
+                fragmentElement.Attributes[XmlDataConstants.DESCRIPTIONATTRIBUTE]!.Value = txtFragmentDescription.Text;
+
             fragmentElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value = newNameAttributeValue;
 
             configureFragmentsForm.ValidateXmlDocument();
@@ -123,27 +129,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             radGroupBoxXml.SuspendLayout();
             ((ISupportInitialize)groupBoxName).BeginInit();
             groupBoxName.SuspendLayout();
+            ((ISupportInitialize)groupBoxDescription).BeginInit();
+            groupBoxDescription.SuspendLayout();
             ((ISupportInitialize)radPanelContent).BeginInit();
             radPanelContent.SuspendLayout();
             ((ISupportInitialize)radPanelName).BeginInit();
             radPanelName.SuspendLayout();
+            ((ISupportInitialize)radPanelDescription).BeginInit();
+            radPanelDescription.SuspendLayout();
             ((ISupportInitialize)groupBoxFragment).BeginInit();
             groupBoxFragment.SuspendLayout();
             SuspendLayout();
 
             radPanelName.Size = new Size(radPanelName.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
             groupBoxName.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
+            radPanelDescription.Size = new Size(radPanelDescription.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
+            groupBoxDescription.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
             radGroupBoxXml.Padding = PerFontSizeConstants.GroupBoxPadding;
             groupBoxFragment.Padding = PerFontSizeConstants.ParentGroupBoxPadding;
 
             ((ISupportInitialize)groupBoxName).EndInit();
             groupBoxName.ResumeLayout(false);
+            ((ISupportInitialize)groupBoxDescription).EndInit();
+            groupBoxDescription.ResumeLayout(false);
             ((ISupportInitialize)radGroupBoxXml).EndInit();
             radGroupBoxXml.ResumeLayout(false);
             ((ISupportInitialize)radPanelContent).EndInit();
             radPanelContent.ResumeLayout(false);
             ((ISupportInitialize)radPanelName).EndInit();
             radPanelName.ResumeLayout(false);
+            ((ISupportInitialize)radPanelDescription).EndInit();
+            radPanelDescription.ResumeLayout(false);
             ((ISupportInitialize)groupBoxFragment).EndInit();
             groupBoxFragment.ResumeLayout(false);
             ResumeLayout(false);

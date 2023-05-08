@@ -3260,6 +3260,15 @@ namespace ABIS.LogicBuilder.FlowBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some helpful text describing the purpose of the XML data fragment..
+        /// </summary>
+        internal static string fragmentConfigDescriptionHelp {
+            get {
+                return ResourceManager.GetString("fragmentConfigDescriptionHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unique name for the folder..
         /// </summary>
         internal static string fragmentConfigFolderNameHelp {
