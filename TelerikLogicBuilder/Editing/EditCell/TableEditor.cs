@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditCell
@@ -25,10 +26,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditCell
 
             Task Edit(CancellationTokenSource cancellationTokenSource)
             {
+                mdiParent.ChangeCursor(Cursors.WaitCursor);
                 _cellEditorFactory
                     .GetCellEditor(currentCell.ColumnInfo.Index)
                     .Edit(dataSet, currentCell);
-
+                mdiParent.ChangeCursor(Cursors.Default);
                 return Task.CompletedTask;
             }
         }

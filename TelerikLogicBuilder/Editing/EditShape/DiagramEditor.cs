@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Office.Interop.Visio;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
 {
@@ -26,9 +27,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
 
             Task Edit(CancellationTokenSource cancellationTokenSource)
             {
+                mdiParent.ChangeCursor(Cursors.WaitCursor);
                 _shapeEditorFactory
                     .GetShapeEditor(shape.Master.NameU)
                     .Edit(shape);
+                mdiParent.ChangeCursor(Cursors.Default);
 
                 return Task.CompletedTask;
             }
