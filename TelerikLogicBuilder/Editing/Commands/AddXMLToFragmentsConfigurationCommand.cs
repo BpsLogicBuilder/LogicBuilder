@@ -109,7 +109,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Commands
                         _fragmentItemFactory.GetFragment
                         (
                             newFragmentName,
-                            _xmlDocumentHelpers.GetXmlString(dataDocument)
+                            _xmlDocumentHelpers.GetXmlString(dataDocument),
+                            string.Empty
                         )
                         .ToXml,
                         new Dictionary<string, string> { { XmlDataConstants.NAMEATTRIBUTE, DateTime.Now.ToString() } }

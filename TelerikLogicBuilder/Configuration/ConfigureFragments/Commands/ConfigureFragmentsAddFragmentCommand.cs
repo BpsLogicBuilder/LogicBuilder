@@ -86,7 +86,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Command
                         _fragmentFactory.GetFragment
                         (
                             _stringHelper.EnsureUniqueName(fragmentName, FragmentNames),
-                            BuildFragmentXml()
+                            BuildFragmentXml(),
+                            string.Empty
                         ).ToXml
                     )
                 )

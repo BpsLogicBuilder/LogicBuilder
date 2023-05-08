@@ -12,6 +12,7 @@
         internal const string VISIBLETEXTATTRIBUTE = "visibleText";
         internal const string DECISIONELEMENT = "decision";
         internal const string DECISIONSELEMENT = "decisions";
+        internal const string DESCRIPTIONATTRIBUTE = "description";
         internal const string PARAMETERSELEMENT = "parameters";
         internal const string PARAMETERELEMENT = "parameter";
         internal const string FUNCTIONELEMENT = "function";

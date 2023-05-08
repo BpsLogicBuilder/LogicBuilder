@@ -4,15 +4,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Factori
 {
     internal class FragmentItemFactory : IFragmentItemFactory
     {
-        private readonly Func<string, string, Fragment> _getFragment;
+        private readonly Func<string, string, string, Fragment> _getFragment;
 
         public FragmentItemFactory(
-            Func<string, string, Fragment> getFragment)
+            Func<string, string, string, Fragment> getFragment)
         {
             _getFragment = getFragment;
         }
 
-        public Fragment GetFragment(string name, string xml)
-            => _getFragment(name, xml);
+        public Fragment GetFragment(string name, string xml, string description)
+            => _getFragment(name, xml, description);
     }
 }

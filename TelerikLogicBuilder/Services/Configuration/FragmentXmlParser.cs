@@ -37,7 +37,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     (
                         _xmlDocumentHelpers.GetSingleChildElement(xmlElement)
                     )
-                )
+                ),
+                xmlElement.GetAttribute(XmlDataConstants.DESCRIPTIONATTRIBUTE)//could be null
             );
         }
     }

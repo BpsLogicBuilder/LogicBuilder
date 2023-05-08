@@ -109,6 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
         }
         #region Common Reusable Elements
         private static XmlSchemaAttribute AttributeName => CreateRequiredAttribute("name", "string", true);
+        private static XmlSchemaAttribute AttributeDescription => CreateOptionalAttribute("description", "string", true);
         private static XmlSchemaAttribute AttributeVisibleText => CreateRequiredAttribute("visibleText", "string", true);
         #endregion Common  Elements
 
@@ -647,7 +648,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
                     CreateSchemaElement("literalList", "literalListType"),
                     CreateSchemaElement("objectList", "objectListType")
                 },
-                new XmlSchemaAttribute[] { AttributeName }, 1, 1);
+                new XmlSchemaAttribute[] { AttributeName, AttributeDescription }, 1, 1);
 
 
             return CreateCompiledXmlSchemaSet(new XmlSchemaObject[]
@@ -1085,6 +1086,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.XmlValidation
             {
                 Name = attributeName,
                 Use = XmlSchemaUse.Required,
+
+                SchemaTypeName = schemaUriRequired
+                ? new XmlQualifiedName(schemaTypeName, SchemaConstants.NAMESPACEURI)
+                : new XmlQualifiedName(schemaTypeName)
+            };
+
+            return attribute;
+        }
+
+        private static XmlSchemaAttribute CreateOptionalAttribute(string attributeName, string schemaTypeName, bool schemaUriRequired = false)
+        {
+            XmlSchemaAttribute attribute = new()
+            {
+                Name = attributeName,
+                Use = XmlSchemaUse.Optional,
 
                 SchemaTypeName = schemaUriRequired
                 ? new XmlQualifiedName(schemaTypeName, SchemaConstants.NAMESPACEURI)

@@ -2,6 +2,6 @@
 {
     internal interface IFragmentItemFactory
     {
-        Fragment GetFragment(string name, string xml);
+        Fragment GetFragment(string name, string xml, string description);
     }
 }

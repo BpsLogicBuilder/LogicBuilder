@@ -168,7 +168,7 @@ namespace TelerikLogicBuilder.Tests.TreeViewBuiilders
 
             ConfigurationService.FragmentList = new FragmentList
             (
-                new Dictionary<string, Fragment> { ["fragment1"] = FragmentItemFactory.GetFragment("fragment1", "<variable name=\"NewFragment\" visibleText=\"NewFragment\" />") },
+                new Dictionary<string, Fragment> { ["fragment1"] = FragmentItemFactory.GetFragment("fragment1", "<variable name=\"NewFragment\" visibleText=\"NewFragment\" />", string.Empty) },
                 new TreeFolder("folder", new List<string>() { "fragment1" }, new List<TreeFolder>()) { }
             );
 

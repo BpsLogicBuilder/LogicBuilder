@@ -10,14 +10,15 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddFragmentItemFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<string, string, Fragment>>
+                .AddTransient<Func<string, string, string, Fragment>>
                 (
                     provider =>
-                    (name, xml) => new Fragment
+                    (name, xml, description) => new Fragment
                     (
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         name,
-                        xml
+                        xml,
+                        description
                     )
                 )
                 .AddTransient<IFragmentItemFactory, FragmentItemFactory>();

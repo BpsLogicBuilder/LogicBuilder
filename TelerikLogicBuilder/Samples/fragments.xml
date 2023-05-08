@@ -1,6 +1,6 @@
 ﻿<folder name="Decisions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="fragments.xsd">
   <folder name="Lambda">
-    <fragment name="ParameterOperatorParameters">
+    <fragment name="ParameterOperatorParameter(}sbsbss" description="">
       <constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
         <genericArguments />
         <parameters>
