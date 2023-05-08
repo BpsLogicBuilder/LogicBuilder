@@ -30,7 +30,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
             for (int i = 0; i < buttons.Count; i++)
+            {
+                buttons[i].TabStop = false;
                 tableLayoutPanel.Controls.Add(buttons[i], i, 0);
+            }
 
             panelButtons.Controls.Add(tableLayoutPanel);
 

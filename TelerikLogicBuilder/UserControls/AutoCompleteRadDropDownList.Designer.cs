@@ -60,7 +60,7 @@
             this.radButtonHelper.Margin = new System.Windows.Forms.Padding(0);
             this.radButtonHelper.Name = "radButtonHelper";
             this.radButtonHelper.Size = new System.Drawing.Size(28, 28);
-            this.radButtonHelper.TabIndex = 0;
+            this.radButtonHelper.TabIndex = 1;
             // 
             // radPanelDropDownList
             // 
@@ -71,7 +71,7 @@
             this.radPanelDropDownList.Name = "radPanelDropDownList";
             this.radPanelDropDownList.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.radPanelDropDownList.Size = new System.Drawing.Size(320, 28);
-            this.radPanelDropDownList.TabIndex = 1;
+            this.radPanelDropDownList.TabIndex = 0;
             // 
             // radDropDownList1
             // 

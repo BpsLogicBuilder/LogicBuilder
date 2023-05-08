@@ -94,6 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void Initialize()
         {
+            radButtonHelper.TabStop = false;
             radButtonHelper.Image = Properties.Resources.more;
             radButtonHelper.ImageAlignment = ContentAlignment.MiddleCenter;
 

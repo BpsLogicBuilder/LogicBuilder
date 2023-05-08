@@ -13,7 +13,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
 
         public override void Execute()
         {
+            this.mainWindow.MDIParent.CloseProject();
             this.mainWindow.Instance.Close();
+            System.Windows.Forms.Application.Exit();
         }
     }
 }

@@ -1110,6 +1110,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
                     key
                 );
 
+                if (recentProjectsMenuItemList.ContainsKey(key))//Inconsistent issue.  Application failing to close after opening closing
+                    continue;                                   //a project and opening a new one.
+
                 radMenuItem.Click += (sender, args) => OpenProject(((RadMenuItem)sender!).Tag.ToString()!);
                 recentProjectsMenuItemList.Add(key, radMenuItem);
                 radMenuItemRecentProjects.Items.Add(radMenuItem);

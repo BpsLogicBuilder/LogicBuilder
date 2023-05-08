@@ -67,7 +67,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 Margin = new Padding(1, 0, 1, 0),
                 ImageIndex = ImageIndexes.MOREIMAGEINDEX,
                 Dock = DockStyle.Fill,
-                Image = Properties.Resources.more
+                Image = Properties.Resources.more,
+                TabStop = false
             };
 
             ((ISupportInitialize)this.radPanelButton).BeginInit();
