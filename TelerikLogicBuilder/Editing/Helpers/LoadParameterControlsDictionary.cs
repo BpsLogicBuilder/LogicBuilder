@@ -64,7 +64,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 Name = parameter.Name,
                 Text = parameter.Name,
                 Checked = !parameter.IsOptional,
-                Enabled = parameter.IsOptional
+                /*Disabling here causes layout problems at high DPIs.  The Enabled property had to be moved to each one of:
+                    EditBinaryFunctionControl
+                    EditConstructorControl
+                    EditStandardFunctionControl*/
+                //Enabled = parameter.IsOptional
             };
 
             _radCheckBoxHelper.SetLabelMargin(radCheckBox);

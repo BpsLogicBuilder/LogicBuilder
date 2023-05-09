@@ -398,6 +398,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                  //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
                  //This code should otherwise run where commented above "//ShowHideParameterControls(parameterControlSet.ChkInclude);"
                     ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
+                    parameterControlSet.ChkInclude.Enabled = parameter.IsOptional;
                     ShowHideParameterControls(parameterControlSet.ChkInclude);
                 }
             }
