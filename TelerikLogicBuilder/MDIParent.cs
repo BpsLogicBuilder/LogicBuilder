@@ -984,6 +984,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
             this.splitPanelEdit.ControlRemoved += SplitPanelEdit_ControlRemoved;
             this.Disposed += MDIParent_Disposed;
+            this.FormClosing += MDIParent_FormClosing;
 
             //OpenProject(@"C:\Test\NewProject\NewProject.lbproj");
             //OpenProject(@"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj");
@@ -1149,6 +1150,11 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
             Dispose(documentExplorerErrorCountChangedSubscription);
             Dispose(logicBuilderExceptionSubscription);
+        }
+
+        private void MDIParent_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            e.Cancel = false;
         }
 
         private void SplitPanelEdit_ControlRemoved(object? sender, ControlEventArgs e)

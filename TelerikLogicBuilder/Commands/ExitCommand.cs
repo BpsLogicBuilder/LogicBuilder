@@ -15,7 +15,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
         {
             this.mainWindow.MDIParent.CloseProject();
             this.mainWindow.Instance.Close();
-            System.Windows.Forms.Application.Exit();
         }
     }
 }

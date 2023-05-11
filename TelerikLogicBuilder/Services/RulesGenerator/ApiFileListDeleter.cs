@@ -34,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                     )
                 );
 
-                using HttpClient client = new HttpClient();
+                using HttpClient client = new();
                 HttpResponseMessage resultMessage = await client.PostAsync
                 (
                     application.WebApiDeployment.DeleteRulesUrl,
