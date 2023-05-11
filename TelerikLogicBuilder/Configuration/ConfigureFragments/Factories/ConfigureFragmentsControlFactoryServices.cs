@@ -20,6 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<RichTextBoxPanel>(),
+                        provider.GetRequiredService<RichTextBoxPanel>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureFragmentsForm

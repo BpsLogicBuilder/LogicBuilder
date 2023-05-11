@@ -363,7 +363,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Constants
 
                 return sizes[Properties.Settings.Default.fontSize];
             }
-        }     
+        }
+
+        public static int MultiLineTextGroupBoxHeight
+        {
+            get
+            {
+                if (!ThemeCollections.FontSizes.Contains(Properties.Settings.Default.fontSize))
+                    return 136;
+
+                Dictionary<int, int> sizes = new()
+                {
+                    [ThemeCollections.NINE] = 136,
+                    [ThemeCollections.TEN] = 141,
+                    [ThemeCollections.ELEVEN] = 148,
+                    [ThemeCollections.TWELVE] = 155,
+                    [ThemeCollections.THIRTEEN] = 165,
+                    [ThemeCollections.FOURTEEN] = 175,
+                };
+
+                return sizes[Properties.Settings.Default.fontSize];
+            }
+        }
 
         public static int OkCancelButtonPanelWidth
         {

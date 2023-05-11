@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
     internal partial class ConfigureFragmentControl : UserControl, IConfigureFragmentControl
     {
         private readonly IExceptionHelper _exceptionHelper;
+        private readonly RichTextBoxPanel _richTextBoxPanelDescription;
         private readonly RichTextBoxPanel _richTextBoxPanelFragment;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -28,6 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
         public ConfigureFragmentControl(
             IExceptionHelper exceptionHelper,
+            RichTextBoxPanel richTextBoxPanelDescription,
             RichTextBoxPanel richTextBoxPanelFragment,
             ITreeViewService treeViewService,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -35,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         {
             InitializeComponent();
             _exceptionHelper = exceptionHelper;
+            _richTextBoxPanelDescription = richTextBoxPanelDescription;
             _richTextBoxPanelFragment = richTextBoxPanelFragment;
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -60,7 +63,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             txtFragmentName.Text = fragmentElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
             txtFragmentName.Select();
             txtFragmentName.SelectAll();
-            txtFragmentDescription.Text = fragmentElement.GetAttribute(XmlDataConstants.DESCRIPTIONATTRIBUTE);//may be null hence GetAttribute
+            _richTextBoxPanelDescription.Lines = fragmentElement
+                                                    .GetAttribute(XmlDataConstants.DESCRIPTIONATTRIBUTE)/*attribute may be null hence GetAttribute*/
+                                                    .Split(Environment.NewLine, StringSplitOptions.None);
             _richTextBoxPanelFragment.Lines = new string[]
             {
                 _xmlDocumentHelpers.GetXmlString
@@ -90,9 +95,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
             fragmentElement.InnerXml = string.Join(Environment.NewLine, _richTextBoxPanelFragment.Lines);
             if (fragmentElement.Attributes[XmlDataConstants.DESCRIPTIONATTRIBUTE] == null)
-                fragmentElement.Attributes.Append(_xmlDocumentHelpers.MakeAttribute(XmlDocument, XmlDataConstants.DESCRIPTIONATTRIBUTE, txtFragmentDescription.Text));
+                fragmentElement.Attributes.Append(_xmlDocumentHelpers.MakeAttribute(XmlDocument, XmlDataConstants.DESCRIPTIONATTRIBUTE, string.Join(Environment.NewLine, _richTextBoxPanelDescription.Lines)));
             else
-                fragmentElement.Attributes[XmlDataConstants.DESCRIPTIONATTRIBUTE]!.Value = txtFragmentDescription.Text;
+                fragmentElement.Attributes[XmlDataConstants.DESCRIPTIONATTRIBUTE]!.Value = string.Join(Environment.NewLine, _richTextBoxPanelDescription.Lines);
 
             fragmentElement.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value = newNameAttributeValue;
 
@@ -105,6 +110,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         private void AddEventHandlers()
         {
             txtFragmentName.TextChanged += TxtFragmentName_TextChanged;
+            _richTextBoxPanelDescription.TextChanged += RichTextBoxPanelDescription_TextChanged;
             _richTextBoxPanelFragment.TextChanged += RichTextBoxPanelFragment_TextChanged;
         }
 
@@ -114,6 +120,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         private void Initialize()
         {
             ResetGroupBoxes();
+            InitializeRichTextBoxPanelDescriptionControl();
             InitializeRichTextBoxPanelFragmentControl();
             //AddEventHandlers();
             //_richTextBoxPanelFragment.TextChanged runs when ConfigureFragmentControl (this control) is dynamically added
@@ -143,8 +150,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
             radPanelName.Size = new Size(radPanelName.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
             groupBoxName.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
-            radPanelDescription.Size = new Size(radPanelDescription.Width, PerFontSizeConstants.SingleRowGroupBoxHeight);
-            groupBoxDescription.Padding = PerFontSizeConstants.SingleRowGroupBoxPadding;
+            radPanelDescription.Size = new Size(radPanelDescription.Width, PerFontSizeConstants.MultiLineTextGroupBoxHeight);
+            groupBoxDescription.Padding = PerFontSizeConstants.GroupBoxPadding;
             radGroupBoxXml.Padding = PerFontSizeConstants.GroupBoxPadding;
             groupBoxFragment.Padding = PerFontSizeConstants.ParentGroupBoxPadding;
 
@@ -166,6 +173,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             PerformLayout();
         }
 
+        private void InitializeRichTextBoxPanelDescriptionControl()
+        {
+            ((ISupportInitialize)this.groupBoxDescription).BeginInit();
+            this.groupBoxDescription.SuspendLayout();
+
+            _richTextBoxPanelDescription.Dock = DockStyle.Fill;
+            _richTextBoxPanelDescription.Location = new Point(0, 0);
+            this.groupBoxDescription.Controls.Add(_richTextBoxPanelDescription);
+
+            ((ISupportInitialize)this.groupBoxDescription).EndInit();
+            this.groupBoxDescription.ResumeLayout(true);
+        }
+
         private void InitializeRichTextBoxPanelFragmentControl()
         {
             ((ISupportInitialize)this.radGroupBoxXml).BeginInit();
@@ -182,14 +202,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         private void InitializeFragmentControls()
         {
             helpProvider.SetHelpString(txtFragmentName, Strings.fragmentConfigNameHelp);
+            helpProvider.SetHelpString(_richTextBoxPanelDescription, Strings.fragmentConfigDescriptionHelp);
             helpProvider.SetHelpString(_richTextBoxPanelFragment, Strings.fragmentConfigXmlNameHelp);
             toolTip.SetToolTip(groupBoxName, Strings.fragmentConfigNameHelp);
-            toolTip.SetToolTip(groupBoxFragment, Strings.fragmentConfigXmlNameHelp);
+            toolTip.SetToolTip(groupBoxDescription, Strings.fragmentConfigDescriptionHelp);
+            toolTip.SetToolTip(radGroupBoxXml, Strings.fragmentConfigXmlNameHelp);
         }
 
         private void RemoveEventHandlers()
         {
             txtFragmentName.TextChanged -= TxtFragmentName_TextChanged;
+            _richTextBoxPanelDescription.TextChanged -= RichTextBoxPanelDescription_TextChanged;
             _richTextBoxPanelFragment.TextChanged -= RichTextBoxPanelFragment_TextChanged;
         }
 
@@ -212,8 +235,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         private void ValidateInputBoxes()
         {
             configureFragmentsForm.ClearMessage();
+            ValidateDescription();
             ValidateFragmentName();
             ValidateFragment();
+        }
+
+        private static void ValidateDescription()
+        {
         }
 
         private void ValidateFragment()
@@ -235,6 +263,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         }
 
         #region Event Handlers
+        private void RichTextBoxPanelDescription_TextChanged(object? sender, EventArgs e) => TryUpdateXmlDocument();
+
         private void RichTextBoxPanelFragment_TextChanged(object? sender, EventArgs e) => TryUpdateXmlDocument();
 
         private void TxtFragmentName_TextChanged(object? sender, EventArgs e) => TryUpdateXmlDocument();
