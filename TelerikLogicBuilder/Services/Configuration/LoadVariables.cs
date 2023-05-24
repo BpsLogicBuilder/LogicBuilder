@@ -19,6 +19,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IConfigurationService _configurationService;
         private readonly ICreateVariables _createVariables;
         private readonly IEncryption _encryption;
+        private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
@@ -27,6 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IConfigurationService configurationService,
             ICreateVariables createVariables,
             IEncryption encryption,
+            IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory)
@@ -34,6 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _configurationService = configurationService;
             _createVariables = createVariables;
             _encryption = encryption;
+            _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.VariablesSchema);
@@ -62,10 +65,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 if (!File.Exists(fullPath))
                     return _createVariables.Create();
 
-                XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
+                XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(LoadXml());
                 ValidateXml(_xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml);
 
                 return xmlDocument;
+
+                string LoadXml()
+                {
+                    string loadedString = _encryption.DecryptFromFile(fullPath);
+                    if (!string.IsNullOrEmpty(loadedString))
+                        return loadedString;
+
+                    return _fileIOHelper.ReadFromFile(fullPath);
+                }
 
                 void ValidateXml(string xmlString)
                 {

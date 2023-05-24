@@ -301,6 +301,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
+        public string ReadFromFile(string fileFullName)
+        {
+            try
+            {
+                return File.ReadAllText(fileFullName);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new LogicBuilderException(ex.Message, ex);
+            }
+            catch (IOException ex)
+            {
+                throw new LogicBuilderException(ex.Message);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new LogicBuilderException(ex.Message);
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                throw new LogicBuilderException(ex.Message);
+            }
+        }
+
         public void SaveFile(string fileFullName, string text)
         {
             try

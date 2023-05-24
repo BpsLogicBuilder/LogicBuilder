@@ -16,6 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
         IResourceReader GetResourceReader(string fullName);
         void MoveFile(string source, string destination);
         void MoveFolder(string source, string destination);
+        string ReadFromFile(string fileFullName);
         void SaveFile(string fileFullName, string text);
         void SaveNewFile(string fileFullName, string text);
         void SetWritable(string fullName, bool writable);

@@ -217,7 +217,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 
             Type TryConvertTextToLiteralType(Type literalType, Type textType, XmlText textNode)
             {
-                if (_typeHelper.TryParse(textNode.Value!/*Value is not null for XmlText*/, literalType, out object _))
+                if (_typeHelper.TryParse(textNode.Value!/*Value is not null for XmlText*/, literalType, out object? _))
                     return literalType;
 
                 if (!ImplicitNumberConversions.TryGetValue(literalType, out List<Type>? possibleConversions))
@@ -228,7 +228,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Data
 
                 foreach (Type implicitConversion in possibleConversions)
                 {
-                    if (_typeHelper.TryParse(textNode.Value!/*Value is not null for XmlText*/, implicitConversion, out object _))
+                    if (_typeHelper.TryParse(textNode.Value!/*Value is not null for XmlText*/, implicitConversion, out object? _))
                         return implicitConversion;
                 }
 

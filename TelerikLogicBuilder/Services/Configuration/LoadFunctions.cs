@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IConfigurationService _configurationService;
         private readonly ICreateFunctions _createFunctions;
         private readonly IEncryption _encryption;
+        private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
@@ -29,6 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IConfigurationService configurationService,
             ICreateFunctions createFunctions,
             IEncryption encryption,
+            IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory)
@@ -37,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             _configurationService = configurationService;
             _createFunctions = createFunctions;
             _encryption = encryption;
+            _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(SchemaName.FunctionsSchema);
@@ -65,11 +68,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 if (!File.Exists(fullPath))
                     return _createFunctions.Create();
 
-                XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
+                XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(LoadXml());
                 AppendBuildtInFunctions(xmlDocument);
                 ValidateXml(_xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml);
 
                 return xmlDocument;
+
+                string LoadXml()
+                {
+                    string loadedString = _encryption.DecryptFromFile(fullPath);
+                    if (!string.IsNullOrEmpty(loadedString))
+                        return loadedString;
+
+                    return _fileIOHelper.ReadFromFile(fullPath);
+                }
 
                 void AppendBuildtInFunctions(XmlDocument xmlDocument)
                     => _xmlDocumentHelpers.GetDocumentElement(xmlDocument).AppendChild
