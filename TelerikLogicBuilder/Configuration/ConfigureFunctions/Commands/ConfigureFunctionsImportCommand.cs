@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Command
             {
                 ((Control)configureFunctionsForm).Cursor = Cursors.WaitCursor;
                 using RadOpenFileDialog openFileDialog = new();
-                openFileDialog.Filter = $"{Strings.configurationDataFile}|*{FileExtensions.CONFIGFILEEXTENSION}|{Strings.configurationDataFile}|*{FileExtensions.XMLFILEEXTENSION}";
+                openFileDialog.Filter = $"{Strings.configurationDataFile}|*{FileExtensions.CONFIGFILEEXTENSION}{MiscellaneousConstants.SEMICOLONSTRING}{Strings.configurationDataFile}|*{FileExtensions.XMLFILEEXTENSION}";
                 openFileDialog.MultiSelect = false;
                 openFileDialog.InitialDirectory = _pathHelper.CombinePaths(_configurationService.ProjectProperties.ProjectPath, ProjectPropertiesConstants.SOURCEDOCUMENTFOLDER);
                 if (openFileDialog.ShowDialog((IWin32Window)configureFunctionsForm) == DialogResult.OK)

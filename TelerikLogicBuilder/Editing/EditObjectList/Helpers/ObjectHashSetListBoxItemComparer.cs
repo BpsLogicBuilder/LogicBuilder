@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.GenericArguments;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -110,8 +111,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers
 
             if (function.HasGenericArguments)
             {
-                if (!firstFunctionData.GenericArguments.Order().SequenceEqual(secondFunctionData.GenericArguments.Order()))
+                if (!GenericArgumentsEqual(firstFunctionData.GenericArguments, secondFunctionData.GenericArguments))
                     return false;
+
+                //SequenceEqual throws "System.InvalidOperationException: Failed to compare two elements in the array." for some cases
+                //if (!firstFunctionData.GenericArguments.Order().SequenceEqual(secondFunctionData.GenericArguments.Order()))
+                //return false; 
 
                 if (!_getValidConfigurationFromData.TryGetFunction(firstFunctionData, application, out function))
                     return false;//generic configs are the same so just the first data item will do.
@@ -244,5 +249,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Helpers
 
         private static bool CompareVariableElements(XmlElement first, XmlElement second) 
             => first.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value == second.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value;
+
+        private static bool GenericArgumentsEqual(IEnumerable<GenericConfigBase> first, IEnumerable<GenericConfigBase> second)
+        {
+            if (first.Count() != second.Count())
+                return false;
+
+            return DoComparison(first.OrderBy(g => g.GenericArgumentName).ToList(), second.OrderBy(g => g.GenericArgumentName).ToList());
+
+            static bool DoComparison(List<GenericConfigBase> firstOrdered, List<GenericConfigBase> secondOrdered)
+            {
+                for (int i = 0; i < firstOrdered.Count; i++)
+                {
+                    if (!firstOrdered[i].Equals(secondOrdered[i]))
+                        return false;
+                }
+
+                return true;
+            }
+        }
     }
 }

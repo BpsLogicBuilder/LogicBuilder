@@ -180,6 +180,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
 
             _intellisenseConstructorsFormManager.Initialize();
 
+            if (!string.IsNullOrEmpty(this.constructorToUpdate) && this.originalConstructors.TryGetValue(this.constructorToUpdate, out Constructor? cons))
+                cmbClass.Text = cons.TypeName;
+
             _formInitializer.SetFormDefaults(this, 717);
             _formInitializer.SetToConfigSize(this);
 

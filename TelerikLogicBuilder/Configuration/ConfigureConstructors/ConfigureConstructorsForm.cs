@@ -425,8 +425,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             if (CurrentTreeNodeControl is IConfigureConstructorControl)
             {
                 var status = _constructorHelperStatusBuilder.Build();
-                if (status != null)
-                    this.helperStatus = status;
+                //if (status != null)
+                this.helperStatus = status;/*more confusing for constructors if a previous value is used.*/
             }
         }
 
