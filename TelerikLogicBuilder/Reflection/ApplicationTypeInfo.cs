@@ -20,6 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
             AllTypes = new();
             AllAssemblies = new();
             AssemblyAvailable = assemblyAvailable;
+            AllTypesList = AllTypes.Keys.ToList();
         }
 
         public ApplicationTypeInfo(IPathHelper pathHelper, Application application, Type activityType, SortedDictionary<string, Type> allTypes, List<Assembly> allAssemblies, bool assemblyAvailable)
@@ -30,13 +31,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Reflection
             AllTypes = allTypes;
             AllAssemblies = allAssemblies;
             AssemblyAvailable = assemblyAvailable;
+            AllTypesList = AllTypes.Keys.ToList();
         }
 
         internal Application Application { get; }
         
         internal Type? ActivityType { get; }
         internal SortedDictionary<string, Type> AllTypes { get; }
-        internal List<string> AllTypesList => AllTypes.Keys.ToList();
+        internal List<string> AllTypesList { get; }
         internal List<Assembly> AllAssemblies { get; }
         [MemberNotNullWhen(true, nameof(ActivityType))]
         internal bool AssemblyAvailable { get; }

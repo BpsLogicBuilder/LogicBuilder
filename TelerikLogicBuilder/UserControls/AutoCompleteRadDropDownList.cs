@@ -101,6 +101,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             ControlsLayoutUtility.SetDropDownListPadding(RadDropDownList);
             this.RadDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown += TextBoxControl_MouseDown;
             this.radButtonHelper.MouseDown += RadButtonHelper_MouseDown;
+            radDropDownList1.Disposed += RadDropDownList1_Disposed;
             radDropDownList1.MouseDown += RadDropDownList1_MouseDown;
             radDropDownList1.TextChanged += RadDropDownList1_TextChanged;
             radDropDownList1.Validated += RadDropDownList1_Validated;
@@ -134,6 +135,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void TextBoxControl_MouseDown(object? sender, MouseEventArgs e)
         {
             MouseDown?.Invoke(this, e);
+        }
+
+        private void RadDropDownList1_Disposed(object? sender, EventArgs e)
+        {
+            radDropDownList1.Items.Clear();
         }
 
         private void RadButtonHelper_MouseDown(object? sender, MouseEventArgs e)

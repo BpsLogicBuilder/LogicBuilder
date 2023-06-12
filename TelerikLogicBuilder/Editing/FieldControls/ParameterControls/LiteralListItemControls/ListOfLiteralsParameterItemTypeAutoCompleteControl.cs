@@ -195,6 +195,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
 
             radDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown += TextBoxControl_MouseDown;
             btnHelper.MouseDown += BtnHelper_MouseDown;
+            radDropDownList.Disposed += _radDropDownListHelper.DisposedHandler;
             radDropDownList.MouseDown += RadDropDownList_MouseDown;
             radDropDownList.TextChanged += RadDropDownList_TextChanged;
             radDropDownList.Validating += RadDropDownList_Validating;

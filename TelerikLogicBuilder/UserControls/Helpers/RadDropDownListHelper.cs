@@ -26,6 +26,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             dropDownList.DropDownListElement.AutoCompleteSuggest = null;
         }
 
+        public void DisposedHandler(object? sender, EventArgs e)
+        {
+            if (sender is RadDropDownList radDropDownList)
+                radDropDownList.Items.Clear();
+        }
+
         public void LoadBooleans(RadDropDownList dropDownList, RadDropDownStyle dropDownStyle = RadDropDownStyle.DropDownList)
         {
             dropDownList.DropDownStyle = dropDownStyle;
