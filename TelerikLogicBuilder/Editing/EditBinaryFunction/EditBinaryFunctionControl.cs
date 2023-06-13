@@ -203,7 +203,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             ((ISupportInitialize)(this.radPanelTableParent)).BeginInit();
             this.radPanelTableParent.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
-            this.SuspendLayout();
+            //this.SuspendLayout();
             ((ISupportInitialize)(this.lblFunction)).BeginInit();
             if (function.HasGenericArguments)
             {
@@ -353,7 +353,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             this.Name = "ConfigureFunctionControl";
             this.Size = new Size(855, 300);
             ((ISupportInitialize)(this.groupBoxFunction)).EndInit();
-            this.groupBoxFunction.ResumeLayout(false);
+            
             this.radPanelFunction.PanelContainer.ResumeLayout(false);
             ((ISupportInitialize)(this.radPanelFunction)).EndInit();
             this.radPanelFunction.ResumeLayout(false);
@@ -361,6 +361,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             this.radPanelTableParent.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
+            this.groupBoxFunction.ResumeLayout(true);
 
             if (editControlsSet.Any())
             {//editControlsSet could be empty here if HasGenericArguments %% ValidateGenericArgs() == false
@@ -382,7 +383,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
                 ((ISupportInitialize)(this.lblGenericArguments!)).EndInit();
             }
 
-            this.ResumeLayout(false);
+            //this.ResumeLayout(false);
 
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelFunction);

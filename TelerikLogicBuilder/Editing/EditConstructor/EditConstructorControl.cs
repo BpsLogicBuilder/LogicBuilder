@@ -245,7 +245,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             ((ISupportInitialize)(this.radPanelTableParent)).BeginInit();
             this.radPanelTableParent.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
-            this.SuspendLayout();
+            //this.SuspendLayout();
             ((ISupportInitialize)(this.lblConstructor)).BeginInit();
             if (constructor.HasGenericArguments)
             {
@@ -380,7 +380,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.Name = "ConfigureConstructorControl";
             this.Size = new Size(855, 300);
             ((ISupportInitialize)(this.groupBoxConstructor)).EndInit();
-            this.groupBoxConstructor.ResumeLayout(false);
+            
             this.radPanelConstructor.PanelContainer.ResumeLayout(false);
             ((ISupportInitialize)(this.radPanelConstructor)).EndInit();
             this.radPanelConstructor.ResumeLayout(false);
@@ -388,7 +388,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             this.radPanelTableParent.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
-
+            this.groupBoxConstructor.ResumeLayout(true);
             if (editControlsSet.Any())
             {//editControlsSet could be empty here if HasGenericArguments %% ValidateGenericArgs() == false
                 foreach (ParameterBase parameter in constructor.Parameters)
@@ -409,7 +409,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                 ((ISupportInitialize)(this.lblGenericArguments!)).EndInit();
             }
 
-            this.ResumeLayout(false);
+            //this.ResumeLayout(false);
 
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelConstructor);
