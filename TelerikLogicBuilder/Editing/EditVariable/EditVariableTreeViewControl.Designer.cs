@@ -44,7 +44,7 @@
             // SelectVariableTreeViewControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.radTreeView1);
             this.Name = "SelectVariableTreeViewControl";
             this.Size = new System.Drawing.Size(481, 343);

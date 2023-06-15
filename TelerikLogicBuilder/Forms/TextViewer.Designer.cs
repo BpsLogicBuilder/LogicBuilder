@@ -44,7 +44,7 @@
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(9, 21);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1184, 915);
             this.Controls.Add(this.richTextBoxViewerPanel1);
             this.Name = "TextViewer";

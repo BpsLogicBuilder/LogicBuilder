@@ -348,7 +348,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
             // EditFunctionControl
             // 
             this.AutoScaleDimensions = new SizeF(9F, 21F);
-            this.AutoScaleMode = AutoScaleMode.Font;
+            this.AutoScaleMode = AutoScaleMode.None;
             this.Controls.Add(this.groupBoxFunction);
             this.Name = "ConfigureFunctionControl";
             this.Size = new Size(855, 300);

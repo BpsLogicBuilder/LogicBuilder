@@ -812,7 +812,7 @@
             // MDIParent
             // 
             resources.ApplyResources(this, "$this");
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Controls.Add(radSplitContainerBase);
             Controls.Add(radCommandBar1);
             Controls.Add(radMenu1);

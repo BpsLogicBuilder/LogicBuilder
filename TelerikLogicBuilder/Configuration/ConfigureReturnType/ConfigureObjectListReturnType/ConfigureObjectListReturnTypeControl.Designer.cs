@@ -150,7 +150,7 @@
             // ConfigureObjectListReturnTypeControl
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Controls.Add(groupBoxReturnType);
             Name = "ConfigureObjectListReturnTypeControl";
             Size = new System.Drawing.Size(855, 150);

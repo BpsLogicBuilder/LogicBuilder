@@ -93,7 +93,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             // ProjectExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.radPageView1);
             this.Controls.Add(this.titleBar1);
             this.Name = "ProjectExplorer";

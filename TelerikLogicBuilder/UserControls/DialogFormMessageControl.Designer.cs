@@ -74,7 +74,7 @@
             // DialogFormMessageControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.radGroupBoxMessages);
             this.Name = "DialogFormMessageControl";
             this.Size = new System.Drawing.Size(508, 193);

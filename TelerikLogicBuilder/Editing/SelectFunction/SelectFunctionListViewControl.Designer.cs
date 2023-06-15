@@ -43,7 +43,7 @@
             // SelectFunctionListViewControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.radListControl1);
             this.Name = "SelectFunctionListViewControl";
             this.Size = new System.Drawing.Size(471, 259);

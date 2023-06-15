@@ -117,7 +117,7 @@
             // TableControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.titleBar1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

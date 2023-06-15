@@ -33,7 +33,7 @@
             // DocumentsExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Name = "DocumentsExplorer";
             this.Size = new System.Drawing.Size(450, 635);
             this.ResumeLayout(false);

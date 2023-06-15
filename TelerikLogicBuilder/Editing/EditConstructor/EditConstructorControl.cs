@@ -375,7 +375,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             // EditConstructorControl
             // 
             this.AutoScaleDimensions = new SizeF(9F, 21F);
-            this.AutoScaleMode = AutoScaleMode.Font;
+            this.AutoScaleMode = AutoScaleMode.None;
             this.Controls.Add(this.groupBoxConstructor);
             this.Name = "ConfigureConstructorControl";
             this.Size = new Size(855, 300);

@@ -45,7 +45,7 @@
             // ConfigureFunctionsRootNodeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.groupBoxRoot);
             this.Name = "ConfigureFunctionsRootNodeControl";
             this.Size = new System.Drawing.Size(687, 392);

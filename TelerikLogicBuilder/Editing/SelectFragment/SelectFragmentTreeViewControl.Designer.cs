@@ -44,7 +44,7 @@
             // SelectFragmentTreeViewControl
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Controls.Add(radTreeView1);
             Name = "SelectFragmentTreeViewControl";
             Size = new System.Drawing.Size(481, 343);
