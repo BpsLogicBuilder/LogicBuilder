@@ -120,6 +120,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
 
         public void ValidateOk()
         {
+            if (this.Disposing || this.IsDisposed) return;
+            //ValidateOk() can be called on changed for components deing disposed.
+
             ClearMessage();
             if (TreeView.SelectedNode == null)
             {

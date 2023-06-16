@@ -146,6 +146,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper
 
         public void ValidateOk()
         {
+            if (this.Disposing || this.IsDisposed) return;
+            //ValidateOk() can be called on changed for components deing disposed.
+
             ClearMessage();
             listNewConstructors.Items.Clear();
             if (TreeView.SelectedNode == null

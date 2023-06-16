@@ -102,6 +102,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper
 
         public void ValidateOk()
         {
+            if (this.Disposing || this.IsDisposed) return;
+            //ValidateOk() can be called on changed for components deing disposed.
+
             btnOk.Enabled = radTreeView1.SelectedNode != null;
         }
 
