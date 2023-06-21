@@ -474,7 +474,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     return selectedNode.Parent switch
                     {
                         AssertFunctionElementTreeNode => EditFormFieldSet.SetValueFunction,
-                        _ => throw _exceptionHelper.CriticalException("{16317437-3740-43E2-8C12-C49612F081E2}"),
+                        _ => throw _exceptionHelper.CriticalException("{48CAD784-0443-4F05-BAE5-A78A94E0EE3D}"),
                     };
                 case ObjectElementTreeNode objectElementTreeNode:
                     if (objectElementTreeNode.Parent is ParameterObjectListElementTreeNode)

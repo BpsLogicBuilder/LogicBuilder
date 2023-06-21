@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
+﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -28,6 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
         private RadListControl ListBox => this.listBoxHost.ListBox;
 
         private bool _isUpdate;
+        private int _indexSelectedForEdit = -1;//ListBox.SelectedIndex can change during edit when there are other invalid items
 
         public event EventHandler<EventArgs>? ListChanged;
 
@@ -83,6 +85,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
                 return;
 
             IsUpdate = true;
+            _indexSelectedForEdit = ListBox.SelectedIndex;
             listBoxHost.DisableControlsDuringEdit(true);
             listBoxHost.UpdateInputControls((T)ListBox.SelectedValue);
         }
@@ -157,7 +160,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
                 return false;
             }
 
-            int index = ListBox.SelectedIndex;
+            if (_indexSelectedForEdit == -1)
+                throw new CriticalLogicBuilderException(string.Format(CultureInfo.CurrentCulture, Strings.invalidArgumentTextFormat, "{B84A56FE-E22C-4081-89BB-27DCB8C97855}"));
+
+            int index = _indexSelectedForEdit;
             HashSet<T> unSelectedItems = GetUnSelectedItems();
             if (unSelectedItems.Contains(item))
             {
@@ -165,7 +171,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
                 return false;
             }
 
-            ListBox.Items.Remove(ListBox.SelectedItem);
+            ListBox.Items.Remove(ListBox.Items[_indexSelectedForEdit]);
             ListBox.Items.Insert(index, new RadListDataItem(item.ToString(), item));
 
             ListBox.SelectedValue = item;

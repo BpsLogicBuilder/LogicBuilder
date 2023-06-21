@@ -153,14 +153,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
             );
             IChildConstructorFinder childConstructorFinder = _childConstructorFinderFactory.GetChildConstructorFinder(constructors);
             childConstructorFinder.AddChildConstructors(treeNode.CInfo.GetParameters());
+            this.selectedConstructor = _constructorManager.CreateConstructor(constructorName, treeNode.CInfo);
+
             SortedDictionary<string, Constructor> sortedDictionary = new
             (
                 constructors
-                    .Where(c => !this.originalConstructors.ContainsKey(c.Key))
+                    .Where(c => !this.originalConstructors.ContainsKey(c.Key) && c.Key != this.selectedConstructor.Name)
                     .ToDictionary(k => k.Key, v => v.Value)
             );
             listNewConstructors.Items.AddRange(sortedDictionary.Values.Select(i => new RadListDataItem(i.ToString(), i)));
-            this.selectedConstructor = _constructorManager.CreateConstructor(constructorName, treeNode.CInfo);
             btnOk.Enabled = true;
         }
 
