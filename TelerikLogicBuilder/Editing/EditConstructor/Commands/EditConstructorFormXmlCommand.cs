@@ -38,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Commands
             if (editXmlForm.DialogResult != DialogResult.OK)
                 return;
 
+            editConstructorForm.ClearMessage();
             ConstructorData constructorData = _constructorDataParser.Parse
             (
                 _xmlDocumentHelpers.ToXmlElement(editXmlForm.XmlResult)

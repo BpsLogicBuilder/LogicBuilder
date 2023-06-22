@@ -33,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
             if (editXmlForm.DialogResult != DialogResult.OK)
                 return;
 
+            editParameterLiteralListForm.ClearMessage();
             editParameterLiteralListForm.ReloadXmlDocument(editXmlForm.XmlResult);
             editParameterLiteralListForm.RebuildTreeView();
         }

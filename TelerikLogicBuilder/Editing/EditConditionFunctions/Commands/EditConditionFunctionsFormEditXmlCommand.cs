@@ -35,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions.Commands
             if (editXmlForm.DialogResult != DialogResult.OK)
                 return;
 
+            editConditionFunctionsForm.ClearMessage();
             editConditionFunctionsForm.UpdateConditionsList(editXmlForm.XmlResult);
         }
     }

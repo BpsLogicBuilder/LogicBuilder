@@ -38,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Commands
             if (editXmlForm.DialogResult != DialogResult.OK)
                 return;
 
+            editFunctionForm.ClearMessage();
             FunctionData functionData = _functionDataParser.Parse
             (
                 _xmlDocumentHelpers.ToXmlElement(editXmlForm.XmlResult)

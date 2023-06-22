@@ -35,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Commands
             if (editXmlForm.DialogResult != DialogResult.OK)
                 return;
 
+            editDecisionForm.ClearMessage();
             editDecisionForm.UpdateDecisionFunctionsList(editXmlForm.XmlResult);
         }
     }
