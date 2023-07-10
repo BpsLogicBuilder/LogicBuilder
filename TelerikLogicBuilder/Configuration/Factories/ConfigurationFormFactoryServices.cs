@@ -41,7 +41,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
@@ -64,7 +64,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IConfigureConnectorObjectsControlFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<ILoadProjectProperties>(),
@@ -83,7 +83,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureConstructorGenericArgumentsTreeViewBuilder>(),
                         provider.GetRequiredService<IConfigureGenericArgumentsCommandFactory>(),
                         provider.GetRequiredService<IConfigureGenericArgumentsControlFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IGenericConfigXmlParser>(),
@@ -108,7 +108,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureConstructorsControlFactory>(),
                         provider.GetRequiredService<IConfigureConstructorsFactory>(),
                         provider.GetRequiredService<IConstructorXmlParser>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IHelperStatusBuilderFactory>(),
@@ -144,7 +144,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureFunctionGenericArgumentsTreeViewBuilder>(),
                         provider.GetRequiredService<IConfigureGenericArgumentsCommandFactory>(),
                         provider.GetRequiredService<IConfigureGenericArgumentsControlFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IGenericConfigXmlParser>(),
@@ -168,7 +168,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureFragmentsCommandFactory>(),
                         provider.GetRequiredService<IConfigureFragmentsControlFactory>(),
                         provider.GetRequiredService<IConfigureFragmentsFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IImageListService>(),
@@ -190,7 +190,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureFunctionsControlFactory>(),
                         provider.GetRequiredService<IConfigureFunctionsFactory>(),
                         provider.GetRequiredService<IConstructorXmlParser>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IHelperStatusBuilderFactory>(),
@@ -217,7 +217,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IConfigureLiteralDomainControlFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         existingDomainItems, 
                         type
                     )
@@ -229,7 +229,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IConfigureLiteralListDefaultValueControlFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         existingDefaultValueItems,
                         type
                     )
@@ -241,7 +241,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IConfigureLoadAssemblyPathsControlFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         existingPaths
                     )
                 )
@@ -262,7 +262,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IServiceFactory>(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IUpdateProjectProperties>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         openedAsReadOnly
                     )
                 )
@@ -272,7 +272,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (genericArguments, returnType) => new ConfigureReturnTypeForm
                     (
                         provider.GetRequiredService<IConfigureReturnTypeControlFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IRadDropDownListHelper>(),
@@ -290,7 +290,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         provider.GetRequiredService<IConfigureVariablesCommandFactory>(),
                         provider.GetRequiredService<IConfigureVariablesControlFactory>(),
                         provider.GetRequiredService<IConfigureVariablesFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IHelperStatusBuilderFactory>(),
@@ -311,7 +311,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     webApiDeployment => new ConfigureWebApiDeploymentForm
                     (
                         provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IWebApiDeploymentItemFactory>(),
                         webApiDeployment
                     )
@@ -321,7 +321,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     existingArguments => new EditGenericArgumentsForm
                     (
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IEditGenericArgumentsControlFactory>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         existingArguments

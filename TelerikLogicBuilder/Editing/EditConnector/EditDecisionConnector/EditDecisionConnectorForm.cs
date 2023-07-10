@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Drawing;
@@ -24,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDecisionConnec
 
         public EditDecisionConnectorForm(
             IConnectorDataParser connectorDataParser,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IFormInitializer formInitializer,
             IRadDropDownListHelper radDropDownListHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -33,7 +34,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDecisionConnec
         {
             InitializeComponent();
             _connectorDataParser = connectorDataParser;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _formInitializer = formInitializer;
             _radDropDownListHelper = radDropDownListHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;

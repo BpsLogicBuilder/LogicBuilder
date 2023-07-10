@@ -1,9 +1,9 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -20,11 +20,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
         public FindCell(
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl)
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory)
         {
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             InitializeComponent();
             InitializeDialogFormMessageControl();
             Initialize();

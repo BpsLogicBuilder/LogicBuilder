@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction.Factories;
@@ -16,6 +15,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -54,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
         public EditValueFunctionForm(
             IConfigurationService configurationService,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IEditValueFunctionCommandFactory editFunctionCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
@@ -71,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _editFunctionCommandFactory = editFunctionCommandFactory;

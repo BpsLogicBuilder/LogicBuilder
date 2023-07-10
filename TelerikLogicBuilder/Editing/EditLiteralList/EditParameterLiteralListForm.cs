@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private readonly LiteralListParameterElementInfo literalListInfo;
 
         public EditParameterLiteralListForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IEditLiteralListCommandFactory editLiteralListCommandFactory,
             IExceptionHelper exceptionHelper,
@@ -55,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             XmlDocument literalListXmlDocument)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _editLiteralListCommandFactory = editLiteralListCommandFactory;

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.Data;
@@ -17,13 +18,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFromDomain
         private readonly IList<string> domain;
 
         public SelectFromDomainForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IFormInitializer formInitializer,
             IList<string> domain, 
             string comments)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _formInitializer = formInitializer;
             _dialogFormMessageControl.SetMessage(comments);
             this.domain = domain;

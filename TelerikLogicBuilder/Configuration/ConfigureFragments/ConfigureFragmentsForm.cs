@@ -13,6 +13,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
@@ -68,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
             IConfigureFragmentsCommandFactory configureFragmentsCommandFactory,
             IConfigureFragmentsControlFactory configureFragmentsControlFactory,
             IConfigureFragmentsFactory configureFragmentsFactory,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IImageListService imageListService,
@@ -85,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
 
             _configureFragmentsChildNodesRenamer = configurationFormChildNodesRenamerFactory.GetConfigureFragmentsChildNodesRenamer(this);
             _configureFragmentsTreeViewBuilder = treeViewBuilderFactory.GetConfigureFragmentsTreeViewBuilder(this);
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _imageListService = imageListService;

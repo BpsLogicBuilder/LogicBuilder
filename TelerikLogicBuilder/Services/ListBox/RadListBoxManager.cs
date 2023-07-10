@@ -196,7 +196,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
         private void Initialize()
         {
             ListBox.SelectedIndexChanged += ListBox_SelectedIndexChanged;
+            ListBox.Disposed += ListBox_Disposed;
             IsUpdate = false;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            ListBox.SelectedIndexChanged -= ListBox_SelectedIndexChanged;
         }
 
         private void SetButtonEnabledStates(bool isUpdate)
@@ -216,6 +222,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.ListBox
         }
 
         #region Event Handlers
+        private void ListBox_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+        }
+
         private void ListBox_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             SetButtonEnabledStates(IsUpdate);

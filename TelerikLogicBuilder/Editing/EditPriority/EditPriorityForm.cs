@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Drawing;
@@ -20,14 +21,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditPriority
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public EditPriorityForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IFormInitializer formInitializer,
             IPriorityDataParser priorityDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             XmlDocument? priorityXmlDocument)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _formInitializer = formInitializer;
             _priorityDataParser = priorityDataParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;

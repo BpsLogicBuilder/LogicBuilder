@@ -13,6 +13,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public EditConstructorForm(
             IConfigurationService configurationService,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IEditConstructorCommandFactory editConstructorCommandFactory,
             IEditingFormHelperFactory editingFormHelperFactory,
             IExceptionHelper exceptionHelper,
@@ -69,7 +70,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _editConstructorCommandFactory = editConstructorCommandFactory;

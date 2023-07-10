@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Drawing;
@@ -20,14 +21,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditJump
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public EditJumpForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IFormInitializer formInitializer,
             IJumpDataParser jumpDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             XmlDocument? jumpXmlDocument)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _formInitializer = formInitializer;
             _jumpDataParser = jumpDataParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;

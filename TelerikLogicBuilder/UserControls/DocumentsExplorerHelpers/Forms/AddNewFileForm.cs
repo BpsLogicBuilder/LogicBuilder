@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             IExceptionHelper exceptionHelper,
             IImageListService imageListService,
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl)
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory)
         {
             _exceptionHelper = exceptionHelper;
             _imageListService = imageListService;
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
 
             InitializeComponent();
             Initialize();

@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using LogicBuilder.Workflow.Activities.Rules;
 using System;
@@ -29,13 +30,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers.Forms
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IRadDropDownListHelper radDropDownListHelper,
-            IDialogFormMessageControl dialogFormMessageControl)
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory)
         {
             _enumHelper = enumHelper;
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
             _radDropDownListHelper = radDropDownListHelper;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             InitializeComponent();
             Initialize();
         }

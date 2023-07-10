@@ -1,10 +1,10 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using Microsoft.Office.Interop.Visio;
 using System;
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -20,11 +20,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Forms
         public FindShape(
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl)
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory)
         {
             _exceptionHelper = exceptionHelper;
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             InitializeComponent();
             InitializeDialogFormMessageControl();
             Initialize();

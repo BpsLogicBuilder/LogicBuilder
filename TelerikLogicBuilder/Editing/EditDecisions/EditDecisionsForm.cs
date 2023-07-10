@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
         private readonly IRadListBoxManager<IDecisionListBoxItem> radListBoxManager;
 
         public EditDecisionsForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IDecisionDataParser decisionDataParser,
             IDecisionsDataParser decisionsDataParser,
             IDecisionListBoxItemFactory decisionListBoxItemFactory,
@@ -62,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
             XmlDocument? decisionsXmlDocument)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _decisionDataParser = decisionDataParser;

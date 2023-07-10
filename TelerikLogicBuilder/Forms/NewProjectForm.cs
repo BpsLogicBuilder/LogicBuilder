@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Forms.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
         private EventHandler<EventArgs> txtProjectPathButtonClickHandler;
 
         public NewProjectForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IFormInitializer formInitializer,
             INewProjectFormCommandFactory newProjectFormCommandFactory)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _formInitializer = formInitializer;
             _newProjectFormCommandFactory = newProjectFormCommandFactory;
             Initialize();

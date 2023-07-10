@@ -49,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             cmbApplication.AutoSize = false;
             cmbApplication.SelectedIndexChanged += CmbApplication_SelectedIndexChanged;
+            Disposed += ApplicationDropDownList_Disposed;
             LoadApplicationsComboBox();
         }
 
@@ -72,6 +73,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
         }
 
+        private void RemoveEventHandlers()
+        {
+            cmbApplication.SelectedIndexChanged -= CmbApplication_SelectedIndexChanged;
+        }
+
         private void SelectedApplicationChanged()
         {
             Configuration.Application? application = _configurationService.GetApplication(cmbApplication.SelectedItem.Text);
@@ -90,6 +96,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         }
 
         #region Event Handlers
+        private void ApplicationDropDownList_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+        }
+
         private void CmbApplication_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e) => SelectedApplicationChanged();
         #endregion Event Handlers
     }

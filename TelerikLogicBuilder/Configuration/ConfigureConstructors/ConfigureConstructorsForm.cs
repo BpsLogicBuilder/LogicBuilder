@@ -19,6 +19,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlTreeViewSynchronizers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
@@ -93,7 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             IConfigureConstructorsControlFactory configureConstructorsControlFactory,
             IConfigureConstructorsFactory configureConstructorsFactory,
             IConstructorXmlParser constructorXmlParser,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IExceptionHelper exceptionHelper,
             IFormInitializer formInitializer,
             IHelperStatusBuilderFactory helperStatusBuilderFactory,
@@ -112,7 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             _configureConstructorsControlFactory = configureConstructorsControlFactory;
             _constructorHelperStatusBuilder = helperStatusBuilderFactory.GetConstructorHelperStatusBuilder(this);
             _constructorXmlParser = constructorXmlParser;
-            _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _configureConstructorsChildNodesRenamer = configurationFormChildNodesRenamerFactory.GetConfigureConstructorsChildNodesRenamer(this);

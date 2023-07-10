@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -22,14 +23,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 
         public ConfigureWebApiDeploymentForm(
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IWebApiDeploymentItemFactory webApiDeploymentItemFactory,
             WebApiDeployment webApiDeployment)
         {
             InitializeComponent();
             _webApiDeploymentItemFactory = webApiDeploymentItemFactory;
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
 
             WebApiDeployment = webApiDeployment;
             Initialize();

@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,12 +24,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
         public ConfigureLoadAssemblyPathsForm(
             IConfigureLoadAssemblyPathsControlFactory configurationLoadAssemblyPathsControlFactory,
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IList<string> existingPaths)
         {
             InitializeComponent();
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _loadAssemblyPathsControl = configurationLoadAssemblyPathsControlFactory.GetLoadAssemblyPathsControl(this);
             this.existingPaths = existingPaths;
             Initialize();

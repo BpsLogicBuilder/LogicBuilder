@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
@@ -53,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             IServiceFactory serviceFactory,
             ITreeViewService treeViewService,
             IUpdateProjectProperties updateProjectProperties,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             bool openedAsReadOnly)
         {
 
@@ -75,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             _updateProjectProperties = updateProjectProperties;
 
             this.openedAsReadOnly = openedAsReadOnly;
-            this._dialogFormMessageControl = dialogFormMessageControl;
+            this._dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
 
             Initialize();
         }

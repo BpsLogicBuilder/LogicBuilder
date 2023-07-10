@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Text;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         public EditModuleShapeForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IEditModuleShapeTreeViewBuilder editModuleNameTreeViewBuilder,
             IFormInitializer formInitializer,
             IModuleDataParser moduleDataParser,
@@ -32,7 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape
             XmlDocument? moduleXmlDocument)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _editModuleNameTreeViewBuilder = editModuleNameTreeViewBuilder;
             _formInitializer = formInitializer;
             _moduleDataParser = moduleDataParser;

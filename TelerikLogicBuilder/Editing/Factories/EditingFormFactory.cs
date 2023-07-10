@@ -41,7 +41,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -59,7 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new EditBooleanFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditBooleanFunctionCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -80,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditConditionFunctionsForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConditionFunctionListBoxItemFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConditionsDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IEditConditionFunctionsFormCommandFactory>(),
@@ -102,7 +102,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new EditConstructorForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditConstructorCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -126,7 +126,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new EditDecisionConnectorForm
             (
                 Program.ServiceProvider.GetRequiredService<IConnectorDataParser>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -141,7 +141,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new EditDecisionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionFunctionListBoxItemFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditDecisionFormCommandFactory>(),
@@ -163,7 +163,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditDecisionsForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionsDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionListBoxItemFactory>(),
@@ -182,7 +182,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditDialogConnectorForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditDialogConnectorControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
@@ -197,7 +197,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new EditDialogFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditDialogFunctionCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -219,7 +219,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditFunctionsForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditFunctionsCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditFunctionsControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
@@ -241,7 +241,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditJumpForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IJumpDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -254,7 +254,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditModuleShapeForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditModuleShapeTreeViewBuilder>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IModuleDataParser>(),
@@ -269,7 +269,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditParameterLiteralListForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditLiteralListCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -288,7 +288,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditParameterObjectListForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditObjectListCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -307,7 +307,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditPriorityForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IPriorityDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -321,7 +321,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new EditValueFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditValueFunctionCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -343,7 +343,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditVariableForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
@@ -357,7 +357,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditVariableLiteralListForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditLiteralListCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -376,7 +376,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new EditVariableObjectListForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditObjectListCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
@@ -396,7 +396,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new SelectConstructorForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfiguredItemControlFactory>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
@@ -410,7 +410,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new SelectFragmentForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfiguredItemControlFactory>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>()
@@ -422,7 +422,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             _scopedService = new SelectFromDomainForm
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 domain,
                 comments
@@ -435,7 +435,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             _scopedService = new SelectFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfiguredItemControlFactory>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),

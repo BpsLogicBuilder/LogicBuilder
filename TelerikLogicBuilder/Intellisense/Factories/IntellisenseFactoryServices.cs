@@ -16,7 +16,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (existingConstructors, existingVariables, helperStatus) => new ConfigureClassFunctionsHelperForm
                     (
                         provider.GetRequiredService<IChildConstructorFinderFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IFunctionManager>(),
@@ -55,7 +55,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (existingVariables, helperStatus) => new ConfigureClassVariablesHelperForm
                     (
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
@@ -73,7 +73,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (
                         provider.GetRequiredService<IChildConstructorFinderFactory>(),
                         provider.GetRequiredService<IConstructorManager>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IExistingConstructorFinder>(),
                         provider.GetRequiredService<IFormInitializer>(),
@@ -92,7 +92,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     (existingConstructors, existingVariables, helperStatus) => new ConfigureFunctionsHelperForm
                     (
                         provider.GetRequiredService<IChildConstructorFinderFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IFunctionManager>(),
@@ -111,7 +111,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (existingVariables, helperStatus) => new ConfigureVariablesHelperForm
                     (
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),
                         provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
@@ -127,7 +127,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     className => new IncludesHelperForm
                     (
-                        provider.GetRequiredService<IDialogFormMessageControl>(),
+                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
                         provider.GetRequiredService<IEnumHelper>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         provider.GetRequiredService<IFormInitializer>(),

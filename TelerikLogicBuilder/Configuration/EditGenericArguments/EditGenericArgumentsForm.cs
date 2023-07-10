@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,13 +22,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
         private readonly IList<string> existingArguments;
 
         public EditGenericArgumentsForm(
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IEditGenericArgumentsControlFactory editGenericArgumentsControlFactory,
             IFormInitializer formInitializer,
             IList<string> existingArguments)
         {
             InitializeComponent();
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _formInitializer = formInitializer;
             this.existingArguments = existingArguments;
             editGenericArgumentsControl = editGenericArgumentsControlFactory.GetEditGenericArgumentsControl(this);

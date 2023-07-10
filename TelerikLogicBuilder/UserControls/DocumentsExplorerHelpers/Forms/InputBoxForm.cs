@@ -1,5 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Text.RegularExpressions;
@@ -12,10 +12,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
         private readonly IFormInitializer _formInitializer;
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
 
-        public InputBoxForm(IFormInitializer formInitializer, IDialogFormMessageControl dialogFormMessageControl)
+        public InputBoxForm(IFormInitializer formInitializer, IDialogFormMessageControlFactory dialogFormMessageControlFactory)
         {
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             InitializeComponent();
             Initialize();
         }

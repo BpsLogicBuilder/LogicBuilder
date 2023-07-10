@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -24,13 +25,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
         public ConfigureLiteralDomainForm(
             IConfigureLiteralDomainControlFactory configureLiteralDomainControlFactory,
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IList<string> existingDomainItems,
             Type type)
         {
             InitializeComponent();
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             this.existingDomainItems = existingDomainItems;
             Type = type;
             _configureLiteralDomainControl = configureLiteralDomainControlFactory.GetConfigureLiteralDomainControl(this);

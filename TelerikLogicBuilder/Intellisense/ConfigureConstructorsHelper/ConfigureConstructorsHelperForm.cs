@@ -8,12 +8,11 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -45,7 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
         public ConfigureConstructorsHelperForm(
             IChildConstructorFinderFactory childConstructorFinderFactory,
             IConstructorManager constructorManager,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IExceptionHelper exceptionHelper,
             IExistingConstructorFinder existingConstructorFinder,
             IFormInitializer formInitializer,
@@ -62,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
             this.constructorToUpdate = constructorToUpdate;
 
             _constructorManager = constructorManager;
-            _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _childConstructorFinderFactory = childConstructorFinderFactory;

@@ -1,12 +1,13 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,7 +22,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
             _scopedService = new EditBooleanFunctionFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
@@ -42,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
         {
             _scopedService = new EditBuildDecisionFormXml
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
@@ -62,7 +63,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
             _scopedService = new EditConditionsFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConditionsElementValidator>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
@@ -80,7 +81,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
             _scopedService = new EditConstructorFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConstructorElementValidator>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
@@ -98,7 +99,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
         {
             _scopedService = new EditDecisionsFormXml
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionsElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
@@ -117,7 +118,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
             _scopedService = new EditDialogFunctionFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
@@ -140,7 +141,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
             _scopedService = new EditFunctionsFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
@@ -160,7 +161,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
         {
             _scopedService = new EditLiteralListFormXml
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<ILiteralListElementValidator>(),
@@ -179,7 +180,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
         {
             _scopedService = new EditObjectListFormXml
             (
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListElementValidator>(),
@@ -199,7 +200,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
             _scopedService = new EditTableFunctionsFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
@@ -220,7 +221,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
             _scopedService = new EditValueFunctionFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
-                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),

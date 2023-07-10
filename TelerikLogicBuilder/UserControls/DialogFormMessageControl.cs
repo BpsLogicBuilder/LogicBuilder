@@ -44,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private State _state;
         private EventHandler mnuItemCopyClickHandler;
         private EventHandler mnuItemOpenClickHandler;
+        private RadContextMenu radContextMenu;
 
         #region Methods
         public void ClearMessage()
@@ -86,14 +87,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
 #pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [MemberNotNull(nameof(mnuItemCopyClickHandler),
-            nameof(mnuItemOpenClickHandler))]
+            nameof(mnuItemOpenClickHandler),
+            nameof(radContextMenu))]
 #pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenu()
         {
             mnuItemCopyClickHandler = AddClickCommand(_dialogFormMessageCommandFactory.GetCopyToClipboardCommand(radLabelMessages));
             mnuItemOpenClickHandler = AddClickCommand(_dialogFormMessageCommandFactory.GetOpenInTextViewerCommand(radLabelMessages));
 
-            RadContextMenu radContextMenu = new()
+            radContextMenu = new()
             {
                 ImageList = _imageListService.ImageList,
                 Items =
@@ -117,7 +119,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
 #pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [MemberNotNull(nameof(mnuItemCopyClickHandler),
-            nameof(mnuItemOpenClickHandler))]
+            nameof(mnuItemOpenClickHandler),
+            nameof(radContextMenu))]
 #pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
@@ -208,6 +211,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             RemoveClickCommands();
             RemoveEventHandlers();
+            radContextMenu.ImageList = null;
+            radContextMenu.Dispose();
             radContextMenuManager.Dispose();
         }
 

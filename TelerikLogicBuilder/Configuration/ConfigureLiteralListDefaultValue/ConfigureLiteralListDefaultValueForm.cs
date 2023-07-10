@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -23,13 +24,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaul
         public ConfigureLiteralListDefaultValueForm(
             IConfigureLiteralListDefaultValueControlFactory configureLiteralListDefaultValueControlFactory,
             IFormInitializer formInitializer,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IList<string> existingDefaultValueItems,
             Type type)
         {
             InitializeComponent();
             _formInitializer = formInitializer;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             this.existingDefaultValueItems = existingDefaultValueItems;
             Type = type;
             _configureLiteralListDefaultValueControl = configureLiteralListDefaultValueControlFactory.GetConfigureLiteralListDefaultValueControl(this);

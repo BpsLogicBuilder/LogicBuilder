@@ -16,6 +16,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
 
         public EditDecisionForm(
             IConfigurationService configurationService,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IDecisionDataParser decisionDataParser,
             IDecisionFunctionListBoxItemFactory decisionFunctionListBoxItemFactory,
             IEditDecisionFormCommandFactory editDecisionFormCommandFactory,
@@ -74,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
         {
             InitializeComponent();
             _configurationService = configurationService;
-            _dialogFormMessageControl = dialogFormMessageControl;//_applicationDropDownList may try to set messages so do this first
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();//_applicationDropDownList may try to set messages so do this first
             _applicationDropDownList = serviceFactory.GetApplicationDropDownList(this);
             _application = _applicationDropDownList.Application;
             _decisionDataParser = decisionDataParser;

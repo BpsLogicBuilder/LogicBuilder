@@ -21,6 +21,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private RadTreeView TreeView => dataGraphEditingHost.TreeView;
 
+        private void RemoveEventHandlers()
+        {
+            TreeView.MouseDown -= TreeView_MouseDown;
+            TreeView.NodeExpandedChanged -= TreeView_NodeExpandedChanged;
+            TreeView.NodeExpandedChanging -= TreeView_NodeExpandedChanging;
+            TreeView.NodeMouseClick -= TreeView_NodeMouseClick;
+            TreeView.NodeMouseDoubleClick -= TreeView_NodeMouseDoubleClick;
+            TreeView.SelectedNodeChanged -= TreeView_SelectedNodeChanged;
+            TreeView.SelectedNodeChanging -= TreeView_SelectedNodeChanging;
+        }
+
         public void RequestDocumentUpdate(IEditingControl editingControl)
         {
             TreeView.SelectedNodeChanged -= TreeView_SelectedNodeChanged;
@@ -37,10 +48,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             TreeView.NodeMouseDoubleClick += TreeView_NodeMouseDoubleClick;
             TreeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             TreeView.SelectedNodeChanging += TreeView_SelectedNodeChanging;
+            TreeView.Disposed += TreeView_Disposed;
             _dataGraphEditingManager.CreateContextMenus();
         }
 
         #region Event Handlers
+        private void TreeView_Disposed(object? sender, System.EventArgs e)
+        {
+            TreeView.ImageList = null;
+            TreeView.RadContextMenu?.Dispose();
+            RemoveEventHandlers();
+        }
+
         private void TreeView_MouseDown(object? sender, System.Windows.Forms.MouseEventArgs e)
         {
             RadTreeNode treeNode = this.TreeView.GetNodeAt(e.Location);

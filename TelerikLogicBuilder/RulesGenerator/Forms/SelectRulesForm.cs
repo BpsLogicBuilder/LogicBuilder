@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -25,14 +26,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
             IGetAllCheckedNodes getAllCheckedNodeNames,
             ISelectRulesTreeViewBuilder selectRulesTreeViewBuilder,
             ITreeViewService treeViewService,
-            IDialogFormMessageControl dialogFormMessageControl,
+            IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             string applicationName)
         {
             _formInitializer = formInitializer;
             _getAllCheckedNodeNames = getAllCheckedNodeNames;
             _selectRulesTreeViewBuilder = selectRulesTreeViewBuilder;
             _treeViewService = treeViewService;
-            _dialogFormMessageControl = dialogFormMessageControl;
+            _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _applicationName = applicationName;
             InitializeComponent();
             Initialize();
