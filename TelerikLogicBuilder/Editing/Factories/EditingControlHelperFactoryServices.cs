@@ -20,46 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditingControlHelperFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<IRichInputBoxValueControl, ICreateRichInputBoxContextMenu>>
-                (
-                    provider =>
-                    richInputBoxValueControl => new CreateRichInputBoxContextMenu
-                    (
-                        provider.GetRequiredService<IFieldControlCommandFactory>(),
-                        provider.GetRequiredService<IImageListService>(),
-                        richInputBoxValueControl
-                    )
-                )
-                .AddTransient<Func<IEditFunctionControl, IEditFunctionControlHelper>>
-                (
-                    provider =>
-                    editingFunctionControl => new EditFunctionControlHelper
-                    (
-                        provider.GetRequiredService<IConfigurationService>(),
-                        provider.GetRequiredService<IFunctionDataParser>(),
-                        provider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                        provider.GetRequiredService<ITypeLoadHelper>(),
-                        provider.GetRequiredService<IUpdateParameterControlValues>(),
-                        provider.GetRequiredService<IXmlDataHelper>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editingFunctionControl
-                    )
-                )
-                .AddTransient<IEditingControlHelperFactory, EditingControlHelperFactory>()
-                .AddTransient<Func<IDataGraphEditingControl, IDataGraphEditingHost, ILoadParameterControlsDictionary>>
-                (
-                    provider =>
-                    (editingControl, dataGraphEditingHost) => new LoadParameterControlsDictionary
-                    (
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IParameterFieldControlFactory>(),
-                        provider.GetRequiredService<IRadCheckBoxHelper>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        editingControl, 
-                        dataGraphEditingHost
-                    )
-                );
+                .AddSingleton<IEditingControlHelperFactory, EditingControlHelperFactory>();
         }
     }
 }

@@ -1,25 +1,27 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction.Factories
 {
     internal class EditValueFunctionCommandFactory : IEditValueFunctionCommandFactory
     {
-        private readonly Func<IEditValueFunctionForm, EditValueFunctionFormXmlCommand> _getEditValueFunctionFormXmlCommand;
-        private readonly Func<IEditValueFunctionForm, SelectValueFunctionCommand> _getSelectValueFunctionCommand;
-
-        public EditValueFunctionCommandFactory(
-            Func<IEditValueFunctionForm, EditValueFunctionFormXmlCommand> getEditValueFunctionFormXmlCommand,
-            Func<IEditValueFunctionForm, SelectValueFunctionCommand> getSelectValueFunctionCommand)
-        {
-            _getEditValueFunctionFormXmlCommand = getEditValueFunctionFormXmlCommand;
-            _getSelectValueFunctionCommand = getSelectValueFunctionCommand;
-        }
-
         public EditValueFunctionFormXmlCommand GetEditValueFunctionFormXmlCommand(IEditValueFunctionForm editFunctionForm)
-            => _getEditValueFunctionFormXmlCommand(editFunctionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editFunctionForm
+            );
 
         public SelectValueFunctionCommand GetSelectValueFunctionCommand(IEditValueFunctionForm editFunctionForm)
-            => _getSelectValueFunctionCommand(editFunctionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                editFunctionForm
+            );
     }
 }

@@ -124,6 +124,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureGeneri
 
         private void Initialize()
         {
+            Disposed += ConfigureGenericParameterControl_Disposed;
             radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelParameter);
@@ -180,6 +181,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureGeneri
             txtGpName.TextChanged -= TxtGpName_TextChanged;
         }
 
+        #region Event Handlers
+        private void ConfigureGenericParameterControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveEventHandlers();
+        }
+
         private void TxtGpName_TextChanged(object? sender, EventArgs e)
         {
             try
@@ -197,5 +207,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureGeneri
                 SetErrorMessage(ex.Message);
             }
         }
+        #endregion Event Handlers
     }
 }

@@ -3,9 +3,9 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Facto
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
-using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -40,6 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
         }
 
         private readonly IList<string> existingExcludedModules;
+        private TreeNodeCheckedEventHandler radTreeView1TreeNodeCheckedEventHandler;
 
         public IList<string> ExcludedModules => _getAllCheckedNodes
                     .GetNodes(radTreeView1.Nodes[0])
@@ -53,20 +54,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
 
         public RadButton OkButton => btnOk;
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            radTreeView1.NodeCheckedChanged += radTreeView1TreeNodeCheckedEventHandler;
+        }
+
         private void BuildTreeView()
         {
             _excludedModulesTreeViewBuilder.Build(radTreeView1, existingExcludedModules);
         }
 
+        [MemberNotNull(nameof(radTreeView1TreeNodeCheckedEventHandler))]
         private void Initialize()
         {
             ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxMain);
             ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons);
             _formInitializer.SetFormDefaults(this, 685);
             _formInitializer.SetToConfigSize(this);
-            InitializeNodeCheckedChangedCommand
+
+            this.Disposed += ConfigureExcludedModulesForm_Disposed;
+            radTreeView1TreeNodeCheckedEventHandler = InitializeNodeCheckedChangedCommand
             (
-                radTreeView1,
                 _configureExcludedModulesCommandFactory.GetUpdateExcludedModulesCommand(this)
             );
             radTreeView1.NodeExpandedChanged += RadTreeView1_NodeExpandedChanged;
@@ -77,14 +86,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
 
             BuildTreeView();
             btnOk.Enabled = false;
+            AddClickCommands();
         }
 
-        private static void InitializeNodeCheckedChangedCommand(RadTreeView treeView, IClickCommand command)
+        private static TreeNodeCheckedEventHandler InitializeNodeCheckedChangedCommand(IClickCommand command)
         {
-            treeView.NodeCheckedChanged += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void RemoveClickCommands()
+        {
+            radTreeView1.NodeCheckedChanged -= radTreeView1TreeNodeCheckedEventHandler;
         }
 
         #region Event Handlers
+        private void ConfigureExcludedModulesForm_Disposed(object? sender, System.EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+
         private void RadTreeView1_NodeExpandedChanged(object sender, RadTreeViewEventArgs e)
         {
             if (_treeViewService.IsRootNode(e.Node)

@@ -47,15 +47,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         private void AddParameterControlSet(IDictionary<string, ParameterControlSet> editControlsSet, ParameterBase parameter)
         {
-            RadToolTip toolTip = new();
             RadLabel label = new()
             {
                 Dock = System.Windows.Forms.DockStyle.Top,
                 Name = parameter.Name,
                 Image = GetLabelImage(parameter.ParameterCategory)
             };
-            if (parameter.Comments.Trim().Length > 0)
-                toolTip.SetToolTip(label, parameter.Comments);
 
             RadCheckBox radCheckBox = new()
             {

@@ -1,49 +1,52 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditObjectList.Factories
 {
     internal class EditObjectListCommandFactory : IEditObjectListCommandFactory
     {
-        private readonly Func<IEditParameterObjectListControl, AddParameterObjectListBoxItemCommand> _getAddParameterObjectListBoxItemCommand;
-        private readonly Func<IEditVariableObjectListControl, AddVariableObjectListBoxItemCommand> _getAddVariableObjectListBoxItemCommand;
-        private readonly Func<IEditParameterObjectListForm, EditParameterObjectListFormXmlCommand> _getEditParameterObjectListFormXmlCommand;
-        private readonly Func<IEditVariableObjectListForm, EditVariableObjectListFormXmlCommand> _getEditVariableObjectListFormXmlCommand;
-        private readonly Func<IEditParameterObjectListControl, UpdateParameterObjectListBoxItemCommand> _getUpdateParameterObjectListBoxItemCommand;
-        private readonly Func<IEditVariableObjectListControl, UpdateVariableObjectListBoxItemCommand> _getUpdateVariableObjectListBoxItemCommand;
-
-        public EditObjectListCommandFactory(
-            Func<IEditParameterObjectListControl, AddParameterObjectListBoxItemCommand> getAddParameterObjectListBoxItemCommand,
-            Func<IEditVariableObjectListControl, AddVariableObjectListBoxItemCommand> getAddVariableObjectListBoxItemCommand,
-            Func<IEditParameterObjectListForm, EditParameterObjectListFormXmlCommand> getEditParameterObjectListFormXmlCommand,
-            Func<IEditVariableObjectListForm, EditVariableObjectListFormXmlCommand> getEditVariableObjectListFormXmlCommand,
-            Func<IEditParameterObjectListControl, UpdateParameterObjectListBoxItemCommand> getUpdateParameterObjectListBoxItemCommand,
-            Func<IEditVariableObjectListControl, UpdateVariableObjectListBoxItemCommand> getUpdateVariableObjectListBoxItemCommand)
-        {
-            _getAddParameterObjectListBoxItemCommand = getAddParameterObjectListBoxItemCommand;
-            _getAddVariableObjectListBoxItemCommand = getAddVariableObjectListBoxItemCommand;
-            _getEditParameterObjectListFormXmlCommand = getEditParameterObjectListFormXmlCommand;
-            _getEditVariableObjectListFormXmlCommand = getEditVariableObjectListFormXmlCommand;
-            _getUpdateParameterObjectListBoxItemCommand = getUpdateParameterObjectListBoxItemCommand;
-            _getUpdateVariableObjectListBoxItemCommand = getUpdateVariableObjectListBoxItemCommand;
-        }
-
         public AddParameterObjectListBoxItemCommand GetAddParameterObjectListBoxItemCommand(IEditParameterObjectListControl editParameterObjectListControl)
-            => _getAddParameterObjectListBoxItemCommand(editParameterObjectListControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IObjectListBoxItemFactory>(),
+                editParameterObjectListControl
+            );
 
         public AddVariableObjectListBoxItemCommand GetAddVariableObjectListBoxItemCommand(IEditVariableObjectListControl editVariableObjectListControl)
-            => _getAddVariableObjectListBoxItemCommand(editVariableObjectListControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IObjectListBoxItemFactory>(),
+                editVariableObjectListControl
+            );
 
         public EditParameterObjectListFormXmlCommand GetEditParameterObjectListFormXmlCommand(IEditParameterObjectListForm editParameterObjectListForm)
-            => _getEditParameterObjectListFormXmlCommand(editParameterObjectListForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editParameterObjectListForm
+            );
 
         public EditVariableObjectListFormXmlCommand GetEditVariableObjectListFormXmlCommand(IEditVariableObjectListForm editVariableObjectListForm)
-            => _getEditVariableObjectListFormXmlCommand(editVariableObjectListForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editVariableObjectListForm
+            );
 
         public UpdateParameterObjectListBoxItemCommand GetUpdateParameterObjectListBoxItemCommand(IEditParameterObjectListControl editParameterObjectListControl)
-            => _getUpdateParameterObjectListBoxItemCommand(editParameterObjectListControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IObjectListBoxItemFactory>(),
+                editParameterObjectListControl
+            );
 
         public UpdateVariableObjectListBoxItemCommand GetUpdateVariableObjectListBoxItemCommand(IEditVariableObjectListControl editVariableObjectListControl)
-            => _getUpdateVariableObjectListBoxItemCommand(editVariableObjectListControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IObjectListBoxItemFactory>(),
+                editVariableObjectListControl
+            );
     }
 }

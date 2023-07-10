@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -121,6 +120,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
         }
 
         private Function function;
+        private readonly RadToolTip toolTip = new();
 
         public bool DenySpecialCharacters => dataGraphEditingHost.DenySpecialCharacters;
 
@@ -308,6 +308,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
                     //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
                     //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
                     parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
+                    if (parameter.Comments.Trim().Length > 0)
+                        toolTip.SetToolTip(parameterControlSet.ImageLabel, parameter.Comments);
                     currentRow += 2;
                 }
             }
@@ -382,6 +384,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelFunction);
+
+            this.Disposed += EditStandardFunctionControl_Disposed;
+        }
+
+        private void RemoveCheckStateChangedHandlers()
+        {
+            radCheckBoxNot.CheckStateChanged -= RadCheckBoxNot_CheckStateChanged;
+            foreach (var kvp in editControlsSet)
+            {
+                kvp.Value.ChkInclude.CheckStateChanged -= ChkInclude_CheckStateChanged;
+            }
+        }
+
+        private void SetCheckNotState(bool isChecked)
+        {
+            radCheckBoxNot.CheckStateChanged -= RadCheckBoxNot_CheckStateChanged;
+            radCheckBoxNot.Checked = isChecked;
+            radCheckBoxNot.CheckStateChanged += RadCheckBoxNot_CheckStateChanged;
         }
 
         private void ShowHideParameterControls(RadCheckBox chkSender)
@@ -401,11 +421,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
             ShowHideParameterControls(radChackBox);
         }
 
-        private void SetCheckNotState(bool isChecked)
+        private void EditStandardFunctionControl_Disposed(object? sender, EventArgs e)
         {
-            radCheckBoxNot.CheckStateChanged -= RadCheckBoxNot_CheckStateChanged;
-            radCheckBoxNot.Checked = isChecked;
-            radCheckBoxNot.CheckStateChanged += RadCheckBoxNot_CheckStateChanged;
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            RemoveCheckStateChangedHandlers();
         }
 
         private void RadCheckBoxNot_CheckStateChanged(object? sender, EventArgs e)

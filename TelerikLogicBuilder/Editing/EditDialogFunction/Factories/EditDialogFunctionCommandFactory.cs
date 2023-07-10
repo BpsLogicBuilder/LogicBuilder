@@ -1,25 +1,27 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Factories
 {
     internal class EditDialogFunctionCommandFactory : IEditDialogFunctionCommandFactory
     {
-        private readonly Func<IEditDialogFunctionForm, EditDialogFunctionFormXmlCommand> _getEditDialogFunctionFormXmlCommand;
-        private readonly Func<IEditDialogFunctionForm, SelectDialogFunctionCommand> _getSelectDialogFunctionCommand;
-
-        public EditDialogFunctionCommandFactory(
-            Func<IEditDialogFunctionForm, EditDialogFunctionFormXmlCommand> getEditDialogFunctionFormXmlCommand,
-            Func<IEditDialogFunctionForm, SelectDialogFunctionCommand> getSelectDialogFunctionCommand)
-        {
-            _getEditDialogFunctionFormXmlCommand = getEditDialogFunctionFormXmlCommand;
-            _getSelectDialogFunctionCommand = getSelectDialogFunctionCommand;
-        }
-
         public EditDialogFunctionFormXmlCommand GetEditDialogFunctionFormXmlCommand(IEditDialogFunctionForm editDialogFunctionForm)
-            => _getEditDialogFunctionFormXmlCommand(editDialogFunctionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editDialogFunctionForm
+            );
 
         public SelectDialogFunctionCommand GetSelectDialogFunctionCommand(IEditDialogFunctionForm editDialogFunctionForm)
-            => _getSelectDialogFunctionCommand(editDialogFunctionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                editDialogFunctionForm
+            );
     }
 }

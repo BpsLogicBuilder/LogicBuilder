@@ -24,6 +24,7 @@ using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -58,7 +59,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
         private ApplicationTypeInfo _application;
         private readonly ConfigureConstructorsTreeView radTreeView1;
         private ConstructorHelperStatus? helperStatus;
-
+        private EventHandler btnHelperClickHandler;
+        private EventHandler btnImportClickHandler;
+        private EventHandler mnuItemAddConstructorClickHandler;
+        private EventHandler mnuItemAddLiteralParameterClickHandler;
+        private EventHandler mnuItemAddObjectParameterClickHandler;
+        private EventHandler mnuItemAddGenericParameterClickHandler;
+        private EventHandler mnuItemAddListOfLiteralsParameterClickHandler;
+        private EventHandler mnuItemAddListOfObjectsParameterClickHandler;
+        private EventHandler mnuItemAddListOfGenericsParameterClickHandler;
+        private EventHandler mnuItemAddFolderClickHandler;
+        private EventHandler mnuItemDeleteClickHandler;
+        private EventHandler mnuItemCutClickHandler;
+        private EventHandler mnuItemPasteClickHandler;
+        private EventHandler mnuItemCopyXmlClickHandler;
         private readonly RadMenuItem mnuItemAdd = new(Strings.mnuItemAddTextWithEllipses);
         private readonly RadMenuItem mnuItemAddConstructor = new(Strings.mnuItemAddConstructorText);
         private readonly RadMenuItem mnuItemAddLiteralParameter = new(Strings.mnuItemAddLiteralParameterText);
@@ -177,14 +191,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
         public void ValidateXmlDocument()
             => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
-        private static void AddContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private void AddClickCommands()
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            RemoveClickCommands();
+            btnHelper.Click += btnHelperClickHandler;
+            btnImport.Click += btnImportClickHandler;
+            mnuItemAddConstructor.Click += mnuItemAddConstructorClickHandler;
+            mnuItemAddLiteralParameter.Click += mnuItemAddLiteralParameterClickHandler;
+            mnuItemAddObjectParameter.Click += mnuItemAddObjectParameterClickHandler;
+            mnuItemAddGenericParameter.Click += mnuItemAddGenericParameterClickHandler;
+            mnuItemAddListOfLiteralsParameter.Click += mnuItemAddListOfLiteralsParameterClickHandler;
+            mnuItemAddListOfObjectsParameter.Click += mnuItemAddListOfObjectsParameterClickHandler;
+            mnuItemAddListOfGenericsParameter.Click += mnuItemAddListOfGenericsParameterClickHandler;
+            mnuItemAddFolder.Click += mnuItemAddFolderClickHandler;
+            mnuItemDelete.Click += mnuItemDeleteClickHandler;
+            mnuItemCut.Click += mnuItemCutClickHandler;
+            mnuItemPaste.Click += mnuItemPasteClickHandler;
+            mnuItemCopyXml.Click += mnuItemCopyXmlClickHandler;
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddContextMenuClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
+        {
+            return (sender, args) => command.Execute();
         }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
@@ -208,20 +241,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             CheckEnableImportButton();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemAddConstructorClickHandler),
+            nameof(mnuItemAddLiteralParameterClickHandler),
+            nameof(mnuItemAddObjectParameterClickHandler),
+            nameof(mnuItemAddGenericParameterClickHandler),
+            nameof(mnuItemAddListOfLiteralsParameterClickHandler),
+            nameof(mnuItemAddListOfObjectsParameterClickHandler),
+            nameof(mnuItemAddListOfGenericsParameterClickHandler),
+            nameof(mnuItemAddFolderClickHandler),
+            nameof(mnuItemDeleteClickHandler),
+            nameof(mnuItemCutClickHandler),
+            nameof(mnuItemPasteClickHandler),
+            nameof(mnuItemCopyXmlClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenus()
         {
-            AddContextMenuClickCommand(mnuItemAddConstructor, _configureConstructorsCommandFactory.GetConfigureConstructorsAddConstructorCommand(this));
-            AddContextMenuClickCommand(mnuItemAddLiteralParameter, _configureConstructorsCommandFactory.GetConfigureConstructorsAddLiteralParameterCommand(this));
-            AddContextMenuClickCommand(mnuItemAddObjectParameter, _configureConstructorsCommandFactory.GetConfigureConstructorsAddObjectParameterCommand(this));
-            AddContextMenuClickCommand(mnuItemAddGenericParameter, _configureConstructorsCommandFactory.GetConfigureConstructorsAddGenericParameterCommand(this));
-            AddContextMenuClickCommand(mnuItemAddListOfLiteralsParameter, _configureConstructorsCommandFactory.GetConfigureConstructorsAddListOfLiteralsParameterCommand(this));
-            AddContextMenuClickCommand(mnuItemAddListOfObjectsParameter, _configureConstructorsCommandFactory.GetConfigureConstructorsAddListOfObjectsParameterCommand(this));
-            AddContextMenuClickCommand(mnuItemAddListOfGenericsParameter, _configureConstructorsCommandFactory.GetConfigureConstructorsAddListOfGenericsParameterCommand(this));
-            AddContextMenuClickCommand(mnuItemAddFolder, _configureConstructorsCommandFactory.GetConfigureConstructorsAddFolderCommand(this));
-            AddContextMenuClickCommand(mnuItemDelete, _configureConstructorsCommandFactory.GetConfigureConstructorsDeleteCommand(this));
-            AddContextMenuClickCommand(mnuItemCut, _configureConstructorsCommandFactory.GetConfigureConstructorsCutCommand(this));
-            AddContextMenuClickCommand(mnuItemPaste, _configureConstructorsCommandFactory.GetConfigureConstructorsPasteCommand(this));
-            AddContextMenuClickCommand(mnuItemCopyXml, _configureConstructorsCommandFactory.GetConfigureConstructorsCopyXmlCommand(this));
+            mnuItemAddConstructorClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddConstructorCommand(this));
+            mnuItemAddLiteralParameterClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddLiteralParameterCommand(this));
+            mnuItemAddObjectParameterClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddObjectParameterCommand(this));
+            mnuItemAddGenericParameterClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddGenericParameterCommand(this));
+            mnuItemAddListOfLiteralsParameterClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddListOfLiteralsParameterCommand(this));
+            mnuItemAddListOfObjectsParameterClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddListOfObjectsParameterCommand(this));
+            mnuItemAddListOfGenericsParameterClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddListOfGenericsParameterCommand(this));
+            mnuItemAddFolderClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsAddFolderCommand(this));
+            mnuItemDeleteClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsDeleteCommand(this));
+            mnuItemCutClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsCutCommand(this));
+            mnuItemPasteClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsPasteCommand(this));
+            mnuItemCopyXmlClickHandler = AddContextMenuClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsCopyXmlCommand(this));
 
             mnuItemAdd.Items.AddRange
             (
@@ -256,6 +303,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             };
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnHelperClickHandler),
+            nameof(btnImportClickHandler),
+            nameof(mnuItemAddConstructorClickHandler),
+            nameof(mnuItemAddLiteralParameterClickHandler),
+            nameof(mnuItemAddObjectParameterClickHandler),
+            nameof(mnuItemAddGenericParameterClickHandler),
+            nameof(mnuItemAddListOfLiteralsParameterClickHandler),
+            nameof(mnuItemAddListOfObjectsParameterClickHandler),
+            nameof(mnuItemAddListOfGenericsParameterClickHandler),
+            nameof(mnuItemAddFolderClickHandler),
+            nameof(mnuItemDeleteClickHandler),
+            nameof(mnuItemCutClickHandler),
+            nameof(mnuItemPasteClickHandler),
+            nameof(mnuItemCopyXmlClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeTreeView();
@@ -267,6 +330,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             TreeView.AllowDragDrop = true;
             TreeView.MultiSelect = true;
 
+            this.Disposed += ConfigureConstructorsForm_Disposed;
             TreeView.CreateNodeElement += TreeView_CreateNodeElement;
             TreeView.MouseDown += TreeView_MouseDown;
             TreeView.NodeFormatting += TreeView_NodeFormatting;
@@ -296,8 +360,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
             CollapsePanelBorder(radPanelFields);
             CollapsePanelBorder(radPanelMessages);
 
-            AddButtonClickCommand(btnHelper, _configureConstructorsCommandFactory.GetConfigureConstructorsHelperCommand(this));
-            AddButtonClickCommand(btnImport, _configureConstructorsCommandFactory.GetConfigureConstructorsImportCommand(this));
+            btnHelperClickHandler = AddButtonClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsHelperCommand(this));
+            btnImportClickHandler = AddButtonClickCommand(_configureConstructorsCommandFactory.GetConfigureConstructorsImportCommand(this));
+            AddClickCommands();
         }
 
         private void InitializeTreeView()
@@ -364,6 +429,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
                 Navigate((Control)_parametersControlFactory.GetConfigureGenericListParameterControl(this));
             else
                 throw _exceptionHelper.CriticalException("{17122141-C4CA-419A-8497-A85B3C69A4E1}");
+        }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemAddConstructor.Click -= mnuItemAddConstructorClickHandler;
+            mnuItemAddLiteralParameter.Click -= mnuItemAddLiteralParameterClickHandler;
+            mnuItemAddObjectParameter.Click -= mnuItemAddObjectParameterClickHandler;
+            mnuItemAddGenericParameter.Click -= mnuItemAddGenericParameterClickHandler;
+            mnuItemAddListOfLiteralsParameter.Click -= mnuItemAddListOfLiteralsParameterClickHandler;
+            mnuItemAddListOfObjectsParameter.Click -= mnuItemAddListOfObjectsParameterClickHandler;
+            mnuItemAddListOfGenericsParameter.Click -= mnuItemAddListOfGenericsParameterClickHandler;
+            mnuItemAddFolder.Click -= mnuItemAddFolderClickHandler;
+            mnuItemDelete.Click -= mnuItemDeleteClickHandler;
+            mnuItemCut.Click -= mnuItemCutClickHandler;
+            mnuItemPaste.Click -= mnuItemPasteClickHandler;
+            mnuItemCopyXml.Click -= mnuItemCopyXmlClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            TreeView.CreateNodeElement -= TreeView_CreateNodeElement;
+            TreeView.MouseDown -= TreeView_MouseDown;
+            TreeView.NodeFormatting -= TreeView_NodeFormatting;
+            TreeView.NodeExpandedChanged -= TreeView_NodeExpandedChanged;
+            TreeView.NodeMouseClick -= TreeView_NodeMouseClick;
+            TreeView.SelectedNodeChanged -= TreeView_SelectedNodeChanged;
+            TreeView.SelectedNodeChanging -= TreeView_SelectedNodeChanging;
+            FormClosing -= ConfigureConstructorsForm_FormClosing;
         }
 
         private void SetContextMenuState(IList<RadTreeNode> selectedNodes)
@@ -446,6 +539,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
         {
             _application = e.Application;
             ApplicationChanged?.Invoke(this, e);
+        }
+
+        private void ConfigureConstructorsForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            RemoveClickCommands();
         }
 
         private void ConfigureConstructorsForm_FormClosing(object? sender, FormClosingEventArgs e)

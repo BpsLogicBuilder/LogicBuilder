@@ -1,7 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditXml;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Helpers;
-using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -10,15 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditXmlHelperFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<IEditXmlHelperFactory, EditXmlHelperFactory>()
-                .AddTransient<Func<IEditFormXml, IValidateXmlTextHelper>>
-                (
-                    provider =>
-                    editXmlForm => new ValidateXmlTextHelper
-                    (
-                        editXmlForm
-                    )
-                );
+                .AddSingleton<IEditXmlHelperFactory, EditXmlHelperFactory>();
         }
     }
 }

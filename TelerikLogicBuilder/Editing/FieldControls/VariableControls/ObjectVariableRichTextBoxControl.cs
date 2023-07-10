@@ -13,6 +13,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
@@ -48,6 +49,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
         private readonly IDataGraphEditingControl dataGraphEditingControl;
         private readonly ObjectVariable objectVariable;
         private Type? _assignedTo;
+        private EventHandler btnVariableClickHandler;
+        private EventHandler btnFunctionClickHandler;
+        private EventHandler btnConstructorClickHandler;
+        private EventHandler btnLiteralListClickHandler;
+        private EventHandler btnObjectListClickHandler;
 
         public ObjectVariableRichTextBoxControl(
             IFieldControlCommandFactory fieldControlCommandFactory,
@@ -281,24 +287,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
 
         void IValueControl.Focus() => _objectRichTextBox.Select();
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnVariable.Click += btnVariableClickHandler;
+            btnFunction.Click += btnFunctionClickHandler;
+            btnConstructor.Click += btnConstructorClickHandler;
+            btnLiteralList.Click += btnLiteralListClickHandler;
+            btnObjectList.Click += btnObjectListClickHandler;
+        }
+
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnVariableClickHandler),
+        nameof(btnFunctionClickHandler),
+        nameof(btnConstructorClickHandler),
+        nameof(btnLiteralListClickHandler),
+        nameof(btnObjectListClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeRichTextBox();
             InitializeButtons();
             ResetControl();
 
-            AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditObjectRichTextBoxVariableCommand(this));
-            AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditObjectRichTextBoxFunctionCommand(this));
-            AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditObjectRichTextBoxConstructorCommand(this));
-            AddButtonClickCommand(btnLiteralList, _fieldControlCommandFactory.GetEditVariableObjectRichTextBoxLiteralListCommand(this));
-            AddButtonClickCommand(btnObjectList, _fieldControlCommandFactory.GetEditVariableObjectRichTextBoxObjectListCommand(this));
+            Disposed += ObjectVariableRichTextBoxControl_Disposed;
+
+            btnVariableClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditObjectRichTextBoxVariableCommand(this));
+            btnFunctionClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditObjectRichTextBoxFunctionCommand(this));
+            btnConstructorClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditObjectRichTextBoxConstructorCommand(this));
+            btnLiteralListClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditVariableObjectRichTextBoxLiteralListCommand(this));
+            btnObjectListClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditVariableObjectRichTextBoxObjectListCommand(this));
 
             _variableObjectRichTextBoxEventsHelper.Setup();
+            AddClickCommands();
         }
 
         private void InitializeButtons()
@@ -329,6 +355,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             this.radPanelRichTextBox.ResumeLayout(true);
         }
 
+        private void RemoveClickCommands()
+        {
+            btnVariable.Click -= btnVariableClickHandler;
+            btnFunction.Click -= btnFunctionClickHandler;
+            btnConstructor.Click -= btnConstructorClickHandler;
+            btnLiteralList.Click -= btnLiteralListClickHandler;
+            btnObjectList.Click -= btnObjectListClickHandler;
+        }
+
+        private void RemoveImageLists()
+        {
+            foreach (RadButton button in CommandButtons)
+                button.ImageList = null;
+        }
+
         private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
 
@@ -339,5 +380,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             foreach (RadButton button in CommandButtons)
                 button.Visible = show;
         }
+
+        #region Event Handlers
+        private void ObjectVariableRichTextBoxControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveImageLists();
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

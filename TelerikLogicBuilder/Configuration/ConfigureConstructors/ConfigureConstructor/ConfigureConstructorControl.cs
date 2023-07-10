@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -55,6 +56,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
 
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
+        private EventHandler<EventArgs> txtConstructorTypeNameButtonClickHandler;
+        private EventHandler<EventArgs> txtConstructorGenericArgumentsButtonClickHandler;
 
         public IDictionary<string, Constructor> ConstructorsDictionary => configureConstructorsForm.ConstructorsDictionary;
         public IConfigureConstructorsForm Form => configureConstructorsForm;
@@ -134,6 +137,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
             configureConstructorsForm.ValidateXmlDocument();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtConstructorTypeName.ButtonClick += txtConstructorTypeNameButtonClickHandler;
+            txtConstructorGenericArguments.ButtonClick += txtConstructorGenericArgumentsButtonClickHandler;
+        }
+
         private void AddEventHandlers()
         {
             txtConstructorName.TextChanged += TxtConstructorName_TextChanged;
@@ -145,8 +155,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtConstructorTypeNameButtonClickHandler),
+            nameof(txtConstructorGenericArgumentsButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
+            this.Disposed += ConfigureConstructorControl_Disposed;
             radPanelConstructor.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelConstructor);
@@ -155,24 +170,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
             InitializeClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtConstructorTypeNameButtonClickHandler),
+            nameof(txtConstructorGenericArgumentsButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtConstructorTypeNameButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtConstructorTypeName,
                 _configureConstructorControlCommandFactory.GetEditConstructorTypeNameCommand(this)
             );
 
-            InitializeHelperButtonCommand
+            txtConstructorGenericArgumentsButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtConstructorGenericArguments,
                 _configureConstructorControlCommandFactory.GetEditGenericArgumentsCommand(this)
             );
+
+            AddClickCommands();
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private void InitializeConstructorControls()
@@ -213,9 +232,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
             );
         }
 
+        private void RemoveClickCommands()
+        {
+            txtConstructorTypeName.ButtonClick -= txtConstructorTypeNameButtonClickHandler;
+            txtConstructorGenericArguments.ButtonClick -= txtConstructorGenericArgumentsButtonClickHandler;
+        }
+
         private void RemoveEventHandlers()
         {
             txtConstructorName.TextChanged -= TxtConstructorName_TextChanged;
+        }
+
+        #region Event Handlers
+        private void ConfigureConstructorControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void TxtConstructorName_TextChanged(object? sender, EventArgs e)
@@ -233,5 +268,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
                 SetErrorMessage(ex.Message);
             }
         }
+        #endregion Event Handlers
     }
 }

@@ -122,6 +122,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
             ResetGroupBoxes();
             InitializeRichTextBoxPanelDescriptionControl();
             InitializeRichTextBoxPanelFragmentControl();
+            Disposed += ConfigureFragmentControl_Disposed;
             //AddEventHandlers();
             //_richTextBoxPanelFragment.TextChanged runs when ConfigureFragmentControl (this control) is dynamically added
             //Event handlers will be added at the end of SetControlValues(RadTreeNode treeNode)
@@ -263,6 +264,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         }
 
         #region Event Handlers
+        private void ConfigureFragmentControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveEventHandlers();
+        }
+
         private void RichTextBoxPanelDescription_TextChanged(object? sender, EventArgs e) => TryUpdateXmlDocument();
 
         private void RichTextBoxPanelFragment_TextChanged(object? sender, EventArgs e) => TryUpdateXmlDocument();

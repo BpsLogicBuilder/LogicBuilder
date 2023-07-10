@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -21,6 +22,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaul
         private readonly IConfigureLiteralListDefaultValueForm _configureLiteralListDefaultValueForm;
         private readonly ILiteralListDefaultValueItemFactory _literalListDefaultValueItemFactory;
         private readonly IRadListBoxManager<LiteralListDefaultValueItem> radListBoxManager;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
 
         public ConfigureLiteralListDefaultValueControl(
             IConfigureLiteralListDefaultValueCommandFactory configureLiteralListDefaultValueCommandFactory,
@@ -94,8 +97,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaul
         public void UpdateInputControls(LiteralListDefaultValueItem item)
             => txtDefaultValueItem.Text = item.Item;
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnAddClickHandler),
+        nameof(btnUpdateClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
 
         private void Initialize()
         {
@@ -105,23 +120,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaul
             CollapsePanelBorder(radPanelTxtDefaultValueItem);
             CollapsePanelBorder(radPanelAddButton);
 
-            InitializeHButtonCommand
+            Disposed += ConfigureLiteralListDefaultValueControl_Disposed;
+
+            btnAddClickHandler = InitializeHButtonCommand
             (
-                BtnAdd,
                 _configureLiteralListDefaultValueCommandFactory.GetAddLiteralListDefaultValueItemCommand(this)
             );
-            InitializeHButtonCommand
+            btnUpdateClickHandler = InitializeHButtonCommand
             (
-                BtnUpdate,
                 _configureLiteralListDefaultValueCommandFactory.GetUpdateLiteralListDefaultValueItemCommand(this)
             );
 
             managedListBoxControl.CreateCommands(radListBoxManager);
+            AddClickCommands();
         }
 
-        private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler InitializeHButtonCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
+
+        private void RemoveClickCommands()
+        {
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
+        }
+
+        #region Event Handlers
+        private void ConfigureLiteralListDefaultValueControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

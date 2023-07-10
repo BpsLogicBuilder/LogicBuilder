@@ -1,9 +1,16 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Components.Helpers;
+﻿using ABIS.LogicBuilder.FlowBuilder.Commands.TypeAutoComplete.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Components.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Forms;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
+using ABIS.LogicBuilder.FlowBuilder.Services;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 
@@ -11,45 +18,60 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
 {
     internal class ServiceFactory : IServiceFactory
     {
-        private readonly Func<IApplicationHostControl, IApplicationDropDownList> _getApplicationDropDownList;
-        private readonly Func<IApplicationHostControl, ITypeAutoCompleteTextControl, IConnectorObjectTypeAutoCompleteManager> _getConnectorObjectTypeAutoCompleteManager;
-        private readonly Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm> _getProgressForm;
-        private readonly Func<SchemaName, ITreeViewXmlDocumentHelper> _getTreeViewXmlDocumentHelper;
-        private readonly Func<IApplicationHostControl, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> _getTypeAutoCompleteManager;
-        private readonly Func<IApplicationHostControl, IUpdateGenericArguments> _getUpdateGenericArguments;
-
-        public ServiceFactory(
-            Func<IApplicationHostControl, IApplicationDropDownList> getApplicationDropDownList,
-            Func<IApplicationHostControl, ITypeAutoCompleteTextControl, IConnectorObjectTypeAutoCompleteManager> getConnectorObjectTypeAutoCompleteManager,
-            Func<Progress<ProgressMessage>, CancellationTokenSource, IProgressForm> getProgressForm,
-            Func<SchemaName, ITreeViewXmlDocumentHelper> getTreeViewXmlDocumentHelper,
-            Func<IApplicationHostControl, ITypeAutoCompleteTextControl, ITypeAutoCompleteManager> getTypeAutoCompleteManager,
-            Func<IApplicationHostControl, IUpdateGenericArguments> getUpdateGenericArguments)
-        {
-            _getApplicationDropDownList = getApplicationDropDownList;
-            _getConnectorObjectTypeAutoCompleteManager = getConnectorObjectTypeAutoCompleteManager;
-            _getProgressForm = getProgressForm;
-            _getTreeViewXmlDocumentHelper = getTreeViewXmlDocumentHelper;
-            _getTypeAutoCompleteManager = getTypeAutoCompleteManager;
-            _getUpdateGenericArguments= getUpdateGenericArguments;
-        }
-
         public IApplicationDropDownList GetApplicationDropDownList(IApplicationHostControl applicationHostControl)
-            => _getApplicationDropDownList(applicationHostControl);
+            => new ApplicationDropDownList
+            (
+                Program.ServiceProvider.GetRequiredService<IApplicationTypeInfoManager>(),
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                applicationHostControl
+            );
 
         public IConnectorObjectTypeAutoCompleteManager GetConnectorObjectTypeAutoCompleteManager(IApplicationHostControl applicationHostControl, ITypeAutoCompleteTextControl textControl)
-            => _getConnectorObjectTypeAutoCompleteManager(applicationHostControl, textControl);
+            => new ConnectorObjectTypeAutoCompleteManager
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ITypeAutoCompleteCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                applicationHostControl,
+                textControl
+            );
 
         public IProgressForm GetProgressForm(Progress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource)
-            => _getProgressForm(progress, cancellationTokenSource);
+            => new ProgressForm
+            (
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                progress,
+                cancellationTokenSource
+            );
 
         public ITreeViewXmlDocumentHelper GetTreeViewXmlDocumentHelper(SchemaName schema)
-            => _getTreeViewXmlDocumentHelper(schema);
+            => new TreeViewXmlDocumentHelper
+            (
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                schema
+            );
 
         public ITypeAutoCompleteManager GetTypeAutoCompleteManager(IApplicationHostControl applicationHostControl, ITypeAutoCompleteTextControl textControl)
-            => _getTypeAutoCompleteManager(applicationHostControl, textControl);
+            => new TypeAutoCompleteManager
+            (
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ITypeAutoCompleteCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                applicationHostControl,
+                textControl
+            );
 
         public IUpdateGenericArguments GetUpdateGenericArguments(IApplicationHostControl applicationHostControl)
-            => _getUpdateGenericArguments(applicationHostControl);
+            => new UpdateGenericArguments
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IGenericConfigManager>(),
+                Program.ServiceProvider.GetRequiredService<ITypeHelper>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                applicationHostControl
+            );
     }
 }

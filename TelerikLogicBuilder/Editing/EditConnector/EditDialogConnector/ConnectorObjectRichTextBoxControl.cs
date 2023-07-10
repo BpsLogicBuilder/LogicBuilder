@@ -13,6 +13,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
@@ -49,6 +50,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
 
         private readonly IEditingControl editingControl;
         private Type? _assignedTo;
+        private EventHandler btnVariableClickHandler;
+        private EventHandler btnFunctionClickHandler;
+        private EventHandler btnConstructorClickHandler;
+        private EventHandler btnLiteralListClickHandler;
+        private EventHandler btnObjectListClickHandler;
 
         public ConnectorObjectRichTextBoxControl(
             IConstructorTypeHelper constructorTypeHelper,
@@ -268,10 +274,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         {
             _assignedTo = type;
 
-            ClosedConstructor? constructor = _constructorTypeHelper.GetConstructor(_assignedTo, Application);
-            if (constructor == null)
-                throw _exceptionHelper.CriticalException("{5FA3EFC6-D10A-45F8-BACB-0BB507999681}");
-
+            ClosedConstructor? constructor = _constructorTypeHelper.GetConstructor(_assignedTo, Application) ?? throw _exceptionHelper.CriticalException("{5FA3EFC6-D10A-45F8-BACB-0BB507999681}");
             XmlElement = _xmlDocumentHelpers.ToXmlElement
             (
                 _xmlDataHelper.BuildMetaObjectXml
@@ -307,9 +310,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
 
         void IValueControl.Focus() => _objectRichTextBox.Select();
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnVariable.Click += btnVariableClickHandler;
+            btnFunction.Click += btnFunctionClickHandler;
+            btnConstructor.Click += btnConstructorClickHandler;
+            btnLiteralList.Click += btnLiteralListClickHandler;
+            btnObjectList.Click += btnObjectListClickHandler;
         }
 
         private void Enable(bool enable)
@@ -322,19 +335,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
                 button.Enabled = enable;
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnVariableClickHandler),
+        nameof(btnFunctionClickHandler),
+        nameof(btnConstructorClickHandler),
+        nameof(btnLiteralListClickHandler),
+        nameof(btnObjectListClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeRichTextBox();
             InitializeButtons();
             ResetControl();
 
-            AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditObjectRichTextBoxVariableCommand(this));
-            AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditObjectRichTextBoxFunctionCommand(this));
-            AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditObjectRichTextBoxConstructorCommand(this));
-            AddButtonClickCommand(btnLiteralList, _fieldControlCommandFactory.GetEditParameterObjectRichTextBoxLiteralListCommand(this));
-            AddButtonClickCommand(btnObjectList, _fieldControlCommandFactory.GetEditParameterObjectRichTextBoxObjectListCommand(this));
+            Disposed += ConnectorObjectRichTextBoxControl_Disposed;
+
+            btnVariableClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditObjectRichTextBoxVariableCommand(this));
+            btnFunctionClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditObjectRichTextBoxFunctionCommand(this));
+            btnConstructorClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditObjectRichTextBoxConstructorCommand(this));
+            btnLiteralListClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditParameterObjectRichTextBoxLiteralListCommand(this));
+            btnObjectListClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditParameterObjectRichTextBoxObjectListCommand(this));
 
             _parameterObjectRichTextBoxEventsHelper.Setup();
+            AddClickCommands();
         }
 
         private void InitializeButtons()
@@ -365,6 +388,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             this.radPanelRichTextBox.ResumeLayout(true);
         }
 
+        private void RemoveClickCommands()
+        {
+            btnVariable.Click -= btnVariableClickHandler;
+            btnFunction.Click -= btnFunctionClickHandler;
+            btnConstructor.Click -= btnConstructorClickHandler;
+            btnLiteralList.Click -= btnLiteralListClickHandler;
+            btnObjectList.Click -= btnObjectListClickHandler;
+        }
+
         private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
 
@@ -375,5 +407,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             foreach (RadButton button in CommandButtons)
                 button.Visible = show;
         }
+
+        #region Event Handlers
+        private void ConnectorObjectRichTextBoxControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

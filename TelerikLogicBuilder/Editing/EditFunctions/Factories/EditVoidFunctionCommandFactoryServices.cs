@@ -1,7 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
-using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -10,15 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditVoidFunctionCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<IEditVoidFunctionCommandFactory, EditVoidFunctionCommandFactory>()
-                .AddTransient<Func<IEditVoidFunctionControl, SelectVoidFunctionCommand>>
-                (
-                    provider =>
-                    editVoidFunctionControl => new SelectVoidFunctionCommand
-                    (
-                        editVoidFunctionControl
-                    )
-                );
+                .AddSingleton<IEditVoidFunctionCommandFactory, EditVoidFunctionCommandFactory>();
         }
     }
 }

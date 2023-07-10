@@ -3,6 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
@@ -129,6 +130,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         }
 
         private Constructor constructor;
+        private readonly RadToolTip toolTip = new();
 
         private static readonly string XmlParentXPath = $"/{XmlDataConstants.CONSTRUCTORELEMENT}";
         private static readonly string ParametersXPath = $"{XmlParentXPath}/{XmlDataConstants.PARAMETERSELEMENT}";
@@ -351,6 +353,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                     //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
                     //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
                     parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
+                    if (parameter.Comments.Trim().Length > 0)
+                        toolTip.SetToolTip(parameterControlSet.ImageLabel, parameter.Comments);
                     currentRow += 2;
                 }
             }
@@ -393,10 +397,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             {//editControlsSet could be empty here if HasGenericArguments %% ValidateGenericArgs() == false
                 foreach (ParameterBase parameter in constructor.Parameters)
                 {//Incorrect layout fails for RadDropDownList if Visible set to false before
-                 //the call to this.tableLayoutPanel.PerformLayout();
-                 //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
-                 //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
-                 //This code should otherwise run where commented above "//ShowHideParameterControls(parameterControlSet.ChkInclude);"
+                    //the call to this.tableLayoutPanel.PerformLayout();
+                    //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
+                    //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
+                    //This code should otherwise run where commented above "//ShowHideParameterControls(parameterControlSet.ChkInclude);"
                     ParameterControlSet parameterControlSet = editControlsSet[parameter.Name];
                     parameterControlSet.ChkInclude.Enabled = parameter.IsOptional;
                     ShowHideParameterControls(parameterControlSet.ChkInclude);
@@ -413,6 +417,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelConstructor);
+
+            this.Disposed += EditConstructorControl_Disposed;
+        }
+
+        private void RemoveCheckStateChangedHandlers()
+        {
+            foreach(var kvp in editControlsSet)
+            {
+                kvp.Value.ChkInclude.CheckStateChanged -= ChkInclude_CheckStateChanged;
+            }
         }
 
         private void ShowHideParameterControls(RadCheckBox chkSender)
@@ -575,6 +589,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                 return;
 
             ShowHideParameterControls(radChackBox);
+        }
+
+        private void EditConstructorControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            RemoveCheckStateChangedHandlers();
         }
         #endregion Event Handlers
     }

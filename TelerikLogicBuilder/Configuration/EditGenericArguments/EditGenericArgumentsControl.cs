@@ -3,8 +3,10 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments.Factories
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -19,6 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
 
         private readonly IEditGenericArgumentsForm editGenericArgumentsForm;
         private readonly IRadListBoxManager<GenericArgumentName> radListBoxManager;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
 
         public EditGenericArgumentsControl(
             IEditGenericArgumentsCommandFactory editGenericArgumentsCommandFactory,
@@ -81,9 +85,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
 
         public void UpdateInputControls(GenericArgumentName item) => txtArgument.Text = item.Item;
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnAddClickHandler),
+        nameof(btnUpdateClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxEditArgument);
@@ -92,23 +107,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments
             CollapsePanelBorder(radPanelTxtArgument);
             CollapsePanelBorder(radPanelAddButton);
 
-            InitializeHButtonCommand
+            Disposed += EditGenericArgumentsControl_Disposed;
+
+            btnAddClickHandler = InitializeHButtonCommand
             (
-                BtnAdd,
                 _editGenericArgumentsCommandFactory.GetAddGenericArgumentCommand(this)
             );
-            InitializeHButtonCommand
+            btnUpdateClickHandler = InitializeHButtonCommand
             (
-                BtnUpdate,
                 _editGenericArgumentsCommandFactory.GetUpdateGenericArgumentCommand(this)
             );
 
             managedListBoxControl.CreateCommands(radListBoxManager);
+            AddClickCommands();
         }
 
-        private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler InitializeHButtonCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
+
+        private void RemoveClickCommands()
+        {
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
+        }
+
+        #region Event Handlers
+        private void EditGenericArgumentsControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

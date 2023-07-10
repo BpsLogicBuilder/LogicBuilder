@@ -84,6 +84,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
             if (dropDownStyle == RadDropDownStyle.DropDown)
                 SetAutoCompleteSuggestHelper(dropDownList);
 
+            dropDownList.Disposed -= DisposedHandler;
+            dropDownList.Disposed += DisposedHandler;
             dropDownList.DropDownStyle = dropDownStyle;
             dropDownList.Items.Clear();
             dropDownList.Items.AddRange(items);

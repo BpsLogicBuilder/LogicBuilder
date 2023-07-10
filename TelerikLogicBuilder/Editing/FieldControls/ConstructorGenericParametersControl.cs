@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -43,6 +44,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IEditConstructorControl editConstructorControl;
+        private EventHandler btnHelperClickHandler;
 
         public ConstructorGenericParametersControl(
             IConfigurationService configurationService,
@@ -164,19 +166,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             );
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnHelper.Click += btnHelperClickHandler;
+        }
+
+        [MemberNotNull(nameof(btnHelperClickHandler))]
         private void Initialize()
         {
             InitializeRichTextBox();
             InitializeButton();
 
-            AddButtonClickCommand(btnHelper, _fieldControlCommandFactory.GetAddUpdateConstructorGenericArgumentsCommand(this));
+            Disposed += ConstructorGenericParametersControl_Disposed;
+
+            btnHelperClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetAddUpdateConstructorGenericArgumentsCommand(this));
 
             UpdateValidState();
+            AddClickCommands();
         }
 
         private void InitializeButton()
@@ -201,6 +213,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             this.radPanelRichTextBox.Controls.Add(_objectRichTextBox);
             ((ISupportInitialize)this.radPanelRichTextBox).EndInit();
             this.radPanelRichTextBox.ResumeLayout(true);
+        }
+
+        private void RemoveClickCommands()
+        {
+            btnHelper.Click -= btnHelperClickHandler;
         }
 
         private void SetErrorBorderColor()
@@ -231,5 +248,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
 
         private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
+
+        #region Event Handlers
+        private void ConstructorGenericParametersControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

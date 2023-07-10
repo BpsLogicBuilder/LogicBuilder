@@ -1,8 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
-using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -11,16 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditConditionFunctionCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<IEditConditionFunctionCommandFactory, EditConditionFunctionCommandFactory>()
-                .AddTransient<Func<IEditConditionFunctionControl, SelectConditionFunctionCommand>>
-                (
-                    provider =>
-                    editConditionFunctionControl => new SelectConditionFunctionCommand
-                    (
-                        provider.GetRequiredService<IConfigurationService>(),
-                        editConditionFunctionControl
-                    )
-                );
+                .AddSingleton<IEditConditionFunctionCommandFactory, EditConditionFunctionCommandFactory>();
         }
     }
 }

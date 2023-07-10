@@ -26,14 +26,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
             void ClearFieldControls()
             {
-                foreach (Control control in radPanelFields.Controls)
+                for (int i = radPanelFields.Controls.Count - 1; i > -1; i--)
                 {
+                    Control control = radPanelFields.Controls[i];
                     control.Visible = false;
                     if (!control.IsDisposed)
                         control.Dispose();
                 }
-
-                radPanelFields.Controls.Clear();
             }
         }
     }

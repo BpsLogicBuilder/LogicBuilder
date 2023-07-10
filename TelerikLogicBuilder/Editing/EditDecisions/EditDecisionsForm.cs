@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private ApplicationTypeInfo _application;
+        private EventHandler btnCopyXmlClickHandler;
+        private EventHandler btnPasteXmlClickHandler;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
+        private EventHandler<EventArgs> txtEditDecisionButtonClickHandler;
         private readonly IRadListBoxManager<IDecisionListBoxItem> radListBoxManager;
 
         public EditDecisionsForm(
@@ -231,21 +237,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
             TxtEditDecision.Text = item.VisibleText;
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
-        private static void AddButtonClickCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private void AddClickCommands()
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            RemoveClickCommands();
+            btnCopyXml.Click += btnCopyXmlClickHandler;
+            btnPasteXml.Click += btnPasteXmlClickHandler;
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
+            txtEditDecision.ButtonClick += txtEditDecisionButtonClickHandler;
         }
 
-        private static void AddTextClickCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> AddHelperButtonClickCommand(IClickCommand command)
         {
-            helperButtonTextBox.TextClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnCopyXmlClickHandler),
+        nameof(btnPasteXmlClickHandler),
+        nameof(btnAddClickHandler),
+        nameof(btnUpdateClickHandler),
+        nameof(txtEditDecisionButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -259,6 +277,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             radListBoxManager.ListChanged += RadListBoxManager_ListChanged;
+            Disposed += EditDecisionsForm_Disposed;
 
             TxtEditDecision.ReadOnly = true;
 
@@ -274,19 +293,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
             LayoutGroupBoxList();
             ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
 
-            AddButtonClickCommand(btnCopyXml, _editDecisionsFormCommandFactory.GetEditDecisionsFormCopyXmlCommand(this));
-            AddButtonClickCommand(btnPasteXml, _editDecisionsFormCommandFactory.GetEditDecisionsFormEditXmlCommand(this));
+            btnCopyXmlClickHandler = AddButtonClickCommand(_editDecisionsFormCommandFactory.GetEditDecisionsFormCopyXmlCommand(this));
+            btnPasteXmlClickHandler = AddButtonClickCommand(_editDecisionsFormCommandFactory.GetEditDecisionsFormEditXmlCommand(this));
 
-            AddButtonClickCommand(btnAdd, _editDecisionsFormCommandFactory.GetAddDecisionListBoxItemCommand(this));
-            AddButtonClickCommand(btnUpdate, _editDecisionsFormCommandFactory.GetUpdateDecisionListBoxItemCommand(this));
+            btnAddClickHandler = AddButtonClickCommand(_editDecisionsFormCommandFactory.GetAddDecisionListBoxItemCommand(this));
+            btnUpdateClickHandler = AddButtonClickCommand(_editDecisionsFormCommandFactory.GetUpdateDecisionListBoxItemCommand(this));
 
-            AddButtonClickCommand(TxtEditDecision, _editDecisionsFormCommandFactory.GetEditDecisionCommand(this));
-            AddTextClickCommand(TxtEditDecision, _editDecisionsFormCommandFactory.GetEditDecisionCommand(this));
+            txtEditDecisionButtonClickHandler = AddHelperButtonClickCommand(_editDecisionsFormCommandFactory.GetEditDecisionCommand(this));
             managedListBoxControl.CreateCommands(radListBoxManager);
 
             ValidateOk();
 
             InitializeEditControl();
+            AddClickCommands();
         }
 
         private void InitializeApplicationDropDownList()
@@ -352,6 +371,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
             this.ResumeLayout(true);
         }
 
+        private void RemoveClickCommands()
+        {
+            btnCopyXml.Click -= btnCopyXmlClickHandler;
+            btnPasteXml.Click -= btnPasteXmlClickHandler;
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
+            txtEditDecision.ButtonClick -= txtEditDecisionButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
+            radListBoxManager.ListChanged += RadListBoxManager_ListChanged;
+        }
+
         private void ValidateOk()
         {
             bool enabled = ListBox.Items.Count > 0;
@@ -364,6 +398,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions
         {
             _application = e.Application;
             ApplicationChanged?.Invoke(this, e);
+        }
+
+        private void EditDecisionsForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void RadListBoxManager_ListChanged(object? sender, EventArgs e) => ValidateOk();

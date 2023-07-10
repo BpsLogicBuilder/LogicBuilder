@@ -1,12 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions;
-using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
-using ABIS.LogicBuilder.FlowBuilder.Factories;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
-using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
-using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -15,23 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditFunctionsControlFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<IEditFunctionsControlFactory, EditFunctionsControlFactory>()
-                .AddTransient<Func<IEditFunctionsForm, IEditVoidFunctionControl>>
-                (
-                    provider =>
-                    editFunctionsForm => new EditVoidFunctionControl
-                    (
-                        provider.GetRequiredService<IEditVoidFunctionCommandFactory>(),
-                        provider.GetRequiredService<IEditingFormHelperFactory>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IRadDropDownListHelper>(),
-                        provider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<IXmlDataHelper>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editFunctionsForm
-                    )
-                );
+                .AddSingleton<IEditFunctionsControlFactory, EditFunctionsControlFactory>();
         }
     }
 }

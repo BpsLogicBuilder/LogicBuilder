@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         {
             _richInputBoxEventsHelper = fieldControlHelperFactory.GetRichInputBoxEventsHelper(richInputBoxValueControl);
             this.richInputBoxValueControl = richInputBoxValueControl;
+            RichInputBox.Disposed += RichInputBox_Disposed;
         }
 
         private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
@@ -35,6 +36,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 richInputBoxValueControl.RequestDocumentUpdate();
                 RichInputBox.Modified = false;
             }
+        }
+
+        private void RichInputBox_Disposed(object? sender, EventArgs e)
+        {
+            RichInputBox.KeyUp -= _richInputBoxEventsHelper.RichInputBox_KeyUp;
+            RichInputBox.MouseClick -= _richInputBoxEventsHelper.RichInputBox_MouseClick;
+            RichInputBox.MouseUp -= _richInputBoxEventsHelper.RichInputBox_MouseUp;
+            RichInputBox.TextChanged -= _richInputBoxEventsHelper.RichInputBox_TextChanged;
+            RichInputBox.Validated -= RichInputBox_Validated;
         }
     }
 }

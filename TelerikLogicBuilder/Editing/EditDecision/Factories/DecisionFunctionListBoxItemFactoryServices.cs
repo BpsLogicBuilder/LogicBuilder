@@ -14,23 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories
         internal static IServiceCollection AddDecisionFunctionListBoxItemFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<Func<string, string, IApplicationControl, IDecisionFunctionListBoxItem>>
-                (
-                    provider =>
-                    (visibleText, hiddenText, applicationControl) => new DecisionFunctionListBoxItem
-                    (
-                        provider.GetRequiredService<IConfigurationService>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFunctionDataParser>(),
-                        provider.GetRequiredService<IFunctionElementValidator>(),
-                        provider.GetRequiredService<IFunctionHelper>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        visibleText,
-                        hiddenText,
-                        applicationControl
-                    )
-                )
-                .AddTransient<IDecisionFunctionListBoxItemFactory, DecisionFunctionListBoxItemFactory>();
+                .AddSingleton<IDecisionFunctionListBoxItemFactory, DecisionFunctionListBoxItemFactory>();
         }
     }
 }

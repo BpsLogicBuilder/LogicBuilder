@@ -141,6 +141,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureObject
 
         private void Initialize()
         {
+            Disposed += ConfigureObjectListParameterControl_Disposed;
             radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelParameter);
@@ -190,6 +191,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureObject
             txtListCpName.TextChanged -= TxtListCpName_TextChanged;
         }
 
+        #region Event Handlers
+        private void ConfigureObjectListParameterControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveEventHandlers();
+        }
+
         private void TxtListCpName_TextChanged(object? sender, EventArgs e)
         {
             try
@@ -207,5 +217,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureObject
                 SetErrorMessage(ex.Message);
             }
         }
+        #endregion Event Handlers
     }
 }

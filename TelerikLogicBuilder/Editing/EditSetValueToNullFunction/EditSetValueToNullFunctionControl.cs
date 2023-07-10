@@ -13,10 +13,10 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -45,6 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
         private readonly IDataGraphEditingHost dataGraphEditingHost;
         private readonly Function function;
         private VariableBase? variable;
+        private EventHandler<EventArgs> cmbSelectVariableButtonClickHandler;
         private readonly XmlDocument xmlDocument;
 
         public EditSetValueToNullFunctionControl(
@@ -155,9 +156,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
                 throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
         }
 
-        private static void AddClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
+        private static EventHandler<EventArgs> AddClickCommand(IClickCommand command)
         {
-            helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            cmbSelectVariable.ButtonClick += cmbSelectVariableButtonClickHandler;
         }
 
         private void CmbSelectVariableChanged()
@@ -209,6 +216,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             }
         }
 
+        [MemberNotNull(nameof(cmbSelectVariableButtonClickHandler))]
         private void Initialize()
         {
             RetractFunctionData retractFunctionData = _retractFunctionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(this.xmlDocument));
@@ -223,9 +231,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             SetVariableName();
             SetValueControls();
 
-            AddClickCommand(cmbSelectVariable, _editSetValueFunctionCommandFactory.GetSelectVariableCommand(cmbSelectVariable));
+            cmbSelectVariableButtonClickHandler = AddClickCommand(_editSetValueFunctionCommandFactory.GetSelectVariableCommand(cmbSelectVariable));
             cmbSelectVariable.Changed -= CmbSelectVariable_Changed;
             cmbSelectVariable.Changed += CmbSelectVariable_Changed;
+            Disposed += EditSetValueToNullFunctionControl_Disposed;
 
             this.lblFunction.Text = function.Name;
             lblFunction.TextAlignment = ContentAlignment.MiddleLeft;
@@ -239,6 +248,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelFunction);
             CollapsePanelBorder(radPanelSelectVariable);
+            AddClickCommands();
         }
 
         private void LoadVariablesDropDown()
@@ -248,19 +258,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
                 _radDropDownListHelper.LoadTextItems(cmbSelectVariable.DropDownList, variables, RadDropDownStyle.DropDown);
         }
 
+        private void RemoveClickCommands()
+        {
+            cmbSelectVariable.ButtonClick -= cmbSelectVariableButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            cmbSelectVariable.Changed -= CmbSelectVariable_Changed;
+        }
+
         private void RemoveValueControl()
         {
             RemoveAndDispose(radPanelImageLabel);
 
             static void RemoveAndDispose(RadPanel radPanel)
             {
-                foreach (Control control in radPanel.Controls)
+                for (int i = radPanel.Controls.Count - 1; i > -1; i--)
                 {
+                    Control control = radPanel.Controls[i];
                     control.Visible = false;
                     if (!control.IsDisposed)
                         control.Dispose();
                 }
-                radPanel.Controls.Clear();
             }
         }
 
@@ -319,6 +339,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueToNullFunction
 
         #region Event Handlers
         private void CmbSelectVariable_Changed(object? sender, EventArgs e) => CmbSelectVariableChanged();
+
+        private void EditSetValueToNullFunctionControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
         #endregion Event Handlers
     }
 }

@@ -17,6 +17,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -37,6 +38,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IEditFunctionsForm editFunctionsForm;
+        private EventHandler<EventArgs> cmbSelectFunctionButtonClickHandler;
 
         public EditVoidFunctionControl(
             IEditVoidFunctionCommandFactory editVoidFunctionCommandFactory,
@@ -179,9 +181,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             _treeViewXmlDocumentHelper.ValidateXmlDocument();
         }
 
-        private static void AddButtonClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
+        private static EventHandler<EventArgs> AddButtonClickCommand(IClickCommand command)
         {
-            helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            cmbSelectFunction.ButtonClick += cmbSelectFunctionButtonClickHandler;
         }
 
         private void CmbSelectFunctionChanged()
@@ -204,16 +212,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             }
         }
 
+        [MemberNotNull(nameof(cmbSelectFunctionButtonClickHandler))]
         private void Initialize()
         {
             InitializeSelectFunctionDropDownList();
 
             editFunctionsForm.ApplicationChanged += EditFunctionsForm_ApplicationChanged;
             cmbSelectFunction.Changed += CmbSelectFunction_Changed;
+            Disposed += EditVoidFunctionControl_Disposed;
 
             _dataGraphEditingHostEventsHelper.Setup();
             SetUpSelectFunctionDropDownList();
-            AddButtonClickCommand(cmbSelectFunction, _editVoidFunctionCommandFactory.GetSelectVoidFunctionCommand(this));
+            cmbSelectFunctionButtonClickHandler = AddButtonClickCommand(_editVoidFunctionCommandFactory.GetSelectVoidFunctionCommand(this));
+            AddClickCommands();
         }
 
         private void InitializeSelectFunctionDropDownList()
@@ -245,6 +256,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }
 
+        private void RemoveClickCommands()
+        {
+            cmbSelectFunction.ButtonClick -= cmbSelectFunctionButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            editFunctionsForm.ApplicationChanged -= EditFunctionsForm_ApplicationChanged;
+            cmbSelectFunction.Changed -= CmbSelectFunction_Changed;
+        }
+
         private void SetUpSelectFunctionDropDownList()
         {
             _radDropDownListHelper.LoadTextItems
@@ -269,6 +291,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private void EditFunctionsForm_ApplicationChanged(object? sender, ApplicationChangedEventArgs e)
         {
             ApplicationChanged?.Invoke(this, e);
+        }
+
+        private void EditVoidFunctionControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void CmbSelectFunction_Changed(object? sender, EventArgs e) => CmbSelectFunctionChanged();

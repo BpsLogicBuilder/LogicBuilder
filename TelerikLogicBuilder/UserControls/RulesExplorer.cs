@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RulesExplorerHelpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -33,6 +34,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly ValidateCommand _validateCommand;
         private readonly ViewCommand _viewCommand;
         private readonly RefreshRulesExplorerCommand _refreshRulesExplorerCommand;
+        private EventHandler mnuItemDeleteAllRulesClickHandler;
+        private EventHandler mnuItemDeleteClickHandler;
+        private EventHandler mnuItemValidateClickHandler;
+        private EventHandler mnuItemViewClickHandler;
+        private EventHandler mnuItemRefreshClickHandler;
 
         public RadTreeView TreeView => this.radTreeView1;
 
@@ -81,9 +87,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public void RefreshTreeView()
             => BuildTreeView();
 
-        private static void AddClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemDeleteAllRules.Click += mnuItemDeleteAllRulesClickHandler;
+            mnuItemDelete.Click += mnuItemDeleteClickHandler;
+            mnuItemValidate.Click += mnuItemValidateClickHandler;
+            mnuItemView.Click += mnuItemViewClickHandler;
+            mnuItemRefresh.Click += mnuItemRefreshClickHandler;
         }
 
         private void BuildTreeView()
@@ -92,13 +108,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 radTreeView1
             );
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemDeleteAllRulesClickHandler),
+            nameof(mnuItemDeleteClickHandler),
+            nameof(mnuItemValidateClickHandler),
+            nameof(mnuItemViewClickHandler),
+            nameof(mnuItemRefreshClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemDeleteAllRules, _deleteAllRulesCommand);
-            AddClickCommand(mnuItemDelete, _deleteRulesExplorerFileCommand);
-            AddClickCommand(mnuItemValidate, _validateCommand);
-            AddClickCommand(mnuItemView, _viewCommand);
-            AddClickCommand(mnuItemRefresh, _refreshRulesExplorerCommand);
+            mnuItemDeleteAllRulesClickHandler = AddClickCommand(_deleteAllRulesCommand);
+            mnuItemDeleteClickHandler = AddClickCommand(_deleteRulesExplorerFileCommand);
+            mnuItemValidateClickHandler = AddClickCommand(_validateCommand);
+            mnuItemViewClickHandler = AddClickCommand(_viewCommand);
+            mnuItemRefreshClickHandler = AddClickCommand(_refreshRulesExplorerCommand);
 
             radTreeView1.RadContextMenu = new()
             {
@@ -117,10 +140,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private static void Dispose(IDisposable disposable)
         {
-            if (disposable != null)
-                disposable.Dispose();
+            disposable?.Dispose();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemDeleteAllRulesClickHandler),
+            nameof(mnuItemDeleteClickHandler),
+            nameof(mnuItemValidateClickHandler),
+            nameof(mnuItemViewClickHandler),
+            nameof(mnuItemRefreshClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             this.radTreeView1.MouseDown += RadTreeView1_MouseDown;
@@ -131,10 +160,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.Load += RulesExplorer_Load;
 
             CreateContextMenu();
+            AddClickCommands();
         }
 
         private void RefreshTreeView(bool refresh) 
             => BuildTreeView();
+
+        private void RemoveClickCommands()
+        {
+            mnuItemDeleteAllRules.Click -= mnuItemDeleteAllRulesClickHandler;
+            mnuItemDelete.Click -= mnuItemDeleteClickHandler;
+            mnuItemValidate.Click -= mnuItemValidateClickHandler;
+            mnuItemView.Click -= mnuItemViewClickHandler;
+            mnuItemRefresh.Click -= mnuItemRefreshClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            this.radTreeView1.MouseDown -= RadTreeView1_MouseDown;
+            this.radTreeView1.NodeExpandedChanged -= RadTreeView1_NodeExpandedChanged;
+            this.radTreeView1.NodeMouseClick -= RadTreeView1_NodeMouseClick;
+            this.radTreeView1.NodeMouseDoubleClick -= RadTreeView1_NodeMouseDoubleClick;
+            this.Load -= RulesExplorer_Load;
+        }
 
         private void SetContextMenuState(RadTreeNode selectedNode)
         {
@@ -183,10 +231,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
             else
             {
-                if (expandedNodes.ContainsKey(e.Node.Name))
-                {
-                    expandedNodes.Remove(e.Node.Name);
-                }
+            //There's no need to guard Dictionary.Remove(key) with Dictionary.ContainsKey(key). Dictionary<TKey,TValue>.Remove(TKey) already checks whether the key exists and doesn't throw if it doesn't exist.
+            //https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1853.
+                expandedNodes.Remove(e.Node.Name);
             }
 
             e.Node.ImageIndex = e.Node.Expanded
@@ -203,6 +250,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void RulesExplorer_Disposed(object? sender, EventArgs e)
         {
+            RemoveClickCommands();
+            RemoveEventHandlers();
             Dispose(refreshTreeViewSubscription);
         }
 

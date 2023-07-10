@@ -21,6 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             Initialize();
         }
 
+        private EventHandler? radButtonHelperClickHandler;
+
         public new event EventHandler? TextChanged;
 
         public new event EventHandler? Validated;
@@ -63,7 +65,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public void SetAddUpdateGenericArgumentsCommand(IClickCommand command)
         {
-            radButtonHelper.Click += (sender, args) => command.Execute();
+            radButtonHelperClickHandler = (sender, args) => command.Execute();
+            AddClickCommands();
         }
 
         public void SetContextMenus(RadContextMenuManager radContextMenuManager, RadContextMenu radContextMenu)
@@ -74,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             
             this.ContextMenuStrip = null;
             this.RadDropDownList.ContextMenuStrip = null;
-            this.RadDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.ShortcutsEnabled = false;
+            this.RadDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.ShortcutsEnabled = false;/*This prevents CTRL+V from working*/
         }
 
         public void SetErrorBackColor()
@@ -92,12 +95,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            radButtonHelper.Click += radButtonHelperClickHandler;
+        }
+
         private void Initialize()
         {
             radButtonHelper.TabStop = false;
             radButtonHelper.Image = Properties.Resources.more;
             radButtonHelper.ImageAlignment = ContentAlignment.MiddleCenter;
 
+            this.Disposed += AutoCompleteRadDropDownList_Disposed;
             ControlsLayoutUtility.SetDropDownListPadding(RadDropDownList);
             this.RadDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown += TextBoxControl_MouseDown;
             this.radButtonHelper.MouseDown += RadButtonHelper_MouseDown;
@@ -117,6 +127,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             CollapsePanelBorder(radPanelButton);
         }
 
+        private void RemoveClickCommands()
+        {
+            if (radButtonHelperClickHandler == null)
+                return;
+
+            radButtonHelper.Click -= radButtonHelperClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            this.RadDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown -= TextBoxControl_MouseDown;
+            this.radButtonHelper.MouseDown -= RadButtonHelper_MouseDown;
+            radDropDownList1.MouseDown -= RadDropDownList1_MouseDown;
+            radDropDownList1.TextChanged -= RadDropDownList1_TextChanged;
+            radDropDownList1.Validated -= RadDropDownList1_Validated;
+            radDropDownList1.Validating -= RadDropDownList1_Validating;
+        }
+
         private void ResetButtonPanel()
         {
             ((ISupportInitialize)this.radPanelButton).BeginInit();
@@ -132,6 +160,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             => ((BorderPrimitive)radDropDownList1.DropDownListElement.Children[0]).ForeColor = color;
 
         #region Event Handlers
+        private void AutoCompleteRadDropDownList_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            RemoveClickCommands();
+        }
+
         private void TextBoxControl_MouseDown(object? sender, MouseEventArgs e)
         {
             MouseDown?.Invoke(this, e);
@@ -154,6 +188,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void RadDropDownList1_TextChanged(object? sender, EventArgs e)
         {
+            if (radDropDownList1.Disposing
+                || radDropDownList1.IsDisposed) 
+                return;
+
             TextChanged?.Invoke(this, e);
         }
 

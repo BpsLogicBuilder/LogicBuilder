@@ -1,37 +1,38 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision.Factories
 {
     internal class EditDecisionFormCommandFactory : IEditDecisionFormCommandFactory
     {
-        private readonly Func<IEditDecisionForm, AddDecisionFunctionListBoxItemCommand> _getAddDecisionFunctionListBoxItemCommand;
-        private readonly Func<IEditDecisionForm, EditDecisionFormCopyXmlCommand> _getEditDecisionFormCopyXmlCommand;
-        private readonly Func<IEditDecisionForm, EditDecisionFormEditXmlCommand> _getEditDecisionFormEditXmlCommand;
-        private readonly Func<IEditDecisionForm, UpdateDecisionFunctionListBoxItemCommand> _getUpdateDecisionFunctionListBoxItemCommand;
-
-        public EditDecisionFormCommandFactory(
-            Func<IEditDecisionForm, AddDecisionFunctionListBoxItemCommand> getAddDecisionFunctionListBoxItemCommand,
-            Func<IEditDecisionForm, EditDecisionFormCopyXmlCommand> getEditDecisionFormCopyXmlCommand,
-            Func<IEditDecisionForm, EditDecisionFormEditXmlCommand> getEditDecisionFormEditXmlCommand,
-            Func<IEditDecisionForm, UpdateDecisionFunctionListBoxItemCommand> getUpdateDecisionFunctionListBoxItemCommand)
-        {
-            _getAddDecisionFunctionListBoxItemCommand = getAddDecisionFunctionListBoxItemCommand;
-            _getEditDecisionFormCopyXmlCommand = getEditDecisionFormCopyXmlCommand;
-            _getEditDecisionFormEditXmlCommand = getEditDecisionFormEditXmlCommand;
-            _getUpdateDecisionFunctionListBoxItemCommand = getUpdateDecisionFunctionListBoxItemCommand;
-        }
-
         public AddDecisionFunctionListBoxItemCommand GetAddDecisionFunctionListBoxItemCommand(IEditDecisionForm editDecisionForm)
-            => _getAddDecisionFunctionListBoxItemCommand(editDecisionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IDecisionFunctionListBoxItemFactory>(),
+                editDecisionForm
+            );
 
         public EditDecisionFormCopyXmlCommand GetEditDecisionFormCopyXmlCommand(IEditDecisionForm editDecisionForm)
-            => _getEditDecisionFormCopyXmlCommand(editDecisionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editDecisionForm
+            );
 
         public EditDecisionFormEditXmlCommand GetEditDecisionFormEditXmlCommand(IEditDecisionForm editDecisionForm)
-            => _getEditDecisionFormEditXmlCommand(editDecisionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editDecisionForm
+            );
 
         public UpdateDecisionFunctionListBoxItemCommand GetUpdateDecisionFunctionListBoxItemCommand(IEditDecisionForm editDecisionForm)
-            => _getUpdateDecisionFunctionListBoxItemCommand(editDecisionForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IDecisionFunctionListBoxItemFactory>(),
+                editDecisionForm
+            );
     }
 }

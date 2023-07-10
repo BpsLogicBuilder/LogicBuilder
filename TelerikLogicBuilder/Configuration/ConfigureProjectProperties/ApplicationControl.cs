@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -31,6 +32,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IConfigureProjectPropertiesForm configureProjectProperties;
+        private EventHandler<EventArgs> txtActivityAssemblyButtonClickHandler;
+        private EventHandler<EventArgs> txtActivityAssemblyPathButtonClickHandler;
+        private EventHandler<EventArgs> txtExcludedModulesButtonClickHandler;
+        private EventHandler<EventArgs> txtLoadAssemblyPathsButtonClickHandler;
+        private EventHandler<EventArgs> txtResourceFilesDeploymentButtonClickHandler;
+        private EventHandler<EventArgs> txtRulesDeploymentButtonClickHandler;
+        private EventHandler<EventArgs> txtWebApiDeploymentButtonClickHandler;
 
         public ApplicationControl(
             IApplicationControlCommandFactory applicationControlCommandFactory,
@@ -105,6 +113,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             this.configureProjectProperties.ValidateXmlDocument();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtActivityAssembly.ButtonClick += txtActivityAssemblyButtonClickHandler;
+            txtActivityAssemblyPath.ButtonClick += txtActivityAssemblyPathButtonClickHandler;
+            txtExcludedModules.ButtonClick += txtExcludedModulesButtonClickHandler;
+            txtLoadAssemblyPaths.ButtonClick += txtLoadAssemblyPathsButtonClickHandler;
+            txtResourceFilesDeployment.ButtonClick += txtResourceFilesDeploymentButtonClickHandler;
+            txtRulesDeployment.ButtonClick += txtRulesDeploymentButtonClickHandler;
+            txtWebApiDeployment.ButtonClick += txtWebApiDeploymentButtonClickHandler;
+        }
+
         private void AddEventHandlers()
         {
             txtNickname.Validating += TxtNickname_Validating;
@@ -121,6 +141,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtActivityAssemblyButtonClickHandler),
+        nameof(txtActivityAssemblyPathButtonClickHandler),
+        nameof(txtExcludedModulesButtonClickHandler),
+        nameof(txtLoadAssemblyPathsButtonClickHandler),
+        nameof(txtResourceFilesDeploymentButtonClickHandler),
+        nameof(txtRulesDeploymentButtonClickHandler),
+        nameof(txtWebApiDeploymentButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             radPanelApplication.VerticalScrollBarState = ScrollState.AlwaysShow;
@@ -129,56 +158,61 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             CollapsePanelBorder(radPanelApplication);
             CollapsePanelBorder(radPanelTableParent);
 
+            Disposed += ApplicationControl_Disposed;
+
             InitializeReadOnlyTextBox(txtLoadAssemblyPaths, Strings.collectionIndicatorText);
             InitializeReadOnlyTextBox(txtExcludedModules, Strings.collectionIndicatorText);
             InitializeReadOnlyTextBox(txtWebApiDeployment, Strings.configurationFormIndicatorText);
 
             LoadRuntimeComboBox();
             InitializeClickCommands();
+            AddClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtActivityAssemblyButtonClickHandler),
+        nameof(txtActivityAssemblyPathButtonClickHandler),
+        nameof(txtExcludedModulesButtonClickHandler),
+        nameof(txtLoadAssemblyPathsButtonClickHandler),
+        nameof(txtResourceFilesDeploymentButtonClickHandler),
+        nameof(txtRulesDeploymentButtonClickHandler),
+        nameof(txtWebApiDeploymentButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtActivityAssemblyButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtActivityAssembly,
                 _applicationControlCommandFactory.GetEditActivityAssemblyCommand(this)
             );
-            InitializeHelperButtonCommand
+            txtActivityAssemblyPathButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtActivityAssemblyPath,
                 _applicationControlCommandFactory.GetEditActivityAssemblyPathCommand(this)
             );
-            InitializeHelperButtonCommand
+            txtExcludedModulesButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtExcludedModules,
                 _applicationControlCommandFactory.GetEditExcludedModulesCommand(this)
             );
-            InitializeHelperButtonCommand
+            txtLoadAssemblyPathsButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtLoadAssemblyPaths,
                 _applicationControlCommandFactory.GetEditLoadAssemblyPathsCommand(this)
             );
-            InitializeHelperButtonCommand
+            txtResourceFilesDeploymentButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtResourceFilesDeployment,
                 _applicationControlCommandFactory.GetEditResourceFilesDeploymentCommand(this)
             );
-            InitializeHelperButtonCommand
+            txtRulesDeploymentButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtRulesDeployment,
                 _applicationControlCommandFactory.GetEditRulesDeploymentCommand(this)
             );
-            InitializeHelperButtonCommand
+            txtWebApiDeploymentButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtWebApiDeployment,
                 _applicationControlCommandFactory.GetEditWebApiDeploymentCommand(this)
             );
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private static void InitializeReadOnlyTextBox(HelperButtonTextBox helperButtonTextBox, string text)
@@ -208,6 +242,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         private void LoadRuntimeComboBox()
         {
             _radDropDownListHelper.LoadComboItems<RuntimeType>(cmbRuntime);
+        }
+
+        private void RemoveClickCommands()
+        {
+            txtActivityAssembly.ButtonClick -= txtActivityAssemblyButtonClickHandler;
+            txtActivityAssemblyPath.ButtonClick -= txtActivityAssemblyPathButtonClickHandler;
+            txtExcludedModules.ButtonClick -= txtExcludedModulesButtonClickHandler;
+            txtLoadAssemblyPaths.ButtonClick -= txtLoadAssemblyPathsButtonClickHandler;
+            txtResourceFilesDeployment.ButtonClick -= txtResourceFilesDeploymentButtonClickHandler;
+            txtRulesDeployment.ButtonClick -= txtRulesDeploymentButtonClickHandler;
+            txtWebApiDeployment.ButtonClick -= txtWebApiDeploymentButtonClickHandler;
         }
 
         private void RemoveEventHandlers()
@@ -301,6 +346,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         #endregion Methods
 
         #region Event Handlers
+        private void ApplicationControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
+
         private void TxtActivityAssembly_Validating(object? sender, CancelEventArgs e)
         {
             List<string> errors = new();

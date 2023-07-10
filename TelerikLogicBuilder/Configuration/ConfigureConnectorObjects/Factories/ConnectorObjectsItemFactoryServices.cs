@@ -1,6 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
-using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -9,15 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddConnectorObjectsItemFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<IConnectorObjectsItemFactory, ConnectorObjectsItemFactory>()
-                .AddTransient<Func<string, ConnectorObjectListBoxItem>>
-                (
-                    provider =>
-                    text => new ConnectorObjectListBoxItem
-                    (
-                        text
-                    )
-                );
+                .AddSingleton<IConnectorObjectsItemFactory, ConnectorObjectsItemFactory>();
         }
     }
 }

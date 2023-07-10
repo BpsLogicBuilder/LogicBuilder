@@ -10,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -64,6 +65,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
+        private EventHandler<EventArgs> txtListLpDomainButtonClickHandler;
+        private EventHandler<EventArgs> txtListLpDefaultValueButtonClickHandler;
 
         #region Properties
         public RadTreeView TreeView => configureGenericArgumentsForm.TreeView;
@@ -170,12 +173,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
                 errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.fieldSourceMustBeEmptyFormat, lblListLpPropertySourceParameter.Text, lblListLpElementControl.Text, Strings.dropdownTextParameterSourcedPropertyInput));
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtListLpDomain.ButtonClick += txtListLpDomainButtonClickHandler;
+            txtListLpDefaultValue.ButtonClick += txtListLpDefaultValueButtonClickHandler;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtListLpDomainButtonClickHandler),
+        nameof(txtListLpDefaultValueButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
@@ -186,27 +200,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             InitializeParameterControls();
             LoadParameterDropDownLists();
             InitializeClickCommands();
+            Disposed += ConfigureGenericLiteralListArgumentControl_Disposed;
             _cmbListLpPropertySourceTypeAutoCompleteManager.Setup();
+            AddClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtListLpDomainButtonClickHandler),
+        nameof(txtListLpDefaultValueButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtListLpDomainButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtListLpDomain,
                 _configureGenericLiteralListArgumentCommandFactory.GetUpdateGenericLiteralListDomainCommand(this)
             );
 
-            InitializeHelperButtonCommand
+            txtListLpDefaultValueButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtListLpDefaultValue,
                 _configureGenericLiteralListArgumentCommandFactory.GetUpdateGenericLiteralListDefaultValueCommand(this)
             );
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private void InitializeParameterControls()
@@ -274,5 +292,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
                 RadDropDownStyle.DropDown
             );
         }
+
+        private void RemoveClickCommands()
+        {
+            txtListLpDomain.ButtonClick -= txtListLpDomainButtonClickHandler;
+            txtListLpDefaultValue.ButtonClick -= txtListLpDefaultValueButtonClickHandler;
+        }
+
+        #region Event Handlers
+        private void ConfigureGenericLiteralListArgumentControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

@@ -13,26 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditDialogFunctionCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<IEditDialogFunctionCommandFactory, EditDialogFunctionCommandFactory>()
-                .AddTransient<Func<IEditDialogFunctionForm, EditDialogFunctionFormXmlCommand>>
-                (
-                    provider =>
-                    editFunctionForm => new EditDialogFunctionFormXmlCommand
-                    (
-                        provider.GetRequiredService<IFunctionDataParser>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editFunctionForm
-                    )
-                )
-                .AddTransient<Func<IEditDialogFunctionForm, SelectDialogFunctionCommand>>
-                (
-                    provider =>
-                    editFunctionForm => new SelectDialogFunctionCommand
-                    (
-                        provider.GetRequiredService<IConfigurationService>(),
-                        editFunctionForm
-                    )
-                );
+                .AddSingleton<IEditDialogFunctionCommandFactory, EditDialogFunctionCommandFactory>();
         }
     }
 }

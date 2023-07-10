@@ -29,6 +29,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private RadDropDownList radDropDownList;
+        private EventHandler? btnHelperClickHandler;
 
         public ListOfLiteralsParameterItemTypeAutoCompleteControl(
             IImageListService imageListService,
@@ -123,7 +124,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
 
         public void SetAddUpdateGenericArgumentsCommand(IClickCommand command)
         {
-            btnHelper.Click += (sender, args) => command.Execute();
+            btnHelperClickHandler = (sender, args) => command.Execute();
+            AddClickCommands();
         }
 
         public void SetContextMenus(RadContextMenuManager radContextMenuManager, RadContextMenu radContextMenu)
@@ -177,6 +179,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
 
         void IValueControl.Focus() => radDropDownList.Select();
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnHelper.Click += btnHelperClickHandler;
+        }
+
         private void Enable(bool enable)
         {
             radDropDownList.Enabled = enable;
@@ -193,6 +201,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             InitializeDropDownList();
             InitializeButton();
 
+            this.Disposed += ListOfLiteralsParameterItemTypeAutoCompleteControl_Disposed;
             radDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown += TextBoxControl_MouseDown;
             btnHelper.MouseDown += BtnHelper_MouseDown;
             radDropDownList.Disposed += _radDropDownListHelper.DisposedHandler;
@@ -236,6 +245,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             this.radPanelDropDownList.ResumeLayout(true);
         }
 
+        private void RemoveClickCommands()
+        {
+            if (btnHelperClickHandler != null)
+                btnHelper.Click -= btnHelperClickHandler;
+        }
+
+        private void RenoveEventHandlers()
+        {
+            radDropDownList.DropDownListElement.EditableElement.TextBox.TextBoxItem.TextBoxControl.MouseDown -= TextBoxControl_MouseDown;
+            btnHelper.MouseDown -= BtnHelper_MouseDown;
+            radDropDownList.Disposed -= _radDropDownListHelper.DisposedHandler;
+            radDropDownList.MouseDown -= RadDropDownList_MouseDown;
+            radDropDownList.TextChanged -= RadDropDownList_TextChanged;
+            radDropDownList.Validating -= RadDropDownList_Validating;
+        }
+
         private void SetDropDownBorderForeColor(Color color)
             => ((BorderPrimitive)radDropDownList.DropDownListElement.Children[0]).ForeColor = color;
 
@@ -251,6 +276,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             MouseDown?.Invoke(this, e);
         }
 
+        private void ListOfLiteralsParameterItemTypeAutoCompleteControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            btnHelper.ImageList = null;
+
+            RenoveEventHandlers();
+            RemoveClickCommands();
+        }
+
         private void RadDropDownList_MouseDown(object? sender, MouseEventArgs e)
         {
             MouseDown?.Invoke(this, e);
@@ -258,6 +294,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
 
         private void RadDropDownList_TextChanged(object? sender, EventArgs e)
         {
+            if (radDropDownList.Disposing || radDropDownList.IsDisposed)
+                return;
+
             Changed?.Invoke(this, e);
             TextChanged?.Invoke(this, e);
         }

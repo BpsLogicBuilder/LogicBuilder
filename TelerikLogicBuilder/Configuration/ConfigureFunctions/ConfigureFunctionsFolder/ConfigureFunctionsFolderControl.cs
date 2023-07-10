@@ -94,6 +94,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
 
         private void Initialize()
         {
+            Disposed += ConfigureFunctionsFolderControl_Disposed;
             radScrollablePanelFolder.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radScrollablePanelFolder);
@@ -134,6 +135,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
         [GeneratedRegex(RegularExpressions.XMLATTRIBUTE)]
         private static partial Regex XmlAttributeRegex();
 
+        #region Event Handlers
+        private void ConfigureFunctionsFolderControl_Disposed(object? sender, System.EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveEventHandlers();
+        }
+
         private void TxtFolderName_TextChanged(object? sender, System.EventArgs e)
         {
             try
@@ -149,5 +159,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
                 configureFunctionsForm.SetErrorMessage(ex.Message);
             }
         }
+        #endregion Event Handlers
     }
 }

@@ -16,6 +16,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Xml;
@@ -44,6 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly Type assignedTo;
         private readonly HashSet<string> constructorNames;
         private string selectedConstructor;
+        private EventHandler btnPasteXmlClickHandler;
+        private EventHandler<EventArgs> cmbSelectConstructorButtonClickHandler;
         private readonly bool denySpecialCharacters;
 
         public EditConstructorForm(
@@ -145,14 +148,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
         public void ValidateXmlDocument() => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
-        private static void AddButtonClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
+        private void AddClickCommands()
         {
-            helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+            RemoveClickCommands();
+            btnPasteXml.Click += btnPasteXmlClickHandler;
+            cmbSelectConstructor.ButtonClick += cmbSelectConstructorButtonClickHandler;
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler<EventArgs> AddHelperButtonDropDownListClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
+        {
+            return (sender, args) => command.Execute();
         }
 
         private void CmbSelectConstructorChanged()
@@ -165,6 +175,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             LoadTreeview();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnPasteXmlClickHandler),
+        nameof(cmbSelectConstructorButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -172,6 +186,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
             InitializeSelectConstructorDropDownList();
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
+            Disposed += EditConstructorForm_Disposed;
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
@@ -182,9 +197,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
 
             _dataGraphEditingFormEventsHelper.Setup();
             SetUpSelectConstructorDropDownList();
-            AddButtonClickCommand(btnPasteXml, _editConstructorCommandFactory.GetEditFormXmlCommand(this));
-            AddButtonClickCommand(cmbSelectConstructor, _editConstructorCommandFactory.GetSelectConstructorCommand(this));
+            btnPasteXmlClickHandler = AddButtonClickCommand(_editConstructorCommandFactory.GetEditFormXmlCommand(this));
+            cmbSelectConstructorButtonClickHandler = AddHelperButtonDropDownListClickCommand(_editConstructorCommandFactory.GetSelectConstructorCommand(this));
             LoadTreeview();
+            AddClickCommands();
         }
 
         private void InitializeApplicationDropDownList()
@@ -209,6 +225,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }
 
+        private void RemoveClickCommands()
+        {
+            btnPasteXml.Click -= btnPasteXmlClickHandler;
+            cmbSelectConstructor.ButtonClick -= cmbSelectConstructorButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+            cmbSelectConstructor.Changed -= CmbSelectConstructor_Changed;
+        }
+
         private void SetUpSelectConstructorDropDownList()
         {
             _radDropDownListHelper.LoadTextItems(cmbSelectConstructor.DropDownList, this.constructorNames, RadDropDownStyle.DropDown);
@@ -223,6 +251,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         }
 
         private void CmbSelectConstructor_Changed(object? sender, EventArgs e) => CmbSelectConstructorChanged();
+
+        private void EditConstructorForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
         #endregion Event Handlers
     }
 }

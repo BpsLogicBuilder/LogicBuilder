@@ -118,6 +118,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             CollapsePanelBorder(radPanelDropDownList);
             _radDropDownListHelper.LoadTextItems(radDropDownList, literalListParameter.Domain, RadDropDownStyle.DropDown);
 
+            Disposed += ListOfLiteralsParameterItemDomainAutoCompleteControl_Disposed;
             radDropDownList.TextChanged += RadDropDownList_TextChanged;
         }
 
@@ -145,12 +146,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             this.radPanelDropDownList.ResumeLayout(true);
         }
 
+        private void RenoveEventHandlers()
+        {
+            radDropDownList.TextChanged -= RadDropDownList_TextChanged;
+        }
+
         private void SetDropDownBorderForeColor(Color color)
             => ((BorderPrimitive)radDropDownList.DropDownListElement.Children[0]).ForeColor = color;
 
         #region Event Handlers
+        private void ListOfLiteralsParameterItemDomainAutoCompleteControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RenoveEventHandlers();
+        }
+
         private void RadDropDownList_TextChanged(object? sender, EventArgs e)
         {
+            if (radDropDownList.Disposing || radDropDownList.IsDisposed)
+                return;
+
             Changed?.Invoke(this, e);
         }
         #endregion Event Handlers

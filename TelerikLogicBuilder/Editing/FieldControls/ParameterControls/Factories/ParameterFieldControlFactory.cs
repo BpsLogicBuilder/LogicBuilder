@@ -1,5 +1,16 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -7,93 +18,222 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
 {
     internal class ParameterFieldControlFactory : IParameterFieldControlFactory
     {
-        private readonly Func<IEditConstructorControl, IConstructorGenericParametersControl> _getConstructorGenericParametersControl;
-        private readonly Func<IEditFunctionControl, IFunctionGenericParametersControl> _getFunctionGenericParametersControl;
-        private readonly Func<IDataGraphEditingControl, ListOfLiteralsParameter, IDictionary<string, ParameterControlSet>, ILiteralListParameterRichTextBoxControl> _getLiteralListParameterRichTextBoxControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl> _getLiteralParameterDomainAutoCompleteControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainMultilineControl> _getLiteralParameterDomainMultilineControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainRichInputBoxControl> _getLiteralParameterDomainRichInputBoxControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDropDownListControl> _getLiteralParameterDropDownListControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterMultilineControl> _getLiteralParameterMultilineControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterPropertyInputRichInputBoxControl> _getLiteralParameterPropertyInputRichInputBoxControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl> _getLiteralParameterRichInputBoxControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, IDictionary<string, ParameterControlSet>, ILiteralParameterSourcedPropertyRichInputBoxControl> _getLiteralParameterSourcedPropertyRichInputBoxControl;
-        private readonly Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl> _getLiteralParameterTypeAutoCompleteControl;
-        private readonly Func<IDataGraphEditingControl, ListOfObjectsParameter, IObjectListParameterRichTextBoxControl> _getObjectListParameterRichTextBoxControl;
-        private readonly Func<IDataGraphEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl> _getObjectParameterRichTextBoxControl;
-
-        public ParameterFieldControlFactory(
-            Func<IEditConstructorControl, IConstructorGenericParametersControl> getConstructorGenericParametersControl,
-            Func<IEditFunctionControl, IFunctionGenericParametersControl> getFunctionGenericParametersControl,
-            Func<IDataGraphEditingControl, ListOfLiteralsParameter, IDictionary<string, ParameterControlSet>, ILiteralListParameterRichTextBoxControl> getLiteralListParameterRichTextBoxControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainAutoCompleteControl> getLiteralParameterDomainAutoCompleteControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainMultilineControl> getLiteralParameterDomainMultilineControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDomainRichInputBoxControl> getLiteralParameterDomainRichInputBoxControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterDropDownListControl> getLiteralParameterDropDownListControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterMultilineControl> getLiteralParameterMultilineControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterPropertyInputRichInputBoxControl> getLiteralParameterPropertyInputRichInputBoxControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterRichInputBoxControl> getLiteralParameterRichInputBoxControl,
-            Func<IDataGraphEditingControl, LiteralParameter, IDictionary<string, ParameterControlSet>, ILiteralParameterSourcedPropertyRichInputBoxControl> getLiteralParameterSourcedPropertyRichInputBoxControl,
-            Func<IDataGraphEditingControl, LiteralParameter, ILiteralParameterTypeAutoCompleteControl> getLiteralParameterTypeAutoCompleteControl,
-            Func<IDataGraphEditingControl, ListOfObjectsParameter, IObjectListParameterRichTextBoxControl> getObjectListParameterRichTextBoxControl,
-            Func<IDataGraphEditingControl, ObjectParameter, IObjectParameterRichTextBoxControl> getObjectParameterRichTextBoxControl)
-        {
-            _getConstructorGenericParametersControl = getConstructorGenericParametersControl;
-            _getFunctionGenericParametersControl = getFunctionGenericParametersControl;
-            _getLiteralListParameterRichTextBoxControl = getLiteralListParameterRichTextBoxControl;
-            _getLiteralParameterDomainAutoCompleteControl = getLiteralParameterDomainAutoCompleteControl;
-            _getLiteralParameterDomainMultilineControl = getLiteralParameterDomainMultilineControl;
-            _getLiteralParameterDomainRichInputBoxControl = getLiteralParameterDomainRichInputBoxControl;
-            _getLiteralParameterDropDownListControl = getLiteralParameterDropDownListControl;
-            _getLiteralParameterMultilineControl = getLiteralParameterMultilineControl;
-            _getLiteralParameterPropertyInputRichInputBoxControl = getLiteralParameterPropertyInputRichInputBoxControl;
-            _getLiteralParameterRichInputBoxControl = getLiteralParameterRichInputBoxControl;
-            _getLiteralParameterSourcedPropertyRichInputBoxControl = getLiteralParameterSourcedPropertyRichInputBoxControl;
-            _getLiteralParameterTypeAutoCompleteControl = getLiteralParameterTypeAutoCompleteControl;
-            _getObjectListParameterRichTextBoxControl = getObjectListParameterRichTextBoxControl;
-            _getObjectParameterRichTextBoxControl = getObjectParameterRichTextBoxControl;
-        }
-
         public IConstructorGenericParametersControl GetConstructorGenericParametersControl(IEditConstructorControl editConstructorControl)
-            => _getConstructorGenericParametersControl(editConstructorControl);
+            => new ConstructorGenericParametersControl
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IConstructorDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                new ObjectRichTextBox(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editConstructorControl
+            );
 
         public IFunctionGenericParametersControl GetFunctionGenericParametersControl(IEditFunctionControl editFunctionControl)
-            => _getFunctionGenericParametersControl(editFunctionControl);
+            => new FunctionGenericParametersControl
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                new ObjectRichTextBox(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editFunctionControl
+            );
 
         public ILiteralListParameterRichTextBoxControl GetiteralListParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfLiteralsParameter listOfLiteralsParameter, IDictionary<string, ParameterControlSet> editControlSet)
-            => _getLiteralListParameterRichTextBoxControl(editingControl, listOfLiteralsParameter, editControlSet);
+           => new LiteralListParameterRichTextBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
+                Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
+                new ObjectRichTextBox(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                listOfLiteralsParameter,
+                editControlSet
+            );
 
         public ILiteralParameterDomainAutoCompleteControl GetLiteralParameterDomainAutoCompleteControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterDomainAutoCompleteControl(editingControl, literalParameter);
+            => new LiteralParameterDomainAutoCompleteControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                literalParameter
+            );
 
         public ILiteralParameterDomainMultilineControl GetLiteralParameterDomainMultilineControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterDomainMultilineControl(editingControl, literalParameter);
+            => new LiteralParameterDomainMultilineControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                new RichInputBox(),
+                editingControl,
+                literalParameter
+            );
 
         public ILiteralParameterDomainRichInputBoxControl GetLiteralParameterDomainRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterDomainRichInputBoxControl(editingControl, literalParameter);
+            => new LiteralParameterDomainRichInputBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                new RichInputBox(),
+                editingControl,
+                literalParameter
+            );
 
         public ILiteralParameterDropDownListControl GetLiteralParameterDropDownListControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterDropDownListControl(editingControl, literalParameter);
+            => new LiteralParameterDropDownListControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                literalParameter
+            );
 
         public ILiteralParameterMultilineControl GetLiteralParameterMultilineControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterMultilineControl(editingControl, literalParameter);
+            => new LiteralParameterMultilineControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                new RichInputBox(),
+                editingControl,
+                literalParameter
+            );
 
         public ILiteralParameterPropertyInputRichInputBoxControl GetLiteralParameterPropertyInputRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterPropertyInputRichInputBoxControl(editingControl, literalParameter);
+            => new LiteralParameterPropertyInputRichInputBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                new RichInputBox(),
+                editingControl,
+                literalParameter
+            );
 
         public ILiteralParameterRichInputBoxControl GetLiteralParameterRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterRichInputBoxControl(editingControl, literalParameter);
+            => new LiteralParameterRichInputBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                new RichInputBox(),
+                editingControl,
+                literalParameter
+            );
 
         public ILiteralParameterSourcedPropertyRichInputBoxControl GetLiteralParameterSourcedPropertyRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter, IDictionary<string, ParameterControlSet> editControlsSet)
-            => _getLiteralParameterSourcedPropertyRichInputBoxControl(editingControl, literalParameter, editControlsSet);
+            => new LiteralParameterSourcedPropertyRichInputBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                new RichInputBox(),
+                editingControl,
+                literalParameter,
+                editControlsSet
+            );
 
         public ILiteralParameterTypeAutoCompleteControl GetLiteralParameterTypeAutoCompleteControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
-            => _getLiteralParameterTypeAutoCompleteControl(editingControl, literalParameter);
+            => new LiteralParameterTypeAutoCompleteControl
+            (
+                Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                literalParameter
+            );
 
         public IObjectListParameterRichTextBoxControl GetObjectListParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfObjectsParameter listOfObjectsParameter)
-            => _getObjectListParameterRichTextBoxControl(editingControl, listOfObjectsParameter);
+            => new ObjectListParameterRichTextBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<ILiteralListDataParser>(),
+                Program.ServiceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
+                Program.ServiceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
+                new ObjectRichTextBox(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                listOfObjectsParameter
+            );
 
         public IObjectParameterRichTextBoxControl GetObjectParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ObjectParameter objectParameter)
-            => _getObjectParameterRichTextBoxControl(editingControl, objectParameter);
+            => new ObjectParameterRichTextBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<ILiteralListDataParser>(),
+                Program.ServiceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
+                Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
+                new ObjectRichTextBox(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                objectParameter
+            );
     }
 }

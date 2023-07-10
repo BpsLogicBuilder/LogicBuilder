@@ -1,24 +1,37 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditCell;
+using ABIS.LogicBuilder.FlowBuilder.Editing.EditShape;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal class DocumentEditorFactory : IDocumentEditorFactory
     {
-        private readonly Func<string, bool, TableControl> _getTableControl;
-        private readonly Func<string, bool, VisioControl> _getVisioControl;
-
-        public DocumentEditorFactory(
-            Func<string, bool, TableControl> getTableControl,
-            Func<string, bool, VisioControl> getVisioControl)
-        {
-            _getTableControl = getTableControl;
-            _getVisioControl = getVisioControl;
-        }
-
         public TableControl GetTableControl(string tableSourceFile, bool openedAsReadOnly)
-            => _getTableControl(tableSourceFile, openedAsReadOnly);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IMainWindow>(),
+                Program.ServiceProvider.GetRequiredService<IPathHelper>(),
+                Program.ServiceProvider.GetRequiredService<ITableEditor>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IUiNotificationService>(),
+                tableSourceFile,
+                openedAsReadOnly
+            );
 
         public VisioControl GetVisioControl(string visioSourceFile, bool openedAsReadOnly)
-            => _getVisioControl(visioSourceFile, openedAsReadOnly);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IDiagramEditor>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IMainWindow>(),
+                Program.ServiceProvider.GetRequiredService<IPathHelper>(),
+                Program.ServiceProvider.GetRequiredService<IUiNotificationService>(),
+                visioSourceFile,
+                openedAsReadOnly
+            );
     }
 }

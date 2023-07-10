@@ -20,6 +20,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -47,6 +48,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private ApplicationTypeInfo _application;
+        private EventHandler btnPasteXmlClickHandler;
+        private EventHandler<EventArgs> cmbSelectFunctionButtonClickHandler;
         private readonly Type assignedTo;
 
         public EditValueFunctionForm(
@@ -152,14 +155,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             _treeViewXmlDocumentHelper.ValidateXmlDocument();
         }
 
-        private static void AddButtonClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
+        private void AddClickCommands()
         {
-            helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+            RemoveClickCommands();
+            btnPasteXml.Click += btnPasteXmlClickHandler;
+            cmbSelectFunction.ButtonClick += cmbSelectFunctionButtonClickHandler;
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler<EventArgs> AddHelperButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
+        {
+            return (sender, args) => command.Execute();
         }
 
         private void CmbSelectFunctionChanged()
@@ -171,6 +181,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             LoadTreeview();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnPasteXmlClickHandler),
+        nameof(cmbSelectFunctionButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -179,6 +193,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             cmbSelectFunction.Changed += CmbSelectFunction_Changed;
+            Disposed += EditValueFunctionForm_Disposed;
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
@@ -189,9 +204,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
 
             _dataGraphEditingFormEventsHelper.Setup();
             SetUpSelectFunctionDropDownList();
-            AddButtonClickCommand(btnPasteXml, _editFunctionCommandFactory.GetEditValueFunctionFormXmlCommand(this));
-            AddButtonClickCommand(cmbSelectFunction, _editFunctionCommandFactory.GetSelectValueFunctionCommand(this));
+            btnPasteXmlClickHandler = AddButtonClickCommand(_editFunctionCommandFactory.GetEditValueFunctionFormXmlCommand(this));
+            cmbSelectFunctionButtonClickHandler = AddHelperButtonClickCommand(_editFunctionCommandFactory.GetSelectValueFunctionCommand(this));
             LoadTreeview();
+            AddClickCommands();
         }
 
         private void InitializeApplicationDropDownList()
@@ -246,6 +262,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
             _treeViewXmlDocumentHelper.LoadXmlDocument(functionXmlDocument.OuterXml);
         }
 
+        private void RemoveClickCommands()
+        {
+            btnPasteXml.Click -= btnPasteXmlClickHandler;
+            cmbSelectFunction.ButtonClick -= cmbSelectFunctionButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+            cmbSelectFunction.Changed -= CmbSelectFunction_Changed;
+        }
+
         private void SetUpSelectFunctionDropDownList()
         {
             _radDropDownListHelper.LoadTextItems
@@ -274,6 +302,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditValueFunction
         }
 
         private void CmbSelectFunction_Changed(object? sender, EventArgs e) => CmbSelectFunctionChanged();
+
+        private void EditValueFunctionForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
         #endregion Event Handlers
     }
 }

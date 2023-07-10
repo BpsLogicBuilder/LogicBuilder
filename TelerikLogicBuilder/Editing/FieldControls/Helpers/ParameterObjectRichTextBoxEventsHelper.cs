@@ -32,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.parameterRichTextBoxValueControl = parameterRichTextBoxValueControl;
+            RichTextBox.Disposed += RichTextBox_Disposed;
         }
 
         private ObjectRichTextBox RichTextBox => parameterRichTextBoxValueControl.RichTextBox;
@@ -78,6 +79,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private void RichTextBox_MouseClick(object? sender, System.Windows.Forms.MouseEventArgs e)
         {
             EditExisting();
+        }
+
+        private void RichTextBox_Disposed(object? sender, System.EventArgs e)
+        {
+            RichTextBox.MouseClick -= RichTextBox_MouseClick;
         }
     }
 }

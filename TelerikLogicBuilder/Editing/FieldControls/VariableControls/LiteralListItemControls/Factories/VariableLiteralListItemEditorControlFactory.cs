@@ -1,62 +1,130 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.LiteralListItemControls.Factories
 {
     internal class VariableLiteralListItemEditorControlFactory : IVariableLiteralListItemEditorControlFactory
     {
-        private readonly Func<ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainAutoCompleteControl> _getListOfLiteralsVariableItemDomainAutoCompleteControl;
-        private readonly Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainMultilineControl> _getListOfLiteralsVariableItemDomainMultilineControl;
-        private readonly Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainRichInputBoxControl> _getListOfLiteralsVariableItemDomainRichInputBoxControl;
-        private readonly Func<ListOfLiteralsVariable, IListOfLiteralsVariableItemDropDownListControl> _getListOfLiteralsVariableItemDropDownListControl;
-        private readonly Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemMultilineControl> _getListOfLiteralsVariableItemMultilineControl;
-        private readonly Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemPropertyInputRichInputBoxControl> _getListOfLiteralsVariableItemPropertyInputRichInputBoxControl;
-        private readonly Func<IDataGraphEditingControl, LiteralListVariableElementInfo, IListOfLiteralsVariableItemRichInputBoxControl> _getListOfLiteralsVariableItemRichInputBoxControl;
-        private readonly Func<IListOfLiteralsVariableItemTypeAutoCompleteControl> _getListOfLiteralsVariableItemTypeAutoCompleteControl;
-
-        public VariableLiteralListItemEditorControlFactory(
-            Func<ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainAutoCompleteControl> getListOfLiteralsVariableItemDomainAutoCompleteControl,
-            Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainMultilineControl> getListOfLiteralsVariableItemDomainMultilineControl,
-            Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemDomainRichInputBoxControl> getListOfLiteralsVariableItemDomainRichInputBoxControl,
-            Func<ListOfLiteralsVariable, IListOfLiteralsVariableItemDropDownListControl> getListOfLiteralsVariableItemDropDownListControl,
-            Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemMultilineControl> getListOfLiteralsVariableItemMultilineControl,
-            Func<IDataGraphEditingControl, ListOfLiteralsVariable, IListOfLiteralsVariableItemPropertyInputRichInputBoxControl> getListOfLiteralsVariableItemPropertyInputRichInputBoxControl,
-            Func<IDataGraphEditingControl, LiteralListVariableElementInfo, IListOfLiteralsVariableItemRichInputBoxControl> getListOfLiteralsVariableItemRichInputBoxControl,
-            Func<IListOfLiteralsVariableItemTypeAutoCompleteControl> getListOfLiteralsVariableItemTypeAutoCompleteControl)
-        {
-            _getListOfLiteralsVariableItemDomainAutoCompleteControl = getListOfLiteralsVariableItemDomainAutoCompleteControl;
-            _getListOfLiteralsVariableItemDomainMultilineControl = getListOfLiteralsVariableItemDomainMultilineControl;
-            _getListOfLiteralsVariableItemDomainRichInputBoxControl = getListOfLiteralsVariableItemDomainRichInputBoxControl;
-            _getListOfLiteralsVariableItemDropDownListControl = getListOfLiteralsVariableItemDropDownListControl;
-            _getListOfLiteralsVariableItemMultilineControl = getListOfLiteralsVariableItemMultilineControl;
-            _getListOfLiteralsVariableItemPropertyInputRichInputBoxControl = getListOfLiteralsVariableItemPropertyInputRichInputBoxControl;
-            _getListOfLiteralsVariableItemRichInputBoxControl = getListOfLiteralsVariableItemRichInputBoxControl;
-            _getListOfLiteralsVariableItemTypeAutoCompleteControl = getListOfLiteralsVariableItemTypeAutoCompleteControl;
-        }
-
         public IListOfLiteralsVariableItemDomainAutoCompleteControl GetListOfLiteralsVariableItemDomainAutoCompleteControl(ListOfLiteralsVariable literalListVariable)
-            => _getListOfLiteralsVariableItemDomainAutoCompleteControl(literalListVariable);
+            => new ListOfLiteralsVariableItemDomainAutoCompleteControl
+            (
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                literalListVariable
+            );
 
         public IListOfLiteralsVariableItemDomainMultilineControl GetListOfLiteralsVariableItemDomainMultilineControl(IDataGraphEditingControl editingControl, ListOfLiteralsVariable literalListVariable)
-            => _getListOfLiteralsVariableItemDomainMultilineControl(editingControl, literalListVariable);
+            => new ListOfLiteralsVariableItemDomainMultilineControl
+            (
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                Program.ServiceProvider.GetRequiredService<RichInputBox>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                literalListVariable
+            );
 
         public IListOfLiteralsVariableItemDomainRichInputBoxControl GetListOfLiteralsVariableItemDomainRichInputBoxControl(IDataGraphEditingControl editingControl, ListOfLiteralsVariable literalListVariable)
-            => _getListOfLiteralsVariableItemDomainRichInputBoxControl(editingControl, literalListVariable);
+            => new ListOfLiteralsVariableItemDomainRichInputBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                Program.ServiceProvider.GetRequiredService<RichInputBox>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                literalListVariable
+            );
 
         public IListOfLiteralsVariableItemDropDownListControl GetListOfLiteralsVariableItemDropDownListControl(ListOfLiteralsVariable literalListVariable)
-            => _getListOfLiteralsVariableItemDropDownListControl(literalListVariable);
+            => new ListOfLiteralsVariableItemDropDownListControl
+            (
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                literalListVariable
+            );
 
         public IListOfLiteralsVariableItemMultilineControl GetListOfLiteralsVariableItemMultilineControl(IDataGraphEditingControl editingControl, ListOfLiteralsVariable literalListVariable)
-            => _getListOfLiteralsVariableItemMultilineControl(editingControl, literalListVariable);
+            => new ListOfLiteralsVariableItemMultilineControl
+            (
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                Program.ServiceProvider.GetRequiredService<RichInputBox>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                literalListVariable
+            );
 
         public IListOfLiteralsVariableItemPropertyInputRichInputBoxControl GetListOfLiteralsVariableItemPropertyInputRichInputBoxControl(IDataGraphEditingControl editingControl, ListOfLiteralsVariable literalListVariable)
-            => _getListOfLiteralsVariableItemPropertyInputRichInputBoxControl(editingControl, literalListVariable);
+            => new ListOfLiteralsVariableItemPropertyInputRichInputBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                Program.ServiceProvider.GetRequiredService<RichInputBox>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                literalListVariable
+            );
 
         public IListOfLiteralsVariableItemRichInputBoxControl GetListOfLiteralsVariableItemRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralListVariableElementInfo listInfo)
-            => _getListOfLiteralsVariableItemRichInputBoxControl(editingControl, listInfo);
+            => new ListOfLiteralsVariableItemRichInputBoxControl
+            (
+                Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
+                Program.ServiceProvider.GetRequiredService<RichInputBox>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editingControl,
+                listInfo
+            );
 
         public IListOfLiteralsVariableItemTypeAutoCompleteControl GetListOfLiteralsVariableItemTypeAutoCompleteControl()
-            => _getListOfLiteralsVariableItemTypeAutoCompleteControl();
+            => new ListOfLiteralsVariableItemTypeAutoCompleteControl
+            (
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>()
+            );
     }
 }

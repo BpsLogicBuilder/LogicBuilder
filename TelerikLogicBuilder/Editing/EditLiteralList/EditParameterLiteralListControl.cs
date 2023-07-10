@@ -19,6 +19,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -53,6 +54,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private readonly IRadListBoxManager<ILiteralListBoxItem> radListBoxManager;
 
         private ILiteralListItemValueControl? valueControl;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
 
         public EditParameterLiteralListControl(
             IEditLiteralListCommandFactory editLiteralListCommandFactory,
@@ -240,9 +243,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             }
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
         }
 
         private void CheckAssignability()
@@ -337,6 +347,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             }
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnAddClickHandler),
+        nameof(btnUpdateClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeTableLayoutPanel();
@@ -366,14 +380,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             cmbListType.SelectedIndexChanged += CmbListType_SelectedIndexChanged;
             radListBoxManager.ListChanged += RadListBoxManager_ListChanged;
             radScrollablePanelList.SizeChanged += RadScrollablePanelList_SizeChanged;
-            AddButtonClickCommand
+            Disposed += EditParameterLiteralListControl_Disposed;
+            btnAddClickHandler = AddButtonClickCommand
             (
-                BtnAdd,
                 _editLiteralListCommandFactory.GetAddParameterLiteralListBoxItemCommand(this)
             );
-            AddButtonClickCommand
+            btnUpdateClickHandler = AddButtonClickCommand
             (
-                BtnUpdate,
                 _editLiteralListCommandFactory.GetUpdateParameterLiteralListBoxItemCommand(this)
             );
             managedListBoxControl.CreateCommands(radListBoxManager);
@@ -385,6 +398,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                     _xmlDocumentHelpers.GetDocumentElement(xmlDocument)
                 )
             );
+            AddClickCommands();
 
             string GetListTitle(ListParameterInputStyle listInputStyle)
                 => listInputStyle switch
@@ -431,6 +445,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         {
             _radDropDownListHelper.LoadComboItems<LiteralListElementType>(this.cmbLiteralType, RadDropDownStyle.DropDownList);
             _radDropDownListHelper.LoadComboItems(this.cmbListType, RadDropDownStyle.DropDownList, new ListType[] { Enums.ListType.IGenericEnumerable, Enums.ListType.IGenericCollection, Enums.ListType.IGenericList });
+        }
+
+        private void RemoveClickCommands()
+        {
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            cmbLiteralType.SelectedIndexChanged -= CmbLiteralType_SelectedIndexChanged;
+            cmbListType.SelectedIndexChanged -= CmbListType_SelectedIndexChanged;
+            radListBoxManager.ListChanged -= RadListBoxManager_ListChanged;
+            radScrollablePanelList.SizeChanged -= RadScrollablePanelList_SizeChanged;
         }
 
         private void SetValueControlToolTip()
@@ -505,6 +533,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
             ValueControl.SetAssignedToType(LiteralType);
             CheckAssignability();
+        }
+
+        private void EditParameterLiteralListControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void RadScrollablePanelList_SizeChanged(object? sender, EventArgs e)

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
 
         private readonly IEditConditionFunctionControl editConditionFunctionControl;
         private ApplicationTypeInfo _application;
+        private EventHandler btnCopyXmlClickHandler;
+        private EventHandler btnPasteXmlClickHandler;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
         private readonly ObjectRichTextBox _objectRichTextBox;
         private readonly IRadListBoxManager<IDecisionFunctionListBoxItem> radListBoxManager;
 
@@ -241,11 +246,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             }
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnCopyXml.Click += btnCopyXmlClickHandler;
+            btnPasteXml.Click += btnPasteXmlClickHandler;
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
+        }
+
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnCopyXmlClickHandler),
+            nameof(btnPasteXmlClickHandler),
+            nameof(btnAddClickHandler),
+            nameof(btnUpdateClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -259,6 +279,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             editConditionFunctionControl.Changed += EditConditionFunctionControl_Changed;
             radListBoxManager.ListChanged += RadListBoxManager_ListChanged;
+            Disposed += EditDecisionForm_Disposed;
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
@@ -275,14 +296,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             InitializeEditConditionFunctionControl();
             InitializeEditControl();
 
-            AddButtonClickCommand(btnCopyXml, _editDecisionFormCommandFactory.GetEditDecisionFormCopyXmlCommand(this));
-            AddButtonClickCommand(btnPasteXml, _editDecisionFormCommandFactory.GetEditDecisionFormEditXmlCommand(this));
+            btnCopyXmlClickHandler = AddButtonClickCommand(_editDecisionFormCommandFactory.GetEditDecisionFormCopyXmlCommand(this));
+            btnPasteXmlClickHandler = AddButtonClickCommand(_editDecisionFormCommandFactory.GetEditDecisionFormEditXmlCommand(this));
 
-            AddButtonClickCommand(btnAdd, _editDecisionFormCommandFactory.GetAddDecisionFunctionListBoxItemCommand(this));
-            AddButtonClickCommand(btnUpdate, _editDecisionFormCommandFactory.GetUpdateDecisionFunctionListBoxItemCommand(this));
+            btnAddClickHandler = AddButtonClickCommand(_editDecisionFormCommandFactory.GetAddDecisionFunctionListBoxItemCommand(this));
+            btnUpdateClickHandler = AddButtonClickCommand(_editDecisionFormCommandFactory.GetUpdateDecisionFunctionListBoxItemCommand(this));
             managedListBoxControl.CreateCommands(radListBoxManager);
 
             ValidateOk();
+            AddClickCommands();
         }
 
         private void InitializeApplicationDropDownList()
@@ -373,6 +395,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             this.ResumeLayout(true);
         }
 
+        private void RemoveClickCommands()
+        {
+            btnCopyXml.Click -= btnCopyXmlClickHandler;
+            btnPasteXml.Click -= btnPasteXmlClickHandler;
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+            editConditionFunctionControl.Changed -= EditConditionFunctionControl_Changed;
+            radListBoxManager.ListChanged -= RadListBoxManager_ListChanged;
+        }
+
         private void ValidateOk()
         {
             bool enabled = ListBox.Items.Count > 0;
@@ -393,6 +430,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
                 return;
 
             _objectRichTextBox.Text = CurrentEditingControl.VisibleText;
+        }
+
+        private void EditDecisionForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void RadListBoxManager_ListChanged(object? sender, EventArgs e) => ValidateOk();

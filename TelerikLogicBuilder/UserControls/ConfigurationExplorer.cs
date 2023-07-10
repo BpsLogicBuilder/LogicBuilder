@@ -3,6 +3,8 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.ConfigurationExplorerHelpers;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -19,6 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private readonly RadMenuItem mnuItemEdit = new(Strings.mnuItemEditText) { ImageIndex = ImageIndexes.EDITIMAGEINDEX };
         private readonly RadMenuItem mnuItemRefresh = new(Strings.mnuItemRefreshText) { ImageIndex = ImageIndexes.REFRESHIMAGEINDEX };
+        private EventHandler mnuItemEditClickHandler;
+        private EventHandler mnuItemRefreshClickHandler;
 
         public ConfigurationExplorer(
             IConfigurationExplorerTreeViewBuilder configurationExplorerTreeViewBuilder,
@@ -55,15 +59,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private void BuildTreeView()
             => _configurationExplorerTreeViewBuilder.Build(radTreeView1);
 
-        private static void AddClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemEdit.Click += mnuItemEditClickHandler;
+            mnuItemRefresh.Click += mnuItemRefreshClickHandler;
+        }
+
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemEditClickHandler),
+            nameof(mnuItemRefreshClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemEdit, _editConfigurationCommand);
-            AddClickCommand(mnuItemRefresh, _refreshConfigurationExplorerCommand);
+            mnuItemEditClickHandler = AddClickCommand(_editConfigurationCommand);
+            mnuItemRefreshClickHandler = AddClickCommand(_refreshConfigurationExplorerCommand);
 
             radTreeView1.RadContextMenu = new()
             {
@@ -79,12 +94,31 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             };
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemEditClickHandler),
+            nameof(mnuItemRefreshClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
+            Disposed += ConfigurationExplorer_Disposed;
             this.radTreeView1.MouseDown += RadTreeView1_MouseDown;
             this.radTreeView1.NodeMouseClick += RadTreeView1_NodeMouseClick;
             this.radTreeView1.NodeMouseDoubleClick += RadTreeView1_NodeMouseDoubleClick;
             CreateContextMenu();
+            AddClickCommands();
+        }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemEdit.Click -= mnuItemEditClickHandler;
+            mnuItemRefresh.Click -= mnuItemRefreshClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            this.radTreeView1.MouseDown -= RadTreeView1_MouseDown;
+            this.radTreeView1.NodeMouseClick -= RadTreeView1_NodeMouseClick;
+            this.radTreeView1.NodeMouseDoubleClick -= RadTreeView1_NodeMouseDoubleClick;
         }
 
         private void SetContextMenuState(RadTreeNode selectedNode)
@@ -93,6 +127,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         }
 
         #region Event Handlers
+        private void ConfigurationExplorer_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
+
         private void RadTreeView1_NodeMouseClick(object sender, RadTreeViewEventArgs e)
         {
             this.radTreeView1.SelectedNode = e.Node;

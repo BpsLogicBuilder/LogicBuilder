@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
@@ -7,6 +6,7 @@ using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -21,6 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
         private readonly IConfigureLiteralDomainForm _configureLiteralDomainForm;
         private readonly ILiteralDomainItemFactory _literalDomainItemFactory;
         private readonly IRadListBoxManager<LiteralDomainItem> radListBoxManager;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
 
         public ConfigureLiteralDomainControl(
             IConfigureLiteralDomainCommandFactory configureLiteralDomainCommandFactory,
@@ -94,9 +96,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
         public void UpdateInputControls(LiteralDomainItem item)
             => txtDomainItem.Text = item.Item;
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnAddClickHandler),
+        nameof(btnUpdateClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxAddDomainItem);
@@ -104,24 +117,37 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain
             ControlsLayoutUtility.LayoutAddUpdateButtonPanel(radPanelAddButton, tableLayoutPanelAddUpdate);
             CollapsePanelBorder(radPanelTxtDomainItem);
             CollapsePanelBorder(radPanelAddButton);
+            Disposed += ConfigureLiteralDomainControl_Disposed;
 
-            InitializeHButtonCommand
+            btnAddClickHandler = InitializeHButtonCommand
             (
-                BtnAdd,
                 _configureLiteralDomainCommandFactory.GetAddLiteralDomainListBoxItemCommand(this)
             );
-            InitializeHButtonCommand
+            btnUpdateClickHandler = InitializeHButtonCommand
             (
-                BtnUpdate,
                 _configureLiteralDomainCommandFactory.GetUpdateLiteralDomainListBoxItemCommand(this)
             );
 
             managedListBoxControl.CreateCommands(radListBoxManager);
+            AddClickCommands();
         }
 
-        private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler InitializeHButtonCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
+
+        private void RemoveClickCommands()
+        {
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
+        }
+
+        #region Event Handlers
+        private void ConfigureLiteralDomainControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

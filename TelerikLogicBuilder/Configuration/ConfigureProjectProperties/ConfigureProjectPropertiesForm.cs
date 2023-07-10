@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
@@ -36,6 +37,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         private readonly RadMenuItem mnuItemAdd = new(Strings.mnuItemAddText);
         private readonly RadMenuItem mnuItemDelete = new(Strings.mnuItemDeleteText) { ImageIndex = ImageIndexes.DELETEIMAGEINDEX };
         private readonly bool openedAsReadOnly;
+        private EventHandler mnuItemAddClickHandler;
+        private EventHandler mnuItemDeleteClickHandler;
 
         public ConfigureProjectPropertiesForm(
             IConfigureProjectPropertiesControlFactory configurationControlFactory,
@@ -94,6 +97,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         public void ValidateXmlDocument()
             => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemAdd.Click += mnuItemAddClickHandler;
+            mnuItemDelete.Click += mnuItemDeleteClickHandler;
+        }
+
         private void BuildTreeView()
         {
             if (_treeViewXmlDocumentHelper.XmlTreeDocument.DocumentElement == null)
@@ -111,17 +121,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             _configureProjectPropertiesTreeviewBuilder.Build(radTreeView1, _treeViewXmlDocumentHelper.XmlTreeDocument);
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemAddClickHandler),
+        nameof(mnuItemDeleteClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenus()
         {
-            InitializeContextMenuClickCommand
+            mnuItemAddClickHandler = InitializeContextMenuClickCommand
             (
-                mnuItemAdd,
                 _configureProjectPropertiesContextMenuCommandFactory.GetAddApplicationCommand(this)
             );
 
-            InitializeContextMenuClickCommand
+            mnuItemDeleteClickHandler = InitializeContextMenuClickCommand
             (
-                mnuItemDelete,
                 _configureProjectPropertiesContextMenuCommandFactory.GetDeleteApplicationCommand(this)
             );
 
@@ -139,6 +151,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             };
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemAddClickHandler),
+        nameof(mnuItemDeleteClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -147,7 +163,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             radTreeView1.SelectedNodeChanging += RadTreeView1_SelectedNodeChanging;
             radTreeView1.NodeMouseClick += RadTreeView1_NodeMouseClick;
             radTreeView1.MouseDown += RadTreeView1_MouseDown;
-            this.FormClosing += ConfigureProjectProperties_FormClosing;
+            Disposed += ConfigureProjectPropertiesForm_Disposed;
+            FormClosing += ConfigureProjectProperties_FormClosing;
 
             _formInitializer.SetFormDefaults(this, 685);
             _formInitializer.SetToConfigSize(this);
@@ -160,11 +177,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             CreateContextMenus();
 
             radTreeView1.SelectedNode ??= radTreeView1.Nodes[0];
+            AddClickCommands();
         }
 
-        private static void InitializeContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler InitializeContextMenuClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private void LoadXmlDocument()
@@ -226,6 +244,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
                 throw _exceptionHelper.CriticalException("{6F6940D1-13D7-4FBF-BD07-4C799E2E6E07}");
         }
 
+        private void RemoveClickCommands()
+        {
+            mnuItemAdd.Click -= mnuItemAddClickHandler;
+            mnuItemDelete.Click -= mnuItemDeleteClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            radTreeView1.SelectedNodeChanged -= RadTreeView1_SelectedNodeChanged;
+            radTreeView1.SelectedNodeChanging -= RadTreeView1_SelectedNodeChanging;
+            radTreeView1.NodeMouseClick -= RadTreeView1_NodeMouseClick;
+            radTreeView1.MouseDown -= RadTreeView1_MouseDown;
+            FormClosing -= ConfigureProjectProperties_FormClosing;
+        }
+
         private void SetContextMenuState(RadTreeNode selectedNode)
         {
             mnuItemDelete.Enabled = selectedNode != radTreeView1.Nodes[0]
@@ -255,6 +288,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         #endregion Methods
 
         #region Event Handlers
+        private void ConfigureProjectPropertiesForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
+
         private void RadTreeView1_MouseDown(object? sender, MouseEventArgs e)
         {//handles case in which clicked area doesn't have a node
             RadTreeNode treeNode = this.radTreeView1.GetNodeAt(e.Location);

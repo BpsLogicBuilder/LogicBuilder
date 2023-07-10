@@ -11,6 +11,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
@@ -39,6 +40,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
         private readonly IDataGraphEditingControl dataGraphEditingControl;
         private readonly LiteralParameter literalParameter;
         private Type? _assignedTo;
+        private EventHandler btnConstructorClickHandler;
+        private EventHandler btnFunctionClickHandler;
+        private EventHandler btnVariableClickHandler;
 
         public LiteralParameterMultilineControl(
             ICreateLiteralParameterXmlElement createLiteralParameterXmlElement,
@@ -198,26 +202,42 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
 
         public void Update(XmlElement xmlElement) => _updateRichInputBoxXml.Update(xmlElement, _richInputBox);
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnVariable.Click += btnVariableClickHandler;
+            btnFunction.Click += btnFunctionClickHandler;
+            btnConstructor.Click += btnConstructorClickHandler;
         }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnVariableClickHandler),
+        nameof(btnFunctionClickHandler),
+        nameof(btnConstructorClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeRichInputBox();
             InitializeButtons();
             CollapsePanelBorder(radPanelRight);
 
-            AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
-            AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
-            AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this));
+            Disposed += LiteralParameterMultilineControl_Disposed;
+
+            btnConstructorClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
+            btnFunctionClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
+            btnVariableClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this));
 
             _richInputBoxEventsHelper.Setup();
             _createRichInputBoxContextMenu.Create();
+            AddClickCommands();
         }
 
         private void InitializeButtons()
@@ -262,6 +282,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             this.radPanelRichInputBox.ResumeLayout(true);
         }
 
+        private void RemoveClickCommands()
+        {
+            btnVariable.Click -= btnVariableClickHandler;
+            btnFunction.Click -= btnFunctionClickHandler;
+            btnConstructor.Click -= btnConstructorClickHandler;
+        }
+
+        private void RemoveImageLists()
+        {
+            foreach (RadButton button in CommandButtons)
+                button.ImageList = null;
+        }
+
         private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
 
@@ -272,5 +305,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             foreach (RadButton button in CommandButtons)
                 button.Visible = show;
         }
+
+        #region Event Handlers
+        private void LiteralParameterMultilineControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveImageLists();
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -54,6 +55,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
         private readonly RadMenuItem mnuItemCut = new(Strings.mnuItemCutText) { ImageIndex = ImageIndexes.CUTIMAGEINDEX };
         private readonly RadMenuItem mnuItemPaste = new(Strings.mnuItemPasteText);
         private readonly RadMenuItem mnuItemCopyXml = new(Strings.mnuItemCopyXml);
+        private EventHandler btnImportClickHandler;
+        private EventHandler mnuItemAddFragmentClickHandler;
+        private EventHandler mnuItemAddFolderClickHandler;
+        private EventHandler mnuItemDeleteClickHandler;
+        private EventHandler mnuItemCutClickHandler;
+        private EventHandler mnuItemPasteClickHandler;
+        private EventHandler mnuItemCopyXmlClickHandler;
 
         public ConfigureFragmentsForm(
             IConfigurationFormChildNodesRenamerFactory configurationFormChildNodesRenamerFactory,
@@ -154,14 +162,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
         public void ValidateXmlDocument()
             => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
-        private static void AddContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddContextMenuClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnImport.Click += btnImportClickHandler;
+            mnuItemAddFragment.Click += mnuItemAddFragmentClickHandler;
+            mnuItemAddFolder.Click += mnuItemAddFolderClickHandler;
+            mnuItemDelete.Click += mnuItemDeleteClickHandler;
+            mnuItemCut.Click += mnuItemCutClickHandler;
+            mnuItemPaste.Click += mnuItemPasteClickHandler;
+            mnuItemCopyXml.Click += mnuItemCopyXmlClickHandler;
         }
 
         private void BuildTreeView()
@@ -185,14 +205,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
         private static void CollapsePanelBorder(RadPanel radPanel)
                 => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemAddFragmentClickHandler),
+        nameof(mnuItemAddFolderClickHandler),
+        nameof(mnuItemDeleteClickHandler),
+        nameof(mnuItemCutClickHandler),
+        nameof(mnuItemPasteClickHandler),
+        nameof(mnuItemCopyXmlClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenus()
         {
-            AddContextMenuClickCommand(mnuItemAddFragment, _configureFragmentsCommandFactory.GetConfigureFragmentsAddFragmentCommand(this));
-            AddContextMenuClickCommand(mnuItemAddFolder, _configureFragmentsCommandFactory.GetConfigureFragmentsAddFolderCommand(this));
-            AddContextMenuClickCommand(mnuItemDelete, _configureFragmentsCommandFactory.GetConfigureFragmentsDeleteCommand(this));
-            AddContextMenuClickCommand(mnuItemCut, _configureFragmentsCommandFactory.GetConfigureFragmentsCutCommand(this));
-            AddContextMenuClickCommand(mnuItemPaste, _configureFragmentsCommandFactory.GetConfigureFragmentsPasteCommand(this));
-            AddContextMenuClickCommand(mnuItemCopyXml, _configureFragmentsCommandFactory.GetConfigureFragmentsCopyXmlCommand(this));
+            mnuItemAddFragmentClickHandler = AddContextMenuClickCommand(_configureFragmentsCommandFactory.GetConfigureFragmentsAddFragmentCommand(this));
+            mnuItemAddFolderClickHandler = AddContextMenuClickCommand(_configureFragmentsCommandFactory.GetConfigureFragmentsAddFolderCommand(this));
+            mnuItemDeleteClickHandler = AddContextMenuClickCommand(_configureFragmentsCommandFactory.GetConfigureFragmentsDeleteCommand(this));
+            mnuItemCutClickHandler = AddContextMenuClickCommand(_configureFragmentsCommandFactory.GetConfigureFragmentsCutCommand(this));
+            mnuItemPasteClickHandler = AddContextMenuClickCommand(_configureFragmentsCommandFactory.GetConfigureFragmentsPasteCommand(this));
+            mnuItemCopyXmlClickHandler = AddContextMenuClickCommand(_configureFragmentsCommandFactory.GetConfigureFragmentsCopyXmlCommand(this));
 
             mnuItemAdd.Items.AddRange
             (
@@ -219,6 +247,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
             };
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnImportClickHandler),
+        nameof(mnuItemAddFragmentClickHandler),
+        nameof(mnuItemAddFolderClickHandler),
+        nameof(mnuItemDeleteClickHandler),
+        nameof(mnuItemCutClickHandler),
+        nameof(mnuItemPasteClickHandler),
+        nameof(mnuItemCopyXmlClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeTreeView();
@@ -227,6 +264,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
             TreeView.AllowDragDrop = true;
             TreeView.MultiSelect = true;
 
+            this.Disposed += ConfigureFragmentsForm_Disposed;
             TreeView.MouseDown += TreeView_MouseDown;
             TreeView.NodeExpandedChanged += TreeView_NodeExpandedChanged;
             TreeView.NodeMouseClick += TreeView_NodeMouseClick;
@@ -253,7 +291,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
             CollapsePanelBorder(radPanelFields);
             CollapsePanelBorder(radPanelMessages);
 
-            AddButtonClickCommand(btnImport, _configureFragmentsCommandFactory.GetConfigureFragmentsImportCommand(this));
+            btnImportClickHandler = AddButtonClickCommand(_configureFragmentsCommandFactory.GetConfigureFragmentsImportCommand(this));
+            AddClickCommands();
         }
 
         private void InitializeTreeView()
@@ -302,6 +341,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
                 throw _exceptionHelper.CriticalException("{DDC093E2-F80D-40E6-B776-44D1261E5F65}");
         }
 
+        private void RemoveClickCommands()
+        {
+            btnImport.Click -= btnImportClickHandler;
+            mnuItemAddFragment.Click -= mnuItemAddFragmentClickHandler;
+            mnuItemAddFolder.Click -= mnuItemAddFolderClickHandler;
+            mnuItemDelete.Click -= mnuItemDeleteClickHandler;
+            mnuItemCut.Click -= mnuItemCutClickHandler;
+            mnuItemPaste.Click -= mnuItemPasteClickHandler;
+            mnuItemCopyXml.Click -= mnuItemCopyXmlClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            TreeView.MouseDown -= TreeView_MouseDown;
+            TreeView.NodeExpandedChanged -= TreeView_NodeExpandedChanged;
+            TreeView.NodeMouseClick -= TreeView_NodeMouseClick;
+            TreeView.SelectedNodeChanged -= TreeView_SelectedNodeChanged;
+            TreeView.SelectedNodeChanging -= TreeView_SelectedNodeChanging;
+            FormClosing -= ConfigureFragmentsForm_FormClosing;
+        }
+
         private void SetContextMenuState(IList<RadTreeNode> selectedNodes)
         {
             mnuItemPaste.Enabled = CutTreeNodes.Count > 0 && selectedNodes.Count == 1;
@@ -313,6 +373,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
         {
             Navigate(treeNode);
             CurrentTreeNodeControl.SetControlValues(treeNode);
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.WaitForFullGCApproach();
+            GC.WaitForFullGCComplete();
+            GC.Collect();
+
+            this.Text = $"Total Memory: {GC.GetTotalMemory(true)}";
         }
 
         private void UpdateXmlDocument(RadTreeNode treeNode)
@@ -327,6 +395,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
         }
 
         #region Event Handlers
+        private void ConfigureFragmentsForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            RemoveClickCommands();
+        }
+
         private void ConfigureFragmentsForm_FormClosing(object? sender, FormClosingEventArgs e)
         {
             try

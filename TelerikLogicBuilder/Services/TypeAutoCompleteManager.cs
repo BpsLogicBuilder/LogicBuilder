@@ -44,6 +44,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         private readonly RadMenuItem mnuItemToAssemblyQualifiedName = new(Strings.mnuItemToAssemblyQualifiedName);
         private readonly RadMenuItem mnuItemAddUpdateGenericArguments = new(Strings.mnuItemAddUpdateGenericArguments);
         private readonly RadContextMenuManager radContextMenuManager;
+        private RadContextMenu? radContextMenu;
+        private EventHandler? mnuItemCopyClickHandler;
+        private EventHandler? mnuItemCutClickHandler;
+        private EventHandler? mnuItemPasteClickHandler;
+        private EventHandler? mnuItemToAssemblyQualifiedNameClickHandler;
+        private EventHandler? mnuItemAddUpdateGenericArgumentsClickHandler;
 
         private Type? Type
         {
@@ -68,9 +74,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             SetEnableAddUpdateGenericArguments();
         }
 
-        private static void AddClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemCopy.Click += mnuItemCopyClickHandler;
+            mnuItemCut.Click += mnuItemCutClickHandler;
+            mnuItemPaste.Click += mnuItemPasteClickHandler;
+            mnuItemToAssemblyQualifiedName.Click += mnuItemToAssemblyQualifiedNameClickHandler;
+            mnuItemAddUpdateGenericArguments.Click += mnuItemAddUpdateGenericArgumentsClickHandler;
         }
 
         private void ApplicationChanged()
@@ -80,7 +96,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         private void CreateContextMenu()
         {
-            RadContextMenu radContextMenu = new()
+            radContextMenu = new()
             {
                 ImageList = _imageListService.ImageList,
                 Items =
@@ -96,6 +112,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             };
 
             this.textControl.SetContextMenus(radContextMenuManager, radContextMenu);
+            AddClickCommands();
+        }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemCopy.Click -= mnuItemCopyClickHandler;
+            mnuItemCut.Click -= mnuItemCutClickHandler;
+            mnuItemPaste.Click -= mnuItemPasteClickHandler;
+            mnuItemToAssemblyQualifiedName.Click -= mnuItemToAssemblyQualifiedNameClickHandler;
+            mnuItemAddUpdateGenericArguments.Click -= mnuItemAddUpdateGenericArgumentsClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            this.textControl.MouseDown -= Control_MouseDown;
+            this.textControl.TextChanged -= TextControl_TextChanged;
+            this.applicationHostControl.ApplicationChanged -= ApplicationForm_ApplicationChanged;
         }
 
         private void SetEnableAddUpdateGenericArguments()
@@ -124,19 +157,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         private void SetupCommands()
         {
-            AddClickCommand(mnuItemCopy, _typeAutoCompleteCommandFactory.GetCopySelectedTextCommand(textControl));
-            AddClickCommand(mnuItemCut, _typeAutoCompleteCommandFactory.GetCutSelectedTextCommand(textControl));
-            AddClickCommand(mnuItemPaste, _typeAutoCompleteCommandFactory.GetPasteTextCommand(textControl));
-            AddClickCommand
+            mnuItemCopyClickHandler = AddClickCommand(_typeAutoCompleteCommandFactory.GetCopySelectedTextCommand(textControl));
+            mnuItemCutClickHandler = AddClickCommand(_typeAutoCompleteCommandFactory.GetCutSelectedTextCommand(textControl));
+            mnuItemPasteClickHandler = AddClickCommand(_typeAutoCompleteCommandFactory.GetPasteTextCommand(textControl));
+            mnuItemToAssemblyQualifiedNameClickHandler = AddClickCommand
             (
-                mnuItemToAssemblyQualifiedName,
                 _typeAutoCompleteCommandFactory.GetSetTextToAssemblyQualifiedNameCommand(applicationHostControl, textControl)
             );
 
             IClickCommand addUpdateGenericArgumentsCommand = _typeAutoCompleteCommandFactory.GetAddUpdateGenericArgumentsCommand(applicationHostControl, textControl);
-            AddClickCommand
+            mnuItemAddUpdateGenericArgumentsClickHandler = AddClickCommand
             (
-                mnuItemAddUpdateGenericArguments,
                 addUpdateGenericArgumentsCommand
             );
 
@@ -162,6 +193,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         private void Control_Disposed(object? sender, EventArgs e)
         {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+            radContextMenu?.Dispose();
             radContextMenuManager.Dispose();
         }
 

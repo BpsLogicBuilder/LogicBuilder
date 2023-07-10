@@ -32,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             _exceptionHelper = exceptionHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.variableRichTextBoxValueControl = variableRichTextBoxValueControl;
+            RichTextBox.Disposed += RichTextBox_Disposed;
         }
 
         private ObjectRichTextBox RichTextBox => variableRichTextBoxValueControl.RichTextBox;
@@ -73,6 +74,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 default:
                     throw _exceptionHelper.CriticalException("{C7EBF781-D57A-4495-8B3C-B46863D5A1EF}");
             }
+        }
+
+        private void RichTextBox_Disposed(object? sender, System.EventArgs e)
+        {
+            RichTextBox.MouseClick -= RichTextBox_MouseClick;
         }
 
         private void RichTextBox_MouseClick(object? sender, System.Windows.Forms.MouseEventArgs e)

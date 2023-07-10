@@ -1,139 +1,181 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories
 {
     internal class FieldControlCommandFactory : IFieldControlCommandFactory
     {
-        private readonly Func<IConstructorGenericParametersControl, AddUpdateConstructorGenericArgumentsCommand> _getAddUpdateConstructorGenericArgumentsCommand;
-        private readonly Func<IFunctionGenericParametersControl, AddUpdateFunctionGenericArgumentsCommand> _getAddUpdateFunctionGenericArgumentsCommand;
-        private readonly Func<IRichInputBoxValueControl, ClearRichInputBoxTextCommand> _getClearRichInputBoxTextCommand;
-        private readonly Func<IRichInputBoxValueControl, CopyRichInputBoxTextCommand> _getCopyRichInputBoxTextCommand;
-        private readonly Func<IRichInputBoxValueControl, CutRichInputBoxTextCommand> _getCutRichInputBoxTextCommand;
-        private readonly Func<IRichInputBoxValueControl, DeleteRichInputBoxTextCommand> _getDeleteRichInputBoxTextCommand;
-        private readonly Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxConstructorCommand> _getEditObjectRichTextBoxConstructorCommand;
-        private readonly Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxFunctionCommand> _getEditObjectRichTextBoxFunctionCommand;
-        private readonly Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxLiteralListCommand> _getEditParameterObjectRichTextBoxLiteralListCommand;
-        private readonly Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxObjectListCommand> _getEditParameterObjectRichTextBoxObjectListCommand;
-        private readonly Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxVariableCommand> _getEditObjectRichTextBoxVariableCommand;
-        private readonly Func<IRichInputBoxValueControl, EditRichInputBoxConstructorCommand> _getEditRichInputBoxConstructorCommand;
-        private readonly Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> _getEditRichInputBoxFunctionCommand;
-        private readonly Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> _getEditRichInputBoxVariableCommand;
-        private readonly Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxLiteralListCommand> _getEditVariableObjectRichTextBoxLiteralListCommand;
-        private readonly Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxObjectListCommand> _getEditVariableObjectRichTextBoxObjectListCommand;
-        private readonly Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> _getPasteRichInputBoxTextCommand;
-        private readonly Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> _getSelectDomainItemCommand;
-        private readonly Func<IPropertyInputRichInputBoxControl, SelectItemFromPropertyListCommand> _getSelectItemFromPropertyListCommand;
-        private readonly Func<IPropertyInputRichInputBoxControl, SelectItemFromReferencesTreeViewCommand> _getSelectItemFromReferencesTreeViewCommand;
-        private readonly Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> _getToCamelCaseRichInputBoxCommand;
-
-        public FieldControlCommandFactory(
-            Func<IConstructorGenericParametersControl, AddUpdateConstructorGenericArgumentsCommand> getAddUpdateConstructorGenericArgumentsCommand,
-            Func<IFunctionGenericParametersControl, AddUpdateFunctionGenericArgumentsCommand> getAddUpdateFunctionGenericArgumentsCommand,
-            Func<IRichInputBoxValueControl, ClearRichInputBoxTextCommand> getClearRichInputBoxTextCommand,
-            Func<IRichInputBoxValueControl, CopyRichInputBoxTextCommand> getCopyRichInputBoxTextCommand,
-            Func<IRichInputBoxValueControl, CutRichInputBoxTextCommand> getCutRichInputBoxTextCommand,
-            Func<IRichInputBoxValueControl, DeleteRichInputBoxTextCommand> getDeleteRichInputBoxTextCommand,
-            Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxConstructorCommand> getEditObjectRichTextBoxConstructorCommand,
-            Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxFunctionCommand> getEditObjectRichTextBoxFunctionCommand,
-            Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxLiteralListCommand> getEditParameterObjectRichTextBoxLiteralListCommand,
-            Func<IParameterRichTextBoxValueControl, EditParameterObjectRichTextBoxObjectListCommand> getEditParameterObjectRichTextBoxObjectListCommand,
-            Func<IObjectRichTextBoxValueControl, EditObjectRichTextBoxVariableCommand> getEditObjectRichTextBoxVariableCommand,
-            Func<IRichInputBoxValueControl, EditRichInputBoxConstructorCommand> getEditRichInputBoxConstructorCommand,
-            Func<IRichInputBoxValueControl, EditRichInputBoxFunctionCommand> getEditRichInputBoxFunctionCommand,
-            Func<IRichInputBoxValueControl, EditRichInputBoxVariableCommand> getEditRichInputBoxVariableCommand,
-            Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxLiteralListCommand> getEditVariableObjectRichTextBoxLiteralListCommand,
-            Func<IVariableRichTextBoxValueControl, EditVariableObjectRichTextBoxObjectListCommand> getEditVariableObjectRichTextBoxObjectListCommand,
-            Func<IRichInputBoxValueControl, PasteRichInputBoxTextCommand> getPasteRichInputBoxTextCommand,
-            Func<IDomainRichInputBoxValueControl, SelectDomainItemCommand> getSelectDomainItemCommand,
-            Func<IPropertyInputRichInputBoxControl, SelectItemFromPropertyListCommand> getSelectItemFromPropertyListCommand,
-            Func<IPropertyInputRichInputBoxControl, SelectItemFromReferencesTreeViewCommand> getSelectItemFromReferencesTreeViewCommand,
-            Func<IRichInputBoxValueControl, ToCamelCaseRichInputBoxCommand> getToCamelCaseRichInputBoxCommand)
-        {
-            _getAddUpdateConstructorGenericArgumentsCommand = getAddUpdateConstructorGenericArgumentsCommand;
-            _getAddUpdateFunctionGenericArgumentsCommand = getAddUpdateFunctionGenericArgumentsCommand;
-            _getClearRichInputBoxTextCommand = getClearRichInputBoxTextCommand;
-            _getCopyRichInputBoxTextCommand = getCopyRichInputBoxTextCommand;
-            _getCutRichInputBoxTextCommand = getCutRichInputBoxTextCommand;
-            _getDeleteRichInputBoxTextCommand = getDeleteRichInputBoxTextCommand;
-            _getEditObjectRichTextBoxConstructorCommand = getEditObjectRichTextBoxConstructorCommand;
-            _getEditObjectRichTextBoxFunctionCommand = getEditObjectRichTextBoxFunctionCommand;
-            _getEditParameterObjectRichTextBoxLiteralListCommand = getEditParameterObjectRichTextBoxLiteralListCommand;
-            _getEditParameterObjectRichTextBoxObjectListCommand = getEditParameterObjectRichTextBoxObjectListCommand;
-            _getEditObjectRichTextBoxVariableCommand = getEditObjectRichTextBoxVariableCommand;
-            _getEditRichInputBoxConstructorCommand = getEditRichInputBoxConstructorCommand;
-            _getEditRichInputBoxFunctionCommand = getEditRichInputBoxFunctionCommand;
-            _getEditRichInputBoxVariableCommand = getEditRichInputBoxVariableCommand;
-            _getEditVariableObjectRichTextBoxLiteralListCommand = getEditVariableObjectRichTextBoxLiteralListCommand;
-            _getEditVariableObjectRichTextBoxObjectListCommand = getEditVariableObjectRichTextBoxObjectListCommand;
-            _getPasteRichInputBoxTextCommand = getPasteRichInputBoxTextCommand;
-            _getSelectDomainItemCommand = getSelectDomainItemCommand;
-            _getSelectItemFromPropertyListCommand = getSelectItemFromPropertyListCommand;
-            _getSelectItemFromReferencesTreeViewCommand = getSelectItemFromReferencesTreeViewCommand;
-            _getToCamelCaseRichInputBoxCommand = getToCamelCaseRichInputBoxCommand;
-        }
-
         public AddUpdateConstructorGenericArgumentsCommand GetAddUpdateConstructorGenericArgumentsCommand(IConstructorGenericParametersControl constructorGenericParametersControl)
-            => _getAddUpdateConstructorGenericArgumentsCommand(constructorGenericParametersControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IConstructorDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IGenericConfigManager>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                constructorGenericParametersControl
+            );
 
         public AddUpdateFunctionGenericArgumentsCommand GetAddUpdateFunctionGenericArgumentsCommand(IFunctionGenericParametersControl functionGenericParametersControl)
-            => _getAddUpdateFunctionGenericArgumentsCommand(functionGenericParametersControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IGenericConfigManager>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                functionGenericParametersControl
+            );
 
         public ClearRichInputBoxTextCommand GetClearRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getClearRichInputBoxTextCommand(richInputBoxValueControl);
+            => new
+            (
+                richInputBoxValueControl
+            );
 
         public CopyRichInputBoxTextCommand GetCopyRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getCopyRichInputBoxTextCommand(richInputBoxValueControl);
+            => new
+            (
+                richInputBoxValueControl
+            );
 
         public CutRichInputBoxTextCommand GetCutRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getCutRichInputBoxTextCommand(richInputBoxValueControl);
+            => new
+            (
+                richInputBoxValueControl
+            );
 
         public DeleteRichInputBoxTextCommand GetDeleteRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getDeleteRichInputBoxTextCommand(richInputBoxValueControl);
+            => new
+            (
+                richInputBoxValueControl
+            );
 
         public EditObjectRichTextBoxConstructorCommand GetEditObjectRichTextBoxConstructorCommand(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
-            => _getEditObjectRichTextBoxConstructorCommand(objectRichTextBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                objectRichTextBoxValueControl
+            );
 
         public EditObjectRichTextBoxFunctionCommand GetEditObjectRichTextBoxFunctionCommand(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
-            => _getEditObjectRichTextBoxFunctionCommand(objectRichTextBoxValueControl);
+            => new
+                (
+                    Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                    Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                    Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                    objectRichTextBoxValueControl
+                );
 
         public EditParameterObjectRichTextBoxLiteralListCommand GetEditParameterObjectRichTextBoxLiteralListCommand(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
-            => _getEditParameterObjectRichTextBoxLiteralListCommand(parameterRichTextBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                parameterRichTextBoxValueControl
+            );
 
         public EditParameterObjectRichTextBoxObjectListCommand GetEditParameterObjectRichTextBoxObjectListCommand(IParameterRichTextBoxValueControl parameterRichTextBoxValueControl)
-            => _getEditParameterObjectRichTextBoxObjectListCommand(parameterRichTextBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                parameterRichTextBoxValueControl
+            );
 
         public EditObjectRichTextBoxVariableCommand GetEditObjectRichTextBoxVariableCommand(IObjectRichTextBoxValueControl objectRichTextBoxValueControl)
-            => _getEditObjectRichTextBoxVariableCommand(objectRichTextBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                objectRichTextBoxValueControl
+            );
 
         public EditRichInputBoxConstructorCommand GetEditRichInputBoxConstructorCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getEditRichInputBoxConstructorCommand(richInputBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                richInputBoxValueControl
+            );
 
         public EditRichInputBoxFunctionCommand GetEditRichInputBoxFunctionCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getEditRichInputBoxFunctionCommand(richInputBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                richInputBoxValueControl
+            );
 
         public EditRichInputBoxVariableCommand GetEditRichInputBoxVariableCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getEditRichInputBoxVariableCommand(richInputBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                richInputBoxValueControl
+            );
 
         public EditVariableObjectRichTextBoxLiteralListCommand GetEditVariableObjectRichTextBoxLiteralListCommand(IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
-            => _getEditVariableObjectRichTextBoxLiteralListCommand(variableRichTextBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                variableRichTextBoxValueControl
+            );
 
         public EditVariableObjectRichTextBoxObjectListCommand GetEditVariableObjectRichTextBoxObjectListCommand(IVariableRichTextBoxValueControl variableRichTextBoxValueControl)
-            => _getEditVariableObjectRichTextBoxObjectListCommand(variableRichTextBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                variableRichTextBoxValueControl
+            );
 
         public PasteRichInputBoxTextCommand GetPasteRichInputBoxTextCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getPasteRichInputBoxTextCommand(richInputBoxValueControl);
+            => new
+            (
+                richInputBoxValueControl
+            );
 
         public SelectDomainItemCommand GetSelectDomainItemCommand(IDomainRichInputBoxValueControl richInputBoxValueControl)
-            => _getSelectDomainItemCommand(richInputBoxValueControl);
+            => new
+            (
+                richInputBoxValueControl
+            );
 
         public SelectItemFromPropertyListCommand GetSelectItemFromPropertyListCommand(IPropertyInputRichInputBoxControl propertyInputRichInputBoxControl)
-            => _getSelectItemFromPropertyListCommand(propertyInputRichInputBoxControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IIntellisenseHelper>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                propertyInputRichInputBoxControl
+            );
 
         public SelectItemFromReferencesTreeViewCommand GetSelectItemFromReferencesTreeViewCommand(IPropertyInputRichInputBoxControl propertyInputRichInputBoxControl)
-            => _getSelectItemFromReferencesTreeViewCommand(propertyInputRichInputBoxControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                propertyInputRichInputBoxControl
+            );
 
         public ToCamelCaseRichInputBoxCommand GetToCamelCaseRichInputBoxCommand(IRichInputBoxValueControl richInputBoxValueControl)
-            => _getToCamelCaseRichInputBoxCommand(richInputBoxValueControl);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IStringHelper>(),
+                richInputBoxValueControl
+            );
     }
 }

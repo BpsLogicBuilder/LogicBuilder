@@ -5,6 +5,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -38,10 +39,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radGroupBoxMessages.MouseDown += Control_MouseDown;
             radPanelMessages.ClientSizeChanged += RadPanelMessages_ClientSizeChanged;
             ThemeResolutionService.ApplicationThemeChanged += ThemeResolutionService_ApplicationThemeChanged;
-            this.Disposed += DialogFormMessageControl_Disposed;
         }
 
         private State _state;
+        private EventHandler mnuItemCopyClickHandler;
+        private EventHandler mnuItemOpenClickHandler;
 
         #region Methods
         public void ClearMessage()
@@ -70,15 +72,26 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radLabelMessages.Text = message;
         }
 
-        private static void AddClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemCopy.Click += mnuItemCopyClickHandler;
+            mnuItemOpen.Click += mnuItemOpenClickHandler;
+        }
+
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemCopyClickHandler),
+            nameof(mnuItemOpenClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemCopy, _dialogFormMessageCommandFactory.GetCopyToClipboardCommand(radLabelMessages));
-            AddClickCommand(mnuItemOpen, _dialogFormMessageCommandFactory.GetOpenInTextViewerCommand(radLabelMessages));
+            mnuItemCopyClickHandler = AddClickCommand(_dialogFormMessageCommandFactory.GetCopyToClipboardCommand(radLabelMessages));
+            mnuItemOpenClickHandler = AddClickCommand(_dialogFormMessageCommandFactory.GetOpenInTextViewerCommand(radLabelMessages));
 
             RadContextMenu radContextMenu = new()
             {
@@ -102,11 +115,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.radGroupBoxMessages.ContextMenuStrip = null;
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemCopyClickHandler),
+            nameof(mnuItemOpenClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             ControlsLayoutUtility.LayoutGroupBox(this, radGroupBoxMessages);
             radPanelMessages.AutoScroll = true;
             ((BorderPrimitive)radPanelMessages.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
+
+            this.Disposed += DialogFormMessageControl_Disposed;
 
             radLabelMessages.AutoSize = true;
             radLabelMessages.Padding = new Padding(10);
@@ -116,6 +135,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
             ClearMessage();
             CreateContextMenu();
+            AddClickCommands();
+        }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemCopy.Click -= mnuItemCopyClickHandler;
+            mnuItemOpen.Click -= mnuItemOpenClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            radLabelMessages.MouseDown -= Control_MouseDown;
+            radPanelMessages.MouseDown -= Control_MouseDown;
+            radGroupBoxMessages.MouseDown -= Control_MouseDown;
+            radPanelMessages.ClientSizeChanged -= RadPanelMessages_ClientSizeChanged;
+            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
         }
 
         private void SetTheme(string themeName)
@@ -171,7 +206,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void DialogFormMessageControl_Disposed(object? sender, EventArgs e)
         {
-            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
+            RemoveClickCommands();
+            RemoveEventHandlers();
             radContextMenuManager.Dispose();
         }
 

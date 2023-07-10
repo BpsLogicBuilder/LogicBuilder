@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -19,7 +20,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
         private readonly IDialogFormMessageControl _dialogFormMessageControl;
         private readonly IFormInitializer _formInitializer;
         private readonly INewProjectFormCommandFactory _newProjectFormCommandFactory;
-        
+        private EventHandler<EventArgs> txtProjectPathButtonClickHandler;
+
         public NewProjectForm(
             IDialogFormMessageControl dialogFormMessageControl,
             IFormInitializer formInitializer,
@@ -38,16 +40,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
 
         public HelperButtonTextBox TxtProjectPath => txtProjectPath;
 
-        private static void AddClickCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> AddClickCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtProjectPath.ButtonClick += txtProjectPathButtonClickHandler;
+        }
+
+        [MemberNotNull(nameof(txtProjectPathButtonClickHandler))]
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
             InitializeTableLayoutPanel();
 
+            Disposed += NewProjectForm_Disposed;
             FormClosing += NewProjectForm_FormClosing;
 
             Padding groupBoxPadding = PerFontSizeConstants.GroupBoxPadding;
@@ -74,7 +84,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
             ControlsLayoutUtility.CollapsePanelBorder(radPanelButtons);
             ControlsLayoutUtility.CollapsePanelBorder(radPanelMessages);
 
-            AddClickCommand(TxtProjectPath, _newProjectFormCommandFactory.GetSelectFolderCommand(this));
+            txtProjectPathButtonClickHandler = AddClickCommand(_newProjectFormCommandFactory.GetSelectFolderCommand(this));
+            AddClickCommands();
         }
 
         private void InitializeDialogFormMessageControl()
@@ -92,6 +103,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
                 tableLayoutPanel,
                 2
             );
+        }
+
+        private void RemoveClickCommands()
+        {
+            txtProjectPath.ButtonClick -= txtProjectPathButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            FormClosing -= NewProjectForm_FormClosing;
         }
 
         private void ValidateFields()
@@ -123,6 +144,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Forms
         }
 
         #region Event Handlers
+        private void NewProjectForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
+
         private void NewProjectForm_FormClosing(object? sender, FormClosingEventArgs e)
         {
             try

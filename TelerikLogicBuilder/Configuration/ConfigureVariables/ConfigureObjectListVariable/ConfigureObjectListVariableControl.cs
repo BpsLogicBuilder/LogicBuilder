@@ -215,6 +215,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         private void Initialize()
         {
+            Disposed += ConfigureObjectListVariableControl_Disposed;
             radPanelVariable.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelVariable);
@@ -289,6 +290,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
         }
 
         #region Event Handlers
+        private void ConfigureObjectListVariableControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveEventHandlers();
+        }
+
         private void CmbReferenceDefinition_Validating(object? sender, CancelEventArgs e)
         {
             try

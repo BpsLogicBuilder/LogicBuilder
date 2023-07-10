@@ -6,7 +6,9 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -23,6 +25,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
 
         private readonly IConfigureConnectorObjectsForm configureConnectorObjectsForm;
         private readonly IRadListBoxManager<ConnectorObjectListBoxItem> radListBoxManager;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
 
         public ConfigureConnectorObjectsControl(
             IConfigureConnectorObjectsCommandFactory configureConnectorObjectsCommandFactory,
@@ -97,9 +101,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
         public void UpdateInputControls(ConnectorObjectListBoxItem item)
             => txtType.Text = item.Text;
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnAddClickHandler), nameof(btnUpdateClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxAddType);
@@ -108,25 +122,40 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
             CollapsePanelBorder(radPanelTxtType);
             CollapsePanelBorder(radPanelAddButton);
 
-            InitializeHButtonCommand
+            this.Disposed += ConfigureConnectorObjectsControl_Disposed;
+
+            btnAddClickHandler = InitializeHButtonCommand
             (
-                BtnAdd,
                 _configureConnectorObjectsCommandFactory.GetAddConnectorObjectListBoxItemCommand(this)
             );
-            InitializeHButtonCommand
+            btnUpdateClickHandler = InitializeHButtonCommand
             (
-                BtnUpdate,
                 _configureConnectorObjectsCommandFactory.GetUpdateConnectorObjectListBoxItemCommand(this)
             );
+
+            AddClickCommands();
 
             _typeAutoCompleteManager.Setup();
 
             managedListBoxControl.CreateCommands(radListBoxManager);
         }
 
-        private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
+        private void RemoveClickCommands()
         {
-            radButton.Click += (sender, args) => command.Execute();
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
         }
+
+        private static EventHandler InitializeHButtonCommand(IClickCommand command)
+        {
+            return (sender, args) => command.Execute();
+        }
+
+        #region Event Handlers
+        private void ConfigureConnectorObjectsControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

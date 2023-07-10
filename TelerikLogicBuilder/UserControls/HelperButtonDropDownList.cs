@@ -61,6 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             CollapsePanelBorder(radPanelButton);
 
             ControlsLayoutUtility.SetDropDownListPadding(radDropDownList);
+            Disposed += HelperButtonDropDownList_Disposed;
             radButtonHelper.Click += RadButtonHelper_Click;
             radDropDownList.TextChanged += RadDropDownList_TextChanged;
         }
@@ -121,6 +122,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.radPanelDropDownList.ResumeLayout(true);
         }
 
+        private void RemoveEventHandlers()
+        {
+            radButtonHelper.Click -= RadButtonHelper_Click;
+            radDropDownList.TextChanged -= RadDropDownList_TextChanged;
+        }
+
         private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
 
@@ -128,6 +135,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Visible;
 
         #region Event Handlers
+        private void HelperButtonDropDownList_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+        }
+
         private void RadButtonHelper_Click(object? sender, EventArgs e)
         {
             ButtonClick?.Invoke(this, e);
@@ -135,6 +147,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void RadDropDownList_TextChanged(object? sender, EventArgs e)
         {
+            if (radDropDownList.Disposing || radDropDownList.IsDisposed)
+                return;
+
             Changed?.Invoke(this, e);
         }
         #endregion Event Handlers

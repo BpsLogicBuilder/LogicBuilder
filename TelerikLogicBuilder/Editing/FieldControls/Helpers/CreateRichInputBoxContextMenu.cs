@@ -1,6 +1,7 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using System;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -36,23 +37,33 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private RadMenuItem MnuItemPaste => richInputBoxValueControl.MnuItemPaste;
         private RadMenuItem MnuItemToCamelCase => richInputBoxValueControl.MnuItemToCamelCase;
         private readonly RadContextMenuManager radContextMenuManager;
+        private RadContextMenu? radContextMenu;
+        private EventHandler? mnuItemInsertConstructorClickHandler;
+        private EventHandler? mnuItemInsertFunctionClickHandler;
+        private EventHandler? mnuItemInsertVariableClickHandler;
+        private EventHandler? mnuItemDeleteClickHandler;
+        private EventHandler? mnuItemClearClickHandler;
+        private EventHandler? mnuItemCopyClickHandler;
+        private EventHandler? mnuItemCutClickHandler;
+        private EventHandler? mnuItemPasteClickHandler;
+        private EventHandler? mnuItemToCamelCaseClickHandler;
 
-        private static void AddContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddContextMenuClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         public void Create()
         {
-            AddContextMenuClickCommand(MnuItemInsertConstructor, _fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemInsertFunction, _fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemInsertVariable, _fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemDelete, _fieldControlCommandFactory.GetDeleteRichInputBoxTextCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemClear, _fieldControlCommandFactory.GetClearRichInputBoxTextCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemCopy, _fieldControlCommandFactory.GetCopyRichInputBoxTextCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemCut, _fieldControlCommandFactory.GetCutRichInputBoxTextCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemPaste, _fieldControlCommandFactory.GetPasteRichInputBoxTextCommand(this.richInputBoxValueControl));
-            AddContextMenuClickCommand(MnuItemToCamelCase, _fieldControlCommandFactory.GetToCamelCaseRichInputBoxCommand(this.richInputBoxValueControl));
+            mnuItemInsertConstructorClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this.richInputBoxValueControl));
+            mnuItemInsertFunctionClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this.richInputBoxValueControl));
+            mnuItemInsertVariableClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this.richInputBoxValueControl));
+            mnuItemDeleteClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetDeleteRichInputBoxTextCommand(this.richInputBoxValueControl));
+            mnuItemClearClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetClearRichInputBoxTextCommand(this.richInputBoxValueControl));
+            mnuItemCopyClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetCopyRichInputBoxTextCommand(this.richInputBoxValueControl));
+            mnuItemCutClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetCutRichInputBoxTextCommand(this.richInputBoxValueControl));
+            mnuItemPasteClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetPasteRichInputBoxTextCommand(this.richInputBoxValueControl));
+            mnuItemToCamelCaseClickHandler = AddContextMenuClickCommand(_fieldControlCommandFactory.GetToCamelCaseRichInputBoxCommand(this.richInputBoxValueControl));
 
             MnuItemInsert.Items.AddRange
             (
@@ -64,7 +75,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 }
             );
 
-            RadContextMenu radContextMenu = new()
+            radContextMenu = new()
             {
                 ImageList = _imageListService.ImageList,
                 Items =
@@ -82,11 +93,44 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             };
 
             radContextMenuManager.SetRadContextMenu(richInputBoxValueControl.RichInputBox, radContextMenu);
+            AddClickCommands();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            MnuItemInsertConstructor.Click += mnuItemInsertConstructorClickHandler;
+            MnuItemInsertFunction.Click += mnuItemInsertFunctionClickHandler;
+            MnuItemInsertVariable.Click += mnuItemInsertVariableClickHandler;
+            MnuItemDelete.Click += mnuItemDeleteClickHandler;
+            MnuItemClear.Click += mnuItemClearClickHandler;
+            MnuItemCopy.Click += mnuItemCopyClickHandler;
+            MnuItemCut.Click += mnuItemCutClickHandler;
+            MnuItemPaste.Click += mnuItemPasteClickHandler;
+            MnuItemToCamelCase.Click += mnuItemToCamelCaseClickHandler;
+        }
+
+        private void RemoveClickCommands()
+        {
+            MnuItemInsertConstructor.Click -= mnuItemInsertConstructorClickHandler;
+            MnuItemInsertFunction.Click -= mnuItemInsertFunctionClickHandler;
+            MnuItemInsertVariable.Click -= mnuItemInsertVariableClickHandler;
+            MnuItemDelete.Click -= mnuItemDeleteClickHandler;
+            MnuItemClear.Click -= mnuItemClearClickHandler;
+            MnuItemCopy.Click -= mnuItemCopyClickHandler;
+            MnuItemCut.Click -= mnuItemCutClickHandler;
+            MnuItemPaste.Click -= mnuItemPasteClickHandler;
+            MnuItemToCamelCase.Click -= mnuItemToCamelCaseClickHandler;
         }
 
         #region Event Handlers
         private void RichInputBox_Disposed(object? sender, System.EventArgs e)
         {
+            RemoveClickCommands();
+            radContextMenuManager.SetRadContextMenu(richInputBoxValueControl.RichInputBox, null);
+            if (radContextMenu != null)
+                radContextMenu.ImageList = null;
+            radContextMenu?.Dispose();
             radContextMenuManager.Dispose();
         }
         #endregion Event Handlers

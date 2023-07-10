@@ -123,6 +123,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             if (literalParameter.Domain.Count > 0)
                 radDropDownList.SelectedIndex = 0;
 
+            Disposed += LiteralParameterDropDownListControl_Disposed;
             radDropDownList.SelectedIndexChanged += RadDropDownList_SelectedIndexChanged;
             radDropDownList.Validated += RadDropDownList_Validated;
         }
@@ -150,10 +151,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             this.radPanelDropDownList.ResumeLayout(true);
         }
 
+        private void RenoveEventHandlers()
+        {
+            radDropDownList.SelectedIndexChanged -= RadDropDownList_SelectedIndexChanged;
+            radDropDownList.Validated -= RadDropDownList_Validated;
+        }
+
         private void SetDropDownBorderForeColor(Color color)
             => ((BorderPrimitive)radDropDownList.DropDownListElement.Children[0]).ForeColor = color;
 
         #region Event Handlers
+        private void LiteralParameterDropDownListControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RenoveEventHandlers();
+        }
+
         private void RadDropDownList_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             modified = true;

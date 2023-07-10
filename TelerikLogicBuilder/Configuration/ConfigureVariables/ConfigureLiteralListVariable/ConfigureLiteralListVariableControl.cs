@@ -16,6 +16,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -76,6 +77,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
+        private EventHandler<EventArgs> txtLvListDefaultValueButtonClickHandler;
+        private EventHandler<EventArgs> txtLvListDomainButtonClickHandler;
 
         #region Properties
         public RadLabel LblElementControl => lblLvListElementControl;
@@ -210,6 +213,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             configureVariablesForm.ValidateXmlDocument();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtLvListDefaultValue.ButtonClick += txtLvListDefaultValueButtonClickHandler;
+            txtLvListDomain.ButtonClick += txtLvListDomainButtonClickHandler;
+        }
+
         private void AddEventHandlers()
         {
             txtLvListName.Validating += TxtName_Validating;
@@ -228,36 +238,45 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtLvListDefaultValueButtonClickHandler),
+        nameof(txtLvListDomainButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             radPanelVariable.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelVariable);
             CollapsePanelBorder(radPanelTableParent);
+
+            Disposed += ConfigureLiteralListVariableControl_Disposed;
             InitializeVariableControls();
             LoadVariableDropDownLists();
             InitializeClickCommands();
             _cmbLvListPropertySourceTypeAutoCompleteManager.Setup();
+            AddClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtLvListDefaultValueButtonClickHandler),
+        nameof(txtLvListDomainButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtLvListDefaultValueButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtLvListDefaultValue,
                 _configureLiteralListVariableCommandFactory.GetUpdateLiteralListVariableDefaultValueCommand(this)
             );
 
-            InitializeHelperButtonCommand
+            txtLvListDomainButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtLvListDomain,
                 _configureLiteralListVariableCommandFactory.GetUpdateLiteralListVariableDomainCommand(this)
             );
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private static void InitializeReadOnlyTextBox(HelperButtonTextBox helperButtonTextBox, string text)
@@ -336,6 +355,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             _radDropDownListHelper.LoadComboItems<LiteralVariableInputStyle>(cmbLvListElementControl);
         }
 
+        private void RemoveClickCommands()
+        {
+            txtLvListDefaultValue.ButtonClick -= txtLvListDefaultValueButtonClickHandler;
+            txtLvListDomain.ButtonClick -= txtLvListDomainButtonClickHandler;
+        }
+
         private void RemoveEventHandlers()
         {
             txtLvListName.Validating -= TxtName_Validating;
@@ -349,6 +374,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
         }
 
         #region Event Handlers
+        private void ConfigureLiteralListVariableControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
+
         private void CmbReferenceDefinition_Validating(object? sender, CancelEventArgs e)
         {
             try

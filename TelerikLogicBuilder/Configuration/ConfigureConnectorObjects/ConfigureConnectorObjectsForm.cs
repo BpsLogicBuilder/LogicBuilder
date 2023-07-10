@@ -109,6 +109,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
 
             InitializeControls();
 
+            Disposed += ConfigureConnectorObjectsForm_Disposed;
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             this.FormClosing += ConfigureConnectorObjectsForm_FormClosing;
 
@@ -169,6 +170,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
             _treeViewXmlDocumentHelper.LoadXmlDocument(projectProperties.ToXml);
         }
 
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+            this.FormClosing -= ConfigureConnectorObjectsForm_FormClosing;
+        }
+
         private void UpdateXmlDocument()
         {
             _xmlDocumentHelpers
@@ -196,6 +203,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects
         {
             _application = e.Application;
             ApplicationChanged?.Invoke(this, e);
+        }
+
+        private void ConfigureConnectorObjectsForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
         }
 
         private void ConfigureConnectorObjectsForm_FormClosing(object? sender, FormClosingEventArgs e)

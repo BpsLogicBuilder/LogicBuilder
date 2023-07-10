@@ -1,18 +1,18 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories
 {
     internal class ConfigureConnectorObjectsControlFactory : IConfigureConnectorObjectsControlFactory
     {
-        private readonly Func<IConfigureConnectorObjectsForm, IConfigureConnectorObjectsControl> _getConfigureConnectorObjectsControl;
-
-        public ConfigureConnectorObjectsControlFactory(
-            Func<IConfigureConnectorObjectsForm, IConfigureConnectorObjectsControl> getConfigureConnectorObjectsControl)
-        {
-            _getConfigureConnectorObjectsControl = getConfigureConnectorObjectsControl;
-        }
-
         public IConfigureConnectorObjectsControl GetConfigureConnectorObjectsControl(IConfigureConnectorObjectsForm configureConnectorObjectsForm)
-            => _getConfigureConnectorObjectsControl(configureConnectorObjectsForm);
+            => new ConfigureConnectorObjectsControl
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureConnectorObjectsCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConnectorObjectsItemFactory>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                configureConnectorObjectsForm
+            );
     }
 }

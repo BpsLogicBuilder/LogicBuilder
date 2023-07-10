@@ -1,36 +1,38 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Factories
 {
     internal class EditFunctionsCommandFactory : IEditFunctionsCommandFactory
     {
-        private readonly Func<IEditFunctionsForm, AddFunctionListBoxItemCommand> _getAddFunctionListBoxItemCommand;
-        private readonly Func<IEditFunctionsForm, EditFunctionsFormCopyXmlCommand> _getEditFFunctionsFormCopyXmlCommand;
-        private readonly Func<IEditFunctionsForm, EditFunctionsFormEditXmlCommand> _getEditFunctionsFormXmlCommand;
-        private readonly Func<IEditFunctionsForm, UpdateFunctionListBoxItemCommand> _getUpdateFunctionListBoxItemCommand;
-
-        public EditFunctionsCommandFactory(Func<IEditFunctionsForm, AddFunctionListBoxItemCommand> getAddFunctionListBoxItemCommand,
-            Func<IEditFunctionsForm, EditFunctionsFormCopyXmlCommand> getEditFFunctionsFormCopyXmlCommand,
-            Func<IEditFunctionsForm, EditFunctionsFormEditXmlCommand> getEditFunctionsFormXmlCommand,
-            Func<IEditFunctionsForm, UpdateFunctionListBoxItemCommand> getUpdateFunctionListBoxItemCommand)
-        {
-            _getAddFunctionListBoxItemCommand = getAddFunctionListBoxItemCommand;
-            _getEditFFunctionsFormCopyXmlCommand = getEditFFunctionsFormCopyXmlCommand;
-            _getEditFunctionsFormXmlCommand = getEditFunctionsFormXmlCommand;
-            _getUpdateFunctionListBoxItemCommand = getUpdateFunctionListBoxItemCommand;
-        }
-
         public AddFunctionListBoxItemCommand GetAddFunctionListBoxItemCommand(IEditFunctionsForm editFunctionsForm)
-            => _getAddFunctionListBoxItemCommand(editFunctionsForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IFunctionListBoxItemFactory>(),
+                editFunctionsForm
+            );
 
         public EditFunctionsFormCopyXmlCommand GetEditFFunctionsFormCopyXmlCommand(IEditFunctionsForm editFunctionsForm)
-            => _getEditFFunctionsFormCopyXmlCommand(editFunctionsForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editFunctionsForm
+            );
 
         public EditFunctionsFormEditXmlCommand GetEditFunctionsFormXmlCommand(IEditFunctionsForm editFunctionsForm)
-            => _getEditFunctionsFormXmlCommand(editFunctionsForm);
+            => new 
+            (
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                editFunctionsForm
+            );
 
         public UpdateFunctionListBoxItemCommand GetUpdateFunctionListBoxItemCommand(IEditFunctionsForm editFunctionsForm)
-            => _getUpdateFunctionListBoxItemCommand(editFunctionsForm);
+            => new
+            (
+                Program.ServiceProvider.GetRequiredService<IFunctionListBoxItemFactory>(),
+                editFunctionsForm
+            );
     }
 }

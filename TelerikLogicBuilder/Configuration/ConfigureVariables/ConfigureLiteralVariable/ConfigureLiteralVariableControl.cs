@@ -16,6 +16,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -75,6 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
 
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
+        private EventHandler<EventArgs> txtLvDomainButtonClickHandler;
 
         #region Properties
         public RadLabel LblName => lblLvName;
@@ -207,6 +209,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             configureVariablesForm.ValidateXmlDocument();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtLvDomain.ButtonClick += txtLvDomainButtonClickHandler;
+        }
+
         private void AddEventHandlers()
         {
             txtLvName.Validating += TxtName_Validating;
@@ -225,30 +233,39 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtLvDomainButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             radPanelVariable.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelVariable);
             CollapsePanelBorder(radPanelTableParent);
+
+            Disposed += ConfigureLiteralVariableControl_Disposed;
+
             InitializeVariableControls();
             LoadVariableDropDownLists();
             InitializeClickCommands();
             _cmbLvPropertySourceTypeAutoCompleteManager.Setup();
+            AddClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtLvDomainButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtLvDomainButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtLvDomain,
                 _configureLiteralVariableCommandFactory.GetUpdateLiteralVariableDomainCommand(this)
             );
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private static void InitializeReadOnlyTextBox(HelperButtonTextBox helperButtonTextBox, string text)
@@ -319,6 +336,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             _radDropDownListHelper.LoadComboItems<LiteralVariableInputStyle>(cmbLvControl);
         }
 
+        private void RemoveClickCommands()
+        {
+            txtLvDomain.ButtonClick -= txtLvDomainButtonClickHandler;
+        }
+
         private void RemoveEventHandlers()
         {
             txtLvName.Validating -= TxtName_Validating;
@@ -342,6 +364,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Configu
             {
                 SetErrorMessage(ex.Message);
             }
+        }
+
+        private void ConfigureLiteralVariableControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void TxtCastReferenceAs_Validating(object? sender, CancelEventArgs e)

@@ -1,30 +1,36 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor.Factories
 {
     internal class SelectConstructorViewControlFactory : ISelectConstructorViewControlFactory
     {
-        private readonly Func<ISelectConstructorControl, ISelectConstructorDropDownViewControl> _getSelectConstructorDropdownViewControl;
-        private readonly Func<ISelectConstructorControl, ISelectConstructorListViewControl> _getSelectConstructorListViewControl;
-        private readonly Func<ISelectConstructorControl, ISelectConstructorTreeViewControl> _getSelectConstructorTreeViewControl;
-
-        public SelectConstructorViewControlFactory(
-            Func<ISelectConstructorControl, ISelectConstructorDropDownViewControl> getSelectConstructorDropdownViewControl,
-            Func<ISelectConstructorControl, ISelectConstructorListViewControl> getSelectConstructorListViewControl,
-            Func<ISelectConstructorControl, ISelectConstructorTreeViewControl> getSelectConstructorTreeViewControl)
-        {
-            _getSelectConstructorDropdownViewControl = getSelectConstructorDropdownViewControl;
-            _getSelectConstructorListViewControl = getSelectConstructorListViewControl;
-            _getSelectConstructorTreeViewControl = getSelectConstructorTreeViewControl;
-        }
-
         public ISelectConstructorDropDownViewControl GetSelectConstructorDropdownViewControl(ISelectConstructorControl selectConstructorControl)
-            => _getSelectConstructorDropdownViewControl(selectConstructorControl);
+            => new SelectConstructorDropDownViewControl
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                selectConstructorControl
+            );
 
         public ISelectConstructorListViewControl GetSelectConstructorListViewControl(ISelectConstructorControl selectConstructorControl)
-            => _getSelectConstructorListViewControl(selectConstructorControl);
+            => new SelectConstructorListViewControl
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                selectConstructorControl
+            );
 
         public ISelectConstructorTreeViewControl GetSelectConstructorTreeViewControl(ISelectConstructorControl selectConstructorControl)
-            => _getSelectConstructorTreeViewControl(selectConstructorControl);
+            => new SelectConstructorTreeViewControl
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                selectConstructorControl
+            );
     }
 }

@@ -5,7 +5,9 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.Services.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -20,6 +22,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
         private readonly IConfigureLoadAssemblyPathsCommandFactory _loadAssemblyPathsCommandFactory;
         private readonly IConfigureLoadAssemblyPathsForm _configureLoadAssemblyPaths;
         private readonly IRadListBoxManager<AssemblyPath> radListBoxManager;
+        private EventHandler<EventArgs> txtPathButtonClickHandler;
+        private EventHandler btnAddClickHandler;
+        private EventHandler btnUpdateClickHandler;
 
         public RadButton BtnAdd => btnAdd;
 
@@ -89,9 +94,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
         public void UpdateInputControls(AssemblyPath item)
             => txtPath.Text = item.Path;
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtPath.ButtonClick += txtPathButtonClickHandler;
+            btnAdd.Click += btnAddClickHandler;
+            btnUpdate.Click += btnUpdateClickHandler;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtPathButtonClickHandler),
+        nameof(btnAddClickHandler),
+        nameof(btnUpdateClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             ControlsLayoutUtility.LayoutAddUpdateItemGroupBox(this, radGroupBoxAddPath);
@@ -100,33 +118,47 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths
             CollapsePanelBorder(radPanelTxtPath);
             CollapsePanelBorder(radPanelAddButton);
 
-            InitializeHelperButtonCommand
+            Disposed += ConfigureLoadAssemblyPathsControl_Disposed;
+
+            txtPathButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtPath,
                 new BrowseToAssemblyPathCommand(this)
             );
-            InitializeHButtonCommand
+            btnAddClickHandler = InitializeHButtonCommand
             (
-                BtnAdd,
                 _loadAssemblyPathsCommandFactory.GetAddAssemblyPathListBoxItemCommand(this)
             );
-            InitializeHButtonCommand
+            btnUpdateClickHandler = InitializeHButtonCommand
             (
-                BtnUpdate,
                 _loadAssemblyPathsCommandFactory.GetUpdateAssemblyPathListBoxItemCommand(this)
             );
 
             managedListBoxControl.CreateCommands(radListBoxManager);
+            AddClickCommands();
         }
 
-        private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler InitializeHButtonCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
+
+        private void RemoveClickCommands()
+        {
+            txtPath.ButtonClick -= txtPathButtonClickHandler;
+            btnAdd.Click -= btnAddClickHandler;
+            btnUpdate.Click -= btnUpdateClickHandler;
+        }
+
+        #region Event Handlers
+        private void ConfigureLoadAssemblyPathsControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

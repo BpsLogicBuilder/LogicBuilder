@@ -101,6 +101,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
         private void Initialize()
         {
+            Disposed += ConfigureGenericObjectListArgumentControl_Disposed;
             radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             this.cmbListCpGenericArgumentName.ReadOnly = true;
@@ -142,5 +143,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             _radDropDownListHelper.LoadComboItems<ListType>(cmbListCpListType);
             _radDropDownListHelper.LoadComboItems(cmbListCpControl, RadDropDownStyle.DropDownList, new ListParameterInputStyle[] { ListParameterInputStyle.Connectors });
         }
+
+        #region Event Handlers
+        private void ConfigureGenericObjectListArgumentControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+        }
+        #endregion Event Handlers
     }
 }

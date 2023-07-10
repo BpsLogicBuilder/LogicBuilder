@@ -13,26 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddEditBooleanFunctionCommandFactories(this IServiceCollection services)
         {
             return services
-                .AddTransient<IEditBooleanFunctionCommandFactory, EditBooleanFunctionCommandFactory>()
-                .AddTransient<Func<IEditBooleanFunctionForm, EditBooleanFunctionFormXmlCommand>>
-                (
-                    provider =>
-                    editFunctionForm => new EditBooleanFunctionFormXmlCommand
-                    (
-                        provider.GetRequiredService<IFunctionDataParser>(),
-                        provider.GetRequiredService<IXmlDocumentHelpers>(),
-                        editFunctionForm
-                    )
-                )
-                .AddTransient<Func<IEditBooleanFunctionForm, SelectBooleanFunctionCommand>>
-                (
-                    provider =>
-                    editFunctionForm => new SelectBooleanFunctionCommand
-                    (
-                        provider.GetRequiredService<IConfigurationService>(),
-                        editFunctionForm
-                    )
-                );
+                .AddSingleton<IEditBooleanFunctionCommandFactory, EditBooleanFunctionCommandFactory>();
         }
     }
 }

@@ -10,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -67,6 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
 
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
+        private EventHandler<EventArgs> txtLpDomainButtonClickHandler;
 
         #region Properties
         public RadTreeView TreeView => configureGenericArgumentsForm.TreeView;
@@ -125,12 +127,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             configureGenericArgumentsForm.ValidateXmlDocument();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtLpDomain.ButtonClick += txtLpDomainButtonClickHandler;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtLpDomainButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
@@ -141,21 +152,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             InitializeParameterControls();
             LoadParameterDropDownLists();
             InitializeClickCommands();
+            Disposed += ConfigureGenericLiteralArgumentControl_Disposed;
             _cmbLpPropertySourceTypeAutoCompleteManager.Setup();
+            AddClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtLpDomainButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtLpDomainButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtLpDomain,
                 _configureGenericLiteralArgumentCommandFactory.GetUpdateGenericLiteralDomainCommand(this)
             );
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private void InitializeParameterControls()
@@ -252,6 +267,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             return errors;
         }
 
+        private void RemoveClickCommands()
+        {
+            txtLpDomain.ButtonClick -= txtLpDomainButtonClickHandler;
+        }
+
         private void ValidateLpDefaultValue(Type type, List<string> errors)
         {
             if (!string.IsNullOrEmpty(txtLpDefaultValue.Text) && !_typeHelper.TryParse(txtLpDefaultValue.Text, type, out object? _))
@@ -291,5 +311,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
             if (inputStyle != LiteralParameterInputStyle.ParameterSourcedPropertyInput && cmbLpPropertySourceParameter.Text.Trim().Length > 0)
                 errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.fieldSourceMustBeEmptyFormat, lblLpPropertySourceParameter.Text, lblLpControl.Text, Strings.dropdownTextParameterSourcedPropertyInput));
         }
+
+        #region Event Handlers
+        private void ConfigureGenericLiteralArgumentControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

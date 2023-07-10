@@ -19,8 +19,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     configureFragmentsForm => new ConfigureFragmentControl
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<RichTextBoxPanel>(),
-                        provider.GetRequiredService<RichTextBoxPanel>(),
+                        new RichTextBoxPanel(),
+                        new RichTextBoxPanel(),
                         provider.GetRequiredService<ITreeViewService>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureFragmentsForm

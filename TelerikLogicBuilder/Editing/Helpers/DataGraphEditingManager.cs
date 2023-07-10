@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
@@ -44,6 +45,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             ParametersDataElementType.VariableObjectList
         };
 
+        private EventHandler? mnuItemAddXmlToFragmentsClickHandler;
+        private EventHandler? mnuItemCopyXmlClickHandler;
+
         public DataGraphEditingManager(
             IConfigurationService configurationService,
             IEditFormFieldSetHelper editFormFieldSetHelper,
@@ -64,6 +68,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _parametersDataTreeBuilder = editingFormHelperFactory.GetParametersDataTreeBuilder(dataGraphEditingHost);
             this.dataGraphEditingHost = dataGraphEditingHost;
+            TreeView.Disposed += TreeView_Disposed;
         }
 
         private RadPanel RadPanelFields => dataGraphEditingHost.RadPanelFields;
@@ -82,8 +87,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
 
         public void CreateContextMenus()
         {
-            AddContextMenuClickCommand(mnuItemAddXmlToFragments, _editingFormCommandFactory.GetAddXMLToFragmentsConfigurationCommand(dataGraphEditingHost));
-            AddContextMenuClickCommand(mnuItemCopyXml, _editingFormCommandFactory.GetCopyXmlToClipboardCommand(dataGraphEditingHost));
+            mnuItemAddXmlToFragmentsClickHandler = AddContextMenuClickCommand(_editingFormCommandFactory.GetAddXMLToFragmentsConfigurationCommand(dataGraphEditingHost));
+            mnuItemCopyXmlClickHandler = AddContextMenuClickCommand(_editingFormCommandFactory.GetCopyXmlToClipboardCommand(dataGraphEditingHost));
             TreeView.RadContextMenu = new()
             {
                 Items =
@@ -95,6 +100,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                     new RadMenuSeparatorItem(),
                 }
             };
+
+            AddClickCommands();
         }
 
         public void RequestDocumentUpdate(IEditingControl editingControl)
@@ -415,9 +422,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
             dataGraphEditingHost.ValidateXmlDocument();
         }
 
-        private static void AddContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private void AddClickCommands()
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            RemoveClickCommands();
+            mnuItemAddXmlToFragments.Click += mnuItemAddXmlToFragmentsClickHandler;
+            mnuItemCopyXml.Click += mnuItemCopyXmlClickHandler;
+        }
+
+        private static EventHandler AddContextMenuClickCommand(IClickCommand command)
+        {
+            return (sender, args) => command.Execute();
         }
 
         private ParametersDataTreeNode GetControlXPathTreeNode(ParametersDataTreeNode selectedNode)
@@ -535,5 +549,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
                 treeNode.ToolTipText = variableName;
             }
         }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemAddXmlToFragments.Click -= mnuItemAddXmlToFragmentsClickHandler;
+            mnuItemCopyXml.Click -= mnuItemCopyXmlClickHandler;
+        }
+
+        #region Event Handlers
+        private void TreeView_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

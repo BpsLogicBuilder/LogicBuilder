@@ -1,111 +1,239 @@
-﻿using System;
+﻿using ABIS.LogicBuilder.FlowBuilder.Editing.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
 {
     internal class EditXmlFormFactory : IEditXmlFormFactory
     {
         private IDisposable? _scopedService;
-        private readonly Func<string, Type, IEditBooleanFunctionFormXml> _getEditBooleanFunctionsFormXml;
-        private readonly Func<string, IEditBuildDecisionFormXml> _getEditBuildDecisionFormXml;
-        private readonly Func<string, IEditConditionsFormXml> _getEditConditionsFormXml;
-        private readonly Func<string, Type, IEditConstructorFormXml> _getEditConstructorFormXml;
-        private readonly Func<string, IEditDecisionsFormXml> _getEditDecisionsFormXml;
-        private readonly Func<string, IEditDialogFunctionFormXml> _getEditDialogFunctionFormXml;
-        private readonly Func<string, IEditFunctionsFormXml> _getEditFunctionsFormXml;
-        private readonly Func<string, Type, IEditLiteralListFormXml> _getEditLiteralListFormXml;
-        private readonly Func<string, Type, IEditObjectListFormXml> _getEditObjectListFormXml;
-        private readonly Func<string, IEditTableFunctionsFormXml> _getEditTableFunctionsFormXml;
-        private readonly Func<string, Type, IEditValueFunctionFormXml> _getEditValueFunctionsFormXml;
-
-        public EditXmlFormFactory(
-            Func<string, Type, IEditBooleanFunctionFormXml> getEditBooleanFunctionsFormXml,
-            Func<string, IEditBuildDecisionFormXml> getEditBuildDecisionFormXml,
-            Func<string, IEditConditionsFormXml> getEditConditionsFormXml,
-            Func<string, Type, IEditConstructorFormXml> getEditConstructorFormXml,
-            Func<string, IEditDecisionsFormXml> getEditDecisionsFormXml,
-            Func<string, IEditDialogFunctionFormXml> getEditDialogFunctionFormXml,
-            Func<string, IEditFunctionsFormXml> getEditFunctionsFormXml,
-            Func<string, Type, IEditLiteralListFormXml> getEditLiteralListFormXml,
-            Func<string, Type, IEditObjectListFormXml> getEditObjectListFormXml,
-            Func<string, IEditTableFunctionsFormXml> getEditTableFunctionsFormXml,
-            Func<string, Type, IEditValueFunctionFormXml> getEditValueFunctionsFormXml)
-        {
-            _getEditBooleanFunctionsFormXml = getEditBooleanFunctionsFormXml;
-            _getEditBuildDecisionFormXml = getEditBuildDecisionFormXml;
-            _getEditConditionsFormXml = getEditConditionsFormXml;
-            _getEditConstructorFormXml = getEditConstructorFormXml;
-            _getEditDecisionsFormXml = getEditDecisionsFormXml;
-            _getEditDialogFunctionFormXml = getEditDialogFunctionFormXml;
-            _getEditFunctionsFormXml = getEditFunctionsFormXml;
-            _getEditLiteralListFormXml = getEditLiteralListFormXml;
-            _getEditObjectListFormXml = getEditObjectListFormXml;
-            _getEditTableFunctionsFormXml = getEditTableFunctionsFormXml;
-            _getEditValueFunctionsFormXml = getEditValueFunctionsFormXml;
-        }
-
         public IEditBooleanFunctionFormXml GetEditBooleanFunctionFormXml(string xml, Type assignedTo)
         {
-            _scopedService = _getEditBooleanFunctionsFormXml(xml, assignedTo);
+            _scopedService = new EditBooleanFunctionFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml,
+                assignedTo
+            );
             return (IEditBooleanFunctionFormXml)_scopedService;
         }
 
         public IEditBuildDecisionFormXml GetEditBuildDecisionFormXml(string xml)
         {
-            _scopedService = _getEditBuildDecisionFormXml(xml);
+            _scopedService = new EditBuildDecisionFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDecisionElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml
+            );
             return (IEditBuildDecisionFormXml)_scopedService;
         }
 
         public IEditConditionsFormXml GetEditConditionsFormXml(string xml)
         {
-            _scopedService = _getEditConditionsFormXml(xml);
+            _scopedService = new EditConditionsFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IConditionsElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml
+            );
             return (IEditConditionsFormXml)_scopedService;
         }
 
         public IEditConstructorFormXml GetEditConstructorFormXml(string xml, Type assignedTo)
         {
-            _scopedService = _getEditConstructorFormXml(xml, assignedTo);
+            _scopedService = new EditConstructorFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IConstructorElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml,
+                assignedTo
+            );
             return (IEditConstructorFormXml)_scopedService;
-        }
-
-        public IEditDialogFunctionFormXml GetEditDialogFunctionFormXml(string xml)
-        {
-            _scopedService = _getEditDialogFunctionFormXml(xml);
-            return (IEditDialogFunctionFormXml)_scopedService;
         }
 
         public IEditDecisionsFormXml GetEditDecisionsFormXml(string xml)
         {
-            _scopedService = _getEditDecisionsFormXml(xml);
+            _scopedService = new EditDecisionsFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IDecisionsElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml
+            );
             return (IEditDecisionsFormXml)_scopedService;
+        }
+
+        public IEditDialogFunctionFormXml GetEditDialogFunctionFormXml(string xml)
+        {
+            _scopedService = new EditDialogFunctionFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionsDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml
+            );
+            return (IEditDialogFunctionFormXml)_scopedService;
         }
 
         public IEditFunctionsFormXml GetEditFunctionsFormXml(string xml)
         {
-            _scopedService = _getEditFunctionsFormXml(xml);
+            _scopedService = new EditFunctionsFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionsDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionsElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml
+            );
             return (IEditFunctionsFormXml)_scopedService;
         }
 
         public IEditLiteralListFormXml GetEditLiteralListFormXml(string xml, Type assignedTo)
         {
-            _scopedService = _getEditLiteralListFormXml(xml, assignedTo);
+            _scopedService = new EditLiteralListFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<ILiteralListElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml,
+                assignedTo
+            );
             return (IEditLiteralListFormXml)_scopedService;
         }
 
         public IEditObjectListFormXml GetEditObjectListFormXml(string xml, Type assignedTo)
         {
-            _scopedService = _getEditObjectListFormXml(xml, assignedTo);
+            _scopedService = new EditObjectListFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IObjectListElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml,
+                assignedTo
+            );
             return (IEditObjectListFormXml)_scopedService;
         }
 
         public IEditTableFunctionsFormXml GetEditTableFunctionsFormXml(string xml)
         {
-            _scopedService = _getEditTableFunctionsFormXml(xml);
+            _scopedService = new EditTableFunctionsFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionsDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionsElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml
+            );
             return (IEditTableFunctionsFormXml)_scopedService;
         }
 
         public IEditValueFunctionFormXml GetEditValueFunctionFormXml(string xml, Type assignedTo)
         {
-            _scopedService = _getEditValueFunctionsFormXml(xml, assignedTo);
+            _scopedService = new EditValueFunctionFormXml
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControl>(),
+                Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionElementValidator>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                new EditXmlRichTextBoxPanel(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                xml,
+                assignedTo
+            );
             return (IEditValueFunctionFormXml)_scopedService;
         }
 

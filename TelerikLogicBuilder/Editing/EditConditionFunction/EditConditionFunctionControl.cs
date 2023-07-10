@@ -1,5 +1,4 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.DataGraph;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -18,7 +17,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -40,6 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private readonly IApplicationForm parentForm;
+        private EventHandler<EventArgs> cmbSelectFunctionButtonClickHandler;
 
         public EditConditionFunctionControl(
             IConfigurationService configurationService,
@@ -182,9 +182,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
             _treeViewXmlDocumentHelper.ValidateXmlDocument();
         }
 
-        private static void AddButtonClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
+        private static EventHandler<EventArgs> AddButtonClickCommand(IClickCommand command)
         {
-            helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            cmbSelectFunction.ButtonClick += cmbSelectFunctionButtonClickHandler;
         }
 
         private void CmbSelectFunctionChanged()
@@ -196,16 +202,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
             LoadTreeview();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(cmbSelectFunctionButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeSelectFunctionDropDownList();
 
             parentForm.ApplicationChanged += EditConditionFunctionsForm_ApplicationChanged;
             cmbSelectFunction.Changed += CmbSelectFunction_Changed;
+            Disposed += EditConditionFunctionControl_Disposed;
 
             _dataGraphEditingHostEventsHelper.Setup();
             SetUpSelectFunctionDropDownList();
-            AddButtonClickCommand(cmbSelectFunction, _editConditionFunctionCommandFactory.GetSelectConditionFunctionCommand(this));
+            cmbSelectFunctionButtonClickHandler = AddButtonClickCommand(_editConditionFunctionCommandFactory.GetSelectConditionFunctionCommand(this));
+            AddClickCommands();
         }
 
         private void InitializeSelectFunctionDropDownList()
@@ -222,6 +233,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
 
             if (TreeView.SelectedNode == null)
                 TreeView.SelectedNode = TreeView.Nodes[0];
+        }
+
+        private void RemoveClickCommands()
+        {
+            cmbSelectFunction.ButtonClick -= cmbSelectFunctionButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            parentForm.ApplicationChanged -= EditConditionFunctionsForm_ApplicationChanged;
+            cmbSelectFunction.Changed -= CmbSelectFunction_Changed;
         }
 
         private void SetUpSelectFunctionDropDownList()
@@ -246,6 +268,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction
         }
 
         #region Event Handlers
+        private void EditConditionFunctionControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
+
         private void EditConditionFunctionsForm_ApplicationChanged(object? sender, ApplicationChangedEventArgs e)
         {
             ApplicationChanged?.Invoke(this, e);

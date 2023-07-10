@@ -9,6 +9,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -52,6 +53,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly RenameCommand _renameDocumentCommand;
 
         private readonly RadTreeView radTreeView1;
+        private EventHandler mnuItemOpenFileClickHandler;
+        private EventHandler mnuItemRenameClickHandler;
+        private EventHandler mnuItemDeleteClickHandler;
+        private EventHandler mnuItemAddNewFileClickHandler;
+        private EventHandler mnuItemAddExistingFileClickHandler;
+        private EventHandler mnuItemCreateDirectoryClickHandler;
+        private EventHandler mnuItemCutClickHandler;
+        private EventHandler mnuItemPasteClickHandler;
+        private EventHandler mnuItemCloseProjectClickHandler;
+        private EventHandler mnuItemRefreshClickHandler;
 
         public IList<RadTreeNode> CutTreeNodes { get; } = new List<RadTreeNode>();
 
@@ -67,7 +78,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             IMainWindow mainWindow,
             ITreeViewBuilderFactory treeViewBuiilderFactory,
             ITreeViewService treeViewService,
-            FileSystemTreeView fileSystemTreeView,
             IUiNotificationService uiNotificationService,
             AddExistingFileCommand addExistingFileCommand,
             AddNewFileCommand addNewFileCommand,
@@ -97,7 +107,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _refreshDocumentsExplorerCommand = refreshDocumentsExplorerCommand;
             _renameDocumentCommand = renameDocumentCommand;
 
-            this.radTreeView1 = fileSystemTreeView;
+            this.radTreeView1 = new FileSystemTreeView();
 
             InitializeComponent();
             Initialize();
@@ -117,9 +127,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public void RefreshTreeView() 
             => BuildTreeView();
 
-        private static void AddClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemOpenFile.Click += mnuItemOpenFileClickHandler;
+            mnuItemRename.Click += mnuItemRenameClickHandler;
+            mnuItemDelete.Click += mnuItemDeleteClickHandler;
+            mnuItemAddNewFile.Click += mnuItemAddNewFileClickHandler;
+            mnuItemAddExistingFile.Click += mnuItemAddExistingFileClickHandler;
+            mnuItemCreateDirectory.Click += mnuItemCreateDirectoryClickHandler;
+            mnuItemCut.Click += mnuItemCutClickHandler;
+            mnuItemPaste.Click += mnuItemPasteClickHandler;
+            mnuItemCloseProject.Click += mnuItemCloseProjectClickHandler;
+            mnuItemRefresh.Click += mnuItemRefreshClickHandler;
         }
 
         private void BuildTreeView() 
@@ -130,18 +155,30 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
                 expandedNodes
             ).Build(radTreeView1);
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemOpenFileClickHandler),
+            nameof(mnuItemRenameClickHandler),
+            nameof(mnuItemDeleteClickHandler),
+            nameof(mnuItemAddNewFileClickHandler),
+            nameof(mnuItemAddExistingFileClickHandler),
+            nameof(mnuItemCreateDirectoryClickHandler),
+            nameof(mnuItemCutClickHandler),
+            nameof(mnuItemPasteClickHandler),
+            nameof(mnuItemCloseProjectClickHandler),
+            nameof(mnuItemRefreshClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemOpenFile, _openFileCommand);
-            AddClickCommand(mnuItemRename, _renameDocumentCommand);
-            AddClickCommand(mnuItemDelete, _deleteDocumentCommand);
-            AddClickCommand(mnuItemAddNewFile, _addNewFileCommand);
-            AddClickCommand(mnuItemAddExistingFile, _addExistingFileCommand);
-            AddClickCommand(mnuItemCreateDirectory, _createDirectoryCommand);
-            AddClickCommand(mnuItemCut, _cutCommand);
-            AddClickCommand(mnuItemPaste, _pasteDocumentCommand);
-            AddClickCommand(mnuItemCloseProject, _closeProjectCommand);
-            AddClickCommand(mnuItemRefresh, _refreshDocumentsExplorerCommand);
+            mnuItemOpenFileClickHandler = AddClickCommand(_openFileCommand);
+            mnuItemRenameClickHandler = AddClickCommand(_renameDocumentCommand);
+            mnuItemDeleteClickHandler = AddClickCommand(_deleteDocumentCommand);
+            mnuItemAddNewFileClickHandler = AddClickCommand(_addNewFileCommand);
+            mnuItemAddExistingFileClickHandler = AddClickCommand(_addExistingFileCommand);
+            mnuItemCreateDirectoryClickHandler = AddClickCommand(_createDirectoryCommand);
+            mnuItemCutClickHandler = AddClickCommand(_cutCommand);
+            mnuItemPasteClickHandler = AddClickCommand(_pasteDocumentCommand);
+            mnuItemCloseProjectClickHandler = AddClickCommand(_closeProjectCommand);
+            mnuItemRefreshClickHandler = AddClickCommand(_refreshDocumentsExplorerCommand);
 
             mnuItemAddFile.Items.AddRange
             (
@@ -172,6 +209,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             };
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemOpenFileClickHandler),
+            nameof(mnuItemRenameClickHandler),
+            nameof(mnuItemDeleteClickHandler),
+            nameof(mnuItemAddNewFileClickHandler),
+            nameof(mnuItemAddExistingFileClickHandler),
+            nameof(mnuItemCreateDirectoryClickHandler),
+            nameof(mnuItemCutClickHandler),
+            nameof(mnuItemPasteClickHandler),
+            nameof(mnuItemCloseProjectClickHandler),
+            nameof(mnuItemRefreshClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             ((ISupportInitialize)this.radTreeView1).BeginInit();
@@ -201,6 +250,34 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.Load += DocumentsExplorer_Load;
 
             CreateContextMenu();
+            AddClickCommands();
+        }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemOpenFile.Click -= mnuItemOpenFileClickHandler;
+            mnuItemRename.Click -= mnuItemRenameClickHandler;
+            mnuItemDelete.Click -= mnuItemDeleteClickHandler;
+            mnuItemAddNewFile.Click -= mnuItemAddNewFileClickHandler;
+            mnuItemAddExistingFile.Click -= mnuItemAddExistingFileClickHandler;
+            mnuItemCreateDirectory.Click -= mnuItemCreateDirectoryClickHandler;
+            mnuItemCut.Click -= mnuItemCutClickHandler;
+            mnuItemPaste.Click -= mnuItemPasteClickHandler;
+            mnuItemCloseProject.Click -= mnuItemCloseProjectClickHandler;
+            mnuItemRefresh.Click -= mnuItemRefreshClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            this.radTreeView1.CreateNodeElement -= RadTreeView1_CreateNodeElement;
+            this.radTreeView1.MouseDown -= RadTreeView1_MouseDown;
+            this.radTreeView1.NodeFormatting -= RadTreeView1_NodeFormatting;
+            this.radTreeView1.NodeExpandedChanged -= RadTreeView1_NodeExpandedChanged;
+            this.radTreeView1.NodeMouseClick -= RadTreeView1_NodeMouseClick;
+            this.radTreeView1.NodeMouseDoubleClick -= RadTreeView1_NodeMouseDoubleClick;
+            documentProfileErrors.ErrorCountChanged -= DocumentProfileErrors_ErrorCountChanged;
+            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
+            this.Load -= DocumentsExplorer_Load;
         }
 
         private void SetContextMenuState(IList<RadTreeNode> selectedNodes)
@@ -240,7 +317,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void DocumentsExplorer_Disposed(object? sender, EventArgs e)
         {
-            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void DocumentsExplorer_Load(object? sender, EventArgs e)
@@ -283,10 +361,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
             else
             {
-                if (expandedNodes.ContainsKey(e.Node.Name))
-                {
-                    expandedNodes.Remove(e.Node.Name);
-                }
+                //There's no need to guard Dictionary.Remove(key) with Dictionary.ContainsKey(key). Dictionary<TKey,TValue>.Remove(TKey) already checks whether the key exists and doesn't throw if it doesn't exist.
+                //https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1853.
+                expandedNodes.Remove(e.Node.Name);
             }
 
             if (CutTreeNodes.ToHashSet().Contains(e.Node))

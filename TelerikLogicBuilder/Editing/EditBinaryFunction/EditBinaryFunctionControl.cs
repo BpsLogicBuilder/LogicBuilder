@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -125,6 +124,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         }
 
         private Function function;
+        private readonly RadToolTip toolTip = new();
 
         public Function Function => function;
 
@@ -315,6 +315,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
                 //Reproduced a similar layout in InvalidDropDownListLayoutWhenVisibleIsFalse
                 //by not calling tableLayoutPanel.PerformLayout() (could not be reproduced by setting visible to false before the PerformLayout() call as in this case)
                 parameterControlSet.ChkInclude.CheckStateChanged += ChkInclude_CheckStateChanged;
+                if (parameter.Comments.Trim().Length > 0)
+                    toolTip.SetToolTip(parameterControlSet.ImageLabel, parameter.Comments);
             }
 
             //
@@ -387,6 +389,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelFunction);
+
+            this.Disposed += EditBinaryFunctionControl_Disposed;
+        }
+
+        private void RemoveCheckStateChangedHandlers()
+        {
+            radCheckBoxNot.CheckStateChanged -= RadCheckBoxNot_CheckStateChanged;
+            foreach (var kvp in editControlsSet)
+            {
+                kvp.Value.ChkInclude.CheckStateChanged -= ChkInclude_CheckStateChanged;
+            }
         }
 
         private void SetCheckNotState(bool isChecked)
@@ -411,6 +424,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
                 return;
 
             ShowHideParameterControls(radChackBox);
+        }
+
+        private void EditBinaryFunctionControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            RemoveCheckStateChangedHandlers();
         }
 
         private void RadCheckBoxNot_CheckStateChanged(object? sender, EventArgs e)

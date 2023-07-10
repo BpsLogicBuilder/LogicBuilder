@@ -14,6 +14,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -74,6 +75,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
 
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
+        private EventHandler<EventArgs> txtListLpDomainButtonClickHandler;
+        private EventHandler<EventArgs> txtListLpDefaultValueButtonClickHandler;
 
         public AutoCompleteRadDropDownList CmbListLpPropertySource => cmbListLpPropertySource;
         public RadDropDownList CmbListLpElementControl => cmbListLpElementControl;
@@ -152,6 +155,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
 
         public void ValidateXmlDocument() => configurationForm.ValidateXmlDocument();
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtListLpDomain.ButtonClick += txtListLpDomainButtonClickHandler;
+            txtListLpDefaultValue.ButtonClick += txtListLpDefaultValueButtonClickHandler;
+        }
+
         private void AddEventHandlers()
         {
             txtListLpName.TextChanged += TxtListLpName_TextChanged;
@@ -163,35 +173,45 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtListLpDomainButtonClickHandler),
+        nameof(txtListLpDefaultValueButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             radPanelParameter.VerticalScrollBarState = ScrollState.AlwaysShow;
             InitializeTableLayoutPanel();
             CollapsePanelBorder(radPanelParameter);
             CollapsePanelBorder(radPanelTableParent);
+
+            Disposed += ConfigureLiteralListParameterControl_Disposed;
+
             InitializeParameterControls();
             LoadParameterDropDownLists();
             InitializeClickCommands();
             _cmbListLpPropertySourceTypeAutoCompleteManager.Setup();
+            AddClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtListLpDomainButtonClickHandler),
+        nameof(txtListLpDefaultValueButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtListLpDomainButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtListLpDomain,
                 _configureLiteralListParameterCommandFactory.GetUpdateLiteralListParameterDomainCommand(this)
             );
-            InitializeHelperButtonCommand
+            txtListLpDefaultValueButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtListLpDefaultValue,
                 _configureLiteralListParameterCommandFactory.GetUpdateLiteralListParameterDefaultValueCommand(this)
             );
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private void InitializeParameterControls()
@@ -269,9 +289,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
             );
         }
 
+        private void RemoveClickCommands()
+        {
+            txtListLpDomain.ButtonClick -= txtListLpDomainButtonClickHandler;
+            txtListLpDefaultValue.ButtonClick -= txtListLpDefaultValueButtonClickHandler;
+        }
+
         private void RemoveEventHandlers()
         {
             txtListLpName.TextChanged -= TxtListLpName_TextChanged;
+        }
+
+        #region Event Handlers
+        private void ConfigureLiteralListParameterControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
 
         private void TxtListLpName_TextChanged(object? sender, System.EventArgs e)
@@ -291,5 +327,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
                 SetErrorMessage(ex.Message);
             }
         }
+        #endregion Event Handlers
     }
 }

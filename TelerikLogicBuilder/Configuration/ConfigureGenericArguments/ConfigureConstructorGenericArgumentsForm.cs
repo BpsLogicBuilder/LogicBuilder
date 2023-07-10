@@ -18,6 +18,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -47,6 +48,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
         private const string rootNodeXPath = $"/{XmlDataConstants.CONSTRUCTORELEMENT}/{XmlDataConstants.GENERICARGUMENTSELEMENT}";
 
         private ApplicationTypeInfo _application;
+        private EventHandler mnuItemReplaceWithLiteralParameterClickHandler;
+        private EventHandler mnuItemReplaceWithObjectParameterClickHandler;
+        private EventHandler mnuItemReplaceWithListOfLiteralsParameterClickHandler;
+        private EventHandler mnuItemReplaceWithListOfObjectsParameterClickHandler;
         private readonly Type genericTypeDefinition;
         private readonly XmlDocument _xmlDocument;
         private readonly RadMenuItem mnuItemReplaceWithLiteralParameter = new(Strings.mnuItemReplaceWithLiteralParameterText);
@@ -130,6 +135,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
         public void ValidateXmlDocument()
             => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemReplaceWithLiteralParameter.Click += mnuItemReplaceWithLiteralParameterClickHandler;
+            mnuItemReplaceWithObjectParameter.Click += mnuItemReplaceWithObjectParameterClickHandler;
+            mnuItemReplaceWithListOfLiteralsParameter.Click += mnuItemReplaceWithListOfLiteralsParameterClickHandler;
+            mnuItemReplaceWithListOfObjectsParameter.Click += mnuItemReplaceWithListOfObjectsParameterClickHandler;
+        }
+
         private void BuildTreeView()
         {
             if (XmlDocument.DocumentElement == null)
@@ -150,26 +164,28 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemReplaceWithLiteralParameterClickHandler),
+        nameof(mnuItemReplaceWithObjectParameterClickHandler),
+        nameof(mnuItemReplaceWithListOfLiteralsParameterClickHandler),
+        nameof(mnuItemReplaceWithListOfObjectsParameterClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenus()
         {
-            InitializeContextMenuClickCommand
+            mnuItemReplaceWithLiteralParameterClickHandler = InitializeContextMenuClickCommand
             (
-                mnuItemReplaceWithLiteralParameter,
                 _configureGenericArgumentsCommandFactory.GetReplaceWithLiteralParameterCommand(this)
             );
-            InitializeContextMenuClickCommand
+            mnuItemReplaceWithObjectParameterClickHandler = InitializeContextMenuClickCommand
             (
-                mnuItemReplaceWithObjectParameter,
                 _configureGenericArgumentsCommandFactory.GetReplaceWithObjectParameterCommand(this)
             );
-            InitializeContextMenuClickCommand
+            mnuItemReplaceWithListOfLiteralsParameterClickHandler = InitializeContextMenuClickCommand
             (
-                mnuItemReplaceWithListOfLiteralsParameter,
                 _configureGenericArgumentsCommandFactory.GetReplaceWithListOfLiteralsParameterCommand(this)
             );
-            InitializeContextMenuClickCommand
+            mnuItemReplaceWithListOfObjectsParameterClickHandler = InitializeContextMenuClickCommand
             (
-                mnuItemReplaceWithListOfObjectsParameter,
                 _configureGenericArgumentsCommandFactory.GetReplaceWithListOfObjectsParameterCommand(this)
             );
 
@@ -187,6 +203,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
             };
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemReplaceWithLiteralParameterClickHandler),
+        nameof(mnuItemReplaceWithObjectParameterClickHandler),
+        nameof(mnuItemReplaceWithListOfLiteralsParameterClickHandler),
+        nameof(mnuItemReplaceWithListOfObjectsParameterClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
@@ -197,7 +219,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
             radTreeView1.SelectedNodeChanging += RadTreeView1_SelectedNodeChanging;
             radTreeView1.NodeMouseClick += RadTreeView1_NodeMouseClick;
             radTreeView1.MouseDown += RadTreeView1_MouseDown;
-            this.FormClosing += ConfigureConstructorGenericArgumentsForm_FormClosing;
+            Disposed += ConfigureConstructorGenericArgumentsForm_Disposed;
+            FormClosing += ConfigureConstructorGenericArgumentsForm_FormClosing;
 
             _formInitializer.SetFormDefaults(this, 685);
             _formInitializer.SetToConfigSize(this);
@@ -215,6 +238,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
             CollapsePanelBorder(radPanelButtons);
             CollapsePanelBorder(radPanelFields);
             CollapsePanelBorder(radPanelMessages);
+            AddClickCommands();
         }
 
         private void InitializeApplicationDropDownList()
@@ -222,9 +246,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
             ControlsLayoutUtility.LayoutApplicationGroupBox(this, radPanelApplication, radGroupBoxApplication, _applicationDropDownList);
         }
 
-        private static void InitializeContextMenuClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler InitializeContextMenuClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private void InitializeDialogFormMessageControl()
@@ -265,6 +289,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
             mnuItemReplaceWithObjectParameter.Enabled = !isRootNode;
             mnuItemReplaceWithListOfLiteralsParameter.Enabled = !isRootNode;
             mnuItemReplaceWithListOfObjectsParameter.Enabled = !isRootNode;
+        }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemReplaceWithLiteralParameter.Click -= mnuItemReplaceWithLiteralParameterClickHandler;
+            mnuItemReplaceWithObjectParameter.Click -= mnuItemReplaceWithObjectParameterClickHandler;
+            mnuItemReplaceWithListOfLiteralsParameter.Click -= mnuItemReplaceWithListOfLiteralsParameterClickHandler;
+            mnuItemReplaceWithListOfObjectsParameter.Click -= mnuItemReplaceWithListOfObjectsParameterClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+            radTreeView1.SelectedNodeChanged -= RadTreeView1_SelectedNodeChanged;
+            radTreeView1.SelectedNodeChanging -= RadTreeView1_SelectedNodeChanging;
+            radTreeView1.NodeMouseClick -= RadTreeView1_NodeMouseClick;
+            radTreeView1.MouseDown -= RadTreeView1_MouseDown;
+            FormClosing -= ConfigureConstructorGenericArgumentsForm_FormClosing;
         }
 
         private void SetControlValues(RadTreeNode treeNode)
@@ -335,6 +377,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments
         #endregion Methods
 
         #region Event Handlers
+        private void ConfigureConstructorGenericArgumentsForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            RemoveClickCommands();
+        }
+
         private void RadTreeView1_MouseDown(object? sender, MouseEventArgs e)
         {//handles case in which clicked area doesn't have a node
             RadTreeNode treeNode = this.radTreeView1.GetNodeAt(e.Location);

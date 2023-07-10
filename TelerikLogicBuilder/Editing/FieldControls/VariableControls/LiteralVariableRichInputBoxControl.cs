@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
@@ -41,6 +42,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
         private readonly IDataGraphEditingControl dataGraphEditingControl;
         private readonly LiteralVariable literalVariable;
         private Type? _assignedTo;
+        private EventHandler btnConstructorClickHandler;
+        private EventHandler btnFunctionClickHandler;
+        private EventHandler btnVariableClickHandler;
 
         public LiteralVariableRichInputBoxControl(
             IEditingControlHelperFactory editingControlHelperFactory,
@@ -204,22 +208,38 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
 
         void IValueControl.Focus() => _richInputBox.Select();
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnVariable.Click += btnVariableClickHandler;
+            btnFunction.Click += btnFunctionClickHandler;
+            btnConstructor.Click += btnConstructorClickHandler;
+        }
+
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(btnVariableClickHandler),
+        nameof(btnFunctionClickHandler),
+        nameof(btnConstructorClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             InitializeRichInputBox();
             InitializeButtons();
 
-            AddButtonClickCommand(btnConstructor, _fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
-            AddButtonClickCommand(btnFunction, _fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
-            AddButtonClickCommand(btnVariable, _fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this));
+            Disposed += LiteralVariableRichInputBoxControl_Disposed;
+
+            btnConstructorClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxConstructorCommand(this));
+            btnFunctionClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxFunctionCommand(this));
+            btnVariableClickHandler = AddButtonClickCommand(_fieldControlCommandFactory.GetEditRichInputBoxVariableCommand(this));
 
             _richInputBoxEventsHelper.Setup();
             _createRichInputBoxContextMenu.Create();
+            AddClickCommands();
         }
 
         private void InitializeButtons()
@@ -250,6 +270,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             this.radPanelRichInputBox.ResumeLayout(true);
         }
 
+        private void RemoveClickCommands()
+        {
+            btnVariable.Click -= btnVariableClickHandler;
+            btnFunction.Click -= btnFunctionClickHandler;
+            btnConstructor.Click -= btnConstructorClickHandler;
+        }
+
+        private void RemoveImageLists()
+        {
+            foreach (RadButton button in CommandButtons)
+                button.ImageList = null;
+        }
+
         private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
 
@@ -260,5 +293,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             foreach (RadButton button in CommandButtons)
                 button.Visible = show;
         }
+
+        #region Event Handlers
+        private void LiteralVariableRichInputBoxControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveImageLists();
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

@@ -15,6 +15,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Xml;
@@ -36,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
         private ApplicationTypeInfo _application;
+        private EventHandler btnPasteXmlClickHandler;
         private readonly Type assignedTo;
         private readonly LiteralListVariableElementInfo literalListInfo;
 
@@ -119,17 +121,25 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
 
         public void ValidateXmlDocument() => _treeViewXmlDocumentHelper.ValidateXmlDocument();
 
-        private static void AddButtonClickCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler AddButtonClickCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnPasteXml.Click += btnPasteXmlClickHandler;
+        }
+
+        [MemberNotNull(nameof(btnPasteXmlClickHandler))]
         private void Initialize()
         {
             InitializeDialogFormMessageControl();
             InitializeApplicationDropDownList();
 
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
+            Disposed += EditVariableLiteralListForm_Disposed;
 
             _formInitializer.SetFormDefaults(this, 719);
             btnCancel.CausesValidation = false;
@@ -139,8 +149,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
             _formInitializer.SetToEditSize(this);
 
             _dataGraphEditingFormEventsHelper.Setup();
-            AddButtonClickCommand(btnPasteXml, _editLiteralListCommandFactory.GetEditVariableLiteralListFormXmlCommand(this));
+            btnPasteXmlClickHandler = AddButtonClickCommand(_editLiteralListCommandFactory.GetEditVariableLiteralListFormXmlCommand(this));
             LoadTreeview();
+            AddClickCommands();
         }
 
         private void InitializeApplicationDropDownList()
@@ -160,11 +171,27 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList
                 TreeView.SelectedNode = TreeView.Nodes[0];
         }
 
+        private void RemoveClickCommands()
+        {
+            btnPasteXml.Click -= btnPasteXmlClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+        }
+
         #region Event Handlers
         private void ApplicationDropDownList_ApplicationChanged(object? sender, ApplicationChangedEventArgs e)
         {
             _application = e.Application;
             ApplicationChanged?.Invoke(this, e);
+        }
+
+        private void EditVariableLiteralListForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
         }
         #endregion Event Handlers
     }

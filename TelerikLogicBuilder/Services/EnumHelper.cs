@@ -123,103 +123,103 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             };
         }
 
+        static readonly Dictionary<Type, ValidIndirectReference> typeToValidIndirectReferenceTable = new()
+        {
+            [typeof(string)] = ValidIndirectReference.StringKeyIndexer,
+            [typeof(int)] = ValidIndirectReference.IntegerKeyIndexer,
+            [typeof(bool)] = ValidIndirectReference.BooleanKeyIndexer,
+            [typeof(DateTime)] = ValidIndirectReference.DateTimeKeyIndexer,
+            [typeof(DateTimeOffset)] = ValidIndirectReference.DateTimeOffsetKeyIndexer,
+            [typeof(DateOnly)] = ValidIndirectReference.DateOnlyKeyIndexer,
+            [typeof(Date)] = ValidIndirectReference.DateKeyIndexer,
+            [typeof(TimeSpan)] = ValidIndirectReference.TimeSpanKeyIndexer,
+            [typeof(TimeOnly)] = ValidIndirectReference.TimeOnlyKeyIndexer,
+            [typeof(TimeOfDay)] = ValidIndirectReference.TimeOfDayKeyIndexer,
+            [typeof(Guid)] = ValidIndirectReference.GuidKeyIndexer,
+            [typeof(byte)] = ValidIndirectReference.ByteKeyIndexer,
+            [typeof(short)] = ValidIndirectReference.ShortKeyIndexer,
+            [typeof(long)] = ValidIndirectReference.LongKeyIndexer,
+            [typeof(float)] = ValidIndirectReference.FloatKeyIndexer,
+            [typeof(double)] = ValidIndirectReference.DoubleKeyIndexer,
+            [typeof(decimal)] = ValidIndirectReference.DecimalKeyIndexer,
+            [typeof(char)] = ValidIndirectReference.CharKeyIndexer,
+            [typeof(sbyte)] = ValidIndirectReference.SByteKeyIndexer,
+            [typeof(ushort)] = ValidIndirectReference.UShortKeyIndexer,
+            [typeof(uint)] = ValidIndirectReference.UIntegerKeyIndexer,
+            [typeof(ulong)] = ValidIndirectReference.ULongKeyIndexer
+        };
+
         public ValidIndirectReference GetIndexReferenceDefinition(Type indexType)
         {
-            Dictionary<Type, ValidIndirectReference> table = new()
-            {
-                [typeof(string)] = ValidIndirectReference.StringKeyIndexer,
-                [typeof(int)] = ValidIndirectReference.IntegerKeyIndexer,
-                [typeof(bool)] = ValidIndirectReference.BooleanKeyIndexer,
-                [typeof(DateTime)] = ValidIndirectReference.DateTimeKeyIndexer,
-                [typeof(DateTimeOffset)] = ValidIndirectReference.DateTimeOffsetKeyIndexer,
-                [typeof(DateOnly)] = ValidIndirectReference.DateOnlyKeyIndexer,
-                [typeof(Date)] = ValidIndirectReference.DateKeyIndexer,
-                [typeof(TimeSpan)] = ValidIndirectReference.TimeSpanKeyIndexer,
-                [typeof(TimeOnly)] = ValidIndirectReference.TimeOnlyKeyIndexer,
-                [typeof(TimeOfDay)] = ValidIndirectReference.TimeOfDayKeyIndexer,
-                [typeof(Guid)] = ValidIndirectReference.GuidKeyIndexer,
-                [typeof(byte)] = ValidIndirectReference.ByteKeyIndexer,
-                [typeof(short)] = ValidIndirectReference.ShortKeyIndexer,
-                [typeof(long)] = ValidIndirectReference.LongKeyIndexer,
-                [typeof(float)] = ValidIndirectReference.FloatKeyIndexer,
-                [typeof(double)] = ValidIndirectReference.DoubleKeyIndexer,
-                [typeof(decimal)] = ValidIndirectReference.DecimalKeyIndexer,
-                [typeof(char)] = ValidIndirectReference.CharKeyIndexer,
-                [typeof(sbyte)] = ValidIndirectReference.SByteKeyIndexer,
-                [typeof(ushort)] = ValidIndirectReference.UShortKeyIndexer,
-                [typeof(uint)] = ValidIndirectReference.UIntegerKeyIndexer,
-                [typeof(ulong)] = ValidIndirectReference.ULongKeyIndexer
-            };
-
-            if (table.TryGetValue(indexType, out var value))
+            if (typeToValidIndirectReferenceTable.TryGetValue(indexType, out var value))
                 return value;
             else
                 throw _exceptionHelper.CriticalException("{C0115382-3B85-4FCD-AF3A-15F9991D65E3}");
         }
 
+        static readonly Dictionary<VariableCategory, Type> variableCategoryToTypeTable = new()
+        {
+            [VariableCategory.StringKeyIndexer] = typeof(string),
+            [VariableCategory.IntegerKeyIndexer] = typeof(int),
+            [VariableCategory.BooleanKeyIndexer] = typeof(bool),
+            [VariableCategory.DateTimeKeyIndexer] = typeof(DateTime),
+            [VariableCategory.DateTimeOffsetKeyIndexer] = typeof(DateTimeOffset),
+            [VariableCategory.DateOnlyKeyIndexer] = typeof(DateOnly),
+            [VariableCategory.DateKeyIndexer] = typeof(Date),
+            [VariableCategory.TimeSpanKeyIndexer] = typeof(TimeSpan),
+            [VariableCategory.TimeOnlyKeyIndexer] = typeof(TimeOnly),
+            [VariableCategory.TimeOfDayKeyIndexer] = typeof(TimeOfDay),
+            [VariableCategory.GuidKeyIndexer] = typeof(Guid),
+            [VariableCategory.ByteKeyIndexer] = typeof(byte),
+            [VariableCategory.ShortKeyIndexer] = typeof(short),
+            [VariableCategory.LongKeyIndexer] = typeof(long),
+            [VariableCategory.FloatKeyIndexer] = typeof(float),
+            [VariableCategory.DoubleKeyIndexer] = typeof(double),
+            [VariableCategory.DecimalKeyIndexer] = typeof(decimal),
+            [VariableCategory.CharKeyIndexer] = typeof(char),
+            [VariableCategory.SByteKeyIndexer] = typeof(sbyte),
+            [VariableCategory.UShortKeyIndexer] = typeof(ushort),
+            [VariableCategory.UIntegerKeyIndexer] = typeof(uint),
+            [VariableCategory.ULongKeyIndexer] = typeof(ulong)
+        };
+
         public Type GetVariableCategoryIndexType(VariableCategory variableCategory)
         {
-            Dictionary<VariableCategory, Type> table = new()
-            {
-                [VariableCategory.StringKeyIndexer] = typeof(string),
-                [VariableCategory.IntegerKeyIndexer] = typeof(int),
-                [VariableCategory.BooleanKeyIndexer] = typeof(bool),
-                [VariableCategory.DateTimeKeyIndexer] = typeof(DateTime),
-                [VariableCategory.DateTimeOffsetKeyIndexer] = typeof(DateTimeOffset),
-                [VariableCategory.DateOnlyKeyIndexer] = typeof(DateOnly),
-                [VariableCategory.DateKeyIndexer] = typeof(Date),
-                [VariableCategory.TimeSpanKeyIndexer] = typeof(TimeSpan),
-                [VariableCategory.TimeOnlyKeyIndexer] = typeof(TimeOnly),
-                [VariableCategory.TimeOfDayKeyIndexer] = typeof(TimeOfDay),
-                [VariableCategory.GuidKeyIndexer] = typeof(Guid),
-                [VariableCategory.ByteKeyIndexer] = typeof(byte),
-                [VariableCategory.ShortKeyIndexer] = typeof(short),
-                [VariableCategory.LongKeyIndexer] = typeof(long),
-                [VariableCategory.FloatKeyIndexer] = typeof(float),
-                [VariableCategory.DoubleKeyIndexer] = typeof(double),
-                [VariableCategory.DecimalKeyIndexer] = typeof(decimal),
-                [VariableCategory.CharKeyIndexer] = typeof(char),
-                [VariableCategory.SByteKeyIndexer] = typeof(sbyte),
-                [VariableCategory.UShortKeyIndexer] = typeof(ushort),
-                [VariableCategory.UIntegerKeyIndexer] = typeof(uint),
-                [VariableCategory.ULongKeyIndexer] = typeof(ulong)
-            };
-
-            if (table.TryGetValue(variableCategory, out var value))
+            if (variableCategoryToTypeTable.TryGetValue(variableCategory, out var value))
                 return value;
             else
                 throw _exceptionHelper.CriticalException("{035AE1DA-4596-432B-8BFC-9DAB0DC94BCD}");
         }
 
+        static readonly Dictionary<Type, VariableCategory> typeToVariableCategoryTable = new()
+        {
+            [typeof(string)] = VariableCategory.StringKeyIndexer,
+            [typeof(int)] = VariableCategory.IntegerKeyIndexer,
+            [typeof(bool)] = VariableCategory.BooleanKeyIndexer,
+            [typeof(DateTime)] = VariableCategory.DateTimeKeyIndexer,
+            [typeof(DateTimeOffset)] = VariableCategory.DateTimeOffsetKeyIndexer,
+            [typeof(DateOnly)] = VariableCategory.DateOnlyKeyIndexer,
+            [typeof(Date)] = VariableCategory.DateKeyIndexer,
+            [typeof(TimeSpan)] = VariableCategory.TimeSpanKeyIndexer,
+            [typeof(TimeOnly)] = VariableCategory.TimeOnlyKeyIndexer,
+            [typeof(TimeOfDay)] = VariableCategory.TimeOfDayKeyIndexer,
+            [typeof(Guid)] = VariableCategory.GuidKeyIndexer,
+            [typeof(byte)] = VariableCategory.ByteKeyIndexer,
+            [typeof(short)] = VariableCategory.ShortKeyIndexer,
+            [typeof(long)] = VariableCategory.LongKeyIndexer,
+            [typeof(float)] = VariableCategory.FloatKeyIndexer,
+            [typeof(double)] = VariableCategory.DoubleKeyIndexer,
+            [typeof(decimal)] = VariableCategory.DecimalKeyIndexer,
+            [typeof(char)] = VariableCategory.CharKeyIndexer,
+            [typeof(sbyte)] = VariableCategory.SByteKeyIndexer,
+            [typeof(ushort)] = VariableCategory.UShortKeyIndexer,
+            [typeof(uint)] = VariableCategory.UIntegerKeyIndexer,
+            [typeof(ulong)] = VariableCategory.ULongKeyIndexer
+        };
+
         public VariableCategory GetIndexVariableCategory(Type indexType)
         {
-            Dictionary<Type, VariableCategory> table = new()
-            {
-                [typeof(string)] = VariableCategory.StringKeyIndexer,
-                [typeof(int)] = VariableCategory.IntegerKeyIndexer,
-                [typeof(bool)] = VariableCategory.BooleanKeyIndexer,
-                [typeof(DateTime)] = VariableCategory.DateTimeKeyIndexer,
-                [typeof(DateTimeOffset)] = VariableCategory.DateTimeOffsetKeyIndexer,
-                [typeof(DateOnly)] = VariableCategory.DateOnlyKeyIndexer,
-                [typeof(Date)] = VariableCategory.DateKeyIndexer,
-                [typeof(TimeSpan)] = VariableCategory.TimeSpanKeyIndexer,
-                [typeof(TimeOnly)] = VariableCategory.TimeOnlyKeyIndexer,
-                [typeof(TimeOfDay)] = VariableCategory.TimeOfDayKeyIndexer,
-                [typeof(Guid)] = VariableCategory.GuidKeyIndexer,
-                [typeof(byte)] = VariableCategory.ByteKeyIndexer,
-                [typeof(short)] = VariableCategory.ShortKeyIndexer,
-                [typeof(long)] = VariableCategory.LongKeyIndexer,
-                [typeof(float)] = VariableCategory.FloatKeyIndexer,
-                [typeof(double)] = VariableCategory.DoubleKeyIndexer,
-                [typeof(decimal)] = VariableCategory.DecimalKeyIndexer,
-                [typeof(char)] = VariableCategory.CharKeyIndexer,
-                [typeof(sbyte)] = VariableCategory.SByteKeyIndexer,
-                [typeof(ushort)] = VariableCategory.UShortKeyIndexer,
-                [typeof(uint)] = VariableCategory.UIntegerKeyIndexer,
-                [typeof(ulong)] = VariableCategory.ULongKeyIndexer
-            };
-
-            if (table.TryGetValue(indexType, out var value))
+            if (typeToVariableCategoryTable.TryGetValue(indexType, out var value))
                 return value;
             else
                 throw _exceptionHelper.CriticalException("{DEDB5B31-31D0-4BB3-9D50-EA29A908D948}");
@@ -526,113 +526,113 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             }
         }
 
+        static readonly Dictionary<Type, LiteralType> typeToEnumTable = new()
+        {
+            [typeof(void)] = LiteralType.Void,
+            [typeof(bool)] = LiteralType.Boolean,
+            [typeof(DateTimeOffset)] = LiteralType.DateTimeOffset,
+            [typeof(DateOnly)] = LiteralType.DateOnly,
+            [typeof(DateTime)] = LiteralType.DateTime,
+            [typeof(Date)] = LiteralType.Date,
+            [typeof(TimeSpan)] = LiteralType.TimeSpan,
+            [typeof(TimeOnly)] = LiteralType.TimeOnly,
+            [typeof(TimeOfDay)] = LiteralType.TimeOfDay,
+            [typeof(Guid)] = LiteralType.Guid,
+            [typeof(decimal)] = LiteralType.Decimal,
+            [typeof(byte)] = LiteralType.Byte,
+            [typeof(short)] = LiteralType.Short,
+            [typeof(int)] = LiteralType.Integer,
+            [typeof(long)] = LiteralType.Long,
+            [typeof(float)] = LiteralType.Float,
+            [typeof(double)] = LiteralType.Double,
+            [typeof(char)] = LiteralType.Char,
+            [typeof(sbyte)] = LiteralType.SByte,
+            [typeof(ushort)] = LiteralType.UShort,
+            [typeof(uint)] = LiteralType.UInteger,
+            [typeof(ulong)] = LiteralType.ULong,
+            [typeof(string)] = LiteralType.String,
+            [typeof(bool?)] = LiteralType.NullableBoolean,
+            [typeof(DateTimeOffset?)] = LiteralType.NullableDateTimeOffset,
+            [typeof(DateOnly?)] = LiteralType.NullableDateOnly,
+            [typeof(DateTime?)] = LiteralType.NullableDateTime,
+            [typeof(Date?)] = LiteralType.NullableDate,
+            [typeof(TimeSpan?)] = LiteralType.NullableTimeSpan,
+            [typeof(TimeOnly?)] = LiteralType.NullableTimeOnly,
+            [typeof(TimeOfDay?)] = LiteralType.NullableTimeOfDay,
+            [typeof(Guid?)] = LiteralType.NullableGuid,
+            [typeof(decimal?)] = LiteralType.NullableDecimal,
+            [typeof(byte?)] = LiteralType.NullableByte,
+            [typeof(short?)] = LiteralType.NullableShort,
+            [typeof(int?)] = LiteralType.NullableInteger,
+            [typeof(long?)] = LiteralType.NullableLong,
+            [typeof(float?)] = LiteralType.NullableFloat,
+            [typeof(double?)] = LiteralType.NullableDouble,
+            [typeof(char?)] = LiteralType.NullableChar,
+            [typeof(sbyte?)] = LiteralType.NullableSByte,
+            [typeof(ushort?)] = LiteralType.NullableUShort,
+            [typeof(uint?)] = LiteralType.NullableUInteger,
+            [typeof(ulong?)] = LiteralType.NullableULong
+        };
+
         private LiteralType LookupLiteralType(Type literalType)
         {
-            Dictionary<Type, LiteralType> table = new()
-            {
-                [typeof(void)] = LiteralType.Void,
-                [typeof(bool)] = LiteralType.Boolean,
-                [typeof(DateTimeOffset)] = LiteralType.DateTimeOffset,
-                [typeof(DateOnly)] = LiteralType.DateOnly,
-                [typeof(DateTime)] = LiteralType.DateTime,
-                [typeof(Date)] = LiteralType.Date,
-                [typeof(TimeSpan)] = LiteralType.TimeSpan,
-                [typeof(TimeOnly)] = LiteralType.TimeOnly,
-                [typeof(TimeOfDay)] = LiteralType.TimeOfDay,
-                [typeof(Guid)] = LiteralType.Guid,
-                [typeof(decimal)] = LiteralType.Decimal,
-                [typeof(byte)] = LiteralType.Byte,
-                [typeof(short)] = LiteralType.Short,
-                [typeof(int)] = LiteralType.Integer,
-                [typeof(long)] = LiteralType.Long,
-                [typeof(float)] = LiteralType.Float,
-                [typeof(double)] = LiteralType.Double,
-                [typeof(char)] = LiteralType.Char,
-                [typeof(sbyte)] = LiteralType.SByte,
-                [typeof(ushort)] = LiteralType.UShort,
-                [typeof(uint)] = LiteralType.UInteger,
-                [typeof(ulong)] = LiteralType.ULong,
-                [typeof(string)] = LiteralType.String,
-                [typeof(bool?)] = LiteralType.NullableBoolean,
-                [typeof(DateTimeOffset?)] = LiteralType.NullableDateTimeOffset,
-                [typeof(DateOnly?)] = LiteralType.NullableDateOnly,
-                [typeof(DateTime?)] = LiteralType.NullableDateTime,
-                [typeof(Date?)] = LiteralType.NullableDate,
-                [typeof(TimeSpan?)] = LiteralType.NullableTimeSpan,
-                [typeof(TimeOnly?)] = LiteralType.NullableTimeOnly,
-                [typeof(TimeOfDay?)] = LiteralType.NullableTimeOfDay,
-                [typeof(Guid?)] = LiteralType.NullableGuid,
-                [typeof(decimal?)] = LiteralType.NullableDecimal,
-                [typeof(byte?)] = LiteralType.NullableByte,
-                [typeof(short?)] = LiteralType.NullableShort,
-                [typeof(int?)] = LiteralType.NullableInteger,
-                [typeof(long?)] = LiteralType.NullableLong,
-                [typeof(float?)] = LiteralType.NullableFloat,
-                [typeof(double?)] = LiteralType.NullableDouble,
-                [typeof(char?)] = LiteralType.NullableChar,
-                [typeof(sbyte?)] = LiteralType.NullableSByte,
-                [typeof(ushort?)] = LiteralType.NullableUShort,
-                [typeof(uint?)] = LiteralType.NullableUInteger,
-                [typeof(ulong?)] = LiteralType.NullableULong
-            };
-
-            if (table.TryGetValue(literalType, out var value))
+            if (typeToEnumTable.TryGetValue(literalType, out var value))
                 return value;
             else
                 throw _exceptionHelper.CriticalException("{66DB8C24-091C-4475-914D-E9CA735526CC}");
         }
 
+        static readonly Dictionary<LiteralType, Type> enumToTypeTable = new()
+        {
+            [LiteralType.Void] = typeof(void),
+            [LiteralType.Boolean] = typeof(bool),
+            [LiteralType.DateTimeOffset] = typeof(DateTimeOffset),
+            [LiteralType.DateOnly] = typeof(DateOnly),
+            [LiteralType.DateTime] = typeof(DateTime),
+            [LiteralType.Date] = typeof(Date),
+            [LiteralType.TimeSpan] = typeof(TimeSpan),
+            [LiteralType.TimeOnly] = typeof(TimeOnly),
+            [LiteralType.TimeOfDay] = typeof(TimeOfDay),
+            [LiteralType.Guid] = typeof(Guid),
+            [LiteralType.Decimal] = typeof(decimal),
+            [LiteralType.Byte] = typeof(byte),
+            [LiteralType.Short] = typeof(short),
+            [LiteralType.Integer] = typeof(int),
+            [LiteralType.Long] = typeof(long),
+            [LiteralType.Float] = typeof(float),
+            [LiteralType.Double] = typeof(double),
+            [LiteralType.Char] = typeof(char),
+            [LiteralType.SByte] = typeof(sbyte),
+            [LiteralType.UShort] = typeof(ushort),
+            [LiteralType.UInteger] = typeof(uint),
+            [LiteralType.ULong] = typeof(ulong),
+            [LiteralType.String] = typeof(string),
+            [LiteralType.NullableBoolean] = typeof(bool?),
+            [LiteralType.NullableDateTimeOffset] = typeof(DateTimeOffset?),
+            [LiteralType.NullableDateOnly] = typeof(DateOnly?),
+            [LiteralType.NullableDateTime] = typeof(DateTime?),
+            [LiteralType.NullableDate] = typeof(Date?),
+            [LiteralType.NullableTimeSpan] = typeof(TimeSpan?),
+            [LiteralType.NullableTimeOnly] = typeof(TimeOnly?),
+            [LiteralType.NullableTimeOfDay] = typeof(TimeOfDay?),
+            [LiteralType.NullableGuid] = typeof(Guid?),
+            [LiteralType.NullableDecimal] = typeof(decimal?),
+            [LiteralType.NullableByte] = typeof(byte?),
+            [LiteralType.NullableShort] = typeof(short?),
+            [LiteralType.NullableInteger] = typeof(int?),
+            [LiteralType.NullableLong] = typeof(long?),
+            [LiteralType.NullableFloat] = typeof(float?),
+            [LiteralType.NullableDouble] = typeof(double?),
+            [LiteralType.NullableChar] = typeof(char?),
+            [LiteralType.NullableSByte] = typeof(sbyte?),
+            [LiteralType.NullableUShort] = typeof(ushort?),
+            [LiteralType.NullableUInteger] = typeof(uint?),
+            [LiteralType.NullableULong] = typeof(ulong?)
+        };
+
         private Type LookupSystemType(LiteralType literalType)
         {
-            Dictionary<LiteralType, Type> table = new()
-            {
-                [LiteralType.Void] = typeof(void),
-                [LiteralType.Boolean] = typeof(bool),
-                [LiteralType.DateTimeOffset] = typeof(DateTimeOffset),
-                [LiteralType.DateOnly] = typeof(DateOnly),
-                [LiteralType.DateTime] = typeof(DateTime),
-                [LiteralType.Date] = typeof(Date),
-                [LiteralType.TimeSpan] = typeof(TimeSpan),
-                [LiteralType.TimeOnly] = typeof(TimeOnly),
-                [LiteralType.TimeOfDay] = typeof(TimeOfDay),
-                [LiteralType.Guid] = typeof(Guid),
-                [LiteralType.Decimal] = typeof(decimal),
-                [LiteralType.Byte] = typeof(byte),
-                [LiteralType.Short] = typeof(short),
-                [LiteralType.Integer] = typeof(int),
-                [LiteralType.Long] = typeof(long),
-                [LiteralType.Float] = typeof(float),
-                [LiteralType.Double] = typeof(double),
-                [LiteralType.Char] = typeof(char),
-                [LiteralType.SByte] = typeof(sbyte),
-                [LiteralType.UShort] = typeof(ushort),
-                [LiteralType.UInteger] = typeof(uint),
-                [LiteralType.ULong] = typeof(ulong),
-                [LiteralType.String] = typeof(string),
-                [LiteralType.NullableBoolean] = typeof(bool?),
-                [LiteralType.NullableDateTimeOffset] = typeof(DateTimeOffset?),
-                [LiteralType.NullableDateOnly] = typeof(DateOnly?),
-                [LiteralType.NullableDateTime] = typeof(DateTime?),
-                [LiteralType.NullableDate] = typeof(Date?),
-                [LiteralType.NullableTimeSpan] = typeof(TimeSpan?),
-                [LiteralType.NullableTimeOnly] = typeof(TimeOnly?),
-                [LiteralType.NullableTimeOfDay] = typeof(TimeOfDay?),
-                [LiteralType.NullableGuid] = typeof(Guid?),
-                [LiteralType.NullableDecimal] = typeof(decimal?),
-                [LiteralType.NullableByte] = typeof(byte?),
-                [LiteralType.NullableShort] = typeof(short?),
-                [LiteralType.NullableInteger] = typeof(int?),
-                [LiteralType.NullableLong] = typeof(long?),
-                [LiteralType.NullableFloat] = typeof(float?),
-                [LiteralType.NullableDouble] = typeof(double?),
-                [LiteralType.NullableChar] = typeof(char?),
-                [LiteralType.NullableSByte] = typeof(sbyte?),
-                [LiteralType.NullableUShort] = typeof(ushort?),
-                [LiteralType.NullableUInteger] = typeof(uint?),
-                [LiteralType.NullableULong] = typeof(ulong?)
-            };
-
-            if (table.TryGetValue(literalType, out var value))
+            if (enumToTypeTable.TryGetValue(literalType, out var value))
                 return value;
             else
                 throw _exceptionHelper.CriticalException("{C0115382-3B85-4FCD-AF3A-15F9991D65E3}");

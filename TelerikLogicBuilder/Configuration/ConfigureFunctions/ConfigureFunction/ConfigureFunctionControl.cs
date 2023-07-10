@@ -14,6 +14,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -74,6 +75,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
 
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
+        private EventHandler<EventArgs> txtGenericArgumentsButtonClickHandler;
+        private EventHandler<EventArgs> txtReturnTypeButtonClickHandler;
 
         public RadDropDownList CmbFunctionCategory => cmbFunctionCategory;
         public RadDropDownList CmbReferenceCategory => cmbReferenceCategory;
@@ -181,6 +184,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
             configureFunctionsForm.ValidateXmlDocument();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            txtGenericArguments.ButtonClick += txtGenericArgumentsButtonClickHandler;
+            txtReturnType.ButtonClick += txtReturnTypeButtonClickHandler;
+        }
+
         private void AddEventHandlers()
         {
             cmbReferenceDefinition.Validating += CmbReferenceDefinition_Validating;
@@ -199,6 +209,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
         private static void CollapsePanelBorder(RadScrollablePanel radPanel)
             => radPanel.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtGenericArgumentsButtonClickHandler),
+        nameof(txtReturnTypeButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             radScrollablePanelFunction.VerticalScrollBarState = ScrollState.AlwaysShow;
@@ -211,19 +225,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
             InitializeClickCommands();
             LoadFunctionDropDownLists();
             _txtTypeNameTypeAutoCompleteManager.Setup();
+            this.Disposed += ConfigureFunctionControl_Disposed;
+            AddClickCommands();
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(txtGenericArgumentsButtonClickHandler),
+        nameof(txtReturnTypeButtonClickHandler))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void InitializeClickCommands()
         {
-            InitializeHelperButtonCommand
+            txtGenericArgumentsButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtGenericArguments,
                 _configureFunctionControlCommandFactory.GetEditFunctionGenericArgumentsCommand(this)
             );
 
-            InitializeHelperButtonCommand
+            txtReturnTypeButtonClickHandler = InitializeHelperButtonCommand
             (
-                txtReturnType,
                 _configureFunctionControlCommandFactory.GetConfigureFunctionReturnTypeCommand(this)
             );
         }
@@ -258,9 +276,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
             toolTip.SetToolTip(lblSummary, Strings.funcConfigSummaryHelp);
         }
 
-        private static void InitializeHelperButtonCommand(HelperButtonTextBox helperButtonTextBox, IClickCommand command)
+        private static EventHandler<EventArgs> InitializeHelperButtonCommand(IClickCommand command)
         {
-            helperButtonTextBox.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
         private static void InitializeReadOnlyTextBox(HelperButtonTextBox helperButtonTextBox, string text)
@@ -295,6 +313,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
             _radDropDownListHelper.LoadComboItems<ValidIndirectReference>(cmbReferenceDefinition, RadDropDownStyle.DropDown);
         }
 
+        private void RemoveClickCommands()
+        {
+            txtGenericArguments.ButtonClick -= txtGenericArgumentsButtonClickHandler;
+            txtReturnType.ButtonClick -= txtReturnTypeButtonClickHandler;
+        }
+
         private void RemoveEventHandlers()
         {
             cmbReferenceDefinition.Validating -= CmbReferenceDefinition_Validating;
@@ -307,6 +331,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
         }
 
         #region Event Handlers
+        private void ConfigureFunctionControl_Disposed(object? sender, EventArgs e)
+        {
+            toolTip.RemoveAll();
+            toolTip.Dispose();
+            helpProvider.Dispose();
+            RemoveClickCommands(); 
+            RemoveEventHandlers();
+        }
+
         private void CmbReferenceDefinition_Validating(object? sender, CancelEventArgs e)
         {
             try

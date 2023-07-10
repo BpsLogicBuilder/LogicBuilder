@@ -3,7 +3,9 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxPanelHelpers.Factories;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -15,13 +17,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IImageListService _imageListService;
         private readonly IRichTextBoxPanelCommandFactory _richTextBoxPanelCommandFactory;
 
-        public RichTextBoxPanel(
-            IImageListService imageListService,
-            IRichTextBoxPanelCommandFactory richTextBoxPanelCommandFactory)
-        {
+        public RichTextBoxPanel()
+        {//Transient components have been known to stay referenced by the DI container so jus new.
+            //https://github.com/dotnet/aspnetcore/issues/5496
             InitializeComponent();
-            _imageListService = imageListService;
-            _richTextBoxPanelCommandFactory = richTextBoxPanelCommandFactory;
+            _imageListService = Program.ServiceProvider.GetRequiredService<IImageListService>();
+            _richTextBoxPanelCommandFactory = Program.ServiceProvider.GetRequiredService<IRichTextBoxPanelCommandFactory>();
             radContextMenuManager = new RadContextMenuManager();
             Initialize();
         }
@@ -31,6 +32,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly RadMenuItem mnuItemPaste = new(Strings.mnuItemPasteText);
         private readonly RadMenuItem mnuItemSelectAll = new(Strings.mnuItemSelectAllText);
         private readonly RadContextMenuManager radContextMenuManager;
+        private RadContextMenu radContextMenu;
+        private EventHandler mnuItemCopyClickHandler;
+        private EventHandler mnuItemCutClickHandler;
+        private EventHandler mnuItemPasteClickHandler;
+        private EventHandler mnuItemSelectAllClickHandler;
 
         public new event EventHandler? TextChanged;
 
@@ -40,19 +46,35 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public new string Text { get => richTextBox1.Text; set => richTextBox1.Text = value; }
 
-        private static void AddClickCommand(RadMenuItem radMenuItem, IClickCommand command)
+        private static EventHandler AddClickCommand(IClickCommand command)
         {
-            radMenuItem.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
 
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            mnuItemCopy.Click += mnuItemCopyClickHandler;
+            mnuItemCut.Click += mnuItemCutClickHandler;
+            mnuItemPaste.Click += mnuItemPasteClickHandler;
+            mnuItemSelectAll.Click += mnuItemSelectAllClickHandler;
+        }
+
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemCopyClickHandler),
+            nameof(mnuItemCutClickHandler),
+            nameof(mnuItemPasteClickHandler),
+            nameof(mnuItemSelectAllClickHandler),
+            nameof(radContextMenu))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void CreateContextMenu()
         {
-            AddClickCommand(mnuItemCopy, _richTextBoxPanelCommandFactory.GetRichTextBoxCopySelectedTextCommand(richTextBox1));
-            AddClickCommand(mnuItemCut, _richTextBoxPanelCommandFactory.GetRichTextBoxCutSelectedTextCommand(richTextBox1));
-            AddClickCommand(mnuItemPaste, _richTextBoxPanelCommandFactory.GetRichTextBoxPasteTextCommand(richTextBox1));
-            AddClickCommand(mnuItemSelectAll, _richTextBoxPanelCommandFactory.GetRichTextBoxSelectAllCommand(richTextBox1));
+            mnuItemCopyClickHandler = AddClickCommand(_richTextBoxPanelCommandFactory.GetRichTextBoxCopySelectedTextCommand(richTextBox1));
+            mnuItemCutClickHandler = AddClickCommand(_richTextBoxPanelCommandFactory.GetRichTextBoxCutSelectedTextCommand(richTextBox1));
+            mnuItemPasteClickHandler = AddClickCommand(_richTextBoxPanelCommandFactory.GetRichTextBoxPasteTextCommand(richTextBox1));
+            mnuItemSelectAllClickHandler = AddClickCommand(_richTextBoxPanelCommandFactory.GetRichTextBoxSelectAllCommand(richTextBox1));
 
-            RadContextMenu radContextMenu = new()
+            radContextMenu = new()
             {
                 ImageList = _imageListService.ImageList,
                 Items = 
@@ -68,6 +90,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radContextMenuManager.SetRadContextMenu(richTextBox1, radContextMenu);
         }
 
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+        [MemberNotNull(nameof(mnuItemCopyClickHandler),
+            nameof(mnuItemCutClickHandler),
+            nameof(mnuItemPasteClickHandler),
+            nameof(mnuItemSelectAllClickHandler),
+            nameof(radContextMenu))]
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         private void Initialize()
         {
             this.richTextBox1.WordWrap = false;
@@ -86,6 +115,23 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.RichTextBox.TextChanged += RichTextBox_TextChanged;
 
             CreateContextMenu();
+            AddClickCommands();
+        }
+
+        private void RemoveClickCommands()
+        {
+            mnuItemCopy.Click -= mnuItemCopyClickHandler;
+            mnuItemCut.Click -= mnuItemCutClickHandler;
+            mnuItemPaste.Click -= mnuItemPasteClickHandler;
+            mnuItemSelectAll.Click -= mnuItemSelectAllClickHandler;
+        }
+
+        private void RemoveEventHanlders()
+        {
+            this.MouseDown -= RichTextBoxPanel_MouseDown;
+            this.RichTextBox.MouseDown -= RichTextBox_MouseDown;
+            this.RichTextBox.TextChanged -= RichTextBox_TextChanged;
+            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
         }
 
         private void SetContextMenuState()
@@ -96,6 +142,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             mnuItemSelectAll.Enabled = richTextBox1.Enabled;
         }
 
+        #region Event Handlers
         private void RichTextBox_MouseDown(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -119,8 +166,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void RichTextBoxPanel_Disposed(object? sender, EventArgs e)
         {
+            RemoveEventHanlders();
+            RemoveClickCommands();
+            radContextMenu.Dispose();
             radContextMenuManager.Dispose();
-            ThemeResolutionService.ApplicationThemeChanged -= ThemeResolutionService_ApplicationThemeChanged;
         }
 
         private void ThemeResolutionService_ApplicationThemeChanged(object sender, ThemeChangedEventArgs args)
@@ -132,5 +181,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             this.richTextBox1.ForeColor = ForeColorUtility.GetTextBoxForeColor(args.ThemeName);
             this.richTextBox1.Font = ForeColorUtility.GetDefaultFont(args.ThemeName);
         }
+        #endregion Event Handlers
     }
 }

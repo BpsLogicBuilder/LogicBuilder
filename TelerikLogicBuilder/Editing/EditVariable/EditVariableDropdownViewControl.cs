@@ -57,6 +57,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
         {
             radDropDownList1.TextChanged += RadDropDownList1_TextChanged;
             radDropDownList1.Validated += RadDropDownList1_Validated;
+            Disposed += EditVariableDropdownViewControl_Disposed;
             LoadDropdown();
         }
 
@@ -67,9 +68,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
                 _radDropDownListHelper.LoadTextItems(radDropDownList1, variables, RadDropDownStyle.DropDown);
         }
 
+        private void RemoveEventHandlers()
+        {
+            radDropDownList1.TextChanged -= RadDropDownList1_TextChanged;
+            radDropDownList1.Validated -= RadDropDownList1_Validated;
+        }
+
         #region Event Handlers
+        private void EditVariableDropdownViewControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+        }
+
         private void RadDropDownList1_TextChanged(object? sender, EventArgs e)
         {
+            if (radDropDownList1.Disposing
+                || radDropDownList1.IsDisposed)
+                return;
+
             Changed?.Invoke(this, e);
         }
 

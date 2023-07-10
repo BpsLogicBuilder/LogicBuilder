@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ListBox.Commands;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.ListBox;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using System;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -11,6 +12,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
     internal partial class ManagedListBoxControl : UserControl, IManagedListBoxControl
     {
+        private EventHandler? btnCancelClickHandler;
+        private EventHandler? btnCopyClickHandler;
+        private EventHandler? btnEditClickHandler;
+        private EventHandler? btnRemoveClickHandler;
+        private EventHandler? btnUpClickHandler;
+        private EventHandler? btnDownClickHandler;
+
         public ManagedListBoxControl()
         {
             InitializeComponent();
@@ -33,17 +41,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public void CreateCommands(IRadListBoxManager radListBoxManager)
         {
-            InitializeHButtonCommand(btnCancel, new ListBoxManagerCancelCommand(radListBoxManager));
-            InitializeHButtonCommand(btnCopy, new ListBoxManagerCopyCommand(radListBoxManager));
-            InitializeHButtonCommand(btnEdit, new ListBoxManagerEditCommand(radListBoxManager));
-            InitializeHButtonCommand(btnRemove, new ListBoxManagerRemoveCommand(radListBoxManager));
-            InitializeHButtonCommand(btnUp, new ListBoxManagerMoveUpCommand(radListBoxManager));
-            InitializeHButtonCommand(btnDown, new ListBoxManagerMoveDownCommand(radListBoxManager));
+            btnCancelClickHandler = InitializeHButtonCommand(new ListBoxManagerCancelCommand(radListBoxManager));
+            btnCopyClickHandler = InitializeHButtonCommand(new ListBoxManagerCopyCommand(radListBoxManager));
+            btnEditClickHandler = InitializeHButtonCommand(new ListBoxManagerEditCommand(radListBoxManager));
+            btnRemoveClickHandler = InitializeHButtonCommand(new ListBoxManagerRemoveCommand(radListBoxManager));
+            btnUpClickHandler = InitializeHButtonCommand(new ListBoxManagerMoveUpCommand(radListBoxManager));
+            btnDownClickHandler = InitializeHButtonCommand(new ListBoxManagerMoveDownCommand(radListBoxManager));
+            AddClickCommands();
         }
 
         public void DisableControls() => Enable(false);
 
         public void EnableControls(IRadListBoxManager radListBoxManager) => radListBoxManager.RestoreEnabledControls();
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            btnCancel.Click += btnCancelClickHandler;
+            btnCopy.Click += btnCopyClickHandler;
+            btnEdit.Click += btnEditClickHandler;
+            btnRemove.Click += btnRemoveClickHandler;
+            btnUp.Click += btnUpClickHandler;
+            btnDown.Click += btnDownClickHandler;
+        }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
         {
@@ -68,11 +88,29 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             CollapsePanelBorder(radPanelUpDownButtons);
             CollapsePanelBorder(radPanelEditButtons);
             CollapsePanelBorder(radPanelTableParent);
+            this.Disposed += ManagedListBoxControl_Disposed;
         }
 
-        private static void InitializeHButtonCommand(RadButton radButton, IClickCommand command)
+        private static EventHandler InitializeHButtonCommand(IClickCommand command)
         {
-            radButton.Click += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
         }
+
+        private void RemoveClickCommands()
+        {
+            btnCancel.Click -= btnCancelClickHandler;
+            btnCopy.Click -= btnCopyClickHandler;
+            btnEdit.Click -= btnEditClickHandler;
+            btnRemove.Click -= btnRemoveClickHandler;
+            btnUp.Click -= btnUpClickHandler;
+            btnDown.Click -= btnDownClickHandler;
+        }
+
+        #region Event Handlers
+        private void ManagedListBoxControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+        }
+        #endregion Event Handlers
     }
 }

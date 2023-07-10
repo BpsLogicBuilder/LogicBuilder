@@ -55,6 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
         private void Initialize()
         {
             radDropDownList1.TextChanged += RadDropDownList1_TextChanged;
+            Disposed += SelectConstructorDropDownViewControl_Disposed;
             LoadDropdown();
         }
 
@@ -65,10 +66,24 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
                 _radDropDownListHelper.LoadTextItems(radDropDownList1, constructors, RadDropDownStyle.DropDown);
         }
 
+        private void RemoveEventHandlers()
+        {
+            radDropDownList1.TextChanged -= RadDropDownList1_TextChanged;
+        }
+
         #region Event Handlers
         private void RadDropDownList1_TextChanged(object? sender, EventArgs e)
         {
+            if (radDropDownList1.Disposing
+                || radDropDownList1.IsDisposed)
+                return;
+
             Changed?.Invoke(this, e);
+        }
+
+        private void SelectConstructorDropDownViewControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
         }
         #endregion Event Handlers
     }

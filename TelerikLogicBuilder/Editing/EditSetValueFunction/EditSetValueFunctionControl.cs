@@ -16,11 +16,11 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -97,6 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
         }
 
         private IValueControl? _valueControl;
+        private EventHandler<EventArgs> cmbSelectVariableButtonClickHandler;
 
         private IValueControl ValueControl => _valueControl ?? throw _exceptionHelper.CriticalException("{AFA3D6FD-CAE9-497C-9317-13F29828FDBB}");
 
@@ -171,9 +172,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
                 throw new LogicBuilderException(string.Join(Environment.NewLine, errors));
         }
 
-        private static void AddClickCommand(HelperButtonDropDownList helperButtonDropDownList, IClickCommand command)
+        private static EventHandler<EventArgs> AddClickCommand(IClickCommand command)
         {
-            helperButtonDropDownList.ButtonClick += (sender, args) => command.Execute();
+            return (sender, args) => command.Execute();
+        }
+
+        private void AddClickCommands()
+        {
+            RemoveClickCommands();
+            cmbSelectVariable.ButtonClick += cmbSelectVariableButtonClickHandler;
         }
 
         private void CmbSelectVariableChanged()
@@ -286,6 +293,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             }
         }
 
+        [MemberNotNull(nameof(cmbSelectVariableButtonClickHandler))]
         private void Initialize()
         {
             AssertFunctionData assertFunctionData = _assertFunctionDataParser.Parse(_xmlDocumentHelpers.GetDocumentElement(this.xmlDocument));
@@ -301,9 +309,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             SetValueControls();
             UpdateValueControl(assertFunctionData);
 
-            AddClickCommand(cmbSelectVariable, _editSetValueFunctionCommandFactory.GetSelectVariableCommand(cmbSelectVariable));
+            cmbSelectVariableButtonClickHandler = AddClickCommand(_editSetValueFunctionCommandFactory.GetSelectVariableCommand(cmbSelectVariable));
             cmbSelectVariable.Changed -= CmbSelectVariable_Changed;
             cmbSelectVariable.Changed += CmbSelectVariable_Changed;
+            Disposed += EditSetValueFunctionControl_Disposed;
 
             this.lblFunction.Text = function.Name;
             lblFunction.TextAlignment = ContentAlignment.MiddleLeft;
@@ -317,6 +326,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             CollapsePanelBorder(radPanelTableParent);
             CollapsePanelBorder(radPanelFunction);
             CollapsePanelBorder(radPanelSelectVariable);
+            AddClickCommands();
         }
 
         private void LayoutTableControls()
@@ -340,6 +350,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
             IList<string> variables = _configurationService.VariableList.Variables.Keys.Order().ToArray();
             if (variables.Count > 0)
                 _radDropDownListHelper.LoadTextItems(cmbSelectVariable.DropDownList, variables, RadDropDownStyle.DropDown);
+        }
+
+        private void RemoveClickCommands()
+        {
+            cmbSelectVariable.ButtonClick -= cmbSelectVariableButtonClickHandler;
+        }
+
+        private void RemoveEventHandlers()
+        {
+            cmbSelectVariable.Changed -= CmbSelectVariable_Changed;
         }
 
         private void RemoveValueControl()
@@ -440,6 +460,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction
 
         #region Event Handlers
         private void CmbSelectVariable_Changed(object? sender, EventArgs e) => CmbSelectVariableChanged();
+
+        private void EditSetValueFunctionControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveClickCommands();
+            RemoveEventHandlers();
+        }
         #endregion Event Handlers
     }
 }
