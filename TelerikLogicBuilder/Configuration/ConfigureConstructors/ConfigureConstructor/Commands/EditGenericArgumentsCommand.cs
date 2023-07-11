@@ -64,8 +64,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Conf
                 e => e.Name == XmlDataConstants.GENERICARGUMENTSELEMENT
             );
 
-            using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IEditGenericArgumentsForm editGenericArgumentsForm = disposableManager.GetEditGenericArgumentsForm
+            IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+            using IEditGenericArgumentsForm editGenericArgumentsForm = disposableManager.GetEditGenericArgumentsForm
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

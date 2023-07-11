@@ -63,8 +63,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.ConfigureLitera
                 e => e.Name == XmlDataConstants.DOMAINELEMENT
             );
 
-            using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IConfigureLiteralDomainForm configureLiteralDomainForm = disposableManager.GetConfigureLiteralDomainForm
+            IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+            using IConfigureLiteralDomainForm configureLiteralDomainForm = disposableManager.GetConfigureLiteralDomainForm
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

@@ -47,8 +47,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             if (!_treeViewService.IsApplicationNode(selecteNode))
                 throw _exceptionHelper.CriticalException("{830E589E-4C8F-4840-ABC6-5BF7B96AB93B}");
 
-            using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IConfigureWebApiDeploymentForm configureWebApiDeployment = disposableManager.GetConfigureWebApiDeploymentForm
+            IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+            using IConfigureWebApiDeploymentForm configureWebApiDeployment = disposableManager.GetConfigureWebApiDeploymentForm
             (
                 _webApiDeploymentXmlParser.Parse
                 (

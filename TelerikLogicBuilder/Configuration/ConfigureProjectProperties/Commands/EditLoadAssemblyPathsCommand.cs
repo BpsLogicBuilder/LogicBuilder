@@ -45,8 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
             if (!_treeViewService.IsApplicationNode(selecteNode))
                 throw _exceptionHelper.CriticalException("{F51FEA03-D7DC-4514-93BC-61DCB915E8B4}");
 
-            using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IConfigureLoadAssemblyPathsForm configureLoadAssemblyPaths = disposableManager.GetConfigureLoadAssemblyPaths
+            IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+            using IConfigureLoadAssemblyPathsForm configureLoadAssemblyPaths = disposableManager.GetConfigureLoadAssemblyPaths
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

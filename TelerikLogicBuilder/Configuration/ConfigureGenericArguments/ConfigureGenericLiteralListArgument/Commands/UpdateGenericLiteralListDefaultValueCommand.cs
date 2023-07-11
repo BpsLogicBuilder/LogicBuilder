@@ -62,8 +62,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.
                 e => e.Name == XmlDataConstants.DEFAULTVALUEELEMENT
             );
 
-            using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IConfigureLiteralListDefaultValueForm configureLiteralListDefaultValueForm = disposableManager.GetConfigureLiteralListDefaultValueForm
+            IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+            using IConfigureLiteralListDefaultValueForm configureLiteralListDefaultValueForm = disposableManager.GetConfigureLiteralListDefaultValueForm
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

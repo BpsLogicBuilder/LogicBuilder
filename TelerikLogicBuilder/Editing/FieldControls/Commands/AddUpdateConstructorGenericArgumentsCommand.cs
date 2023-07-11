@@ -105,8 +105,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
                 .SelectSingleElement(XmlDocument, GenericArgumentsXPath)
                 .InnerXml = BuildGenericArgumentsXml(genericArgs);
 
-            using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IConfigureGenericArgumentsForm configureConstructorGenericArgumentsForm = disposableManager.GetConfigureConstructorGenericArgumentsForm
+            IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+            using IConfigureGenericArgumentsForm configureConstructorGenericArgumentsForm = disposableManager.GetConfigureConstructorGenericArgumentsForm
             (
                 XmlDocument,
                 genericArguments,

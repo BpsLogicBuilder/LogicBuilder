@@ -20,7 +20,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
 {
-    internal interface IConfigurationFormFactory : IDisposable
+    internal interface IConfigurationFormFactory
     {
         IConfigureConnectorObjectsForm GetConfigureConnectorObjectsForm(bool openedAsReadOnly);
         IConfigureGenericArgumentsForm GetConfigureConstructorGenericArgumentsForm(XmlDocument xmlDocument,

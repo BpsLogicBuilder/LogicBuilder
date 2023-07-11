@@ -76,8 +76,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Configu
                 e => e.Name == XmlDataConstants.RETURNTYPEELEMENT
             );
 
-            using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-            IConfigureReturnTypeForm configureReturnTypeForm = disposableManager.GetConfigureReturnTypeForm
+            IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+            using IConfigureReturnTypeForm configureReturnTypeForm = disposableManager.GetConfigureReturnTypeForm
             (
                 _xmlDocumentHelpers.GetChildElements
                 (

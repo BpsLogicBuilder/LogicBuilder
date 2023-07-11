@@ -1,19 +1,49 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConnectorObjects.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureGenericArguments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralDomain.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLiteralListDefaultValue.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureLoadAssemblyPaths.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureReturnType.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.EditGenericArguments.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Configuration.Parameters.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.HelperStatusListBuilders.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.GenericArguments;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.TreeViewBuiilders;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
+using ABIS.LogicBuilder.FlowBuilder.TreeViewBuiilders.Factories;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
+using ABIS.LogicBuilder.FlowBuilder.XmlTreeViewSynchronizers.Factories;
+using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -22,67 +52,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
 {
     internal class ConfigurationFormFactory : IConfigurationFormFactory
     {
-        private IDisposable? _scopedService;
-        private readonly Func<bool, IConfigureConnectorObjectsForm> _getConfigureConnectorObjectsForm;
-        private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> _getConfigureConstructorGenericArgumentsForm;
-        //using the concrete type ConfigureConstructorGenericArgumentsForm here to be distinct from ConfigureFunctionGenericArgumentsForm
-        private readonly Func<bool, IConfigureConstructorsForm> _getConfigureConstructorsForm;
-        private readonly Func<IList<string>, IConfigureExcludedModulesForm> _getConfigureExcludedModules;
-        private readonly Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> _getConfigureFunctionGenericArgumentsForm;
-        //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
-        private readonly Func<bool, IConfigureFragmentsForm> _getConfigureFragmentsForm;
-        private readonly Func<bool, IConfigureFunctionsForm> _getConfigureFunctionsForm;
-        private readonly Func<IList<string>, Type, IConfigureLiteralDomainForm> _getConfigureLiteralDomainForm;
-        private readonly Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> _getConfigureLiteralListDefaultValueForm;
-        private readonly Func<IList<string>, IConfigureLoadAssemblyPathsForm> _getConfigureLoadAssemblyPaths;
-        private readonly Func<bool, IConfigureProjectPropertiesForm> _getConfigureProjectProperties;
-        private readonly Func<IList<string>, ReturnTypeBase, IConfigureReturnTypeForm> _getConfigureReturnTypeForm;
-        private readonly Func<bool, IConfigureVariablesForm> _getConfigureVariablesForm;
-        private readonly Func<WebApiDeployment, IConfigureWebApiDeploymentForm> _getConfigureWebApiDeployment;
-        private readonly Func<IList<string>, IEditGenericArgumentsForm> _getEditGenericArgumentsForm;
-
-        public ConfigurationFormFactory(
-            Func<bool, IConfigureConnectorObjectsForm> getConfigureConnectorObjectsForm,
-            Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureConstructorGenericArgumentsForm> getConfigureConstructorGenericArgumentsForm,
-            //using the concrete type ConfigureConstructorGenericArgumentsForm here to be distinct from ConfigureFunctionGenericArgumentsForm
-
-            Func<bool, IConfigureConstructorsForm> getConfigureConstructorsForm,
-            Func<IList<string>, IConfigureExcludedModulesForm> getConfigureExcludedModules,
-            Func<XmlDocument, IList<string>, IList<ParameterBase>, Type, ConfigureFunctionGenericArgumentsForm> getConfigureFunctionGenericArgumentsForm,
-            //using the concrete type ConfigureFunctionGenericArgumentsForm here to be distinct from ConfigureConstructorGenericArgumentsForm
-
-            Func<bool, IConfigureFragmentsForm> getConfigureFragmentsForm,
-            Func<bool, IConfigureFunctionsForm> getConfigureFunctionsForm,
-            Func<IList<string>, Type, IConfigureLiteralDomainForm> getConfigureLiteralDomainForm,
-            Func<IList<string>, Type, IConfigureLiteralListDefaultValueForm> getConfigureLiteralListDefaultValueForm,
-            Func<IList<string>, IConfigureLoadAssemblyPathsForm> getConfigureLoadAssemblyPaths,
-            Func<bool, IConfigureProjectPropertiesForm> getConfigureProjectProperties,
-            Func<IList<string>, ReturnTypeBase, IConfigureReturnTypeForm> getConfigureReturnTypeForm,
-            Func<bool, IConfigureVariablesForm> getConfigureVariablesForm,
-            Func<WebApiDeployment, IConfigureWebApiDeploymentForm> getConfigureWebApiDeployment,
-            Func<IList<string>, IEditGenericArgumentsForm> getEditGenericArgumentsForm)
-        {
-            _getConfigureConnectorObjectsForm = getConfigureConnectorObjectsForm;
-            _getConfigureConstructorGenericArgumentsForm = getConfigureConstructorGenericArgumentsForm;
-            _getConfigureConstructorsForm = getConfigureConstructorsForm;
-            _getConfigureExcludedModules = getConfigureExcludedModules;
-            _getConfigureFunctionGenericArgumentsForm = getConfigureFunctionGenericArgumentsForm;
-            _getConfigureFragmentsForm = getConfigureFragmentsForm;
-            _getConfigureFunctionsForm = getConfigureFunctionsForm;
-            _getConfigureLiteralDomainForm = getConfigureLiteralDomainForm;
-            _getConfigureLiteralListDefaultValueForm = getConfigureLiteralListDefaultValueForm;
-            _getConfigureLoadAssemblyPaths = getConfigureLoadAssemblyPaths;
-            _getConfigureProjectProperties = getConfigureProjectProperties;
-            _getConfigureReturnTypeForm = getConfigureReturnTypeForm;
-            _getConfigureVariablesForm = getConfigureVariablesForm;
-            _getConfigureWebApiDeployment = getConfigureWebApiDeployment;
-            _getEditGenericArgumentsForm = getEditGenericArgumentsForm;
-        }
-
         public IConfigureConnectorObjectsForm GetConfigureConnectorObjectsForm(bool openedAsReadOnly)
         {
-            _scopedService = _getConfigureConnectorObjectsForm(openedAsReadOnly);
-            return (IConfigureConnectorObjectsForm)_scopedService;
+            return new ConfigureConnectorObjectsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureConnectorObjectsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<ILoadProjectProperties>(),
+                Program.ServiceProvider.GetRequiredService<IProjectPropertiesXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateProjectProperties>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                openedAsReadOnly
+            );
         }
 
         public IConfigureGenericArgumentsForm GetConfigureConstructorGenericArgumentsForm(
@@ -91,93 +76,254 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.Factories
             IList<ParameterBase> memberParameters,
             Type genericTypeDefinition)
         {
-            _scopedService = _getConfigureConstructorGenericArgumentsForm(xmlDocument, configuredGenericArgumentNames, memberParameters, genericTypeDefinition);
-            return (IConfigureGenericArgumentsForm)_scopedService;
+            return new ConfigureConstructorGenericArgumentsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureConstructorGenericArgumentsTreeViewBuilder>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureGenericArgumentsCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureGenericArgumentsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IGenericConfigXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IGenericsConfigrationValidator>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                xmlDocument,
+                configuredGenericArgumentNames,
+                memberParameters,
+                genericTypeDefinition
+            );
         }
 
         public IConfigureConstructorsForm GetConfigureConstructorsForm(bool openedAsReadOnly)
         {
-            _scopedService = _getConfigureConstructorsForm(openedAsReadOnly);
-            return (IConfigureConstructorsForm)_scopedService;
+            return new ConfigureConstructorsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureConstructorsCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureConstructorsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureConstructorsFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConstructorXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IHelperStatusBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILoadConstructors>(),
+                Program.ServiceProvider.GetRequiredService<IParametersControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateConstructors>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                openedAsReadOnly
+            );
         }
 
         public IConfigureExcludedModulesForm GetConfigureExcludedModules(IList<string> excludedModules)
         {
-            _scopedService = _getConfigureExcludedModules(excludedModules);
-            return (IConfigureExcludedModulesForm)_scopedService;
+            return new ConfigureExcludedModulesForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureExcludedModulesCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExcludedModulesTreeViewBuilder>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IGetAllCheckedNodes>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                excludedModules
+            );
         }
 
         public IConfigureGenericArgumentsForm GetConfigureFunctionGenericArgumentsForm(XmlDocument xmlDocument, IList<string> configuredGenericArgumentNames, IList<ParameterBase> memberParameters, Type genericTypeDefinition)
         {
-            _scopedService = _getConfigureFunctionGenericArgumentsForm(xmlDocument, configuredGenericArgumentNames, memberParameters, genericTypeDefinition);
-            return (IConfigureGenericArgumentsForm)_scopedService;
+            return new ConfigureFunctionGenericArgumentsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureFunctionGenericArgumentsTreeViewBuilder>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureGenericArgumentsCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureGenericArgumentsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IGenericConfigXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IGenericsConfigrationValidator>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                xmlDocument,
+                configuredGenericArgumentNames,
+                memberParameters,
+                genericTypeDefinition
+            );
         }
 
         public IConfigureFragmentsForm GetConfigureFragmentsForm(bool openedAsReadOnly)
         {
-            _scopedService = _getConfigureFragmentsForm(openedAsReadOnly);
-            return (IConfigureFragmentsForm)_scopedService;
+            return new ConfigureFragmentsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureFragmentsCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureFragmentsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureFragmentsFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILoadFragments>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateFragments>(),
+                openedAsReadOnly
+            );
         }
 
         public IConfigureFunctionsForm GetConfigureFunctionsForm(bool openedAsReadOnly)
         {
-            _scopedService = _getConfigureFunctionsForm(openedAsReadOnly);
-            return (IConfigureFunctionsForm)_scopedService;
-        }
-
-        public IConfigureLiteralListDefaultValueForm GetConfigureLiteralListDefaultValueForm(IList<string> existingDefaultValueItems, Type type)
-        {
-            _scopedService = _getConfigureLiteralListDefaultValueForm(existingDefaultValueItems, type);
-            return (IConfigureLiteralListDefaultValueForm)_scopedService;
+            return new ConfigureFunctionsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureFunctionsCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureFunctionsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureFunctionsFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConstructorXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IHelperStatusBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILoadConstructors>(),
+                Program.ServiceProvider.GetRequiredService<ILoadFunctions>(),
+                Program.ServiceProvider.GetRequiredService<ILoadVariables>(),
+                Program.ServiceProvider.GetRequiredService<IParametersControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateConstructors>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateFunctions>(),
+                Program.ServiceProvider.GetRequiredService<IVariablesXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
+                openedAsReadOnly
+            );
         }
 
         public IConfigureLiteralDomainForm GetConfigureLiteralDomainForm(IList<string> existingDomainItems, Type type)
         {
-            _scopedService = _getConfigureLiteralDomainForm(existingDomainItems, type);
-            return (IConfigureLiteralDomainForm)_scopedService;
+            return new ConfigureLiteralDomainForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureLiteralDomainControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                existingDomainItems,
+                type
+            );
+        }
+
+        public IConfigureLiteralListDefaultValueForm GetConfigureLiteralListDefaultValueForm(IList<string> existingDefaultValueItems, Type type)
+        {
+            return new ConfigureLiteralListDefaultValueForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureLiteralListDefaultValueControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                existingDefaultValueItems,
+                type
+            );
         }
 
         public IConfigureLoadAssemblyPathsForm GetConfigureLoadAssemblyPaths(IList<string> existingPaths)
         {
-            _scopedService = _getConfigureLoadAssemblyPaths(existingPaths);
-            return (IConfigureLoadAssemblyPathsForm)_scopedService;
+            return new ConfigureLoadAssemblyPathsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureLoadAssemblyPathsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                existingPaths
+            );
         }
 
         public IConfigureProjectPropertiesForm GetConfigureProjectProperties(bool openedAsReadOnly)
         {
-            _scopedService = _getConfigureProjectProperties(openedAsReadOnly);
-            return (IConfigureProjectPropertiesForm)_scopedService;
+            return new ConfigureProjectPropertiesForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureProjectPropertiesControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureProjectPropertiesContextMenuCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureProjectPropertiesTreeViewBuilder>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILoadProjectProperties>(),
+                Program.ServiceProvider.GetRequiredService<IProjectPropertiesXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateProjectProperties>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                openedAsReadOnly
+            );
         }
 
         public IConfigureReturnTypeForm GetConfigureReturnTypeForm(IList<string> genericArguments, ReturnTypeBase returnType)
         {
-            _scopedService = _getConfigureReturnTypeForm(genericArguments, returnType);
-            return (IConfigureReturnTypeForm)_scopedService;
+            return new ConfigureReturnTypeForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigureReturnTypeControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IRadDropDownListHelper>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                genericArguments,
+                returnType
+            );
         }
 
         public IConfigureVariablesForm GetConfigureVariablesForm(bool openedAsReadOnly)
         {
-            _scopedService = _getConfigureVariablesForm(openedAsReadOnly);
-            return (IConfigureVariablesForm)_scopedService;
+            return new ConfigureVariablesForm
+            (
+                Program.ServiceProvider.GetRequiredService<IConfigurationFormChildNodesRenamerFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureVariablesCommandFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureVariablesControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConfigureVariablesFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IHelperStatusBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<IImageListService>(),
+                Program.ServiceProvider.GetRequiredService<ILoadVariables>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewBuilderFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITreeViewService>(),
+                Program.ServiceProvider.GetRequiredService<IUpdateVariables>(),
+                Program.ServiceProvider.GetRequiredService<IVariablesXmlParser>(),
+                Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
+                openedAsReadOnly
+            );
         }
 
         public IConfigureWebApiDeploymentForm GetConfigureWebApiDeploymentForm(WebApiDeployment webApiDeployment)
         {
-            _scopedService = _getConfigureWebApiDeployment(webApiDeployment);
-            return (IConfigureWebApiDeploymentForm)_scopedService;
+            return new ConfigureWebApiDeploymentForm
+            (
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>(),
+                webApiDeployment
+            );
         }
 
         public IEditGenericArgumentsForm GetEditGenericArgumentsForm(IList<string> existingArguments)
         {
-            _scopedService = _getEditGenericArgumentsForm(existingArguments);
-            return (IEditGenericArgumentsForm)_scopedService;
-        }
-
-        public void Dispose()
-        {
-            //The factory methods uses new() (outside the container) because of the parameter
-            //so we have to dispose of the service manually (_scope.Dispose() will not dispose _scopedService).
-            _scopedService?.Dispose();
+            return new EditGenericArgumentsForm
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEditGenericArgumentsControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                existingArguments
+            );
         }
     }
 }

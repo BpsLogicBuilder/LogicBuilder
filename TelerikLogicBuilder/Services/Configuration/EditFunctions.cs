@@ -87,8 +87,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 Task Configure(CancellationTokenSource cancellationTokenSource)
                 {
                     _mainWindow.MDIParent.ChangeCursor(Cursors.WaitCursor);
-                    using IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
-                    IConfigureFunctionsForm configureFunctionsForm = disposableManager.GetConfigureFunctionsForm(openedReadonly);
+                    IConfigurationFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IConfigurationFormFactory>();
+                    using IConfigureFunctionsForm configureFunctionsForm = disposableManager.GetConfigureFunctionsForm(openedReadonly);
                     configureFunctionsForm.ShowDialog(_mainWindow.Instance);
                     _mainWindow.MDIParent.ChangeCursor(Cursors.Default);
 
