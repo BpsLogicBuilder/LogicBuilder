@@ -47,8 +47,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
             if (selectedNode == null)
                 return;
 
-            using IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
-            IConfigureClassVariablesHelperForm configureClassVariablesHelperForm = disposableManager.GetConfigureClassVariablesHelperForm
+            IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
+            using IConfigureClassVariablesHelperForm configureClassVariablesHelperForm = disposableManager.GetConfigureClassVariablesHelperForm
             (
                 configureVariablesForm.VariablesDictionary,
                 configureVariablesForm.HelperStatus

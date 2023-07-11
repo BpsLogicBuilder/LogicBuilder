@@ -83,8 +83,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors.Comm
                 )
             );
 
-            using IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
-            IConfigureConstructorsHelperForm configureConstructorsHelperForm = disposableManager.GetConfigureConstructorsHelperForm
+            IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
+            using IConfigureConstructorsHelperForm configureConstructorsHelperForm = disposableManager.GetConfigureConstructorsHelperForm
             (
                 configureConstructorsForm.ConstructorsDictionary,
                 configureConstructorsForm.HelperStatus,

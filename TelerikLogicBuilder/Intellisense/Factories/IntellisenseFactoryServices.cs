@@ -1,25 +1,13 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes.Factories;
-using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
-using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
-using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -28,115 +16,6 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddIntellisenseFactories(this IServiceCollection services)
         {
             return services
-                
-                .AddTransient<Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassFunctionsHelperForm>>
-                (
-                    provider =>
-                    (existingConstructors, existingVariables, helperStatus) => new ConfigureClassFunctionsHelperForm
-                    (
-                        provider.GetRequiredService<IChildConstructorFinderFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IFunctionManager>(),
-                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
-                        provider.GetRequiredService<IIntellisenseFactory>(),
-                        provider.GetRequiredService<IMemberAttributeReader>(),
-                        provider.GetRequiredService<IMultipleChoiceParameterValidator>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<ITypeHelper>(),
-                        existingConstructors,
-                        existingVariables,
-                        helperStatus
-                    )
-                )
-                .AddTransient<Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm>>
-                (
-                    provider =>
-                    (existingVariables, helperStatus) => new ConfigureClassVariablesHelperForm
-                    (
-                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
-                        provider.GetRequiredService<IIntellisenseFactory>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<IVariablesManager>(),
-                        existingVariables,
-                        helperStatus
-                    )
-                )
-                .AddTransient<Func<IDictionary<string, Constructor>, ConstructorHelperStatus?, string?, IConfigureConstructorsHelperForm>>
-                (
-                    provider =>
-                    (existingConstructors, helperStatus, constructorToUpdate) => new ConfigureConstructorsHelperForm
-                    (
-                        provider.GetRequiredService<IChildConstructorFinderFactory>(),
-                        provider.GetRequiredService<IConstructorManager>(),
-                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IExistingConstructorFinder>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IIntellisenseFactory>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<IStringHelper>(),
-                        provider.GetRequiredService<ITypeHelper>(),
-                        existingConstructors,
-                        helperStatus,
-                        constructorToUpdate
-                    )
-                )
-                .AddTransient<Func< IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm>>
-                (
-                    provider =>
-                    (existingConstructors, existingVariables, helperStatus) => new ConfigureFunctionsHelperForm
-                    (
-                        provider.GetRequiredService<IChildConstructorFinderFactory>(),
-                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IFunctionManager>(),
-                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
-                        provider.GetRequiredService<IIntellisenseFactory>(),
-                        provider.GetRequiredService<IMultipleChoiceParameterValidator>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<ITypeHelper>(),
-                        existingConstructors,
-                        existingVariables,
-                        helperStatus
-                    )
-                )
-                .AddTransient<Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm>>
-                (
-                    provider =>
-                    (existingVariables, helperStatus) => new ConfigureVariablesHelperForm
-                    (
-                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
-                        provider.GetRequiredService<IIntellisenseFactory>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<IVariablesManager>(),
-                        existingVariables,
-                        helperStatus
-                    )
-                )
-                .AddTransient<Func<string, IIncludesHelperForm>>
-                (
-                    provider =>
-                    className => new IncludesHelperForm
-                    (
-                        provider.GetRequiredService<IDialogFormMessageControlFactory>(),
-                        provider.GetRequiredService<IEnumHelper>(),
-                        provider.GetRequiredService<IExceptionHelper>(),
-                        provider.GetRequiredService<IFormInitializer>(),
-                        provider.GetRequiredService<IIntellisenseFactory>(),
-                        provider.GetRequiredService<IServiceFactory>(),
-                        provider.GetRequiredService<IStringHelper>(),
-                        className
-                    )
-                )
                 .AddTransient<Func<IConfigureConstructorsHelperForm, IIntellisenseConstructorsFormManager>>
                 (
                     provider =>
@@ -150,7 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     )
                 )
                 .AddTransient<IIntellisenseFactory, IntellisenseFactory>()
-                .AddTransient<IIntellisenseFormFactory, IntellisenseFormFactory>()
+                .AddSingleton<IIntellisenseFormFactory, IntellisenseFormFactory>()
                 .AddTransient<Func<IConfiguredItemHelperForm, IIntellisenseFunctionsFormManager>>
                 (
                     provider =>

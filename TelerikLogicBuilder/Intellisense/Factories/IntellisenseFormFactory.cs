@@ -1,9 +1,19 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper;
+﻿using ABIS.LogicBuilder.FlowBuilder.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureFunctionsHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors.Factories;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.CustomConfiguration.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Parameters;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Variables;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -11,70 +21,112 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories
 {
     internal class IntellisenseFormFactory : IIntellisenseFormFactory
     {
-        private IDisposable? _scopedService;
-
-        private readonly Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassFunctionsHelperForm> _getConfigureClassFunctionsHelperForm;
-        private readonly Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm> _getConfigureClassVariablesHelperForm;
-        private readonly Func<IDictionary<string, Constructor>, ConstructorHelperStatus?, string?, IConfigureConstructorsHelperForm> _getConfigureConstructorsHelperForm;
-        private readonly Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm> _getConfigureFunctionsHelperForm;
-        private readonly Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm> _getConfigureVariablesHelperForm;
-        private readonly Func<string, IIncludesHelperForm> _getIncludesHelperForm;
-
-        public IntellisenseFormFactory(
-            Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassFunctionsHelperForm> getConfigureClassFunctionsHelperForm,
-            Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureClassVariablesHelperForm> getConfigureClassVariablesHelperForm,
-            Func<IDictionary<string, Constructor>, ConstructorHelperStatus?, string?, IConfigureConstructorsHelperForm> getConfigureConstructorsHelperForm,
-            Func<IDictionary<string, Constructor>, IDictionary<string, VariableBase>, HelperStatus?, IConfigureFunctionsHelperForm> getConfigureFunctionsHelperForm,
-            Func<IDictionary<string, VariableBase>, HelperStatus?, IConfigureVariablesHelperForm> getConfigureVariablesHelperForm,
-            Func<string, IIncludesHelperForm> getIncludesHelperForm)
-        {
-            _getConfigureClassFunctionsHelperForm = getConfigureClassFunctionsHelperForm;
-            _getConfigureClassVariablesHelperForm = getConfigureClassVariablesHelperForm;
-            _getConfigureConstructorsHelperForm = getConfigureConstructorsHelperForm;
-            _getConfigureFunctionsHelperForm = getConfigureFunctionsHelperForm;
-            _getConfigureVariablesHelperForm = getConfigureVariablesHelperForm;
-            _getIncludesHelperForm = getIncludesHelperForm;
-        }
-
-        public void Dispose()
-        {
-            _scopedService?.Dispose();
-        }
-
         public IConfigureClassFunctionsHelperForm GetConfigureClassFunctionsHelperForm(IDictionary<string, Constructor> existingConstructors, IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus)
         {
-            _scopedService = _getConfigureClassFunctionsHelperForm(existingConstructors, existingVariables, helperStatus);
-            return (IConfigureClassFunctionsHelperForm)_scopedService;
+            return new ConfigureClassFunctionsHelperForm
+            (
+                Program.ServiceProvider.GetRequiredService<IChildConstructorFinderFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionManager>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseFactory>(),
+                Program.ServiceProvider.GetRequiredService<IMemberAttributeReader>(),
+                Program.ServiceProvider.GetRequiredService<IMultipleChoiceParameterValidator>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITypeHelper>(),
+                existingConstructors,
+                existingVariables,
+                helperStatus
+            );
         }
 
         public IConfigureClassVariablesHelperForm GetConfigureClassVariablesHelperForm(IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus)
         {
-            _scopedService = _getConfigureClassVariablesHelperForm(existingVariables, helperStatus);
-            return (IConfigureClassVariablesHelperForm)_scopedService;
+            return new ConfigureClassVariablesHelperForm
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseFactory>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IVariablesManager>(),
+                existingVariables,
+                helperStatus
+            );
         }
 
         public IConfigureConstructorsHelperForm GetConfigureConstructorsHelperForm(IDictionary<string, Constructor> existingConstructors, ConstructorHelperStatus? helperStatus, string? constructorToUpdate = null)
         {
-            _scopedService = _getConfigureConstructorsHelperForm(existingConstructors, helperStatus, constructorToUpdate);
-            return (IConfigureConstructorsHelperForm)_scopedService;
+            return new ConfigureConstructorsHelperForm
+            (
+                Program.ServiceProvider.GetRequiredService<IChildConstructorFinderFactory>(),
+                Program.ServiceProvider.GetRequiredService<IConstructorManager>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IExistingConstructorFinder>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseFactory>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IStringHelper>(),
+                Program.ServiceProvider.GetRequiredService<ITypeHelper>(),
+                existingConstructors,
+                helperStatus,
+                constructorToUpdate
+            );
         }
 
         public IConfigureFunctionsHelperForm GetConfigureFunctionsHelperForm(IDictionary<string, Constructor> existingConstructors, IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus)
         {
-            _scopedService = _getConfigureFunctionsHelperForm(existingConstructors, existingVariables, helperStatus);
-            return (IConfigureFunctionsHelperForm)_scopedService;
+            return new ConfigureFunctionsHelperForm
+            (
+                Program.ServiceProvider.GetRequiredService<IChildConstructorFinderFactory>(),
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IFunctionManager>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseFactory>(),
+                Program.ServiceProvider.GetRequiredService<IMultipleChoiceParameterValidator>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<ITypeHelper>(),
+                existingConstructors,
+                existingVariables,
+                helperStatus
+            );
         }
 
         public IConfigureVariablesHelperForm GetConfigureVariablesHelperForm(IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus)
         {
-            _scopedService = _getConfigureVariablesHelperForm(existingVariables, helperStatus);
-            return (IConfigureVariablesHelperForm)_scopedService;
+            return new ConfigureVariablesHelperForm
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseCustomConfigurationControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseFactory>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IVariablesManager>(),
+                existingVariables,
+                helperStatus
+            );
         }
 
         public IIncludesHelperForm GetIncludesHelperForm(string className)
         {
-            _scopedService = _getIncludesHelperForm(className);
-            return (IIncludesHelperForm)_scopedService;
+            return new IncludesHelperForm
+            (
+                Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
+                Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
+                Program.ServiceProvider.GetRequiredService<IIntellisenseFactory>(),
+                Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IStringHelper>(),
+                className
+            );
         }
     }
 }

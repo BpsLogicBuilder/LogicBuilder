@@ -74,8 +74,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions.Command
             if (configureFunctionsForm.CurrentTreeNodeControl is not IConfigureFunctionControl configureFunctionControl)
                 throw _exceptionHelper.CriticalException("{28D4CCA6-9714-4779-9092-1B0622F76211}");
 
-            using IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
-            IConfigureFunctionsHelperForm configureFunctionsHelperForm = disposableManager.GetConfigureFunctionsHelperForm
+            IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
+            using IConfigureFunctionsHelperForm configureFunctionsHelperForm = disposableManager.GetConfigureFunctionsHelperForm
             (
                 configureFunctionsForm.ConstructorsDictionary,
                 configureFunctionsForm.VariablesDictionary,

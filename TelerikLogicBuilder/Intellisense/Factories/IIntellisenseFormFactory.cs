@@ -4,12 +4,11 @@ using ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.IncludesHelper;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
-using System;
 using System.Collections.Generic;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.Factories
 {
-    internal interface IIntellisenseFormFactory : IDisposable
+    internal interface IIntellisenseFormFactory
     {
         IConfigureClassFunctionsHelperForm GetConfigureClassFunctionsHelperForm(IDictionary<string, Constructor> existingConstructors, IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus);
         IConfigureClassVariablesHelperForm GetConfigureClassVariablesHelperForm(IDictionary<string, VariableBase> existingVariables, HelperStatus? helperStatus);

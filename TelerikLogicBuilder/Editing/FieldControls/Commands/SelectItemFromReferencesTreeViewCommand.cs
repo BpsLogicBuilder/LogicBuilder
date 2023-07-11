@@ -39,8 +39,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             if (!_typeLoadHelper.TryGetSystemType(sourceClass, Application, out Type? _))
                 return;
 
-            using IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
-            IIncludesHelperForm includesHelperForm = disposableManager.GetIncludesHelperForm(sourceClass);
+            IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
+            using IIncludesHelperForm includesHelperForm = disposableManager.GetIncludesHelperForm(sourceClass);
 
             includesHelperForm.ShowDialog(RichInputBox);
             if (includesHelperForm.DialogResult != DialogResult.OK)

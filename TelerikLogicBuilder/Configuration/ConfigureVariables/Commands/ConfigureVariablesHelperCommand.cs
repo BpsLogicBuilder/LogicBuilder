@@ -45,8 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables.Command
             if (configureVariablesForm.CurrentTreeNodeControl is not IConfigureVariableControl configureVariableControl)
                 throw _exceptionHelper.CriticalException("{AE80AA16-6CB1-4422-89F9-A4BC691E54FB}");
 
-            using IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
-            IConfigureVariablesHelperForm configureVariablesHelperForm = disposableManager.GetConfigureVariablesHelperForm
+            IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
+            using IConfigureVariablesHelperForm configureVariablesHelperForm = disposableManager.GetConfigureVariablesHelperForm
             (
                 configureVariablesForm.VariablesDictionary,
                 configureVariablesForm.HelperStatus
