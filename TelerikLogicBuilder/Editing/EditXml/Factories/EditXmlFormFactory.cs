@@ -16,10 +16,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
 {
     internal class EditXmlFormFactory : IEditXmlFormFactory
     {
-        private IDisposable? _scopedService;
         public IEditBooleanFunctionFormXml GetEditBooleanFunctionFormXml(string xml, Type assignedTo)
         {
-            _scopedService = new EditBooleanFunctionFormXml
+            return new EditBooleanFunctionFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -36,12 +35,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 xml,
                 assignedTo
             );
-            return (IEditBooleanFunctionFormXml)_scopedService;
         }
 
         public IEditBuildDecisionFormXml GetEditBuildDecisionFormXml(string xml)
         {
-            _scopedService = new EditBuildDecisionFormXml
+            return new EditBuildDecisionFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionElementValidator>(),
@@ -55,12 +53,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
             );
-            return (IEditBuildDecisionFormXml)_scopedService;
         }
 
         public IEditConditionsFormXml GetEditConditionsFormXml(string xml)
         {
-            _scopedService = new EditConditionsFormXml
+            return new EditConditionsFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConditionsElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -73,12 +70,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
             );
-            return (IEditConditionsFormXml)_scopedService;
         }
 
         public IEditConstructorFormXml GetEditConstructorFormXml(string xml, Type assignedTo)
         {
-            _scopedService = new EditConstructorFormXml
+            return new EditConstructorFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConstructorElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -92,12 +88,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 xml,
                 assignedTo
             );
-            return (IEditConstructorFormXml)_scopedService;
         }
 
         public IEditDecisionsFormXml GetEditDecisionsFormXml(string xml)
         {
-            _scopedService = new EditDecisionsFormXml
+            return new EditDecisionsFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionsElementValidator>(),
@@ -110,12 +105,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
             );
-            return (IEditDecisionsFormXml)_scopedService;
         }
 
         public IEditDialogFunctionFormXml GetEditDialogFunctionFormXml(string xml)
         {
-            _scopedService = new EditDialogFunctionFormXml
+            return new EditDialogFunctionFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -133,12 +127,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
             );
-            return (IEditDialogFunctionFormXml)_scopedService;
         }
 
         public IEditFunctionsFormXml GetEditFunctionsFormXml(string xml)
         {
-            _scopedService = new EditFunctionsFormXml
+            return new EditFunctionsFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -154,12 +147,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
             );
-            return (IEditFunctionsFormXml)_scopedService;
         }
 
         public IEditLiteralListFormXml GetEditLiteralListFormXml(string xml, Type assignedTo)
         {
-            _scopedService = new EditLiteralListFormXml
+            return new EditLiteralListFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
@@ -173,12 +165,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 xml,
                 assignedTo
             );
-            return (IEditLiteralListFormXml)_scopedService;
         }
 
         public IEditObjectListFormXml GetEditObjectListFormXml(string xml, Type assignedTo)
         {
-            _scopedService = new EditObjectListFormXml
+            return new EditObjectListFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
@@ -192,12 +183,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 xml,
                 assignedTo
             );
-            return (IEditObjectListFormXml)_scopedService;
         }
 
         public IEditTableFunctionsFormXml GetEditTableFunctionsFormXml(string xml)
         {
-            _scopedService = new EditTableFunctionsFormXml
+            return new EditTableFunctionsFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -213,12 +203,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
             );
-            return (IEditTableFunctionsFormXml)_scopedService;
         }
 
         public IEditValueFunctionFormXml GetEditValueFunctionFormXml(string xml, Type assignedTo)
         {
-            _scopedService = new EditValueFunctionFormXml
+            return new EditValueFunctionFormXml
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -235,12 +224,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 xml,
                 assignedTo
             );
-            return (IEditValueFunctionFormXml)_scopedService;
-        }
-
-        public void Dispose()
-        {
-            _scopedService?.Dispose();
         }
     }
 }

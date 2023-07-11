@@ -23,8 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditLiteralList.Commands
 
         public override void Execute()
         {
-            using IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
-            IEditLiteralListFormXml editXmlForm = disposableManager.GetEditLiteralListFormXml
+            IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
+            using IEditLiteralListFormXml editXmlForm = disposableManager.GetEditLiteralListFormXml
             (
                 _xmlDocumentHelpers.GetXmlString(editParameterLiteralListForm.XmlDocument),
                 editParameterLiteralListForm.AssignedTo

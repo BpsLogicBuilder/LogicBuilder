@@ -2,7 +2,7 @@
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
 {
-    internal interface IEditXmlFormFactory : IDisposable
+    internal interface IEditXmlFormFactory
     {
         IEditBooleanFunctionFormXml GetEditBooleanFunctionFormXml(string xml, Type assignedTo);
         IEditBuildDecisionFormXml GetEditBuildDecisionFormXml(string xml);

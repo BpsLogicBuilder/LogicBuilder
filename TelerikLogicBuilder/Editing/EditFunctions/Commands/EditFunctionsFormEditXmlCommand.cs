@@ -23,8 +23,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands
 
         public override void Execute()
         {
-            using IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
-            IEditFunctionsFormXml editXmlForm = disposableManager.GetEditFunctionsFormXml
+            IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
+            using IEditFunctionsFormXml editXmlForm = disposableManager.GetEditFunctionsFormXml
             (
                 _xmlDocumentHelpers.GetXmlString
                 (

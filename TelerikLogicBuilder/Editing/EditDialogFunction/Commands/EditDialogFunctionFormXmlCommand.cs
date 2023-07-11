@@ -28,8 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDialogFunction.Commands
 
         public override void Execute()
         {
-            using IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
-            IEditDialogFunctionFormXml editXmlForm = disposableManager.GetEditDialogFunctionFormXml
+            IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
+            using IEditDialogFunctionFormXml editXmlForm = disposableManager.GetEditDialogFunctionFormXml
             (
                 _xmlDocumentHelpers.GetXmlString(editFunctionForm.XmlDocument)
             );

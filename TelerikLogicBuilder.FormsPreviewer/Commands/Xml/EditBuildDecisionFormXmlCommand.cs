@@ -22,10 +22,10 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands.Xml
 
         public override void Execute()
         {
-            using IEditXmlFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
+            IEditXmlFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
             XmlDocument xmlDococument = new();
             xmlDococument.LoadXml(xml);
-            IEditBuildDecisionFormXml editXmlForm = disposableManager.GetEditBuildDecisionFormXml
+            using IEditBuildDecisionFormXml editXmlForm = disposableManager.GetEditBuildDecisionFormXml
             (
                 _xmlDocumentHelpers.GetXmlString(xmlDococument)
             );

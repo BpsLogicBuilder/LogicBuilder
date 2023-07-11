@@ -28,8 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction.Commands
 
         public override void Execute()
         {
-            using IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
-            IEditBooleanFunctionFormXml editXmlForm = disposableManager.GetEditBooleanFunctionFormXml
+            IEditXmlFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditXmlFormFactory>();
+            using IEditBooleanFunctionFormXml editXmlForm = disposableManager.GetEditBooleanFunctionFormXml
             (
                 _xmlDocumentHelpers.GetXmlString(editFunctionForm.XmlDocument),
                 editFunctionForm.AssignedTo
