@@ -19,11 +19,11 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
             XmlDocument xmlDocument = new();
             xmlDocument.LoadXml(xml);
 
-            IEditDialogFunctionForm editDialogFunctionForm = disposableManager.GetEditDialogFunctionForm
+            using IEditDialogFunctionForm editDialogFunctionForm = disposableManager.GetEditDialogFunctionForm
             (
                 xmlDocument
             );

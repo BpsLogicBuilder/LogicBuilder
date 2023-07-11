@@ -32,8 +32,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
 
         public void Edit(Shape shape)
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditFunctionsForm editFunctionsForm = disposableManager.GetEditFunctionsForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditFunctionsForm editFunctionsForm = disposableManager.GetEditFunctionsForm
             (
                 _configurationService.FunctionList.VoidFunctions,
                 new TreeFolder[] { _configurationService.FunctionList.BuiltInVoidFunctionsTreeFolder, _configurationService.FunctionList.VoidFunctionsTreeFolder },

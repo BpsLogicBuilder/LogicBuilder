@@ -27,8 +27,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectFunctionForm selectFunctionForm = disposableManager.GetSelectFunctionForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using ISelectFunctionForm selectFunctionForm = disposableManager.GetSelectFunctionForm
             (
                 typeof(object),
                 _configurationService.FunctionList.BooleanFunctions,

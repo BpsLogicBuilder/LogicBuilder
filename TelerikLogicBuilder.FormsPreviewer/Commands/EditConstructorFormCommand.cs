@@ -28,7 +28,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
 			string objectType = "Contoso.Forms.Parameters.DataForm.DataFormSettingsParameters";
             ClosedConstructor? closedConstructor = _constructorTypeHelper.GetConstructor(objectType, radForm.Application);
             IDictionary<string, Constructor> constructors = _constructorTypeHelper.GetConstructors(objectType, radForm.Application);
@@ -36,7 +36,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 			XmlDocument xmlDococument = new();
 			xmlDococument.LoadXml(button2Xml);
 
-            IEditConstructorForm selectConstructorForm = disposableManager.GetEditConstructorForm
+            using IEditConstructorForm selectConstructorForm = disposableManager.GetEditConstructorForm
 			(
                 type!,
                 xmlDococument,

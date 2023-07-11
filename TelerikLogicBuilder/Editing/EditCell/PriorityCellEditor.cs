@@ -28,8 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditCell
 
         public void Edit(DataSet dataSet, GridViewCellInfo currentCell)
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditPriorityForm editPriorityForm = disposableManager.GetEditPriorityForm(GetXmlDocument());
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditPriorityForm editPriorityForm = disposableManager.GetEditPriorityForm(GetXmlDocument());
 
             editPriorityForm.ShowDialog(_mainWindow.Instance);
             if (editPriorityForm.DialogResult != DialogResult.OK)

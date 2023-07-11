@@ -25,8 +25,8 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectFunctionForm selectFunctionForm = disposableManager.GetSelectFunctionForm(typeof(object), this.functionDistionary, this.treeFolders);
+            IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using ISelectFunctionForm selectFunctionForm = disposableManager.GetSelectFunctionForm(typeof(object), this.functionDistionary, this.treeFolders);
             selectFunctionForm.ShowDialog(radForm);
             if (selectFunctionForm.DialogResult != DialogResult.OK)
                 return;

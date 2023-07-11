@@ -31,8 +31,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 
         public void Edit(Type assignedTo, XmlElement? functionElement = null)
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IDataGraphEditingForm editingForm = assignedTo == typeof(bool)
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IDataGraphEditingForm editingForm = assignedTo == typeof(bool)
                                                     ? disposableManager.GetEditBooleanFunctionForm(GetXmlDocument())
                                                     : disposableManager.GetEditValueFunctionForm(assignedTo, GetXmlDocument());
 

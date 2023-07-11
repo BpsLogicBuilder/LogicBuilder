@@ -21,8 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectConstructorForm selectConstructorForm = disposableManager.GetSelectConstructorForm(editConstructorForm.AssignedTo);
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using ISelectConstructorForm selectConstructorForm = disposableManager.GetSelectConstructorForm(editConstructorForm.AssignedTo);
             selectConstructorForm.SetConstructor(CmbSelectConstructor.Text);
             selectConstructorForm.ShowDialog((IWin32Window)editConstructorForm);
             if (selectConstructorForm.DialogResult != DialogResult.OK)

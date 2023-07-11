@@ -27,8 +27,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecisions.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditDecisionForm editDecisionForm = disposableManager.GetEditDecisionForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditDecisionForm editDecisionForm = disposableManager.GetEditDecisionForm
             (
                 GetDecisionXmlDocument()
             );

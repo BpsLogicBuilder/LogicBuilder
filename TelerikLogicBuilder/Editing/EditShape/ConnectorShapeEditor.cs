@@ -62,8 +62,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
                 return;
             }
 
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditConnectorForm editConnectorForm = GetEditConnectorForm();
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditConnectorForm editConnectorForm = GetEditConnectorForm();
             editConnectorForm.ShowDialog(_mainWindow.Instance);
             if (editConnectorForm.DialogResult != DialogResult.OK)
                 return;

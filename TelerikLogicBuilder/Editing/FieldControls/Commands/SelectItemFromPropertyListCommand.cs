@@ -46,8 +46,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             if (!_typeLoadHelper.TryGetSystemType(sourceClass, Application, out Type? sourceType))
                 return;
 
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectFromDomainForm selectFromDomainForm = disposableManager.GetSelectFromDomainForm(GetDomain(), propertyInputRichInputBoxControl.Comments);
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using ISelectFromDomainForm selectFromDomainForm = disposableManager.GetSelectFromDomainForm(GetDomain(), propertyInputRichInputBoxControl.Comments);
 
             selectFromDomainForm.ShowDialog(RichInputBox);
             if (selectFromDomainForm.DialogResult != DialogResult.OK)

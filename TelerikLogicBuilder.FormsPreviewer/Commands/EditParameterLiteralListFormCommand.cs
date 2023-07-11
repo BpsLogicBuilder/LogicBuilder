@@ -35,14 +35,14 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
             XmlDocument xmlDocument = new();
             xmlDocument.LoadXml(xml);
             //MultiSelectFormControlSettingsParameters
             var constructor = _configurationService.ConstructorList.Constructors["MultiSelectFormControlSettingsParameters"];
             ListOfLiteralsParameter parameter = (ListOfLiteralsParameter)constructor.Parameters.First(p => p.Name == "keyFields");
             //LiteralListData literalListData = _literalListDataParser.Parse(xmlDocument.DocumentElement!);
-            IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditParameterLiteralListForm
+            using IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditParameterLiteralListForm
             (
                 typeof(List<string>),
                 _literalListParameterElementInfoHelper.GetLiteralListElementInfo(parameter, ""),

@@ -57,8 +57,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             }
 
             XmlDocument xmlDocument = GetXmlDocument();
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditConstructorForm editConstructorForm = disposableManager.GetEditConstructorForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditConstructorForm editConstructorForm = disposableManager.GetEditConstructorForm
             (
                 assignedTo,
                 xmlDocument,

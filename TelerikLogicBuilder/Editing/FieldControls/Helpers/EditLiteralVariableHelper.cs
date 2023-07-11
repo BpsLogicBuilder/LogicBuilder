@@ -36,8 +36,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 
         public void Edit(Type assignedTo, XmlElement? variableElement = null)
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditVariableForm editVariableForm = disposableManager.GetEditVariableForm(assignedTo);
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditVariableForm editVariableForm = disposableManager.GetEditVariableForm(assignedTo);
             if (variableElement != null)
             {
                 if (variableElement.Name != XmlDataConstants.VARIABLEELEMENT)

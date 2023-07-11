@@ -28,8 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxPanelHelpers.Com
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectFragmentForm selectFragmentForm = disposableManager.GetSelectFragmentForm();
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using ISelectFragmentForm selectFragmentForm = disposableManager.GetSelectFragmentForm();
             selectFragmentForm.ShowDialog(richTextBox);
             if (selectFragmentForm.DialogResult != DialogResult.OK)
                 return;

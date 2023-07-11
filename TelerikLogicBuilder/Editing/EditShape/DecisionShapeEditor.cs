@@ -27,8 +27,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
 
         public void Edit(Shape shape)
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditDecisionsForm editDecisionsForm = disposableManager.GetEditDecisionsForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditDecisionsForm editDecisionsForm = disposableManager.GetEditDecisionsForm
             (
                 GetXmlDocument()
             );

@@ -41,8 +41,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         public void Edit(Type assignedTo, XmlElement? literalListElement = null)
         {
             LiteralListParameterElementInfo literalListElementInfo = parameterRichTextBoxValueControl.LiteralListElementInfo;
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditParameterLiteralListForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditParameterLiteralListForm editLiteralListForm = disposableManager.GetEditParameterLiteralListForm
             (
                 assignedTo,
                 literalListElementInfo,

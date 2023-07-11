@@ -28,8 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditShape
 
         public void Edit(Shape shape)
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditDialogFunctionForm editDialogFunctionForm = disposableManager.GetEditDialogFunctionForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditDialogFunctionForm editDialogFunctionForm = disposableManager.GetEditDialogFunctionForm
             (
                 GetXmlDocument()
             );

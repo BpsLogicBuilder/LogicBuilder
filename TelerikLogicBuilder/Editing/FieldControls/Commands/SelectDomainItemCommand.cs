@@ -22,8 +22,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectFromDomainForm selectFromDomainForm = disposableManager.GetSelectFromDomainForm(richInputBoxValueControl.Domain, richInputBoxValueControl.Comments);
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using ISelectFromDomainForm selectFromDomainForm = disposableManager.GetSelectFromDomainForm(richInputBoxValueControl.Domain, richInputBoxValueControl.Comments);
 
             selectFromDomainForm.ShowDialog(RichInputBox);
             if (selectFromDomainForm.DialogResult != DialogResult.OK)

@@ -38,7 +38,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            IEditingFormFactory disposableManager = ABIS.LogicBuilder.FlowBuilder.Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
             XmlDocument xmlDocument = new();
             xmlDocument.LoadXml(xml);
 
@@ -46,7 +46,7 @@ namespace TelerikLogicBuilder.FormsPreviewer.Commands
             ListOfObjectsParameter parameter = (ListOfObjectsParameter)constructor.Parameters.First(p => p.Name == "validationMessages");
 			ObjectListData objectListData = _objectListDataParser.Parse(xmlDocument.DocumentElement!);
             _typeLoadHelper.TryGetSystemType(parameter, radForm.Application, out Type? type);
-            IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditParameterObjectListForm
+            using IEditParameterObjectListForm editObjectListForm = disposableManager.GetEditParameterObjectListForm
             (
                 type!,
                 _objectListParameterElementInfoHelper.GetObjectListElementInfo(parameter),

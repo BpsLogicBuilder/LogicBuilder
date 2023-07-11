@@ -19,8 +19,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditSetValueFunction.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditVariableForm editVariableForm = disposableManager.GetEditVariableForm(typeof(object));
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditVariableForm editVariableForm = disposableManager.GetEditVariableForm(typeof(object));
 
             editVariableForm.SetVariable(helperButtonDropDownList.Text);
             editVariableForm.ShowDialog(helperButtonDropDownList);

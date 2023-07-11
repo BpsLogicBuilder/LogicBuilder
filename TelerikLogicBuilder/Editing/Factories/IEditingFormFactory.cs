@@ -27,7 +27,7 @@ using System.Xml;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
-    internal interface IEditingFormFactory : IDisposable
+    internal interface IEditingFormFactory
     {
         IEditBooleanFunctionForm GetEditBooleanFunctionForm(XmlDocument? functionXmlDocument);
         IEditConditionFunctionsForm GetEditConditionFunctionsForm(XmlDocument? conditionsXmlDocument);

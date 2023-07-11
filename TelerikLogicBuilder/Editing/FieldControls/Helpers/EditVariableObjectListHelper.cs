@@ -40,8 +40,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         public void Edit(Type assignedTo, XmlElement? objectListElement = null)
         {
             ObjectListVariableElementInfo objectListElementInfo = variableRichTextBoxValueControl.ObjectListElementInfo;
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditVariableObjectListForm editObjectListForm = disposableManager.GetEditVariableObjectListForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditVariableObjectListForm editObjectListForm = disposableManager.GetEditVariableObjectListForm
             (
                 assignedTo,
                 objectListElementInfo,

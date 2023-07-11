@@ -52,11 +52,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
 {
     internal class EditingFormFactory : IEditingFormFactory
     {
-        private IDisposable? _scopedService;
-
         public IEditBooleanFunctionForm GetEditBooleanFunctionForm(XmlDocument? functionXmlDocument)
         {
-            _scopedService = new EditBooleanFunctionForm
+            return new EditBooleanFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -73,12 +71,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 functionXmlDocument
             );
-            return (IEditBooleanFunctionForm)_scopedService;
         }
 
         public IEditConditionFunctionsForm GetEditConditionFunctionsForm(XmlDocument? conditionsXmlDocument)
         {
-            _scopedService = new EditConditionFunctionsForm
+            return new EditConditionFunctionsForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConditionFunctionListBoxItemFactory>(),
@@ -94,12 +91,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 new ObjectRichTextBox(),
                 conditionsXmlDocument
             );
-            return (IEditConditionFunctionsForm)_scopedService;
         }
 
         public IEditConstructorForm GetEditConstructorForm(Type assignedTo, XmlDocument constructorXmlDocument, HashSet<string> constructorNames, string selectedConstructor, bool denySpecialCharacters)
         {
-            _scopedService = new EditConstructorForm
+            return new EditConstructorForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -118,12 +114,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 selectedConstructor,
                 denySpecialCharacters
             );
-            return (IEditConstructorForm)_scopedService;
         }
 
         public IEditDecisionConnectorForm GetEditDecisionConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument)
         {
-            _scopedService = new EditDecisionConnectorForm
+            return new EditDecisionConnectorForm
             (
                 Program.ServiceProvider.GetRequiredService<IConnectorDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -133,12 +128,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 connectorIndexToSelect,
                 connectorXmlDocument
             );
-            return (IEditDecisionConnectorForm)_scopedService;
         }
 
         public IEditDecisionForm GetEditDecisionForm(XmlDocument? decisionXmlDocument)
         {
-            _scopedService = new EditDecisionForm
+            return new EditDecisionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -156,12 +150,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<ObjectRichTextBox>(),
                 decisionXmlDocument
             );
-            return (IEditDecisionForm)_scopedService;
         }
 
         public IEditDecisionsForm GetEditDecisionsForm(XmlDocument? decisionsXmlDocument)
         {
-            _scopedService = new EditDecisionsForm
+            return new EditDecisionsForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionDataParser>(),
@@ -175,12 +168,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 decisionsXmlDocument
             );
-            return (IEditDecisionsForm)_scopedService;
         }
 
         public IEditDialogConnectorForm GetEditDialogConnectorForm(short connectorIndexToSelect, XmlDocument? connectorXmlDocument)
         {
-            _scopedService = new EditDialogConnectorForm
+            return new EditDialogConnectorForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditDialogConnectorControlFactory>(),
@@ -189,12 +181,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 connectorIndexToSelect,
                 connectorXmlDocument
             );
-            return (IEditDialogConnectorForm)_scopedService;
         }
 
         public IEditDialogFunctionForm GetEditDialogFunctionForm(XmlDocument? functionsXmlDocument)
         {
-            _scopedService = new EditDialogFunctionForm
+            return new EditDialogFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -212,12 +203,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 functionsXmlDocument
             );
-            return (IEditDialogFunctionForm)_scopedService;
         }
 
         public IEditFunctionsForm GetEditFunctionsForm(IDictionary<string, Function> functionDictionary, IList<TreeFolder> treeFolders, XmlDocument? functionsXmlDocument)
         {
-            _scopedService = new EditFunctionsForm
+            return new EditFunctionsForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditFunctionsCommandFactory>(),
@@ -234,12 +224,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 treeFolders,
                 functionsXmlDocument
             );
-            return (IEditFunctionsForm)_scopedService;
         }
 
         public IEditJumpForm GetEditJumpForm(XmlDocument? jumpXmlDocument)
         {
-            _scopedService = new EditJumpForm
+            return new EditJumpForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
@@ -247,12 +236,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 jumpXmlDocument
             );
-            return (IEditJumpForm)_scopedService;
         }
 
         public IEditModuleShapeForm GetEditModuleShapeForm(XmlDocument? moduleXmlDocument)
         {
-            _scopedService = new EditModuleShapeForm
+            return new EditModuleShapeForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditModuleShapeTreeViewBuilder>(),
@@ -262,12 +250,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 moduleXmlDocument
             );
-            return (IEditModuleShapeForm)_scopedService;
         }
 
         public IEditParameterLiteralListForm GetEditParameterLiteralListForm(Type assignedTo, LiteralListParameterElementInfo literalListInfo, XmlDocument literalListXmlDocument)
         {
-            _scopedService = new EditParameterLiteralListForm
+            return new EditParameterLiteralListForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
@@ -281,12 +268,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 literalListInfo,
                 literalListXmlDocument
             );
-            return (IEditParameterLiteralListForm)_scopedService;
         }
 
         public IEditParameterObjectListForm GetEditParameterObjectListForm(Type assignedTo, ObjectListParameterElementInfo objectListInfo, XmlDocument objectListXmlDocument)
         {
-            _scopedService = new EditParameterObjectListForm
+            return new EditParameterObjectListForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
@@ -300,12 +286,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 objectListInfo,
                 objectListXmlDocument
             );
-            return (IEditParameterObjectListForm)_scopedService;
         }
 
         public IEditPriorityForm GetEditPriorityForm(XmlDocument? priorityXmlDocument)
         {
-            _scopedService = new EditPriorityForm
+            return new EditPriorityForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
@@ -313,12 +298,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 priorityXmlDocument
             );
-            return (IEditPriorityForm)_scopedService;
         }
 
         public IEditValueFunctionForm GetEditValueFunctionForm(Type assignedTo, XmlDocument? functionXmlDocument)
         {
-            _scopedService = new EditValueFunctionForm
+            return new EditValueFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -336,12 +320,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 assignedTo,
                 functionXmlDocument
             );
-            return (IEditValueFunctionForm)_scopedService;
         }
 
         public IEditVariableForm GetEditVariableForm(Type assignedTo)
         {
-            _scopedService = new EditVariableForm
+            return new EditVariableForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlFactory>(),
@@ -350,12 +333,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
                 assignedTo
             );
-            return (IEditVariableForm)_scopedService;
         }
 
         public IEditVariableLiteralListForm GetEditVariableLiteralListForm(Type assignedTo, LiteralListVariableElementInfo literalListInfo, XmlDocument literalListXmlDocument)
         {
-            _scopedService = new EditVariableLiteralListForm
+            return new EditVariableLiteralListForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
@@ -369,12 +351,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 literalListInfo,
                 literalListXmlDocument
             );
-            return (IEditVariableLiteralListForm)_scopedService;
         }
 
         public IEditVariableObjectListForm GetEditVariableObjectListForm(Type assignedTo, ObjectListVariableElementInfo objectListInfo, XmlDocument objectListXmlDocument)
         {
-            _scopedService = new EditVariableObjectListForm
+            return new EditVariableObjectListForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingFormHelperFactory>(),
@@ -388,12 +369,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 objectListInfo,
                 objectListXmlDocument
             );
-            return (IEditVariableObjectListForm)_scopedService;
         }
 
         public ISelectConstructorForm GetSelectConstructorForm(Type assignedTo)
         {
-            _scopedService = new SelectConstructorForm
+            return new SelectConstructorForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfiguredItemControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -402,12 +382,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
                 assignedTo
             );
-            return (ISelectConstructorForm)_scopedService;
         }
 
         public ISelectFragmentForm GetSelectFragmentForm()
         {
-            _scopedService = new SelectFragmentForm
+            return new SelectFragmentForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfiguredItemControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -415,24 +394,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>()
             );
-            return (ISelectFragmentForm)_scopedService;
         }
 
         public ISelectFromDomainForm GetSelectFromDomainForm(IList<string> domain, string comments)
         {
-            _scopedService = new SelectFromDomainForm
+            return new SelectFromDomainForm
             (
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 domain,
                 comments
             );
-            return (ISelectFromDomainForm)_scopedService;
         }
 
         public ISelectFunctionForm GetSelectFunctionForm(Type assignedTo, IDictionary<string, Function> functionDictionary, IList<TreeFolder> treeFolders)
         {
-            _scopedService = new SelectFunctionForm
+            return new SelectFunctionForm
             (
                 Program.ServiceProvider.GetRequiredService<IConfiguredItemControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
@@ -443,12 +420,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 functionDictionary,
                 treeFolders
             );
-            return (ISelectFunctionForm)_scopedService;
-        }
-
-        public void Dispose()
-        {
-            _scopedService?.Dispose();
         }
     }
 }

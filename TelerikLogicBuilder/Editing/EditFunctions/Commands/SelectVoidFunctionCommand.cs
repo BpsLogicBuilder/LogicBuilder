@@ -21,8 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions.Commands
 
         public override void Execute()
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            ISelectFunctionForm selectFunctionForm = disposableManager.GetSelectFunctionForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using ISelectFunctionForm selectFunctionForm = disposableManager.GetSelectFunctionForm
             (
                 typeof(object),
                 editVoidFunctionControl.FunctionDictionary,

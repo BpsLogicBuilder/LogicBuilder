@@ -33,8 +33,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditCell
 
         public void Edit(DataSet dataSet, GridViewCellInfo currentCell)
         {
-            using IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
-            IEditFunctionsForm editFunctionsForm = disposableManager.GetEditFunctionsForm
+            IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
+            using IEditFunctionsForm editFunctionsForm = disposableManager.GetEditFunctionsForm
             (
                 _configurationService.FunctionList.TableFunctions,
                 new TreeFolder[] { _configurationService.FunctionList.BuiltInTableFunctionsTreeFolder, _configurationService.FunctionList.TableFunctionsTreeFolder },
