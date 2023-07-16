@@ -1109,7 +1109,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
                 (
                     RecentFilesList.FileList[key],
                     key
-                );
+                )
+                {
+                    ToolTipText = key
+                };
 
                 if (recentProjectsMenuItemList.ContainsKey(key))//Inconsistent issue.  Application failing to close after opening closing
                     continue;                                   //a project and opening a new one.
