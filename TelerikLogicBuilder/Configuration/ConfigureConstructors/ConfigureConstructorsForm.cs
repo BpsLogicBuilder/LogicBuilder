@@ -546,6 +546,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureConstructors
         {
             RemoveEventHandlers();
             RemoveClickCommands();
+            _treeViewService.ClearImageLists(TreeView);
         }
 
         private void ConfigureConstructorsForm_FormClosing(object? sender, FormClosingEventArgs e)

@@ -103,6 +103,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureExcludedModules
         private void ConfigureExcludedModulesForm_Disposed(object? sender, System.EventArgs e)
         {
             RemoveClickCommands();
+            _treeViewService.ClearImageLists(TreeView);
         }
 
         private void RadTreeView1_NodeExpandedChanged(object sender, RadTreeViewEventArgs e)

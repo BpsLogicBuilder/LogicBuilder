@@ -66,6 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
             _formInitializer.SetFormDefaults(this, 557);
 
+            Disposed += AddNewFileForm_Disposed;
             radTextBoxFileName.TextChanged += RadTextBoxFileName_TextChanged;
 
             radListView1.VisualItemFormatting += RadListView1_VisualItemFormatting;
@@ -110,6 +111,19 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
             ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
+        private void RemoveEventHandlers()
+        {
+            radTextBoxFileName.TextChanged -= RadTextBoxFileName_TextChanged;
+            radListView1.VisualItemFormatting -= RadListView1_VisualItemFormatting;
+        }
+
+        #region Event Handlers
+        private void AddNewFileForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            radListView1.ImageList = null;
+        }
+
         private void RadTextBoxFileName_TextChanged(object? sender, EventArgs e)
         {
             if (radTextBoxFileName.Text.Trim().Length == 0)
@@ -135,5 +149,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
                 e.VisualItem.Image = e.VisualItem.Data.Image.GetThumbnailImage(32, 32, null, IntPtr.Zero);
             }
         }
+        #endregion Event Handlers
     }
 }

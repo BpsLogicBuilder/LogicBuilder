@@ -47,6 +47,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
             return treeNode;
         }
 
+        public void ClearImageLists(RadTreeView radTreeView)
+        {
+            radTreeView.ImageList = null;
+            if (radTreeView.RadContextMenu != null)
+            {
+                radTreeView.RadContextMenu.ImageList = null;
+            }
+        }
+
         public bool CollectionIncludesNodeAndDescendant(IList<RadTreeNode> treeNodes)
         {
             HashSet<RadTreeNode> hashSet = treeNodes.ToHashSet();

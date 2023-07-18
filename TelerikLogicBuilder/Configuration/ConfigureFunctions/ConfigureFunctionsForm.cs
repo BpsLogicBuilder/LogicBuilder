@@ -663,6 +663,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions
         {
             RemoveEventHandlers();
             RemoveClickCommands();
+            _treeViewService.ClearImageLists(TreeView);
         }
 
         private void ConfigureFunctionsForm_FormClosing(object? sender, FormClosingEventArgs e)

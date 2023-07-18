@@ -195,7 +195,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             RemoveClickCommands();
             RemoveEventHandlers();
-            radContextMenu?.Dispose();
+            if (radContextMenu != null)
+            {
+                radContextMenu.ImageList = null;
+                radContextMenu.Dispose();
+            }
             radContextMenuManager.Dispose();
         }
 

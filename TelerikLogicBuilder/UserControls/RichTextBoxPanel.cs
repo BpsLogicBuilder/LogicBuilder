@@ -168,6 +168,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         {
             RemoveEventHanlders();
             RemoveClickCommands();
+            radContextMenu.ImageList = null;
             radContextMenu.Dispose();
             radContextMenuManager.Dispose();
         }

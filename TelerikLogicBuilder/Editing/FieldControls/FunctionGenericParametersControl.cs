@@ -253,6 +253,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         #region Event Handlers
         private void FunctionGenericParametersControl_Disposed(object? sender, EventArgs e)
         {
+            btnHelper.ImageList = null;
             RemoveClickCommands();
         }
         #endregion Event Handlers

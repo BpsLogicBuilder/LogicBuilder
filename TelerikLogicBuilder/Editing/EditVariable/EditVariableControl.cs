@@ -167,6 +167,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         private void Initialize()
         {
+            Disposed += EditVariableControl_Disposed;
             commandBarStripElement1.Grip.Visibility = ElementVisibility.Collapsed;
             commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
             commandBarStripElement1.BorderWidth = 0;
@@ -284,6 +285,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
             SetOtherToggleStatesOff(commandBarToggleButton);
             ChangeView((ViewType)commandBarToggleButton.Tag);
+        }
+
+        private void EditVariableControl_Disposed(object? sender, EventArgs e)
+        {
+            radCommandBar1.ImageList = null;
+            RemoveChangeEvents();
         }
 
         private void SelectVariableViewControl_Changed(object? sender, EventArgs e) => CheckForValidSelection();

@@ -56,7 +56,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Helpers
         private void TreeView_Disposed(object? sender, System.EventArgs e)
         {
             TreeView.ImageList = null;
-            TreeView.RadContextMenu?.Dispose();
+            if (TreeView.RadContextMenu != null)
+            {
+                TreeView.RadContextMenu.ImageList = null;
+                TreeView.RadContextMenu.Dispose();
+            }
+            
             RemoveEventHandlers();
         }
 

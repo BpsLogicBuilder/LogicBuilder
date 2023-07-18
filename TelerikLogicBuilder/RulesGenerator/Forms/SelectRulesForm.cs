@@ -52,6 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         private void Initialize()
         {
+            Disposed += SelectRulesForm_Disposed;
             InitializeDialogFormMessageControl();
             ControlsLayoutUtility.LayoutGroupBox(radPanelTop, radGroupBoxTop);
             _formInitializer.SetFormDefaults(this, 648);
@@ -71,6 +72,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
             ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
 
+        #region Event Handlers
         private void RadTreeView_NodeExpandedChanged(object sender, RadTreeViewEventArgs e)
         {
             if (_treeViewService.IsRootNode(e.Node)
@@ -81,5 +83,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
                 ? ImageIndexes.OPENEDFOLDERIMAGEINDEX
                 : ImageIndexes.CLOSEDFOLDERIMAGEINDEX;
         }
+
+        private void SelectRulesForm_Disposed(object? sender, System.EventArgs e)
+        {
+            _treeViewService.ClearImageLists(radTreeView);
+        }
+        #endregion Event Handlers
     }
 }

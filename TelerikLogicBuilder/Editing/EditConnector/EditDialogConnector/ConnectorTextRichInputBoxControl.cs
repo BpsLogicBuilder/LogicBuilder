@@ -264,6 +264,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             btnConstructor.Click -= btnConstructorClickHandler;
         }
 
+        private void RemoveImageLists()
+        {
+            foreach (RadButton button in CommandButtons)
+                button.ImageList = null;
+        }
+
         private static void SetPanelBorderForeColor(RadPanel radPanel, Color color)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).ForeColor = color;
 
@@ -281,6 +287,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             toolTip.RemoveAll();
             toolTip.Dispose();
             helpProvider.Dispose();
+            RemoveImageLists();
             RemoveClickCommands();
         }
         #endregion Event Handlers

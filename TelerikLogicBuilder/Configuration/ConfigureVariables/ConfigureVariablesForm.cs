@@ -485,6 +485,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureVariables
         {
             RemoveEventHandlers();
             RemoveClickCommands();
+            _treeViewService.ClearImageLists(TreeView);
         }
 
         private void ConfigureVariablesForm_FormClosing(object? sender, FormClosingEventArgs e)

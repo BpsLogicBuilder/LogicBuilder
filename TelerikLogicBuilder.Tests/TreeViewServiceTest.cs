@@ -30,6 +30,35 @@ namespace TelerikLogicBuilder.Tests
             Assert.NotNull(service);
         }
 
+        [Fact]
+        public void CanClearImageLists()
+        {
+            //arrange
+            ITreeViewService service = serviceProvider.GetRequiredService<ITreeViewService>();
+            IImageListService imageListService = serviceProvider.GetRequiredService<IImageListService>();
+            RadTreeView radTreeView = new()
+            {
+                RadContextMenu = new RadContextMenu()
+                {
+                    ImageList = imageListService.ImageList,
+                    Items =
+                    {
+                        new RadMenuSeparatorItem(),
+                        new RadMenuItem ("Open"),
+                        new RadMenuSeparatorItem()
+                    }
+                },
+                ImageList = imageListService.ImageList
+            };
+
+            //act assert
+            Assert.NotNull(radTreeView.ImageList);
+            Assert.NotNull(radTreeView.RadContextMenu.ImageList);
+            service.ClearImageLists(radTreeView);
+            Assert.Null(radTreeView.ImageList);
+            Assert.Null(radTreeView.RadContextMenu.ImageList);
+        }
+
         public static List<object[]> TreeNode_Data
         {
             get

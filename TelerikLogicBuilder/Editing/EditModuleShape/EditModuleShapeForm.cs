@@ -71,6 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape
             InitializeDialogFormMessageControl();
             ControlsLayoutUtility.LayoutGroupBox(radPanelTop, radGroupBoxTop);
 
+            Disposed += EditModuleShapeForm_Disposed;
             radTreeView.NodeExpandedChanged += RadTreeView_NodeExpandedChanged;
             radTreeView.SelectedNodeChanged += RadTreeView_SelectedNodeChanged;
             FormClosing += EditModuleNameForm_FormClosing;
@@ -91,6 +92,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape
         private void InitializeDialogFormMessageControl()
         {
             ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
+        }
+
+        private void RemoveEventHandlers()
+        {
+            radTreeView.NodeExpandedChanged -= RadTreeView_NodeExpandedChanged;
+            radTreeView.SelectedNodeChanged -= RadTreeView_SelectedNodeChanged;
+            FormClosing -= EditModuleNameForm_FormClosing;
         }
 
         private void UpdateModuleName(XmlDocument? moduleXmlDocument)
@@ -119,6 +127,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditModuleShape
         }
 
         #region Event Handlers
+        private void EditModuleShapeForm_Disposed(object? sender, System.EventArgs e)
+        {
+            RemoveEventHandlers();
+            _treeViewService.ClearImageLists(radTreeView);
+        }
+
         private void EditModuleNameForm_FormClosing(object? sender, FormClosingEventArgs e)
         {
             _dialogFormMessageControl.ClearMessage();

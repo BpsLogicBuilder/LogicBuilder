@@ -60,6 +60,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
 
         private void Initialize()
         {
+            Disposed += EditVariableTreeViewControl_Disposed;
             radTreeView1.NodeExpandedChanged += RadTreeView1_NodeExpandedChanged;
             radTreeView1.SelectedNodeChanged += RadTreeView1_SelectedNodeChanged;
             radTreeView1.Validated += RadTreeView1_Validated;
@@ -76,7 +77,20 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditVariable
                 radTreeView1.SelectedNode ??= radTreeView1.Nodes[0];
         }
 
+        private void RemoveEventHandlers()
+        {
+            radTreeView1.NodeExpandedChanged -= RadTreeView1_NodeExpandedChanged;
+            radTreeView1.SelectedNodeChanged -= RadTreeView1_SelectedNodeChanged;
+            radTreeView1.Validated -= RadTreeView1_Validated;
+        }
+
         #region Event Handlers
+        private void EditVariableTreeViewControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            _treeViewService.ClearImageLists(radTreeView1);
+        }
+
         private void RadTreeView1_NodeExpandedChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
         {
             if (!_treeViewService.IsFolderNode(e.Node))/*NodeExpandedChanged runs for non-folder nodes on double click*/

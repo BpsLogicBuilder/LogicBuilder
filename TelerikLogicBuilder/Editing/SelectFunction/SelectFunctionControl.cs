@@ -140,6 +140,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
         private void Initialize()
         {
+            Disposed += SelectFunctionControl_Disposed;
             commandBarStripElement1.Grip.Visibility = ElementVisibility.Collapsed;
             commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
             commandBarStripElement1.BorderWidth = 0;
@@ -259,6 +260,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
             SetOtherToggleStatesOff(commandBarToggleButton);
             ChangeView((ViewType)commandBarToggleButton.Tag);
+        }
+
+        private void SelectFunctionControl_Disposed(object? sender, EventArgs e)
+        {
+            radCommandBar1.ImageList = null;
+            RemoveChangeEvents();
         }
 
         private void SelectFunctionViewControl_Changed(object? sender, EventArgs e) => CheckForValidSelection();

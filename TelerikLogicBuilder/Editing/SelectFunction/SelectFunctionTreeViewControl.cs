@@ -54,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
 
         private void Initialize()
         {
+            Disposed += SelectFunctionTreeViewControl_Disposed;
             radTreeView1.NodeExpandedChanged += RadTreeView1_NodeExpandedChanged;
             radTreeView1.SelectedNodeChanged += RadTreeView1_SelectedNodeChanged;
             radTreeView1.TreeViewElement.ShowNodeToolTips = true;
@@ -67,6 +68,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
             _selectFunctionTreeViewBuilder.Build(radTreeView1);
             if (radTreeView1.Nodes.Count > 0)
                 radTreeView1.SelectedNode ??= radTreeView1.Nodes[0];
+        }
+
+        private void RemoveEventHandlers()
+        {
+            radTreeView1.NodeExpandedChanged -= RadTreeView1_NodeExpandedChanged;
+            radTreeView1.SelectedNodeChanged -= RadTreeView1_SelectedNodeChanged;
         }
 
         #region Event Handlers
@@ -94,6 +101,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectFunction
         private void RadTreeView1_SelectedNodeChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
         {
             Changed?.Invoke(this, e);
+        }
+
+        private void SelectFunctionTreeViewControl_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            _treeViewService.ClearImageLists(radTreeView1);
         }
         #endregion Event Handlers
     }

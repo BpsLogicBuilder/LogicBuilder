@@ -164,6 +164,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
             btnOk.Enabled = true;
         }
 
+        private void ClearTreeViewImageLists()
+        {
+            TreeView.ImageList = null;
+            if (TreeView.RadContextMenu != null)
+                TreeView.RadContextMenu.ImageList = null;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
@@ -177,6 +184,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
             InitializeApplicationDropDownList();
             ControlsLayoutUtility.LayoutGroupBox(radPanelNewConstructors, radGroupBoxNewConstructors);
 
+            Disposed += ConfigureConstructorsHelperForm_Disposed;
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             CmbClass.TextChanged += CmbClass_TextChanged;
             TreeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
@@ -230,6 +238,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
             this.ResumeLayout(true);
         }
 
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+            CmbClass.TextChanged -= CmbClass_TextChanged;
+            TreeView.SelectedNodeChanged -= TreeView_SelectedNodeChanged;
+        }
+
         #region Event Handlers
         private void ApplicationDropDownList_ApplicationChanged(object? sender, ApplicationChangedEventArgs e)
         {
@@ -242,6 +257,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureConstructorsHelper
         private void CmbClass_TextChanged(object? sender, EventArgs e)
         {
             _intellisenseConstructorsFormManager.CmbClassTextChanged();
+        }
+
+        private void ConfigureConstructorsHelperForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            ClearTreeViewImageLists();
         }
 
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)

@@ -9,6 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces
     {
         RadTreeNode AddChildTreeNode(RadTreeNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null);
         TNode AddChildTreeNode<TNode>(TNode parentTreeNode, string relativeXPath, string idAttributeName, string idAttributeValue, int imageIndex, string? toolTipText = null, string? nodeIndex = null) where TNode : RadTreeNode;
+        void ClearImageLists(RadTreeView radTreeView);
         bool CollectionIncludesNodeAndDescendant(IList<RadTreeNode> treeNodes);
         RadTreeNode CreateChildFolderTreeNode(RadTreeNode parentTreeNode, string folderXmlElementName, int imageIndex, string xmlNameAttributeValue, string? toolTipText = null);
         TNode CreateChildFolderTreeNode<TNode>(TNode parentTreeNode, string folderXmlElementName, int imageIndex, string xmlNameAttributeValue, string? toolTipText = null) where TNode : RadTreeNode;

@@ -40,7 +40,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
 
         public IList<RulesResourcesPair> SourceFiles => _getAllCheckedNodeNames.GetNodes(radTreeView.Nodes[0])
                                                                 .Select(n => (RulesResourcesPair)n.Tag)
-        .ToArray();
+                                                                .ToArray();
 
         public void SetTitle(string title)
         {
@@ -48,11 +48,21 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
             this.radGroupBoxTop.Text = title;
         }
 
+        private void ClearTreeViewImageLists()
+        {
+            radTreeView.ImageList = null;
+            if (radTreeView.RadContextMenu != null)
+            {
+                radTreeView.RadContextMenu.ImageList = null;
+            }
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
         private void Initialize()
         {
+            Disposed += SelectRulesResourcesPairForm_Disposed;
             InitializeDialogFormMessageControl();
             ControlsLayoutUtility.LayoutGroupBox(radPanelTop, radGroupBoxTop);
             _formInitializer.SetFormDefaults(this, 648);
@@ -71,5 +81,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
         {
             ControlsLayoutUtility.LayoutBottomPanel(radPanelBottom, radPanelMessages, radPanelButtons, tableLayoutPanelButtons, _dialogFormMessageControl);
         }
+
+        #region Event Handlers
+        private void SelectRulesResourcesPairForm_Disposed(object? sender, System.EventArgs e)
+        {
+            ClearTreeViewImageLists();
+        }
+        #endregion Event Handlers
     }
 }

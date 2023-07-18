@@ -374,14 +374,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
         {
             Navigate(treeNode);
             CurrentTreeNodeControl.SetControlValues(treeNode);
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.WaitForFullGCApproach();
-            GC.WaitForFullGCComplete();
-            GC.Collect();
-
-            this.Text = $"Total Memory: {GC.GetTotalMemory(true)}";
         }
 
         private void UpdateXmlDocument(RadTreeNode treeNode)
@@ -400,6 +392,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments
         {
             RemoveEventHandlers();
             RemoveClickCommands();
+            _treeViewService.ClearImageLists(TreeView);
         }
 
         private void ConfigureFragmentsForm_FormClosing(object? sender, FormClosingEventArgs e)

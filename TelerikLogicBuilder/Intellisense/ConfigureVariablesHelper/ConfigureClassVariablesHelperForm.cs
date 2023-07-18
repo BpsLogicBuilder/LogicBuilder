@@ -191,6 +191,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
             radPanelFields.Controls.Clear();
         }
 
+        private void ClearTreeViewImageLists()
+        {
+            TreeView.ImageList = null;
+            if (TreeView.RadContextMenu != null)
+                TreeView.RadContextMenu.ImageList = null;
+        }
+
         private static void CollapsePanelBorder(RadPanel radPanel)
             => ((BorderPrimitive)radPanel.PanelElement.Children[1]).Visibility = ElementVisibility.Collapsed;
 
@@ -203,6 +210,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
             InitializeDialogFormMessageControl();
             InitializeApplicationDropDownList();
 
+            Disposed += ConfigureClassVariablesHelperForm_Disposed;
             _applicationDropDownList.ApplicationChanged += ApplicationDropDownList_ApplicationChanged;
             CmbClass.TextChanged += CmbClass_TextChanged;
             CmbReferenceCategory.SelectedIndexChanged += CmbReferenceCategory_SelectedIndexChanged;
@@ -274,6 +282,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
                 throw _exceptionHelper.CriticalException("{A5FE2D19-5A01-4B80-8839-D86A5EFE6735}");
         }
 
+        private void RemoveEventHandlers()
+        {
+            _applicationDropDownList.ApplicationChanged -= ApplicationDropDownList_ApplicationChanged;
+            CmbClass.TextChanged -= CmbClass_TextChanged;
+            CmbReferenceCategory.SelectedIndexChanged -= CmbReferenceCategory_SelectedIndexChanged;
+            TreeView.NodeExpandedChanging -= TreeView_NodeExpandedChanging;
+            TreeView.SelectedNodeChanged -= TreeView_SelectedNodeChanged;
+        }
+
         private void SetControlValues(RadTreeNode treeNode)
         {
             if (treeNode == null)
@@ -300,6 +317,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.ConfigureVariablesHelper
         private void CmbReferenceCategory_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             _intellisenseVariablesFormManager.CmbReferenceCategorySelectedIndexChanged();
+        }
+
+        private void ConfigureClassVariablesHelperForm_Disposed(object? sender, EventArgs e)
+        {
+            RemoveEventHandlers();
+            ClearTreeViewImageLists();
         }
 
         private void TreeView_NodeExpandedChanging(object sender, RadTreeViewCancelEventArgs e)

@@ -134,6 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
         private void Initialize()
         {
+            Disposed += SelectConstructorControl_Disposed;
             commandBarStripElement1.Grip.Visibility = ElementVisibility.Collapsed;
             commandBarStripElement1.OverflowButton.Visibility = ElementVisibility.Collapsed;
             commandBarStripElement1.BorderWidth = 0;
@@ -250,6 +251,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.SelectConstructor
 
             SetOtherToggleStatesOff(commandBarToggleButton);
             ChangeView((ViewType)commandBarToggleButton.Tag);
+        }
+
+        private void SelectConstructorControl_Disposed(object? sender, EventArgs e)
+        {
+            radCommandBar1.ImageList = null;
+            RemoveChangeEvents();
         }
 
         private void SelectConstructorViewControl_Changed(object? sender, EventArgs e) => CheckForValidSelection();

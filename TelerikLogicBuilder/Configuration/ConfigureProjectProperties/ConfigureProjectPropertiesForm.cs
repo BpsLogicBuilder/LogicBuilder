@@ -293,6 +293,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureProjectProperties
         {
             RemoveClickCommands();
             RemoveEventHandlers();
+            _treeViewService.ClearImageLists(TreeView);
         }
 
         private void RadTreeView1_MouseDown(object? sender, MouseEventArgs e)
