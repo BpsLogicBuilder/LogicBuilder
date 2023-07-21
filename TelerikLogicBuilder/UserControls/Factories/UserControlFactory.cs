@@ -16,7 +16,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
             );
         }
 
-        public RichTextBoxPanel GetRichTextBoxPanel()
+        public IRichTextBoxPanel GetRichTextBoxPanel()
         {
             return new RichTextBoxPanel
             (

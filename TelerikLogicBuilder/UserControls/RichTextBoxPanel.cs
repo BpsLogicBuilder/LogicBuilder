@@ -11,7 +11,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    internal partial class RichTextBoxPanel : UserControl
+    internal partial class RichTextBoxPanel : UserControl, IRichTextBoxPanel
     {
         private readonly IImageListService _imageListService;
         private readonly IRichTextBoxPanelCommandFactory _richTextBoxPanelCommandFactory;
@@ -77,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             radContextMenu = new()
             {
                 ImageList = _imageListService.ImageList,
-                Items = 
+                Items =
                 {
                     mnuItemCopy,
                     mnuItemCut,

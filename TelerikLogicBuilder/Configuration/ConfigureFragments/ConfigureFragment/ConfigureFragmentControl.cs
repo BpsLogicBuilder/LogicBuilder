@@ -21,8 +21,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
     internal partial class ConfigureFragmentControl : UserControl, IConfigureFragmentControl
     {
         private readonly IExceptionHelper _exceptionHelper;
-        private readonly RichTextBoxPanel _richTextBoxPanelDescription;
-        private readonly RichTextBoxPanel _richTextBoxPanelFragment;
+        private readonly IRichTextBoxPanel _richTextBoxPanelDescription;
+        private readonly IRichTextBoxPanel _richTextBoxPanelFragment;
         private readonly ITreeViewService _treeViewService;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -181,7 +181,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
             _richTextBoxPanelDescription.Dock = DockStyle.Fill;
             _richTextBoxPanelDescription.Location = new Point(0, 0);
-            this.groupBoxDescription.Controls.Add(_richTextBoxPanelDescription);
+            this.groupBoxDescription.Controls.Add((Control)_richTextBoxPanelDescription);
 
             ((ISupportInitialize)this.groupBoxDescription).EndInit();
             this.groupBoxDescription.ResumeLayout(true);
@@ -194,7 +194,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
             _richTextBoxPanelFragment.Dock = DockStyle.Fill;
             _richTextBoxPanelFragment.Location = new Point(0, 0);
-            this.radGroupBoxXml.Controls.Add(_richTextBoxPanelFragment);
+            this.radGroupBoxXml.Controls.Add((Control)_richTextBoxPanelFragment);
 
             ((ISupportInitialize)this.radGroupBoxXml).EndInit();
             this.radGroupBoxXml.ResumeLayout(true);
@@ -203,8 +203,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
         private void InitializeFragmentControls()
         {
             helpProvider.SetHelpString(txtFragmentName, Strings.fragmentConfigNameHelp);
-            helpProvider.SetHelpString(_richTextBoxPanelDescription, Strings.fragmentConfigDescriptionHelp);
-            helpProvider.SetHelpString(_richTextBoxPanelFragment, Strings.fragmentConfigXmlNameHelp);
+            helpProvider.SetHelpString((Control)_richTextBoxPanelDescription, Strings.fragmentConfigDescriptionHelp);
+            helpProvider.SetHelpString((Control)_richTextBoxPanelFragment, Strings.fragmentConfigXmlNameHelp);
             toolTip.SetToolTip(groupBoxName, Strings.fragmentConfigNameHelp);
             toolTip.SetToolTip(groupBoxDescription, Strings.fragmentConfigDescriptionHelp);
             toolTip.SetToolTip(radGroupBoxXml, Strings.fragmentConfigXmlNameHelp);

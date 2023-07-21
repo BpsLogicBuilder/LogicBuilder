@@ -3,6 +3,6 @@
     internal interface IUserControlFactory
     {
         EditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel();
-        RichTextBoxPanel GetRichTextBoxPanel();
+        IRichTextBoxPanel GetRichTextBoxPanel();
     }
 }
