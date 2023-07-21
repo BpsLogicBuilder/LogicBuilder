@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -57,6 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         private EventHandler btnObjectListClickHandler;
 
         public ConnectorObjectRichTextBoxControl(
+            IComponentFactory componentFactory,
             IConstructorTypeHelper constructorTypeHelper,
             IExceptionHelper exceptionHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
@@ -68,7 +70,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             ILiteralListParameterElementInfoHelper literalListParameterElementInfoHelper,
             IObjectListDataParser objectListDataParser,
             IObjectListParameterElementInfoHelper objectListParameterElementInfoHelper,
-            ObjectRichTextBox objectRichTextBox,
             ITypeHelper typeHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -85,7 +86,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             _literalListParameterElementInfoHelper = literalListParameterElementInfoHelper;
             _objectListDataParser = objectListDataParser;
             _objectListParameterElementInfoHelper = objectListParameterElementInfoHelper;
-            _objectRichTextBox = objectRichTextBox;
+            _objectRichTextBox = componentFactory.GetObjectRichTextBox();
             _typeHelper = typeHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;

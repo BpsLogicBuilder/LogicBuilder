@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public IListOfObjectsParameterItemRichTextBoxControl GetListOfObjectsParameterItemRichTextBoxControl(IEditingControl editingControl, ObjectListParameterElementInfo listInfo)
             => new ListOfObjectsParameterItemRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -23,7 +24,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 editingControl,

@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -55,6 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
         private EventHandler btnObjectListClickHandler;
 
         public LiteralListVariableRichTextBoxControl(
+            IComponentFactory componentFactory,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlHelperFactory,
             IGetObjectRichTextBoxVisibleText getObjectRichTextBoxVisibleText,
@@ -63,7 +65,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             ILiteralListVariableElementInfoHelper literalListVariableElementInfoHelper,
             IObjectListDataParser objectListDataParser,
             IObjectListVariableElementInfoHelper objectListVariableElementInfoHelper,
-            ObjectRichTextBox objectRichTextBox,
             ITypeLoadHelper typeLoadHelper,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -78,7 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             _literalListVariableElementInfoHelper = literalListVariableElementInfoHelper;
             _objectListDataParser = objectListDataParser;
             _objectListVariableElementInfoHelper = objectListVariableElementInfoHelper;
-            _objectRichTextBox = objectRichTextBox;
+            _objectRichTextBox = componentFactory.GetObjectRichTextBox();
             _typeLoadHelper = typeLoadHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;

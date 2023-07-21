@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -51,6 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
         private EventHandler btnConstructorClickHandler;
 
         public LiteralVariablePropertyInputRichInputBoxControl(
+            IComponentFactory componentFactory,
             IEditingControlHelperFactory editingControlHelperFactory,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
@@ -60,7 +62,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             IUpdateRichInputBoxXml updateRichInputBoxXml,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            RichInputBox richInputBox,
             IDataGraphEditingControl dataGraphEditingControl,
             LiteralVariable literalVariable)
         {
@@ -72,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             _updateRichInputBoxXml = updateRichInputBoxXml;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            _richInputBox = richInputBox;
+            _richInputBox = componentFactory.GetRichInputBox();
             this.dataGraphEditingControl = dataGraphEditingControl;
             this.literalVariable = literalVariable;
             _richInputBoxEventsHelper = fieldControlHelperFactory.GetVariableRichInputBoxEventsHelper(this);

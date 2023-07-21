@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -48,6 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private EventHandler btnHelperClickHandler;
 
         public FunctionGenericParametersControl(
+            IComponentFactory componentFactory,
             IConfigurationService configurationService,
             IFunctionDataParser constructorDataParser,
             IFunctionGenericsConfigrationValidator constructorGenericsConfigrationValidator,
@@ -56,7 +58,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             IFieldControlCommandFactory fieldControlCommandFactory,
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
-            ObjectRichTextBox objectRichTextBox,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditFunctionControl editFunctionControl)
@@ -70,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _fieldControlCommandFactory = fieldControlCommandFactory;
             _imageListService = imageListService;
             _layoutFieldControlButtons = layoutFieldControlButtons;
-            _objectRichTextBox = objectRichTextBox;
+            _objectRichTextBox = componentFactory.GetObjectRichTextBox();
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
 

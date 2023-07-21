@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -51,6 +52,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         private EventHandler btnConstructorClickHandler;
 
         public ListOfLiteralsParameterItemParameterSourcedPropertyRichInputBoxControl(
+            IComponentFactory componentFactory,
             IEditingControlHelperFactory editingControlHelperFactory,
             IEnumHelper enumHelper,
             IFieldControlCommandFactory fieldControlCommandFactory,
@@ -58,7 +60,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
             IUpdateRichInputBoxXml updateRichInputBoxXml,
-            RichInputBox richInputBox,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IDataGraphEditingControl dataGraphEditingControl,
@@ -70,7 +71,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
             _fieldControlCommandFactory = fieldControlCommandFactory;
             _layoutFieldControlButtons = layoutFieldControlButtons;
             _updateRichInputBoxXml = updateRichInputBoxXml;
-            _richInputBox = richInputBox;
+            _richInputBox = componentFactory.GetRichInputBox();
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.dataGraphEditingControl = dataGraphEditingControl;

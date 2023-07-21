@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditBooleanFunction;
@@ -77,6 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             return new EditConditionFunctionsForm
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConditionFunctionListBoxItemFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConditionsDataParser>(),
@@ -88,7 +89,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                new ObjectRichTextBox(),
                 conditionsXmlDocument
             );
         }
@@ -134,6 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             return new EditDecisionForm
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDecisionDataParser>(),
@@ -147,7 +148,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                Program.ServiceProvider.GetRequiredService<ObjectRichTextBox>(),
                 decisionXmlDocument
             );
         }
@@ -209,6 +209,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
         {
             return new EditFunctionsForm
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IDialogFormMessageControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditFunctionsCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditFunctionsControlFactory>(),
@@ -219,7 +220,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                new ObjectRichTextBox(),
                 functionDictionary,
                 treeFolders,
                 functionsXmlDocument

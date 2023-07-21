@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -39,12 +40,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         private readonly IEditingControl editingControl;
 
         public ConnectorTextRichInputBoxControl(
+            IComponentFactory componentFactory,
             IEditingControlHelperFactory editingControlHelperFactory,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlHelperFactory,
             IImageListService imageListService,
             ILayoutFieldControlButtons layoutFieldControlButtons,
-            RichInputBox richInputBox,
             IUpdateRichInputBoxXml updateRichInputBoxXml,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IEditingControl editingControl)
@@ -55,7 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             _layoutFieldControlButtons = layoutFieldControlButtons;
             _updateRichInputBoxXml = updateRichInputBoxXml;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            _richInputBox = richInputBox;
+            _richInputBox = componentFactory.GetRichInputBox();
             this.editingControl = editingControl;
             _richInputBoxEventsHelper = fieldControlHelperFactory.GetConnectorTextRichInputBoxEventsHelper(this);
             _createRichInputBoxContextMenu = editingControlHelperFactory.GetCreateRichInputBoxContextMenu(this);

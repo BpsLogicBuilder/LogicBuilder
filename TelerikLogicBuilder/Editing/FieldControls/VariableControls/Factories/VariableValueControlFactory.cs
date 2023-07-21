@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -18,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public ILiteralListVariableRichTextBoxControl GetiteralListVariableRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfLiteralsVariable listOfLiteralsVariable)
             => new LiteralListVariableRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -26,7 +27,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<ILiteralListVariableElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListVariableElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -47,6 +47,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public ILiteralVariableDomainMultilineControl GetLiteralVariableDomainMultilineControl(IDataGraphEditingControl editingControl, LiteralVariable literalVariable)
             => new LiteralVariableDomainMultilineControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -56,7 +57,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                new RichInputBox(),
                 editingControl,
                 literalVariable
             );
@@ -64,6 +64,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public ILiteralVariableDomainRichInputBoxControl GetLiteralVariableDomainRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralVariable literalVariable)
             => new LiteralVariableDomainRichInputBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -73,7 +74,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                new RichInputBox(),
                 editingControl,
                 literalVariable
             );
@@ -91,6 +91,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public ILiteralVariableMultilineControl GetLiteralVariableMultilineControl(IDataGraphEditingControl editingControl, LiteralVariable literalVariable)
             => new LiteralVariableMultilineControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -100,7 +101,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                new RichInputBox(),
                 editingControl,
                 literalVariable
             );
@@ -108,6 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public ILiteralVariablePropertyInputRichInputBoxControl GetLiteralVariablePropertyInputRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralVariable literalVariable)
             => new LiteralVariablePropertyInputRichInputBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -117,7 +118,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                new RichInputBox(),
                 editingControl,
                 literalVariable
             );
@@ -125,6 +125,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public ILiteralVariableRichInputBoxControl GetLiteralVariableRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralVariable literalVariable)
             => new LiteralVariableRichInputBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
@@ -134,7 +135,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
-                new RichInputBox(),
                 editingControl,
                 literalVariable
             );
@@ -154,6 +154,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public IObjectListVariableRichTextBoxControl GetObjectListVariableRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfObjectsVariable listOfObjectsVariable)
             => new ObjectListVariableRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -162,7 +163,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<ILiteralListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<ILiteralListVariableElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListVariableElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
@@ -173,6 +173,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
         public IObjectVariableRichTextBoxControl GetObjectVariableRichTextBoxControl(IDataGraphEditingControl editingControl, ObjectVariable objectVariable)
             => new ObjectVariableRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -182,7 +183,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.F
                 Program.ServiceProvider.GetRequiredService<ILiteralListVariableElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListVariableElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),

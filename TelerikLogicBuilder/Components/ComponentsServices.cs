@@ -7,7 +7,8 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddComponents(this IServiceCollection services)
         {
             return services
-                .AddSingleton<IFileSystemDragDropHandler, FileSystemDragDropHandler>();
+                .AddSingleton<IFileSystemDragDropHandler, FileSystemDragDropHandler>()
+                .AddComponentFactories();
         }
     }
 }

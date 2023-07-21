@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
@@ -53,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private readonly IRadListBoxManager<IFunctionListBoxItem> radListBoxManager;
 
         public EditFunctionsForm(
+            IComponentFactory componentFactory,
             IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IEditFunctionsCommandFactory editFunctionsCommandFactory,
             IEditFunctionsControlFactory editFunctionsControlFactory,
@@ -63,7 +65,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            ObjectRichTextBox objectRichTextBox,
             IDictionary<string, Function> functionDictionary,
             IList<TreeFolder> treeFolders,
             XmlDocument? functionsXmlDocument)
@@ -79,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            _objectRichTextBox = objectRichTextBox;
+            _objectRichTextBox = componentFactory.GetObjectRichTextBox();
             FunctionDictionary = functionDictionary;
             TreeFolders = treeFolders;
 

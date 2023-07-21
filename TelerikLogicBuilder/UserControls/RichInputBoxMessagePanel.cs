@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -7,9 +8,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
     internal partial class RichInputBoxMessagePanel : UserControl
     {
         private readonly RichInputBox _richInputBox;
-        public RichInputBoxMessagePanel()
+        public RichInputBoxMessagePanel(IComponentFactory componentFactory)
         {
-            _richInputBox = new RichInputBox();
+            _richInputBox = componentFactory.GetRichInputBox();
             InitializeComponent();
             Initialize();
         }

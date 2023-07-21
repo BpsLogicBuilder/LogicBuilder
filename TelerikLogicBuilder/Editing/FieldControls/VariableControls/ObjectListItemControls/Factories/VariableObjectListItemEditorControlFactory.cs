@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers;
@@ -14,6 +14,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.O
         public IListOfObjectsVariableItemRichTextBoxControl GetListOfObjectsVariableItemRichTextBoxControl(IEditingControl editingControl, ObjectListVariableElementInfo listInfo)
             => new ListOfObjectsVariableItemRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -23,7 +24,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.O
                 Program.ServiceProvider.GetRequiredService<ILiteralListVariableElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListVariableElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 editingControl,

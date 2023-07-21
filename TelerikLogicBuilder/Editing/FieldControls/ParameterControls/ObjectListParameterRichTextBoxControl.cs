@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
@@ -54,6 +55,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
         private EventHandler btnObjectListClickHandler;
 
         public ObjectListParameterRichTextBoxControl(
+            IComponentFactory componentFactory,
             IFieldControlCommandFactory fieldControlCommandFactory,
             IFieldControlHelperFactory fieldControlHelperFactory,
             IGetObjectRichTextBoxVisibleText getObjectRichTextBoxVisibleText,
@@ -62,7 +64,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             ILiteralListDataParser literalListDataParser,
             ILiteralListParameterElementInfoHelper literalListParameterElementInfoHelper,
             IObjectListParameterElementInfoHelper objectListParameterElementInfoHelper,
-            ObjectRichTextBox objectRichTextBox,
             ITypeLoadHelper typeLoadHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IDataGraphEditingControl dataGraphEditingControl,
@@ -76,7 +77,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             _literalListDataParser = literalListDataParser;
             _literalListParameterElementInfoHelper = literalListParameterElementInfoHelper;
             _objectListParameterElementInfoHelper = objectListParameterElementInfoHelper;
-            _objectRichTextBox = objectRichTextBox;
+            _objectRichTextBox = componentFactory.GetObjectRichTextBox();
             _typeLoadHelper = typeLoadHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.dataGraphEditingControl = dataGraphEditingControl;

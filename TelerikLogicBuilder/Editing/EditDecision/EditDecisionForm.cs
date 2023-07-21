@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
 using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunction;
@@ -57,6 +58,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
         private readonly IRadListBoxManager<IDecisionFunctionListBoxItem> radListBoxManager;
 
         public EditDecisionForm(
+            IComponentFactory componentFactory,
             IConfigurationService configurationService,
             IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             IDecisionDataParser decisionDataParser,
@@ -70,7 +72,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             IServiceFactory serviceFactory,
             IXmlDataHelper xmlDataHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
-            ObjectRichTextBox objectRichTextBox,
             XmlDocument? decisionXmlDocument)
         {
             InitializeComponent();
@@ -87,7 +88,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
             _xmlDataHelper = xmlDataHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
-            _objectRichTextBox = objectRichTextBox;
+            _objectRichTextBox = componentFactory.GetObjectRichTextBox();
 
             UpdateDecisionFunctionsList(decisionXmlDocument?.DocumentElement?.OuterXml);
 

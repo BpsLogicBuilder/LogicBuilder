@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Components;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor;
 using ABIS.LogicBuilder.FlowBuilder.Editing.Factories;
@@ -21,6 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public IConstructorGenericParametersControl GetConstructorGenericParametersControl(IEditConstructorControl editConstructorControl)
             => new ConstructorGenericParametersControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IConstructorDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IConstructorGenericsConfigrationValidator>(),
@@ -28,7 +29,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 editConstructorControl
@@ -37,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public IFunctionGenericParametersControl GetFunctionGenericParametersControl(IEditFunctionControl editFunctionControl)
             => new FunctionGenericParametersControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionGenericsConfigrationValidator>(),
@@ -45,7 +46,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 editFunctionControl
@@ -54,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public ILiteralListParameterRichTextBoxControl GetiteralListParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfLiteralsParameter listOfLiteralsParameter, IDictionary<string, ParameterControlSet> editControlSet)
            => new LiteralListParameterRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -62,7 +63,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 editingControl,
@@ -83,6 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public ILiteralParameterDomainMultilineControl GetLiteralParameterDomainMultilineControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
             => new LiteralParameterDomainMultilineControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
@@ -91,7 +92,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
-                new RichInputBox(),
                 editingControl,
                 literalParameter
             );
@@ -99,6 +99,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public ILiteralParameterDomainRichInputBoxControl GetLiteralParameterDomainRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
             => new LiteralParameterDomainRichInputBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
@@ -107,7 +108,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
-                new RichInputBox(),
                 editingControl,
                 literalParameter
             );
@@ -125,6 +125,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public ILiteralParameterMultilineControl GetLiteralParameterMultilineControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
             => new LiteralParameterMultilineControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
@@ -133,7 +134,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
-                new RichInputBox(),
                 editingControl,
                 literalParameter
             );
@@ -141,6 +141,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public ILiteralParameterPropertyInputRichInputBoxControl GetLiteralParameterPropertyInputRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
             => new LiteralParameterPropertyInputRichInputBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
@@ -149,7 +150,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
-                new RichInputBox(),
                 editingControl,
                 literalParameter
             );
@@ -157,6 +157,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public ILiteralParameterRichInputBoxControl GetLiteralParameterRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter)
             => new LiteralParameterRichInputBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
@@ -165,7 +166,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
-                new RichInputBox(),
                 editingControl,
                 literalParameter
             );
@@ -173,6 +173,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public ILiteralParameterSourcedPropertyRichInputBoxControl GetLiteralParameterSourcedPropertyRichInputBoxControl(IDataGraphEditingControl editingControl, LiteralParameter literalParameter, IDictionary<string, ParameterControlSet> editControlsSet)
             => new LiteralParameterSourcedPropertyRichInputBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<ICreateLiteralParameterXmlElement>(),
                 Program.ServiceProvider.GetRequiredService<IEditingControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IEnumHelper>(),
@@ -181,7 +182,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<IImageListService>(),
                 Program.ServiceProvider.GetRequiredService<ILayoutFieldControlButtons>(),
                 Program.ServiceProvider.GetRequiredService<IUpdateRichInputBoxXml>(),
-                new RichInputBox(),
                 editingControl,
                 literalParameter,
                 editControlsSet
@@ -202,6 +202,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public IObjectListParameterRichTextBoxControl GetObjectListParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ListOfObjectsParameter listOfObjectsParameter)
             => new ObjectListParameterRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -210,7 +211,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<ILiteralListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 editingControl,
@@ -220,6 +220,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public IObjectParameterRichTextBoxControl GetObjectParameterRichTextBoxControl(IDataGraphEditingControl editingControl, ObjectParameter objectParameter)
             => new ObjectParameterRichTextBoxControl
             (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlCommandFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFieldControlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IGetObjectRichTextBoxVisibleText>(),
@@ -229,7 +230,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 Program.ServiceProvider.GetRequiredService<ILiteralListParameterElementInfoHelper>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListParameterElementInfoHelper>(),
-                new ObjectRichTextBox(),
                 Program.ServiceProvider.GetRequiredService<ITypeLoadHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 editingControl,

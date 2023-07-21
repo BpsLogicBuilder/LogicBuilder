@@ -5,7 +5,6 @@ using ABIS.LogicBuilder.FlowBuilder.Native;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,12 +23,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        public RichInputBox()
-        {//Transient components have been known to stay referenced by the DI container so jus new.
-            //https://github.com/dotnet/aspnetcore/issues/5496
-            _exceptionHelper = Program.ServiceProvider.GetRequiredService<IExceptionHelper>();
-            _pathHelper = Program.ServiceProvider.GetRequiredService<IPathHelper>();
-            _xmlDocumentHelpers = Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>();
+
+        public RichInputBox(IExceptionHelper exceptionHelper, IPathHelper pathHelper, IXmlDocumentHelpers xmlDocumentHelpers)
+        {
+            _exceptionHelper = exceptionHelper;
+            _pathHelper = pathHelper;
+            _xmlDocumentHelpers = xmlDocumentHelpers;
             //12/2006 Calling component sets DetectUrls property
             InitializeComponent();
 

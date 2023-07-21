@@ -1,15 +1,13 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Components.Helpers;
-using Microsoft.Extensions.DependencyInjection;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Components
 {
     internal class FileSystemTreeView : RadTreeView
     {
-        public FileSystemTreeView()
-        {//Transient components have been known to stay referenced by the DI container.
-            //https://github.com/dotnet/aspnetcore/issues/5496
-            FileSystemDragDropHandler = Program.ServiceProvider.GetRequiredService<IFileSystemDragDropHandler>(); ;
+        public FileSystemTreeView(IFileSystemDragDropHandler fileSystemDragDropHandler)
+        {
+            FileSystemDragDropHandler = fileSystemDragDropHandler;
         }
 
         public IFileSystemDragDropHandler FileSystemDragDropHandler { get; }

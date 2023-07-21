@@ -1,5 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Commands;
-using ABIS.LogicBuilder.FlowBuilder.Components;
+using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
@@ -73,6 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public IDictionary<string, string> ExpandedNodes => expandedNodes;
 
         public DocumentsExplorer(
+            IComponentFactory componentFactory,
             IExceptionHelper exceptionHelper,
             IImageListService imageListService,
             IMainWindow mainWindow,
@@ -107,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _refreshDocumentsExplorerCommand = refreshDocumentsExplorerCommand;
             _renameDocumentCommand = renameDocumentCommand;
 
-            this.radTreeView1 = new FileSystemTreeView();
+            this.radTreeView1 = componentFactory.GetFileSystemTreeView();
 
             InitializeComponent();
             Initialize();
