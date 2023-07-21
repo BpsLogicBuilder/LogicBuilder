@@ -3,7 +3,7 @@ using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.ConfigureFr
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.ConfigureFragmentsFolder;
 using ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -19,9 +19,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     configureFragmentsForm => new ConfigureFragmentControl
                     (
                         provider.GetRequiredService<IExceptionHelper>(),
-                        new RichTextBoxPanel(),
-                        new RichTextBoxPanel(),
                         provider.GetRequiredService<ITreeViewService>(),
+                        provider.GetRequiredService<IUserControlFactory>(),
                         provider.GetRequiredService<IXmlDocumentHelpers>(),
                         configureFragmentsForm
                     )

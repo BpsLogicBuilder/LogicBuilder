@@ -30,7 +30,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddRichTextBoxPanelCommandFactories()
 
                 //RulesExplorerHelpers
-                .AddRulesExplorerCommands();
+                .AddRulesExplorerCommands()
+                
+                .AddUserControlFactories();
         }
     }
 }

@@ -127,8 +127,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
             finally
             {
-                if (fStream != null)
-                    fStream.Close();
+                fStream?.Close();
             }
         }
 
@@ -771,8 +770,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void UnlockDocument()
         {
-            if (fileStream != null)
-                fileStream.Close();
+            fileStream?.Close();
         }
         #endregion Methods
 

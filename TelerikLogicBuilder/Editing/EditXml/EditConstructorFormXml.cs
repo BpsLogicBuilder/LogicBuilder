@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidati
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System;
@@ -46,8 +47,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
             IEditXmlHelperFactory editXmlHelperFactory,
             IFormInitializer formInitializer,
             IRefreshVisibleTextHelper refreshVisibleTextHelper,
-            EditXmlRichTextBoxPanel richTextBoxPanel,
             IServiceFactory serviceFactory,
+            IUserControlFactory userControlFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory,
             string xml,
@@ -60,7 +61,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
             _constructorElementValidator = constructorElementValidator;
             _formInitializer = formInitializer;
             _refreshVisibleTextHelper = refreshVisibleTextHelper;
-            _richTextBoxPanel = richTextBoxPanel;
+            _richTextBoxPanel = userControlFactory.GetEditXmlRichTextBoxPanel();
             _validateXmlTextHelper = editXmlHelperFactory.GetValidateXmlTextHelper(this);
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _xmlValidator = xmlValidatorFactory.GetXmlValidator(Schema);

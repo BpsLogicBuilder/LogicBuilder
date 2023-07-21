@@ -17,13 +17,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IImageListService _imageListService;
         private readonly IRichTextBoxPanelCommandFactory _richTextBoxPanelCommandFactory;
 
-        public EditXmlRichTextBoxPanel()
+        public EditXmlRichTextBoxPanel(
+            IImageListService imageListService,
+            IRichTextBoxPanelCommandFactory richTextBoxPanelCommandFactory)
         {
-            //Transient components have been known to stay referenced by the DI container so jus new.
-            //https://github.com/dotnet/aspnetcore/issues/5496
             InitializeComponent();
-            _imageListService = Program.ServiceProvider.GetRequiredService<IImageListService>();
-            _richTextBoxPanelCommandFactory = Program.ServiceProvider.GetRequiredService<IRichTextBoxPanelCommandFactory>();
+            _imageListService = imageListService;
+            _richTextBoxPanelCommandFactory = richTextBoxPanelCommandFactory;
             radContextMenuManager = new RadContextMenuManager();
             Initialize();
         }

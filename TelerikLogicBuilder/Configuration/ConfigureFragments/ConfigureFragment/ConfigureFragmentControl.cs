@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,16 +30,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFragments.Configu
 
         public ConfigureFragmentControl(
             IExceptionHelper exceptionHelper,
-            RichTextBoxPanel richTextBoxPanelDescription,
-            RichTextBoxPanel richTextBoxPanelFragment,
             ITreeViewService treeViewService,
+            IUserControlFactory userControlFactory,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IConfigureFragmentsForm configureFragmentsForm)
         {
             InitializeComponent();
             _exceptionHelper = exceptionHelper;
-            _richTextBoxPanelDescription = richTextBoxPanelDescription;
-            _richTextBoxPanelFragment = richTextBoxPanelFragment;
+            _richTextBoxPanelDescription = userControlFactory.GetRichTextBoxPanel();
+            _richTextBoxPanelFragment = userControlFactory.GetRichTextBoxPanel();
             _treeViewService = treeViewService;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             this.configureFragmentsForm = configureFragmentsForm;

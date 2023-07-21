@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxPanelHelpers.Factories;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
@@ -17,12 +16,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IImageListService _imageListService;
         private readonly IRichTextBoxPanelCommandFactory _richTextBoxPanelCommandFactory;
 
-        public RichTextBoxPanel()
-        {//Transient components have been known to stay referenced by the DI container so jus new.
-            //https://github.com/dotnet/aspnetcore/issues/5496
+        public RichTextBoxPanel(
+            IImageListService imageListService,
+            IRichTextBoxPanelCommandFactory richTextBoxPanelCommandFactory)
+        {
             InitializeComponent();
-            _imageListService = Program.ServiceProvider.GetRequiredService<IImageListService>();
-            _richTextBoxPanelCommandFactory = Program.ServiceProvider.GetRequiredService<IRichTextBoxPanelCommandFactory>();
+            _imageListService = imageListService;
+            _richTextBoxPanelCommandFactory = richTextBoxPanelCommandFactory;
             radContextMenuManager = new RadContextMenuManager();
             Initialize();
         }

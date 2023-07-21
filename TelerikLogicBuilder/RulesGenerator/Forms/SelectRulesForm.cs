@@ -29,13 +29,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Forms
             IDialogFormMessageControlFactory dialogFormMessageControlFactory,
             string applicationName)
         {
+            InitializeComponent();
             _formInitializer = formInitializer;
             _getAllCheckedNodeNames = getAllCheckedNodeNames;
             _selectRulesTreeViewBuilder = selectRulesTreeViewBuilder;
             _treeViewService = treeViewService;
             _dialogFormMessageControl = dialogFormMessageControlFactory.GetDialogFormMessageControl();
             _applicationName = applicationName;
-            InitializeComponent();
             Initialize();
         }
 

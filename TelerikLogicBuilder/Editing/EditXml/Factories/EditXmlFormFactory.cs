@@ -6,8 +6,8 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Data;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Intellisense.Functions;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation.DataValidation;
-using ABIS.LogicBuilder.FlowBuilder.UserControls;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DialogFormMessageControlHelpers.Factories;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -28,8 +28,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IFunctionElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml,
@@ -46,8 +46,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
@@ -64,8 +64,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
@@ -81,8 +81,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml,
@@ -99,8 +99,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IEditXmlHelperFactory>(),
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
@@ -120,8 +120,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IFunctionsDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDataHelper>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
@@ -141,8 +141,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IFunctionsDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionsElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
@@ -158,8 +158,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<ILiteralListElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml,
@@ -176,8 +176,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IFormInitializer>(),
                 Program.ServiceProvider.GetRequiredService<IObjectListElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml,
@@ -197,8 +197,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IFunctionsDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionsElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml
@@ -217,8 +217,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml.Factories
                 Program.ServiceProvider.GetRequiredService<IFunctionElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),
                 Program.ServiceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                new EditXmlRichTextBoxPanel(),
                 Program.ServiceProvider.GetRequiredService<IServiceFactory>(),
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IXmlValidatorFactory>(),
                 xml,
