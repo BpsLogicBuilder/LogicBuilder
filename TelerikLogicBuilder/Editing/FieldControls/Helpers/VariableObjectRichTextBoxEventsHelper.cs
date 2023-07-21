@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             RichTextBox.Disposed += RichTextBox_Disposed;
         }
 
-        private ObjectRichTextBox RichTextBox => variableRichTextBoxValueControl.RichTextBox;
+        private IObjectRichTextBox RichTextBox => variableRichTextBoxValueControl.RichTextBox;
 
         public void Setup()
         {

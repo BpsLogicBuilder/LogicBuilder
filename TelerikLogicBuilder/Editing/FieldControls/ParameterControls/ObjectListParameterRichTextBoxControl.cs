@@ -39,7 +39,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
         private readonly ILiteralListDataParser _literalListDataParser;
         private readonly ILiteralListParameterElementInfoHelper _literalListParameterElementInfoHelper;
         private readonly IObjectListParameterElementInfoHelper _objectListParameterElementInfoHelper;
-        private readonly ObjectRichTextBox _objectRichTextBox;
+        private readonly IObjectRichTextBox _objectRichTextBox;
         private readonly IParameterObjectRichTextBoxEventsHelper _parameterObjectRichTextBoxEventsHelper;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IUpdateObjectRichTextBoxXml _updateObjectRichTextBoxXml;
@@ -160,7 +160,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             }
         }
 
-        public ObjectRichTextBox RichTextBox => _objectRichTextBox;
+        public IObjectRichTextBox RichTextBox => _objectRichTextBox;
 
         public bool IsEmpty => XmlElement == null || _xmlDocumentHelpers.GetSingleOrDefaultChildElement(XmlElement) == null;
 
@@ -246,8 +246,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
 
         public void SetToolTipHelp(string toolTipText)
         {
-            helpProvider.SetHelpString(_objectRichTextBox, toolTipText);
-            toolTip.SetToolTip(_objectRichTextBox, toolTipText);
+            helpProvider.SetHelpString((Control)_objectRichTextBox, toolTipText);
+            toolTip.SetToolTip((Control)_objectRichTextBox, toolTipText);
             foreach (RadButton button in CommandButtons)
                 toolTip.SetToolTip(button, toolTipText);
         }
@@ -337,7 +337,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls
             _objectRichTextBox.Multiline = false;
             _objectRichTextBox.ReadOnly = true;
 
-            this.radPanelRichTextBox.Controls.Add(_objectRichTextBox);
+            this.radPanelRichTextBox.Controls.Add((Control)_objectRichTextBox);
             ((ISupportInitialize)this.radPanelRichTextBox).EndInit();
             this.radPanelRichTextBox.ResumeLayout(true);
         }

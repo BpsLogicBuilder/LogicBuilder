@@ -28,7 +28,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             this.objectRichTextBoxValueControl = objectRichTextBoxValueControl;
         }
 
-        private ObjectRichTextBox RichTextBox => objectRichTextBoxValueControl.RichTextBox;
+        private IObjectRichTextBox RichTextBox => objectRichTextBoxValueControl.RichTextBox;
 
         public void Edit(Type assignedTo, XmlElement? functionElement = null)
         {

@@ -8,7 +8,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
     {
         ApplicationTypeInfo Application { get; }
         Type? AssignedTo { get; }
-        ObjectRichTextBox RichTextBox { get; }
+        IObjectRichTextBox RichTextBox { get; }
 
         void ClearMessage();
         void RequestDocumentUpdate();

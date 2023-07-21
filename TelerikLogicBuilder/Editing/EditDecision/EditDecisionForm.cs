@@ -54,7 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
         private EventHandler btnPasteXmlClickHandler;
         private EventHandler btnAddClickHandler;
         private EventHandler btnUpdateClickHandler;
-        private readonly ObjectRichTextBox _objectRichTextBox;
+        private readonly IObjectRichTextBox _objectRichTextBox;
         private readonly IRadListBoxManager<IDecisionFunctionListBoxItem> radListBoxManager;
 
         public EditDecisionForm(
@@ -354,7 +354,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditDecision
                 radGroupBoxEdit,
                 radPanelEdit,
                 radPanelEditControl,
-                _objectRichTextBox,
+                (Control)_objectRichTextBox,
                 multiLine: false
             );
         }

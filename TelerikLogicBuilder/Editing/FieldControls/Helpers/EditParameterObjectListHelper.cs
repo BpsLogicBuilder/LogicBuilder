@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             this.parameterRichTextBoxValueControl = parameterRichTextBoxValueControl;
         }
 
-        private ObjectRichTextBox RichTextBox => parameterRichTextBoxValueControl.RichTextBox;
+        private IObjectRichTextBox RichTextBox => parameterRichTextBoxValueControl.RichTextBox;
 
         public void Edit(Type assignedTo, XmlElement? objectListElement = null)
         {

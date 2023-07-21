@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             this.variableRichTextBoxValueControl = variableRichTextBoxValueControl;
         }
 
-        private ObjectRichTextBox RichTextBox => variableRichTextBoxValueControl.RichTextBox;
+        private IObjectRichTextBox RichTextBox => variableRichTextBoxValueControl.RichTextBox;
 
         public void Edit(Type assignedTo, XmlElement? objectListElement = null)
         {

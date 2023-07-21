@@ -41,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
         private readonly IFieldControlCommandFactory _fieldControlCommandFactory;
         private readonly IImageListService _imageListService;
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
-        private readonly ObjectRichTextBox _objectRichTextBox;
+        private readonly IObjectRichTextBox _objectRichTextBox;
         private readonly ITypeLoadHelper _typeLoadHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -212,7 +212,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls
             _objectRichTextBox.Multiline = false;
             _objectRichTextBox.ReadOnly = true;
 
-            this.radPanelRichTextBox.Controls.Add(_objectRichTextBox);
+            this.radPanelRichTextBox.Controls.Add((Control)_objectRichTextBox);
             ((ISupportInitialize)this.radPanelRichTextBox).EndInit();
             this.radPanelRichTextBox.ResumeLayout(true);
         }

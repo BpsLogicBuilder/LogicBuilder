@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Factories
             ); 
         }
 
-        public ObjectRichTextBox GetObjectRichTextBox()
+        public IObjectRichTextBox GetObjectRichTextBox()
         {
             return new ObjectRichTextBox();
         }

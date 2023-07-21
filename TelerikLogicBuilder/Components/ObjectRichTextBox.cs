@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Components
 {
-    internal class ObjectRichTextBox : RichTextBox
+    internal class ObjectRichTextBox : RichTextBox, IObjectRichTextBox
     {
         public ObjectRichTextBox()
         {

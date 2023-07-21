@@ -51,7 +51,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
         private EventHandler btnPasteXmlClickHandler;
         private EventHandler btnAddClickHandler;
         private EventHandler btnUpdateClickHandler;
-        private readonly ObjectRichTextBox _objectRichTextBox;
+        private readonly IObjectRichTextBox _objectRichTextBox;
         private readonly IRadListBoxManager<IConditionFunctionListBoxItem> radListBoxManager;
 
         public EditConditionFunctionsForm(
@@ -356,7 +356,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConditionFunctions
                 radGroupBoxEdit,
                 radPanelEdit,
                 radPanelEditControl,
-                _objectRichTextBox,
+                (Control)_objectRichTextBox,
                 multiLine: false
             );
         }

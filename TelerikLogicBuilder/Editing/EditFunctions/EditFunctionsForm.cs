@@ -50,7 +50,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
         private EventHandler btnPasteXmlClickHandler;
         private EventHandler btnAddClickHandler;
         private EventHandler btnUpdateClickHandler;
-        private readonly ObjectRichTextBox _objectRichTextBox;
+        private readonly IObjectRichTextBox _objectRichTextBox;
         private readonly IRadListBoxManager<IFunctionListBoxItem> radListBoxManager;
 
         public EditFunctionsForm(
@@ -322,7 +322,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditFunctions
                 radGroupBoxEdit,
                 radPanelEdit,
                 radPanelEditControl,
-                _objectRichTextBox,
+                (Control)_objectRichTextBox,
                 multiLine: false
             );
         }
