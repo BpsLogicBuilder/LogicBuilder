@@ -41,7 +41,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
         private readonly IFunctionElementValidator _functionElementValidator;
         private readonly IFunctionHelper _functionHelper;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper;
-        private readonly EditXmlRichTextBoxPanel _richTextBoxPanel;
+        private readonly IEditXmlRichTextBoxPanel _richTextBoxPanel;
         private readonly IValidateXmlTextHelper _validateXmlTextHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IXmlValidator _xmlValidator;
@@ -191,7 +191,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditXml
 
             _richTextBoxPanel.Dock = DockStyle.Fill;
             _richTextBoxPanel.Location = new Point(0, 0);
-            this.radGroupBoxXml.Controls.Add(_richTextBoxPanel);
+            this.radGroupBoxXml.Controls.Add((Control)_richTextBoxPanel);
 
             ((ISupportInitialize)this.radGroupBoxXml).EndInit();
             this.radGroupBoxXml.ResumeLayout(true);

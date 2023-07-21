@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
 {
     internal class UserControlFactory : IUserControlFactory
     {
-        public EditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel()
+        public IEditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel()
         {
             return new EditXmlRichTextBoxPanel
             (

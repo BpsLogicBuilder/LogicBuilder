@@ -12,7 +12,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    internal partial class EditXmlRichTextBoxPanel : UserControl
+    internal partial class EditXmlRichTextBoxPanel : UserControl, IEditXmlRichTextBoxPanel
     {
         private readonly IImageListService _imageListService;
         private readonly IRichTextBoxPanelCommandFactory _richTextBoxPanelCommandFactory;

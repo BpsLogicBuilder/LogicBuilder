@@ -2,7 +2,7 @@
 {
     internal interface IUserControlFactory
     {
-        EditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel();
+        IEditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel();
         IRichTextBoxPanel GetRichTextBoxPanel();
     }
 }
