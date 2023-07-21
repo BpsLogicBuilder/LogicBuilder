@@ -108,7 +108,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _refreshDocumentsExplorerCommand = refreshDocumentsExplorerCommand;
             _renameDocumentCommand = renameDocumentCommand;
 
-            this.radTreeView1 = componentFactory.GetFileSystemTreeView();
+            this.radTreeView1 = (RadTreeView)componentFactory.GetFileSystemTreeView();
 
             InitializeComponent();
             Initialize();

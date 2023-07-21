@@ -3,7 +3,7 @@ using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Components
 {
-    internal class FileSystemTreeView : RadTreeView
+    internal class FileSystemTreeView : RadTreeView, IFileSystemTreeView
     {
         public FileSystemTreeView(IFileSystemDragDropHandler fileSystemDragDropHandler)
         {

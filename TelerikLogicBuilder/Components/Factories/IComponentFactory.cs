@@ -2,7 +2,7 @@
 {
     internal interface IComponentFactory
     {
-        FileSystemTreeView GetFileSystemTreeView();
+        IFileSystemTreeView GetFileSystemTreeView();
         ObjectRichTextBox GetObjectRichTextBox();
         RichInputBox GetRichInputBox();
     }

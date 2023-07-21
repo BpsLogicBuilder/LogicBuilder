@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Factories
 {
     internal class ComponentFactory : IComponentFactory
     {
-        public FileSystemTreeView GetFileSystemTreeView()
+        public IFileSystemTreeView GetFileSystemTreeView()
         {
             return new FileSystemTreeView
             (

@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Helpers
         {
             get
             {
-                if (this.draggedNode?.TreeView is not FileSystemTreeView fileSystemTreeView)
+                if (this.draggedNode?.TreeView is not IFileSystemTreeView fileSystemTreeView)
                     throw new ArgumentException($"{nameof(this.draggedNode)}: {{CD614B2D-7EC1-4911-BCFE-029574186B7E}}");
 
                 return fileSystemTreeView.FileSystemDragDropHandler;
