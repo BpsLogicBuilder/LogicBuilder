@@ -12,6 +12,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initializati
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -110,6 +111,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             IThemeManager themeManager,
             IVariableListInitializer variableListInitializer,
             IUiNotificationService uiNotificationService,
+            IUserControlFactory userControlFactory,
             BuildActiveDocumentCommand buildActiveDocumentCommand,
             BuildSaveConsolidateSelectedDocumentsCommand buildSaveConsolidateSelectedDocumentsCommand,
             CloseProjectCommand closeProjectCommand,
@@ -151,9 +153,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ViewFlowDiagramStencilCommand viewFlowDiagramStencilCommand,
             ViewMessagesCommand viewMessagesCommand,
             ViewPanAndZoomWindowCommand viewPanAndZoomWindowCommand,
-            ViewProjectExplorerCommand viewProjectExplorerCommand,
-            IMessages messages,
-            IProjectExplorer projectExplorer)
+            ViewProjectExplorerCommand viewProjectExplorerCommand)
         {
             _applicationCommandsFactory = applicationCommandsFactory;
             _checkSelectedApplication = checkSelectedApplication;
@@ -214,8 +214,8 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
             _buildActiveDocumentCommand = buildActiveDocumentCommand;
             _buildSaveConsolidateSelectedDocumentsCommand = buildSaveConsolidateSelectedDocumentsCommand;
-            _messages = messages;
-            _projectExplorer = projectExplorer;
+            _messages = userControlFactory.GetMessages();
+            _projectExplorer = userControlFactory.GetProjectExplorer();
 
             documentExplorerErrorCountChangedSubscription = _uiNotificationService.DocumentExplorerErrorCountChangedSubject.Subscribe(DocumentExplorerErrorCountChanged);
             logicBuilderExceptionSubscription = _uiNotificationService.LogicBuilderExceptionSubject.Subscribe(LogicBuilderExceptionOccurred);

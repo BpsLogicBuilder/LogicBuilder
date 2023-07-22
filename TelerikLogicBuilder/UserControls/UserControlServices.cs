@@ -10,8 +10,6 @@ namespace Microsoft.Extensions.DependencyInjection
             return services
                 .AddTransient<ConfigurationExplorer>()
                 .AddTransient<DocumentsExplorer>()
-                .AddTransient<IMessages, Messages>()
-                .AddTransient<IProjectExplorer, ProjectExplorer>()
                 .AddSingleton<IRadCheckBoxHelper, RadCheckBoxHelper>()
                 .AddSingleton<IRadDropDownListHelper, RadDropDownListHelper>()
                 .AddTransient<RichInputBoxMessagePanel>()
