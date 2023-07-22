@@ -27,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
             );
         }
 
-        public DocumentsExplorer GetDocumentsExplorer()
+        public IDocumentsExplorer GetDocumentsExplorer()
         {
             return new DocumentsExplorer
             (
@@ -101,7 +101,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
             );
         }
 
-        public RulesExplorer GetRulesExplorer()
+        public IRulesExplorer GetRulesExplorer()
         {
             return new RulesExplorer
             (

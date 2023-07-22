@@ -3,12 +3,12 @@
     internal interface IUserControlFactory
     {
         IConfigurationExplorer GetConfigurationExplorer();
-        DocumentsExplorer GetDocumentsExplorer();
+        IDocumentsExplorer GetDocumentsExplorer();
         IEditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel();
         IProjectExplorer GetProjectExplorer();
         IMessages GetMessages();
         RichInputBoxMessagePanel GetRichInputBoxMessagePanel();
         IRichTextBoxPanel GetRichTextBoxPanel();
-        RulesExplorer GetRulesExplorer();
+        IRulesExplorer GetRulesExplorer();
     }
 }
