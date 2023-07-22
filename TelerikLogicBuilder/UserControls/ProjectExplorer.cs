@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
@@ -11,12 +12,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly ConfigurationExplorer _configurationExplorer;
         private readonly DocumentsExplorer _documentsExplorer;
         private readonly RulesExplorer _rulesExplorer;
-        public ProjectExplorer(IMainWindow mainWindow, ConfigurationExplorer configurationExplorer, DocumentsExplorer documentsExplorer, RulesExplorer rulesExplorer)
+        public ProjectExplorer(IMainWindow mainWindow, IUserControlFactory userControlFactory)
         {
             _mainWindow = mainWindow;
-            _configurationExplorer = configurationExplorer;
-            _documentsExplorer = documentsExplorer;
-            _rulesExplorer = rulesExplorer;
+            _configurationExplorer = userControlFactory.GetConfigurationExplorer();
+            _documentsExplorer = userControlFactory.GetDocumentsExplorer();
+            _rulesExplorer = userControlFactory.GetRulesExplorer();
             InitializeComponent();
             Initialize();
             InitializeEventHandlers();

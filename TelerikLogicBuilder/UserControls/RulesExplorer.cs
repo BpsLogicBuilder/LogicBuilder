@@ -45,8 +45,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         public IDictionary<string, string> ExpandedNodes => expandedNodes;
 
         public RulesExplorer(
-            IMainWindow mainWindow,
             IImageListService imageListService,
+            IMainWindow mainWindow,
             ITreeViewBuilderFactory treeViewBuiilderFactory,
             ITreeViewService treeViewService,
             IUiNotificationService uiNotificationService,
@@ -56,8 +56,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             ViewCommand viewCommand,
             RefreshRulesExplorerCommand refreshRulesExplorerCommand)
         {
-            _mainWindow = mainWindow;
             _imageListService = imageListService;
+            _mainWindow = mainWindow;
             _treeViewBuiilderFactory = treeViewBuiilderFactory;
             _treeViewService = treeViewService;
             _uiNotificationService = uiNotificationService;

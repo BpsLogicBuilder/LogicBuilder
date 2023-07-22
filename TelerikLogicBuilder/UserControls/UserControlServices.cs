@@ -8,11 +8,8 @@ namespace Microsoft.Extensions.DependencyInjection
         internal static IServiceCollection AddUserControls(this IServiceCollection services)
         {
             return services
-                .AddTransient<ConfigurationExplorer>()
-                .AddTransient<DocumentsExplorer>()
                 .AddSingleton<IRadCheckBoxHelper, RadCheckBoxHelper>()
                 .AddSingleton<IRadDropDownListHelper, RadDropDownListHelper>()
-                .AddTransient<RulesExplorer>()
 
                 //ConfigurationExplorerHelpers
                 .AddConfiguratioExplorerCommands()
