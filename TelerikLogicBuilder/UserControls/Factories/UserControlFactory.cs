@@ -15,7 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
 {
     internal class UserControlFactory : IUserControlFactory
     {
-        public ConfigurationExplorer GetConfigurationExplorer()
+        public IConfigurationExplorer GetConfigurationExplorer()
         {
             return new ConfigurationExplorer
             (

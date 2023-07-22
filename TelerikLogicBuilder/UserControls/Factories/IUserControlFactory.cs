@@ -2,7 +2,7 @@
 {
     internal interface IUserControlFactory
     {
-        ConfigurationExplorer GetConfigurationExplorer();
+        IConfigurationExplorer GetConfigurationExplorer();
         DocumentsExplorer GetDocumentsExplorer();
         IEditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel();
         IProjectExplorer GetProjectExplorer();

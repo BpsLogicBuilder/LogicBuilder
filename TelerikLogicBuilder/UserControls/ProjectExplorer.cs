@@ -9,7 +9,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly IMainWindow _mainWindow;
 
         //controls
-        private readonly ConfigurationExplorer _configurationExplorer;
+        private readonly IConfigurationExplorer _configurationExplorer;
         private readonly DocumentsExplorer _documentsExplorer;
         private readonly RulesExplorer _rulesExplorer;
         public ProjectExplorer(IMainWindow mainWindow, IUserControlFactory userControlFactory)
@@ -73,7 +73,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _configurationExplorer.Dock = DockStyle.Fill;
             this.radPageViewDocuments.Controls.Add(_documentsExplorer);
             this.radPageViewRules.Controls.Add(_rulesExplorer);
-            this.radPageViewConfiguration.Controls.Add(_configurationExplorer);
+            this.radPageViewConfiguration.Controls.Add((Control)_configurationExplorer);
 
             this.radPageViewDocuments.ResumeLayout(false);
             this.radPageViewRules.ResumeLayout(false);
