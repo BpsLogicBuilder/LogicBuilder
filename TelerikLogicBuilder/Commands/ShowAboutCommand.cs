@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Commands
 {
@@ -16,9 +17,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Commands
 
         public override void Execute()
         {
-            using IScopedDisposableManager<LogicBuilderAboutBox> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<LogicBuilderAboutBox>>();
-            LogicBuilderAboutBox aboutBox = disposableManager.ScopedService;
-            aboutBox.ShowDialog(_mainWindow.Instance);
+            using IScopedDisposableManager<ILogicBuilderAboutBox> disposableManager = Program.ServiceProvider.GetRequiredService<IScopedDisposableManager<ILogicBuilderAboutBox>>();
+            ILogicBuilderAboutBox aboutBox = disposableManager.ScopedService;
+            ((Form)aboutBox).ShowDialog(_mainWindow.Instance);
         }
     }
 }

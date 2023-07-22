@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Forms
 {
-    partial class LogicBuilderAboutBox : Telerik.WinControls.UI.RadForm
+    partial class LogicBuilderAboutBox : Telerik.WinControls.UI.RadForm, ILogicBuilderAboutBox
     {
         private readonly IFormInitializer _formInitializer;
         public LogicBuilderAboutBox(IFormInitializer formInitializer)

@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IFormInitializer, FormInitializer>()
                 .AddSingleton<IGetPromptForLiteralDomainUpdate, GetPromptForLiteralDomainUpdate>()
                 .AddSingleton<IImageListService, ImageListService>()
-                .AddTransient<LogicBuilderAboutBox>()
+                .AddTransient<ILogicBuilderAboutBox, LogicBuilderAboutBox>()
                 .AddSingleton<IMemberAttributeReader, MemberAttributeReader>()
                 .AddSingleton<IMainWindow, MainWindow>()
                 .AddSingleton<IModuleNamesReader, ModuleNamesReader>()
