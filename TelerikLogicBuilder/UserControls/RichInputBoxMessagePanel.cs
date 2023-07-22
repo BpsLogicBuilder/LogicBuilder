@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
-    internal partial class RichInputBoxMessagePanel : UserControl
+    internal partial class RichInputBoxMessagePanel : UserControl, IRichInputBoxMessagePanel
     {
         private readonly IRichInputBox _richInputBox;
         public RichInputBoxMessagePanel(IComponentFactory componentFactory)

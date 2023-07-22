@@ -7,7 +7,7 @@
         IEditXmlRichTextBoxPanel GetEditXmlRichTextBoxPanel();
         IProjectExplorer GetProjectExplorer();
         IMessages GetMessages();
-        RichInputBoxMessagePanel GetRichInputBoxMessagePanel();
+        IRichInputBoxMessagePanel GetRichInputBoxMessagePanel();
         IRichTextBoxPanel GetRichTextBoxPanel();
         IRulesExplorer GetRulesExplorer();
     }

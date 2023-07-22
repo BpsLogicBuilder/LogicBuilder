@@ -22,10 +22,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private readonly ITableErrorSourceDataParser _tableErrorSourceDataParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
         private readonly IUiNotificationService _uiNotificationService;
-        private readonly RichInputBoxMessagePanel _richInputBoxMessagePanelDocuments;
-        private readonly RichInputBoxMessagePanel _richInputBoxMessagePanelRules;
-        private readonly RichInputBoxMessagePanel _richInputBoxMessagePanelMessages;
-        private readonly RichInputBoxMessagePanel _richInputBoxMessagePanelPageSearchResults;
+        private readonly IRichInputBoxMessagePanel _richInputBoxMessagePanelDocuments;
+        private readonly IRichInputBoxMessagePanel _richInputBoxMessagePanelRules;
+        private readonly IRichInputBoxMessagePanel _richInputBoxMessagePanelMessages;
+        private readonly IRichInputBoxMessagePanel _richInputBoxMessagePanelPageSearchResults;
 
 
         public Messages(
@@ -195,10 +195,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _richInputBoxMessagePanelMessages.Dock = DockStyle.Fill;
             _richInputBoxMessagePanelPageSearchResults.Dock = DockStyle.Fill;
 
-            this.radPageViewDocuments.Controls.Add(_richInputBoxMessagePanelDocuments);
-            this.radPageViewRules.Controls.Add(_richInputBoxMessagePanelRules);
-            this.radPageViewMessages.Controls.Add(_richInputBoxMessagePanelMessages);
-            this.radPageViewPageSearchResults.Controls.Add(_richInputBoxMessagePanelPageSearchResults);
+            this.radPageViewDocuments.Controls.Add((Control)_richInputBoxMessagePanelDocuments);
+            this.radPageViewRules.Controls.Add((Control)_richInputBoxMessagePanelRules);
+            this.radPageViewMessages.Controls.Add((Control)_richInputBoxMessagePanelMessages);
+            this.radPageViewPageSearchResults.Controls.Add((Control)_richInputBoxMessagePanelPageSearchResults);
 
             this.radPageViewDocuments.ResumeLayout(false);
             this.radPageViewRules.ResumeLayout(false);

@@ -84,7 +84,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
             );
         }
 
-        public RichInputBoxMessagePanel GetRichInputBoxMessagePanel()
+        public IRichInputBoxMessagePanel GetRichInputBoxMessagePanel()
         {
             return new RichInputBoxMessagePanel
             (
