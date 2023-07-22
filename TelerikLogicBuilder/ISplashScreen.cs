@@ -1,6 +1,8 @@
-﻿namespace ABIS.LogicBuilder.FlowBuilder
+﻿using System;
+
+namespace ABIS.LogicBuilder.FlowBuilder
 {
-    internal interface ISplashScreen
+    internal interface ISplashScreen : IDisposable
     {
         void Close();
         void Show();

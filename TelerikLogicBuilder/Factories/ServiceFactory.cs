@@ -46,6 +46,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
                 cancellationTokenSource
             );
 
+        public ISplashScreen GetSplashScreen()
+        {
+            return new SplashScreen
+            (
+                Program.ServiceProvider.GetRequiredService<IFormInitializer>()
+            );
+        }
+
         public ITreeViewXmlDocumentHelper GetTreeViewXmlDocumentHelper(SchemaName schema)
             => new TreeViewXmlDocumentHelper
             (

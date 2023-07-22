@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
+using ABIS.LogicBuilder.FlowBuilder.Factories;
 using ABIS.LogicBuilder.FlowBuilder.Prompts;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using Microsoft.Extensions.DependencyInjection;
@@ -159,7 +160,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private static void ShowSplashScreen()
         {
-            splashScreen = ServiceProvider.GetRequiredService<ISplashScreen>();
+            splashScreen = ServiceProvider.GetRequiredService<IServiceFactory>().GetSplashScreen();
             splashScreen.Show();
         }
 

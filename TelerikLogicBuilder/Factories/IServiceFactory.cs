@@ -15,6 +15,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Factories
         IConnectorObjectTypeAutoCompleteManager GetConnectorObjectTypeAutoCompleteManager(IApplicationHostControl applicationHostControl,
             ITypeAutoCompleteTextControl textControl);
         IProgressForm GetProgressForm(Progress<ProgressMessage> progress, CancellationTokenSource cancellationTokenSource);
+        ISplashScreen GetSplashScreen();
         ITreeViewXmlDocumentHelper GetTreeViewXmlDocumentHelper(SchemaName schema);
         ITypeAutoCompleteManager GetTypeAutoCompleteManager(IApplicationHostControl applicationHostControl,
             ITypeAutoCompleteTextControl textControl);
