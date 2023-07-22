@@ -80,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public void GoToNextEmptyLine(MessageTab messageTab)
         {
-            RichInputBox richInputBox = GetRichInputBox(messageTab);
+            IRichInputBox richInputBox = GetRichInputBox(messageTab);
             if (richInputBox.Lines.Length != 0 && richInputBox.Lines[^1].Length != 0)
             {
                 richInputBox.Select(richInputBox.TextLength, 0);
@@ -106,7 +106,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public void Select(int start, int length, MessageTab messageTab)
         {
-            RichInputBox richInputBox = GetRichInputBox(messageTab);
+            IRichInputBox richInputBox = GetRichInputBox(messageTab);
             richInputBox.Select(start, length);
             richInputBox.Focus();
         }
@@ -172,7 +172,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
         }
 
-        private RichInputBox GetRichInputBox(MessageTab messageTab)
+        private IRichInputBox GetRichInputBox(MessageTab messageTab)
         {
             return messageTab switch
             {
@@ -220,7 +220,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         #region Event Handlers
         private void RichInputBox_MouseClick(object? sender, MouseEventArgs e)
         {
-            if (sender is not RichInputBox richInputBox)
+            if (sender is not IRichInputBox richInputBox)
                 throw _exceptionHelper.CriticalException("{46048064-1960-4AC9-846C-D2BEA736A392}");
 
             int charIndex = richInputBox.GetCharIndexFromPosition(e.Location);

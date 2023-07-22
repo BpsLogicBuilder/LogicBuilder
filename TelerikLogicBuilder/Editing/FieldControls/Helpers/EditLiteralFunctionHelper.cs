@@ -27,7 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
 
-        private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
+        private IRichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
 
         public void Edit(Type assignedTo, XmlElement? functionElement = null)
         {
@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                                                     ? disposableManager.GetEditBooleanFunctionForm(GetXmlDocument())
                                                     : disposableManager.GetEditValueFunctionForm(assignedTo, GetXmlDocument());
 
-            editingForm.ShowDialog(RichInputBox);
+            editingForm.ShowDialog((IWin32Window)RichInputBox);
             if (editingForm.DialogResult != DialogResult.OK)
                 return;
 

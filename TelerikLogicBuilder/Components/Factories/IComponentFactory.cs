@@ -4,6 +4,6 @@
     {
         IFileSystemTreeView GetFileSystemTreeView();
         IObjectRichTextBox GetObjectRichTextBox();
-        RichInputBox GetRichInputBox();
+        IRichInputBox GetRichInputBox();
     }
 }

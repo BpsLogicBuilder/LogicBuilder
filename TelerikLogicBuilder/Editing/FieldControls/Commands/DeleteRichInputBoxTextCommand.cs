@@ -5,7 +5,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class DeleteRichInputBoxTextCommand : ClickCommandBase
     {
-        private readonly RichInputBox richInputBox;
+        private readonly IRichInputBox richInputBox;
 
         public DeleteRichInputBoxTextCommand(
             IRichInputBoxValueControl richInputBoxValueControl)

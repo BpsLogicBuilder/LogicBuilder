@@ -6,7 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class CopyRichInputBoxTextCommand : ClickCommandBase
     {
-        private readonly RichInputBox richInputBox;
+        private readonly IRichInputBox richInputBox;
 
         public CopyRichInputBoxTextCommand(
             IRichInputBoxValueControl richInputBoxValueControl)

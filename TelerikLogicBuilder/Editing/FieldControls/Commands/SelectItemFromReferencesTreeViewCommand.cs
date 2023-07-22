@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
         }
 
         private ApplicationTypeInfo Application => propertyInputRichInputBoxControl.Application;
-        private RichInputBox RichInputBox => propertyInputRichInputBoxControl.RichInputBox;
+        private IRichInputBox RichInputBox => propertyInputRichInputBoxControl.RichInputBox;
         private string? SourceClassName => propertyInputRichInputBoxControl.SourceClassName;
 
         public override void Execute()
@@ -42,7 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             IIntellisenseFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IIntellisenseFormFactory>();
             using IIncludesHelperForm includesHelperForm = disposableManager.GetIncludesHelperForm(sourceClass);
 
-            includesHelperForm.ShowDialog(RichInputBox);
+            includesHelperForm.ShowDialog((IWin32Window)RichInputBox);
             if (includesHelperForm.DialogResult != DialogResult.OK)
                 return;
 

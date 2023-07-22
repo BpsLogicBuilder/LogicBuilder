@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal class UpdateRichInputBoxXml : IUpdateRichInputBoxXml
     {
-        public void Update(XmlElement inputBoxXmlElement, RichInputBox richInputBox)
+        public void Update(XmlElement inputBoxXmlElement, IRichInputBox richInputBox)
         {
             richInputBox.Clear();
             foreach (XmlNode childNode in inputBoxXmlElement.ChildNodes)

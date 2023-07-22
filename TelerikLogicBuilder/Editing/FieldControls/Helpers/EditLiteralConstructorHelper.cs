@@ -45,7 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         }
 
         private ApplicationTypeInfo Application => richInputBoxValueControl.Application;
-        private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
+        private IRichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
 
         public void Edit(Type assignedTo, XmlElement? constructorElement = null)
         {
@@ -69,7 +69,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 true
             );
 
-            editConstructorForm.ShowDialog(RichInputBox);
+            editConstructorForm.ShowDialog((IWin32Window)RichInputBox);
             if (editConstructorForm.DialogResult != DialogResult.OK)
                 return;
 

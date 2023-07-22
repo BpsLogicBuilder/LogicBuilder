@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
         }
 
         private ApplicationTypeInfo Application => propertyInputRichInputBoxControl.Application;
-        private RichInputBox RichInputBox => propertyInputRichInputBoxControl.RichInputBox;
+        private IRichInputBox RichInputBox => propertyInputRichInputBoxControl.RichInputBox;
         private string? SourceClassName => propertyInputRichInputBoxControl.SourceClassName;
 
         public override void Execute()
@@ -49,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
             using ISelectFromDomainForm selectFromDomainForm = disposableManager.GetSelectFromDomainForm(GetDomain(), propertyInputRichInputBoxControl.Comments);
 
-            selectFromDomainForm.ShowDialog(RichInputBox);
+            selectFromDomainForm.ShowDialog((IWin32Window)RichInputBox);
             if (selectFromDomainForm.DialogResult != DialogResult.OK)
                 return;
 

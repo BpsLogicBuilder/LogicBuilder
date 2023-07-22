@@ -25,7 +25,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
 
-        private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
+        private IRichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
 
         public override void Execute()
         {

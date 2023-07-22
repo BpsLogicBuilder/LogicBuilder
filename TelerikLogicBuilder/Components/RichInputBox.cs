@@ -18,7 +18,7 @@ using System.Xml;
 namespace ABIS.LogicBuilder.FlowBuilder.Components
 {
     //Modified From code written by Mav.Northwind (CodeProject)
-    internal partial class RichInputBox : RichTextBox
+    internal partial class RichInputBox : RichTextBox, IRichInputBox
     {
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IPathHelper _pathHelper;
@@ -74,7 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //12/2006 new property
-        internal bool DenySpecialCharacters
+        public bool DenySpecialCharacters
         {
             set { denySpecialCharacters = value; }
         }
@@ -194,7 +194,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         /// Insert a given text into the RichTextBox at the current insert position.
         /// </summary>
         /// <param name="text">Text to be inserted</param>
-        internal void InsertText(string text)
+        public void InsertText(string text)
         {
             InsertText(text, this.SelectionStart);
         }
@@ -205,7 +205,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         /// </summary>
         /// <param name="text">Text to be inserted</param>
         /// <param name="position">Insert position</param>
-        internal void InsertText(string text, int position)
+        public void InsertText(string text, int position)
         {
             if (position < 0 || position > this.Text.Length)
                 throw new ArgumentOutOfRangeException(nameof(position));
@@ -243,7 +243,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         /// </summary>
         /// <param name="text">Text to be inserted</param>
         /// <param name="hyperlink">Invisible hyperlink string to be inserted</param>
-        internal void InsertLink(string text, string hyperlink, LinkType linkType)
+        public void InsertLink(string text, string hyperlink, LinkType linkType)
         {
             InsertLink(text, hyperlink, this.SelectionStart, linkType);
         }
@@ -258,7 +258,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         /// <param name="text">Text to be inserted</param>
         /// <param name="hyperlink">Invisible hyperlink string to be inserted</param>
         /// <param name="position">Insert position</param>
-        internal void InsertLink(string text, string hyperlink, int position, LinkType linkType)
+        public void InsertLink(string text, string hyperlink, int position, LinkType linkType)
         {
             if (position < 0 || position > this.Text.Length)
                 throw new ArgumentOutOfRangeException(nameof(position));
@@ -506,7 +506,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //12/2006 new method
-        internal string GetHiddenLinkText(int position)
+        public string GetHiddenLinkText(int position)
         {
             IntPtr eventMask = this.SuspendEvents();
 
@@ -600,7 +600,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //12/2006 new method
-        internal string GetMixedXml()
+        public string GetMixedXml()
         {
             IntPtr eventMask = this.SuspendEvents();
 
@@ -638,7 +638,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //12/2006 new method
-        internal string GetVisibleText()
+        public string GetVisibleText()
         {
             IntPtr eventMask = this.SuspendEvents();
 
@@ -685,7 +685,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //12/2006 new method
-        internal LinkBoundaries? GetBoundary(int position)
+        public LinkBoundaries? GetBoundary(int position)
         {
             IntPtr eventMask = this.SuspendEvents();
             List<LinkBoundaries> boundaries = GetBoundaryPositions();
@@ -718,7 +718,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //12/2006 new method
-        internal bool LinkInSelection()
+        public bool LinkInSelection()
         {
             IntPtr eventMask = this.SuspendEvents();
             int start = this.SelectionStart;
@@ -778,7 +778,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //12/2006 new method
-        internal bool IsSelectionEligibleForLink()
+        public bool IsSelectionEligibleForLink()
         {
             IntPtr eventMask = this.SuspendEvents();
 

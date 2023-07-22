@@ -5,6 +5,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
 {
     internal interface IUpdateRichInputBoxXml
     {
-        void Update(XmlElement xmlElement, RichInputBox richInputBox);
+        void Update(XmlElement xmlElement, IRichInputBox richInputBox);
     }
 }

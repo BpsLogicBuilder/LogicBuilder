@@ -21,7 +21,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         RadMenuItem MnuItemCut { get; }
         RadMenuItem MnuItemPaste { get; }
         RadMenuItem MnuItemToCamelCase { get; }
-        RichInputBox RichInputBox { get; }
+        IRichInputBox RichInputBox { get; }
 
         void ClearMessage();
         void SetErrorMessage(string message);

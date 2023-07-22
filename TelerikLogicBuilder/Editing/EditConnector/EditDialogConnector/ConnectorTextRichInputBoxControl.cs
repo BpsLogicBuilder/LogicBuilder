@@ -35,7 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
         private readonly IUpdateRichInputBoxXml _updateRichInputBoxXml;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
-        private readonly RichInputBox _richInputBox;
+        private readonly IRichInputBox _richInputBox;
 
         private readonly IEditingControl editingControl;
 
@@ -125,7 +125,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         public RadMenuItem MnuItemPaste => mnuItemPaste;
         public RadMenuItem MnuItemToCamelCase => mnuItemToCamelCase;
 
-        public RichInputBox RichInputBox => _richInputBox;
+        public IRichInputBox RichInputBox => _richInputBox;
 
         public ApplicationTypeInfo Application => editingControl.Application;
 
@@ -185,8 +185,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
 
         public void SetToolTipHelp(string toolTipText)
         {
-            helpProvider.SetHelpString(_richInputBox, toolTipText);
-            toolTip.SetToolTip(_richInputBox, toolTipText);
+            helpProvider.SetHelpString((Control)_richInputBox, toolTipText);
+            toolTip.SetToolTip((Control)_richInputBox, toolTipText);
             toolTip.SetToolTip(btnConstructor, toolTipText);
             toolTip.SetToolTip(btnFunction, toolTipText);
             toolTip.SetToolTip(btnVariable, toolTipText);
@@ -253,7 +253,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             _richInputBox.Multiline = false;
             _richInputBox.DenySpecialCharacters = false;
 
-            this.radPanelRichInputBox.Controls.Add(_richInputBox);
+            this.radPanelRichInputBox.Controls.Add((Control)_richInputBox);
             ((ISupportInitialize)this.radPanelRichInputBox).EndInit();
             this.radPanelRichInputBox.ResumeLayout(true);
         }

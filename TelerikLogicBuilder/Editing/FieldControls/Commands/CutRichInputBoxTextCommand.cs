@@ -6,7 +6,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
 {
     internal class CutRichInputBoxTextCommand : ClickCommandBase
     {
-        private readonly RichInputBox richInputBox;
+        private readonly IRichInputBox richInputBox;
 
         public CutRichInputBoxTextCommand(
             IRichInputBoxValueControl richInputBoxValueControl)

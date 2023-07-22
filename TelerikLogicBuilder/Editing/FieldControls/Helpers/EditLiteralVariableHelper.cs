@@ -32,7 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             this.richInputBoxValueControl = richInputBoxValueControl;
         }
 
-        private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
+        private IRichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
 
         public void Edit(Type assignedTo, XmlElement? variableElement = null)
         {
@@ -46,7 +46,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 editVariableForm.SetVariable(_variableDataParser.Parse(variableElement).Name);
             }
 
-            editVariableForm.ShowDialog(RichInputBox);
+            editVariableForm.ShowDialog((IWin32Window)RichInputBox);
             if (editVariableForm.DialogResult != DialogResult.OK)
                 return;
 

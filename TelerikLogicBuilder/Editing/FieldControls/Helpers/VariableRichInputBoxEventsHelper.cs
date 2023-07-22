@@ -18,7 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
             RichInputBox.Disposed += RichInputBox_Disposed;
         }
 
-        private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
+        private IRichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
 
         public void Setup()
         {

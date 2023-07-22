@@ -36,7 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.L
         private readonly ILayoutFieldControlButtons _layoutFieldControlButtons;
         private readonly ILiteralListItemRichInputBoxEventsHelper _richInputBoxEventsHelper;
         private readonly IUpdateRichInputBoxXml _updateRichInputBoxXml;
-        private readonly RichInputBox _richInputBox;
+        private readonly IRichInputBox _richInputBox;
         private readonly IXmlDataHelper _xmlDataHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
 
@@ -136,7 +136,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.L
         public RadMenuItem MnuItemPaste => mnuItemPaste;
         public RadMenuItem MnuItemToCamelCase => mnuItemToCamelCase;
 
-        public RichInputBox RichInputBox => _richInputBox;
+        public IRichInputBox RichInputBox => _richInputBox;
 
         public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
@@ -202,8 +202,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.L
 
         public void SetToolTipHelp(string toolTipText)
         {
-            helpProvider.SetHelpString(_richInputBox, toolTipText);
-            toolTip.SetToolTip(_richInputBox, toolTipText);
+            helpProvider.SetHelpString((Control)_richInputBox, toolTipText);
+            toolTip.SetToolTip((Control)_richInputBox, toolTipText);
             toolTip.SetToolTip(btnConstructor, toolTipText);
             toolTip.SetToolTip(btnFunction, toolTipText);
             toolTip.SetToolTip(btnVariable, toolTipText);
@@ -282,7 +282,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.L
             _richInputBox.Multiline = false;
             _richInputBox.DenySpecialCharacters = dataGraphEditingControl.DenySpecialCharacters;
 
-            this.radPanelRichInputBox.Controls.Add(_richInputBox);
+            this.radPanelRichInputBox.Controls.Add((Control)_richInputBox);
             ((ISupportInitialize)this.radPanelRichInputBox).EndInit();
             this.radPanelRichInputBox.ResumeLayout(true);
         }

@@ -6,18 +6,16 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 {
     internal interface IObjectRichTextBox : IWin32Window
     {
-        DockStyle Dock { set; }
-        Point Location { set; }
-
-        string Text { get; set; }
         BorderStyle BorderStyle { get; set; }
-        Padding Margin { get; set; }
-        string Name { get; set; }
-
         bool DetectUrls { get; set; }
+        DockStyle Dock { set; }
         bool HideSelection { get; set; }
+        Point Location { set; }
+        Padding Margin { get; set; }
         bool Multiline { get; set; }
+        string Name { get; set; }
         bool ReadOnly { get; set; }
+        string Text { get; set; }
         bool Visible { get; set; }
 
         void Select();

@@ -2,6 +2,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using System;
+using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -92,7 +93,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
                 }
             };
 
-            radContextMenuManager.SetRadContextMenu(richInputBoxValueControl.RichInputBox, radContextMenu);
+            radContextMenuManager.SetRadContextMenu((Control)richInputBoxValueControl.RichInputBox, radContextMenu);
             AddClickCommands();
         }
 
@@ -127,7 +128,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private void RichInputBox_Disposed(object? sender, System.EventArgs e)
         {
             RemoveClickCommands();
-            radContextMenuManager.SetRadContextMenu(richInputBoxValueControl.RichInputBox, null);
+            radContextMenuManager.SetRadContextMenu((Control)richInputBoxValueControl.RichInputBox, null);
             if (radContextMenu != null)
                 radContextMenu.ImageList = null;
             radContextMenu?.Dispose();

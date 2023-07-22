@@ -18,14 +18,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
             this.richInputBoxValueControl = literalParameterDomainRichInputBoxControl;
         }
 
-        private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
+        private IRichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
 
         public override void Execute()
         {
             IEditingFormFactory disposableManager = Program.ServiceProvider.GetRequiredService<IEditingFormFactory>();
             using ISelectFromDomainForm selectFromDomainForm = disposableManager.GetSelectFromDomainForm(richInputBoxValueControl.Domain, richInputBoxValueControl.Comments);
 
-            selectFromDomainForm.ShowDialog(RichInputBox);
+            selectFromDomainForm.ShowDialog((IWin32Window)RichInputBox);
             if (selectFromDomainForm.DialogResult != DialogResult.OK)
                 return;
 

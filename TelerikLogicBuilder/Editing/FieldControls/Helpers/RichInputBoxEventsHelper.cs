@@ -42,7 +42,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Helpers
         private RadMenuItem MnuItemCopy => richInputBoxValueControl.MnuItemCopy;
         private RadMenuItem MnuItemCut => richInputBoxValueControl.MnuItemCut;
         private RadMenuItem MnuItemPaste => richInputBoxValueControl.MnuItemPaste;
-        private RichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
+        private IRichInputBox RichInputBox => richInputBoxValueControl.RichInputBox;
 
         private void EnableOrDisableCopyCutPaste()
         {

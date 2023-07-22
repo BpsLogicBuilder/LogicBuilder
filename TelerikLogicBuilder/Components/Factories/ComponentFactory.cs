@@ -20,7 +20,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components.Factories
             return new ObjectRichTextBox();
         }
 
-        public RichInputBox GetRichInputBox()
+        public IRichInputBox GetRichInputBox()
         {
             return new RichInputBox
             (

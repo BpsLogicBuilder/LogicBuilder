@@ -7,7 +7,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.Commands
     internal class ToCamelCaseRichInputBoxCommand : ClickCommandBase
     {
         private readonly IStringHelper _stringHelper;
-        private readonly RichInputBox richInputBox;
+        private readonly IRichInputBox richInputBox;
 
         public ToCamelCaseRichInputBoxCommand(
             IStringHelper stringHelper,
