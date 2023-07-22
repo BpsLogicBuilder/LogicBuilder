@@ -12,7 +12,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTransient<DocumentsExplorer>()
                 .AddSingleton<IRadCheckBoxHelper, RadCheckBoxHelper>()
                 .AddSingleton<IRadDropDownListHelper, RadDropDownListHelper>()
-                .AddTransient<RichInputBoxMessagePanel>()
                 .AddTransient<RulesExplorer>()
 
                 //ConfigurationExplorerHelpers

@@ -7,6 +7,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.Structures;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
+using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using System;
 using System.Windows.Forms;
 
@@ -35,10 +36,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             ITableErrorSourceDataParser tableErrorSourceDataParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IUiNotificationService uiNotificationService,
-            RichInputBoxMessagePanel richInputBoxMessagePanelDocuments,
-            RichInputBoxMessagePanel richInputBoxMessagePanelRules,
-            RichInputBoxMessagePanel richInputBoxMessagePanelMessages,
-            RichInputBoxMessagePanel richInputBoxMessagePanelPageSearchResults)
+            IUserControlFactory userControlFactory)
         {
             _diagramErrorSourceDataParser = diagramErrorSourceDataParser;
             _exceptionHelper = exceptionHelper;
@@ -47,10 +45,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             _openFileOperations = openFileOperations;
             _xmlDocumentHelpers = xmlDocumentHelpers;
             _uiNotificationService = uiNotificationService;
-            _richInputBoxMessagePanelDocuments = richInputBoxMessagePanelDocuments;
-            _richInputBoxMessagePanelRules = richInputBoxMessagePanelRules;
-            _richInputBoxMessagePanelMessages = richInputBoxMessagePanelMessages;
-            _richInputBoxMessagePanelPageSearchResults = richInputBoxMessagePanelPageSearchResults;
+            _richInputBoxMessagePanelDocuments = userControlFactory.GetRichInputBoxMessagePanel();
+            _richInputBoxMessagePanelRules = userControlFactory.GetRichInputBoxMessagePanel();
+            _richInputBoxMessagePanelMessages = userControlFactory.GetRichInputBoxMessagePanel();
+            _richInputBoxMessagePanelPageSearchResults = userControlFactory.GetRichInputBoxMessagePanel();
             InitializeComponent();
             Initialize();
             InitializeEventHandlers();

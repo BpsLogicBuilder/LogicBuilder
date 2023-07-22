@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+﻿using ABIS.LogicBuilder.FlowBuilder.Components.Factories;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.DataParsers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.RichTextBoxPanelHelpers.Factories;
@@ -29,10 +30,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
                 Program.ServiceProvider.GetRequiredService<ITableErrorSourceDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IXmlDocumentHelpers>(),
                 Program.ServiceProvider.GetRequiredService<IUiNotificationService>(),
-                Program.ServiceProvider.GetRequiredService<RichInputBoxMessagePanel>(),
-                Program.ServiceProvider.GetRequiredService<RichInputBoxMessagePanel>(),
-                Program.ServiceProvider.GetRequiredService<RichInputBoxMessagePanel>(),
-                Program.ServiceProvider.GetRequiredService<RichInputBoxMessagePanel>()
+                Program.ServiceProvider.GetRequiredService<IUserControlFactory>()
             );
         }
 
@@ -44,6 +42,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Factories
                 Program.ServiceProvider.GetRequiredService<ConfigurationExplorer>(),
                 Program.ServiceProvider.GetRequiredService<DocumentsExplorer>(),
                 Program.ServiceProvider.GetRequiredService<RulesExplorer>()
+            );
+        }
+
+        public RichInputBoxMessagePanel GetRichInputBoxMessagePanel()
+        {
+            return new RichInputBoxMessagePanel
+            (
+                Program.ServiceProvider.GetRequiredService<IComponentFactory>()
             );
         }
 
