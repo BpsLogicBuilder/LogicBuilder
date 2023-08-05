@@ -40,6 +40,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
                         )
                     );
 
+                    resultMessage.EnsureSuccessStatusCode();
+
                     progress.Report
                     (
                         new ProgressMessage
