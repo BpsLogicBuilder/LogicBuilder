@@ -48,7 +48,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
         private readonly IDataGraphEditingHost dataGraphEditingHost;
         
         private readonly Type assignedTo;
-        private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
+        private readonly Dictionary<string, ParameterControlSet> editControlsSet = [];
         private readonly XmlDocument xmlDocument;
         private readonly string? selectedParameter;
 
@@ -304,6 +304,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConstructor
                 genericConfigurationControl.Location = new Point(0, 0);
                 genericConfigurationControl.Dock = DockStyle.Fill;
                 genericConfigurationControl.Margin = new Padding(0);
+
+                if (this.lblGenericArguments == null)
+                    throw _exceptionHelper.CriticalException("{5056E060-7C8C-4906-8CBE-91FE2940494D}");
                 this.tableLayoutPanel.Controls.Add(this.lblGenericArguments, 2, currentRow);
                 this.tableLayoutPanel.Controls.Add(genericConfigurationControl, 3, currentRow);
                 currentRow += 2;

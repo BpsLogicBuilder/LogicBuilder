@@ -168,6 +168,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         {
             if (this.SelectionLength != 1) return;
             this.SelectionProtected = false;
+
+            if (this.SelectionFont == null) throw _exceptionHelper.CriticalException("{340295E4-15E2-4226-AD64-FA045F929CDE}");
             FontStyle fontStyle = this.SelectionFont.Style;
             if (!this.SelectionFont.Underline)
                 fontStyle |= FontStyle.Underline;
@@ -181,6 +183,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         private void ResetSelectionToNormal()
         {
             this.SelectionProtected = false;
+
+            if (this.SelectionFont == null) throw _exceptionHelper.CriticalException("{7BEDFD34-902A-4B09-80B4-D937999A4D5E}");
             FontStyle fontStyle = this.SelectionFont.Style;
             if (this.SelectionFont.Underline)
                 fontStyle &= ~FontStyle.Underline;
@@ -552,6 +556,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         private bool IsSelectionBoundaryPosition()
         {
             if (this.SelectionLength > 1) return false;
+
+            if (this.SelectionFont == null) throw _exceptionHelper.CriticalException("{810C5FBD-504E-4887-9951-3C19F8BEB9FE}");
             if (this.SelectionType != RichTextBoxSelectionTypes.Empty
                 && this.SelectionType != (RichTextBoxSelectionTypes.Text | RichTextBoxSelectionTypes.MultiChar)
                 && this.SelectionProtected

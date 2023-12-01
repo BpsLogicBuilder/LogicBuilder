@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<RootNamespace>ABIS.LogicBuilder.FlowBuilder</RootNamespace>
@@ -110,7 +110,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.OData.Edm" Version="7.15.0" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
-    <PackageReference Include="UI.for.WinForms.AllControls.Net70" Version="2023.1.314" />
+    <PackageReference Include="UI.for.WinForms.AllControls.Net70" Version="2023.3.1114" />
   </ItemGroup>
 
 	<ItemGroup>

@@ -44,12 +44,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Exceptions
             this.id = id;
         }
 
-        protected CriticalLogicBuilderException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            // Implement type-specific serialization constructor logic.
-        }
-
         #region Variables
         private readonly int id;
         #endregion Variables
@@ -62,6 +56,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Exceptions
         #endregion Properties
 
         #region Methods
+        [Obsolete]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)

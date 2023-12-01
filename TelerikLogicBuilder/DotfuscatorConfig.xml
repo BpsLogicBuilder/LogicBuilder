@@ -5,7 +5,7 @@
   <propertylist>
     <property name="configuration" value="Release" />
     <property name="platform" value="x86" />
-    <property name="targetframework" value="net7.0-windows10.0.19041.0" />
+    <property name="targetframework" value="net8.0-windows10.0.19041.0" />
   </propertylist>
   <global>
     <option>monocompat</option>

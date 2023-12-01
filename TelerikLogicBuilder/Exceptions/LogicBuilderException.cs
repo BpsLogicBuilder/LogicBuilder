@@ -28,11 +28,5 @@ namespace ABIS.LogicBuilder.FlowBuilder.Exceptions
             // TODO: Add constructor logic here
             //
         }
-
-        protected LogicBuilderException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            // Implement type-specific serialization constructor logic.
-        }
     }
 }

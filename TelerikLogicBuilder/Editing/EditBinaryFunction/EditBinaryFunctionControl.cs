@@ -32,6 +32,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly IBinaryFunctionTableLayoutPanelHelper _binaryFunctionTableLayoutPanelHelper;
         private readonly IConfigurationService _configurationService;
         private readonly IEditFunctionControlHelper _editFunctionControlHelper;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IFunctionDataParser _functionDataParser;
         private readonly IFunctionElementValidator _functionElementValidator;
         private readonly IFunctionHelper _functionHelper;
@@ -44,7 +45,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
         private readonly IDataGraphEditingHost dataGraphEditingHost;
 
         private readonly Type assignedTo;
-        private readonly IDictionary<string, ParameterControlSet> editControlsSet = new Dictionary<string, ParameterControlSet>();
+        private readonly Dictionary<string, ParameterControlSet> editControlsSet = [];
         private readonly XmlDocument xmlDocument;
         private readonly string? selectedParameter;
 
@@ -82,6 +83,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
 
             _binaryFunctionTableLayoutPanelHelper = binaryFunctionTableLayoutPanelHelper;
             _configurationService = configurationService;
+            _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
             _functionElementValidator = functionElementValidator;
             _functionHelper = functionHelper;
@@ -258,6 +260,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditBinaryFunction
                 genericConfigurationControl.Location = new Point(0, 0);
                 genericConfigurationControl.Dock = DockStyle.Fill;
                 genericConfigurationControl.Margin = new Padding(0);
+
+                if (this.lblGenericArguments == null)
+                    throw _exceptionHelper.CriticalException("{702A9E9A-AB75-4218-9B92-BF352598B817}");
                 this.tableLayoutPanel.Controls.Add(this.lblGenericArguments, 2, currentRow);
                 this.tableLayoutPanel.Controls.Add(genericConfigurationControl, 3, currentRow);
                 currentRow += 2;

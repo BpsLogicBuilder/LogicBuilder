@@ -197,6 +197,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.Factories
             => new EditStandardFunctionControl
             (
                 Program.ServiceProvider.GetRequiredService<IConfigurationService>(),
+                Program.ServiceProvider.GetRequiredService<IExceptionHelper>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionDataParser>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionElementValidator>(),
                 Program.ServiceProvider.GetRequiredService<IFunctionHelper>(),

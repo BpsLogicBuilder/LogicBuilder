@@ -31,6 +31,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
     {
         private readonly IConfigurationService _configurationService;
         private readonly IEditFunctionControlHelper _editFunctionControlHelper;
+        private readonly IExceptionHelper _exceptionHelper;
         private readonly IFunctionDataParser _functionDataParser;
         private readonly IFunctionElementValidator _functionElementValidator;
         private readonly IFunctionHelper _functionHelper;
@@ -58,6 +59,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
 
         public EditStandardFunctionControl(
             IConfigurationService configurationService,
+            IExceptionHelper exceptionHelper,
             IFunctionDataParser functionDataParser,
             IFunctionElementValidator functionElementValidator,
             IFunctionHelper functionHelper,
@@ -77,6 +79,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
         {
             InitializeComponent();
             _configurationService = configurationService;
+            _exceptionHelper = exceptionHelper;
             _functionDataParser = functionDataParser;
             _functionElementValidator = functionElementValidator;
             _functionHelper = functionHelper;
@@ -258,6 +261,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditStandardFunction
                 genericConfigurationControl.Location = new Point(0, 0);
                 genericConfigurationControl.Dock = DockStyle.Fill;
                 genericConfigurationControl.Margin = new Padding(0);
+
+                if (this.lblGenericArguments == null)
+                    throw _exceptionHelper.CriticalException("{3D9FEF45-F7BF-478F-BB80-8A1AE156F27D}");
                 this.tableLayoutPanel.Controls.Add(this.lblGenericArguments, 2, currentRow);
                 this.tableLayoutPanel.Controls.Add(genericConfigurationControl, 3, currentRow);
                 currentRow += 2;

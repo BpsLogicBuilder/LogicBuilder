@@ -147,13 +147,14 @@ namespace ABIS.LogicBuilder.FlowBuilder
         private static List<string> LoadIsolatedFileContents()
         {
             List<string> files = new();
-            IsolatedStorageFile isolatedStorageFile = IsolatedStorageFile.GetUserStoreForAssembly();
-            if (isolatedStorageFile.GetFileNames(RECENTFILESFILENAME).Length < 1)
-                return files;
-
-            IsolatedStorageFileStream fileStream = new(RECENTFILESFILENAME, FileMode.Open, isolatedStorageFile);
-            using (StreamReader inStream = new(fileStream, Encoding.Unicode))
+            try
             {
+                IsolatedStorageFile isolatedStorageFile = IsolatedStorageFile.GetUserStoreForAssembly();
+                if (isolatedStorageFile.GetFileNames(RECENTFILESFILENAME).Length < 1)
+                    return files;
+
+                IsolatedStorageFileStream fileStream = new(RECENTFILESFILENAME, FileMode.Open, isolatedStorageFile);
+                using StreamReader inStream = new(fileStream, Encoding.Unicode);
                 while (inStream.Peek() >= 0)
                 {
                     string? file = inStream.ReadLine();
@@ -162,6 +163,9 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
                     files.Add(file);
                 }
+            }
+            catch (IsolatedStorageException)
+            {
             }
             return files;
         }
