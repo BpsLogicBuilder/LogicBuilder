@@ -12,6 +12,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
 	<CustomResourceTypesSupport>true</CustomResourceTypesSupport>
 	<Nullable>enable</Nullable>
+		<Copyright>Copyright © BPS 2018</Copyright>
+		<RepositoryUrl>https://github.com/BpsLogicBuilder/LogicBuilder</RepositoryUrl>
+		<PackageLicenseExpression>GFDL-1.3-only</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/BlaiseD/LogicBuilder</PackageProjectUrl>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
