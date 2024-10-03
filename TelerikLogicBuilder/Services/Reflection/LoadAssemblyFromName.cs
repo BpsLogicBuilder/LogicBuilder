@@ -97,7 +97,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Reflection
 
         private Assembly? LoadAssembly(LinkedListNode<string> path, string file)
         {
-            string fullName = Path.Combine(path.Value, file);
+            string fullName = _pathHelper.CombinePaths(path.Value, file);
             if (File.Exists(fullName))
                 return assemblyLoadContext.LoadFromFileStream(fullName);
             else if (path.Next != null)
