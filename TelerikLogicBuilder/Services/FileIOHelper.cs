@@ -149,7 +149,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 using (FileStream fileStream = new(fileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     byteArray = new byte[fileInfo.Length];
-                    fileStream.Read(byteArray, 0, (int)fileInfo.Length);
+                    fileStream.ReadExactly(byteArray, 0, (int)fileInfo.Length);
                     fileStream.Close();
                 }
 

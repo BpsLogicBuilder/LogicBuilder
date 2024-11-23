@@ -182,13 +182,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public HelperStatus? HelperStatus { get; set; }
 
         public bool CanExecuteImport => TreeView.Nodes.Count > 0 && TreeView.Nodes[0].Nodes.Count == 0;
 
         public XmlDocument ConstructorsDoc => _constructorsDoc ??= _loadConstructors.Load();
 
-        public IList<RadTreeNode> CutTreeNodes { get; } = new List<RadTreeNode>();
+        public IList<RadTreeNode> CutTreeNodes { get; } = [];
 
         public IDictionary<string, string> ExpandedNodes { get; } = new Dictionary<string, string>();
 
@@ -200,7 +201,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureFunctions
 
         public HashSet<string> FunctionNames => XmlDocument.SelectNodes(FUNCTIONNAMES_NODEXPATH)?.OfType<XmlAttribute>()
                                                     .Select(a => a.Value)
-                                                    .ToHashSet() ?? new HashSet<string>();
+                                                    .ToHashSet() ?? [];
 
         public IDictionary<string, Constructor> ConstructorsDictionary => _xmlDocumentHelpers.SelectElements
         (

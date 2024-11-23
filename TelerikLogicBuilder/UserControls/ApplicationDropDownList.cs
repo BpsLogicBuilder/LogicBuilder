@@ -9,6 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using System.ComponentModel;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
@@ -22,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
         private ApplicationTypeInfo _application;
         public ApplicationTypeInfo Application => _application;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object SelectedValue
         {
             get => cmbApplication.SelectedValue; 
@@ -80,10 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         private void SelectedApplicationChanged()
         {
-            Configuration.Application? application = _configurationService.GetApplication(cmbApplication.SelectedItem.Text);
-            if (application == null)
-                throw _exceptionHelper.CriticalException("{E6CC4E1A-ECEE-4BA9-A2CE-5FFC515C8EE6}");
-
+            Configuration.Application? application = _configurationService.GetApplication(cmbApplication.SelectedItem.Text) ?? throw _exceptionHelper.CriticalException("{E6CC4E1A-ECEE-4BA9-A2CE-5FFC515C8EE6}");
             applicationHostControl.ClearMessage();
 
             _application = _applicationTypeInfoManager.GetApplicationTypeInfo(application.Name);

@@ -24,6 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public RadDropDownList DropDownList => radDropDownList;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new string Text { get => radDropDownList.Text; set => radDropDownList.Text = value; }
 
         public event EventHandler<EventArgs>? ButtonClick;

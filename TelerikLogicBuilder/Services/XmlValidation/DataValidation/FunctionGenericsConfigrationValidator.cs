@@ -12,24 +12,16 @@ using System.Linq;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Services.XmlValidation.DataValidation
 {
-    internal class FunctionGenericsConfigrationValidator : IFunctionGenericsConfigrationValidator
+    internal class FunctionGenericsConfigrationValidator(
+        IConfigurationService configurationService,
+        IEnumHelper enumHelper,
+        IGenericsConfigrationValidator genericsConfigrationValidator,
+        ITypeLoadHelper typeLoadHelper) : IFunctionGenericsConfigrationValidator
     {
-        private readonly IConfigurationService _configurationService;
-        private readonly IEnumHelper _enumHelper;
-        private readonly IGenericsConfigrationValidator _genericsConfigrationValidator;
-        private readonly ITypeLoadHelper _typeLoadHelper;
-
-        public FunctionGenericsConfigrationValidator(
-            IConfigurationService configurationService,
-            IEnumHelper enumHelper,
-            IGenericsConfigrationValidator genericsConfigrationValidator,
-            ITypeLoadHelper typeLoadHelper)
-        {
-            _configurationService = configurationService;
-            _enumHelper = enumHelper;
-            _genericsConfigrationValidator = genericsConfigrationValidator;
-            _typeLoadHelper = typeLoadHelper;
-        }
+        private readonly IConfigurationService _configurationService = configurationService;
+        private readonly IEnumHelper _enumHelper = enumHelper;
+        private readonly IGenericsConfigrationValidator _genericsConfigrationValidator = genericsConfigrationValidator;
+        private readonly ITypeLoadHelper _typeLoadHelper = typeLoadHelper;
 
         public bool Validate(Function function, List<GenericConfigBase> genericArguments, ApplicationTypeInfo application, List<string> validationErrors)
         {

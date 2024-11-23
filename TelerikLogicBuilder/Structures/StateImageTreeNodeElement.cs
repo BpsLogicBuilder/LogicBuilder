@@ -1,17 +1,19 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Exceptions;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using Telerik.WinControls.UI;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Structures
 {
-    internal class StateImageTreeNodeElement : TreeNodeElement
+    internal partial class StateImageTreeNodeElement : TreeNodeElement
     {
         public StateImageTreeNodeElement()
         {
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Image? StateImage { get; set; }
 
         public override void Synchronize()

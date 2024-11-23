@@ -144,7 +144,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.O
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
 
-        private IList<RadButton> CommandButtons => new RadButton[] { btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList };
+        private RadButton[] CommandButtons => [btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList];
 
         public ApplicationTypeInfo Application => editingControl.Application;
 
@@ -164,6 +164,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls.O
 
         public IObjectRichTextBox RichTextBox => _objectRichTextBox;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public XmlElement? XmlElement { get; private set; }
 
         public bool IsEmpty => XmlElement == null || _xmlDocumentHelpers.GetSingleOrDefaultChildElement(XmlElement) == null;

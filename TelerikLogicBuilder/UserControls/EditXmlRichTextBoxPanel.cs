@@ -9,6 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using System.ComponentModel;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
@@ -43,10 +44,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public new event EventHandler? TextChanged;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string[] Lines { get => richTextBox1.Lines; set => richTextBox1.Lines = value; }
 
         public RichTextBox RichTextBox => this.richTextBox1;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new string Text { get => richTextBox1.Text; set => richTextBox1.Text = value; }
 
         private static EventHandler AddClickCommand(IClickCommand command)
