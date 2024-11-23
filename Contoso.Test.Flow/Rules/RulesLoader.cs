@@ -24,10 +24,7 @@ namespace Contoso.Test.Flow.Rules
                 () =>
                 {
                     string moduleName = module.Name.ToLowerInvariant();
-                    RuleSet ruleSet = module.DeserializeRuleSetFile();
-                    if (ruleSet == null)
-                        throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Properties.Resources.invalidRulesetFormat, moduleName));
-
+                    RuleSet ruleSet = module.DeserializeRuleSetFile() ?? throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Properties.Resources.invalidRulesetFormat, moduleName));
                     cache.RuleEngines.Add(moduleName, new RuleEngine(ruleSet, RulesSerializer.GetValidation(ruleSet)));
 
                     using (IResourceReader reader = new ResourceReader(new MemoryStream(module.ResourceSetFile)))
@@ -43,10 +40,7 @@ namespace Contoso.Test.Flow.Rules
         public void LoadRules(RulesModuleModel module, RulesCache cache)
         {
             string moduleName = module.Name.ToLowerInvariant();
-            RuleSet ruleSet = module.DeserializeRuleSetFile();
-            if (ruleSet == null)
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Properties.Resources.invalidRulesetFormat, moduleName));
-
+            RuleSet ruleSet = module.DeserializeRuleSetFile() ?? throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Properties.Resources.invalidRulesetFormat, moduleName));
             cache.RuleEngines.Add(moduleName, new RuleEngine(ruleSet, RulesSerializer.GetValidation(ruleSet)));
 
             using (IResourceReader reader = new ResourceReader(new MemoryStream(module.ResourceSetFile)))

@@ -224,13 +224,13 @@ namespace ABIS.LogicBuilder.FlowBuilder
             Initialize();
         }
 
-        private readonly IDictionary<string, RadMenuItem> deployFileSystemApplicationMenuItemList = new Dictionary<string, RadMenuItem>();
-        private readonly IDictionary<string, RadMenuItem> deleteFileSystemApplicationMenuItemList = new Dictionary<string, RadMenuItem>();
-        private readonly IDictionary<string, RadMenuItem> deployWebApiApplicationMenuItemList = new Dictionary<string, RadMenuItem>();
-        private readonly IDictionary<string, RadMenuItem> deleteWebApiApplicationMenuItemList = new Dictionary<string, RadMenuItem>();
-        private readonly IDictionary<string, RadMenuItem> recentProjectsMenuItemList = new Dictionary<string, RadMenuItem>();
-        private readonly IDictionary<string, RadMenuItem> selectedApplicationRulesMenuItemList = new Dictionary<string, RadMenuItem>();
-        private readonly IDictionary<string, RadMenuItem> validateApplicationRulesMenuItemList = new Dictionary<string, RadMenuItem>();
+        private readonly Dictionary<string, RadMenuItem> deployFileSystemApplicationMenuItemList = [];
+        private readonly Dictionary<string, RadMenuItem> deleteFileSystemApplicationMenuItemList = [];
+        private readonly Dictionary<string, RadMenuItem> deployWebApiApplicationMenuItemList = [];
+        private readonly Dictionary<string, RadMenuItem> deleteWebApiApplicationMenuItemList = [];
+        private readonly Dictionary<string, RadMenuItem> recentProjectsMenuItemList = [];
+        private readonly Dictionary<string, RadMenuItem> selectedApplicationRulesMenuItemList = [];
+        private readonly Dictionary<string, RadMenuItem> validateApplicationRulesMenuItemList = [];
         private readonly IDisposable logicBuilderExceptionSubscription;
         private readonly IDisposable documentExplorerErrorCountChangedSubscription;
 
@@ -251,6 +251,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
         public SplitPanel SplitPanelMessages => this.splitPanelMessages;
         public SplitPanel SplitPanelExplorer => this.splitPanelExplorer;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IDocumentEditor? EditControl { get; set; }
         public IMessages Messages => _messages;
         public IProjectExplorer ProjectExplorer => _projectExplorer;
@@ -987,7 +988,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             this.FormClosing += MDIParent_FormClosing;
 
             //OpenProject(@"C:\Test\NewProject\NewProject.lbproj");
-            //OpenProject(@"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj");
+            //OpenProject(@"C:\.github\BpsLogicBuilder\LogicBuilder.Samples\FlowProjects\Contoso\Contoso.lbproj");
             //OpenProject(@"C:\TelerikLogicBuilder\FlowProjects\Contoso.Test\Contoso.Test.lbproj");
         }
 
@@ -1075,7 +1076,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             }
         }
 
-        private static void UpdateApplicationMenuItems(IList<Application> applicationList, RadMenuItem parentMenuItem, IDictionary<string, RadMenuItem> itemDictionary, Func<string, IClickCommand> getClickCommand, bool addEllipsis = true)
+        private static void UpdateApplicationMenuItems(IList<Application> applicationList, RadMenuItem parentMenuItem, Dictionary<string, RadMenuItem> itemDictionary, Func<string, IClickCommand> getClickCommand, bool addEllipsis = true)
         {
             itemDictionary.Clear();
             parentMenuItem.Items.Clear();

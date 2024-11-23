@@ -50,7 +50,9 @@ namespace Contoso.Test.Flow.Rules
             {
                 typeof(Business.Requests.BaseRequest).Assembly,
                 typeof(Domain.BaseModelClass).Assembly,
+                typeof(Forms.Parameters.AttributeNames).Assembly,
                 typeof(LogicBuilder.RulesDirector.DirectorBase).Assembly,
+                typeof(Utils.TypeHelpers).Assembly,
                 typeof(string).Assembly
             };
 

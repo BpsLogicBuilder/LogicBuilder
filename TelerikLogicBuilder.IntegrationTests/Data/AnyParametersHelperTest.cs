@@ -23,14 +23,9 @@ using TelerikLogicBuilder.IntegrationTests.Constants;
 using Xunit;
 namespace TelerikLogicBuilder.IntegrationTests.Data
 {
-    public class AnyParametersHelperTest : IClassFixture<AnyParametersHelperFixture>
+    public class AnyParametersHelperTest(AnyParametersHelperFixture fixture) : IClassFixture<AnyParametersHelperFixture>
     {
-        private readonly AnyParametersHelperFixture _fixture;
-
-        public AnyParametersHelperTest(AnyParametersHelperFixture fixture)
-        {
-            _fixture = fixture;
-        }
+        private readonly AnyParametersHelperFixture _fixture = fixture;
 
         [Fact]
         public void CanCreateAnyParametersHelper()
@@ -89,13 +84,13 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal void ReturnsTheExpectedTypeWithBothItemsElementsOfTheSameType(LiteralVariableType literalVariableType, LiteralFunctionReturnType functionReturnType, Type expectedLiteralType)
         {
             //arrange
-            string variableName = $"{Enum.GetName(typeof(LiteralVariableType), literalVariableType)}Item";
+            string variableName = $"{Enum.GetName(literalVariableType)}Item";
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
             XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1""><variable name=""{variableName}"" visibleText=""visibleText"" /></literalParameter>");
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""><function name=""StaticMethodReturnsGenericType"" visibleText=""StaticMethodReturnsGenericType"">
                                                           <genericArguments>
                                                             <literalParameter genericArgumentName=""A"">
-                                                              <literalType>{Enum.GetName(typeof(LiteralFunctionReturnType), functionReturnType)}</literalType>
+                                                              <literalType>{Enum.GetName(functionReturnType)}</literalType>
                                                               <control>SingleLineTextBox</control>
                                                               <useForEquality>true</useForEquality>
                                                               <useForHashCode>false</useForHashCode>
@@ -258,7 +253,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal void ReturnsTheExpectedTypeWithItemOneElementAndItemTwoText(LiteralVariableType elementOneVariableType, string elementTwoText, Type expectedElementOneType, Type expectedElementTwoType)
         {
             //arrange
-            string elementOneVariableName = $"{Enum.GetName(typeof(LiteralVariableType), elementOneVariableType)}Item";
+            string elementOneVariableName = $"{Enum.GetName(elementOneVariableType)}Item";
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
             XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1""><variable name=""{elementOneVariableName}"" visibleText=""visibleText"" /></literalParameter>");
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2"">{elementTwoText}</literalParameter>");
@@ -412,7 +407,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal void ReturnsTheExpectedTypeWithItemOneTextAndItemTwoElement(string elementOneText, LiteralVariableType elementTwoVariableType, Type expectedElementOneType, Type expectedElementTwoType)
         {
             //arrange
-            string elementTwoVariableName = $"{Enum.GetName(typeof(LiteralVariableType), elementTwoVariableType)}Item";
+            string elementTwoVariableName = $"{Enum.GetName(elementTwoVariableType)}Item";
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
             XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1"">{elementOneText}</literalParameter>");
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""><variable name=""{elementTwoVariableName}"" visibleText=""visibleText"" /></literalParameter>");
@@ -472,7 +467,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal void ReturnsTheExpectedTypeWithItemOneElementAndItemTwoNoChildNode(LiteralVariableType elementOneVariableType, Type expectedElementOneType, Type expectedElementTwoType)
         {
             //arrange
-            string elementOneVariableName = $"{Enum.GetName(typeof(LiteralVariableType), elementOneVariableType)}Item";
+            string elementOneVariableName = $"{Enum.GetName(elementOneVariableType)}Item";
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
             XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1""><variable name=""{elementOneVariableName}"" visibleText=""visibleText"" /></literalParameter>");
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""></literalParameter>");
@@ -532,7 +527,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal void ReturnsTheExpectedTypeWithItemOneNoChildNodeAndItemTwoElement(LiteralVariableType elementTwoVariableType, Type expectedElementOneType, Type expectedElementTwoType)
         {
             //arrange
-            string elementTwoVariableName = $"{Enum.GetName(typeof(LiteralVariableType), elementTwoVariableType)}Item";
+            string elementTwoVariableName = $"{Enum.GetName(elementTwoVariableType)}Item";
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
             XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1""></literalParameter>");
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""><variable name=""{elementTwoVariableName}"" visibleText=""visibleText"" /></literalParameter>");
@@ -554,13 +549,13 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         internal void ReturnsTheExpectedTypeWithBothItemsElementsOfTheDifferentTypes(LiteralVariableType elementOneVariableType, LiteralFunctionReturnType functionReturnType, Type expectedItemOneType, Type expectedItemTwoType)
         {
             //arrange
-            string elementOneVariableName = $"{Enum.GetName(typeof(LiteralVariableType), elementOneVariableType)}Item";
+            string elementOneVariableName = $"{Enum.GetName(elementOneVariableType)}Item";
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
             XmlElement xmlElementOne = GetXmlElement(@$"<literalParameter name=""p1""><variable name=""{elementOneVariableName}"" visibleText=""visibleText"" /></literalParameter>");
             XmlElement xmlElementTwo = GetXmlElement(@$"<literalParameter name=""p2""><function name=""StaticMethodReturnsGenericType"" visibleText=""StaticMethodReturnsGenericType"">
                                                           <genericArguments>
                                                             <literalParameter genericArgumentName=""A"">
-                                                              <literalType>{Enum.GetName(typeof(LiteralFunctionReturnType), functionReturnType)}</literalType>
+                                                              <literalType>{Enum.GetName(functionReturnType)}</literalType>
                                                               <control>SingleLineTextBox</control>
                                                               <useForEquality>true</useForEquality>
                                                               <useForHashCode>false</useForHashCode>
@@ -1172,7 +1167,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         [InlineData("", "garbage", CodeBinaryOperatorType.LessThanOrEqual, null, typeof(string))]
         [InlineData("", "garbage", CodeBinaryOperatorType.GreaterThan, null, typeof(string))]
         [InlineData("", "garbage", CodeBinaryOperatorType.GreaterThanOrEqual, null, typeof(string))]
-        public void ReturnsTheExpectedTypeGivenTheOperatorTypeWithBothItemsTextOrNoChildNodes(string elementOneText, string elementTwoText, CodeBinaryOperatorType codeBinaryOperatorType, Type expectedElementOneType, Type expectedElementTwoType)
+        public void ReturnsTheExpectedTypeGivenTheOperatorTypeWithBothItemsTextOrNoChildNodes(string elementOneText, string elementTwoText, CodeBinaryOperatorType codeBinaryOperatorType, Type? expectedElementOneType, Type expectedElementTwoType)
         {
             //arrange
             IAnyParametersHelper helper = _fixture.ServiceProvider.GetRequiredService<IAnyParametersHelper>();
@@ -1252,7 +1247,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
         }
     }
 
-    public class AnyParametersHelperFixture : IDisposable
+    public partial class AnyParametersHelperFixture : IDisposable
     {
         public AnyParametersHelperFixture()
         {
@@ -1284,20 +1279,20 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "Contoso.Test.Flow.dll",
                         $@"{TestFolders.TestAssembliesFolder}\Contoso.Test.Flow\bin\Debug\netstandard2.0",
                         ABIS.LogicBuilder.FlowBuilder.Enums.RuntimeType.NetCore,
-                        new List<string>(),
+                        [],
                         "Contoso.Test.Flow.FlowActivity",
                         "",
                         "",
-                        new List<string>(),
+                        [],
                         "",
                         "",
                         "",
                         "",
-                        new List<string>(),
+                        [],
                         WebApiDeploymentItemFactory.GetWebApiDeployment("", "", "", "")
                     )
                 },
-                new HashSet<string>()
+                []
             );
 
             ConfigurationService.ConstructorList = new ConstructorList
@@ -1305,7 +1300,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 new Dictionary<string, Constructor>
                 {
                 },
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>())
+                new TreeFolder("root", [], [])
             );
 
             ConfigurationService.FunctionList = new FunctionList
@@ -1323,8 +1318,8 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "",
                         ReferenceCategories.Type,
                         ParametersLayout.Sequential,
-                        new List<ParameterBase>(),
-                        new List<string> { "A" },
+                        [],
+                        ["A"],
                         ReturnTypeFactory.GetGenericReturnType("A"), 
                         ""
                     )
@@ -1334,16 +1329,16 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 new Dictionary<string, Function>(),
                 new Dictionary<string, Function>(),
                 new Dictionary<string, Function>(),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>()),
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>())
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], []),
+                new TreeFolder("root", [], [])
             );
 
             ConfigurationService.VariableList = new VariableList
@@ -1365,12 +1360,12 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                         "System.Object"
                     )
                 },
-                new TreeFolder("root", new List<string>(), new List<TreeFolder>())
+                new TreeFolder("root", [], [])
             );
 
             foreach (LiteralVariableType enumValue in Enum.GetValues<LiteralVariableType>())
             {
-                string variableName = $"{Enum.GetName(typeof(LiteralVariableType), enumValue)}Item";
+                string variableName = $"{Enum.GetName(enumValue)}Item";
                 ConfigurationService.VariableList.Variables.Add(variableName, GetLiteralVariable(variableName, enumValue));
             }
 
@@ -1394,7 +1389,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Data
                 LiteralVariableInputStyle.SingleLineTextBox,
                 "",
                 "",
-                new List<string>()
+                []
             );
 
         public void Dispose()

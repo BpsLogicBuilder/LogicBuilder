@@ -6,15 +6,17 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Telerik.WinControls.UI;
+using System.ComponentModel;
 
 namespace TelerikLogicBuilder.Tests.Mocks
 {
-    internal class MockMdiParent : System.Windows.Forms.Form, IMDIParent
+    internal partial class MockMdiParent : System.Windows.Forms.Form, IMDIParent
     {
         public RadCommandBar CommandBar => throw new NotImplementedException();
 
         public CommandBarButton CommandBarButtonSave => throw new NotImplementedException();
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IDocumentEditor? EditControl { get => null; set => throw new NotImplementedException(); }
 
         public IMessages Messages => new MockMessages();

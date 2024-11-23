@@ -20,10 +20,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             Initialize();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new string Text { get => radTextBox1.Text; set => radTextBox1.Text = value; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Font Font { get => radTextBox1.Font; set => radTextBox1.Font = value; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ReadOnly { get => radTextBox1.ReadOnly; set => radTextBox1.ReadOnly = value; }
 
         public event EventHandler<EventArgs>? ButtonClick;

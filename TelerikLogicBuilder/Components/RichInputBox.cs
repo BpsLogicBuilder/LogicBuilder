@@ -43,7 +43,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
         //12/2006 char array constant to distinguish between variables and functions
         #region Constants
-        internal static readonly char[] BOUNDARYTEXTARRAY = new char[] { Strings.constructorVisibleTextBegin[0], Strings.constructorVisibleTextEnd[0], Strings.functionVisibleTextBegin[0], Strings.functionVisibleTextEnd[0], Strings.variableVisibleTextBegin[0], Strings.variableVisibleTextEnd[0] };
+        internal static readonly char[] BOUNDARYTEXTARRAY = [Strings.constructorVisibleTextBegin[0], Strings.constructorVisibleTextEnd[0], Strings.functionVisibleTextBegin[0], Strings.functionVisibleTextEnd[0], Strings.variableVisibleTextBegin[0], Strings.variableVisibleTextEnd[0]];
         #endregion Constants
 
         //12/2006 added fields to facilitate component functionality
@@ -72,6 +72,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
             get { return base.HideSelection; }
             set { base.HideSelection = value; }
         }
+
+        //12/2006 new property
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
         //12/2006 new property
         public bool DenySpecialCharacters
@@ -393,7 +396,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
 
             NativeMethods.SendMessage(Handle, EM_GETCHARFORMAT, wpar, lpar);
 
-            cf = (CHARFORMAT2_STRUCT)Marshal.PtrToStructure(lpar, typeof(CHARFORMAT2_STRUCT))!;/*lpar has a value - line 385*/
+            cf = Marshal.PtrToStructure<CHARFORMAT2_STRUCT>(lpar)!;/*lpar has a value - line 385*/
 
             int state;
             // dwMask holds the information which properties are consistent throughout the selection:
@@ -528,12 +531,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
                 return string.Empty;
             }
 
-            LinkBoundaries? linkBoundaries = GetBoundary(position);
-            if (linkBoundaries == null)
-            {//selection is protected and not a boundary position so boundary cannot be null.
-             //Also the position passed in should have been LinkBoundaries.Start + 1
-                throw _exceptionHelper.CriticalException("{6E57FA50-9B06-4EAA-91F2-B2B56D4515F0}");
-            }
+            LinkBoundaries? linkBoundaries = GetBoundary(position) ?? throw _exceptionHelper.CriticalException("{6E57FA50-9B06-4EAA-91F2-B2B56D4515F0}");
+            //selection is protected and not a boundary position so boundary cannot be null.
+            //Also the position passed in should have been LinkBoundaries.Start + 1
 
             int start = GetFirstHiddenCharacterPosition(position);
             int finish = linkBoundaries.Finish - 1;
@@ -574,8 +574,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         {
             string richText = this.Text;
             string[] stringArray = richText.Split(BOUNDARYTEXTARRAY);
-            List<int> boundaryPositions = new();
-            List<LinkBoundaries> boundaries = new();
+            List<int> boundaryPositions = [];
+            List<LinkBoundaries> boundaries = [];
             if (stringArray.Length < 2)
             {
                 return boundaries;
@@ -828,55 +828,55 @@ namespace ABIS.LogicBuilder.FlowBuilder.Components
         }
 
         //7/2022 new method
-        private void ResetNonLinkTextOnThemeChange()
-        {
-            IntPtr eventMask = this.SuspendEvents();
-            List<LinkBoundaries> boundaries = GetBoundaryPositions();
-            if (boundaries.Count == 0)
-            {
-                //edge case: this.Text.Length == 1
-                this.Select(0, this.Text.Length);
-                ResetSelectionToNormal();
-                this.ResumeEvents(eventMask);
-                return;
-            }
+        //private void ResetNonLinkTextOnThemeChange()
+        //{
+        //    IntPtr eventMask = this.SuspendEvents();
+        //    List<LinkBoundaries> boundaries = GetBoundaryPositions();
+        //    if (boundaries.Count == 0)
+        //    {
+        //        //edge case: this.Text.Length == 1
+        //        this.Select(0, this.Text.Length);
+        //        ResetSelectionToNormal();
+        //        this.ResumeEvents(eventMask);
+        //        return;
+        //    }
 
-            for (int i = 0; i < boundaries.Count; i++)
-            {
-                this.Select(boundaries[i].Start, 1);
-                SetSelectionAsLinkBoundary();
+        //    for (int i = 0; i < boundaries.Count; i++)
+        //    {
+        //        this.Select(boundaries[i].Start, 1);
+        //        SetSelectionAsLinkBoundary();
 
-                if (i == 0)
-                {
-                    //edge case: boundaries[i].Start == 1
-                    this.Select(0, boundaries[i].Start);
-                    ResetSelectionToNormal();
-                }
-                else
-                {
-                    //edge case: boundaries[i - 1].Finish == 49, boundaries[i].Start == 51
-                    this.Select(boundaries[i - 1].Finish + 1, boundaries[i].Start - boundaries[i - 1].Finish - 1);
-                    ResetSelectionToNormal();
-                }
+        //        if (i == 0)
+        //        {
+        //            //edge case: boundaries[i].Start == 1
+        //            this.Select(0, boundaries[i].Start);
+        //            ResetSelectionToNormal();
+        //        }
+        //        else
+        //        {
+        //            //edge case: boundaries[i - 1].Finish == 49, boundaries[i].Start == 51
+        //            this.Select(boundaries[i - 1].Finish + 1, boundaries[i].Start - boundaries[i - 1].Finish - 1);
+        //            ResetSelectionToNormal();
+        //        }
 
-                if (i == boundaries.Count - 1)
-                {
-                    //edge case: boundaries[i].Finish == 49, Text.Length = 51
-                    if (boundaries[i].Finish < this.Text.Length - 1)
-                    {
-                        this.Select(boundaries[i].Finish + 1, this.Text.Length - boundaries[i].Finish - 1);
-                        ResetSelectionToNormal();
-                    }
-                }
+        //        if (i == boundaries.Count - 1)
+        //        {
+        //            //edge case: boundaries[i].Finish == 49, Text.Length = 51
+        //            if (boundaries[i].Finish < this.Text.Length - 1)
+        //            {
+        //                this.Select(boundaries[i].Finish + 1, this.Text.Length - boundaries[i].Finish - 1);
+        //                ResetSelectionToNormal();
+        //            }
+        //        }
 
-                this.Select(boundaries[i].Finish, 1);
-                SetSelectionAsLinkBoundary();
-                //this.Select(boundaries[i].Start + 1, boundaries[i].Finish - 1);
-               // this.SetSelectionLink(true);
-            }
+        //        this.Select(boundaries[i].Finish, 1);
+        //        SetSelectionAsLinkBoundary();
+        //        //this.Select(boundaries[i].Start + 1, boundaries[i].Finish - 1);
+        //       // this.SetSelectionLink(true);
+        //    }
 
-            this.ResumeEvents(eventMask);
-        }
+        //    this.ResumeEvents(eventMask);
+        //}
         #endregion Methods
 
         #region EventHandlers

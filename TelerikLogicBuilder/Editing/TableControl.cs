@@ -125,10 +125,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             get
             {
                 DataTable? dataTable = this.dataSet.Tables[TableName.RULESTABLE];
-                if (dataTable == null)
-                    throw _exceptionHelper.CriticalException("{ECA3A18C-24FB-4951-A602-F912D1D602A7}");
-
-                return dataTable;
+                return dataTable ?? throw _exceptionHelper.CriticalException("{ECA3A18C-24FB-4951-A602-F912D1D602A7}");
             }
         }
 
@@ -136,10 +133,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
         {
             get
             {
-                DataTable? dataTable = this.dataSet.Tables[TableName.RULESETTABLE];
-                if (dataTable == null)
-                    throw _exceptionHelper.CriticalException("{A360E400-7A39-4EE5-9564-EC84288E4CCC}");
-
+                DataTable? dataTable = this.dataSet.Tables[TableName.RULESETTABLE] ?? throw _exceptionHelper.CriticalException("{A360E400-7A39-4EE5-9564-EC84288E4CCC}");
                 return dataTable;
             }
         }
@@ -197,8 +191,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             }
             finally
             {
-                if (fStream != null)
-                    fStream.Close();
+                fStream?.Close();
             }
         }
 
@@ -351,7 +344,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
                 }
 
                 if (dataGridView1.CurrentCell?.IsInEditMode == true)
-                    bindingSource1.CurrencyManager.EndCurrentEdit();
+                    bindingSource1?.CurrencyManager?.EndCurrentEdit();
             }
             catch (NoNullAllowedException ex)
             {
@@ -660,7 +653,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
             foreach (GridViewDataColumn column in dataGridView1.Columns)
                 column.AllowSort = false;
 
-            bindingSource1 = new BindingSource();
+            bindingSource1 = [];
             dataGridView1.DataSource = bindingSource1;
             CreateContextMenus();
         }
@@ -1030,8 +1023,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing
 
         private void UnlockDocument()
         {
-            if (fileStream != null)
-                fileStream.Close();
+            fileStream?.Close();
         }
 
         private void UpdateRuleSetTable()

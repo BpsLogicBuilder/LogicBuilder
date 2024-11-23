@@ -4,6 +4,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Forms
 {
@@ -22,6 +23,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers.Fo
 
         private string regularExpression = string.Empty;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Input
         {
             get { return radTextBoxInput.Text; }

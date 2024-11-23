@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
+using System.ComponentModel;
 
 namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 {
@@ -36,6 +37,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
             Initialize();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public WebApiDeployment WebApiDeployment { get; private set; }
 
         private static void CollapsePanelBorder(RadPanel radPanel)
@@ -111,7 +113,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 
         private List<string> ValidateFields()
         {
-            List<string> errors = new();
+            List<string> errors = [];
             ValidateUrlInputBox(txtPostFileDataUrl.Text, lblPostFileDataUrl.Text, errors);
             ValidateUrlInputBox(txtDeleteRulesUrl.Text, lblDeleteRulesUrl.Text, errors);
             ValidateUrlInputBox(txtDeleteAllRulesUrl.Text, lblDeleteAllRulesUrl.Text, errors);
@@ -122,7 +124,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
         {
             if (!Uri.IsWellFormedUriString(input, UriKind.Absolute))
                 errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.invalidUrlInputFormat, label));
-            else if (!Regex.IsMatch(input, RegularExpressions.URL))
+            else if (!UrlRegex().IsMatch(input))
                 errors.Add(string.Format(CultureInfo.CurrentCulture, Strings.invalidUrlInputFormat, label));
         }
 
@@ -132,7 +134,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
             if (this.DialogResult == DialogResult.OK)
             {
                 _dialogFormMessageControl.ClearMessage();
-                IList<string> errors = ValidateFields();
+                List<string> errors = ValidateFields();
                 if (errors.Count > 0)
                 {
                     _dialogFormMessageControl.SetErrorMessage(string.Join(Environment.NewLine, errors));
@@ -146,6 +148,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Configuration.ConfigureWebApiDeployment
 
             }
         }
+
+        [GeneratedRegex(RegularExpressions.URL)]
+        private static partial Regex UrlRegex();
         #endregion Event Handlers
     }
 }

@@ -17,14 +17,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator
         {
             return Task.Run
             (
-               () => ValidateRules(ruleSet, application),
+               () => (IList<ResultMessage>)ValidateRules(ruleSet, application),
                cancellationTokenSource.Token
             );
         }
 
-        private static IList<ResultMessage> ValidateRules(RuleSet ruleSet, ApplicationTypeInfo application)
+        private static List<ResultMessage> ValidateRules(RuleSet ruleSet, ApplicationTypeInfo application)
         {
-            List<ResultMessage> resultMessages = new();
+            List<ResultMessage> resultMessages = [];
             if (!application.AssemblyAvailable)
             {
                 resultMessages.Add(new ResultMessage(application.UnavailableMessage));

@@ -33,6 +33,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 
         public RadDropDownList RadDropDownList => radDropDownList1;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new bool Enabled
         {
             get => base.Enabled;
@@ -43,8 +44,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SelectedText { get => radDropDownList1.SelectedText; set => radDropDownList1.SelectedText = value; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new string Text { get => radDropDownList1.Text; set => radDropDownList1.Text = value; }
 
         public void EnableAddUpdateGenericArguments(bool enable)

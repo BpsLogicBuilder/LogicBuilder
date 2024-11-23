@@ -10,14 +10,9 @@ using Xunit;
 
 namespace TelerikLogicBuilder.Tests
 {
-    public class ShapeDataCellManagerTest : IClassFixture<ShapeDataCellManagerFixture>
+    public class ShapeDataCellManagerTest(ShapeDataCellManagerFixture constructorTypeHelperFixture) : IClassFixture<ShapeDataCellManagerFixture>
     {
-        private readonly ShapeDataCellManagerFixture _fixture;
-
-        public ShapeDataCellManagerTest(ShapeDataCellManagerFixture constructorTypeHelperFixture)
-        {
-            _fixture = constructorTypeHelperFixture;
-        }
+        private readonly ShapeDataCellManagerFixture _fixture = constructorTypeHelperFixture;
 
         [Fact]
         public void CanCreateShapeDataCellManager()
@@ -49,14 +44,14 @@ namespace TelerikLogicBuilder.Tests
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void CellExistsThrowsForEmptyCellName(string cellName)
+        public void CellExistsThrowsForEmptyCellName(string? cellName)
         {
             //arrange
             IShapeDataCellManager manager = _fixture.ServiceProvider.GetRequiredService<IShapeDataCellManager>();
             Shape shape = GetOnlyShape();
 
             //act
-            var exception = Assert.Throws<CriticalLogicBuilderException>(() => manager.CellExists(shape, cellName));
+            var exception = Assert.Throws<CriticalLogicBuilderException>(() => manager.CellExists(shape, cellName!));
 
             //assert
             Assert.Equal
@@ -166,7 +161,7 @@ namespace TelerikLogicBuilder.Tests
         }
     }
 
-    public class ShapeDataCellManagerFixture : IDisposable
+    public partial class ShapeDataCellManagerFixture : IDisposable
     {
         internal InvisibleApp VisioApplication;
         internal Document VisioDocument;

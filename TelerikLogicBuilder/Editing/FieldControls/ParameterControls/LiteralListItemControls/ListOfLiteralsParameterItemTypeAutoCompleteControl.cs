@@ -66,6 +66,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         public new event EventHandler? TextChanged;
         public new event CancelEventHandler? Validating;
         public new event MouseEventHandler? MouseDown;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new bool Enabled
         {
             get => base.Enabled;
@@ -75,7 +76,9 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
                 btnHelper.Enabled = value;
             }
         }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new string Text { get => radDropDownList.Text; set => radDropDownList.Text = value; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SelectedText { get => radDropDownList.SelectedText; set => radDropDownList.SelectedText = value; }
         #endregion ITypeAutoCompleteTextControl
 
@@ -219,7 +222,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.ParameterControls.
         }
 
         private void InitializeButton()
-            => _layoutFieldControlButtons.Layout(radPanelButton, new RadButton[] { btnHelper });
+            => _layoutFieldControlButtons.Layout(radPanelButton, [btnHelper]);
 
         [MemberNotNull(nameof(radDropDownList))]
         private void InitializeDropDownList()

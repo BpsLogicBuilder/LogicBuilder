@@ -98,7 +98,7 @@ namespace ABIS.LogicBuilder.FlowBuilder
             ViewEnumStrings(Enum.GetNames(typeof(LiteralType)));
             ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableInputStyle)));
             ViewEnumStrings(Enum.GetNames(typeof(LiteralVariableType)));
-            //ViewEnumStrings(Enum.GetNames(typeof(MessageTab)));
+            ViewEnumStrings(Enum.GetNames(typeof(MessageTab)));
             ViewEnumStrings(Enum.GetNames(typeof(ParametersLayout)));
             ViewEnumStrings(Enum.GetNames(typeof(ReferenceCategories)));
             ViewEnumStrings(Enum.GetNames(typeof(ReturnTypeCategory)));
@@ -181,6 +181,10 @@ namespace ABIS.LogicBuilder.FlowBuilder
 
         private static void ViewEnumStrings(string[] vs)
         {
+            foreach (var v in vs)
+            {
+                Console.WriteLine(v);
+            }
         }
 
         #region EventHandlers

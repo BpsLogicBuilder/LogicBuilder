@@ -5,11 +5,11 @@ using Xunit.Abstractions;
 
 namespace Contoso.Test.Flow.Test
 {
-    internal class XUnitLogger : ILogger
+    internal class XUnitLogger(ITestOutputHelper testOutputHelper, LoggerExternalScopeProvider scopeProvider, string categoryName) : ILogger
     {
-        private readonly ITestOutputHelper _testOutputHelper;
-        private readonly string _categoryName;
-        private readonly LoggerExternalScopeProvider _scopeProvider;
+        private readonly ITestOutputHelper _testOutputHelper = testOutputHelper;
+        private readonly string _categoryName = categoryName;
+        private readonly LoggerExternalScopeProvider _scopeProvider = scopeProvider;
 
         public static ILogger CreateLogger(ITestOutputHelper testOutputHelper) => new XUnitLogger(testOutputHelper, new LoggerExternalScopeProvider(), "");
         public static ILogger<T> CreateLogger<T>(ITestOutputHelper testOutputHelper)
@@ -17,16 +17,9 @@ namespace Contoso.Test.Flow.Test
             return new XUnitLogger<T>(testOutputHelper, new LoggerExternalScopeProvider());
         }
 
-        public XUnitLogger(ITestOutputHelper testOutputHelper, LoggerExternalScopeProvider scopeProvider, string categoryName)
-        {
-            _testOutputHelper = testOutputHelper;
-            _scopeProvider = scopeProvider;
-            _categoryName = categoryName;
-        }
-
         public bool IsEnabled(LogLevel logLevel) => logLevel != LogLevel.None;
 
-        public IDisposable BeginScope<TState>(TState state) => _scopeProvider.Push(state);
+        public IDisposable BeginScope<TState>(TState state) where TState : notnull => _scopeProvider.Push(state);
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter)
         {
@@ -65,11 +58,7 @@ namespace Contoso.Test.Flow.Test
         }
     }
 
-    internal sealed class XUnitLogger<T> : XUnitLogger, ILogger<T>
+    internal sealed class XUnitLogger<T>(ITestOutputHelper testOutputHelper, LoggerExternalScopeProvider scopeProvider) : XUnitLogger(testOutputHelper, scopeProvider, typeof(T).FullName!), ILogger<T>
     {
-        public XUnitLogger(ITestOutputHelper testOutputHelper, LoggerExternalScopeProvider scopeProvider)
-            : base(testOutputHelper, scopeProvider, typeof(T).FullName!)
-        {
-        }
     }
 }

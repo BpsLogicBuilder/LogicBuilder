@@ -152,7 +152,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
 
-        private IList<RadButton> CommandButtons => new RadButton[] { btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList };
+        private RadButton[] CommandButtons => [btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList];
 
         public LiteralListParameterElementInfo LiteralListElementInfo
         {
@@ -222,6 +222,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.EditConnector.EditDialogConnecto
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public XmlElement? XmlElement { get; private set; }
 
         public event EventHandler? Changed;

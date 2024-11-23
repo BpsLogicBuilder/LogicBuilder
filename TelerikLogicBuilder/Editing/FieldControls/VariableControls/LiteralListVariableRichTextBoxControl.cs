@@ -145,7 +145,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
         private readonly HelpProvider helpProvider = new();
         private readonly RadToolTip toolTip = new();
 
-        private IList<RadButton> CommandButtons => new RadButton[] { btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList };
+        private RadButton[] CommandButtons => [btnVariable, btnFunction, btnConstructor, btnLiteralList, btnObjectList];
 
         public ApplicationTypeInfo Application => dataGraphEditingControl.Application;
 
@@ -193,6 +193,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Editing.FieldControls.VariableControls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public XmlElement? XmlElement { get; private set; }
 
         public LiteralListVariableElementInfo LiteralListElementInfo => _literalListVariableElementInfoHelper.GetLiteralListElementInfo(listOfLiteralsVariable);

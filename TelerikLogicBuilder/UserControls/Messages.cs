@@ -10,6 +10,7 @@ using ABIS.LogicBuilder.FlowBuilder.UserControls.DocumentsExplorerHelpers;
 using ABIS.LogicBuilder.FlowBuilder.UserControls.Factories;
 using System;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ABIS.LogicBuilder.FlowBuilder.UserControls
 {
@@ -54,11 +55,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls
             InitializeEventHandlers();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public MessageTab SelectedMessageTab
         {
             set
             {
-                if (!Enum.IsDefined(typeof(MessageTab), value))
+                if (!Enum.IsDefined(value))
                     throw _exceptionHelper.CriticalException("{67160345-9C22-42DA-A041-49857FF584E6}");
 
                 radPageView1.SelectedPage = radPageView1.Pages[(int)value];
