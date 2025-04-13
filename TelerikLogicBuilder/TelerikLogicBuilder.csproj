@@ -121,17 +121,17 @@
 	<ItemGroup>
 		<Reference Include="AxInterop.Microsoft.Office.Interop.VisOcx">
 			<SpecificVersion>False</SpecificVersion>
-			<HintPath>bin\2010\AxInterop.Microsoft.Office.Interop.VisOcx.dll</HintPath>
+			<HintPath>lib\2010\AxInterop.Microsoft.Office.Interop.VisOcx.dll</HintPath>
 		</Reference>
 		<Reference Include="Microsoft.Office.Interop.Visio">
 			<SpecificVersion>False</SpecificVersion>
 			<EmbedInteropTypes>False</EmbedInteropTypes>
-			<HintPath>bin\2010\Microsoft.Office.Interop.Visio.dll</HintPath>
+			<HintPath>lib\2010\Microsoft.Office.Interop.Visio.dll</HintPath>
 		</Reference>
 		<Reference Include="Microsoft.Office.Interop.VisOcx">
 			<SpecificVersion>False</SpecificVersion>
 			<EmbedInteropTypes>False</EmbedInteropTypes>
-			<HintPath>bin\2010\Microsoft.Office.Interop.VisOcx.dll</HintPath>
+			<HintPath>lib\2010\Microsoft.Office.Interop.VisOcx.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
