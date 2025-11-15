@@ -37,7 +37,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
             configurationService.ProjectProperties = projectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
-                @"C:\.github\BlaiseD\LogicBuilder.Samples\FlowProjects\Contoso",
+                @"C:\.github\BpsLogicBuilder\LogicBuilder.Samples\FlowProjects\Contoso",
                 new Dictionary<string, Application>
                 {
                     ["app01"] = projectPropertiesItemFactory.GetApplication
@@ -45,7 +45,7 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
                         "App01",
                         "App01",
                         "Contoso.Spa.Flow.dll",
-                        @"C:\.github\BlaiseD\LogicBuilder.Samples\SPA\Contoso\Contoso.Spa.Flow\bin\Debug\net7.0",
+                        @"C:\.github\BpsLogicBuilder\LogicBuilder.Samples\SPA\Contoso\Contoso.Spa.Flow\bin\Debug\net9.0",
                         ABIS.LogicBuilder.FlowBuilder.Enums.RuntimeType.NetCore,
                         new List<string>(),
                         "Contoso.Spa.Flow.FlowActivity",
