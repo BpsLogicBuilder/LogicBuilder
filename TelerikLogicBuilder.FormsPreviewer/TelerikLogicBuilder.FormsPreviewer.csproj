@@ -51,10 +51,6 @@
     </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="UI.for.WinForms.AllControls.Net70" Version="2023.3.1114" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TelerikLogicBuilder\TelerikLogicBuilder.csproj" />
   </ItemGroup>
 
