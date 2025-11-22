@@ -4,7 +4,7 @@
 
     <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
 			<Platforms>AnyCPU;x86;x64</Platforms>
@@ -49,10 +49,6 @@
       <EmbeddedResource Include="Office2019Light13.tssp" />
       <EmbeddedResource Include="Office2019Light14.tssp" />
     </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="UI.for.WinForms.AllControls.Net70" Version="2023.3.1114" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TelerikLogicBuilder\TelerikLogicBuilder.csproj" />
