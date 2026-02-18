@@ -1,6 +1,5 @@
 ﻿using Contoso.Domain.Entities;
 using Contoso.Test.Business.Requests;
-using Contoso.Test.Flow;
 using Contoso.Test.Flow.Cache;
 using Contoso.Test.Flow.Rules;
 using LogicBuilder.RulesDirector;
@@ -8,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Contoso.Test.Flow.Test
 {
@@ -82,19 +80,7 @@ namespace Contoso.Test.Flow.Test
         private IServiceProvider GetServiceProvider()
         {
             return new ServiceCollection()
-                .AddLogging
-                (
-                    loggingBuilder =>
-                    {
-                        loggingBuilder.ClearProviders();
-                        loggingBuilder.Services.AddSingleton<ILoggerProvider>
-                        (
-                            serviceProvider => new XUnitLoggerProvider(this.output)
-                        );
-                        loggingBuilder.AddFilter<XUnitLoggerProvider>("*", LogLevel.None);
-                        loggingBuilder.AddFilter<XUnitLoggerProvider>("Contoso.Test.Flow", LogLevel.Trace);
-                    }
-                )
+                .AddLogging()
                 .AddTransient<IFlowManager, FlowManager>()
                 .AddTransient<FlowActivityFactory, FlowActivityFactory>()
                 .AddTransient<DirectorFactory, DirectorFactory>()
