@@ -14,7 +14,7 @@
 	<Nullable>enable</Nullable>
 		<Copyright>Copyright © BPS 2018</Copyright>
 		<RepositoryUrl>https://github.com/BpsLogicBuilder/LogicBuilder</RepositoryUrl>
-		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/BpsLogicBuilder/LogicBuilder</PackageProjectUrl>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
@@ -109,12 +109,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LogicBuilder.Attributes" Version="2.0.4" />
-    <PackageReference Include="LogicBuilder.DataContracts" Version="2.0.4" />
-    <PackageReference Include="LogicBuilder.Workflow.Activities.Rules" Version="2.0.4" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
-    <PackageReference Include="Microsoft.OData.Edm" Version="8.2.1" />
-    <PackageReference Include="System.Reactive" Version="6.0.1" />
+    <PackageReference Include="LogicBuilder.Attributes" Version="2.0.6" />
+    <PackageReference Include="LogicBuilder.DataContracts" Version="2.0.6" />
+    <PackageReference Include="LogicBuilder.Workflow.Activities.Rules" Version="2.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
+		<PackageReference Include="Microsoft.OData.Edm" Version="8.2.1" />
+    <PackageReference Include="System.Reactive" Version="6.1.0" />
     <PackageReference Include="UI.for.WinForms.AllControls.Net90" Version="2025.4.1111" />
   </ItemGroup>
 
