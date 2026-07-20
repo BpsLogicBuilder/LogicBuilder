@@ -28,8 +28,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.UserControls.Helpers
 
         public void DisposedHandler(object? sender, EventArgs e)
         {
-            if (sender is RadDropDownList radDropDownList)
-                radDropDownList.Items.Clear();
         }
 
         public void LoadBooleans(RadDropDownList dropDownList, RadDropDownStyle dropDownStyle = RadDropDownStyle.DropDownList)

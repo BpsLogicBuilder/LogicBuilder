@@ -24,7 +24,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Intellisense.TreeNodes
         {
             _typeLoadHelper = typeLoadHelper;
             this.CustomVariableConfiguration = customVariableConfiguration;
-            this.CastAs = customVariableConfiguration?.CastAs ?? MiscellaneousConstants.TILDE;
+            this.CastAs = string.IsNullOrEmpty(customVariableConfiguration?.CastAs) ? MiscellaneousConstants.TILDE : customVariableConfiguration.CastAs;
             isCastNode = this.CastAs != MiscellaneousConstants.TILDE;
             UnCastMemberType = memberType;
             this.applicationForm = applicationForm;
