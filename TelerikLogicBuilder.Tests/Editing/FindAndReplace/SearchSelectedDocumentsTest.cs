@@ -46,11 +46,8 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task TextSearchWorks(string searchString, bool found)
         {
             //arrange
-            using System.Windows.Forms.Form form = new MockMdiParent();
             ISearchSelectedDocuments helper = _fixture.ServiceProvider.GetRequiredService<ISearchSelectedDocuments>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
-            IMainWindow mainWindow = _fixture.ServiceProvider.GetRequiredService<IMainWindow>();
-            mainWindow.Instance = form;
             string diagramSourceFile = GetFullDiagramSourceFilePath(nameof(TextSearchWorks));
             string tableourceFile = GetFullTableSourceFilePath();
 
@@ -80,11 +77,8 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task ConstructorSearchWorks(string searchString, bool found)
         {
             //arrange
-            using System.Windows.Forms.Form form = new MockMdiParent();
             ISearchSelectedDocuments helper = _fixture.ServiceProvider.GetRequiredService<ISearchSelectedDocuments>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
-            IMainWindow mainWindow = _fixture.ServiceProvider.GetRequiredService<IMainWindow>();
-            mainWindow.Instance = form;
             string diagramSourceFile = GetFullDiagramSourceFilePath(nameof(ConstructorSearchWorks));
             string tableourceFile = GetFullTableSourceFilePath();
 
@@ -114,11 +108,8 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task FunctionSearchWorks(string searchString, bool found)
         {
             //arrange
-            using System.Windows.Forms.Form form = new MockMdiParent();
             ISearchSelectedDocuments helper = _fixture.ServiceProvider.GetRequiredService<ISearchSelectedDocuments>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
-            IMainWindow mainWindow = _fixture.ServiceProvider.GetRequiredService<IMainWindow>();
-            mainWindow.Instance = form;
             string diagramSourceFile = GetFullDiagramSourceFilePath(nameof(FunctionSearchWorks));
             string tableourceFile = GetFullTableSourceFilePath();
 
@@ -148,11 +139,8 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public async Task VariableSearchWorks(string searchString, bool found)
         {
             //arrange
-            using System.Windows.Forms.Form form = new MockMdiParent();
             ISearchSelectedDocuments helper = _fixture.ServiceProvider.GetRequiredService<ISearchSelectedDocuments>();
             ISearchFunctions searchFunctions = _fixture.ServiceProvider.GetRequiredService<ISearchFunctions>();
-            IMainWindow mainWindow = _fixture.ServiceProvider.GetRequiredService<IMainWindow>();
-            mainWindow.Instance = form;
             string diagramSourceFile = GetFullDiagramSourceFilePath(nameof(VariableSearchWorks));
             string tableourceFile = GetFullTableSourceFilePath();
 
@@ -196,6 +184,7 @@ namespace TelerikLogicBuilder.Tests.Editing.FindAndReplace
         public SearchSelectedDocumentsFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
 			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();

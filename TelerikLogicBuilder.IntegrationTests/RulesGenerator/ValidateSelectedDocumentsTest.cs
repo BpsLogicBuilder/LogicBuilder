@@ -48,11 +48,8 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public async Task ValidateSelectedDocumentsSucceeds()
         {
             //arrange
-            using System.Windows.Forms.Form form = new MockMdiParent();
             ILoadContextSponsor loadContextSponsor = _fixture.LoadContextSponsor;
             IValidateSelectedDocuments validator = _fixture.ServiceProvider.GetRequiredService<IValidateSelectedDocuments>();
-            IMainWindow mainWindow = _fixture.ServiceProvider.GetRequiredService<IMainWindow>();
-            mainWindow.Instance = form;
             string sourceFile = GetFullSourceFilePath(nameof(ValidateSelectedDocumentsSucceeds));
             var application = _fixture.ConfigurationService.GetSelectedApplication();
             Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
@@ -103,6 +100,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator
         public ValidateSelectedDocumentsFixture()
         {
             ServiceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection.BuildServiceProvider();
+            ServiceProvider.GetRequiredService<IMainWindow>().Instance = new Mocks.MockMdiParent();
             ProjectPropertiesItemFactory = ServiceProvider.GetRequiredService<IProjectPropertiesItemFactory>();
 			WebApiDeploymentItemFactory = ServiceProvider.GetRequiredService<IWebApiDeploymentItemFactory>();
             ConfigurationService = ServiceProvider.GetRequiredService<IConfigurationService>();
