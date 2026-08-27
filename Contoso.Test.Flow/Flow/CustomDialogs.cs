@@ -1,4 +1,4 @@
-﻿using Contoso.Forms.Parameters;
+﻿using LogicBuilder.App.Spa.Forms.Parameters;
 using LogicBuilder.Attributes;
 using LogicBuilder.Forms.Parameters;
 using System;

@@ -2,16 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Platforms>AnyCPU;x86;x64</Platforms>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<WarningsAsErrors>true</WarningsAsErrors>
+		<Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="LogicBuilder.Attributes" Version="2.0.6" />
-    <PackageReference Include="LogicBuilder.Domain" Version="7.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Contoso.Utils\Contoso.Utils.csproj" />
+    <PackageReference Include="LogicBuilder.Domain" Version="8.0.1" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Contoso.Test.Flow.Cache;
 using LogicBuilder.RulesDirector;
+using System;
 
 namespace Contoso.Test.Flow
 {
@@ -11,6 +12,7 @@ namespace Contoso.Test.Flow
         IFlowActivity FlowActivity { get; }
         FlowDataCache FlowDataCache { get; }
         Progress Progress { get; }
+        IServiceProvider ServiceProvider { get; }
 
         void Start(string module);
         void SetCurrentBusinessBackupData();

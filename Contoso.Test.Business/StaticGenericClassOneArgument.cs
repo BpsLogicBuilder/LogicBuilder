@@ -2,7 +2,7 @@
 
 namespace Contoso.Test.Business
 {
-    internal class StaticGenericClassOneArgument<A>
+    internal static class StaticGenericClassOneArgument<A>
     {
         public static bool StaticMethodOne(A aParameter)
         {

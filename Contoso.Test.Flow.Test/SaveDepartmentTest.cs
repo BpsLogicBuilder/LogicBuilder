@@ -1,10 +1,9 @@
 ﻿using Contoso.Domain.Entities;
 using Contoso.Test.Business.Requests;
 using Contoso.Test.Flow.Cache;
-using Contoso.Test.Flow.Rules;
+using LogicBuilder.App.Utils.Rules;
 using LogicBuilder.RulesDirector;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
 using Xunit;
 
@@ -35,7 +34,7 @@ namespace Contoso.Test.Flow.Test
                     EntityState = LogicBuilder.Domain.EntityStateType.Modified,
                     InstructorID = 1,
                     Budget = 10000,
-                    StartDate = new DateTime(2020, 2, 2),
+                    StartDate = new DateTime(2020, 2, 2, 0, 0, 0, DateTimeKind.Unspecified),
                     Name = "Physics"
                 }
             };
@@ -62,7 +61,7 @@ namespace Contoso.Test.Flow.Test
                     EntityState = LogicBuilder.Domain.EntityStateType.Modified,
                     InstructorID = null,
                     Budget = -1,
-                    StartDate = new DateTime(),
+                    StartDate = DateTime.MinValue,
                     Name = ""
                 }
             };
@@ -90,10 +89,25 @@ namespace Contoso.Test.Flow.Test
                 .AddTransient<ICustomDialogs, CustomDialogs>()
                 .AddSingleton<FlowDataCache, FlowDataCache>()
                 .AddSingleton<Progress, Progress>()
-                .AddSingleton<IRulesCache>(sp =>
-                {
-                    return RulesService.LoadRulesSync(new RulesLoader());
-                })
+                .AddAppUtilsServices()
+                .AddRulesCacheService
+                (
+                    new RulesLoaderRequest
+                    (
+                        "Contoso.Test.Flow.Rulesets",
+                        typeof(FlowActivity),
+                        [
+                            typeof(Business.Requests.BaseRequest).Assembly,
+                            typeof(LogicBuilder.App.Utils.Interfaces.ITypeHelper).Assembly,
+                            typeof(LogicBuilder.App.Spa.Forms.Parameters.CommandButtonParameters).Assembly,
+                            typeof(LogicBuilder.Forms.Parameters.Expansions.SelectExpandDefinitionParameters).Assembly,
+                            typeof(Contoso.Domain.Entities.StudentModel).Assembly,
+                            typeof(Contoso.Data.Entities.Course).Assembly,
+                            typeof(DirectorBase).Assembly,
+                            typeof(string).Assembly
+                        ]
+                    )
+                )
                 .BuildServiceProvider();
         }
         #endregion Helpers

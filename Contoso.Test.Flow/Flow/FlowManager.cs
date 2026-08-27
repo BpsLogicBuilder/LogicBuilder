@@ -16,7 +16,8 @@ namespace Contoso.Test.Flow
             FlowActivityFactory flowActivityFactory,
             ILogger<FlowManager> logger, 
             Progress progress,
-            FlowDataCache flowDataCache)
+            FlowDataCache flowDataCache,
+            IServiceProvider serviceProvider)
         {
             this.CustomActions = customActions;
             this.CustomDialogs = customDialogs;
@@ -25,6 +26,7 @@ namespace Contoso.Test.Flow
             this.FlowDataCache = flowDataCache;
             this.Director = directorFactory.Create(this);
             this.FlowActivity = flowActivityFactory.Create(this);
+            this.ServiceProvider = serviceProvider;
         }
 
         public IFlowActivity FlowActivity { get; }
@@ -36,6 +38,8 @@ namespace Contoso.Test.Flow
         private readonly ILogger<FlowManager> logger;
 
         public DirectorBase Director { get; }
+
+        public IServiceProvider ServiceProvider { get; }
 
         public void FlowComplete()
         {
