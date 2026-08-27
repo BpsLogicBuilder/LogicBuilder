@@ -1,5 +1,7 @@
-﻿using Contoso.Test.Business.Requests;
+﻿using Contoso.Domain.Entities;
+using Contoso.Test.Business.Requests;
 using Contoso.Test.Business.Responses;
+using System;
 using System.Collections.Generic;
 
 namespace Contoso.Test.Flow.Cache
@@ -10,5 +12,6 @@ namespace Contoso.Test.Flow.Cache
         public BaseResponse Response { get; set; }
         public object[] ObjectArray { get; set; }
         public Dictionary<string, object> Items { get; set; } = new Dictionary<string, object>();
+        public Type[] TypeArray { get; set; } = new Type[] { typeof(LogicBuilder.App.Utils.Interfaces.ITypeHelper), typeof(StudentModel) };
     }
 }

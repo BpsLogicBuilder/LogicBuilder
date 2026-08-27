@@ -247,7 +247,7 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
         }
     }
 
-    public class ActionShapeValidatorFixture : IDisposable
+    public sealed class ActionShapeValidatorFixture : IDisposable
     {
         internal InvisibleApp VisioApplication;
         internal IServiceProvider ServiceProvider;

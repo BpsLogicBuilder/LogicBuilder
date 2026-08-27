@@ -1,4 +1,4 @@
-﻿using Contoso.Utils;
+﻿using LogicBuilder.Domain.Json;
 
 namespace Contoso.Test.Business.Responses.Json
 {

@@ -54,6 +54,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
 
         private readonly ApplicationTypeInfo application;
 
+#pragma warning disable S107 //Required for complex XML
         public CodeExpressionBuilder(
             IAnyParametersHelper anyParametersHelper,
             IConfigurationService configurationService,
@@ -81,6 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
             ApplicationTypeInfo application,
             IDictionary<string, string> resourceStrings,
             string resourceNamePrefix)
+#pragma warning restore S107
         {
             _anyParametersHelper = anyParametersHelper;
             _configurationService = configurationService;
@@ -191,10 +193,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
         {
             if (decisionData == null)
                 throw _exceptionHelper.CriticalException("{EB2A4A3E-20E2-4582-8D85-C1F4C69F36AD}");
-
-            //Decisions are no longer tied to variables.
-            //if (!_getValidConfigurationFromData.TryGetVariable(decisionData, this.application, out VariableBase? _))
-            //throw _exceptionHelper.CriticalException("{34CAA9D0-BE61-42EA-BCF6-8A790CD09CAA}");
 
             return new(BuildPredicates(decisionData), decisionData.IsNotDecision);
         }

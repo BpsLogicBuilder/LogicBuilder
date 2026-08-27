@@ -28,7 +28,7 @@
 		<Reference Include="Microsoft.Office.Interop.Visio">
 			<SpecificVersion>False</SpecificVersion>
 			<EmbedInteropTypes>False</EmbedInteropTypes>
-			<HintPath>bin\2010\Microsoft.Office.Interop.Visio.dll</HintPath>
+			<HintPath>..\TelerikLogicBuilder\lib\2010\Microsoft.Office.Interop.Visio.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
