@@ -1,3 +1,4 @@
+* 2026-08-28 - AB#221: Added target selectors and filters.
 * 2026-08-27 - AB#221: Update Contoso test projects to use common libraries.
 * 2026-07-24 - AB#187: Bug Fixes: (#5)
 * 2026-02-18 - NuGet latest and license update (#4)
