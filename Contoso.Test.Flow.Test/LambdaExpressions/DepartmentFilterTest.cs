@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
+using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using Contoso.BSL.AutoMapperProfiles;
 using Contoso.Contexts;
@@ -23,7 +25,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Contoso.Test.Flow.Test.LmbdaExpressions
+namespace Contoso.Test.Flow.Test.LambdaExpressions
 {
     [Collection("DatabaseCollection")]
     public class DepartmentFilterTest
@@ -53,6 +55,18 @@ namespace Contoso.Test.Flow.Test.LmbdaExpressions
         public async Task SetFilter(string filterName, string filterString)
         {
             //arrange
+            IConfigurationService _configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
+            IFragmentListInitializer _fragmentListInitializer = serviceProvider.GetRequiredService<IFragmentListInitializer>();
+            IFunctionListInitializer _functionListInitializer = serviceProvider.GetRequiredService<IFunctionListInitializer>();
+            IVariableListInitializer _variableListInitializer = serviceProvider.GetRequiredService<IVariableListInitializer>();
+            ILoadProjectProperties _loadProjectProperties = serviceProvider.GetRequiredService<ILoadProjectProperties>();
+            IConstructorListInitializer _constructorListInitializer = serviceProvider.GetRequiredService<IConstructorListInitializer>();
+            _configurationService.ProjectProperties = _loadProjectProperties.Load(Constants.ProjectFileFullPath);
+            _configurationService.ConstructorList = _constructorListInitializer.InitializeList();
+            _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
+            _configurationService.FunctionList = _functionListInitializer.InitializeList();
+            _configurationService.VariableList = _variableListInitializer.InitializeList();
+
             IFlowManager flowManager = serviceProvider.GetRequiredService<IFlowManager>();
             IMappingOperations mappingOperations = serviceProvider.GetRequiredService<IMappingOperations>();
             ISchoolRepository schoolRepository = serviceProvider!.GetRequiredService<ISchoolRepository>();
@@ -119,7 +133,7 @@ namespace Contoso.Test.Flow.Test.LmbdaExpressions
         [MemberNotNull(nameof(serviceProvider))]
         private void Initialize()
         {
-            serviceProvider = new ServiceCollection()
+            serviceProvider = ABIS.LogicBuilder.FlowBuilder.Program.ServiceCollection
                 .AddDbContext<SchoolContext>
                 (
                     options => options.UseSqlServer

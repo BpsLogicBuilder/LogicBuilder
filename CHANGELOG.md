@@ -1,3 +1,4 @@
+* 2026-08-28 - AB#221: Fix the spelling for LambdaExpressions folder and namespace.
 * 2026-08-28 - AB#221: Added target selectors and filters.
 * 2026-08-27 - AB#221: Update Contoso test projects to use common libraries.
 * 2026-07-24 - AB#187: Bug Fixes: (#5)

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 
 #if (DEBUG)
+[assembly: InternalsVisibleTo("Contoso.Test.Flow.Test")]
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.Tests")]
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.IntegrationTests")]
 [assembly: InternalsVisibleTo("TelerikLogicBuilder.FormsPreviewer")]
