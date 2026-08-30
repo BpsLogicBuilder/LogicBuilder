@@ -39,6 +39,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Repositories", "Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.BSL.AutoMapperProfiles", "Contoso.BSL.AutoMapperProfiles\Contoso.BSL.AutoMapperProfiles.csproj", "{B5A2D57A-446C-27A1-E611-8766BBCE9FAC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigurationXml", "ConfigurationXml", "{4B01FDF6-BB4B-4CA2-A5C6-B62A27AD7701}"
+	ProjectSection(SolutionItems) = preProject
+		FlowProjects\Contoso.Test\constructors.data.xml = FlowProjects\Contoso.Test\constructors.data.xml
+		FlowProjects\Contoso.Test\functions.data.xml = FlowProjects\Contoso.Test\functions.data.xml
+		FlowProjects\Contoso.Test\variables.data.xml = FlowProjects\Contoso.Test\variables.data.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +226,7 @@ Global
 		{92842711-F8B1-7BBA-4A54-49FC8E22549F} = {F2D83747-4FB1-430B-B6B8-3420DF251FF4}
 		{CE34612C-E48D-E502-D9F1-6D83FF25FC08} = {F2D83747-4FB1-430B-B6B8-3420DF251FF4}
 		{B5A2D57A-446C-27A1-E611-8766BBCE9FAC} = {F2D83747-4FB1-430B-B6B8-3420DF251FF4}
+		{4B01FDF6-BB4B-4CA2-A5C6-B62A27AD7701} = {B90BCED0-2BAD-49E8-8731-4B97FE92BA92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B6C12F5A-3A2B-4262-843C-277E72E02EFC}

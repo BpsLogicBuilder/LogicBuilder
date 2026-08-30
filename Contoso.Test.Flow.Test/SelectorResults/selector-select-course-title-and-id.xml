@@ -6,7 +6,7 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="sourceOperand">
-						<constructor name="OrderByOperatorParameters" visibleText="OrderByOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;ListSortDirection: sortDirection;selectorParameterName=o">
+						<constructor name="OrderByOperatorParameters" visibleText="OrderByOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;ListSortDirection: sortDirection;selectorParameterName=d">
 							<genericArguments />
 							<parameters>
 								<objectParameter name="sourceOperand">
@@ -18,42 +18,41 @@
 									</constructor>
 								</objectParameter>
 								<objectParameter name="selectorBody">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.CourseModel">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Title;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
-											<literalParameter name="memberFullName">CourseID</literalParameter>
+											<literalParameter name="memberFullName">Title</literalParameter>
 											<objectParameter name="sourceOperand">
-												<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=o">
+												<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=d">
 													<genericArguments />
 													<parameters>
-														<literalParameter name="parameterName">o</literalParameter>
+														<literalParameter name="parameterName">d</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.CourseModel</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
 								<objectParameter name="sortDirection">
 									<variable name="ListSortDirection_Ascending" visibleText="ListSortDirection_Ascending" />
 								</objectParameter>
-								<literalParameter name="selectorParameterName">o</literalParameter>
+								<literalParameter name="selectorParameterName">d</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>
 					<objectParameter name="selectorBody">
-						<constructor name="MemberInitOperatorParameters" visibleText="MemberInitOperatorParameters: IGenericListOfMemberBindingItem: memberBindings">
+						<constructor name="MemberInitOperatorParameters" visibleText="MemberInitOperatorParameters: IGenericListOfMemberBindingItem: memberBindings;Type: newType">
 							<genericArguments />
 							<parameters>
 								<objectListParameter name="memberBindings">
-									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.MemberBindingItem" listType="GenericList" visibleText="memberBindings: Count(1)">
+									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.MemberBindingItem" listType="GenericList" visibleText="memberBindings: Count(2)">
 										<object>
-											<constructor name="MemberBindingItem" visibleText="MemberBindingItem: property=courseID;IExpressionParameter: selector">
+											<constructor name="MemberBindingItem" visibleText="MemberBindingItem: property=CourseID;IExpressionParameter: selector">
 												<genericArguments />
 												<parameters>
-													<literalParameter name="property">courseID</literalParameter>
+													<literalParameter name="property">CourseID</literalParameter>
 													<objectParameter name="selector">
-														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.CourseModel">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand">
 															<genericArguments />
 															<parameters>
 																<literalParameter name="memberFullName">CourseID</literalParameter>
@@ -65,7 +64,30 @@
 																		</parameters>
 																	</constructor>
 																</objectParameter>
-																<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.CourseModel</literalParameter>
+															</parameters>
+														</constructor>
+													</objectParameter>
+												</parameters>
+											</constructor>
+										</object>
+										<object>
+											<constructor name="MemberBindingItem" visibleText="MemberBindingItem: property=CourseTitle;IExpressionParameter: selector">
+												<genericArguments />
+												<parameters>
+													<literalParameter name="property">CourseTitle</literalParameter>
+													<objectParameter name="selector">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Title;IExpressionParameter: sourceOperand">
+															<genericArguments />
+															<parameters>
+																<literalParameter name="memberFullName">Title</literalParameter>
+																<objectParameter name="sourceOperand">
+																	<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=s">
+																		<genericArguments />
+																		<parameters>
+																			<literalParameter name="parameterName">s</literalParameter>
+																		</parameters>
+																	</constructor>
+																</objectParameter>
 															</parameters>
 														</constructor>
 													</objectParameter>
@@ -74,6 +96,31 @@
 										</object>
 									</objectList>
 								</objectListParameter>
+								<objectParameter name="newType">
+									<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+										<genericArguments />
+										<parameters>
+											<objectParameter name="typeHelper">
+												<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+													<genericArguments>
+														<objectParameter genericArgumentName="TService">
+															<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+															<useForEquality>false</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+														</objectParameter>
+													</genericArguments>
+													<parameters>
+														<objectParameter name="serviceProvider">
+															<variable name="ServiceProvider" visibleText="ServiceProvider" />
+														</objectParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+											<literalParameter name="assemblyQualifiedTypeName">Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+										</parameters>
+									</function>
+								</objectParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>
@@ -108,7 +155,7 @@
 		</objectParameter>
 		<literalParameter name="parameterName">$it</literalParameter>
 		<objectParameter name="bodyType">
-			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Collections.Generic.IEnumerable`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 				<genericArguments />
 				<parameters>
 					<objectParameter name="typeHelper">
@@ -128,7 +175,7 @@
 							</parameters>
 						</function>
 					</objectParameter>
-					<literalParameter name="assemblyQualifiedTypeName">System.Collections.Generic.IEnumerable`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Contoso.Domain.Entities.CourseAssignmentModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
 				</parameters>
 			</function>
 		</objectParameter>

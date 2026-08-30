@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
@@ -9,6 +10,7 @@ using Contoso.Domain.Entities;
 using Contoso.Repositories;
 using Contoso.Stores;
 using Contoso.Test.Business.Responses;
+using DotNet.Testcontainers.Builders;
 using LogicBuilder.App.Utils.Interfaces;
 using LogicBuilder.App.Utils.Rules;
 using LogicBuilder.EntityFrameworkCore.Mapping;
@@ -21,9 +23,12 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
+using Telerik.Windows.Documents.Spreadsheet.Model.Filtering;
 using Xunit;
 
 namespace Contoso.Test.Flow.Test.LambdaExpressions
@@ -48,6 +53,8 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
         private readonly DatabaseFixture databaseFixture;
         private readonly ITestOutputHelper output;
         private static MapperConfiguration MapperConfiguration;
+        private const string SelectorResultsFolder = "SelectorResults"; 
+        private const string TargetSelectorsFolder = "TargetSelectors";
         #endregion Fields
 
         [Fact]
@@ -93,6 +100,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             List<object> resultList = [.. result];
             Assert.NotEmpty(resultList);
             AssertFilterStringIsCorrect(selector, "$it => Convert($it.GroupBy(item => item.EnrollmentDate).OrderByDescending(group => group.Key).Select(sel => new AnonymousType() {enrollmentDate = sel.Key, count = Convert(sel.AsQueryable().Count())}))");
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), SelectorResultsFolder, $"{selectorName}.xml"),
+                formattedXml,
+                System.Threading.CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), TargetSelectorsFolder, $"{selectorName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         [Fact]
@@ -138,6 +162,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             List<object> resultList = [.. result];
             Assert.NotEmpty(resultList);
             AssertFilterStringIsCorrect(selector, "$it => Convert($it.Where(w => (w.ListName == \"Credits\")).OrderBy(o => o.NumericValue).Select(s => new AnonymousType() {credits = s.NumericValue}))");
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), SelectorResultsFolder, $"{selectorName}.xml"),
+                formattedXml,
+                System.Threading.CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), TargetSelectorsFolder, $"{selectorName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         [Fact]
@@ -183,6 +224,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             List<LookUpsModel> resultList = [.. result];
             Assert.NotEmpty(resultList);
             AssertFilterStringIsCorrect(selector, "$it => $it.Where(l => (l.ListName == \"Credits\")).OrderByDescending(l => l.NumericValue).Select(s => new LookUpsModel() {NumericValue = s.NumericValue, Text = s.Text})");
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), SelectorResultsFolder, $"{selectorName}.xml"),
+                formattedXml,
+                System.Threading.CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), TargetSelectorsFolder, $"{selectorName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         [Fact]
@@ -228,6 +286,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             List<object> resultList = [.. result];
             Assert.NotEmpty(resultList);
             AssertFilterStringIsCorrect(selector, "$it => Convert($it.OrderBy(o => o.CourseID).Select(s => new AnonymousType() {courseID = s.CourseID}))");
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), SelectorResultsFolder, $"{selectorName}.xml"),
+                formattedXml,
+                System.Threading.CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), TargetSelectorsFolder, $"{selectorName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         [Fact]
@@ -273,6 +348,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             List<CourseAssignmentModel> resultList = [.. result];
             Assert.NotEmpty(resultList);
             AssertFilterStringIsCorrect(selector, "$it => $it.OrderBy(d => d.Title).Select(s => new CourseAssignmentModel() {CourseID = s.CourseID, CourseTitle = s.Title})");
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), SelectorResultsFolder, $"{selectorName}.xml"),
+                formattedXml,
+                System.Threading.CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), TargetSelectorsFolder, $"{selectorName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         [Fact]
@@ -318,6 +410,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             List<DepartmentModel> resultList = [.. result];
             Assert.NotEmpty(resultList);
             AssertFilterStringIsCorrect(selector, "$it => $it.OrderBy(d => d.Name).Select(d => new DepartmentModel() {DepartmentID = d.DepartmentID, Name = d.Name})");
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), SelectorResultsFolder, $"{selectorName}.xml"),
+                formattedXml,
+                System.Threading.CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), TargetSelectorsFolder, $"{selectorName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         [Fact]
@@ -363,6 +472,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             List<InstructorModel> resultList = [.. result];
             Assert.NotEmpty(resultList);
             AssertFilterStringIsCorrect(selector, "$it => $it.OrderBy(d => d.FullName).Select(s => new InstructorModel() {ID = s.ID, FirstName = s.FirstName, LastName = s.LastName, FullName = s.FullName})");
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), SelectorResultsFolder, $"{selectorName}.xml"),
+                formattedXml,
+                System.Threading.CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), TargetSelectorsFolder, $"{selectorName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         #region Helpers

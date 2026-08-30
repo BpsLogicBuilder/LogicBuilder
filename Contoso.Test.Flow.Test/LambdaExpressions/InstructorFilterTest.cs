@@ -1,4 +1,5 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
+﻿using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration.Initialization;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
@@ -20,8 +21,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -99,6 +102,23 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
 
             Assert.Equal(1, instructor.ID);
             AssertFilterStringIsCorrect(filter, filterString);
+
+            IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider));
+
+            await File.WriteAllTextAsync
+            (
+                Path.Combine(ProjectDirectory.GetPath(), Constants.FilterResultsFolder, $"{filterName}.xml"),
+                formattedXml,
+                CancellationToken.None
+            );
+
+            int compare = string.Compare
+            (
+                await File.ReadAllTextAsync(Path.Combine(ProjectDirectory.GetPath(), Constants.TargetFilterFolder, $"{filterName}.xml"), CancellationToken.None),
+                formattedXml
+            );
+            Assert.Equal(0, compare);
         }
 
         #region Helpers
@@ -159,7 +179,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                         [
                             typeof(Business.Requests.BaseRequest).Assembly,
                             typeof(LogicBuilder.App.Spa.Forms.Parameters.CommandButtonParameters).Assembly,
-                            typeof(ITypeHelper).Assembly,
+                            typeof(LogicBuilder.App.Utils.Interfaces.ITypeHelper).Assembly,
                             typeof(LogicBuilder.Forms.Parameters.Expansions.SelectExpandDefinitionParameters).Assembly,
                             typeof(StudentModel).Assembly,
                             typeof(Course).Assembly,

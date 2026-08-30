@@ -37,8 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="FilterResult\" />
-    <Folder Include="SelectorResult\" />
+    <Folder Include="FilterResults\" />
+    <Folder Include="SelectorResults\" />
   </ItemGroup>
 
 </Project>
