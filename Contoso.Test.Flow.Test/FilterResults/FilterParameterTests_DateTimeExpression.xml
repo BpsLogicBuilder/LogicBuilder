@@ -6,7 +6,7 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DateTimeProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DateTimeProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">DateTimeProp</literalParameter>
@@ -18,7 +18,7 @@
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes</literalParameter>
+								<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>

@@ -43,12 +43,12 @@
 								<objectListParameter name="args">
 									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter" listType="Array" visibleText="args: Count(1)">
 										<object>
-											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Value;IExpressionParameter: sourceOperand;fieldTypeSource=System.Nullable`1[[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]">
+											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Value;IExpressionParameter: sourceOperand;fieldTypeSource=System.Nullable`1[[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
 												<genericArguments />
 												<parameters>
 													<literalParameter name="memberFullName">Value</literalParameter>
 													<objectParameter name="sourceOperand">
-														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=UnitPrice;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=UnitPrice;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 															<genericArguments />
 															<parameters>
 																<literalParameter name="memberFullName">UnitPrice</literalParameter>
@@ -60,11 +60,11 @@
 																		</parameters>
 																	</constructor>
 																</objectParameter>
-																<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product</literalParameter>
+																<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 															</parameters>
 														</constructor>
 													</objectParameter>
-													<literalParameter name="fieldTypeSource">System.Nullable`1[[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</literalParameter>
+													<literalParameter name="fieldTypeSource">System.Nullable`1[[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 												</parameters>
 											</constructor>
 										</object>

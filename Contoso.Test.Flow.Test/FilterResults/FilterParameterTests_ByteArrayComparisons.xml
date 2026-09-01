@@ -41,7 +41,7 @@
 						</constructor>
 					</objectParameter>
 					<objectParameter name="right">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ByteArrayPropWithNullValue;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ByteArrayPropWithNullValue;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">ByteArrayPropWithNullValue</literalParameter>
@@ -53,7 +53,7 @@
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes</literalParameter>
+								<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>

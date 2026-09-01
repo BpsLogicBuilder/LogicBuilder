@@ -6042,7 +6042,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             //act
             var filter = CreateFilter<DerivedProduct>();
             string ruleName = $"{nameof(FilterParameterTests)}_{nameof(NSCast_OnSingleEntity_GeneratesExpression_WithAsOperatorParameters)}";
-            Expression<Func<Product, bool>> newFilter = (Expression<Func<Product, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(Product), null!);
+            Expression<Func<DerivedProduct, bool>> newFilter = (Expression<Func<DerivedProduct, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(DerivedProduct), null!);
 
             //assert
             AssertFilterStringIsCorrect(newFilter, "$it => (($it As Product).ProductName == \"ProductName\")");
@@ -6160,7 +6160,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             var filter = CreateFilter<DerivedProduct>();
             var entity = new DerivedProduct { Category = new DerivedCategory { CategoryID = 123 }, ProductName = "ProductName", DerivedProductName = "DerivedProductName" };
             string ruleName = $"{nameof(FilterParameterTests)}_{nameof(Inheritance_WithDerivedInstance)}";
-            Expression<Func<Product, bool>> newFilter = (Expression<Func<Product, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(Product), entity);
+            Expression<Func<DerivedProduct, bool>> newFilter = (Expression<Func<DerivedProduct, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(DerivedProduct), entity);
             bool result = RunFilter(newFilter, new DerivedProduct { Category = new DerivedCategory { CategoryID = 123 }, ProductName = "ProductName", DerivedProductName = "DerivedProductName" });
 
             //assert

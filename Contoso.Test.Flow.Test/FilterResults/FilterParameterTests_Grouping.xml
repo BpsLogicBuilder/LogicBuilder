@@ -10,7 +10,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="left">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ProductName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ProductName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">ProductName</literalParameter>
@@ -22,7 +22,7 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product</literalParameter>
+											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
@@ -92,7 +92,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="left">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=UnitPrice;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=UnitPrice;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">UnitPrice</literalParameter>
@@ -104,7 +104,7 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product</literalParameter>
+											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>

@@ -22,7 +22,7 @@
 										<genericArguments />
 										<parameters>
 											<objectParameter name="left">
-												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category">
+												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 													<genericArguments />
 													<parameters>
 														<literalParameter name="memberFullName">CategoryName</literalParameter>
@@ -34,7 +34,7 @@
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category</literalParameter>
+														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>
@@ -104,7 +104,7 @@
 										<genericArguments />
 										<parameters>
 											<objectParameter name="left">
-												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category">
+												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 													<genericArguments />
 													<parameters>
 														<literalParameter name="memberFullName">CategoryName</literalParameter>
@@ -116,7 +116,7 @@
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category</literalParameter>
+														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>
@@ -189,7 +189,7 @@
 			</constructor>
 		</objectParameter>
 		<objectParameter name="sourceElementType">
-			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 				<genericArguments />
 				<parameters>
 					<objectParameter name="typeHelper">
@@ -209,7 +209,7 @@
 							</parameters>
 						</function>
 					</objectParameter>
-					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
 				</parameters>
 			</function>
 		</objectParameter>

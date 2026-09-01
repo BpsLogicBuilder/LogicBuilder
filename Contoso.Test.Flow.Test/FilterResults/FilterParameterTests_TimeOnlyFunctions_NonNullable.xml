@@ -6,12 +6,12 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Second;IExpressionParameter: sourceOperand;fieldTypeSource=System.TimeOnly">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Second;IExpressionParameter: sourceOperand;fieldTypeSource=System.TimeOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">Second</literalParameter>
 								<objectParameter name="sourceOperand">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=TimeOnlyProperty;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=TimeOnlyProperty;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">TimeOnlyProperty</literalParameter>
@@ -23,11 +23,11 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product</literalParameter>
+											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">System.TimeOnly</literalParameter>
+								<literalParameter name="fieldTypeSource">System.TimeOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>

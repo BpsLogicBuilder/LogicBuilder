@@ -43,7 +43,7 @@
 								<objectListParameter name="args">
 									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter" listType="Array" visibleText="args: Count(1)">
 										<object>
-											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DecimalProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes">
+											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DecimalProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 												<genericArguments />
 												<parameters>
 													<literalParameter name="memberFullName">DecimalProp</literalParameter>
@@ -55,7 +55,7 @@
 															</parameters>
 														</constructor>
 													</objectParameter>
-													<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes</literalParameter>
+													<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 												</parameters>
 											</constructor>
 										</object>
@@ -102,7 +102,7 @@
 								<objectListParameter name="args">
 									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter" listType="Array" visibleText="args: Count(1)">
 										<object>
-											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DecimalProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes">
+											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DecimalProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 												<genericArguments />
 												<parameters>
 													<literalParameter name="memberFullName">DecimalProp</literalParameter>
@@ -114,7 +114,7 @@
 															</parameters>
 														</constructor>
 													</objectParameter>
-													<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes</literalParameter>
+													<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 												</parameters>
 											</constructor>
 										</object>

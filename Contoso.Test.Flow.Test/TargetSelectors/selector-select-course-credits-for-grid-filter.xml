@@ -26,7 +26,7 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="left">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ListName;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.LookUpsModel">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ListName;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">ListName</literalParameter>
@@ -38,7 +38,7 @@
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.LookUpsModel</literalParameter>
+																	<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -108,7 +108,7 @@
 									</constructor>
 								</objectParameter>
 								<objectParameter name="selectorBody">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NumericValue;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.LookUpsModel">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NumericValue;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">NumericValue</literalParameter>
@@ -120,7 +120,7 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.LookUpsModel</literalParameter>
+											<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
@@ -143,7 +143,7 @@
 												<parameters>
 													<literalParameter name="property">credits</literalParameter>
 													<objectParameter name="selector">
-														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NumericValue;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.LookUpsModel">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NumericValue;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 															<genericArguments />
 															<parameters>
 																<literalParameter name="memberFullName">NumericValue</literalParameter>
@@ -155,7 +155,7 @@
 																		</parameters>
 																	</constructor>
 																</objectParameter>
-																<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.LookUpsModel</literalParameter>
+																<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 															</parameters>
 														</constructor>
 													</objectParameter>
@@ -172,7 +172,7 @@
 			</constructor>
 		</objectParameter>
 		<objectParameter name="sourceElementType">
-			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 				<genericArguments />
 				<parameters>
 					<objectParameter name="typeHelper">
@@ -192,7 +192,7 @@
 							</parameters>
 						</function>
 					</objectParameter>
-					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Contoso.Domain.Entities.LookUpsModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
 				</parameters>
 			</function>
 		</objectParameter>

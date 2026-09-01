@@ -1,4 +1,5 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -17,14 +18,14 @@ using System.Xml;
 namespace Contoso.Test.Flow.Test
 {
     internal class ConstructorXmlBuilder(
+        IApplicationTypeInfoManager applicationTypeInfoManager,
         IConfigurationService configurationService,
         IRefreshVisibleTextHelper refreshVisibleTextHelper,
-        IApplicationTypeInfoManager applicationTypeInfoManager,
         IXmlDocumentHelpers xmlDocumentHelpers) : ExpressionVisitor
     {
+        private readonly IApplicationTypeInfoManager _applicationTypeInfoManager = applicationTypeInfoManager;
         private readonly IConfigurationService _configurationService = configurationService;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper = refreshVisibleTextHelper;
-        private readonly IApplicationTypeInfoManager _applicationTypeInfoManager = applicationTypeInfoManager;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers = xmlDocumentHelpers;
         private readonly XmlDocument xmlDocument = new();
         private bool _buildingSelectorRoot;
@@ -35,9 +36,9 @@ namespace Contoso.Test.Flow.Test
         {
             ConstructorXmlBuilder visitor = new
             (
+                serviceProvider.GetRequiredService<IApplicationTypeInfoManager>(),
                 serviceProvider.GetRequiredService<IConfigurationService>(),
                 serviceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
-                serviceProvider.GetRequiredService<IApplicationTypeInfoManager>(),
                 serviceProvider.GetRequiredService<IXmlDocumentHelpers>()
             );
             visitor.xmlDocument.LoadXml($"<{XmlDataConstants.CONSTRUCTORELEMENT}/>");
@@ -52,13 +53,14 @@ namespace Contoso.Test.Flow.Test
                 throw new NotSupportedException($"Expected lambda expression but got {expression.NodeType}.");
 
             XmlElement constructorElement = BuildRootConstructor(lambdaExpression);
-            string selectedApplication = _configurationService.GetSelectedApplication().Name;
             constructorElement = _refreshVisibleTextHelper.RefreshAllVisibleTexts
             (
                 constructorElement,
-                _applicationTypeInfoManager.GetApplicationTypeInfo(selectedApplication)
+                _applicationTypeInfoManager.GetApplicationTypeInfo
+                (
+                    _configurationService.GetSelectedApplication().Name
+                )
             );
-            NormalizeMemberSelectorVisibleText(constructorElement);
 
             xmlDocument.RemoveAll();
             xmlDocument.AppendChild(xmlDocument.ImportNode(constructorElement, true));
@@ -68,11 +70,12 @@ namespace Contoso.Test.Flow.Test
         {
             bool isFilter = lambdaExpression.ReturnType == typeof(bool);
             string rootConstructorName = isFilter ? "FilterLambdaOperatorParameters" : "SelectorLambdaOperatorParameters";
-            string parameterName = lambdaExpression.Parameters[0].Name ?? "$it";
-            Type sourceElementType = isFilter
-                ? GetFilterSourceElementType(lambdaExpression)
-                : lambdaExpression.Parameters[0].Type;
+            Constructor constructor = _configurationService.ConstructorList.Constructors.Single(c => c.Key == rootConstructorName).Value;
+
+            string parameterName = lambdaExpression.Parameters[0].Name ?? throw new InvalidOperationException("Parameter name is required.");
+            Type sourceElementType = lambdaExpression.Parameters[0].Type;
             Expression bodyExpression = lambdaExpression.Body;
+            
 
             _buildingSelectorRoot = !isFilter;
             _selectorRootHadConvert = false;
@@ -85,81 +88,29 @@ namespace Contoso.Test.Flow.Test
                 _selectorRootHadConvert = true;
             }
 
-            List<XmlElement> parameterElements =
-            [
-                BuildObjectParameter(isFilter ? "filterBody" : "selector", BuildExpressionElement(bodyExpression)),
-                BuildObjectParameter("sourceElementType", BuildGetTypeFunctionElement(sourceElementType)),
-                BuildLiteralParameter("parameterName", parameterName)
-            ];
-
-            if (!isFilter)
+            List<XmlElement> parameterElements = constructor.Parameters.Aggregate(new List<XmlElement>(), (list, parameter) =>
             {
-                parameterElements.Add
-                (
-                    BuildObjectParameter
-                    (
-                        "bodyType",
-                        BuildGetTypeFunctionElement(lambdaExpression.ReturnType)
-                    )
-                );
-            }
-
-            return BuildConstructorElement(rootConstructorName, parameterElements);
-        }
-
-        private static Type GetFilterSourceElementType(LambdaExpression lambdaExpression)
-        {
-            ParameterExpression parameter = lambdaExpression.Parameters[0];
-            if (TryFindRootUpcastType(lambdaExpression.Body, parameter, out Type? upcastType))
-                return upcastType;
-
-            return parameter.Type;
-        }
-
-
-        private static bool TryFindRootUpcastType(Expression expression, ParameterExpression parameter, [NotNullWhen(true)] out Type? upcastType)
-        {
-            upcastType = null;
-
-            if (expression is UnaryExpression unaryExpression)
-            {
-                if ((unaryExpression.NodeType == ExpressionType.TypeAs || unaryExpression.NodeType == ExpressionType.Convert)
-                    && unaryExpression.Operand == parameter
-                    && unaryExpression.Type != parameter.Type
-                    && unaryExpression.Type.IsAssignableFrom(parameter.Type))
+                switch(parameter.Name)
                 {
-                    upcastType = unaryExpression.Type;
-                    return true;
+                    case "filterBody":
+                    case "selector":
+                        list.Add(BuildObjectParameter(parameter.Name, BuildExpressionElement(bodyExpression)));
+                        break;
+                    case "sourceElementType":
+                        list.Add(BuildObjectParameter(parameter.Name, BuildGetTypeFunctionElement(sourceElementType)));
+                        break;
+                    case "parameterName":
+                        list.Add(BuildLiteralParameter(parameter.Name, parameterName));
+                        break;
+                    case "bodyType":
+                        list.Add(BuildObjectParameter(parameter.Name, BuildGetTypeFunctionElement(lambdaExpression.ReturnType)));
+                        break;
                 }
 
-                return TryFindRootUpcastType(unaryExpression.Operand, parameter, out upcastType);
-            }
+                return list;
+            });
 
-            if (expression is BinaryExpression binaryExpression)
-            {
-                return TryFindRootUpcastType(binaryExpression.Left, parameter, out upcastType)
-                    || TryFindRootUpcastType(binaryExpression.Right, parameter, out upcastType);
-            }
-
-            if (expression is MemberExpression memberExpression && memberExpression.Expression is not null)
-                return TryFindRootUpcastType(memberExpression.Expression, parameter, out upcastType);
-
-            if (expression is MethodCallExpression methodCallExpression)
-            {
-                if (methodCallExpression.Object is not null
-                    && TryFindRootUpcastType(methodCallExpression.Object, parameter, out upcastType))
-                {
-                    return true;
-                }
-
-                foreach (Expression argument in methodCallExpression.Arguments)
-                {
-                    if (TryFindRootUpcastType(argument, parameter, out upcastType))
-                        return true;
-                }
-            }
-
-            return false;
+            return BuildConstructorElement(constructor.Name, parameterElements);
         }
 
         private XmlElement BuildExpressionElement(Expression expression)
@@ -367,7 +318,7 @@ namespace Contoso.Test.Flow.Test
                     [
                         BuildLiteralParameter("memberFullName", memberExpression.Member.Name),
                         BuildObjectParameter("sourceOperand", sourceOperand),
-                        BuildLiteralParameter("fieldTypeSource", GetFieldTypeSourceValue(memberExpression, declaringType))
+                        BuildLiteralParameter("fieldTypeSource", GetFieldTypeSourceValue(declaringType))
                     ]
                 );
             }
@@ -381,7 +332,7 @@ namespace Contoso.Test.Flow.Test
             if (ShouldIncludeMemberSelectorFieldTypeSource(memberExpression))
             {
                 Type declaringType = memberExpression.Member.DeclaringType ?? typeof(object);
-                parameters.Add(BuildLiteralParameter("fieldTypeSource", GetFieldTypeSourceValue(memberExpression, declaringType)));
+                parameters.Add(BuildLiteralParameter("fieldTypeSource", GetFieldTypeSourceValue(declaringType)));
             }
 
             return BuildConstructorElement("MemberSelectorOperatorParameters", parameters);
@@ -453,16 +404,9 @@ namespace Contoso.Test.Flow.Test
             return false;
         }
 
-        private string GetFieldTypeSourceValue(MemberExpression memberExpression, Type declaringType)
+        private static string GetFieldTypeSourceValue(Type declaringType)
         {
-            if (_useAssemblyQualifiedFieldTypeSource
-                && memberExpression.Member.Name == "CourseID"
-                && declaringType.Name == "CourseModel")
-            {
-                return declaringType.AssemblyQualifiedName ?? declaringType.FullName ?? declaringType.Name;
-            }
-
-            return declaringType.FullName ?? string.Empty;
+            return declaringType.AssemblyQualifiedName ?? declaringType.FullName ?? declaringType.Name;
         }
 
         private bool ShouldIncludeMemberSelectorFieldTypeSource(MemberExpression memberExpression)
@@ -1531,33 +1475,9 @@ namespace Contoso.Test.Flow.Test
 
         private static string GetConfiguredTypeName(Type type)
         {
-            string value = (!type.IsGenericType && type.Namespace == "System")
+            return (!type.IsGenericType && type.Namespace == "System")
                 ? (type.FullName ?? type.Name)
                 : (type.AssemblyQualifiedName ?? type.FullName ?? type.Name);
-
-            return value.Replace("System.Linq.Expressions, Version=10.0.0.0", "System.Linq.Expressions, Version=4.1.1.0", StringComparison.Ordinal);
-        }
-
-        private static void NormalizeMemberSelectorVisibleText(XmlElement rootElement)
-        {
-            XmlNodeList memberSelectors = rootElement.SelectNodes($"//{XmlDataConstants.CONSTRUCTORELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}='MemberSelectorOperatorParameters']")
-                ?? throw new NotSupportedException("Unable to find member selector nodes.");
-
-            foreach (XmlElement memberSelector in memberSelectors.Cast<XmlElement>())
-            {
-                XmlElement? fieldTypeSourceElement = memberSelector.SelectSingleNode($"./{XmlDataConstants.PARAMETERSELEMENT}/{XmlDataConstants.LITERALPARAMETERELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}='fieldTypeSource']") as XmlElement;
-                XmlElement? parameterNameElement = memberSelector.SelectSingleNode($"./{XmlDataConstants.PARAMETERSELEMENT}/{XmlDataConstants.OBJECTPARAMETERELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}='sourceOperand']/{XmlDataConstants.CONSTRUCTORELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}='ParameterOperatorParameters']/{XmlDataConstants.PARAMETERSELEMENT}/{XmlDataConstants.LITERALPARAMETERELEMENT}[@{XmlDataConstants.NAMEATTRIBUTE}='parameterName']") as XmlElement;
-
-                if (fieldTypeSourceElement is null || parameterNameElement is null)
-                    continue;
-
-                if (parameterNameElement.InnerText == "f" && !fieldTypeSourceElement.InnerText.Contains(',', StringComparison.Ordinal))
-                {
-                    string fieldText = $";fieldTypeSource={fieldTypeSourceElement.InnerText}";
-                    string visibleText = memberSelector.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value;
-                    memberSelector.Attributes[XmlDataConstants.VISIBLETEXTATTRIBUTE]!.Value = visibleText.Replace(fieldText, string.Empty, StringComparison.Ordinal);
-                }
-            }
         }
 
         private XmlElement BuildGetRequiredServiceFunctionElement()
