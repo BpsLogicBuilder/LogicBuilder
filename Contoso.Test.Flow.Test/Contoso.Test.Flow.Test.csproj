@@ -33,6 +33,7 @@
     <ProjectReference Include="..\Contoso.Repositories\Contoso.Repositories.csproj" />
     <ProjectReference Include="..\Contoso.Stores\Contoso.Stores.csproj" />
     <ProjectReference Include="..\Contoso.Test.Flow\Contoso.Test.Flow.csproj" />
+    <ProjectReference Include="..\Shop.Bsl.Flow\Shop.Bsl.Flow.csproj" />
     <ProjectReference Include="..\TelerikLogicBuilder\TelerikLogicBuilder.csproj" />
   </ItemGroup>
 

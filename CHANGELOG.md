@@ -1,3 +1,4 @@
+* 2026-09-01 - AB#221: 245/303 tests working for Lambda Expression XML definiton.
 * 2026-08-30 - AB#221: Geneerated XML matches Contoso filters and selectors.
 * 2026-08-28 - AB#221: Fix the spelling for LambdaExpressions folder and namespace.
 * 2026-08-28 - AB#221: Added target selectors and filters.

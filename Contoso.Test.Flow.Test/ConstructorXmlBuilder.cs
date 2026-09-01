@@ -7,6 +7,8 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -67,6 +69,9 @@ namespace Contoso.Test.Flow.Test
             bool isFilter = lambdaExpression.ReturnType == typeof(bool);
             string rootConstructorName = isFilter ? "FilterLambdaOperatorParameters" : "SelectorLambdaOperatorParameters";
             string parameterName = lambdaExpression.Parameters[0].Name ?? "$it";
+            Type sourceElementType = isFilter
+                ? GetFilterSourceElementType(lambdaExpression)
+                : lambdaExpression.Parameters[0].Type;
             Expression bodyExpression = lambdaExpression.Body;
 
             _buildingSelectorRoot = !isFilter;
@@ -83,7 +88,7 @@ namespace Contoso.Test.Flow.Test
             List<XmlElement> parameterElements =
             [
                 BuildObjectParameter(isFilter ? "filterBody" : "selector", BuildExpressionElement(bodyExpression)),
-                BuildObjectParameter("sourceElementType", BuildGetTypeFunctionElement(lambdaExpression.Parameters[0].Type)),
+                BuildObjectParameter("sourceElementType", BuildGetTypeFunctionElement(sourceElementType)),
                 BuildLiteralParameter("parameterName", parameterName)
             ];
 
@@ -102,20 +107,191 @@ namespace Contoso.Test.Flow.Test
             return BuildConstructorElement(rootConstructorName, parameterElements);
         }
 
+        private static Type GetFilterSourceElementType(LambdaExpression lambdaExpression)
+        {
+            ParameterExpression parameter = lambdaExpression.Parameters[0];
+            if (TryFindRootUpcastType(lambdaExpression.Body, parameter, out Type? upcastType))
+                return upcastType;
+
+            return parameter.Type;
+        }
+
+
+        private static bool TryFindRootUpcastType(Expression expression, ParameterExpression parameter, [NotNullWhen(true)] out Type? upcastType)
+        {
+            upcastType = null;
+
+            if (expression is UnaryExpression unaryExpression)
+            {
+                if ((unaryExpression.NodeType == ExpressionType.TypeAs || unaryExpression.NodeType == ExpressionType.Convert)
+                    && unaryExpression.Operand == parameter
+                    && unaryExpression.Type != parameter.Type
+                    && unaryExpression.Type.IsAssignableFrom(parameter.Type))
+                {
+                    upcastType = unaryExpression.Type;
+                    return true;
+                }
+
+                return TryFindRootUpcastType(unaryExpression.Operand, parameter, out upcastType);
+            }
+
+            if (expression is BinaryExpression binaryExpression)
+            {
+                return TryFindRootUpcastType(binaryExpression.Left, parameter, out upcastType)
+                    || TryFindRootUpcastType(binaryExpression.Right, parameter, out upcastType);
+            }
+
+            if (expression is MemberExpression memberExpression && memberExpression.Expression is not null)
+                return TryFindRootUpcastType(memberExpression.Expression, parameter, out upcastType);
+
+            if (expression is MethodCallExpression methodCallExpression)
+            {
+                if (methodCallExpression.Object is not null
+                    && TryFindRootUpcastType(methodCallExpression.Object, parameter, out upcastType))
+                {
+                    return true;
+                }
+
+                foreach (Expression argument in methodCallExpression.Arguments)
+                {
+                    if (TryFindRootUpcastType(argument, parameter, out upcastType))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
         private XmlElement BuildExpressionElement(Expression expression)
         {
             return expression.NodeType switch
             {
                 ExpressionType.Equal => BuildEqualsBinaryOperator((BinaryExpression)expression),
+                ExpressionType.NotEqual => BuildBinaryOperator((BinaryExpression)expression, "NotEqualsBinaryOperatorParameters"),
+                ExpressionType.GreaterThan => BuildBinaryOperator((BinaryExpression)expression, "GreaterThanBinaryOperatorParameters"),
+                ExpressionType.GreaterThanOrEqual => BuildBinaryOperator((BinaryExpression)expression, "GreaterThanOrEqualsBinaryOperatorParameters"),
+                ExpressionType.LessThan => BuildBinaryOperator((BinaryExpression)expression, "LessThanBinaryOperatorParameters"),
+                ExpressionType.LessThanOrEqual => BuildBinaryOperator((BinaryExpression)expression, "LessThanOrEqualsBinaryOperatorParameters"),
+                ExpressionType.Add => BuildBinaryOperator((BinaryExpression)expression, "AddBinaryOperatorParameters"),
+                ExpressionType.Subtract => BuildBinaryOperator((BinaryExpression)expression, "SubtractBinaryOperatorParameters"),
+                ExpressionType.Multiply => BuildBinaryOperator((BinaryExpression)expression, "MultiplyBinaryOperatorParameters"),
+                ExpressionType.Divide => BuildBinaryOperator((BinaryExpression)expression, "DivideBinaryOperatorParameters"),
+                ExpressionType.Modulo => BuildBinaryOperator((BinaryExpression)expression, "ModuloBinaryOperatorParameters"),
+                ExpressionType.AndAlso => BuildBinaryOperator((BinaryExpression)expression, "AndBinaryOperatorParameters"),
+                ExpressionType.OrElse => BuildBinaryOperator((BinaryExpression)expression, "OrBinaryOperatorParameters"),
                 ExpressionType.MemberAccess => BuildMemberAccess((MemberExpression)expression),
                 ExpressionType.Parameter => BuildParameterOperator((ParameterExpression)expression),
                 ExpressionType.Convert => BuildConvertOperator((UnaryExpression)expression),
+                ExpressionType.ConvertChecked => BuildConvertOperator((UnaryExpression)expression),
+                ExpressionType.TypeAs => BuildCastAsOperator((UnaryExpression)expression),
+                ExpressionType.Not => BuildUnaryOperator((UnaryExpression)expression, "NotOperatorParameters"),
+                ExpressionType.Negate => BuildUnaryOperator((UnaryExpression)expression, "NegateOperatorParameters"),
                 ExpressionType.Call => BuildMethodCall((MethodCallExpression)expression),
                 ExpressionType.MemberInit => BuildMemberInit((MemberInitExpression)expression),
-                ExpressionType.Constant => BuildConstantOperator((ConstantExpression)expression, null, null, null),
+                ExpressionType.Constant => BuildConstantOperator((ConstantExpression)expression, ((ConstantExpression)expression).Value is null ? "Null" : null, null, null),
+                ExpressionType.Conditional => BuildConditionalExpression((ConditionalExpression)expression),
                 _ => throw new NotSupportedException($"Expression node '{expression.NodeType}' is not supported.")
             };
         }
+
+        private XmlElement BuildConditionalExpression(ConditionalExpression conditionalExpression)
+        {
+            if (TryBuildNullableToStringConditional(conditionalExpression, out XmlElement? nullableSourceOperand))
+            {
+                return BuildConstructorElement
+                (
+                    "ConvertToStringOperatorParameters",
+                    [
+                        BuildObjectParameter("sourceOperand", nullableSourceOperand)
+                    ]
+                );
+            }
+
+            return BuildEvaluatedConstantExpression(conditionalExpression);
+        }
+
+        private bool TryBuildNullableToStringConditional(ConditionalExpression conditionalExpression, [NotNullWhen(true)] out XmlElement? sourceOperand)
+        {
+            sourceOperand = null;
+
+            if (conditionalExpression.Type != typeof(string))
+                return false;
+
+            if (conditionalExpression.IfFalse is not ConstantExpression { Value: null })
+                return false;
+
+            if (conditionalExpression.Test is not MemberExpression { Member.Name: "HasValue" } hasValueMember
+                || hasValueMember.Expression is null
+                || Nullable.GetUnderlyingType(hasValueMember.Expression.Type) is null)
+            {
+                return false;
+            }
+
+            if (conditionalExpression.IfTrue is not MethodCallExpression { Method.Name: "ToString", Arguments.Count: 0 } toStringCall
+                || toStringCall.Object is null)
+            {
+                return false;
+            }
+
+            if (!TryGetNullableSourceExpressionFromToStringObject(toStringCall.Object, out Expression? trueSourceExpression))
+                return false;
+
+            Expression testSourceExpression = hasValueMember.Expression;
+            if (testSourceExpression.Type != trueSourceExpression.Type
+                || !string.Equals(testSourceExpression.ToString(), trueSourceExpression.ToString(), StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            sourceOperand = BuildExpressionElement(testSourceExpression);
+            return true;
+        }
+
+        private static bool TryGetNullableSourceExpressionFromToStringObject(Expression expression, [NotNullWhen(true)] out Expression? sourceExpression)
+        {
+            sourceExpression = null;
+
+            if (expression is MemberExpression { Member.Name: "Value" } valueMember
+                && valueMember.Expression is not null
+                && Nullable.GetUnderlyingType(valueMember.Expression.Type) is not null)
+            {
+                sourceExpression = valueMember.Expression;
+                return true;
+            }
+
+            if (expression is UnaryExpression { NodeType: ExpressionType.Convert or ExpressionType.ConvertChecked } unaryExpression)
+                return TryGetNullableSourceExpressionFromToStringObject(unaryExpression.Operand, out sourceExpression);
+
+            return false;
+        }
+
+        private XmlElement BuildEvaluatedConstantExpression(Expression expression)
+        {
+            if (!TryEvaluateExpressionValue(expression, out object? value))
+                throw new NotSupportedException($"Expression node '{expression.NodeType}' is not supported.");
+
+            ConstantExpression constant = Expression.Constant(value, expression.Type);
+            return BuildConstantOperator(constant, value is null ? "Null" : null, null, null);
+        }
+
+        private XmlElement BuildBinaryOperator(BinaryExpression binaryExpression, string constructorName)
+            => BuildConstructorElement
+            (
+                constructorName,
+                [
+                    BuildObjectParameter("left", BuildExpressionElement(binaryExpression.Left)),
+                    BuildObjectParameter("right", BuildExpressionElement(binaryExpression.Right))
+                ]
+            );
+
+        private XmlElement BuildUnaryOperator(UnaryExpression unaryExpression, string constructorName)
+            => BuildConstructorElement
+            (
+                constructorName,
+                [
+                    BuildObjectParameter("operand", BuildExpressionElement(unaryExpression.Operand))
+                ]
+            );
 
         private XmlElement BuildEqualsBinaryOperator(BinaryExpression binaryExpression)
         {
@@ -170,6 +346,9 @@ namespace Contoso.Test.Flow.Test
 
             if (memberExpression.Expression is null)
             {
+                if (TryEvaluateStaticMemberValue(memberExpression.Member, out object? staticValue))
+                    return BuildConstantFromValue(staticValue, memberExpression.Type, null, null);
+
                 Type declaringType = memberExpression.Member.DeclaringType
                     ?? throw new NotSupportedException("Declaring type is required for static member access.");
 
@@ -222,7 +401,7 @@ namespace Contoso.Test.Flow.Test
             return expectedSourceType.IsInstanceOfType(sourceValue);
         }
 
-        private static bool ShouldPreserveEvaluatedMemberAsSelector(MemberExpression memberExpression)
+        private bool ShouldPreserveEvaluatedMemberAsSelector(MemberExpression memberExpression)
         {
             if (memberExpression.Expression is null)
                 return false;
@@ -231,8 +410,15 @@ namespace Contoso.Test.Flow.Test
                 return false;
 
             Type? declaringType = memberExpression.Member.DeclaringType;
-            return declaringType is not null && declaringType.IsInstanceOfType(sourceValue);
+            return declaringType is not null
+                && declaringType.IsInstanceOfType(sourceValue)
+                && HasConfiguredModelVariable(declaringType);
         }
+
+        private bool HasConfiguredModelVariable(Type modelType)
+            => _configurationService.VariableList.Variables
+                .Any(v => v.Key.EndsWith("_Model", StringComparison.Ordinal)
+                    && v.Value.MemberName == (modelType.FullName ?? string.Empty));
 
         private static bool TryEvaluateExpressionValue(Expression expression, out object? value)
         {
@@ -247,6 +433,24 @@ namespace Contoso.Test.Flow.Test
             {
                 return false;
             }
+        }
+
+        private static bool TryEvaluateStaticMemberValue(MemberInfo memberInfo, out object? value)
+        {
+            value = null;
+            if (memberInfo is FieldInfo fieldInfo && fieldInfo.IsStatic)
+            {
+                value = fieldInfo.GetValue(null);
+                return true;
+            }
+
+            if (memberInfo is PropertyInfo propertyInfo && propertyInfo.GetMethod?.IsStatic == true)
+            {
+                value = propertyInfo.GetValue(null);
+                return true;
+            }
+
+            return false;
         }
 
         private string GetFieldTypeSourceValue(MemberExpression memberExpression, Type declaringType)
@@ -294,19 +498,22 @@ namespace Contoso.Test.Flow.Test
 
             if (!string.IsNullOrWhiteSpace(memberName))
             {
-                string variableName = ResolveConstantVariableName(null, sourceType, memberName);
-                return BuildConstructorElement
-                (
-                    "ConstantOperatorParameters",
-                    [
-                        BuildObjectParameter("constantValue", BuildVariableElement(variableName)),
-                        BuildObjectParameter("type", BuildGetTypeFunctionElement(valueType))
-                    ]
-                );
+                string? variableName = TryResolveConstantVariableName(null, sourceType, memberName);
+                if (variableName is not null)
+                {
+                    return BuildConstructorElement
+                    (
+                        "ConstantOperatorParameters",
+                        [
+                            BuildObjectParameter("constantValue", BuildVariableElement(variableName)),
+                            BuildObjectParameter("type", BuildGetTypeFunctionElement(valueType))
+                        ]
+                    );
+                }
             }
 
             ConstantExpression constantExpression = Expression.Constant(value, valueType);
-            return BuildConstantOperator(constantExpression, null, null, null);
+            return BuildConstantOperator(constantExpression, constantExpression.Value is null ? "Null" : null, null, null);
         }
 
         private static bool TryEvaluateMemberValue(MemberExpression memberExpression, out object? value)
@@ -344,11 +551,75 @@ namespace Contoso.Test.Flow.Test
             );
 
         private XmlElement BuildConvertOperator(UnaryExpression unaryExpression)
-            => BuildConstructorElement
+        {
+            Type targetType = Nullable.GetUnderlyingType(unaryExpression.Type) ?? unaryExpression.Type;
+            if (targetType.IsEnum && TryGetEnumTextValue(unaryExpression.Operand, out string? enumTextValue))
+            {
+                return BuildConstructorElement
+                (
+                    "ConvertToEnumOperatorParameters",
+                    [
+                        BuildObjectParameter("constantValue", BuildCastFunctionElement(enumTextValue)),
+                        BuildObjectParameter("type", BuildGetTypeFunctionElement(targetType))
+                    ]
+                );
+            }
+
+            return BuildConstructorElement
             (
                 "ConvertOperatorParameters",
                 [
                     BuildObjectParameter("sourceOperand", BuildExpressionElement(unaryExpression.Operand)),
+                    BuildObjectParameter("type", BuildGetTypeFunctionElement(unaryExpression.Type))
+                ]
+            );
+        }
+
+        private static bool TryGetEnumTextValue(Expression expression, [NotNullWhen(true)] out string? value)
+        {
+            value = null;
+
+            if (expression is ConstantExpression constantExpression)
+            {
+                if (constantExpression.Value is string text)
+                {
+                    value = text;
+                    return true;
+                }
+
+                if (constantExpression.Value is not null)
+                {
+                    Type valueType = Nullable.GetUnderlyingType(constantExpression.Type) ?? constantExpression.Type;
+                    if (valueType.IsEnum)
+                    {
+                        value = constantExpression.Value.ToString() ?? "";
+                        return true;
+                    }
+                }
+            }
+
+            if (expression is UnaryExpression { NodeType: ExpressionType.Convert or ExpressionType.ConvertChecked } unaryExpression)
+                return TryGetEnumTextValue(unaryExpression.Operand, out value);
+
+            if (TryEvaluateExpressionValue(expression, out object? evaluatedValue) && evaluatedValue is not null)
+            {
+                Type evaluatedType = Nullable.GetUnderlyingType(evaluatedValue.GetType()) ?? evaluatedValue.GetType();
+                if (evaluatedType.IsEnum)
+                {
+                    value = evaluatedValue.ToString() ?? "";
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private XmlElement BuildCastAsOperator(UnaryExpression unaryExpression)
+            => BuildConstructorElement
+            (
+                "CastOperatorParameters",
+                [
+                    BuildObjectParameter("operand", BuildExpressionElement(unaryExpression.Operand)),
                     BuildObjectParameter("type", BuildGetTypeFunctionElement(unaryExpression.Type))
                 ]
             );
@@ -357,7 +628,7 @@ namespace Contoso.Test.Flow.Test
         {
             string methodName = methodCallExpression.Method.Name;
 
-            if (methodName is "Where" or "Select" or "OrderBy" or "OrderByDescending" or "GroupBy")
+            if (methodName is "Where" or "Select" or "OrderBy" or "OrderByDescending" or "GroupBy" or "ThenBy" or "ThenByDescending" or "SelectMany")
             {
                 LambdaExpression lambda = StripQuote(methodCallExpression.Arguments[1]);
                 string lambdaParameterName = lambda.Parameters[0].Name ?? "$it";
@@ -367,7 +638,9 @@ namespace Contoso.Test.Flow.Test
                     "Where" => "WhereOperatorParameters",
                     "Select" => "SelectOperatorParameters",
                     "OrderBy" or "OrderByDescending" => "OrderByOperatorParameters",
+                    "ThenBy" or "ThenByDescending" => "ThenByOperatorParameters",
                     "GroupBy" => "GroupByOperatorParameters",
+                    "SelectMany" => "SelectManyOperatorParameters",
                     _ => throw new NotSupportedException($"Method '{methodName}' is not supported.")
                 };
 
@@ -377,14 +650,14 @@ namespace Contoso.Test.Flow.Test
                     BuildObjectParameter(methodName == "Where" ? "filterBody" : "selectorBody", BuildExpressionElement(lambda.Body))
                 ];
 
-                if (methodName is "OrderBy" or "OrderByDescending")
+                if (methodName is "OrderBy" or "OrderByDescending" or "ThenBy" or "ThenByDescending")
                 {
                     parameters.Add
                     (
                         BuildObjectParameter
                         (
                             "sortDirection",
-                            BuildVariableElement(methodName == "OrderBy" ? "ListSortDirection_Ascending" : "ListSortDirection_Descending")
+                            BuildVariableElement(methodName is "OrderBy" or "ThenBy" ? "ListSortDirection_Ascending" : "ListSortDirection_Descending")
                         )
                     );
                 }
@@ -401,8 +674,39 @@ namespace Contoso.Test.Flow.Test
                 return BuildConstructorElement(constructorName, parameters);
             }
 
+            if (methodName == "Has")
+            {
+                Expression leftExpression = methodCallExpression.Object ?? methodCallExpression.Arguments[0];
+                Expression rightExpression = methodCallExpression.Object is null
+                    ? methodCallExpression.Arguments[1]
+                    : methodCallExpression.Arguments[0];
+
+                return BuildConstructorElement
+                (
+                    "HasOperatorParameters",
+                    [
+                        BuildObjectParameter("left", BuildExpressionElement(leftExpression)),
+                        BuildObjectParameter("right", BuildExpressionElement(rightExpression))
+                    ]
+                );
+            }
+
             if (methodName == "Count")
             {
+                if (methodCallExpression.Arguments.Count == 2)
+                {
+                    LambdaExpression lambda = StripQuote(methodCallExpression.Arguments[1]);
+                    return BuildConstructorElement
+                    (
+                        "CountOperatorParameters",
+                        [
+                            BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Arguments[0])),
+                            BuildObjectParameter("filterBody", BuildExpressionElement(lambda.Body)),
+                            BuildLiteralParameter("filterParameterName", lambda.Parameters[0].Name ?? "$it")
+                        ]
+                    );
+                }
+
                 return BuildConstructorElement
                 (
                     "CountOperatorParameters",
@@ -424,7 +728,267 @@ namespace Contoso.Test.Flow.Test
                 );
             }
 
-            throw new NotSupportedException($"Method '{methodName}' is not supported.");
+            if (methodName == "AsEnumerable")
+            {
+                Expression sourceExpression = methodCallExpression.Object ?? methodCallExpression.Arguments[0];
+                return BuildConstructorElement
+                (
+                    "AsEnumerableOperatorParameters",
+                    [
+                        BuildObjectParameter("sourceOperand", BuildExpressionElement(sourceExpression))
+                    ]
+                );
+            }
+
+            if (methodName == "Cast" && methodCallExpression.Method.IsGenericMethod)
+            {
+                Type castType = methodCallExpression.Method.GetGenericArguments()[0];
+                Expression sourceExpression = methodCallExpression.Object ?? methodCallExpression.Arguments[0];
+
+                return BuildConstructorElement
+                (
+                    "CollectionCastOperatorParameters",
+                    [
+                        BuildObjectParameter("operand", BuildExpressionElement(sourceExpression)),
+                        BuildObjectParameter("type", BuildGetTypeFunctionElement(castType))
+                    ]
+                );
+            }
+
+            if (methodName == "Distinct")
+            {
+                Expression sourceExpression = methodCallExpression.Object ?? methodCallExpression.Arguments[0];
+                return BuildConstructorElement
+                (
+                    "DistinctOperatorParameters",
+                    [
+                        BuildObjectParameter("sourceOperand", BuildExpressionElement(sourceExpression))
+                    ]
+                );
+            }
+
+            if (methodName is "Skip" or "Take")
+            {
+                string constructorName = methodName == "Skip" ? "SkipOperatorParameters" : "TakeOperatorParameters";
+                return BuildConstructorElement
+                (
+                    constructorName,
+                    [
+                        BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Arguments[0])),
+                        BuildObjectParameter("count", BuildExpressionElement(methodCallExpression.Arguments[1]))
+                    ]
+                );
+            }
+
+            if (methodName is "Any" or "All" or "First" or "FirstOrDefault" or "Last" or "LastOrDefault" or "Single")
+            {
+                string constructorName = methodName switch
+                {
+                    "Any" => "AnyOperatorParameters",
+                    "All" => "AllOperatorParameters",
+                    "First" => "FirstOperatorParameters",
+                    "FirstOrDefault" => "FirstOrDefaultOperatorParameters",
+                    "Last" => "LastOperatorParameters",
+                    "LastOrDefault" => "LastOrDefaultOperatorParameters",
+                    _ => "SingleOperatorParameters"
+                };
+
+                List<XmlElement> parameters =
+                [
+                    BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Arguments[0]))
+                ];
+
+                if (methodCallExpression.Arguments.Count == 2)
+                {
+                    LambdaExpression lambda = StripQuote(methodCallExpression.Arguments[1]);
+                    parameters.Add(BuildObjectParameter("filterBody", BuildExpressionElement(lambda.Body)));
+                    parameters.Add(BuildLiteralParameter("filterParameterName", lambda.Parameters[0].Name ?? "$it"));
+                }
+
+                return BuildConstructorElement(constructorName, parameters);
+            }
+
+            if (methodName is "Average" or "Max" or "Min" or "Sum")
+            {
+                string constructorName = methodName switch
+                {
+                    "Average" => "AverageOperatorParameters",
+                    "Max" => "MaxOperatorParameters",
+                    "Min" => "MinOperatorParameters",
+                    _ => "SumOperatorParameters"
+                };
+
+                List<XmlElement> parameters =
+                [
+                    BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Arguments[0]))
+                ];
+
+                if (methodCallExpression.Arguments.Count == 2)
+                {
+                    LambdaExpression lambda = StripQuote(methodCallExpression.Arguments[1]);
+                    parameters.Add(BuildObjectParameter("selectorBody", BuildExpressionElement(lambda.Body)));
+                    parameters.Add(BuildLiteralParameter("selectorParameterName", lambda.Parameters[0].Name ?? "$it"));
+                }
+
+                return BuildConstructorElement(constructorName, parameters);
+            }
+
+            if (methodName == "Union" || methodName == "Except" || methodName == "Concat")
+            {
+                Expression leftExpression = methodCallExpression.Object ?? methodCallExpression.Arguments[0];
+                Expression rightExpression = methodCallExpression.Object is null
+                    ? methodCallExpression.Arguments[1]
+                    : methodCallExpression.Arguments[0];
+
+                string constructorName = methodName switch
+                {
+                    "Union" => "UnionOperatorParameters",
+                    "Except" => "ExceptOperatorParameters",
+                    _ => "ConcatOperatorParameters"
+                };
+
+                return BuildConstructorElement
+                (
+                    constructorName,
+                    [
+                        BuildObjectParameter("left", BuildExpressionElement(leftExpression)),
+                        BuildObjectParameter("right", BuildExpressionElement(rightExpression))
+                    ]
+                );
+            }
+
+            if (methodName == "Contains" && TryGetInOperatorExpressions(methodCallExpression, out Expression? itemToFindExpression, out Expression? listToSearchExpression))
+            {
+                return BuildConstructorElement
+                (
+                    "InOperatorParameters",
+                    [
+                        BuildObjectParameter("itemToFind", BuildExpressionElement(itemToFindExpression)),
+                        BuildObjectParameter("listToSearch", BuildListExpressionElement(listToSearchExpression))
+                    ]
+                );
+            }
+
+            if (methodName is "Contains" or "StartsWith" or "EndsWith")
+            {
+                string constructorName = methodName switch
+                {
+                    "Contains" => "ContainsOperatorParameters",
+                    "StartsWith" => "StartsWithOperatorParameters",
+                    _ => "EndsWithOperatorParameters"
+                };
+
+                Expression leftExpression = methodCallExpression.Object ?? methodCallExpression.Arguments[0];
+                Expression rightExpression = methodCallExpression.Object is null
+                    ? methodCallExpression.Arguments[1]
+                    : methodCallExpression.Arguments[0];
+
+                return BuildConstructorElement
+                (
+                    constructorName,
+                    [
+                        BuildObjectParameter("left", BuildExpressionElement(leftExpression)),
+                        BuildObjectParameter("right", BuildExpressionElement(rightExpression))
+                    ]
+                );
+            }
+
+            if (methodName == "IndexOf" && methodCallExpression.Object is not null)
+            {
+                return BuildConstructorElement
+                (
+                    "IndexOfOperatorParameters",
+                    [
+                        BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Object)),
+                        BuildObjectParameter("itemToFind", BuildExpressionElement(methodCallExpression.Arguments[0]))
+                    ]
+                );
+            }
+
+            if (methodName == "Substring" && methodCallExpression.Object is not null)
+            {
+                XmlElement indexElements = BuildObjectList
+                (
+                    methodCallExpression.Arguments.Select(BuildExpressionElement).ToList(),
+                    "LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter",
+                    "Array",
+                    "indexes"
+                );
+
+                return BuildConstructorElement
+                (
+                    "SubstringOperatorParameters",
+                    [
+                        BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Object)),
+                        BuildObjectListParameter("indexes", indexElements)
+                    ]
+                );
+            }
+
+            if (methodName == "ToLower" && methodCallExpression.Object is not null)
+                return BuildConstructorElement("ToLowerOperatorParameters", [BuildObjectParameter("operand", BuildExpressionElement(methodCallExpression.Object))]);
+
+            if (methodName == "ToUpper" && methodCallExpression.Object is not null)
+                return BuildConstructorElement("ToUpperOperatorParameters", [BuildObjectParameter("operand", BuildExpressionElement(methodCallExpression.Object))]);
+
+            if (methodName == "Trim" && methodCallExpression.Object is not null)
+                return BuildConstructorElement("TrimOperatorParameters", [BuildObjectParameter("operand", BuildExpressionElement(methodCallExpression.Object))]);
+
+            if (methodName == "Floor")
+                return BuildConstructorElement("FloorOperatorParameters", [BuildObjectParameter("operand", BuildExpressionElement(methodCallExpression.Object ?? methodCallExpression.Arguments[0]))]);
+
+            if (methodName == "Round")
+                return BuildConstructorElement("RoundOperatorParameters", [BuildObjectParameter("operand", BuildExpressionElement(methodCallExpression.Object ?? methodCallExpression.Arguments[0]))]);
+
+            if (methodName == "ToString" && methodCallExpression.Object is not null && methodCallExpression.Arguments.Count == 0)
+                return BuildConstructorElement("ConvertToStringOperatorParameters", [BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Object))]);
+
+            return BuildCustomMethodCall(methodCallExpression);
+        }
+
+        private XmlElement BuildListExpressionElement(Expression expression)
+        {
+            if (expression is ConstantExpression constantExpression
+                && constantExpression.Value is System.Collections.IEnumerable enumerable
+                && expression.Type != typeof(string))
+            {
+                return BuildCollectionConstantOperator(enumerable, expression.Type);
+            }
+
+            return BuildExpressionElement(expression);
+        }
+
+        private static bool TryGetInOperatorExpressions(MethodCallExpression methodCallExpression, [NotNullWhen(true)] out Expression? itemToFindExpression, [NotNullWhen(true)]  out Expression? listToSearchExpression)
+        {
+            itemToFindExpression = null;
+            listToSearchExpression = null;
+
+            if (methodCallExpression.Method.Name != "Contains")
+                return false;
+
+            if (methodCallExpression.Object is not null)
+            {
+                if (methodCallExpression.Object.Type == typeof(string)
+                    || methodCallExpression.Arguments.Count != 1)
+                {
+                    return false;
+                }
+
+                listToSearchExpression = methodCallExpression.Object;
+                itemToFindExpression = methodCallExpression.Arguments[0];
+                return true;
+            }
+
+            if (methodCallExpression.Arguments.Count != 2)
+                return false;
+
+            Expression listExpression = methodCallExpression.Arguments[0];
+            if (listExpression.Type == typeof(string))
+                return false;
+
+            listToSearchExpression = listExpression;
+            itemToFindExpression = methodCallExpression.Arguments[1];
+            return true;
         }
 
         private XmlElement BuildMemberInit(MemberInitExpression memberInitExpression)
@@ -485,33 +1049,73 @@ namespace Contoso.Test.Flow.Test
             XmlElement valueElement;
             Type constantType;
 
+            if (constantExpression.Value is null)
+            {
+                string nullVariable = ResolveConstantVariableName("Null", null, null);
+                return BuildConstructorElement
+                (
+                    "ConstantOperatorParameters",
+                    [
+                        BuildObjectParameter("constantValue", BuildVariableElement(nullVariable)),
+                        BuildObjectParameter("type", BuildGetTypeFunctionElement(constantExpression.Type))
+                    ]
+                );
+            }
+
             if (treatConstantAsVariableName)
             {
                 string variableName = (string)(constantExpression.Value ?? string.Empty);
                 valueElement = BuildVariableElement(variableName);
                 constantType = sourceType ?? typeof(object);
             }
-            else if (constantExpression.Type == typeof(string))
-            {
-                valueElement = BuildCastFunctionElement((string)(constantExpression.Value ?? string.Empty));
-                constantType = typeof(string);
-            }
             else
             {
-                if (string.IsNullOrWhiteSpace(preferredVariableName)
-                    && sourceType is null
-                    && string.IsNullOrWhiteSpace(memberName)
-                    && !constantExpression.Type.IsPrimitive
-                    && constantExpression.Type != typeof(decimal)
-                    && constantExpression.Type != typeof(Guid)
-                    && constantExpression.Type != typeof(DateTime))
+                (object normalizedValue, Type normalizedType) = NormalizeConstantValueAndType(constantExpression.Value!, constantExpression.Type);
+                Type underlyingType = Nullable.GetUnderlyingType(normalizedType) ?? normalizedType;
+
+                if (underlyingType.IsEnum)
                 {
-                    preferredVariableName = GetModelVariableName(constantExpression.Type);
+                    string enumText = normalizedValue.ToString() ?? string.Empty;
+                    return BuildConstructorElement
+                    (
+                        "ConvertToEnumOperatorParameters",
+                        [
+                            BuildObjectParameter("constantValue", BuildCastFunctionElement(enumText)),
+                            BuildObjectParameter("type", BuildGetTypeFunctionElement(underlyingType))
+                        ]
+                    );
                 }
 
-                string variableName = ResolveConstantVariableName(preferredVariableName, sourceType, memberName);
-                valueElement = BuildVariableElement(variableName);
-                constantType = constantExpression.Type;
+                if (normalizedType == typeof(string))
+                {
+                    valueElement = BuildCastFunctionElement((string)normalizedValue);
+                    constantType = typeof(string);
+                }
+                else
+                {
+                    if (string.IsNullOrWhiteSpace(preferredVariableName)
+                        && sourceType is null
+                        && string.IsNullOrWhiteSpace(memberName)
+                        && !normalizedType.IsPrimitive
+                        && normalizedType != typeof(decimal)
+                        && normalizedType != typeof(Guid)
+                        && normalizedType != typeof(DateTime)
+                        && normalizedType != typeof(DateTimeOffset)
+                        && normalizedType != typeof(DateOnly)
+                        && normalizedType != typeof(TimeOnly)
+                        && normalizedType != typeof(TimeSpan)
+                        && normalizedType != typeof(byte[])
+                        && !typeof(System.Collections.IEnumerable).IsAssignableFrom(normalizedType))
+                    {
+                        preferredVariableName = TryGetModelVariableName(normalizedType);
+                    }
+
+                    string? variableName = TryResolveConstantVariableName(preferredVariableName, sourceType, memberName);
+                    valueElement = variableName is not null
+                        ? BuildVariableElement(variableName)
+                        : BuildTypedConstantValue(normalizedValue, normalizedType);
+                    constantType = normalizedType;
+                }
             }
 
             return BuildConstructorElement
@@ -522,6 +1126,246 @@ namespace Contoso.Test.Flow.Test
                     BuildObjectParameter("type", BuildGetTypeFunctionElement(constantType))
                 ]
             );
+        }
+
+        private XmlElement BuildCustomMethodCall(MethodCallExpression methodCallExpression)
+        {
+            Type declaringType = methodCallExpression.Method.DeclaringType
+                ?? throw new NotSupportedException("Custom method call requires a declaring type.");
+
+            List<XmlElement> argumentElements = methodCallExpression.Method.IsStatic
+                ? methodCallExpression.Arguments.Select(BuildExpressionElement).ToList()
+                : [BuildExpressionElement(methodCallExpression.Object ?? throw new NotSupportedException("Instance method call object is required.")), .. methodCallExpression.Arguments.Select(BuildExpressionElement)];
+
+            XmlElement argsObjectList = BuildObjectList
+            (
+                argumentElements,
+                "LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter",
+                "Array",
+                "args"
+            );
+
+            return BuildConstructorElement
+            (
+                "CustomMethodOperatorParameters",
+                [
+                    BuildObjectParameter("declaringType", BuildGetTypeFunctionElement(declaringType)),
+                    BuildLiteralParameter("methodName", methodCallExpression.Method.Name),
+                    BuildLiteralListParameter
+                    (
+                        "parameterTypeNames",
+                        methodCallExpression.Method.GetParameters().Select(p => GetConfiguredTypeName(p.ParameterType)).ToList(),
+                        "String",
+                        "Array"
+                    ),
+                    BuildObjectListParameter("args", argsObjectList)
+                ]
+            );
+        }
+
+        private XmlElement BuildObjectList(List<XmlElement> items, string objectType, string listType, string visibleName)
+        {
+            XmlElement objectListElement = xmlDocument.CreateElement(XmlDataConstants.OBJECTLISTELEMENT);
+            objectListElement.SetAttribute(XmlDataConstants.OBJECTTYPEATTRIBUTE, objectType);
+            objectListElement.SetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE, listType);
+            objectListElement.SetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE, $"{visibleName}: Count({items.Count})");
+
+            foreach (XmlElement item in items)
+            {
+                XmlElement objectElement = xmlDocument.CreateElement(XmlDataConstants.OBJECTELEMENT);
+                objectElement.AppendChild(item);
+                objectListElement.AppendChild(objectElement);
+            }
+
+            return objectListElement;
+        }
+
+        private XmlElement BuildLiteralListParameter(string name, List<string> values, string literalType, string listType)
+        {
+            XmlElement literalListParameter = xmlDocument.CreateElement(XmlDataConstants.LITERALLISTPARAMETERELEMENT);
+            literalListParameter.SetAttribute(XmlDataConstants.NAMEATTRIBUTE, name);
+
+            XmlElement literalList = xmlDocument.CreateElement(XmlDataConstants.LITERALLISTELEMENT);
+            literalList.SetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE, literalType);
+            literalList.SetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE, listType);
+            literalList.SetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE, $"{name}: Count({values.Count})");
+
+            foreach (string value in values)
+            {
+                XmlElement literal = xmlDocument.CreateElement(XmlDataConstants.LITERALELEMENT);
+                literal.InnerText = value;
+                literalList.AppendChild(literal);
+            }
+
+            literalListParameter.AppendChild(literalList);
+            return literalListParameter;
+        }
+
+        private XmlElement BuildTypedConstantValue(object value, Type valueType)
+        {
+            if (value is System.Collections.IEnumerable enumerable && valueType != typeof(string))
+            {
+                return BuildCollectionConstantOperator(enumerable, valueType);
+            }
+
+            string literalTypeName = GetLiteralTypeName(valueType);
+            string literalValue = ConvertToLiteralString(value, valueType);
+
+            XmlElement fromArgument = xmlDocument.CreateElement(XmlDataConstants.LITERALPARAMETERELEMENT);
+            fromArgument.SetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE, "From");
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.LITERALTYPEELEMENT, literalTypeName));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.CONTROLELEMENT, "SingleLineTextBox"));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFOREQUALITYELEMENT, "true"));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFORHASHCODEELEMENT, "false"));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFORTOSTRINGELEMENT, "true"));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.PROPERTYSOURCEELEMENT, string.Empty));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.PROPERTYSOURCEPARAMETERELEMENT, string.Empty));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.DEFAULTVALUEELEMENT, string.Empty));
+            fromArgument.AppendChild(CreateSimpleElement(XmlDataConstants.DOMAINELEMENT, string.Empty));
+
+            XmlElement toArgument = xmlDocument.CreateElement(XmlDataConstants.OBJECTPARAMETERELEMENT);
+            toArgument.SetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE, "To");
+            toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.OBJECTTYPEELEMENT, "System.Object"));
+            toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFOREQUALITYELEMENT, "false"));
+            toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFORHASHCODEELEMENT, "false"));
+            toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFORTOSTRINGELEMENT, "true"));
+
+            return BuildFunctionElement
+            (
+                "Cast",
+                [fromArgument, toArgument],
+                [BuildLiteralParameter("From", literalValue)]
+            );
+        }
+
+        private XmlElement BuildCollectionConstantOperator(System.Collections.IEnumerable enumerable, Type collectionType)
+        {
+            Type elementType = collectionType.IsArray
+                ? collectionType.GetElementType() ?? typeof(object)
+                : GetCollectionTypeForNonArrays(collectionType);
+
+            List<XmlElement> valueElements = [];
+            foreach (object? item in enumerable)
+            {
+                valueElements.Add(BuildCollectionItemValue(item, elementType));
+            }
+
+            XmlElement objectList = BuildObjectList(valueElements, "System.Object", "IGenericCollection", "constantValues");
+
+            return BuildConstructorElement
+            (
+                "CollectionConstantOperatorParameters",
+                [
+                    BuildObjectListParameter("constantValues", objectList),
+                    BuildObjectParameter("elementType", BuildGetTypeFunctionElement(elementType))
+                ]
+            );
+
+            static Type GetCollectionTypeForNonArrays(Type collectionType)
+            {
+                return collectionType.IsGenericType ? collectionType.GetGenericArguments().FirstOrDefault() ?? typeof(object) : typeof(object);
+            }
+        }
+
+        private XmlElement BuildCollectionItemValue(object? item, Type declaredElementType)
+        {
+            if (item is null)
+                return BuildVariableElement(ResolveConstantVariableName("Null", null, null));
+
+            Type elementType = Nullable.GetUnderlyingType(declaredElementType) ?? declaredElementType;
+            if (elementType.IsEnum)
+                return BuildConvertToEnumElement(item.ToString() ?? string.Empty, elementType);
+
+            if (item is string text)
+                return BuildCastFunctionElement(text);
+
+            Type itemType = item.GetType();
+            if (itemType == typeof(DateOnly))
+                return BuildCastFunctionElement(((DateOnly)item).ToString("O", CultureInfo.InvariantCulture), typeof(DateOnly));
+
+            if (itemType == typeof(TimeOnly))
+                return BuildCastFunctionElement(((TimeOnly)item).ToString("O", CultureInfo.InvariantCulture), typeof(TimeOnly));
+
+            return BuildTypedConstantValue(item, itemType);
+        }
+
+        private XmlElement BuildConvertToEnumElement(string enumText, Type enumType)
+            => BuildConstructorElement
+            (
+                "ConvertToEnumOperatorParameters",
+                [
+                    BuildObjectParameter("constantValue", BuildCastFunctionElement(enumText)),
+                    BuildObjectParameter("type", BuildGetTypeFunctionElement(enumType))
+                ]
+            );
+
+        private static (object value, Type type) NormalizeConstantValueAndType(object value, Type valueType)
+        {
+            Type targetType = Nullable.GetUnderlyingType(valueType) ?? valueType;
+
+            if (targetType == typeof(DateOnly) && value is DateOnly dateOnly)
+                return (new Microsoft.OData.Edm.Date(dateOnly.Year, dateOnly.Month, dateOnly.Day), typeof(Microsoft.OData.Edm.Date));
+
+            return (value, valueType);
+        }
+
+        private static string GetLiteralTypeName(Type type)
+        {
+            Type valueType = Nullable.GetUnderlyingType(type) ?? type;
+
+            if (valueType == typeof(bool)) return "Boolean";
+            if (valueType == typeof(byte)) return "Byte";
+            if (valueType == typeof(short)) return "Short";
+            if (valueType == typeof(int)) return "Integer";
+            if (valueType == typeof(long)) return "Long";
+            if (valueType == typeof(float)) return "Float";
+            if (valueType == typeof(double)) return "Double";
+            if (valueType == typeof(decimal)) return "Decimal";
+            if (valueType == typeof(char)) return "Char";
+            if (valueType == typeof(sbyte)) return "SByte";
+            if (valueType == typeof(ushort)) return "UShort";
+            if (valueType == typeof(uint)) return "UInteger";
+            if (valueType == typeof(ulong)) return "ULong";
+            if (valueType == typeof(Guid)) return "Guid";
+            if (valueType == typeof(DateTimeOffset)) return "DateTimeOffset";
+            if (valueType == typeof(DateTime)) return "DateTime";
+            if (valueType == typeof(DateOnly)) return "DateOnly";
+            if (valueType == typeof(Microsoft.OData.Edm.Date)) return "Date";
+            if (valueType == typeof(TimeOnly)) return "TimeOnly";
+            if (valueType == typeof(Microsoft.OData.Edm.TimeOfDay)) return "TimeOfDay";
+            if (valueType == typeof(TimeSpan)) return "TimeSpan";
+            if (valueType == typeof(string)) return "String";
+
+            return "String";
+        }
+
+        private static string ConvertToLiteralString(object? value, Type valueType)
+        {
+            if (value is null)
+                return string.Empty;
+
+            Type targetType = Nullable.GetUnderlyingType(valueType) ?? valueType;
+
+            if (targetType == typeof(bool))
+                return ((bool)value).ToString(CultureInfo.InvariantCulture);
+            if (targetType == typeof(DateTimeOffset))
+                return ((DateTimeOffset)value).ToString("O", CultureInfo.InvariantCulture);
+            if (targetType == typeof(DateTime))
+                return ((DateTime)value).ToString("O", CultureInfo.InvariantCulture);
+            if (targetType == typeof(DateOnly))
+                return ((DateOnly)value).ToString("O", CultureInfo.InvariantCulture);
+            if (targetType == typeof(Microsoft.OData.Edm.Date))
+                return ((Microsoft.OData.Edm.Date)value).ToString();
+            if (targetType == typeof(TimeOnly))
+                return ((TimeOnly)value).ToString("O", CultureInfo.InvariantCulture);
+            if (targetType == typeof(Microsoft.OData.Edm.TimeOfDay))
+                return ((Microsoft.OData.Edm.TimeOfDay)value).ToString();
+            if (targetType == typeof(TimeSpan))
+                return ((TimeSpan)value).ToString("c", CultureInfo.InvariantCulture);
+            if (targetType.IsEnum)
+                return value.ToString() ?? string.Empty;
+
+            return Convert.ToString(value, CultureInfo.InvariantCulture) ?? string.Empty;
         }
 
         private static LambdaExpression StripQuote(Expression expression)
@@ -734,6 +1578,9 @@ namespace Contoso.Test.Flow.Test
         }
 
         private XmlElement BuildCastFunctionElement(string value)
+            => BuildCastFunctionElement(value, null);
+
+        private XmlElement BuildCastFunctionElement(string value, Type? toType)
         {
             XmlElement fromArgument = xmlDocument.CreateElement(XmlDataConstants.LITERALPARAMETERELEMENT);
             fromArgument.SetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE, "From");
@@ -749,7 +1596,7 @@ namespace Contoso.Test.Flow.Test
 
             XmlElement toArgument = xmlDocument.CreateElement(XmlDataConstants.OBJECTPARAMETERELEMENT);
             toArgument.SetAttribute(XmlDataConstants.GENERICARGUMENTNAMEATTRIBUTE, "To");
-            toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.OBJECTTYPEELEMENT, "System.Object"));
+            toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.OBJECTTYPEELEMENT, toType is null ? "System.Object" : GetConfiguredTypeName(toType)));
             toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFOREQUALITYELEMENT, "false"));
             toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFORHASHCODEELEMENT, "false"));
             toArgument.AppendChild(CreateSimpleElement(XmlDataConstants.USEFORTOSTRINGELEMENT, "true"));
@@ -770,6 +1617,16 @@ namespace Contoso.Test.Flow.Test
         }
 
         private string ResolveConstantVariableName(string? preferredVariableName, Type? sourceType, string? memberName)
+        {
+            string? resolvedName = TryResolveConstantVariableName(preferredVariableName, sourceType, memberName);
+            if (resolvedName is not null)
+                return resolvedName;
+
+            return preferredVariableName
+                ?? throw new NotSupportedException($"No configured variable could be resolved for member '{memberName}'.");
+        }
+
+        private string? TryResolveConstantVariableName(string? preferredVariableName, Type? sourceType, string? memberName)
         {
             if (!string.IsNullOrWhiteSpace(preferredVariableName) && _configurationService.VariableList.Variables.ContainsKey(preferredVariableName))
                 return preferredVariableName;
@@ -794,8 +1651,25 @@ namespace Contoso.Test.Flow.Test
                     return fallback;
             }
 
-            return preferredVariableName
-                ?? throw new NotSupportedException($"No configured variable could be resolved for member '{memberName}'.");
+            return null;
+        }
+
+        private string? TryGetModelVariableName(Type modelType)
+        {
+            foreach ((string variableName, VariableBase variable) in _configurationService.VariableList.Variables)
+            {
+                if (variable.MemberName == (modelType.FullName ?? string.Empty)
+                    && variableName.EndsWith("_Model", StringComparison.Ordinal))
+                {
+                    return variableName;
+                }
+            }
+
+            string modelPrefix = modelType.Name.EndsWith("Model", StringComparison.Ordinal)
+                ? modelType.Name[..^"Model".Length]
+                : modelType.Name;
+            string fallback = $"{modelPrefix}_Model";
+            return _configurationService.VariableList.Variables.ContainsKey(fallback) ? fallback : null;
         }
 
         private string GetModelVariableName(Type modelType)

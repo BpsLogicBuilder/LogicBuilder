@@ -1,0 +1,118 @@
+<constructor name="SelectorLambdaOperatorParameters" visibleText="SelectorLambdaOperatorParameters: IExpressionParameter: selector;Type: sourceElementType;parameterName=$it;Type: bodyType">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="selector">
+			<constructor name="ThenByOperatorParameters" visibleText="ThenByOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;ListSortDirection: sortDirection;selectorParameterName=a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="sourceOperand">
+						<constructor name="OrderByOperatorParameters" visibleText="OrderByOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;ListSortDirection: sortDirection;selectorParameterName=a">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="sourceOperand">
+									<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="parameterName">$it</literalParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+								<objectParameter name="selectorBody">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=SupplierID;IExpressionParameter: sourceOperand">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="memberFullName">SupplierID</literalParameter>
+											<objectParameter name="sourceOperand">
+												<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=a">
+													<genericArguments />
+													<parameters>
+														<literalParameter name="parameterName">a</literalParameter>
+													</parameters>
+												</constructor>
+											</objectParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+								<objectParameter name="sortDirection">
+									<variable name="ListSortDirection_Ascending" visibleText="ListSortDirection_Ascending" />
+								</objectParameter>
+								<literalParameter name="selectorParameterName">a</literalParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="selectorBody">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ProductID;IExpressionParameter: sourceOperand">
+							<genericArguments />
+							<parameters>
+								<literalParameter name="memberFullName">ProductID</literalParameter>
+								<objectParameter name="sourceOperand">
+									<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=a">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="parameterName">a</literalParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="sortDirection">
+						<variable name="ListSortDirection_Descending" visibleText="ListSortDirection_Descending" />
+					</objectParameter>
+					<literalParameter name="selectorParameterName">a</literalParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">$it</literalParameter>
+		<objectParameter name="bodyType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IOrderedQueryable`1[[Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IOrderedQueryable`1[[Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+	</parameters>
+</constructor>

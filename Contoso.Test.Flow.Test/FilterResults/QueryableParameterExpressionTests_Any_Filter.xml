@@ -1,0 +1,129 @@
+<constructor name="FilterLambdaOperatorParameters" visibleText="FilterLambdaOperatorParameters: IExpressionParameter: filterBody;Type: sourceElementType;parameterName=$it">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="filterBody">
+			<constructor name="AnyOperatorParameters" visibleText="AnyOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: filterBody;filterParameterName=a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="sourceOperand">
+						<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+							<genericArguments />
+							<parameters>
+								<literalParameter name="parameterName">$it</literalParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="filterBody">
+						<constructor name="EqualsBinaryOperatorParameters" visibleText="EqualsBinaryOperatorParameters: IExpressionParameter: left;IExpressionParameter: right">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="left">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="memberFullName">CategoryName</literalParameter>
+											<objectParameter name="sourceOperand">
+												<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=a">
+													<genericArguments />
+													<parameters>
+														<literalParameter name="parameterName">a</literalParameter>
+													</parameters>
+												</constructor>
+											</objectParameter>
+											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category</literalParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+								<objectParameter name="right">
+									<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+										<genericArguments />
+										<parameters>
+											<objectParameter name="constantValue">
+												<function name="Cast" visibleText="Cast: From=CategoryOne">
+													<genericArguments>
+														<literalParameter genericArgumentName="From">
+															<literalType>String</literalType>
+															<control>SingleLineTextBox</control>
+															<useForEquality>true</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+															<propertySource />
+															<propertySourceParameter />
+															<defaultValue />
+															<domain />
+														</literalParameter>
+														<objectParameter genericArgumentName="To">
+															<objectType>System.Object</objectType>
+															<useForEquality>false</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+														</objectParameter>
+													</genericArguments>
+													<parameters>
+														<literalParameter name="From">CategoryOne</literalParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+											<objectParameter name="type">
+												<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.String">
+													<genericArguments />
+													<parameters>
+														<objectParameter name="typeHelper">
+															<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+																<genericArguments>
+																	<objectParameter genericArgumentName="TService">
+																		<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+																		<useForEquality>false</useForEquality>
+																		<useForHashCode>false</useForHashCode>
+																		<useForToString>true</useForToString>
+																	</objectParameter>
+																</genericArguments>
+																<parameters>
+																	<objectParameter name="serviceProvider">
+																		<variable name="ServiceProvider" visibleText="ServiceProvider" />
+																	</objectParameter>
+																</parameters>
+															</function>
+														</objectParameter>
+														<literalParameter name="assemblyQualifiedTypeName">System.String</literalParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<literalParameter name="filterParameterName">a</literalParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">$it</literalParameter>
+	</parameters>
+</constructor>

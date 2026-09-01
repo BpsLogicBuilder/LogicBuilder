@@ -1,0 +1,106 @@
+<constructor name="SelectorLambdaOperatorParameters" visibleText="SelectorLambdaOperatorParameters: IExpressionParameter: selector;Type: sourceElementType;parameterName=$it;Type: bodyType">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="selector">
+			<constructor name="CustomMethodOperatorParameters" visibleText="CustomMethodOperatorParameters: Type: declaringType;methodName=ToList;ArrayOfString: parameterTypeNames;ArrayOfIExpressionParameter: args">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="declaringType">
+						<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.Enumerable, System.Linq, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="typeHelper">
+									<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+										<genericArguments>
+											<objectParameter genericArgumentName="TService">
+												<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+												<useForEquality>false</useForEquality>
+												<useForHashCode>false</useForHashCode>
+												<useForToString>true</useForToString>
+											</objectParameter>
+										</genericArguments>
+										<parameters>
+											<objectParameter name="serviceProvider">
+												<variable name="ServiceProvider" visibleText="ServiceProvider" />
+											</objectParameter>
+										</parameters>
+									</function>
+								</objectParameter>
+								<literalParameter name="assemblyQualifiedTypeName">System.Linq.Enumerable, System.Linq, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="methodName">ToList</literalParameter>
+					<literalListParameter name="parameterTypeNames">
+						<literalList literalType="String" listType="Array" visibleText="parameterTypeNames: Count(1)">
+							<literal>System.Collections.Generic.IEnumerable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literal>
+						</literalList>
+					</literalListParameter>
+					<objectListParameter name="args">
+						<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter" listType="Array" visibleText="args: Count(1)">
+							<object>
+								<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+									<genericArguments />
+									<parameters>
+										<literalParameter name="parameterName">$it</literalParameter>
+									</parameters>
+								</constructor>
+							</object>
+						</objectList>
+					</objectListParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">$it</literalParameter>
+		<objectParameter name="bodyType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Collections.Generic.List`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Collections.Generic.List`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+	</parameters>
+</constructor>
