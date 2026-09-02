@@ -43,7 +43,7 @@
 								<objectListParameter name="args">
 									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter" listType="Array" visibleText="args: Count(2)">
 										<object>
-											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ProductName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ProductName;IExpressionParameter: sourceOperand">
 												<genericArguments />
 												<parameters>
 													<literalParameter name="memberFullName">ProductName</literalParameter>
@@ -55,7 +55,6 @@
 															</parameters>
 														</constructor>
 													</objectParameter>
-													<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 												</parameters>
 											</constructor>
 										</object>

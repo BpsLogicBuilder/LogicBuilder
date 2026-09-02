@@ -1,5 +1,6 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
+using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBuilders;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
 {
     internal class ResourcesManager : IResourcesManager
     {
+        private readonly IConfigurationService _configurationService;
         private readonly IExceptionHelper _exceptionHelper;
 
         private readonly IDictionary<string, string> resourceStrings;
 
         public ResourcesManager(
+            IConfigurationService configurationService,
             IExceptionHelper exceptionHelper,
             IDictionary<string, string> resourceStrings,
             string prefix)
         {
+            _configurationService = configurationService;
             _exceptionHelper = exceptionHelper;
             this.resourceStrings = resourceStrings;
             Prefix = prefix;
@@ -28,10 +32,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
         private string Prefix { get; }
 
         public string GetShortString(XmlNode xmlNode)
-            => MakeShortString(GetStringFormat(xmlNode));
+            => _configurationService.UseLongStrings ? GetStringFormat(xmlNode) : MakeShortString(GetStringFormat(xmlNode));
 
         public string GetShortString(string longString)
-            => MakeShortString(longString);
+            => _configurationService.UseLongStrings ? longString : MakeShortString(longString);
 
         /// <summary>
         /// creates index for the resource file for a string

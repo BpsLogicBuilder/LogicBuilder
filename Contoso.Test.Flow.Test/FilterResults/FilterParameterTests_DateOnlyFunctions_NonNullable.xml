@@ -6,12 +6,12 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Day;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Day;IExpressionParameter: sourceOperand">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">Day</literalParameter>
 								<objectParameter name="sourceOperand">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DateOnlyProperty;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DateOnlyProperty;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">DateOnlyProperty</literalParameter>
@@ -23,11 +23,9 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>

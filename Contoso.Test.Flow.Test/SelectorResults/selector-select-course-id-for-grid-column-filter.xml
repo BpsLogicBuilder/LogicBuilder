@@ -18,7 +18,7 @@
 									</constructor>
 								</objectParameter>
 								<objectParameter name="selectorBody">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">CourseID</literalParameter>
@@ -30,7 +30,6 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
@@ -53,7 +52,7 @@
 												<parameters>
 													<literalParameter name="property">courseID</literalParameter>
 													<objectParameter name="selector">
-														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand">
 															<genericArguments />
 															<parameters>
 																<literalParameter name="memberFullName">CourseID</literalParameter>
@@ -65,7 +64,6 @@
 																		</parameters>
 																	</constructor>
 																</objectParameter>
-																<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 															</parameters>
 														</constructor>
 													</objectParameter>

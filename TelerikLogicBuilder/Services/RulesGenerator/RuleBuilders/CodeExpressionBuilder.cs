@@ -146,6 +146,22 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
         public CodeStatement BuildAssignToNullStatement(VariableBase variable)
             => new CodeAssignStatement(BuildImplementedVariableExpression(variable), new CodePrimitiveExpression(null));
 
+        public CodeExpression BuildConstructor(ConstructorData constructorData)
+        {
+            if (!_getValidConfigurationFromData.TryGetConstructor(constructorData, this.application, out Constructor? constructor))
+                throw _exceptionHelper.CriticalException("{64C1C685-8721-44DA-8004-29C875BF160B}");
+
+            return new CodeObjectCreateExpression
+            (
+                new CodeTypeReference(constructor.TypeName),
+                BuildParametersList
+                (
+                    constructor.Parameters,
+                    constructorData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
+                ).ToArray()
+            );
+        }
+
         public CodeExpression BuildDirectorPropertyCondition(string property, CodeExpression propertyValue)
             => new CodeBinaryOperatorExpression
             {
@@ -310,22 +326,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.RuleBuilders
                 return BuildFunction(functionData);
 
             return BuildBinaryOperatorExpression(function, functionData, this.application);
-        }
-
-        private CodeExpression BuildConstructor(ConstructorData constructorData)
-        {
-            if (!_getValidConfigurationFromData.TryGetConstructor(constructorData, this.application, out Constructor? constructor))
-                throw _exceptionHelper.CriticalException("{64C1C685-8721-44DA-8004-29C875BF160B}");
-
-            return new CodeObjectCreateExpression
-            (
-                new CodeTypeReference(constructor.TypeName),
-                BuildParametersList
-                (
-                    constructor.Parameters,
-                    constructorData.ParameterElementsList.ToDictionary(e => e.Attributes[XmlDataConstants.NAMEATTRIBUTE]!.Value)
-                ).ToArray()
-            );
         }
 
         private CodeExpression BuildFunction(FunctionData functionData)

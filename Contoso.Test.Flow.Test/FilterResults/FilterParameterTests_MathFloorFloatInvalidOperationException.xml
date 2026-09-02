@@ -10,7 +10,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="operand">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Value;IExpressionParameter: sourceOperand;fieldTypeSource=System.Nullable`1[[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Value;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">Value</literalParameter>
@@ -19,7 +19,7 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="sourceOperand">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Width;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Width;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Width</literalParameter>
@@ -31,7 +31,6 @@
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -63,7 +62,6 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">System.Nullable`1[[System.Double, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>

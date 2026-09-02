@@ -6,22 +6,22 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">CategoryName</literalParameter>
 								<objectParameter name="sourceOperand">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Category;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Category;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">Category</literalParameter>
 											<objectParameter name="sourceOperand">
-												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Product;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Product;IExpressionParameter: sourceOperand">
 													<genericArguments />
 													<parameters>
 														<literalParameter name="memberFullName">Product</literalParameter>
 														<objectParameter name="sourceOperand">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Category;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Category;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Category</literalParameter>
@@ -33,19 +33,15 @@
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>

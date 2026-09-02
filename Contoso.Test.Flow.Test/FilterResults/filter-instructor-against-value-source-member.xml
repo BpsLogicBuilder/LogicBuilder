@@ -6,7 +6,7 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ID;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ID;IExpressionParameter: sourceOperand">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">ID</literalParameter>
@@ -18,12 +18,11 @@
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>
 					<objectParameter name="right">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ID;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=ID;IExpressionParameter: sourceOperand">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">ID</literalParameter>
@@ -62,7 +61,6 @@
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.InstructorModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>

@@ -6,7 +6,7 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryID;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryID;IExpressionParameter: sourceOperand">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">CategoryID</literalParameter>
@@ -15,7 +15,7 @@
 										<genericArguments />
 										<parameters>
 											<objectParameter name="operand">
-												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Category;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Category;IExpressionParameter: sourceOperand">
 													<genericArguments />
 													<parameters>
 														<literalParameter name="memberFullName">Category</literalParameter>
@@ -59,7 +59,6 @@
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>
@@ -91,7 +90,6 @@
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>

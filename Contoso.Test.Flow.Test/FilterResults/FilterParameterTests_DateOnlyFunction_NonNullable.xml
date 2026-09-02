@@ -18,7 +18,7 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="left">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Year;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Year;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Year</literalParameter>
@@ -80,7 +80,6 @@
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -150,7 +149,7 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="left">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Month;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Month;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Month</literalParameter>
@@ -212,7 +211,6 @@
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -281,7 +279,7 @@
 									</constructor>
 								</objectParameter>
 								<objectParameter name="right">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Day;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Day;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">Day</literalParameter>
@@ -343,7 +341,6 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">System.DateOnly, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
@@ -363,12 +360,12 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="left">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Year;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Year;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Year</literalParameter>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand">
 																			<genericArguments />
 																			<parameters>
 																				<literalParameter name="memberFullName">NonNullableDiscontinuedDate</literalParameter>
@@ -380,11 +377,9 @@
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
-																				<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -454,12 +449,12 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="left">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Month;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Month;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Month</literalParameter>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand">
 																			<genericArguments />
 																			<parameters>
 																				<literalParameter name="memberFullName">NonNullableDiscontinuedDate</literalParameter>
@@ -471,11 +466,9 @@
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
-																				<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -544,12 +537,12 @@
 									</constructor>
 								</objectParameter>
 								<objectParameter name="right">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Day;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Day;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">Day</literalParameter>
 											<objectParameter name="sourceOperand">
-												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand">
 													<genericArguments />
 													<parameters>
 														<literalParameter name="memberFullName">NonNullableDiscontinuedDate</literalParameter>
@@ -561,11 +554,9 @@
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>

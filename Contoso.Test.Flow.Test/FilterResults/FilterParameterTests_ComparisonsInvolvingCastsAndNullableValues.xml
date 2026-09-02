@@ -72,7 +72,7 @@
 												</constructor>
 											</objectParameter>
 											<objectParameter name="itemToFind">
-												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=StringProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=StringProp;IExpressionParameter: sourceOperand">
 													<genericArguments />
 													<parameters>
 														<literalParameter name="memberFullName">StringProp</literalParameter>
@@ -84,7 +84,6 @@
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>
@@ -124,7 +123,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="sourceOperand">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NullableULongProp;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NullableULongProp;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">NullableULongProp</literalParameter>
@@ -136,7 +135,6 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.DataTypes, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>

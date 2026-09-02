@@ -28,9 +28,6 @@ namespace Contoso.Test.Flow.Test
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper = refreshVisibleTextHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers = xmlDocumentHelpers;
         private readonly XmlDocument xmlDocument = new();
-        private bool _buildingSelectorRoot;
-        private bool _selectorRootHadConvert;
-        private bool _useAssemblyQualifiedFieldTypeSource;
 
         public static string ToContructorDefinitionXml(Expression expression, IServiceProvider serviceProvider)
         {
@@ -75,17 +72,12 @@ namespace Contoso.Test.Flow.Test
             string parameterName = lambdaExpression.Parameters[0].Name ?? throw new InvalidOperationException("Parameter name is required.");
             Type sourceElementType = lambdaExpression.Parameters[0].Type;
             Expression bodyExpression = lambdaExpression.Body;
-            
-
-            _buildingSelectorRoot = !isFilter;
-            _selectorRootHadConvert = false;
 
             if (!isFilter
                 && bodyExpression is UnaryExpression unaryExpression
                 && unaryExpression.NodeType == ExpressionType.Convert)
             {
                 bodyExpression = unaryExpression.Operand;
-                _selectorRootHadConvert = true;
             }
 
             List<XmlElement> parameterElements = constructor.Parameters.Aggregate(new List<XmlElement>(), (list, parameter) =>
@@ -252,32 +244,17 @@ namespace Contoso.Test.Flow.Test
             string? memberName = (leftExpression as MemberExpression)?.Member.Name;
             Type? sourceType = (leftExpression as MemberExpression)?.Member.DeclaringType;
 
-            bool priorUseAssemblyQualifiedFieldTypeSource = _useAssemblyQualifiedFieldTypeSource;
-            _useAssemblyQualifiedFieldTypeSource = rightExpression is MemberExpression rightMemberExpression
-                && ShouldPreserveMemberExpressionAsSelector(rightMemberExpression, sourceType)
-                && sourceType?.Name == "CourseModel"
-                && memberName == "CourseID";
-
-            XmlElement left;
-            XmlElement right;
-            try
+            XmlElement left = BuildExpressionElement(leftExpression);
+            XmlElement right = rightExpression switch
             {
-                left = BuildExpressionElement(leftExpression);
-                right = rightExpression switch
-                {
-                    ConstantExpression constantExpression
-                        => BuildConstantOperator(constantExpression, null, sourceType, memberName),
-                    MemberExpression memberExpression when ShouldPreserveMemberExpressionAsSelector(memberExpression, sourceType)
-                        => BuildExpressionElement(memberExpression),
-                    MemberExpression memberExpression when TryEvaluateMemberValue(memberExpression, out object? memberValue)
-                        => BuildConstantFromValue(memberValue, memberExpression.Type, sourceType, memberName),
-                    _ => BuildExpressionElement(rightExpression)
-                };
-            }
-            finally
-            {
-                _useAssemblyQualifiedFieldTypeSource = priorUseAssemblyQualifiedFieldTypeSource;
-            }
+                ConstantExpression constantExpression
+                    => BuildConstantOperator(constantExpression, null, sourceType, memberName),
+                MemberExpression memberExpression when ShouldPreserveMemberExpressionAsSelector(memberExpression, sourceType)
+                    => BuildExpressionElement(memberExpression),
+                MemberExpression memberExpression when TryEvaluateMemberValue(memberExpression, out object? memberValue)
+                    => BuildConstantFromValue(memberValue, memberExpression.Type, sourceType, memberName),
+                _ => BuildExpressionElement(rightExpression)
+            };
 
             return BuildConstructorElement
             (
@@ -367,9 +344,11 @@ namespace Contoso.Test.Flow.Test
         }
 
         private bool HasConfiguredModelVariable(Type modelType)
-            => _configurationService.VariableList.Variables
-                .Any(v => v.Key.EndsWith("_Model", StringComparison.Ordinal)
-                    && v.Value.MemberName == (modelType.FullName ?? string.Empty));
+            => _configurationService.VariableList.Variables.Any
+            (
+                v => v.Key.EndsWith("_Model", StringComparison.Ordinal)
+                    && v.Value.MemberName == (modelType.FullName ?? string.Empty)
+            );
 
         private static bool TryEvaluateExpressionValue(Expression expression, out object? value)
         {
@@ -409,21 +388,14 @@ namespace Contoso.Test.Flow.Test
             return declaringType.AssemblyQualifiedName ?? declaringType.FullName ?? declaringType.Name;
         }
 
-        private bool ShouldIncludeMemberSelectorFieldTypeSource(MemberExpression memberExpression)
+        private static bool ShouldIncludeMemberSelectorFieldTypeSource(MemberExpression memberExpression)
         {
-            if (memberExpression.Expression is ConstantExpression)
-                return true;
-
-            if (memberExpression.Expression is not ParameterExpression parameterExpression)
-                return true;
-
-            if (_buildingSelectorRoot)
-                return _selectorRootHadConvert && (parameterExpression.Name is "w" or "o" or "s");
-
-            if (parameterExpression.Name == "f" && memberExpression.Member.Name == "ID")
+            if (memberExpression.Member.DeclaringType is null)
                 return false;
 
-            return true;
+            PropertyInfo? filedSourceTypePropertyInfo = memberExpression.Member.DeclaringType.GetProperty("FieldSourceType");
+
+            return filedSourceTypePropertyInfo != null;
         }
 
         private XmlElement BuildConstantFromValue(object? value, Type valueType, Type? sourceType, string? memberName)

@@ -1,3 +1,4 @@
+* 2026-09-02 - AB#221: Removed unused calss members form ConstructorXmlBuilder.
 * 2026-09-01 - AB#221: Removed model specific XML generation.
 * 2026-09-01 - AB#221: 245/303 tests working for Lambda Expression XML definiton.
 * 2026-08-30 - AB#221: Geneerated XML matches Contoso filters and selectors.

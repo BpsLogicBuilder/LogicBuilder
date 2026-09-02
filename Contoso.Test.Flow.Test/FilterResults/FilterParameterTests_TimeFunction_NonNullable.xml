@@ -18,7 +18,7 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="sourceOperand">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Hours;IExpressionParameter: sourceOperand;fieldTypeSource=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Hours;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Hours</literalParameter>
@@ -80,7 +80,6 @@
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -186,7 +185,7 @@
 																<genericArguments />
 																<parameters>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Minutes;IExpressionParameter: sourceOperand;fieldTypeSource=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Minutes;IExpressionParameter: sourceOperand">
 																			<genericArguments />
 																			<parameters>
 																				<literalParameter name="memberFullName">Minutes</literalParameter>
@@ -248,7 +247,6 @@
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
-																				<literalParameter name="fieldTypeSource">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
@@ -354,7 +352,7 @@
 																			<genericArguments />
 																			<parameters>
 																				<objectParameter name="sourceOperand">
-																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Seconds;IExpressionParameter: sourceOperand;fieldTypeSource=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Seconds;IExpressionParameter: sourceOperand">
 																						<genericArguments />
 																						<parameters>
 																							<literalParameter name="memberFullName">Seconds</literalParameter>
@@ -416,7 +414,6 @@
 																									</parameters>
 																								</constructor>
 																							</objectParameter>
-																							<literalParameter name="fieldTypeSource">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
@@ -514,7 +511,7 @@
 																<genericArguments />
 																<parameters>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Milliseconds;IExpressionParameter: sourceOperand;fieldTypeSource=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Milliseconds;IExpressionParameter: sourceOperand">
 																			<genericArguments />
 																			<parameters>
 																				<literalParameter name="memberFullName">Milliseconds</literalParameter>
@@ -576,7 +573,6 @@
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
-																				<literalParameter name="fieldTypeSource">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
@@ -630,12 +626,12 @@
 													<genericArguments />
 													<parameters>
 														<objectParameter name="sourceOperand">
-															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Hour;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+															<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Hour;IExpressionParameter: sourceOperand">
 																<genericArguments />
 																<parameters>
 																	<literalParameter name="memberFullName">Hour</literalParameter>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand">
 																			<genericArguments />
 																			<parameters>
 																				<literalParameter name="memberFullName">NonNullableDiscontinuedDate</literalParameter>
@@ -647,11 +643,9 @@
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
-																				<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
-																	<literalParameter name="fieldTypeSource">System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																</parameters>
 															</constructor>
 														</objectParameter>
@@ -757,12 +751,12 @@
 																<genericArguments />
 																<parameters>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Minute;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Minute;IExpressionParameter: sourceOperand">
 																			<genericArguments />
 																			<parameters>
 																				<literalParameter name="memberFullName">Minute</literalParameter>
 																				<objectParameter name="sourceOperand">
-																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand">
 																						<genericArguments />
 																						<parameters>
 																							<literalParameter name="memberFullName">NonNullableDiscontinuedDate</literalParameter>
@@ -774,11 +768,9 @@
 																									</parameters>
 																								</constructor>
 																							</objectParameter>
-																							<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
-																				<literalParameter name="fieldTypeSource">System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>
@@ -884,12 +876,12 @@
 																			<genericArguments />
 																			<parameters>
 																				<objectParameter name="sourceOperand">
-																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Second;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Second;IExpressionParameter: sourceOperand">
 																						<genericArguments />
 																						<parameters>
 																							<literalParameter name="memberFullName">Second</literalParameter>
 																							<objectParameter name="sourceOperand">
-																								<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																								<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand">
 																									<genericArguments />
 																									<parameters>
 																										<literalParameter name="memberFullName">NonNullableDiscontinuedDate</literalParameter>
@@ -901,11 +893,9 @@
 																												</parameters>
 																											</constructor>
 																										</objectParameter>
-																										<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																									</parameters>
 																								</constructor>
 																							</objectParameter>
-																							<literalParameter name="fieldTypeSource">System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
@@ -1003,12 +993,12 @@
 																<genericArguments />
 																<parameters>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Millisecond;IExpressionParameter: sourceOperand;fieldTypeSource=System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+																		<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Millisecond;IExpressionParameter: sourceOperand">
 																			<genericArguments />
 																			<parameters>
 																				<literalParameter name="memberFullName">Millisecond</literalParameter>
 																				<objectParameter name="sourceOperand">
-																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																					<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=NonNullableDiscontinuedDate;IExpressionParameter: sourceOperand">
 																						<genericArguments />
 																						<parameters>
 																							<literalParameter name="memberFullName">NonNullableDiscontinuedDate</literalParameter>
@@ -1020,11 +1010,9 @@
 																									</parameters>
 																								</constructor>
 																							</objectParameter>
-																							<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																						</parameters>
 																					</constructor>
 																				</objectParameter>
-																				<literalParameter name="fieldTypeSource">System.DateTimeOffset, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
 																			</parameters>
 																		</constructor>
 																	</objectParameter>

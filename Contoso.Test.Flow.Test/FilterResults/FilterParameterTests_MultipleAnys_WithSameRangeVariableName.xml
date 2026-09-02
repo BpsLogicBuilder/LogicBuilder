@@ -10,7 +10,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="sourceOperand">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=AlternateIDs;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=AlternateIDs;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">AlternateIDs</literalParameter>
@@ -22,7 +22,6 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
@@ -108,7 +107,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="sourceOperand">
-									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=AlternateAddresses;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=AlternateAddresses;IExpressionParameter: sourceOperand">
 										<genericArguments />
 										<parameters>
 											<literalParameter name="memberFullName">AlternateAddresses</literalParameter>
@@ -120,7 +119,6 @@
 													</parameters>
 												</constructor>
 											</objectParameter>
-											<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 										</parameters>
 									</constructor>
 								</objectParameter>
@@ -129,7 +127,7 @@
 										<genericArguments />
 										<parameters>
 											<objectParameter name="left">
-												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=City;IExpressionParameter: sourceOperand;fieldTypeSource=Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+												<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=City;IExpressionParameter: sourceOperand">
 													<genericArguments />
 													<parameters>
 														<literalParameter name="memberFullName">City</literalParameter>
@@ -141,7 +139,6 @@
 																</parameters>
 															</constructor>
 														</objectParameter>
-														<literalParameter name="fieldTypeSource">Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 													</parameters>
 												</constructor>
 											</objectParameter>

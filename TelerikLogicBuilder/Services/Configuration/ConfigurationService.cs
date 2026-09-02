@@ -88,6 +88,8 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             set => _variableList = value;
         }
 
+        public bool UseLongStrings { get; set; }
+
         public void ClearConfigurationData()
         {
             _projectProperties = null;

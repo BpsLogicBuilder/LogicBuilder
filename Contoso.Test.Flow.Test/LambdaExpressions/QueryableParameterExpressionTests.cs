@@ -1566,7 +1566,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             ApplicationTypeInfo applicationTypeInfo = _applicationTypeInfoManager.GetApplicationTypeInfo(selectedApplication);
             ICodeExpressionBuilder codeExpressionBuilder = _rulesGeneratorFactory.GetCodeExpressionBuilder(applicationTypeInfo, new Dictionary<string, string>(), mduleName);
             ConstructorData constructorData = _constructorDataParser.Parse(_xmlDocumentHelpers.ToXmlElement(formattedXml));
-            var codeExpression = (CodeExpression)null!;//codeExpressionBuilder.BuildConstructor(constructorData);
+            var codeExpression = codeExpressionBuilder.BuildConstructor(constructorData);
 
             CodeBinaryOperatorExpression alwaysTrueCondition = new()
             {
@@ -1639,8 +1639,8 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                 .AddTransient<Shop.Bsl.Flow.Interfaces.IFlowManager, Shop.Bsl.Flow.FlowManager>()
                 .AddTransient<Shop.Bsl.Flow.Factories.IFlowFactory, Shop.Bsl.Flow.Factories.FlowFactory>()
                 .AddTransient<LogicBuilder.App.Bsl.Flow.Interfaces.ICustomActions, LogicBuilder.App.Bsl.Flow.CustomActions>()
-                .AddScoped<LogicBuilder.App.Bsl.Flow.Interfaces.IFlowDataCache, LogicBuilder.App.Bsl.Flow.FlowDataCache>()
-                .AddScoped<Progress, Progress>()
+                .AddSingleton<LogicBuilder.App.Bsl.Flow.Interfaces.IFlowDataCache, LogicBuilder.App.Bsl.Flow.FlowDataCache>()
+                .AddSingleton<Progress, Progress>()
                 .AddSingleton<IRulesCache>(sp => new RulesCache([], []))
                 .BuildServiceProvider();
         }
@@ -1672,6 +1672,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             _configurationService.FragmentList = _fragmentListInitializer.InitializeList();
             _configurationService.FunctionList = _functionListInitializer.InitializeList();
             _configurationService.VariableList = _variableListInitializer.InitializeList();
+            _configurationService.UseLongStrings = true;
         }
 
         private async Task<LambdaExpression> RecreateSelectorFromSelectorLambdaOperatorParameters(LambdaExpression filter, string ruleName, Type entityType, object? entity)

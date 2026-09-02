@@ -238,7 +238,7 @@
 																								<genericArguments />
 																								<parameters>
 																									<objectParameter name="left">
-																										<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=LastName;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Data.Entities.Instructor, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																										<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=LastName;IExpressionParameter: sourceOperand">
 																											<genericArguments />
 																											<parameters>
 																												<literalParameter name="memberFullName">LastName</literalParameter>
@@ -258,7 +258,6 @@
 																														</parameters>
 																													</constructor>
 																												</objectParameter>
-																												<literalParameter name="fieldTypeSource">Contoso.Data.Entities.Instructor, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																											</parameters>
 																										</constructor>
 																									</objectParameter>
@@ -324,7 +323,7 @@
 																							</constructor>
 																						</objectParameter>
 																						<objectParameter name="right">
-																							<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=FirstName;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Data.Entities.Instructor, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+																							<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=FirstName;IExpressionParameter: sourceOperand">
 																								<genericArguments />
 																								<parameters>
 																									<literalParameter name="memberFullName">FirstName</literalParameter>
@@ -344,7 +343,6 @@
 																											</parameters>
 																										</constructor>
 																									</objectParameter>
-																									<literalParameter name="fieldTypeSource">Contoso.Data.Entities.Instructor, Contoso.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 																								</parameters>
 																							</constructor>
 																						</objectParameter>

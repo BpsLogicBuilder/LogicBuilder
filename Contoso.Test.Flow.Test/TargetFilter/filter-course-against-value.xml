@@ -1,4 +1,4 @@
-﻿<constructor name="FilterLambdaOperatorParameters" visibleText="FilterLambdaOperatorParameters: IExpressionParameter: filterBody;Type: sourceElementType;parameterName=f">
+<constructor name="FilterLambdaOperatorParameters" visibleText="FilterLambdaOperatorParameters: IExpressionParameter: filterBody;Type: sourceElementType;parameterName=f">
 	<genericArguments />
 	<parameters>
 		<objectParameter name="filterBody">
@@ -6,7 +6,7 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand;fieldTypeSource=Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand">
 							<genericArguments />
 							<parameters>
 								<literalParameter name="memberFullName">CourseID</literalParameter>
@@ -18,7 +18,6 @@
 										</parameters>
 									</constructor>
 								</objectParameter>
-								<literalParameter name="fieldTypeSource">Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>
