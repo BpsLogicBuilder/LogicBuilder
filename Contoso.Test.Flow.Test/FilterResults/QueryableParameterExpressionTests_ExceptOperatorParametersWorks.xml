@@ -1,0 +1,174 @@
+<constructor name="SelectorLambdaOperatorParameters" visibleText="SelectorLambdaOperatorParameters: IExpressionParameter: selector;Type: sourceElementType;parameterName=$it;Type: bodyType">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="selector">
+			<constructor name="ExceptOperatorParameters" visibleText="ExceptOperatorParameters: IExpressionParameter: left;IExpressionParameter: right">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="left">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=AlternateAddresses;IExpressionParameter: sourceOperand">
+							<genericArguments />
+							<parameters>
+								<literalParameter name="memberFullName">AlternateAddresses</literalParameter>
+								<objectParameter name="sourceOperand">
+									<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="parameterName">$it</literalParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="right">
+						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="constantValue">
+									<constructor name="CollectionConstantOperatorParameters" visibleText="CollectionConstantOperatorParameters: IGenericCollectionOfObject: constantValues;Type: elementType">
+										<genericArguments />
+										<parameters>
+											<objectListParameter name="constantValues">
+												<objectList objectType="System.Object" listType="IGenericCollection" visibleText="constantValues: Count(2)">
+													<object>
+														<function name="Cast" visibleText="Cast: From=Shop.Bsl.Flow.Address">
+															<genericArguments>
+																<literalParameter genericArgumentName="From">
+																	<literalType>String</literalType>
+																	<control>SingleLineTextBox</control>
+																	<useForEquality>true</useForEquality>
+																	<useForHashCode>false</useForHashCode>
+																	<useForToString>true</useForToString>
+																	<propertySource />
+																	<propertySourceParameter />
+																	<defaultValue />
+																	<domain />
+																</literalParameter>
+																<objectParameter genericArgumentName="To">
+																	<objectType>System.Object</objectType>
+																	<useForEquality>false</useForEquality>
+																	<useForHashCode>false</useForHashCode>
+																	<useForToString>true</useForToString>
+																</objectParameter>
+															</genericArguments>
+															<parameters>
+																<literalParameter name="From">Shop.Bsl.Flow.Address</literalParameter>
+															</parameters>
+														</function>
+													</object>
+													<object>
+														<function name="Cast" visibleText="Cast: From=Shop.Bsl.Flow.Address">
+															<genericArguments>
+																<literalParameter genericArgumentName="From">
+																	<literalType>String</literalType>
+																	<control>SingleLineTextBox</control>
+																	<useForEquality>true</useForEquality>
+																	<useForHashCode>false</useForHashCode>
+																	<useForToString>true</useForToString>
+																	<propertySource />
+																	<propertySourceParameter />
+																	<defaultValue />
+																	<domain />
+																</literalParameter>
+																<objectParameter genericArgumentName="To">
+																	<objectType>System.Object</objectType>
+																	<useForEquality>false</useForEquality>
+																	<useForHashCode>false</useForHashCode>
+																	<useForToString>true</useForToString>
+																</objectParameter>
+															</genericArguments>
+															<parameters>
+																<literalParameter name="From">Shop.Bsl.Flow.Address</literalParameter>
+															</parameters>
+														</function>
+													</object>
+												</objectList>
+											</objectListParameter>
+											<objectParameter name="elementType">
+												<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+													<genericArguments />
+													<parameters>
+														<objectParameter name="typeHelper">
+															<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+																<genericArguments>
+																	<objectParameter genericArgumentName="TService">
+																		<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+																		<useForEquality>false</useForEquality>
+																		<useForHashCode>false</useForHashCode>
+																		<useForToString>true</useForToString>
+																	</objectParameter>
+																</genericArguments>
+																<parameters>
+																	<objectParameter name="serviceProvider">
+																		<variable name="ServiceProvider" visibleText="ServiceProvider" />
+																	</objectParameter>
+																</parameters>
+															</function>
+														</objectParameter>
+														<literalParameter name="assemblyQualifiedTypeName">Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">$it</literalParameter>
+		<objectParameter name="bodyType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Collections.Generic.IEnumerable`1[[Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Collections.Generic.IEnumerable`1[[Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+	</parameters>
+</constructor>

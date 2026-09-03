@@ -15,5 +15,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration
         FragmentList FragmentList { get; set; }
         FunctionList FunctionList { get; set; }
         VariableList VariableList { get; set; }
+        bool UseLongStrings { get; set; }
     }
 }

@@ -1,0 +1,162 @@
+<constructor name="FilterLambdaOperatorParameters" visibleText="FilterLambdaOperatorParameters: IExpressionParameter: filterBody;Type: sourceElementType;parameterName=$it">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="filterBody">
+			<constructor name="EqualsBinaryOperatorParameters" visibleText="EqualsBinaryOperatorParameters: IExpressionParameter: left;IExpressionParameter: right">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="left">
+						<constructor name="CustomMethodOperatorParameters" visibleText="CustomMethodOperatorParameters: Type: declaringType;methodName=Ceiling;ArrayOfString: parameterTypeNames;ArrayOfIExpressionParameter: args">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="declaringType">
+									<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Math">
+										<genericArguments />
+										<parameters>
+											<objectParameter name="typeHelper">
+												<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+													<genericArguments>
+														<objectParameter genericArgumentName="TService">
+															<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+															<useForEquality>false</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+														</objectParameter>
+													</genericArguments>
+													<parameters>
+														<objectParameter name="serviceProvider">
+															<variable name="ServiceProvider" visibleText="ServiceProvider" />
+														</objectParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+											<literalParameter name="assemblyQualifiedTypeName">System.Math</literalParameter>
+										</parameters>
+									</function>
+								</objectParameter>
+								<literalParameter name="methodName">Ceiling</literalParameter>
+								<literalListParameter name="parameterTypeNames">
+									<literalList literalType="String" listType="Array" visibleText="parameterTypeNames: Count(1)">
+										<literal>System.Decimal</literal>
+									</literalList>
+								</literalListParameter>
+								<objectListParameter name="args">
+									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter" listType="Array" visibleText="args: Count(1)">
+										<object>
+											<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Value;IExpressionParameter: sourceOperand">
+												<genericArguments />
+												<parameters>
+													<literalParameter name="memberFullName">Value</literalParameter>
+													<objectParameter name="sourceOperand">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=UnitPrice;IExpressionParameter: sourceOperand">
+															<genericArguments />
+															<parameters>
+																<literalParameter name="memberFullName">UnitPrice</literalParameter>
+																<objectParameter name="sourceOperand">
+																	<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+																		<genericArguments />
+																		<parameters>
+																			<literalParameter name="parameterName">$it</literalParameter>
+																		</parameters>
+																	</constructor>
+																</objectParameter>
+															</parameters>
+														</constructor>
+													</objectParameter>
+												</parameters>
+											</constructor>
+										</object>
+									</objectList>
+								</objectListParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="right">
+						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="constantValue">
+									<function name="Cast" visibleText="Cast: From=5">
+										<genericArguments>
+											<literalParameter genericArgumentName="From">
+												<literalType>Decimal</literalType>
+												<control>SingleLineTextBox</control>
+												<useForEquality>true</useForEquality>
+												<useForHashCode>false</useForHashCode>
+												<useForToString>true</useForToString>
+												<propertySource />
+												<propertySourceParameter />
+												<defaultValue />
+												<domain />
+											</literalParameter>
+											<objectParameter genericArgumentName="To">
+												<objectType>System.Object</objectType>
+												<useForEquality>false</useForEquality>
+												<useForHashCode>false</useForHashCode>
+												<useForToString>true</useForToString>
+											</objectParameter>
+										</genericArguments>
+										<parameters>
+											<literalParameter name="From">5</literalParameter>
+										</parameters>
+									</function>
+								</objectParameter>
+								<objectParameter name="type">
+									<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Decimal">
+										<genericArguments />
+										<parameters>
+											<objectParameter name="typeHelper">
+												<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+													<genericArguments>
+														<objectParameter genericArgumentName="TService">
+															<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+															<useForEquality>false</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+														</objectParameter>
+													</genericArguments>
+													<parameters>
+														<objectParameter name="serviceProvider">
+															<variable name="ServiceProvider" visibleText="ServiceProvider" />
+														</objectParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+											<literalParameter name="assemblyQualifiedTypeName">System.Decimal</literalParameter>
+										</parameters>
+									</function>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">$it</literalParameter>
+	</parameters>
+</constructor>

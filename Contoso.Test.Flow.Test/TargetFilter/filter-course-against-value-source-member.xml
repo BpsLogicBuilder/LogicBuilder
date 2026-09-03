@@ -1,0 +1,72 @@
+<constructor name="FilterLambdaOperatorParameters" visibleText="FilterLambdaOperatorParameters: IExpressionParameter: filterBody;Type: sourceElementType;parameterName=f">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="filterBody">
+			<constructor name="EqualsBinaryOperatorParameters" visibleText="EqualsBinaryOperatorParameters: IExpressionParameter: left;IExpressionParameter: right">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="left">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand">
+							<genericArguments />
+							<parameters>
+								<literalParameter name="memberFullName">CourseID</literalParameter>
+								<objectParameter name="sourceOperand">
+									<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=f">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="parameterName">f</literalParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="right">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CourseID;IExpressionParameter: sourceOperand">
+							<genericArguments />
+							<parameters>
+								<literalParameter name="memberFullName">CourseID</literalParameter>
+								<objectParameter name="sourceOperand">
+									<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
+										<genericArguments />
+										<parameters>
+											<objectParameter name="constantValue">
+												<variable name="Course_Model" visibleText="Course_Model" />
+											</objectParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">Contoso.Domain.Entities.CourseModel, Contoso.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">f</literalParameter>
+	</parameters>
+</constructor>

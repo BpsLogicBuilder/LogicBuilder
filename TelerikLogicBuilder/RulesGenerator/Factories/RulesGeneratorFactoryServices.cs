@@ -134,6 +134,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     provider =>
                     (resourceStrings, resourceNamePrefix) => new ResourcesManager
                     (
+                        provider.GetRequiredService<IConfigurationService>(),
                         provider.GetRequiredService<IExceptionHelper>(),
                         resourceStrings, 
                         resourceNamePrefix

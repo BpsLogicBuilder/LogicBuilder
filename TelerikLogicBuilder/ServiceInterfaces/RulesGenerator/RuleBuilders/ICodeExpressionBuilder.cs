@@ -33,6 +33,13 @@ namespace ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.RulesGenerator.RuleBui
         CodeStatement BuildAssignToNullStatement(VariableBase variable);
 
         /// <summary>
+        /// Returns an CodeObjectCreateExpression givem constrcutor data
+        /// </summary>
+        /// <param name="constructorData"></param>
+        /// <returns></returns>
+        CodeExpression BuildConstructor(ConstructorData constructorData);
+
+        /// <summary>
         /// Returns a Code Binary Operator Expression for property == propertyValue test
         /// </summary>
         /// <param name="connectorXmlNode"></param>

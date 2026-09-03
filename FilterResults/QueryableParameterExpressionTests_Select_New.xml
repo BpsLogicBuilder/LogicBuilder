@@ -1,0 +1,182 @@
+<constructor name="SelectorLambdaOperatorParameters" visibleText="SelectorLambdaOperatorParameters: IExpressionParameter: selector;Type: sourceElementType;parameterName=$it;Type: bodyType">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="selector">
+			<constructor name="SelectOperatorParameters" visibleText="SelectOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;selectorParameterName=a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="sourceOperand">
+						<constructor name="OrderByOperatorParameters" visibleText="OrderByOperatorParameters: IExpressionParameter: sourceOperand;IExpressionParameter: selectorBody;ListSortDirection: sortDirection;selectorParameterName=a">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="sourceOperand">
+									<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="parameterName">$it</literalParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+								<objectParameter name="selectorBody">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryID;IExpressionParameter: sourceOperand">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="memberFullName">CategoryID</literalParameter>
+											<objectParameter name="sourceOperand">
+												<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=a">
+													<genericArguments />
+													<parameters>
+														<literalParameter name="parameterName">a</literalParameter>
+													</parameters>
+												</constructor>
+											</objectParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+								<objectParameter name="sortDirection">
+									<variable name="ListSortDirection_Descending" visibleText="ListSortDirection_Descending" />
+								</objectParameter>
+								<literalParameter name="selectorParameterName">a</literalParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="selectorBody">
+						<constructor name="MemberInitOperatorParameters" visibleText="MemberInitOperatorParameters: IGenericListOfMemberBindingItem: memberBindings">
+							<genericArguments />
+							<parameters>
+								<objectListParameter name="memberBindings">
+									<objectList objectType="LogicBuilder.Forms.Parameters.Expressions.MemberBindingItem" listType="GenericList" visibleText="memberBindings: Count(3)">
+										<object>
+											<constructor name="MemberBindingItem" visibleText="MemberBindingItem: property=CategoryID;IExpressionParameter: selector">
+												<genericArguments />
+												<parameters>
+													<literalParameter name="property">CategoryID</literalParameter>
+													<objectParameter name="selector">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryID;IExpressionParameter: sourceOperand">
+															<genericArguments />
+															<parameters>
+																<literalParameter name="memberFullName">CategoryID</literalParameter>
+																<objectParameter name="sourceOperand">
+																	<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=a">
+																		<genericArguments />
+																		<parameters>
+																			<literalParameter name="parameterName">a</literalParameter>
+																		</parameters>
+																	</constructor>
+																</objectParameter>
+															</parameters>
+														</constructor>
+													</objectParameter>
+												</parameters>
+											</constructor>
+										</object>
+										<object>
+											<constructor name="MemberBindingItem" visibleText="MemberBindingItem: property=CategoryName;IExpressionParameter: selector">
+												<genericArguments />
+												<parameters>
+													<literalParameter name="property">CategoryName</literalParameter>
+													<objectParameter name="selector">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=CategoryName;IExpressionParameter: sourceOperand">
+															<genericArguments />
+															<parameters>
+																<literalParameter name="memberFullName">CategoryName</literalParameter>
+																<objectParameter name="sourceOperand">
+																	<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=a">
+																		<genericArguments />
+																		<parameters>
+																			<literalParameter name="parameterName">a</literalParameter>
+																		</parameters>
+																	</constructor>
+																</objectParameter>
+															</parameters>
+														</constructor>
+													</objectParameter>
+												</parameters>
+											</constructor>
+										</object>
+										<object>
+											<constructor name="MemberBindingItem" visibleText="MemberBindingItem: property=Products;IExpressionParameter: selector">
+												<genericArguments />
+												<parameters>
+													<literalParameter name="property">Products</literalParameter>
+													<objectParameter name="selector">
+														<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Products;IExpressionParameter: sourceOperand">
+															<genericArguments />
+															<parameters>
+																<literalParameter name="memberFullName">Products</literalParameter>
+																<objectParameter name="sourceOperand">
+																	<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=a">
+																		<genericArguments />
+																		<parameters>
+																			<literalParameter name="parameterName">a</literalParameter>
+																		</parameters>
+																	</constructor>
+																</objectParameter>
+															</parameters>
+														</constructor>
+													</objectParameter>
+												</parameters>
+											</constructor>
+										</object>
+									</objectList>
+								</objectListParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<literalParameter name="selectorParameterName">a</literalParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[Shop.Bsl.Flow.Category, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">$it</literalParameter>
+		<objectParameter name="bodyType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Linq.IQueryable`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Linq.IQueryable`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+	</parameters>
+</constructor>
