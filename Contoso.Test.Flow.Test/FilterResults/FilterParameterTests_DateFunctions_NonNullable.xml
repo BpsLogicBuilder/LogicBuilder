@@ -6,47 +6,38 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=Day;IExpressionParameter: sourceOperand">
 							<genericArguments />
 							<parameters>
-								<objectParameter name="constantValue">
-									<function name="Cast" visibleText="Cast: From=2026-09-03T13:59:25.1214427+00:00">
-										<genericArguments>
-											<literalParameter genericArgumentName="From">
-												<literalType>DateTimeOffset</literalType>
-												<control>SingleLineTextBox</control>
-												<useForEquality>true</useForEquality>
-												<useForHashCode>false</useForHashCode>
-												<useForToString>true</useForToString>
-												<propertySource />
-												<propertySourceParameter />
-												<defaultValue />
-												<domain />
-											</literalParameter>
-											<objectParameter genericArgumentName="To">
-												<objectType>System.Object</objectType>
-												<useForEquality>false</useForEquality>
-												<useForHashCode>false</useForHashCode>
-												<useForToString>true</useForToString>
-											</objectParameter>
-										</genericArguments>
+								<literalParameter name="memberFullName">Day</literalParameter>
+								<objectParameter name="sourceOperand">
+									<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=DateProperty;IExpressionParameter: sourceOperand">
+										<genericArguments />
 										<parameters>
-											<literalParameter name="From">2026-09-03T13:59:25.1214427+00:00</literalParameter>
+											<literalParameter name="memberFullName">DateProperty</literalParameter>
+											<objectParameter name="sourceOperand">
+												<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+													<genericArguments />
+													<parameters>
+														<literalParameter name="parameterName">$it</literalParameter>
+													</parameters>
+												</constructor>
+											</objectParameter>
 										</parameters>
-									</function>
+									</constructor>
 								</objectParameter>
 							</parameters>
 						</constructor>
 					</objectParameter>
 					<objectParameter name="right">
-						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
+						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
 							<genericArguments />
 							<parameters>
 								<objectParameter name="constantValue">
-									<function name="Cast" visibleText="Cast: From=2016-11-08T00:00:00.0000000+00:00">
+									<function name="Cast" visibleText="Cast: From=23">
 										<genericArguments>
 											<literalParameter genericArgumentName="From">
-												<literalType>DateTimeOffset</literalType>
+												<literalType>Integer</literalType>
 												<control>SingleLineTextBox</control>
 												<useForEquality>true</useForEquality>
 												<useForHashCode>false</useForHashCode>
@@ -64,7 +55,32 @@
 											</objectParameter>
 										</genericArguments>
 										<parameters>
-											<literalParameter name="From">2016-11-08T00:00:00.0000000+00:00</literalParameter>
+											<literalParameter name="From">23</literalParameter>
+										</parameters>
+									</function>
+								</objectParameter>
+								<objectParameter name="type">
+									<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Int32">
+										<genericArguments />
+										<parameters>
+											<objectParameter name="typeHelper">
+												<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+													<genericArguments>
+														<objectParameter genericArgumentName="TService">
+															<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+															<useForEquality>false</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+														</objectParameter>
+													</genericArguments>
+													<parameters>
+														<objectParameter name="serviceProvider">
+															<variable name="ServiceProvider" visibleText="ServiceProvider" />
+														</objectParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+											<literalParameter name="assemblyQualifiedTypeName">System.Int32</literalParameter>
 										</parameters>
 									</function>
 								</objectParameter>

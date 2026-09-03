@@ -432,7 +432,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             //act
             var filter = CreateFilter<Product>();
             string ruleName = $"{nameof(FilterParameterTests)}_{nameof(BooleanOperatorNullableTypes)}";
-            Expression<Func<Product, bool>> newFilter = (Expression<Func<Product, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(Product), null);
+            Expression<Func<Product, bool>> newFilter = (Expression<Func<Product, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(Product), new Product { });
 
             //assert
             AssertFilterStringIsCorrect(newFilter, "$it => (($it.UnitPrice == Convert(5.00)) OrElse ($it.CategoryID == 0))");
@@ -5655,7 +5655,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             //act
             var filter = CreateFilter<DataTypes>();
             string ruleName = $"{nameof(FilterParameterTests)}_{nameof(DateTimeExpression)}";
-            Expression<Func<DataTypes, bool>> newFilter = (Expression<Func<DataTypes, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(DataTypes), null);
+            Expression<Func<DataTypes, bool>> newFilter = (Expression<Func<DataTypes, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(DataTypes), new DataTypes { DateTimeProp = dateTime });
 
             //assert
             AssertFilterStringIsCorrect(newFilter, string.Format(CultureInfo.InvariantCulture, theoryData.ExpectedExpression, dateTime));

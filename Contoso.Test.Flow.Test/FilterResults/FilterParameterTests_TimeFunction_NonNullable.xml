@@ -23,7 +23,7 @@
 																<parameters>
 																	<literalParameter name="memberFullName">Hours</literalParameter>
 																	<objectParameter name="sourceOperand">
-																		<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+																		<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
 																			<genericArguments />
 																			<parameters>
 																				<objectParameter name="constantValue">
@@ -49,31 +49,6 @@
 																						</genericArguments>
 																						<parameters>
 																							<literalParameter name="From">01:02:03.0040000</literalParameter>
-																						</parameters>
-																					</function>
-																				</objectParameter>
-																				<objectParameter name="type">
-																					<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-																						<genericArguments />
-																						<parameters>
-																							<objectParameter name="typeHelper">
-																								<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-																									<genericArguments>
-																										<objectParameter genericArgumentName="TService">
-																											<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-																											<useForEquality>false</useForEquality>
-																											<useForHashCode>false</useForHashCode>
-																											<useForToString>true</useForToString>
-																										</objectParameter>
-																									</genericArguments>
-																									<parameters>
-																										<objectParameter name="serviceProvider">
-																											<variable name="ServiceProvider" visibleText="ServiceProvider" />
-																										</objectParameter>
-																									</parameters>
-																								</function>
-																							</objectParameter>
-																							<literalParameter name="assemblyQualifiedTypeName">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																						</parameters>
 																					</function>
 																				</objectParameter>
@@ -190,7 +165,7 @@
 																			<parameters>
 																				<literalParameter name="memberFullName">Minutes</literalParameter>
 																				<objectParameter name="sourceOperand">
-																					<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+																					<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
 																						<genericArguments />
 																						<parameters>
 																							<objectParameter name="constantValue">
@@ -216,31 +191,6 @@
 																									</genericArguments>
 																									<parameters>
 																										<literalParameter name="From">01:02:03.0040000</literalParameter>
-																									</parameters>
-																								</function>
-																							</objectParameter>
-																							<objectParameter name="type">
-																								<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-																									<genericArguments />
-																									<parameters>
-																										<objectParameter name="typeHelper">
-																											<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-																												<genericArguments>
-																													<objectParameter genericArgumentName="TService">
-																														<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-																														<useForEquality>false</useForEquality>
-																														<useForHashCode>false</useForHashCode>
-																														<useForToString>true</useForToString>
-																													</objectParameter>
-																												</genericArguments>
-																												<parameters>
-																													<objectParameter name="serviceProvider">
-																														<variable name="ServiceProvider" visibleText="ServiceProvider" />
-																													</objectParameter>
-																												</parameters>
-																											</function>
-																										</objectParameter>
-																										<literalParameter name="assemblyQualifiedTypeName">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																									</parameters>
 																								</function>
 																							</objectParameter>
@@ -357,7 +307,7 @@
 																						<parameters>
 																							<literalParameter name="memberFullName">Seconds</literalParameter>
 																							<objectParameter name="sourceOperand">
-																								<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+																								<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
 																									<genericArguments />
 																									<parameters>
 																										<objectParameter name="constantValue">
@@ -383,31 +333,6 @@
 																												</genericArguments>
 																												<parameters>
 																													<literalParameter name="From">01:02:03.0040000</literalParameter>
-																												</parameters>
-																											</function>
-																										</objectParameter>
-																										<objectParameter name="type">
-																											<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-																												<genericArguments />
-																												<parameters>
-																													<objectParameter name="typeHelper">
-																														<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-																															<genericArguments>
-																																<objectParameter genericArgumentName="TService">
-																																	<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-																																	<useForEquality>false</useForEquality>
-																																	<useForHashCode>false</useForHashCode>
-																																	<useForToString>true</useForToString>
-																																</objectParameter>
-																															</genericArguments>
-																															<parameters>
-																																<objectParameter name="serviceProvider">
-																																	<variable name="ServiceProvider" visibleText="ServiceProvider" />
-																																</objectParameter>
-																															</parameters>
-																														</function>
-																													</objectParameter>
-																													<literalParameter name="assemblyQualifiedTypeName">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																												</parameters>
 																											</function>
 																										</objectParameter>
@@ -516,7 +441,7 @@
 																			<parameters>
 																				<literalParameter name="memberFullName">Milliseconds</literalParameter>
 																				<objectParameter name="sourceOperand">
-																					<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+																					<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
 																						<genericArguments />
 																						<parameters>
 																							<objectParameter name="constantValue">
@@ -542,31 +467,6 @@
 																									</genericArguments>
 																									<parameters>
 																										<literalParameter name="From">01:02:03.0040000</literalParameter>
-																									</parameters>
-																								</function>
-																							</objectParameter>
-																							<objectParameter name="type">
-																								<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-																									<genericArguments />
-																									<parameters>
-																										<objectParameter name="typeHelper">
-																											<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-																												<genericArguments>
-																													<objectParameter genericArgumentName="TService">
-																														<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-																														<useForEquality>false</useForEquality>
-																														<useForHashCode>false</useForHashCode>
-																														<useForToString>true</useForToString>
-																													</objectParameter>
-																												</genericArguments>
-																												<parameters>
-																													<objectParameter name="serviceProvider">
-																														<variable name="ServiceProvider" visibleText="ServiceProvider" />
-																													</objectParameter>
-																												</parameters>
-																											</function>
-																										</objectParameter>
-																										<literalParameter name="assemblyQualifiedTypeName">Microsoft.OData.Edm.TimeOfDay, Microsoft.OData.Edm, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</literalParameter>
 																									</parameters>
 																								</function>
 																							</objectParameter>

@@ -22,7 +22,7 @@
 						</constructor>
 					</objectParameter>
 					<objectParameter name="right">
-						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
 							<genericArguments />
 							<parameters>
 								<objectParameter name="constantValue">
@@ -48,31 +48,6 @@
 										</genericArguments>
 										<parameters>
 											<literalParameter name="From">2000-12-12T12:00:00.0000000+00:00</literalParameter>
-										</parameters>
-									</function>
-								</objectParameter>
-								<objectParameter name="type">
-									<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.DateTimeOffset">
-										<genericArguments />
-										<parameters>
-											<objectParameter name="typeHelper">
-												<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-													<genericArguments>
-														<objectParameter genericArgumentName="TService">
-															<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-															<useForEquality>false</useForEquality>
-															<useForHashCode>false</useForHashCode>
-															<useForToString>true</useForToString>
-														</objectParameter>
-													</genericArguments>
-													<parameters>
-														<objectParameter name="serviceProvider">
-															<variable name="ServiceProvider" visibleText="ServiceProvider" />
-														</objectParameter>
-													</parameters>
-												</function>
-											</objectParameter>
-											<literalParameter name="assemblyQualifiedTypeName">System.DateTimeOffset</literalParameter>
 										</parameters>
 									</function>
 								</objectParameter>

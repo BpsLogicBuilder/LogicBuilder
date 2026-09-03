@@ -8,6 +8,7 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -21,11 +22,13 @@ namespace Contoso.Test.Flow.Test
         IApplicationTypeInfoManager applicationTypeInfoManager,
         IConfigurationService configurationService,
         IRefreshVisibleTextHelper refreshVisibleTextHelper,
+        ITypeHelper typeHelper,
         IXmlDocumentHelpers xmlDocumentHelpers) : ExpressionVisitor
     {
         private readonly IApplicationTypeInfoManager _applicationTypeInfoManager = applicationTypeInfoManager;
         private readonly IConfigurationService _configurationService = configurationService;
         private readonly IRefreshVisibleTextHelper _refreshVisibleTextHelper = refreshVisibleTextHelper;
+        private readonly ITypeHelper _typeHelper = typeHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers = xmlDocumentHelpers;
         private readonly XmlDocument xmlDocument = new();
 
@@ -36,6 +39,7 @@ namespace Contoso.Test.Flow.Test
                 serviceProvider.GetRequiredService<IApplicationTypeInfoManager>(),
                 serviceProvider.GetRequiredService<IConfigurationService>(),
                 serviceProvider.GetRequiredService<IRefreshVisibleTextHelper>(),
+                serviceProvider.GetRequiredService<ITypeHelper>(),
                 serviceProvider.GetRequiredService<IXmlDocumentHelpers>()
             );
             visitor.xmlDocument.LoadXml($"<{XmlDataConstants.CONSTRUCTORELEMENT}/>");
@@ -825,7 +829,7 @@ namespace Contoso.Test.Flow.Test
             {
                 XmlElement indexElements = BuildObjectList
                 (
-                    methodCallExpression.Arguments.Select(BuildExpressionElement).ToList(),
+                    [.. methodCallExpression.Arguments.Select(BuildExpressionElement)],
                     "LogicBuilder.Forms.Parameters.Expressions.IExpressionParameter",
                     "Array",
                     "indexes"
@@ -1034,12 +1038,23 @@ namespace Contoso.Test.Flow.Test
                 }
             }
 
+            if (typeof(IConvertible).IsAssignableFrom(constantType))
+            {
+                return BuildConstructorElement
+                (
+                    "ConstantOperatorParameters",
+                    [
+                        BuildObjectParameter("constantValue", valueElement),
+                        BuildObjectParameter("type", BuildGetTypeFunctionElement(constantType))
+                    ]
+                );
+            }
+
             return BuildConstructorElement
             (
                 "ConstantOperatorParameters",
                 [
-                    BuildObjectParameter("constantValue", valueElement),
-                    BuildObjectParameter("type", BuildGetTypeFunctionElement(constantType))
+                    BuildObjectParameter("constantValue", valueElement)
                 ]
             );
         }
@@ -1050,7 +1065,7 @@ namespace Contoso.Test.Flow.Test
                 ?? throw new NotSupportedException("Custom method call requires a declaring type.");
 
             List<XmlElement> argumentElements = methodCallExpression.Method.IsStatic
-                ? methodCallExpression.Arguments.Select(BuildExpressionElement).ToList()
+                ? [.. methodCallExpression.Arguments.Select(BuildExpressionElement)]
                 : [BuildExpressionElement(methodCallExpression.Object ?? throw new NotSupportedException("Instance method call object is required.")), .. methodCallExpression.Arguments.Select(BuildExpressionElement)];
 
             XmlElement argsObjectList = BuildObjectList
@@ -1070,13 +1085,30 @@ namespace Contoso.Test.Flow.Test
                     BuildLiteralListParameter
                     (
                         "parameterTypeNames",
-                        methodCallExpression.Method.GetParameters().Select(p => GetConfiguredTypeName(p.ParameterType)).ToList(),
+                        [.. methodCallExpression.Method.GetParameters().Select(p => GetConfiguredTypeName(p.ParameterType))],
                         "String",
                         "Array"
                     ),
                     BuildObjectListParameter("args", argsObjectList)
                 ]
             );
+        }
+
+        private XmlElement BuildLiteralList(IEnumerable<XmlText> items, string literalType, string listType, string visibleName)
+        {
+            XmlElement objectListElement = xmlDocument.CreateElement(XmlDataConstants.LITERALLISTELEMENT);
+            objectListElement.SetAttribute(XmlDataConstants.LITERALTYPEATTRIBUTE, literalType);
+            objectListElement.SetAttribute(XmlDataConstants.LISTTYPEATTRIBUTE, listType);
+            objectListElement.SetAttribute(XmlDataConstants.VISIBLETEXTATTRIBUTE, $"{visibleName}: Count({items.Count()})");
+
+            foreach (XmlText item in items)
+            {
+                XmlElement objectElement = xmlDocument.CreateElement(XmlDataConstants.LITERALELEMENT);
+                objectElement.AppendChild(item);
+                objectListElement.AppendChild(objectElement);
+            }
+
+            return objectListElement;
         }
 
         private XmlElement BuildObjectList(List<XmlElement> items, string objectType, string listType, string visibleName)
@@ -1121,7 +1153,29 @@ namespace Contoso.Test.Flow.Test
         {
             if (value is System.Collections.IEnumerable enumerable && valueType != typeof(string))
             {
-                return BuildCollectionConstantOperator(enumerable, valueType);
+                Type elementType = valueType.IsArray
+                ? valueType.GetElementType() ?? typeof(object)
+                : GetCollectionTypeForNonArrays(valueType);
+
+                if (_typeHelper.IsLiteralType(elementType))
+                {
+                    List<XmlText> valueElements = [];
+                    foreach (object? item in enumerable)
+                    {
+                        valueElements.Add(xmlDocument.CreateTextNode(item.ToString()));
+                    }
+
+                    return BuildLiteralList(valueElements, GetLiteralTypeName(elementType), GetListType(valueType), "constantValues");
+                }
+                else
+                {
+                    return BuildCollectionConstantOperator(enumerable, valueType);
+                }
+            }
+
+            static Type GetCollectionTypeForNonArrays(Type collectionType)
+            {
+                return collectionType.IsGenericType ? collectionType.GetGenericArguments().FirstOrDefault() ?? typeof(object) : typeof(object);
             }
 
             string literalTypeName = GetLiteralTypeName(valueType);
@@ -1153,6 +1207,7 @@ namespace Contoso.Test.Flow.Test
                 [BuildLiteralParameter("From", literalValue)]
             );
         }
+        
 
         private XmlElement BuildCollectionConstantOperator(System.Collections.IEnumerable enumerable, Type collectionType)
         {
@@ -1253,6 +1308,24 @@ namespace Contoso.Test.Flow.Test
             if (valueType == typeof(string)) return "String";
 
             return "String";
+        }
+
+        public static string GetListType(Type memberType)
+        {
+            if (memberType.IsGenericType && memberType.GetGenericTypeDefinition().Equals(typeof(List<>)))
+                return "GenericList";
+            else if (memberType.IsGenericType && memberType.GetGenericTypeDefinition().Equals(typeof(IList<>)))
+                return "IGenericList";
+            else if (memberType.IsGenericType && memberType.GetGenericTypeDefinition().Equals(typeof(Collection<>)))
+                return "GenericCollection";
+            else if (memberType.IsGenericType && memberType.GetGenericTypeDefinition().Equals(typeof(ICollection<>)))
+                return "IGenericCollection";
+            else if (memberType.IsGenericType && memberType.GetGenericTypeDefinition().Equals(typeof(IEnumerable<>)))
+                return "IGenericEnumerable";
+            else if (memberType.IsArray)
+                return "Array";
+
+            return "GenericList";
         }
 
         private static string ConvertToLiteralString(object? value, Type valueType)
